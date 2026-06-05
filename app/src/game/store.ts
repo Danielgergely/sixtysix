@@ -3,11 +3,21 @@ import type { PlayerProfile, RacePhase, Racer } from './types'
 import { pickBots, sampleBotAnswer, type BotRacer } from './bots'
 import { scoreAnswer, FINISH_LINE_SCORE, MAX_QUESTIONS, QUESTION_TIME_MS } from './scoring'
 import { playSfx } from './sfx'
-import { levelForXp, loadFlaggedIds, loadPlayer, saveFlaggedIds, savePlayer } from './persistence'
+import {
+  levelForXp,
+  loadFlaggedIds,
+  loadPlayer,
+  loadSettings,
+  saveFlaggedIds,
+  savePlayer,
+  saveSettings,
+} from './persistence'
+import { setMuted } from './sfx'
+import type { CharacterId } from './types'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
-export type Screen = 'menu' | 'lobby' | 'race' | 'podium'
+export type Screen = 'menu' | 'lobby' | 'race' | 'podium' | 'profile'
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
@@ -31,6 +41,7 @@ interface GameStore {
   answerLog: number[]
   /** Question ids flagged as wrong/unclear; persisted. */
   flaggedIds: string[]
+  muted: boolean
 
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
@@ -38,6 +49,8 @@ interface GameStore {
   /** Player taps an answer; bots click on their own timers. */
   answer: (index: number) => void
   toggleFlag: (questionId: string) => void
+  toggleMute: () => void
+  updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
 }
 
 const defaultPlayer: PlayerProfile = {
@@ -48,6 +61,9 @@ const defaultPlayer: PlayerProfile = {
   xp: 0,
   coins: 0,
 }
+
+const initialSettings = loadSettings()
+setMuted(initialSettings.muted)
 
 export const useGameStore = create<GameStore>((set, get) => {
   const timers: ReturnType<typeof setTimeout>[] = []
@@ -197,6 +213,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     questionStartedAt: 0,
     answerLog: [],
     flaggedIds: loadFlaggedIds(),
+    muted: initialSettings.muted,
 
     goTo: (screen) => {
       clearTimers()
@@ -238,6 +255,20 @@ export const useGameStore = create<GameStore>((set, get) => {
         : [...current, questionId]
       saveFlaggedIds(flaggedIds)
       set({ flaggedIds })
+    },
+
+    toggleMute: () => {
+      const muted = !get().muted
+      setMuted(muted)
+      saveSettings({ muted })
+      set({ muted })
+    },
+
+    updateProfile: (patch) => {
+      const player = { ...get().player, ...patch }
+      if (!player.name.trim()) player.name = 'You'
+      savePlayer(player)
+      set({ player })
     },
   }
 })

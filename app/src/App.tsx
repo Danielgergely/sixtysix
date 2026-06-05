@@ -3,12 +3,14 @@ import { MainMenuScreen } from './screens/MainMenuScreen'
 import { LobbyScreen } from './screens/LobbyScreen'
 import { RaceScreen } from './screens/RaceScreen'
 import { PodiumScreen } from './screens/PodiumScreen'
+import { ProfileScreen } from './screens/ProfileScreen'
 
 const SCREENS: Record<Screen, () => React.JSX.Element> = {
   menu: MainMenuScreen,
   lobby: LobbyScreen,
   race: RaceScreen,
   podium: PodiumScreen,
+  profile: ProfileScreen,
 }
 
 export default function App() {

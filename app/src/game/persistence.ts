@@ -4,6 +4,28 @@ import type { PlayerProfile } from './types'
 // Swap for capacitor-community/sqlite if the data ever outgrows this.
 const PLAYER_KEY = 'sixtysix.player.v1'
 const FLAGS_KEY = 'sixtysix.flaggedQuestions.v1'
+const SETTINGS_KEY = 'sixtysix.settings.v1'
+
+export interface Settings {
+  muted: boolean
+}
+
+export function loadSettings(): Settings {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY)
+    return raw ? { muted: false, ...JSON.parse(raw) } : { muted: false }
+  } catch {
+    return { muted: false }
+  }
+}
+
+export function saveSettings(settings: Settings): void {
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+  } catch {
+    // best effort
+  }
+}
 
 /** Level curve: a level every 5,000 XP (XP = cumulative race scores). */
 export function levelForXp(xp: number): number {
