@@ -17,7 +17,8 @@ export function PodiumScreen() {
 
   return (
     <div className="screen podium-screen">
-      <h2 className="screen-heading">
+      {/* Tiers pop in 3rd → 2nd → 1st; heading and actions arrive last (CSS delays). */}
+      <h2 className="screen-heading podium-late">
         {yourRank === 0 ? '🎉 Victory!' : `You finished ${['1st', '2nd', '3rd', '4th'][yourRank]}`}
       </h2>
 
@@ -35,9 +36,9 @@ export function PodiumScreen() {
         })}
       </div>
 
-      <div className="reward">+ 🪙 {COIN_REWARDS[yourRank] ?? 10} coins</div>
+      <div className="reward podium-late">+ 🪙 {COIN_REWARDS[yourRank] ?? 10} coins</div>
 
-      <div className="podium-actions">
+      <div className="podium-actions podium-late">
         <button className="btn-play" onClick={findMatch}>
           PLAY AGAIN
         </button>

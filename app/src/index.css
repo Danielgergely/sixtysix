@@ -193,6 +193,7 @@ button:disabled { cursor: default; }
 
 /* ── Race ─────────────────────────────────────────────────────────────── */
 .track {
+  position: relative;
   height: 30%;
   min-height: 170px;
   background: linear-gradient(#9ec7e0 0%, #cfe3ee 38%, var(--sand-dark) 38%, var(--sand-dark) 100%);
@@ -212,7 +213,7 @@ button:disabled { cursor: default; }
   display: flex;
   align-items: center;
   gap: 4px;
-  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: left 1.5s cubic-bezier(0.22, 1, 0.36, 1); /* slow enough to follow */
 }
 .chariot-avatar { font-size: 1.5rem; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.25)); }
 .chariot-name {
@@ -225,16 +226,71 @@ button:disabled { cursor: default; }
 .chariot.boost .chariot-avatar { animation: boost 0.5s ease-out; }
 .chariot.stumble .chariot-avatar { animation: stumble 0.5s ease-in-out; }
 
+
 @keyframes boost { 30% { transform: translateY(-8px) scale(1.15); } }
 @keyframes stumble { 25% { transform: rotate(-18deg); } 75% { transform: rotate(12deg); } }
 
 .finish-line {
   position: absolute;
-  right: 12px;
+  left: 88%; /* keep in sync with LINE_AT in RaceScreen.tsx (86% + chariot width) */
   top: 0;
   bottom: 0;
   width: 6px;
   background: repeating-linear-gradient(180deg, var(--ink) 0 5px, var(--cream) 5px 10px);
+}
+
+/* Player's running total, above the track. Re-pops whenever it changes. */
+.score-hud {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  z-index: 1;
+  animation: lock-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Points needed to win, anchored at the finish line. */
+.finish-label {
+  position: absolute;
+  top: 6px;
+  left: 88%;
+  transform: translateX(-50%);
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Earned points float up from the chariot as it advances. */
+.gain-float {
+  position: absolute;
+  bottom: 30px;
+  left: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--answer-green);
+  text-shadow: 0 1px 0 var(--cream);
+  animation: gain-rise 2.6s ease-out forwards;
+  white-space: nowrap;
+}
+.gain-float.zero { color: var(--brown-deep); opacity: 0.6; }
+
+@keyframes gain-rise {
+  0% { opacity: 0; transform: translateY(8px); }
+  12% { opacity: 1; }
+  75% { opacity: 1; transform: translateY(-12px); } /* hold readable */
+  100% { opacity: 0; transform: translateY(-20px); }
 }
 
 /* ── Question card ───────────────────────────────────────────────────── */
@@ -258,6 +314,8 @@ button:disabled { cursor: default; }
   from { transform: scale(2.2); opacity: 0; }
 }
 
+.question-area { perspective: 700px; }
+
 .question-card {
   width: 100%;
   background: #fff;
@@ -265,14 +323,77 @@ button:disabled { cursor: default; }
   border: 3px solid var(--brown-deep);
   box-shadow: 0 6px 0 rgb(0 0 0 / 0.12);
   padding: 0.9rem 1.1rem 1.1rem;
+  animation: card-flip 0.55s ease-out; /* fresh question flips in */
+}
+
+@keyframes card-flip {
+  from { transform: rotateX(85deg); opacity: 0; }
+  60% { transform: rotateX(-10deg); opacity: 1; }
+  to { transform: none; }
 }
 
 .question-meta { font-size: 0.72rem; font-weight: 600; color: var(--brown-deep); margin-bottom: 0.4rem; }
 .question-ref { color: var(--terracotta); }
+.reading-hint { color: var(--terracotta); }
+.gain-meta { color: var(--answer-green); font-weight: 700; }
+.gain-meta.zero { color: var(--brown-deep); opacity: 0.7; }
 .question-text { font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
 
-.timer-bar {
+/* Lock-in row: avatars start gray, pop to color as each racer answers. */
+.answer-status {
+  display: flex;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.status-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sand);
+  border: 2px solid var(--sand-dark);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+.status-avatar.locked-in {
+  filter: none;
+  opacity: 1;
+  background: var(--cream);
+  border-color: var(--brown-deep);
+  animation: lock-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.status-you { box-shadow: 0 0 0 2px var(--gold); }
+
+@keyframes lock-pop {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   margin-top: 0.8rem;
+}
+
+.timer-digits {
+  font-weight: 700;
+  font-size: 1rem;
+  min-width: 2.4rem;
+  text-align: right;
+  color: var(--brown-deep);
+  font-variant-numeric: tabular-nums;
+}
+.timer-digits.urgent { color: var(--answer-red); animation: urgent-pulse 0.5s infinite; }
+
+@keyframes urgent-pulse { 50% { transform: scale(1.15); } }
+
+.timer-bar {
+  flex: 1;
   height: 10px;
   border-radius: 999px;
   background: var(--sand);
@@ -306,6 +427,18 @@ button:disabled { cursor: default; }
   min-height: 180px;
 }
 
+/* 3-2-1 shown where the answers are about to appear */
+.inter-countdown {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: grid;
+  place-items: center;
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  animation: countdown-pop 0.5s ease-out;
+}
+
 .answer-btn {
   border-radius: 16px;
   color: #fff;
@@ -331,6 +464,7 @@ button:disabled { cursor: default; }
 .answer-correct { outline: 4px solid var(--cream); animation: pop-in 0.25s; }
 .answer-wrong { opacity: 0.85; animation: stumble 0.4s; }
 .answer-dim { opacity: 0.35; }
+.answer-selected { outline: 4px solid var(--ink); transform: translateY(3px); border-bottom-width: 2px; }
 
 /* ── Podium ──────────────────────────────────────────────────────────── */
 .podium-screen { justify-content: center; gap: 0.8rem; }
@@ -343,7 +477,34 @@ button:disabled { cursor: default; }
   padding: 1rem;
 }
 
-.podium-tier { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.podium-tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0;
+  animation: tier-rise 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+/* Build anticipation: 3rd → 2nd → 1st */
+.tier-3 { animation-delay: 0.4s; }
+.tier-2 { animation-delay: 1.3s; }
+.tier-1 { animation-delay: 2.2s; }
+
+@keyframes tier-rise {
+  from { opacity: 0; transform: translateY(40px) scale(0.8); }
+  to { opacity: 1; transform: none; }
+}
+
+.podium-late {
+  opacity: 0;
+  animation: fade-up 0.5s ease-out forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
 .podium-score { font-size: 0.8rem; font-weight: 700; color: var(--brown-deep); }
 
 .podium-block {

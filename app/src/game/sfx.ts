@@ -1,6 +1,6 @@
 /** Tiny WebAudio synth SFX — no asset files needed. Replace with real audio later. */
 
-export type SfxName = 'tick' | 'go' | 'correct' | 'wrong' | 'finish'
+export type SfxName = 'tick' | 'go' | 'submit' | 'correct' | 'wrong' | 'finish'
 
 let ctx: AudioContext | null = null
 let muted = false
@@ -35,6 +35,9 @@ export function playSfx(name: SfxName) {
       break
     case 'go':
       beep(880, 220, 0, 'square')
+      break
+    case 'submit':
+      beep(490, 60, 0, 'triangle', 0.03) // quiet click — also fires per bot
       break
     case 'correct':
       beep(523, 90)

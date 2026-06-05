@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { PlayerProfile, RacePhase, Racer } from './types'
 import { pickBots, sampleBotAnswer, type BotRacer } from './bots'
-import { scoreAnswer, QUESTIONS_PER_RACE, QUESTION_TIME_MS } from './scoring'
+import { scoreAnswer, FINISH_LINE_SCORE, MAX_QUESTIONS, QUESTION_TIME_MS } from './scoring'
 import { playSfx } from './sfx'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
@@ -10,15 +10,18 @@ export type Screen = 'menu' | 'lobby' | 'race' | 'podium'
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
-const REVEAL_MS = 1800
-const COUNTDOWN_FROM = 3
+const READING_MS = 3000 // question flashed alone + 3-2-1 before answers appear
+const ALL_ANSWERED_BEAT_MS = 700 // pause after the last click before the reveal
+const REVEAL_MS = 1200 // correct answer highlighted, chariots still
+const PROGRESS_MS = 2800 // chariots advance, gains float — slow enough to follow
+const FINISH_FLAG_MS = 1800 // "🏁 Finish!" before the podium
 
 interface GameStore {
   screen: Screen
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
-  /** 3 → 2 → 1 → 0 ("GO!") during the countdown phase. */
+  /** 3 → 2 → 1 while a new question is being read ('reading' phase). */
   countdownValue: number
   questions: Question[]
   questionIndex: number
@@ -27,7 +30,7 @@ interface GameStore {
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
   findMatch: () => void
-  /** Player taps an answer (or times out via the store's own timer). */
+  /** Player taps an answer; bots click on their own timers. */
   answer: (index: number) => void
 }
 
@@ -48,92 +51,132 @@ export const useGameStore = create<GameStore>((set, get) => {
     timers.length = 0
   }
   let questionTimer: ReturnType<typeof setTimeout> | undefined
+  let resolving = false
+
+  const setRacer = (id: string, patch: Partial<Racer>) =>
+    set({ racers: get().racers.map((r) => (r.profile.id === id ? { ...r, ...patch } : r)) })
 
   async function startRace() {
-    const questions = await bundledBank.getQuestions({ count: QUESTIONS_PER_RACE, locale: 'en' })
+    const questions = await bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' })
     set({
       screen: 'race',
-      phase: 'countdown',
-      countdownValue: COUNTDOWN_FROM,
       questions,
       questionIndex: 0,
-      racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined })),
+      racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined, lastGain: undefined })),
     })
-    playSfx('tick')
-    for (let v = COUNTDOWN_FROM - 1; v >= 0; v--) {
-      later(() => {
-        set({ countdownValue: v })
-        playSfx(v === 0 ? 'go' : 'tick')
-      }, (COUNTDOWN_FROM - v) * 1000)
-    }
-    later(startQuestion, COUNTDOWN_FROM * 1000 + 600)
+    startQuestion()
   }
 
   function startQuestion() {
-    set({ phase: 'question', questionStartedAt: Date.now() })
-    questionTimer = setTimeout(() => resolveQuestion(null), QUESTION_TIME_MS)
-  }
-
-  /** Score everyone for the current question. `playerIndex === null` = timeout. */
-  function resolveQuestion(playerIndex: number | null) {
-    clearTimeout(questionTimer)
-    const { questions, questionIndex, questionStartedAt } = get()
-    const q = questions[questionIndex]
-    const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt)
-    const playerCorrect = playerIndex !== null && playerIndex === q.correctIndex
-
-    playSfx(playerCorrect ? 'correct' : 'wrong')
+    resolving = false
+    // Flash the question alone with a 3-2-1 countdown so everyone can read it
+    // (Kahoot-style); the answers appear when the countdown hits zero.
     set({
-      phase: 'reveal',
-      racers: get().racers.map((r) => {
-        if (!r.isBot) {
-          return {
-            ...r,
-            score: r.score + scoreAnswer(playerCorrect, QUESTION_TIME_MS - elapsed),
-            lastAnswer: { index: playerIndex ?? -1, correct: playerCorrect, ms: elapsed },
-          }
-        }
-        const sampled = sampleBotAnswer((r as BotRacer).persona, q.difficulty, q.correctIndex)
-        return {
-          ...r,
-          score: r.score + scoreAnswer(sampled.correct, QUESTION_TIME_MS - sampled.ms),
-          lastAnswer: sampled,
-        }
-      }),
+      phase: 'reading',
+      countdownValue: 3,
+      racers: get().racers.map((r) => ({ ...r, lastAnswer: undefined, lastGain: undefined })),
     })
-    later(nextQuestion, REVEAL_MS)
+    playSfx('tick')
+    later(() => {
+      set({ countdownValue: 2 })
+      playSfx('tick')
+    }, 1000)
+    later(() => {
+      set({ countdownValue: 1 })
+      playSfx('tick')
+    }, 2000)
+    later(beginAnswering, READING_MS)
   }
 
-  function nextQuestion() {
-    const { questionIndex, questions } = get()
-    if (questionIndex + 1 >= questions.length) {
+  function beginAnswering() {
+    const { questions, questionIndex } = get()
+    const q = questions[questionIndex]
+    set({ phase: 'question', questionStartedAt: Date.now() })
+    playSfx('go')
+    // Each bot clicks on its own sampled timer — some faster than you, some slower.
+    for (const r of get().racers) {
+      if (!r.isBot) continue
+      const sampled = sampleBotAnswer((r as BotRacer).persona, q.difficulty, q.correctIndex)
+      later(() => {
+        if (get().phase !== 'question') return
+        setRacer(r.profile.id, { lastAnswer: sampled })
+        playSfx('submit')
+        maybeResolveEarly()
+      }, sampled.ms)
+    }
+    questionTimer = setTimeout(() => resolveQuestion(), QUESTION_TIME_MS)
+  }
+
+  /** Everyone clicked before the timer ran out → short beat, then reveal. */
+  function maybeResolveEarly() {
+    if (resolving) return
+    if (get().racers.every((r) => r.lastAnswer)) {
+      resolving = true
+      clearTimeout(questionTimer)
+      later(resolveQuestion, ALL_ANSWERED_BEAT_MS)
+    }
+  }
+
+  /** Reveal sequence: highlight correct → beat → chariots advance → next. */
+  function resolveQuestion() {
+    clearTimeout(questionTimer)
+
+    // A player who never clicked gets an explicit timeout marker.
+    const you = get().racers.find((r) => !r.isBot)
+    if (you && !you.lastAnswer) {
+      setRacer(you.profile.id, { lastAnswer: { index: -1, correct: false, ms: QUESTION_TIME_MS } })
+    }
+
+    set({ phase: 'reveal' })
+    playSfx(get().racers.find((r) => !r.isBot)?.lastAnswer?.correct ? 'correct' : 'wrong')
+
+    later(() => {
+      applyScores()
+      set({ phase: 'progress' })
+    }, REVEAL_MS)
+    later(afterProgress, REVEAL_MS + PROGRESS_MS)
+  }
+
+  /** First across the line wins; safety cap if nobody crosses. */
+  function afterProgress() {
+    const crossed = get().racers.some((r) => r.score >= FINISH_LINE_SCORE)
+    const outOfQuestions = get().questionIndex + 1 >= get().questions.length
+    if (crossed || outOfQuestions) {
       set({ phase: 'finished' })
       playSfx('finish')
-      later(() => {
-        const player = get().racers.find((r) => !r.isBot)
-        const sorted = [...get().racers].sort((a, b) => b.score - a.score)
-        const rank = sorted.findIndex((r) => r === player)
-        const coinsWon = [100, 50, 25, 10][rank] ?? 10
-        set((s) => ({
-          screen: 'podium',
-          player: { ...s.player, coins: s.player.coins + coinsWon, xp: s.player.xp + (player?.score ?? 0) },
-        }))
-      }, 1500)
+      later(finishRace, FINISH_FLAG_MS)
       return
     }
-    set({
-      questionIndex: questionIndex + 1,
-      racers: get().racers.map((r) => ({ ...r, lastAnswer: undefined })),
-    })
+    set({ questionIndex: get().questionIndex + 1 })
     startQuestion()
+  }
+
+  function applyScores() {
+    set({
+      racers: get().racers.map((r) => {
+        const gain = r.lastAnswer ? scoreAnswer(r.lastAnswer.correct, QUESTION_TIME_MS - r.lastAnswer.ms) : 0
+        return { ...r, score: r.score + gain, lastGain: gain }
+      }),
+    })
+  }
+
+  function finishRace() {
+    const player = get().racers.find((r) => !r.isBot)
+    const sorted = [...get().racers].sort((a, b) => b.score - a.score)
+    const rank = sorted.findIndex((r) => r === player)
+    const coinsWon = [100, 50, 25, 10][rank] ?? 10
+    set((s) => ({
+      screen: 'podium',
+      player: { ...s.player, coins: s.player.coins + coinsWon, xp: s.player.xp + (player?.score ?? 0) },
+    }))
   }
 
   return {
     screen: 'menu',
     player: defaultPlayer,
     racers: [],
-    phase: 'countdown',
-    countdownValue: COUNTDOWN_FROM,
+    phase: 'reading',
+    countdownValue: 3,
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,
@@ -159,8 +202,16 @@ export const useGameStore = create<GameStore>((set, get) => {
     },
 
     answer: (index) => {
-      if (get().phase !== 'question') return
-      resolveQuestion(index)
+      const { phase, questions, questionIndex, questionStartedAt } = get()
+      const you = get().racers.find((r) => !r.isBot)
+      if (phase !== 'question' || !you || you.lastAnswer) return
+      const q = questions[questionIndex]
+      const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt)
+      setRacer(you.profile.id, {
+        lastAnswer: { index, correct: index === q.correctIndex, ms: elapsed },
+      })
+      playSfx('submit')
+      maybeResolveEarly()
     },
   }
 })

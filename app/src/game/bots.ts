@@ -5,29 +5,28 @@ import { QUESTION_TIME_MS } from './scoring'
 /**
  * Bot opponents for Phase 1 (PLAN.md §2). Not throwaway: this becomes
  * matchmaking backfill in Phase 2.
+ *
+ * A bot's displayed level drives both its speed and accuracy:
+ * level 1 ≈ slow + shaky, level 9 ≈ fast + sharp.
  */
-const PERSONAS: Record<'steady' | 'swift' | 'scholar', BotPersona> = {
-  steady: {
-    accuracyByDifficulty: { 1: 0.8, 2: 0.65, 3: 0.5, 4: 0.35, 5: 0.25 },
-    answerTimeMs: { mean: 5200, sd: 1500 },
-  },
-  swift: {
-    accuracyByDifficulty: { 1: 0.7, 2: 0.55, 3: 0.45, 4: 0.3, 5: 0.2 },
-    answerTimeMs: { mean: 2800, sd: 900 },
-  },
-  scholar: {
-    accuracyByDifficulty: { 1: 0.95, 2: 0.85, 3: 0.7, 4: 0.55, 5: 0.4 },
-    answerTimeMs: { mean: 6500, sd: 1800 },
-  },
+export function personaForLevel(level: number): BotPersona {
+  const acc = (difficulty: Difficulty) =>
+    Math.min(0.97, Math.max(0.15, 0.5 + level * 0.05 - (difficulty - 1) * 0.12))
+  // Typical windows: high-level 2–4s, mid 3–5s, low 5–8s.
+  const window = level >= 7 ? { min: 2000, max: 4000 } : level >= 4 ? { min: 3000, max: 5000 } : { min: 5000, max: 8000 }
+  return {
+    accuracyByDifficulty: { 1: acc(1), 2: acc(2), 3: acc(3), 4: acc(4), 5: acc(5) },
+    answerTimeMs: window,
+  }
 }
 
-const BOT_ROSTER: Array<{ name: string; avatar: CharacterId; persona: keyof typeof PERSONAS }> = [
-  { name: 'Miriam', avatar: 'esther', persona: 'swift' },
-  { name: 'Caleb', avatar: 'david', persona: 'steady' },
-  { name: 'Tabitha', avatar: 'ruth', persona: 'scholar' },
-  { name: 'Eli', avatar: 'moses', persona: 'steady' },
-  { name: 'Phoebe', avatar: 'esther', persona: 'scholar' },
-  { name: 'Silas', avatar: 'david', persona: 'swift' },
+const BOT_ROSTER: Array<{ name: string; avatar: CharacterId }> = [
+  { name: 'Miriam', avatar: 'esther' },
+  { name: 'Caleb', avatar: 'david' },
+  { name: 'Tabitha', avatar: 'ruth' },
+  { name: 'Eli', avatar: 'moses' },
+  { name: 'Phoebe', avatar: 'esther' },
+  { name: 'Silas', avatar: 'david' },
 ]
 
 export interface BotRacer extends Racer {
@@ -39,19 +38,22 @@ export interface BotRacer extends Racer {
 export function pickBots(count: number, avoidAvatar?: CharacterId): BotRacer[] {
   const pool = [...BOT_ROSTER].sort(() => Math.random() - 0.5)
   pool.sort((a, b) => Number(a.avatar === avoidAvatar) - Number(b.avatar === avoidAvatar))
-  return pool.slice(0, count).map((bot, i) => ({
-    profile: {
-      id: `bot_${i}`,
-      name: bot.name,
-      avatar: bot.avatar,
-      level: 1 + Math.floor(Math.random() * 9),
-      xp: 0,
-      coins: 0,
-    },
-    isBot: true,
-    score: 0,
-    persona: PERSONAS[bot.persona],
-  }))
+  return pool.slice(0, count).map((bot, i) => {
+    const level = 1 + Math.floor(Math.random() * 9)
+    return {
+      profile: {
+        id: `bot_${i}`,
+        name: bot.name,
+        avatar: bot.avatar,
+        level,
+        xp: 0,
+        coins: 0,
+      },
+      isBot: true,
+      score: 0,
+      persona: personaForLevel(level),
+    }
+  })
 }
 
 /** Sample whether/when a bot answers the current question correctly. */
@@ -61,11 +63,14 @@ export function sampleBotAnswer(
   correctIndex: number,
 ): { index: number; correct: boolean; ms: number } {
   const correct = Math.random() < persona.accuracyByDifficulty[difficulty]
-  // Box–Muller normal sample, clamped to the question window.
-  const u1 = Math.random() || 1e-9
-  const u2 = Math.random()
-  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
-  const ms = Math.max(800, Math.min(QUESTION_TIME_MS - 200, persona.answerTimeMs.mean + z * persona.answerTimeMs.sd))
+  const { min, max } = persona.answerTimeMs
+  let ms = min + Math.random() * (max - min) // typical window for this level band
+  ms += (difficulty - 1) * 350 // harder questions take everyone a bit longer
+  ms += (Math.random() - 0.5) * 1200 // general jitter
+  if (Math.random() < 0.12) ms += 1500 + Math.random() * 2500 // occasional hesitation
+  else if (Math.random() < 0.08) ms -= 800 // occasional snap answer
+  // Clamp inside the question window so every bot clicks before the timer expires.
+  ms = Math.max(900, Math.min(QUESTION_TIME_MS - 400, ms))
   const index = correct ? correctIndex : (correctIndex + 1 + Math.floor(Math.random() * 3)) % 4
   return { index, correct, ms: Math.round(ms) }
 }
