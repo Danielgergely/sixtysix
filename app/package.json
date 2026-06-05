@@ -13,8 +13,10 @@
     "@capacitor/android": "^8.4.0",
     "@capacitor/core": "^8.4.0",
     "@capacitor/ios": "^8.4.0",
+    "@sixtysix/shared": "*",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "socket.io-client": "^4.8.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {

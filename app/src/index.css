@@ -194,6 +194,125 @@ button:disabled { cursor: default; }
   padding: 5px 12px;
 }
 
+.mode-badge-beta { background: var(--gold); color: var(--brown-deep); }
+
+/* ── Open Arena ──────────────────────────────────────────────────────── */
+.arena-menu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 0 1.5rem 2rem;
+}
+
+.arena-section { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.join-row { display: flex; gap: 0.6rem; }
+
+.code-input {
+  flex: 1;
+  min-width: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.join-btn { margin: 0; padding: 0.7rem 1.4rem; font-size: 1rem; border-radius: 14px; }
+.join-btn:disabled { opacity: 0.5; }
+
+.host-btn { margin: 0; text-align: center; }
+.host-btn:disabled { opacity: 0.5; }
+
+.arena-divider {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.arena-hint { font-size: 0.74rem; opacity: 0.7; line-height: 1.4; }
+
+.arena-error {
+  background: var(--answer-red);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  animation: pop-in 0.25s;
+}
+
+/* Host lobby (the board) */
+.host-code-card {
+  margin: 0.5rem 1.2rem 0;
+  background: var(--cream);
+  border: 3px solid var(--brown-deep);
+  border-radius: 18px;
+  box-shadow: 0 5px 0 rgb(0 0 0 / 0.12);
+  padding: 1rem;
+  text-align: center;
+}
+.host-code-label { font-size: 0.75rem; font-weight: 700; color: var(--brown-deep); }
+.arena-code {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  margin-left: 0.3em; /* visually re-center the letter-spaced text */
+  color: var(--terracotta);
+}
+.host-join-url { font-size: 0.78rem; font-weight: 600; opacity: 0.75; }
+
+.host-players { flex: 1; min-height: 0; overflow-y: auto; padding: 1rem 1.2rem; }
+.host-players-heading { font-size: 0.85rem; font-weight: 700; color: var(--brown-deep); margin-bottom: 0.6rem; }
+
+.player-chip-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+.player-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  border-radius: 999px;
+  padding: 4px 12px 4px 8px;
+  font-size: 0.85rem;
+  animation: pop-in 0.25s ease-out;
+}
+.player-chip-name { font-weight: 700; }
+.player-gone { opacity: 0.4; }
+
+.host-actions { padding: 0 1.2rem 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; text-align: center; }
+.host-actions .btn-play { margin: 0; }
+.host-actions .btn-play:disabled { opacity: 0.5; }
+
+/* Player lobby */
+.player-lobby-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0 1.5rem;
+}
+.player-lobby-avatar { width: 76px; height: 76px; font-size: 2.2rem; }
+.player-lobby-name { font-size: 1.3rem; font-weight: 700; color: var(--brown-deep); }
+.player-lobby-wait {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
 /* Shared top bar (profile and future sub-screens) */
 .screen-topbar {
   display: grid;

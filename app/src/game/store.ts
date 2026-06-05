@@ -20,7 +20,15 @@ import type { CharacterId } from './types'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
-export type Screen = 'menu' | 'lobby' | 'race' | 'podium' | 'profile'
+export type Screen =
+  | 'menu'
+  | 'lobby'
+  | 'race'
+  | 'podium'
+  | 'profile'
+  | 'arenaMenu'
+  | 'arenaHostLobby'
+  | 'arenaPlayerLobby'
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby

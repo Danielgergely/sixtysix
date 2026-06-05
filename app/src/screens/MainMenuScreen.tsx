@@ -45,7 +45,7 @@ export function MainMenuScreen() {
           </div>
         </button>
 
-        <div className="mode-card mode-soon">
+        <button className="mode-card mode-playable" onClick={() => goTo('arenaMenu')}>
           <div className="mode-banner">
             <ArenaBanner />
           </div>
@@ -54,9 +54,9 @@ export function MainMenuScreen() {
               <span className="mode-title">Open Arena</span>
               <span className="mode-desc">Live quiz with up to 100 players</span>
             </span>
-            <span className="mode-badge">SOON</span>
+            <span className="mode-badge mode-badge-beta">BETA</span>
           </div>
-        </div>
+        </button>
 
         <div className="mode-card mode-soon">
           <div className="mode-banner">

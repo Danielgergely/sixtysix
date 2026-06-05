@@ -4,3 +4,4 @@ dist/
 *.local
 PLAN.md
 ChariotsOfFaith-standalone.html
+.idea/
