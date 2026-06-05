@@ -208,7 +208,7 @@ button:disabled { cursor: default; }
 
 .arena-section { display: flex; flex-direction: column; gap: 0.5rem; }
 
-.join-row { display: flex; gap: 0.6rem; }
+.arena-avatar-grid .avatar-option { padding: 0.45rem 0.2rem; }
 
 .code-input {
   flex: 1;
