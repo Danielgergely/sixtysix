@@ -6,6 +6,10 @@ const COIN_REWARDS = [100, 50, 25, 10]
 
 export function PodiumScreen() {
   const racers = useGameStore((s) => s.racers)
+  const questions = useGameStore((s) => s.questions)
+  const answerLog = useGameStore((s) => s.answerLog)
+  const flaggedIds = useGameStore((s) => s.flaggedIds)
+  const toggleFlag = useGameStore((s) => s.toggleFlag)
   const goTo = useGameStore((s) => s.goTo)
   const findMatch = useGameStore((s) => s.findMatch)
 
@@ -14,6 +18,7 @@ export function PodiumScreen() {
   const yourRank = sorted.findIndex((r) => !r.isBot)
   // Render order 2nd–1st–3rd for the classic podium silhouette.
   const podiumOrder = [top3[1], top3[0], top3[2]].filter(Boolean)
+  const played = questions.slice(0, answerLog.length)
 
   return (
     <div className="screen podium-screen">
@@ -46,6 +51,53 @@ export function PodiumScreen() {
           Home
         </button>
       </div>
+
+      {/* Post-race review: every played question, your pick vs the right one. */}
+      {played.length > 0 && (
+        <div className="review-list podium-late">
+          <h3 className="review-heading">Questions from this race</h3>
+          {played.map((q, i) => {
+            const yours = answerLog[i]
+            const flagged = flaggedIds.includes(q.id)
+            return (
+              <div key={q.id} className="review-item">
+                <div className="review-meta">
+                  <span>
+                    Q{i + 1} · <span className="question-ref">{q.reference}</span>
+                    {yours === -1 && <span className="timeout-note"> · ⏰ no answer</span>}
+                  </span>
+                  <button
+                    className={`flag-btn ${flagged ? 'flagged' : ''}`}
+                    onClick={() => toggleFlag(q.id)}
+                    title="Flag this question as wrong or unclear"
+                  >
+                    {flagged ? '🚩 Flagged' : '⚐ Flag'}
+                  </button>
+                </div>
+                <div className="review-question">{q.text.en}</div>
+                <div className="review-answers">
+                  {q.answers.en.map((a, ai) => {
+                    const isCorrect = ai === q.correctIndex
+                    const isYours = ai === yours
+                    const cls = [
+                      'review-answer',
+                      isCorrect ? 'is-correct' : '',
+                      isYours && !isCorrect ? 'is-wrong' : '',
+                    ].join(' ')
+                    return (
+                      <span key={ai} className={cls}>
+                        {isCorrect ? '✓ ' : isYours ? '✗ ' : ''}
+                        {a}
+                        {isYours ? ' — you' : ''}
+                      </span>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

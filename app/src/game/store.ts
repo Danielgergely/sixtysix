@@ -3,6 +3,7 @@ import type { PlayerProfile, RacePhase, Racer } from './types'
 import { pickBots, sampleBotAnswer, type BotRacer } from './bots'
 import { scoreAnswer, FINISH_LINE_SCORE, MAX_QUESTIONS, QUESTION_TIME_MS } from './scoring'
 import { playSfx } from './sfx'
+import { levelForXp, loadFlaggedIds, loadPlayer, saveFlaggedIds, savePlayer } from './persistence'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
@@ -26,12 +27,17 @@ interface GameStore {
   questions: Question[]
   questionIndex: number
   questionStartedAt: number
+  /** Your answer index per played question (-1 = timed out) — for the podium review. */
+  answerLog: number[]
+  /** Question ids flagged as wrong/unclear; persisted. */
+  flaggedIds: string[]
 
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
   findMatch: () => void
   /** Player taps an answer; bots click on their own timers. */
   answer: (index: number) => void
+  toggleFlag: (questionId: string) => void
 }
 
 const defaultPlayer: PlayerProfile = {
@@ -64,6 +70,7 @@ export const useGameStore = create<GameStore>((set, get) => {
       screen: 'race',
       questions,
       questionIndex: 0,
+      answerLog: [],
       racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined, lastGain: undefined })),
     })
     startQuestion()
@@ -129,7 +136,8 @@ export const useGameStore = create<GameStore>((set, get) => {
       setRacer(you.profile.id, { lastAnswer: { index: -1, correct: false, ms: QUESTION_TIME_MS } })
     }
 
-    set({ phase: 'reveal' })
+    const yourIndex = get().racers.find((r) => !r.isBot)?.lastAnswer?.index ?? -1
+    set({ phase: 'reveal', answerLog: [...get().answerLog, yourIndex] })
     playSfx(get().racers.find((r) => !r.isBot)?.lastAnswer?.correct ? 'correct' : 'wrong')
 
     later(() => {
@@ -167,21 +175,28 @@ export const useGameStore = create<GameStore>((set, get) => {
     const sorted = [...get().racers].sort((a, b) => b.score - a.score)
     const rank = sorted.findIndex((r) => r === player)
     const coinsWon = [100, 50, 25, 10][rank] ?? 10
-    set((s) => ({
-      screen: 'podium',
-      player: { ...s.player, coins: s.player.coins + coinsWon, xp: s.player.xp + (player?.score ?? 0) },
-    }))
+    const xp = get().player.xp + (player?.score ?? 0)
+    const updated = {
+      ...get().player,
+      coins: get().player.coins + coinsWon,
+      xp,
+      level: levelForXp(xp),
+    }
+    savePlayer(updated)
+    set({ screen: 'podium', player: updated })
   }
 
   return {
     screen: 'menu',
-    player: defaultPlayer,
+    player: loadPlayer() ?? defaultPlayer,
     racers: [],
     phase: 'reading',
     countdownValue: 3,
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,
+    answerLog: [],
+    flaggedIds: loadFlaggedIds(),
 
     goTo: (screen) => {
       clearTimers()
@@ -214,6 +229,15 @@ export const useGameStore = create<GameStore>((set, get) => {
       })
       playSfx('submit')
       maybeResolveEarly()
+    },
+
+    toggleFlag: (questionId) => {
+      const current = get().flaggedIds
+      const flaggedIds = current.includes(questionId)
+        ? current.filter((id) => id !== questionId)
+        : [...current, questionId]
+      saveFlaggedIds(flaggedIds)
+      set({ flaggedIds })
     },
   }
 })
