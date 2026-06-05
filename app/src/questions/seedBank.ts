@@ -1,0 +1,98 @@
+import type { Question } from './types'
+
+/**
+ * Hand-written seed bank for development. Will be replaced by the generated
+ * + verified question bank from question-pipeline/ (see PLAN.md §6).
+ */
+export const SEED_QUESTIONS: Question[] = [
+  {
+    id: 'q_seed_001',
+    reference: '1 Samuel 17:50',
+    difficulty: 1,
+    category: 'history',
+    text: { en: 'Who defeated the giant Goliath?' },
+    answers: { en: ['David', 'Saul', 'Jonathan', 'Samuel'] },
+    correctIndex: 0,
+  },
+  {
+    id: 'q_seed_002',
+    reference: 'Genesis 7:12',
+    difficulty: 1,
+    category: 'torah',
+    text: { en: 'How many days and nights did it rain during the flood?' },
+    answers: { en: ['7', '12', '40', '100'] },
+    correctIndex: 2,
+  },
+  {
+    id: 'q_seed_003',
+    reference: 'Exodus 3:10',
+    difficulty: 1,
+    category: 'torah',
+    text: { en: 'Who did God send to lead the Israelites out of Egypt?' },
+    answers: { en: ['Aaron', 'Moses', 'Joshua', 'Joseph'] },
+    correctIndex: 1,
+  },
+  {
+    id: 'q_seed_004',
+    reference: 'Exodus 14:21',
+    difficulty: 1,
+    category: 'torah',
+    text: { en: 'Which sea did God part so Israel could cross on dry ground?' },
+    answers: { en: ['The Dead Sea', 'The Sea of Galilee', 'The Red Sea', 'The Great Sea'] },
+    correctIndex: 2,
+  },
+  {
+    id: 'q_seed_005',
+    reference: 'Daniel 6:16',
+    difficulty: 1,
+    category: 'prophets',
+    text: { en: 'Who was thrown into the lions’ den?' },
+    answers: { en: ['Shadrach', 'Daniel', 'Jeremiah', 'Ezekiel'] },
+    correctIndex: 1,
+  },
+  {
+    id: 'q_seed_006',
+    reference: 'Genesis 6:14',
+    difficulty: 1,
+    category: 'torah',
+    text: { en: 'Who built an ark of gopher wood before the flood?' },
+    answers: { en: ['Abraham', 'Methuselah', 'Enoch', 'Noah'] },
+    correctIndex: 3,
+  },
+  {
+    id: 'q_seed_007',
+    reference: 'Matthew 2:1',
+    difficulty: 1,
+    category: 'gospels',
+    text: { en: 'In which town was Jesus born?' },
+    answers: { en: ['Nazareth', 'Bethlehem', 'Jerusalem', 'Capernaum'] },
+    correctIndex: 1,
+  },
+  {
+    id: 'q_seed_008',
+    reference: 'Matthew 26:14-16',
+    difficulty: 1,
+    category: 'gospels',
+    text: { en: 'Which disciple betrayed Jesus for thirty pieces of silver?' },
+    answers: { en: ['Peter', 'Thomas', 'Judas Iscariot', 'James'] },
+    correctIndex: 2,
+  },
+  {
+    id: 'q_seed_009',
+    reference: 'Ruth 1:22',
+    difficulty: 2,
+    category: 'history',
+    text: { en: 'Who was Ruth’s mother-in-law?' },
+    answers: { en: ['Naomi', 'Orpah', 'Hannah', 'Deborah'] },
+    correctIndex: 0,
+  },
+  {
+    id: 'q_seed_010',
+    reference: '1 Samuel 10:24',
+    difficulty: 2,
+    category: 'history',
+    text: { en: 'Who was the first king of Israel?' },
+    answers: { en: ['David', 'Solomon', 'Saul', 'Rehoboam'] },
+    correctIndex: 2,
+  },
+]
