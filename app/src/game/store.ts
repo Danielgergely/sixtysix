@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import type { PlayerProfile, RacePhase, Racer } from './types'
 import { pickBots, sampleBotAnswer, type BotRacer } from './bots'
 import { scoreAnswer, QUESTIONS_PER_RACE, QUESTION_TIME_MS } from './scoring'
+import { playSfx } from './sfx'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
@@ -10,12 +11,15 @@ export type Screen = 'menu' | 'lobby' | 'race' | 'podium'
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
 const REVEAL_MS = 1800
+const COUNTDOWN_FROM = 3
 
 interface GameStore {
   screen: Screen
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
+  /** 3 → 2 → 1 → 0 ("GO!") during the countdown phase. */
+  countdownValue: number
   questions: Question[]
   questionIndex: number
   questionStartedAt: number
@@ -23,7 +27,7 @@ interface GameStore {
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
   findMatch: () => void
-  /** Player taps an answer; bots are sampled, scores applied, reveal shown. */
+  /** Player taps an answer (or times out via the store's own timer). */
   answer: (index: number) => void
 }
 
@@ -43,23 +47,68 @@ export const useGameStore = create<GameStore>((set, get) => {
     timers.forEach(clearTimeout)
     timers.length = 0
   }
+  let questionTimer: ReturnType<typeof setTimeout> | undefined
 
   async function startRace() {
     const questions = await bundledBank.getQuestions({ count: QUESTIONS_PER_RACE, locale: 'en' })
     set({
       screen: 'race',
       phase: 'countdown',
+      countdownValue: COUNTDOWN_FROM,
       questions,
       questionIndex: 0,
       racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined })),
     })
-    later(() => set({ phase: 'question', questionStartedAt: Date.now() }), 3000)
+    playSfx('tick')
+    for (let v = COUNTDOWN_FROM - 1; v >= 0; v--) {
+      later(() => {
+        set({ countdownValue: v })
+        playSfx(v === 0 ? 'go' : 'tick')
+      }, (COUNTDOWN_FROM - v) * 1000)
+    }
+    later(startQuestion, COUNTDOWN_FROM * 1000 + 600)
+  }
+
+  function startQuestion() {
+    set({ phase: 'question', questionStartedAt: Date.now() })
+    questionTimer = setTimeout(() => resolveQuestion(null), QUESTION_TIME_MS)
+  }
+
+  /** Score everyone for the current question. `playerIndex === null` = timeout. */
+  function resolveQuestion(playerIndex: number | null) {
+    clearTimeout(questionTimer)
+    const { questions, questionIndex, questionStartedAt } = get()
+    const q = questions[questionIndex]
+    const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt)
+    const playerCorrect = playerIndex !== null && playerIndex === q.correctIndex
+
+    playSfx(playerCorrect ? 'correct' : 'wrong')
+    set({
+      phase: 'reveal',
+      racers: get().racers.map((r) => {
+        if (!r.isBot) {
+          return {
+            ...r,
+            score: r.score + scoreAnswer(playerCorrect, QUESTION_TIME_MS - elapsed),
+            lastAnswer: { index: playerIndex ?? -1, correct: playerCorrect, ms: elapsed },
+          }
+        }
+        const sampled = sampleBotAnswer((r as BotRacer).persona, q.difficulty, q.correctIndex)
+        return {
+          ...r,
+          score: r.score + scoreAnswer(sampled.correct, QUESTION_TIME_MS - sampled.ms),
+          lastAnswer: sampled,
+        }
+      }),
+    })
+    later(nextQuestion, REVEAL_MS)
   }
 
   function nextQuestion() {
     const { questionIndex, questions } = get()
     if (questionIndex + 1 >= questions.length) {
       set({ phase: 'finished' })
+      playSfx('finish')
       later(() => {
         const player = get().racers.find((r) => !r.isBot)
         const sorted = [...get().racers].sort((a, b) => b.score - a.score)
@@ -69,15 +118,14 @@ export const useGameStore = create<GameStore>((set, get) => {
           screen: 'podium',
           player: { ...s.player, coins: s.player.coins + coinsWon, xp: s.player.xp + (player?.score ?? 0) },
         }))
-      }, 1200)
+      }, 1500)
       return
     }
     set({
-      phase: 'question',
       questionIndex: questionIndex + 1,
-      questionStartedAt: Date.now(),
       racers: get().racers.map((r) => ({ ...r, lastAnswer: undefined })),
     })
+    startQuestion()
   }
 
   return {
@@ -85,17 +133,21 @@ export const useGameStore = create<GameStore>((set, get) => {
     player: defaultPlayer,
     racers: [],
     phase: 'countdown',
+    countdownValue: COUNTDOWN_FROM,
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,
 
     goTo: (screen) => {
       clearTimers()
+      clearTimeout(questionTimer)
       set({ screen })
     },
 
     findMatch: () => {
       clearTimers()
+      clearTimeout(questionTimer)
+      playSfx('tick')
       const player = get().player
       const you: Racer = { profile: player, isBot: false, score: 0 }
       const bots = pickBots(RACERS_PER_MATCH - 1, player.avatar)
@@ -107,32 +159,8 @@ export const useGameStore = create<GameStore>((set, get) => {
     },
 
     answer: (index) => {
-      const { phase, questions, questionIndex, questionStartedAt } = get()
-      if (phase !== 'question') return
-      const q = questions[questionIndex]
-      const elapsed = Date.now() - questionStartedAt
-      const remaining = Math.max(0, QUESTION_TIME_MS - elapsed)
-
-      set({
-        phase: 'reveal',
-        racers: get().racers.map((r) => {
-          if (!r.isBot) {
-            const correct = index === q.correctIndex
-            return {
-              ...r,
-              score: r.score + scoreAnswer(correct, remaining),
-              lastAnswer: { index, correct, ms: elapsed },
-            }
-          }
-          const sampled = sampleBotAnswer((r as BotRacer).persona, q.difficulty, q.correctIndex)
-          return {
-            ...r,
-            score: r.score + scoreAnswer(sampled.correct, QUESTION_TIME_MS - sampled.ms),
-            lastAnswer: sampled,
-          }
-        }),
-      })
-      later(nextQuestion, REVEAL_MS)
+      if (get().phase !== 'question') return
+      resolveQuestion(index)
     },
   }
 })

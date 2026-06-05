@@ -247,7 +247,16 @@ button:disabled { cursor: default; }
   min-height: 0;
 }
 
-.countdown { font-size: 1.8rem; font-weight: 700; color: var(--brown-deep); }
+.countdown {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  animation: countdown-pop 0.5s ease-out;
+}
+
+@keyframes countdown-pop {
+  from { transform: scale(2.2); opacity: 0; }
+}
 
 .question-card {
   width: 100%;
@@ -269,7 +278,23 @@ button:disabled { cursor: default; }
   background: var(--sand);
   overflow: hidden;
 }
-.timer-fill { height: 100%; width: 100%; background: var(--gold); border-radius: 999px; }
+.timer-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  border-radius: 999px;
+  animation: timer-shrink linear forwards;
+}
+.timer-fill.paused { animation-play-state: paused; }
+
+@keyframes timer-shrink {
+  from { width: 100%; background: var(--gold); }
+  70% { background: var(--gold); }
+  85% { background: var(--terracotta); }
+  to { width: 0%; background: var(--answer-red); }
+}
+
+.timeout-note { color: var(--answer-red); font-weight: 700; }
 
 /* ── Answer grid (thumb zone) ────────────────────────────────────────── */
 .answer-grid {

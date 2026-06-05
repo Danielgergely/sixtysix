@@ -1,5 +1,5 @@
 import { useGameStore } from '../game/store'
-import { MAX_RACE_SCORE } from '../game/scoring'
+import { MAX_RACE_SCORE, QUESTION_TIME_MS } from '../game/scoring'
 import { AVATAR_EMOJI } from './avatars'
 
 const ANSWER_COLORS = ['answer-red', 'answer-blue', 'answer-gold', 'answer-green']
@@ -7,6 +7,7 @@ const ANSWER_SHAPES = ['▲', '◆', '●', '■']
 
 export function RaceScreen() {
   const phase = useGameStore((s) => s.phase)
+  const countdownValue = useGameStore((s) => s.countdownValue)
   const racers = useGameStore((s) => s.racers)
   const questions = useGameStore((s) => s.questions)
   const questionIndex = useGameStore((s) => s.questionIndex)
@@ -14,6 +15,7 @@ export function RaceScreen() {
 
   const q = questions[questionIndex]
   const you = racers.find((r) => !r.isBot)
+  const timedOut = phase === 'reveal' && you?.lastAnswer?.index === -1
 
   return (
     <div className="screen race-screen">
@@ -35,18 +37,26 @@ export function RaceScreen() {
 
       {/* Question card — middle */}
       <div className="question-area">
-        {phase === 'countdown' && <div className="countdown">Get ready…</div>}
+        {phase === 'countdown' && (
+          <div className="countdown" key={countdownValue}>
+            {countdownValue > 0 ? countdownValue : 'GO!'}
+          </div>
+        )}
         {phase === 'finished' && <div className="countdown">🏁 Finish!</div>}
         {(phase === 'question' || phase === 'reveal') && q && (
           <div className="question-card">
             <div className="question-meta">
               Question {questionIndex + 1}/{questions.length}
               {phase === 'reveal' && <span className="question-ref"> · {q.reference}</span>}
+              {timedOut && <span className="timeout-note"> · ⏰ Time’s up!</span>}
             </div>
             <div className="question-text">{q.text.en}</div>
             <div className="timer-bar">
-              {/* Animated shrinking bar lands in step 2; static for now. */}
-              <div className="timer-fill" />
+              <div
+                key={questionIndex}
+                className={`timer-fill ${phase === 'reveal' ? 'paused' : ''}`}
+                style={{ animationDuration: `${QUESTION_TIME_MS}ms` }}
+              />
             </div>
           </div>
         )}
