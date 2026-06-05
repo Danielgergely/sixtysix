@@ -155,7 +155,17 @@ button:disabled { cursor: default; }
 .nav-active { opacity: 1; }
 
 /* ── Profile ─────────────────────────────────────────────────────────── */
-.profile-screen { gap: 1rem; padding: 0 1.5rem; justify-content: center; }
+.profile-screen { overflow: hidden; }
+
+.profile-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0 1.5rem 1rem;
+}
 
 .profile-section { display: flex; flex-direction: column; gap: 0.45rem; }
 
@@ -219,6 +229,24 @@ button:disabled { cursor: default; }
 .setting-pill.on { background: var(--answer-green); color: #fff; }
 
 .profile-stats { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+
+.placement-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.stat-card {
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  border-radius: 12px;
+  padding: 0.55rem 0.6rem;
+  text-align: center;
+}
+.stat-value { font-size: 1.05rem; font-weight: 700; color: var(--brown-deep); }
+.stat-label { font-size: 0.66rem; font-weight: 600; color: var(--ink); opacity: 0.75; }
 
 /* ── Lobby ────────────────────────────────────────────────────────────── */
 .lobby-screen { justify-content: center; gap: 1rem; }
@@ -309,35 +337,81 @@ button:disabled { cursor: default; }
 
 /* Player's running total, above the track. Re-pops whenever it changes. */
 .score-hud {
-  position: absolute;
-  top: 6px;
-  left: 8px;
   background: var(--cream);
   border: 2px solid var(--brown-deep);
   border-radius: 999px;
-  padding: 2px 10px;
+  padding: 3px 10px;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--brown-deep);
-  z-index: 1;
   animation: lock-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Points needed to win, anchored at the finish line. */
-.finish-label {
+/* Aligned HUD row over the track: score left, goal + leave right. */
+.track-hud {
   position: absolute;
   top: 6px;
-  left: 88%;
-  transform: translateX(-50%);
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.track-hud-right { display: flex; align-items: center; gap: 0.4rem; }
+
+.leave-race-btn {
+  background: var(--answer-red);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: 999px;
+  padding: 4px 12px;
+  border-bottom: 3px solid #93262b;
+  transition: transform 0.06s;
+}
+.leave-race-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(43 30 18 / 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+
+.modal-card {
+  background: #fff;
+  border: 3px solid var(--brown-deep);
+  border-radius: 18px;
+  box-shadow: 0 8px 0 rgb(0 0 0 / 0.18);
+  padding: 1.2rem;
+  width: min(320px, 85%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+  animation: pop-in 0.2s ease-out;
+}
+.modal-title { font-size: 1.2rem; font-weight: 700; color: var(--brown-deep); }
+.modal-text { font-size: 0.9rem; line-height: 1.4; }
+.modal-card .btn-play { margin: 0.3rem 0 0; font-size: 1.1rem; padding: 0.8rem; }
+.modal-card .btn-secondary { margin: 0; }
+.btn-danger { background: var(--answer-red); border-bottom-color: #93262b; }
+
+/* Points needed to win. */
+.finish-label {
   background: var(--cream);
   border: 2px solid var(--brown-deep);
   border-radius: 999px;
-  padding: 1px 8px;
-  font-size: 0.62rem;
+  padding: 3px 10px;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--brown-deep);
   white-space: nowrap;
-  z-index: 1;
 }
 
 /* Earned points float up from the chariot as it advances. */
@@ -508,6 +582,8 @@ button:disabled { cursor: default; }
 }
 
 .answer-btn {
+  position: relative;
+  overflow: hidden;
   border-radius: 16px;
   color: #fff;
   font-size: 1.05rem;
@@ -520,6 +596,32 @@ button:disabled { cursor: default; }
   gap: 0.3rem;
   border-bottom: 5px solid rgb(0 0 0 / 0.25);
   transition: transform 0.06s, opacity 0.2s;
+}
+.answer-btn > * { position: relative; }
+
+/* Share of racers who picked this answer, shown on reveal. */
+.answer-pick-fill {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgb(255 255 255 / 0.22);
+  animation: pick-fill-grow 0.7s ease-out;
+  pointer-events: none;
+}
+
+@keyframes pick-fill-grow {
+  from { width: 0; }
+}
+
+.answer-pick-pct {
+  position: absolute !important;
+  top: 5px;
+  right: 9px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgb(255 255 255 / 0.6);
+  pointer-events: none;
 }
 .answer-btn:active:not(:disabled) { transform: translateY(3px); border-bottom-width: 2px; }
 .answer-shape { font-size: 1.3rem; opacity: 0.85; }

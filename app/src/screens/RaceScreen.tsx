@@ -34,6 +34,8 @@ export function RaceScreen() {
   const questionIndex = useGameStore((s) => s.questionIndex)
   const questions = useGameStore((s) => s.questions)
   const answer = useGameStore((s) => s.answer)
+  const goTo = useGameStore((s) => s.goTo)
+  const [confirmLeave, setConfirmLeave] = useState(false)
 
   const q = questions[questionIndex]
   const you = racers.find((r) => !r.isBot)
@@ -41,6 +43,10 @@ export function RaceScreen() {
   const showCard = phase === 'reading' || phase === 'question' || phase === 'reveal' || phase === 'progress'
   const revealed = phase === 'reveal' || phase === 'progress'
   const timedOut = revealed && you?.lastAnswer?.index === -1
+  // Answer distribution shown on reveal — scales naturally to big lobbies later.
+  const pickers = racers.filter((r) => r.lastAnswer && r.lastAnswer.index >= 0)
+  const pickPct = (i: number) =>
+    pickers.length === 0 ? 0 : Math.round((pickers.filter((r) => r.lastAnswer!.index === i).length / pickers.length) * 100)
   const youGain =
     revealed && you?.lastAnswer
       ? scoreAnswer(you.lastAnswer.correct, QUESTION_TIME_MS - you.lastAnswer.ms)
@@ -50,12 +56,19 @@ export function RaceScreen() {
     <div className="screen race-screen">
       {/* Race track — top third. Placeholder lanes until Rive rigs land. */}
       <div className="track">
-        {you && (
-          <div className="score-hud" key={you.score}>
-            ⭐ {you.score.toLocaleString('en-US')} pts
+        <div className="track-hud">
+          {you && (
+            <div className="score-hud" key={you.score}>
+              ⭐ {you.score.toLocaleString('en-US')} pts
+            </div>
+          )}
+          <div className="track-hud-right">
+            <div className="finish-label">🏁 {FINISH_LINE_SCORE.toLocaleString('en-US')}</div>
+            <button className="leave-race-btn" onClick={() => setConfirmLeave(true)}>
+              Leave
+            </button>
           </div>
-        )}
-        <div className="finish-label">🏁 {FINISH_LINE_SCORE.toLocaleString('en-US')}</div>
+        </div>
         {racers.map((r) => (
           <div key={r.profile.id} className="lane">
             <div
@@ -146,12 +159,34 @@ export function RaceScreen() {
                 onClick={() => answer(i)}
                 disabled={phase !== 'question' || youAnswered}
               >
+                {revealed && (
+                  <>
+                    <span className="answer-pick-fill" style={{ width: `${pickPct(i)}%` }} />
+                    <span className="answer-pick-pct">{pickPct(i)}%</span>
+                  </>
+                )}
                 <span className="answer-shape">{ANSWER_SHAPES[i]}</span>
                 {text}
               </button>
             )
           })}
       </div>
+
+      {/* Leave confirmation — the race keeps running behind it. */}
+      {confirmLeave && (
+        <div className="modal-overlay" onClick={() => setConfirmLeave(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-title">Leave the race?</div>
+            <p className="modal-text">Your progress in this race will be lost — no points, coins, or stats.</p>
+            <button className="btn-play btn-danger" onClick={() => goTo('menu')}>
+              Leave race
+            </button>
+            <button className="btn-secondary" onClick={() => setConfirmLeave(false)}>
+              Keep racing
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

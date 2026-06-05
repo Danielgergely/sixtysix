@@ -8,9 +8,12 @@ import {
   loadFlaggedIds,
   loadPlayer,
   loadSettings,
+  loadStats,
   saveFlaggedIds,
   savePlayer,
   saveSettings,
+  saveStats,
+  type PlayerStats,
 } from './persistence'
 import { setMuted } from './sfx'
 import type { CharacterId } from './types'
@@ -42,6 +45,7 @@ interface GameStore {
   /** Question ids flagged as wrong/unclear; persisted. */
   flaggedIds: string[]
   muted: boolean
+  stats: PlayerStats
 
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
@@ -199,7 +203,26 @@ export const useGameStore = create<GameStore>((set, get) => {
       level: levelForXp(xp),
     }
     savePlayer(updated)
-    set({ screen: 'podium', player: updated })
+
+    // Lifetime stats — abandoned races never reach this point by design.
+    const { answerLog, questions, stats } = get()
+    const answered = answerLog.filter((a) => a !== -1).length
+    const correct = answerLog.filter((a, i) => a === questions[i].correctIndex).length
+    const won = rank === 0
+    const currentStreak = won ? stats.currentStreak + 1 : 0
+    const newStats: PlayerStats = {
+      gamesPlayed: stats.gamesPlayed + 1,
+      firstPlace: stats.firstPlace + (rank === 0 ? 1 : 0),
+      secondPlace: stats.secondPlace + (rank === 1 ? 1 : 0),
+      thirdPlace: stats.thirdPlace + (rank === 2 ? 1 : 0),
+      questionsAnswered: stats.questionsAnswered + answered,
+      questionsCorrect: stats.questionsCorrect + correct,
+      bestScore: Math.max(stats.bestScore, player?.score ?? 0),
+      currentStreak,
+      bestStreak: Math.max(stats.bestStreak, currentStreak),
+    }
+    saveStats(newStats)
+    set({ screen: 'podium', player: updated, stats: newStats })
   }
 
   return {
@@ -214,6 +237,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     answerLog: [],
     flaggedIds: loadFlaggedIds(),
     muted: initialSettings.muted,
+    stats: loadStats(),
 
     goTo: (screen) => {
       clearTimers()

@@ -1,11 +1,11 @@
 import { useGameStore } from '../game/store'
+import { BottomNav } from './BottomNav'
 
 export function MainMenuScreen() {
   const player = useGameStore((s) => s.player)
   const muted = useGameStore((s) => s.muted)
   const toggleMute = useGameStore((s) => s.toggleMute)
   const findMatch = useGameStore((s) => s.findMatch)
-  const goTo = useGameStore((s) => s.goTo)
 
   return (
     <div className="screen menu-screen">
@@ -29,12 +29,7 @@ export function MainMenuScreen() {
         PLAY NOW
       </button>
 
-      <nav className="bottom-nav">
-        <button className="nav-item nav-active">🏠<span>Home</span></button>
-        <button className="nav-item" disabled>🛒<span>Shop</span></button>
-        <button className="nav-item" disabled>🏆<span>Ranks</span></button>
-        <button className="nav-item" onClick={() => goTo('profile')}>👤<span>Profile</span></button>
-      </nav>
+      <BottomNav active="home" />
     </div>
   )
 }

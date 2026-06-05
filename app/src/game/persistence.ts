@@ -5,6 +5,53 @@ import type { PlayerProfile } from './types'
 const PLAYER_KEY = 'sixtysix.player.v1'
 const FLAGS_KEY = 'sixtysix.flaggedQuestions.v1'
 const SETTINGS_KEY = 'sixtysix.settings.v1'
+const STATS_KEY = 'sixtysix.stats.v1'
+
+export interface PlayerStats {
+  gamesPlayed: number
+  /** Podium finishes — counts stay meaningful in future large-lobby modes. */
+  firstPlace: number
+  secondPlace: number
+  thirdPlace: number
+  /** Questions actually answered (timeouts don't count). */
+  questionsAnswered: number
+  questionsCorrect: number
+  bestScore: number
+  currentStreak: number
+  bestStreak: number
+}
+
+export const EMPTY_STATS: PlayerStats = {
+  gamesPlayed: 0,
+  firstPlace: 0,
+  secondPlace: 0,
+  thirdPlace: 0,
+  questionsAnswered: 0,
+  questionsCorrect: 0,
+  bestScore: 0,
+  currentStreak: 0,
+  bestStreak: 0,
+}
+
+export function loadStats(): PlayerStats {
+  try {
+    const raw = localStorage.getItem(STATS_KEY)
+    if (!raw) return EMPTY_STATS
+    const parsed = JSON.parse(raw)
+    if (parsed.wins !== undefined && parsed.firstPlace === undefined) parsed.firstPlace = parsed.wins // legacy
+    return { ...EMPTY_STATS, ...parsed }
+  } catch {
+    return EMPTY_STATS
+  }
+}
+
+export function saveStats(stats: PlayerStats): void {
+  try {
+    localStorage.setItem(STATS_KEY, JSON.stringify(stats))
+  } catch {
+    // best effort
+  }
+}
 
 export interface Settings {
   muted: boolean
