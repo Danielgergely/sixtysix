@@ -8,6 +8,37 @@ const ANSWER_COLORS = ['answer-red', 'answer-blue', 'answer-gold', 'answer-green
 const ANSWER_SHAPES = ['▲', '◆', '●', '■']
 const avatarEmoji = (avatar: string) => AVATAR_EMOJI[avatar as CharacterId] ?? '🙂'
 
+/** Small leave/end control with confirmation, present in every game phase. */
+function LeaveControl({ isHost }: { isHost: boolean }) {
+  const leaveArena = useArenaStore((s) => s.leaveArena)
+  const [confirm, setConfirm] = useState(false)
+  return (
+    <>
+      <button className="leave-race-btn arena-leave" onClick={() => setConfirm(true)}>
+        {isHost ? 'End' : 'Leave'}
+      </button>
+      {confirm && (
+        <div className="modal-overlay" onClick={() => setConfirm(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-title">{isHost ? 'End the game?' : 'Leave the game?'}</div>
+            <p className="modal-text">
+              {isHost
+                ? 'This ends the game for all players in the room.'
+                : 'You’ll drop out of this game and lose your score.'}
+            </p>
+            <button className="btn-play btn-danger" onClick={leaveArena}>
+              {isHost ? 'End game' : 'Leave game'}
+            </button>
+            <button className="btn-secondary" onClick={() => setConfirm(false)}>
+              {isHost ? 'Keep playing' : 'Stay'}
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
 /** Seconds (tenths) until phaseEndsAt — drives countdowns and timer digits. */
 function useRemaining(endsAt: number, active: boolean): number {
   const [now, setNow] = useState(() => Date.now())
@@ -89,6 +120,7 @@ export function ArenaGameScreen() {
     const mine = isPlayer ? leaderboard.find((e) => e.playerId === getDeviceId()) : undefined
     return (
       <div className="screen arena-lb-screen">
+        <LeaveControl isHost={!isPlayer} />
         <h2 className="screen-heading">Standings</h2>
         <div className="lb-list">
           {top.map((e) => (
@@ -127,6 +159,7 @@ export function ArenaGameScreen() {
 
   return (
     <div className="screen race-screen arena-game-screen">
+      <LeaveControl isHost={!isPlayer} />
       <div className="arena-game-top">
         <div className="chip">Question {question.index + 1}/{question.total}</div>
         {phase === 'question' && (
