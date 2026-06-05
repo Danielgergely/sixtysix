@@ -1,0 +1,5 @@
+# regenerable: corpus via scripts/fetch-bible.mjs, the rest via scripts/verify.mjs
+data/web-bible.json
+data/verified.json
+data/review-queue.json
+data/rejected.json

@@ -1,0 +1,4682 @@
+[
+  {
+    "id": "q_b01_001",
+    "reference": "Genesis 2:22",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "From what did God make the first woman?"
+    },
+    "answers": {
+      "en": [
+        "Dust of the ground",
+        "A rib",
+        "Clay",
+        "A bone of a bird"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_002",
+    "reference": "Genesis 4:8",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who killed his brother Abel?"
+    },
+    "answers": {
+      "en": [
+        "Seth",
+        "Lamech",
+        "Cain",
+        "Enoch"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_003",
+    "reference": "Genesis 9:13",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What sign did God set in the clouds as a covenant with Noah?"
+    },
+    "answers": {
+      "en": [
+        "A dove",
+        "A rainbow",
+        "A star",
+        "A pillar of fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_004",
+    "reference": "Genesis 17:15",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who was Abraham's wife?"
+    },
+    "answers": {
+      "en": [
+        "Rebekah",
+        "Rachel",
+        "Leah",
+        "Sarah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b01_005",
+    "reference": "Exodus 2:10",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Which baby was drawn out of the water by Pharaoh's daughter?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Moses",
+        "Joshua",
+        "Samuel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_006",
+    "reference": "Genesis 25:33",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who sold his birthright to his twin brother?"
+    },
+    "answers": {
+      "en": [
+        "Jacob",
+        "Esau",
+        "Joseph",
+        "Benjamin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_007",
+    "reference": "Genesis 32:28",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What new name was Jacob given after wrestling with God?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Israel",
+        "Judah",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_008",
+    "reference": "Genesis 37:3",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What special gift did Jacob give his son Joseph?"
+    },
+    "answers": {
+      "en": [
+        "A golden ring",
+        "A flock of sheep",
+        "A coat of many colors",
+        "A silver cup"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_009",
+    "reference": "Exodus 7:20",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What was the first plague on Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Frogs",
+        "Darkness",
+        "Locusts",
+        "Water turned to blood"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b01_010",
+    "reference": "Genesis 2:20",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who gave names to all the animals?"
+    },
+    "answers": {
+      "en": [
+        "Adam",
+        "Noah",
+        "Abel",
+        "Enosh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_011",
+    "reference": "Genesis 5:27",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Methuselah live?"
+    },
+    "answers": {
+      "en": [
+        "777",
+        "888",
+        "969",
+        "999"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_012",
+    "reference": "Genesis 11:9",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "At which tower did God confuse the world's language?"
+    },
+    "answers": {
+      "en": [
+        "Babel",
+        "Jericho",
+        "Siloam",
+        "Penuel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_013",
+    "reference": "Genesis 19:26",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Lot's wife become when she looked back?"
+    },
+    "answers": {
+      "en": [
+        "A stone statue",
+        "A pillar of salt",
+        "A tree",
+        "Dust"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_014",
+    "reference": "Genesis 22:13",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Abraham sacrifice instead of Isaac?"
+    },
+    "answers": {
+      "en": [
+        "A lamb",
+        "A bull",
+        "A ram",
+        "A dove"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_015",
+    "reference": "Genesis 28:12",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Jacob see reaching to heaven in his dream?"
+    },
+    "answers": {
+      "en": [
+        "A burning bush",
+        "A stairway",
+        "A chariot of fire",
+        "A great cloud"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_016",
+    "reference": "Genesis 37:26-27",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which brother suggested selling Joseph instead of killing him?"
+    },
+    "answers": {
+      "en": [
+        "Reuben",
+        "Simeon",
+        "Levi",
+        "Judah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b01_017",
+    "reference": "Exodus 4:14",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who was Moses' brother?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Caleb",
+        "Joshua",
+        "Hur"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_018",
+    "reference": "Exodus 15:20",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who was Moses' sister who led the women with a tambourine?"
+    },
+    "answers": {
+      "en": [
+        "Deborah",
+        "Miriam",
+        "Zipporah",
+        "Jochebed"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_019",
+    "reference": "Exodus 12:29",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What was the final plague on Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Hail and fire",
+        "Boils",
+        "Death of the firstborn",
+        "Three days of darkness"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_020",
+    "reference": "Exodus 12:27",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which feast remembers the LORD passing over Israel's houses in Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Pentecost",
+        "Tabernacles",
+        "Purim",
+        "Passover"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b01_021",
+    "reference": "Exodus 32:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What idol did Israel worship while Moses was on the mountain?"
+    },
+    "answers": {
+      "en": [
+        "A golden calf",
+        "A bronze serpent",
+        "A wooden bull",
+        "A silver eagle"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_022",
+    "reference": "Deuteronomy 4:13",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "How many commandments did God declare at Horeb?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Ten",
+        "Twelve",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_023",
+    "reference": "Genesis 4:25",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was the name of Adam and Eve's third named son?"
+    },
+    "answers": {
+      "en": [
+        "Enoch",
+        "Seth",
+        "Lamech",
+        "Jared"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_024",
+    "reference": "Numbers 14:33-34",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Israel wander in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "7",
+        "12",
+        "40",
+        "70"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_025",
+    "reference": "Deuteronomy 34:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Who succeeded Moses as leader of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Caleb",
+        "Aaron",
+        "Eleazar",
+        "Joshua"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b01_026",
+    "reference": "Exodus 17:6",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses strike at Horeb to bring out water?"
+    },
+    "answers": {
+      "en": [
+        "The ground",
+        "A rock",
+        "A tree",
+        "The river"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_027",
+    "reference": "Numbers 17:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What fruit did Aaron's budding staff produce?"
+    },
+    "answers": {
+      "en": [
+        "Figs",
+        "Olives",
+        "Almonds",
+        "Pomegranates"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_028",
+    "reference": "Numbers 22:28",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What animal spoke to Balaam?"
+    },
+    "answers": {
+      "en": [
+        "A donkey",
+        "A serpent",
+        "A raven",
+        "A lion"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_029",
+    "reference": "Numbers 14:6-7",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which two spies gave a good report about Canaan?"
+    },
+    "answers": {
+      "en": [
+        "Moses and Aaron",
+        "Joshua and Caleb",
+        "Eleazar and Phinehas",
+        "Reuben and Gad"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_030",
+    "reference": "Deuteronomy 34:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "From which mountain did Moses view the promised land before he died?"
+    },
+    "answers": {
+      "en": [
+        "Mount Sinai",
+        "Mount Carmel",
+        "Mount Nebo",
+        "Mount Hor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_031",
+    "reference": "Exodus 18:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Who was Moses' father-in-law?"
+    },
+    "answers": {
+      "en": [
+        "Laban",
+        "Jethro",
+        "Hobab",
+        "Reuel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_032",
+    "reference": "Genesis 8:7",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which bird did Noah send out first from the ark?"
+    },
+    "answers": {
+      "en": [
+        "A dove",
+        "A raven",
+        "A sparrow",
+        "An eagle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_033",
+    "reference": "Genesis 7:24",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many days did the flood waters prevail on the earth?"
+    },
+    "answers": {
+      "en": [
+        "40",
+        "100",
+        "150",
+        "365"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_034",
+    "reference": "Genesis 12:5",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was the name of Abraham's nephew who traveled with him?"
+    },
+    "answers": {
+      "en": [
+        "Lot",
+        "Eliezer",
+        "Haran",
+        "Nahor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_035",
+    "reference": "Exodus 2:21",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was the name of Moses' wife?"
+    },
+    "answers": {
+      "en": [
+        "Miriam",
+        "Zipporah",
+        "Keturah",
+        "Elisheba"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_036",
+    "reference": "Genesis 4:17",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Cain built a city and named it after which son?"
+    },
+    "answers": {
+      "en": [
+        "Irad",
+        "Enoch",
+        "Lamech",
+        "Tubal Cain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b01_037",
+    "reference": "Genesis 41:51-52",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What were the names of Joseph's two sons?"
+    },
+    "answers": {
+      "en": [
+        "Manasseh and Ephraim",
+        "Perez and Zerah",
+        "Er and Onan",
+        "Dan and Naphtali"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b01_038",
+    "reference": "Genesis 24:67",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who became Isaac's wife?"
+    },
+    "answers": {
+      "en": [
+        "Rachel",
+        "Dinah",
+        "Rebekah",
+        "Tamar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_039",
+    "reference": "Genesis 21:5",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How old was Abraham when Isaac was born?"
+    },
+    "answers": {
+      "en": [
+        "75",
+        "86",
+        "100",
+        "120"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b01_040",
+    "reference": "Genesis 25:34",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "For what meal did Esau sell his birthright?"
+    },
+    "answers": {
+      "en": [
+        "Roasted lamb",
+        "Bread and lentil stew",
+        "Fish and honey",
+        "Venison"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_001",
+    "reference": "Joshua 6:20",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "The walls of which city fell after Israel marched around it?"
+    },
+    "answers": {
+      "en": [
+        "Ai",
+        "Jericho",
+        "Hebron",
+        "Gibeon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_002",
+    "reference": "Judges 16:18",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which woman betrayed Samson to the Philistines?"
+    },
+    "answers": {
+      "en": [
+        "Jezebel",
+        "Athaliah",
+        "Delilah",
+        "Jael"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_003",
+    "reference": "1 Samuel 16:23",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What instrument did David play to soothe King Saul?"
+    },
+    "answers": {
+      "en": [
+        "A flute",
+        "A trumpet",
+        "A tambourine",
+        "A harp"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b02_004",
+    "reference": "1 Samuel 18:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who was David's closest friend, the son of Saul?"
+    },
+    "answers": {
+      "en": [
+        "Jonathan",
+        "Abner",
+        "Joab",
+        "Ishbosheth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_005",
+    "reference": "1 Kings 4:30",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which king's wisdom excelled all the wisdom of the east?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Solomon",
+        "Hezekiah",
+        "Josiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_006",
+    "reference": "1 Kings 6:14",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who built the first temple in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Hiram",
+        "Solomon",
+        "Zerubbabel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_007",
+    "reference": "1 Kings 10:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which queen traveled to test Solomon with hard questions?"
+    },
+    "answers": {
+      "en": [
+        "Queen Esther",
+        "The queen of Sheba",
+        "Queen Vashti",
+        "The queen of Egypt"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_008",
+    "reference": "Esther 7:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which Jewish queen pleaded with the king to save her people?"
+    },
+    "answers": {
+      "en": [
+        "Ruth",
+        "Esther",
+        "Abigail",
+        "Michal"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_009",
+    "reference": "1 Samuel 17:4",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Goliath was the champion of which people?"
+    },
+    "answers": {
+      "en": [
+        "The Amalekites",
+        "The Moabites",
+        "The Philistines",
+        "The Edomites"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_010",
+    "reference": "1 Samuel 3:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which boy answered God's call with 'Speak, for your servant hears'?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Samuel",
+        "Saul",
+        "Eli"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_011",
+    "reference": "Joshua 2:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who hid the Israelite spies in Jericho?"
+    },
+    "answers": {
+      "en": [
+        "Rahab",
+        "Deborah",
+        "Tamar",
+        "Zipporah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_012",
+    "reference": "Judges 4:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was the prophetess who judged Israel?"
+    },
+    "answers": {
+      "en": [
+        "Miriam",
+        "Huldah",
+        "Deborah",
+        "Noadiah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_013",
+    "reference": "1 Samuel 16:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who anointed David with oil in the middle of his brothers?"
+    },
+    "answers": {
+      "en": [
+        "Eli",
+        "Samuel",
+        "Nathan",
+        "Saul"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_014",
+    "reference": "2 Samuel 18:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which son of David was caught by his head in an oak tree?"
+    },
+    "answers": {
+      "en": [
+        "Amnon",
+        "Adonijah",
+        "Absalom",
+        "Solomon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_015",
+    "reference": "2 Kings 2:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which prophet went up to heaven in a whirlwind?"
+    },
+    "answers": {
+      "en": [
+        "Elisha",
+        "Elijah",
+        "Enoch",
+        "Isaiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_016",
+    "reference": "2 Kings 2:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "On whom did the spirit of Elijah rest after he was taken up?"
+    },
+    "answers": {
+      "en": [
+        "Gehazi",
+        "Elisha",
+        "Micaiah",
+        "Obadiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_017",
+    "reference": "2 Samuel 11:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was Bathsheba's first husband?"
+    },
+    "answers": {
+      "en": [
+        "Uriah",
+        "Joab",
+        "Nabal",
+        "Abner"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_018",
+    "reference": "Nehemiah 1:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Whose words tell of rebuilding Jerusalem's walls?"
+    },
+    "answers": {
+      "en": [
+        "Ezra",
+        "Nehemiah",
+        "Zerubbabel",
+        "Sanballat"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_019",
+    "reference": "Esther 2:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who raised Esther as his own daughter?"
+    },
+    "answers": {
+      "en": [
+        "Mordecai",
+        "Haman",
+        "Hegai",
+        "Abihail"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_020",
+    "reference": "Esther 3:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who plotted to destroy all the Jews in the Persian empire?"
+    },
+    "answers": {
+      "en": [
+        "Sanballat",
+        "Nebuchadnezzar",
+        "Haman",
+        "Belshazzar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_021",
+    "reference": "Ruth 4:17",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Ruth's son Obed became the grandfather of which king?"
+    },
+    "answers": {
+      "en": [
+        "Saul",
+        "David",
+        "Solomon",
+        "Hezekiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_022",
+    "reference": "1 Kings 3:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Solomon ask God to give him?"
+    },
+    "answers": {
+      "en": [
+        "Long life",
+        "Riches",
+        "An understanding heart",
+        "Victory in battle"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_023",
+    "reference": "Judges 7:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "With how many men did God save Israel through Gideon?"
+    },
+    "answers": {
+      "en": [
+        "100",
+        "300",
+        "1,000",
+        "10,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_024",
+    "reference": "Judges 15:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "With what weapon did Samson strike down a thousand men?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A sling",
+        "An ox goad",
+        "A donkey's jawbone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b02_025",
+    "reference": "1 Samuel 28:7-8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which king secretly consulted a medium at Endor?"
+    },
+    "answers": {
+      "en": [
+        "Saul",
+        "David",
+        "Ahab",
+        "Manasseh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_026",
+    "reference": "2 Samuel 9:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Mephibosheth, whom David showed kindness, was whose son?"
+    },
+    "answers": {
+      "en": [
+        "Saul's",
+        "Jonathan's",
+        "Abner's",
+        "Absalom's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_027",
+    "reference": "2 Samuel 12:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophet told David 'You are the man!'?"
+    },
+    "answers": {
+      "en": [
+        "Gad",
+        "Samuel",
+        "Nathan",
+        "Ahijah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_028",
+    "reference": "2 Samuel 6:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who died after touching the ark of God when the oxen stumbled?"
+    },
+    "answers": {
+      "en": [
+        "Uzzah",
+        "Ahio",
+        "Obed-Edom",
+        "Eleazar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_029",
+    "reference": "2 Kings 22:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who became king of Judah at eight years old?"
+    },
+    "answers": {
+      "en": [
+        "Joash",
+        "Josiah",
+        "Uzziah",
+        "Manasseh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_030",
+    "reference": "2 Kings 5:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In which river did Naaman wash to be healed of leprosy?"
+    },
+    "answers": {
+      "en": [
+        "The Euphrates",
+        "The Nile",
+        "The Jordan",
+        "The Abanah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_031",
+    "reference": "1 Kings 2:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who sat on the throne of David after him?"
+    },
+    "answers": {
+      "en": [
+        "Adonijah",
+        "Absalom",
+        "Rehoboam",
+        "Solomon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b02_032",
+    "reference": "Acts 2:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On which day were the believers all together when the Spirit came?"
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "Pentecost",
+        "Tabernacles",
+        "The Sabbath"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_033",
+    "reference": "Acts 1:26",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who was chosen by lot to replace Judas among the apostles?"
+    },
+    "answers": {
+      "en": [
+        "Barnabas",
+        "Matthias",
+        "Justus",
+        "Silas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_034",
+    "reference": "Acts 7:59",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who was stoned while praying 'Lord Jesus, receive my spirit'?"
+    },
+    "answers": {
+      "en": [
+        "Stephen",
+        "James",
+        "Philip",
+        "Ananias"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b02_035",
+    "reference": "Acts 9:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Near which city did a light from heaven stop Saul?"
+    },
+    "answers": {
+      "en": [
+        "Jerusalem",
+        "Antioch",
+        "Damascus",
+        "Tarsus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_036",
+    "reference": "1 Samuel 1:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who was Samuel's mother?"
+    },
+    "answers": {
+      "en": [
+        "Peninnah",
+        "Hannah",
+        "Abigail",
+        "Ahinoam"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_037",
+    "reference": "Judges 11:30-31",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which judge made a rash vow that cost him his daughter?"
+    },
+    "answers": {
+      "en": [
+        "Gideon",
+        "Samson",
+        "Jephthah",
+        "Ibzan"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_038",
+    "reference": "Ezra 1:1-2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which Persian king decreed that the LORD's house be rebuilt?"
+    },
+    "answers": {
+      "en": [
+        "Darius",
+        "Cyrus",
+        "Xerxes",
+        "Artaxerxes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b02_039",
+    "reference": "1 Samuel 17:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How tall was Goliath?"
+    },
+    "answers": {
+      "en": [
+        "Four cubits",
+        "Five cubits and a span",
+        "Six cubits and a span",
+        "Seven cubits"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b02_040",
+    "reference": "1 Samuel 1:3",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "What were the names of Eli's two sons, priests at Shiloh?"
+    },
+    "answers": {
+      "en": [
+        "Hophni and Phinehas",
+        "Nadab and Abihu",
+        "Joel and Abijah",
+        "Er and Onan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_001",
+    "reference": "Psalms 23:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 23 begins: 'The LORD is my…'?"
+    },
+    "answers": {
+      "en": [
+        "Rock",
+        "Light",
+        "Shepherd",
+        "Fortress"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_002",
+    "reference": "Proverbs 1:7",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'The fear of the LORD is the beginning of…'?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom's end",
+        "Knowledge",
+        "Riches",
+        "Peace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_003",
+    "reference": "Job 1:22",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Who lost everything in one day yet did not sin or blame God?"
+    },
+    "answers": {
+      "en": [
+        "Job",
+        "Solomon",
+        "Asaph",
+        "Agur"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_004",
+    "reference": "Proverbs 15:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "What kind of answer turns away wrath?"
+    },
+    "answers": {
+      "en": [
+        "A wise answer",
+        "A quick answer",
+        "A gentle answer",
+        "A loud answer"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_005",
+    "reference": "Ecclesiastes 3:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'For everything there is a ___, and a time for every purpose.'"
+    },
+    "answers": {
+      "en": [
+        "Reason",
+        "Season",
+        "Plan",
+        "Place"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_006",
+    "reference": "Proverbs 3:5",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Trust in the LORD with all your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Mind",
+        "Strength",
+        "Soul",
+        "Heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b03_007",
+    "reference": "Ecclesiastes 1:2",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Vanity of vanities, all is ___,' says the Preacher."
+    },
+    "answers": {
+      "en": [
+        "Vanity",
+        "Fleeting",
+        "Dust",
+        "Sorrow"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_008",
+    "reference": "Psalms 119:105",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Your word is a lamp to my ___, and a light for my path.'"
+    },
+    "answers": {
+      "en": [
+        "Eyes",
+        "Feet",
+        "Heart",
+        "Way"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_009",
+    "reference": "Proverbs 1:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "The book of Proverbs opens with the proverbs of which king?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Hezekiah",
+        "Solomon",
+        "Lemuel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_010",
+    "reference": "Proverbs 6:6",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Which creature should the sluggard watch and be wise?"
+    },
+    "answers": {
+      "en": [
+        "The bee",
+        "The ant",
+        "The spider",
+        "The locust"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_011",
+    "reference": "Job 2:11",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "How many friends came to comfort Job?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Four",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_012",
+    "reference": "Job 2:11",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Job's friends were Eliphaz, Bildad, and…?"
+    },
+    "answers": {
+      "en": [
+        "Elihu",
+        "Zophar",
+        "Barachel",
+        "Teman"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_013",
+    "reference": "Job 38:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Out of what did the LORD answer Job?"
+    },
+    "answers": {
+      "en": [
+        "A burning bush",
+        "A still small voice",
+        "The whirlwind",
+        "A cloud of fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_014",
+    "reference": "Proverbs 26:11",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'As a dog returns to his vomit, so is a fool who ___.'"
+    },
+    "answers": {
+      "en": [
+        "Repeats his folly",
+        "Hates knowledge",
+        "Loves his sin",
+        "Trusts himself"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_015",
+    "reference": "Proverbs 15:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Better is a dinner of herbs where love is, than a fattened calf with ___.'"
+    },
+    "answers": {
+      "en": [
+        "Strife",
+        "Hatred",
+        "Anger",
+        "Envy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_016",
+    "reference": "Proverbs 31:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "A worthy woman's price is far above what?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Pearls",
+        "Rubies",
+        "Silver"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_017",
+    "reference": "Proverbs 16:18",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Pride goes before ___, and an arrogant spirit before a fall.'"
+    },
+    "answers": {
+      "en": [
+        "Shame",
+        "Ruin",
+        "Destruction",
+        "Judgment"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_018",
+    "reference": "Psalms 137:2",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "By the rivers of Babylon, what did the exiles hang on the willows?"
+    },
+    "answers": {
+      "en": [
+        "Their harps",
+        "Their garments",
+        "Their crowns",
+        "Their swords"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_019",
+    "reference": "Psalms 8:2",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "From whose lips has God established strength, according to Psalm 8?"
+    },
+    "answers": {
+      "en": [
+        "Kings and princes",
+        "Babes and infants",
+        "Priests and prophets",
+        "The righteous"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_020",
+    "reference": "Proverbs 27:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'___ sharpens ___; so a man sharpens his friend's countenance.'"
+    },
+    "answers": {
+      "en": [
+        "Iron … iron",
+        "Stone … stone",
+        "Steel … steel",
+        "Flint … flint"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_021",
+    "reference": "Psalms 1:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 1 compares the blessed man to what?"
+    },
+    "answers": {
+      "en": [
+        "A strong tower",
+        "A tree planted by streams",
+        "An eagle",
+        "A cedar of Lebanon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_022",
+    "reference": "Psalms 19:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'The heavens declare the ___ of God.'"
+    },
+    "answers": {
+      "en": [
+        "Power",
+        "Wonder",
+        "Glory",
+        "Majesty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_023",
+    "reference": "Job 1:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "How many children did Job have before his trials?"
+    },
+    "answers": {
+      "en": [
+        "Seven sons and three daughters",
+        "Three sons and seven daughters",
+        "Five sons and five daughters",
+        "Ten sons"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_024",
+    "reference": "Job 42:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What did the LORD give Job after he prayed for his friends?"
+    },
+    "answers": {
+      "en": [
+        "A new house",
+        "Twice as much as before",
+        "A long life only",
+        "A kingdom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_025",
+    "reference": "Psalms 51:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'Create in me a clean ___, O God.'"
+    },
+    "answers": {
+      "en": [
+        "Spirit",
+        "Mind",
+        "Heart",
+        "Soul"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_026",
+    "reference": "Psalms 127:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'Unless the LORD builds the house, they labor in ___ who build it.'"
+    },
+    "answers": {
+      "en": [
+        "Vain",
+        "Sorrow",
+        "Darkness",
+        "Fear"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_027",
+    "reference": "Ecclesiastes 1:12-14",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What does the author of Ecclesiastes call himself?"
+    },
+    "answers": {
+      "en": [
+        "The Teacher of Israel",
+        "The Preacher",
+        "The Wise One",
+        "The Servant"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_028",
+    "reference": "Song of Songs 2:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'I am a rose of ___, a lily of the valleys.'"
+    },
+    "answers": {
+      "en": [
+        "Lebanon",
+        "Gilead",
+        "Sharon",
+        "Carmel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_029",
+    "reference": "Proverbs 22:6",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'Train up a child in the way he should go, and when he is old he will not ___.'"
+    },
+    "answers": {
+      "en": [
+        "Forget it",
+        "Depart from it",
+        "Be ashamed",
+        "Stumble"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_030",
+    "reference": "Proverbs 9:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Wisdom has built her house with how many pillars?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Five",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_031",
+    "reference": "Psalms 121:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 121: 'My help comes from the LORD, who made ___.'"
+    },
+    "answers": {
+      "en": [
+        "Heaven and earth",
+        "The mountains",
+        "All flesh",
+        "The seas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_032",
+    "reference": "Proverbs 11:30",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'The fruit of the righteous is a ___ of life.'"
+    },
+    "answers": {
+      "en": [
+        "River",
+        "Crown",
+        "Tree",
+        "Well"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_033",
+    "reference": "Job 2:9",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "What did Job's wife tell him to do?"
+    },
+    "answers": {
+      "en": [
+        "Flee the land",
+        "Curse God and die",
+        "Repent in ashes",
+        "Sacrifice an offering"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_034",
+    "reference": "Job 40:15-17",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Which creature in Job moves his tail like a cedar?"
+    },
+    "answers": {
+      "en": [
+        "Leviathan",
+        "Behemoth",
+        "The wild ox",
+        "The dragon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_035",
+    "reference": "Job 32:4-6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Who was the youngest of those who spoke to Job, who waited to speak last?"
+    },
+    "answers": {
+      "en": [
+        "Zophar",
+        "Eliphaz",
+        "Elihu",
+        "Bildad"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_036",
+    "reference": "Proverbs 31:30",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'Charm is deceitful, and beauty is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Fleeting",
+        "Vain",
+        "A snare",
+        "Passing"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_037",
+    "reference": "Ecclesiastes 4:12",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'A threefold cord is not quickly ___.'"
+    },
+    "answers": {
+      "en": [
+        "Broken",
+        "Untied",
+        "Cut",
+        "Frayed"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_038",
+    "reference": "Song of Songs 8:6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'Set me as a seal on your heart, for love is strong as ___.'"
+    },
+    "answers": {
+      "en": [
+        "Iron",
+        "The sea",
+        "Death",
+        "Fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_039",
+    "reference": "Job 42:16",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "How many years did Job live after his restoration?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "100",
+        "140",
+        "200"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_040",
+    "reference": "Proverbs 31:1",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Which king's words, taught by his mother, are recorded in Proverbs 31?"
+    },
+    "answers": {
+      "en": [
+        "King Agur",
+        "King Lemuel",
+        "King Hezekiah",
+        "King Jareb"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_001",
+    "reference": "Jonah 1:3",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Where did Jonah flee instead of going to Nineveh?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Tarshish",
+        "Damascus",
+        "Joppa"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_002",
+    "reference": "Daniel 1:8",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did Daniel resolve not to defile himself with?"
+    },
+    "answers": {
+      "en": [
+        "The king's food and wine",
+        "Idol worship",
+        "Babylonian clothes",
+        "Foreign gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_003",
+    "reference": "Daniel 3:23",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "How many men were thrown bound into the fiery furnace?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_004",
+    "reference": "Daniel 5:17",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Who interpreted the mysterious writing for King Belshazzar?"
+    },
+    "answers": {
+      "en": [
+        "Daniel",
+        "Nebuchadnezzar",
+        "Ezekiel",
+        "The queen"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_005",
+    "reference": "Isaiah 9:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "'For to us a child is born. To us a ___ is given.'"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "Son",
+        "Savior",
+        "Light"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_006",
+    "reference": "Jonah 4:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did God make grow to shade Jonah's head?"
+    },
+    "answers": {
+      "en": [
+        "A fig tree",
+        "An olive tree",
+        "A vine",
+        "A cedar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_007",
+    "reference": "Daniel 5:5",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Where did the mysterious fingers write at Belshazzar's feast?"
+    },
+    "answers": {
+      "en": [
+        "On the floor",
+        "On the wall",
+        "On a scroll",
+        "On the table"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_008",
+    "reference": "Jonah 3:5",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "How did the people of Nineveh respond to Jonah's preaching?"
+    },
+    "answers": {
+      "en": [
+        "They stoned him",
+        "They ignored him",
+        "They believed God and fasted",
+        "They imprisoned him"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_009",
+    "reference": "Isaiah 2:4",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "'They shall beat their swords into ___.'"
+    },
+    "answers": {
+      "en": [
+        "Pruning hooks",
+        "Plowshares",
+        "Sickles",
+        "Hammers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_010",
+    "reference": "Jonah 3:4",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "How many days did Jonah say remained until Nineveh would be overthrown?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Forty",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_011",
+    "reference": "Jeremiah 38:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Which prophet was lowered into a muddy cistern?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Jeremiah",
+        "Ezekiel",
+        "Amos"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_012",
+    "reference": "Hosea 1:2-3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Which prophet was told to marry Gomer?"
+    },
+    "answers": {
+      "en": [
+        "Joel",
+        "Amos",
+        "Hosea",
+        "Micah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_013",
+    "reference": "Daniel 3:16",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Shadrach, Meshach, and ___ refused to worship the golden image."
+    },
+    "answers": {
+      "en": [
+        "Abednego",
+        "Belteshazzar",
+        "Arioch",
+        "Ashpenaz"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_014",
+    "reference": "Isaiah 6:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What did the seraphim cry to one another in Isaiah's vision?"
+    },
+    "answers": {
+      "en": [
+        "Glory, glory, glory",
+        "Holy, holy, holy",
+        "Worthy, worthy, worthy",
+        "Come, come, come"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_015",
+    "reference": "Isaiah 6:6-7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What touched Isaiah's lips to take away his iniquity?"
+    },
+    "answers": {
+      "en": [
+        "A live coal",
+        "A scroll",
+        "Pure water",
+        "Oil"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_016",
+    "reference": "Daniel 2:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Which king's troubling dreams could no one but Daniel explain?"
+    },
+    "answers": {
+      "en": [
+        "Belshazzar",
+        "Darius",
+        "Cyrus",
+        "Nebuchadnezzar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b04_017",
+    "reference": "Isaiah 40:31",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "'Those who wait for the LORD… shall run, and not be ___.'"
+    },
+    "answers": {
+      "en": [
+        "Afraid",
+        "Weary",
+        "Ashamed",
+        "Slow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_018",
+    "reference": "Daniel 6:10",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "How many times a day did Daniel kneel and pray?"
+    },
+    "answers": {
+      "en": [
+        "Once",
+        "Twice",
+        "Three times",
+        "Seven times"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_019",
+    "reference": "Micah 6:8",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What does the LORD require of you, according to Micah?"
+    },
+    "answers": {
+      "en": [
+        "Sacrifices and offerings",
+        "Do justly, love mercy, walk humbly",
+        "Fasting and prayer",
+        "Tithes and feasts"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_020",
+    "reference": "Isaiah 6:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In the year which king died did Isaiah see the Lord on a throne?"
+    },
+    "answers": {
+      "en": [
+        "King Ahaz",
+        "King Hezekiah",
+        "King Uzziah",
+        "King Jotham"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_021",
+    "reference": "Isaiah 7:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What sign did Isaiah give: 'The virgin will conceive and bear a son, and shall call his name ___.'"
+    },
+    "answers": {
+      "en": [
+        "Immanuel",
+        "Jesus",
+        "Maher-shalal-hash-baz",
+        "Wonderful"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_022",
+    "reference": "Daniel 4:33",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Which king ate grass like an ox until his sanity returned?"
+    },
+    "answers": {
+      "en": [
+        "Belshazzar",
+        "Nebuchadnezzar",
+        "Darius",
+        "Evil-Merodach"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_023",
+    "reference": "Daniel 5:25",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What was written on the wall at Belshazzar's feast?"
+    },
+    "answers": {
+      "en": [
+        "Mene, Mene, Tekel, Upharsin",
+        "Eli, Eli, Lama Sabachthani",
+        "Maranatha",
+        "Talitha Cumi"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_024",
+    "reference": "Amos 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What was Amos's occupation in Tekoa?"
+    },
+    "answers": {
+      "en": [
+        "A priest",
+        "A scribe",
+        "A herdsman",
+        "A potter"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_025",
+    "reference": "Jeremiah 36:27",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Whose scroll did King Jehoiakim burn in the fire?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah's",
+        "Jeremiah's",
+        "Ezekiel's",
+        "Baruch's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_026",
+    "reference": "Obadiah 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah's vision concerns which nation?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Edom",
+        "Ammon",
+        "Assyria"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_027",
+    "reference": "Nahum 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum's prophecy is a burden against which city?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Tyre",
+        "Nineveh",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_028",
+    "reference": "Habakkuk 2:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "'The righteous will live by his ___' comes from Habakkuk."
+    },
+    "answers": {
+      "en": [
+        "Works",
+        "Faith",
+        "Hope",
+        "Obedience"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_029",
+    "reference": "Malachi 3:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "'Will a man rob ___? Yet you rob me' — in tithes and offerings."
+    },
+    "answers": {
+      "en": [
+        "His neighbor",
+        "The temple",
+        "God",
+        "The poor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_030",
+    "reference": "Haggai 1:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Haggai urge the people to build?"
+    },
+    "answers": {
+      "en": [
+        "The city walls",
+        "The LORD's house",
+        "An altar",
+        "Their own houses"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_031",
+    "reference": "Ezekiel 37:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "To what did Ezekiel prophesy in the valley: 'hear the word of the LORD'?"
+    },
+    "answers": {
+      "en": [
+        "The mountains",
+        "The dry bones",
+        "The four winds",
+        "The exiles"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_032",
+    "reference": "Ezekiel 3:1-3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did Ezekiel eat that tasted as sweet as honey?"
+    },
+    "answers": {
+      "en": [
+        "Manna",
+        "A scroll",
+        "Wild honey",
+        "Bread baked on coals"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_033",
+    "reference": "Hosea 1:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did God tell Hosea to name the son meaning 'not my people'?"
+    },
+    "answers": {
+      "en": [
+        "Jezreel",
+        "Lo-Ruhamah",
+        "Lo-Ammi",
+        "Ichabod"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_034",
+    "reference": "Daniel 10:2-3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How long did Daniel mourn and fast before his great vision by the Tigris?"
+    },
+    "answers": {
+      "en": [
+        "Seven days",
+        "Two weeks",
+        "Three weeks",
+        "Forty days"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_035",
+    "reference": "Zechariah 5:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did Zechariah see flying in his vision?"
+    },
+    "answers": {
+      "en": [
+        "A scroll",
+        "A chariot",
+        "An angel with a sword",
+        "A basket"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b04_036",
+    "reference": "Jonah 4:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did God prepare to attack the vine that shaded Jonah?"
+    },
+    "answers": {
+      "en": [
+        "A locust",
+        "A worm",
+        "A scorching wind",
+        "A goat"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b04_037",
+    "reference": "Daniel 9:24",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "How many weeks were decreed in Daniel's famous prophecy?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Seventy",
+        "Ninety"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_038",
+    "reference": "Ezekiel 47:5",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In Ezekiel's temple vision, how deep did the river finally become?"
+    },
+    "answers": {
+      "en": [
+        "Ankle-deep",
+        "Knee-deep",
+        "Waist-deep",
+        "Deep enough to swim in"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b04_039",
+    "reference": "Zephaniah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "During which king of Judah's reign did Zephaniah prophesy?"
+    },
+    "answers": {
+      "en": [
+        "Hezekiah",
+        "Manasseh",
+        "Josiah",
+        "Zedekiah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b04_040",
+    "reference": "Amos 8:1-2",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "What did Amos see in his fourth vision?"
+    },
+    "answers": {
+      "en": [
+        "A plumb line",
+        "A basket of summer fruit",
+        "Locusts",
+        "A boiling pot"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_001",
+    "reference": "Matthew 1:18",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Who was the mother of Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Elizabeth",
+        "Mary",
+        "Martha",
+        "Salome"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_002",
+    "reference": "Matthew 3:13",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In which river was Jesus baptized?"
+    },
+    "answers": {
+      "en": [
+        "The Nile",
+        "The Euphrates",
+        "The Jordan",
+        "The Kishon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_003",
+    "reference": "Matthew 3:13-14",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Who baptized Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "John",
+        "Andrew",
+        "James"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_004",
+    "reference": "John 2:9",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus turn into wine at the wedding in Cana?"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Vinegar",
+        "Oil",
+        "Milk"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_005",
+    "reference": "Matthew 4:2",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "How many days did Jesus fast in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "7",
+        "12",
+        "30",
+        "40"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b05_006",
+    "reference": "Matthew 14:17",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "With what food did Jesus feed the five thousand?"
+    },
+    "answers": {
+      "en": [
+        "Five loaves and two fish",
+        "Seven loaves only",
+        "Bread and honey",
+        "Two loaves and five fish"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_007",
+    "reference": "Matthew 21:7",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "On what did Jesus ride into Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "A horse",
+        "A donkey",
+        "A camel",
+        "A chariot"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_008",
+    "reference": "Matthew 27:33",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "What was the name of the place where Jesus was crucified?"
+    },
+    "answers": {
+      "en": [
+        "Gethsemane",
+        "Golgotha",
+        "Bethany",
+        "Emmaus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_009",
+    "reference": "John 20:27-28",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple needed to see Jesus' wounds before believing?"
+    },
+    "answers": {
+      "en": [
+        "Philip",
+        "Thomas",
+        "Bartholomew",
+        "Matthew"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_010",
+    "reference": "John 11:43-44",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Whom did Jesus call out of the tomb after four days?"
+    },
+    "answers": {
+      "en": [
+        "Lazarus",
+        "Jairus",
+        "The widow's son",
+        "Tabitha"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_011",
+    "reference": "Matthew 2:9",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What guided the wise men to the child Jesus?"
+    },
+    "answers": {
+      "en": [
+        "An angel",
+        "A dream",
+        "A star",
+        "A pillar of cloud"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_012",
+    "reference": "Matthew 2:16",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What did Herod order in Bethlehem after the wise men left?"
+    },
+    "answers": {
+      "en": [
+        "A census",
+        "The boys two and under killed",
+        "A new tax",
+        "The temple closed"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_013",
+    "reference": "Mark 6:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What was Jesus' trade in Nazareth?"
+    },
+    "answers": {
+      "en": [
+        "Fisherman",
+        "Carpenter",
+        "Shepherd",
+        "Potter"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_014",
+    "reference": "John 11:35",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus do at Lazarus' tomb, in the Bible's shortest verse?"
+    },
+    "answers": {
+      "en": [
+        "He prayed",
+        "He wept",
+        "He sang",
+        "He knelt"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_015",
+    "reference": "Matthew 5:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The Sermon on the Mount begins: 'Blessed are the ___ in spirit.'"
+    },
+    "answers": {
+      "en": [
+        "Pure",
+        "Meek",
+        "Poor",
+        "Humble"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_016",
+    "reference": "Matthew 6:9",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The Lord's Prayer begins: 'Our Father in ___.'"
+    },
+    "answers": {
+      "en": [
+        "Glory",
+        "Heaven",
+        "Light",
+        "Majesty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_017",
+    "reference": "Matthew 27:32",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Who was compelled to carry Jesus' cross?"
+    },
+    "answers": {
+      "en": [
+        "Simon of Cyrene",
+        "Joseph of Arimathaea",
+        "Nicodemus",
+        "John"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_018",
+    "reference": "Matthew 27:57-58",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Who asked Pilate for Jesus' body?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Nicodemus",
+        "Joseph of Arimathaea",
+        "John"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_019",
+    "reference": "John 20:16",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Who recognized the risen Jesus when he said her name in the garden?"
+    },
+    "answers": {
+      "en": [
+        "Mary Magdalene",
+        "Mary the mother of James",
+        "Joanna",
+        "Salome"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_020",
+    "reference": "Luke 17:15-17",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Of the ten lepers Jesus healed, how many returned to thank him?"
+    },
+    "answers": {
+      "en": [
+        "None",
+        "One",
+        "Five",
+        "All ten"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_021",
+    "reference": "Luke 10:33",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Jesus' parable, who helped the man beaten by robbers?"
+    },
+    "answers": {
+      "en": [
+        "A priest",
+        "A Levite",
+        "A Samaritan",
+        "A centurion"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_022",
+    "reference": "Luke 15:15-16",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What animals did the prodigal son end up feeding?"
+    },
+    "answers": {
+      "en": [
+        "Sheep",
+        "Goats",
+        "Camels",
+        "Pigs"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b05_023",
+    "reference": "John 3:2",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "When did Nicodemus come to talk with Jesus?"
+    },
+    "answers": {
+      "en": [
+        "At dawn",
+        "By night",
+        "On the Sabbath",
+        "At a feast"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_024",
+    "reference": "John 4:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "The woman Jesus met at Jacob's well was from where?"
+    },
+    "answers": {
+      "en": [
+        "Galilee",
+        "Judea",
+        "Samaria",
+        "Decapolis"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_025",
+    "reference": "Matthew 17:3",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Who appeared talking with Jesus at the transfiguration?"
+    },
+    "answers": {
+      "en": [
+        "Abraham and Isaac",
+        "Moses and Elijah",
+        "David and Solomon",
+        "Enoch and Noah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_026",
+    "reference": "Mark 5:22-23",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jairus begged Jesus to heal whom?"
+    },
+    "answers": {
+      "en": [
+        "His servant",
+        "His son",
+        "His daughter",
+        "His wife"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_027",
+    "reference": "Mark 10:46",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What was the name of the blind beggar healed near Jericho?"
+    },
+    "answers": {
+      "en": [
+        "Bartimaeus",
+        "Malchus",
+        "Zacchaeus",
+        "Lazarus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_028",
+    "reference": "John 18:10",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did Peter cut off from the high priest's servant?"
+    },
+    "answers": {
+      "en": [
+        "His hand",
+        "His right ear",
+        "His hair",
+        "His thumb"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_029",
+    "reference": "John 18:38",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What famous question did Pilate ask Jesus?"
+    },
+    "answers": {
+      "en": [
+        "What is truth?",
+        "What is justice?",
+        "Who is your father?",
+        "Why have you come?"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_030",
+    "reference": "Luke 1:41",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Whose baby leaped in her womb at Mary's greeting?"
+    },
+    "answers": {
+      "en": [
+        "Anna's",
+        "Elizabeth's",
+        "Joanna's",
+        "Susanna's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_031",
+    "reference": "Luke 2:27-28",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Where did Simeon take the baby Jesus in his arms?"
+    },
+    "answers": {
+      "en": [
+        "In the temple",
+        "In the stable",
+        "At the synagogue",
+        "By the river"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_032",
+    "reference": "Luke 2:42",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "How old was Jesus when he stayed behind in the temple at Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Eight",
+        "Ten",
+        "Twelve",
+        "Thirty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_033",
+    "reference": "Matthew 27:7-8",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "What was bought with Judas' thirty pieces of silver?"
+    },
+    "answers": {
+      "en": [
+        "The potter's field",
+        "A tomb",
+        "A vineyard",
+        "Temple incense"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_034",
+    "reference": "Matthew 27:26",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Which prisoner did Pilate release instead of Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Barabbas",
+        "Silas",
+        "Theudas",
+        "Malchus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_035",
+    "reference": "John 21:11",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "How many fish were in the net the disciples hauled in after the resurrection?"
+    },
+    "answers": {
+      "en": [
+        "100",
+        "120",
+        "153",
+        "200"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b05_036",
+    "reference": "Matthew 17:27",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Where did Peter find the coin to pay the temple tax?"
+    },
+    "answers": {
+      "en": [
+        "In a fish's mouth",
+        "On the road",
+        "In his cloak",
+        "Under a stone"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b05_037",
+    "reference": "John 2:6",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "How many stone water pots were at the wedding in Cana?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Six",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_038",
+    "reference": "Matthew 26:57",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Who was the high priest at Jesus' trial?"
+    },
+    "answers": {
+      "en": [
+        "Annas",
+        "Caiaphas",
+        "Gamaliel",
+        "Zacharias"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_039",
+    "reference": "Luke 13:4",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Which tower fell and killed eighteen people?"
+    },
+    "answers": {
+      "en": [
+        "The tower of Babel",
+        "The tower of Siloam",
+        "The tower of Antonia",
+        "The tower of David"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b05_040",
+    "reference": "Luke 2:36",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "The prophetess Anna was the daughter of whom?"
+    },
+    "answers": {
+      "en": [
+        "Phanuel",
+        "Heli",
+        "Zebedee",
+        "Cleopas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_001",
+    "reference": "Romans 6:23",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'The wages of sin is ___, but the free gift of God is eternal life.'"
+    },
+    "answers": {
+      "en": [
+        "Sorrow",
+        "Death",
+        "Judgment",
+        "Darkness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_002",
+    "reference": "1 Corinthians 13:13",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Faith, hope, and love — which is the greatest?"
+    },
+    "answers": {
+      "en": [
+        "Faith",
+        "Hope",
+        "Love",
+        "They are equal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_003",
+    "reference": "Philippians 4:13",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'I can do all things through ___ who strengthens me.'"
+    },
+    "answers": {
+      "en": [
+        "Christ",
+        "Faith",
+        "Prayer",
+        "Grace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_004",
+    "reference": "Galatians 5:22",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "The fruit of the Spirit begins with which quality?"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Peace",
+        "Love",
+        "Patience"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_005",
+    "reference": "Ephesians 2:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'For by grace you have been saved through ___.'"
+    },
+    "answers": {
+      "en": [
+        "Works",
+        "Faith",
+        "Baptism",
+        "The law"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_006",
+    "reference": "Ephesians 6:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, what is the sword of the Spirit?"
+    },
+    "answers": {
+      "en": [
+        "Prayer",
+        "Faith",
+        "The word of God",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_007",
+    "reference": "1 John 4:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'He who doesn't love doesn't know God, for God is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "Love",
+        "Spirit",
+        "Truth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_008",
+    "reference": "Revelation 13:18",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "What is the number of the beast in Revelation?"
+    },
+    "answers": {
+      "en": [
+        "444",
+        "616",
+        "666",
+        "777"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_009",
+    "reference": "Revelation 1:4",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "John wrote Revelation to how many assemblies in Asia?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_010",
+    "reference": "1 Corinthians 13:4",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'Love is patient and is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Kind",
+        "Gentle",
+        "Pure",
+        "True"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_011",
+    "reference": "Romans 1:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Who wrote the letter to the Romans?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Paul",
+        "John",
+        "James"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_012",
+    "reference": "James 2:26",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Faith apart from works is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Weak",
+        "Dead",
+        "Empty",
+        "Blind"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_013",
+    "reference": "1 Timothy 6:10",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What is 'a root of all kinds of evil'?"
+    },
+    "answers": {
+      "en": [
+        "Pride",
+        "Envy",
+        "The love of money",
+        "Anger"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_014",
+    "reference": "2 Timothy 1:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What were the names of Timothy's believing mother and grandmother?"
+    },
+    "answers": {
+      "en": [
+        "Eunice and Lois",
+        "Mary and Anna",
+        "Priscilla and Phoebe",
+        "Lydia and Joanna"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_015",
+    "reference": "Philemon 1:10",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What was the name of the runaway slave Paul wrote to Philemon about?"
+    },
+    "answers": {
+      "en": [
+        "Tychicus",
+        "Epaphras",
+        "Onesimus",
+        "Archippus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_016",
+    "reference": "James 1:22",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Be ___ of the word, and not only hearers.'"
+    },
+    "answers": {
+      "en": [
+        "Students",
+        "Doers",
+        "Keepers",
+        "Lovers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_017",
+    "reference": "Revelation 21:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'I saw a new heaven and a new ___.'"
+    },
+    "answers": {
+      "en": [
+        "Earth",
+        "Jerusalem",
+        "Temple",
+        "Creation"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_018",
+    "reference": "Hebrews 13:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Jesus Christ is the same yesterday, today, and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Always",
+        "Forever",
+        "Tomorrow",
+        "Evermore"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_019",
+    "reference": "Hebrews 12:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'We are surrounded by so great a cloud of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Angels",
+        "Saints",
+        "Witnesses",
+        "Glory"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_020",
+    "reference": "Revelation 1:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "On which island was John when he received the Revelation?"
+    },
+    "answers": {
+      "en": [
+        "Crete",
+        "Cyprus",
+        "Patmos",
+        "Malta"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_021",
+    "reference": "1 Thessalonians 5:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Pray without ___.'"
+    },
+    "answers": {
+      "en": [
+        "Doubting",
+        "Ceasing",
+        "Fear",
+        "Words"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_022",
+    "reference": "James 4:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Resist the devil, and he will ___ from you.'"
+    },
+    "answers": {
+      "en": [
+        "Hide",
+        "Flee",
+        "Turn",
+        "Fall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_023",
+    "reference": "Hebrews 11:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'Faith is assurance of things hoped for, ___ of things not seen.'"
+    },
+    "answers": {
+      "en": [
+        "Proof",
+        "Hope",
+        "Sight",
+        "Promise"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_024",
+    "reference": "Hebrews 7:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'You are a priest forever, according to the order of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Levi",
+        "Melchizedek",
+        "Zadok"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_025",
+    "reference": "Revelation 4:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "How many elders sit on thrones around God's throne in Revelation?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Twenty-four",
+        "Seventy",
+        "One hundred forty-four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_026",
+    "reference": "2 Corinthians 12:7",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What did Paul say was given him to keep him from exalting himself?"
+    },
+    "answers": {
+      "en": [
+        "A thorn in the flesh",
+        "A heavy burden",
+        "A weak voice",
+        "Chains"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_027",
+    "reference": "2 Corinthians 5:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul: 'willing rather to be absent from the body and to be at home with ___.'"
+    },
+    "answers": {
+      "en": [
+        "The saints",
+        "The Lord",
+        "The Father",
+        "The angels"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_028",
+    "reference": "Ephesians 6:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, what is the breastplate?"
+    },
+    "answers": {
+      "en": [
+        "Faith",
+        "Truth",
+        "Righteousness",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_029",
+    "reference": "Philippians 2:12",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'Work out your own salvation with fear and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Trembling",
+        "Hope",
+        "Diligence"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_030",
+    "reference": "Revelation 22:13",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'I am the Alpha and the ___, the First and the Last.'"
+    },
+    "answers": {
+      "en": [
+        "Omega",
+        "Origin",
+        "End",
+        "Beta"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_031",
+    "reference": "Romans 16:16",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'Greet one another with a holy ___.'"
+    },
+    "answers": {
+      "en": [
+        "Embrace",
+        "Kiss",
+        "Blessing",
+        "Hand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_032",
+    "reference": "James 3:5-6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James compares the tongue to a small ___ that sets a great forest ablaze."
+    },
+    "answers": {
+      "en": [
+        "Spark",
+        "Fire",
+        "Coal",
+        "Torch"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_033",
+    "reference": "Revelation 3:16",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which church did Jesus rebuke for being lukewarm?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Sardis",
+        "Laodicea",
+        "Smyrna"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_034",
+    "reference": "2 Timothy 4:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who deserted Paul, 'having loved this present world'?"
+    },
+    "answers": {
+      "en": [
+        "Demas",
+        "Titus",
+        "Crescens",
+        "Tychicus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_035",
+    "reference": "Philippians 4:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul urged Euodia and ___ to agree in the Lord."
+    },
+    "answers": {
+      "en": [
+        "Syntyche",
+        "Phoebe",
+        "Junia",
+        "Apphia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_036",
+    "reference": "Jude 1:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which archangel disputed with the devil about the body of Moses?"
+    },
+    "answers": {
+      "en": [
+        "Gabriel",
+        "Michael",
+        "Raphael",
+        "Uriel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_037",
+    "reference": "Romans 5:20",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "'Where sin abounded, ___ abounded more exceedingly.'"
+    },
+    "answers": {
+      "en": [
+        "Mercy",
+        "Grace",
+        "Love",
+        "Faith"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_038",
+    "reference": "2 Timothy 4:20",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul leave sick at Miletus?"
+    },
+    "answers": {
+      "en": [
+        "Erastus",
+        "Trophimus",
+        "Carpus",
+        "Eubulus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_039",
+    "reference": "3 John 1:1",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "To whom is the letter of 3 John addressed?"
+    },
+    "answers": {
+      "en": [
+        "Gaius",
+        "Diotrephes",
+        "Demetrius",
+        "Theophilus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_040",
+    "reference": "2 Timothy 4:14",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "'Alexander, the ___, did much evil to me,' wrote Paul."
+    },
+    "answers": {
+      "en": [
+        "Coppersmith",
+        "Tentmaker",
+        "Silversmith",
+        "Tax collector"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_001",
+    "reference": "1 Samuel 17:50",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who defeated the giant Goliath?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Saul",
+        "Jonathan",
+        "Samuel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_002",
+    "reference": "Genesis 7:12",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "How many days and nights did it rain during the flood?"
+    },
+    "answers": {
+      "en": [
+        "7",
+        "12",
+        "40",
+        "100"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_003",
+    "reference": "Exodus 3:10",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who did God send to lead the Israelites out of Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Moses",
+        "Joshua",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_004",
+    "reference": "Exodus 14:21",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Which sea did God part so Israel could cross on dry ground?"
+    },
+    "answers": {
+      "en": [
+        "The Dead Sea",
+        "The Sea of Galilee",
+        "The Red Sea",
+        "The Great Sea"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_005",
+    "reference": "Daniel 6:16",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Who was thrown into the lions’ den?"
+    },
+    "answers": {
+      "en": [
+        "Shadrach",
+        "Daniel",
+        "Jeremiah",
+        "Ezekiel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_006",
+    "reference": "Genesis 6:14",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who built an ark of gopher wood before the flood?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Methuselah",
+        "Enoch",
+        "Noah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_seed_007",
+    "reference": "Matthew 2:1",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In which town was Jesus born?"
+    },
+    "answers": {
+      "en": [
+        "Nazareth",
+        "Bethlehem",
+        "Jerusalem",
+        "Capernaum"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_008",
+    "reference": "Matthew 26:14-16",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple betrayed Jesus for thirty pieces of silver?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Thomas",
+        "Judas Iscariot",
+        "James"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_009",
+    "reference": "Ruth 1:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was Ruth’s mother-in-law?"
+    },
+    "answers": {
+      "en": [
+        "Naomi",
+        "Orpah",
+        "Hannah",
+        "Deborah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_010",
+    "reference": "1 Samuel 10:24",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was the first king of Israel?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Solomon",
+        "Saul",
+        "Rehoboam"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_011",
+    "reference": "Matthew 14:29",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple walked on water toward Jesus?"
+    },
+    "answers": {
+      "en": [
+        "John",
+        "Peter",
+        "Andrew",
+        "Philip"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_012",
+    "reference": "Genesis 1:3",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did God create when He said, “Let there be…”?"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "Water",
+        "Animals",
+        "Stars"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_013",
+    "reference": "Jonah 1:17",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Who was swallowed by a great fish?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "Jonah",
+        "Hosea",
+        "Amos"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_014",
+    "reference": "Exodus 16:31",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What bread-like food did God send in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Manna",
+        "Figs",
+        "Barley",
+        "Honey cakes"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_015",
+    "reference": "Luke 22:61",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Who denied Jesus three times before the rooster crowed?"
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "James",
+        "Peter",
+        "John"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_016",
+    "reference": "Judges 16:17",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whose great strength was linked to his uncut hair?"
+    },
+    "answers": {
+      "en": [
+        "Gideon",
+        "Samson",
+        "Barak",
+        "Jephthah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_seed_017",
+    "reference": "Genesis 41:25",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who interpreted Pharaoh’s dreams about the famine?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Benjamin",
+        "Daniel",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_seed_018",
+    "reference": "Exodus 19:20",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "On which mountain did Moses receive the Ten Commandments?"
+    },
+    "answers": {
+      "en": [
+        "Mount Nebo",
+        "Mount Carmel",
+        "Mount Sinai",
+        "Mount Moriah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_seed_019",
+    "reference": "Luke 19:4",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Who climbed a sycamore tree to see Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Zacchaeus",
+        "Nicodemus",
+        "Bartimaeus",
+        "Lazarus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_seed_020",
+    "reference": "Daniel 3:25",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How many men did Nebuchadnezzar see walking in the fiery furnace?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

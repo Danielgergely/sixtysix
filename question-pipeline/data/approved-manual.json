@@ -1,0 +1,128 @@
+[
+  {
+    "file": "batch-000-seed.json",
+    "id": "q_seed_004",
+    "reference": "Exodus 14:21",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Which sea did God part so Israel could cross on dry ground?"
+    },
+    "answers": {
+      "en": [
+        "The Dead Sea",
+        "The Sea of Galilee",
+        "The Red Sea",
+        "The Great Sea"
+      ]
+    },
+    "correctIndex": 2,
+    "_verse": "Moses stretched out his hand over the sea, and Yahweh caused the sea to go back by a strong east wind all the night, and made the sea dry land, and the waters were divided.",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-000-seed.json",
+    "id": "q_seed_016",
+    "reference": "Judges 16:17",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whose great strength was linked to his uncut hair?"
+    },
+    "answers": {
+      "en": [
+        "Gideon",
+        "Samson",
+        "Barak",
+        "Jephthah"
+      ]
+    },
+    "correctIndex": 1,
+    "_verse": "He told her all his heart, and said to her, “No razor has ever come on my head; for I have been a Nazirite to God from my mother’s womb. If I am shaved, then my strength will go from me, and I will become weak, and be like any other man.”",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-001-torah.json",
+    "id": "q_b01_010",
+    "reference": "Genesis 2:20",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who gave names to all the animals?"
+    },
+    "answers": {
+      "en": [
+        "Adam",
+        "Noah",
+        "Abel",
+        "Enosh"
+      ]
+    },
+    "correctIndex": 0,
+    "_verse": "The man gave names to all livestock, and to the birds of the sky, and to every animal of the field; but for man there was not found a helper comparable to him.",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-002-history.json",
+    "id": "q_b02_001",
+    "reference": "Joshua 6:20",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "The walls of which city fell after Israel marched around it?"
+    },
+    "answers": {
+      "en": [
+        "Ai",
+        "Jericho",
+        "Hebron",
+        "Gibeon"
+      ]
+    },
+    "correctIndex": 1,
+    "_verse": "So the people shouted, and the priests blew the trumpets. When the people heard the sound of the trumpet, the people shouted with a great shout, and the wall fell down flat, so that the people went up into the city, every man straight before him, and they took the city.",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-003-wisdom.json",
+    "id": "q_b03_033",
+    "reference": "Job 2:9",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "What did Job's wife tell him to do?"
+    },
+    "answers": {
+      "en": [
+        "Flee the land",
+        "Curse God and die",
+        "Repent in ashes",
+        "Sacrifice an offering"
+      ]
+    },
+    "correctIndex": 1,
+    "_verse": "Then his wife said to him, “Do you still maintain your integrity? Renounce God, and die.”",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-004-prophets.json",
+    "id": "q_b04_024",
+    "reference": "Amos 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What was Amos's occupation in Tekoa?"
+    },
+    "answers": {
+      "en": [
+        "A priest",
+        "A scribe",
+        "A herdsman",
+        "A potter"
+      ]
+    },
+    "correctIndex": 2,
+    "_verse": "The words of Amos, who was among the herdsmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel, two years before the earthquake.",
+    "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  }
+]

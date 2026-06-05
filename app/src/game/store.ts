@@ -57,7 +57,9 @@ export const useGameStore = create<GameStore>((set, get) => {
     set({ racers: get().racers.map((r) => (r.profile.id === id ? { ...r, ...patch } : r)) })
 
   async function startRace() {
-    const questions = await bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' })
+    const questions = (await bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }))
+      // Races ramp up: start with easy questions, end with hard ones.
+      .sort((a, b) => a.difficulty - b.difficulty)
     set({
       screen: 'race',
       questions,

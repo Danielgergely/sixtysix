@@ -1,5 +1,8 @@
 import type { Difficulty, Locale, Question } from './types'
-import { SEED_QUESTIONS } from './seedBank'
+import bankJson from './bank.json'
+
+/** Generated + verified by question-pipeline/ — do not edit by hand. */
+const BANK = bankJson as Question[]
 
 export interface GetQuestionsOptions {
   count: number
@@ -37,4 +40,4 @@ export class BundledBankProvider implements QuestionProvider {
   }
 }
 
-export const bundledBank: QuestionProvider = new BundledBankProvider(SEED_QUESTIONS)
+export const bundledBank: QuestionProvider = new BundledBankProvider(BANK)
