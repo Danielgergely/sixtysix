@@ -70,12 +70,22 @@ export interface LeaderboardEntry {
 
 export interface ClientToServerEvents {
   'room:create': (
-    config: RoomConfig,
+    payload: { config: RoomConfig; hostId: string },
     cb: (res: { ok: true; state: RoomState } | { ok: false; error: string }) => void,
   ) => void
+  /**
+   * Join (or REJOIN — same playerId rebinds the connection and keeps the
+   * score, which is how reconnection works). playerId is the stable
+   * client-generated device UUID; a future account id slots in unchanged.
+   */
   'room:join': (
-    payload: { code: string; name: string; avatar: string },
+    payload: { code: string; name: string; avatar: string; playerId: string },
     cb: (res: { ok: true; playerId: string; state: RoomState } | { ok: false; error: string }) => void,
+  ) => void
+  /** Host reclaims their room after a disconnect (within the grace window). */
+  'room:rehost': (
+    payload: { code: string; hostId: string },
+    cb: (res: { ok: true; state: RoomState } | { ok: false; error: string }) => void,
   ) => void
   /** Read-only spectator dashboard (`/board/CODE`). */
   'room:watch': (
@@ -90,7 +100,8 @@ export interface ClientToServerEvents {
 export interface ServerToClientEvents {
   'room:state': (state: RoomState) => void
   'room:closed': (reason: string) => void
-  'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', deadline: number) => void
+  /** endsInMs = duration from receipt (no clock-sync needed). */
+  'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number) => void
   'game:answerCount': (count: number) => void
   'game:reveal': (payload: RevealPayload) => void
   'game:leaderboard': (entries: LeaderboardEntry[]) => void

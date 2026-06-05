@@ -7,6 +7,7 @@ const avatarEmoji = (avatar: string) => AVATAR_EMOJI[avatar as CharacterId] ?? '
 export function ArenaHostLobbyScreen() {
   const room = useArenaStore((s) => s.room)
   const leaveArena = useArenaStore((s) => s.leaveArena)
+  const startGame = useArenaStore((s) => s.startGame)
   if (!room) return null
 
   const joinUrl = `${window.location.origin}/join/${room.code}`
@@ -46,10 +47,10 @@ export function ArenaHostLobbyScreen() {
       </div>
 
       <div className="host-actions">
-        <button className="btn-play" disabled title="Game loop coming next">
+        <button className="btn-play" disabled={room.players.length === 0} onClick={startGame}>
           START GAME
         </button>
-        <p className="arena-hint">Starting needs at least 1 player — game loop ships in the next step.</p>
+        {room.players.length === 0 && <p className="arena-hint">Waiting for at least one player…</p>}
       </div>
     </div>
   )

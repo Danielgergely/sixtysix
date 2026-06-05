@@ -1,7 +1,7 @@
 import type { Server, Socket } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/shared'
 import {
-  addPlayer,
+  addOrRebindPlayer,
   deleteRoom,
   findRoomBySocket,
   getRoom,
@@ -10,76 +10,120 @@ import {
   touch,
   type Room,
 } from './rooms.js'
+import { handleAnswer, sendCurrentQuestion, startGame } from './game.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
+
+const HOST_GRACE_MS = 90_000 // host may reconnect within this window
+const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 
 function broadcastState(io: IO, room: Room): void {
   io.to(room.code).emit('room:state', toPublicState(room))
 }
 
 export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
-  socket.on('room:create', (config, cb) => {
-    const questionCount = Math.min(30, Math.max(3, Math.round(config.questionCount) || 10))
-    const room = createRoom({ ...config, questionCount }, socket.id)
+  socket.on('room:create', (payload, cb) => {
+    if (!isId(payload?.hostId)) return cb({ ok: false, error: 'Invalid host id' })
+    const questionCount = Math.min(30, Math.max(3, Math.round(payload.config?.questionCount) || 10))
+    const room = createRoom({ ...payload.config, questionCount }, payload.hostId, socket.id)
     void socket.join(room.code)
     cb({ ok: true, state: toPublicState(room) })
     console.log(`[arena] room ${room.code} created (${room.config.roomType})`)
   })
 
   socket.on('room:join', (payload, cb) => {
-    const room = getRoom(payload.code ?? '')
+    const room = getRoom(payload?.code ?? '')
     if (!room) return cb({ ok: false, error: 'Game not found — check the code' })
-    const result = addPlayer(room, socket.id, payload.name, payload.avatar)
+    if (!isId(payload.playerId)) return cb({ ok: false, error: 'Invalid player id' })
+    const result = addOrRebindPlayer(room, payload.playerId, socket.id, payload.name, payload.avatar)
     if ('error' in result) return cb({ ok: false, error: result.error })
     void socket.join(room.code)
-    cb({ ok: true, playerId: result.id, state: toPublicState(room) })
+    cb({ ok: true, playerId: result.player.id, state: toPublicState(room) })
     broadcastState(io, room)
-    console.log(`[arena] ${result.name} joined ${room.code} (${room.players.size} players)`)
+    sendCurrentQuestion(room, socket) // no-op unless a question is live
+    console.log(
+      `[arena] ${result.player.name} ${result.rejoined ? 'rejoined' : 'joined'} ${room.code} (${room.players.size} players)`,
+    )
+  })
+
+  socket.on('room:rehost', (payload, cb) => {
+    const room = getRoom(payload?.code ?? '')
+    if (!room || room.hostId !== payload.hostId) {
+      return cb({ ok: false, error: 'Game not found' })
+    }
+    clearTimeout(room.hostGraceTimer)
+    room.hostSocketId = socket.id
+    void socket.join(room.code)
+    touch(room)
+    cb({ ok: true, state: toPublicState(room) })
+    broadcastState(io, room)
+    sendCurrentQuestion(room, socket)
+    console.log(`[arena] host reclaimed ${room.code}`)
   })
 
   socket.on('room:watch', (payload, cb) => {
-    const room = getRoom(payload.code ?? '')
+    const room = getRoom(payload?.code ?? '')
     if (!room) return cb({ ok: false, error: 'Game not found — check the code' })
     void socket.join(room.code)
     touch(room)
     cb({ ok: true, state: toPublicState(room) })
+    sendCurrentQuestion(room, socket)
   })
 
   socket.on('room:leave', () => {
-    handleDeparture(io, socket)
+    handleDeparture(io, socket, true)
   })
 
   socket.on('host:start', () => {
     const room = findRoomBySocket(socket.id)
     if (!room || room.hostSocketId !== socket.id) return
-    // Game loop lands in the next step.
-    console.log(`[arena] start requested for ${room.code} — game loop not implemented yet`)
+    if (room.phase !== 'lobby') return
+    if (room.players.size === 0) return
+    startGame(io, room)
+  })
+
+  socket.on('player:answer', (payload) => {
+    const room = findRoomBySocket(socket.id)
+    if (!room) return
+    const player = [...room.players.values()].find((p) => p.socketId === socket.id)
+    if (!player) return
+    handleAnswer(io, room, player.id, payload?.index)
   })
 
   socket.on('disconnect', () => {
-    handleDeparture(io, socket)
+    handleDeparture(io, socket, false)
   })
 }
 
-function handleDeparture(io: IO, socket: ArenaSocket): void {
+function handleDeparture(io: IO, socket: ArenaSocket, explicit: boolean): void {
   const room = findRoomBySocket(socket.id)
   if (!room) return
 
   if (room.hostSocketId === socket.id) {
-    // Host gone → close the room (reconnect grace periods come later).
-    io.to(room.code).emit('room:closed', 'The host left the game')
-    deleteRoom(room.code)
-    console.log(`[arena] room ${room.code} closed (host left)`)
+    if (explicit) {
+      io.to(room.code).emit('room:closed', 'The host ended the game')
+      deleteRoom(room.code)
+      console.log(`[arena] room ${room.code} closed (host ended it)`)
+      return
+    }
+    // Network blip? Give the host a grace window to reclaim the room.
+    room.hostSocketId = null
+    broadcastState(io, room)
+    room.hostGraceTimer = setTimeout(() => {
+      io.to(room.code).emit('room:closed', 'The host left the game')
+      deleteRoom(room.code)
+      console.log(`[arena] room ${room.code} closed (host grace expired)`)
+    }, HOST_GRACE_MS)
     return
   }
 
   for (const [id, p] of room.players) {
     if (p.socketId === socket.id) {
-      if (room.phase === 'lobby') {
-        room.players.delete(id) // in the lobby, leaving = gone
+      if (room.phase === 'lobby' || explicit) {
+        room.players.delete(id) // lobby leavers and explicit leavers are gone
       } else {
-        p.connected = false // mid-game, keep score; reconnect later
+        p.connected = false // mid-game drop: keep score for reconnection
       }
       touch(room)
       broadcastState(io, room)

@@ -1,4 +1,4 @@
-import type { ArenaPhase, ArenaPlayer, RoomConfig, RoomState } from '@sixtysix/shared'
+import type { ArenaPhase, ArenaPlayer, Question, RoomConfig, RoomState } from '@sixtysix/shared'
 import { MAX_ARENA_PLAYERS } from '@sixtysix/shared'
 
 export interface RoomPlayer extends ArenaPlayer {
@@ -11,9 +11,19 @@ export interface Room {
   code: string
   config: RoomConfig
   phase: ArenaPhase
+  /** Stable host identity (device UUID) — survives reconnects. */
+  hostId: string
   hostSocketId: string | null
   players: Map<string, RoomPlayer>
+  questions: Question[]
   questionIndex: number
+  questionStartedAt: number
+  /** Previous leaderboard ranks, for delta arrows. */
+  prevRanks: Map<string, number>
+  /** Single pending phase timer for this room. */
+  timer?: ReturnType<typeof setTimeout>
+  /** Pending room-close timer while the host is disconnected. */
+  hostGraceTimer?: ReturnType<typeof setTimeout>
   lastActivity: number
 }
 
@@ -35,14 +45,18 @@ function generateCode(): string {
   return code
 }
 
-export function createRoom(config: RoomConfig, hostSocketId: string): Room {
+export function createRoom(config: RoomConfig, hostId: string, hostSocketId: string): Room {
   const room: Room = {
     code: generateCode(),
     config,
     phase: 'lobby',
+    hostId,
     hostSocketId,
     players: new Map(),
+    questions: [],
     questionIndex: 0,
+    questionStartedAt: 0,
+    prevRanks: new Map(),
     lastActivity: Date.now(),
   }
   rooms.set(room.code, room)
@@ -54,6 +68,11 @@ export function getRoom(code: string): Room | undefined {
 }
 
 export function deleteRoom(code: string): void {
+  const room = rooms.get(code)
+  if (room) {
+    clearTimeout(room.timer)
+    clearTimeout(room.hostGraceTimer)
+  }
   rooms.delete(code)
 }
 
@@ -61,26 +80,38 @@ export function touch(room: Room): void {
   room.lastActivity = Date.now()
 }
 
-export function addPlayer(
+const cleanName = (name: string) => name.trim().slice(0, 14) || 'Player'
+
+/** Add a new player, or rebind an existing one (reconnection). */
+export function addOrRebindPlayer(
   room: Room,
+  playerId: string,
   socketId: string,
   name: string,
   avatar: string,
-): RoomPlayer | { error: string } {
+): { player: RoomPlayer; rejoined: boolean } | { error: string } {
+  const existing = room.players.get(playerId)
+  if (existing) {
+    existing.socketId = socketId
+    existing.connected = true
+    existing.name = cleanName(name || existing.name)
+    existing.avatar = avatar || existing.avatar
+    touch(room)
+    return { player: existing, rejoined: true }
+  }
   if (room.players.size >= MAX_ARENA_PLAYERS) return { error: 'Room is full' }
-  if (room.phase !== 'lobby') return { error: 'Game already started' }
-  const cleanName = name.trim().slice(0, 14) || 'Player'
+  if (room.phase === 'podium') return { error: 'This game has ended' }
   const player: RoomPlayer = {
-    id: socketId, // reconnection tokens come later
+    id: playerId,
     socketId,
-    name: cleanName,
+    name: cleanName(name),
     avatar,
     score: 0,
     connected: true,
   }
-  room.players.set(player.id, player)
+  room.players.set(player.id, player) // late joiners enter at the next question
   touch(room)
-  return player
+  return { player, rejoined: false }
 }
 
 export function toPublicState(room: Room): RoomState {
@@ -116,7 +147,7 @@ export function startRoomGC(onClose: (room: Room) => void): void {
     for (const room of rooms.values()) {
       if (now - room.lastActivity > ROOM_IDLE_MS) {
         onClose(room)
-        rooms.delete(room.code)
+        deleteRoom(room.code)
       }
     }
   }, 60_000).unref()

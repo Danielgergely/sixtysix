@@ -7,6 +7,7 @@ import { ProfileScreen } from './screens/ProfileScreen'
 import { ArenaMenuScreen } from './screens/arena/ArenaMenuScreen'
 import { ArenaHostLobbyScreen } from './screens/arena/ArenaHostLobbyScreen'
 import { ArenaPlayerLobbyScreen } from './screens/arena/ArenaPlayerLobbyScreen'
+import { ArenaGameScreen } from './screens/arena/ArenaGameScreen'
 
 const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   menu: MainMenuScreen,
@@ -17,6 +18,7 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   arenaMenu: ArenaMenuScreen,
   arenaHostLobby: ArenaHostLobbyScreen,
   arenaPlayerLobby: ArenaPlayerLobbyScreen,
+  arenaGame: ArenaGameScreen,
 }
 
 export default function App() {

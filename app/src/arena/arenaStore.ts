@@ -1,7 +1,16 @@
 import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
-import type { ClientToServerEvents, RoomState, ServerToClientEvents } from '@sixtysix/shared'
+import type {
+  ArenaQuestion,
+  ClientToServerEvents,
+  LeaderboardEntry,
+  RevealPayload,
+  RoomState,
+  ServerToClientEvents,
+} from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { getDeviceId } from '../game/persistence'
+import { playSfx } from '../game/sfx'
 
 type ArenaSocket = Socket<ServerToClientEvents, ClientToServerEvents>
 
@@ -9,15 +18,27 @@ export type ArenaRole = 'host' | 'player' | 'spectator'
 
 interface ArenaStore {
   role: ArenaRole | null
-  playerId: string | null
   room: RoomState | null
   error: string | null
   busy: boolean
   /** Code captured from a /join/CODE URL before the user gets there. */
   prefillCode: string
 
-  hostGame: () => Promise<void>
-  joinGame: (code: string) => Promise<void>
+  // Live game state (server-driven)
+  question: ArenaQuestion | null
+  /** Date.now()-based end of the current reading/question window. */
+  phaseEndsAt: number
+  myAnswer: number | null
+  answerCount: number
+  reveal: RevealPayload | null
+  yourResult: { correct: boolean; gain: number; score: number } | null
+  leaderboard: LeaderboardEntry[] | null
+  podium: LeaderboardEntry[] | null
+
+  hostGame: () => void
+  startGame: () => void
+  joinGame: (code: string) => void
+  answer: (index: number) => void
   leaveArena: () => void
   setPrefillCode: (code: string) => void
   clearError: () => void
@@ -26,42 +47,114 @@ interface ArenaStore {
 let socket: ArenaSocket | null = null
 
 function getSocket(): ArenaSocket {
-  if (socket?.connected || socket?.active) return socket
+  if (socket) return socket
   // Same origin in production; vite proxies /socket.io to the server in dev.
   socket = io({ transports: ['websocket', 'polling'] })
+  const setState = useArenaStore.setState
+  const getState = useArenaStore.getState
+
+  socket.on('connect', () => {
+    // Transparent recovery after a drop: rejoin / reclaim with stable ids.
+    const { role, room } = getState()
+    if (!room || !socket) return
+    if (role === 'player') {
+      const player = useGameStore.getState().player
+      socket.emit(
+        'room:join',
+        { code: room.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
+        () => {},
+      )
+    } else if (role === 'host') {
+      socket.emit('room:rehost', { code: room.code, hostId: getDeviceId() }, () => {})
+    }
+  })
 
   socket.on('room:state', (room) => {
-    useArenaStore.setState({ room })
+    setState({ room })
+    // Server moved past the lobby → everyone lands on the game screen.
+    const screen = useGameStore.getState().screen
+    if (room.phase !== 'lobby' && (screen === 'arenaHostLobby' || screen === 'arenaPlayerLobby')) {
+      useGameStore.getState().goTo('arenaGame')
+    }
   })
+
   socket.on('room:closed', (reason) => {
-    useArenaStore.setState({ room: null, role: null, error: reason })
+    setState({
+      room: null, role: null, error: reason,
+      question: null, myAnswer: null, reveal: null, yourResult: null,
+      leaderboard: null, podium: null, answerCount: 0,
+    })
     useGameStore.getState().goTo('arenaMenu')
   })
+
+  socket.on('game:question', (q, phase, endsInMs) => {
+    setState((s) => ({
+      question: q,
+      phaseEndsAt: Date.now() + endsInMs,
+      // A new question (or first sight of it) clears per-question state.
+      myAnswer: phase === 'reading' ? null : s.question?.index === q.index ? s.myAnswer : null,
+      reveal: phase === 'reading' ? null : s.reveal,
+      yourResult: phase === 'reading' ? null : s.yourResult,
+      answerCount: phase === 'reading' ? 0 : s.answerCount,
+    }))
+    if (phase === 'question' && useArenaStore.getState().role === 'player') playSfx('go')
+  })
+
+  socket.on('game:answerCount', (count) => setState({ answerCount: count }))
+
+  socket.on('game:reveal', (payload) => setState({ reveal: payload }))
+
+  socket.on('game:yourResult', (payload) => {
+    setState({ yourResult: payload })
+    playSfx(payload.correct ? 'correct' : 'wrong')
+  })
+
+  socket.on('game:leaderboard', (entries) => setState({ leaderboard: entries }))
+
+  socket.on('game:podium', (entries) => {
+    setState({ podium: entries })
+    playSfx('finish')
+  })
+
   return socket
 }
 
 export const useArenaStore = create<ArenaStore>((set) => ({
   role: null,
-  playerId: null,
   room: null,
   error: null,
   busy: false,
   prefillCode: '',
+  question: null,
+  phaseEndsAt: 0,
+  myAnswer: null,
+  answerCount: 0,
+  reveal: null,
+  yourResult: null,
+  leaderboard: null,
+  podium: null,
 
-  hostGame: async () => {
+  hostGame: () => {
     set({ busy: true, error: null })
-    const s = getSocket()
-    s.emit('room:create', { questionCount: 10, roomType: 'in-person' }, (res) => {
-      if (res.ok) {
-        set({ role: 'host', room: res.state, busy: false })
-        useGameStore.getState().goTo('arenaHostLobby')
-      } else {
-        set({ error: res.error, busy: false })
-      }
-    })
+    getSocket().emit(
+      'room:create',
+      { config: { questionCount: 10, roomType: 'in-person' }, hostId: getDeviceId() },
+      (res) => {
+        if (res.ok) {
+          set({ role: 'host', room: res.state, busy: false, podium: null, leaderboard: null })
+          useGameStore.getState().goTo('arenaHostLobby')
+        } else {
+          set({ error: res.error, busy: false })
+        }
+      },
+    )
   },
 
-  joinGame: async (code: string) => {
+  startGame: () => {
+    getSocket().emit('host:start')
+  },
+
+  joinGame: (code: string) => {
     const trimmed = code.trim().toUpperCase()
     if (trimmed.length < 4) {
       set({ error: 'Enter the game code' })
@@ -69,22 +162,37 @@ export const useArenaStore = create<ArenaStore>((set) => ({
     }
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
-    const s = getSocket()
-    s.emit('room:join', { code: trimmed, name: player.name, avatar: player.avatar }, (res) => {
-      if (res.ok) {
-        set({ role: 'player', playerId: res.playerId, room: res.state, busy: false, prefillCode: '' })
-        useGameStore.getState().goTo('arenaPlayerLobby')
-      } else {
-        set({ error: res.error, busy: false })
-      }
-    })
+    getSocket().emit(
+      'room:join',
+      { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
+      (res) => {
+        if (res.ok) {
+          set({ role: 'player', room: res.state, busy: false, prefillCode: '', podium: null, leaderboard: null })
+          useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaPlayerLobby' : 'arenaGame')
+        } else {
+          set({ error: res.error, busy: false })
+        }
+      },
+    )
+  },
+
+  answer: (index) => {
+    const { myAnswer, room } = useArenaStore.getState()
+    if (myAnswer !== null || room?.phase !== 'question') return
+    set({ myAnswer: index })
+    playSfx('submit')
+    getSocket().emit('player:answer', { index })
   },
 
   leaveArena: () => {
     socket?.emit('room:leave')
     socket?.disconnect()
     socket = null
-    set({ role: null, playerId: null, room: null, error: null, busy: false })
+    set({
+      role: null, room: null, error: null, busy: false,
+      question: null, myAnswer: null, reveal: null, yourResult: null,
+      leaderboard: null, podium: null, answerCount: 0,
+    })
     useGameStore.getState().goTo('arenaMenu')
   },
 

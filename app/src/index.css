@@ -313,6 +313,58 @@ button:disabled { cursor: default; }
   opacity: 0.8;
 }
 
+/* Arena game */
+.arena-game-screen { padding-top: 0.8rem; }
+
+.arena-game-top {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.2rem 1rem;
+}
+.answered-ticker { color: var(--answer-green); }
+.chip-good { background: var(--answer-green); color: #fff; border-color: #277027; }
+.chip-bad { background: var(--sand-dark); }
+
+.arena-host-footer {
+  text-align: center;
+  font-weight: 700;
+  color: var(--brown-deep);
+  padding-bottom: 0.8rem;
+}
+
+/* Leaderboard between questions */
+.arena-lb-screen { justify-content: center; gap: 0.6rem; padding: 0 1.4rem; }
+
+.lb-list { display: flex; flex-direction: column; gap: 0.45rem; }
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.95rem;
+  animation: pop-in 0.3s ease-out backwards;
+}
+.lb-list .lb-row:nth-child(2) { animation-delay: 0.08s; }
+.lb-list .lb-row:nth-child(3) { animation-delay: 0.16s; }
+.lb-list .lb-row:nth-child(4) { animation-delay: 0.24s; }
+.lb-list .lb-row:nth-child(5) { animation-delay: 0.32s; }
+
+.lb-rank { font-weight: 700; color: var(--brown-deep); min-width: 1.6rem; }
+.lb-name { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-score { font-weight: 700; color: var(--brown-deep); }
+.lb-delta { font-size: 0.7rem; font-weight: 700; }
+.lb-delta.up { color: var(--answer-green); }
+.lb-delta.down { color: var(--answer-red); }
+
+.lb-row-you { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); margin-top: 0.3rem; }
+
+.arena-lb-hint { text-align: center; }
+
 /* Shared top bar (profile and future sub-screens) */
 .screen-topbar {
   display: grid;

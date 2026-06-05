@@ -29,6 +29,7 @@ export type Screen =
   | 'arenaMenu'
   | 'arenaHostLobby'
   | 'arenaPlayerLobby'
+  | 'arenaGame'
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby

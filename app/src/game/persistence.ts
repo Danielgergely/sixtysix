@@ -74,6 +74,25 @@ export function saveSettings(settings: Settings): void {
   }
 }
 
+const DEVICE_ID_KEY = 'sixtysix.deviceId.v1'
+
+/**
+ * Stable anonymous identity (Tier 0 of the identity ladder, PLAN.md).
+ * Arena games key players by this; a future account absorbs it.
+ */
+export function getDeviceId(): string {
+  try {
+    let id = localStorage.getItem(DEVICE_ID_KEY)
+    if (!id) {
+      id = crypto.randomUUID?.() ?? `dev_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
+      localStorage.setItem(DEVICE_ID_KEY, id)
+    }
+    return id
+  } catch {
+    return `tmp_${Math.random().toString(36).slice(2, 12)}`
+  }
+}
+
 /** Level curve: a level every 5,000 XP (XP = cumulative race scores). */
 export function levelForXp(xp: number): number {
   return 1 + Math.floor(xp / 5000)
