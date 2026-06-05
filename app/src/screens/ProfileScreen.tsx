@@ -1,7 +1,6 @@
 import { useGameStore } from '../game/store'
 import type { CharacterId } from '../game/types'
 import { AVATAR_EMOJI } from './avatars'
-import { BottomNav } from './BottomNav'
 
 const CHARACTERS: Array<{ id: CharacterId; name: string }> = [
   { id: 'david', name: 'David' },
@@ -18,6 +17,7 @@ export function ProfileScreen() {
   const muted = useGameStore((s) => s.muted)
   const toggleMute = useGameStore((s) => s.toggleMute)
   const updateProfile = useGameStore((s) => s.updateProfile)
+  const goTo = useGameStore((s) => s.goTo)
 
   const statItems = [
     { label: 'Games played', value: stats.gamesPlayed },
@@ -37,7 +37,13 @@ export function ProfileScreen() {
   return (
     <div className="screen profile-screen">
       <div className="profile-content">
-        <h2 className="screen-heading">Profile</h2>
+        <header className="screen-topbar">
+          <button className="icon-btn" onClick={() => goTo('menu')} title="Back to home">
+            ←
+          </button>
+          <h2 className="topbar-heading">Profile</h2>
+          <span className="topbar-spacer" />
+        </header>
 
       <div className="profile-section">
         <label className="profile-label" htmlFor="player-name">
@@ -102,8 +108,6 @@ export function ProfileScreen() {
         ))}
       </div>
       </div>
-
-      <BottomNav active="profile" />
     </div>
   )
 }

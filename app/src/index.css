@@ -71,18 +71,35 @@ button:disabled { cursor: default; }
   font-size: 1.6rem;
 }
 
-/* ── Main menu ────────────────────────────────────────────────────────── */
-.menu-header { display: flex; justify-content: space-between; padding: 1rem; }
-.menu-header-right { display: flex; gap: 0.5rem; }
-.chip-btn { cursor: pointer; font: inherit; }
-
-.menu-hero {
-  flex: 1;
+/* ── Home (game-mode list) ───────────────────────────────────────────── */
+.home-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem 0.5rem;
+}
+.home-header-chips { display: flex; gap: 0.5rem; }
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--brown-deep);
+  font-size: 1.2rem;
+  display: grid;
+  place-items: center;
+  transition: transform 0.06s;
+}
+.icon-btn:active:not(:disabled) { transform: scale(0.92); }
+.icon-btn:disabled { opacity: 0.4; }
+
+.home-brand {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.9rem;
+  padding: 1.2rem 0 1.4rem;
 }
 
 .logo-wheel {
@@ -98,17 +115,97 @@ button:disabled { cursor: default; }
   font-weight: 700;
   box-shadow: 0 8px 0 rgb(0 0 0 / 0.15);
 }
+.logo-wheel-small { width: 68px; height: 68px; border-width: 6px; font-size: 1.7rem; box-shadow: 0 4px 0 rgb(0 0 0 / 0.15); }
 
-.game-title {
-  font-size: 2.4rem;
+.home-title {
+  font-size: 1.7rem;
   font-weight: 700;
   color: var(--cream);
-  -webkit-text-stroke: 2px var(--brown-deep);
+  -webkit-text-stroke: 1.5px var(--brown-deep);
   letter-spacing: 0.06em;
-  margin-top: 0.6rem;
+}
+.home-tagline { color: var(--ink); letter-spacing: 0.14em; font-size: 0.68rem; text-transform: uppercase; }
+
+.mode-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0 1.2rem 1.5rem;
 }
 
-.game-tagline { color: var(--ink); letter-spacing: 0.18em; font-size: 0.85rem; text-transform: uppercase; }
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: var(--cream);
+  border: 3px solid var(--brown-deep);
+  border-radius: 18px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 5px 0 rgb(0 0 0 / 0.12);
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.mode-playable { transition: transform 0.06s; }
+.mode-playable:active { transform: translateY(3px); box-shadow: 0 2px 0 rgb(0 0 0 / 0.12); }
+
+.mode-banner {
+  width: 100%;
+  height: 132px;
+  border-bottom: 3px solid var(--brown-deep);
+}
+.mode-banner svg { display: block; width: 100%; height: 100%; }
+
+.mode-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+}
+
+.mode-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.mode-title { font-size: 1.05rem; font-weight: 700; color: var(--brown-deep); }
+.mode-desc { font-size: 0.76rem; font-weight: 500; opacity: 0.8; }
+
+.mode-play {
+  background: var(--answer-green);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  padding: 7px 16px;
+  border-bottom: 3px solid #277027;
+}
+
+.mode-soon { opacity: 0.65; }
+.mode-badge {
+  background: var(--sand-dark);
+  color: var(--brown-deep);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+/* Shared top bar (profile and future sub-screens) */
+.screen-topbar {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  padding-top: 1rem;
+}
+.topbar-heading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--brown-deep);
+}
 
 .btn-play {
   margin: 0 2rem 1.5rem;
@@ -133,26 +230,6 @@ button:disabled { cursor: default; }
   color: var(--brown-deep);
   font-weight: 600;
 }
-
-.bottom-nav {
-  display: flex;
-  background: var(--cream);
-  border-top: 3px solid var(--brown-deep);
-}
-.nav-item {
-  flex: 1;
-  padding: 0.6rem 0;
-  background: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 1.2rem;
-  color: var(--ink);
-  opacity: 0.45;
-}
-.nav-item span { font-size: 0.65rem; font-weight: 600; }
-.nav-active { opacity: 1; }
 
 /* ── Profile ─────────────────────────────────────────────────────────── */
 .profile-screen { overflow: hidden; }
