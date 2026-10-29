@@ -5,7 +5,6 @@ import {
   MATERIAL_INFO,
   MATERIALS,
   PRODUCERS,
-  SPOTS,
   builderCount,
   formatMinutes,
   levelDef,
@@ -20,11 +19,12 @@ import { useGameStore } from '../../game/store'
 import { useAccountStore } from '../../account/accountStore'
 import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
-import { fireConfetti, spring, STAGGER } from '../../motion'
-import { artFor, COURTYARD_ART, countdown, listMaterials, useTick } from './homeUtil'
+import { fireConfetti, spring } from '../../motion'
+import { artFor, listMaterials, useTick } from './homeUtil'
 import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
+import { PlotScene } from '../../world/PlotScene'
 
 /** My Home in Jerusalem: the plot with its nine spots (docs/jerusalem-plot.md). */
 export function HomeScreen() {
@@ -80,7 +80,7 @@ export function HomeScreen() {
         <>
           <Summary plot={plot} />
           <NextStep plot={plot} />
-          <Plot plot={plot} now={now} seen={seen} />
+          <HomeScene plot={plot} now={now} seen={seen} />
           <Actions plot={plot} />
           <p className="tab-note hp-foot">“Unless the LORD builds the house, they labour in vain who build it.” — Ps 127:1</p>
         </>
@@ -142,61 +142,21 @@ function NextStep({ plot }: { plot: PlotState }) {
   )
 }
 
-function Plot({ plot, now, seen }: { plot: PlotState; now: number; seen: Record<BuildingId, number> | null }) {
+/** The homestead scene; tapping a building marks it seen and opens its sheet. */
+function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Record<BuildingId, number> | null }) {
   const select = usePlotStore((s) => s.select)
   const markSeen = usePlotStore((s) => s.markSeen)
   return (
-    <div className={`hp-plot wall-${plot.levels.wall}`}>
-      {SPOTS.map((spot, i) => {
-        if (spot === 'courtyard') {
-          return (
-            <motion.button key={spot} className="hp-spot court" onClick={() => select('courtyard')} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...spring.bouncy, delay: i * STAGGER }}>
-              <img className="hp-spot-art" src={COURTYARD_ART} alt="" draggable={false} />
-              <span className="hp-spot-name">Courtyard</span>
-              <span className="hp-spot-lv">soon</span>
-            </motion.button>
-          )
-        }
-        const b = spot
-        const level = plot.levels[b]
-        const build = plot.builds.find((x) => x.building === b)
-        const art = artFor(b, level)
-        const waiting = PRODUCERS.includes(b) ? ready(plot, b) : 0
-        const isNew = seen ? level > seen[b] : false
-        const pct = build ? Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100) : 0
-        return (
-          <motion.button
-            key={b}
-            className={`hp-spot ${b === 'house' ? 'house' : ''} ${level ? '' : 'empty'} ${build ? 'building' : ''}`}
-            onClick={() => {
-              markSeen(b)
-              select(b)
-            }}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring.bouncy, delay: i * STAGGER }}
-          >
-            <img className="hp-spot-art" src={art} alt="" draggable={false} />
-            <span className="hp-spot-name">{BUILDINGS[b].name}</span>
-            <span className="hp-spot-lv">{level ? `Lv ${level}` : build ? 'going up' : 'empty plot'}</span>
-            {build && (
-              <span className="hp-spot-build">
-                <span className="hp-bar">
-                  <span style={{ width: `${pct}%` }} />
-                </span>
-                <small>🔨 {countdown(build.endsAt - now)}</small>
-              </span>
-            )}
-            {isNew && !build && <span className="hp-ribbon new">New!</span>}
-            {!isNew && waiting > 0 && (
-              <span className="hp-ribbon">
-                +{waiting} {MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon}
-              </span>
-            )}
-          </motion.button>
-        )
-      })}
-    </div>
+    <PlotScene
+      levels={plot.levels}
+      plot={plot}
+      now={now}
+      seen={seen}
+      onSelect={(spot) => {
+        if (spot !== 'courtyard') markSeen(spot)
+        select(spot)
+      }}
+    />
   )
 }
 
