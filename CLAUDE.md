@@ -83,6 +83,13 @@ node scripts/compile.mjs       # verified + approved-manual → app/src/question
   - Signed in, every reward is queued as an idempotent `Grant` (`app/src/account/outbox.ts`) and synced. The server's totals then replace the local ones (`useGameStore.adoptProgress`).
   - Sign-up uploads the guest progress; signing in adds guest progress to the account; signing out resets the device to a fresh guest.
   - The skill tree and the Jerusalem plot (`docs/skill-tree.md`, `docs/jerusalem-plot.md`) are for signed-in players only.
+- **Levels and the skill tree ("Gifts")** (`docs/skill-tree.md`, balance in `docs/balance/levelsim.py`):
+  - `shared/src/skills.ts` has the level curve (`levelForXp`, `xpToReach`, `levelProgress`; `app/src/game/persistence.ts` re-exports `levelForXp`), the 23 skills in three paths (Scholar / Builder / Steward), the tier rules (`TIER_NEEDS`), `learnError`, and the effects: `xpBonus` / `coinBonus`, `plotMods` → `PlotMods`, and `giftLoadout` for quiz gifts. Change the curve here and in `levelsim.py` together.
+  - The state is `profile.skills` (`SkillState`: ranks, re-specs used, weekly-perk weeks), owned by the server. `server/src/skills.ts`: `POST /api/skills/learn { skill }` (validated: tier, top rank, points from the server-side XP) and `POST /api/skills/respec` (free once, then `RESPEC_COST` coins). Both reply `{ ok, account }`; the app adopts it (`skills/skillsApi.ts` → `useAccountStore.adoptAccount`). Sign-up never uploads skills.
+  - XP / coin bonuses are added in `/api/account/sync`, inside the daily caps; grants with `source: 'merge'` (guest progress at sign-in) get none.
+  - Builder / Steward effects: the server sets `plot.mods = plotMods(ranks)` on every plot load and never stores it; every rule in `shared/src/plot.ts` reads it (`modsOf`, `buildMinutes`, `buyPrice`, `sellPrice`, `builderCount`, `storeCap`, `waterSupply`, `scrollCutMs`, Seven good years via `boostUntil`). Weekly perks: `POST /api/plot/cedar` and `POST /api/plot/instant`.
+  - Quiz gifts are client-side, **Bible Blitz and Practice only** (`skills/giftStore.ts`, `GiftBar.tsx`; ranks come from `skills/mySkills.ts` to avoid an import cycle). `QuestionView` takes optional `giftBar` / `removed` / `hint` / `votes` / `doubled` props; the arena never passes them.
+  - Screen: `screens/SkillTreeScreen.tsx` (styles in `theme/skills.css`), opened with `openSkillTree(from)` (`skills/nav.ts`) from Profile and from the top bar's gold seal when points are unspent.
 
 ## Deployment
 

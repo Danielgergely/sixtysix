@@ -230,9 +230,11 @@ export const maxLevel = (b: BuildingId) => BUILDINGS[b].levels.length
 
 /** Market price for `qty` of a material (Haggler takes a share off). */
 export const buyPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) => Math.ceil(MATERIAL_INFO[m].buy * qty * (1 - mods.buyDiscount) - 1e-9)
-/** What selling `qty` pays: half the price, more with Fair trader. */
-export const sellPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) =>
-  Math.max(MATERIAL_INFO[m].sell * qty, Math.floor(MATERIAL_INFO[m].buy * qty * mods.sellRate + 1e-9))
+/** What selling `qty` pays: the listed half price, or more of the buy price with Fair trader. */
+export const sellPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) => {
+  const base = MATERIAL_INFO[m].sell * qty
+  return mods.sellRate > NO_MODS.sellRate ? Math.max(base, Math.floor(MATERIAL_INFO[m].buy * qty * mods.sellRate + 1e-9)) : base
+}
 
 export const coinValue = (m: Materials, mods: PlotMods = NO_MODS) => MATERIALS.reduce((sum, k) => sum + (m[k] ? buyPrice(k, m[k], mods) : 0), 0)
 

@@ -1,8 +1,9 @@
 # Levels and the skill tree ("Gifts")
 
-Status: **concept for discussion** (2026-10-29). Today the level is only a
-number on the profile (`levelForXp`: one level per 5,000 XP). This gives it a
-purpose.
+Status: **built** (2026-10-29), see §6 for what is in and what is not. Code:
+`shared/src/skills.ts` (curve, tree, rules, effects), `server/src/skills.ts`
+(learn, re-spec), `app/src/screens/SkillTreeScreen.tsx`, `app/src/skills/`.
+Balance: `python3 docs/balance/levelsim.py`.
 
 ## 1. Levels
 
@@ -11,24 +12,40 @@ purpose.
   - A typical arena game gives about 6,000 XP; a Blitz race about 5,000.
   - Practice and the Daily Scroll give XP too: **50 per correct answer** (no
     clock, so no points to copy).
-- **The new curve:** the step from level L to L+1 costs
-  **4,000 + 2,000 × (L − 1) XP**. Early levels come fast; later ones slow down.
+- **The curve:** the step from level L to L+1 costs
+  **4,000 + 2,000 × (L − 1) XP**, and from level 21 on **another 2,000 per
+  level above 20** (the second half of the tree takes longer). Early levels
+  come fast; later ones slow down.
 
-| Reach level | Total XP | ≈ games |
-|---|---|---|
-| 2 | 4,000 | 1 |
-| 5 | 28,000 | 5 |
-| 10 | 108,000 | 20 |
-| 20 | 418,000 | 75 |
-| 30 | 928,000 | 165 |
+| Reach level | Total XP | Points | ≈ games |
+|---|---|---|---|
+| 2 | 4,000 | 1 | 1 |
+| 5 | 28,000 | 4 | 5 |
+| 10 | 108,000 | 9 | 20 |
+| 20 | 418,000 | 19 (half) | 70 |
+| 30 | 1,018,000 | 29 | 155 |
+| 38 | 1,786,000 | 37 (all) | 280 |
 
-- **One skill point per level** from level 2. The level is still shown as
-  today; existing saved XP converts automatically.
+- **Checked with `levelsim.py`** (XP per week from races, arena games, the
+  Daily Scroll and Practice; Diligent student taken first). Days (games) until:
+
+| Player | XP / week | 1st point | 5 points | half (19) | 28 | all 37 |
+|---|---|---|---|---|---|---|
+| casual (3 races + 1 arena game a week) | 22k | 2 d | 12 d | 115 d | 258 d | 489 d |
+| regular (a race a day) | 44k | 1 d | 6 d | 59 d | 132 d | 250 d |
+| keen (2 races a day, 2 arena a week) | 90k | 1 d | 3 d | **29 d** | 64 d | 121 d |
+| very keen (4 races a day) | 179k | 1 d | 2 d | 15 d | 33 d | 61 d |
+
+  A keen player fills half the tree in about a month; the whole tree takes
+  them four months (two for the very keenest), so nobody has everything quickly.
+
+- **One skill point per level** from level 2. Existing saved XP converts
+  automatically (levels can drop under the new curve; the XP is kept).
 
 ## 2. Three paths
 
 The tree has **37 points' worth of skills** (Scholar 14, Builder 11, Steward 12), but a level-30 player has
-29 points. **Nobody gets everything**, so a player's build says something
+29 points and the last 8 cost as much XP as the first 29. **Nobody gets everything**, so a player's build says something
 about them ("I'm a Scholar"). A free re-spec is offered once; after that it
 costs 300 coins.
 
@@ -109,3 +126,34 @@ Only this path affects quizzes, and only as **gifts**: limited uses per game.
 3. Builder and Steward, together with "My Home".
 4. Gifts in the arena behind the host option. This needs server support:
    per-player 50/50, extra time and the gift icon on the board.
+
+## 6. What is built
+
+- **Accounts only.** Guests earn XP and levels on the device; the tree screen
+  shows locked with a sign-in prompt. The ranks live in the account profile
+  (`profile.skills`); `POST /api/skills/learn` checks the tier rule, the top
+  rank and the points the server-side XP allows; `POST /api/skills/respec`
+  is free once, then 300 coins, paid on the server.
+- **XP and coin bonuses** (Diligent student, Faithful in little) are added on
+  the server when grants arrive, inside the daily caps. Guest progress merged
+  at sign-in (`source: 'merge'`) gets no bonus.
+- **Builder and Steward**, through `PlotMods` in the shared plot rules: build
+  time, Market buy and sell prices, Workers' scroll minutes (still ≤ 50 % of a
+  build), Third builder (+1 builder at any house level), Quick hands (≤ 15 min
+  after Many hands → instant), production, storage, Deep wells (+2 water once
+  a well exists), Seven good years (+50 % for 7 days after each house level).
+  Weekly cedar and Master builder are buttons in the skill's sheet; the week
+  (Monday 00:00 UTC) of last use is kept server-side.
+- **Scholar gifts** in Bible Blitz and Practice only (client-side): round
+  buttons above the hand with uses left and a short note and burst. Lamp
+  (reference under the question), Parting the waters (two wrong cards sink),
+  The sun stood still (+10 s, Blitz), Seventy times seven (automatic: the
+  first wrong card per game goes back and you pick again), Steadfast
+  (passive), Double portion (points ×2 in Blitz; coins and XP ×2 in
+  Practice), Ask the elders (bots' cards so far, live, Blitz), Wisdom of
+  Solomon (one random extra use each game).
+- Practice and the Daily Scroll now pay **50 XP per right answer**.
+- **Not built:** gifts in the arena (host option), Good neighbour (needs
+  friend visits; shown as "soon", not learnable), the path emblem next to
+  the portrait on leaderboards.
+

@@ -144,3 +144,6 @@
   .st-path{ display: block; }
   .st-level{ max-width: 640px; margin: 0 auto; }
 }
+
+/* the re-spec confirmation sits inside .emp (light text): give it dark ink */
+.st .modal-card, .st .modal-text{ color: #3b2412; }

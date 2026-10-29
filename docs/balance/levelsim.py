@@ -61,7 +61,7 @@ def simulate(p, targets):
     return out
 
 if __name__ == '__main__':
-    print('Curve: step L->L+1 = %d + %d x (L-1) XP, + %d more per level from level %d; %d points in the tree\n'
+    print('Curve: step L->L+1 = %d + %d x (L-1) XP, + %d more per level after level %d; %d points in the tree\n'
           % (STEP_BASE, STEP_GROWTH, LATE_GROWTH - STEP_GROWTH, LATE_FROM, TREE_POINTS))
     print('%-6s %10s %7s' % ('level', 'total XP', 'points'))
     for lv in (2, 3, 5, 10, 15, 20, 25, 30, 38):
