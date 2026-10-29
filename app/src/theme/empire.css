@@ -653,3 +653,8 @@
 .pr-bar span { display: block; height: 100%; background: linear-gradient(90deg, #c98a12, #ffe08a); }
 .pr-hint { font: italic 14px/1.3 Georgia, serif; color: #6b1d0e; }
 .pr-summary .pr-go, .pr-summary .pr-review { width: 100%; }
+
+/* Long verses on small phones: keep the played card visible below the scroll. */
+.empire-verse { max-height: 20dvh; overflow-y: auto; }
+/* Ultra-wide boards: fit the stage by height instead of cropping top/bottom. */
+.tr.wide .tr-stage, .cr.wide .cr-stage { width: min(100%, calc(100dvh * 1600 / 893)); }

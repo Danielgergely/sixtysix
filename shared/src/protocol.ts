@@ -20,6 +20,10 @@ export interface RoomConfig {
 
 export const MAX_ARENA_PLAYERS = 100
 
+/** Playable characters; any other avatar value is replaced by the first. */
+export const CHARACTERS = ['david', 'moses', 'esther', 'ruth'] as const
+export type CharacterId = (typeof CHARACTERS)[number]
+
 export type ArenaPhase =
   | 'lobby'
   | 'reading' // question flashed + 3-2-1, no answers yet
@@ -101,7 +105,9 @@ export interface ClientToServerEvents {
   /**
    * Join (or REJOIN — same playerId rebinds the connection and keeps the
    * score, which is how reconnection works). playerId is the stable
-   * client-generated device UUID; a future account id slots in unchanged.
+   * client-generated device UUID and acts as a secret: it is never broadcast.
+   * The ack returns the player's PUBLIC id, the one used in room state and
+   * leaderboards.
    */
   'room:join': (
     payload: { code: string; name: string; avatar: string; playerId: string },
@@ -121,7 +127,7 @@ export interface ClientToServerEvents {
   'room:leave': (cb: (ok: boolean) => void) => void
   'host:start': () => void
   /** Host advances the game: resolves the question / skips the leaderboard wait. */
-  'host:skip': () => void
+  'host:skip': (from: ArenaPhase) => void
   'player:answer': (payload: { index: number }) => void
 }
 
@@ -129,7 +135,8 @@ export interface ServerToClientEvents {
   'room:state': (state: RoomState) => void
   'room:closed': (reason: string) => void
   /** endsInMs = duration from receipt (no clock-sync needed). */
-  'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number) => void
+  /** `yourAnswer` is set when re-sent to a player who already answered this question. */
+  'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
   'game:answerCount': (count: number) => void
   'game:reveal': (payload: RevealPayload) => void
   'game:leaderboard': (entries: LeaderboardEntry[]) => void

@@ -73,7 +73,8 @@ export function ArenaGameScreen() {
   return (
     <div className="screen arena-game-shell">
       {!isPlayer && <RotateHint />}
-      {phase !== 'podium' && <LeaveControl role={role} />}
+      {/* Always offer a way out, unless the Crowning shows its own buttons. */}
+      {(phase !== 'podium' || !scene) && <LeaveControl role={role} />}
       {canSkip && (
         <button className="leave-race-btn arena-skip" onClick={skip}>
           {skipLabel}

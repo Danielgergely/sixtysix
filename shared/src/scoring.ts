@@ -1,4 +1,8 @@
 export const QUESTION_TIME_MS = 10_000
+/** Question shown alone with a 3-2-1 before answers appear (both modes). */
+export const READING_MS = 3000
+/** Beat after the last answer before the reveal (both modes). */
+export const ALL_ANSWERED_BEAT_MS = 800
 export const BASE_POINTS = 500
 
 /** Kahoot-style: 500 base + up to 500 speed bonus. Wrong = 0. */

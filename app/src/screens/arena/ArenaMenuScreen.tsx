@@ -4,9 +4,8 @@ import { CATEGORY_LABELS } from './categories'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
-import type { CharacterId } from '../../game/types'
+import { CHARACTERS, type CharacterId } from '@sixtysix/shared'
 
-const CHARACTERS: CharacterId[] = ['david', 'moses', 'esther', 'ruth']
 const QUESTION_COUNTS = [5, 10, 15, 20]
 const DIFFICULTIES: Array<{ id: DifficultyPreset; label: string }> = [
   { id: 'easy', label: '🌱 Easy' },

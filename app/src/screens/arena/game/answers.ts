@@ -1,3 +1,2 @@
-/** Kahoot-style colour + shape per answer slot (shape helps colour-blind players). */
-export const ANSWER_COLORS = ['answer-red', 'answer-blue', 'answer-gold', 'answer-green']
+/** Shape per answer slot — paired with its colour, so colour-blind players can tell them apart. */
 export const ANSWER_SHAPES = ['▲', '◆', '●', '■']

@@ -41,6 +41,8 @@ interface ArenaStore {
   podium: LeaderboardEntry[] | null
   /** Coins this device earned in the current game (answers + finishing bonus). */
   coinsEarned: number
+  /** Your PUBLIC player id (from the join ack) — what room state and leaderboards use. */
+  myPlayerId: string | null
 
   hostGame: (config: RoomConfig) => void
   startGame: () => void
@@ -54,6 +56,26 @@ interface ArenaStore {
 }
 
 let socket: ArenaSocket | null = null
+/** Rooms whose finishing bonus this device already collected (podium can be re-sent). */
+const bonusPaid = new Set<string>()
+
+/** Per-game state; spread on every entry/exit so nothing leaks between games. */
+const FRESH_GAME = {
+  question: null,
+  myAnswer: null,
+  reveal: null,
+  yourResult: null,
+  leaderboard: null,
+  podium: null,
+  answerCount: 0,
+  coinsEarned: 0,
+} satisfies Partial<ArenaStore>
+
+/** Back to the arena menu (room gone / rejoin refused / ended). */
+function closeLocally(reason: string | null): void {
+  useArenaStore.setState({ ...FRESH_GAME, room: null, role: null, myPlayerId: null, error: reason, busy: false })
+  useGameStore.getState().goTo('arenaMenu')
+}
 
 function getSocket(): ArenaSocket {
   if (socket) return socket
@@ -66,17 +88,18 @@ function getSocket(): ArenaSocket {
     // Transparent recovery after a drop: rejoin / reclaim with stable ids.
     const { role, room } = getState()
     if (!room || !socket) return
+    // If the room died while we were offline (host gone, server restart), the
+    // rejoin is refused and room:closed was never received — close here.
+    const onRejoin = (res: { ok: boolean; error?: string }) => {
+      if (!res.ok) closeLocally(res.error ?? 'The game has ended')
+    }
     if (role === 'player') {
       const player = useGameStore.getState().player
-      socket.emit(
-        'room:join',
-        { code: room.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
-        () => {},
-      )
+      socket.emit('room:join', { code: room.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
     } else if (role === 'host') {
-      socket.emit('room:rehost', { code: room.code, hostId: getDeviceId() }, () => {})
+      socket.emit('room:rehost', { code: room.code, hostId: getDeviceId() }, onRejoin)
     } else if (role === 'spectator') {
-      socket.emit('room:watch', { code: room.code }, () => {})
+      socket.emit('room:watch', { code: room.code }, onRejoin)
     }
   })
 
@@ -89,22 +112,16 @@ function getSocket(): ArenaSocket {
     }
   })
 
-  socket.on('room:closed', (reason) => {
-    setState({
-      room: null, role: null, error: reason,
-      question: null, myAnswer: null, reveal: null, yourResult: null,
-      leaderboard: null, podium: null, answerCount: 0,
-    })
-    useGameStore.getState().goTo('arenaMenu')
-  })
+  socket.on('room:closed', (reason) => closeLocally(reason))
 
-  socket.on('game:question', (q, phase, endsInMs) => {
+  socket.on('game:question', (q, phase, endsInMs, yourAnswer) => {
     setState((s) => ({
       question: q,
       phaseEndsAt: Date.now() + endsInMs,
       phaseDuration: endsInMs,
-      // A new question (or first sight of it) clears per-question state.
-      myAnswer: phase === 'reading' ? null : s.question?.index === q.index ? s.myAnswer : null,
+      // A new question (or first sight of it) clears per-question state; a
+      // re-send after a reload restores the answer the server already has.
+      myAnswer: yourAnswer ?? (phase === 'reading' ? null : s.question?.index === q.index ? s.myAnswer : null),
       reveal: phase === 'reading' ? null : s.reveal,
       yourResult: phase === 'reading' ? null : s.yourResult,
       answerCount: phase === 'reading' ? 0 : s.answerCount,
@@ -133,10 +150,11 @@ function getSocket(): ArenaSocket {
   // game:podium plays no sound here — the podium view plays its own fanfare
   // when it mounts, so sight and sound land together.
   socket.on('game:podium', (entries) => {
-    // Finishing bonus, once per game (podium arrives once; guard anyway).
-    const { role, podium } = getState()
-    const rank = entries.findIndex((e) => e.playerId === getDeviceId())
-    if (role === 'player' && !podium && rank >= 0) {
+    // Finishing bonus, once per room even if the podium is re-sent after a reload.
+    const { role, room, myPlayerId } = getState()
+    const rank = entries.findIndex((e) => e.playerId === myPlayerId)
+    if (role === 'player' && room && rank >= 0 && !bonusPaid.has(room.code)) {
+      bonusPaid.add(room.code)
       const bonus = coinsForPlacement(rank)
       useGameStore.getState().addCoins(bonus)
       setState((s) => ({ coinsEarned: s.coinsEarned + bonus }))
@@ -163,12 +181,13 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   leaderboard: null,
   podium: null,
   coinsEarned: 0,
+  myPlayerId: null,
 
   hostGame: (config) => {
     set({ busy: true, error: null })
     getSocket().emit('room:create', { config, hostId: getDeviceId() }, (res) => {
       if (res.ok) {
-        set({ role: 'host', room: res.state, busy: false, podium: null, leaderboard: null })
+        set({ ...FRESH_GAME, role: 'host', room: res.state, busy: false, myPlayerId: null })
         useGameStore.getState().goTo('arenaHostLobby')
       } else {
         set({ error: res.error, busy: false })
@@ -181,14 +200,15 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   },
 
   skip: () => {
-    getSocket().emit('host:skip')
+    const phase = useArenaStore.getState().room?.phase
+    if (phase) getSocket().emit('host:skip', phase)
   },
 
   watchGame: (code) => {
     set({ busy: true, error: null })
     getSocket().emit('room:watch', { code: code.trim().toUpperCase() }, (res) => {
       if (res.ok) {
-        set({ role: 'spectator', room: res.state, busy: false, podium: null, leaderboard: null })
+        set({ ...FRESH_GAME, role: 'spectator', room: res.state, busy: false, myPlayerId: null })
         useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaHostLobby' : 'arenaGame')
       } else {
         set({ error: res.error, busy: false })
@@ -210,7 +230,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
       (res) => {
         if (res.ok) {
-          set({ role: 'player', room: res.state, busy: false, prefillCode: '', podium: null, leaderboard: null, coinsEarned: 0 })
+          set({ ...FRESH_GAME, role: 'player', room: res.state, busy: false, prefillCode: '', myPlayerId: res.playerId })
           useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaPlayerLobby' : 'arenaGame')
         } else {
           set({ error: res.error, busy: false })
@@ -233,6 +253,9 @@ export const useArenaStore = create<ArenaStore>((set) => ({
     const s = socket
     socket = null
     if (s) {
+      // Detach the store first: the room:closed / room:state the server sends
+      // during the handshake must not land in the cleared store. (Acks still work.)
+      s.off()
       let done = false
       const finish = () => {
         if (done) return
@@ -242,12 +265,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       s.timeout(600).emit('room:leave', finish)
       setTimeout(finish, 700) // fallback if the ack never arrives
     }
-    set({
-      role: null, room: null, error: null, busy: false,
-      question: null, myAnswer: null, reveal: null, yourResult: null,
-      leaderboard: null, podium: null, answerCount: 0,
-    })
-    useGameStore.getState().goTo('arenaMenu')
+    closeLocally(null)
   },
 
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase() }),

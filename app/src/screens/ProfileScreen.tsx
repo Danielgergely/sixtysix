@@ -1,13 +1,7 @@
 import { useGameStore } from '../game/store'
-import type { CharacterId } from '../game/types'
+import { CHARACTERS } from '@sixtysix/shared'
 import { Avatar } from '../avatars/Avatar'
-
-const CHARACTERS: Array<{ id: CharacterId; name: string }> = [
-  { id: 'david', name: 'David' },
-  { id: 'moses', name: 'Moses' },
-  { id: 'esther', name: 'Esther' },
-  { id: 'ruth', name: 'Ruth' },
-]
+import { characterName } from '../art/characters'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
 
@@ -63,16 +57,16 @@ export function ProfileScreen() {
       <div className="profile-section">
         <div className="profile-label">Your racer</div>
         <div className="avatar-grid">
-          {CHARACTERS.map((c) => (
+          {CHARACTERS.map((id) => (
             <button
-              key={c.id}
-              className={`avatar-option ${player.avatar === c.id ? 'selected' : ''}`}
-              onClick={() => updateProfile({ avatar: c.id })}
+              key={id}
+              className={`avatar-option ${player.avatar === id ? 'selected' : ''}`}
+              onClick={() => updateProfile({ avatar: id })}
             >
               <span className="avatar-option-pic">
-                <Avatar id={c.id} />
+                <Avatar id={id} />
               </span>
-              <span>{c.name}</span>
+              <span>{characterName(id)}</span>
             </button>
           ))}
         </div>

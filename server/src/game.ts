@@ -6,19 +6,17 @@ import type {
   Question,
   ServerToClientEvents,
 } from '@sixtysix/shared'
-import { QUESTION_TIME_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
+import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { pickQuestions, verseFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 
 // Pacing mirrors Bible Blitz so the modes feel like one game.
-const READING_MS = 3000 // question alone + 3-2-1
 const REVEAL_MS = 4500 // correct answer + distribution
 const LEADERBOARD_MS = 6000 // Road to the Throne: gallop (~3 s) + time to read the new order
-const ALL_ANSWERED_BEAT_MS = 800
 
-function broadcastState(io: IO, room: Room): void {
+export function broadcastState(io: IO, room: Room): void {
   io.to(room.code).emit('room:state', toPublicState(room))
 }
 
@@ -47,6 +45,9 @@ export function startGame(io: IO, room: Room): void {
     difficulty: room.config.difficulty,
     exclude: played,
   })
+  if (room.questions.length === 0) return // filters matched nothing: stay in the lobby
+  // The game is as long as the questions actually drawn (UI shows "n of total").
+  room.config.questionCount = room.questions.length
   for (const q of room.questions) played.add(q.id)
   playedByHost.set(room.hostId, played)
   room.questionIndex = 0
@@ -79,11 +80,19 @@ function nextQuestion(io: IO, room: Room): void {
   }, READING_MS)
 }
 
-/** Late joiners / reconnectors get the current question on their socket. */
-export function sendCurrentQuestion(
+/**
+ * Late joiners / reconnectors / spectators get the current phase's payload on
+ * their socket: the live question, or the standings/podium they would
+ * otherwise never receive. `secret` identifies a rejoining player so their
+ * answer this round is restored.
+ */
+export function sendCurrentPhase(
   room: Room,
   socket: Socket<ClientToServerEvents, ServerToClientEvents>,
+  secret?: string,
 ): void {
+  if (room.phase === 'leaderboard') return void socket.emit('game:leaderboard', room.lastEntries)
+  if (room.phase === 'podium') return void socket.emit('game:podium', room.lastEntries)
   if (room.phase !== 'reading' && room.phase !== 'question') return
   const q = room.questions[room.questionIndex]
   if (!q) return
@@ -91,12 +100,24 @@ export function sendCurrentQuestion(
     room.phase === 'question'
       ? Math.max(0, QUESTION_TIME_MS - (Date.now() - room.questionStartedAt))
       : READING_MS // close enough for a reading-phase rejoin
-  socket.emit('game:question', publicQuestion(room, q), room.phase, remaining)
+  const answered = secret ? room.players.get(secret)?.answer?.index : undefined
+  socket.emit('game:question', publicQuestion(room, q), room.phase, remaining, answered)
 }
 
-export function handleAnswer(io: IO, room: Room, playerId: string, index: number): void {
+/** Everyone left mid-game: stop the timers and close on the podium. */
+export function endIfEmpty(io: IO, room: Room): void {
+  if (room.phase === 'lobby' || room.phase === 'podium') return
+  if ([...room.players.values()].some((p) => p.connected)) return
+  clearTimeout(room.timer)
+  room.phase = 'podium'
+  room.lastEntries = computeLeaderboard(room)
+  io.to(room.code).emit('game:podium', room.lastEntries)
+  broadcastState(io, room)
+}
+
+export function handleAnswer(io: IO, room: Room, playerId: string, index: unknown): void {
   if (room.phase !== 'question') return
-  if (![0, 1, 2, 3].includes(index)) return
+  if (index !== 0 && index !== 1 && index !== 2 && index !== 3) return
   const player = room.players.get(playerId)
   if (!player || player.answer) return
 
@@ -156,12 +177,14 @@ function afterReveal(io: IO, room: Room): void {
   const isLast = room.questionIndex + 1 >= room.questions.length
   if (isLast) {
     room.phase = 'podium'
+    room.lastEntries = entries
     io.to(room.code).emit('game:podium', entries)
     broadcastState(io, room)
     console.log(`[game] ${room.code} finished`)
     return // room lingers for the podium; GC cleans it up
   }
   room.phase = 'leaderboard'
+  room.lastEntries = entries
   io.to(room.code).emit('game:leaderboard', entries)
   broadcastState(io, room)
   schedule(room, () => advance(io, room), LEADERBOARD_MS)

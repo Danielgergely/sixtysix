@@ -1,6 +1,7 @@
 import type { Difficulty } from '../questions/types'
 
-export type CharacterId = 'david' | 'moses' | 'esther' | 'ruth'
+export type { CharacterId } from '@sixtysix/shared'
+import type { CharacterId } from '@sixtysix/shared'
 
 export type RacePhase =
   | 'reading' // question flashed without answers + 3-2-1 countdown — time to read

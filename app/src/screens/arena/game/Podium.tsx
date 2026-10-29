@@ -1,5 +1,4 @@
 import type { LeaderboardEntry } from '@sixtysix/shared'
-import { getDeviceId } from '../../../game/persistence'
 import { useArenaStore } from '../../../arena/arenaStore'
 import { Crowning } from '../../../ceremony/Crowning'
 
@@ -12,7 +11,8 @@ interface Props {
 
 /** End of an arena game → The Crowning; stays until the host ends it (or a player leaves). */
 export function Podium({ entries, isPlayer, isHost, onLeave }: Props) {
-  const me = isPlayer ? getDeviceId() : null
+  const myPlayerId = useArenaStore((s) => s.myPlayerId)
+  const me = isPlayer ? myPlayerId : null
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
   return (
     <Crowning

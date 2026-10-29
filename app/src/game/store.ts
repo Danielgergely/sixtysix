@@ -6,6 +6,7 @@ import { playSfx } from './sfx'
 import {
   levelForXp,
   loadFlaggedIds,
+  DEFAULT_PLAYER,
   loadPlayer,
   loadSettings,
   loadStats,
@@ -17,7 +18,7 @@ import {
 } from './persistence'
 import { setMuted } from './sfx'
 import type { CharacterId } from './types'
-import { coinsForAnswer, coinsForPlacement } from '@sixtysix/shared'
+import { ALL_ANSWERED_BEAT_MS, READING_MS, coinsForAnswer, coinsForPlacement } from '@sixtysix/shared'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
@@ -36,8 +37,6 @@ export type Screen =
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
-const READING_MS = 3000 // question flashed alone + 3-2-1 before answers appear
-const ALL_ANSWERED_BEAT_MS = 700 // pause after the last click before the reveal
 const REVEAL_MS = 1200 // correct answer highlighted, chariots still
 const PROGRESS_MS = 2800 // chariots advance, gains float — slow enough to follow
 const FINISH_FLAG_MS = 1800 // "🏁 Finish!" before the podium
@@ -75,14 +74,6 @@ interface GameStore {
   addCoins: (amount: number) => void
 }
 
-const defaultPlayer: PlayerProfile = {
-  id: 'player_local',
-  name: 'You',
-  avatar: 'david',
-  level: 1,
-  xp: 0,
-  coins: 0,
-}
 
 const initialSettings = loadSettings()
 setMuted(initialSettings.muted)
@@ -257,7 +248,7 @@ export const useGameStore = create<GameStore>((set, get) => {
 
   return {
     screen: 'menu',
-    player: loadPlayer() ?? defaultPlayer,
+    player: loadPlayer() ?? DEFAULT_PLAYER,
     racers: [],
     phase: 'reading',
     countdownValue: 3,
@@ -328,7 +319,6 @@ export const useGameStore = create<GameStore>((set, get) => {
 
     updateProfile: (patch) => {
       const player = { ...get().player, ...patch }
-      if (!player.name.trim()) player.name = 'You'
       savePlayer(player)
       set({ player })
     },

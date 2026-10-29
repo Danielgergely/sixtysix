@@ -60,8 +60,3 @@ export const popIn = {
   exit: { scale: 0.8, opacity: 0, transition: { duration: duration.fast } },
 }
 
-export const slideUp = {
-  initial: { y: 24, opacity: 0 },
-  animate: { y: 0, opacity: 1, transition: spring.gentle },
-  exit: { y: -12, opacity: 0, transition: { duration: duration.fast } },
-}

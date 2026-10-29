@@ -1,6 +1,8 @@
-import type { ArenaPhase, ArenaPlayer, Question, RoomConfig, RoomState } from '@sixtysix/shared'
-import { MAX_ARENA_PLAYERS } from '@sixtysix/shared'
+import { randomUUID } from 'node:crypto'
+import type { ArenaPhase, ArenaPlayer, LeaderboardEntry, Question, RoomConfig, RoomState } from '@sixtysix/shared'
+import { CHARACTERS, MAX_ARENA_PLAYERS } from '@sixtysix/shared'
 
+/** Keyed in Room.players by the SECRET device id; `id` is the public id. */
 export interface RoomPlayer extends ArenaPlayer {
   socketId: string
   /** Current-question answer; cleared between questions. */
@@ -22,6 +24,8 @@ export interface Room {
   questions: Question[]
   questionIndex: number
   questionStartedAt: number
+  /** Last leaderboard/podium payload, re-sent to anyone (re)joining mid-phase. */
+  lastEntries: LeaderboardEntry[]
   /** Previous leaderboard ranks, for delta arrows. */
   prevRanks: Map<string, number>
   /** Single pending phase timer for this room. */
@@ -61,14 +65,15 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     questionIndex: 0,
     questionStartedAt: 0,
     prevRanks: new Map(),
+    lastEntries: [],
     lastActivity: Date.now(),
   }
   rooms.set(room.code, room)
   return room
 }
 
-export function getRoom(code: string): Room | undefined {
-  return rooms.get(code.toUpperCase())
+export function getRoom(code: unknown): Room | undefined {
+  return typeof code === 'string' ? rooms.get(code.trim().toUpperCase()) : undefined
 }
 
 export function deleteRoom(code: string): void {
@@ -84,38 +89,46 @@ export function touch(room: Room): void {
   room.lastActivity = Date.now()
 }
 
-const cleanName = (name: string) => name.trim().slice(0, 14) || 'Player'
+/** NFC, strip control/format chars (keep ZWJ for emoji), cut by code point. */
+export function cleanName(name: unknown): string {
+  if (typeof name !== 'string') return 'Player'
+  const cleaned = name.normalize('NFC').replace(/[\p{Cc}\p{Cf}]/gu, (c) => (c === '\u200d' ? c : '')).trim()
+  return Array.from(cleaned).slice(0, 14).join('') || 'Player'
+}
+
+export const cleanAvatar = (avatar: unknown): string =>
+  CHARACTERS.includes(avatar as (typeof CHARACTERS)[number]) ? (avatar as string) : CHARACTERS[0]
 
 /** Add a new player, or rebind an existing one (reconnection). */
 export function addOrRebindPlayer(
   room: Room,
   playerId: string,
   socketId: string,
-  name: string,
-  avatar: string,
+  name: unknown,
+  avatar: unknown,
 ): { player: RoomPlayer; rejoined: boolean } | { error: string } {
   const existing = room.players.get(playerId)
   if (existing) {
     existing.socketId = socketId
     existing.connected = true
-    existing.name = cleanName(name || existing.name)
-    existing.avatar = avatar || existing.avatar
+    if (typeof name === 'string' && name.trim()) existing.name = cleanName(name)
+    if (avatar !== undefined) existing.avatar = cleanAvatar(avatar)
     touch(room)
     return { player: existing, rejoined: true }
   }
   if (room.players.size >= MAX_ARENA_PLAYERS) return { error: 'Room is full' }
   if (room.phase === 'podium') return { error: 'This game has ended' }
   const player: RoomPlayer = {
-    id: playerId,
+    id: randomUUID(),
     socketId,
     name: cleanName(name),
-    avatar,
+    avatar: cleanAvatar(avatar),
     score: 0,
     connected: true,
     streak: 0,
     lastGain: 0,
   }
-  room.players.set(player.id, player) // late joiners enter at the next question
+  room.players.set(playerId, player) // late joiners enter at the next question
   touch(room)
   return { player, rejoined: false }
 }

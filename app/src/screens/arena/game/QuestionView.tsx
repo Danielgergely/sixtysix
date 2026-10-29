@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useAnimate } from 'motion/react'
 import { QUESTION_TIME_MS } from '@sixtysix/shared'
 import { useArenaStore } from '../../../arena/arenaStore'
-import { getDeviceId } from '../../../game/persistence'
 import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
 import { Sparkles } from '../../../art/Sparkles'
 import { PARCHMENT, STONE } from '../../../art/textures'
@@ -42,6 +41,7 @@ export function QuestionView() {
   const reveal = useArenaStore((s) => s.reveal)
   const yourResult = useArenaStore((s) => s.yourResult)
   const answer = useArenaStore((s) => s.answer)
+  const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const [scope, animate] = useAnimate()
 
   const phase = room?.phase ?? 'lobby'
@@ -68,7 +68,7 @@ export function QuestionView() {
   }, [revealed, isPlayer, correct, myAnswer, animate, scope])
 
   if (!room || !question) return null
-  const me = isPlayer ? room.players.find((p) => p.id === getDeviceId()) : undefined
+  const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
   const pct = (i: number) =>
     reveal && reveal.answeredCount > 0 ? Math.round((reveal.distribution[i] / reveal.answeredCount) * 100) : 0
   const handOpen = phase === 'question' && myAnswer === null

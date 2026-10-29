@@ -7,6 +7,16 @@ const FLAGS_KEY = 'sixtysix.flaggedQuestions.v1'
 const SETTINGS_KEY = 'sixtysix.settings.v1'
 const STATS_KEY = 'sixtysix.stats.v1'
 
+export const DEFAULT_PLAYER: PlayerProfile = {
+  id: 'player_local',
+  name: 'You',
+  avatar: 'david',
+  level: 1,
+  xp: 0,
+  coins: 0,
+}
+
+
 export interface PlayerStats {
   gamesPlayed: number
   /** Podium finishes — counts stay meaningful in future large-lobby modes. */
@@ -80,7 +90,16 @@ const DEVICE_ID_KEY = 'sixtysix.deviceId.v1'
  * Stable anonymous identity (Tier 0 of the identity ladder, PLAN.md).
  * Arena games key players by this; a future account absorbs it.
  */
+let cachedDeviceId: string | null = null
+
 export function getDeviceId(): string {
+  // Cached: if storage throws, every call must still return the SAME id.
+  if (cachedDeviceId) return cachedDeviceId
+  cachedDeviceId = readOrCreateDeviceId()
+  return cachedDeviceId
+}
+
+function readOrCreateDeviceId(): string {
   try {
     let id = localStorage.getItem(DEVICE_ID_KEY)
     if (!id) {
@@ -101,7 +120,8 @@ export function levelForXp(xp: number): number {
 export function loadPlayer(): PlayerProfile | null {
   try {
     const raw = localStorage.getItem(PLAYER_KEY)
-    return raw ? (JSON.parse(raw) as PlayerProfile) : null
+    // Merge over defaults so profiles saved before a field existed still load.
+    return raw ? ({ ...DEFAULT_PLAYER, ...(JSON.parse(raw) as Partial<PlayerProfile>) } as PlayerProfile) : null
   } catch {
     return null
   }
@@ -118,8 +138,8 @@ export function savePlayer(player: PlayerProfile): void {
 /** Question ids the player flagged as wrong/unclear — feeds back into the pipeline. */
 export function loadFlaggedIds(): string[] {
   try {
-    const raw = localStorage.getItem(FLAGS_KEY)
-    return raw ? (JSON.parse(raw) as string[]) : []
+    const parsed: unknown = JSON.parse(localStorage.getItem(FLAGS_KEY) ?? '[]')
+    return Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === 'string') : []
   } catch {
     return []
   }

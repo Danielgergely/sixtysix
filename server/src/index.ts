@@ -57,10 +57,4 @@ console.log(`[server] 66 arena server on :${PORT}`)
 console.log(`[server]   local:  http://localhost:${PORT}`)
 // LAN addresses — open one of these on the host machine and phones on the
 // same wifi can join via the QR code (no deployment needed).
-for (const addrs of Object.values(networkInterfaces())) {
-  for (const a of addrs ?? []) {
-    if (a.family === 'IPv4' && !a.internal) {
-      console.log(`[server]   LAN:    http://${a.address}:${PORT}  ← share this for wifi games`)
-    }
-  }
-}
+for (const url of lanUrls()) console.log(`[server]   LAN:    ${url}  ← share this for wifi games`)
