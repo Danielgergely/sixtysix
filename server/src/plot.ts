@@ -7,9 +7,15 @@ import {
   SCROLL_PASS,
   SCROLL_QUESTIONS,
   SPEEDUP_MAX_SHARE,
-  SPEEDUP_MS,
   SCROLL_COOLDOWN_MS,
+  WEEKLY_CEDAR,
   advance,
+  buyPrice,
+  modsOf,
+  plotMods,
+  scrollCutMs,
+  sellPrice,
+  weekStartUtc,
   checkUpgrade,
   collect,
   newPlot,
@@ -54,6 +60,7 @@ function parsePlot(raw: string, now: number): PlotState {
     (x) => BUILDING_IDS.includes(x?.building) && Number.isFinite(x.endsAt) && Number.isFinite(x.toLevel),
   )
   base.updatedAt = num(p.updatedAt, now)
+  if (p.boostUntil !== undefined) base.boostUntil = num(p.boostUntil)
   return base
 }
 
@@ -76,12 +83,17 @@ function load(req: FastifyRequest): Ctx | undefined {
     plot = newPlot(now)
     db.prepare('INSERT INTO plots (user_id, state, created_at) VALUES (?, ?, ?)').run(row.id, JSON.stringify(plot), now)
   }
+  const profile = toAccount(row).profile
+  // Skill effects (Builder / Steward) for every rule in shared/plot.ts; the app sees them too.
+  plot.mods = plotMods(profile.skills?.ranks)
   advance(plot, now)
-  return { row, profile: toAccount(row).profile, plot, now }
+  return { row, profile, plot, now }
 }
 
 function save(c: Ctx): void {
-  db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(c.plot), c.row.id)
+  const { mods: _derived, ...stored } = c.plot // mods are recomputed from the skills on every load
+  void _derived
+  db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(stored), c.row.id)
   saveProfile(c.row.id, c.profile)
 }
 
@@ -140,7 +152,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     const m = asMaterial(body.material)
     const qty = asQty(body.qty)
     if (!m || !qty) return fail('Unknown material or amount')
-    const price = MATERIAL_INFO[m].buy * qty
+    const price = buyPrice(m, qty, modsOf(c.plot))
     if (c.profile.coins < price) return fail('Not enough coins')
     c.profile.coins -= price
     c.plot.inventory[m] += qty
@@ -154,7 +166,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (!m || !qty) return fail('Unknown material or amount')
     if (c.plot.inventory[m] < qty) return fail(`You only have ${c.plot.inventory[m]} ${MATERIAL_INFO[m].name.toLowerCase()}`)
     c.plot.inventory[m] -= qty
-    c.profile.coins += MATERIAL_INFO[m].sell * qty
+    c.profile.coins += sellPrice(m, qty, modsOf(c.plot))
     save(c)
     return view(c)
   })
@@ -175,7 +187,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
       for (const m of MATERIALS) c.plot.inventory[m] += check.missing[m] ?? 0
     }
     for (const m of MATERIALS) c.plot.inventory[m] -= check.cost[m] ?? 0
-    const ms = check.def.minutes * 60_000
+    const ms = check.minutes * 60_000 // skills applied (Many hands, Quick hands)
     c.plot.builds.push({ building: b, toLevel: check.toLevel, startedAt: c.now, endsAt: c.now + ms })
     advance(c.plot, c.now) // a zero-minute level would finish at once
     save(c)
@@ -236,7 +248,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
         // Never more than SPEEDUP_MAX_SHARE of the build's full time in total.
         const sped = build.spedMs ?? 0
         const full = build.endsAt + sped - build.startedAt
-        const cut = Math.max(0, Math.min(SPEEDUP_MS, full * SPEEDUP_MAX_SHARE - sped, build.endsAt - c.now))
+        const cut = Math.max(0, Math.min(scrollCutMs(modsOf(c.plot)), full * SPEEDUP_MAX_SHARE - sped, build.endsAt - c.now))
         build.endsAt -= cut
         build.spedMs = sped + cut
         cutMs = cut
@@ -246,6 +258,37 @@ export function registerPlotRoutes(app: FastifyInstance): void {
       }
     }
     return view(c, { right, passed, building: target, cutMs, correct: pending.correct, references: pending.questions.map((q) => q.reference) })
+  })
+
+  // ── weekly skill perks (the week's use is kept in profile.skills) ────
+
+  /** Cedar from Lebanon: WEEKLY_CEDAR free cedar, once per week (Monday 00:00 UTC). */
+  route(app, 'post', '/api/plot/cedar', (c) => {
+    const skills = c.profile.skills
+    if (!skills || !modsOf(c.plot).weeklyCedar) return fail('Learn Cedar from Lebanon first')
+    const week = weekStartUtc(c.now)
+    if (skills.cedarWeek === week) return fail('Already collected this week')
+    skills.cedarWeek = week
+    c.plot.inventory.cedar += WEEKLY_CEDAR
+    save(c)
+    return view(c, { collected: { cedar: WEEKLY_CEDAR } })
+  })
+
+  /** Master builder: finish one build now, once per week. { building } or the one that ends last. */
+  route(app, 'post', '/api/plot/instant', (c, body) => {
+    const skills = c.profile.skills
+    if (!skills || !modsOf(c.plot).masterBuilder) return fail('Learn Master builder first')
+    const week = weekStartUtc(c.now)
+    if (skills.masterWeek === week) return fail('Already used this week')
+    if (body.building !== undefined && !asBuilding(body.building)) return fail('Unknown building')
+    const wanted = asBuilding(body.building)
+    const build = wanted ? c.plot.builds.find((x) => x.building === wanted) : [...c.plot.builds].sort((a, b) => b.endsAt - a.endsAt)[0]
+    if (!build) return fail(wanted ? 'That building is not being built' : 'Nothing is being built')
+    skills.masterWeek = week
+    build.endsAt = c.now
+    advance(c.plot, c.now)
+    save(c)
+    return view(c, { building: build.building, toLevel: build.toLevel })
   })
 }
 

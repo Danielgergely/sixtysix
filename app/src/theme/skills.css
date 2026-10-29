@@ -1,0 +1,146 @@
+/* ══ Skill tree ("Gifts", screens/SkillTreeScreen) and quiz gifts (skills/GiftBar) — Empire look ══ */
+
+/* ── quiz gifts ───────────────────────────────────────────────────────── */
+.gift-dock{
+  position: absolute; left: 0; right: 0; bottom: calc(100% - 6px); z-index: 7;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none;
+}
+.gift-dock > *{ pointer-events: auto; }
+.gift-row{ display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.gift-btn{
+  position: relative; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; padding: 0;
+  background: radial-gradient(circle at 35% 30%, #fff1b8, #e9b23a 45%, #8a5a10);
+  border: 2px solid #1d0f06; box-shadow: 0 0 0 2px #e3b754, 0 4px 10px rgb(0 0 0 / 0.5);
+  font-size: 22px; line-height: 1; cursor: pointer;
+}
+.gift-btn:disabled{ cursor: default; }
+.gift-btn.passive{ background: radial-gradient(circle at 35% 30%, #f3e2bb, #b88a3a 60%, #6b4120); }
+.gift-btn.spent{ filter: grayscale(1) brightness(0.7); }
+.gift-btn.on{ box-shadow: 0 0 0 2px #fff1b8, 0 0 18px 4px rgb(255 214 110 / 0.85); }
+.gift-icon{ filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.5)); }
+.gift-left{
+  position: absolute; right: -4px; bottom: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+  background: #6b1d0e; border: 1.5px solid #ffe08a; color: #fff1d0; font: 900 11px/15px 'Cinzel', serif; text-align: center;
+}
+.gift-burst{ position: absolute; inset: 0; border-radius: 50%; border: 3px solid #ffe08a; pointer-events: none; }
+.gift-note{
+  max-width: 92%; padding: 5px 12px; border-radius: 999px; background: rgb(29 15 6 / 0.9); border: 1.5px solid #e3b754;
+  color: #ffe7a3; font: 700 12px/1.25 'Cinzel', serif; text-align: center; box-shadow: 0 4px 12px rgb(0 0 0 / 0.5);
+}
+.gift-hint{ margin-top: 6px; text-align: center; font: 700 14px/1.3 'Cinzel', serif; color: #6b1d0e; }
+.gift-hint b{ color: #8a1d0e; }
+.gift-x2{ color: #ffd34d; font-weight: 900; }
+.gift-votes{ position: absolute; top: -14px; left: 50%; translate: -50% 0; display: flex; z-index: 2; }
+.gift-voter{ width: 26px; height: 26px; margin: 0 -4px; border-radius: 50%; border: 2px solid #ffe08a; overflow: hidden; background: #3b2412; box-shadow: 0 2px 5px rgb(0 0 0 / 0.6); }
+.gift-voter-pic{ width: 100%; height: 100%; }
+.eh-hand-slot{ position: relative; }
+/* Practice: the dock sits in the flow above the answers */
+.pr-gifts{ position: relative; min-height: 0; }
+.pr-gifts .gift-dock{ position: static; padding-top: 12px; }
+
+/* ── skill tree screen ────────────────────────────────────────────────── */
+.st{ overflow: hidden; }
+.st .screen-topbar{ padding: 12px 12px 6px; max-width: 1100px; width: 100%; margin: 0 auto; }
+.st-scroll{ flex: 1; min-height: 0; overflow-y: auto; padding: 0 12px calc(24px + env(safe-area-inset-bottom)); max-width: 1100px; width: 100%; margin: 0 auto; }
+
+.st-level{
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; background-color: #f3e2bb; color: #3b2412;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 18px rgb(120 70 20 / 0.35);
+}
+.st-level-num{ display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.st-level-num small{ font: 900 9px/1 'Cinzel', serif; letter-spacing: 0.2em; text-transform: uppercase; color: #6b4120; }
+.st-level-num strong{ font: 900 30px/1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.st-level-bar{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.st-level-bar small{ font: 700 11px/1.2 'Cinzel', serif; color: #6b4120; }
+.st-bar{ height: 10px; border-radius: 6px; background: rgb(59 36 18 / 0.25); overflow: hidden; border: 1px solid #8a6324; }
+.st-bar span{ display: block; height: 100%; background: linear-gradient(90deg, #c98a12, #ffe08a); }
+.st-points{
+  width: 62px; height: 62px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;
+  background: radial-gradient(circle at 35% 30%, #6b4120, #2a160a); border: 2px solid #8a6324; color: #e9c98a; line-height: 1;
+}
+.st-points strong{ font: 900 24px/1 'Cinzel', serif; }
+.st-points small{ font: 900 9px/1 'Cinzel', serif; text-transform: uppercase; letter-spacing: 0.1em; }
+.st-points.has{ background: radial-gradient(circle at 35% 30%, #fff1b8, #e9b23a 50%, #8a5a10); color: #2b1408; border-color: #1d0f06; box-shadow: 0 0 0 2px #e3b754, 0 0 16px rgb(255 214 110 / 0.7); }
+
+.st-intro{ margin: 10px 2px; font: 700 12px/1.35 'Cinzel', serif; color: #e9c98a; text-align: center; text-shadow: 0 1px 2px #000; }
+.st-locked{
+  margin: 10px 0; padding: 14px; border-radius: 12px; background-color: #f3e2bb; color: #3b2412; text-align: center;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06; display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.st-locked p{ margin: 0; font: 600 13px/1.4 'Cinzel', serif; }
+.st-locked-icon{ font-size: 32px; }
+
+.st-tabs{ margin: 4px 0 10px; }
+.st-tabs .seg-btn{ flex: 1; font-size: 12px; padding: 8px 4px; }
+.st-tabs .seg-btn small{ opacity: 0.8; margin-left: 2px; }
+
+.st-paths{ display: grid; gap: 12px; }
+.st-paths.preview{ opacity: 0.75; filter: saturate(0.6); }
+.st-path{ display: none; padding: 10px; border-radius: 14px; background: rgb(29 15 6 / 0.72); border: 2px solid #8a6324; }
+.st-path.active{ display: block; }
+.st-path-head{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; color: #ffe7a3; }
+.st-path-head > span:nth-child(2){ flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.st-path-head strong{ font: 900 18px/1.1 'Cinzel Decorative', serif; }
+.st-path-head small{ font: 700 11px/1.2 'Cinzel', serif; color: #e9c98a; }
+.st-path-icon{ font-size: 28px; }
+.st-path-pts{ min-width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #6b1d0e; border: 2px solid #e3b754; font: 900 15px/1 'Cinzel', serif; color: #fff1d0; }
+
+.st-tier{ position: relative; display: flex; gap: 8px; align-items: stretch; padding: 8px 0; border-top: 1px dashed rgb(227 183 84 / 0.35); }
+.st-tier:first-of-type{ border-top: 0; }
+.st-tier-label{ width: 34px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #e3b754; }
+.st-tier-label span{ font: 900 16px/1 'Cinzel Decorative', serif; }
+.st-tier-label small{ font: 700 8.5px/1.1 'Cinzel', serif; text-align: center; color: #e9c98a; }
+.st-tier.locked .st-nodes{ opacity: 0.55; }
+.st-nodes{ flex: 1; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-around; }
+
+.st-node{
+  width: 96px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 2px; background: none; border: 0;
+  color: #ffe7a3; font-family: 'Cinzel', serif; cursor: pointer;
+}
+.st-medal{
+  position: relative; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-size: 26px;
+  background: radial-gradient(circle at 35% 30%, #6b5a46, #2a1d12); border: 2px solid #5a4630; box-shadow: inset 0 0 8px rgb(0 0 0 / 0.6);
+  filter: grayscale(0.6);
+}
+.st-medal.big{ width: 64px; height: 64px; font-size: 32px; flex-shrink: 0; }
+.st-node.learned .st-medal, .st-medal.learned{
+  filter: none; background: radial-gradient(circle at 35% 30%, #fff1b8, #e9b23a 50%, #8a5a10); border-color: #1d0f06; box-shadow: 0 0 0 2px #e3b754;
+}
+.st-node.max .st-medal{ box-shadow: 0 0 0 2px #fff1b8, 0 0 14px rgb(255 214 110 / 0.8); }
+.st-node.can .st-medal{ filter: none; border-color: #e3b754; animation: st-glow 1.8s ease-in-out infinite; }
+.st-node.soon{ opacity: 0.6; }
+@keyframes st-glow{ 50%{ box-shadow: 0 0 0 2px #e3b754, 0 0 16px rgb(255 214 110 / 0.75); } }
+.st-plus{
+  position: absolute; right: -3px; top: -3px; width: 18px; height: 18px; border-radius: 50%; background: #2f7a2a; border: 1.5px solid #fff1d0;
+  color: #fff; font: 900 13px/15px sans-serif; text-align: center;
+}
+.st-node-name{ font: 800 10.5px/1.15 'Cinzel', serif; text-align: center; min-height: 2.3em; text-shadow: 0 1px 2px #000; }
+.st-pips{ display: flex; gap: 3px; }
+.st-pips i{ width: 8px; height: 8px; border-radius: 50%; border: 1px solid #e3b754; background: transparent; }
+.st-pips i.on{ background: #ffd36b; box-shadow: 0 0 4px #ffd36b; }
+.st-pips em{ font: 700 9px/1 'Cinzel', serif; font-style: normal; text-transform: uppercase; letter-spacing: 0.1em; color: #e9c98a; }
+
+.st-foot{ display: flex; justify-content: center; margin-top: 14px; }
+.st-sheet .st-ranks{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.st-ranks li{ padding: 7px 10px; border-radius: 8px; background: rgb(59 36 18 / 0.08); font: 600 13px/1.3 'Cinzel', serif; }
+.st-ranks li b{ font-weight: 900; color: #6b4120; margin-right: 4px; }
+.st-ranks li.on{ background: linear-gradient(90deg, rgb(233 178 58 / 0.45), rgb(233 178 58 / 0.15)); }
+.st-ranks li.next{ outline: 2px dashed #b88a3a; }
+.st-where{ margin: 0; font: 600 12px/1.35 'Cinzel', serif; color: #6b4120; }
+.st-max{ margin: 0; text-align: center; font: 900 14px/1 'Cinzel', serif; color: #8a5a10; }
+
+/* top bar: unspent points */
+.tb-gifts{
+  margin-left: auto; display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font: 900 14px/1 'Cinzel', serif;
+  background: radial-gradient(circle at 35% 30%, #fff1b8, #e9b23a 55%, #8a5a10); border: 2px solid #1d0f06; color: #2b1408;
+  box-shadow: 0 0 0 2px #e3b754, 0 0 12px rgb(255 214 110 / 0.6); animation: st-glow 1.8s ease-in-out infinite;
+}
+.chip-btn{ cursor: pointer; font: inherit; }
+
+/* desktop: the three paths side by side */
+@media (min-width: 760px){
+  .st-tabs{ display: none; }
+  .st-paths{ grid-template-columns: repeat(3, 1fr); }
+  .st-path{ display: block; }
+  .st-level{ max-width: 640px; margin: 0 auto; }
+}

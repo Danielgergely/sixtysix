@@ -3,6 +3,7 @@ import type { Account, AccountResponse } from '@sixtysix/shared'
 import { setOnProfileEdited, useGameStore } from '../game/store'
 import { EMPTY_STATS } from '../game/persistence'
 import { getToken, queueGrant, readOutbox, setOnQueued, setToken, writeOutbox } from './outbox'
+import { setMyRanks } from '../skills/mySkills'
 
 /**
  * Optional account. Signed out ("guest"), progress lives on the device as
@@ -76,6 +77,8 @@ interface AccountStore {
   logout: () => Promise<void>
   /** Send queued rewards (and name/avatar), then adopt the server totals. */
   sync: () => Promise<void>
+  /** Take an account the server just sent (skill tree, plot perks). */
+  adoptAccount: (account: Account) => void
 }
 
 export const useAccountStore = create<AccountStore>((set, get) => {
@@ -130,6 +133,8 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     busy: false,
     error: '',
 
+    adoptAccount: (account) => adopt(account),
+
     init: async () => {
       if (getToken()) await get().sync()
     },
@@ -170,7 +175,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       if (guest.coins || guest.xp || guest.stats.gamesPlayed) {
         const { currentStreak, ...counters } = guest.stats
         void currentStreak // a guest streak doesn't override the account's
-        queueGrant({ coins: guest.coins, xp: guest.xp, stats: counters })
+        queueGrant({ coins: guest.coins, xp: guest.xp, stats: counters, source: 'merge' })
       }
       adopt(res.account)
       await get().sync()
@@ -188,3 +193,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     },
   }
 })
+
+// Quiz gifts read the ranks from here (skills/mySkills.ts).
+setMyRanks(useAccountStore.getState().account?.profile.skills?.ranks)
+useAccountStore.subscribe((s) => setMyRanks(s.account?.profile.skills?.ranks))

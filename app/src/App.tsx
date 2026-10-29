@@ -20,6 +20,7 @@ import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { HomeScreen } from './screens/home/HomeScreen'
 import { MarketScreen } from './screens/home/MarketScreen'
+import { SkillTreeScreen } from './screens/SkillTreeScreen'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 
@@ -42,6 +43,7 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   player: PlayerScreen,
   home: HomeScreen,
   market: MarketScreen,
+  skills: SkillTreeScreen,
 }
 
 export default function App() {
@@ -52,7 +54,7 @@ export default function App() {
   const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
   // Host/spectator boards are projector/laptop surfaces — let them breathe.
   const wide =
-    screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player')
+    screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player') || screen === 'skills'
   return (
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.

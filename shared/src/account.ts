@@ -1,3 +1,5 @@
+import type { SkillState } from './skills'
+
 /**
  * Optional accounts (REST under /api/account, see server/src/accounts.ts).
  * Guests play everything and keep XP/coins on the device; an account keeps the
@@ -22,6 +24,8 @@ export interface AccountProfile {
   coins: number
   xp: number
   stats: AccountStats
+  /** Skill tree (shared/skills.ts). Owned by the server: learned only through /api/skills. */
+  skills?: SkillState
   /** Bumped by the server on every save, so the app can ignore stale replies. */
   rev?: number
 }
@@ -45,6 +49,8 @@ export interface Grant {
   coins: number
   xp: number
   stats?: Partial<AccountStats>
+  /** 'merge': guest progress brought into an account (no skill bonuses). Absent: a game or answer. */
+  source?: 'merge'
 }
 
 export const USERNAME_RE = /^[A-Za-z0-9_.-]{3,20}$/

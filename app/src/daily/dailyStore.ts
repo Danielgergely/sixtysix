@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { DAILY_COINS_PER_CORRECT as COINS_PER_CORRECT, DAILY_PERFECT_BONUS } from '@sixtysix/shared'
+import { DAILY_COINS_PER_CORRECT as COINS_PER_CORRECT, DAILY_PERFECT_BONUS, UNTIMED_XP_PER_CORRECT } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
@@ -135,7 +135,7 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
     }
     const next = { ...saved, picks, streak, streakDate }
     save(next)
-    if (earned) useGameStore.getState().addCoins(earned)
+    if (earned) useGameStore.getState().addCoins(earned, correct ? UNTIMED_XP_PER_CORRECT : 0)
     playSfx(correct ? 'correct' : 'wrong')
     set({ saved: next, coins: coins + earned })
   },

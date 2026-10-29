@@ -4,7 +4,12 @@
  * docs/balance/plotsim.py (dict `B` and `PRICE`); change them there and here
  * together. The server is the authority (server/src/plot.ts); the app uses the
  * same functions to project timers and production between requests.
+ *
+ * Skill-tree effects (Builder and Steward paths) arrive as PlotMods
+ * (shared/skills.ts): the server puts the owner's mods on the plot it loads
+ * (`PlotState.mods`), and every rule below reads them from there.
  */
+import { NO_MODS, SEVEN_YEARS_MS, type PlotMods } from './skills'
 
 export const MATERIALS = ['wood', 'bricks', 'stone', 'wool', 'oil', 'cedar', 'gold'] as const
 export type Material = (typeof MATERIALS)[number]
@@ -205,7 +210,13 @@ export interface PlotState {
   stock: Partial<Record<BuildingId, number>>
   /** Production is computed up to this time. */
   updatedAt: number
+  /** The owner's skill effects. Set by the server on every load, never trusted from storage. */
+  mods?: PlotMods
+  /** Seven good years: producers +50 % until then. */
+  boostUntil?: number
 }
+
+export const modsOf = (s: Pick<PlotState, 'mods'>): PlotMods => s.mods ?? NO_MODS
 
 export function newPlot(now: number): PlotState {
   const levels = Object.fromEntries(BUILDING_IDS.map((b) => [b, b === 'house' ? 1 : 0])) as Record<BuildingId, number>
@@ -217,11 +228,31 @@ export function newPlot(now: number): PlotState {
 export const levelDef = (b: BuildingId, level: number): LevelDef | undefined => BUILDINGS[b].levels[level - 1]
 export const maxLevel = (b: BuildingId) => BUILDINGS[b].levels.length
 
-export const coinValue = (m: Materials) => MATERIALS.reduce((sum, k) => sum + (m[k] ?? 0) * MATERIAL_INFO[k].buy, 0)
+/** Market price for `qty` of a material (Haggler takes a share off). */
+export const buyPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) => Math.ceil(MATERIAL_INFO[m].buy * qty * (1 - mods.buyDiscount) - 1e-9)
+/** What selling `qty` pays: half the price, more with Fair trader. */
+export const sellPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) =>
+  Math.max(MATERIAL_INFO[m].sell * qty, Math.floor(MATERIAL_INFO[m].buy * qty * mods.sellRate + 1e-9))
 
-export const builderCount = (levels: Record<BuildingId, number>) => (levels.house >= SECOND_BUILDER_HOUSE ? 2 : 1)
-export const storeCap = (levels: Record<BuildingId, number>) => levelDef('store', levels.store)?.cap ?? BASE_CAP
-export const waterSupply = (levels: Record<BuildingId, number>) => levelDef('well', levels.well)?.water ?? 0
+export const coinValue = (m: Materials, mods: PlotMods = NO_MODS) => MATERIALS.reduce((sum, k) => sum + (m[k] ? buyPrice(k, m[k], mods) : 0), 0)
+
+export const builderCount = (levels: Record<BuildingId, number>, mods: PlotMods = NO_MODS) =>
+  (levels.house >= SECOND_BUILDER_HOUSE ? 2 : 1) + mods.extraBuilders
+export const storeCap = (levels: Record<BuildingId, number>, mods: PlotMods = NO_MODS) =>
+  Math.floor((levelDef('store', levels.store)?.cap ?? BASE_CAP) * (1 + mods.storage))
+export const waterSupply = (levels: Record<BuildingId, number>, mods: PlotMods = NO_MODS) => {
+  const base = levelDef('well', levels.well)?.water ?? 0
+  return base ? base + mods.water : 0
+}
+
+/** Real build time: Many hands takes a share off; Quick hands finishes short builds at once. */
+export function buildMinutes(minutes: number, mods: PlotMods = NO_MODS): number {
+  const m = minutes * (1 - mods.buildTime)
+  return mods.instantMin && m <= mods.instantMin ? 0 : m
+}
+
+/** Time one passed Workers' scroll takes off (Skilled workers: more). */
+export const scrollCutMs = (mods: PlotMods = NO_MODS) => mods.scrollMin * 60_000
 
 /** Water points in use: built consumers, plus what builds in progress will need (reserved). */
 export function waterUsed(s: PlotState): number {
@@ -235,14 +266,19 @@ export function waterUsed(s: PlotState): number {
 
 // ── time: finish builds and produce, lazily ───────────────────────────
 
-function produce(s: PlotState, ms: number): void {
+function produce(s: PlotState, from: number, to: number): void {
+  const ms = to - from
   if (ms <= 0) return
-  const cap = storeCap(s.levels)
+  const mods = modsOf(s)
+  const cap = storeCap(s.levels, mods)
+  // Seven good years: the boosted part of this segment counts 1.5×.
+  const boosted = s.boostUntil ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
+  const effMs = (ms + 0.5 * boosted) * (1 + mods.production)
   for (const b of PRODUCERS) {
     const make = levelDef(b, s.levels[b])?.make
     if (!make) continue
     const cur = s.stock[b] ?? 0
-    s.stock[b] = Math.max(cur, Math.min(cap, cur + (make.perHour * ms) / 3_600_000))
+    s.stock[b] = Math.max(cur, Math.min(cap, cur + (make.perHour * effMs) / 3_600_000))
   }
 }
 
@@ -252,10 +288,11 @@ export function advance(s: PlotState, now: number): void {
   for (;;) {
     const next = s.builds.filter((x) => x.endsAt <= now).sort((a, b) => a.endsAt - b.endsAt)[0]
     const segEnd = next ? Math.max(t, next.endsAt) : now
-    produce(s, segEnd - t)
+    produce(s, t, segEnd)
     t = Math.max(t, segEnd)
     if (!next) break
     s.levels[next.building] = Math.max(s.levels[next.building], next.toLevel)
+    if (next.building === 'house' && modsOf(s).sevenYears) s.boostUntil = next.endsAt + SEVEN_YEARS_MS
     s.builds = s.builds.filter((x) => x !== next)
   }
   s.updatedAt = Math.max(s.updatedAt, now)
@@ -291,6 +328,8 @@ export interface UpgradeCheck {
   /** The level it would become (undefined when maxed). */
   toLevel?: number
   def?: LevelDef
+  /** Build time in minutes with skills applied (0 = instant). */
+  minutes: number
   /** Building is at its top level. */
   maxed: boolean
   /** Already under construction. */
@@ -309,10 +348,11 @@ export interface UpgradeCheck {
 export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
   const toLevel = s.levels[b] + 1
   const def = levelDef(b, toLevel)
+  const mods = modsOf(s)
   const busy = s.builds.some((x) => x.building === b)
-  const freeBuilder = s.builds.length < builderCount(s.levels)
+  const freeBuilder = s.builds.length < builderCount(s.levels, mods)
   if (!def) {
-    return { building: b, maxed: true, busy, reqs: [], reqsMet: false, freeBuilder, cost: {}, missing: {}, missingCoins: 0, waterNeeded: 0 }
+    return { building: b, minutes: 0, maxed: true, busy, reqs: [], reqsMet: false, freeBuilder, cost: {}, missing: {}, missingCoins: 0, waterNeeded: 0 }
   }
   const reqs: Requirement[] = []
   for (const [r, lvl] of Object.entries(def.needs) as [BuildingId, number][]) {
@@ -322,7 +362,7 @@ export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
   if (WATER_USERS.includes(b)) {
     waterNeeded = (def.water ?? 0) - (levelDef(b, s.levels[b])?.water ?? 0)
     if (waterNeeded > 0) {
-      const free = waterSupply(s.levels) - waterUsed(s)
+      const free = waterSupply(s.levels, mods) - waterUsed(s)
       reqs.push({ label: `${waterNeeded} water free (you have ${Math.max(0, free)})`, met: free >= waterNeeded })
     }
   }
@@ -335,6 +375,7 @@ export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
     building: b,
     toLevel,
     def,
+    minutes: buildMinutes(def.minutes, mods),
     maxed: false,
     busy,
     reqs,
@@ -342,7 +383,7 @@ export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
     freeBuilder,
     cost: def.cost,
     missing,
-    missingCoins: coinValue(missing),
+    missingCoins: coinValue(missing, mods),
     waterNeeded,
   }
 }
@@ -358,7 +399,7 @@ export function suggestNext(s: PlotState): UpgradeCheck | null {
     const c = checkUpgrade(s, b)
     if (c.maxed || c.busy || !c.reqsMet) continue
     const favoured = PRODUCERS.includes(b) || b === 'well'
-    const prio = c.missingCoins * (favoured ? 0.6 : 1) + (c.def?.minutes ?? 0) / 600
+    const prio = c.missingCoins * (favoured ? 0.6 : 1) + c.minutes / 600
     if (!best || prio < best.prio) best = { prio, c }
   }
   return best?.c ?? null

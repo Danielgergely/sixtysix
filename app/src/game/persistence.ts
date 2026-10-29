@@ -1,4 +1,4 @@
-import { STAT_COUNTERS, STAT_MAXES } from '@sixtysix/shared'
+import { STAT_COUNTERS, STAT_MAXES, levelForXp } from '@sixtysix/shared'
 import type { PlayerProfile } from './types'
 
 // localStorage works in Capacitor webviews and browsers alike.
@@ -123,16 +123,16 @@ function readOrCreateDeviceId(): string {
   }
 }
 
-/** Level curve: a level every 5,000 XP (XP = cumulative race scores). */
-export function levelForXp(xp: number): number {
-  return 1 + Math.floor(xp / 5000)
-}
+/** The level curve lives in shared/skills.ts (server and app agree; docs/skill-tree.md). */
+export { levelForXp }
 
 export function loadPlayer(): PlayerProfile | null {
   try {
     const raw = localStorage.getItem(PLAYER_KEY)
     // Merge over defaults so profiles saved before a field existed still load.
-    return raw ? ({ ...DEFAULT_PLAYER, ...(JSON.parse(raw) as Partial<PlayerProfile>) } as PlayerProfile) : null
+    if (!raw) return null
+    const player = { ...DEFAULT_PLAYER, ...(JSON.parse(raw) as Partial<PlayerProfile>) } as PlayerProfile
+    return { ...player, level: levelForXp(player.xp) } // the saved level may be from an older curve
   } catch {
     return null
   }

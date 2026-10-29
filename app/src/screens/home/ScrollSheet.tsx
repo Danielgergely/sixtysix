@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { BUILDINGS, SCROLL_PASS, SCROLL_QUESTIONS } from '@sixtysix/shared'
+import { BUILDINGS, SCROLL_PASS, SCROLL_QUESTIONS, modsOf } from '@sixtysix/shared'
 import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
 import { fireConfetti, shake, spring } from '../../motion'
@@ -45,7 +45,7 @@ export function ScrollSheet() {
         {!result ? (
           <>
             <p className="hp-scroll-sub">
-              Question {answers.length + 1 > SCROLL_QUESTIONS ? SCROLL_QUESTIONS : answers.length + 1} of {SCROLL_QUESTIONS} · get {SCROLL_PASS} right for −5 min
+              Question {answers.length + 1 > SCROLL_QUESTIONS ? SCROLL_QUESTIONS : answers.length + 1} of {SCROLL_QUESTIONS} · get {SCROLL_PASS} right for −{plot ? modsOf(plot).scrollMin : 5} min
             </p>
             <motion.div key={q.id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={spring.gentle}>
               <p className="hp-scroll-q">{q.text}</p>

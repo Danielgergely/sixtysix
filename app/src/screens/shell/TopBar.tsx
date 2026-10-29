@@ -3,17 +3,29 @@ import { Avatar } from '../../avatars/Avatar'
 import { PaintedCoin } from '../../art/PaintedPortrait'
 import { STONE } from '../../art/textures'
 import { AnimatedNumber } from '../../motion'
+import { useAccountStore } from '../../account/accountStore'
+import { pointsForXp, spentPoints } from '@sixtysix/shared'
+import { openSkillTree } from '../../skills/nav'
 
 /** Shared header on every tab: purse on the left, you (→ Profile) on the right. */
 export function TopBar() {
   const player = useGameStore((s) => s.player)
   const goTo = useGameStore((s) => s.goTo)
+  const lastTab = useGameStore((s) => s.lastTab)
+  const account = useAccountStore((s) => s.account)
+  // Unspent skill points: a gold seal that opens the skill tree.
+  const free = account ? pointsForXp(account.profile.xp) - spentPoints(account.profile.skills?.ranks ?? {}) : 0
   return (
     <header className="tb">
       <div className="tb-purse" title="Your coins">
         <PaintedCoin size={24} />
         <AnimatedNumber value={player.coins} />
       </div>
+      {free > 0 && (
+        <button className="tb-gifts" onClick={() => openSkillTree(lastTab)} title={`${free} skill point${free === 1 ? '' : 's'} to spend`}>
+          🌳 <b>{free}</b>
+        </button>
+      )}
       <button className="tb-me" onClick={() => goTo('profile')} title="Your profile">
         <span className="tb-name">
           <span>{player.name}</span>

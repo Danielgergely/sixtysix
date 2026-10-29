@@ -9,6 +9,7 @@ import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/share
 import { registerArenaHandlers } from './arena.js'
 import { registerAccountRoutes, registerPublicRoutes } from './accounts.js'
 import { registerPlotRoutes } from './plot.js'
+import { registerSkillRoutes } from './skills.js'
 import { roomCount, startRoomGC } from './rooms.js'
 
 const PORT = Number(process.env.PORT ?? 3066)
@@ -22,6 +23,7 @@ app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
 registerAccountRoutes(app)
 registerPublicRoutes(app)
 registerPlotRoutes(app)
+registerSkillRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
 app.get('/api/server-info', () => ({ lanUrls: lanUrls() }))

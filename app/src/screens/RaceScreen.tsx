@@ -7,6 +7,8 @@ import { QuestionView } from './arena/game/QuestionView'
 import { RoadToThrone, type RaceEntry } from '../ceremony/RoadToThrone'
 import { PARCHMENT } from '../art/textures'
 import { duration, ease } from '../motion'
+import { useGiftStore } from '../skills/giftStore'
+import { GiftBar } from '../skills/GiftBar'
 
 /** 1-based ranks by score; ties keep seating order. */
 function ranks(racers: Racer[], score: (r: Racer) => number): Map<string, number> {
@@ -68,6 +70,9 @@ export function RaceScreen() {
   const answer = useGameStore((s) => s.answer)
   const skip = useGameStore((s) => s.skip)
   const goTo = useGameStore((s) => s.goTo)
+  const playGift = useGameStore((s) => s.playGift)
+  const removed = useGiftStore((s) => s.removed)
+  const used = useGiftStore((s) => s.used)
   const [confirmLeave, setConfirmLeave] = useState(false)
 
   const q = questions[questionIndex]
@@ -76,6 +81,14 @@ export function RaceScreen() {
   const standings = phase === 'progress' || phase === 'finished'
   const myIndex = you?.lastAnswer?.index
   const sceneKey = standings ? `lb-${questionIndex}` : `q-${questionIndex}`
+  // Ask the elders: the bots' cards so far, live while the question runs.
+  const votes: Record<number, Array<{ id: string; avatar: string; name: string }>> = {}
+  if (used.includes('elders')) {
+    for (const r of racers) {
+      if (!r.isBot || !r.lastAnswer || r.lastAnswer.index < 0) continue
+      ;(votes[r.lastAnswer.index] ??= []).push({ id: r.profile.id, avatar: r.profile.avatar, name: r.profile.name })
+    }
+  }
 
   return (
     <div className="screen arena-game-shell">
@@ -114,6 +127,11 @@ export function RaceScreen() {
               answered={racers.map((r) => ({ id: r.profile.id, avatar: r.profile.avatar, name: r.profile.name, done: !!r.lastAnswer, you: !r.isBot }))}
               coins={raceCoins}
               onAnswer={answer}
+              giftBar={<GiftBar enabled={phase === 'question' && myIndex === undefined} onUse={playGift} />}
+              removed={removed}
+              hint={used.includes('lamp') ? q.reference : null}
+              votes={votes}
+              doubled={used.includes('double')}
             />
           )}
         </motion.div>

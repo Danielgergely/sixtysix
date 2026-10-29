@@ -9,6 +9,7 @@ import {
   builderCount,
   formatMinutes,
   levelDef,
+  modsOf,
   ready,
   suggestNext,
   waterSupply,
@@ -93,9 +94,9 @@ export function HomeScreen() {
 }
 
 function Summary({ plot }: { plot: PlotState }) {
-  const supply = waterSupply(plot.levels)
+  const supply = waterSupply(plot.levels, modsOf(plot))
   const used = waterUsed(plot)
-  const builders = builderCount(plot.levels)
+  const builders = builderCount(plot.levels, modsOf(plot))
   return (
     <div className="hp-summary" style={{ backgroundImage: PARCHMENT }}>
       <div className="hp-stats">
@@ -133,7 +134,7 @@ function NextStep({ plot }: { plot: PlotState }) {
         <small>Next step</small>
         <strong>{what}: {next.def.name}</strong>
         <span>
-          {buy}, done in {formatMinutes(next.def.minutes)}
+          {buy}, done in {formatMinutes(next.minutes)}
           {!next.freeBuilder && ' once a builder is free'}
         </span>
       </span>
@@ -216,8 +217,8 @@ function Actions({ plot }: { plot: PlotState }) {
       >
         🧺 Collect all{waiting ? ` (${waiting})` : ''}
       </button>
-      <button className="hp-btn" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()} title="Answer 3 questions, get 2 right: the build is 5 minutes shorter">
-        📜 Workers’ scroll <small>−5 min</small>
+      <button className="hp-btn" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()} title={`Answer 3 questions, get 2 right: the build is ${modsOf(plot).scrollMin} minutes shorter`}>
+        📜 Workers’ scroll <small>−{modsOf(plot).scrollMin} min</small>
       </button>
     </div>
   )

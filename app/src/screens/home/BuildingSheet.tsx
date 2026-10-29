@@ -8,6 +8,7 @@ import {
   checkUpgrade,
   formatMinutes,
   levelDef,
+  modsOf,
   ready,
   storeCap,
   type BuildingId,
@@ -98,7 +99,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
       {make && (
         <div className="hp-row-box">
           <span>
-            Makes <b>{make.perHour < 1 ? `1 ${MATERIAL_INFO[make.material].name.toLowerCase()} every ${Math.round(1 / make.perHour)} h` : `${make.perHour} ${MATERIAL_INFO[make.material].name.toLowerCase()}/h`}</b> · holds {storeCap(plot.levels)}
+            Makes <b>{make.perHour < 1 ? `1 ${MATERIAL_INFO[make.material].name.toLowerCase()} every ${Math.round(1 / make.perHour)} h` : `${make.perHour} ${MATERIAL_INFO[make.material].name.toLowerCase()}/h`}</b> · holds {storeCap(plot.levels, modsOf(plot))}
             {cur?.water ? ` · uses ${cur.water} 💧` : ''}
           </span>
           <button
@@ -127,7 +128,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           </span>
           <small>{countdown(build.endsAt - now())} left</small>
           <button className="hp-btn" disabled={busy} onClick={() => void startScroll()}>
-            📜 Workers’ scroll: answer 3, get 2 right → −5 min
+            📜 Workers’ scroll: answer 3, get 2 right → −{modsOf(plot).scrollMin} min
           </button>
         </div>
       ) : c.maxed ? (
@@ -160,7 +161,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
                 </li>
               ))}
               <li className={c.freeBuilder ? 'ok' : 'short'}>{c.freeBuilder ? '✓ A builder is free' : '✗ Your builders are busy'}</li>
-              <li className="ok">⏳ Build time {formatMinutes(c.def.minutes)}</li>
+              <li className="ok">⏳ Build time {c.minutes ? formatMinutes(c.minutes) : 'instant'}</li>
             </ul>
             <div className="hp-sheet-btns">
               {c.missingCoins === 0 ? (

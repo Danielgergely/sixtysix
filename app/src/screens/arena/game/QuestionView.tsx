@@ -53,6 +53,17 @@ export interface QuestionViewProps {
   answerCount?: number
   playerCount?: number
   onAnswer?: (index: number) => void
+  // ── Scholar gifts (Bible Blitz only; the arena never passes these) ──
+  /** Gift buttons, shown above the hand while you can still answer. */
+  giftBar?: ReactNode
+  /** Cards taken out of the hand (50/50, a retried wrong answer). */
+  removed?: number[]
+  /** Lamp to my feet: the reference, shown under the question. */
+  hint?: string | null
+  /** Ask the elders: who has voted for each card so far. */
+  votes?: Record<number, Array<{ id: string; avatar: string; name: string }>>
+  /** Double portion is on for this question. */
+  doubled?: boolean
 }
 
 /** Faces in the room: lit with a ✓ once answered, so you can see who's still thinking. */
@@ -136,6 +147,11 @@ export function QuestionView(props: QuestionViewProps) {
             </div>
           )}
           {props.badge}
+          {props.doubled && (
+            <motion.div className="empire-purse score gift-x2" title="Double portion" initial={{ scale: 0 }} animate={{ scale: 1 }}>
+              ×2
+            </motion.div>
+          )}
           {props.coins !== undefined && (
             <div className="empire-purse score" title="Coins this game — yours when you finish">
               <PaintedCoin size={18} />
@@ -156,6 +172,11 @@ export function QuestionView(props: QuestionViewProps) {
           >
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
               <div className="empire-q">{text}</div>
+              {props.hint && !revealed && (
+                <motion.div className="gift-hint" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
+                  🪔 Look in <b>{props.hint}</b>
+                </motion.div>
+              )}
               <AnimatePresence>
                 {revealed && (
                   <motion.div className="empire-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
@@ -173,7 +194,8 @@ export function QuestionView(props: QuestionViewProps) {
           <div
             className="eh-wax"
             style={{
-              transform: `scaleX(${phase === 'question' ? Math.min(1, (remaining * 1000) / QUESTION_TIME_MS) : phase === 'reading' ? 1 : 0})`,
+              // durationMs is longer only when a gift added time (an arena rejoin can make it shorter: keep the full scale then).
+              transform: `scaleX(${phase === 'question' ? Math.min(1, (remaining * 1000) / Math.max(QUESTION_TIME_MS, durationMs)) : phase === 'reading' ? 1 : 0})`,
             }}
           />
         </div>
@@ -224,23 +246,38 @@ export function QuestionView(props: QuestionViewProps) {
 
         {isPlayer ? (
           <div className="eh-hand">
-            {answers.map((answer, i) =>
-              myAnswer === i ? null : (
+            {(handOpen || phase === 'reading') && props.giftBar}
+            {answers.map((answer, i) => {
+              if (myAnswer === i) return null
+              // A card taken out by a gift sinks away ("into the sea").
+              const gone = props.removed?.includes(i) ?? false
+              const open = handOpen && !gone
+              const voters = props.votes?.[i] ?? []
+              return (
                 <motion.button
                   key={`${index}-${i}`}
                   className="eh-hand-slot"
                   style={{ originY: 1.15 }}
                   initial={{ y: 320, rotate: 0 }}
-                  animate={{ y: handOpen ? (i === 0 || i === 3 ? 16 : 0) : 300, rotate: FAN[i], opacity: handOpen ? 1 : 0 }}
-                  whileTap={handOpen ? { y: -14 } : undefined}
-                  transition={{ type: 'spring', stiffness: 240, damping: 20, delay: handOpen ? i * 0.07 : 0 }}
-                  disabled={!handOpen}
+                  animate={{ y: open ? (i === 0 || i === 3 ? 16 : 0) : 300, rotate: gone ? FAN[i] * 3 : FAN[i], opacity: open ? 1 : 0 }}
+                  whileTap={open ? { y: -14 } : undefined}
+                  transition={{ type: 'spring', stiffness: 240, damping: 20, delay: open ? i * 0.07 : 0 }}
+                  disabled={!open}
                   onClick={() => onAnswer?.(i)}
                 >
                   <AnswerCard index={i} text={answer} />
+                  {open && voters.length > 0 && (
+                    <span className="gift-votes">
+                      {voters.map((v) => (
+                        <motion.span key={v.id} className="gift-voter" title={v.name} initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                          <PaintedPortrait id={v.avatar} className="gift-voter-pic" />
+                        </motion.span>
+                      ))}
+                    </span>
+                  )}
                 </motion.button>
-              ),
-            )}
+              )
+            })}
           </div>
         ) : (
           <div className="eh-row">
