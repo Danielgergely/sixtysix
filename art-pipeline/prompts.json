@@ -307,6 +307,30 @@
         "out/bg-throne-room-2.png"
       ],
       "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text. A quiet scholar's study corner in the same ancient palace style: an open scroll on a carved wooden lectern lit by a single oil lamp, stacks of scrolls in niches, a window with soft evening light, peaceful and inviting."
+    },
+    {
+      "id": "concept-city-1",
+      "aspect": "1:1",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Isometric game-art view of a single small walled plot in ancient Jerusalem on a hillside (city-builder style like Forge of Empires), same painterly style and warm palette as the attached reference. STAGE 1 — RUINS: a burned, broken section of city wall with fallen stones, charred gates, a collapsed mud-brick house and weeds, a few workers just starting to clear rubble. Hopeful morning light."
+    },
+    {
+      "id": "concept-city-2",
+      "aspect": "1:1",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Isometric game-art view of a single small walled plot in ancient Jerusalem on a hillside (city-builder style like Forge of Empires), same painterly style and warm palette as the attached reference. STAGE 3 — REBUILDING: the same plot with its wall section half rebuilt with fresh cut stone and wooden scaffolding, a restored family house with a flat roof, a stone well, a small olive grove, cedar beams and stone blocks stacked as building material."
+    },
+    {
+      "id": "concept-city-3",
+      "aspect": "1:1",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Isometric game-art view of a single small walled plot in ancient Jerusalem on a hillside (city-builder style like Forge of Empires), same painterly style and warm palette as the attached reference. STAGE 5 — THRIVING: the same plot fully restored and flourishing: a strong gilded wall section with a decorated gate and banner, a fine two-storey house, garden, vineyard, market stall, doves, people celebrating; in the distance, the shining temple on the hill."
     }
   ]
 }

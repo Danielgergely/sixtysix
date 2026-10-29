@@ -1,0 +1,10 @@
+**/node_modules
+app/dist
+art-pipeline
+question-pipeline
+assets
+app/ios
+app/android
+.git
+**/.env*
+*.local

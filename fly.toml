@@ -1,0 +1,20 @@
+# Fly.io — one always-ready machine in Frankfurt (~$2–4/month).
+# Rooms live in memory: keep exactly ONE machine (deploy with --ha=false).
+app = "sixtysix"           # change to your unique app name
+primary_region = "fra"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"   # sleeps when nobody is connected…
+  auto_start_machines = true    # …and wakes on the next visit (~2-3 s)
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "connections"
+    soft_limit = 800
+    hard_limit = 1000
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
