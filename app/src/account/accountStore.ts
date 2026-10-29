@@ -1,0 +1,176 @@
+import { create } from 'zustand'
+import type { Account, AccountResponse } from '@sixtysix/shared'
+import { setOnProfileEdited, useGameStore } from '../game/store'
+import { EMPTY_STATS } from '../game/persistence'
+import { getToken, queueGrant, readOutbox, setOnQueued, setToken, writeOutbox } from './outbox'
+
+/**
+ * Optional account. Signed out ("guest"), progress lives on the device as
+ * before. Signing up uploads the guest progress as the account's start;
+ * signing in to an existing account ADDS the guest progress to it. While
+ * signed in, every reward is also queued for the server (outbox.ts) and the
+ * server's totals win whenever we hear back. Signing out resets the device to
+ * a fresh guest, so nothing is ever counted twice.
+ */
+
+const ACCOUNT_KEY = 'sixtysix.account.v1'
+
+function loadCached(): Account | null {
+  try {
+    return getToken() ? (JSON.parse(localStorage.getItem(ACCOUNT_KEY) ?? 'null') as Account | null) : null
+  } catch {
+    return null
+  }
+}
+
+function cache(account: Account | null): void {
+  try {
+    if (account) localStorage.setItem(ACCOUNT_KEY, JSON.stringify(account))
+    else localStorage.removeItem(ACCOUNT_KEY)
+  } catch {
+    // storage unavailable
+  }
+}
+
+async function api(path: string, body?: unknown): Promise<AccountResponse> {
+  const token = getToken()
+  try {
+    const res = await fetch(`/api/account/${path}`, {
+      method: body === undefined ? 'GET' : 'POST',
+      headers: { ...(body !== undefined && { 'content-type': 'application/json' }), ...(token && { authorization: `Bearer ${token}` }) },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    })
+    if (res.status === 401) return { ok: false, error: 'signed-out' }
+    return (await res.json()) as AccountResponse
+  } catch {
+    return { ok: false, error: 'offline' }
+  }
+}
+
+/** The device's guest progress, as sign-up profile or as a merge grant. */
+function guestProgress() {
+  const { player, stats } = useGameStore.getState()
+  return { name: player.name, avatar: player.avatar, coins: player.coins, xp: player.xp, stats }
+}
+
+interface AccountStore {
+  account: Account | null
+  busy: boolean
+  error: string
+  /** On launch: deliver pending rewards and refresh from the server. */
+  init: () => Promise<void>
+  signup: (username: string, password: string) => Promise<boolean>
+  login: (username: string, password: string) => Promise<boolean>
+  logout: () => Promise<void>
+  /** Send queued rewards (and name/avatar), then adopt the server totals. */
+  sync: () => Promise<void>
+}
+
+export const useAccountStore = create<AccountStore>((set, get) => {
+  const adopt = (account: Account) => {
+    cache(account)
+    set({ account })
+    const { profile } = account
+    useGameStore.getState().adoptProgress({ ...profile, stats: { ...EMPTY_STATS, ...profile.stats } })
+  }
+
+  const signedOut = () => {
+    setToken(null)
+    writeOutbox([])
+    cache(null)
+    set({ account: null })
+  }
+
+  let syncing: Promise<void> | null = null
+  let again = false
+
+  async function runSync(): Promise<void> {
+    do {
+      again = false
+      const grants = readOutbox()
+      const { player } = useGameStore.getState()
+      const res = await api('sync', { grants, name: player.name, avatar: player.avatar })
+      if (!res.ok) {
+        if (res.error === 'signed-out') signedOut()
+        return // offline: the outbox keeps everything for next time
+      }
+      // Drop exactly what was delivered; anything queued meanwhile stays.
+      const sent = new Set(grants.map((g) => g.id))
+      writeOutbox(readOutbox().filter((g) => !sent.has(g.id)))
+      if (readOutbox().length === 0) adopt(res.account)
+      else again = true
+    } while (again)
+  }
+
+  setOnQueued(() => void get().sync())
+  // Name edits fire per keystroke: send once typing settles.
+  let editTimer: ReturnType<typeof setTimeout> | undefined
+  setOnProfileEdited(() => {
+    if (!getToken()) return
+    clearTimeout(editTimer)
+    editTimer = setTimeout(() => void get().sync(), 1500)
+  })
+
+  return {
+    account: loadCached(),
+    busy: false,
+    error: '',
+
+    init: async () => {
+      if (getToken()) await get().sync()
+    },
+
+    sync: () => {
+      if (!getToken()) return Promise.resolve()
+      if (syncing) {
+        again = true
+        return syncing
+      }
+      syncing = runSync().finally(() => (syncing = null))
+      return syncing
+    },
+
+    signup: async (username, password) => {
+      set({ busy: true, error: '' })
+      const res = await api('signup', { username, password, profile: guestProgress() })
+      set({ busy: false })
+      if (!res.ok || !res.token) {
+        set({ error: res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error })
+        return false
+      }
+      setToken(res.token)
+      adopt(res.account)
+      return true
+    },
+
+    login: async (username, password) => {
+      set({ busy: true, error: '' })
+      const res = await api('login', { username, password })
+      if (!res.ok || !res.token) {
+        set({ busy: false, error: res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error })
+        return false
+      }
+      setToken(res.token)
+      // Whatever this device earned as a guest is added to the account.
+      const guest = guestProgress()
+      if (guest.coins || guest.xp || guest.stats.gamesPlayed) {
+        const { currentStreak, ...counters } = guest.stats
+        void currentStreak // a guest streak doesn't override the account's
+        queueGrant({ coins: guest.coins, xp: guest.xp, stats: counters })
+      }
+      adopt(res.account)
+      await get().sync()
+      set({ busy: false })
+      return true
+    },
+
+    logout: async () => {
+      await get().sync() // deliver pending rewards first
+      await api('logout', {})
+      signedOut()
+      // A fresh guest: the progress stays safe in the account.
+      const { player } = useGameStore.getState()
+      useGameStore.getState().adoptProgress({ name: player.name, avatar: player.avatar, coins: 0, xp: 0, stats: EMPTY_STATS })
+    },
+  }
+})

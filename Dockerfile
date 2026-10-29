@@ -12,7 +12,8 @@ RUN npm run build
 
 FROM node:22-slim
 WORKDIR /repo
-ENV NODE_ENV=production PORT=8080
+# Accounts live in SQLite under DATA_DIR: mount a persistent volume there.
+ENV NODE_ENV=production PORT=8080 DATA_DIR=/data
 COPY package.json package-lock.json ./
 COPY app/package.json app/
 COPY server/package.json server/

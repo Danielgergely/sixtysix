@@ -893,3 +893,23 @@
 .gl:not(.wide) .gl-slingers{ top: calc(env(safe-area-inset-top) + 52px + 96px); }
 .wl:not(.wide) .wl-sections{ top: 26%; }
 .wl.finale:not(.wide) .wl-sections, .gl.finale:not(.wide) .gl-giant-wrap{ bottom: calc(env(safe-area-inset-bottom) + 70px); }
+
+/* ---------- Account (screens/AccountPanel.tsx) ---------- */
+.account-why{ margin: 0 0 8px; font: 600 13px/1.4 Georgia, serif; color: #f3e2bb; }
+.account-in{ display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #ffe7a3; font: 700 14px/1.3 'Cinzel', serif; margin-bottom: 8px; }
+.account-out{ margin: 0; width: auto; padding: 8px 14px; }
+.account-unlocks{ list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }
+.account-unlocks li{
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px;
+  background: rgb(29 15 6 / 0.55); border: 1px solid rgb(201 162 74 / 0.5); color: #e9d6a8; opacity: 0.8;
+}
+.account-unlocks li.open{ opacity: 1; border-color: #c9a24a; }
+.account-unlocks strong{ display: block; font: 800 13px/1.2 'Cinzel', serif; color: #ffe7a3; }
+.account-unlocks small{ font: 600 12px/1.3 Georgia, serif; }
+.account-unlock-icon{ font-size: 20px; width: 26px; text-align: center; }
+.account-form{ display: grid; gap: 8px; }
+.account-form .seg-row .seg-btn{ flex: 1; }
+.account-submit{ margin: 2px 0 0; }
+.account-why, .account-in{ color: #4a2a14; }
+.account-in strong{ color: #6b1d0e; }
+.host-config-chips .chip-mode{ flex-basis: 100%; }

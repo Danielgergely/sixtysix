@@ -5,3 +5,5 @@ dist/
 PLAN.md
 ChariotsOfFaith-standalone.html
 .idea/
+data/
+server/data/

@@ -69,6 +69,13 @@ node scripts/compile.mjs       # verified + approved-manual → app/src/question
 - **Practice** (`app/src/practice/practiceStore.ts`, `screens/practice/`): untimed solo mode. It loads the bank and `verses.json` lazily. Missed question ids are saved in `localStorage` (`sixtysix.practiceMissed.v1`); they return later in the session and feed "Review my mistakes".
 - **Arena identity**: the device UUID (`getDeviceId`) is a **secret** sent only on join/rehost. The server gives each player a random public id, and that is the only id broadcast. The client compares against `useArenaStore.myPlayerId`, never against the device id. Socket handlers are wrapped in a try/catch and validate every payload, so a malformed message must never crash the server.
 
+- **Arena modes** (`RoomConfig.mode`): `classic`, `goliath` (the room's points are damage against one giant; the game ends early when he falls) and `wall` (players split into gate teams; a team's wall height is its *average* score). Server logic is in `server/src/modes.ts`. Mode state (`RoomState.goliath` / `teams`) is part of the broadcast room state. The scenes are `app/src/ceremony/Goliath.tsx` and `Wall.tsx`. Finishing coins are added on the server per mode (`finalBonus`) and are included in `LeaderboardEntry.coins` at the podium.
+- **Accounts (optional)**: username + password, using REST under `/api/account` (`server/src/accounts.ts`). The data is SQLite through Node's built-in `node:sqlite`, stored in `DATA_DIR` (default `./data` in dev, `/data` in Docker; it must be a persistent volume). Bearer tokens are stored hashed.
+  - Guests keep everything on the device.
+  - Signed in, every reward is queued as an idempotent `Grant` (`app/src/account/outbox.ts`) and synced. The server's totals then replace the local ones (`useGameStore.adoptProgress`).
+  - Sign-up uploads the guest progress; signing in adds guest progress to the account; signing out resets the device to a fresh guest.
+  - The skill tree and the Jerusalem plot (`docs/skill-tree.md`, `docs/jerusalem-plot.md`) are for signed-in players only.
+
 ## Deployment
 
-See `docs/deploy.md`. The recommended setup is one Fly.io machine (`Dockerfile`, `fly.toml`); deploy with `fly deploy --ha=false`. Rooms live in memory, so it must always be **exactly one instance**.
+See `docs/deploy.md`. The recommended setup is one Fly.io machine (`Dockerfile`, `fly.toml`); deploy with `fly deploy --ha=false`. Rooms live in memory, so it must always be **exactly one instance**, with a persistent volume at `/data` for the accounts database.

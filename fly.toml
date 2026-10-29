@@ -15,6 +15,11 @@ primary_region = "fra"
     soft_limit = 800
     hard_limit = 1000
 
+# Accounts database (SQLite). Create once: fly volumes create sixtysix_data --size 1 --region fra
+[mounts]
+  source = "sixtysix_data"
+  destination = "/data"
+
 [[vm]]
   size = "shared-cpu-1x"
   memory = "512mb"

@@ -6,6 +6,7 @@ import App from './App.tsx'
 import { useGameStore } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
 import { playSfx } from './game/sfx'
+import { useAccountStore } from './account/accountStore'
 
 // One delegated listener gives every button a click sound. Answer buttons
 // are excluded — they have their own (louder) submit sound.
@@ -32,6 +33,10 @@ if (boardMatch) {
   useArenaStore.getState().watchGame(boardMatch[1])
   window.history.replaceState(null, '', '/')
 }
+
+// Signed in: deliver rewards earned offline and pick up the account's totals.
+void useAccountStore.getState().init()
+window.addEventListener('online', () => void useAccountStore.getState().sync())
 
 const root = createRoot(document.getElementById('root')!)
 

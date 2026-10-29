@@ -8,3 +8,5 @@ app/android
 .git
 **/.env*
 *.local
+data
+server/data

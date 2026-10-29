@@ -7,6 +7,7 @@ import fastifyStatic from '@fastify/static'
 import { Server } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/shared'
 import { registerArenaHandlers } from './arena.js'
+import { registerAccountRoutes } from './accounts.js'
 import { roomCount, startRoomGC } from './rooms.js'
 
 const PORT = Number(process.env.PORT ?? 3066)
@@ -16,6 +17,8 @@ const webDist = join(root, '..', '..', 'app', 'dist')
 const app = Fastify({ logger: false })
 
 app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
+
+registerAccountRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
 app.get('/api/server-info', () => ({ lanUrls: lanUrls() }))

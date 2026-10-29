@@ -20,6 +20,7 @@ import { setMuted } from './sfx'
 import type { CharacterId } from './types'
 import { ALL_ANSWERED_BEAT_MS, READING_MS, coinsForAnswer, coinsForPlacement, type YourResult } from '@sixtysix/shared'
 import { bundledBank, loadVerses } from '../questions/provider'
+import { queueGrant } from '../account/outbox'
 import type { Question } from '../questions/types'
 
 export type Screen =
@@ -81,8 +82,14 @@ interface GameStore {
   addCoins: (amount: number, xp?: number) => void
   /** Reveal / standings: move on without waiting. */
   skip: () => void
+  /** Replace the saved progress (signing in / out of an account). */
+  adoptProgress: (p: { name: string; avatar: string; coins: number; xp: number; stats: PlayerStats }) => void
 }
 
+
+/** Set by the account store: push name/avatar edits to the account. */
+let onProfileEdited: (() => void) | null = null
+export const setOnProfileEdited = (fn: () => void) => (onProfileEdited = fn)
 
 const initialSettings = loadSettings()
 setMuted(initialSettings.muted)
@@ -266,6 +273,20 @@ export const useGameStore = create<GameStore>((set, get) => {
       bestStreak: Math.max(stats.bestStreak, currentStreak),
     }
     saveStats(newStats)
+    queueGrant({
+      coins: get().raceCoins + bonus,
+      xp: player?.score ?? 0,
+      stats: {
+        gamesPlayed: 1,
+        firstPlace: rank === 0 ? 1 : 0,
+        secondPlace: rank === 1 ? 1 : 0,
+        thirdPlace: rank === 2 ? 1 : 0,
+        questionsAnswered: answered,
+        questionsCorrect: correct,
+        bestScore: player?.score ?? 0,
+        currentStreak,
+      },
+    })
     set({ screen: 'podium', player: updated, stats: newStats, raceCoins: get().raceCoins + bonus })
   }
 
@@ -349,12 +370,21 @@ export const useGameStore = create<GameStore>((set, get) => {
       const player = { ...prev, coins: prev.coins + amount, xp: prev.xp + xp, level: levelForXp(prev.xp + xp) }
       savePlayer(player)
       set({ player })
+      queueGrant({ coins: amount, xp })
     },
 
     updateProfile: (patch) => {
       const player = { ...get().player, ...patch }
       savePlayer(player)
       set({ player })
+      onProfileEdited?.()
+    },
+
+    adoptProgress: ({ name, avatar, coins, xp, stats }) => {
+      const player = { ...get().player, name, avatar: avatar as CharacterId, coins, xp, level: levelForXp(xp) }
+      savePlayer(player)
+      saveStats(stats)
+      set({ player, stats })
     },
   }
 })

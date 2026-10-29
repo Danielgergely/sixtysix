@@ -2,6 +2,7 @@ import { useGameStore } from '../game/store'
 import { CHARACTERS } from '@sixtysix/shared'
 import { Avatar } from '../avatars/Avatar'
 import { characterName } from '../art/characters'
+import { AccountPanel } from './AccountPanel'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
 
@@ -38,6 +39,8 @@ export function ProfileScreen() {
           <h2 className="topbar-heading">Profile</h2>
           <span className="topbar-spacer" />
         </header>
+
+      <AccountPanel />
 
       <div className="profile-section">
         <label className="profile-label" htmlFor="player-name">

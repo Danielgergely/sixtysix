@@ -33,8 +33,10 @@ What you need:
 4. **Deploy when no game is running.** A redeploy restarts the process and
    ends any game in progress (rooms are in memory). Turn on auto-deploy on
    push only if you're fine with that.
-5. **Later, for accounts:** add a persistent storage volume mounted at `/data`
-   for the SQLite file, and include it in Coolify's backups.
+5. **Persistent storage for accounts (required).** Accounts live in an SQLite
+   file in `/data` (`DATA_DIR`). In Coolify, add a **persistent storage volume
+   mounted at `/data`** and include it in backups. Without the volume, every
+   redeploy deletes all accounts.
 
 Cost: nothing extra if the VPS has around 250 MB RAM to spare. Check with
 `docker stats` on the server. Everything below stays valid as a fallback.
@@ -58,6 +60,7 @@ fly auth signup            # or: fly auth login (needs a card; no free tier)
 cd ~/git/66
 # pick a unique name and put it in fly.toml → app = "..."
 fly launch --no-deploy --copy-config --ha=false
+fly volumes create sixtysix_data --size 1 --region fra   # accounts DB (~$0.15/mo)
 fly deploy --ha=false      # builds the Dockerfile remotely; no local Docker needed
 fly scale count 1          # make sure it's ONE machine (rooms are in memory)
 fly open                   # → https://<name>.fly.dev
