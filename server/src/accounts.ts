@@ -15,6 +15,7 @@ import {
   type Grant,
 } from '@sixtysix/shared'
 import { cleanAvatar, cleanName } from './rooms.js'
+import { houseLevels, publicLevels } from './plot.js'
 
 /**
  * Optional accounts: username + password, sessions as bearer tokens, progress
@@ -24,7 +25,7 @@ import { cleanAvatar, cleanName } from './rooms.js'
 
 const DATA_DIR = process.env.DATA_DIR ?? join(process.cwd(), 'data')
 mkdirSync(DATA_DIR, { recursive: true })
-const db = new DatabaseSync(join(DATA_DIR, 'sixtysix.db'))
+export const db = new DatabaseSync(join(DATA_DIR, 'sixtysix.db'))
 db.exec(`
   PRAGMA journal_mode = WAL;
   CREATE TABLE IF NOT EXISTS users (
@@ -45,6 +46,12 @@ db.exec(`
     at INTEGER NOT NULL,
     PRIMARY KEY (user_id, id)
   );
+  -- My Home in Jerusalem: one JSON PlotState per user (server/src/plot.ts).
+  CREATE TABLE IF NOT EXISTS plots (
+    user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    state TEXT NOT NULL,
+    created_at INTEGER NOT NULL
+  );
 `)
 
 // v2: grants remember their XP, for the weekly leaderboard.
@@ -54,7 +61,7 @@ try {
   // column exists
 }
 
-interface UserRow {
+export interface UserRow {
   id: number
   username: string
   pass_hash: string
@@ -100,7 +107,7 @@ function newSession(userId: number): string {
   return token
 }
 
-function userFromRequest(req: FastifyRequest): UserRow | undefined {
+export function userFromRequest(req: FastifyRequest): UserRow | undefined {
   const auth = req.headers.authorization
   if (!auth?.startsWith('Bearer ')) return undefined
   return db
@@ -142,13 +149,13 @@ function applyGrant(profile: AccountProfile, g: Grant): void {
   profile.stats.bestStreak = Math.max(profile.stats.bestStreak, profile.stats.currentStreak)
 }
 
-function toAccount(row: UserRow): Account {
+export function toAccount(row: UserRow): Account {
   const profile = JSON.parse(row.profile) as AccountProfile
   profile.stats = { ...EMPTY_STATS, ...profile.stats }
   return { username: row.username, createdAt: row.created_at, profile }
 }
 
-const saveProfile = (id: number, profile: AccountProfile) =>
+export const saveProfile = (id: number, profile: AccountProfile) =>
   db.prepare('UPDATE users SET profile = ? WHERE id = ?').run(JSON.stringify(profile), id)
 
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
@@ -273,8 +280,9 @@ export function registerPublicRoutes(app: FastifyInstance): void {
 
   /** Everyone with a home in Jerusalem, in the order they arrived (= plot number). */
   app.get('/api/city', () => {
-    const rows = db.prepare('SELECT username, profile, created_at FROM users ORDER BY id LIMIT 1000').all() as unknown as PublicRow[]
-    return { ok: true, residents: rows.map((r, i) => ({ ...publicPlayer(r), plot: i + 1 })) }
+    const rows = db.prepare('SELECT id, username, profile, created_at FROM users ORDER BY id LIMIT 1000').all() as unknown as (PublicRow & { id: number })[]
+    const houses = houseLevels()
+    return { ok: true, residents: rows.map((r, i) => ({ ...publicPlayer(r), plot: i + 1, house: houses.get(r.id) ?? 1 })) }
   })
 
   app.get('/api/players/:username', (req, reply) => {
@@ -285,6 +293,10 @@ export function registerPublicRoutes(app: FastifyInstance): void {
     if (!row) return reply.code(404).send({ ok: false, error: 'No such player' })
     const plot = (db.prepare('SELECT COUNT(*) AS n FROM users WHERE id <= ?').get(row.id) as { n: number }).n
     const profile = JSON.parse(row.profile) as AccountProfile
-    return { ok: true, player: { ...publicPlayer(row), plot, stats: { ...EMPTY_STATS, ...profile.stats } } }
+    const levels = publicLevels(row.id)
+    return {
+      ok: true,
+      player: { ...publicPlayer(row), plot, house: levels?.house ?? 1, levels, stats: { ...EMPTY_STATS, ...profile.stats } },
+    }
   })
 }
