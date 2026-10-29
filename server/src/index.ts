@@ -8,6 +8,7 @@ import { Server } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/shared'
 import { registerArenaHandlers } from './arena.js'
 import { registerAccountRoutes, registerPublicRoutes } from './accounts.js'
+import { GOOGLE_CLIENT_ID, registerGoogleRoutes } from './google.js'
 import { registerPlotRoutes } from './plot.js'
 import { roomCount, startRoomGC } from './rooms.js'
 
@@ -21,10 +22,11 @@ app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
 
 registerAccountRoutes(app)
 registerPublicRoutes(app)
+registerGoogleRoutes(app)
 registerPlotRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
-app.get('/api/server-info', () => ({ lanUrls: lanUrls() }))
+app.get('/api/server-info', () => ({ lanUrls: lanUrls(), googleClientId: GOOGLE_CLIENT_ID || null }))
 
 function lanUrls(): string[] {
   const urls: string[] = []

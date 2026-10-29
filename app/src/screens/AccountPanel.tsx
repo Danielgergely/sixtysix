@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { MIN_PASSWORD, USERNAME_RE } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
+import { GoogleButton } from '../account/GoogleButton'
 import { useGameStore, type Screen } from '../game/store'
 
 /** What an account unlocks; guests see these locked. `open` = where it lives once unlocked. */
@@ -114,6 +115,7 @@ export function AccountPanel() {
           <button className="btn-play account-submit" type="submit" disabled={!valid || busy}>
             {busy ? '…' : mode === 'signup' ? 'Create account' : 'Sign in'}
           </button>
+          <GoogleButton />
           <p className="arena-hint">
             {mode === 'signup'
               ? 'Your progress so far on this device becomes your account’s start.'

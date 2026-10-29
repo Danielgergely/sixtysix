@@ -205,3 +205,35 @@ Measured on the 2026-10-29 build:
 - To check locally:
   `docker build -t sixtysix . && docker run -p 8080:8080 sixtysix`, then open
   http://localhost:8080.
+
+## Sign in with Google (optional, ~10 minutes)
+
+The code is ready; it switches on when the server has a `GOOGLE_CLIENT_ID`.
+
+1. Open [Google Cloud Console](https://console.cloud.google.com/) and create a
+   project (for example "66").
+2. Go to **APIs & Services → OAuth consent screen**:
+   - User type: **External**
+   - App name: "66", with your support email
+   - Publish it (no sensitive scopes are used: only email and profile).
+3. Go to **APIs & Services → Credentials → Create credentials → OAuth client ID**:
+   - Type: **Web application**
+   - **Authorised JavaScript origins:** `https://66.broscafe.hu` (and
+     `http://localhost:5173` for local testing)
+   - No redirect URIs are needed.
+4. In Coolify, open the app, then **Environment Variables**, and add
+   `GOOGLE_CLIENT_ID=<the client id>`. Redeploy.
+
+How it behaves:
+
+- A "Continue with Google" button appears under the sign-in form.
+- **First use** creates an account from the device's guest progress (capped
+  like a normal sign-up). The username comes from the email, for example
+  `dani.g`.
+- **Later uses** sign in to that account. Guest progress on the device is
+  added, as with a normal sign-in.
+- The ID token is verified with Google's `tokeninfo` endpoint: our client ID,
+  Google as issuer, not expired, verified email.
+- **Not built yet:** "Sign in with Apple" (needs a Services ID and key from
+  the Apple developer account), and email login links (needs a mail-sending
+  API key, for example Resend).

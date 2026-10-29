@@ -103,7 +103,7 @@ const MAX_GRANTS_PER_SYNC = 200
 
 // ── passwords & tokens ────────────────────────────────────────────────
 
-function hashPassword(password: string): string {
+export function hashPassword(password: string): string {
   const salt = randomBytes(16)
   return `scrypt$${salt.toString('hex')}$${scryptSync(password, salt, 32).toString('hex')}`
 }
@@ -116,7 +116,7 @@ function checkPassword(password: string, stored: string): boolean {
 
 const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
 
-function newSession(userId: number): string {
+export function newSession(userId: number): string {
   const token = randomBytes(32).toString('base64url')
   db.prepare('INSERT INTO sessions (token_hash, user_id, created_at) VALUES (?, ?, ?)').run(sha256(token), userId, Date.now())
   return token
@@ -143,7 +143,7 @@ function cleanStats(raw: unknown): AccountStats {
 }
 
 /** Starting profile from the device's guest progress (sign-up). */
-function cleanProfile(raw: unknown): AccountProfile {
+export function cleanProfile(raw: unknown): AccountProfile {
   const p = (raw ?? {}) as Record<string, unknown>
   return {
     name: cleanName(p.name),

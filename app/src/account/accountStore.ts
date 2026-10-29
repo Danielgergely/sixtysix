@@ -73,6 +73,8 @@ interface AccountStore {
   init: () => Promise<void>
   signup: (username: string, password: string) => Promise<boolean>
   login: (username: string, password: string) => Promise<boolean>
+  /** Sign in with a Google ID token (button in AccountPanel; needs GOOGLE_CLIENT_ID on the server). */
+  googleSignIn: (credential: string) => Promise<boolean>
   logout: () => Promise<void>
   /** Send queued rewards (and name/avatar), then adopt the server totals. */
   sync: () => Promise<void>
@@ -114,6 +116,27 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       if (readOutbox().length === 0) adopt(res.account)
       else again = true
     } while (again)
+  }
+
+  /** After a successful sign-in reply: store the session, merge guest progress if asked, adopt the account. */
+  async function signedIn(res: AccountResponse, mergeGuest: boolean): Promise<boolean> {
+    if (!res.ok || !res.token) {
+      const error = res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error === 'signed-out' ? 'Sign-in failed' : res.error
+      set({ busy: false, error })
+      return false
+    }
+    setToken(res.token)
+    // Whatever this device earned as a guest is added to an existing account.
+    const guest = guestProgress()
+    if (mergeGuest && (guest.coins || guest.xp || guest.stats.gamesPlayed)) {
+      const { currentStreak, ...counters } = guest.stats
+      void currentStreak // a guest streak doesn't override the account's
+      queueGrant({ coins: guest.coins, xp: guest.xp, stats: counters })
+    }
+    adopt(res.account)
+    await get().sync()
+    set({ busy: false })
+    return true
   }
 
   setOnQueued(() => void get().sync())
@@ -159,23 +182,14 @@ export const useAccountStore = create<AccountStore>((set, get) => {
 
     login: async (username, password) => {
       set({ busy: true, error: '' })
-      const res = await api('login', { username, password })
-      if (!res.ok || !res.token) {
-        set({ busy: false, error: res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error })
-        return false
-      }
-      setToken(res.token)
-      // Whatever this device earned as a guest is added to the account.
-      const guest = guestProgress()
-      if (guest.coins || guest.xp || guest.stats.gamesPlayed) {
-        const { currentStreak, ...counters } = guest.stats
-        void currentStreak // a guest streak doesn't override the account's
-        queueGrant({ coins: guest.coins, xp: guest.xp, stats: counters })
-      }
-      adopt(res.account)
-      await get().sync()
-      set({ busy: false })
-      return true
+      return signedIn(await api('login', { username, password }), true)
+    },
+
+    googleSignIn: async (credential) => {
+      set({ busy: true, error: '' })
+      const res = await api('google', { credential, profile: guestProgress() })
+      // A brand-new Google account already started from the guest progress.
+      return signedIn(res, !(res.ok && (res as { created?: boolean }).created))
     },
 
     logout: async () => {
