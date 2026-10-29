@@ -15,6 +15,7 @@ export function AccountPanel() {
   const [mode, setMode] = useState<'login' | 'signup'>('signup')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const valid = USERNAME_RE.test(username.trim()) && password.length >= MIN_PASSWORD
 
   const submit = async () => {
@@ -77,14 +78,31 @@ export function AccountPanel() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <input
-            className="profile-name-input"
-            type="password"
-            placeholder={mode === 'signup' ? `Password (at least ${MIN_PASSWORD} characters)` : 'Password'}
-            autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="pw-field">
+            <input
+              className="profile-name-input"
+              type={showPassword ? 'text' : 'password'}
+              placeholder={mode === 'signup' ? `Password (at least ${MIN_PASSWORD} characters)` : 'Password'}
+              autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+              autoCapitalize="off"
+              spellCheck={false}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="pw-eye"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              title={showPassword ? 'Hide password' : 'Show password'}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+                <circle cx="12" cy="12" r="3" />
+                {showPassword && <path d="M4 4l16 16" />}
+              </svg>
+            </button>
+          </div>
           {error && <div className="arena-error">{error}</div>}
           <button className="btn-play account-submit" type="submit" disabled={!valid || busy}>
             {busy ? '…' : mode === 'signup' ? 'Create account' : 'Sign in'}

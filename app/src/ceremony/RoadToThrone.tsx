@@ -42,8 +42,11 @@ type Geometry = (typeof GEOMETRY)[keyof typeof GEOMETRY]
 const SHOWN = 6
 /** Chariots gallop, then the order settles and badges/banners appear. */
 const SETTLE_MS = 3000
-/** Roughly the points of one average correct answer — sets how far "one question behind" looks. */
-const POINTS_PER_QUESTION = 700
+/**
+ * A strong player's points per question. Height = score / (questions × this),
+ * so a chariot moves only when its own player scores.
+ */
+const LEADER_POINTS_PER_QUESTION = 800
 
 interface Placed {
   x: number // % of stage width
@@ -52,13 +55,15 @@ interface Placed {
 }
 
 /**
- * Progress 0..1: the leader sits at "questions played" (or at score / goal in a
- * first-to-N race), the rest by gap (exaggerated so gaps read).
+ * Progress 0..1 from the player's OWN points only, never from questions played:
+ * a round where nobody scores moves nobody. Track length is the goal (first-to-N
+ * race) or total × LEADER_POINTS_PER_QUESTION; if the leader would pass the
+ * throne, everyone is scaled down together.
  */
-function progressFor(score: number, leaderScore: number, played: number, total: number, goal?: number) {
-  const leaderT = Math.min(0.94, goal ? leaderScore / goal : played / total)
-  const questionsBehind = (leaderScore - score) / POINTS_PER_QUESTION
-  return Math.max(0, leaderT - (questionsBehind / total) * 2.2)
+function progressFor(score: number, leaderScore: number, total: number, goal?: number) {
+  const length = goal ?? total * LEADER_POINTS_PER_QUESTION
+  const fit = Math.min(1, 0.94 / Math.max(leaderScore / length, 1e-9))
+  return (score / length) * fit
 }
 
 /**
@@ -66,12 +71,12 @@ function progressFor(score: number, leaderScore: number, played: number, total: 
  * keep at least `g.gap`% apart so the order always reads; the whole pack then
  * shifts up if it would spill past the start line. Close pairs step sideways.
  */
-function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, played: number, total: number, goal?: number): Map<string, Placed> {
+function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, total: number, goal?: number): Map<string, Placed> {
   const sorted = [...entries].sort((a, b) => b[key] - a[key]).slice(0, SHOWN + 2)
   const leader = sorted[0]?.[key] ?? 0
   const ys: number[] = []
   for (const r of sorted) {
-    const real = g.startY + (g.finishY - g.startY) * progressFor(r[key], leader, played, total, goal)
+    const real = g.startY + (g.finishY - g.startY) * progressFor(r[key], leader, total, goal)
     ys.push(ys.length ? Math.max(real, ys[ys.length - 1] + g.gap) : real)
   }
   const lastShown = ys[Math.min(SHOWN, ys.length) - 1] ?? g.startY
@@ -111,8 +116,8 @@ interface Props {
 
 export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
   const g = wide ? GEOMETRY.wide : GEOMETRY.phone
-  const before = useMemo(() => layout(entries, 'before', g, Math.max(0, played - 1), total, goal), [entries, g, played, total, goal])
-  const after = useMemo(() => layout(entries, 'after', g, played, total, goal), [entries, g, played, total, goal])
+  const before = useMemo(() => layout(entries, 'before', g, total, goal), [entries, g, total, goal])
+  const after = useMemo(() => layout(entries, 'after', g, total, goal), [entries, g, total, goal])
   const [settled, setSettled] = useState(false)
   useEffect(() => {
     const id = setTimeout(() => setSettled(true), SETTLE_MS)
