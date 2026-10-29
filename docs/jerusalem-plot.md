@@ -10,8 +10,29 @@ step, "Buy missing", and the Workers' scroll (−5 min). The server owns it all
 (`server/src/plot.ts`). Accounts are required to build; the city and player
 pages show real levels. Painted art: a few stages per building.
 
-**Not built yet:** courtyard decorations, extra land and the Quarry, a
-friend's helping hand, skill-tree effects, the "casting lots" animation,
+**Built (city map and plot scene, `app/src/world/`):**
+- The Jerusalem tab is a painted map inside the city wall that you drag,
+  pinch or wheel-zoom, from the whole city to a close-up. It opens on your own
+  lot (the Temple for guests); "📍" flies back home. A search field finds a
+  family by name or @username, flies to their lot and offers "Visit".
+- Landmarks: the **Temple** on its mount (card: the shared Temple, coming
+  soon, 1 Kgs 6), the **Market** (opens the Market), the **governor's house**
+  (Nehemiah's notice board: families, stone houses, this week's top players,
+  finest houses, newest families, link to the Leaderboard), the **Sheep Gate**
+  (Neh 3:1, "Back to the quiz") and the **Pool of Siloam** (John 9:7).
+- Every account has a lot by plot number (§2), filled outwards from the
+  Temple: inside the wall first, then new quarters outside it (about 450 lots
+  fit the painting; after that, numbers wrap). The next six lots read "Free
+  land" (guests: "Create an account to get a plot"). Tapping your lot opens My
+  Home; anyone else's opens a read-only view of their plot.
+- A few townsfolk walk the streets (CSS, hidden for reduced motion and when
+  zoomed far out). The old residents grid is still there behind "☰ List".
+- My Home is a scene: the nine building sprites stand on a painted yard, ringed
+  by hedge, fence or stone wall by wall level; drag and zoom a little, tap a
+  building for its sheet. Ribbons, timers and the header stay as before.
+
+**Not built yet:** courtyard decorations, extra land and the Quarry, the
+group Temple, neighbouring plots for friends, a friend's helping hand, skill-tree effects, the "casting lots" animation,
 milestone rewards (§8.6) and per-level verses beyond one per building.
 Prices are balanced with `docs/balance/plotsim.py`. Change the tables there and
 here together.
@@ -293,11 +314,13 @@ Day each house level is reached (greedy player, collects 1–2× a day):
 ## 10. Art needed
 
 *Done so far: 21 isometric building sprites (`app/public/art/plot-*.webp`):
-house ×5, well ×3, two stages each for the other buildings, and the courtyard.
-Still to make: a plot background, material icons and decorations.*
+house ×5, well ×3, two stages each for the other buildings, and the courtyard;
+the plot ground (`plot-ground.webp`), the city map (`city-map.webp`) and five
+landmarks plus a free lot (`land-*.webp`). Still to make: material icons and
+decorations.*
 
 - **House:** 7 levels.
 - **Other buildings:** 6 × 5 levels + kiln 4 = 34.
 - **Plot and items:** a plot background, 7 material icons and about 10 decorations.
-- **Total:** about **60 images, roughly $2–3** with candidates. About $6.80 of
-  the $10 budget is left.
+- **Total:** about **60 images, roughly $2–3** with candidates. The ledger (`art-pipeline/usage.json`) stands at $4.78 of the $9.50 cap.
+

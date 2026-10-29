@@ -570,6 +570,76 @@
         "refs/style-d.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A pleasant courtyard corner: a date palm and a fig tree, a stone bench, a bronze oil lamp stand and a woven rug, flower pots."
+    },
+    {
+      "id": "city-map",
+      "aspect": "1:1",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Painted top-down game map (city-builder style, seen from high above at a slight isometric tilt) of the GROUND of ancient Jerusalem on its hills, as an empty board for placing buildings later. A thick golden-limestone city wall with square towers runs in a rough oval all around the edge, with three arched gates. Inside the wall: warm sandy earth, a few winding pale dirt streets, scattered patches of green grass, a few olive trees and cypresses along the edges, and lots of EMPTY open ground. In the exact centre a large raised rectangular stone platform (the Temple Mount), its top an empty paved plaza. Outside the wall: green-brown valleys and terraced hillsides with olive groves. Absolutely NO houses or buildings inside the wall, just open ground, streets and trees. Even, soft daylight, no strong cast shadows."
+    },
+    {
+      "id": "plot-ground",
+      "aspect": "1:1",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Painted isometric game background (Forge of Empires style) of an EMPTY family homestead plot in ancient Jerusalem, seen from above at a classic 3/4 isometric angle: one large diamond-shaped yard of warm packed sandy earth filling most of the image, crossed by a couple of pale stone-and-dirt footpaths that meet in the middle, a few tufts of grass and small stones, a little bare patch of tilled soil in one corner. Around the diamond-shaped yard, soft green grass and a few small bushes fill the corners of the image. No buildings, no fence, no people, no animals: just the empty ground, ready to place buildings on. Even, soft daylight."
+    },
+    {
+      "id": "land-temple",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE landmark building of ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth or paving. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Solomon's Temple (1 Kgs 6) on its paved platform: a tall rectangular pale limestone sanctuary with a gilded roof edge, a grand porch with two great bronze pillars (Jachin and Boaz), a bronze altar and the bronze Sea on bulls in the courtyard before it, cedar doors, a soft golden glow."
+    },
+    {
+      "id": "land-market",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE landmark building of ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth or paving. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A busy ancient market square: several colourful striped cloth awnings over wooden stalls with baskets of grain, figs, pomegranates, clay jars of oil, bolts of wool, stacked bricks and timber, a merchant's balance scale, a donkey with packs. Cheerful and lively, no readable signs."
+    },
+    {
+      "id": "land-governor",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE landmark building of ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth or paving. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. The governor's house of Nehemiah: a dignified two-storey cut-stone official residence with a columned porch, a crimson banner, a wide stone stair, and a wooden notice board on posts by the door with pinned parchment scrolls."
+    },
+    {
+      "id": "land-gate",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE landmark building of ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth or paving. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. The Sheep Gate of Jerusalem (Neh 3:1): a massive arched city gate in a short section of crenellated golden-limestone city wall, two square towers flanking it, heavy open wooden doors with bronze studs, a few sheep walking through."
+    },
+    {
+      "id": "land-pool",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE landmark building of ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth or paving. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. The Pool of Siloam: a rectangular stepped stone pool with clear turquoise water, wide stone steps leading down into it on all sides, a few palm trees and a water channel flowing in."
+    },
+    {
+      "id": "land-free",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): an EMPTY building plot in ancient Jerusalem, seen from above at a classic 3/4 isometric angle: a flat diamond-shaped patch of cleared sandy earth marked out at its four corners with small wooden stakes joined by a rope, a few stones and tufts of grass. Centred, filling about 85% of the frame, nothing else around it."
     }
   ]
 }

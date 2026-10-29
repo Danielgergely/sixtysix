@@ -20,6 +20,7 @@ import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { HomeScreen } from './screens/home/HomeScreen'
 import { MarketScreen } from './screens/home/MarketScreen'
+import { VisitScreen } from './screens/VisitScreen'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 
@@ -42,6 +43,7 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   player: PlayerScreen,
   home: HomeScreen,
   market: MarketScreen,
+  visit: VisitScreen,
 }
 
 export default function App() {
@@ -57,7 +59,7 @@ export default function App() {
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.
     <MotionConfig reducedMotion="user">
-      <div className={`app ${wide ? 'app-wide' : ''} ${tabbed ? 'app-tabbed' : ''}`}>
+      <div className={`app ${wide ? 'app-wide' : ''} ${tabbed ? 'app-tabbed' : ''} ${screen === 'jerusalem' ? 'app-city' : ''}`}>
         {tabbed && <TopBar />}
         <AnimatePresence mode="wait" initial={false}>
           <motion.div

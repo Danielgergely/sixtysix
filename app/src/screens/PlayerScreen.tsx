@@ -3,7 +3,7 @@ import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { BUILDING_IDS, BUILDINGS, levelDef } from '@sixtysix/shared'
+import { levelDef } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
@@ -13,6 +13,7 @@ export function PlayerScreen() {
   const username = useGameStore((s) => s.viewingPlayer)
   const lastTab = useGameStore((s) => s.lastTab)
   const goTo = useGameStore((s) => s.goTo)
+  const visitPlot = useGameStore((s) => s.visitPlot)
   const [player, setPlayer] = useState<PlayerPage | null>(null)
   const [failed, setFailed] = useState(false)
 
@@ -49,30 +50,15 @@ export function PlayerScreen() {
               <span className="pl-level">Level {levelForXp(player.xp)} · {player.xp.toLocaleString('en-US')} XP</span>
             </div>
           </div>
-          <div className="jr-home">
+          <button className="jr-home jr-home-btn" onClick={() => visitPlot(player.username)}>
             <img className="jr-home-art" src={artFor('house', player.house)} alt="" />
             <span>
               <strong>Home in Jerusalem · plot {player.plot}</strong>
               <small>
-                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house})
-                {!player.levels && ' — their house will grow here as they build.'}
+                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house}) · visit ›
               </small>
             </span>
-          </div>
-          {player.levels && (
-            <div className="pl-buildings">
-              {BUILDING_IDS.filter((b) => b !== 'house').map((b) => {
-                const lvl = player.levels?.[b] ?? 0
-                return (
-                  <div key={b} className={`pl-building ${lvl ? '' : 'none'}`} title={levelDef(b, lvl)?.name ?? 'Not built yet'}>
-                    <img src={artFor(b, lvl)} alt="" draggable={false} />
-                    <small>{BUILDINGS[b].name}</small>
-                    <b>{lvl ? `Lv ${lvl}` : '—'}</b>
-                  </div>
-                )
-              })}
-            </div>
-          )}
+          </button>
           <div className="pl-stats">
             {[
               ['Games', s.gamesPlayed],

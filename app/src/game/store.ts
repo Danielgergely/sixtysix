@@ -43,6 +43,7 @@ export type Screen =
   | 'player'
   | 'home'
   | 'market'
+  | 'visit'
 
 /** Screens with the bottom tab bar (and the shared top bar). */
 export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const
@@ -62,6 +63,9 @@ interface GameStore {
   /** Username shown on the 'player' screen. */
   viewingPlayer: string | null
   viewPlayer: (username: string) => void
+  /** Walk over to another player's plot ('visit' screen); its back button returns to `visitFrom`. */
+  visitPlot: (username: string) => void
+  visitFrom: Screen
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
@@ -335,6 +339,8 @@ export const useGameStore = create<GameStore>((set, get) => {
     },
 
     viewPlayer: (username) => set({ screen: 'player', viewingPlayer: username }),
+    visitPlot: (username) => set((s) => ({ screen: 'visit', viewingPlayer: username, visitFrom: s.screen === 'player' ? 'player' : s.lastTab })),
+    visitFrom: 'jerusalem',
 
     findMatch: () => {
       clearTimers()

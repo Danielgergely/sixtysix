@@ -1,0 +1,214 @@
+/* ══ Explorable world: PanZoom, the Jerusalem map (world/CityMap), the plot scene (world/PlotScene) ══ */
+
+/* PanZoom: a clipped window; the world inside is dragged and scaled */
+.pz{ position: relative; overflow: hidden; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.pz:active{ cursor: grabbing; }
+.pz-world{ position: absolute; left: 0; top: 0; }
+.pz-inner{ position: absolute; left: 0; top: 0; will-change: transform; }
+.pz-zoom{ position: absolute; right: 10px; bottom: 10px; z-index: 5; display: flex; flex-direction: column; gap: 6px; }
+.pz-zoom button{
+  width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+  background: rgb(29 15 6 / 0.85); border: 2px solid #e3b754; color: #ffe7a3; font: 900 22px/1 'Cinzel', serif;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 0.45);
+}
+.pz-zoom button:disabled{ opacity: 0.4; }
+.pz-zoom button:not(:disabled):active{ translate: 0 1px; }
+
+/* ── The city map fills the Jerusalem tab ── */
+.tab-screen.jr-map{ padding: 0; overflow: hidden; }
+.tab-screen.jr-map > .pz{ position: absolute; inset: 0; z-index: 1; background: #6d7a3c; }
+.tab-screen.jr-map > .tab-note{ margin-top: 40vh; }
+.cm-ground{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.tab-screen.jr-map > .cm-loading{ position: absolute; inset: 0; display: grid; place-items: center; }
+
+/* Top bar over the map: search + tools */
+.cm-top{ position: absolute; top: 10px; left: 10px; right: 10px; z-index: 6; display: flex; gap: 8px; align-items: flex-start; pointer-events: none; }
+.cm-top > *{ pointer-events: auto; }
+.cm-tools{ display: flex; gap: 6px; flex-shrink: 0; }
+.cm-chip{
+  display: inline-flex; align-items: center; gap: 4px; height: 38px; padding: 0 12px; border-radius: 999px; background: rgb(29 15 6 / 0.88); border: 2px solid #e3b754; color: #ffe7a3;
+  font: 800 12px/1 'Cinzel', serif; white-space: nowrap; box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+}
+.cm-chip.gold{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-weight: 900; }
+@media (max-width: 420px){ .cm-tools .cm-chip span{ display: none; } .cm-tools .cm-chip{ padding: 0 11px; font-size: 15px; } }
+.cm-search{ position: relative; flex: 1; min-width: 0; }
+.cm-search input{
+  width: 100%; height: 38px; padding: 0 12px 0 34px; border-radius: 999px; border: 2px solid #e3b754; outline: none;
+  background: rgb(29 15 6 / 0.88) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='6.5' cy='6.5' r='5' fill='none' stroke='%23ffd36b' stroke-width='2'/%3E%3Cpath d='M10.5 10.5 15 15' stroke='%23ffd36b' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") 12px 50% no-repeat;
+  color: #ffe7a3; font: 700 14px/1 'Cinzel', serif; box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); -webkit-user-select: text; user-select: text;
+}
+.cm-search input::placeholder{ color: #c9a970; font-weight: 600; }
+.cm-search input:focus{ border-color: #ffe08a; box-shadow: 0 0 0 3px rgb(255 214 100 / 0.3), 0 3px 10px rgb(0 0 0 / 0.5); }
+.cm-search input::-webkit-search-cancel-button{ filter: sepia(1) saturate(4); }
+.cm-hits{ touch-action: pan-y;
+  position: absolute; top: 44px; left: 0; right: 0; list-style: none; padding: 4px; border-radius: 14px; background-color: #f3e2bb;
+  border: 2px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 12px 28px rgb(0 0 0 / 0.6); max-height: 50vh; overflow-y: auto;
+}
+.cm-hits button{ width: 100%; display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 10px; background: none; border: 0; color: #3b2412; text-align: left; }
+.cm-hits button:active, .cm-hits button:hover{ background: rgb(201 162 74 / 0.3); }
+.cm-hit-text{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.cm-hits strong{ font: 900 14px/1.1 'Cinzel', serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cm-hits small{ font: 600 11px/1.1 Georgia, serif; color: #6b4120; }
+.cm-hits img{ width: 40px; height: 32px; object-fit: contain; }
+.cm-hit-portrait{ width: 30px; height: 30px; flex-shrink: 0; }
+.cm-hits-none{ padding: 8px; font: italic 600 12px/1.3 Georgia, serif; color: #6b4120; text-align: center; }
+
+/* The family you searched for */
+.cm-found{
+  position: absolute; left: 10px; right: 58px; bottom: 12px; z-index: 6; display: flex; align-items: center; gap: 8px; padding: 7px 8px 7px 7px;
+  border-radius: 14px; background-color: #f3e2bb; border: 2px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 10px 24px rgb(0 0 0 / 0.55); color: #3b2412;
+}
+.cm-found-portrait{ width: 40px; height: 40px; flex-shrink: 0; }
+.cm-found-text{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.cm-found-text strong{ font: 900 15px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cm-found-text small{ font: 600 11px/1.2 Georgia, serif; color: #6b4120; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cm-found .cm-chip{ height: 32px; flex-shrink: 0; }
+.cm-found-x{ position: absolute; top: -10px; right: -10px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #1d0f06; border: 2px solid #e3b754; color: #ffe7a3; font-size: 10px; }
+
+/* Landmarks and lots: a zero-size anchor at the foot point (no stacking context of its own), so every
+   sprite sorts by its inline z-index (= its y) and every name tag floats above all sprites. */
+.cm-land, .cm-lot{ position: absolute; width: 0; height: 0; padding: 0; border: 0; background: none; color: inherit; }
+.cm-land img, .cm-lot .cm-house{
+  position: absolute; left: 0; top: 0; translate: -50% -88%; height: auto; display: block; max-width: none;
+}
+/* Sprites don't take taps (their transparent corners would cover the neighbours); an oval over the
+   building's footprint does, sorted by the same z-index. */
+.cm-land img, .cm-lot .cm-house{ pointer-events: none; }
+.cm-hit{ position: absolute; left: 0; top: 0; translate: -50% -92%; border-radius: 45%; }
+/* Shadows only on the few landmarks: a filter on every house would make each zoom step repaint them all. */
+.cm-land img{ filter: drop-shadow(0 6px 5px rgb(0 0 0 / 0.4)); }
+.cm-land:active img, .cm-lot:active .cm-house{ filter: drop-shadow(0 0 10px rgb(255 214 100 / 0.95)) brightness(1.08); }
+@media (hover: hover){ .cm-land:hover img, .cm-lot:hover .cm-house{ filter: drop-shadow(0 0 8px rgb(255 214 100 / 0.85)) brightness(1.06); } }
+.cm-name{
+  position: absolute; left: 0; top: 0; translate: -50% 0; z-index: 9000;
+  display: inline-flex; align-items: center; gap: 0.35em; padding: 0.18em 0.6em 0.18em 0.18em; border-radius: 999px;
+  font: 800 max(11px, calc(11.5px * var(--inv, 1)))/1.15 'Cinzel', serif;
+  background: rgb(29 15 6 / 0.85); border: max(1.5px, calc(1.5px * var(--inv, 1))) solid #c9a24a; color: #ffe7a3;
+  white-space: nowrap; box-shadow: 0 0.2em 0.5em rgb(0 0 0 / 0.45);
+}
+.cm-label{ max-width: 9em; overflow: hidden; text-overflow: ellipsis; }
+.cm-portrait{ width: 1.75em; height: 1.75em; flex-shrink: 0; }
+.cm-name.land{
+  top: 6px; z-index: 9500; padding: 0.25em 0.9em; font: 900 max(13px, calc(14px * var(--inv, 1)))/1.1 'Cinzel Decorative', serif; color: #ffe08a;
+  background: linear-gradient(rgb(70 30 12 / 0.95), rgb(29 15 6 / 0.95)); border-color: #e3b754; letter-spacing: 0.02em;
+}
+.cm-land.temple .cm-name{ font-size: max(15px, calc(16px * var(--inv, 1))); top: -60px; }
+.cm-name.free{ padding: 0.18em 0.7em; background: rgb(243 226 187 / 0.9); border-color: #8a5a2a; color: #5a3412; }
+.cm-lot.me .cm-house{ filter: drop-shadow(0 0 6px #ffe08a) drop-shadow(0 0 14px rgb(255 214 100 / 0.8)); }
+.cm-lot.me .cm-name{ z-index: 9100; background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-weight: 900; }
+.cm-lot.me::before, .cm-lot.found::before{
+  content: ''; position: absolute; left: 0; top: 0; width: 118px; height: 62px; translate: -50% -78%; z-index: 1; border-radius: 50%;
+  border: 3px solid #ffe08a; box-shadow: 0 0 14px 4px rgb(255 214 100 / 0.8), inset 0 0 14px rgb(255 214 100 / 0.7);
+  background: rgb(255 224 138 / 0.25);
+}
+.cm-lot.found::before{ border-color: #ff6a4a; box-shadow: 0 0 14px 4px rgb(255 90 60 / 0.7); }
+.cm-lot.found::before{ animation: cm-ping 1.4s ease-out infinite; }
+.cm-lot.found .cm-name{ z-index: 9200; background: #b3262b; border-color: #ffe08a; color: #fff; }
+@keyframes cm-ping{ 0%{ scale: 0.6; opacity: 1; } 100%{ scale: 1.6; opacity: 0; } }
+.cm-lot.free .cm-house{ opacity: 0.85; filter: none; }
+.cm-lot.free .cm-name{ z-index: 8000; }
+
+/* Behind the painting when zoomed all the way out: the painting itself, blurred and dimmed */
+.cm::before{ content: ''; position: absolute; inset: -30px; background: url('/art/city-map.webp') center / cover; filter: blur(14px) brightness(0.6) saturate(0.9); }
+
+/* Level of detail: names close up; further out only your own (and the one you searched for) */
+.cm.lod-mid .cm-lot:not(.me, .found) .cm-name, .cm.lod-far .cm-lot:not(.me, .found) .cm-name{ display: none; }
+.cm.lod-far .cm-walker{ display: none; }
+
+/* Townsfolk: a tiny robed figure gliding along a street, bobbing as it walks */
+.cm-walker{
+  position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 2; offset-rotate: 0deg; pointer-events: none;
+  animation: cm-walk 30s linear infinite alternate;
+}
+.cm-walker i{
+  position: absolute; left: -7px; top: -26px; width: 14px; height: 20px; border-radius: 7px 7px 4px 4px;
+  background: linear-gradient(var(--scarf) 0 22%, var(--robe) 22%); box-shadow: inset -3px 0 0 rgb(0 0 0 / 0.22), 0 0 0 1.5px #2b1408;
+  animation: cm-bob 0.5s ease-in-out infinite alternate;
+}
+.cm-walker i::before{ content: ''; position: absolute; left: 2.5px; top: -8px; width: 9px; height: 9px; border-radius: 50%; background: #c98b5a; box-shadow: 0 0 0 1.5px #2b1408; }
+.cm-walker::after{ content: ''; position: absolute; left: -7px; top: -3px; width: 14px; height: 5px; border-radius: 50%; background: rgb(0 0 0 / 0.25); }
+@keyframes cm-walk{ from{ offset-distance: 0%; } to{ offset-distance: 100%; } }
+@keyframes cm-bob{ from{ translate: 0 0; } to{ translate: 0 -2px; } }
+@media (prefers-reduced-motion: reduce){ .cm-walker{ display: none; } .cm-lot.found::before{ animation: none; } }
+
+/* List view (the old residents grid) */
+.jr-list-head{ display: flex; align-items: center; justify-content: space-between; margin: 12px 0 8px; }
+.jr-list-head .jr-heading{ margin: 0; }
+.jr .jr-home-btn{ width: 100%; margin-bottom: 10px; }
+
+/* ── City cards ── */
+.cs .hp-sheet-art{ width: 96px; height: 84px; }
+.cs-facts{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.cs-facts span{ display: flex; flex-direction: column; align-items: center; padding: 8px 4px; border-radius: 10px; background: rgb(255 255 255 / 0.4); border: 1px solid #c9a24a; font: 700 10px/1.2 'Cinzel', serif; text-align: center; color: #6b4120; }
+.cs-facts b{ font: 900 20px/1.1 'Cinzel', serif; color: #6b1d0e; }
+.cs-h{ margin: 2px 0 5px; font: 900 11px/1 'Cinzel', serif; letter-spacing: 0.14em; text-transform: uppercase; color: #8a5a10; }
+.cs-list{ list-style: none; display: grid; gap: 4px; }
+.cs-row{
+  width: 100%; display: flex; align-items: center; gap: 8px; padding: 5px 9px 5px 5px; border-radius: 10px; text-align: left;
+  background: rgb(255 255 255 / 0.45); border: 1px solid #c9a24a; color: #3b2412;
+}
+.cs-portrait{ width: 30px; height: 30px; flex-shrink: 0; }
+.cs-name{ flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 900 14px/1.1 'Cinzel', serif; }
+.cs-row small{ font: 700 11px/1 'Cinzel', serif; color: #6b4120; }
+
+/* ── The plot scene (My Home, visiting) ── */
+.ps{
+  height: min(58vh, 420px); margin: 0 -14px; border-top: 3px solid #b88a3a; border-bottom: 3px solid #b88a3a;
+  background: #7d8a45; box-shadow: inset 0 0 30px rgb(0 0 0 / 0.5);
+}
+.ps-ground{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ps-fence{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35)); }
+.ps-spot{
+  position: absolute; translate: -50% -86%; display: flex; flex-direction: column; align-items: center;
+  background: none; border: 0; padding: 0; color: inherit;
+}
+.ps-spot[aria-disabled='true']{ cursor: inherit; }
+.ps-art{ width: 100%; height: auto; display: block; pointer-events: none; }
+.ps-spot:not([aria-disabled='true']):active .ps-art{ filter: drop-shadow(0 0 8px rgb(255 214 100 / 0.95)) brightness(1.08); }
+.ps-spot.empty .ps-art{ filter: grayscale(1) opacity(0.45); }
+.ps-spot.court .ps-art{ filter: saturate(0.6) opacity(0.8); }
+.ps-spot.building .ps-art{ filter: sepia(0.4) brightness(0.9); }
+.ps-spot.empty.building .ps-art{ filter: grayscale(0.6) opacity(0.65); }
+.ps-tag{
+  display: inline-flex; align-items: baseline; gap: 5px; margin-top: -8px; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a; color: #ffe7a3; font: 900 14px/1.1 'Cinzel', serif; box-shadow: 0 2px 5px rgb(0 0 0 / 0.4);
+}
+.ps-tag small{ font: 800 12px/1 'Cinzel', serif; color: #ffd36b; }
+.ps-spot.house .ps-tag{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-size: 16px; }
+.ps-spot.house .ps-tag small{ color: #6b1d0e; }
+.ps-spot.empty .ps-tag{ background: rgb(243 226 187 / 0.85); border-color: #8a5a2a; color: #5a3412; }
+.ps-spot.empty .ps-tag small{ color: #8a5a2a; }
+.ps-build{
+  position: absolute; left: 50%; top: 30%; translate: -50% 0; width: 82%; min-width: 86px; display: flex; flex-direction: column; gap: 3px; align-items: center;
+  padding: 4px 6px; border-radius: 9px; background: rgb(29 15 6 / 0.85); border: 1px solid #e3b754;
+}
+.ps-build small{ font: 900 13px/1 'Cinzel', serif; color: #ffe7a3; font-variant-numeric: tabular-nums; }
+.ps-spot .hp-ribbon{
+  top: 4%; right: auto; left: 50%; width: auto; translate: -50% 0; rotate: 0deg; padding: 3px 10px; border-radius: 999px;
+  border: 2px solid #ffe08a; font-size: 13px; white-space: nowrap;
+}
+
+/* Visiting another player's plot */
+.vs-who{
+  width: 100%; display: flex; align-items: center; gap: 10px; margin: 4px 0 10px; padding: 8px 12px 8px 8px; border-radius: 12px; text-align: left;
+  background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a; color: inherit;
+}
+.vs-portrait{ width: 46px; height: 46px; flex-shrink: 0; }
+.vs-who span:nth-child(2){ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.vs-who strong{ font: 900 16px/1.1 'Cinzel Decorative', serif; color: #ffe08a; }
+.vs-who small{ font: 600 12px/1.3 Georgia, serif; color: #f3e2bb; }
+.vs-go{ font: 800 12px/1 'Cinzel', serif; color: #ffd36b; white-space: nowrap; }
+
+/* Desktop: the city map gets the whole window; the bars and the list view stay a centred column */
+@media (min-width: 700px){
+  .app.app-city{ max-width: none; }
+  .app.app-city > .tb, .app.app-city > .tabbar{ padding-left: max(14px, calc((100% - 480px) / 2)); padding-right: max(14px, calc((100% - 480px) / 2)); }
+  .tab-screen.jr:not(.jr-map) > *:not(.tab-bg){ width: 100%; max-width: 452px; margin-left: auto; margin-right: auto; }
+  .cm-top{ left: 16px; right: auto; width: min(560px, calc(100% - 32px)); }
+  .cm-found{ left: 16px; right: auto; width: 400px; }
+}
+.tab-screen.jr-map > .cm-offline{
+  position: absolute; left: 50%; bottom: 14px; translate: -50% 0; z-index: 6; width: max-content; max-width: calc(100% - 90px);
+  padding: 7px 14px; border-radius: 999px; background: rgb(29 15 6 / 0.88); border: 2px solid #b3262b; color: #ffe7a3; font: italic 600 12px/1.3 Georgia, serif;
+}
