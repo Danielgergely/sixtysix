@@ -7,6 +7,7 @@ import { PARCHMENT } from '../../art/textures'
 import { AnimatedNumber, STAGGER, spring } from '../../motion'
 import { AnswerCard } from '../arena/game/AnswerCard'
 import { CATEGORY_LABELS } from '../arena/categories'
+import { quoteVerse } from '../../questions/quoteVerse'
 
 /** Untimed solo questions: tap a card, see the verse, carry on. */
 export function PracticeScreen() {
@@ -52,7 +53,7 @@ export function PracticeScreen() {
         <AnimatePresence>
           {answered && (
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-              {verse && <>“{verse}” </>}
+              {verse && <>{quoteVerse(verse)} </>}
               <em>— {question.reference}</em>
             </motion.div>
           )}

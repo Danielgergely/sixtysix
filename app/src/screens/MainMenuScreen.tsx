@@ -4,6 +4,7 @@ import { Avatar } from '../avatars/Avatar'
 import { PaintedCoin } from '../art/PaintedPortrait'
 import { STONE } from '../art/textures'
 import { AnimatedNumber, spring } from '../motion'
+import { DAILY_COUNT, today, useDailyStore } from '../daily/dailyStore'
 
 interface Mode {
   id: string
@@ -19,10 +20,21 @@ export function MainMenuScreen() {
   const player = useGameStore((s) => s.player)
   const findMatch = useGameStore((s) => s.findMatch)
   const goTo = useGameStore((s) => s.goTo)
+  const daily = useDailyStore((s) => s.saved)
+  const openDaily = useDailyStore((s) => s.open)
+  const dailyDone = daily.date === today() && daily.picks.length >= DAILY_COUNT
 
   const modes: Mode[] = [
     { id: 'blitz', title: 'Bible Blitz', desc: 'Race three rivals to the throne', art: '/art/banner-blitz.webp', onPlay: findMatch },
     { id: 'arena', title: 'Open Arena', desc: 'Live quiz for your whole group', art: '/art/banner-arena.webp', badge: 'Live', onPlay: () => goTo('arenaMenu') },
+    {
+      id: 'daily',
+      title: 'Daily Scroll',
+      desc: dailyDone ? `Done for today · 🔥 ${daily.streak} day streak` : 'Five questions · same for everyone today',
+      art: '/art/banner-daily.webp',
+      badge: dailyDone ? '✓ Done' : 'Today',
+      onPlay: () => void openDaily(),
+    },
     { id: 'practice', title: 'Practice', desc: 'No clock — learn at your own pace', art: '/art/banner-practice.webp', onPlay: () => goTo('practiceSetup') },
   ]
 

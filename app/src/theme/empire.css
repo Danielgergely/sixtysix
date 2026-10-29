@@ -658,3 +658,18 @@
 .empire-verse { max-height: 20dvh; overflow-y: auto; }
 /* Ultra-wide boards: fit the stage by height instead of cropping top/bottom. */
 .tr.wide .tr-stage, .cr.wide .cr-stage { width: min(100%, calc(100dvh * 1600 / 893)); }
+
+/* ══ Daily Scroll ═════════════════════════════════════════════════════ */
+.daily-bg { background: linear-gradient(rgb(20 8 4 / 0.2), rgb(20 8 4 / 0.75)), url('/art/banner-daily.webp') center / cover; }
+.daily-pips { flex: 1; display: flex; justify-content: center; gap: 8px; }
+.daily-pip { width: 18px; height: 18px; border-radius: 4px; border: 2px solid #e3b754; background: rgb(29 15 6 / 0.6); }
+.daily-pip.now { box-shadow: 0 0 10px #ffd34d; background: #f3e2bb; }
+.daily-pip.ok { background: #3ba23b; }
+.daily-pip.bad { background: #c8232b; }
+.daily-coins { padding: 6px 10px; border-radius: 999px; background: rgb(29 15 6 / 0.75); border: 1px solid #c9a24a; color: #ffe7a3; font: 700 14px/1 'Cinzel', serif; }
+.daily-squares { display: flex; gap: 8px; margin: 6px 0; }
+.daily-squares span { width: 40px; height: 40px; border-radius: 8px; border: 3px solid #1d0f06; box-shadow: 0 3px 0 #1d0f06; }
+.daily-squares .ok { background: linear-gradient(#6fd36f, #2f8d2f); }
+.daily-squares .bad { background: linear-gradient(#ff7a6b, #b8232b); }
+.daily-streak { font: 700 15px/1.2 'Cinzel', serif; color: #6b1d0e; }
+.daily-streak span { font-size: 22px; color: #c45a36; }

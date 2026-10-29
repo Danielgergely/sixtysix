@@ -34,6 +34,7 @@ export type Screen =
   | 'arenaGame'
   | 'practiceSetup'
   | 'practice'
+  | 'daily'
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby

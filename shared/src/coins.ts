@@ -10,6 +10,9 @@ export const STREAK_BONUS_FROM = 3
 /** Practice has no clock or opponents — half rate so it can't be farmed. */
 export const PRACTICE_COINS_PER_CORRECT = 5
 
+/** Daily Scroll: all five right earns a bonus on top of the per-answer coins. */
+export const DAILY_PERFECT_BONUS = 25
+
 /** `streak` counts consecutive correct answers including this one. */
 export function coinsForAnswer(correct: boolean, streak: number): number {
   if (!correct) return 0

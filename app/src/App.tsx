@@ -13,6 +13,7 @@ import { ArenaPlayerLobbyScreen } from './screens/arena/ArenaPlayerLobbyScreen'
 import { ArenaGameScreen } from './screens/arena/ArenaGameScreen'
 import { PracticeSetupScreen } from './screens/practice/PracticeSetupScreen'
 import { PracticeScreen } from './screens/practice/PracticeScreen'
+import { DailyScreen } from './screens/daily/DailyScreen'
 
 const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   menu: MainMenuScreen,
@@ -26,6 +27,7 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   arenaGame: ArenaGameScreen,
   practiceSetup: PracticeSetupScreen,
   practice: PracticeScreen,
+  daily: DailyScreen,
 }
 
 export default function App() {

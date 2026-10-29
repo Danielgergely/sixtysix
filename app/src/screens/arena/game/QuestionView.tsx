@@ -6,6 +6,7 @@ import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
 import { Sparkles } from '../../../art/Sparkles'
 import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
+import { quoteVerse } from '../../../questions/quoteVerse'
 import { PlayerResult } from './PlayerResult'
 
 /** Fan angle per card in the player's hand. */
@@ -108,7 +109,7 @@ export function QuestionView() {
               <AnimatePresence>
                 {revealed && reveal.verse && (
                   <motion.div className="empire-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                    “{reveal.verse}” <em>— {reveal.reference}</em>
+                    {quoteVerse(reveal.verse)} <em>— {reveal.reference}</em>
                   </motion.div>
                 )}
               </AnimatePresence>
