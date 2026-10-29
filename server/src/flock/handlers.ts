@@ -109,7 +109,6 @@ const connectedSecrets = (room: FRoom) => [...room.players].filter(([, p]) => p.
 function startGame(io: FlockIO, room: FRoom): void {
   for (const p of room.players.values()) p.score = 0
   room.round = 0
-  room.wolfQueue = []
   room.result = null
   startRound(io, room)
 }
@@ -117,14 +116,11 @@ function startGame(io: FlockIO, room: FRoom): void {
 function startRound(io: FlockIO, room: FRoom): void {
   room.round++
   const everyone = [...room.players.keys()]
-  // Everyone is the wolf once before anyone is the wolf twice.
-  room.wolfQueue = room.wolfQueue.filter((s) => room.players.get(s)?.connected)
-  if (room.wolfQueue.length === 0) {
-    room.wolfQueue = shuffle(connectedSecrets(room))
-    // Never the same wolf twice in a row across a refill.
-    if (room.wolfQueue.length > 1 && room.wolfQueue[0] === room.wolfSecret) room.wolfQueue.push(room.wolfQueue.shift()!)
-  }
-  room.wolfSecret = room.wolfQueue.shift() ?? everyone[0]
+  // Random each round (never the same wolf twice in a row). A fixed rotation
+  // would let players deduce the wolf by elimination once results reveal it.
+  const candidates = connectedSecrets(room)
+  const wolves = candidates.length > 1 ? candidates.filter((s) => s !== room.wolfSecret) : candidates
+  room.wolfSecret = wolves[Math.floor(Math.random() * wolves.length)] ?? everyone[0]
 
   const category = FLOCK_CATEGORIES[Math.floor(Math.random() * FLOCK_CATEGORIES.length)]
   let pool = WORDS[category].filter((w) => !room.usedWords.has(w.word))
@@ -347,7 +343,6 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
     room.dealt.delete(secret)
     room.votes.delete(secret)
     room.done.delete(secret)
-    room.wolfQueue = room.wolfQueue.filter((s) => s !== secret)
   } else {
     p.connected = false
     p.socketId = null
@@ -400,6 +395,9 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     if (prev?.secret && prev.room !== room) {
       void socket.leave(channel(prev.room))
       leaveRoom(io, prev.room, prev.secret, true)
+    } else if (prev?.secret && prev.secret !== secret) {
+      // A second seat on the same socket would receive every seat's secret card.
+      return ack({ ok: false, error: 'You are already in this game' })
     }
     let p = room.players.get(secret)
     if (p) {
@@ -549,8 +547,7 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     room.clues = []
     room.done = new Set()
     room.votes = new Map()
-    room.wolfQueue = []
-    ensureLeader(room)
+      ensureLeader(room)
     setTimer(io, room, 0, () => {})
     broadcast(io, room)
     sendAllSecrets(io, room)

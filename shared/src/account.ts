@@ -28,6 +28,8 @@ export interface AccountProfile {
   skills?: SkillState
   /** Bumped by the server on every save, so the app can ignore stale replies. */
   rev?: number
+  /** Guest progress already brought in (sign-up + sign-in merges), capped once per account. */
+  merged?: { coins: number; xp: number }
 }
 
 export interface Account {

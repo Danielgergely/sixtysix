@@ -46,7 +46,9 @@ if (existsSync(webDist)) {
   await app.register(fastifyStatic, { root: webDist })
   // SPA fallback: /join/CODE, /board/CODE etc. all load the app shell.
   app.setNotFoundHandler((req, reply) => {
-    if (req.method === 'GET' && !req.url.startsWith('/socket.io')) {
+    // Missing build files (an old tab after a deploy) must 404, not get index.html.
+    const isAsset = req.url.startsWith('/assets/') || req.url.startsWith('/api/')
+    if (req.method === 'GET' && !isAsset && !req.url.startsWith('/socket.io')) {
       return reply.sendFile('index.html')
     }
     return reply.code(404).send({ error: 'not found' })

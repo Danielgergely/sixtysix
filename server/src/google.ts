@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
-import { cleanProfile, db, hashPassword, newSession, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import { cleanProfile, db, hashPassword, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 
 /**
  * "Sign in with Google" (Google Identity Services). Enabled only when the
@@ -54,6 +54,7 @@ function freeUsername(email: string): string {
 export function registerGoogleRoutes(app: FastifyInstance): void {
   /** Sign in (or sign up on first use). `created` tells the app whether to merge guest progress. */
   app.post('/api/account/google', async (req, reply) => {
+    if (tooMany(req.ip)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { credential?: unknown; profile?: unknown }
     const id = await verify(body.credential)
     if (!id) return reply.code(401).send({ ok: false, error: 'Google sign-in failed' })
@@ -61,14 +62,21 @@ export function registerGoogleRoutes(app: FastifyInstance): void {
     let created = false
     if (!row) {
       const profile = cleanProfile(body.profile)
+      profile.merged = { coins: profile.coins, xp: profile.xp }
       if (profile.name === 'Player' || profile.name === 'You') profile.name = id.name.slice(0, 14) || profile.name
       const username = freeUsername(id.email)
-      const { lastInsertRowid } = db
-        .prepare('INSERT INTO users (username, pass_hash, created_at, profile, google_sub) VALUES (?, ?, ?, ?, ?)')
-        // Password sign-in stays possible only after the player sets one; this hash matches nothing.
-        .run(username, hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
-      row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
-      created = true
+      try {
+        const { lastInsertRowid } = db
+          .prepare('INSERT INTO users (username, pass_hash, created_at, profile, google_sub) VALUES (?, ?, ?, ?, ?)')
+          // Password sign-in stays possible only after the player sets one; this hash matches nothing.
+          .run(username, hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
+        row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
+        created = true
+      } catch {
+        // A second sign-in raced us and created the account first: use it.
+        row = db.prepare('SELECT * FROM users WHERE google_sub = ?').get(id.sub) as UserRow | undefined
+        if (!row) return reply.code(500).send({ ok: false, error: 'Google sign-in failed' })
+      }
       console.log(`[account] google signup ${username}`)
     }
     return { ok: true, created, token: newSession(row.id), account: toAccount(row) }

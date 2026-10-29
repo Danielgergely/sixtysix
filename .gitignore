@@ -8,3 +8,4 @@ ChariotsOfFaith-standalone.html
 data/
 server/data/
 .claude/worktrees/
+__pycache__/

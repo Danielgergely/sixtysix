@@ -185,7 +185,7 @@ export function saveProfile(id: number, profile: AccountProfile): void {
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
 
 const attempts = new Map<string, number[]>()
-function tooMany(ip: string): boolean {
+export function tooMany(ip: string): boolean {
   const now = Date.now()
   const recent = (attempts.get(ip) ?? []).filter((t) => now - t < 60_000)
   recent.push(now)
@@ -205,6 +205,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     if (password.length < MIN_PASSWORD || password.length > 200) return { ok: false, error: `Password: at least ${MIN_PASSWORD} characters` }
     if (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) return { ok: false, error: 'That username is taken' }
     const profile = cleanProfile(body.profile)
+    profile.merged = { coins: profile.coins, xp: profile.xp }
     const { lastInsertRowid } = db
       .prepare('INSERT INTO users (username, pass_hash, created_at, profile) VALUES (?, ?, ?, ?)')
       .run(username, hashPassword(password), Date.now(), JSON.stringify(profile))
@@ -257,11 +258,22 @@ export function registerAccountRoutes(app: FastifyInstance): void {
       const baseXp = int(g.xp, MAX_GRANT_XP)
       const wantCoins = merge ? baseCoins : Math.round(baseCoins * (1 + coinBonus(account.profile.skills?.ranks)))
       const wantXp = merge ? baseXp : Math.round(baseXp * (1 + xpBonus(account.profile.skills?.ranks)))
-      const coins = Math.min(wantCoins, Math.max(0, DAILY_MAX_COINS - today.coins))
-      const xp = Math.min(wantXp, Math.max(0, DAILY_MAX_XP - today.xp))
-      if (seen.run(g.id, row.id, now, xp, coins).changes === 0) continue // already applied
-      today.coins += coins
-      today.xp += xp
+      // Guest progress brought in at sign-in uses a one-off allowance per account
+      // (shared with sign-up), not the daily ceiling, so it can't eat today's games.
+      const merged = (account.profile.merged ??= { coins: 0, xp: 0 })
+      const coins = merge
+        ? Math.min(wantCoins, Math.max(0, SIGNUP_MAX_COINS - merged.coins))
+        : Math.min(wantCoins, Math.max(0, DAILY_MAX_COINS - today.coins))
+      const xp = merge ? Math.min(wantXp, Math.max(0, SIGNUP_MAX_XP - merged.xp)) : Math.min(wantXp, Math.max(0, DAILY_MAX_XP - today.xp))
+      // Merge grants are stored with 0 so they don't count towards the daily sums.
+      if (seen.run(g.id, row.id, now, merge ? 0 : xp, merge ? 0 : coins).changes === 0) continue // already applied
+      if (merge) {
+        merged.coins += coins
+        merged.xp += xp
+      } else {
+        today.coins += coins
+        today.xp += xp
+      }
       bonus.coins += Math.max(0, Math.min(coins, wantCoins - baseCoins))
       bonus.xp += Math.max(0, Math.min(xp, wantXp - baseXp))
       applyGrant(account.profile, g, coins, xp)

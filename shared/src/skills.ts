@@ -115,7 +115,8 @@ export const SKILLS: Record<SkillId, SkillDef> = {
 
 export const skillsInPath = (path: SkillPath): SkillDef[] => SKILL_IDS.map((id) => SKILLS[id]).filter((s) => s.path === path)
 /** Points' worth of skills in the whole tree (37). */
-export const TREE_POINTS = SKILL_IDS.reduce((n, id) => n + SKILLS[id].ranks, 0)
+/** Points the learnable tree can hold ("soon" skills don't count until they open). */
+export const TREE_POINTS = SKILL_IDS.reduce((n, id) => n + (SKILLS[id].soon ? 0 : SKILLS[id].ranks), 0)
 
 /** Re-spec: the first is free, then this many coins (paid on the server). */
 export const RESPEC_COST = 300

@@ -42,6 +42,12 @@ type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; rev?: number
 
 async function call<T = object>(path: string, body?: unknown): Promise<Res<T>> {
   const token = getToken()
+  const res = await send<T>(token, path, body)
+  // Signed out or switched account while waiting: this reply belongs to someone else.
+  return getToken() === token ? res : { ok: false, error: '' }
+}
+
+async function send<T>(token: string | null, path: string, body?: unknown): Promise<Res<T>> {
   if (!token) return { ok: false, error: 'Sign in to build' }
   try {
     const res = await fetch(`/api/plot${path}`, {

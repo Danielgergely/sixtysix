@@ -90,10 +90,14 @@ function load(req: FastifyRequest): Ctx | undefined {
   return { row, profile, plot, now }
 }
 
-function save(c: Ctx): void {
+function savePlot(c: Ctx): void {
   const { mods: _derived, ...stored } = c.plot // mods are recomputed from the skills on every load
   void _derived
   db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(stored), c.row.id)
+}
+
+function save(c: Ctx): void {
+  savePlot(c)
   saveProfile(c.row.id, c.profile)
 }
 
@@ -144,7 +148,7 @@ const SCROLL_TTL_MS = 10 * 60_000
 export function registerPlotRoutes(app: FastifyInstance): void {
   /** The plot (created with the starter gift on the first visit). */
   route(app, 'get', '/api/plot', (c) => {
-    save(c)
+    savePlot(c) // looking spends nothing: leave the profile (and its rev) alone
     return view(c)
   })
 

@@ -51,6 +51,14 @@ if (flockMatch) {
 void useAccountStore.getState().init()
 window.addEventListener('online', () => void useAccountStore.getState().sync())
 
+// A lazily loaded file vanished (new deploy while this tab was open): reload once.
+window.addEventListener('vite:preloadError', () => {
+  if (sessionStorage.getItem('sixtysix.reloaded') !== '1') {
+    sessionStorage.setItem('sixtysix.reloaded', '1')
+    window.location.reload()
+  }
+})
+
 const root = createRoot(document.getElementById('root')!)
 
 // Dev-only playground for the motion primitives (tree-shaken from builds).

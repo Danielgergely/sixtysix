@@ -55,8 +55,6 @@ export interface FRoom {
   accusedId: string | null
   guessOptions: string[]
   result: FlockRoundResult | null
-  /** Wolves still to come, so everyone gets a turn as the wolf. */
-  wolfQueue: string[]
   usedWords: Set<string>
   phaseEndsAt: number
   phaseMs: number
@@ -68,6 +66,7 @@ const rooms = new Map<string, FRoom>()
 const ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
 const CODE_LENGTH = 5
 const ROOM_IDLE_MS = 2 * 60 * 60 * 1000
+const EMPTY_ROOM_MS = 10 * 60 * 1000
 
 /** socket.io channel; prefixed so it can never collide with an arena room code. */
 export const channel = (room: FRoom): string => `flock:${room.code}`
@@ -101,7 +100,6 @@ export function createFlockRoom(): FRoom {
     accusedId: null,
     guessOptions: [],
     result: null,
-    wolfQueue: [],
     usedWords: new Set(),
     phaseEndsAt: 0,
     phaseMs: 0,
@@ -168,7 +166,9 @@ export function startFlockGC(onClose: (room: FRoom) => void): void {
   setInterval(() => {
     const now = Date.now()
     for (const room of rooms.values()) {
-      if (now - room.lastActivity > ROOM_IDLE_MS) {
+      // Nobody connected (e.g. created and abandoned): gone after 10 minutes.
+      const empty = ![...room.players.values()].some((p) => p.connected)
+      if (now - room.lastActivity > (empty ? EMPTY_ROOM_MS : ROOM_IDLE_MS)) {
         onClose(room)
         deleteFlockRoom(room)
       }

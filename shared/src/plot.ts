@@ -274,7 +274,8 @@ function produce(s: PlotState, from: number, to: number): void {
   const mods = modsOf(s)
   const cap = storeCap(s.levels, mods)
   // Seven good years: the boosted part of this segment counts 1.5×.
-  const boosted = s.boostUntil ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
+  // Only while the skill is still learned (a re-spec ends the boost).
+  const boosted = s.boostUntil && modsOf(s).sevenYears ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
   const effMs = (ms + 0.5 * boosted) * (1 + mods.production)
   for (const b of PRODUCERS) {
     const make = levelDef(b, s.levels[b])?.make

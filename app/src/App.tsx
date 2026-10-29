@@ -21,6 +21,7 @@ import { PlayerScreen } from './screens/PlayerScreen'
 import { useFlockStore } from './flock/flockStore'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
+import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
 const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
@@ -78,9 +79,11 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: duration.base, ease: ease.out } }}
             exit={{ opacity: 0, scale: 0.98, transition: { duration: duration.fast } }}
           >
-            <Suspense fallback={<div className="screen screen-loading" />}>
-              <Active />
-            </Suspense>
+            <ScreenBoundary resetKey={screen}>
+              <Suspense fallback={<div className="screen screen-loading" />}>
+                <Active />
+              </Suspense>
+            </ScreenBoundary>
           </motion.div>
         </AnimatePresence>
         {tabbed && <TabBar />}

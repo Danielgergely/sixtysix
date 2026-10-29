@@ -388,9 +388,9 @@ export const useGameStore = create<GameStore>((set, get) => {
         playSfx('wrong')
         return
       }
-      // Time left on the (possibly extended) clock, capped at a normal question's.
-      const left = Math.min(QUESTION_TIME_MS, Math.max(0, get().phaseEndsAt - Date.now()))
-      const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt, QUESTION_TIME_MS - left)
+      // Speed counts from the question's start; "the sun stood still" only adds
+      // time to answer, never speed points.
+      const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt)
       setRacer(you.profile.id, {
         lastAnswer: { index, correct: index === q.correctIndex, ms: elapsed },
       })

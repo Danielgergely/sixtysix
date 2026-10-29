@@ -1080,3 +1080,4 @@
 .google-signin:not(.ready){ display: none; }
 .google-or{ font: italic 600 12px/1 Georgia, serif; color: #6b4120; }
 .screen-loading{ background: #1d0b06; }
+.screen-failed{ display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; text-align: center; background: #1d0b06; color: #ffe7a3; font: 700 15px/1.4 Georgia, serif; }
