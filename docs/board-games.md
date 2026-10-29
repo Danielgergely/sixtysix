@@ -32,9 +32,24 @@
 
 Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are skipped while they are away. If the wolf leaves, the round is called off; if fewer than 3 players remain, the game ends. The leader role passes to the next connected player.
 
-## Ideas for a second game
+## Second game: **Twelve Spies** (Bible Codenames)
 
-- **Bible Codenames ("Twelve Spies")**: two teams, a 5×5 grid of Bible words, spymasters see the key on their phones. Builds directly on the flock's word list.
+"Send men to spy out the land of Canaan" (Numbers 13:2). Moses sends twelve spies; Caleb of Judah and Joshua of Ephraim come back with the good report. It is the second pick from the comparison above: Codenames is an evergreen group hit, there is no polished Bible version, and it reuses the flock's whole stack (rooms, hidden information per phone, shared board).
+
+### Rules (as implemented)
+
+1. **Setup.** 4–12 players in two tribes, **Judah** 🦁 (gold) and **Ephraim** 🐂 (blue); new players join the smaller tribe. In the lobby anyone can switch tribe or volunteer as their tribe's **spy master** (Judah's is called Caleb, Ephraim's Joshua); otherwise the teammate who has served least (then least recently) is picked. The leader can shuffle the tribes and set an optional turn timer (off / 90 s / 2.5 min). A shared board (laptop / projector) is optional.
+2. **The grid.** 25 words from `server/src/spies/words.json` (≈260 short Bible people, places, objects and ideas; no two words on one grid contain each other). The starting tribe (random) owns 9, the other 8, 7 are **wilderness** 🏜️ and 1 is **Goliath** ⚔️.
+3. **The key.** Only the two spy masters see which word belongs to whom (tinted cards on their phones). The server never sends the key to agents or to the board until the game is over.
+4. **A turn.** The spy master types **one word and a number** (1–9). The server refuses clues with spaces or symbols, and any clue that is a visible grid word, contains one, or is part of one (plurals included: "Boats" is refused while "Boat" is on the grid).
+5. **Guessing.** The other members (agents) tap a card to **propose** it; teammates tap the same card to **agree**. A majority of the tribe's connected agents reveals it; after 3 s the proposer may also reveal it alone ("Reveal ✓"), so small or quiet tribes never get stuck. Proposing another card replaces the proposal. Up to **number + 1** cards per turn. A wilderness card or the other tribe's card ends the turn; after the first reveal the agents can also **end the turn** (proposed and agreed like a card). With a timer, the clue and the guessing each get the full time; when it runs out the turn passes.
+6. **End.** The first tribe with all its cards revealed wins (revealing the other tribe's last card hands them the win). Revealing **Goliath** loses at once. The full key is then shown everywhere; the leader's **Play again** returns to the lobby with new spy masters.
+7. **Co-op (2+ players).** Everyone plays Judah (9 cards) against the **Canaanites** (Ephraim's 8). After every Judah turn the Canaanites take one of their own cards. Find all of Judah's words before they take all theirs, and avoid Goliath.
+
+Robustness: a dropped player keeps their tribe and role (rejoin with the same device id, or "Back to game" after a reload; a spy master gets the key again). An offline spy master has 20 s to return before the least-served connected teammate gets the key; a spy master who leaves is replaced at once. If a tribe drops below 2 players (co-op: below 2 in all) the game ends as "called off". The leader role passes to the next connected player.
+
+### Ideas for a third game
+
 - **Exodus** (on the coming-soon list): a co-op board race where quiz answers from the bank move the tribe and unlock manna / sea-crossing cards.
 
 ## Sources

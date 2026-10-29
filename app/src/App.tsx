@@ -19,6 +19,7 @@ import { BoardGamesScreen } from './screens/BoardGamesScreen'
 import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { useFlockStore } from './flock/flockStore'
+import { useSpiesStore } from './spies/spiesStore'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 import { ScreenBoundary } from './screens/shell/ScreenBoundary'
@@ -30,6 +31,7 @@ const MarketScreen = lazy(() => import('./screens/home/MarketScreen').then((m) =
 const VisitScreen = lazy(() => import('./screens/VisitScreen').then((m) => ({ default: m.VisitScreen })))
 const SkillTreeScreen = lazy(() => import('./screens/SkillTreeScreen').then((m) => ({ default: m.SkillTreeScreen })))
 const FlockScreen = lazy(() => import('./screens/flock/FlockScreen').then((m) => ({ default: m.FlockScreen })))
+const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
 
 const SCREENS: Record<Screen, React.ComponentType> = {
   menu: MainMenuScreen,
@@ -53,18 +55,24 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   visit: VisitScreen,
   skills: SkillTreeScreen,
   flock: FlockScreen,
+  spies: SpiesScreen,
 }
 
 export default function App() {
   const screen = useGameStore((s) => s.screen)
   const arenaRole = useArenaStore((s) => s.role)
   const flockRole = useFlockStore((s) => s.role)
+  const spiesRole = useSpiesStore((s) => s.role)
   const Active = SCREENS[screen]
   // Top-level areas get the shared header + bottom tabs; games stay full-screen.
   const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
   // Host/spectator boards are projector/laptop surfaces — let them breathe.
   const wide =
-    screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player') || screen === 'skills' || (screen === 'flock' && flockRole === 'board')
+    screen === 'arenaHostLobby' ||
+    (screen === 'arenaGame' && arenaRole !== 'player') ||
+    screen === 'skills' ||
+    (screen === 'flock' && flockRole === 'board') ||
+    (screen === 'spies' && spiesRole === 'board')
   return (
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.
