@@ -29,7 +29,7 @@ export function ProfileScreen() {
   ]
 
   return (
-    <div className="screen profile-screen">
+    <div className="screen profile-screen emp">
       <div className="profile-content">
         <header className="screen-topbar">
           <button className="icon-btn" onClick={() => goTo('menu')} title="Back to home">

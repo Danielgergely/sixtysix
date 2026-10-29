@@ -43,7 +43,7 @@ export function ArenaMenuScreen() {
   }
 
   return (
-    <div className="screen arena-menu-screen">
+    <div className="screen arena-menu-screen emp">
       <header className="screen-topbar">
         <button className="icon-btn" onClick={() => goTo('menu')} title="Back to home">
           ←

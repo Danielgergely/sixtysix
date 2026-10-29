@@ -673,3 +673,60 @@
 .daily-squares .bad { background: linear-gradient(#ff7a6b, #b8232b); }
 .daily-streak { font: 700 15px/1.2 'Cinzel', serif; color: #6b1d0e; }
 .daily-streak span { font-size: 22px; color: #c45a36; }
+
+/* ══ Empire skin for the form-style screens (profile, arena menu, lobbies) ══
+   Same markup as before; `.emp` on the screen root re-dresses the shared
+   classes as parchment panels, gold buttons and engraved type. */
+.emp {
+  position: relative;
+  color: #ffe7a3;
+  font-family: 'Cinzel', Georgia, serif;
+  background: linear-gradient(rgb(20 8 4 / 0.55), rgb(20 8 4 / 0.85)), url('/art/bg-throne-room.webp') center / cover fixed;
+}
+.emp .screen-heading,
+.emp .topbar-heading { color: #ffe7a3; font-family: 'Cinzel Decorative', serif; text-shadow: 0 2px 4px #000; }
+.emp .icon-btn { background: rgb(29 15 6 / 0.75); border-color: #e3b754; color: #ffe7a3; }
+.emp .profile-label { color: #e9c98a; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.72rem; font-weight: 900; }
+.emp .profile-section,
+.emp .arena-section,
+.emp .host-code-card,
+.emp .host-players {
+  background-color: rgb(243 226 187 / 0.96);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='4' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.38 0 0 0 0 0.18 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  border: 3px solid #b88a3a;
+  border-radius: 12px;
+  box-shadow: 0 0 0 2px #1d0f06, inset 0 0 18px rgb(120 70 20 / 0.35);
+  padding: 0.8rem;
+  color: #3b2412;
+}
+.emp .profile-section .profile-label,
+.emp .arena-section .profile-label,
+.emp .host-code-label,
+.emp .host-players-heading { color: #6b1d0e; }
+.emp .arena-hint { color: #6b4120; font-style: italic; font-family: Georgia, serif; }
+.emp .arena-divider { color: #e9c98a; }
+.emp .profile-name-input { background: rgb(255 255 255 / 0.55); border: 2px solid #c9a24a; color: #3b2412; font-family: 'Cinzel', serif; font-weight: 700; }
+.emp .seg-btn,
+.emp .avatar-option { background: rgb(255 255 255 / 0.4); border: 2px solid #c9a24a; color: #3b2412; font-family: 'Cinzel', serif; }
+.emp .seg-btn.selected,
+.emp .avatar-option.selected { background: linear-gradient(#ffe08a, #d39b22); border-color: #1d0f06; box-shadow: 0 2px 0 #1d0f06; }
+.emp .btn-play,
+.emp .join-btn { background: linear-gradient(#ffe08a, #c98a12); color: #2b1408; border: 2px solid #1d0f06; box-shadow: 0 4px 0 #1d0f06; font-family: 'Cinzel', serif; font-weight: 900; }
+.emp .btn-secondary { background: rgb(29 15 6 / 0.8); color: #ffe7a3; border: 2px solid #e3b754; font-family: 'Cinzel', serif; font-weight: 700; }
+.emp .chip { background: rgb(29 15 6 / 0.8); border-color: #e3b754; color: #ffe7a3; }
+.emp .stat-card { background: rgb(29 15 6 / 0.72); border: 2px solid #b88a3a; color: #ffe7a3; }
+.emp .stat-value { color: #ffe08a; }
+.emp .stat-label { color: #e9c98a; }
+.emp .setting-row { background: transparent; color: #3b2412; font-family: 'Cinzel', serif; font-weight: 700; }
+.emp .arena-code { color: #6b1d0e; font-family: 'Cinzel Decorative', serif; }
+.emp .host-join-url { color: #6b4120; }
+.emp .player-chip { background: #f3e2bb; border-color: #b88a3a; color: #3b2412; font-family: 'Cinzel', serif; font-weight: 700; }
+.emp .player-lobby-name { color: #ffe7a3; font-family: 'Cinzel Decorative', serif; text-shadow: 0 2px 4px #000; }
+.emp .player-lobby-wait { color: #f3e2bb; }
+.emp .arena-error { background: #b3262b; color: #fff; border-radius: 8px; padding: 0.5rem 0.8rem; }
+.emp .slot-name { color: #ffe7a3; }
+.emp .lobby-slot { background: rgb(29 15 6 / 0.78); border-color: #e3b754; color: #ffe7a3; }
+.emp .lobby-slot.empty, .emp .lobby-slot:not(.filled) { background: rgb(29 15 6 / 0.4); }
+.rotate-hint { background: linear-gradient(rgb(20 8 4 / 0.7), rgb(20 8 4 / 0.92)), url('/art/bg-throne-room.webp') center / cover !important; color: #f3e2bb; font-family: 'Cinzel', Georgia, serif; }
+.rotate-hint-title { color: #ffe7a3 !important; font-family: 'Cinzel Decorative', serif; }
+.rotate-hint-text { color: #f3e2bb !important; }

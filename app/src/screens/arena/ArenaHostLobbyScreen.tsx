@@ -53,7 +53,7 @@ export function ArenaHostLobbyScreen() {
   const cats = room.config.categories ?? []
 
   return (
-    <div className="screen host-lobby-screen">
+    <div className="screen host-lobby-screen emp">
       <RotateHint />
       <header className="screen-topbar">
         <button className="icon-btn" onClick={leaveArena} title={isHost ? 'Close game' : 'Stop watching'}>

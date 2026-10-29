@@ -9,7 +9,7 @@ export function LobbyScreen() {
   const full = racers.length === SLOTS
 
   return (
-    <div className="screen lobby-screen">
+    <div className="screen lobby-screen emp">
       <h2 className="screen-heading">{full ? 'Race starting…' : 'Finding Opponents…'}</h2>
 
       <div className="lobby-slots">

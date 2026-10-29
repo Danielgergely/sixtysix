@@ -11,7 +11,7 @@ export function ArenaPlayerLobbyScreen() {
   if (!room) return null
 
   return (
-    <div className="screen player-lobby-screen">
+    <div className="screen player-lobby-screen emp">
       <header className="screen-topbar">
         <button className="icon-btn" onClick={leaveArena} title="Leave game">
           ✕
