@@ -41,6 +41,69 @@ What you need:
 Cost: nothing extra if the VPS has around 250 MB RAM to spare. Check with
 `docker stats` on the server. Everything below stays valid as a fallback.
 
+## Other self-hosting options
+
+### On a small existing server (e.g. broscafe.hu)
+
+- **What the game needs:**
+  - about **150 MB RAM** (more during game nights);
+  - a fraction of one CPU core;
+  - about 1 GB of disk;
+  - Node 22.13+ (or Docker).
+- **Coolify itself needs 2 cores and 2 GB RAM**
+  ([Coolify docs](https://coolify.io/docs/get-started/installation)). On a small
+  server, skip Coolify: run the Docker image (or `npm start` under systemd)
+  behind Caddy for HTTPS.
+- **Check first:** `free -h; nproc; df -h /` and, if Docker runs,
+  `docker stats --no-stream`. It is fine if about 500 MB of RAM is free at
+  busy times.
+- **Downside:** the café's website and a hobby game share one machine. A busy
+  game night, or a bad update, can affect the business site.
+
+### At home
+
+| Hardware | Cost once | Power (avg) | kWh/year | Electricity/year* |
+|---|---|---|---|---|
+| Raspberry Pi 5, 4 GB + PSU, case, small SSD | ~€120–130 | ~4–5 W | ~40 | ~1,500–3,000 Ft |
+| Mini PC, Intel N100, 16 GB / 512 GB (runs Coolify easily) | ~€150–200 | ~7–9 W | ~70 | ~2,500–5,000 Ft |
+| An old laptop (its battery is a free UPS) | €0 | ~10–20 W | ~90–175 | ~3,000–12,000 Ft |
+
+\* At about 36 Ft/kWh (the reduced household tariff, up to average
+consumption) to about 70 Ft/kWh (above it). Check your own bill. Either way it
+is a few euros a year.
+
+What else you need:
+
+- **Internet:** any home line with **≥ 10 Mbit/s upload**. A game night moves
+  about 65 MB.
+- **Cloudflare Tunnel** (free):
+  - The `cloudflared` service connects *out* to Cloudflare, so no port
+    forwarding is needed.
+  - It works behind CGNAT and dynamic IPs, hides your home IP, and gives
+    automatic HTTPS. WebSockets work.
+  - It needs the domain's DNS on Cloudflare (free plan).
+- **Software:**
+  - Ubuntu Server 24.04 (or Raspberry Pi OS Lite) and Docker.
+  - Either Coolify (N100) or a two-service `docker compose` (the game +
+    `cloudflared`).
+  - `unattended-upgrades` for security patches.
+- **Backups:** copy `/data/sixtysix.db` off the machine nightly, for example
+  with `rclone` to Backblaze B2 or Google Drive. Use an SSD, not an SD card.
+- **Optional:** a small UPS (~€60), and free uptime alerts (UptimeRobot).
+- **Downsides:**
+  - A power cut or internet outage at home takes the game offline.
+  - You are the system administrator.
+
+### Recommendation
+
+1. **Now:** the existing Rackhost VPS with Coolify, if `free -h` shows room.
+   It has a public IP and backups, and nothing new to buy.
+2. **If you want a home lab** for several projects and your own website: an
+   N100 mini PC with Coolify and a Cloudflare Tunnel. That is ~€170 once and
+   ~€10 a year.
+3. **Avoid** putting the game on the café's server unless it clearly has
+   resources to spare.
+
 ## Hosted alternative: Fly.io, about $2–4 per month
 
 - One `shared-cpu-1x` machine in Frankfurt (`fra`). WebSockets work out of the box.
