@@ -193,9 +193,9 @@
 .eh-card-text{ font-family: 'Cinzel', serif; font-weight: 900; font-size: 15px; line-height: 1.1; hyphens: auto; overflow-wrap: break-word; }
 .eh-hand .eh-card-text{ font-size: 12.5px; letter-spacing: -0.01em; }
 .eh-corner{ position: absolute; width: 14px; height: 14px; border: 2px solid #ffe08a; opacity: 0.8; }
-.eh-corner.tr{ top: 6px; right: 6px; border-left: 0; border-bottom: 0; }
-.eh-corner.bl{ bottom: 6px; left: 6px; border-right: 0; border-top: 0; }
-.eh-corner.br{ bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+.eh-corner.c-tr{ top: 6px; right: 6px; border-left: 0; border-bottom: 0; }
+.eh-corner.c-bl{ bottom: 6px; left: 6px; border-right: 0; border-top: 0; }
+.eh-corner.c-br{ bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
 
 /* Centre stage between the candle and the hand: countdown, the played card. */
 .eh-middle{ position: relative; flex: 1; min-height: 0; display: grid; place-items: center; z-index: 6; }
@@ -541,3 +541,115 @@
 .empire-coins { display: flex; align-items: center; gap: 6px; font: 900 22px/1 'Cinzel', serif; color: #ffe08a; }
 .cr-coins { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; color: #ffe08a; }
 .glory-mark { color: #ffd34d; font-size: 18px; padding-left: 6px; }
+
+/* ══ Home ═════════════════════════════════════════════════════════════ */
+.hm { position: relative; overflow-y: auto; overflow-x: hidden; color: #ffe7a3; font-family: 'Cinzel', Georgia, serif; }
+.hm-bg { position: fixed; inset: 0; z-index: 0; background: linear-gradient(rgb(20 8 4 / 0.35), rgb(20 8 4 / 0.8)), url('/art/bg-throne-room.webp') center / cover; }
+.hm > *:not(.hm-bg) { position: relative; z-index: 1; }
+.hm-header { display: flex; align-items: center; gap: 10px; padding: 14px 14px 0; }
+.hm-profile { position: relative; width: 52px; height: 52px; padding: 0; background: none; flex-shrink: 0; }
+.hm-portrait { width: 100%; height: 100%; }
+.hm-level {
+  position: absolute; right: -6px; bottom: -4px; min-width: 22px; height: 22px; padding: 0 4px;
+  display: grid; place-items: center; border-radius: 6px; border: 2px solid #e3b754;
+  font: 900 11px/1 'Cinzel', serif; color: #fdf1d0; text-shadow: 0 1px 2px #000;
+}
+.hm-name { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.15; text-shadow: 0 2px 3px #000; }
+.hm-name span { font-weight: 900; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hm-name small { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #e9c98a; }
+.hm-purse {
+  display: flex; align-items: center; gap: 6px; padding: 4px 14px 4px 5px; border-radius: 999px;
+  background: linear-gradient(#4a2a14, #2a160a); border: 2px solid #c9a24a; font-weight: 900; font-size: 17px;
+}
+.hm-brand { text-align: center; padding: 18px 0 6px; }
+.hm-brand h1 {
+  font: 900 34px/1 'Cinzel Decorative', serif; color: #ffe7a3; letter-spacing: 0.04em;
+  text-shadow: 0 0 18px rgb(255 190 60 / 0.6), 0 3px 0 #5a3a06;
+}
+.hm-brand p { margin-top: 4px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #e9c98a; }
+.hm-modes { display: flex; flex-direction: column; gap: 14px; padding: 12px 14px calc(18px + env(safe-area-inset-bottom)); }
+.hm-card {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 8.2; padding: 0; overflow: hidden;
+  border-radius: 14px; border: 3px solid #e3b754; text-align: left; background: #2a160a;
+  box-shadow: 0 0 0 2px #1d0f06, 0 10px 22px rgb(0 0 0 / 0.55);
+}
+.hm-card-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hm-badge {
+  position: absolute; top: 10px; right: 10px; padding: 3px 10px; border-radius: 999px;
+  background: #b3262b; border: 2px solid #ffe08a; color: #fff; font: 900 11px/1.2 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.hm-card-plate {
+  position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 26px 12px 10px;
+  background: linear-gradient(transparent, rgb(20 8 4 / 0.85) 45%);
+}
+.hm-card-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.hm-card-title { font: 900 21px/1.1 'Cinzel', serif; color: #ffe7a3; text-shadow: 0 2px 3px #000; }
+.hm-card-desc { font: 600 12px/1.3 Georgia, serif; font-style: italic; color: #f3e2bb; }
+.hm-play {
+  padding: 8px 18px; border-radius: 10px; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06;
+  box-shadow: 0 3px 0 #1d0f06; font: 900 14px/1 'Cinzel', serif; color: #2b1408; text-transform: uppercase;
+}
+
+/* ══ Practice ═════════════════════════════════════════════════════════ */
+.pr-setup, .pr-play { position: relative; overflow-y: auto; color: #3b2412; font-family: 'Cinzel', Georgia, serif; }
+.pr-bg { position: fixed; inset: 0; z-index: 0; background: linear-gradient(rgb(20 8 4 / 0.25), rgb(20 8 4 / 0.75)), url('/art/banner-practice.webp') center / cover; }
+.pr-setup > *:not(.pr-bg), .pr-play > *:not(.pr-bg) { position: relative; z-index: 1; }
+.pr-top { display: flex; align-items: center; gap: 10px; padding: 14px 14px 0; color: #ffe7a3; }
+.pr-top h2 { flex: 1; text-align: center; font: 900 24px/1 'Cinzel Decorative', serif; text-shadow: 0 2px 4px #000; }
+.pr-top-spacer { width: 40px; }
+.pr-back { width: 40px; height: 40px; border-radius: 50%; background: rgb(29 15 6 / 0.75); border: 2px solid #e3b754; color: #ffe7a3; font-size: 18px; }
+.pr-sheet, .pr-summary {
+  margin: 18px 14px; padding: 18px 16px; border-radius: 12px; background-color: #f3e2bb; background-size: 300px 300px;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 24px rgb(120 70 20 / 0.35), 0 12px 24px rgb(0 0 0 / 0.5);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pr-intro { font: italic 14px/1.4 Georgia, serif; color: #6b4120; text-align: center; }
+.pr-label { margin-top: 6px; font-weight: 900; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6b1d0e; }
+.pr-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pr-chip { padding: 10px 4px; border-radius: 8px; background: rgb(255 255 255 / 0.4); border: 2px solid #c9a24a; font: 700 13px/1.1 'Cinzel', serif; color: #3b2412; }
+.pr-chip.wide { grid-column: span 3; }
+.pr-chip.on { background: linear-gradient(#ffe08a, #d39b22); border-color: #1d0f06; box-shadow: 0 2px 0 #1d0f06; }
+.pr-go, .pr-next {
+  margin-top: 10px; padding: 14px; border-radius: 12px; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06;
+  box-shadow: 0 4px 0 #1d0f06; font: 900 17px/1 'Cinzel', serif; color: #2b1408; text-transform: uppercase;
+}
+.pr-go:disabled { opacity: 0.6; }
+.pr-review { padding: 11px; border-radius: 12px; background: rgb(29 15 6 / 0.08); border: 2px solid #b88a3a; font: 700 14px/1 'Cinzel', serif; color: #6b1d0e; }
+
+.pr-play { display: flex; flex-direction: column; }
+.pr-stats { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 8px; font: 700 14px/1 'Cinzel', serif; }
+.pr-stats > span { padding: 6px 10px; border-radius: 999px; background: rgb(29 15 6 / 0.75); border: 1px solid #c9a24a; }
+.pr-streak { color: #ffd34d; }
+.pr-coins { display: inline-flex; align-items: center; gap: 4px; }
+.pr-scroll {
+  margin: 14px 14px 0; padding: 16px; border-radius: 10px; background-color: #f3e2bb; background-size: 300px 300px;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 24px rgb(120 70 20 / 0.4), 0 10px 20px rgb(0 0 0 / 0.45);
+}
+.pr-meta { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a5a32; text-align: center; }
+.pr-q { margin-top: 6px; font: 900 20px/1.25 'Cinzel', serif; text-align: center; }
+.pr-verse { overflow: hidden; margin-top: 10px; font: italic 14px/1.45 Georgia, serif; color: #6b4120; text-align: center; }
+.pr-verse em { font-style: normal; font-family: 'Cinzel', serif; font-weight: 700; white-space: nowrap; }
+.pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 18px 0; justify-items: center; }
+.pr-slot { padding: 0; background: none; width: 100%; max-width: 170px; }
+.pr-slot .eh-card { width: 100%; height: auto; aspect-ratio: 124 / 150; }
+.pr-slot .eh-card-text { font-size: 15px; }
+.pr-slot .eh-card.dim { filter: grayscale(0.7) brightness(0.6); }
+.pr-slot .eh-card.win { box-shadow: 0 0 0 3px #fff4c8, 0 0 0 5px #1d0f06, 0 0 36px rgb(255 214 100 / 0.9); }
+.pr-foot { min-height: 96px; padding: 14px 18px calc(18px + env(safe-area-inset-bottom)); }
+.pr-verdict { display: flex; align-items: center; gap: 12px; }
+.pr-verdict span { flex: 1; font: 900 16px/1.2 'Cinzel', serif; text-shadow: 0 2px 4px #000; }
+.pr-verdict .good { color: #ffe08a; }
+.pr-verdict .bad { color: #f3e2bb; }
+.pr-next { margin: 0; padding: 12px 22px; }
+
+.pr-summary { align-items: center; text-align: center; margin-top: 40px; }
+.pr-summary h2 { font: 900 24px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.pr-big { font: 900 54px/1 'Cinzel', serif; color: #8a5a10; }
+.pr-sub { font: italic 14px/1.3 Georgia, serif; color: #6b4120; }
+.pr-coins.big { font: 900 20px/1 'Cinzel', serif; color: #8a5a10; }
+.pr-rows { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.pr-row { display: grid; grid-template-columns: 90px 1fr 44px; align-items: center; gap: 8px; font: 700 13px/1 'Cinzel', serif; text-align: left; }
+.pr-bar { height: 10px; border-radius: 999px; background: rgb(29 15 6 / 0.15); overflow: hidden; }
+.pr-bar span { display: block; height: 100%; background: linear-gradient(90deg, #c98a12, #ffe08a); }
+.pr-hint { font: italic 14px/1.3 Georgia, serif; color: #6b1d0e; }
+.pr-summary .pr-go, .pr-summary .pr-review { width: 100%; }

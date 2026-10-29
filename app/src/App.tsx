@@ -11,6 +11,8 @@ import { ArenaMenuScreen } from './screens/arena/ArenaMenuScreen'
 import { ArenaHostLobbyScreen } from './screens/arena/ArenaHostLobbyScreen'
 import { ArenaPlayerLobbyScreen } from './screens/arena/ArenaPlayerLobbyScreen'
 import { ArenaGameScreen } from './screens/arena/ArenaGameScreen'
+import { PracticeSetupScreen } from './screens/practice/PracticeSetupScreen'
+import { PracticeScreen } from './screens/practice/PracticeScreen'
 
 const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   menu: MainMenuScreen,
@@ -22,6 +24,8 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   arenaHostLobby: ArenaHostLobbyScreen,
   arenaPlayerLobby: ArenaPlayerLobbyScreen,
   arenaGame: ArenaGameScreen,
+  practiceSetup: PracticeSetupScreen,
+  practice: PracticeScreen,
 }
 
 export default function App() {

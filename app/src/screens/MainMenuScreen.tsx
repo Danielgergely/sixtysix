@@ -1,75 +1,78 @@
+import { motion } from 'motion/react'
 import { useGameStore } from '../game/store'
 import { Avatar } from '../avatars/Avatar'
-import { ArenaBanner, PracticeBanner, RaceBanner } from './modeBanners'
+import { PaintedCoin } from '../art/PaintedPortrait'
+import { STONE } from '../art/textures'
+import { AnimatedNumber, spring } from '../motion'
 
+interface Mode {
+  id: string
+  title: string
+  desc: string
+  art: string
+  badge?: string
+  onPlay: () => void
+}
+
+/** Home: the throne hall, the player's purse, and one painted card per game mode. */
 export function MainMenuScreen() {
   const player = useGameStore((s) => s.player)
   const findMatch = useGameStore((s) => s.findMatch)
   const goTo = useGameStore((s) => s.goTo)
 
+  const modes: Mode[] = [
+    { id: 'blitz', title: 'Bible Blitz', desc: 'Race three rivals to the throne', art: '/art/banner-blitz.webp', onPlay: findMatch },
+    { id: 'arena', title: 'Open Arena', desc: 'Live quiz for your whole group', art: '/art/banner-arena.webp', badge: 'Live', onPlay: () => goTo('arenaMenu') },
+    { id: 'practice', title: 'Practice', desc: 'No clock — learn at your own pace', art: '/art/banner-practice.webp', onPlay: () => goTo('practiceSetup') },
+  ]
+
   return (
-    <div className="screen home-screen">
-      <header className="home-header">
-        <button className="icon-btn" disabled title="Ranks — coming soon">
-          🏆
+    <div className="screen hm">
+      <div className="hm-bg" />
+      <header className="hm-header">
+        <button className="hm-profile" onClick={() => goTo('profile')} title="Profile">
+          <Avatar id={player.avatar} className="hm-portrait" />
+          <span className="hm-level" style={{ backgroundImage: STONE }}>
+            {player.level}
+          </span>
         </button>
-        <div className="home-header-chips">
-          <div className="chip">⭐ Lv {player.level}</div>
-          <div className="chip">🪙 {player.coins}</div>
+        <div className="hm-name">
+          <span>{player.name}</span>
+          <small>Level {player.level}</small>
         </div>
-        <button className="icon-btn icon-btn-avatar" onClick={() => goTo('profile')} title="Profile">
-          <Avatar id={player.avatar} />
-        </button>
+        <div className="hm-purse">
+          <PaintedCoin size={26} />
+          <AnimatedNumber value={player.coins} />
+        </div>
       </header>
 
-      <div className="home-brand">
-        <div className="logo-wheel logo-wheel-small">66</div>
-        <div className="home-brand-text">
-          <h1 className="home-title">SIXTY-SIX</h1>
-          <p className="home-tagline">Race through the Bible</p>
-        </div>
-      </div>
+      <motion.div className="hm-brand" initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={spring.gentle}>
+        <h1>Sixty-Six</h1>
+        <p>Race through the Bible</p>
+      </motion.div>
 
-      {/* Game modes — one banner card per mode; more modes land here over time. */}
-      <div className="mode-list">
-        <button className="mode-card mode-playable" onClick={findMatch}>
-          <div className="mode-banner">
-            <RaceBanner />
-          </div>
-          <div className="mode-bottom">
-            <span className="mode-info">
-              <span className="mode-title">Bible Blitz</span>
-              <span className="mode-desc">Race 3 opponents to the finish line</span>
+      <div className="hm-modes">
+        {modes.map((m, i) => (
+          <motion.button
+            key={m.id}
+            className="hm-card"
+            onClick={m.onPlay}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ ...spring.gentle, delay: 0.1 + i * 0.08 }}
+          >
+            <img className="hm-card-art" src={m.art} alt="" draggable={false} />
+            {m.badge && <span className="hm-badge">{m.badge}</span>}
+            <span className="hm-card-plate">
+              <span className="hm-card-text">
+                <span className="hm-card-title">{m.title}</span>
+                <span className="hm-card-desc">{m.desc}</span>
+              </span>
+              <span className="hm-play">Play</span>
             </span>
-            <span className="mode-play">PLAY</span>
-          </div>
-        </button>
-
-        <button className="mode-card mode-playable" onClick={() => goTo('arenaMenu')}>
-          <div className="mode-banner">
-            <ArenaBanner />
-          </div>
-          <div className="mode-bottom">
-            <span className="mode-info">
-              <span className="mode-title">Open Arena</span>
-              <span className="mode-desc">Live quiz with up to 100 players</span>
-            </span>
-            <span className="mode-badge mode-badge-beta">BETA</span>
-          </div>
-        </button>
-
-        <div className="mode-card mode-soon">
-          <div className="mode-banner">
-            <PracticeBanner />
-          </div>
-          <div className="mode-bottom">
-            <span className="mode-info">
-              <span className="mode-title">Practice</span>
-              <span className="mode-desc">Endless questions, no pressure</span>
-            </span>
-            <span className="mode-badge">SOON</span>
-          </div>
-        </div>
+          </motion.button>
+        ))}
       </div>
     </div>
   )

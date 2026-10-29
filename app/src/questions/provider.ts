@@ -5,7 +5,10 @@ import type { Difficulty, Locale, Question } from './types'
  * hand. It's ~0.5 MB, so it loads as its own chunk on first use instead of
  * weighing down app start-up.
  */
-const loadBank = () => import('./bank.json').then((m) => m.default as Question[])
+export const loadBank = () => import('./bank.json').then((m) => m.default as Question[])
+
+/** Cited verse text (WEB) per question id — also its own lazy chunk. */
+export const loadVerses = () => import('./verses.json').then((m) => m.default as Record<string, string>)
 
 export interface GetQuestionsOptions {
   count: number

@@ -17,9 +17,9 @@ export function AnswerCard({ index, text, className = '' }: { index: number; tex
       <span className="eh-card-panel" style={{ backgroundImage: PARCHMENT }}>
         <span className="eh-card-text">{text}</span>
       </span>
-      <span className="eh-corner tr" />
-      <span className="eh-corner bl" />
-      <span className="eh-corner br" />
+      <span className="eh-corner c-tr" />
+      <span className="eh-corner c-bl" />
+      <span className="eh-corner c-br" />
     </div>
   )
 }

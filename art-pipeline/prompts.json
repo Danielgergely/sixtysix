@@ -282,6 +282,31 @@
         "out/raw/crown-gold-1.png"
       ],
       "prompt": "Recreate the attached crown EXACTLY — same shape, same angle, same size and position in the frame, same painting style — but made of warm BRONZE (reddish-brown copper metal) with green gems and pearls. Only the crown."
+    },
+    {
+      "id": "banner-blitz",
+      "aspect": "16:9",
+      "refs": [
+        "out/chariot-0.png",
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text. Three ornate golden racing chariots with galloping horses thundering side by side across a sunlit desert hippodrome toward the viewer's right, dust clouds, banners and a distant crowd, dramatic golden-hour light. Match the chariot design and painting style of the attached references."
+    },
+    {
+      "id": "banner-arena",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text. The grand royal throne hall of the attached reference, packed with a joyful crowd of many different people raising their hands and cheering toward a glowing golden throne in the distance, banners and braziers, warm festive light — a big live competition."
+    },
+    {
+      "id": "banner-practice",
+      "aspect": "16:9",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text. A quiet scholar's study corner in the same ancient palace style: an open scroll on a carved wooden lectern lit by a single oil lamp, stacks of scrolls in niches, a window with soft evening light, peaceful and inviting."
     }
   ]
 }
