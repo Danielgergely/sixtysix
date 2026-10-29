@@ -8,7 +8,7 @@ const IDEAS = [
   { icon: '🏰', title: 'Twelve Tribes', desc: 'Settle the land of Canaan with your tribe, trade with neighbours and build Jerusalem together.' },
 ]
 
-/** Board games tab: Wolf in the Flock is playable; the rest are coming soon. */
+/** Board games tab: Wolf in the Flock and Twelve Spies are playable; the rest are coming soon. */
 export function BoardGamesScreen() {
   const goTo = useGameStore((s) => s.goTo)
   return (
@@ -28,6 +28,25 @@ export function BoardGamesScreen() {
           <span className="bg-feature-tag">New · 3–12 players · 15 min</span>
           <strong>Wolf in the Flock</strong>
           <small>Everyone gets a secret Bible word — except the wolf. Give clues, bluff, and vote out the wolf before it escapes!</small>
+          <span className="bg-feature-play">▶ Play</span>
+        </span>
+      </motion.button>
+      <motion.button
+        className="bg-feature spies"
+        onClick={() => goTo('spies')}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ...spring.gentle, delay: 0.08 }}
+      >
+        <span className="bg-feature-art" aria-hidden>
+          <span>🦁</span>
+          <span>🍇</span>
+          <span>🐂</span>
+        </span>
+        <span className="bg-feature-text">
+          <span className="bg-feature-tag">New · 2–12 players · 20 min</span>
+          <strong>Twelve Spies</strong>
+          <small>Bible Codenames: your spy master gives one-word clues, your tribe finds its words. Beware of Goliath!</small>
           <span className="bg-feature-play">▶ Play</span>
         </span>
       </motion.button>
