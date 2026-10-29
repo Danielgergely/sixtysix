@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import type { ArenaPhase, ArenaPlayer, LeaderboardEntry, Question, RoomConfig, RoomState } from '@sixtysix/shared'
+import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
 import { CHARACTERS, MAX_ARENA_PLAYERS } from '@sixtysix/shared'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
@@ -35,6 +35,9 @@ export interface Room {
   /** Pending room-close timer while the host is disconnected. */
   hostGraceTimer?: ReturnType<typeof setTimeout>
   lastActivity: number
+  /** Mode state (see modes.ts); undefined in classic games. */
+  goliath?: GoliathState
+  teams?: TeamState[]
 }
 
 const rooms = new Map<string, Room>()
@@ -141,16 +144,19 @@ export function toPublicState(room: Room): RoomState {
     code: room.code,
     config: room.config,
     phase: room.phase,
-    players: [...room.players.values()].map(({ id, name, avatar, score, connected }) => ({
+    players: [...room.players.values()].map(({ id, name, avatar, score, connected, team }) => ({
       id,
       name,
       avatar,
       score,
       connected,
+      team,
     })),
     hostConnected: room.hostSocketId !== null,
     questionIndex: room.questionIndex,
     questionTotal: room.config.questionCount,
+    goliath: room.goliath,
+    teams: room.teams,
   }
 }
 

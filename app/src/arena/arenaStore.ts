@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
-import { coinsForPlacement } from '@sixtysix/shared'
 import type {
   ArenaQuestion,
   ClientToServerEvents,
@@ -172,12 +171,12 @@ function getSocket(): ArenaSocket {
   // game:podium plays no sound here — the podium view plays its own fanfare
   // when it mounts, so sight and sound land together.
   socket.on('game:podium', (entries) => {
-    // Pay the game's coins + finishing bonus, once per room even if the podium
+    // Pay the game's coins (finishing bonus included), once per room even if the podium
     // is re-sent after a reload. The server keeps the total, so a reload mid-game loses nothing.
     const { role, room, myPlayerId } = getState()
     const rank = entries.findIndex((e) => e.playerId === myPlayerId)
     if (role === 'player' && room && rank >= 0) {
-      const total = entries[rank].coins + coinsForPlacement(rank, 'arena')
+      const total = entries[rank].coins // includes the finishing bonus (server-side, by mode)
       if (!coinsPaid.has(room.code)) {
         coinsPaid.add(room.code)
         // XP = points scored, as in Bible Blitz.

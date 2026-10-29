@@ -339,6 +339,48 @@
         "out/bg-throne-room-2.png"
       ],
       "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text. A single sealed scroll with a red wax seal and a golden ribbon lying on a stone ledge at sunrise above the rooftops of ancient Jerusalem, the first rays of dawn breaking through, doves flying — the feeling of a fresh new day. Same painterly style and warm palette as the attached reference."
+    },
+    {
+      "id": "goliath",
+      "aspect": "2:3",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png",
+        "out/body-david-stand-1.png"
+      ],
+      "prompt": "Full-body standing figure of GOLIATH, the Philistine giant, facing the viewer, feet visible at the bottom, whole figure inside the frame. Huge, broad and towering but drawn in the same friendly stylised mobile-game style as the attached David figure (no gore, not scary for children): bronze scale armour, bronze helmet with crest, bronze greaves on his legs, a big round shield on one arm and a massive spear held upright, thick black beard, proud scowl, hands-on-hips confidence. Strong readable silhouette, clean dark outline."
+    },
+    {
+      "id": "bg-elah-landscape",
+      "aspect": "16:9",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Wide landscape game background: the Valley of Elah at golden afternoon. Two gentle hills face each other: on the LEFT hill the camp of Israel with small tents and banners, on the RIGHT hill the Philistine camp with tents and bronze-coloured banners, both far away and small. Between them a wide sunlit valley floor with a small brook and smooth stones in the foreground. The CENTRE of the image is open ground (empty) where a giant will stand. Warm sky, painterly clouds. No large people."
+    },
+    {
+      "id": "bg-elah-portrait",
+      "aspect": "9:16",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Portrait-orientation game background: the Valley of Elah at golden afternoon. Far away at the top, two gentle hills with tiny tents and banners (Israel on the left, Philistines on the right). The middle and lower part is a wide sunlit valley floor that is OPEN and EMPTY where a giant will stand, with a small brook and smooth stones along the bottom edge. Warm sky, painterly clouds. No large people."
+    },
+    {
+      "id": "bg-wall-landscape",
+      "aspect": "16:9",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Wide landscape game background: rebuilding the walls of Jerusalem in the time of Nehemiah. Morning light; the city of Jerusalem on its hill in the upper part of the image with the Temple, behind a long BROKEN city wall in ruins (only low rubble left) that runs across the lower middle of the image. Wooden scaffolding, ladders, baskets of stones, ropes and piles of cut stone blocks scattered along the ruined wall line. The lower third of the image is open flat ground (empty) in front of the ruins so new wall sections can be drawn on top. No large people."
+    },
+    {
+      "id": "bg-wall-portrait",
+      "aspect": "9:16",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Portrait-orientation game background: rebuilding the walls of Jerusalem in the time of Nehemiah. Morning light; the city of Jerusalem on its hill in the upper third with the Temple. Below it a BROKEN city wall in ruins (only low rubble) runs across the middle of the image, with wooden scaffolding, ladders, baskets and piles of cut stone blocks. The lower half is open flat ground, empty, so new wall sections can be drawn on top. No large people."
     }
   ]
 }

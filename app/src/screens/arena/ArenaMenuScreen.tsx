@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { CATEGORIES, type Category, type DifficultyPreset, type RoomType } from '@sixtysix/shared'
+import { ARENA_MODES, CATEGORIES, type ArenaMode, type Category, type DifficultyPreset, type RoomType } from '@sixtysix/shared'
+import { MODE_INFO } from './modes'
 import { CATEGORY_LABELS } from './categories'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
@@ -25,6 +26,7 @@ export function ArenaMenuScreen() {
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
   const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
+  const [mode, setMode] = useState<ArenaMode>('classic')
   const [questionCount, setQuestionCount] = useState(10)
   const [roomType, setRoomType] = useState<RoomType>('in-person')
   const [difficulty, setDifficulty] = useState<DifficultyPreset>('mixed')
@@ -99,6 +101,14 @@ export function ArenaMenuScreen() {
 
         <div className="arena-section">
           <div className="profile-label">Host a game</div>
+          <div className="mode-picker">
+            {ARENA_MODES.map((m) => (
+              <button key={m} className={`seg-btn mode-btn ${mode === m ? 'selected' : ''}`} onClick={() => setMode(m)}>
+                {MODE_INFO[m].label}
+              </button>
+            ))}
+          </div>
+          <p className="arena-hint mode-desc">{MODE_INFO[mode].desc}</p>
           <div className="seg-row">
             {QUESTION_COUNTS.map((n) => (
               <button
@@ -155,7 +165,7 @@ export function ArenaMenuScreen() {
           <button
             className="btn-secondary host-btn"
             disabled={busy}
-            onClick={() => hostGame({ questionCount, roomType, difficulty, categories })}
+            onClick={() => hostGame({ questionCount, roomType, difficulty, categories, mode })}
           >
             🖥️ Create game (this screen becomes the host board)
           </button>

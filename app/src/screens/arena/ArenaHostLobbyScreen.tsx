@@ -7,6 +7,7 @@ import { playSfx } from '../../game/sfx'
 import { AnimatedNumber, spring } from '../../motion'
 import { CATEGORY_LABELS } from './categories'
 import { RotateHint } from './RotateHint'
+import { MODE_INFO } from './modes'
 
 const DIFFICULTY_LABEL = { easy: '🌱 Easy', mixed: '⚖️ Mixed', hard: '🔥 Hard' } as const
 
@@ -50,6 +51,7 @@ export function ArenaHostLobbyScreen() {
 
   if (!room) return null
   const isHost = role === 'host'
+  const minPlayers = room.config.mode === 'wall' ? 2 : 1
   const cats = room.config.categories ?? []
 
   return (
@@ -69,6 +71,7 @@ export function ArenaHostLobbyScreen() {
         {qrSvg && <div className="host-qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />}
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
         <div className="host-config-chips">
+          <span className="chip chip-mode">{MODE_INFO[room.config.mode ?? 'classic'].label}</span>
           <span className="chip">{room.config.questionCount} questions</span>
           <span className="chip">{DIFFICULTY_LABEL[room.config.difficulty ?? 'mixed']}</span>
           <span className="chip">
@@ -116,13 +119,16 @@ export function ArenaHostLobbyScreen() {
         {isHost ? (
           <>
             <button
-              className={`btn-play ${room.players.length > 0 ? 'btn-ready' : ''}`}
-              disabled={room.players.length === 0}
+              className={`btn-play ${room.players.length >= minPlayers ? 'btn-ready' : ''}`}
+              disabled={room.players.length < minPlayers}
               onClick={startGame}
             >
               START GAME
             </button>
-            {room.players.length === 0 && <p className="arena-hint">Waiting for at least one player…</p>}
+            {room.players.length < minPlayers && (
+              <p className="arena-hint">{minPlayers > 1 ? 'Rebuild the Wall needs at least two players — teams are drawn at the start.' : 'Waiting for at least one player…'}</p>
+            )}
+            {room.config.mode === 'wall' && room.players.length >= minPlayers && <p className="arena-hint">Teams are drawn when the game starts.</p>}
           </>
         ) : (
           <p className="arena-hint">👀 Watching — the host starts the game.</p>

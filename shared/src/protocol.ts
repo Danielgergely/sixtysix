@@ -10,9 +10,19 @@ export type RoomType = 'in-person' | 'remote'
 /** easy = difficulty 1–2, mixed = 1–5 ramped easy → hard, hard = 3–5. */
 export type DifficultyPreset = 'easy' | 'mixed' | 'hard'
 
+/**
+ * classic = everyone for themselves (Road to the Throne, Crowning);
+ * goliath = the whole room against one giant (co-op);
+ * wall = teams race to rebuild their section of Jerusalem's wall (Neh 3).
+ */
+export type ArenaMode = 'classic' | 'goliath' | 'wall'
+export const ARENA_MODES: readonly ArenaMode[] = ['classic', 'goliath', 'wall']
+
 export interface RoomConfig {
   questionCount: number
   roomType: RoomType
+  /** Omitted = classic. */
+  mode?: ArenaMode
   /** Omitted or empty = all categories. */
   categories?: Category[]
   difficulty?: DifficultyPreset
@@ -38,6 +48,31 @@ export interface ArenaPlayer {
   avatar: string
   score: number
   connected: boolean
+  /** Wall mode: index into RoomState.teams. */
+  team?: number
+}
+
+/** David vs Goliath: the giant's health is measured in points. */
+export interface GoliathState {
+  hp: number
+  maxHp: number
+  /** Damage and number of stones (correct answers) from the last question. */
+  lastHit: number
+  lastStones: number
+  /** Top slingers of the last question (public player ids), best first. */
+  lastSlingers: string[]
+  fallen: boolean
+}
+
+/** Rebuild the Wall: one team per gate of Nehemiah 3. */
+export interface TeamState {
+  id: number
+  name: string
+  /** Wall height in stones = team's average score / 100 (fair for uneven teams). */
+  stones: number
+  /** Stones added by the last question. */
+  lastGain: number
+  members: number
 }
 
 /** Public room state — safe to broadcast to everyone in the room. */
@@ -49,6 +84,8 @@ export interface RoomState {
   hostConnected: boolean
   questionIndex: number
   questionTotal: number
+  goliath?: GoliathState
+  teams?: TeamState[]
 }
 
 /** Question as sent to clients during 'reading'/'question' — no correctIndex! */

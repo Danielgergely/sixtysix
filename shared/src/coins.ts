@@ -32,3 +32,7 @@ export function coinsForPlacement(rank: number, mode: CoinMode): number {
   const r = RATES[mode]
   return r.placement[rank] ?? r.finish
 }
+
+/** David vs Goliath / Rebuild the Wall: shared result instead of a placement. */
+export const TEAM_WIN_COINS = 40
+export const TEAM_LOSS_COINS = 15

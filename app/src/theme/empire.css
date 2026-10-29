@@ -752,3 +752,144 @@
   color: #5a2e0f;
   white-space: nowrap;
 }
+
+/* ---------- Arena modes: picker, chips ---------- */
+.mode-picker{ display: grid; gap: 6px; margin-bottom: 4px; }
+.mode-picker .mode-btn{ text-align: left; padding: 10px 12px; font-weight: 800; }
+.mode-desc, .player-mode-desc{ margin: 2px 0 8px; }
+.mode-badge{
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px;
+  border: 2px solid #c9a24a; color: #fff; font: 900 12px/1.2 'Cinzel', serif; text-shadow: 0 1px 2px #000; white-space: nowrap;
+}
+.mode-badge.goliath{ background: linear-gradient(#7a2414, #4a140a); }
+
+/* ---------- David vs Goliath (ceremony/Goliath.tsx) ---------- */
+.gl{ position: absolute; inset: 0; z-index: 12; overflow: hidden; background: #2a1608; }
+.gl-bg{ position: absolute; inset: 0; background: url(/art/bg-elah-portrait.webp) center bottom / cover no-repeat; }
+.gl.wide .gl-bg{ background-image: url(/art/bg-elah-landscape.webp); }
+.gl-giant-wrap{ position: absolute; left: 50%; bottom: 13%; translate: -50% 0; height: 52%; aspect-ratio: 604 / 900; }
+.gl.wide .gl-giant-wrap{ height: 62%; bottom: 8%; }
+.gl-giant{ width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 14px rgb(0 0 0 / 0.45)); transform-origin: 50% 100%; }
+.gl-damage{
+  position: absolute; left: 50%; top: 4%; translate: -50% 0; z-index: 3;
+  font: 900 34px/1 'Cinzel Decorative', serif; color: #ffe08a; -webkit-text-stroke: 2px #6b1d0e; text-shadow: 0 4px 8px #000;
+}
+.gl.wide .gl-damage{ font-size: 56px; }
+.gl-stone{
+  position: absolute; z-index: 4; width: 14px; height: 12px; margin: -6px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #e8e2d6, #8d8578 60%, #4c463d); box-shadow: 0 2px 4px rgb(0 0 0 / 0.5);
+}
+.gl.wide .gl-stone{ width: 20px; height: 17px; }
+.gl-hp{
+  position: absolute; top: 14px; left: 50%; translate: -50% 0; z-index: 5; width: min(88%, 520px);
+  padding: 8px 14px; border-radius: 8px; background-color: #f3e2bb; border: 3px solid #b88a3a;
+  box-shadow: 0 0 0 2px #1d0f06, 0 8px 18px rgb(0 0 0 / 0.5); text-align: center;
+}
+.gl.wide .gl-hp{ width: min(60%, 760px); padding: 12px 20px; }
+.gl-hp-name{ font: 900 18px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.gl.wide .gl-hp-name{ font-size: 28px; }
+.gl-hp-track{ height: 16px; margin: 6px 0 4px; border-radius: 999px; background: #3a1a0c; border: 2px solid #1d0f06; overflow: hidden; }
+.gl.wide .gl-hp-track{ height: 24px; }
+.gl-hp-fill{ height: 100%; background: linear-gradient(#ff6a4a, #b3261b); box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.35); }
+.gl-hp-num{ font: 800 12px/1 'Cinzel', serif; color: #6b4120; }
+.gl.wide .gl-hp-num{ font-size: 16px; }
+.gl-caption{
+  position: absolute; left: 50%; bottom: 4%; translate: -50% 0; z-index: 5; width: max-content; max-width: 92%;
+  padding: 6px 14px; border-radius: 999px; background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a;
+  color: #ffe7a3; font: 800 13px/1.3 'Cinzel', serif; text-align: center;
+}
+.gl.wide .gl-caption{ font-size: 20px; bottom: 3%; }
+.gl-slingers{
+  position: absolute; z-index: 5; left: 50%; translate: -50% 0; top: calc(14px + 92px);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.gl.wide .gl-slingers{ left: auto; right: 2.5%; translate: none; top: 30%; }
+.gl-slingers-title{ font: 900 11px/1 'Cinzel', serif; letter-spacing: 0.16em; text-transform: uppercase; color: #ffe7a3; text-shadow: 0 1px 3px #000; }
+.gl-slingers-row{ display: flex; gap: 8px; }
+.gl.wide .gl-slingers-row{ flex-direction: column; }
+.gl-slinger{
+  display: flex; align-items: center; gap: 6px; padding: 3px 10px 3px 3px; border-radius: 999px;
+  background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a; color: #ffe7a3; font: 800 11px/1 'Cinzel', serif;
+}
+.gl.wide .gl-slinger{ font-size: 16px; }
+.gl-slinger-portrait{ width: 26px; height: 26px; }
+.gl.wide .gl-slinger-portrait{ width: 40px; height: 40px; }
+.gl-slinger-pts{ color: #ffd36b; }
+.gl-verdict, .wl-verdict{
+  position: absolute; z-index: 6; left: 50%; top: 40%; translate: -50% -50%; width: min(90%, 560px);
+  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 18px; border-radius: 10px;
+  background-color: #f3e2bb; border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 14px 30px rgb(0 0 0 / 0.6); text-align: center;
+}
+.gl-verdict strong, .wl-verdict strong{ font: 900 24px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.gl.wide .gl-verdict strong, .wl.wide .wl-verdict strong{ font-size: 40px; }
+.gl-verdict small, .wl-verdict small{ font: italic 600 13px/1.35 Georgia, serif; color: #5a3a1e; }
+.gl.wide .gl-verdict small, .wl.wide .wl-verdict small{ font-size: 18px; }
+.gl-coins{ display: inline-flex; align-items: center; gap: 6px; font: 900 20px/1 'Cinzel', serif; color: #6b4120; }
+/* Finale: verdict beside (wide) or below (phone) the giant, never over his face. */
+.gl.finale .gl-verdict{ top: auto; bottom: calc(env(safe-area-inset-bottom) + 66px); translate: -50% 0; }
+.gl.wide.finale .gl-verdict{ left: 3%; bottom: auto; top: 50%; translate: 0 -50%; width: 30%; }
+.gl.wide.finale .gl-slingers{ top: 30%; }
+.gl-actions{ position: absolute; z-index: 7; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 16px); translate: -50% 0; }
+.gl-actions button{ padding: 10px 26px; border-radius: 10px; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06; font: 900 15px/1 'Cinzel', serif; color: #2b1408; box-shadow: 0 4px 0 #1d0f06; }
+
+/* ---------- Rebuild the Wall (ceremony/Wall.tsx) ---------- */
+.wl{ position: absolute; inset: 0; z-index: 12; overflow: hidden; background: #2a1608; }
+.wl-bg{ position: absolute; inset: 0; background: url(/art/bg-wall-portrait.webp) center / cover no-repeat; }
+.wl.wide .wl-bg{ background-image: url(/art/bg-wall-landscape.webp); }
+.wl-title{
+  position: absolute; top: 14px; left: 50%; translate: -50% 0; z-index: 5; padding: 8px 22px 6px; border-radius: 6px;
+  background-color: #f3e2bb; border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 8px 18px rgb(0 0 0 / 0.5);
+  font: 900 20px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; text-align: center; white-space: nowrap;
+}
+.wl-title small{ display: block; font: italic 600 11px/1.3 Georgia, serif; color: #6b4120; }
+.wl.wide .wl-title{ font-size: 32px; }
+.wl.wide .wl-title small{ font-size: 15px; }
+.wl-sections{ position: absolute; left: 3%; right: 3%; bottom: 5%; top: 22%; display: flex; gap: 3%; align-items: flex-end; }
+.wl-section{ position: relative; flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+.wl-wall{
+  position: relative; min-height: 6px; border: 2px solid #3a2410; border-bottom: 0; border-radius: 3px 3px 0 0;
+  /* Courses of cut stone, joints offset every other course. */
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40'><rect width='60' height='40' fill='%23d3b075'/><rect x='1' y='1' width='28' height='18' fill='%23e3c690'/><rect x='46' y='21' width='14' height='18' fill='%23e0c28a'/><rect x='16' y='21' width='28' height='18' fill='%23c4a068'/><rect x='31' y='1' width='28' height='18' fill='%23d9ba80'/><path d='M0 20H60M0 40H60M0 0V20M30 0V20M15 20V40M45 20V40' stroke='%233a2410' stroke-opacity='.6' stroke-width='2' fill='none'/></svg>") left bottom / 60px 40px;
+  box-shadow: inset 0 -10px 18px rgb(0 0 0 / 0.25), 0 10px 20px rgb(0 0 0 / 0.4);
+}
+/* Crenellations along the top. */
+.wl-wall::before{
+  content: ''; position: absolute; left: -2px; right: -2px; top: -12px; height: 12px;
+  background: repeating-linear-gradient(90deg, #d9b97e 0 16px, #0000 16px 26px); border-bottom: 2px solid #3a2410;
+}
+.wl-flag{
+  position: absolute; left: 50%; bottom: calc(100% + 16px); translate: -50% 0; display: flex; flex-direction: column; align-items: center;
+  padding: 5px 10px; border-radius: 6px; background: var(--c); border: 2px solid #ffe08a; box-shadow: 0 4px 10px rgb(0 0 0 / 0.5);
+  color: #fff; text-shadow: 0 1px 2px #000; white-space: nowrap;
+}
+.wl-flag-name{ font: 900 12px/1.1 'Cinzel', serif; }
+.wl-flag-stones{ font: 700 10px/1.2 'Cinzel', serif; opacity: 0.9; }
+.wl.wide .wl-flag-name{ font-size: 20px; }
+.wl.wide .wl-flag-stones{ font-size: 14px; }
+.wl-gain{ position: absolute; left: 50%; top: 20%; translate: -50% 0; font: 900 24px/1 'Cinzel Decorative', serif; color: #ffe08a; -webkit-text-stroke: 1.5px #3a2410; }
+.wl.wide .wl-gain{ font-size: 40px; }
+.wl-team-size{
+  margin-top: 6px; padding: 3px 8px; border-radius: 999px; align-self: center; background: rgb(29 15 6 / 0.8);
+  color: #ffe7a3; font: 800 10px/1.2 'Cinzel', serif; text-align: center; white-space: nowrap;
+}
+.wl.wide .wl-team-size{ font-size: 15px; }
+.wl-section.mine .wl-wall{ outline: 3px solid #ffe08a; outline-offset: 2px; }
+.wl-section.mine .wl-team-size{ background: var(--c); }
+.wl-verdict{ top: 36%; }
+.wl-you{ font: 900 15px/1.2 'Cinzel', serif; color: #6b4120; }
+.wl-you.won{ color: #2f7a3a; }
+.wl-builders{ display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 4px; }
+.wl-builder{ display: flex; align-items: center; gap: 4px; font: 800 11px/1 'Cinzel', serif; color: #3a2410; }
+.wl-builder-portrait{ width: 26px; height: 26px; }
+.wl.wide .wl-builder{ font-size: 17px; }
+.wl.wide .wl-builder-portrait{ width: 38px; height: 38px; }
+.emp .player-mode-desc{ color: #e9d6a8; max-width: 300px; text-align: center; }
+@media (max-width: 480px){
+  .mode-badge{ font-size: 10px; padding: 3px 8px; }
+  .empire-top{ padding-left: 10px; padding-right: 74px; gap: 6px; }
+}
+/* Phones: clear the Leave/Skip buttons at the top and the action button at the bottom. */
+.gl:not(.wide) .gl-hp, .wl:not(.wide) .wl-title{ top: calc(env(safe-area-inset-top) + 52px); }
+.gl:not(.wide) .gl-slingers{ top: calc(env(safe-area-inset-top) + 52px + 96px); }
+.wl:not(.wide) .wl-sections{ top: 26%; }
+.wl.finale:not(.wide) .wl-sections, .gl.finale:not(.wide) .gl-giant-wrap{ bottom: calc(env(safe-area-inset-bottom) + 70px); }

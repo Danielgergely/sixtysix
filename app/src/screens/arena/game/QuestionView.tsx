@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useAnimate } from 'motion/react'
 import { QUESTION_TIME_MS } from '@sixtysix/shared'
 import type { RevealPayload, YourResult } from '@sixtysix/shared'
@@ -43,6 +43,8 @@ export interface QuestionViewProps {
   result: YourResult | null
   /** The player's running score, shown top right. */
   score?: number
+  /** Mode chip in the top bar (team name, giant's health). */
+  badge?: ReactNode
   /** Coins earned this game, shown beside the score. */
   coins?: number
   /** Boards: "✓ 3 / 8 answered". */
@@ -101,6 +103,7 @@ export function QuestionView(props: QuestionViewProps) {
               <AnimatedNumber value={score} />
             </div>
           )}
+          {props.badge}
           {props.coins !== undefined && (
             <div className="empire-purse score" title="Coins this game — yours when you finish">
               <PaintedCoin size={18} />

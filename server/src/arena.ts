@@ -1,8 +1,9 @@
 import type { Server, Socket } from 'socket.io'
 import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, ServerToClientEvents } from '@sixtysix/shared'
-import { CATEGORIES } from '@sixtysix/shared'
+import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
 import { broadcastState, endIfEmpty, handleAnswer, sendCurrentPhase, skipPhase, startGame } from './game.js'
+import { assignLateJoiner } from './modes.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
@@ -41,6 +42,7 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
         roomType: cfg.roomType === 'remote' ? 'remote' : 'in-person',
         categories: Array.isArray(cfg.categories) ? CATEGORIES.filter((c) => (cfg.categories as unknown[]).includes(c)) : [],
         difficulty: DIFFICULTIES.find((d) => d === cfg.difficulty) ?? 'mixed',
+        mode: ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic',
       },
       payload.hostId,
       socket.id,
@@ -58,6 +60,7 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const result = addOrRebindPlayer(room, payload.playerId, socket.id, payload.name, payload.avatar)
     if ('error' in result) return ack({ ok: false, error: result.error })
+    assignLateJoiner(room, result.player)
     void socket.join(room.code)
     ack({ ok: true, playerId: result.player.id, state: toPublicState(room) })
     broadcastState(io, room)
@@ -98,6 +101,7 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
   on('host:start', () => {
     const room = hostedRoom(socket)
     if (!room || room.phase !== 'lobby' || room.players.size === 0) return
+    if (room.config.mode === 'wall' && room.players.size < 2) return // teams need two players
     startGame(io, room)
   })
 

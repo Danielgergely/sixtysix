@@ -7,6 +7,7 @@ import type {
   ServerToClientEvents,
 } from '@sixtysix/shared'
 import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
+import { applyModeRound, endsEarly, finalBonus, setupMode } from './modes.js'
 import { pickQuestions, verseFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
@@ -58,6 +59,7 @@ export function startGame(io: IO, room: Room): void {
     p.lastGain = 0
     p.coins = 0
   }
+  setupMode(room)
   nextQuestion(io, room)
   console.log(`[game] ${room.code} started: ${room.questions.length} questions, ${room.players.size} players`)
 }
@@ -110,10 +112,18 @@ export function endIfEmpty(io: IO, room: Room): void {
   if (room.phase === 'lobby' || room.phase === 'podium') return
   if ([...room.players.values()].some((p) => p.connected)) return
   clearTimeout(room.timer)
+  finishGame(io, room)
+}
+
+/** Pay the finishing coins (by mode), then show the podium / finale. */
+function finishGame(io: IO, room: Room): void {
   room.phase = 'podium'
+  const sorted = [...room.players.values()].sort((a, b) => b.score - a.score)
+  sorted.forEach((p, rank) => (p.coins += finalBonus(room, p, rank)))
   room.lastEntries = computeLeaderboard(room)
   io.to(room.code).emit('game:podium', room.lastEntries)
   broadcastState(io, room)
+  console.log(`[game] ${room.code} finished`)
 }
 
 export function handleAnswer(io: IO, room: Room, playerId: string, index: unknown): void {
@@ -163,6 +173,7 @@ function resolveQuestion(io: IO, room: Room): void {
       })
     }
   }
+  applyModeRound(room)
 
   io.to(room.code).emit('game:reveal', {
     correctIndex: q.correctIndex,
@@ -176,16 +187,10 @@ function resolveQuestion(io: IO, room: Room): void {
 }
 
 function afterReveal(io: IO, room: Room): void {
-  const entries = computeLeaderboard(room)
-  const isLast = room.questionIndex + 1 >= room.questions.length
-  if (isLast) {
-    room.phase = 'podium'
-    room.lastEntries = entries
-    io.to(room.code).emit('game:podium', entries)
-    broadcastState(io, room)
-    console.log(`[game] ${room.code} finished`)
-    return // room lingers for the podium; GC cleans it up
+  if (room.questionIndex + 1 >= room.questions.length || endsEarly(room)) {
+    return finishGame(io, room) // room lingers for the podium; GC cleans it up
   }
+  const entries = computeLeaderboard(room)
   room.phase = 'leaderboard'
   room.lastEntries = entries
   io.to(room.code).emit('game:leaderboard', entries)

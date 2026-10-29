@@ -3,6 +3,7 @@ import { useGameStore } from '../../game/store'
 import { motion } from 'motion/react'
 import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, spring } from '../../motion'
+import { MODE_INFO } from './modes'
 
 export function ArenaPlayerLobbyScreen() {
   const room = useArenaStore((s) => s.room)
@@ -44,6 +45,8 @@ export function ArenaPlayerLobbyScreen() {
           {player.name}
         </motion.div>
         <div className="chip">Game {room.code}</div>
+        <div className="chip chip-mode">{MODE_INFO[room.config.mode ?? 'classic'].label}</div>
+        <p className="arena-hint player-mode-desc">{MODE_INFO[room.config.mode ?? 'classic'].desc}</p>
 
         <div className="player-lobby-wait">
           <div className="slot-spinner" />
