@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import { MIN_PASSWORD, USERNAME_RE } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
+import { useGameStore, type Screen } from '../game/store'
 
-/** What an account unlocks; guests see these locked. */
-const UNLOCKS = [
-  { icon: '🌳', name: 'Skill tree', desc: 'Spend a skill point per level on gifts and bonuses' },
-  { icon: '🏠', name: 'My Home in Jerusalem', desc: 'Build and upgrade your own plot with your coins' },
+/** What an account unlocks; guests see these locked. `open` = where it lives once unlocked. */
+const UNLOCKS: Array<{ icon: string; name: string; desc: string; open?: Screen; soon?: boolean }> = [
+  { icon: '🌳', name: 'Skill tree', desc: 'Spend a skill point per level on gifts and bonuses', soon: true },
+  { icon: '🏠', name: 'My Home in Jerusalem', desc: 'Build and upgrade your own plot with your coins', open: 'home' },
   { icon: '☁️', name: 'Progress saved online', desc: 'Keep your level and coins on any device' },
 ]
 
 /** Optional account: sign in / create, or who you are signed in as. */
 export function AccountPanel() {
   const { account, busy, error, signup, login, logout } = useAccountStore()
+  const goTo = useGameStore((s) => s.goTo)
   const [mode, setMode] = useState<'login' | 'signup'>('signup')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -47,8 +49,13 @@ export function AccountPanel() {
             <span className="account-unlock-icon">{account ? u.icon : '🔒'}</span>
             <span>
               <strong>{u.name}</strong>
-              <small>{account && u.name !== 'Progress saved online' ? 'Coming soon' : u.desc}</small>
+              <small>{account && u.soon ? 'Coming soon' : u.desc}</small>
             </span>
+            {account && u.open && (
+              <button className="account-open" onClick={() => goTo(u.open!)}>
+                Open ›
+              </button>
+            )}
           </li>
         ))}
       </ul>
