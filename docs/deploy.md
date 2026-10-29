@@ -7,7 +7,39 @@ most "serverless" setups and favours a single small container.
 
 Prices were checked on 2026-10-29. Re-check them before signing up.
 
-## Recommendation: Fly.io, about $2–4 per month
+## First choice: your own Coolify server (€0 extra)
+
+If a Coolify VPS is already running (as for hungrbros.hu on Rackhost), use it.
+The repo's `Dockerfile` works as-is, and the game is small: the server sits at
+about 100 MB RAM and next to no CPU between questions.
+
+What you need:
+
+1. **The code on a git host Coolify can reach.** The repo has no remote yet.
+   Create a private GitHub repo, push `main`, and connect it in Coolify
+   (GitHub App, or a deploy key).
+2. **A domain name.** A subdomain is free, for example `66.hungrbros.hu` or
+   `jatek.hungrbros.hu`: add an **A record** pointing at the VPS IP wherever the
+   hungrbros.hu DNS is managed (Rackhost). A domain of its own can come later.
+3. **A new Coolify resource:**
+   - Build pack: **Dockerfile**.
+   - Ports exposes: **8080**.
+   - Domain: `https://66.hungrbros.hu`. Coolify's proxy (Traefik or Caddy)
+     fetches the HTTPS certificate and passes WebSockets through without extra
+     config.
+   - Health check path: `/healthz`.
+   - Exactly **one** replica, and no "zero-downtime" rolling deploys: during
+     the overlap a game could be split across two containers.
+4. **Deploy when no game is running.** A redeploy restarts the process and
+   ends any game in progress (rooms are in memory). Turn on auto-deploy on
+   push only if you're fine with that.
+5. **Later, for accounts:** add a persistent storage volume mounted at `/data`
+   for the SQLite file, and include it in Coolify's backups.
+
+Cost: nothing extra if the VPS has around 250 MB RAM to spare. Check with
+`docker stats` on the server. Everything below stays valid as a fallback.
+
+## Hosted alternative: Fly.io, about $2–4 per month
 
 - One `shared-cpu-1x` machine in Frankfurt (`fra`). WebSockets work out of the box.
 - You get a free `https://<name>.fly.dev` address, and a custom domain is free to attach.
@@ -59,6 +91,31 @@ Not suitable:
 
 To use it with Fly, run `fly certs add play.yourdomain.ch` and point a CNAME at
 `<name>.fly.dev`. HTTPS is automatic.
+
+## Storage and bandwidth
+
+Measured on the 2026-10-29 build:
+
+| What | Size |
+|---|---|
+| App code + styles, gzipped | about 170 KB |
+| Question bank + verse texts (loaded on first quiz) | about 175 KB gzipped |
+| Painted art, all 33 images | about 1.9 MB (a screen uses only part of it) |
+| **First visit, a new phone** | **about 1.5–2.3 MB**, then cached by the browser |
+| Live arena traffic, per player for a 20-question game | about 100–200 KB |
+
+- **A game night** with 30 phones is about 30 × 2 MB + 30 × 0.2 MB ≈ **65 MB**.
+- **A busy month** of 100 such games is about **6–7 GB**. That is far inside
+  any VPS allowance and costs well under $1 on metered hosts.
+- **Disk:** the Docker image is a few hundred MB, mostly `node_modules`.
+- **Future accounts:** a profile with coins, stats, inventory and a Jerusalem
+  plot is about 1–2 KB in SQLite:
+  - 10,000 players is about **20 MB**;
+  - a million players is about 2 GB.
+  - Plot art is shared, so it doesn't grow with the number of players.
+- **What actually runs out first** is simultaneous WebSocket connections and
+  CPU, not storage or bandwidth. A single small Node process comfortably
+  handles a few hundred phones at once.
 
 ## When accounts and saved progress arrive
 

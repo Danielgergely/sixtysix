@@ -35,6 +35,23 @@ coins.
 *(Concept art generated with the art pipeline. The real version would be
 layered pieces that change one by one.)*
 
+### A city that grows with its players
+
+- **Every new player gets a plot** when they first open the game. They receive
+  it by *casting lots*, which is what Nehemiah 11:1 describes: "the rest of the
+  people cast lots to bring one of every ten to live in Jerusalem".
+- The city is a grid that grows outward, so it scales without limit:
+  - the Temple mount sits in the centre;
+  - plots fill rings around it, inside the wall first, then outside the gates.
+  - Friends or a church group can ask for **neighbouring plots**, which makes a
+    street.
+- **Extra plots are bought with coins.** The first extra plot borders your own
+  and becomes a field, vineyard or pasture. Prices rise for each additional
+  plot, so this is a long-term goal rather than a land grab.
+- A plot is **data, not an image**: a position plus the level of each building.
+  The client draws it from shared layered art, so 10 or 100,000 players cost the
+  same in art. The city view loads only the plots on screen.
+
 ### What you build
 
 Each building has 3–5 visible upgrade levels. Each level costs coins **and**
