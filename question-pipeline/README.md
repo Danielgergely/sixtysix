@@ -8,7 +8,8 @@ data/generated/*.json   candidate question batches (LLM- or hand-written)
 data/verified.json      auto-passed all checks            ← verify.mjs
 data/review-queue.json  needs a human eye (with verse)    ← verify.mjs
 data/rejected.json      hard failures with reasons        ← verify.mjs
-data/approved-manual.json  reviewed questions promoted from the queue
+data/approved-manual.json  reviewed questions promoted from the queue ← review.mjs
+data/review-rejected.json  questions a human rejected in review    ← review.mjs
 ../app/src/questions/bank.json  shipped bank              ← compile.mjs
 ```
 
@@ -17,10 +18,21 @@ data/approved-manual.json  reviewed questions promoted from the queue
 ```bash
 node scripts/fetch-bible.mjs   # once — downloads the WEB corpus
 # add batches to data/generated/ (see format below)
-node scripts/verify.mjs        # → verified / review-queue / rejected
-# review data/review-queue.json: move good ones into data/approved-manual.json
+node scripts/verify.mjs        # → verified / review-queue / rejected (+ summary tables)
+node scripts/review.mjs        # interactive: walk the review queue
 node scripts/compile.mjs       # → app/src/questions/bank.json
 ```
+
+`verify.mjs` prints a per-batch summary (verified / review / rejected with
+reasons tallied) and the shippable distribution by category × difficulty.
+Pass `--quiet` to suppress the per-question rejection list.
+
+`review.mjs` shows each queued question with its answers (correct one
+marked), the reference and the verse text (±2 verses), then asks:
+`a` approve (→ `approved-manual.json`), `r` reject (→ `review-rejected.json`,
+never re-queued), `s` skip (stays queued), `q` quit. Decisions are saved
+immediately and removed from the queue; re-running `verify.mjs` does not
+re-queue approved or rejected ids.
 
 ## Batch format
 
@@ -44,6 +56,11 @@ Rules (enforced by verify.mjs):
 - `reference` must be `"Book C:V"` or `"Book C:V-V2"` and exist in the WEB
   corpus (book names as in WEB, e.g. "Psalms", "Song of Songs").
 - 4 unique answers; question ≤ 160 chars; answers ≤ 50 chars.
+- No duplicates across all batches + approved-manual.json: a candidate is
+  rejected if it reuses an id, has the same reference + same correct answer
+  as an accepted question, or its normalized question text (lowercased,
+  punctuation and stopwords stripped) has token Jaccard ≥ 0.8 with one.
+  The earlier batch wins, so fix/re-word the later one.
 - `category`: torah | history | wisdom | prophets | gospels | epistles
   (Acts counts as history; Daniel as prophets; Revelation as epistles).
 - `difficulty`: 1 = Sunday-school famous → 5 = deep cuts.

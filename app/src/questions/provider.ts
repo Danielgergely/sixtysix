@@ -1,8 +1,11 @@
 import type { Difficulty, Locale, Question } from './types'
-import bankJson from './bank.json'
 
-/** Generated + verified by question-pipeline/ — do not edit by hand. */
-const BANK = bankJson as Question[]
+/**
+ * bank.json is generated + verified by question-pipeline/ — do not edit by
+ * hand. It's ~0.5 MB, so it loads as its own chunk on first use instead of
+ * weighing down app start-up.
+ */
+const loadBank = () => import('./bank.json').then((m) => m.default as Question[])
 
 export interface GetQuestionsOptions {
   count: number
@@ -21,16 +24,21 @@ export interface QuestionProvider {
 }
 
 export class BundledBankProvider implements QuestionProvider {
-  private readonly bank: Question[]
+  private bank: Promise<Question[]> | null = null
+  private readonly load: () => Promise<Question[]>
 
-  constructor(bank: Question[]) {
-    this.bank = bank
+  constructor(load: () => Promise<Question[]>) {
+    this.load = load
   }
 
   async getQuestions({ count, difficulty }: GetQuestionsOptions): Promise<Question[]> {
-    const pool = difficulty
-      ? this.bank.filter((q) => q.difficulty === difficulty)
-      : [...this.bank]
+    // Memoise the promise; drop it on failure so a later call can retry.
+    this.bank ??= this.load().catch((err) => {
+      this.bank = null
+      throw err
+    })
+    const bank = await this.bank
+    const pool = difficulty ? bank.filter((q) => q.difficulty === difficulty) : [...bank]
     // Fisher–Yates shuffle, then take the first `count`.
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -40,4 +48,4 @@ export class BundledBankProvider implements QuestionProvider {
   }
 }
 
-export const bundledBank: QuestionProvider = new BundledBankProvider(BANK)
+export const bundledBank: QuestionProvider = new BundledBankProvider(loadBank)

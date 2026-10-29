@@ -124,5 +124,43 @@
     "correctIndex": 2,
     "_verse": "The words of Amos, who was among the herdsmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel, two years before the earthquake.",
     "_flag": "correct answer not found in cited verse(s) — confirm manually"
+  },
+  {
+    "file": "batch-022-prophets-d1d2.json",
+    "id": "q_b22_017",
+    "reference": "Isaiah 6:8",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Which prophet answered the Lord, 'Here I am. Send me!'?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Jonah",
+        "Amos",
+        "Habakkuk"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "file": "batch-022-prophets-d1d2.json",
+    "id": "q_b22_022",
+    "reference": "Jeremiah 1:5",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "To which prophet did God say, 'Before I formed you in the belly, I knew you'?"
+    },
+    "answers": {
+      "en": [
+        "Ezekiel",
+        "Jeremiah",
+        "Hosea",
+        "Joel"
+      ]
+    },
+    "correctIndex": 1
   }
 ]
