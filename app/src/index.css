@@ -75,8 +75,7 @@ body{
 /* Honour the OS "reduce motion" setting for the legacy CSS keyframes too
    (Motion components handle it via <MotionConfig reducedMotion="user">). */
 @media (prefers-reduced-motion: reduce){
-  /* .timer-fill is excluded: its keyframe IS the question clock. */
-  *:not(.timer-fill), *::before, *::after {
+  *, *::before, *::after{
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
@@ -108,7 +107,6 @@ button:disabled{ cursor: default; }
   place-items: center;
 }
 
-.icon-btn-avatar{ padding: 0; border: none; background: none; overflow: visible; }
 .avatar-option-pic{ display: block; width: 46px; height: 46px; }
 .player-chip-avatar{ display: block; width: 1.9em; height: 1.9em; flex-shrink: 0; }
 
@@ -127,18 +125,6 @@ button:disabled{ cursor: default; }
 }
 .icon-btn:active:not(:disabled){ transform: scale(0.92); }
 .icon-btn:disabled{ opacity: 0.4; }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ── Open Arena ──────────────────────────────────────────────────────── */
 .arena-menu-body{
@@ -372,19 +358,9 @@ button:disabled{ cursor: default; }
     height: auto;
   }
   .app-wide .answer-btn { font-size: clamp(1rem, 2.1vw, 1.9rem); }
-  .app-wide .answer-pick-pct { font-size: clamp(1rem, 2vw, 1.8rem); }
-  .app-wide .arena-game-top .chip { font-size: clamp(0.8rem, 1.4vw, 1.2rem); padding: 6px 16px; }
+
   .app-wide .lb-row { font-size: clamp(1rem, 1.8vw, 1.5rem); padding: clamp(0.5rem, 1.4vh, 1rem) 1.2rem; }
-  .app-wide .lb-avatar { width: clamp(32px, 4vh, 52px); height: clamp(32px, 4vh, 52px); }
-  .app-wide .arena-lb-screen { width: min(900px, 100%); margin: 0 auto; }
-  .app-wide .podium-motion .review-list, .app-wide .podium-you { width: min(900px, 100%); margin: 0 auto; }
-  .app-wide .podium-block { width: clamp(84px, 12vw, 180px); }
-  .app-wide .tier-1 .podium-block { height: clamp(110px, 22vh, 240px); }
-  .app-wide .tier-2 .podium-block { height: clamp(80px, 16vh, 180px); }
-  .app-wide .tier-3 .podium-block { height: clamp(58px, 11vh, 130px); }
-  .app-wide .podium-avatar { width: clamp(64px, 10vh, 110px); height: clamp(64px, 10vh, 110px); }
-  .app-wide .tier-1 .podium-avatar { width: clamp(80px, 13vh, 140px); height: clamp(80px, 13vh, 140px); }
-  .app-wide .arena-host-footer { font-size: clamp(1rem, 1.8vw, 1.5rem); padding-bottom: 1rem; }
+
   .app-wide .lb-list { max-width: 820px; margin: 0 auto; width: 100%; }
   .app-wide .lb-row { font-size: clamp(1rem, 2.6vh, 1.4rem); padding: clamp(0.5rem, 1.4vh, 0.9rem) 1.2rem; }
   .app-wide .screen-heading { font-size: clamp(1.3rem, 4vh, 2.2rem); }
@@ -611,7 +587,6 @@ button:disabled{ cursor: default; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes pop-in { from { transform: scale(0.6); opacity: 0; } }
 
-@keyframes stumble { 25% { transform: rotate(-18deg); } 75% { transform: rotate(12deg); } }
 .leave-race-btn{
   background: var(--answer-red);
   color: #fff;
@@ -686,41 +661,15 @@ button:disabled{ cursor: default; }
 .answer-btn > *{ position: relative; }
 
 /* Share of racers who picked this answer, shown on reveal. */
-.answer-pick-fill{
-  position: absolute !important;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background: rgb(255 255 255 / 0.22);
-  animation: pick-fill-grow 0.7s ease-out;
-  pointer-events: none;
-}
 
-@keyframes pick-fill-grow {
-  from { width: 0; }
-}
 
-.answer-pick-pct{
-  position: absolute !important;
-  top: 5px;
-  right: 9px;
-  font-size: 1rem;
-  font-weight: 800;
-  color: rgb(255 255 255 / 0.6);
-  pointer-events: none;
-}
 .answer-btn:active:not(:disabled){ transform: translateY(3px); border-bottom-width: 2px; }
-.answer-shape{ font-size: 1.3rem; opacity: 0.85; }
 
 .answer-red{ background: var(--answer-red); }
 .answer-blue{ background: var(--answer-blue); }
 .answer-gold{ background: var(--answer-gold); }
 .answer-green{ background: var(--answer-green); }
 
-.answer-correct{ outline: 4px solid var(--cream); animation: pop-in 0.25s; }
-.answer-wrong{ opacity: 0.85; animation: stumble 0.4s; }
-.answer-dim{ opacity: 0.35; }
-.answer-selected{ outline: 4px solid var(--ink); transform: translateY(3px); border-bottom-width: 2px; }
 .arena-game-shell{ flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
 /* ── Podium ──────────────────────────────────────────────────────────── */
@@ -835,4 +784,4 @@ button:disabled{ cursor: default; }
 .arena-game-shell .arena-leave,
 .arena-game-shell .arena-skip{ z-index: 40; }
 /* Coins earned this race, beside the score. */
-.coin-hud { display: flex; align-items: center; gap: 3px; margin: 0 auto 0 6px; animation: none; }
+
