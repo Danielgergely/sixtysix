@@ -21,6 +21,9 @@ All of these live in `shared/src/coins.ts`. Nothing can be bought yet.
 4. **Progress is visible to others.** It shows on your profile, which other
    players can open from the leaderboard or the crowning.
 
+> The detailed plot / buildings / shop / timers design is in `docs/jerusalem-plot.md`.
+> Coin rates below are outdated: see `shared/src/coins.ts` (arena > Blitz > Practice).
+
 ## Recommended: "Rebuild Jerusalem" — your own plot, from rubble to glory
 
 The story fits the game well. In **Nehemiah 3**, every family repaired *the
