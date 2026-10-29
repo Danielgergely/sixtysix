@@ -17,6 +17,12 @@ const RATES: Record<CoinMode, { perCorrect: number; streakBonus: number; placeme
 /** Daily Scroll: arena rate per answer (it's capped at five a day) + a bonus for all five. */
 export const DAILY_COINS_PER_CORRECT = 10
 export const DAILY_PERFECT_BONUS = 25
+/**
+ * XP per right answer where there is no clock and so no points to copy:
+ * Practice and the Daily Scroll (docs/skill-tree.md §1).
+ */
+export const UNTIMED_XP_PER_CORRECT = 50
+
 /** Streak bonus applies from this many consecutive correct answers. */
 export const STREAK_BONUS_FROM = 3
 

@@ -3,6 +3,7 @@ import { CHARACTERS } from '@sixtysix/shared'
 import { Avatar } from '../avatars/Avatar'
 import { characterName } from '../art/characters'
 import { AccountPanel } from './AccountPanel'
+import { openSkillTree } from '../skills/nav'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
 
@@ -84,7 +85,9 @@ export function ProfileScreen() {
       </div>
 
       <div className="profile-stats">
-        <div className="chip">⭐ Level {player.level}</div>
+        <button className="chip chip-btn" onClick={() => openSkillTree('profile')} title="Skill tree">
+          ⭐ Level {player.level} · 🌳 Gifts ›
+        </button>
         <div className="chip">✨ {player.xp.toLocaleString('en-US')} XP</div>
         <div className="chip">🪙 {player.coins.toLocaleString('en-US')}</div>
       </div>

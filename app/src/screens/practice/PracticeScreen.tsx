@@ -8,11 +8,15 @@ import { AnimatedNumber, STAGGER, spring } from '../../motion'
 import { AnswerCard } from '../arena/game/AnswerCard'
 import { CATEGORY_LABELS } from '../arena/categories'
 import { quoteVerse } from '../../questions/quoteVerse'
+import { useGiftStore } from '../../skills/giftStore'
+import { GiftBar } from '../../skills/GiftBar'
 
 /** Untimed solo questions: tap a card, see the verse, carry on. */
 export function PracticeScreen() {
   const goTo = useGameStore((s) => s.goTo)
-  const { question, verse, picked, streak, coins, tally, finished, answer, next, finish } = usePracticeStore()
+  const { question, verse, picked, streak, coins, tally, finished, answer, next, finish, playGift } = usePracticeStore()
+  const removed = useGiftStore((s) => s.removed)
+  const used = useGiftStore((s) => s.used)
 
   if (finished) return <PracticeSummary onDone={() => goTo('practiceSetup')} />
   if (!question) return null
@@ -31,6 +35,7 @@ export function PracticeScreen() {
             ✓ {tally.correct}/{tally.answered}
           </span>
           {streak >= 2 && <span className="pr-streak">⚜ {streak}</span>}
+          {used.includes('double') && !answered && <span className="pr-streak gift-x2">×2</span>}
           <span className="pr-coins">
             <PaintedCoin size={18} /> <AnimatedNumber value={coins} duration={0.5} />
           </span>
@@ -50,6 +55,11 @@ export function PracticeScreen() {
           {'○'.repeat(5 - question.difficulty)}
         </div>
         <div className="pr-q">{question.text.en}</div>
+        {used.includes('lamp') && !answered && (
+          <motion.div className="gift-hint" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
+            🪔 Look in <b>{question.reference}</b>
+          </motion.div>
+        )}
         <AnimatePresence>
           {answered && (
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
@@ -60,18 +70,22 @@ export function PracticeScreen() {
         </AnimatePresence>
       </motion.div>
 
+      <div className="pr-gifts">{!answered && <GiftBar enabled={!answered} onUse={playGift} />}</div>
+
       <div className="pr-grid">
         {question.answers.en.map((text, i) => {
           const isRight = answered && i === question.correctIndex
           const isWrongPick = answered && i === picked && !correct
+          // Taken out by a gift (50/50, a retried wrong answer): it sinks away.
+          const gone = !answered && removed.includes(i)
           return (
             <motion.button
               key={`${question.id}-${i}`}
               className="pr-slot"
-              disabled={answered}
+              disabled={answered || gone}
               onClick={() => answer(i)}
               initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1, scale: isRight ? 1.05 : 1, x: isWrongPick ? [0, -8, 8, -5, 0] : 0 }}
+              animate={{ y: gone ? 60 : 0, opacity: gone ? 0 : 1, scale: isRight ? 1.05 : 1, x: isWrongPick ? [0, -8, 8, -5, 0] : 0 }}
               whileTap={answered ? undefined : { scale: 0.95 }}
               transition={{ ...spring.bouncy, delay: answered ? 0 : i * STAGGER }}
             >

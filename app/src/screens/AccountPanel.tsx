@@ -3,10 +3,11 @@ import { MIN_PASSWORD, USERNAME_RE } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
 import { GoogleButton } from '../account/GoogleButton'
 import { useGameStore, type Screen } from '../game/store'
+import { openSkillTree } from '../skills/nav'
 
 /** What an account unlocks; guests see these locked. `open` = where it lives once unlocked. */
 const UNLOCKS: Array<{ icon: string; name: string; desc: string; open?: Screen; soon?: boolean }> = [
-  { icon: '🌳', name: 'Skill tree', desc: 'Spend a skill point per level on gifts and bonuses', soon: true },
+  { icon: '🌳', name: 'Skill tree', desc: 'Spend a skill point per level on gifts and bonuses', open: 'skills' },
   { icon: '🏠', name: 'My Home in Jerusalem', desc: 'Build and upgrade your own plot with your coins', open: 'home' },
   { icon: '☁️', name: 'Progress saved online', desc: 'Keep your level and coins on any device' },
 ]
@@ -53,7 +54,7 @@ export function AccountPanel() {
               <small>{account && u.soon ? 'Coming soon' : u.desc}</small>
             </span>
             {account && u.open && (
-              <button className="account-open" onClick={() => goTo(u.open!)}>
+              <button className="account-open" onClick={() => (u.open === 'skills' ? openSkillTree('profile') : goTo(u.open!))}>
                 Open ›
               </button>
             )}

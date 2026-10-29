@@ -7,7 +7,7 @@ Status: **concept v2, partly built** (2026-10-29).
 sell at ½), water, storehouse caps, house gating, one builder plus a second
 at House 4, the starter gift, collecting production, the one suggested next
 step, "Buy missing", and the Workers' scroll (−5 min). The server owns it all
-(`server/src/plot.ts`). Accounts are required to build; the city and player
+(`server/src/plot.ts`), with Builder and Steward skill effects (docs/skill-tree.md §6). Accounts are required to build; the city and player
 pages show real levels. Painted art: a few stages per building.
 
 **Built (city map and plot scene, `app/src/world/`):**
@@ -32,7 +32,7 @@ pages show real levels. Painted art: a few stages per building.
   building for its sheet. Ribbons, timers and the header stay as before.
 
 **Not built yet:** courtyard decorations, extra land and the Quarry, the
-group Temple, neighbouring plots for friends, a friend's helping hand, skill-tree effects, the "casting lots" animation,
+group Temple, neighbouring plots for friends, a friend's helping hand (and Good neighbour), the "casting lots" animation,
 milestone rewards (§8.6) and per-level verses beyond one per building.
 Prices are balanced with `docs/balance/plotsim.py`. Change the tables there and
 here together.

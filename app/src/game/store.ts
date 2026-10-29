@@ -19,7 +19,8 @@ import {
 } from './persistence'
 import { setMuted } from './sfx'
 import type { CharacterId } from './types'
-import { ALL_ANSWERED_BEAT_MS, READING_MS, coinsForAnswer, coinsForPlacement, type YourResult } from '@sixtysix/shared'
+import { ALL_ANSWERED_BEAT_MS, GIFT_EXTRA_MS, READING_MS, coinsForAnswer, coinsForPlacement, type GiftId, type YourResult } from '@sixtysix/shared'
+import { useGiftStore } from '../skills/giftStore'
 import { bundledBank, loadVerses } from '../questions/provider'
 import { queueGrant } from '../account/outbox'
 import type { Question } from '../questions/types'
@@ -44,6 +45,7 @@ export type Screen =
   | 'home'
   | 'market'
   | 'visit'
+  | 'skills'
 
 /** Screens with the bottom tab bar (and the shared top bar). */
 export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const
@@ -103,6 +105,8 @@ interface GameStore {
   addCoins: (amount: number, xp?: number, stats?: Partial<PlayerStats>) => void
   /** Reveal / standings: move on without waiting. */
   skip: () => void
+  /** Bible Blitz: play a Scholar gift on the current question (skills/giftStore.ts). */
+  playGift: (id: GiftId) => void
   /** Replace the saved progress (signing in / out of an account). */
   adoptProgress: (p: { name: string; avatar: string; coins: number; xp: number; stats: PlayerStats }) => void
 }
@@ -153,11 +157,13 @@ export const useGameStore = create<GameStore>((set, get) => {
       raceStreak: 0,
       racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined, lastGain: undefined })),
     })
+    useGiftStore.getState().start('blitz')
     startQuestion()
   }
 
   function startQuestion() {
     resolving = false
+    useGiftStore.getState().newQuestion()
     // Flash the question alone with a 3-2-1 countdown so everyone can read it
     // (Kahoot-style); the answers appear when the countdown hits zero.
     set({
@@ -217,10 +223,12 @@ export const useGameStore = create<GameStore>((set, get) => {
     const yours = get().racers.find((r) => !r.isBot)
     const yourAnswer = yours?.lastAnswer
     const correct = yourAnswer?.correct ?? false
-    const raceStreak = correct ? get().raceStreak + 1 : 0
+    // Steadfast: the first wrong answer of the race keeps the streak.
+    const keep = !correct && get().raceStreak > 0 && useGiftStore.getState().keepStreak()
+    const raceStreak = correct ? get().raceStreak + 1 : keep ? get().raceStreak : 0
     // Coins (and XP) are paid only when the race is finished; leaving forfeits them.
     const coins = coinsForAnswer(correct, raceStreak, 'blitz')
-    const gain = yourAnswer ? scoreAnswer(correct, QUESTION_TIME_MS - yourAnswer.ms) : 0
+    const gain = yourAnswer ? scoreAnswer(correct, QUESTION_TIME_MS - yourAnswer.ms) * doubleFor(false) : 0
     set({
       phase: 'reveal',
       lastResult: { correct, gain, score: (yours?.score ?? 0) + gain, streak: raceStreak, coins },
@@ -256,13 +264,17 @@ export const useGameStore = create<GameStore>((set, get) => {
   function applyScores() {
     set({
       racers: get().racers.map((r) => {
-        const gain = r.lastAnswer ? scoreAnswer(r.lastAnswer.correct, QUESTION_TIME_MS - r.lastAnswer.ms) : 0
+        const gain = r.lastAnswer ? scoreAnswer(r.lastAnswer.correct, QUESTION_TIME_MS - r.lastAnswer.ms) * doubleFor(r.isBot) : 0
         return { ...r, score: r.score + gain, lastGain: gain }
       }),
     })
   }
 
+  /** Double portion: your points count twice on the question it was played on. */
+  const doubleFor = (isBot: boolean) => (!isBot && useGiftStore.getState().used.includes('double') ? 2 : 1)
+
   function finishRace() {
+    useGiftStore.getState().stop()
     const player = get().racers.find((r) => !r.isBot)
     const sorted = [...get().racers].sort((a, b) => b.score - a.score)
     const rank = sorted.findIndex((r) => r === player)
@@ -333,6 +345,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     stats: loadStats(),
 
     goTo: (screen) => {
+      if (screen !== 'race') useGiftStore.getState().stop()
       clearTimers()
       clearTimeout(questionTimer)
       set(isTab(screen) ? { screen, lastTab: screen } : { screen })
@@ -368,12 +381,36 @@ export const useGameStore = create<GameStore>((set, get) => {
       const you = get().racers.find((r) => !r.isBot)
       if (phase !== 'question' || !you || you.lastAnswer) return
       const q = questions[questionIndex]
-      const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt)
+      if (useGiftStore.getState().removed.includes(index)) return
+      // Seventy times seven: a wrong card goes back into the sea once per race.
+      if (useGiftStore.getState().retry(index, q.correctIndex)) {
+        playSfx('wrong')
+        return
+      }
+      // Time left on the (possibly extended) clock, capped at a normal question's.
+      const left = Math.min(QUESTION_TIME_MS, Math.max(0, get().phaseEndsAt - Date.now()))
+      const elapsed = Math.min(QUESTION_TIME_MS, Date.now() - questionStartedAt, QUESTION_TIME_MS - left)
       setRacer(you.profile.id, {
         lastAnswer: { index, correct: index === q.correctIndex, ms: elapsed },
       })
       playSfx('submit')
       maybeResolveEarly()
+    },
+
+    playGift: (id) => {
+      const { phase, questions, questionIndex } = get()
+      const you = get().racers.find((r) => !r.isBot)
+      if (phase !== 'question' || !you || you.lastAnswer) return
+      const q = questions[questionIndex]
+      if (!useGiftStore.getState().spend(id, q.correctIndex)) return
+      playSfx('flip')
+      if (id === 'time') {
+        // The sun stood still: ten more seconds on this question's clock.
+        const phaseEndsAt = get().phaseEndsAt + GIFT_EXTRA_MS
+        set({ phaseEndsAt, phaseDuration: get().phaseDuration + GIFT_EXTRA_MS })
+        clearTimeout(questionTimer)
+        questionTimer = setTimeout(() => resolveQuestion(), phaseEndsAt - Date.now())
+      }
     },
 
     toggleFlag: (questionId) => {

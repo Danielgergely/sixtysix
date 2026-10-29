@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, MATERIALS, type Material } from '@sixtysix/shared'
+import { MATERIAL_INFO, MATERIALS, buyPrice, modsOf, sellPrice, type Material } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { useAccountStore } from '../../account/accountStore'
 import { usePlotStore } from '../../plot/plotStore'
@@ -75,6 +75,8 @@ export function MarketScreen() {
         {MATERIALS.map((m, i) => {
           const info = MATERIAL_INFO[m]
           const have = plot?.inventory[m] ?? 0
+          const mods = plot ? modsOf(plot) : undefined
+          const price = buyPrice(m, qty, mods)
           return (
             <motion.div key={m} className="mk-row" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ ...spring.gentle, delay: i * STAGGER }}>
               <span className="mk-icon">{info.icon}</span>
@@ -88,11 +90,11 @@ export function MarketScreen() {
                 </motion.span>
               )}
               <span className="mk-btns">
-                <button className="hp-btn small gold" disabled={!account || busy || coins < info.buy * qty} onClick={() => void trade(m, 'buy')}>
-                  Buy <PaintedCoin size={14} /> {info.buy * qty}
+                <button className="hp-btn small gold" disabled={!account || busy || coins < price} onClick={() => void trade(m, 'buy')}>
+                  Buy <PaintedCoin size={14} /> {price}
                 </button>
                 <button className="hp-btn small" disabled={!account || busy || have < qty} onClick={() => void trade(m, 'sell')}>
-                  Sell +{info.sell * qty}
+                  Sell +{sellPrice(m, qty, mods)}
                 </button>
               </span>
             </motion.div>

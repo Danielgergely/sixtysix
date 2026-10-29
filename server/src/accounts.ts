@@ -9,6 +9,10 @@ import {
   STAT_COUNTERS,
   STAT_MAXES,
   USERNAME_RE,
+  EMPTY_SKILLS,
+  cleanSkills,
+  coinBonus,
+  xpBonus,
   type Account,
   type AccountProfile,
   type AccountStats,
@@ -151,6 +155,7 @@ export function cleanProfile(raw: unknown): AccountProfile {
     coins: int(p.coins, SIGNUP_MAX_COINS),
     xp: int(p.xp, SIGNUP_MAX_XP),
     stats: cleanStats(p.stats),
+    skills: { ...EMPTY_SKILLS }, // the tree is learned on the server only, never uploaded
   }
 }
 
@@ -168,6 +173,7 @@ function applyGrant(profile: AccountProfile, g: Grant, coins: number, xp: number
 export function toAccount(row: UserRow): Account {
   const profile = JSON.parse(row.profile) as AccountProfile
   profile.stats = { ...EMPTY_STATS, ...profile.stats }
+  profile.skills = cleanSkills(profile.skills)
   return { username: row.username, createdAt: row.created_at, profile }
 }
 
@@ -241,19 +247,29 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     const today = (db
       .prepare('SELECT COALESCE(SUM(coins), 0) AS coins, COALESCE(SUM(xp), 0) AS xp FROM grants WHERE user_id = ? AND at >= ?')
       .get(row.id, now - (now % 86_400_000)) ?? { coins: 0, xp: 0 }) as { coins: number; xp: number }
+    // Skill bonuses (Diligent student, Faithful in little) are added here, on the
+    // server, inside the daily ceiling; guest progress merged at sign-in gets none.
+    const bonus = { xp: 0, coins: 0 }
     for (const g of grants) {
       if (typeof g?.id !== 'string' || g.id.length > 64) continue
-      const coins = Math.min(int(g.coins, MAX_GRANT_COINS), Math.max(0, DAILY_MAX_COINS - today.coins))
-      const xp = Math.min(int(g.xp, MAX_GRANT_XP), Math.max(0, DAILY_MAX_XP - today.xp))
+      const merge = g.source === 'merge'
+      const baseCoins = int(g.coins, MAX_GRANT_COINS)
+      const baseXp = int(g.xp, MAX_GRANT_XP)
+      const wantCoins = merge ? baseCoins : Math.round(baseCoins * (1 + coinBonus(account.profile.skills?.ranks)))
+      const wantXp = merge ? baseXp : Math.round(baseXp * (1 + xpBonus(account.profile.skills?.ranks)))
+      const coins = Math.min(wantCoins, Math.max(0, DAILY_MAX_COINS - today.coins))
+      const xp = Math.min(wantXp, Math.max(0, DAILY_MAX_XP - today.xp))
       if (seen.run(g.id, row.id, now, xp, coins).changes === 0) continue // already applied
       today.coins += coins
       today.xp += xp
+      bonus.coins += Math.max(0, Math.min(coins, wantCoins - baseCoins))
+      bonus.xp += Math.max(0, Math.min(xp, wantXp - baseXp))
       applyGrant(account.profile, g, coins, xp)
     }
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
     if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string
     saveProfile(row.id, account.profile)
-    return { ok: true, account }
+    return { ok: true, account, bonus }
   })
 }
 

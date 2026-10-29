@@ -1,9 +1,10 @@
 import { create } from 'zustand'
-import { coinsForAnswer, type Category, type DifficultyPreset } from '@sixtysix/shared'
+import { UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
+import { useGiftStore } from '../skills/giftStore'
 
 /**
  * Practice: solo, untimed, endless. Missed questions are remembered on the
@@ -67,6 +68,8 @@ interface PracticeStore {
   answer: (index: number) => void
   next: () => void
   finish: () => void
+  /** Play a Scholar gift on the current question (skills/giftStore.ts). */
+  playGift: (id: GiftId) => void
 }
 
 // Session-only bookkeeping, outside React state.
@@ -132,12 +135,20 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     served = 0
     set({ loading: false, reviewOnly, streak: 0, coins: 0, tally: { answered: 0, correct: 0 }, byCategory: {}, finished: false })
     useGameStore.getState().goTo('practice')
+    useGiftStore.getState().start('practice')
     get().next()
   },
 
   answer: (index) => {
     const { question, picked, tally, byCategory, missed, streak, coins } = get()
     if (!question || picked !== null) return
+    const gifts = useGiftStore.getState()
+    if (gifts.removed.includes(index)) return
+    // Seventy times seven: a wrong card goes away once per session; pick again.
+    if (gifts.retry(index, question.correctIndex)) {
+      playSfx('wrong')
+      return
+    }
     const correct = index === question.correctIndex
     const cat = byCategory[question.category] ?? { answered: 0, correct: 0 }
     let nextMissed = missed
@@ -148,13 +159,17 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
       retryQueue.push({ id: question.id, at: served + RETRY_AFTER })
     }
     if (nextMissed !== missed) saveMissed(nextMissed)
-    const earned = coinsForAnswer(correct, 0, 'practice')
-    if (earned) useGameStore.getState().addCoins(earned)
+    // Double portion: this answer pays twice.
+    const times = gifts.used.includes('double') ? 2 : 1
+    const earned = coinsForAnswer(correct, 0, 'practice') * times
+    if (earned) useGameStore.getState().addCoins(earned, UNTIMED_XP_PER_CORRECT * times)
+    // Steadfast: the first wrong answer of the session keeps the streak.
+    const keep = !correct && streak > 0 && gifts.keepStreak()
     playSfx(correct ? 'correct' : 'wrong')
     set({
       picked: index,
       missed: nextMissed,
-      streak: correct ? streak + 1 : 0,
+      streak: correct || keep ? streak + (correct ? 1 : 0) : 0,
       coins: coins + earned,
       tally: { answered: tally.answered + 1, correct: tally.correct + (correct ? 1 : 0) },
       byCategory: { ...byCategory, [question.category]: { answered: cat.answered + 1, correct: cat.correct + (correct ? 1 : 0) } },
@@ -169,8 +184,18 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     }
     seen.add(q.id)
     served++
+    useGiftStore.getState().newQuestion()
     set({ question: q, verse: verses[q.id] ?? '', picked: null })
   },
 
-  finish: () => set({ finished: true }),
+  finish: () => {
+    useGiftStore.getState().stop()
+    set({ finished: true })
+  },
+
+  playGift: (id) => {
+    const { question, picked } = get()
+    if (!question || picked !== null) return
+    if (useGiftStore.getState().spend(id, question.correctIndex)) playSfx('flip')
+  },
 }))
