@@ -3,8 +3,6 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useGameStore } from '../game/store'
 import { Crowning } from '../ceremony/Crowning'
 
-const COIN_REWARDS = [100, 50, 25, 10]
-
 /** End of a Bible Blitz race → The Crowning, then play again / review the questions. */
 export function PodiumScreen() {
   const racers = useGameStore((s) => s.racers)
@@ -14,10 +12,10 @@ export function PodiumScreen() {
   const toggleFlag = useGameStore((s) => s.toggleFlag)
   const goTo = useGameStore((s) => s.goTo)
   const findMatch = useGameStore((s) => s.findMatch)
+  const raceCoins = useGameStore((s) => s.raceCoins)
   const [reviewing, setReviewing] = useState(false)
 
   const sorted = [...racers].sort((a, b) => b.score - a.score)
-  const yourRank = sorted.findIndex((r) => !r.isBot)
   const played = questions.slice(0, answerLog.length)
 
   return (
@@ -25,6 +23,7 @@ export function PodiumScreen() {
       <Crowning
         entries={sorted.map((r) => ({ id: r.profile.id, name: r.profile.name, avatar: r.profile.avatar, score: r.score, you: !r.isBot }))}
         wide={false}
+        coins={raceCoins}
         actions={
           <>
             <button onClick={findMatch}>Play again</button>
@@ -33,7 +32,6 @@ export function PodiumScreen() {
           </>
         }
       />
-      <div className="podium-coins">+ {COIN_REWARDS[yourRank] ?? 10} coins</div>
 
       <AnimatePresence>
         {reviewing && (

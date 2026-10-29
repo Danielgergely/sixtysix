@@ -4,7 +4,6 @@ import { QUESTION_TIME_MS } from '@sixtysix/shared'
 import { useArenaStore } from '../../../arena/arenaStore'
 import { getDeviceId } from '../../../game/persistence'
 import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
-import { PaintedCoin } from '../../../art/PaintedPortrait'
 import { Sparkles } from '../../../art/Sparkles'
 import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
@@ -87,8 +86,8 @@ export function QuestionView() {
             </strong>
           </div>
           {me && (
-            <div className="empire-purse score">
-              <PaintedCoin size={24} />
+            <div className="empire-purse score" title="Points this game">
+              <span className="glory-mark">⚜</span>
               <AnimatedNumber value={me.score} />
             </div>
           )}

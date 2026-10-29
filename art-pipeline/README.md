@@ -19,6 +19,7 @@ node generate.mjs                           # every asset once
   for current prices.
 - **Transparency:** assets with `"transparent": true` are generated on a flat
   magenta backdrop. The script keys the magenta out to real alpha.
+- **Budget:** every image is logged to `usage.json`; runs that would push the total past `BUDGET_USD` ($9.50) are refused.
 - **Output:** results land in `out/<asset>-<n>.png`, which is gitignored. Copy
   the keepers into `app/public/art/`.
 - **Style reference:** `refs/style-d.png` is a screenshot of the chosen

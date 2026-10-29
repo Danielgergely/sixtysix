@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
+import { coinsForPlacement } from '@sixtysix/shared'
 import type {
   ArenaQuestion,
   ClientToServerEvents,
@@ -38,6 +39,8 @@ interface ArenaStore {
   yourResult: YourResult | null
   leaderboard: LeaderboardEntry[] | null
   podium: LeaderboardEntry[] | null
+  /** Coins this device earned in the current game (answers + finishing bonus). */
+  coinsEarned: number
 
   hostGame: (config: RoomConfig) => void
   startGame: () => void
@@ -120,7 +123,8 @@ function getSocket(): ArenaSocket {
   })
 
   socket.on('game:yourResult', (payload) => {
-    setState({ yourResult: payload })
+    setState((s) => ({ yourResult: payload, coinsEarned: s.coinsEarned + payload.coins }))
+    if (payload.coins) useGameStore.getState().addCoins(payload.coins)
     playSfx(payload.correct ? 'correct' : 'wrong')
   })
 
@@ -128,7 +132,17 @@ function getSocket(): ArenaSocket {
 
   // game:podium plays no sound here — the podium view plays its own fanfare
   // when it mounts, so sight and sound land together.
-  socket.on('game:podium', (entries) => setState({ podium: entries }))
+  socket.on('game:podium', (entries) => {
+    // Finishing bonus, once per game (podium arrives once; guard anyway).
+    const { role, podium } = getState()
+    const rank = entries.findIndex((e) => e.playerId === getDeviceId())
+    if (role === 'player' && !podium && rank >= 0) {
+      const bonus = coinsForPlacement(rank)
+      useGameStore.getState().addCoins(bonus)
+      setState((s) => ({ coinsEarned: s.coinsEarned + bonus }))
+    }
+    setState({ podium: entries })
+  })
 
   return socket
 }
@@ -148,6 +162,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   yourResult: null,
   leaderboard: null,
   podium: null,
+  coinsEarned: 0,
 
   hostGame: (config) => {
     set({ busy: true, error: null })
@@ -195,7 +210,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
       (res) => {
         if (res.ok) {
-          set({ role: 'player', room: res.state, busy: false, prefillCode: '', podium: null, leaderboard: null })
+          set({ role: 'player', room: res.state, busy: false, prefillCode: '', podium: null, leaderboard: null, coinsEarned: 0 })
           useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaPlayerLobby' : 'arenaGame')
         } else {
           set({ error: res.error, busy: false })

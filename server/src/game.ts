@@ -6,7 +6,7 @@ import type {
   Question,
   ServerToClientEvents,
 } from '@sixtysix/shared'
-import { QUESTION_TIME_MS, scoreAnswer } from '@sixtysix/shared'
+import { QUESTION_TIME_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { pickQuestions, verseFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
@@ -130,7 +130,13 @@ function resolveQuestion(io: IO, room: Room): void {
     p.lastGain = gain
     p.streak = correct ? p.streak + 1 : 0
     if (p.connected) {
-      io.to(p.socketId).emit('game:yourResult', { correct, gain, score: p.score, streak: p.streak })
+      io.to(p.socketId).emit('game:yourResult', {
+        correct,
+        gain,
+        score: p.score,
+        streak: p.streak,
+        coins: coinsForAnswer(correct, p.streak),
+      })
     }
   }
 

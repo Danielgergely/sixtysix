@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useGameStore } from '../game/store'
 import { FINISH_LINE_SCORE, QUESTION_TIME_MS, scoreAnswer } from '../game/scoring'
 import { Avatar } from '../avatars/Avatar'
+import { PaintedCoin } from '../art/PaintedPortrait'
+import { AnimatedNumber } from '../motion'
 
 // Finish line sits at this % of the lane; crossers may roll slightly past it.
 const LINE_AT = 86
@@ -17,13 +19,13 @@ function TimerDigits() {
 
   useEffect(() => {
     if (phase !== 'question') return
-    setNow(Date.now())
     const id = setInterval(() => setNow(Date.now()), 100)
     return () => clearInterval(id)
   }, [phase, startedAt])
 
   const remaining =
-    phase === 'reading' ? QUESTION_TIME_MS / 1000 : Math.max(0, QUESTION_TIME_MS - (now - startedAt)) / 1000
+    // `now` can predate this question until the first tick — clamp to the full window.
+    phase === 'reading' ? QUESTION_TIME_MS / 1000 : Math.min(QUESTION_TIME_MS, Math.max(0, QUESTION_TIME_MS - (now - startedAt))) / 1000
   return <span className={`timer-digits ${remaining < 3 ? 'urgent' : ''}`}>{remaining.toFixed(1)}</span>
 }
 
@@ -35,6 +37,7 @@ export function RaceScreen() {
   const questions = useGameStore((s) => s.questions)
   const answer = useGameStore((s) => s.answer)
   const goTo = useGameStore((s) => s.goTo)
+  const raceCoins = useGameStore((s) => s.raceCoins)
   const [confirmLeave, setConfirmLeave] = useState(false)
 
   const q = questions[questionIndex]
@@ -62,6 +65,9 @@ export function RaceScreen() {
               ⭐ {you.score.toLocaleString('en-US')} pts
             </div>
           )}
+          <div className="score-hud coin-hud">
+            <PaintedCoin size={18} /> <AnimatedNumber value={raceCoins} duration={0.5} />
+          </div>
           <div className="track-hud-right">
             <div className="finish-label">🏁 {FINISH_LINE_SCORE.toLocaleString('en-US')}</div>
             <button className="leave-race-btn" onClick={() => setConfirmLeave(true)}>

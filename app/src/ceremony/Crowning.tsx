@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { AnimatedNumber, fireCannons } from '../motion'
 import { playSfx } from '../game/sfx'
-import { PaintedPortrait } from '../art/PaintedPortrait'
+import { PaintedCoin, PaintedPortrait } from '../art/PaintedPortrait'
 import { characterOrDefault } from '../art/characters'
 import { PARCHMENT } from '../art/textures'
 import { BODY_ART, type Pose } from '../art/bodyArt'
@@ -49,6 +49,8 @@ interface Props {
   wide: boolean
   /** Buttons shown once the ceremony is over (end game, play again, …). */
   actions?: ReactNode
+  /** Coins you earned this game, shown with your result. */
+  coins?: number
 }
 
 /**
@@ -58,7 +60,7 @@ interface Props {
  * head, they cheer and step aside; gold gets the confetti and "Champion". The
  * final tableau stays until someone ends the game.
  */
-export function Crowning({ entries, wide, actions }: Props) {
+export function Crowning({ entries, wide, actions, coins }: Props) {
   const st = wide ? STAGE.wide : STAGE.phone
   const top3 = useMemo(() => entries.slice(0, 3), [entries])
   const script = useMemo(() => buildScript(top3.length), [top3.length])
@@ -205,6 +207,11 @@ export function Crowning({ entries, wide, actions }: Props) {
             youRank > 0 && (
               <div className="cr-you">
                 You finished <b>#{youRank}</b> · {entries[youRank - 1].score.toLocaleString('en-US')} pts
+                {coins !== undefined && (
+                  <span className="cr-coins">
+                    <PaintedCoin size={18} /> +{coins}
+                  </span>
+                )}
               </div>
             )
           )}

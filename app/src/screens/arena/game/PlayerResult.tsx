@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import type { YourResult } from '@sixtysix/shared'
-import { PaintedPortrait } from '../../../art/PaintedPortrait'
+import { PaintedCoin, PaintedPortrait } from '../../../art/PaintedPortrait'
 import { Sparkles } from '../../../art/Sparkles'
 import { useGameStore } from '../../../game/store'
 import { AnimatedNumber } from '../../../motion'
@@ -16,8 +16,7 @@ interface Props {
 /** The player's own verdict after each reveal: a medallion that spins in like a tossed coin. */
 export function PlayerResult({ result, answered, correctText }: Props) {
   const avatar = useGameStore((s) => s.player.avatar)
-  const medalRef = useRef<HTMLDivElement>(null)
-  const { correct, gain, streak } = result
+  const { correct, gain, streak, coins } = result
   const [headline] = useState(() => (correct ? 'Victorious' : answered ? 'Not this time' : 'Time’s up'))
 
   return (
@@ -25,7 +24,6 @@ export function PlayerResult({ result, answered, correctText }: Props) {
       <div className="empire-medal-stage">
         {correct && <Sparkles count={14} color="#ffe9a0" />}
         <motion.div
-          ref={medalRef}
           className={`eh-medal ${correct ? '' : 'iron'}`}
           initial={{ rotateY: 0, y: 200, scale: 0.4 }}
           animate={{ rotateY: 1080, y: 0, scale: 1 }}
@@ -48,6 +46,16 @@ export function PlayerResult({ result, answered, correctText }: Props) {
           <motion.div className="empire-gain" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}>
             +<AnimatedNumber value={gain} from={0} delay={1.1} /> glory
           </motion.div>
+          {coins > 0 && (
+            <motion.div
+              className="empire-coins"
+              initial={{ scale: 0, y: 10 }}
+              animate={{ scale: [0, 1.25, 1], y: 0 }}
+              transition={{ delay: 1.35, duration: 0.45 }}
+            >
+              <PaintedCoin size={24} /> +{coins}
+            </motion.div>
+          )}
           {streak >= 2 && (
             <motion.div className="empire-streak" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}>
               {Array.from({ length: Math.min(streak, 5) }, (_, i) => (

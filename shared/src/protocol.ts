@@ -87,6 +87,8 @@ export interface YourResult {
   score: number
   /** Consecutive correct answers including this one (0 after a miss). */
   streak: number
+  /** Coins earned for this answer (see coins.ts). */
+  coins: number
 }
 
 // ── socket.io event maps ───────────────────────────────────────────────

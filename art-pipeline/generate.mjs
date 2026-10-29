@@ -28,6 +28,22 @@ const count = Number(args.count ?? 1)
 const only = typeof args.only === 'string' ? new Set(args.only.split(',')) : null
 const dryRun = Boolean(args['dry-run'])
 
+// ── spend guard ─────────────────────────────────────────────────────────
+// Every generated image is logged to usage.json (committed, so the total
+// survives across machines). A run that could push the total past BUDGET_USD
+// is refused up front. Prices: Standard tier, 1K images
+// (https://ai.google.dev/gemini-api/docs/pricing, checked 2026-10-29).
+const BUDGET_USD = 9.5
+const PRICE_USD = { 'gemini-nano-banana-2.1': 0.0336, 'gemini-3.1-flash-lite-image': 0, 'gemini-3-pro-image': 0.134 }
+const usageFile = join(root, 'usage.json')
+const usage = existsSync(usageFile) ? JSON.parse(readFileSync(usageFile, 'utf8')) : { images: 0, usd: 0 }
+const price = PRICE_USD[model] ?? 0.134 // unknown model: assume the expensive one
+function recordImage() {
+  usage.images += 1
+  usage.usd = Math.round((usage.usd + price) * 10000) / 10000
+  writeFileSync(usageFile, JSON.stringify(usage, null, 2) + '\n')
+}
+
 function apiKey() {
   if (process.env.GEMINI_API_KEY) return process.env.GEMINI_API_KEY
   const envFile = join(root, '.env.local')
@@ -147,7 +163,15 @@ if (!dryRun && !key) {
   process.exit(1)
 }
 mkdirSync(join(root, 'out'), { recursive: true })
-console.log(`model ${model} · ${assets.length} asset(s) × ${count}${dryRun ? ' · DRY RUN' : ''}`)
+const projected = usage.usd + assets.length * count * price
+console.log(
+  `model ${model} · ${assets.length} asset(s) × ${count}${dryRun ? ' · DRY RUN' : ''} · ` +
+    `spent $${usage.usd.toFixed(2)}, this run ≤ $${(projected - usage.usd).toFixed(2)}, budget $${BUDGET_USD}`,
+)
+if (!dryRun && projected > BUDGET_USD) {
+  console.error(`refused: would reach $${projected.toFixed(2)} (> $${BUDGET_USD}). Raise BUDGET_USD deliberately if intended.`)
+  process.exit(1)
+}
 
 for (const asset of assets) {
   for (let n = 1; n <= count; n++) {
@@ -165,6 +189,7 @@ for (const asset of assets) {
       writeFileSync(join(root, 'out', 'raw', `${asset.id}-${n}.png`), await sharp(raw).png().toBuffer())
       const buf = asset.transparent ? await keyOut(raw) : await sharp(raw).png().toBuffer()
       writeFileSync(file, buf)
+      recordImage()
       console.log(`✓ ${file.replace(root + '/', '')}`)
     } catch (err) {
       console.log(`✗ ${err.message}`)

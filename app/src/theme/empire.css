@@ -538,3 +538,6 @@
 .eh-countdown .countdown-ring-label{ font-family: 'Cinzel Decorative', serif; color: #6b1d0e; }
 .eh-countdown{ filter: drop-shadow(0 0 22px rgb(255 214 100 / 0.6)); }
 .empire-purse.score{ font-size: 16px; }
+.empire-coins { display: flex; align-items: center; gap: 6px; font: 900 22px/1 'Cinzel', serif; color: #ffe08a; }
+.cr-coins { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; color: #ffe08a; }
+.glory-mark { color: #ffd34d; font-size: 18px; padding-left: 6px; }

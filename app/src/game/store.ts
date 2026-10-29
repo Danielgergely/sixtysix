@@ -17,6 +17,7 @@ import {
 } from './persistence'
 import { setMuted } from './sfx'
 import type { CharacterId } from './types'
+import { coinsForAnswer, coinsForPlacement } from '@sixtysix/shared'
 import { bundledBank } from '../questions/provider'
 import type { Question } from '../questions/types'
 
@@ -55,6 +56,10 @@ interface GameStore {
   flaggedIds: string[]
   muted: boolean
   stats: PlayerStats
+  /** Bible Blitz: coins earned in the current race (answers + finishing bonus). */
+  raceCoins: number
+  /** Bible Blitz: your consecutive correct answers in the current race. */
+  raceStreak: number
 
   goTo: (screen: Screen) => void
   /** Menu → lobby; bots "join" one by one, then the race starts. */
@@ -64,6 +69,8 @@ interface GameStore {
   toggleFlag: (questionId: string) => void
   toggleMute: () => void
   updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
+  /** Credit coins to the persisted profile (every mode earns them). */
+  addCoins: (amount: number) => void
 }
 
 const defaultPlayer: PlayerProfile = {
@@ -100,6 +107,8 @@ export const useGameStore = create<GameStore>((set, get) => {
       questions,
       questionIndex: 0,
       answerLog: [],
+      raceCoins: 0,
+      raceStreak: 0,
       racers: get().racers.map((r) => ({ ...r, score: 0, lastAnswer: undefined, lastGain: undefined })),
     })
     startQuestion()
@@ -166,9 +175,18 @@ export const useGameStore = create<GameStore>((set, get) => {
       setRacer(you.profile.id, { lastAnswer: { index: -1, correct: false, ms: QUESTION_TIME_MS } })
     }
 
-    const yourIndex = get().racers.find((r) => !r.isBot)?.lastAnswer?.index ?? -1
-    set({ phase: 'reveal', answerLog: [...get().answerLog, yourIndex] })
-    playSfx(get().racers.find((r) => !r.isBot)?.lastAnswer?.correct ? 'correct' : 'wrong')
+    const yourAnswer = get().racers.find((r) => !r.isBot)?.lastAnswer
+    const correct = yourAnswer?.correct ?? false
+    const raceStreak = correct ? get().raceStreak + 1 : 0
+    const coins = coinsForAnswer(correct, raceStreak)
+    if (coins) get().addCoins(coins)
+    set({
+      phase: 'reveal',
+      answerLog: [...get().answerLog, yourAnswer?.index ?? -1],
+      raceStreak,
+      raceCoins: get().raceCoins + coins,
+    })
+    playSfx(correct ? 'correct' : 'wrong')
 
     later(() => {
       applyScores()
@@ -204,11 +222,11 @@ export const useGameStore = create<GameStore>((set, get) => {
     const player = get().racers.find((r) => !r.isBot)
     const sorted = [...get().racers].sort((a, b) => b.score - a.score)
     const rank = sorted.findIndex((r) => r === player)
-    const coinsWon = [100, 50, 25, 10][rank] ?? 10
+    const bonus = coinsForPlacement(rank)
     const xp = get().player.xp + (player?.score ?? 0)
     const updated = {
       ...get().player,
-      coins: get().player.coins + coinsWon,
+      coins: get().player.coins + bonus,
       xp,
       level: levelForXp(xp),
     }
@@ -232,7 +250,7 @@ export const useGameStore = create<GameStore>((set, get) => {
       bestStreak: Math.max(stats.bestStreak, currentStreak),
     }
     saveStats(newStats)
-    set({ screen: 'podium', player: updated, stats: newStats })
+    set({ screen: 'podium', player: updated, stats: newStats, raceCoins: get().raceCoins + bonus })
   }
 
   return {
@@ -246,6 +264,8 @@ export const useGameStore = create<GameStore>((set, get) => {
     questionStartedAt: 0,
     answerLog: [],
     flaggedIds: loadFlaggedIds(),
+    raceCoins: 0,
+    raceStreak: 0,
     muted: initialSettings.muted,
     stats: loadStats(),
 
@@ -296,6 +316,12 @@ export const useGameStore = create<GameStore>((set, get) => {
       setMuted(muted)
       saveSettings({ muted })
       set({ muted })
+    },
+
+    addCoins: (amount) => {
+      const player = { ...get().player, coins: get().player.coins + amount }
+      savePlayer(player)
+      set({ player })
     },
 
     updateProfile: (patch) => {
