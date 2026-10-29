@@ -1,6 +1,18 @@
 # My Home in Jerusalem — plot, buildings, materials, timers
 
-Status: **concept v2 for discussion** (2026-10-29). Nothing is built yet.
+Status: **concept v2, partly built** (2026-10-29).
+
+**Built:** the plot with its nine spots, every building and level from §4
+(exact numbers from `plotsim.py`, in `shared/src/plot.ts`), the Market (buy,
+sell at ½), water, storehouse caps, house gating, one builder plus a second
+at House 4, the starter gift, collecting production, the one suggested next
+step, "Buy missing", and the Workers' scroll (−5 min). The server owns it all
+(`server/src/plot.ts`). Accounts are required to build; the city and player
+pages show real levels. Painted art: a few stages per building.
+
+**Not built yet:** courtyard decorations, extra land and the Quarry, a
+friend's helping hand, skill-tree effects, the "casting lots" animation,
+milestone rewards (§8.6) and per-level verses beyond one per building.
 Prices are balanced with `docs/balance/plotsim.py`. Change the tables there and
 here together.
 
@@ -64,7 +76,7 @@ The balance model uses four player types:
 ```
 
 - **Courtyard:** decorations bought at the Market go here (fig tree, palm,
-  lamp stand, banners). It has no levels.
+  lamp stand, banners). It has no levels. *(Not built yet: the spot shows "soon".)*
 - **Extra land, later:** buy the field beside your plot for 1,500 coins (a
   second one costs 4,000). It adds 4 spots:
   - **Quarry**, which makes stone, the one material you otherwise always buy;
@@ -222,8 +234,8 @@ The chain a player discovers:
   20–24 h. The mansion takes 48 h.
 - **Speed-ups, each taking 5 minutes off the current build:**
   - **Workers' scroll:** answer 3 questions with at least 2 right. You can do
-    this as often as you like; a learning burst finishes small builds.
-  - **A friend's helping hand:** once a day per friend.
+    this as often as you like; a learning burst finishes small builds. *(Built.)*
+  - **A friend's helping hand:** once a day per friend. *(Not built yet.)*
   - Speed-ups never halve a build. Long builds stay long, so the mansion still
     feels earned.
 - **No timer runs in a quiz.** Building is only on the plot screen.
@@ -277,6 +289,10 @@ Day each house level is reached (greedy player, collects 1–2× a day):
   progress" link, and add server accounts before public profiles.
 
 ## 10. Art needed
+
+*Done so far: 21 isometric building sprites (`app/public/art/plot-*.webp`):
+house ×5, well ×3, two stages each for the other buildings, and the courtyard.
+Still to make: a plot background, material icons and decorations.*
 
 - **House:** 7 levels.
 - **Other buildings:** 6 × 5 levels + kiln 4 = 34.

@@ -381,6 +381,195 @@
         "refs/style-d.png"
       ],
       "prompt": "Portrait-orientation game background: rebuilding the walls of Jerusalem in the time of Nehemiah. Morning light; the city of Jerusalem on its hill in the upper third with the Temple. Below it a BROKEN city wall in ruins (only low rubble) runs across the middle of the image, with wooden scaffolding, ladders, baskets and piles of cut stone blocks. The lower half is open flat ground, empty, so new wall sections can be drawn on top. No large people."
+    },
+    {
+      "id": "plot-house-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A simple nomad's goatskin tent (Gen 12:8): dark striped woollen tent cloth on wooden poles, guy ropes, a rolled-up door flap, a clay water jar and a small cooking fire beside it."
+    },
+    {
+      "id": "plot-house-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A small one-room mud-brick house with a flat roof of wooden beams and reeds, a low wooden door, a ladder to the roof, sun-dried bricks visible where the plaster has worn off."
+    },
+    {
+      "id": "plot-house-3",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A solid stone house built around a small open courtyard: cut limestone walls, flat roof with a low parapet, a wooden door with a lintel, a fig tree peeking over the courtyard wall, an outside staircase to the roof."
+    },
+    {
+      "id": "plot-house-4",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A wealthy two-storey stone villa with an upper room (Acts 1:13): a roof terrace with a parapet and a striped awning, arched windows, colourful rugs hanging over the balcony, oil lamps, potted plants."
+    },
+    {
+      "id": "plot-house-5",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A grand house of cedar (2 Sam 7:2): a palace-like mansion of pale stone and rich carved cedar-wood panelling, gilded trim on the roof edge, a columned porch, crimson curtains, small golden finials."
+    },
+    {
+      "id": "plot-well-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A freshly dug water pit: a round hole in the ground ringed with rough stones and piled earth, a wooden bucket on a rope and a shovel lying beside it."
+    },
+    {
+      "id": "plot-well-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A round stone-lined well with a wooden frame and a pulley, a rope and bucket, and a carved stone watering trough beside it with a little water in it."
+    },
+    {
+      "id": "plot-well-3",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A covered well and cistern in the style of Hezekiah: a domed stone well-house over the shaft, carved water channels running out to a stone basin, glinting clear water."
+    },
+    {
+      "id": "plot-workshop-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A simple carpenter's bench under the open sky: a heavy wooden workbench with a saw, adze and mallet on it, a few planks and wood shavings on the ground, a small lean-to roof of branches."
+    },
+    {
+      "id": "plot-workshop-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A proper carpenter's workshop (Bezalel, Ex 31): an open-fronted stone and timber shed with a lathe, tools hanging on the wall, a stack of sawn planks and logs outside, a finished wooden chest at the door."
+    },
+    {
+      "id": "plot-kiln-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A clay pit for brick-making (Ex 5): a shallow pit of wet red clay, a pile of straw, wooden brick moulds and rows of square mud bricks drying in the sun."
+    },
+    {
+      "id": "plot-kiln-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A domed brick kiln with a glowing fire mouth and a little smoke rising from the top, neat stacks of fired red bricks beside it and a water jar."
+    },
+    {
+      "id": "plot-fold-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A small sheep pen: a low ring of stacked stones with a wooden gate, two woolly white sheep inside and a feeding trough."
+    },
+    {
+      "id": "plot-fold-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A large sheepfold (John 10): a stone-walled enclosure with a shepherd's small stone hut, a flock of sheep and a couple of goats, a donkey by the gate and a shepherd's crook leaning on the wall."
+    },
+    {
+      "id": "plot-grove-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Two young olive trees planted in a small patch of tilled earth with a little stone border and a clay water jar."
+    },
+    {
+      "id": "plot-grove-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A small olive grove of three gnarled silver-green olive trees heavy with olives, with a round stone olive press (a large millstone on a basin) and clay jars of golden oil beside it."
+    },
+    {
+      "id": "plot-store-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A small granary: a round mud-brick grain bin with a domed top and a little door, sacks of grain and a basket of barley beside it."
+    },
+    {
+      "id": "plot-store-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A large storehouse (Joseph's storehouse, Gen 41): a long stone barn with a timber roof, open double doors showing piled sacks and big clay storage jars inside, more jars stacked outside."
+    },
+    {
+      "id": "plot-wall-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A short section of thorn hedge and wooden fence with a simple wooden gate, as a corner of a family plot boundary."
+    },
+    {
+      "id": "plot-wall-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A short section of a sturdy cut-stone city wall with crenellations and a small arched wooden gate (Neh 3), a little watchtower at one end with a banner."
+    },
+    {
+      "id": "plot-courtyard",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. A pleasant courtyard corner: a date palm and a fig tree, a stone bench, a bronze oil lamp stand and a woven rug, flower pots."
     }
   ]
 }

@@ -1,0 +1,241 @@
+/* ══ My Home in Jerusalem + Market (screens/home) — Empire look ══ */
+.hp{ padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+.hp .screen-topbar{ padding-top: 12px; padding-bottom: 6px; }
+.hp-link{ background: none; border: 0; color: #ffe08a; font: inherit; text-decoration: underline; }
+.hp-foot{ margin-top: 14px; }
+
+/* Header summary: water, builders, inventory */
+.hp-summary{
+  margin: 4px 0 10px; padding: 10px 12px; border-radius: 12px; background-color: #f3e2bb;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 18px rgb(120 70 20 / 0.35); color: #3b2412;
+}
+.hp-stats{ display: flex; justify-content: space-between; gap: 8px; font: 700 13px/1.2 'Cinzel', serif; }
+.hp-stats b{ color: #6b1d0e; font-size: 15px; }
+.hp-inv{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgb(107 65 32 / 0.35); }
+.hp-mat{ display: flex; flex-direction: column; align-items: center; gap: 1px; font: 900 13px/1 'Cinzel', serif; color: #3b2412; }
+.hp-mat i{ font-style: normal; font-size: 19px; line-height: 1.1; }
+.hp-mat.none{ opacity: 0.45; }
+
+/* One suggested next step */
+.hp-next{
+  width: 100%; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding: 10px 12px; border-radius: 12px; text-align: left;
+  background: linear-gradient(90deg, rgb(201 138 18 / 0.55), rgb(29 15 6 / 0.88)); border: 2px solid #ffe08a; color: #ffe7a3;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.4);
+}
+.hp-next.done{ display: block; font: 700 13px/1.4 'Cinzel', serif; }
+.hp-next-icon{ font-size: 30px; line-height: 1; }
+.hp-next-text{ flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hp-next-text small{ font: 900 10px/1 'Cinzel', serif; letter-spacing: 0.18em; text-transform: uppercase; color: #ffd36b; }
+.hp-next-text strong{ font: 900 15px/1.2 'Cinzel', serif; }
+.hp-next-text span{ font: 600 12px/1.35 Georgia, serif; color: #f3e2bb; }
+.hp-next-go{ font: 900 26px/1 'Cinzel', serif; color: #ffe08a; }
+
+/* The plot: 3 × 3 spots on earth, ringed by the fence / wall */
+.hp-plot{
+  position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; border-radius: 14px;
+  background:
+    radial-gradient(circle at 30% 20%, rgb(255 230 160 / 0.25), transparent 60%),
+    radial-gradient(circle at 70% 80%, rgb(80 110 40 / 0.35), transparent 55%),
+    linear-gradient(#b48a52, #8c6534);
+  border: 6px dashed rgb(233 201 138 / 0.35);
+  box-shadow: inset 0 0 30px rgb(40 20 5 / 0.55), 0 10px 24px rgb(0 0 0 / 0.5);
+}
+.hp-plot.wall-1{ border: 7px dotted #4f7a2a; }
+.hp-plot.wall-2{ border: 8px solid #7a4e22; border-image: repeating-linear-gradient(90deg, #8a5a2a 0 10px, #5a3412 10px 14px) 8; }
+.hp-plot.wall-3, .hp-plot.wall-4, .hp-plot.wall-5{ border: 9px solid #a59a88; border-image: repeating-linear-gradient(90deg, #c8bba4 0 18px, #6b6355 18px 20px) 9; }
+.hp-plot.wall-4::after, .hp-plot.wall-5::after{
+  content: '🚪'; position: absolute; bottom: -16px; right: 18px; font-size: 22px; filter: drop-shadow(0 2px 2px #000);
+}
+.hp-plot.wall-5::before{ content: '🗼'; position: absolute; top: -20px; left: -8px; font-size: 26px; filter: drop-shadow(0 2px 2px #000); }
+
+.hp-spot{
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 1px;
+  aspect-ratio: 1 / 1.05; padding: 6px 3px 6px; border-radius: 12px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 70%, rgb(243 226 187 / 0.85), rgb(201 165 106 / 0.75));
+  border: 2px solid #6b4120; box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.25), 0 4px 8px rgb(0 0 0 / 0.35);
+  color: #3a2410; font-family: 'Cinzel', serif;
+}
+.hp-spot.house{ border-color: #ffe08a; box-shadow: 0 0 0 2px #1d0f06, 0 0 14px rgb(255 214 100 / 0.55); }
+.hp-spot.empty{ background: repeating-linear-gradient(45deg, rgb(243 226 187 / 0.35) 0 8px, rgb(201 165 106 / 0.35) 8px 16px); border-style: dashed; }
+.hp-spot.empty .hp-spot-icon{ filter: grayscale(1) opacity(0.45); }
+.hp-spot.court{ background: radial-gradient(ellipse at 50% 70%, rgb(200 220 160 / 0.6), rgb(140 160 90 / 0.5)); border-style: dashed; }
+.hp-spot-icon{ flex: 1; display: grid; place-items: center; font-size: clamp(30px, 10vw, 46px); line-height: 1; filter: drop-shadow(0 3px 2px rgb(0 0 0 / 0.35)); }
+.hp-spot-art{ flex: 1; min-height: 0; width: 100%; object-fit: contain; filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.4)); }
+.hp-spot-name{ font: 900 11px/1.05 'Cinzel', serif; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hp-spot-lv{ font: 700 10px/1 'Cinzel', serif; color: #6b4120; }
+.hp-spot-build{
+  position: absolute; left: 4px; right: 4px; top: 4px; display: flex; flex-direction: column; gap: 2px; align-items: center;
+  padding: 3px 4px; border-radius: 8px; background: rgb(29 15 6 / 0.82);
+}
+.hp-spot-build small{ font: 900 10px/1 'Cinzel', serif; color: #ffe7a3; font-variant-numeric: tabular-nums; }
+.hp-bar{ display: block; width: 100%; height: 5px; border-radius: 999px; background: #3a1a0c; overflow: hidden; }
+.hp-bar > span{ display: block; height: 100%; background: linear-gradient(90deg, #ffe08a, #e0a12a); transition: width 1s linear; }
+.hp-bar.big{ height: 10px; border: 1px solid #1d0f06; }
+.hp-ribbon{
+  position: absolute; top: 8px; right: -26px; width: 92px; rotate: 35deg; text-align: center; padding: 2px 0;
+  background: #2f7a3a; border-top: 1px solid #ffe08a; border-bottom: 1px solid #ffe08a; color: #fff;
+  font: 900 10px/1.2 'Cinzel', serif; text-shadow: 0 1px 1px #000; box-shadow: 0 2px 4px rgb(0 0 0 / 0.4);
+}
+.hp-ribbon.new{ background: #b3262b; }
+
+/* Buttons */
+.hp-actions{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.hp-actions .hp-error{ grid-column: 1 / -1; }
+.hp-btn{
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 11px 10px; border-radius: 10px;
+  background: rgb(29 15 6 / 0.85); border: 2px solid #e3b754; color: #ffe7a3; font: 800 13px/1.15 'Cinzel', serif;
+}
+.hp-btn small{ font-size: 11px; color: #ffd36b; }
+.hp-btn.gold{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; box-shadow: 0 3px 0 #1d0f06; font-weight: 900; }
+.hp-btn.small{ padding: 7px 9px; font-size: 12px; }
+.hp-btn.big{ width: 100%; padding: 13px; font-size: 15px; }
+.hp-btn:disabled{ opacity: 0.45; box-shadow: none; }
+.hp-btn:not(:disabled):active{ translate: 0 2px; }
+.hp-error{ margin: 8px 0 0; padding: 7px 10px; border-radius: 8px; background: #b3262b; color: #fff; font: 700 12px/1.3 'Cinzel', serif; text-align: center; }
+
+/* Bottom sheet */
+.hp-scrim{ position: fixed; inset: 0; z-index: 40; background: rgb(10 4 2 / 0.6); }
+.hp-scrim.top{ z-index: 50; }
+.hp-sheet{
+  position: fixed; z-index: 41; left: 50%; bottom: 0; translate: -50% 0; width: min(100%, 520px); max-height: 86vh; overflow-y: auto;
+  padding: 16px 16px calc(18px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; background-color: #f3e2bb;
+  border: 3px solid #b88a3a; border-bottom: 0; box-shadow: 0 0 0 2px #1d0f06, 0 -10px 30px rgb(0 0 0 / 0.6); color: #3b2412;
+  font-family: 'Cinzel', Georgia, serif;
+}
+.hp-sheet-close{
+  position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  background: rgb(29 15 6 / 0.85); border: 2px solid #e3b754; color: #ffe7a3; font-size: 14px; z-index: 2;
+}
+.hp-sheet-body{ display: flex; flex-direction: column; gap: 10px; }
+.hp-sheet-head{ display: flex; align-items: center; gap: 12px; padding-right: 40px; }
+.hp-sheet-head h3{ font: 900 22px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.hp-sheet-head small{ font: 700 12px/1.2 'Cinzel', serif; color: #6b4120; }
+.hp-sheet-icon{ font-size: 46px; line-height: 1; filter: drop-shadow(0 3px 2px rgb(0 0 0 / 0.3)); }
+.hp-sheet-icon.empty{ filter: grayscale(1) opacity(0.5); }
+.hp-sheet-art{ width: 84px; height: 84px; object-fit: contain; }
+.hp-what{ font: 600 13px/1.45 Georgia, serif; color: #4a2a14; }
+.hp-what em{ font-style: normal; font: 700 11px/1 'Cinzel', serif; color: #8a5a10; white-space: nowrap; }
+.hp-what.done{ font-weight: 800; text-align: center; }
+.hp-row-box{
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: 10px;
+  background: rgb(255 255 255 / 0.4); border: 1px solid #c9a24a; font: 600 12px/1.35 Georgia, serif;
+}
+.hp-row-box b{ font-family: 'Cinzel', serif; }
+.hp-row-box .hp-btn{ flex-shrink: 0; }
+.hp-building{ display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 10px; background: rgb(29 15 6 / 0.08); border: 2px solid #b88a3a; }
+.hp-building strong{ font: 900 14px/1.2 'Cinzel', serif; color: #6b1d0e; }
+.hp-building small{ font: 800 13px/1 'Cinzel', serif; font-variant-numeric: tabular-nums; }
+.hp-next-level h4{ font: 900 16px/1.2 'Cinzel', serif; color: #6b1d0e; margin-bottom: 6px; }
+.hp-cost{ list-style: none; display: grid; gap: 4px; }
+.hp-cost li{ display: flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 8px; background: rgb(255 255 255 / 0.45); border: 1px solid #c9a24a; font: 700 13px/1 'Cinzel', serif; }
+.hp-cost-name{ flex: 1; }
+.hp-cost li.ok b{ color: #2f7a3a; }
+.hp-cost li.short b{ color: #b3262b; }
+.hp-reqs{ list-style: none; display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.hp-reqs li{ padding: 4px 9px; border-radius: 999px; font: 700 11px/1.2 'Cinzel', serif; border: 1px solid; }
+.hp-reqs li.ok{ color: #2f5a22; border-color: #6a9a4a; background: rgb(106 154 74 / 0.12); }
+.hp-reqs li.short{ color: #8a1d14; border-color: #b3262b; background: rgb(179 38 43 / 0.1); }
+.hp-sheet-btns{ display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+.hp-short{ text-align: center; font: italic 600 12px/1.3 Georgia, serif; color: #6b4120; }
+
+/* Workers' scroll */
+.hp-scroll{
+  position: fixed; z-index: 51; left: 50%; top: 50%; translate: -50% -50%; width: min(92vw, 460px); max-height: 88vh; overflow-y: auto;
+  padding: 18px 16px; border-radius: 12px; background-color: #f3e2bb; border: 3px solid #b88a3a;
+  box-shadow: 0 0 0 2px #1d0f06, 0 18px 40px rgb(0 0 0 / 0.7); color: #3b2412; font-family: 'Cinzel', Georgia, serif;
+}
+.hp-scroll h3{ font: 900 20px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; padding-right: 40px; }
+.hp-scroll-sub{ margin: 4px 0 10px; font: 700 11px/1.3 'Cinzel', serif; color: #6b4120; letter-spacing: 0.04em; }
+.hp-scroll-q{ font: 900 17px/1.3 'Cinzel', serif; margin-bottom: 10px; }
+.hp-scroll-answers{ display: grid; gap: 6px; }
+.hp-scroll-a{
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; text-align: left;
+  background: rgb(255 255 255 / 0.5); border: 2px solid #c9a24a; color: #3b2412; font: 700 14px/1.25 'Cinzel', serif;
+}
+.hp-scroll-a b{ display: grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06; font-size: 12px; }
+.hp-scroll-a:not(:disabled):active{ background: #ffe08a; }
+.hp-scroll-result{ display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.hp-scroll-result strong{ font: 900 16px/1.3 'Cinzel', serif; }
+.hp-scroll-result strong.won{ color: #2f7a3a; }
+.hp-scroll-result strong.lost{ color: #8a1d14; }
+.hp-scroll-review{ list-style: none; display: grid; gap: 6px; }
+.hp-scroll-review li{ display: flex; flex-direction: column; gap: 2px; padding: 7px 9px; border-radius: 8px; background: rgb(255 255 255 / 0.4); border-left: 4px solid; font: 600 12px/1.35 Georgia, serif; }
+.hp-scroll-review li.ok{ border-color: #2f7a3a; }
+.hp-scroll-review li.short{ border-color: #b3262b; }
+.hp-scroll-review small{ font: 700 11px/1.3 'Cinzel', serif; color: #6b4120; }
+
+.hp-toast{
+  position: fixed; z-index: 60; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom)); translate: -50% 0; max-width: 90vw;
+  padding: 9px 18px; border-radius: 999px; background: rgb(29 15 6 / 0.92); border: 2px solid #ffe08a; color: #ffe7a3;
+  font: 800 13px/1.3 'Cinzel', serif; text-align: center; box-shadow: 0 8px 20px rgb(0 0 0 / 0.5); pointer-events: none;
+}
+
+/* Market */
+.mk-hero{
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 4px 0 10px; padding: 14px; border-radius: 14px;
+  background: linear-gradient(90deg, rgb(20 8 4 / 0.85), rgb(20 8 4 / 0.4)), url('/art/bg-city.webp') center / cover;
+  border: 2px solid #c9a24a; box-shadow: 0 8px 18px rgb(0 0 0 / 0.45);
+}
+.mk-hero strong{ display: block; font: 900 17px/1.15 'Cinzel Decorative', serif; color: #ffe08a; text-shadow: 0 2px 4px #000; }
+.mk-hero small{ display: block; margin-top: 3px; font: italic 600 12px/1.3 Georgia, serif; color: #f3e2bb; }
+.mk-purse{ display: flex; align-items: center; gap: 5px; padding: 5px 12px 5px 6px; border-radius: 999px; background: rgb(29 15 6 / 0.85); border: 2px solid #c9a24a; font: 900 16px/1 'Cinzel', serif; color: #ffe7a3; }
+.mk-qty{ display: flex; gap: 6px; margin-bottom: 8px; }
+.mk-qty .seg-btn{ flex: 1; padding: 8px; border-radius: 10px; }
+.mk-list{ display: grid; gap: 8px; }
+.mk-row{
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 12px; background-color: #f3e2bb;
+  border: 2px solid #b88a3a; box-shadow: 0 0 0 1px #1d0f06; color: #3b2412;
+}
+.mk-icon{ font-size: 28px; width: 34px; text-align: center; }
+.mk-name{ flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.mk-name strong{ font: 900 14px/1.15 'Cinzel', serif; }
+.mk-name small{ font: 600 11px/1.3 Georgia, serif; color: #6b4120; }
+.mk-have{ min-width: 34px; padding: 4px 6px; border-radius: 8px; background: rgb(29 15 6 / 0.1); text-align: center; font: 900 15px/1 'Cinzel', serif; }
+.mk-btns{ display: flex; flex-direction: column; gap: 4px; }
+.mk-btns .hp-btn{ min-width: 92px; }
+
+/* Jerusalem tab: home card is a button now, with the Market beside it */
+.jr-home-row{ display: flex; gap: 8px; align-items: stretch; margin: 6px 0 10px; }
+.jr-home-row .jr-home{ margin: 0; }
+.jr-home-btn{ flex: 1; text-align: left; color: inherit; border-color: #ffe08a; box-shadow: 0 0 14px rgb(255 214 100 / 0.3); }
+.jr-market{
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 74px; border-radius: 12px;
+  background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06; box-shadow: 0 3px 0 #1d0f06; color: #2b1408;
+}
+.jr-market span{ font-size: 26px; line-height: 1; }
+.jr-market small{ font: 900 11px/1 'Cinzel', serif; }
+
+/* Player page: their buildings */
+.pl-buildings{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+.pl-building{ display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 2px; border-radius: 10px; background: rgb(29 15 6 / 0.82); border: 1px solid rgb(201 162 74 / 0.6); }
+.pl-building span{ font-size: 22px; line-height: 1; }
+.pl-building small{ font: 700 9px/1.1 'Cinzel', serif; color: #e9c98a; text-align: center; }
+.pl-building b{ font: 900 12px/1 'Cinzel', serif; color: #ffd36b; }
+.pl-building.none span{ filter: grayscale(1) opacity(0.4); }
+
+/* Desktop: the plot gets room but stays a phone-like column */
+@media (min-width: 700px){
+  .hp-spot-name{ font-size: 12px; }
+  .hp-spot-lv{ font-size: 11px; }
+}
+
+/* Overlays are direct children of .tab-screen, whose `> *` rule would make them relative. */
+.tab-screen > .hp-scrim, .tab-screen > .hp-sheet, .tab-screen > .hp-scroll, .tab-screen > .hp-toast{ position: fixed; }
+.tab-screen > .hp-scrim{ z-index: 40; }
+.tab-screen > .hp-scrim.top{ z-index: 50; }
+.tab-screen > .hp-sheet{ z-index: 41; }
+.tab-screen > .hp-scroll{ z-index: 51; }
+.tab-screen > .hp-toast{ z-index: 60; }
+
+/* Painted building art */
+.hp-spot.empty .hp-spot-art{ filter: grayscale(1) opacity(0.4); }
+.hp-spot.court .hp-spot-art{ filter: saturate(0.6) opacity(0.75); }
+.hp-spot.building .hp-spot-art{ filter: sepia(0.4) brightness(0.9); }
+.hp-spot.empty.building .hp-spot-art{ filter: grayscale(0.6) opacity(0.65); }
+.hp-spot-art{ margin-top: 2px; }
+.hp-next-art{ width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.5)); }
+.hp-sheet-art.empty{ filter: grayscale(1) opacity(0.5); }
+.jr-home-art{ width: 54px; height: 50px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.5)); }
+img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.35)); }
+.pl-building img{ width: 44px; height: 36px; object-fit: contain; }
+.pl-building.none img{ filter: grayscale(1) opacity(0.4); }

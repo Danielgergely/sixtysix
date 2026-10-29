@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
+// API_TARGET points the dev proxy at another server (e.g. a second checkout on :3167).
+const api = process.env.API_TARGET ?? 'http://localhost:3066'
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -12,8 +15,8 @@ export default defineConfig({
   server: {
     proxy: {
       // Arena server (dev): socket.io rides on the same origin in production.
-      '/socket.io': { target: 'http://localhost:3066', ws: true },
-      '/api': { target: 'http://localhost:3066' },
+      '/socket.io': { target: api, ws: true },
+      '/api': { target: api },
     },
   },
 })
