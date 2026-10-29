@@ -177,10 +177,11 @@ function getSocket(): ArenaSocket {
     const { role, room, myPlayerId } = getState()
     const rank = entries.findIndex((e) => e.playerId === myPlayerId)
     if (role === 'player' && room && rank >= 0) {
-      const total = entries[rank].coins + coinsForPlacement(rank)
+      const total = entries[rank].coins + coinsForPlacement(rank, 'arena')
       if (!coinsPaid.has(room.code)) {
         coinsPaid.add(room.code)
-        useGameStore.getState().addCoins(total)
+        // XP = points scored, as in Bible Blitz.
+        useGameStore.getState().addCoins(total, entries[rank].score)
       }
       setState({ coinsEarned: total })
     }

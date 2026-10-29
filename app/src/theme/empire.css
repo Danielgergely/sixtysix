@@ -578,6 +578,10 @@
   position: absolute; top: 10px; right: 10px; padding: 3px 10px; border-radius: 999px;
   background: #b3262b; border: 2px solid #ffe08a; color: #fff; font: 900 11px/1.2 'Cinzel', serif; letter-spacing: 0.1em; text-transform: uppercase;
 }
+/* Connectivity tags: green dot = needs internet, stone = works without it. */
+.hm-badge.b-online { background: #2f7a3a; }
+.hm-badge.b-online::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: #8dff9e; box-shadow: 0 0 6px #8dff9e; vertical-align: 1px; }
+.hm-badge.b-offline { background: #4a4038; border-color: #c9b58a; }
 .hm-card-plate {
   position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 26px 12px 10px;
   background: linear-gradient(transparent, rgb(20 8 4 / 0.85) 45%);

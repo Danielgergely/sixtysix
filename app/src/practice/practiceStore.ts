@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { PRACTICE_COINS_PER_CORRECT, type Category, type DifficultyPreset } from '@sixtysix/shared'
+import { coinsForAnswer, type Category, type DifficultyPreset } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
@@ -148,7 +148,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
       retryQueue.push({ id: question.id, at: served + RETRY_AFTER })
     }
     if (nextMissed !== missed) saveMissed(nextMissed)
-    const earned = correct ? PRACTICE_COINS_PER_CORRECT : 0
+    const earned = coinsForAnswer(correct, 0, 'practice')
     if (earned) useGameStore.getState().addCoins(earned)
     playSfx(correct ? 'correct' : 'wrong')
     set({

@@ -25,8 +25,8 @@ export function MainMenuScreen() {
   const dailyDone = daily.date === today() && daily.picks.length >= DAILY_COUNT
 
   const modes: Mode[] = [
-    { id: 'blitz', title: 'Bible Blitz', desc: 'Race three rivals to the throne', art: '/art/banner-blitz.webp', onPlay: findMatch },
-    { id: 'arena', title: 'Open Arena', desc: 'Live quiz for your whole group', art: '/art/banner-arena.webp', badge: 'Live', onPlay: () => goTo('arenaMenu') },
+    { id: 'blitz', title: 'Bible Blitz', desc: 'Solo race against three rivals', art: '/art/banner-blitz.webp', badge: 'Offline', onPlay: findMatch },
+    { id: 'arena', title: 'Open Arena', desc: 'Live quiz for your whole group', art: '/art/banner-arena.webp', badge: 'Online', onPlay: () => goTo('arenaMenu') },
     {
       id: 'daily',
       title: 'Daily Scroll',
@@ -75,7 +75,7 @@ export function MainMenuScreen() {
             transition={{ ...spring.gentle, delay: 0.1 + i * 0.08 }}
           >
             <img className="hm-card-art" src={m.art} alt="" draggable={false} />
-            {m.badge && <span className="hm-badge">{m.badge}</span>}
+            {m.badge && <span className={`hm-badge b-${m.badge.toLowerCase().replace(/[^a-z]/g, '')}`}>{m.badge}</span>}
             <span className="hm-card-plate">
               <span className="hm-card-text">
                 <span className="hm-card-title">{m.title}</span>

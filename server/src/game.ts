@@ -151,7 +151,7 @@ function resolveQuestion(io: IO, room: Room): void {
     p.score += gain
     p.lastGain = gain
     p.streak = correct ? p.streak + 1 : 0
-    const coins = coinsForAnswer(correct, p.streak)
+    const coins = coinsForAnswer(correct, p.streak, 'arena')
     p.coins += coins
     if (p.connected) {
       io.to(p.socketId).emit('game:yourResult', {

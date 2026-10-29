@@ -1,28 +1,34 @@
 /**
  * Coins — the meta-currency, earned in every mode and spent outside matches
- * (upgrades, cosmetics; see docs/economy.md). One table so server and app
+ * (Jerusalem plot, cosmetics; see docs/economy.md). One table so server and app
  * always agree on what an answer is worth.
+ *
+ * Playing together pays best: Open Arena > Bible Blitz (solo vs bots, offline)
+ * > Practice (no clock, so it can't be farmed).
  */
-export const COINS_PER_CORRECT = 10
-/** Extra per correct answer while on a streak of STREAK_BONUS_FROM or more. */
-export const STREAK_BONUS_COINS = 5
-export const STREAK_BONUS_FROM = 3
-/** Practice has no clock or opponents — half rate so it can't be farmed. */
-export const PRACTICE_COINS_PER_CORRECT = 5
+export type CoinMode = 'arena' | 'blitz' | 'practice'
 
-/** Daily Scroll: all five right earns a bonus on top of the per-answer coins. */
-export const DAILY_PERFECT_BONUS = 25
-
-/** `streak` counts consecutive correct answers including this one. */
-export function coinsForAnswer(correct: boolean, streak: number): number {
-  if (!correct) return 0
-  return COINS_PER_CORRECT + (streak >= STREAK_BONUS_FROM ? STREAK_BONUS_COINS : 0)
+const RATES: Record<CoinMode, { perCorrect: number; streakBonus: number; placement: number[]; finish: number }> = {
+  arena: { perCorrect: 10, streakBonus: 5, placement: [50, 30, 20], finish: 10 },
+  blitz: { perCorrect: 6, streakBonus: 3, placement: [25, 15, 10], finish: 5 },
+  practice: { perCorrect: 3, streakBonus: 0, placement: [], finish: 0 },
 }
 
-const PLACEMENT_COINS = [50, 30, 20]
-const FINISH_COINS = 10
+/** Daily Scroll: arena rate per answer (it's capped at five a day) + a bonus for all five. */
+export const DAILY_COINS_PER_CORRECT = 10
+export const DAILY_PERFECT_BONUS = 25
+/** Streak bonus applies from this many consecutive correct answers. */
+export const STREAK_BONUS_FROM = 3
+
+/** `streak` counts consecutive correct answers including this one. */
+export function coinsForAnswer(correct: boolean, streak: number, mode: CoinMode): number {
+  if (!correct) return 0
+  const r = RATES[mode]
+  return r.perCorrect + (streak >= STREAK_BONUS_FROM ? r.streakBonus : 0)
+}
 
 /** Finishing bonus by final rank (0-based); everyone who finishes gets something. */
-export function coinsForPlacement(rank: number): number {
-  return PLACEMENT_COINS[rank] ?? FINISH_COINS
+export function coinsForPlacement(rank: number, mode: CoinMode): number {
+  const r = RATES[mode]
+  return r.placement[rank] ?? r.finish
 }

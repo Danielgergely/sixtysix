@@ -77,7 +77,8 @@ interface GameStore {
   toggleMute: () => void
   updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
   /** Credit coins to the persisted profile (every mode earns them). */
-  addCoins: (amount: number) => void
+  /** Credit coins (and optionally XP) to the saved profile. */
+  addCoins: (amount: number, xp?: number) => void
   /** Reveal / standings: move on without waiting. */
   skip: () => void
 }
@@ -190,7 +191,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     const correct = yourAnswer?.correct ?? false
     const raceStreak = correct ? get().raceStreak + 1 : 0
     // Coins (and XP) are paid only when the race is finished; leaving forfeits them.
-    const coins = coinsForAnswer(correct, raceStreak)
+    const coins = coinsForAnswer(correct, raceStreak, 'blitz')
     const gain = yourAnswer ? scoreAnswer(correct, QUESTION_TIME_MS - yourAnswer.ms) : 0
     set({
       phase: 'reveal',
@@ -237,7 +238,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     const player = get().racers.find((r) => !r.isBot)
     const sorted = [...get().racers].sort((a, b) => b.score - a.score)
     const rank = sorted.findIndex((r) => r === player)
-    const bonus = coinsForPlacement(rank)
+    const bonus = coinsForPlacement(rank, 'blitz')
     const xp = get().player.xp + (player?.score ?? 0)
     const updated = {
       ...get().player,
@@ -343,8 +344,9 @@ export const useGameStore = create<GameStore>((set, get) => {
       set({ muted })
     },
 
-    addCoins: (amount) => {
-      const player = { ...get().player, coins: get().player.coins + amount }
+    addCoins: (amount, xp = 0) => {
+      const prev = get().player
+      const player = { ...prev, coins: prev.coins + amount, xp: prev.xp + xp, level: levelForXp(prev.xp + xp) }
       savePlayer(player)
       set({ player })
     },

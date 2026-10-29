@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { COINS_PER_CORRECT, DAILY_PERFECT_BONUS } from '@sixtysix/shared'
+import { DAILY_COINS_PER_CORRECT as COINS_PER_CORRECT, DAILY_PERFECT_BONUS } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
