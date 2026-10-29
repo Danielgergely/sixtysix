@@ -20,6 +20,8 @@ import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { HomeScreen } from './screens/home/HomeScreen'
 import { MarketScreen } from './screens/home/MarketScreen'
+import { FlockScreen } from './screens/flock/FlockScreen'
+import { useFlockStore } from './flock/flockStore'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 
@@ -42,17 +44,19 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   player: PlayerScreen,
   home: HomeScreen,
   market: MarketScreen,
+  flock: FlockScreen,
 }
 
 export default function App() {
   const screen = useGameStore((s) => s.screen)
   const arenaRole = useArenaStore((s) => s.role)
+  const flockRole = useFlockStore((s) => s.role)
   const Active = SCREENS[screen]
   // Top-level areas get the shared header + bottom tabs; games stay full-screen.
   const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
   // Host/spectator boards are projector/laptop surfaces — let them breathe.
   const wide =
-    screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player')
+    screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player') || (screen === 'flock' && flockRole === 'board')
   return (
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.

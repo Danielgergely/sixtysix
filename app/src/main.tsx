@@ -6,6 +6,7 @@ import './theme/home.css'
 import App from './App.tsx'
 import { useGameStore } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
+import { useFlockStore } from './flock/flockStore'
 import { playSfx } from './game/sfx'
 import { useAccountStore } from './account/accountStore'
 
@@ -32,6 +33,15 @@ if (joinMatch) {
 const boardMatch = /^\/board\/([A-Za-z0-9]{4,8})$/.exec(window.location.pathname)
 if (boardMatch) {
   useArenaStore.getState().watchGame(boardMatch[1])
+  window.history.replaceState(null, '', '/')
+}
+
+// Wolf in the Flock: /flock/CODE (QR join) and /flock/CODE/board (shared screen).
+const flockMatch = /^\/flock\/([A-Za-z0-9]{4,8})(\/board)?\/?$/.exec(window.location.pathname)
+if (flockMatch) {
+  if (flockMatch[2]) useFlockStore.getState().watch(flockMatch[1])
+  else useFlockStore.getState().setPrefillCode(flockMatch[1])
+  useGameStore.getState().goTo('flock')
   window.history.replaceState(null, '', '/')
 }
 
