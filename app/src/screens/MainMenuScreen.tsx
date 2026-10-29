@@ -1,5 +1,5 @@
 import { useGameStore } from '../game/store'
-import { AVATAR_EMOJI } from './avatars'
+import { Avatar } from '../avatars/Avatar'
 import { ArenaBanner, PracticeBanner, RaceBanner } from './modeBanners'
 
 export function MainMenuScreen() {
@@ -17,8 +17,8 @@ export function MainMenuScreen() {
           <div className="chip">⭐ Lv {player.level}</div>
           <div className="chip">🪙 {player.coins}</div>
         </div>
-        <button className="icon-btn" onClick={() => goTo('profile')} title="Profile">
-          {AVATAR_EMOJI[player.avatar]}
+        <button className="icon-btn icon-btn-avatar" onClick={() => goTo('profile')} title="Profile">
+          <Avatar id={player.avatar} />
         </button>
       </header>
 

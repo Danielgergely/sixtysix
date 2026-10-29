@@ -1,6 +1,6 @@
 import { useGameStore } from '../game/store'
 import type { CharacterId } from '../game/types'
-import { AVATAR_EMOJI } from './avatars'
+import { Avatar } from '../avatars/Avatar'
 
 const CHARACTERS: Array<{ id: CharacterId; name: string }> = [
   { id: 'david', name: 'David' },
@@ -69,7 +69,9 @@ export function ProfileScreen() {
               className={`avatar-option ${player.avatar === c.id ? 'selected' : ''}`}
               onClick={() => updateProfile({ avatar: c.id })}
             >
-              <span className="avatar-option-emoji">{AVATAR_EMOJI[c.id]}</span>
+              <span className="avatar-option-pic">
+                <Avatar id={c.id} />
+              </span>
               <span>{c.name}</span>
             </button>
           ))}

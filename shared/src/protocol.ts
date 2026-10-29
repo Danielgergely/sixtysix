@@ -3,11 +3,19 @@
  * Server owns all timers and scoring; clients render state and send answers.
  */
 
+import type { Category } from './question'
+
 export type RoomType = 'in-person' | 'remote'
+
+/** easy = difficulty 1–2, mixed = 1–5 ramped easy → hard, hard = 3–5. */
+export type DifficultyPreset = 'easy' | 'mixed' | 'hard'
 
 export interface RoomConfig {
   questionCount: number
   roomType: RoomType
+  /** Omitted or empty = all categories. */
+  categories?: Category[]
+  difficulty?: DifficultyPreset
 }
 
 export const MAX_ARENA_PLAYERS = 100
@@ -51,6 +59,8 @@ export interface ArenaQuestion {
 export interface RevealPayload {
   correctIndex: number
   reference: string
+  /** Cited verse text (WEB); empty if unavailable. */
+  verse: string
   /** Count of players who picked each answer. */
   distribution: [number, number, number, number]
   answeredCount: number
@@ -64,6 +74,19 @@ export interface LeaderboardEntry {
   rank: number
   /** Rank change vs previous leaderboard (positive = climbed). */
   delta: number
+  /** Points from the question just played — lets clients count up from score - gain. */
+  gain: number
+  /** Consecutive correct answers. */
+  streak: number
+}
+
+/** Sent privately to each player after reveal. */
+export interface YourResult {
+  correct: boolean
+  gain: number
+  score: number
+  /** Consecutive correct answers including this one (0 after a miss). */
+  streak: number
 }
 
 // ── socket.io event maps ───────────────────────────────────────────────
@@ -92,8 +115,11 @@ export interface ClientToServerEvents {
     payload: { code: string },
     cb: (res: { ok: true; state: RoomState } | { ok: false; error: string }) => void,
   ) => void
-  'room:leave': () => void
+  /** Acknowledged so the client can disconnect only after the server heard it. */
+  'room:leave': (cb: (ok: boolean) => void) => void
   'host:start': () => void
+  /** Host advances the game: resolves the question / skips the leaderboard wait. */
+  'host:skip': () => void
   'player:answer': (payload: { index: number }) => void
 }
 
@@ -107,5 +133,5 @@ export interface ServerToClientEvents {
   'game:leaderboard': (entries: LeaderboardEntry[]) => void
   'game:podium': (entries: LeaderboardEntry[]) => void
   /** Sent privately after reveal: what you earned. */
-  'game:yourResult': (payload: { correct: boolean; gain: number; score: number }) => void
+  'game:yourResult': (payload: YourResult) => void
 }

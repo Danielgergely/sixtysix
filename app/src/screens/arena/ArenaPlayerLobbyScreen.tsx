@@ -1,6 +1,8 @@
 import { useArenaStore } from '../../arena/arenaStore'
 import { useGameStore } from '../../game/store'
-import { AVATAR_EMOJI } from '../avatars'
+import { motion } from 'motion/react'
+import { Avatar } from '../../avatars/Avatar'
+import { AnimatedNumber, spring } from '../../motion'
 
 export function ArenaPlayerLobbyScreen() {
   const room = useArenaStore((s) => s.room)
@@ -19,14 +21,35 @@ export function ArenaPlayerLobbyScreen() {
       </header>
 
       <div className="player-lobby-body">
-        <div className="avatar player-lobby-avatar">{AVATAR_EMOJI[player.avatar]}</div>
-        <div className="player-lobby-name">{player.name}</div>
+        <motion.div
+          className="avatar player-lobby-avatar"
+          initial={{ scale: 0, rotate: -20 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={spring.bouncy}
+        >
+          <motion.div
+            style={{ width: '100%', height: '100%' }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <Avatar id={player.avatar} />
+          </motion.div>
+        </motion.div>
+        <motion.div
+          className="player-lobby-name"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring.gentle, delay: 0.15 }}
+        >
+          {player.name}
+        </motion.div>
         <div className="chip">Game {room.code}</div>
 
         <div className="player-lobby-wait">
           <div className="slot-spinner" />
           <span>
-            {room.players.length} in the lobby — waiting for the host to start…
+            <AnimatedNumber value={room.players.length} duration={0.4} /> in the lobby — waiting for the host to
+            start…
           </span>
         </div>
       </div>

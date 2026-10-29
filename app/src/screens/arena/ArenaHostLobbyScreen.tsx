@@ -1,21 +1,62 @@
+import { useEffect, useRef, useState } from 'react'
+import QRCode from 'qrcode'
+import { AnimatePresence, motion } from 'motion/react'
 import { useArenaStore } from '../../arena/arenaStore'
-import { AVATAR_EMOJI } from '../avatars'
-import type { CharacterId } from '../../game/types'
+import { Avatar } from '../../avatars/Avatar'
+import { playSfx } from '../../game/sfx'
+import { AnimatedNumber, spring } from '../../motion'
+import { CATEGORY_LABELS } from './categories'
+import { RotateHint } from './RotateHint'
 
-const avatarEmoji = (avatar: string) => AVATAR_EMOJI[avatar as CharacterId] ?? '🙂'
+const DIFFICULTY_LABEL = { easy: '🌱 Easy', mixed: '⚖️ Mixed', hard: '🔥 Hard' } as const
 
 export function ArenaHostLobbyScreen() {
+  const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const startGame = useArenaStore((s) => s.startGame)
-  if (!room) return null
+  const [qrSvg, setQrSvg] = useState('')
+  const [joinOrigin, setJoinOrigin] = useState(window.location.origin)
 
-  const joinUrl = `${window.location.origin}/join/${room.code}`
+  // A localhost QR is unscannable by phones — ask the server for its LAN URL.
+  useEffect(() => {
+    const { hostname } = window.location
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') return
+    fetch('/api/server-info')
+      .then((r) => r.json())
+      .then((info: { lanUrls: string[] }) => {
+        if (info.lanUrls?.[0]) setJoinOrigin(info.lanUrls[0])
+      })
+      .catch(() => {})
+  }, [])
+
+  const code = room?.code
+  const joinUrl = code ? `${joinOrigin}/join/${code}` : ''
+
+  useEffect(() => {
+    if (!joinUrl) return
+    QRCode.toString(joinUrl, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' })
+      .then(setQrSvg)
+      .catch(() => setQrSvg(''))
+  }, [joinUrl])
+
+  // A soft pop for each arrival — the host machine is the room's speaker.
+  const playerCount = room?.players.length ?? 0
+  const seenCount = useRef(playerCount)
+  useEffect(() => {
+    if (playerCount > seenCount.current) playSfx('click')
+    seenCount.current = playerCount
+  }, [playerCount])
+
+  if (!room) return null
+  const isHost = role === 'host'
+  const cats = room.config.categories ?? []
 
   return (
     <div className="screen host-lobby-screen">
+      <RotateHint />
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={leaveArena} title="Close game">
+        <button className="icon-btn" onClick={leaveArena} title={isHost ? 'Close game' : 'Stop watching'}>
           ✕
         </button>
         <h2 className="topbar-heading">Game Lobby</h2>
@@ -25,32 +66,67 @@ export function ArenaHostLobbyScreen() {
       <div className="host-code-card">
         <div className="host-code-label">Join with code</div>
         <div className="arena-code">{room.code}</div>
+        {qrSvg && <div className="host-qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />}
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
-        {/* QR code lands in the host-experience step */}
+        <div className="host-config-chips">
+          <span className="chip">{room.config.questionCount} questions</span>
+          <span className="chip">{DIFFICULTY_LABEL[room.config.difficulty ?? 'mixed']}</span>
+          <span className="chip">
+            {cats.length === 0 ? '📖 All books' : cats.map((c) => CATEGORY_LABELS[c]).join(' · ')}
+          </span>
+          <span className="chip">{room.config.roomType === 'remote' ? '🌍 Remote' : '🏠 In person'}</span>
+        </div>
       </div>
 
       <div className="host-players">
         <div className="host-players-heading">
-          {room.players.length === 0
-            ? 'Waiting for players…'
-            : `${room.players.length} player${room.players.length === 1 ? '' : 's'} joined`}
+          {room.players.length === 0 ? (
+            'Waiting for players…'
+          ) : (
+            <>
+              <AnimatedNumber value={room.players.length} duration={0.4} className="host-player-count" />{' '}
+              player{room.players.length === 1 ? '' : 's'} joined
+            </>
+          )}
         </div>
         <div className="player-chip-grid">
-          {room.players.map((p) => (
-            <div key={p.id} className={`player-chip ${p.connected ? '' : 'player-gone'}`}>
-              <span>{avatarEmoji(p.avatar)}</span>
-              <span className="player-chip-name">{p.name}</span>
-            </div>
-          ))}
+          <AnimatePresence initial={false}>
+            {room.players.map((p) => (
+              <motion.div
+                key={p.id}
+                layout
+                className={`player-chip ${p.connected ? '' : 'player-gone'}`}
+                initial={{ opacity: 0, scale: 0.3, y: -40 }}
+                animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
+                transition={spring.bouncy}
+              >
+                <span className="player-chip-avatar">
+                  <Avatar id={p.avatar} />
+                </span>
+                <span className="player-chip-name">{p.name}</span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
           {room.players.length === 0 && <div className="slot-spinner" />}
         </div>
       </div>
 
       <div className="host-actions">
-        <button className="btn-play" disabled={room.players.length === 0} onClick={startGame}>
-          START GAME
-        </button>
-        {room.players.length === 0 && <p className="arena-hint">Waiting for at least one player…</p>}
+        {isHost ? (
+          <>
+            <button
+              className={`btn-play ${room.players.length > 0 ? 'btn-ready' : ''}`}
+              disabled={room.players.length === 0}
+              onClick={startGame}
+            >
+              START GAME
+            </button>
+            {room.players.length === 0 && <p className="arena-hint">Waiting for at least one player…</p>}
+          </>
+        ) : (
+          <p className="arena-hint">👀 Watching — the host starts the game.</p>
+        )}
       </div>
     </div>
   )

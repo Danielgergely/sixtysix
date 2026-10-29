@@ -1,5 +1,5 @@
 import { useGameStore } from '../game/store'
-import { AVATAR_EMOJI } from './avatars'
+import { Avatar } from '../avatars/Avatar'
 
 const SLOTS = 4
 
@@ -19,7 +19,9 @@ export function LobbyScreen() {
             <div key={i} className={`lobby-slot ${racer ? 'filled' : 'empty'}`}>
               {racer ? (
                 <>
-                  <div className="avatar">{AVATAR_EMOJI[racer.profile.avatar]}</div>
+                  <div className="avatar">
+                    <Avatar id={racer.profile.avatar} />
+                  </div>
                   <div className="slot-name">{racer.profile.name}</div>
                   <div className="slot-level">Lv {racer.profile.level}</div>
                 </>

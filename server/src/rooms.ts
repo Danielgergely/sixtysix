@@ -5,6 +5,10 @@ export interface RoomPlayer extends ArenaPlayer {
   socketId: string
   /** Current-question answer; cleared between questions. */
   answer?: { index: number; ms: number }
+  /** Consecutive correct answers. */
+  streak: number
+  /** Points from the most recent question. */
+  lastGain: number
 }
 
 export interface Room {
@@ -108,6 +112,8 @@ export function addOrRebindPlayer(
     avatar,
     score: 0,
     connected: true,
+    streak: 0,
+    lastGain: 0,
   }
   room.players.set(player.id, player) // late joiners enter at the next question
   touch(room)

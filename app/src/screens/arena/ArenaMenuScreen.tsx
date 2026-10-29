@@ -1,10 +1,18 @@
 import { useState } from 'react'
+import { CATEGORIES, type Category, type DifficultyPreset, type RoomType } from '@sixtysix/shared'
+import { CATEGORY_LABELS } from './categories'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
-import { AVATAR_EMOJI } from '../avatars'
+import { Avatar } from '../../avatars/Avatar'
 import type { CharacterId } from '../../game/types'
 
 const CHARACTERS: CharacterId[] = ['david', 'moses', 'esther', 'ruth']
+const QUESTION_COUNTS = [5, 10, 15, 20]
+const DIFFICULTIES: Array<{ id: DifficultyPreset; label: string }> = [
+  { id: 'easy', label: '🌱 Easy' },
+  { id: 'mixed', label: '⚖️ Mixed' },
+  { id: 'hard', label: '🔥 Hard' },
+]
 
 export function ArenaMenuScreen() {
   const goTo = useGameStore((s) => s.goTo)
@@ -18,6 +26,13 @@ export function ArenaMenuScreen() {
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
   const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
+  const [questionCount, setQuestionCount] = useState(10)
+  const [roomType, setRoomType] = useState<RoomType>('in-person')
+  const [difficulty, setDifficulty] = useState<DifficultyPreset>('mixed')
+  // Empty = every category (the default), so no chip selected reads as "all".
+  const [categories, setCategories] = useState<Category[]>([])
+  const toggleCategory = (c: Category) =>
+    setCategories((cs) => (cs.includes(c) ? cs.filter((x) => x !== c) : [...cs, c]))
 
   const canJoin = !busy && code.length >= 4 && name.trim().length > 0
 
@@ -69,7 +84,9 @@ export function ArenaMenuScreen() {
                 onClick={() => setAvatar(c)}
                 title={c}
               >
-                <span className="avatar-option-emoji">{AVATAR_EMOJI[c]}</span>
+                <span className="avatar-option-pic">
+                  <Avatar id={c} />
+                </span>
               </button>
             ))}
           </div>
@@ -83,8 +100,65 @@ export function ArenaMenuScreen() {
 
         <div className="arena-section">
           <div className="profile-label">Host a game</div>
-          <button className="btn-secondary host-btn" disabled={busy} onClick={() => void hostGame()}>
-            🖥️ Create a game (this screen becomes the host board)
+          <div className="seg-row">
+            {QUESTION_COUNTS.map((n) => (
+              <button
+                key={n}
+                className={`seg-btn ${questionCount === n ? 'selected' : ''}`}
+                onClick={() => setQuestionCount(n)}
+              >
+                {n} Q
+              </button>
+            ))}
+          </div>
+          <div className="seg-row">
+            {DIFFICULTIES.map((d) => (
+              <button
+                key={d.id}
+                className={`seg-btn ${difficulty === d.id ? 'selected' : ''}`}
+                onClick={() => setDifficulty(d.id)}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
+          <div className="category-chips">
+            <button
+              className={`seg-btn ${categories.length === 0 ? 'selected' : ''}`}
+              onClick={() => setCategories([])}
+            >
+              📖 All books
+            </button>
+            {CATEGORIES.map((c) => (
+              <button
+                key={c}
+                className={`seg-btn ${categories.includes(c) ? 'selected' : ''}`}
+                onClick={() => toggleCategory(c)}
+              >
+                {CATEGORY_LABELS[c]}
+              </button>
+            ))}
+          </div>
+          <div className="seg-row">
+            <button
+              className={`seg-btn ${roomType === 'in-person' ? 'selected' : ''}`}
+              onClick={() => setRoomType('in-person')}
+            >
+              🏠 In person
+            </button>
+            <button
+              className={`seg-btn ${roomType === 'remote' ? 'selected' : ''}`}
+              onClick={() => setRoomType('remote')}
+            >
+              🌍 Remote
+            </button>
+          </div>
+          <button
+            className="btn-secondary host-btn"
+            disabled={busy}
+            onClick={() => hostGame({ questionCount, roomType, difficulty, categories })}
+          >
+            🖥️ Create game (this screen becomes the host board)
           </button>
           <p className="arena-hint">
             Best on a laptop or tablet everyone can see. Want to play too? Join from your phone after creating.

@@ -8,4 +8,4 @@ Planned contents:
 - `.riv` files for David, Moses, Esther, Ruth + chariot, exported from the
   Rive editor using the segment structure annotated in `assets/David_Sketch.png`.
 
-Until then, screens use emoji placeholders from `src/screens/avatars.ts`.
+Until then, screens use the SVG portraits in `src/avatars/Avatar.tsx` (same CharacterIds).

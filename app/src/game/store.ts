@@ -114,6 +114,7 @@ export const useGameStore = create<GameStore>((set, get) => {
       countdownValue: 3,
       racers: get().racers.map((r) => ({ ...r, lastAnswer: undefined, lastGain: undefined })),
     })
+    playSfx('flip')
     playSfx('tick')
     later(() => {
       set({ countdownValue: 2 })

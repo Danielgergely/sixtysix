@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useGameStore } from '../game/store'
 import { FINISH_LINE_SCORE, QUESTION_TIME_MS, scoreAnswer } from '../game/scoring'
-import { AVATAR_EMOJI } from './avatars'
+import { Avatar } from '../avatars/Avatar'
 
 // Finish line sits at this % of the lane; crossers may roll slightly past it.
 const LINE_AT = 86
@@ -80,7 +80,9 @@ export function RaceScreen() {
               {(phase === 'progress' || phase === 'finished') && r.lastGain !== undefined && (
                 <span className={`gain-float ${r.lastGain === 0 ? 'zero' : ''}`}>+{r.lastGain}</span>
               )}
-              <span className="chariot-avatar">{AVATAR_EMOJI[r.profile.avatar]}</span>
+              <span className="chariot-avatar">
+                <Avatar id={r.profile.avatar} />
+              </span>
               <span className="chariot-name">{r.profile.name}</span>
             </div>
             <div className="finish-line" />
@@ -111,7 +113,7 @@ export function RaceScreen() {
                   className={`status-avatar ${r.lastAnswer ? 'locked-in' : ''} ${r.isBot ? '' : 'status-you'}`}
                   title={r.profile.name}
                 >
-                  {AVATAR_EMOJI[r.profile.avatar]}
+                  <Avatar id={r.profile.avatar} />
                 </div>
               ))}
             </div>

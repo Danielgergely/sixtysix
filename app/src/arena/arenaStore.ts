@@ -5,8 +5,10 @@ import type {
   ClientToServerEvents,
   LeaderboardEntry,
   RevealPayload,
+  RoomConfig,
   RoomState,
   ServerToClientEvents,
+  YourResult,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { getDeviceId } from '../game/persistence'
@@ -28,16 +30,20 @@ interface ArenaStore {
   question: ArenaQuestion | null
   /** Date.now()-based end of the current reading/question window. */
   phaseEndsAt: number
+  /** Window length as announced by the server (≠ full length after a rejoin). */
+  phaseDuration: number
   myAnswer: number | null
   answerCount: number
   reveal: RevealPayload | null
-  yourResult: { correct: boolean; gain: number; score: number } | null
+  yourResult: YourResult | null
   leaderboard: LeaderboardEntry[] | null
   podium: LeaderboardEntry[] | null
 
-  hostGame: () => void
+  hostGame: (config: RoomConfig) => void
   startGame: () => void
+  skip: () => void
   joinGame: (code: string) => void
+  watchGame: (code: string) => void
   answer: (index: number) => void
   leaveArena: () => void
   setPrefillCode: (code: string) => void
@@ -66,6 +72,8 @@ function getSocket(): ArenaSocket {
       )
     } else if (role === 'host') {
       socket.emit('room:rehost', { code: room.code, hostId: getDeviceId() }, () => {})
+    } else if (role === 'spectator') {
+      socket.emit('room:watch', { code: room.code }, () => {})
     }
   })
 
@@ -91,18 +99,25 @@ function getSocket(): ArenaSocket {
     setState((s) => ({
       question: q,
       phaseEndsAt: Date.now() + endsInMs,
+      phaseDuration: endsInMs,
       // A new question (or first sight of it) clears per-question state.
       myAnswer: phase === 'reading' ? null : s.question?.index === q.index ? s.myAnswer : null,
       reveal: phase === 'reading' ? null : s.reveal,
       yourResult: phase === 'reading' ? null : s.yourResult,
       answerCount: phase === 'reading' ? 0 : s.answerCount,
     }))
-    if (phase === 'question' && useArenaStore.getState().role === 'player') playSfx('go')
+    // Sounds play on every surface — in person, the host machine IS the speaker.
+    if (phase === 'reading') playSfx('flip')
+    if (phase === 'question') playSfx('go')
   })
 
   socket.on('game:answerCount', (count) => setState({ answerCount: count }))
 
-  socket.on('game:reveal', (payload) => setState({ reveal: payload }))
+  socket.on('game:reveal', (payload) => {
+    setState({ reveal: payload })
+    // Players hear correct/wrong via game:yourResult; boards get a neutral sting.
+    if (useArenaStore.getState().role !== 'player') playSfx('reveal')
+  })
 
   socket.on('game:yourResult', (payload) => {
     setState({ yourResult: payload })
@@ -111,10 +126,9 @@ function getSocket(): ArenaSocket {
 
   socket.on('game:leaderboard', (entries) => setState({ leaderboard: entries }))
 
-  socket.on('game:podium', (entries) => {
-    setState({ podium: entries })
-    playSfx('finish')
-  })
+  // game:podium plays no sound here — the podium view plays its own fanfare
+  // when it mounts, so sight and sound land together.
+  socket.on('game:podium', (entries) => setState({ podium: entries }))
 
   return socket
 }
@@ -127,6 +141,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   prefillCode: '',
   question: null,
   phaseEndsAt: 0,
+  phaseDuration: 0,
   myAnswer: null,
   answerCount: 0,
   reveal: null,
@@ -134,24 +149,37 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   leaderboard: null,
   podium: null,
 
-  hostGame: () => {
+  hostGame: (config) => {
     set({ busy: true, error: null })
-    getSocket().emit(
-      'room:create',
-      { config: { questionCount: 10, roomType: 'in-person' }, hostId: getDeviceId() },
-      (res) => {
-        if (res.ok) {
-          set({ role: 'host', room: res.state, busy: false, podium: null, leaderboard: null })
-          useGameStore.getState().goTo('arenaHostLobby')
-        } else {
-          set({ error: res.error, busy: false })
-        }
-      },
-    )
+    getSocket().emit('room:create', { config, hostId: getDeviceId() }, (res) => {
+      if (res.ok) {
+        set({ role: 'host', room: res.state, busy: false, podium: null, leaderboard: null })
+        useGameStore.getState().goTo('arenaHostLobby')
+      } else {
+        set({ error: res.error, busy: false })
+      }
+    })
   },
 
   startGame: () => {
     getSocket().emit('host:start')
+  },
+
+  skip: () => {
+    getSocket().emit('host:skip')
+  },
+
+  watchGame: (code) => {
+    set({ busy: true, error: null })
+    getSocket().emit('room:watch', { code: code.trim().toUpperCase() }, (res) => {
+      if (res.ok) {
+        set({ role: 'spectator', room: res.state, busy: false, podium: null, leaderboard: null })
+        useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaHostLobby' : 'arenaGame')
+      } else {
+        set({ error: res.error, busy: false })
+        useGameStore.getState().goTo('arenaMenu')
+      }
+    })
   },
 
   joinGame: (code: string) => {
@@ -185,9 +213,20 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   },
 
   leaveArena: () => {
-    socket?.emit('room:leave')
-    socket?.disconnect()
+    // Disconnect only after the server acknowledged the leave — otherwise a
+    // host's "End game" can be lost in the disconnect and the room lives on.
+    const s = socket
     socket = null
+    if (s) {
+      let done = false
+      const finish = () => {
+        if (done) return
+        done = true
+        s.disconnect()
+      }
+      s.timeout(600).emit('room:leave', finish)
+      setTimeout(finish, 700) // fallback if the ack never arrives
+    }
     set({
       role: null, room: null, error: null, busy: false,
       question: null, myAnswer: null, reveal: null, yourResult: null,

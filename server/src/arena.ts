@@ -1,5 +1,6 @@
 import type { Server, Socket } from 'socket.io'
-import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/shared'
+import type { ClientToServerEvents, DifficultyPreset, ServerToClientEvents } from '@sixtysix/shared'
+import { CATEGORIES } from '@sixtysix/shared'
 import {
   addOrRebindPlayer,
   deleteRoom,
@@ -10,12 +11,13 @@ import {
   touch,
   type Room,
 } from './rooms.js'
-import { handleAnswer, sendCurrentQuestion, startGame } from './game.js'
+import { handleAnswer, sendCurrentQuestion, skipPhase, startGame } from './game.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
 
 const HOST_GRACE_MS = 90_000 // host may reconnect within this window
+const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 
 function broadcastState(io: IO, room: Room): void {
@@ -26,7 +28,18 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
   socket.on('room:create', (payload, cb) => {
     if (!isId(payload?.hostId)) return cb({ ok: false, error: 'Invalid host id' })
     const questionCount = Math.min(30, Math.max(3, Math.round(payload.config?.questionCount) || 10))
-    const room = createRoom({ ...payload.config, questionCount }, payload.hostId, socket.id)
+    const room = createRoom(
+      {
+        questionCount,
+        roomType: payload.config?.roomType === 'remote' ? 'remote' : 'in-person',
+        categories: (payload.config?.categories ?? []).filter((c) => CATEGORIES.includes(c)),
+        difficulty: DIFFICULTIES.includes(payload.config?.difficulty as DifficultyPreset)
+          ? payload.config.difficulty
+          : 'mixed',
+      },
+      payload.hostId,
+      socket.id,
+    )
     void socket.join(room.code)
     cb({ ok: true, state: toPublicState(room) })
     console.log(`[arena] room ${room.code} created (${room.config.roomType})`)
@@ -71,8 +84,9 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     sendCurrentQuestion(room, socket)
   })
 
-  socket.on('room:leave', () => {
+  socket.on('room:leave', (cb) => {
     handleDeparture(io, socket, true)
+    if (typeof cb === 'function') cb(true)
   })
 
   socket.on('host:start', () => {
@@ -81,6 +95,12 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     if (room.phase !== 'lobby') return
     if (room.players.size === 0) return
     startGame(io, room)
+  })
+
+  socket.on('host:skip', () => {
+    const room = findRoomBySocket(socket.id)
+    if (!room || room.hostSocketId !== socket.id) return
+    skipPhase(io, room)
   })
 
   socket.on('player:answer', (payload) => {

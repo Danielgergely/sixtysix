@@ -10,6 +10,8 @@ export type Category =
   | 'gospels'
   | 'epistles'
 
+export const CATEGORIES: readonly Category[] = ['torah', 'history', 'wisdom', 'prophets', 'gospels', 'epistles']
+
 export type AnswerSet = [string, string, string, string]
 
 export interface Question {

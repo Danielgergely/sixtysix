@@ -1,4 +1,5 @@
 import { existsSync } from 'node:fs'
+import { networkInterfaces } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Fastify from 'fastify'
@@ -15,6 +16,19 @@ const webDist = join(root, '..', '..', 'app', 'dist')
 const app = Fastify({ logger: false })
 
 app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
+
+/** LAN URLs for QR codes when the host opened the page via localhost. */
+app.get('/api/server-info', () => ({ lanUrls: lanUrls() }))
+
+function lanUrls(): string[] {
+  const urls: string[] = []
+  for (const addrs of Object.values(networkInterfaces())) {
+    for (const a of addrs ?? []) {
+      if (a.family === 'IPv4' && !a.internal) urls.push(`http://${a.address}:${PORT}`)
+    }
+  }
+  return urls
+}
 
 // Serve the built web app (same origin as the socket → QR join links work).
 if (existsSync(webDist)) {
@@ -40,3 +54,13 @@ startRoomGC((room) => io.to(room.code).emit('room:closed', 'Game expired'))
 
 await app.listen({ port: PORT, host: '0.0.0.0' })
 console.log(`[server] 66 arena server on :${PORT}`)
+console.log(`[server]   local:  http://localhost:${PORT}`)
+// LAN addresses — open one of these on the host machine and phones on the
+// same wifi can join via the QR code (no deployment needed).
+for (const addrs of Object.values(networkInterfaces())) {
+  for (const a of addrs ?? []) {
+    if (a.family === 'IPv4' && !a.internal) {
+      console.log(`[server]   LAN:    http://${a.address}:${PORT}  ← share this for wifi games`)
+    }
+  }
+}
