@@ -10,8 +10,8 @@ export type CoinMode = 'arena' | 'blitz' | 'practice'
 
 const RATES: Record<CoinMode, { perCorrect: number; streakBonus: number; placement: number[]; finish: number }> = {
   arena: { perCorrect: 10, streakBonus: 5, placement: [50, 30, 20], finish: 10 },
-  blitz: { perCorrect: 6, streakBonus: 3, placement: [25, 15, 10], finish: 5 },
-  practice: { perCorrect: 3, streakBonus: 0, placement: [], finish: 0 },
+  blitz: { perCorrect: 3, streakBonus: 1, placement: [15, 10, 5], finish: 2 },
+  practice: { perCorrect: 2, streakBonus: 0, placement: [], finish: 0 },
 }
 
 /** Daily Scroll: arena rate per answer (it's capped at five a day) + a bonus for all five. */
