@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'motion/react'
 import { TAB_SCREENS, useGameStore, type Screen } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
@@ -15,19 +16,21 @@ import { PracticeSetupScreen } from './screens/practice/PracticeSetupScreen'
 import { PracticeScreen } from './screens/practice/PracticeScreen'
 import { DailyScreen } from './screens/daily/DailyScreen'
 import { BoardGamesScreen } from './screens/BoardGamesScreen'
-import { JerusalemScreen } from './screens/JerusalemScreen'
 import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
-import { HomeScreen } from './screens/home/HomeScreen'
-import { MarketScreen } from './screens/home/MarketScreen'
-import { VisitScreen } from './screens/VisitScreen'
-import { SkillTreeScreen } from './screens/SkillTreeScreen'
-import { FlockScreen } from './screens/flock/FlockScreen'
 import { useFlockStore } from './flock/flockStore'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 
-const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
+// Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
+const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
+const HomeScreen = lazy(() => import('./screens/home/HomeScreen').then((m) => ({ default: m.HomeScreen })))
+const MarketScreen = lazy(() => import('./screens/home/MarketScreen').then((m) => ({ default: m.MarketScreen })))
+const VisitScreen = lazy(() => import('./screens/VisitScreen').then((m) => ({ default: m.VisitScreen })))
+const SkillTreeScreen = lazy(() => import('./screens/SkillTreeScreen').then((m) => ({ default: m.SkillTreeScreen })))
+const FlockScreen = lazy(() => import('./screens/flock/FlockScreen').then((m) => ({ default: m.FlockScreen })))
+
+const SCREENS: Record<Screen, React.ComponentType> = {
   menu: MainMenuScreen,
   lobby: LobbyScreen,
   race: RaceScreen,
@@ -75,7 +78,9 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: duration.base, ease: ease.out } }}
             exit={{ opacity: 0, scale: 0.98, transition: { duration: duration.fast } }}
           >
-            <Active />
+            <Suspense fallback={<div className="screen screen-loading" />}>
+              <Active />
+            </Suspense>
           </motion.div>
         </AnimatePresence>
         {tabbed && <TabBar />}

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import QRCode from 'qrcode'
 import { AnimatePresence, motion } from 'motion/react'
 import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
@@ -36,7 +35,8 @@ export function ArenaHostLobbyScreen() {
 
   useEffect(() => {
     if (!joinUrl) return
-    QRCode.toString(joinUrl, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' })
+    import('qrcode')
+      .then(({ default: QRCode }) => QRCode.toString(joinUrl, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' }))
       .then(setQrSvg)
       .catch(() => setQrSvg(''))
   }, [joinUrl])

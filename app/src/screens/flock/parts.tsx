@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import QRCode from 'qrcode'
 import { AnimatePresence, motion } from 'motion/react'
 import type { FlockPlayer, FlockSecret, FlockState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
@@ -10,7 +9,8 @@ import { CATEGORY_LABEL, playerById } from '../../flock/util'
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
   const [svg, setSvg] = useState('')
   useEffect(() => {
-    QRCode.toString(url, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' })
+    import('qrcode')
+      .then(({ default: QRCode }) => QRCode.toString(url, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' }))
       .then(setSvg)
       .catch(() => setSvg(''))
   }, [url])

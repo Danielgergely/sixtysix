@@ -1079,3 +1079,4 @@
 .google-signin{ display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .google-signin:not(.ready){ display: none; }
 .google-or{ font: italic 600 12px/1 Georgia, serif; color: #6b4120; }
+.screen-loading{ background: #1d0b06; }
