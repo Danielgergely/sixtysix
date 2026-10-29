@@ -1,4 +1,4 @@
-import type { AccountStats } from '@sixtysix/shared'
+import type { AccountStats, BuildingId } from '@sixtysix/shared'
 import { getToken } from './outbox'
 
 /** Public views of signed-up players (server/src/accounts.ts → registerPublicRoutes). */
@@ -18,8 +18,10 @@ export interface LeaderboardData {
   me: (PublicPlayer & { rank: number }) | null
 }
 
-export type Resident = PublicPlayer & { plot: number }
-export type PlayerPage = Resident & { stats: AccountStats }
+/** `house`: house level (1 = tent). */
+export type Resident = PublicPlayer & { plot: number; house: number }
+/** `levels` is null until they first open My Home. */
+export type PlayerPage = Resident & { stats: AccountStats; levels: Record<BuildingId, number> | null }
 
 async function get<T>(path: string): Promise<T> {
   const token = getToken()

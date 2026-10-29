@@ -41,6 +41,8 @@ export type Screen =
   | 'jerusalem'
   | 'leaderboard'
   | 'player'
+  | 'home'
+  | 'market'
 
 /** Screens with the bottom tab bar (and the shared top bar). */
 export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const

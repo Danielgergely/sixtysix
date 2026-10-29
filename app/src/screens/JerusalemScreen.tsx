@@ -5,6 +5,11 @@ import { levelForXp } from '../game/persistence'
 import { useAccountStore } from '../account/accountStore'
 import { fetchCity, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
+import { levelDef } from '@sixtysix/shared'
+import { usePlotStore } from '../plot/plotStore'
+
+const houseIcon = (level: number) => levelDef('house', level)?.icon ?? '⛺'
+const houseName = (level: number) => levelDef('house', level)?.name ?? 'Tent'
 
 /**
  * The city: every account has a plot here (by arrival order). Guests can walk
@@ -42,12 +47,18 @@ export function JerusalemScreen() {
       </div>
 
       {account ? (
-        <div className="jr-home">
-          <span className="jr-home-icon">⛺</span>
-          <span>
-            <strong>Your home{mine ? ` · plot ${mine.plot}` : ''}</strong>
-            <small>A tent for now — building and the Market open soon.</small>
-          </span>
+        <div className="jr-home-row">
+          <motion.button className="jr-home jr-home-btn" onClick={() => goTo('home')} whileTap={{ scale: 0.97 }}>
+            <span className="jr-home-icon">{houseIcon(mine?.house ?? 1)}</span>
+            <span>
+              <strong>Your home{mine ? ` · plot ${mine.plot}` : ''}</strong>
+              <small>{houseName(mine?.house ?? 1)} · tap to build ›</small>
+            </span>
+          </motion.button>
+          <button className="jr-market" onClick={() => usePlotStore.getState().openMarket(null)} title="Market">
+            <span>⚖️</span>
+            <small>Market</small>
+          </button>
         </div>
       ) : (
         <button className="tab-banner" onClick={() => goTo('profile')}>
@@ -69,7 +80,7 @@ export function JerusalemScreen() {
             transition={{ delay: Math.min(i, 16) * 0.03 }}
           >
             <span className="jr-plot-num">#{r.plot}</span>
-            <span className="jr-plot-house">⛺</span>
+            <span className="jr-plot-house" title={houseName(r.house)}>{houseIcon(r.house)}</span>
             <PaintedPortrait id={r.avatar} className="jr-plot-portrait" />
             <strong>{r.name}</strong>
             <small>Lv {levelForXp(r.xp)}</small>

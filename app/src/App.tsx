@@ -18,6 +18,8 @@ import { BoardGamesScreen } from './screens/BoardGamesScreen'
 import { JerusalemScreen } from './screens/JerusalemScreen'
 import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
+import { HomeScreen } from './screens/home/HomeScreen'
+import { MarketScreen } from './screens/home/MarketScreen'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 
@@ -38,6 +40,8 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   jerusalem: JerusalemScreen,
   leaderboard: LeaderboardScreen,
   player: PlayerScreen,
+  home: HomeScreen,
+  market: MarketScreen,
 }
 
 export default function App() {

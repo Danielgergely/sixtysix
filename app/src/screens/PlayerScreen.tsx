@@ -3,6 +3,7 @@ import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
+import { BUILDING_IDS, BUILDINGS, levelDef } from '@sixtysix/shared'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
 
@@ -48,12 +49,29 @@ export function PlayerScreen() {
             </div>
           </div>
           <div className="jr-home">
-            <span className="jr-home-icon">⛺</span>
+            <span className="jr-home-icon">{levelDef('house', player.house)?.icon ?? '⛺'}</span>
             <span>
               <strong>Home in Jerusalem · plot {player.plot}</strong>
-              <small>A tent — their house will grow here as they build.</small>
+              <small>
+                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house})
+                {!player.levels && ' — their house will grow here as they build.'}
+              </small>
             </span>
           </div>
+          {player.levels && (
+            <div className="pl-buildings">
+              {BUILDING_IDS.filter((b) => b !== 'house').map((b) => {
+                const lvl = player.levels?.[b] ?? 0
+                return (
+                  <div key={b} className={`pl-building ${lvl ? '' : 'none'}`} title={levelDef(b, lvl)?.name ?? 'Not built yet'}>
+                    <span>{levelDef(b, Math.max(1, lvl))?.icon}</span>
+                    <small>{BUILDINGS[b].name}</small>
+                    <b>{lvl ? `Lv ${lvl}` : '—'}</b>
+                  </div>
+                )
+              })}
+            </div>
+          )}
           <div className="pl-stats">
             {[
               ['Games', s.gamesPlayed],
