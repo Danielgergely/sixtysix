@@ -353,6 +353,7 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
     p.socketId = null
   }
   if (room.players.size === 0) {
+    io.to(channel(room)).emit('flock:closed', 'Everyone left the game') // boards still watching
     deleteFlockRoom(room)
     console.log(`[flock] room ${room.code} closed (empty)`)
     return
