@@ -19,10 +19,13 @@ COPY app/package.json app/
 COPY server/package.json server/
 COPY shared/package.json shared/
 RUN npm ci --omit=dev --workspace server --include-workspace-root=false && npm cache clean --force
+# Coolify's health check runs curl (or wget) inside the container; slim images have neither.
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 COPY shared ./shared
 COPY server ./server
 # bank.json + verses.json are read by the server at runtime
 COPY app/src/questions ./app/src/questions
 COPY --from=build /repo/app/dist ./app/dist
 EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s CMD curl -fsS http://localhost:8080/healthz || exit 1
 CMD ["npm", "start", "--workspace", "server"]
