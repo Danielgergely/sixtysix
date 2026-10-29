@@ -1,5 +1,5 @@
 import { AnimatePresence, MotionConfig, motion } from 'motion/react'
-import { useGameStore, type Screen } from './game/store'
+import { TAB_SCREENS, useGameStore, type Screen } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
 import { ConfettiLayer, duration, ease } from './motion'
 import { MainMenuScreen } from './screens/MainMenuScreen'
@@ -14,6 +14,12 @@ import { ArenaGameScreen } from './screens/arena/ArenaGameScreen'
 import { PracticeSetupScreen } from './screens/practice/PracticeSetupScreen'
 import { PracticeScreen } from './screens/practice/PracticeScreen'
 import { DailyScreen } from './screens/daily/DailyScreen'
+import { BoardGamesScreen } from './screens/BoardGamesScreen'
+import { JerusalemScreen } from './screens/JerusalemScreen'
+import { LeaderboardScreen } from './screens/LeaderboardScreen'
+import { PlayerScreen } from './screens/PlayerScreen'
+import { TopBar } from './screens/shell/TopBar'
+import { TabBar } from './screens/shell/TabBar'
 
 const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   menu: MainMenuScreen,
@@ -28,12 +34,18 @@ const SCREENS: Record<Screen, () => React.JSX.Element | null> = {
   practiceSetup: PracticeSetupScreen,
   practice: PracticeScreen,
   daily: DailyScreen,
+  boardGames: BoardGamesScreen,
+  jerusalem: JerusalemScreen,
+  leaderboard: LeaderboardScreen,
+  player: PlayerScreen,
 }
 
 export default function App() {
   const screen = useGameStore((s) => s.screen)
   const arenaRole = useArenaStore((s) => s.role)
   const Active = SCREENS[screen]
+  // Top-level areas get the shared header + bottom tabs; games stay full-screen.
+  const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
   // Host/spectator boards are projector/laptop surfaces — let them breathe.
   const wide =
     screen === 'arenaHostLobby' || (screen === 'arenaGame' && arenaRole !== 'player')
@@ -41,7 +53,8 @@ export default function App() {
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.
     <MotionConfig reducedMotion="user">
-      <div className={`app ${wide ? 'app-wide' : ''}`}>
+      <div className={`app ${wide ? 'app-wide' : ''} ${tabbed ? 'app-tabbed' : ''}`}>
+        {tabbed && <TopBar />}
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={screen}
@@ -53,6 +66,7 @@ export default function App() {
             <Active />
           </motion.div>
         </AnimatePresence>
+        {tabbed && <TabBar />}
       </div>
       <ConfettiLayer />
     </MotionConfig>

@@ -40,6 +40,8 @@ interface ArenaStore {
   podium: LeaderboardEntry[] | null
   /** Coins this device earned in the current game (answers + finishing bonus). */
   coinsEarned: number
+  /** This game's answers, for the profile stats at the podium. */
+  tally: { answered: number; correct: number }
   /** Your PUBLIC player id (from the join ack) — what room state and leaderboards use. */
   myPlayerId: string | null
 
@@ -90,6 +92,7 @@ const FRESH_GAME = {
   podium: null,
   answerCount: 0,
   coinsEarned: 0,
+  tally: { answered: 0, correct: 0 },
 } satisfies Partial<ArenaStore>
 
 /** Back to the arena menu (room gone / rejoin refused / ended). */
@@ -162,7 +165,11 @@ function getSocket(): ArenaSocket {
 
   socket.on('game:yourResult', (payload) => {
     // Shown as it grows, but credited only at the podium: leaving forfeits it.
-    setState((s) => ({ yourResult: payload, coinsEarned: s.coinsEarned + payload.coins }))
+    setState((s) => ({
+      yourResult: payload,
+      coinsEarned: s.coinsEarned + payload.coins,
+      tally: { answered: s.tally.answered + (s.myAnswer !== null ? 1 : 0), correct: s.tally.correct + (payload.correct ? 1 : 0) },
+    }))
     playSfx(payload.correct ? 'correct' : 'wrong')
   })
 
@@ -179,8 +186,17 @@ function getSocket(): ArenaSocket {
       const total = entries[rank].coins // includes the finishing bonus (server-side, by mode)
       if (!coinsPaid.has(room.code)) {
         coinsPaid.add(room.code)
-        // XP = points scored, as in Bible Blitz.
-        useGameStore.getState().addCoins(total, entries[rank].score)
+        // XP = points scored, as in Bible Blitz; the game counts in the profile stats.
+        const { tally } = getState()
+        useGameStore.getState().addCoins(total, entries[rank].score, {
+          gamesPlayed: 1,
+          firstPlace: rank === 0 ? 1 : 0,
+          secondPlace: rank === 1 ? 1 : 0,
+          thirdPlace: rank === 2 ? 1 : 0,
+          questionsAnswered: tally.answered,
+          questionsCorrect: tally.correct,
+          bestScore: entries[rank].score,
+        })
       }
       setState({ coinsEarned: total })
     }
@@ -206,6 +222,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   leaderboard: null,
   podium: null,
   coinsEarned: 0,
+  tally: { answered: 0, correct: 0 },
   myPlayerId: null,
 
   hostGame: (config) => {

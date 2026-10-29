@@ -1,3 +1,4 @@
+import { STAT_COUNTERS, STAT_MAXES } from '@sixtysix/shared'
 import type { PlayerProfile } from './types'
 
 // localStorage works in Capacitor webviews and browsers alike.
@@ -41,6 +42,16 @@ export const EMPTY_STATS: PlayerStats = {
   bestScore: 0,
   currentStreak: 0,
   bestStreak: 0,
+}
+
+/** Apply a reward's stats: counters add, best* take the max, currentStreak is set (as on the server). */
+export function addStats(base: PlayerStats, d: Partial<PlayerStats>): PlayerStats {
+  const out = { ...base }
+  for (const k of STAT_COUNTERS) out[k] += d[k] ?? 0
+  for (const k of STAT_MAXES) out[k] = Math.max(out[k], d[k] ?? 0)
+  if (d.currentStreak !== undefined) out.currentStreak = d.currentStreak
+  out.bestStreak = Math.max(out.bestStreak, out.currentStreak)
+  return out
 }
 
 export function loadStats(): PlayerStats {

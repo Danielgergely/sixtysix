@@ -47,6 +47,13 @@ db.exec(`
   );
 `)
 
+// v2: grants remember their XP, for the weekly leaderboard.
+try {
+  db.exec('ALTER TABLE grants ADD COLUMN xp INTEGER NOT NULL DEFAULT 0')
+} catch {
+  // column exists
+}
+
 interface UserRow {
   id: number
   username: string
@@ -204,15 +211,80 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     const body = (req.body ?? {}) as { grants?: unknown; name?: unknown; avatar?: unknown }
     const account = toAccount(row)
     const grants = (Array.isArray(body.grants) ? body.grants : []).slice(0, MAX_GRANTS_PER_SYNC) as Grant[]
-    const seen = db.prepare('INSERT OR IGNORE INTO grants (id, user_id, at) VALUES (?, ?, ?)')
+    const seen = db.prepare('INSERT OR IGNORE INTO grants (id, user_id, at, xp) VALUES (?, ?, ?, ?)')
     for (const g of grants) {
       if (typeof g?.id !== 'string' || g.id.length > 64) continue
-      if (seen.run(g.id, row.id, Date.now()).changes === 0) continue // already applied
+      if (seen.run(g.id, row.id, Date.now(), int(g.xp, MAX_GRANT_XP)).changes === 0) continue // already applied
       applyGrant(account.profile, g)
     }
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
     if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string
     saveProfile(row.id, account.profile)
     return { ok: true, account }
+  })
+}
+
+// ── public views: leaderboard, city, profiles (accounts only) ─────────
+
+/** Monday 00:00 UTC of the current week: the weekly board resets then. */
+function weekStart(now = new Date()): number {
+  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
+  d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7))
+  return d.getTime()
+}
+
+interface PublicRow {
+  username: string
+  profile: string
+  created_at: number
+  week_xp?: number
+}
+
+function publicPlayer(r: PublicRow) {
+  const p = JSON.parse(r.profile) as AccountProfile
+  return { username: r.username, name: p.name, avatar: p.avatar, xp: p.xp, weekXp: r.week_xp ?? 0, joinedAt: r.created_at }
+}
+
+export function registerPublicRoutes(app: FastifyInstance): void {
+  /** ?period=week|all → top 50, plus the caller's own row when signed in. */
+  app.get('/api/leaderboard', (req) => {
+    const week = (req.query as { period?: string }).period === 'week'
+    const since = weekStart()
+    const rows = db
+      .prepare(
+        `SELECT u.username, u.profile, u.created_at,
+                COALESCE((SELECT SUM(g.xp) FROM grants g WHERE g.user_id = u.id AND g.at >= ?), 0) AS week_xp
+         FROM users u`,
+      )
+      .all(since) as unknown as PublicRow[]
+    const players = rows.map(publicPlayer)
+    const key = week ? 'weekXp' : 'xp'
+    const ranked = players.filter((p) => p[key] > 0).sort((a, b) => b[key] - a[key] || a.joinedAt - b.joinedAt)
+    const me = userFromRequest(req)
+    const myIndex = me ? ranked.findIndex((p) => p.username === me.username) : -1
+    return {
+      ok: true,
+      period: week ? 'week' : 'all',
+      resetsAt: since + 7 * 86_400_000,
+      top: ranked.slice(0, 50).map((p, i) => ({ ...p, rank: i + 1 })),
+      me: myIndex >= 0 ? { ...ranked[myIndex], rank: myIndex + 1 } : null,
+    }
+  })
+
+  /** Everyone with a home in Jerusalem, in the order they arrived (= plot number). */
+  app.get('/api/city', () => {
+    const rows = db.prepare('SELECT username, profile, created_at FROM users ORDER BY id LIMIT 1000').all() as unknown as PublicRow[]
+    return { ok: true, residents: rows.map((r, i) => ({ ...publicPlayer(r), plot: i + 1 })) }
+  })
+
+  app.get('/api/players/:username', (req, reply) => {
+    const { username } = req.params as { username: string }
+    const row = db.prepare('SELECT id, username, profile, created_at FROM users WHERE username = ?').get(username) as
+      | (PublicRow & { id: number })
+      | undefined
+    if (!row) return reply.code(404).send({ ok: false, error: 'No such player' })
+    const plot = (db.prepare('SELECT COUNT(*) AS n FROM users WHERE id <= ?').get(row.id) as { n: number }).n
+    const profile = JSON.parse(row.profile) as AccountProfile
+    return { ok: true, player: { ...publicPlayer(row), plot, stats: { ...EMPTY_STATS, ...profile.stats } } }
   })
 }

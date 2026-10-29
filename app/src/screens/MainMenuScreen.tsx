@@ -1,9 +1,6 @@
 import { motion } from 'motion/react'
 import { useGameStore } from '../game/store'
-import { Avatar } from '../avatars/Avatar'
-import { PaintedCoin } from '../art/PaintedPortrait'
-import { STONE } from '../art/textures'
-import { AnimatedNumber, spring } from '../motion'
+import { spring } from '../motion'
 import { DAILY_COUNT, today, useDailyStore } from '../daily/dailyStore'
 
 interface Mode {
@@ -15,9 +12,8 @@ interface Mode {
   onPlay: () => void
 }
 
-/** Home: the throne hall, the player's purse, and one painted card per game mode. */
+/** Quiz tab: the throne hall and one painted card per game mode (header + tabs come from App). */
 export function MainMenuScreen() {
-  const player = useGameStore((s) => s.player)
   const findMatch = useGameStore((s) => s.findMatch)
   const goTo = useGameStore((s) => s.goTo)
   const daily = useDailyStore((s) => s.saved)
@@ -41,23 +37,6 @@ export function MainMenuScreen() {
   return (
     <div className="screen hm">
       <div className="hm-bg" />
-      <header className="hm-header">
-        <button className="hm-profile" onClick={() => goTo('profile')} title="Profile">
-          <Avatar id={player.avatar} className="hm-portrait" />
-          <span className="hm-level" style={{ backgroundImage: STONE }}>
-            {player.level}
-          </span>
-        </button>
-        <div className="hm-name">
-          <span>{player.name}</span>
-          <small>Level {player.level}</small>
-        </div>
-        <div className="hm-purse">
-          <PaintedCoin size={26} />
-          <AnimatedNumber value={player.coins} />
-        </div>
-      </header>
-
       <motion.div className="hm-brand" initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={spring.gentle}>
         <h1>Sixty-Six</h1>
         <p>Race through the Bible</p>

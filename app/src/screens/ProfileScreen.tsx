@@ -13,6 +13,7 @@ export function ProfileScreen() {
   const toggleMute = useGameStore((s) => s.toggleMute)
   const updateProfile = useGameStore((s) => s.updateProfile)
   const goTo = useGameStore((s) => s.goTo)
+  const lastTab = useGameStore((s) => s.lastTab)
 
   const statItems = [
     { label: 'Games played', value: stats.gamesPlayed },
@@ -33,7 +34,7 @@ export function ProfileScreen() {
     <div className="screen profile-screen emp">
       <div className="profile-content">
         <header className="screen-topbar">
-          <button className="icon-btn" onClick={() => goTo('menu')} title="Back to home">
+          <button className="icon-btn" onClick={() => goTo(lastTab)} title="Back">
             ←
           </button>
           <h2 className="topbar-heading">Profile</h2>

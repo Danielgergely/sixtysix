@@ -5,6 +5,7 @@ import { scoreAnswer, FINISH_LINE_SCORE, MAX_QUESTIONS, QUESTION_TIME_MS } from 
 import { playSfx } from './sfx'
 import {
   levelForXp,
+  addStats,
   loadFlaggedIds,
   DEFAULT_PLAYER,
   loadPlayer,
@@ -36,6 +37,15 @@ export type Screen =
   | 'practiceSetup'
   | 'practice'
   | 'daily'
+  | 'boardGames'
+  | 'jerusalem'
+  | 'leaderboard'
+  | 'player'
+
+/** Screens with the bottom tab bar (and the shared top bar). */
+export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const
+export type TabScreen = (typeof TAB_SCREENS)[number]
+const isTab = (s: Screen): s is TabScreen => (TAB_SCREENS as readonly string[]).includes(s)
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
@@ -45,6 +55,11 @@ const FINISH_FLAG_MS = 1800 // "🏁 Finish!" before the podium
 
 interface GameStore {
   screen: Screen
+  /** The tab to return to from Profile / a player's page. */
+  lastTab: TabScreen
+  /** Username shown on the 'player' screen. */
+  viewingPlayer: string | null
+  viewPlayer: (username: string) => void
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
@@ -79,7 +94,7 @@ interface GameStore {
   updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
   /** Credit coins to the persisted profile (every mode earns them). */
   /** Credit coins (and optionally XP) to the saved profile. */
-  addCoins: (amount: number, xp?: number) => void
+  addCoins: (amount: number, xp?: number, stats?: Partial<PlayerStats>) => void
   /** Reveal / standings: move on without waiting. */
   skip: () => void
   /** Replace the saved progress (signing in / out of an account). */
@@ -292,6 +307,8 @@ export const useGameStore = create<GameStore>((set, get) => {
 
   return {
     screen: 'menu',
+    lastTab: 'menu',
+    viewingPlayer: null,
     player: loadPlayer() ?? DEFAULT_PLAYER,
     racers: [],
     phase: 'reading',
@@ -312,8 +329,10 @@ export const useGameStore = create<GameStore>((set, get) => {
     goTo: (screen) => {
       clearTimers()
       clearTimeout(questionTimer)
-      set({ screen })
+      set(isTab(screen) ? { screen, lastTab: screen } : { screen })
     },
+
+    viewPlayer: (username) => set({ screen: 'player', viewingPlayer: username }),
 
     findMatch: () => {
       clearTimers()
@@ -365,12 +384,17 @@ export const useGameStore = create<GameStore>((set, get) => {
       set({ muted })
     },
 
-    addCoins: (amount, xp = 0) => {
+    addCoins: (amount, xp = 0, stats) => {
       const prev = get().player
       const player = { ...prev, coins: prev.coins + amount, xp: prev.xp + xp, level: levelForXp(prev.xp + xp) }
       savePlayer(player)
       set({ player })
-      queueGrant({ coins: amount, xp })
+      if (stats) {
+        const next = addStats(get().stats, stats)
+        saveStats(next)
+        set({ stats: next })
+      }
+      queueGrant({ coins: amount, xp, stats })
     },
 
     updateProfile: (patch) => {
