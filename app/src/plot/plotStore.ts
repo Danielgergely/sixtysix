@@ -9,7 +9,7 @@ import {
   type ScrollQuestion,
 } from '@sixtysix/shared'
 import { getToken, readOutbox } from '../account/outbox'
-import { useAccountStore } from '../account/accountStore'
+import { acceptRev, useAccountStore } from '../account/accountStore'
 import { useGameStore } from '../game/store'
 
 /**
@@ -18,26 +18,27 @@ import { useGameStore } from '../game/store'
  * production forward with the same shared rules until the next request.
  */
 
-const SEEN_KEY = 'sixtysix.plotSeen.v1'
-
 type Levels = Record<BuildingId, number>
+
+/** "New!" ribbons are remembered per account (several people may share a device). */
+const seenKey = () => `sixtysix.plotSeen.v1.${useAccountStore.getState().account?.username ?? ''}`
 
 function loadSeen(): Levels | null {
   try {
-    return JSON.parse(localStorage.getItem(SEEN_KEY) ?? 'null') as Levels | null
+    return JSON.parse(localStorage.getItem(seenKey()) ?? 'null') as Levels | null
   } catch {
     return null
   }
 }
 function saveSeen(levels: Levels): void {
   try {
-    localStorage.setItem(SEEN_KEY, JSON.stringify(levels))
+    localStorage.setItem(seenKey(), JSON.stringify(levels))
   } catch {
     // storage unavailable
   }
 }
 
-type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; now: number } & T) | { ok: false; error: string }
+type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; rev?: number; now: number } & T) | { ok: false; error: string }
 
 async function call<T = object>(path: string, body?: unknown): Promise<Res<T>> {
   const token = getToken()
@@ -56,7 +57,8 @@ async function call<T = object>(path: string, body?: unknown): Promise<Res<T>> {
 }
 
 /** The server's coin total wins (it just spent or paid out). */
-function adoptCoins(coins: number): void {
+function adoptCoins(coins: number, rev: number | undefined): void {
+  if (!acceptRev(rev)) return // an older reply than one we already showed
   const acc = useAccountStore.getState()
   // Rewards still on their way: let a sync settle the total instead.
   if (readOutbox().length) {
@@ -71,7 +73,7 @@ function adoptCoins(coins: number): void {
 export interface ScrollRound {
   id: string
   questions: ScrollQuestion[]
-  result?: { right: number; passed: boolean; correct: number[]; building?: BuildingId }
+  result?: { right: number; passed: boolean; correct: number[]; building?: BuildingId; cutMs: number }
 }
 
 interface PlotStore {
@@ -94,7 +96,8 @@ interface PlotStore {
   now: () => number
   /** The plot projected to now (finished builds applied, production added). */
   projected: () => PlotState | null
-  load: () => Promise<void>
+  /** Resolves true when the server answered. */
+  load: () => Promise<boolean>
   buy: (m: Material, qty: number) => Promise<boolean>
   sell: (m: Material, qty: number) => Promise<boolean>
   upgrade: (b: BuildingId, buyMissing: boolean) => Promise<boolean>
@@ -121,7 +124,7 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       saveSeen(seen)
     }
     set({ plot: res.plot, offset: res.now - Date.now(), error: '', busy: false, seen })
-    adoptCoins(res.coins)
+    adoptCoins(res.coins, res.rev)
     return res as Res<T> & { ok: true }
   }
 
@@ -148,10 +151,11 @@ export const usePlotStore = create<PlotStore>((set, get) => {
     },
 
     load: async () => {
-      if (!getToken()) return
+      if (!getToken()) return false
       set({ loading: !get().plot })
-      take(await call(''))
+      const ok = !!take(await call(''))
       set({ loading: false })
+      return ok
     },
 
     buy: async (material, qty) => {
@@ -186,13 +190,13 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       if (!round) return
       set({ busy: true })
       const res = take(
-        await call<{ right: number; passed: boolean; correct: number[]; building?: BuildingId }>('/scroll/answer', {
+        await call<{ right: number; passed: boolean; correct: number[]; building?: BuildingId; cutMs: number }>('/scroll/answer', {
           scrollId: round.id,
           answers,
           building,
         }),
       )
-      if (res) set({ scroll: { ...round, result: { right: res.right, passed: res.passed, correct: res.correct, building: res.building } } })
+      if (res) set({ scroll: { ...round, result: { right: res.right, passed: res.passed, correct: res.correct, building: res.building, cutMs: res.cutMs ?? 0 } } })
     },
 
     closeScroll: () => set({ scroll: null }),
@@ -215,4 +219,10 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       useGameStore.getState().goTo('market')
     },
   }
+})
+
+// Another account (or a sign-out) on this device: drop the previous player's plot.
+useAccountStore.subscribe((s, prev) => {
+  if (s.account?.username === prev.account?.username) return
+  usePlotStore.setState({ plot: null, scroll: null, selected: null, error: '', toast: null, seen: loadSeen() })
 })

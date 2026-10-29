@@ -181,6 +181,10 @@ export const SECOND_BUILDER_HOUSE = 4
 export const SCROLL_QUESTIONS = 3
 export const SCROLL_PASS = 2
 export const SPEEDUP_MS = 5 * 60_000
+/** Scrolls can take at most this share of a build's time off, in total. */
+export const SPEEDUP_MAX_SHARE = 0.5
+/** Minimum time between two Workers' scrolls (per player). */
+export const SCROLL_COOLDOWN_MS = 60_000
 
 // ── state ─────────────────────────────────────────────────────────────
 
@@ -189,6 +193,8 @@ export interface Build {
   toLevel: number
   startedAt: number
   endsAt: number
+  /** Time already taken off by Workers' scrolls (capped by SPEEDUP_MAX_SHARE). */
+  spedMs?: number
 }
 
 export interface PlotState {
@@ -368,6 +374,7 @@ export const formatMinutes = (min: number): string => {
 // ── wire types (server/src/plot.ts ↔ app/src/plot) ──────────────────────
 
 export interface ScrollQuestion {
+  /** Position in this scroll ("0".."2"), not a bank id. */
   id: string
   reference: string
   text: string

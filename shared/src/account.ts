@@ -22,6 +22,8 @@ export interface AccountProfile {
   coins: number
   xp: number
   stats: AccountStats
+  /** Bumped by the server on every save, so the app can ignore stale replies. */
+  rev?: number
 }
 
 export interface Account {

@@ -60,6 +60,12 @@ try {
 } catch {
   // column exists
 }
+// v3: grants remember their coins, for the daily ceiling.
+try {
+  db.exec('ALTER TABLE grants ADD COLUMN coins INTEGER NOT NULL DEFAULT 0')
+} catch {
+  // column exists
+}
 
 export interface UserRow {
   id: number
@@ -84,6 +90,15 @@ const EMPTY_STATS: AccountStats = {
 // Sanity caps: one grant is one game or answer, never more than this.
 const MAX_GRANT_COINS = 1_000
 const MAX_GRANT_XP = 50_000
+/**
+ * Grants are client-reported, so they are bounded per account and UTC day:
+ * well above a big game day (~5 arena games ≈ 750 coins) but no free mint.
+ */
+const DAILY_MAX_COINS = 1_500
+const DAILY_MAX_XP = 300_000
+/** What a guest may bring into a new account. */
+const SIGNUP_MAX_COINS = 2_000
+const SIGNUP_MAX_XP = 200_000
 const MAX_GRANTS_PER_SYNC = 200
 
 // ── passwords & tokens ────────────────────────────────────────────────
@@ -133,15 +148,16 @@ function cleanProfile(raw: unknown): AccountProfile {
   return {
     name: cleanName(p.name),
     avatar: cleanAvatar(p.avatar),
-    coins: int(p.coins, 100_000),
-    xp: int(p.xp, 10_000_000),
+    coins: int(p.coins, SIGNUP_MAX_COINS),
+    xp: int(p.xp, SIGNUP_MAX_XP),
     stats: cleanStats(p.stats),
   }
 }
 
-function applyGrant(profile: AccountProfile, g: Grant): void {
-  profile.coins += int(g.coins, MAX_GRANT_COINS)
-  profile.xp += int(g.xp, MAX_GRANT_XP)
+/** Apply one grant whose coins/xp were already clamped to today's allowance. */
+function applyGrant(profile: AccountProfile, g: Grant, coins: number, xp: number): void {
+  profile.coins += coins
+  profile.xp += xp
   const s = (g.stats ?? {}) as Record<string, unknown>
   for (const k of STAT_COUNTERS) profile.stats[k] += int(s[k], 1_000)
   for (const k of STAT_MAXES) profile.stats[k] = Math.max(profile.stats[k], int(s[k], 1e9))
@@ -155,8 +171,10 @@ export function toAccount(row: UserRow): Account {
   return { username: row.username, createdAt: row.created_at, profile }
 }
 
-export const saveProfile = (id: number, profile: AccountProfile) =>
+export function saveProfile(id: number, profile: AccountProfile): void {
+  profile.rev = (profile.rev ?? 0) + 1
   db.prepare('UPDATE users SET profile = ? WHERE id = ?').run(JSON.stringify(profile), id)
+}
 
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
 
@@ -218,11 +236,19 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     const body = (req.body ?? {}) as { grants?: unknown; name?: unknown; avatar?: unknown }
     const account = toAccount(row)
     const grants = (Array.isArray(body.grants) ? body.grants : []).slice(0, MAX_GRANTS_PER_SYNC) as Grant[]
-    const seen = db.prepare('INSERT OR IGNORE INTO grants (id, user_id, at, xp) VALUES (?, ?, ?, ?)')
+    const seen = db.prepare('INSERT OR IGNORE INTO grants (id, user_id, at, xp, coins) VALUES (?, ?, ?, ?, ?)')
+    const now = Date.now()
+    const today = (db
+      .prepare('SELECT COALESCE(SUM(coins), 0) AS coins, COALESCE(SUM(xp), 0) AS xp FROM grants WHERE user_id = ? AND at >= ?')
+      .get(row.id, now - (now % 86_400_000)) ?? { coins: 0, xp: 0 }) as { coins: number; xp: number }
     for (const g of grants) {
       if (typeof g?.id !== 'string' || g.id.length > 64) continue
-      if (seen.run(g.id, row.id, Date.now(), int(g.xp, MAX_GRANT_XP)).changes === 0) continue // already applied
-      applyGrant(account.profile, g)
+      const coins = Math.min(int(g.coins, MAX_GRANT_COINS), Math.max(0, DAILY_MAX_COINS - today.coins))
+      const xp = Math.min(int(g.xp, MAX_GRANT_XP), Math.max(0, DAILY_MAX_XP - today.xp))
+      if (seen.run(g.id, row.id, now, xp, coins).changes === 0) continue // already applied
+      today.coins += coins
+      today.xp += xp
+      applyGrant(account.profile, g, coins, xp)
     }
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
     if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string

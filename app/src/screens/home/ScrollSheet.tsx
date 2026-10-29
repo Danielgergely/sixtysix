@@ -6,10 +6,11 @@ import { PARCHMENT } from '../../art/textures'
 import { fireConfetti, shake, spring } from '../../motion'
 
 const LETTERS = ['A', 'B', 'C', 'D']
+const minutes = (ms: number) => `${Math.max(1, Math.round(ms / 60_000))} min`
 
 /** Workers' scroll: three questions; two right and the build is five minutes shorter. */
 export function ScrollSheet() {
-  const { scroll, busy, answerScroll, closeScroll, startScroll, plot, selected, say } = usePlotStore()
+  const { scroll, busy, error, answerScroll, closeScroll, startScroll, plot, selected, say } = usePlotStore()
   const [answers, setAnswers] = useState<number[]>([])
   if (!scroll) return null
   const result = scroll.result
@@ -24,9 +25,10 @@ export function ScrollSheet() {
     if (next.length === SCROLL_QUESTIONS) {
       await answerScroll(next, target)
       const r = usePlotStore.getState().scroll?.result
-      if (r?.passed) {
+      if (!r) setAnswers([]) // failed (offline / expired): let them try again; the error shows below
+      else if (r.passed && r.cutMs > 0) {
         fireConfetti({ y: 0.5, count: 80 })
-        if (r.building) say(`${BUILDINGS[r.building].name}: 5 minutes faster!`)
+        if (r.building) say(`${BUILDINGS[r.building].name}: ${minutes(r.cutMs)} faster!`)
       }
     }
   }
@@ -39,6 +41,7 @@ export function ScrollSheet() {
           ✕
         </button>
         <h3>📜 Workers’ scroll</h3>
+        {error && <p className="hp-scroll-error">{error}</p>}
         {!result ? (
           <>
             <p className="hp-scroll-sub">
@@ -58,7 +61,12 @@ export function ScrollSheet() {
         ) : (
           <motion.div className="hp-scroll-result" animate={result.passed ? { scale: [0.8, 1.05, 1] } : shake}>
             <strong className={result.passed ? 'won' : 'lost'}>
-              {result.right}/{SCROLL_QUESTIONS} right — {result.passed ? 'the builders hurry: −5 min!' : 'no time saved this round'}
+              {result.right}/{SCROLL_QUESTIONS} right —{' '}
+              {!result.passed
+                ? 'no time saved this round'
+                : result.cutMs > 0
+                  ? `the builders hurry: −${minutes(result.cutMs)}!`
+                  : 'this build can’t go any faster (scrolls save up to half its time)'}
             </strong>
             <ol className="hp-scroll-review">
               {scroll.questions.map((sq, k) => (

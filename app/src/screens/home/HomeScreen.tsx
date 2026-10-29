@@ -46,7 +46,8 @@ export function HomeScreen() {
     const due = raw?.builds.find((b) => b.endsAt <= now && !asked.current.has(`${b.building}${b.toLevel}`))
     if (due) {
       asked.current.add(`${due.building}${due.toLevel}`)
-      void load().then(() => {
+      void load().then((ok) => {
+        if (!ok) return
         usePlotStore.getState().say(`${levelDef(due.building, due.toLevel)?.name} is finished!`)
         fireConfetti({ y: 0.4 })
       })

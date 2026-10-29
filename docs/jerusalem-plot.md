@@ -137,8 +137,8 @@ the next level of the other buildings.
 | 4 | Covered well and cistern | 80 stone, 20 bricks | 460 | 12 h | House 4 | 10 |
 | 5 | Cistern with channels (Hezekiah) | 125 stone, 30 bricks, 10 cedar | 1,015 | 24 h | House 5 | 14 |
 
-At full build the producers use 4 (kiln 4) + 5 (sheepfold 5) + 4 (grove 5) =
-13 water, so well 5 is needed to max out. Before that, players choose what to
+At full build the producers use 3 (kiln 4) + 5 (sheepfold 5) + 4 (grove 5) =
+12 water, so well 5 is needed to max out. Before that, players choose what to
 water.
 
 ### Workshop → wood (no water needed)
@@ -233,11 +233,13 @@ The chain a player discovers:
 - **Build times** grow from 5–10 minutes (level 1) to 1 h, 4 h, 10–12 h and
   20–24 h. The mansion takes 48 h.
 - **Speed-ups, each taking 5 minutes off the current build:**
-  - **Workers' scroll:** answer 3 questions with at least 2 right. You can do
-    this as often as you like; a learning burst finishes small builds. *(Built.)*
+  - **Workers' scroll:** answer 3 questions with at least 2 right. One scroll
+    a minute; the questions can't be rerolled, and their answers are shuffled
+    on the server. *(Built.)*
   - **A friend's helping hand:** once a day per friend. *(Not built yet.)*
-  - Speed-ups never halve a build. Long builds stay long, so the mansion still
-    feels earned.
+  - All speed-ups together take at most **half** of a build's time
+    (`SPEEDUP_MAX_SHARE`). Long builds stay long, so the mansion still feels
+    earned.
 - **No timer runs in a quiz.** Building is only on the plot screen.
 
 ## 7. Pacing (simulated, `docs/balance/plotsim.py`)

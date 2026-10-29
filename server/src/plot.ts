@@ -6,7 +6,9 @@ import {
   MATERIAL_INFO,
   SCROLL_PASS,
   SCROLL_QUESTIONS,
+  SPEEDUP_MAX_SHARE,
   SPEEDUP_MS,
+  SCROLL_COOLDOWN_MS,
   advance,
   checkUpgrade,
   collect,
@@ -83,7 +85,7 @@ function save(c: Ctx): void {
   saveProfile(c.row.id, c.profile)
 }
 
-const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({ ok: true, plot: c.plot, coins: c.profile.coins, now: c.now, ...extra })
+const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({ ok: true, plot: c.plot, coins: c.profile.coins, rev: c.profile.rev, now: c.now, ...extra })
 const fail = (error: string) => ({ ok: false, error })
 
 type Handler = (c: Ctx, body: Record<string, unknown>) => unknown
@@ -114,12 +116,15 @@ const asQty = (v: unknown): number => {
 
 interface PendingScroll {
   id: string
-  questionIds: string[]
+  /** As sent: answers shuffled per scroll, no bank ids. */
+  questions: ScrollQuestion[]
+  /** Correct position within each shuffled answer list. */
   correct: number[]
-  references: string[]
   expiresAt: number
 }
 const scrolls = new Map<number, PendingScroll>()
+/** When each player last answered a scroll (cooldown). */
+const lastScroll = new Map<number, number>()
 const SCROLL_TTL_MS = 10 * 60_000
 
 // ── routes ────────────────────────────────────────────────────────────
@@ -186,20 +191,27 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     return view(c, { collected })
   })
 
-  /** Workers' scroll, step 1: three questions (without answers) while something is being built. */
+  /**
+   * Workers' scroll, step 1: three questions (without answers) while something
+   * is being built. One open scroll per player: asking again returns the same
+   * questions, so they can't be rerolled until answered or expired.
+   */
   route(app, 'post', '/api/plot/scroll', (c) => {
     if (c.plot.builds.length === 0) return fail('Nothing is being built')
+    const open = scrolls.get(c.row.id)
+    if (open && open.expiresAt > c.now) return view(c, { scrollId: open.id, questions: open.questions })
+    const wait = (lastScroll.get(c.row.id) ?? 0) + SCROLL_COOLDOWN_MS - c.now
+    if (wait > 0) return fail(`The workers are resting — next scroll in ${Math.ceil(wait / 1000)} s`)
     const qs = pickQuestions(SCROLL_QUESTIONS, { difficulty: 'mixed' })
     if (qs.length < SCROLL_QUESTIONS) return fail('No questions available')
-    const pending: PendingScroll = {
-      id: randomBytes(9).toString('base64url'),
-      questionIds: qs.map((q) => q.id),
-      correct: qs.map((q) => q.correctIndex),
-      references: qs.map((q) => q.reference),
-      expiresAt: c.now + SCROLL_TTL_MS,
-    }
+    const correct: number[] = []
+    const questions: ScrollQuestion[] = qs.map((q, i) => {
+      const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5)
+      correct.push(order.indexOf(q.correctIndex))
+      return { id: String(i), reference: q.reference, text: q.text.en, answers: order.map((k) => q.answers.en[k]) as ScrollQuestion['answers'] }
+    })
+    const pending: PendingScroll = { id: randomBytes(9).toString('base64url'), questions, correct, expiresAt: c.now + SCROLL_TTL_MS }
     scrolls.set(c.row.id, pending)
-    const questions: ScrollQuestion[] = qs.map((q) => ({ id: q.id, reference: q.reference, text: q.text.en, answers: q.answers.en }))
     return view(c, { scrollId: pending.id, questions })
   })
 
@@ -212,20 +224,28 @@ export function registerPlotRoutes(app: FastifyInstance): void {
       return fail('Answer all three questions')
     }
     scrolls.delete(c.row.id) // one use per scroll
+    lastScroll.set(c.row.id, c.now)
     const right = pending.correct.filter((ci, i) => answers[i] === ci).length
     const passed = right >= SCROLL_PASS
     let target: BuildingId | undefined
+    let cutMs = 0
     if (passed) {
       const wanted = asBuilding(body.building)
       const build = c.plot.builds.find((x) => x.building === wanted) ?? [...c.plot.builds].sort((a, b) => a.endsAt - b.endsAt)[0]
       if (build) {
-        build.endsAt = Math.max(c.now, build.endsAt - SPEEDUP_MS)
+        // Never more than SPEEDUP_MAX_SHARE of the build's full time in total.
+        const sped = build.spedMs ?? 0
+        const full = build.endsAt + sped - build.startedAt
+        const cut = Math.max(0, Math.min(SPEEDUP_MS, full * SPEEDUP_MAX_SHARE - sped, build.endsAt - c.now))
+        build.endsAt -= cut
+        build.spedMs = sped + cut
+        cutMs = cut
         target = build.building
         advance(c.plot, c.now)
         save(c)
       }
     }
-    return view(c, { right, passed, building: target, correct: pending.correct, references: pending.references })
+    return view(c, { right, passed, building: target, cutMs, correct: pending.correct, references: pending.questions.map((q) => q.reference) })
   })
 }
 

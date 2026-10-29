@@ -15,6 +15,18 @@ import { getToken, queueGrant, readOutbox, setOnQueued, setToken, writeOutbox } 
 
 const ACCOUNT_KEY = 'sixtysix.account.v1'
 
+/**
+ * Highest profile revision seen this session. A reply computed before a newer
+ * one (e.g. a sync that crossed a Market purchase) is ignored, never adopted.
+ */
+let lastRev = 0
+export function acceptRev(rev: number | undefined): boolean {
+  if (rev === undefined) return true
+  if (rev < lastRev) return false
+  lastRev = rev
+  return true
+}
+
 function loadCached(): Account | null {
   try {
     return getToken() ? (JSON.parse(localStorage.getItem(ACCOUNT_KEY) ?? 'null') as Account | null) : null
@@ -68,6 +80,7 @@ interface AccountStore {
 
 export const useAccountStore = create<AccountStore>((set, get) => {
   const adopt = (account: Account) => {
+    if (!acceptRev(account.profile.rev)) return
     cache(account)
     set({ account })
     const { profile } = account
@@ -75,6 +88,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
   }
 
   const signedOut = () => {
+    lastRev = 0
     setToken(null)
     writeOutbox([])
     cache(null)
