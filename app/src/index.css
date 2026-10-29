@@ -272,7 +272,7 @@ button:disabled{ cursor: default; }
   z-index: 5;
 }
 
-.arena-skip{
+.leave-race-btn.arena-skip{
   position: absolute;
   top: calc(env(safe-area-inset-top) + 10px);
   left: 10px;
@@ -363,12 +363,6 @@ button:disabled{ cursor: default; }
   }
 
   /* In-game board: text scales with width, blocks bounded per element. */
-  .app-wide .question-area { padding: 0.6rem clamp(1rem, 5vw, 4rem); }
-  .app-wide .question-card { width: min(1100px, 100%); margin: 0 auto; padding: clamp(0.9rem, 2.5vh, 1.8rem) clamp(1.1rem, 2.5vw, 2.2rem); }
-  .app-wide .question-text { font-size: clamp(1.3rem, 2.8vw, 2.6rem); }
-  .app-wide .question-verse { font-size: clamp(0.9rem, 1.5vw, 1.4rem); }
-  .app-wide .question-meta { font-size: clamp(0.72rem, 1.1vw, 1rem); }
-  .app-wide .timer-digits { font-size: clamp(1rem, 1.6vw, 1.6rem); }
   .app-wide .answer-grid {
     width: min(1100px, calc(100% - 2 * clamp(1rem, 5vw, 4rem)));
     margin: 0 auto;
@@ -394,7 +388,6 @@ button:disabled{ cursor: default; }
   .app-wide .lb-list { max-width: 820px; margin: 0 auto; width: 100%; }
   .app-wide .lb-row { font-size: clamp(1rem, 2.6vh, 1.4rem); padding: clamp(0.5rem, 1.4vh, 0.9rem) 1.2rem; }
   .app-wide .screen-heading { font-size: clamp(1.3rem, 4vh, 2.2rem); }
-  .app-wide .inter-countdown { font-size: clamp(3rem, 18vh, 8rem); }
 
   /* Board controls must be clickable from a podium, not thumb-sized. */
   .app-wide .arena-leave,
@@ -618,79 +611,7 @@ button:disabled{ cursor: default; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes pop-in { from { transform: scale(0.6); opacity: 0; } }
 
-/* ── Race ─────────────────────────────────────────────────────────────── */
-.track{
-  position: relative;
-  height: 30%;
-  min-height: 170px;
-  background: linear-gradient(#9ec7e0 0%, #cfe3ee 38%, var(--sand-dark) 38%, var(--sand-dark) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0.4rem 0 0.6rem;
-  border-bottom: 4px solid var(--brown-deep);
-}
-
-.lane{ position: relative; height: 34px; border-bottom: 2px dashed rgb(142 59 30 / 0.25); }
-.lane:last-child{ border-bottom: none; }
-
-.chariot{
-  position: absolute;
-  bottom: 2px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: left 1.5s cubic-bezier(0.22, 1, 0.36, 1); /* slow enough to follow */
-}
-.chariot-avatar{ display: block; width: 28px; height: 28px; margin-left: 4px; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.25)); }
-.chariot-name{
-  font-size: 0.6rem;
-  font-weight: 700;
-  background: rgb(252 246 226 / 0.85);
-  border-radius: 6px;
-  padding: 1px 5px;
-}
-.chariot.boost .chariot-avatar{ animation: boost 0.5s ease-out; }
-.chariot.stumble .chariot-avatar{ animation: stumble 0.5s ease-in-out; }
-
-@keyframes boost { 30% { transform: translateY(-8px) scale(1.15); } }
 @keyframes stumble { 25% { transform: rotate(-18deg); } 75% { transform: rotate(12deg); } }
-
-.finish-line{
-  position: absolute;
-  left: 88%; /* keep in sync with LINE_AT in RaceScreen.tsx (86% + chariot width) */
-  top: 0;
-  bottom: 0;
-  width: 6px;
-  background: repeating-linear-gradient(180deg, var(--ink) 0 5px, var(--cream) 5px 10px);
-}
-
-/* Player's running total, above the track. Re-pops whenever it changes. */
-.score-hud{
-  background: var(--cream);
-  border: 2px solid var(--brown-deep);
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--brown-deep);
-  animation: lock-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Aligned HUD row over the track: score left, goal + leave right. */
-.track-hud{
-  position: absolute;
-  top: 6px;
-  left: 8px;
-  right: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2;
-}
-
-.track-hud-right{ display: flex; align-items: center; gap: 0.4rem; }
-
 .leave-race-btn{
   background: var(--answer-red);
   color: #fff;
@@ -732,155 +653,9 @@ button:disabled{ cursor: default; }
 .modal-card .btn-secondary{ margin: 0; }
 .btn-danger{ background: var(--answer-red); border-bottom-color: #93262b; }
 
-/* Points needed to win. */
-.finish-label{
-  background: var(--cream);
-  border: 2px solid var(--brown-deep);
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--brown-deep);
-  white-space: nowrap;
-}
-
-/* Earned points float up from the chariot as it advances. */
-.gain-float{
-  position: absolute;
-  bottom: 30px;
-  left: 4px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--answer-green);
-  text-shadow: 0 1px 0 var(--cream);
-  animation: gain-rise 2.6s ease-out forwards;
-  white-space: nowrap;
-}
-.gain-float.zero{ color: var(--brown-deep); opacity: 0.6; }
-
-@keyframes gain-rise {
-  0% { opacity: 0; transform: translateY(8px); }
-  12% { opacity: 1; }
-  75% { opacity: 1; transform: translateY(-12px); } /* hold readable */
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
-/* ── Question card ───────────────────────────────────────────────────── */
-.question-area{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1rem;
-  min-height: 0;
-}
-
-.countdown{
-  font-size: 4rem;
-  font-weight: 700;
-  color: var(--brown-deep);
-  animation: countdown-pop 0.5s ease-out;
-}
-
 @keyframes countdown-pop {
   from { transform: scale(2.2); opacity: 0; }
 }
-
-.question-area{ perspective: 700px; }
-
-.question-card{
-  width: 100%;
-  background: #fff;
-  border-radius: 18px;
-  border: 3px solid var(--brown-deep);
-  box-shadow: 0 6px 0 rgb(0 0 0 / 0.12);
-  padding: 0.9rem 1.1rem 1.1rem;
-  animation: card-flip 0.55s ease-out; /* fresh question flips in */
-}
-
-@keyframes card-flip {
-  from { transform: rotateX(85deg); opacity: 0; }
-  60% { transform: rotateX(-10deg); opacity: 1; }
-  to { transform: none; }
-}
-
-.question-meta{ font-size: 0.72rem; font-weight: 600; color: var(--brown-deep); margin-bottom: 0.4rem; }
-.question-ref{ color: var(--terracotta); }
-.reading-hint{ color: var(--terracotta); }
-.gain-meta{ color: var(--answer-green); font-weight: 700; }
-.gain-meta.zero{ color: var(--brown-deep); opacity: 0.7; }
-.question-text{ font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
-
-/* Lock-in row: avatars start gray, pop to color as each racer answers. */
-.answer-status{
-  display: flex;
-  gap: 0.55rem;
-  margin-top: 0.75rem;
-}
-
-.status-avatar{
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  filter: grayscale(1);
-  opacity: 0.45;
-}
-.status-avatar.locked-in{
-  filter: none;
-  opacity: 1;
-  animation: lock-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.status-you{ box-shadow: 0 0 0 2px var(--gold); }
-
-@keyframes lock-pop {
-  0% { transform: scale(0.7); }
-  60% { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-.timer-row{
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.8rem;
-}
-
-.timer-digits{
-  font-weight: 700;
-  font-size: 1rem;
-  min-width: 2.4rem;
-  text-align: right;
-  color: var(--brown-deep);
-  font-variant-numeric: tabular-nums;
-}
-.timer-digits.urgent{ color: var(--answer-red); animation: urgent-pulse 0.5s infinite; }
-
-@keyframes urgent-pulse { 50% { transform: scale(1.15); } }
-
-.timer-bar{
-  flex: 1;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--sand);
-  overflow: hidden;
-}
-.timer-fill{
-  height: 100%;
-  width: 100%;
-  background: var(--gold);
-  border-radius: 999px;
-  animation: timer-shrink linear forwards;
-}
-.timer-fill.paused{ animation-play-state: paused; }
-
-@keyframes timer-shrink {
-  from { width: 100%; background: var(--gold); }
-  70% { background: var(--gold); }
-  85% { background: var(--terracotta); }
-  to { width: 0%; background: var(--answer-red); }
-}
-
-.timeout-note{ color: var(--answer-red); font-weight: 700; }
 
 /* ── Answer grid (thumb zone) ────────────────────────────────────────── */
 .answer-grid{
@@ -890,18 +665,6 @@ button:disabled{ cursor: default; }
   padding: 0 0.8rem 1rem;
   height: 32%;
   min-height: 180px;
-}
-
-/* 3-2-1 shown where the answers are about to appear */
-.inter-countdown{
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-  display: grid;
-  place-items: center;
-  font-size: 4.5rem;
-  font-weight: 700;
-  color: var(--brown-deep);
-  animation: countdown-pop 0.5s ease-out;
 }
 
 .answer-btn{

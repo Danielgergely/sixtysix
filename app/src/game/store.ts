@@ -18,8 +18,8 @@ import {
 } from './persistence'
 import { setMuted } from './sfx'
 import type { CharacterId } from './types'
-import { ALL_ANSWERED_BEAT_MS, READING_MS, coinsForAnswer, coinsForPlacement } from '@sixtysix/shared'
-import { bundledBank } from '../questions/provider'
+import { ALL_ANSWERED_BEAT_MS, READING_MS, coinsForAnswer, coinsForPlacement, type YourResult } from '@sixtysix/shared'
+import { bundledBank, loadVerses } from '../questions/provider'
 import type { Question } from '../questions/types'
 
 export type Screen =
@@ -38,8 +38,8 @@ export type Screen =
 
 const RACERS_PER_MATCH = 4
 const LOBBY_FILL_MS = 900 // delay between bot "joins" in the fake lobby
-const REVEAL_MS = 1200 // correct answer highlighted, chariots still
-const PROGRESS_MS = 2800 // chariots advance, gains float — slow enough to follow
+const REVEAL_MS = 4000 // card flips, then the verdict medallion
+const PROGRESS_MS = 5500 // Road to the Throne: gallop (~3 s) + time to read the order
 const FINISH_FLAG_MS = 1800 // "🏁 Finish!" before the podium
 
 interface GameStore {
@@ -47,8 +47,13 @@ interface GameStore {
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
-  /** 3 → 2 → 1 while a new question is being read ('reading' phase). */
-  countdownValue: number
+  /** Deadline and length of the reading countdown / answer timer. */
+  phaseEndsAt: number
+  phaseDuration: number
+  /** Cited verse text per question id, shown at the reveal. */
+  verses: Record<string, string>
+  /** Your verdict for the question being revealed. */
+  lastResult: YourResult | null
   questions: Question[]
   questionIndex: number
   questionStartedAt: number
@@ -73,6 +78,8 @@ interface GameStore {
   updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
   /** Credit coins to the persisted profile (every mode earns them). */
   addCoins: (amount: number) => void
+  /** Reveal / standings: move on without waiting. */
+  skip: () => void
 }
 
 
@@ -82,23 +89,35 @@ setMuted(initialSettings.muted)
 export const useGameStore = create<GameStore>((set, get) => {
   const timers: ReturnType<typeof setTimeout>[] = []
   const later = (fn: () => void, ms: number) => timers.push(setTimeout(fn, ms))
+  /** The next step of the reveal → progress sequence, so the player can skip ahead. */
+  let pending: (() => void) | null = null
   const clearTimers = () => {
     timers.forEach(clearTimeout)
     timers.length = 0
+    pending = null
   }
   let questionTimer: ReturnType<typeof setTimeout> | undefined
   let resolving = false
+  const step = (fn: () => void, ms: number) => {
+    pending = fn
+    later(() => {
+      pending = null
+      fn()
+    }, ms)
+  }
 
   const setRacer = (id: string, patch: Partial<Racer>) =>
     set({ racers: get().racers.map((r) => (r.profile.id === id ? { ...r, ...patch } : r)) })
 
   async function startRace() {
-    const questions = (await bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }))
+    const [bank, verses] = await Promise.all([bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }), loadVerses()])
+    const questions = bank
       // Races ramp up: start with easy questions, end with hard ones.
       .sort((a, b) => a.difficulty - b.difficulty)
     set({
       screen: 'race',
       questions,
+      verses,
       questionIndex: 0,
       answerLog: [],
       raceCoins: 0,
@@ -114,26 +133,23 @@ export const useGameStore = create<GameStore>((set, get) => {
     // (Kahoot-style); the answers appear when the countdown hits zero.
     set({
       phase: 'reading',
-      countdownValue: 3,
+      phaseEndsAt: Date.now() + READING_MS,
+      phaseDuration: READING_MS,
+      lastResult: null,
       racers: get().racers.map((r) => ({ ...r, lastAnswer: undefined, lastGain: undefined })),
     })
     playSfx('flip')
     playSfx('tick')
-    later(() => {
-      set({ countdownValue: 2 })
-      playSfx('tick')
-    }, 1000)
-    later(() => {
-      set({ countdownValue: 1 })
-      playSfx('tick')
-    }, 2000)
+    later(() => playSfx('tick'), 1000)
+    later(() => playSfx('tick'), 2000)
     later(beginAnswering, READING_MS)
   }
 
   function beginAnswering() {
     const { questions, questionIndex } = get()
     const q = questions[questionIndex]
-    set({ phase: 'question', questionStartedAt: Date.now() })
+    const now = Date.now()
+    set({ phase: 'question', questionStartedAt: now, phaseEndsAt: now + QUESTION_TIME_MS, phaseDuration: QUESTION_TIME_MS })
     playSfx('go')
     // Each bot clicks on its own sampled timer — some faster than you, some slower.
     for (const r of get().racers) {
@@ -169,24 +185,29 @@ export const useGameStore = create<GameStore>((set, get) => {
       setRacer(you.profile.id, { lastAnswer: { index: -1, correct: false, ms: QUESTION_TIME_MS } })
     }
 
-    const yourAnswer = get().racers.find((r) => !r.isBot)?.lastAnswer
+    const yours = get().racers.find((r) => !r.isBot)
+    const yourAnswer = yours?.lastAnswer
     const correct = yourAnswer?.correct ?? false
     const raceStreak = correct ? get().raceStreak + 1 : 0
+    // Coins (and XP) are paid only when the race is finished; leaving forfeits them.
     const coins = coinsForAnswer(correct, raceStreak)
-    if (coins) get().addCoins(coins)
+    const gain = yourAnswer ? scoreAnswer(correct, QUESTION_TIME_MS - yourAnswer.ms) : 0
     set({
       phase: 'reveal',
+      lastResult: { correct, gain, score: (yours?.score ?? 0) + gain, streak: raceStreak, coins },
       answerLog: [...get().answerLog, yourAnswer?.index ?? -1],
       raceStreak,
       raceCoins: get().raceCoins + coins,
     })
     playSfx(correct ? 'correct' : 'wrong')
 
-    later(() => {
-      applyScores()
-      set({ phase: 'progress' })
-    }, REVEAL_MS)
-    later(afterProgress, REVEAL_MS + PROGRESS_MS)
+    step(showProgress, REVEAL_MS)
+  }
+
+  function showProgress() {
+    applyScores()
+    set({ phase: 'progress' })
+    step(afterProgress, PROGRESS_MS)
   }
 
   /** First across the line wins; safety cap if nobody crosses. */
@@ -220,7 +241,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     const xp = get().player.xp + (player?.score ?? 0)
     const updated = {
       ...get().player,
-      coins: get().player.coins + bonus,
+      coins: get().player.coins + get().raceCoins + bonus,
       xp,
       level: levelForXp(xp),
     }
@@ -252,7 +273,10 @@ export const useGameStore = create<GameStore>((set, get) => {
     player: loadPlayer() ?? DEFAULT_PLAYER,
     racers: [],
     phase: 'reading',
-    countdownValue: 3,
+    phaseEndsAt: 0,
+    phaseDuration: READING_MS,
+    lastResult: null,
+    verses: {},
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,
@@ -281,6 +305,13 @@ export const useGameStore = create<GameStore>((set, get) => {
         later(() => set((s) => ({ racers: [...s.racers, bot] })), LOBBY_FILL_MS * (i + 1))
       })
       later(() => void startRace(), LOBBY_FILL_MS * bots.length + 1400)
+    },
+
+    skip: () => {
+      const next = pending
+      if (!next) return
+      clearTimers()
+      next()
     },
 
     answer: (index) => {

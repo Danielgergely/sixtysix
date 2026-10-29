@@ -56,6 +56,7 @@ export function startGame(io: IO, room: Room): void {
     p.score = 0
     p.streak = 0
     p.lastGain = 0
+    p.coins = 0
   }
   nextQuestion(io, room)
   console.log(`[game] ${room.code} started: ${room.questions.length} questions, ${room.players.size} players`)
@@ -150,13 +151,15 @@ function resolveQuestion(io: IO, room: Room): void {
     p.score += gain
     p.lastGain = gain
     p.streak = correct ? p.streak + 1 : 0
+    const coins = coinsForAnswer(correct, p.streak)
+    p.coins += coins
     if (p.connected) {
       io.to(p.socketId).emit('game:yourResult', {
         correct,
         gain,
         score: p.score,
         streak: p.streak,
-        coins: coinsForAnswer(correct, p.streak),
+        coins,
       })
     }
   }
@@ -230,6 +233,7 @@ function computeLeaderboard(room: Room): LeaderboardEntry[] {
       delta,
       gain: p.lastGain,
       streak: p.streak,
+      coins: p.coins,
     }
   })
 }

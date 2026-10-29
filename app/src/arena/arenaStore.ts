@@ -56,8 +56,30 @@ interface ArenaStore {
 }
 
 let socket: ArenaSocket | null = null
-/** Rooms whose finishing bonus this device already collected (podium can be re-sent). */
-const bonusPaid = new Set<string>()
+/**
+ * Rooms whose coins this device already collected. The podium is re-sent after a
+ * reload, so this is saved; room codes get reused, so entries expire after 6 h.
+ */
+const PAID_KEY = 'sixtysix.arenaPaid.v1'
+const PAID_TTL_MS = 6 * 3600_000
+function loadPaid(): Record<string, number> {
+  try {
+    const raw = JSON.parse(localStorage.getItem(PAID_KEY) ?? '{}') as Record<string, number>
+    return Object.fromEntries(Object.entries(raw).filter(([, t]) => typeof t === 'number' && Date.now() - t < PAID_TTL_MS))
+  } catch {
+    return {}
+  }
+}
+const coinsPaid = {
+  has: (code: string) => code in loadPaid(),
+  add: (code: string) => {
+    try {
+      localStorage.setItem(PAID_KEY, JSON.stringify({ ...loadPaid(), [code]: Date.now() }))
+    } catch {
+      // storage unavailable — worst case a reload pays twice
+    }
+  },
+}
 
 /** Per-game state; spread on every entry/exit so nothing leaks between games. */
 const FRESH_GAME = {
@@ -140,8 +162,8 @@ function getSocket(): ArenaSocket {
   })
 
   socket.on('game:yourResult', (payload) => {
+    // Shown as it grows, but credited only at the podium: leaving forfeits it.
     setState((s) => ({ yourResult: payload, coinsEarned: s.coinsEarned + payload.coins }))
-    if (payload.coins) useGameStore.getState().addCoins(payload.coins)
     playSfx(payload.correct ? 'correct' : 'wrong')
   })
 
@@ -150,14 +172,17 @@ function getSocket(): ArenaSocket {
   // game:podium plays no sound here — the podium view plays its own fanfare
   // when it mounts, so sight and sound land together.
   socket.on('game:podium', (entries) => {
-    // Finishing bonus, once per room even if the podium is re-sent after a reload.
+    // Pay the game's coins + finishing bonus, once per room even if the podium
+    // is re-sent after a reload. The server keeps the total, so a reload mid-game loses nothing.
     const { role, room, myPlayerId } = getState()
     const rank = entries.findIndex((e) => e.playerId === myPlayerId)
-    if (role === 'player' && room && rank >= 0 && !bonusPaid.has(room.code)) {
-      bonusPaid.add(room.code)
-      const bonus = coinsForPlacement(rank)
-      useGameStore.getState().addCoins(bonus)
-      setState((s) => ({ coinsEarned: s.coinsEarned + bonus }))
+    if (role === 'player' && room && rank >= 0) {
+      const total = entries[rank].coins + coinsForPlacement(rank)
+      if (!coinsPaid.has(room.code)) {
+        coinsPaid.add(room.code)
+        useGameStore.getState().addCoins(total)
+      }
+      setState({ coinsEarned: total })
     }
     setState({ podium: entries })
   })

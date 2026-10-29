@@ -1,184 +1,122 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 import { useGameStore } from '../game/store'
-import { FINISH_LINE_SCORE, QUESTION_TIME_MS, scoreAnswer } from '../game/scoring'
-import { Avatar } from '../avatars/Avatar'
-import { PaintedCoin } from '../art/PaintedPortrait'
-import { AnimatedNumber } from '../motion'
+import { FINISH_LINE_SCORE } from '../game/scoring'
+import type { Racer } from '../game/types'
+import { QuestionView } from './arena/game/QuestionView'
+import { RoadToThrone, type RaceEntry } from '../ceremony/RoadToThrone'
+import { PARCHMENT } from '../art/textures'
+import { duration, ease } from '../motion'
 
-// Finish line sits at this % of the lane; crossers may roll slightly past it.
-const LINE_AT = 86
-
-const ANSWER_COLORS = ['answer-red', 'answer-blue', 'answer-gold', 'answer-green']
-const ANSWER_SHAPES = ['▲', '◆', '●', '■']
-
-/** Rapid numeric countdown (tenths) shown beside the timer bar. */
-function TimerDigits() {
-  const phase = useGameStore((s) => s.phase)
-  const startedAt = useGameStore((s) => s.questionStartedAt)
-  const [now, setNow] = useState(() => Date.now())
-
-  useEffect(() => {
-    if (phase !== 'question') return
-    const id = setInterval(() => setNow(Date.now()), 100)
-    return () => clearInterval(id)
-  }, [phase, startedAt])
-
-  const remaining =
-    // `now` can predate this question until the first tick — clamp to the full window.
-    phase === 'reading' ? QUESTION_TIME_MS / 1000 : Math.min(QUESTION_TIME_MS, Math.max(0, QUESTION_TIME_MS - (now - startedAt))) / 1000
-  return <span className={`timer-digits ${remaining < 3 ? 'urgent' : ''}`}>{remaining.toFixed(1)}</span>
+/** 1-based ranks by score; ties keep seating order. */
+function ranks(racers: Racer[], score: (r: Racer) => number): Map<string, number> {
+  const sorted = racers.map((r, i) => ({ r, i })).sort((a, b) => score(b.r) - score(a.r) || a.i - b.i)
+  return new Map(sorted.map(({ r }, k) => [r.profile.id, k + 1]))
 }
 
-export function RaceScreen() {
-  const phase = useGameStore((s) => s.phase)
-  const countdownValue = useGameStore((s) => s.countdownValue)
+/** Standings after a question: the four racers on the Road to the Throne. */
+function BlitzStandings({ finished }: { finished: boolean }) {
   const racers = useGameStore((s) => s.racers)
   const questionIndex = useGameStore((s) => s.questionIndex)
   const questions = useGameStore((s) => s.questions)
-  const answer = useGameStore((s) => s.answer)
-  const goTo = useGameStore((s) => s.goTo)
+
+  const entries: RaceEntry[] = useMemo(() => {
+    const before = ranks(racers, (r) => r.score - (r.lastGain ?? 0))
+    const after = ranks(racers, (r) => r.score)
+    return racers.map((r, i) => ({
+      id: r.profile.id,
+      name: r.profile.name,
+      avatar: r.profile.avatar,
+      before: r.score - (r.lastGain ?? 0),
+      after: r.score,
+      rankBefore: before.get(r.profile.id)!,
+      rankAfter: after.get(r.profile.id)!,
+      color: i,
+      you: !r.isBot,
+    }))
+  }, [racers])
+
+  return (
+    <>
+      <RoadToThrone entries={entries} played={questionIndex + 1} total={questions.length} wide={false} goal={FINISH_LINE_SCORE} />
+      {finished && (
+        <motion.div
+          className="blitz-finish"
+          style={{ backgroundImage: PARCHMENT }}
+          initial={{ scale: 0, rotate: -8 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.6 }}
+        >
+          The race is won!
+        </motion.div>
+      )}
+    </>
+  )
+}
+
+/** Bible Blitz in the Empire style: the arena's question scene, then the Road to the Throne. */
+export function RaceScreen() {
+  const phase = useGameStore((s) => s.phase)
+  const racers = useGameStore((s) => s.racers)
+  const questionIndex = useGameStore((s) => s.questionIndex)
+  const questions = useGameStore((s) => s.questions)
+  const phaseEndsAt = useGameStore((s) => s.phaseEndsAt)
+  const phaseDuration = useGameStore((s) => s.phaseDuration)
+  const lastResult = useGameStore((s) => s.lastResult)
+  const verses = useGameStore((s) => s.verses)
   const raceCoins = useGameStore((s) => s.raceCoins)
+  const answer = useGameStore((s) => s.answer)
+  const skip = useGameStore((s) => s.skip)
+  const goTo = useGameStore((s) => s.goTo)
   const [confirmLeave, setConfirmLeave] = useState(false)
 
   const q = questions[questionIndex]
   const you = racers.find((r) => !r.isBot)
-  const youAnswered = Boolean(you?.lastAnswer)
-  const showCard = phase === 'reading' || phase === 'question' || phase === 'reveal' || phase === 'progress'
-  const revealed = phase === 'reveal' || phase === 'progress'
-  const timedOut = revealed && you?.lastAnswer?.index === -1
-  // Answer distribution shown on reveal — scales naturally to big lobbies later.
-  const pickers = racers.filter((r) => r.lastAnswer && r.lastAnswer.index >= 0)
-  const pickPct = (i: number) =>
-    pickers.length === 0 ? 0 : Math.round((pickers.filter((r) => r.lastAnswer!.index === i).length / pickers.length) * 100)
-  const youGain =
-    revealed && you?.lastAnswer
-      ? scoreAnswer(you.lastAnswer.correct, QUESTION_TIME_MS - you.lastAnswer.ms)
-      : undefined
+  if (!q) return null
+  const standings = phase === 'progress' || phase === 'finished'
+  const myIndex = you?.lastAnswer?.index
+  const sceneKey = standings ? `lb-${questionIndex}` : `q-${questionIndex}`
 
   return (
-    <div className="screen race-screen">
-      {/* Race track — top third. Placeholder lanes until Rive rigs land. */}
-      <div className="track">
-        <div className="track-hud">
-          {you && (
-            <div className="score-hud" key={you.score}>
-              ⭐ {you.score.toLocaleString('en-US')} pts
-            </div>
+    <div className="screen arena-game-shell">
+      <button className="leave-race-btn arena-leave" onClick={() => setConfirmLeave(true)}>
+        Leave
+      </button>
+      {(phase === 'reveal' || phase === 'progress') && (
+        <button className="leave-race-btn arena-skip" onClick={skip}>
+          {phase === 'progress' ? 'Next ▸' : 'Skip ▸'}
+        </button>
+      )}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={sceneKey}
+          className="screen-transition"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0, transition: { duration: duration.slow, ease: ease.out } }}
+          exit={{ opacity: 0, x: -40, transition: { duration: duration.fast } }}
+        >
+          {standings ? (
+            <BlitzStandings finished={phase === 'finished'} />
+          ) : (
+            <QuestionView
+              index={questionIndex}
+              total={questions.length}
+              text={q.text.en}
+              answers={q.answers.en}
+              phase={phase}
+              endsAt={phaseEndsAt}
+              durationMs={phaseDuration}
+              isPlayer
+              myAnswer={myIndex === undefined || myIndex < 0 ? null : myIndex}
+              reveal={phase === 'reveal' ? { correctIndex: q.correctIndex, reference: q.reference, verse: verses[q.id] ?? '' } : null}
+              result={phase === 'reveal' ? lastResult : null}
+              score={you?.score}
+              coins={raceCoins}
+              onAnswer={answer}
+            />
           )}
-          <div className="score-hud coin-hud">
-            <PaintedCoin size={18} /> <AnimatedNumber value={raceCoins} duration={0.5} />
-          </div>
-          <div className="track-hud-right">
-            <div className="finish-label">🏁 {FINISH_LINE_SCORE.toLocaleString('en-US')}</div>
-            <button className="leave-race-btn" onClick={() => setConfirmLeave(true)}>
-              Leave
-            </button>
-          </div>
-        </div>
-        {racers.map((r) => (
-          <div key={r.profile.id} className="lane">
-            <div
-              className={`chariot ${
-                phase === 'progress' && r.lastAnswer ? (r.lastAnswer.correct ? 'boost' : 'stumble') : ''
-              }`}
-              style={{ left: `${Math.min(1.07, r.score / FINISH_LINE_SCORE) * LINE_AT}%` }}
-            >
-              {(phase === 'progress' || phase === 'finished') && r.lastGain !== undefined && (
-                <span className={`gain-float ${r.lastGain === 0 ? 'zero' : ''}`}>+{r.lastGain}</span>
-              )}
-              <span className="chariot-avatar">
-                <Avatar id={r.profile.avatar} />
-              </span>
-              <span className="chariot-name">{r.profile.name}</span>
-            </div>
-            <div className="finish-line" />
-          </div>
-        ))}
-      </div>
-
-      {/* Question card — middle. Flips in fresh for every question. */}
-      <div className="question-area">
-        {phase === 'finished' && <div className="countdown">🏁 Finish!</div>}
-        {showCard && q && (
-          <div className="question-card" key={questionIndex}>
-            <div className="question-meta">
-              Question {questionIndex + 1}
-              {phase === 'reading' && <span className="reading-hint"> · Get ready…</span>}
-              {revealed && <span className="question-ref"> · {q.reference}</span>}
-              {timedOut && <span className="timeout-note"> · ⏰ Time’s up!</span>}
-              {youGain !== undefined && (
-                <span className={`gain-meta ${youGain === 0 ? 'zero' : ''}`}> · +{youGain} pts</span>
-              )}
-            </div>
-            <div className="question-text">{q.text.en}</div>
-            {/* Who has locked in: avatars color + pop as racers answer. */}
-            <div className="answer-status">
-              {racers.map((r) => (
-                <div
-                  key={r.profile.id}
-                  className={`status-avatar ${r.lastAnswer ? 'locked-in' : ''} ${r.isBot ? '' : 'status-you'}`}
-                  title={r.profile.name}
-                >
-                  <Avatar id={r.profile.avatar} />
-                </div>
-              ))}
-            </div>
-            <div className="timer-row">
-              <div className="timer-bar">
-                <div
-                  key={questionIndex}
-                  className={`timer-fill ${phase !== 'question' ? 'paused' : ''}`}
-                  style={{ animationDuration: `${QUESTION_TIME_MS}ms` }}
-                />
-              </div>
-              <TimerDigits />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Answer grid — bottom, thumb zone. 3-2-1 here while the question flashes. */}
-      <div className="answer-grid">
-        {phase === 'reading' && (
-          <div className="inter-countdown" key={countdownValue}>
-            {countdownValue}
-          </div>
-        )}
-        {q &&
-          showCard &&
-          phase !== 'reading' &&
-          q.answers.en.map((text, i) => {
-            const isCorrect = revealed && i === q.correctIndex
-            const isYourPick = you?.lastAnswer?.index === i
-            const classes = [
-              'answer-btn',
-              ANSWER_COLORS[i],
-              // While waiting for the others, show your locked-in pick.
-              phase === 'question' && isYourPick ? 'answer-selected' : '',
-              phase === 'question' && youAnswered && !isYourPick ? 'answer-dim' : '',
-              isCorrect ? 'answer-correct' : '',
-              revealed && isYourPick && !isCorrect ? 'answer-wrong' : '',
-              revealed && !isCorrect && !isYourPick ? 'answer-dim' : '',
-            ].join(' ')
-            return (
-              <button
-                key={i}
-                className={classes}
-                onClick={() => answer(i)}
-                disabled={phase !== 'question' || youAnswered}
-              >
-                {revealed && (
-                  <>
-                    <span className="answer-pick-fill" style={{ width: `${pickPct(i)}%` }} />
-                    <span className="answer-pick-pct">{pickPct(i)}%</span>
-                  </>
-                )}
-                <span className="answer-shape">{ANSWER_SHAPES[i]}</span>
-                {text}
-              </button>
-            )
-          })}
-      </div>
+        </motion.div>
+      </AnimatePresence>
 
       {/* Leave confirmation — the race keeps running behind it. */}
       {confirmLeave && (

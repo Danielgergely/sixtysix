@@ -39,6 +39,44 @@ function LeaveControl({ role }: { role: string | null }) {
   )
 }
 
+/** Feeds the shared QuestionView from the live arena state. */
+function ArenaQuestion() {
+  const role = useArenaStore((s) => s.role)
+  const room = useArenaStore((s) => s.room)
+  const question = useArenaStore((s) => s.question)
+  const phaseEndsAt = useArenaStore((s) => s.phaseEndsAt)
+  const phaseDuration = useArenaStore((s) => s.phaseDuration)
+  const myAnswer = useArenaStore((s) => s.myAnswer)
+  const answerCount = useArenaStore((s) => s.answerCount)
+  const reveal = useArenaStore((s) => s.reveal)
+  const yourResult = useArenaStore((s) => s.yourResult)
+  const answer = useArenaStore((s) => s.answer)
+  const myPlayerId = useArenaStore((s) => s.myPlayerId)
+  if (!room || !question) return null
+  const phase = room.phase === 'reading' || room.phase === 'question' ? room.phase : 'reveal'
+  const isPlayer = role === 'player'
+  const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
+  return (
+    <QuestionView
+      index={question.index}
+      total={question.total}
+      text={question.text}
+      answers={question.answers}
+      phase={phase}
+      endsAt={phaseEndsAt}
+      durationMs={phaseDuration}
+      isPlayer={isPlayer}
+      myAnswer={myAnswer}
+      reveal={room.phase === 'reveal' ? reveal : null}
+      result={yourResult}
+      score={me?.score}
+      answerCount={answerCount}
+      playerCount={room.players.length}
+      onAnswer={answer}
+    />
+  )
+}
+
 export function ArenaGameScreen() {
   const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
@@ -64,7 +102,7 @@ export function ArenaGameScreen() {
   } else if (phase === 'leaderboard' && leaderboard) {
     scene = { key: `lb-${room.questionIndex}`, node: <Leaderboard entries={leaderboard} isPlayer={isPlayer} /> }
   } else if (question) {
-    scene = { key: `q-${question.index}`, node: <QuestionView /> }
+    scene = { key: `q-${question.index}`, node: <ArenaQuestion /> }
   }
 
   const skipLabel = phase === 'leaderboard' ? 'Next ▸' : 'Skip ▸'

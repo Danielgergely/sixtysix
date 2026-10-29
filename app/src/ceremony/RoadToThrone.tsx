@@ -51,9 +51,12 @@ interface Placed {
   scale: number
 }
 
-/** Progress 0..1: the leader sits at "questions played", the rest by gap (exaggerated so gaps read). */
-function progressFor(score: number, leaderScore: number, played: number, total: number) {
-  const leaderT = Math.min(0.94, played / total)
+/**
+ * Progress 0..1: the leader sits at "questions played" (or at score / goal in a
+ * first-to-N race), the rest by gap (exaggerated so gaps read).
+ */
+function progressFor(score: number, leaderScore: number, played: number, total: number, goal?: number) {
+  const leaderT = Math.min(0.94, goal ? leaderScore / goal : played / total)
   const questionsBehind = (leaderScore - score) / POINTS_PER_QUESTION
   return Math.max(0, leaderT - (questionsBehind / total) * 2.2)
 }
@@ -63,12 +66,12 @@ function progressFor(score: number, leaderScore: number, played: number, total: 
  * keep at least `g.gap`% apart so the order always reads; the whole pack then
  * shifts up if it would spill past the start line. Close pairs step sideways.
  */
-function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, played: number, total: number): Map<string, Placed> {
+function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, played: number, total: number, goal?: number): Map<string, Placed> {
   const sorted = [...entries].sort((a, b) => b[key] - a[key]).slice(0, SHOWN + 2)
   const leader = sorted[0]?.[key] ?? 0
   const ys: number[] = []
   for (const r of sorted) {
-    const real = g.startY + (g.finishY - g.startY) * progressFor(r[key], leader, played, total)
+    const real = g.startY + (g.finishY - g.startY) * progressFor(r[key], leader, played, total, goal)
     ys.push(ys.length ? Math.max(real, ys[ys.length - 1] + g.gap) : real)
   }
   const lastShown = ys[Math.min(SHOWN, ys.length) - 1] ?? g.startY
@@ -97,10 +100,19 @@ function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, play
  * fire. Phone shows the top 6 (+ a pinned card for you); boards add a full
  * standings column.
  */
-export function RoadToThrone({ entries, played, total, wide }: { entries: RaceEntry[]; played: number; total: number; wide: boolean }) {
+interface Props {
+  entries: RaceEntry[]
+  played: number
+  total: number
+  wide: boolean
+  /** First-to-N race (Bible Blitz): the leader's height is score / goal. */
+  goal?: number
+}
+
+export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
   const g = wide ? GEOMETRY.wide : GEOMETRY.phone
-  const before = useMemo(() => layout(entries, 'before', g, Math.max(0, played - 1), total), [entries, g, played, total])
-  const after = useMemo(() => layout(entries, 'after', g, played, total), [entries, g, played, total])
+  const before = useMemo(() => layout(entries, 'before', g, Math.max(0, played - 1), total, goal), [entries, g, played, total, goal])
+  const after = useMemo(() => layout(entries, 'after', g, played, total, goal), [entries, g, played, total, goal])
   const [settled, setSettled] = useState(false)
   useEffect(() => {
     const id = setTimeout(() => setSettled(true), SETTLE_MS)
@@ -153,7 +165,7 @@ export function RoadToThrone({ entries, played, total, wide }: { entries: RaceEn
               </div>
               <div className="tr-tag">
                 {r.name}
-                {r.you && ' (you)'}
+                {r.you && r.name !== 'You' && ' (you)'}
                 {settled && climbed && <span className="tr-up">▲{r.rankBefore - r.rankAfter}</span>}
               </div>
               <AnimatePresence>
@@ -170,9 +182,7 @@ export function RoadToThrone({ entries, played, total, wide }: { entries: RaceEn
 
       <motion.div className="tr-title" style={{ backgroundImage: PARCHMENT }} initial={{ y: -80 }} animate={{ y: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 16 }}>
         Road to the Throne
-        <small>
-          after trial {played} of {total}
-        </small>
+        <small>{goal ? `first to ${goal.toLocaleString('en-US')} glory` : `after trial ${played} of ${total}`}</small>
       </motion.div>
 
       {!wide && you && you.rankAfter > SHOWN && (

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useAnimate } from 'motion/react'
 import { QUESTION_TIME_MS } from '@sixtysix/shared'
-import { useArenaStore } from '../../../arena/arenaStore'
+import type { RevealPayload, YourResult } from '@sixtysix/shared'
 import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
 import { Sparkles } from '../../../art/Sparkles'
+import { PaintedCoin } from '../../../art/PaintedPortrait'
 import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
 import { quoteVerse } from '../../../questions/quoteVerse'
@@ -26,52 +27,60 @@ function useRemaining(endsAt: number, active: boolean): number {
   return active ? Math.max(0, endsAt - now) / 1000 : 0
 }
 
-/**
- * reading → question → reveal for one question, in the Empire style.
- * Players hold a fanned hand of answer cards and play one; boards (host,
- * spectator) show the four cards in a row with the answer distribution.
- */
-export function QuestionView() {
-  const role = useArenaStore((s) => s.role)
-  const room = useArenaStore((s) => s.room)
-  const question = useArenaStore((s) => s.question)
-  const phaseEndsAt = useArenaStore((s) => s.phaseEndsAt)
-  const phaseDuration = useArenaStore((s) => s.phaseDuration)
-  const myAnswer = useArenaStore((s) => s.myAnswer)
-  const answerCount = useArenaStore((s) => s.answerCount)
-  const reveal = useArenaStore((s) => s.reveal)
-  const yourResult = useArenaStore((s) => s.yourResult)
-  const answer = useArenaStore((s) => s.answer)
-  const myPlayerId = useArenaStore((s) => s.myPlayerId)
-  const [scope, animate] = useAnimate()
+export interface QuestionViewProps {
+  index: number
+  total: number
+  text: string
+  answers: string[]
+  phase: 'reading' | 'question' | 'reveal'
+  /** Deadline and length of the current phase (reading countdown / answer timer). */
+  endsAt: number
+  durationMs: number
+  /** Players hold a hand of cards; boards (host, spectator) show a row with the distribution. */
+  isPlayer: boolean
+  myAnswer: number | null
+  reveal: Pick<RevealPayload, 'correctIndex' | 'reference' | 'verse'> & Partial<Pick<RevealPayload, 'distribution' | 'answeredCount'>> | null
+  result: YourResult | null
+  /** The player's running score, shown top right. */
+  score?: number
+  /** Coins earned this game, shown beside the score. */
+  coins?: number
+  /** Boards: "✓ 3 / 8 answered". */
+  answerCount?: number
+  playerCount?: number
+  onAnswer?: (index: number) => void
+}
 
-  const phase = room?.phase ?? 'lobby'
-  const isPlayer = role === 'player'
-  const remaining = useRemaining(phaseEndsAt, phase === 'question')
+/**
+ * reading → question → reveal for one question, in the Empire style. Shared by
+ * Open Arena and Bible Blitz. Players hold a fanned hand of answer cards and
+ * play one; boards show the four cards in a row with the answer distribution.
+ */
+export function QuestionView(props: QuestionViewProps) {
+  const { index, total, text, answers, phase, endsAt, durationMs, isPlayer, myAnswer, reveal, result, score, onAnswer } = props
+  const [scope, animate] = useAnimate()
+  const remaining = useRemaining(endsAt, phase === 'question')
   const revealed = phase === 'reveal' && reveal !== null
 
   // The verdict medallion takes over a moment after the card flips.
   const [verdictFor, setVerdictFor] = useState<number | null>(null)
-  const questionIndex = question?.index
   useEffect(() => {
     if (!revealed || !isPlayer) return
-    const id = setTimeout(() => setVerdictFor(questionIndex ?? null), VERDICT_DELAY_MS)
+    const id = setTimeout(() => setVerdictFor(index), VERDICT_DELAY_MS)
     return () => clearTimeout(id)
-  }, [revealed, isPlayer, questionIndex])
-  const showVerdict = revealed && verdictFor === questionIndex
+  }, [revealed, isPlayer, index])
+  const showVerdict = revealed && verdictFor === index
 
   // Reveal feedback: gold confetti for a right answer, a jolt for a wrong one.
-  const correct = yourResult?.correct
+  const correct = result?.correct
   useEffect(() => {
     if (!revealed || !isPlayer || correct === undefined) return
     if (correct) fireConfetti({ y: 0.55, count: 70, spread: 90, power: 12, colors: GOLD_CONFETTI })
     else if (myAnswer !== null && scope.current) void animate(scope.current, { x: [0, -10, 9, -6, 4, 0] }, { duration: 0.45 })
   }, [revealed, isPlayer, correct, myAnswer, animate, scope])
 
-  if (!room || !question) return null
-  const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
   const pct = (i: number) =>
-    reveal && reveal.answeredCount > 0 ? Math.round((reveal.distribution[i] / reveal.answeredCount) * 100) : 0
+    reveal?.distribution && reveal.answeredCount ? Math.round((reveal.distribution[i] / reveal.answeredCount) * 100) : 0
   const handOpen = phase === 'question' && myAnswer === null
 
   return (
@@ -83,13 +92,19 @@ export function QuestionView() {
           <div className="empire-plate" style={{ backgroundImage: STONE }}>
             <span>Trial</span>
             <strong>
-              {question.index + 1} of {question.total}
+              {index + 1} of {total}
             </strong>
           </div>
-          {me && (
+          {score !== undefined && (
             <div className="empire-purse score" title="Points this game">
               <span className="glory-mark">⚜</span>
-              <AnimatedNumber value={me.score} />
+              <AnimatedNumber value={score} />
+            </div>
+          )}
+          {props.coins !== undefined && (
+            <div className="empire-purse score" title="Coins this game — yours when you finish">
+              <PaintedCoin size={18} />
+              <AnimatedNumber value={props.coins} duration={0.5} />
             </div>
           )}
         </div>
@@ -97,7 +112,7 @@ export function QuestionView() {
         <div className="empire-scroll">
           <div className="empire-rod" />
           <motion.div
-            key={question.index}
+            key={index}
             className="empire-paper"
             style={{ backgroundImage: PARCHMENT, originY: 0 }}
             initial={{ scaleY: 0 }}
@@ -105,11 +120,12 @@ export function QuestionView() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-              <div className="empire-q">{question.text}</div>
+              <div className="empire-q">{text}</div>
               <AnimatePresence>
-                {revealed && reveal.verse && (
+                {revealed && (
                   <motion.div className="empire-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                    {quoteVerse(reveal.verse)} <em>— {reveal.reference}</em>
+                    {reveal.verse && <>{quoteVerse(reveal.verse)} </>}
+                    <em>— {reveal.reference}</em>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -126,9 +142,9 @@ export function QuestionView() {
             }}
           />
         </div>
-        {!isPlayer && phase === 'question' && (
+        {!isPlayer && phase === 'question' && props.answerCount !== undefined && (
           <div className="eh-count">
-            ✓ <AnimatedNumber value={answerCount} duration={0.3} /> / {room.players.length} answered
+            ✓ <AnimatedNumber value={props.answerCount} duration={0.3} /> / {props.playerCount} answered
           </div>
         )}
 
@@ -142,7 +158,7 @@ export function QuestionView() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.4, transition: { duration: 0.15 } }}
               >
-                <CountdownRing endsAt={phaseEndsAt} totalMs={phaseDuration} size={isPlayer ? 110 : 150} stroke={10} />
+                <CountdownRing endsAt={endsAt} totalMs={durationMs} size={isPlayer ? 110 : 150} stroke={10} />
               </motion.div>
             )}
             {isPlayer && myAnswer !== null && phase !== 'reading' && (
@@ -155,11 +171,11 @@ export function QuestionView() {
                 transition={{ type: 'spring', stiffness: 220, damping: 18 }}
               >
                 <motion.div className="eh-flip" animate={{ rotateY: revealed ? 180 : 0 }} transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}>
-                  <AnswerCard index={myAnswer} text={question.answers[myAnswer]} className="face" />
+                  <AnswerCard index={myAnswer} text={answers[myAnswer]} className="face" />
                   <div className={`eh-card back ${correct ? 'gold' : 'iron'}`} style={correct ? undefined : { backgroundImage: STONE }}>
                     {correct && <span className="empire-gleam" />}
                     <span className="eh-verdict">{correct ? '✦' : '✖'}</span>
-                    <span className="eh-card-text">{reveal ? question.answers[correct ? myAnswer : reveal.correctIndex] : ''}</span>
+                    <span className="eh-card-text">{reveal ? answers[correct ? myAnswer : reveal.correctIndex] : ''}</span>
                     <small>{correct ? 'Rightly answered' : 'was the answer'}</small>
                     {!correct && <span className="empire-crack" />}
                   </div>
@@ -172,10 +188,10 @@ export function QuestionView() {
 
         {isPlayer ? (
           <div className="eh-hand">
-            {question.answers.map((text, i) =>
+            {answers.map((answer, i) =>
               myAnswer === i ? null : (
                 <motion.button
-                  key={`${question.index}-${i}`}
+                  key={`${index}-${i}`}
                   className="eh-hand-slot"
                   style={{ originY: 1.15 }}
                   initial={{ y: 320, rotate: 0 }}
@@ -183,26 +199,26 @@ export function QuestionView() {
                   whileTap={handOpen ? { y: -14 } : undefined}
                   transition={{ type: 'spring', stiffness: 240, damping: 20, delay: handOpen ? i * 0.07 : 0 }}
                   disabled={!handOpen}
-                  onClick={() => answer(i)}
+                  onClick={() => onAnswer?.(i)}
                 >
-                  <AnswerCard index={i} text={text} />
+                  <AnswerCard index={i} text={answer} />
                 </motion.button>
               ),
             )}
           </div>
         ) : (
           <div className="eh-row">
-            {question.answers.map((text, i) => {
+            {answers.map((answer, i) => {
               const win = revealed && reveal.correctIndex === i
               return (
                 <motion.div
-                  key={`${question.index}-${i}`}
+                  key={`${index}-${i}`}
                   className="eh-row-slot"
                   initial={{ y: 200, opacity: 0 }}
                   animate={{ y: phase === 'reading' ? 200 : win ? -12 : 0, opacity: phase === 'reading' ? 0 : 1, scale: win ? 1.06 : 1 }}
                   transition={{ type: 'spring', stiffness: 220, damping: 18, delay: phase === 'question' ? i * 0.08 : 0 }}
                 >
-                  <AnswerCard index={i} text={text} className={revealed ? (win ? 'win' : 'dim') : ''} />
+                  <AnswerCard index={i} text={answer} className={revealed ? (win ? 'win' : 'dim') : ''} />
                   {revealed && (
                     <motion.span className="eh-pct" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 + i * 0.08 }}>
                       <AnimatedNumber value={pct(i)} from={0} delay={0.3} duration={0.8} />%
@@ -216,8 +232,8 @@ export function QuestionView() {
       </div>
 
       <AnimatePresence>
-        {isPlayer && showVerdict && yourResult && reveal && (
-          <PlayerResult result={yourResult} answered={myAnswer !== null} correctText={question.answers[reveal.correctIndex]} />
+        {isPlayer && showVerdict && result && reveal && (
+          <PlayerResult result={result} answered={myAnswer !== null} correctText={answers[reveal.correctIndex]} />
         )}
       </AnimatePresence>
     </div>

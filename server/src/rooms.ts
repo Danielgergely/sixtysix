@@ -11,6 +11,8 @@ export interface RoomPlayer extends ArenaPlayer {
   streak: number
   /** Points from the most recent question. */
   lastGain: number
+  /** Coins earned this game (paid out at the podium, so leavers forfeit them). */
+  coins: number
 }
 
 export interface Room {
@@ -127,6 +129,7 @@ export function addOrRebindPlayer(
     connected: true,
     streak: 0,
     lastGain: 0,
+    coins: 0,
   }
   room.players.set(playerId, player) // late joiners enter at the next question
   touch(room)

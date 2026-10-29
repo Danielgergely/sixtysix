@@ -730,3 +730,21 @@
 .rotate-hint { background: linear-gradient(rgb(20 8 4 / 0.7), rgb(20 8 4 / 0.92)), url('/art/bg-throne-room.webp') center / cover !important; color: #f3e2bb; font-family: 'Cinzel', Georgia, serif; }
 .rotate-hint-title { color: #ffe7a3 !important; font-family: 'Cinzel Decorative', serif; }
 .rotate-hint-text { color: #f3e2bb !important; }
+
+/* ---------- Bible Blitz race (RaceScreen) ---------- */
+.blitz-finish{
+  position: absolute;
+  z-index: 30;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  padding: 14px 26px;
+  border-radius: 10px;
+  border: 3px solid #c9a24a;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.55);
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: 26px;
+  color: #5a2e0f;
+  white-space: nowrap;
+}

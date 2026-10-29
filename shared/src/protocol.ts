@@ -82,6 +82,8 @@ export interface LeaderboardEntry {
   gain: number
   /** Consecutive correct answers. */
   streak: number
+  /** Coins earned this game so far; credited to the profile only at the podium. */
+  coins: number
 }
 
 /** Sent privately to each player after reveal. */
