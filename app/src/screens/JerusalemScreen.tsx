@@ -7,8 +7,8 @@ import { fetchCity, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { levelDef } from '@sixtysix/shared'
 import { usePlotStore } from '../plot/plotStore'
+import { artFor } from './home/homeUtil'
 
-const houseIcon = (level: number) => levelDef('house', level)?.icon ?? '⛺'
 const houseName = (level: number) => levelDef('house', level)?.name ?? 'Tent'
 
 /**
@@ -49,7 +49,7 @@ export function JerusalemScreen() {
       {account ? (
         <div className="jr-home-row">
           <motion.button className="jr-home jr-home-btn" onClick={() => goTo('home')} whileTap={{ scale: 0.97 }}>
-            <span className="jr-home-icon">{houseIcon(mine?.house ?? 1)}</span>
+            <img className="jr-home-art" src={artFor('house', mine?.house ?? 1)} alt="" />
             <span>
               <strong>Your home{mine ? ` · plot ${mine.plot}` : ''}</strong>
               <small>{houseName(mine?.house ?? 1)} · tap to build ›</small>
@@ -80,7 +80,7 @@ export function JerusalemScreen() {
             transition={{ delay: Math.min(i, 16) * 0.03 }}
           >
             <span className="jr-plot-num">#{r.plot}</span>
-            <span className="jr-plot-house" title={houseName(r.house)}>{houseIcon(r.house)}</span>
+            <img className="jr-plot-house" src={artFor('house', r.house)} alt={houseName(r.house)} title={houseName(r.house)} draggable={false} />
             <PaintedPortrait id={r.avatar} className="jr-plot-portrait" />
             <strong>{r.name}</strong>
             <small>Lv {levelForXp(r.xp)}</small>

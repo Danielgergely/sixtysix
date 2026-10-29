@@ -21,7 +21,7 @@ import { useAccountStore } from '../../account/accountStore'
 import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
 import { fireConfetti, spring, STAGGER } from '../../motion'
-import { artFor, buildingIcon, countdown, listMaterials, useTick } from './homeUtil'
+import { artFor, COURTYARD_ART, countdown, listMaterials, useTick } from './homeUtil'
 import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
@@ -127,7 +127,7 @@ function NextStep({ plot }: { plot: PlotState }) {
   const buy = next.missingCoins ? `buy ${listMaterials(next.missing)} (${next.missingCoins} coins)` : 'you have the materials'
   return (
     <motion.button className="hp-next" onClick={() => select(next.building)} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={spring.gentle}>
-      <span className="hp-next-icon">{buildingIcon(next.building, next.toLevel ?? 1)}</span>
+      <img className="hp-next-art" src={artFor(next.building, next.toLevel ?? 1)} alt="" />
       <span className="hp-next-text">
         <small>Next step</small>
         <strong>{what}: {next.def.name}</strong>
@@ -150,7 +150,7 @@ function Plot({ plot, now, seen }: { plot: PlotState; now: number; seen: Record<
         if (spot === 'courtyard') {
           return (
             <motion.button key={spot} className="hp-spot court" onClick={() => select('courtyard')} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...spring.bouncy, delay: i * STAGGER }}>
-              <span className="hp-spot-icon">🌴</span>
+              <img className="hp-spot-art" src={COURTYARD_ART} alt="" draggable={false} />
               <span className="hp-spot-name">Courtyard</span>
               <span className="hp-spot-lv">soon</span>
             </motion.button>
@@ -175,7 +175,7 @@ function Plot({ plot, now, seen }: { plot: PlotState; now: number; seen: Record<
             animate={{ opacity: 1, scale: 1 }}
             transition={{ ...spring.bouncy, delay: i * STAGGER }}
           >
-            {art ? <img className="hp-spot-art" src={art} alt="" draggable={false} /> : <span className="hp-spot-icon">{buildingIcon(b, level)}</span>}
+            <img className="hp-spot-art" src={art} alt="" draggable={false} />
             <span className="hp-spot-name">{BUILDINGS[b].name}</span>
             <span className="hp-spot-lv">{level ? `Lv ${level}` : build ? 'going up' : 'empty plot'}</span>
             {build && (

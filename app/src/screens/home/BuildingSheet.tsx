@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'motion/react'
 import {
   BUILDINGS,
@@ -17,10 +18,15 @@ import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
 import { PaintedCoin } from '../../art/PaintedPortrait'
 import { fireConfetti, spring } from '../../motion'
-import { artFor, buildingIcon, countdown, listMaterials } from './homeUtil'
+import { artFor, COURTYARD_ART, countdown, listMaterials } from './homeUtil'
 
 /** Bottom sheet for one spot: what it does, the next level, and the Upgrade / Buy-missing buttons. */
 export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'courtyard'; plot: PlotState; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
   return (
     <>
       <motion.div className="hp-scrim" onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
@@ -45,7 +51,7 @@ function Courtyard() {
   return (
     <div className="hp-sheet-body">
       <div className="hp-sheet-head">
-        <span className="hp-sheet-icon">🌴</span>
+        <img className="hp-sheet-art" src={COURTYARD_ART} alt="" />
         <div>
           <h3>Courtyard</h3>
           <small>Decorations</small>
@@ -79,7 +85,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
   return (
     <div className="hp-sheet-body">
       <div className="hp-sheet-head">
-        {art ? <img className="hp-sheet-art" src={art} alt="" /> : <span className={`hp-sheet-icon ${level ? '' : 'empty'}`}>{buildingIcon(b, level)}</span>}
+        <img className={`hp-sheet-art ${level ? '' : 'empty'}`} src={art} alt="" />
         <div>
           <h3>{def.name}</h3>
           <small>{cur ? `Level ${level} · ${cur.name}` : 'Not built yet'}</small>

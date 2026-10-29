@@ -226,3 +226,16 @@
 .tab-screen > .hp-sheet{ z-index: 41; }
 .tab-screen > .hp-scroll{ z-index: 51; }
 .tab-screen > .hp-toast{ z-index: 60; }
+
+/* Painted building art */
+.hp-spot.empty .hp-spot-art{ filter: grayscale(1) opacity(0.4); }
+.hp-spot.court .hp-spot-art{ filter: saturate(0.6) opacity(0.75); }
+.hp-spot.building .hp-spot-art{ filter: sepia(0.4) brightness(0.9); }
+.hp-spot.empty.building .hp-spot-art{ filter: grayscale(0.6) opacity(0.65); }
+.hp-spot-art{ margin-top: 2px; }
+.hp-next-art{ width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.5)); }
+.hp-sheet-art.empty{ filter: grayscale(1) opacity(0.5); }
+.jr-home-art{ width: 54px; height: 50px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.5)); }
+img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.35)); }
+.pl-building img{ width: 44px; height: 36px; object-fit: contain; }
+.pl-building.none img{ filter: grayscale(1) opacity(0.4); }

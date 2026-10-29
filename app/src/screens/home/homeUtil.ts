@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BUILDINGS, MATERIAL_INFO, MATERIALS, levelDef, type BuildingId, type Materials } from '@sixtysix/shared'
+import { MATERIAL_INFO, MATERIALS, levelDef, type BuildingId, type Materials } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -29,13 +29,22 @@ export const listMaterials = (m: Materials) =>
 /** Icon for a building at a level (level 0 shows the first level's icon, dimmed by the caller). */
 export const buildingIcon = (b: BuildingId, level: number) => levelDef(b, Math.max(1, level))?.icon ?? '🏗️'
 
-/** Painted art per building (app/public/art/plot-*.webp); a level picks one of the stages. */
-export const BUILDING_ART: Partial<Record<BuildingId, string[]>> = {}
+/** Painted art (app/public/art/plot-*.webp, art-pipeline/prompts.json): a few stages per building, one entry per level. */
+const art = (name: string) => `/art/plot-${name}.webp`
+export const BUILDING_ART: Record<BuildingId, string[]> = {
+  house: ['house-1', 'house-2', 'house-3', 'house-3', 'house-4', 'house-4', 'house-5'].map(art),
+  well: ['well-1', 'well-2', 'well-2', 'well-3', 'well-3'].map(art),
+  wall: ['wall-1', 'wall-1', 'wall-2', 'wall-2', 'wall-2'].map(art),
+  store: ['store-1', 'store-1', 'store-2', 'store-2', 'store-2'].map(art),
+  workshop: ['workshop-1', 'workshop-1', 'workshop-2', 'workshop-2', 'workshop-2'].map(art),
+  fold: ['fold-1', 'fold-1', 'fold-2', 'fold-2', 'fold-2'].map(art),
+  grove: ['grove-1', 'grove-1', 'grove-2', 'grove-2', 'grove-2'].map(art),
+  kiln: ['kiln-1', 'kiln-2', 'kiln-2', 'kiln-2'].map(art),
+}
+export const COURTYARD_ART = art('courtyard')
 
-export function artFor(b: BuildingId, level: number): string | null {
+/** The picture for a building at a level; level 0 shows level 1 (the caller dims it). */
+export function artFor(b: BuildingId, level: number): string {
   const stages = BUILDING_ART[b]
-  if (!stages?.length || level < 1) return null
-  const max = BUILDINGS[b].levels.length
-  const i = Math.min(stages.length - 1, Math.floor(((level - 1) / max) * stages.length))
-  return stages[i]
+  return stages[Math.min(stages.length, Math.max(1, level)) - 1]
 }
