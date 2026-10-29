@@ -1,0 +1,4 @@
+# generated candidates — copy the keepers into app/public/art
+out/
+.env.local
+node_modules/

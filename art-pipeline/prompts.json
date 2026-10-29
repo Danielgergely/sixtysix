@@ -1,0 +1,287 @@
+{
+  "style": "Hand-painted 2D mobile strategy-game art in the style of Forge of Empires and Clash Royale: rich warm colours, crimson and gold palette, soft painterly shading with crisp readable silhouettes, gentle rim light, slightly exaggerated friendly proportions (large heads, expressive faces), clean dark outlines. Biblical ancient Near East setting. Polished, premium, family-friendly. If a style reference screenshot is attached, match its palette and mood (red throne room, parchment, gold).",
+  "assets": [
+    {
+      "id": "char-david",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "../assets/David_Sketch.png",
+        "refs/style-d.png"
+      ],
+      "prompt": "Head-and-shoulders portrait bust of DAVID as a young shepherd (follow the attached character sketch: curly hair, simple tunic, sling strap, small lyre over the shoulder). Friendly confident smile, looking slightly toward the viewer, centred, filling most of the frame."
+    },
+    {
+      "id": "char-moses",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "../assets/Moses_Sketch.png",
+        "refs/style-d.png"
+      ],
+      "prompt": "Head-and-shoulders portrait bust of MOSES (follow the attached character sketch: long flowing grey hair, big grey beard, layered brown robes, wooden staff top visible beside him). Stern but kind expression, centred, filling most of the frame."
+    },
+    {
+      "id": "char-esther",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "../assets/Esther_Sketch.png",
+        "refs/style-d.png"
+      ],
+      "prompt": "Head-and-shoulders portrait bust of QUEEN ESTHER (follow the attached character sketch: long dark hair, modest Persian crown, sheer veil, royal gown). Dignified gentle smile, centred, filling most of the frame."
+    },
+    {
+      "id": "char-ruth",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "../assets/Ruth_Sketch.png",
+        "refs/style-d.png"
+      ],
+      "prompt": "Head-and-shoulders portrait bust of RUTH (follow the attached character sketch: simple headscarf, practical field tunic, holding a bundle of gleaned barley over one shoulder). Warm humble smile, centred, filling most of the frame."
+    },
+    {
+      "id": "chariot",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Side view, facing right: an ornate ancient two-wheeled racing chariot (gilded wood, crimson trim, spoked wheel) pulled by two galloping horses in full stride, manes flying, dust kicking up at the hooves. The chariot basket is EMPTY (no driver) with a clear opening where a driver would stand. Full chariot and horses visible, centred, nothing cropped."
+    },
+    {
+      "id": "chariot-fire",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Side view, facing right: the same style of ornate ancient two-wheeled racing chariot pulled by two galloping horses, but wreathed in golden-orange holy fire — flames trailing from the wheels and the horses' manes like the chariot of fire from 2 Kings 2:11. Glorious, not scary. The chariot basket is EMPTY (no driver). Full chariot and horses visible, centred, nothing cropped."
+    },
+    {
+      "id": "bg-throne-room",
+      "aspect": "9:16",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Portrait-orientation game background: interior of an ancient royal hall at dusk, deep crimson drapes, golden oil lamps and braziers glowing, stone columns with carved capitals, warm vignette. Keep the centre and lower half calm and fairly dark (UI cards sit on top of it). No people."
+    },
+    {
+      "id": "bg-hippodrome",
+      "aspect": "9:16",
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Portrait-orientation game background: an ancient hippodrome seen from the side at golden hour. Top fifth: tiered stone stands with a cheering crowd suggested in soft painterly shapes, colourful banners. Below: a wide, flat, empty sand racing track filling the rest of the image, gently lit, with faint wheel ruts running left to right. No chariots, no horses."
+    },
+    {
+      "id": "icon-coin",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game UI icon: a single thick ancient gold coin seen slightly from the front, stamped with a simple lamp symbol, glossy highlights, chunky readable shape. Centred, filling 80% of the frame."
+    },
+    {
+      "id": "icon-medal",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game UI icon: an ornate round gold victory medallion with a laurel wreath border and an empty circular centre (a portrait will be placed inside), glossy highlights. Centred, filling 85% of the frame."
+    },
+    {
+      "id": "chariot-rear",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/chariot-0.png"
+      ],
+      "prompt": "The same ornate racing chariot and two horses as in the attached reference (same gilded wood, crimson trim, same painting style), but seen from BEHIND and ABOVE — an elevated rear three-quarter view looking down at roughly 45 degrees, as if the camera follows the chariot. The horses gallop straight AWAY from the viewer toward the top of the image. The chariot basket is EMPTY (no driver), its open back facing the viewer. Compact, readable silhouette; whole chariot and both horses visible, centred, nothing cropped."
+    },
+    {
+      "id": "bg-road-portrait",
+      "aspect": "9:16",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Portrait-orientation game background, same royal hall as the attached reference (crimson drapes, gold oil lamps, stone columns). Elevated view looking down a VERY LONG straight red carpet that runs from the bottom edge of the image all the way up to a raised golden throne on steps at the top, bathed in warm holy light with an empty golden crown resting on the throne's cushion. The carpet is wide (about half the image width), flat and empty, gently lit so game pieces placed on it stay readable. Columns, braziers and banners line both sides. No people."
+    },
+    {
+      "id": "bg-road-landscape",
+      "aspect": "16:9",
+      "refs": [
+        "out/bg-throne-room-2.png"
+      ],
+      "prompt": "Wide landscape game background, same royal hall as the attached reference (crimson drapes, gold oil lamps, stone columns). Elevated view looking down a long straight red carpet in the CENTRE of the image running from the bottom edge up to a raised golden throne on steps at the top centre, bathed in warm holy light with an empty golden crown on the throne's cushion. The carpet occupies the middle third of the width, flat and empty. On both sides, the grand hall extends: rows of columns, braziers, hanging banners and softly painted courtiers watching from galleries. No people on the carpet."
+    },
+    {
+      "id": "fx-fire-trail",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game VFX sprite: a trail of golden-orange holy fire, like the wake behind a fiery chariot seen from behind and above — a teardrop/comet-shaped plume of flames and sparks, brightest and narrowest at the TOP centre and spreading and fading out toward the BOTTOM of the image. Glorious, warm, painterly. Only the flames, nothing else."
+    },
+    {
+      "id": "chariot-rear-blue",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/chariot-rear-2.png"
+      ],
+      "prompt": "Recreate the attached chariot EXACTLY — same camera angle (elevated rear three-quarter view), same pose, same size and position in the frame, same painting style, empty basket — but repaint the crimson panels, trim and plumes in royal blue, and make the two horses pure white horses. Everything else unchanged."
+    },
+    {
+      "id": "chariot-rear-green",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/chariot-rear-2.png"
+      ],
+      "prompt": "Recreate the attached chariot EXACTLY — same camera angle (elevated rear three-quarter view), same pose, same size and position in the frame, same painting style, empty basket — but repaint the crimson panels, trim and plumes in emerald green, and make the two horses glossy black horses. Everything else unchanged."
+    },
+    {
+      "id": "chariot-rear-purple",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/chariot-rear-2.png"
+      ],
+      "prompt": "Recreate the attached chariot EXACTLY — same camera angle (elevated rear three-quarter view), same pose, same size and position in the frame, same painting style, empty basket — but repaint the crimson panels, trim and plumes in royal purple, and make the two horses dapple-grey horses. Everything else unchanged."
+    },
+    {
+      "id": "chariot-rear-teal",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/chariot-rear-2.png"
+      ],
+      "prompt": "Recreate the attached chariot EXACTLY — same camera angle (elevated rear three-quarter view), same pose, same size and position in the frame, same painting style, empty basket — but repaint the crimson panels, trim and plumes in turquoise teal, and make the two horses golden palomino horses with white manes. Everything else unchanged."
+    },
+    {
+      "id": "chariot-rear-silver",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/chariot-rear-2.png"
+      ],
+      "prompt": "Recreate the attached chariot EXACTLY — same camera angle (elevated rear three-quarter view), same pose, same size and position in the frame, same painting style, empty basket — but repaint the crimson panels, trim and plumes in polished silver-white (silver metal instead of gold, white panels), and make the two horses dark bay horses with black manes. Everything else unchanged."
+    },
+    {
+      "id": "body-david-stand",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-david-1.png",
+        "../assets/David_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), standing upright facing the viewer, proud warm smile, arms relaxed at the sides, whole body visible from head to sandals, centred with some empty space above the head. No crown or hat."
+    },
+    {
+      "id": "body-david-cheer",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-david-1.png",
+        "../assets/David_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), facing the viewer and celebrating a victory: both arms raised high in joy, beaming open smile, whole body visible from head to sandals, centred with empty space above the hands. No crown or hat."
+    },
+    {
+      "id": "body-moses-stand",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-moses-2.png",
+        "../assets/Moses_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), standing upright facing the viewer, proud warm smile, arms relaxed at the sides, whole body visible from head to sandals, centred with some empty space above the head. No crown or hat."
+    },
+    {
+      "id": "body-moses-cheer",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-moses-2.png",
+        "../assets/Moses_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), facing the viewer and celebrating a victory: both arms raised high in joy, beaming open smile, whole body visible from head to sandals, centred with empty space above the hands. No crown or hat."
+    },
+    {
+      "id": "body-esther-stand",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-esther-2.png",
+        "../assets/Esther_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), standing upright facing the viewer, proud warm smile, arms relaxed at the sides, whole body visible from head to sandals, centred with some empty space above the head. Remove her crown (keep the veil and hair) — a crown will be added later. No crown or hat."
+    },
+    {
+      "id": "body-esther-cheer",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-esther-2.png",
+        "../assets/Esther_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), facing the viewer and celebrating a victory: both arms raised high in joy, beaming open smile, whole body visible from head to sandals, centred with empty space above the hands. Remove her crown (keep the veil and hair) — a crown will be added later. No crown or hat."
+    },
+    {
+      "id": "body-ruth-stand",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-ruth-2.png",
+        "../assets/Ruth_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), standing upright facing the viewer, proud warm smile, arms relaxed at the sides, whole body visible from head to sandals, centred with some empty space above the head. Keep the headscarf but nothing on top of it. No crown or hat."
+    },
+    {
+      "id": "body-ruth-cheer",
+      "aspect": "3:4",
+      "transparent": true,
+      "refs": [
+        "out/char-ruth-2.png",
+        "../assets/Ruth_Sketch.png"
+      ],
+      "prompt": "FULL-BODY figure of the exact same character as the attached portrait (same face, hair, clothing colours and painting style), facing the viewer and celebrating a victory: both arms raised high in joy, beaming open smile, whole body visible from head to sandals, centred with empty space above the hands. Keep the headscarf but nothing on top of it. No crown or hat."
+    },
+    {
+      "id": "crown-gold",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game item: a single royal victory crown made of polished GOLD, seen from the front and slightly above, five rounded points each topped with a small pearl, a band set with red and blue gems, glossy painterly highlights. Centred, filling 80% of the frame. Only the crown."
+    },
+    {
+      "id": "bg-crowning-portrait",
+      "aspect": "9:16",
+      "refs": [
+        "out/raw/bg-road-portrait-1.png"
+      ],
+      "prompt": "Portrait-orientation game background, same royal hall as the attached reference, but the camera is now BEHIND the throne looking out toward the hall. The tall carved golden BACK of the throne fills the bottom centre of the image in the foreground (seen from behind, slightly dark against the light). Brilliant white-gold glory light radiates outward from the throne in soft rays, lighting the scene. Beyond the throne, a wide empty stone landing at the top of the steps (upper-middle of the image, kept clear and well lit — characters will stand here), then the steps lead down to the long red carpet, columns and a crowd far away in the hall. No figure on or near the throne."
+    },
+    {
+      "id": "bg-crowning-landscape",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide landscape game background, same royal hall as the attached reference, but the camera is now BEHIND the throne looking out toward the hall. The tall carved golden BACK of the throne sits in the bottom centre foreground (seen from behind, slightly dark against the light). Brilliant white-gold glory light radiates outward from the throne in soft rays. Beyond the throne, a wide empty stone landing at the top of the steps across the middle of the image (kept clear and well lit — three characters will stand here, left, centre and right), then steps down to the red carpet, columns, banners and a cheering crowd in the galleries far away. No figure on or near the throne."
+    },
+    {
+      "id": "crown-silver",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/crown-gold-1.png"
+      ],
+      "prompt": "Recreate the attached crown EXACTLY — same shape, same angle, same size and position in the frame, same painting style — but made of polished SILVER (cool white-grey metal) with blue gems and pearls. Only the crown."
+    },
+    {
+      "id": "crown-bronze",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/crown-gold-1.png"
+      ],
+      "prompt": "Recreate the attached crown EXACTLY — same shape, same angle, same size and position in the frame, same painting style — but made of warm BRONZE (reddish-brown copper metal) with green gems and pearls. Only the crown."
+    }
+  ]
+}
