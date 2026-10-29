@@ -105,6 +105,10 @@ export function sendCurrentPhase(
       : READING_MS // close enough for a reading-phase rejoin
   const answered = secret ? room.players.get(secret)?.answer?.index : undefined
   socket.emit('game:question', publicQuestion(room, q), room.phase, remaining, answered)
+  if (room.phase === 'question') {
+    const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
+    socket.emit('game:answerCount', ids.length, ids)
+  }
 }
 
 /** Everyone left mid-game: stop the timers and close on the podium. */
@@ -126,6 +130,12 @@ function finishGame(io: IO, room: Room): void {
   console.log(`[game] ${room.code} finished`)
 }
 
+/** Who has answered so far — players see faces, boards see the count. */
+function emitAnswered(io: IO, room: Room): void {
+  const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
+  io.to(room.code).emit('game:answerCount', ids.length, ids)
+}
+
 export function handleAnswer(io: IO, room: Room, playerId: string, index: unknown): void {
   if (room.phase !== 'question') return
   if (index !== 0 && index !== 1 && index !== 2 && index !== 3) return
@@ -135,8 +145,7 @@ export function handleAnswer(io: IO, room: Room, playerId: string, index: unknow
   player.answer = { index, ms: Math.min(QUESTION_TIME_MS, Date.now() - room.questionStartedAt) }
   touch(room)
 
-  const answered = [...room.players.values()].filter((p) => p.answer).length
-  io.to(room.code).emit('game:answerCount', answered)
+  emitAnswered(io, room)
 
   const connected = [...room.players.values()].filter((p) => p.connected)
   if (connected.length > 0 && connected.every((p) => p.answer)) {

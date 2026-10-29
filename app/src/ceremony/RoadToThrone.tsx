@@ -132,7 +132,6 @@ export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
   return (
     <motion.div className={`tr ${wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="tr-stage" style={{ aspectRatio: g.aspect, backgroundImage: `url(${g.img})` }}>
-        <div className="tr-finish" style={{ top: `${g.finishY}%`, left: `${g.top[0] - 2}%`, width: `${g.top[1] - g.top[0] + 4}%` }} />
 
         {shown.map((r, i) => {
           const to = after.get(r.id)!

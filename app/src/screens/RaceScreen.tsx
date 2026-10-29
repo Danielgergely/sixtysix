@@ -111,6 +111,7 @@ export function RaceScreen() {
               reveal={phase === 'reveal' ? { correctIndex: q.correctIndex, reference: q.reference, verse: verses[q.id] ?? '' } : null}
               result={phase === 'reveal' ? lastResult : null}
               score={you?.score}
+              answered={racers.map((r) => ({ id: r.profile.id, avatar: r.profile.avatar, name: r.profile.name, done: !!r.lastAnswer, you: !r.isBot }))}
               coins={raceCoins}
               onAnswer={answer}
             />

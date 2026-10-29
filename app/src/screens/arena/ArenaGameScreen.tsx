@@ -55,6 +55,7 @@ function ArenaQuestion() {
   const yourResult = useArenaStore((s) => s.yourResult)
   const answer = useArenaStore((s) => s.answer)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
+  const answeredIds = useArenaStore((s) => s.answeredIds)
   if (!room || !question) return null
   const phase = room.phase === 'reading' || room.phase === 'question' ? room.phase : 'reveal'
   const isPlayer = role === 'player'
@@ -75,6 +76,9 @@ function ArenaQuestion() {
       result={yourResult}
       score={me?.score}
       answerCount={answerCount}
+      answered={room.players
+        .filter((p) => p.connected || answeredIds.includes(p.id))
+        .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
       playerCount={room.players.length}
       onAnswer={answer}
       badge={

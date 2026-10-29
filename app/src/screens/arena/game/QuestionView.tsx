@@ -4,7 +4,7 @@ import { QUESTION_TIME_MS } from '@sixtysix/shared'
 import type { RevealPayload, YourResult } from '@sixtysix/shared'
 import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
 import { Sparkles } from '../../../art/Sparkles'
-import { PaintedCoin } from '../../../art/PaintedPortrait'
+import { PaintedCoin, PaintedPortrait } from '../../../art/PaintedPortrait'
 import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
 import { quoteVerse } from '../../../questions/quoteVerse'
@@ -47,10 +47,42 @@ export interface QuestionViewProps {
   badge?: ReactNode
   /** Coins earned this game, shown beside the score. */
   coins?: number
+  /** Everyone in the game, with who has answered this question (shown while answering). */
+  answered?: Array<{ id: string; avatar: string; name: string; done: boolean; you?: boolean }>
   /** Boards: "✓ 3 / 8 answered". */
   answerCount?: number
   playerCount?: number
   onAnswer?: (index: number) => void
+}
+
+/** Faces in the room: lit with a ✓ once answered, so you can see who's still thinking. */
+function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewProps['answered']>; wide: boolean }) {
+  const max = wide ? 16 : 8
+  // Answered first so the "+N" overflow hides the ones still thinking least.
+  const shown = [...players].sort((a, b) => Number(b.done) - Number(a.done)).slice(0, max)
+  const done = players.filter((p) => p.done).length
+  return (
+    <div className={`eh-who ${wide ? 'wide' : ''}`}>
+      <div className="eh-who-faces">
+        {shown.map((p) => (
+          <motion.span
+            key={p.id}
+            className={`eh-who-face ${p.done ? 'done' : ''} ${p.you ? 'you' : ''}`}
+            title={p.name}
+            animate={p.done ? { scale: [1, 1.25, 1] } : { scale: 1 }}
+            transition={{ duration: 0.35 }}
+          >
+            <PaintedPortrait id={p.avatar} className="eh-who-portrait" />
+            {p.done && <span className="eh-who-tick">✓</span>}
+          </motion.span>
+        ))}
+        {players.length > max && <span className="eh-who-more">+{players.length - max}</span>}
+      </div>
+      <span className="eh-who-count">
+        <AnimatedNumber value={done} duration={0.3} /> / {players.length} answered
+      </span>
+    </div>
+  )
 }
 
 /**
@@ -145,7 +177,8 @@ export function QuestionView(props: QuestionViewProps) {
             }}
           />
         </div>
-        {!isPlayer && phase === 'question' && props.answerCount !== undefined && (
+        {phase === 'question' && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
+        {!isPlayer && phase === 'question' && !props.answered && props.answerCount !== undefined && (
           <div className="eh-count">
             ✓ <AnimatedNumber value={props.answerCount} duration={0.3} /> / {props.playerCount} answered
           </div>

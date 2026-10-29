@@ -176,7 +176,8 @@ export interface ServerToClientEvents {
   /** endsInMs = duration from receipt (no clock-sync needed). */
   /** `yourAnswer` is set when re-sent to a player who already answered this question. */
   'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
-  'game:answerCount': (count: number) => void
+  /** Public ids of the players who have answered the current question (count = length). */
+  'game:answerCount': (count: number, answeredIds: string[]) => void
   'game:reveal': (payload: RevealPayload) => void
   'game:leaderboard': (entries: LeaderboardEntry[]) => void
   'game:podium': (entries: LeaderboardEntry[]) => void

@@ -241,14 +241,6 @@
 /* Stage keeps the background's own aspect ratio so % coordinates match the painted carpet. */
 .tr-stage{ position: absolute; left: 50%; top: 0; translate: -50% 0; height: 100%; background-size: 100% 100%; }
 .tr.wide .tr-stage{ width: 100%; height: auto; top: 50%; translate: -50% -50%; }
-.tr-finish{
-  position: absolute;
-  height: 10px;
-  translate: 0 -50%;
-  background: repeating-conic-gradient(#1d0f06 0 25%, #fcf6e2 0 50%) 0 0 / 10px 10px;
-  box-shadow: 0 0 12px rgb(255 220 140 / 0.7);
-  opacity: 0.85;
-}
 
 .tr-racer{
   position: absolute;
@@ -1060,3 +1052,25 @@
 .pl-stat{ display: flex; flex-direction: column; align-items: center; padding: 10px 4px; border-radius: 10px; background: rgb(29 15 6 / 0.82); border: 1px solid rgb(201 162 74 / 0.6); }
 .pl-stat strong{ font: 900 18px/1.1 'Cinzel', serif; color: #ffd36b; }
 .pl-stat small{ margin-top: 2px; font: 700 10px/1.2 'Cinzel', serif; letter-spacing: 0.08em; text-transform: uppercase; color: #e9c98a; }
+
+/* ---------- Who has answered (QuestionView AnsweredStrip) ---------- */
+.eh-who{
+  position: relative; z-index: 3; align-self: center; margin-top: 8px; display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px 4px 6px; border-radius: 999px; background: rgb(29 15 6 / 0.78); border: 1px solid #c9a24a; max-width: 94%;
+}
+.eh-who-faces{ display: flex; align-items: center; }
+.eh-who-face{ position: relative; width: 26px; height: 26px; margin-left: -5px; filter: grayscale(1) brightness(0.55); transition: filter 0.3s; }
+.eh-who-face:first-child{ margin-left: 0; }
+.eh-who-face.done{ filter: none; z-index: 1; }
+.eh-who-face.you{ outline: 2px solid #ffe08a; outline-offset: 0; border-radius: 50%; }
+.eh-who-portrait{ width: 100%; height: 100%; }
+.eh-who-tick{
+  position: absolute; right: -3px; bottom: -3px; width: 13px; height: 13px; border-radius: 50%; display: grid; place-items: center;
+  background: #2f9a45; border: 1px solid #1d0f06; color: #fff; font: 900 8px/1 sans-serif;
+}
+.eh-who-more{ margin-left: 4px; color: #e9c98a; font: 800 11px/1 'Cinzel', serif; }
+.eh-who-count{ color: #ffe7a3; font: 700 12px/1.2 'Cinzel', serif; white-space: nowrap; }
+.eh-who.wide{ padding: 6px 16px 6px 8px; gap: 12px; }
+.eh-who.wide .eh-who-face{ width: clamp(30px, 3.2vw, 46px); height: clamp(30px, 3.2vw, 46px); margin-left: -6px; }
+.eh-who.wide .eh-who-tick{ width: 17px; height: 17px; font-size: 10px; }
+.eh-who.wide .eh-who-count{ font-size: clamp(13px, 1.3vw, 20px); }

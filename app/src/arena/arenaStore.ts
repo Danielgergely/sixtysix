@@ -34,6 +34,8 @@ interface ArenaStore {
   phaseDuration: number
   myAnswer: number | null
   answerCount: number
+  /** Public ids of players who have answered this question. */
+  answeredIds: string[]
   reveal: RevealPayload | null
   yourResult: YourResult | null
   leaderboard: LeaderboardEntry[] | null
@@ -91,6 +93,7 @@ const FRESH_GAME = {
   leaderboard: null,
   podium: null,
   answerCount: 0,
+  answeredIds: [],
   coinsEarned: 0,
   tally: { answered: 0, correct: 0 },
 } satisfies Partial<ArenaStore>
@@ -149,13 +152,14 @@ function getSocket(): ArenaSocket {
       reveal: phase === 'reading' ? null : s.reveal,
       yourResult: phase === 'reading' ? null : s.yourResult,
       answerCount: phase === 'reading' ? 0 : s.answerCount,
+      answeredIds: phase === 'reading' ? [] : s.answeredIds,
     }))
     // Sounds play on every surface — in person, the host machine IS the speaker.
     if (phase === 'reading') playSfx('flip')
     if (phase === 'question') playSfx('go')
   })
 
-  socket.on('game:answerCount', (count) => setState({ answerCount: count }))
+  socket.on('game:answerCount', (count, ids) => setState({ answerCount: count, answeredIds: Array.isArray(ids) ? ids : [] }))
 
   socket.on('game:reveal', (payload) => {
     setState({ reveal: payload })
@@ -217,6 +221,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   phaseDuration: 0,
   myAnswer: null,
   answerCount: 0,
+  answeredIds: [],
   reveal: null,
   yourResult: null,
   leaderboard: null,
