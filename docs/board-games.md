@@ -23,7 +23,7 @@
 
 ## Rules (as implemented)
 
-One game = one secret word, a few minutes long; the leader starts a new word straight from the result screen.
+One game = one secret word, a few minutes long; the leader starts the next one from the result screen (see *Play again* below).
 
 1. **Setup.** 3–12 players, each on a phone; the leader can fill seats with bots (see below). A shared board (laptop / projector) is optional.
 2. **Cards.** The server picks a word from `shared/src/flockWords.json` (≈260 curated people, places, stories and objects, each with a hint, a reference, a `wolfHint`, `aliases` and 9 short `clues` for the bots). Every player sees the word, except **the wolf**, who sees only the category. From 7 players (`FLOCK_TWO_WOLVES_FROM`) there are **two wolves**, who don't know each other; everyone knows how many there are. Wolves are random each game, avoiding last game's wolves when enough others are left.
@@ -34,8 +34,18 @@ One game = one secret word, a few minutes long; the leader starts a new word str
    - Any sheep out → **the wolves win**.
    - A tie (nobody out) → a new lap; on the final vote a tie lets **the wolves escape**.
    - Only wolves out → their locked guesses are checked by `server/src/flock/match.ts`: case, accents, punctuation, little words and plural/possessive "s" never matter; typos are forgiven from 5 letters up (1, 2 from 8 letters, 3 from 12; short names like Mary / Mark are too close to each other); `aliases` count as the word; a guess at least as close to another entry of the same category is not a typo (Jeremiah ≠ Nehemiah). A match → **the wolves win**. A *close* guess (a bigger typo, or a key word in common, e.g. "Noah's boat" for Ark) goes to the **flock's judgement**: the sheep still in vote 👍 / 👎 (20 s), a tie counts for the wolf; while another wolf hides, only the sheep see that guess. No guess counts → if no wolf is left, **the flock wins**. With one wolf still hiding, everyone sees only who was caught (not the votes), the caught wolf has **lost** (loser's reward, no win even if the other wolf wins later) and may watch the rest (the word stays hidden until the end) or leave; play goes on with a new lap.
-7. **End.** The result shows the winner, the word, the wolves, their guesses and the deciding vote. Players keep a count of wins in the room.
+7. **End.** The result shows the winner, the word, the wolves, their guesses and the deciding vote. Players keep a count of wins in the room. The leader then picks **Play again** (see below).
 8. **Rewards.** Every player dealt into a finished game gets coins and XP once (`flockReward` in `shared/src/coins.ts`): 20 coins + 1,200 XP for the winning side, 5 coins + 300 XP for the losers (including a wolf caught earlier whose guess failed, even if the other wolf wins). Twelve Spies pays 40 coins + 3,000 XP for a win and 10 coins + 750 XP for a loss (winning always pays 4× losing). Abandoned games pay nothing; leaving early forfeits the reward. Games with fewer than 3 people dealt in (`FLOCK_REWARD_HUMANS`; bots don't count) are practice games and pay nothing (`FlockResult.rewarded`).
+
+### Entry screen and Play again (both games)
+
+**Entry.** The flock's first screen starts with a two-way toggle: **🌐 Own phones** (online, 3–12, a room code) or **📱 One phone** (pass it around, 3–20, no internet). Only the chosen mode's controls show: online = you (portrait + nickname; the portrait grid opens on tap) and **New game** / **Join with a code** (+ "show the board here"); one phone = the local setup itself (players, wolves, words, timer → Start). The choice is remembered per device (`sixtysix.flockMode.v1`, default online); a `/flock/CODE` link always opens online with the code filled in and joining first. Twelve Spies (online only) uses the same online block (`app/src/screens/shell/OnlineEntry.tsx`, styles `.be-*` in `empire.css`). Both fit a 360 px phone and scroll.
+
+**Play again** keeps the room and its code, so nobody joins again. On the result screen the leader gets:
+- **↻ Play again** (main button) → back to the **lobby**, everyone still connected stays seated; players who left or are offline lose their seat. The leader can change what the lobby offers (flock: bots and their level; spies: tribes, mode, timer, spy master volunteers; new players can join with the same code or QR) and then taps Start.
+- **▶ Deal a new word right away** / **Start the next game right away** (secondary, only when a start is possible) → the next game without the lobby (`{ now: true }` on `flock:again` / `spies:again`; the server falls back to the lobby if too few are left).
+
+Why both: the lobby is the safe default (it shows who is in and is where settings live, and in Twelve Spies people see the rotated spy masters and can swap before the key is dealt); a party that just wants another word skips it with one tap. Spy masters rotate on every Play again (least served first). Rewards are paid per finished game: `sixtysix.boardPaid.v1` is keyed `flock:CODE:GAME` / `spies:CODE:GAME` and the game number goes up with every deal, so the second game in a room pays again. The saved last room code (`sixtysix.flockRoom.v1` / `sixtysix.spiesRoom.v1`) and the `/flock/CODE` / `/spies/CODE` links keep working because the code never changes.
 
 Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are silent and they don't count for the decision or the vote while away. Players who join mid-game watch and are dealt into the next one. If the last wolf leaves, the flock wins; if fewer than 3 players are still in, the game is abandoned. The leader role passes to the next connected player.
 
@@ -64,11 +74,11 @@ Twelve Spies works the same way: `spies:create` / `spies:join` carry `locale` (`
 
 Word lists: `shared/src/flockWords.<lang>.json` (entries `{ en, word, hint, ref, wolfHint, aliases, clues }`) and `server/src/spies/words.<lang>.json` (English word → translation). Check them with `npx tsx scripts/check-words-i18n.mts de` (or `hu`).
 
-### One phone, passed around (`flockLocal` screen)
+### One phone, passed around (`flockLocal` screen, setup on the entry screen)
 
 The Splash-style way to play: no server, no internet and no word checking, because everyone is in one room and talks. Code: `app/src/flock/local/localStore.ts` (zustand; the setup is saved in `sixtysix.flockLocal.v1`) and `app/src/screens/flock/local/LocalFlockScreen.tsx`; it uses the same word lists as the online game (`shared/src/flockWords.json` or `flockWords.<lang>.json` for the app's language, loaded lazily). No rewards: one phone could otherwise "play" for 20 people.
 
-1. **Setup:** player names in passing order (3–20; add, remove, move), wolves 1–3 (suggested: 1 for 3–6 players, 2 for 7–12, 3 from 13; never half the group or more), categories, the wolf hint on/off, a talking timer (none / 3 / 5 min).
+1. **Setup** (on the flock's entry screen, "One phone" tab; going back from a round returns there): player names in passing order (3–20; add, remove, move), wolves 1–3 (suggested: 1 for 3–6 players, 2 for 7–12, 3 from 13; never half the group or more), categories, the wolf hint on/off, a talking timer (none / 3 / 5 min).
 2. **Pass & peek:** "Pass the phone to Anna" → the card shows only while it is held (sheep: the word; wolf: the category, the hint if on, and how many wolves there are) → "Done — pass to Ben".
 3. **Talk:** the phone names a random first speaker and shows the short rules (and the timer). Voting and the wolf's last guess happen out loud.
 4. **Reveal:** hold the button for a moment (so it can't be tapped by accident) → the wolves and the word with its hint and verse. "Who won this round?" (flock / wolves) adds to a tally kept until "Clear". **New word** deals again; last round's wolves sit out when there are enough others.
@@ -84,7 +94,7 @@ The Splash-style way to play: no server, no internet and no word checking, becau
 3. **The key.** Only the two spy masters see which word belongs to whom (tinted cards on their phones). The server never sends the key to agents or to the board until the game is over.
 4. **A turn.** The spy master types **one word and a number** (1–9). The server refuses clues with spaces or symbols, and any clue that is a visible grid word, contains one, or is part of one (plurals included: "Boats" is refused while "Boat" is on the grid).
 5. **Guessing.** The other members (agents) tap a card to **propose** it; teammates tap the same card to **agree**. A majority of the tribe's connected agents reveals it; after 3 s the proposer may also reveal it alone ("Reveal ✓"), so small or quiet tribes never get stuck. Proposing another card replaces the proposal. Up to **number + 1** cards per turn. A wilderness card or the other tribe's card ends the turn; after the first reveal the agents can also **end the turn** (proposed and agreed like a card). With a timer, the clue and the guessing each get the full time; when it runs out the turn passes.
-6. **End.** The first tribe with all its cards revealed wins (revealing the other tribe's last card hands them the win). Revealing **Goliath** loses at once. The full key is then shown everywhere; the leader's **Play again** returns to the lobby with new spy masters.
+6. **End.** The first tribe with all its cards revealed wins (revealing the other tribe's last card hands them the win). Revealing **Goliath** loses at once. The full key is then shown everywhere; the leader's **Play again** returns to the lobby with new spy masters (or starts the next game at once; see *Play again* above).
 7. **Co-op (2+ players).** Everyone plays Judah (9 cards) against the **Canaanites** (Ephraim's 8). After every Judah turn the Canaanites take one of their own cards. Find all of Judah's words before they take all theirs, and avoid Goliath.
 
 Robustness: a dropped player keeps their tribe and role (rejoin with the same device id, or "Back to game" after a reload; a spy master gets the key again). An offline spy master has 20 s to return before the least-served connected teammate gets the key; a spy master who leaves is replaced at once. If a tribe drops below 2 players (co-op: below 2 in all) the game ends as "called off". The leader role passes to the next connected player.

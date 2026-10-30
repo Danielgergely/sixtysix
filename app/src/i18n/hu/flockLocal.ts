@@ -1,11 +1,9 @@
 export default {
   topbar: {
-    back: 'Vissza',
     backToSetup: 'Vissza a beállításokhoz',
     endConfirm: 'Befejezed a kört? Koppints: ✓',
   },
   setup: {
-    tagline: 'Egy telefon, körbeadva az asztalnál.',
     sub: 'Mindenki megnézi a kártyáját, aztán megbeszélitek, és megkeresitek a farkast.',
     players: 'Játékosok ({n}/{max}) · sorrendben',
     moveUp: 'Feljebb',

@@ -13,6 +13,17 @@ export default {
     name: 'Twelve Spies',
     desc: 'Bible Codenames: your spy master gives one-word clues, your tribe finds its words. Beware of Goliath!',
   },
+  entry: {
+    you: 'You',
+    nickname: 'Your nickname',
+    pickPortrait: 'Pick your portrait',
+    needName: 'Pick a nickname first.',
+    codePlaceholder: 'CODE',
+    join: 'JOIN',
+    watch: '📺 Show the board on this screen instead',
+    rejoin: '↩ BACK TO GAME {code}',
+    or: '— or —',
+  },
   soon: 'Coming soon',
   ideas: {
     paul: { title: 'Paul’s Journeys', desc: 'Sail the Mediterranean and plant churches city by city — a route-building game for 2–5.' },

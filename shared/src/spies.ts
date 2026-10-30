@@ -161,8 +161,12 @@ export interface SpiesClientToServerEvents {
   'spies:pick': (payload: { pick: number }) => void
   /** The proposer, after SPIES_FORCE_MS: reveal without waiting for a majority. */
   'spies:confirm': () => void
-  /** Leader: over → lobby (spy masters rotate). */
-  'spies:again': () => void
+  /**
+   * Leader, phase 'over': play again in the same room. Default: back to the lobby
+   * (spy masters rotate, offline players are dropped). `now`: start the next game
+   * straight away (falls back to the lobby when the teams don't allow a start).
+   */
+  'spies:again': (payload?: { now?: boolean }) => void
 }
 
 export interface SpiesServerToClientEvents {

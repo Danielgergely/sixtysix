@@ -12,6 +12,17 @@ export default {
     name: 'Die zwölf Kundschafter',
     desc: 'Codenames mit der Bibel: Euer Anführer gibt Hinweise aus einem Wort, euer Stamm sucht seine Wörter. Vorsicht vor Goliat!',
   },
+  entry: {
+    you: 'Du',
+    nickname: 'Dein Spitzname',
+    pickPortrait: 'Wähle dein Porträt',
+    needName: 'Wähle zuerst einen Spitznamen.',
+    codePlaceholder: 'CODE',
+    join: 'BEITRETEN',
+    watch: '📺 Stattdessen das Großbild hier zeigen',
+    rejoin: '↩ ZURÜCK ZUM SPIEL {code}',
+    or: '– oder –',
+  },
   soon: 'Demnächst',
   ideas: {
     paul: { title: 'Die Reisen des Paulus', desc: 'Segle übers Mittelmeer und gründe Gemeinden, Stadt für Stadt – ein Routenspiel für 2–5.' },

@@ -12,6 +12,17 @@ export default {
     name: 'A tizenkét kém',
     desc: 'Bibliai Codenames: a kémfőnökötök egyszavas tippeket ad, a törzsetek megkeresi a szavait. Vigyázat, Góliát!',
   },
+  entry: {
+    you: 'Te',
+    nickname: 'Beceneved',
+    pickPortrait: 'Válaszd ki a portrédat',
+    needName: 'Előbb válassz becenevet.',
+    codePlaceholder: 'KÓD',
+    join: 'BELÉPÉS',
+    watch: '📺 Inkább a kivetítő nézet ezen a képernyőn',
+    rejoin: '↩ VISSZA A JÁTÉKBA: {code}',
+    or: '– vagy –',
+  },
   soon: 'Hamarosan',
   ideas: {
     paul: { title: 'Pál útjai', desc: 'Hajózd be a Földközi-tengert, és alapíts gyülekezeteket városról városra – útvonalépítő játék 2–5 főre.' },
