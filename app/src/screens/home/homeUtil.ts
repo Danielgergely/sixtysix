@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MATERIAL_INFO, MATERIALS, levelDef, type BuildingId, type Materials } from '@sixtysix/shared'
+import { levelDef, type BuildingId } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -19,12 +19,6 @@ export function countdown(ms: number): string {
   const sec = String(s % 60).padStart(2, '0')
   return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`
 }
-
-/** "10 wood, 5 bricks" */
-export const listMaterials = (m: Materials) =>
-  MATERIALS.filter((k) => m[k])
-    .map((k) => `${m[k]} ${MATERIAL_INFO[k].name.toLowerCase()}`)
-    .join(', ')
 
 /** Icon for a building at a level (level 0 shows the first level's icon, dimmed by the caller). */
 export const buildingIcon = (b: BuildingId, level: number) => levelDef(b, Math.max(1, level))?.icon ?? '🏗️'

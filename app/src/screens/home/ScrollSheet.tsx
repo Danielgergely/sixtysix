@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { BUILDINGS, SCROLL_PASS, SCROLL_QUESTIONS, modsOf } from '@sixtysix/shared'
+import { SCROLL_PASS, SCROLL_QUESTIONS, modsOf } from '@sixtysix/shared'
 import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
 import { fireConfetti, shake, spring } from '../../motion'
+import { t as tNow, tServer, useT } from '../../i18n'
+import { buildingName } from './plotText'
 
 const LETTERS = ['A', 'B', 'C', 'D']
-const minutes = (ms: number) => `${Math.max(1, Math.round(ms / 60_000))} min`
+const minutes = (ms: number) => tNow('home.time.min', { m: Math.max(1, Math.round(ms / 60_000)) })
 
 /** Workers' scroll: three questions; two right and the build is five minutes shorter. */
 export function ScrollSheet() {
   const { scroll, busy, error, answerScroll, closeScroll, startScroll, plot, selected, say } = usePlotStore()
+  const t = useT()
   const [answers, setAnswers] = useState<number[]>([])
   if (!scroll) return null
   const result = scroll.result
@@ -28,24 +31,31 @@ export function ScrollSheet() {
       if (!r) setAnswers([]) // failed (offline / expired): let them try again; the error shows below
       else if (r.passed && r.cutMs > 0) {
         fireConfetti({ y: 0.5, count: 80 })
-        if (r.building) say(`${BUILDINGS[r.building].name}: ${minutes(r.cutMs)} faster!`)
+        if (r.building) say(tNow('home.scroll.faster', { name: buildingName(r.building), time: minutes(r.cutMs) }))
       }
     }
   }
+
+  const score = result && { right: result.right, total: SCROLL_QUESTIONS }
 
   return (
     <>
       <motion.div className="hp-scrim top" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
       <motion.div className="hp-scroll" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1, transition: spring.bouncy }} exit={{ scale: 0.9, opacity: 0 }}>
-        <button className="hp-sheet-close" onClick={closeScroll} title="Close">
+        <button className="hp-sheet-close" onClick={closeScroll} title={t('home.close')}>
           ✕
         </button>
-        <h3>📜 Workers’ scroll</h3>
-        {error && <p className="hp-scroll-error">{error}</p>}
+        <h3>{t('home.scroll.title')}</h3>
+        {error && <p className="hp-scroll-error">{tServer(error)}</p>}
         {!result ? (
           <>
             <p className="hp-scroll-sub">
-              Question {answers.length + 1 > SCROLL_QUESTIONS ? SCROLL_QUESTIONS : answers.length + 1} of {SCROLL_QUESTIONS} · get {SCROLL_PASS} right for −{plot ? modsOf(plot).scrollMin : 5} min
+              {t('home.scroll.progress', {
+                i: Math.min(answers.length + 1, SCROLL_QUESTIONS),
+                total: SCROLL_QUESTIONS,
+                pass: SCROLL_PASS,
+                n: plot ? modsOf(plot).scrollMin : 5,
+              })}
             </p>
             <motion.div key={q.id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={spring.gentle}>
               <p className="hp-scroll-q">{q.text}</p>
@@ -61,12 +71,11 @@ export function ScrollSheet() {
         ) : (
           <motion.div className="hp-scroll-result" animate={result.passed ? { scale: [0.8, 1.05, 1] } : shake}>
             <strong className={result.passed ? 'won' : 'lost'}>
-              {result.right}/{SCROLL_QUESTIONS} right —{' '}
               {!result.passed
-                ? 'no time saved this round'
+                ? t('home.scroll.failed', { ...score })
                 : result.cutMs > 0
-                  ? `the builders hurry: −${minutes(result.cutMs)}!`
-                  : 'this build can’t go any faster (scrolls save up to half its time)'}
+                  ? t('home.scroll.hurried', { ...score, time: minutes(result.cutMs) })
+                  : t('home.scroll.capped', { ...score })}
             </strong>
             <ol className="hp-scroll-review">
               {scroll.questions.map((sq, k) => (
@@ -88,11 +97,11 @@ export function ScrollSheet() {
                     await startScroll()
                   }}
                 >
-                  Another scroll
+                  {t('home.scroll.another')}
                 </button>
               )}
               <button className="hp-btn" onClick={closeScroll}>
-                Done
+                {t('home.scroll.done')}
               </button>
             </div>
           </motion.div>

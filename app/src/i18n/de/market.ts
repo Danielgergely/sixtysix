@@ -1,0 +1,20 @@
+export default {
+  title: 'Markt',
+  hero: 'Der Markt am Schaftor',
+  heroSub: 'Kauf, was du brauchst. Übriges verkaufst du zum halben Preis.',
+  signUp: '🔒 Erstelle ein kostenloses Konto, um auf dem Markt zu handeln ›',
+  madeBy: {
+    wood: 'Werkstatt',
+    bricks: 'Ziegelofen',
+    stone: 'Nur auf dem Markt',
+    wool: 'Schafstall',
+    oil: 'Olivenhain',
+    cedar: 'Nur auf dem Markt · 1 Kgs 5:6',
+    gold: 'Nur auf dem Markt',
+  },
+  buy: 'Kaufen',
+  sell: 'Verkaufen +{n}',
+  bought: 'Gekauft: {amount}',
+  sold: 'Verkauft: {amount}',
+  note: 'Münzen gibt es nur für beantwortete Fragen. Mit echtem Geld kann man hier nichts kaufen.',
+}

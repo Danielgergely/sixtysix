@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { BUILDING_IDS, IDLE_DAYS, levelDef, type BuildingId } from '@sixtysix/shared'
+import { BUILDING_IDS, IDLE_DAYS, type BuildingId } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
+import { useT } from '../i18n'
 import { PlotScene } from '../world/PlotScene'
 import { Top } from './home/parts'
+import { houseName } from './home/plotText'
 
 /** Before their first visit to My Home a player has no plot yet: show a tent on bare ground. */
 const TENT_ONLY = Object.fromEntries(BUILDING_IDS.map((b) => [b, b === 'house' ? 1 : 0])) as Record<BuildingId, number>
@@ -16,6 +18,7 @@ export function VisitScreen() {
   const visitFrom = useGameStore((s) => s.visitFrom)
   const goTo = useGameStore((s) => s.goTo)
   const viewPlayer = useGameStore((s) => s.viewPlayer)
+  const t = useT()
   const [player, setPlayer] = useState<PlayerPage | null>(null)
   const [failed, setFailed] = useState(false)
 
@@ -34,25 +37,27 @@ export function VisitScreen() {
   return (
     <div className="screen tab-screen hp emp">
       <div className="tab-bg" />
-      <Top title={player ? `${player.name}’s home` : 'Visiting…'} onBack={() => goTo(visitFrom)} />
-      {failed && <p className="tab-note">Couldn’t find this plot.</p>}
+      <Top title={player ? t('city.visit.title', { name: player.name }) : t('city.visit.visiting')} onBack={() => goTo(visitFrom)} />
+      {failed && <p className="tab-note">{t('city.visit.notFound')}</p>}
       {player && (
         <>
-          <button className="vs-who" onClick={() => viewPlayer(player.username)} title="Their profile">
+          <button className="vs-who" onClick={() => viewPlayer(player.username)} title={t('city.visit.profileTitle')}>
             <PaintedPortrait id={player.avatar} className="vs-portrait" />
             <span>
               <strong>{player.name}</strong>
               <small>
-                {levelDef('house', levels.house)?.name ?? 'Tent'} · {player.lot ? `lot ${player.lot}` : 'outside the walls'} · Level {levelForXp(player.xp)}
-                {player.idleDays >= IDLE_DAYS.weeds ? ` · 🌿 away ${player.idleDays} days` : ''}
+                {t(player.idleDays >= IDLE_DAYS.weeds ? 'city.visit.subAway' : 'city.visit.sub', {
+                  house: houseName(levels.house),
+                  where: player.lot ? t('city.visit.lot', { n: player.lot }) : t('city.visit.outside'),
+                  level: levelForXp(player.xp),
+                  days: player.idleDays,
+                })}
               </small>
             </span>
-            <span className="vs-go">Profile ›</span>
+            <span className="vs-go">{t('city.visit.profile')}</span>
           </button>
           <PlotScene levels={levels} />
-          <p className="tab-note">
-            {player.levels ? 'Drag to look around. Only they can build here.' : 'They haven’t started building yet — a tent stands on their land.'}
-          </p>
+          <p className="tab-note">{player.levels ? t('city.visit.drag') : t('city.visit.tent')}</p>
         </>
       )}
     </div>
