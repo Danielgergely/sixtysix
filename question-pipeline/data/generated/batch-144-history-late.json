@@ -1,0 +1,974 @@
+[
+  {
+    "id": "q_b144_001",
+    "reference": "1 Chronicles 1:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which son of Cush began to be a mighty one in the earth?"
+    },
+    "answers": {
+      "en": [
+        "Peleg",
+        "Eber",
+        "Nimrod",
+        "Asshur"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_002",
+    "reference": "1 Chronicles 1:19",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which son of Eber was named so because in his days the earth was divided?"
+    },
+    "answers": {
+      "en": [
+        "Peleg",
+        "Joktan",
+        "Reu",
+        "Serug"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_003",
+    "reference": "1 Chronicles 1:34",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "According to 1 Chronicles, who were the two sons of Isaac?"
+    },
+    "answers": {
+      "en": [
+        "Ishmael and Isaac",
+        "Cain and Abel",
+        "Perez and Zerah",
+        "Esau and Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_004",
+    "reference": "1 Chronicles 2:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "1 Chronicles calls Achar \"the troubler of\" what?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Israel",
+        "the camp",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_005",
+    "reference": "1 Chronicles 4:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why did Jabez's mother give him his name?"
+    },
+    "answers": {
+      "en": [
+        "He was born in a storm",
+        "She bore him with sorrow",
+        "He was her firstborn",
+        "He was born at night"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_006",
+    "reference": "1 Chronicles 5:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Reuben's birthright was given to the sons of whom?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Levi",
+        "Benjamin",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_007",
+    "reference": "1 Chronicles 5:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Why were Reuben, Gad and half Manasseh helped against the Hagrites?"
+    },
+    "answers": {
+      "en": [
+        "They cried to God in the battle",
+        "They had more chariots",
+        "They attacked at night",
+        "Egypt came to help them"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_008",
+    "reference": "1 Chronicles 10:10",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "According to 1 Chronicles, in which god's house did the Philistines fasten Saul's head?"
+    },
+    "answers": {
+      "en": [
+        "Baal",
+        "Chemosh",
+        "Dagon",
+        "Molech"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_009",
+    "reference": "1 Chronicles 10:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "1 Chronicles says Saul died partly because he asked counsel of whom?"
+    },
+    "answers": {
+      "en": [
+        "The prophet Samuel",
+        "The priests of Nob",
+        "The king of Moab",
+        "One who had a familiar spirit"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_010",
+    "reference": "1 Chronicles 10:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After Saul died, to whom did Yahweh turn the kingdom?"
+    },
+    "answers": {
+      "en": [
+        "Jonathan",
+        "Abner",
+        "David the son of Jesse",
+        "Ish-bosheth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_011",
+    "reference": "1 Chronicles 11:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In which town did all the elders of Israel anoint David king?"
+    },
+    "answers": {
+      "en": [
+        "Bethlehem",
+        "Hebron",
+        "Jerusalem",
+        "Gibeah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_012",
+    "reference": "1 Chronicles 11:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was Jerusalem called when David went to take it?"
+    },
+    "answers": {
+      "en": [
+        "Jebus",
+        "Salem",
+        "Bethel",
+        "Luz"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_013",
+    "reference": "1 Chronicles 11:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "David promised that whoever first struck the Jebusites would be chief. Who went up first?"
+    },
+    "answers": {
+      "en": [
+        "Abishai",
+        "Benaiah",
+        "Joab",
+        "Asahel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_014",
+    "reference": "1 Chronicles 11:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Benaiah killed a lion in a pit in what kind of weather?"
+    },
+    "answers": {
+      "en": [
+        "In time of snow",
+        "In a thunderstorm",
+        "In great heat",
+        "In thick fog"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_015",
+    "reference": "1 Chronicles 11:23",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How tall was the Egyptian whom Benaiah killed?"
+    },
+    "answers": {
+      "en": [
+        "Six cubits",
+        "Seven cubits",
+        "Four cubits",
+        "Five cubits"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_016",
+    "reference": "1 Chronicles 12:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The Benjamite archers who came to David could shoot with which hand?"
+    },
+    "answers": {
+      "en": [
+        "Only the left",
+        "Both the right and the left",
+        "Only the right",
+        "Neither, they used slings only"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_017",
+    "reference": "1 Chronicles 12:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The Gadites who joined David had faces like the faces of what?"
+    },
+    "answers": {
+      "en": [
+        "Eagles",
+        "Lions",
+        "Bears",
+        "Wolves"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_018",
+    "reference": "1 Chronicles 12:18",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On whom did the Spirit come, so he said, \"We are yours, David\"?"
+    },
+    "answers": {
+      "en": [
+        "Abishai",
+        "Ahiezer",
+        "Asahel",
+        "Amasai"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_019",
+    "reference": "1 Chronicles 12:32",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Men of which tribe understood the times, to know what Israel ought to do?"
+    },
+    "answers": {
+      "en": [
+        "Issachar",
+        "Zebulun",
+        "Naphtali",
+        "Asher"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_020",
+    "reference": "1 Chronicles 12:39",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many days did the warriors stay with David at Hebron, eating and drinking?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Three",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_021",
+    "reference": "1 Chronicles 13:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On what did they first carry the ark from Abinadab's house?"
+    },
+    "answers": {
+      "en": [
+        "Poles on their shoulders",
+        "A golden chariot",
+        "Camels",
+        "A new cart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_022",
+    "reference": "1 Chronicles 13:9",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "1 Chronicles names the threshing floor where Uzza touched the ark. What was it?"
+    },
+    "answers": {
+      "en": [
+        "Araunah",
+        "Atad",
+        "Chidon",
+        "Gilgal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_023",
+    "reference": "1 Chronicles 13:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did David call the place where Yahweh broke out against Uzza?"
+    },
+    "answers": {
+      "en": [
+        "Ebenezer",
+        "Perez Uzza",
+        "Bochim",
+        "Mizpah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_024",
+    "reference": "1 Chronicles 13:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "For how long did the ark stay in the house of Obed-Edom?"
+    },
+    "answers": {
+      "en": [
+        "Three months",
+        "Three days",
+        "Seven years",
+        "One year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_025",
+    "reference": "1 Chronicles 14:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What sound in the mulberry trees was David's signal to attack the Philistines?"
+    },
+    "answers": {
+      "en": [
+        "A trumpet blast",
+        "A roaring wind",
+        "The sound of marching",
+        "Birds singing"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_026",
+    "reference": "1 Chronicles 15:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "David said no one should carry the ark of God except whom?"
+    },
+    "answers": {
+      "en": [
+        "The Levites",
+        "The elders",
+        "The mighty men",
+        "The king's sons"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_027",
+    "reference": "1 Chronicles 15:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did the Levites carry the ark the second time?"
+    },
+    "answers": {
+      "en": [
+        "On a new cart",
+        "On a camel",
+        "In a chariot",
+        "On their shoulders with its poles"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_028",
+    "reference": "1 Chronicles 15:22",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which chief of the Levites was over the song, because he was skillful?"
+    },
+    "answers": {
+      "en": [
+        "Uriel",
+        "Chenaniah",
+        "Asaiah",
+        "Shemaiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_029",
+    "reference": "1 Chronicles 15:29",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who looked out of a window and despised David as he danced before the ark?"
+    },
+    "answers": {
+      "en": [
+        "Bathsheba",
+        "Michal",
+        "Abigail",
+        "Ahinoam"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_030",
+    "reference": "1 Chronicles 16:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who was the chief musician, sounding the cymbals, before the ark?"
+    },
+    "answers": {
+      "en": [
+        "Heman",
+        "Jeduthun",
+        "Ethan",
+        "Asaph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_031",
+    "reference": "1 Chronicles 17:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "David said he lived in a house of cedar, but the ark was under what?"
+    },
+    "answers": {
+      "en": [
+        "Curtains",
+        "The open sky",
+        "A stone roof",
+        "A tree"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_032",
+    "reference": "1 Chronicles 20:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "According to 1 Chronicles, Elhanan killed Lahmi, the brother of whom?"
+    },
+    "answers": {
+      "en": [
+        "Ishbi-benob",
+        "Saph",
+        "Goliath",
+        "Og"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_033",
+    "reference": "1 Chronicles 20:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many fingers and toes did the giant at Gath have altogether?"
+    },
+    "answers": {
+      "en": [
+        "Twenty-two",
+        "Twenty-six",
+        "Twenty",
+        "Twenty-four"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_034",
+    "reference": "1 Chronicles 21:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "One of David's three choices was famine for how long?"
+    },
+    "answers": {
+      "en": [
+        "Ten years",
+        "Three months",
+        "Three years",
+        "Three days"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_035",
+    "reference": "1 Chronicles 21:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many men of Israel fell in the pestilence after David's census?"
+    },
+    "answers": {
+      "en": [
+        "7,000",
+        "70,000",
+        "100,000",
+        "17,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_036",
+    "reference": "1 Chronicles 21:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did David see the angel of Yahweh holding over Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "A drawn sword",
+        "A golden bowl",
+        "A measuring line",
+        "A trumpet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_037",
+    "reference": "1 Chronicles 21:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was Ornan doing when he saw the angel?"
+    },
+    "answers": {
+      "en": [
+        "Pruning vines",
+        "Shearing sheep",
+        "Threshing wheat",
+        "Drawing water"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_038",
+    "reference": "1 Chronicles 21:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Yahweh answer David on the altar at Ornan's threshing floor?"
+    },
+    "answers": {
+      "en": [
+        "By fire from the sky",
+        "By a voice in a dream",
+        "By an earthquake",
+        "By a cloud of smoke"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_039",
+    "reference": "1 Chronicles 21:29",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Where was the tabernacle Moses made at the time of David's census?"
+    },
+    "answers": {
+      "en": [
+        "In Shiloh",
+        "In Bethel",
+        "In the city of David",
+        "At the high place at Gibeon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_040",
+    "reference": "1 Chronicles 22:8",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Why was David not allowed to build the house for Yahweh's name?"
+    },
+    "answers": {
+      "en": [
+        "He was too old",
+        "He had shed much blood",
+        "He had no money",
+        "He lived in Hebron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_041",
+    "reference": "1 Chronicles 22:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "God said Solomon would be a man of what?"
+    },
+    "answers": {
+      "en": [
+        "War",
+        "Rest",
+        "Sorrow",
+        "Riches"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_042",
+    "reference": "1 Chronicles 22:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many talents of gold did David prepare in his affliction for Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "10,000",
+        "3,000",
+        "1,000,000",
+        "100,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_043",
+    "reference": "1 Chronicles 23:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Levites were counted from what age upward when David numbered them?"
+    },
+    "answers": {
+      "en": [
+        "Thirty",
+        "Twenty",
+        "Twenty-five",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_044",
+    "reference": "1 Chronicles 24:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "For which priest did the first lot come out when the priests were divided?"
+    },
+    "answers": {
+      "en": [
+        "Jedaiah",
+        "Abijah",
+        "Jehoiarib",
+        "Hakkoz"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_045",
+    "reference": "1 Chronicles 25:5",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many sons did God give to Heman the king's seer?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Twenty-four",
+        "Fourteen"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_046",
+    "reference": "1 Chronicles 25:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many skillful singers were there in all, with their brothers?"
+    },
+    "answers": {
+      "en": [
+        "120",
+        "4,000",
+        "288",
+        "24"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_047",
+    "reference": "1 Chronicles 27:2",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many men were in each monthly division of David's army?"
+    },
+    "answers": {
+      "en": [
+        "12,000",
+        "24,000",
+        "1,000",
+        "40,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_048",
+    "reference": "1 Chronicles 27:33",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who is called \"the king's friend\" in David's court?"
+    },
+    "answers": {
+      "en": [
+        "Hushai the Archite",
+        "Ahithophel",
+        "Joab",
+        "Jonathan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_049",
+    "reference": "1 Chronicles 28:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "God told David he couldn't build the house because he was a man of what?"
+    },
+    "answers": {
+      "en": [
+        "Prayer",
+        "Music",
+        "War",
+        "Peace"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b144_050",
+    "reference": "1 Chronicles 28:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did David give Solomon for building the temple?"
+    },
+    "answers": {
+      "en": [
+        "The pattern",
+        "His crown",
+        "His sword",
+        "His harp"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b144_051",
+    "reference": "1 Chronicles 29:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many talents of gold of Ophir did David give from his own treasure?"
+    },
+    "answers": {
+      "en": [
+        "7,000",
+        "5,000",
+        "10,000",
+        "3,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b144_052",
+    "reference": "1 Chronicles 29:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At the great feast before Yahweh, Solomon was made king for which time?"
+    },
+    "answers": {
+      "en": [
+        "The first time",
+        "The second time",
+        "The third time",
+        "The seventh time"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_053",
+    "reference": "1 Chronicles 29:27",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "For how many years did David reign in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Thirty-three",
+        "Forty",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b144_054",
+    "reference": "1 Chronicles 29:28",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did David die, according to 1 Chronicles?"
+    },
+    "answers": {
+      "en": [
+        "In battle at Gilboa",
+        "By a fall from his roof",
+        "In the land of Moab",
+        "In a good old age, full of days"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

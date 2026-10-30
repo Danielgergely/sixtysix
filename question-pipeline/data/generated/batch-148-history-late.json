@@ -1,0 +1,1064 @@
+[
+  {
+    "id": "q_b148_001",
+    "reference": "Nehemiah 1:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In which palace was Nehemiah when he heard news of Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Nineveh",
+        "Shushan",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_002",
+    "reference": "Nehemiah 1:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which of Nehemiah's brothers came with men from Judah?"
+    },
+    "answers": {
+      "en": [
+        "Hanani",
+        "Hananiah",
+        "Hacaliah",
+        "Hanun"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_003",
+    "reference": "Nehemiah 1:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Nehemiah hear about Jerusalem's wall?"
+    },
+    "answers": {
+      "en": [
+        "It was finished",
+        "It was made of gold",
+        "It was too high",
+        "It was broken down"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_004",
+    "reference": "Nehemiah 1:4",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Nehemiah do when he heard about Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Went to war",
+        "Sat down, wept, fasted and prayed",
+        "Wrote to the governors",
+        "Ran to Jerusalem at once"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_005",
+    "reference": "Nehemiah 1:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah",
+        "Hacaliah",
+        "Hanani",
+        "Jozadak"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_006",
+    "reference": "Nehemiah 2:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the king notice about Nehemiah while he served the wine?"
+    },
+    "answers": {
+      "en": [
+        "He had spilled wine",
+        "He was very tired",
+        "He was smiling",
+        "His face was sad"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_007",
+    "reference": "Nehemiah 2:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When the king asked what he wanted, what did Nehemiah do first?"
+    },
+    "answers": {
+      "en": [
+        "Prayed to the God of heaven",
+        "Bowed to the queen",
+        "Asked for gold",
+        "Left the room"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_008",
+    "reference": "Nehemiah 2:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who was sitting by the king when Nehemiah made his request?"
+    },
+    "answers": {
+      "en": [
+        "Haman",
+        "Ezra",
+        "The queen",
+        "Mordecai"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_009",
+    "reference": "Nehemiah 2:8",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Asaph, to whom Nehemiah wanted a letter, kept what for the king?"
+    },
+    "answers": {
+      "en": [
+        "The king's treasury",
+        "The king's horses",
+        "The king's wine",
+        "The king's forest"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_010",
+    "reference": "Nehemiah 2:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Besides letters, who did the king send with Nehemiah?"
+    },
+    "answers": {
+      "en": [
+        "Twelve priests",
+        "His own son",
+        "Captains of the army and horsemen",
+        "Builders from Tyre"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_011",
+    "reference": "Nehemiah 2:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many days was Nehemiah in Jerusalem before he went out at night?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Forty",
+        "One"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_012",
+    "reference": "Nehemiah 2:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When did Nehemiah first go out to look at Jerusalem's broken walls?"
+    },
+    "answers": {
+      "en": [
+        "At night",
+        "At dawn",
+        "At noon",
+        "On the Sabbath"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_013",
+    "reference": "Nehemiah 2:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "By which gate did Nehemiah go out at night to view the walls?"
+    },
+    "answers": {
+      "en": [
+        "The sheep gate",
+        "The fish gate",
+        "The valley gate",
+        "The water gate"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_014",
+    "reference": "Nehemiah 2:18",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "When Nehemiah told of God's good hand, what did the people say?"
+    },
+    "answers": {
+      "en": [
+        "Let's rise up and build",
+        "Let's go back to Persia",
+        "Let's wait for the king",
+        "Let's ask the prophets"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_015",
+    "reference": "Nehemiah 2:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah answered the mockers: \"The God of heaven will\" what?"
+    },
+    "answers": {
+      "en": [
+        "Punish you",
+        "Build for us",
+        "Send us home",
+        "Prosper us"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_016",
+    "reference": "Nehemiah 3:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which gate did Eliashib the high priest and the priests build?"
+    },
+    "answers": {
+      "en": [
+        "The fish gate",
+        "The sheep gate",
+        "The dung gate",
+        "The horse gate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_017",
+    "reference": "Nehemiah 3:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which gate did the sons of Hassenaah build?"
+    },
+    "answers": {
+      "en": [
+        "The sheep gate",
+        "The fish gate",
+        "The old gate",
+        "The valley gate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_018",
+    "reference": "Nehemiah 3:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many cubits of the wall did Hanun and Zanoah's people repair, to the dung gate?"
+    },
+    "answers": {
+      "en": [
+        "One hundred",
+        "Five hundred",
+        "Fifty",
+        "One thousand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_019",
+    "reference": "Nehemiah 3:28",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Above which gate did the priests make repairs, each across from his own house?"
+    },
+    "answers": {
+      "en": [
+        "The horse gate",
+        "The fish gate",
+        "The sheep gate",
+        "The valley gate"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_020",
+    "reference": "Nehemiah 3:32",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who repaired between the ascent of the corner and the sheep gate?"
+    },
+    "answers": {
+      "en": [
+        "The singers",
+        "The Nethinim",
+        "The goldsmiths and the merchants",
+        "The men of Jericho"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_021",
+    "reference": "Nehemiah 4:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was angry and mocked the Jews when he heard they were building the wall?"
+    },
+    "answers": {
+      "en": [
+        "Tobiah",
+        "Geshem",
+        "Artaxerxes",
+        "Sanballat"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_022",
+    "reference": "Nehemiah 4:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Tobiah mocked that the wall would break if which animal climbed on it?"
+    },
+    "answers": {
+      "en": [
+        "A goat",
+        "A cat",
+        "A fox",
+        "A mouse"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_023",
+    "reference": "Nehemiah 4:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Why did the wall go up to half its height so quickly?"
+    },
+    "answers": {
+      "en": [
+        "The king sent slaves",
+        "The people had a mind to work",
+        "The enemies helped",
+        "The stones were already cut"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_024",
+    "reference": "Nehemiah 4:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Besides praying, what did the builders do against their enemies' plot?"
+    },
+    "answers": {
+      "en": [
+        "Set a watch day and night",
+        "Ran away",
+        "Paid them silver",
+        "Stopped building"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_025",
+    "reference": "Nehemiah 4:17",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "The builders worked with one hand. What did they hold in the other?"
+    },
+    "answers": {
+      "en": [
+        "A torch",
+        "A trowel",
+        "A weapon",
+        "A scroll"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_026",
+    "reference": "Nehemiah 4:18",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who stood beside Nehemiah to warn the builders?"
+    },
+    "answers": {
+      "en": [
+        "The man who sounded the trumpet",
+        "The high priest",
+        "The king's captain",
+        "The watchman of the gate"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_027",
+    "reference": "Nehemiah 4:20",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah told the people to rally wherever they heard what?"
+    },
+    "answers": {
+      "en": [
+        "The ringing of a bell",
+        "A shout of alarm",
+        "The beating of a drum",
+        "The sound of the trumpet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_028",
+    "reference": "Nehemiah 4:23",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah and his men did not take off what while guarding the wall?"
+    },
+    "answers": {
+      "en": [
+        "Their sandals",
+        "Their clothes",
+        "Their helmets",
+        "Their rings"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_029",
+    "reference": "Nehemiah 5:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why were some people mortgaging their fields and vineyards?"
+    },
+    "answers": {
+      "en": [
+        "To build the wall",
+        "To get grain in the famine",
+        "To pay the priests",
+        "To buy horses"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_030",
+    "reference": "Nehemiah 5:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah shook out his lap: so may God shake out anyone who does not keep what?"
+    },
+    "answers": {
+      "en": [
+        "The Sabbath",
+        "The king's decree",
+        "The feast",
+        "This promise"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_031",
+    "reference": "Nehemiah 5:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For how many years was Nehemiah governor without eating the governor's food?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Twenty",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_032",
+    "reference": "Nehemiah 5:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many Jews and rulers ate at Nehemiah's table, besides visitors?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "12",
+        "150",
+        "300"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_033",
+    "reference": "Nehemiah 6:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which plain did Sanballat and Geshem want to meet Nehemiah to harm him?"
+    },
+    "answers": {
+      "en": [
+        "Sharon",
+        "Jezreel",
+        "Moab",
+        "Ono"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_034",
+    "reference": "Nehemiah 6:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Nehemiah said, \"I am doing a great work, so that I can't\" what?"
+    },
+    "answers": {
+      "en": [
+        "Sleep",
+        "Eat",
+        "Come down",
+        "Rest"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_035",
+    "reference": "Nehemiah 6:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Sanballat send with his servant the fifth time?"
+    },
+    "answers": {
+      "en": [
+        "A bag of gold",
+        "An open letter",
+        "A sword",
+        "A sealed scroll"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_036",
+    "reference": "Nehemiah 6:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who urged Nehemiah to hide in the temple and shut the doors?"
+    },
+    "answers": {
+      "en": [
+        "Shemaiah the son of Delaiah",
+        "Noadiah",
+        "Hanani",
+        "Eliashib"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_037",
+    "reference": "Nehemiah 6:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which prophetess also tried to make Nehemiah afraid?"
+    },
+    "answers": {
+      "en": [
+        "Huldah",
+        "Deborah",
+        "Noadiah",
+        "Anna"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_038",
+    "reference": "Nehemiah 6:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which month was the wall finished, on the twenty-fifth day?"
+    },
+    "answers": {
+      "en": [
+        "Elul",
+        "Nisan",
+        "Adar",
+        "Chislev"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_039",
+    "reference": "Nehemiah 7:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Hananiah was put in charge of Jerusalem because he feared God and was what?"
+    },
+    "answers": {
+      "en": [
+        "A rich man",
+        "A strong soldier",
+        "A priest's son",
+        "A faithful man"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_040",
+    "reference": "Nehemiah 7:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "When could Jerusalem's gates be opened, according to Nehemiah?"
+    },
+    "answers": {
+      "en": [
+        "At first light",
+        "When the sun is hot",
+        "At midnight",
+        "Only on feast days"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_041",
+    "reference": "Nehemiah 8:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In front of which gate did all the people gather to hear the law?"
+    },
+    "answers": {
+      "en": [
+        "The sheep gate",
+        "The water gate",
+        "The fish gate",
+        "The dung gate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_042",
+    "reference": "Nehemiah 8:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "From when until when did Ezra read the law to the people?"
+    },
+    "answers": {
+      "en": [
+        "From noon until evening",
+        "All night long",
+        "From dawn until sunset",
+        "From early morning until midday"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_043",
+    "reference": "Nehemiah 8:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the people answer when Ezra blessed Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Amen, Amen",
+        "Hallelujah",
+        "Hosanna",
+        "Long live the king"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_044",
+    "reference": "Nehemiah 8:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "\"Don't be grieved; for the joy of Yahweh is your\" what?"
+    },
+    "answers": {
+      "en": [
+        "Song",
+        "Shield",
+        "Strength",
+        "Bread"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_045",
+    "reference": "Nehemiah 8:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Besides olive and wild olive, which branches were used to make booths?"
+    },
+    "answers": {
+      "en": [
+        "Cedar and fir",
+        "Oak and willow",
+        "Vine and fig",
+        "Myrtle, palm and thick trees"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_046",
+    "reference": "Nehemiah 8:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did some people build their booths?"
+    },
+    "answers": {
+      "en": [
+        "Inside the temple",
+        "On the city wall",
+        "On the roofs of their houses",
+        "In the desert"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_047",
+    "reference": "Nehemiah 8:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Booths had not been kept like this since the days of whom?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Jeshua the son of Nun",
+        "Solomon",
+        "Samuel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_048",
+    "reference": "Nehemiah 9:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "On which day of the month did the Israelites assemble with fasting and sackcloth?"
+    },
+    "answers": {
+      "en": [
+        "The twenty-fourth",
+        "The first",
+        "The tenth",
+        "The fifteenth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_049",
+    "reference": "Nehemiah 9:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "The Levites' prayer says in the wilderness Israel's clothes didn't grow what?"
+    },
+    "answers": {
+      "en": [
+        "Dirty",
+        "Too small",
+        "Old",
+        "Torn"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_050",
+    "reference": "Nehemiah 11:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The people cast lots to bring how many out of ten to live in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Five",
+        "Nine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_051",
+    "reference": "Nehemiah 12:31",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many great companies gave thanks on the wall at its dedication?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Twelve",
+        "Seven",
+        "Two"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_052",
+    "reference": "Nehemiah 12:43",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "At the dedication of the wall, how far away was the joy of Jerusalem heard?"
+    },
+    "answers": {
+      "en": [
+        "Only in the temple",
+        "Even afar off",
+        "Only in the city",
+        "Only on the wall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_053",
+    "reference": "Nehemiah 13:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom did the Ammonites and Moabites hire to curse Israel?"
+    },
+    "answers": {
+      "en": [
+        "Balak",
+        "Balaam",
+        "Sihon",
+        "Og"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b148_054",
+    "reference": "Nehemiah 13:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Nehemiah throw out of the room in God's house?"
+    },
+    "answers": {
+      "en": [
+        "The money changers",
+        "The idols of Baal",
+        "The broken altar",
+        "Tobiah's household stuff"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_055",
+    "reference": "Nehemiah 13:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why had the Levites and singers gone back to their fields?"
+    },
+    "answers": {
+      "en": [
+        "Their portions had not been given",
+        "The temple was closed",
+        "Their houses had burned",
+        "The king had sent them away"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b148_056",
+    "reference": "Nehemiah 13:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Men from which city sold fish in Jerusalem on the Sabbath?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Sidon",
+        "Tyre",
+        "Gaza"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_057",
+    "reference": "Nehemiah 13:19",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Nehemiah order done to the gates before the Sabbath began?"
+    },
+    "answers": {
+      "en": [
+        "Paint them",
+        "Guard them with soldiers only",
+        "Open them wide",
+        "Shut them"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b148_058",
+    "reference": "Nehemiah 13:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Half of some children spoke the speech of which city instead of the Jews' language?"
+    },
+    "answers": {
+      "en": [
+        "Tyre",
+        "Damascus",
+        "Ashdod",
+        "Gaza"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b148_059",
+    "reference": "Nehemiah 13:28",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "A grandson of Eliashib the high priest was son-in-law to whom?"
+    },
+    "answers": {
+      "en": [
+        "Tobiah the Ammonite",
+        "Sanballat the Horonite",
+        "Geshem the Arabian",
+        "Shecaniah"
+      ]
+    },
+    "correctIndex": 1
+  }
+]

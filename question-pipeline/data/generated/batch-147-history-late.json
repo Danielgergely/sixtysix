@@ -1,0 +1,812 @@
+[
+  {
+    "id": "q_b147_001",
+    "reference": "Ezra 1:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Cyrus's decree fulfilled Yahweh's word spoken by which prophet?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Ezekiel",
+        "Jeremiah",
+        "Daniel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_002",
+    "reference": "Ezra 1:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Cyrus bring out that Nebuchadnezzar had taken from Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The vessels of Yahweh's house",
+        "The ark of the covenant",
+        "David's crown",
+        "The tablets of the law"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_003",
+    "reference": "Ezra 1:8",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To whom, \"the prince of Judah,\" did Cyrus count out the temple vessels?"
+    },
+    "answers": {
+      "en": [
+        "Ezra",
+        "Nehemiah",
+        "Jeshua",
+        "Sheshbazzar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_004",
+    "reference": "Ezra 1:8",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which treasurer brought out the temple vessels for Cyrus?"
+    },
+    "answers": {
+      "en": [
+        "Tattenai",
+        "Mithredath",
+        "Rehum",
+        "Shimshai"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_005",
+    "reference": "Ezra 1:9",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many platters of gold were among the temple vessels Cyrus gave back?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Thirty",
+        "Twelve",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_006",
+    "reference": "Ezra 2:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who is named first among those who came back from captivity in Ezra 2?"
+    },
+    "answers": {
+      "en": [
+        "Ezra",
+        "Nehemiah",
+        "Mordecai",
+        "Zerubbabel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_007",
+    "reference": "Ezra 2:63",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The governor said priests without a record must wait for a priest with what?"
+    },
+    "answers": {
+      "en": [
+        "Urim and Thummim",
+        "The ark",
+        "A golden censer",
+        "A scroll of Moses"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_008",
+    "reference": "Ezra 2:65",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many singing men and singing women came back with the returned exiles?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "120",
+        "200",
+        "1,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_009",
+    "reference": "Ezra 2:66",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many horses did the returning exiles bring?"
+    },
+    "answers": {
+      "en": [
+        "245",
+        "435",
+        "6,720",
+        "736"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_010",
+    "reference": "Ezra 2:69",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many priests' garments did the heads of households give for God's house?"
+    },
+    "answers": {
+      "en": [
+        "Seventy",
+        "Twelve",
+        "One hundred",
+        "One thousand"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_011",
+    "reference": "Ezra 3:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which month did the people gather as one man to Jerusalem to build the altar?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The seventh month",
+        "The fifth month",
+        "The tenth month"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_012",
+    "reference": "Ezra 3:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which priest, son of Jozadak, built the altar with Zerubbabel?"
+    },
+    "answers": {
+      "en": [
+        "Jeshua",
+        "Hilkiah",
+        "Eliashib",
+        "Zadok"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_013",
+    "reference": "Ezra 3:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which feast did the returned exiles keep after they set up the altar?"
+    },
+    "answers": {
+      "en": [
+        "Purim",
+        "The feast of weeks",
+        "The feast of tents",
+        "Passover"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_014",
+    "reference": "Ezra 3:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which port were the cedar trees from Lebanon brought for the second temple?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Tyre",
+        "Ezion Geber",
+        "Sidon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_015",
+    "reference": "Ezra 3:11",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the people do when the foundation of Yahweh's temple was laid?"
+    },
+    "answers": {
+      "en": [
+        "Fled in fear",
+        "Sat in silence",
+        "Went home to sleep",
+        "Shouted with a great shout"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_016",
+    "reference": "Ezra 3:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Why did many old priests and Levites weep loudly at the new foundation?"
+    },
+    "answers": {
+      "en": [
+        "They were sick",
+        "They had seen the first house",
+        "They were not allowed in",
+        "Their families were lost"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_017",
+    "reference": "Ezra 3:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What could the people not tell apart when the foundation was laid?"
+    },
+    "answers": {
+      "en": [
+        "The priests and the Levites",
+        "The shout of joy and the weeping",
+        "Old men and young men",
+        "Trumpets and cymbals"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_018",
+    "reference": "Ezra 4:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Zerubbabel tell the adversaries who offered to help build?"
+    },
+    "answers": {
+      "en": [
+        "Come and build with us",
+        "Bring us your gold",
+        "Wait until next year",
+        "You have nothing to do with us"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_019",
+    "reference": "Ezra 4:8",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Rehum the chancellor wrote against Jerusalem with which scribe?"
+    },
+    "answers": {
+      "en": [
+        "Shimshai",
+        "Tattenai",
+        "Mithredath",
+        "Bishlam"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_020",
+    "reference": "Ezra 4:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The enemies' letter called Jerusalem what kind of city?"
+    },
+    "answers": {
+      "en": [
+        "The city of peace",
+        "The holy city",
+        "The rebellious and the bad city",
+        "The city of David"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_021",
+    "reference": "Ezra 4:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Until which year of King Darius did work on God's house stop?"
+    },
+    "answers": {
+      "en": [
+        "The first year",
+        "The sixth year",
+        "The tenth year",
+        "The second year"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_022",
+    "reference": "Ezra 5:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Zechariah the prophet is called the son of whom in Ezra?"
+    },
+    "answers": {
+      "en": [
+        "Amoz",
+        "Hilkiah",
+        "Iddo",
+        "Jozadak"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_023",
+    "reference": "Ezra 5:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which governor beyond the River asked who had given a decree to build the house?"
+    },
+    "answers": {
+      "en": [
+        "Rehum",
+        "Tattenai",
+        "Sanballat",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_024",
+    "reference": "Ezra 6:2",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Where was the scroll with Cyrus's decree found?"
+    },
+    "answers": {
+      "en": [
+        "At Achmetha in Media",
+        "In Babylon's temple",
+        "In Shushan's palace",
+        "In Jerusalem's ruins"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_025",
+    "reference": "Ezra 6:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "The decree said each course of new timber was laid on how many courses of great stones?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Three",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_026",
+    "reference": "Ezra 6:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "According to Darius's decree, what would be pulled from the house of anyone who altered it?"
+    },
+    "answers": {
+      "en": [
+        "A beam",
+        "A door",
+        "A stone",
+        "A window"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_027",
+    "reference": "Ezra 6:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Through the prophesying of Haggai and Zechariah, what did the elders of the Jews do?"
+    },
+    "answers": {
+      "en": [
+        "Fled to Egypt",
+        "Went back to Babylon",
+        "Stopped the work",
+        "Built and prospered"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_028",
+    "reference": "Ezra 6:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which year of Darius was the rebuilt house of God finished?"
+    },
+    "answers": {
+      "en": [
+        "The second year",
+        "The sixth year",
+        "The tenth year",
+        "The twentieth year"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_029",
+    "reference": "Ezra 6:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many male goats were offered as a sin offering for all Israel at the dedication?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "One hundred",
+        "Two"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_030",
+    "reference": "Ezra 7:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In the reign of which Persian king did Ezra go up from Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Cyrus",
+        "Darius",
+        "Xerxes",
+        "Artaxerxes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_031",
+    "reference": "Ezra 7:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Ezra's family line goes back to which chief priest?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Eli",
+        "Zadok",
+        "Melchizedek"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_032",
+    "reference": "Ezra 7:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How long did Ezra's journey from Babylon to Jerusalem take?"
+    },
+    "answers": {
+      "en": [
+        "Forty days",
+        "Seven days",
+        "From the first to the fifth month",
+        "A full year"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_033",
+    "reference": "Ezra 7:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Ezra set his heart to seek Yahweh's law, to do it, and to do what?"
+    },
+    "answers": {
+      "en": [
+        "Hide it away",
+        "Sell copies of it",
+        "Read it to the king",
+        "Teach it in Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_034",
+    "reference": "Ezra 7:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What title did Artaxerxes give himself in his letter to Ezra?"
+    },
+    "answers": {
+      "en": [
+        "Lord of lords",
+        "Light of the world",
+        "King of kings",
+        "Son of the gods"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_035",
+    "reference": "Ezra 7:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Ezra was sent by the king and how many counselors?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Three",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_036",
+    "reference": "Ezra 8:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At the river Ahava, which group did Ezra find missing from the people?"
+    },
+    "answers": {
+      "en": [
+        "The sons of Levi",
+        "The singers",
+        "The elders",
+        "The Nethinim"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_037",
+    "reference": "Ezra 8:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Ezra sent to Iddo, the chief at which place, for ministers for God's house?"
+    },
+    "answers": {
+      "en": [
+        "Ahava",
+        "Achmetha",
+        "Casiphia",
+        "Tel Melah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_038",
+    "reference": "Ezra 8:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Why did Ezra not ask the king for soldiers to guard the journey?"
+    },
+    "answers": {
+      "en": [
+        "He was ashamed to ask",
+        "The king refused",
+        "The road was safe",
+        "They had their own army"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_039",
+    "reference": "Ezra 8:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many chiefs of the priests did Ezra set apart to carry the offerings?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Seventy",
+        "Three",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_040",
+    "reference": "Ezra 8:32",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many days did Ezra's group rest when they reached Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "One",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_041",
+    "reference": "Ezra 9:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Ezra do when he heard that the people had married into the peoples of the lands?"
+    },
+    "answers": {
+      "en": [
+        "Burned the houses",
+        "Tore his garment and pulled his hair",
+        "Called for an army",
+        "Sent a letter to the king"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b147_042",
+    "reference": "Ezra 9:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At what time did Ezra rise from his mourning and kneel to pray?"
+    },
+    "answers": {
+      "en": [
+        "At midnight",
+        "At sunrise",
+        "At noon",
+        "At the evening offering"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b147_043",
+    "reference": "Ezra 10:2",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who said to Ezra, \"Yet now there is hope for Israel\"?"
+    },
+    "answers": {
+      "en": [
+        "Shecaniah",
+        "Jehiel",
+        "Meshullam",
+        "Jonathan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b147_044",
+    "reference": "Ezra 10:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which month did the men of Judah and Benjamin gather in Jerusalem in the rain?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The seventh month",
+        "The ninth month",
+        "The twelfth month"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b147_045",
+    "reference": "Ezra 10:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why did the people say they could not stand outside for the hearing?"
+    },
+    "answers": {
+      "en": [
+        "It was too hot",
+        "The enemy was near",
+        "It was the Sabbath",
+        "It was a time of much rain"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

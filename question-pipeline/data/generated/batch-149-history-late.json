@@ -1,0 +1,740 @@
+[
+  {
+    "id": "q_b149_001",
+    "reference": "Esther 1:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In which palace did King Ahasuerus sit on his throne?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Nineveh",
+        "Shushan",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_002",
+    "reference": "Esther 1:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "For how many days was the king's feast for all the people in Shushan?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Forty",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_003",
+    "reference": "Esther 1:9",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who made a feast for the women while the king feasted?"
+    },
+    "answers": {
+      "en": [
+        "Esther",
+        "Zeresh",
+        "The queen of Sheba",
+        "Queen Vashti"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_004",
+    "reference": "Esther 1:12",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Queen Vashti do when the king called for her?"
+    },
+    "answers": {
+      "en": [
+        "Came at once",
+        "Refused to come",
+        "Sent a gift",
+        "Ran away"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_005",
+    "reference": "Esther 1:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prince advised the king about what to do with Vashti?"
+    },
+    "answers": {
+      "en": [
+        "Haman",
+        "Memucan",
+        "Hegai",
+        "Harbonah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_006",
+    "reference": "Esther 1:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The decree against Vashti was written among the laws of which peoples, so it couldn't be altered?"
+    },
+    "answers": {
+      "en": [
+        "The Babylonians",
+        "The Egyptians",
+        "The Greeks",
+        "The Persians and the Medes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_007",
+    "reference": "Esther 2:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Into whose custody were the young women gathered at Susa?"
+    },
+    "answers": {
+      "en": [
+        "Hegai",
+        "Hathach",
+        "Shaashgaz",
+        "Harbonah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_008",
+    "reference": "Esther 2:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Mordecai, the son of Jair, belonged to which tribe?"
+    },
+    "answers": {
+      "en": [
+        "A Levite",
+        "An Ephraimite",
+        "A Benjamite",
+        "A Judahite"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_009",
+    "reference": "Esther 2:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How was Esther related to Mordecai?"
+    },
+    "answers": {
+      "en": [
+        "She was his sister",
+        "She was his niece",
+        "She was his wife",
+        "She was his uncle's daughter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_010",
+    "reference": "Esther 2:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What had Mordecai told Esther not to make known?"
+    },
+    "answers": {
+      "en": [
+        "Her age",
+        "Her real name",
+        "Her people and her relatives",
+        "Her wealth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_011",
+    "reference": "Esther 2:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How long was each young woman's purification before she went to the king?"
+    },
+    "answers": {
+      "en": [
+        "Seven days",
+        "Twelve months",
+        "Three months",
+        "One year and a half"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_012",
+    "reference": "Esther 2:16",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "In which month was Esther taken to King Ahasuerus?"
+    },
+    "answers": {
+      "en": [
+        "Tebeth",
+        "Nisan",
+        "Adar",
+        "Sivan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_013",
+    "reference": "Esther 2:23",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where was Mordecai's discovery of the plot written down?"
+    },
+    "answers": {
+      "en": [
+        "On the palace gate",
+        "On a stone tablet",
+        "In the book of the chronicles",
+        "In the queen's letter"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_014",
+    "reference": "Esther 3:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Haman was the son of Hammedatha, and called what?"
+    },
+    "answers": {
+      "en": [
+        "The Agagite",
+        "The Amalekite king",
+        "The Persian",
+        "The Edomite"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_015",
+    "reference": "Esther 3:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Why was Haman angry with Mordecai?"
+    },
+    "answers": {
+      "en": [
+        "He stole from him",
+        "He insulted the king",
+        "He laughed at him",
+        "He wouldn't bow down to him"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_016",
+    "reference": "Esther 3:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What was cast before Haman to choose the day?"
+    },
+    "answers": {
+      "en": [
+        "Dice of bone",
+        "Pur, that is, the lot",
+        "Arrows",
+        "Stones from the river"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_017",
+    "reference": "Esther 3:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many talents of silver did Haman offer to pay into the king's treasuries?"
+    },
+    "answers": {
+      "en": [
+        "One thousand",
+        "Ten thousand",
+        "One hundred",
+        "Fifty thousand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_018",
+    "reference": "Esther 3:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the king give Haman from his hand?"
+    },
+    "answers": {
+      "en": [
+        "His scepter",
+        "His crown",
+        "His sword",
+        "His ring"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_019",
+    "reference": "Esther 3:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After the decree went out, what did the king and Haman do?"
+    },
+    "answers": {
+      "en": [
+        "Sat down to drink",
+        "Went hunting",
+        "Wept together",
+        "Rode through Susa"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_020",
+    "reference": "Esther 4:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Mordecai put on when he learned of the decree?"
+    },
+    "answers": {
+      "en": [
+        "Royal robes",
+        "Armor",
+        "Sackcloth with ashes",
+        "A crown of gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_021",
+    "reference": "Esther 4:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which eunuch did Esther send to find out why Mordecai was mourning?"
+    },
+    "answers": {
+      "en": [
+        "Hegai",
+        "Harbonah",
+        "Bigthan",
+        "Hathach"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_022",
+    "reference": "Esther 4:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What happened to anyone who came to the king's inner court uncalled?"
+    },
+    "answers": {
+      "en": [
+        "They were made rich",
+        "They were sent away",
+        "They were put to death",
+        "They had to pay silver"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_023",
+    "reference": "Esther 5:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the king hold out to Esther when she stood in the court?"
+    },
+    "answers": {
+      "en": [
+        "His ring",
+        "The golden scepter",
+        "A cup of wine",
+        "A crown"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_024",
+    "reference": "Esther 5:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "The king promised Esther her request, even up to how much of the kingdom?"
+    },
+    "answers": {
+      "en": [
+        "Half",
+        "All",
+        "A quarter",
+        "A tenth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_025",
+    "reference": "Esther 5:4",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whom did Esther invite with the king to her banquet?"
+    },
+    "answers": {
+      "en": [
+        "Mordecai",
+        "Hegai",
+        "Haman",
+        "Memucan"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_026",
+    "reference": "Esther 5:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Haman said nothing made him happy as long as he saw whom at the king's gate?"
+    },
+    "answers": {
+      "en": [
+        "Mordecai",
+        "Esther",
+        "Hathach",
+        "Harbonah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_027",
+    "reference": "Esther 6:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What happened to King Ahasuerus on the night before Esther's second banquet?"
+    },
+    "answers": {
+      "en": [
+        "He had a bad dream",
+        "He fell ill",
+        "He heard a voice",
+        "He could not sleep"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_028",
+    "reference": "Esther 6:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What honor had Mordecai received for saving the king's life?"
+    },
+    "answers": {
+      "en": [
+        "A gold chain",
+        "Nothing",
+        "A house",
+        "A seat at the table"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_029",
+    "reference": "Esther 6:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Haman thought, \"Who would the king delight to honor more than\" whom?"
+    },
+    "answers": {
+      "en": [
+        "Mordecai",
+        "Myself",
+        "Memucan",
+        "The queen"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_030",
+    "reference": "Esther 6:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Haman suggested the honored man ride the king's what?"
+    },
+    "answers": {
+      "en": [
+        "Chariot",
+        "Camel",
+        "Mule",
+        "Horse"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_031",
+    "reference": "Esther 6:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Haman go home after leading Mordecai through the square?"
+    },
+    "answers": {
+      "en": [
+        "Mourning, with his head covered",
+        "Singing and dancing",
+        "In a royal chariot",
+        "With a crown on his head"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_032",
+    "reference": "Esther 7:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Esther told the king that she and her people had been what?"
+    },
+    "answers": {
+      "en": [
+        "Sent into exile",
+        "Forgotten by the king",
+        "Sold to be destroyed",
+        "Taxed too heavily"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_033",
+    "reference": "Esther 7:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whom did Esther name as \"an adversary and an enemy\"?"
+    },
+    "answers": {
+      "en": [
+        "Mordecai",
+        "Memucan",
+        "Hegai",
+        "Haman"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_034",
+    "reference": "Esther 7:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did the king go in his anger during the banquet?"
+    },
+    "answers": {
+      "en": [
+        "To his bedroom",
+        "To the city gate",
+        "Into the palace garden",
+        "To the stables"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_035",
+    "reference": "Esther 8:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "To whom did the king give the ring he took back from Haman?"
+    },
+    "answers": {
+      "en": [
+        "Esther",
+        "Mordecai",
+        "Hathach",
+        "Harbonah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_036",
+    "reference": "Esther 8:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which month were the letters written to save the Jews?"
+    },
+    "answers": {
+      "en": [
+        "Sivan",
+        "Adar",
+        "Nisan",
+        "Tebeth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_037",
+    "reference": "Esther 8:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What colors were Mordecai's royal clothes when he left the king?"
+    },
+    "answers": {
+      "en": [
+        "Red and gold",
+        "Black and purple",
+        "Blue and white",
+        "Green and white"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b149_038",
+    "reference": "Esther 9:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On which day of the month Adar were the Jews to be destroyed, but ruled their enemies instead?"
+    },
+    "answers": {
+      "en": [
+        "The thirteenth",
+        "The first",
+        "The seventh",
+        "The twentieth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b149_039",
+    "reference": "Esther 9:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the Jews in Susa not lay their hands on?"
+    },
+    "answers": {
+      "en": [
+        "The king's palace",
+        "The temple of the gods",
+        "The city gates",
+        "The plunder"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b149_040",
+    "reference": "Esther 9:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "At Purim, what were the Jews to send to one another?"
+    },
+    "answers": {
+      "en": [
+        "Letters of thanks",
+        "Presents of food",
+        "Gold coins",
+        "Flowers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b149_041",
+    "reference": "Esther 10:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who was next to King Ahasuerus at the end of the book of Esther?"
+    },
+    "answers": {
+      "en": [
+        "Haman",
+        "Mordecai the Jew",
+        "Memucan",
+        "Hegai"
+      ]
+    },
+    "correctIndex": 1
+  }
+]
