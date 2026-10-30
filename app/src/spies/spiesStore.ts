@@ -9,7 +9,7 @@ import type {
   SpiesTeam,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
-import { t } from '../i18n'
+import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { markSpiesPlayed, paySpies } from '../game/boardRewards'
@@ -99,7 +99,8 @@ function getSocket(): SpiesSocket {
       if (!res.ok) closeLocally(res.error ?? t('spies.errors.ended'))
     }
     const player = useGameStore.getState().player
-    if (role === 'player') socket.emit('spies:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
+    if (role === 'player')
+      socket.emit('spies:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, onRejoin)
     else if (role === 'board') socket.emit('spies:watch', { code: state.code }, onRejoin)
   })
 
@@ -119,6 +120,10 @@ function getSocket(): SpiesSocket {
   })
 
   socket.on('spies:key', (key) => setState({ key }))
+  // The server checks clues against every language seated: tell it about a switch.
+  useLocale.subscribe((s, prev) => {
+    if (s.locale !== prev.locale && getState().role === 'player') socket?.emit('spies:locale', { locale: s.locale })
+  })
   socket.on('spies:closed', (reason) => closeLocally(reason))
   return socket
 }
@@ -137,7 +142,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   create: () => {
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
-    getSocket().emit('spies:create', { name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
+    getSocket().emit('spies:create', { name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, (res) => {
       if (res.ok) {
         rememberCode(res.state.code)
         set({ role: 'player', state: res.state, myId: res.playerId, key: null, busy: false, ...timing(res.state) })
@@ -150,7 +155,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
     if (trimmed.length < 4) return set({ error: t('spies.errors.enterCode') })
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
-    getSocket().emit('spies:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
+    getSocket().emit('spies:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, (res) => {
       if (res.ok) {
         rememberCode(res.state.code)
         set({ role: 'player', state: res.state, myId: res.playerId, busy: false, prefillCode: '', ...timing(res.state) })

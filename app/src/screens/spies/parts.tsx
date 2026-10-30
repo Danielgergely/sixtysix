@@ -4,8 +4,8 @@ import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring } from '../../motion'
 import { useSpiesStore } from '../../spies/spiesStore'
-import { TRIBE, chiefName, iconFor, playerById, rich, tribeName, wordSize } from '../../spies/util'
-import { useT } from '../../i18n'
+import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, wordSize } from '../../spies/util'
+import { useLocale, useT } from '../../i18n'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
   const [svg, setSvg] = useState('')
@@ -72,6 +72,7 @@ interface GridProps {
 }
 
 export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
+  const locale = useLocale((s) => s.locale)
   const prop = state.proposal
   const proposer = prop ? playerById(state, prop.proposerId) : undefined
   return (
@@ -94,15 +95,15 @@ export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
               {shown ? (
                 <motion.span key="face" className="ts-card-face" initial={{ rotateY: 90 }} animate={{ rotateY: 0 }} transition={spring.bouncy}>
                   <span className="ts-card-icon">{iconFor(state, shown)}</span>
-                  <span className="ts-card-word small" style={{ fontSize: wordSize(c.word, large ? 17 : 9, large ? 140 : 58) }}>
-                    {c.word}
+                  <span className="ts-card-word small" style={{ fontSize: wordSize(cardWord(c, locale), large ? 17 : 9, large ? 140 : 58) }}>
+                    {cardWord(c, locale)}
                   </span>
                 </motion.span>
               ) : (
                 <motion.span key="back" className="ts-card-face" exit={{ rotateY: -90, transition: { duration: 0.15 } }}>
                   {keyed === 'goliath' && <span className="ts-card-mark">⚔️</span>}
-                  <span className="ts-card-word" style={{ fontSize: wordSize(c.word, large ? 24 : 13, large ? 140 : 60) }}>
-                    {c.word}
+                  <span className="ts-card-word" style={{ fontSize: wordSize(cardWord(c, locale), large ? 24 : 13, large ? 140 : 60) }}>
+                    {cardWord(c, locale)}
                   </span>
                 </motion.span>
               )}
@@ -142,6 +143,7 @@ export function ClueBanner({ state, large = false }: { state: SpiesState; large?
 /** The clue log, newest first. */
 export function History({ state, large = false }: { state: SpiesState; large?: boolean }) {
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const turns = [...state.history].reverse()
   if (turns.length === 0) return <p className="ts-empty">{t('spies.common.noClues')}</p>
   return (
@@ -160,10 +162,10 @@ export function History({ state, large = false }: { state: SpiesState; large?: b
           <span className="ts-hist-picks">
             {h.picks.map((p) => (
               <span key={p.index} className={`ts-chip ${p.colour}`}>
-                {state.cards[p.index]?.word}
+                {cardWord(state.cards[p.index], locale)}
               </span>
             ))}
-            {h.rival !== undefined && <span className="ts-chip ephraim rival">🏰 {state.cards[h.rival]?.word}</span>}
+            {h.rival !== undefined && <span className="ts-chip ephraim rival">🏰 {cardWord(state.cards[h.rival], locale)}</span>}
           </span>
         </li>
       ))}

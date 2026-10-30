@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
 import type { FlockBotLevel, FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents, FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
-import { t } from '../i18n'
+import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { payFlock } from '../game/boardRewards'
@@ -91,7 +91,8 @@ function getSocket(): FlockSocket {
       if (res.playerId) setState({ myId: res.playerId })
     }
     const player = useGameStore.getState().player
-    if (role === 'player') socket.emit('flock:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
+    if (role === 'player')
+      socket.emit('flock:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, onRejoin)
     else if (role === 'board') socket.emit('flock:watch', { code: state.code }, onRejoin)
   })
 
@@ -110,6 +111,10 @@ function getSocket(): FlockSocket {
   })
 
   socket.on('flock:secret', (secret) => setState({ secret }))
+  // Cards come in the player's language: a switch while seated asks for the card again.
+  useLocale.subscribe((s, prev) => {
+    if (s.locale !== prev.locale && getState().role === 'player') socket?.emit('flock:locale', { locale: s.locale })
+  })
   socket.on('flock:closed', (reason) => closeLocally(reason))
   return socket
 }
@@ -127,7 +132,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
   create: () => {
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
-    getSocket().emit('flock:create', { name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
+    getSocket().emit('flock:create', { name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, (res) => {
       if (res.ok) {
         rememberCode(res.state.code)
         set({ role: 'player', state: res.state, myId: res.playerId, secret: null, busy: false })
@@ -141,7 +146,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
     if (trimmed.length < 4) return set({ error: t('flock.errors.enterCode') })
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
-    getSocket().emit('flock:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
+    getSocket().emit('flock:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId(), locale: useLocale.getState().locale }, (res) => {
       if (res.ok) {
         rememberCode(res.state.code)
         set({ role: 'player', state: res.state, myId: res.playerId, busy: false, prefillCode: '' })
