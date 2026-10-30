@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
-  isLocale,
+  cleanLocale,
   questionIn,
   DAY_MS,
   BUILDING_IDS,
@@ -231,7 +231,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
    * questions, so they can't be rerolled until answered or expired.
    */
   route(app, 'post', '/api/plot/scroll', (c, body) => {
-    const locale = isLocale(body.locale) ? body.locale : 'en'
+    const locale = cleanLocale(body.locale)
     if (c.plot.builds.length === 0) return fail('Nothing is being built')
     const open = scrolls.get(c.row.id)
     if (open && open.expiresAt > c.now) return view(c, { scrollId: open.id, questions: open.questions })
