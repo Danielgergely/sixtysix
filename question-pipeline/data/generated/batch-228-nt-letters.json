@@ -1,0 +1,866 @@
+[
+  {
+    "id": "q_b228_001",
+    "reference": "Hebrews 1:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 1 says the Son has become so much better than whom?"
+    },
+    "answers": {
+      "en": [
+        "The prophets",
+        "The priests",
+        "The angels",
+        "The kings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_002",
+    "reference": "Hebrews 1:14",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 1 calls the angels serving what, sent out for those who will inherit salvation?"
+    },
+    "answers": {
+      "en": [
+        "Spirits",
+        "Stars",
+        "Kings",
+        "Soldiers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_003",
+    "reference": "Hebrews 2:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 2 says Jesus was made a little lower than whom?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "The priests",
+        "The prophets",
+        "The angels"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_004",
+    "reference": "Hebrews 3:3",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 3 says Jesus is counted worthy of more glory than whom?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Moses",
+        "Aaron",
+        "David"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_005",
+    "reference": "Hebrews 3:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 3 quotes God's oath in his wrath: 'They will not enter into my ___.'"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "Rest",
+        "Land",
+        "City"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_006",
+    "reference": "Hebrews 4:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Our high priest was tempted in all points like we are, yet without what?"
+    },
+    "answers": {
+      "en": [
+        "Fear",
+        "Pain",
+        "Sin",
+        "Doubt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_007",
+    "reference": "Hebrews 5:12",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 5 says the readers had come to need milk, and not what?"
+    },
+    "answers": {
+      "en": [
+        "Solid food",
+        "Water",
+        "Wine",
+        "Bread"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_008",
+    "reference": "Hebrews 6:13",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "When God made a promise to Abraham, by whom did he swear?"
+    },
+    "answers": {
+      "en": [
+        "By the angels",
+        "By heaven",
+        "By the temple",
+        "By himself"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_009",
+    "reference": "Hebrews 6:19",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 6 calls our hope an ___ of the soul."
+    },
+    "answers": {
+      "en": [
+        "Anchor",
+        "Lamp",
+        "Shield",
+        "Crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_010",
+    "reference": "Hebrews 7:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "By interpretation, Melchizedek's name means 'king of' what?"
+    },
+    "answers": {
+      "en": [
+        "Glory",
+        "Kings",
+        "Israel",
+        "Righteousness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_011",
+    "reference": "Hebrews 7:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 7 says our Lord has sprung out of which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Judah",
+        "Benjamin",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_012",
+    "reference": "Hebrews 8:5",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Moses was told to make everything according to the pattern shown to him where?"
+    },
+    "answers": {
+      "en": [
+        "In a dream",
+        "In Egypt",
+        "On the mountain",
+        "In the temple"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_013",
+    "reference": "Hebrews 9:4",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "What else was in the ark of the covenant, besides Aaron's rod and the tablets?"
+    },
+    "answers": {
+      "en": [
+        "A golden lamp",
+        "The crown of Aaron",
+        "A golden pot holding the manna",
+        "A silver trumpet"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_014",
+    "reference": "Hebrews 9:7",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "How often did the high priest alone enter the second part of the tabernacle?"
+    },
+    "answers": {
+      "en": [
+        "Once in the year",
+        "Every Sabbath",
+        "Every morning",
+        "Once every seven years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_015",
+    "reference": "Hebrews 9:22",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 9 says apart from shedding of what there is no remission?"
+    },
+    "answers": {
+      "en": [
+        "Tears",
+        "Blood",
+        "Water",
+        "Oil"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_016",
+    "reference": "Hebrews 10:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews says it is impossible for the blood of bulls and what to take away sins?"
+    },
+    "answers": {
+      "en": [
+        "Lambs",
+        "Doves",
+        "Rams",
+        "Goats"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_017",
+    "reference": "Hebrews 10:25",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 10 urges believers not to forsake their own what?"
+    },
+    "answers": {
+      "en": [
+        "Fasting days",
+        "Assembling together",
+        "Old traditions",
+        "Homes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_018",
+    "reference": "Hebrews 11:3",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "By faith we understand that the universe was framed by what?"
+    },
+    "answers": {
+      "en": [
+        "The word of God",
+        "The angels",
+        "Fire",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_019",
+    "reference": "Hebrews 11:9",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "By faith Abraham lived in the land of promise, dwelling in what, with Isaac and Jacob?"
+    },
+    "answers": {
+      "en": [
+        "Caves",
+        "Palaces",
+        "Ships",
+        "Tents"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_020",
+    "reference": "Hebrews 11:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 11 says the faithful confessed they were strangers and what on the earth?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Servants",
+        "Pilgrims",
+        "Prisoners"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_021",
+    "reference": "Hebrews 11:28",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, which feast did Moses keep, so the destroyer wouldn't touch the firstborn?"
+    },
+    "answers": {
+      "en": [
+        "Pentecost",
+        "The Passover",
+        "The Feast of Tents",
+        "The Day of Atonement"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_022",
+    "reference": "Hebrews 11:29",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, Israel passed through which sea as on dry land?"
+    },
+    "answers": {
+      "en": [
+        "The Dead Sea",
+        "The Sea of Galilee",
+        "The Great Sea",
+        "The Red Sea"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_023",
+    "reference": "Hebrews 11:32",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which name comes right after David in the list of Hebrews 11:32?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "Isaiah",
+        "Samuel",
+        "Nathan"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_024",
+    "reference": "Hebrews 11:33",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 11 says some, through faith, stopped the mouths of what?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Bears",
+        "Wolves",
+        "Serpents"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_025",
+    "reference": "Hebrews 11:37",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 11 says some faithful people went around in the skins of sheep and what?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Camels",
+        "Oxen",
+        "Goats"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_026",
+    "reference": "Hebrews 12:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 12 calls Jesus the author and what of faith?"
+    },
+    "answers": {
+      "en": [
+        "Perfecter",
+        "Defender",
+        "Keeper",
+        "Teacher"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_027",
+    "reference": "Hebrews 12:22",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 12 says you have come to the heavenly Jerusalem and to which mountain?"
+    },
+    "answers": {
+      "en": [
+        "Mount Sinai",
+        "Mount Zion",
+        "Mount Carmel",
+        "Mount Hermon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_028",
+    "reference": "Hebrews 12:24",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 12 says the blood of sprinkling speaks better than that of whom?"
+    },
+    "answers": {
+      "en": [
+        "Isaac",
+        "Abraham",
+        "Abel",
+        "Moses"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_029",
+    "reference": "Hebrews 12:29",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'For our God is a consuming ___.'"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Light",
+        "Wind",
+        "Flood"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_030",
+    "reference": "Hebrews 13:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 13 says Jesus suffered outside of what?"
+    },
+    "answers": {
+      "en": [
+        "The temple",
+        "The gate",
+        "Galilee",
+        "The wall of Rome"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_031",
+    "reference": "Hebrews 13:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews 13 says we don't have here an enduring what?"
+    },
+    "answers": {
+      "en": [
+        "Home",
+        "Temple",
+        "Kingdom",
+        "City"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_032",
+    "reference": "James 1:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "James addresses his letter to the twelve tribes where?"
+    },
+    "answers": {
+      "en": [
+        "In Jerusalem",
+        "In Babylon",
+        "In the Dispersion",
+        "In Egypt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_033",
+    "reference": "James 1:6",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "James says one who doubts is like a ___ of the sea."
+    },
+    "answers": {
+      "en": [
+        "Ship",
+        "Wave",
+        "Fish",
+        "Rock"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_034",
+    "reference": "James 1:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "James says the sun rises with the scorching wind and withers what?"
+    },
+    "answers": {
+      "en": [
+        "The vine",
+        "The cedar",
+        "The wheat",
+        "The grass"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_035",
+    "reference": "James 1:19",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "James says to be swift to hear, slow to speak, and slow to what?"
+    },
+    "answers": {
+      "en": [
+        "Judge",
+        "Eat",
+        "Anger",
+        "Sleep"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_036",
+    "reference": "James 1:23",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "A hearer who isn't a doer is like a man looking at his face in what?"
+    },
+    "answers": {
+      "en": [
+        "A mirror",
+        "A pool",
+        "A window",
+        "A cup"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_037",
+    "reference": "James 1:27",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James says pure religion is to visit the fatherless and whom in their affliction?"
+    },
+    "answers": {
+      "en": [
+        "Widows",
+        "Prisoners",
+        "Strangers",
+        "Lepers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_038",
+    "reference": "James 2:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James warns against honoring a man who comes in wearing a gold what?"
+    },
+    "answers": {
+      "en": [
+        "Crown",
+        "Chain",
+        "Ring",
+        "Belt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_039",
+    "reference": "James 2:21",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James says Abraham was justified by works when he offered whom on the altar?"
+    },
+    "answers": {
+      "en": [
+        "Ishmael",
+        "Isaac",
+        "A ram",
+        "Jacob"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_040",
+    "reference": "James 2:25",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which woman does James name as justified by works, for receiving the messengers?"
+    },
+    "answers": {
+      "en": [
+        "Ruth",
+        "Deborah",
+        "Esther",
+        "Rahab"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_041",
+    "reference": "James 3:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Every kind of animal has been tamed, but nobody can tame what?"
+    },
+    "answers": {
+      "en": [
+        "The wind",
+        "The sea",
+        "The heart",
+        "The tongue"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_042",
+    "reference": "James 3:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "James asks: can a fig tree yield olives, or a vine yield what?"
+    },
+    "answers": {
+      "en": [
+        "Figs",
+        "Grapes",
+        "Thorns",
+        "Wheat"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_043",
+    "reference": "James 4:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Draw near to God, and he will ___.'"
+    },
+    "answers": {
+      "en": [
+        "Hear your prayer",
+        "Draw near to you",
+        "Give you rest",
+        "Forgive you"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_044",
+    "reference": "James 4:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James: 'What is your life? For you are a ___ that appears for a little time.'"
+    },
+    "answers": {
+      "en": [
+        "Flower",
+        "Shadow",
+        "Vapor",
+        "Dream"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b228_045",
+    "reference": "James 5:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "James says the riches of the selfish rich are corrupted and their garments are what?"
+    },
+    "answers": {
+      "en": [
+        "Torn",
+        "Stolen",
+        "Burned",
+        "Moth-eaten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b228_046",
+    "reference": "James 5:7",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The farmer waits patiently for the fruit until it receives the early and late what?"
+    },
+    "answers": {
+      "en": [
+        "Sun",
+        "Rain",
+        "Harvest",
+        "Frost"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b228_047",
+    "reference": "James 5:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "James says: 'Let your yes be yes, and your no be' what?"
+    },
+    "answers": {
+      "en": [
+        "No",
+        "Silent",
+        "Maybe",
+        "Gentle"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b228_048",
+    "reference": "James 5:14",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "James says the elders should pray over the sick, anointing them with what?"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Wine",
+        "Oil",
+        "Honey"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

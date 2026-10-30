@@ -1,0 +1,848 @@
+[
+  {
+    "id": "q_b225_001",
+    "reference": "2 Corinthians 1:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Who is named with Paul as sender at the start of 2 Corinthians?"
+    },
+    "answers": {
+      "en": [
+        "Sosthenes",
+        "Silas",
+        "Titus",
+        "Timothy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_002",
+    "reference": "2 Corinthians 1:8",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In which province was Paul weighed down so much that he despaired even of life?"
+    },
+    "answers": {
+      "en": [
+        "Galatia",
+        "Asia",
+        "Macedonia",
+        "Judea"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_003",
+    "reference": "2 Corinthians 1:19",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul, Silvanus and whom preached the Son of God among the Corinthians?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Titus",
+        "Apollos",
+        "Barnabas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_004",
+    "reference": "2 Corinthians 3:3",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the Corinthians are a letter written not with ink, but with what?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Blood",
+        "The Spirit of the living God",
+        "The finger of an angel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_005",
+    "reference": "2 Corinthians 3:13",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What did Moses put on his face so Israel wouldn't look at the fading glory?"
+    },
+    "answers": {
+      "en": [
+        "A veil",
+        "A mask",
+        "A crown",
+        "A helmet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_006",
+    "reference": "2 Corinthians 4:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul: 'We are pressed on every side, yet not ___.'"
+    },
+    "answers": {
+      "en": [
+        "Afraid",
+        "Alone",
+        "Crushed",
+        "Defeated"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_007",
+    "reference": "2 Corinthians 4:18",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the things which are not seen are what?"
+    },
+    "answers": {
+      "en": [
+        "Temporal",
+        "Hidden",
+        "Small",
+        "Eternal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_008",
+    "reference": "2 Corinthians 5:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls our earthly body the earthly house of our what, which can be dissolved?"
+    },
+    "answers": {
+      "en": [
+        "Ship",
+        "Tent",
+        "Field",
+        "Garden"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_009",
+    "reference": "2 Corinthians 5:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'For we walk by faith, not by ___.'"
+    },
+    "answers": {
+      "en": [
+        "Sight",
+        "Works",
+        "Law",
+        "Feeling"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_010",
+    "reference": "2 Corinthians 5:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes: 'We are therefore ___ on behalf of Christ.'"
+    },
+    "answers": {
+      "en": [
+        "Soldiers",
+        "Shepherds",
+        "Priests",
+        "Ambassadors"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_011",
+    "reference": "2 Corinthians 6:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Behold, now is the day of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Judgment",
+        "Salvation",
+        "Rest",
+        "Glory"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_012",
+    "reference": "2 Corinthians 6:14",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul warns: 'Don't be unequally ___ with unbelievers.'"
+    },
+    "answers": {
+      "en": [
+        "Married",
+        "Seated",
+        "Yoked",
+        "Taught"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_013",
+    "reference": "2 Corinthians 6:15",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks: what agreement does Christ have with whom?"
+    },
+    "answers": {
+      "en": [
+        "Baal",
+        "Pharaoh",
+        "Belial",
+        "Mammon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_014",
+    "reference": "2 Corinthians 7:6",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "God comforted Paul by the coming of whom?"
+    },
+    "answers": {
+      "en": [
+        "Titus",
+        "Timothy",
+        "Silas",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_015",
+    "reference": "2 Corinthians 8:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul tells of God's grace in the assemblies of which region, who gave out of deep poverty?"
+    },
+    "answers": {
+      "en": [
+        "Achaia",
+        "Galatia",
+        "Judea",
+        "Macedonia"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_016",
+    "reference": "2 Corinthians 8:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Christ, though he was rich, became what for your sakes?"
+    },
+    "answers": {
+      "en": [
+        "A king",
+        "Poor",
+        "A priest",
+        "Famous"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_017",
+    "reference": "2 Corinthians 9:6",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'He who sows sparingly will also reap ___.'"
+    },
+    "answers": {
+      "en": [
+        "Abundantly",
+        "Sparingly",
+        "Nothing",
+        "Weeds"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_018",
+    "reference": "2 Corinthians 10:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Some said Paul's letters were weighty and strong, but his bodily presence was what?"
+    },
+    "answers": {
+      "en": [
+        "Weak",
+        "Proud",
+        "Frightening",
+        "Beautiful"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_019",
+    "reference": "2 Corinthians 11:3",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul feared the Corinthians might be led astray as the serpent deceived whom?"
+    },
+    "answers": {
+      "en": [
+        "Adam",
+        "Sarah",
+        "Eve",
+        "Cain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_020",
+    "reference": "2 Corinthians 11:25",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Corinthians 11, how many times was Paul stoned?"
+    },
+    "answers": {
+      "en": [
+        "Twice",
+        "Three times",
+        "Five times",
+        "Once"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_021",
+    "reference": "2 Corinthians 11:25",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he had spent how long in the deep?"
+    },
+    "answers": {
+      "en": [
+        "Three days",
+        "A night and a day",
+        "Forty days",
+        "A week"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_022",
+    "reference": "2 Corinthians 12:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "How many years earlier was the man in Christ caught up into the third heaven?"
+    },
+    "answers": {
+      "en": [
+        "Fourteen",
+        "Seven",
+        "Three",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_023",
+    "reference": "2 Corinthians 12:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The man Paul tells of was caught up into where, and heard unspeakable words?"
+    },
+    "answers": {
+      "en": [
+        "Mount Zion",
+        "The temple",
+        "The wilderness",
+        "Paradise"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_024",
+    "reference": "2 Corinthians 12:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "How many times did Paul beg the Lord to take his thorn in the flesh away?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Once",
+        "Three",
+        "Forty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_025",
+    "reference": "2 Corinthians 13:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes that he is coming to the Corinthians for which time?"
+    },
+    "answers": {
+      "en": [
+        "The first time",
+        "The second time",
+        "The seventh time",
+        "The third time"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_026",
+    "reference": "2 Corinthians 13:14",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul's closing blessing: the grace of Christ, the love of God, and the fellowship of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Holy Spirit",
+        "The saints",
+        "The angels",
+        "The apostles"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_027",
+    "reference": "Galatians 1:6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul marvels that the Galatians were so quickly turning away to what?"
+    },
+    "answers": {
+      "en": [
+        "The temple in Jerusalem",
+        "The gods of Greece",
+        "A different good news",
+        "Their old riches"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_028",
+    "reference": "Galatians 1:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says even if who from heaven preached a different gospel, let him be cursed?"
+    },
+    "answers": {
+      "en": [
+        "A star",
+        "An angel",
+        "A cloud",
+        "A voice"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_029",
+    "reference": "Galatians 1:17",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "After his calling, where did Paul go away to before returning to Damascus?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Cyprus",
+        "Arabia",
+        "Spain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_030",
+    "reference": "Galatians 1:19",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "On his first visit to Jerusalem, which other apostle did Paul see besides Peter?"
+    },
+    "answers": {
+      "en": [
+        "John, the son of Zebedee",
+        "James, the Lord's brother",
+        "Andrew, Peter's brother",
+        "Thomas, called Didymus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_031",
+    "reference": "Galatians 1:21",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "After visiting Peter, Paul went into the regions of Syria and where?"
+    },
+    "answers": {
+      "en": [
+        "Galatia",
+        "Asia",
+        "Judea",
+        "Cilicia"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_032",
+    "reference": "Galatians 2:3",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which Greek companion of Paul was not compelled to be circumcised?"
+    },
+    "answers": {
+      "en": [
+        "Titus",
+        "Timothy",
+        "Luke",
+        "Silas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_033",
+    "reference": "Galatians 2:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who were reputed to be 'pillars' in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Andrew, Philip and Thomas",
+        "Paul, Silas and Timothy",
+        "James, Cephas and John",
+        "Barnabas, Mark and Luke"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_034",
+    "reference": "Galatians 2:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who was 'carried away' with the hypocrisy at Antioch?"
+    },
+    "answers": {
+      "en": [
+        "Titus",
+        "Barnabas",
+        "Silas",
+        "Timothy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_035",
+    "reference": "Galatians 2:20",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'I have been ___ with Christ, and it is no longer I that live.'"
+    },
+    "answers": {
+      "en": [
+        "Crucified",
+        "Buried",
+        "Raised",
+        "Seated"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_036",
+    "reference": "Galatians 3:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks the 'foolish Galatians': 'Who has ___ you?'"
+    },
+    "answers": {
+      "en": [
+        "Robbed",
+        "Taught",
+        "Baptized",
+        "Bewitched"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_037",
+    "reference": "Galatians 3:17",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Galatians says the law came how many years after God's covenant with Abraham?"
+    },
+    "answers": {
+      "en": [
+        "400",
+        "40",
+        "430",
+        "120"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_038",
+    "reference": "Galatians 3:24",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the law has become our what, to bring us to Christ?"
+    },
+    "answers": {
+      "en": [
+        "Judge",
+        "King",
+        "Enemy",
+        "Tutor"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_039",
+    "reference": "Galatians 4:15",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the Galatians would once have plucked out what and given them to him?"
+    },
+    "answers": {
+      "en": [
+        "Their own eyes",
+        "Their hearts",
+        "Their crowns",
+        "Their teeth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_040",
+    "reference": "Galatians 4:22",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Abraham had two sons: one by the handmaid and one by whom?"
+    },
+    "answers": {
+      "en": [
+        "A princess",
+        "The free woman",
+        "A widow",
+        "A foreigner"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_041",
+    "reference": "Galatians 5:14",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "The whole law is fulfilled in one word: 'You shall love your neighbor as ___.'"
+    },
+    "answers": {
+      "en": [
+        "Your brother",
+        "Your father",
+        "A stranger",
+        "Yourself"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b225_042",
+    "reference": "Galatians 5:20",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Paul's list of the 'works of the flesh'?"
+    },
+    "answers": {
+      "en": [
+        "Patience",
+        "Jealousies",
+        "Gentleness",
+        "Faithfulness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_043",
+    "reference": "Galatians 6:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Bear one another's ___, and so fulfill the law of Christ.'"
+    },
+    "answers": {
+      "en": [
+        "Burdens",
+        "Sins",
+        "Debts",
+        "Gifts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b225_044",
+    "reference": "Galatians 6:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Let's not be weary in doing good, for we will reap in due season if we don't do what?"
+    },
+    "answers": {
+      "en": [
+        "Pray",
+        "Plant",
+        "Give up",
+        "Rest"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_045",
+    "reference": "Galatians 6:17",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he bears on his body the what of the Lord Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Crown",
+        "Seal",
+        "Marks",
+        "Robe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b225_046",
+    "reference": "Galatians 1:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he is an apostle not from men, but through Jesus Christ and whom?"
+    },
+    "answers": {
+      "en": [
+        "The twelve",
+        "God the Father",
+        "The church at Antioch",
+        "Barnabas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b225_047",
+    "reference": "Galatians 4:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Galatians 4 says God sent his Son when what had come?"
+    },
+    "answers": {
+      "en": [
+        "The fullness of the time",
+        "The day of Pentecost",
+        "The year of jubilee",
+        "The end of the age"
+      ]
+    },
+    "correctIndex": 0
+  }
+]
