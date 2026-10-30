@@ -49,10 +49,31 @@ export function flockRewardFor(state: FlockState, myId: string | null): BoardRew
   return flockReward(side === r.winner && !r.lostIds.includes(me.id))
 }
 
-/** My reward for a finished Twelve Spies game (abandoned games pay nothing). */
+const SPIES_PLAYED_KEY = 'sixtysix.spiesPlayed.v1'
+const spiesGame = (state: SpiesState) => `${state.code}:${state.game}`
+
+/** Remember the running game this device sat in, so joining one that is already over pays nothing. */
+export function markSpiesPlayed(state: SpiesState): void {
+  if (state.phase !== 'clue' && state.phase !== 'guess') return
+  try {
+    localStorage.setItem(SPIES_PLAYED_KEY, spiesGame(state))
+  } catch {
+    // storage unavailable — the reward check below lets it through
+  }
+}
+
+function playedSpies(state: SpiesState): boolean {
+  try {
+    return localStorage.getItem(SPIES_PLAYED_KEY) === spiesGame(state)
+  } catch {
+    return true
+  }
+}
+
+/** My reward for a finished Twelve Spies game (abandoned games and games joined after the end pay nothing). */
 export function spiesRewardFor(state: SpiesState, myId: string | null): BoardReward | null {
   const me = state.phase === 'over' && state.result?.winner ? state.players.find((p) => p.id === myId) : undefined
-  if (!me) return null
+  if (!me || !playedSpies(state)) return null
   return spiesReward(me.team === state.result!.winner)
 }
 
