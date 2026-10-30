@@ -12,8 +12,8 @@ export default {
   streak_other: '{streak} nap egymás után',
   share: 'Eredmény megosztása',
   copied: 'Kimásolva – illeszd be a csoportodba',
-  nextIn: 'Következő tekercs: {time} múlva',
-  time: '{h} ó {m} p',
+  nextIn: 'A következő tekercs {time} múlva jön',
+  time: '{h} óra {m} perc',
   shareTitle: '66 · Napi tekercs #{n}',
   shareStreak: ' · 🔥{count} nap',
 }

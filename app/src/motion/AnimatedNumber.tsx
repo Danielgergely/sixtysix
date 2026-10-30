@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, useReducedMotion } from 'motion/react'
+import { useLocale } from '../i18n'
 
 interface Props {
   value: number
@@ -14,7 +15,8 @@ interface Props {
   prefix?: string
 }
 
-const format = (n: number) => Math.round(n).toLocaleString('en-US')
+/** Grouped the way the active language writes numbers (1,234 / 1.234 / 1234). */
+const format = (n: number, locale: string) => Math.round(n).toLocaleString(locale)
 
 /**
  * Counts from the previously shown value to `value`. Writes straight to the
@@ -26,6 +28,7 @@ export function AnimatedNumber({ value, duration = 0.9, from, delay = 0, classNa
   // React only renders the first frame; later frames are written imperatively.
   const [initial] = useState(from ?? value)
   const reduced = useReducedMotion()
+  const locale = useLocale((s) => s.locale)
 
   useEffect(() => {
     const node = ref.current
@@ -33,7 +36,7 @@ export function AnimatedNumber({ value, duration = 0.9, from, delay = 0, classNa
     const start = shown.current
     if (reduced || start === value) {
       shown.current = value
-      node.textContent = prefix + format(value)
+      node.textContent = prefix + format(value, locale)
       return
     }
     const controls = animate(start, value, {
@@ -42,15 +45,15 @@ export function AnimatedNumber({ value, duration = 0.9, from, delay = 0, classNa
       ease: [0.22, 1, 0.36, 1],
       onUpdate: (v) => {
         shown.current = v
-        node.textContent = prefix + format(v)
+        node.textContent = prefix + format(v, locale)
       },
     })
     return () => controls.stop()
-  }, [value, duration, delay, prefix, reduced])
+  }, [value, duration, delay, prefix, reduced, locale])
 
   return (
     <span ref={ref} className={className} style={{ fontVariantNumeric: 'tabular-nums' }}>
-      {prefix + format(initial)}
+      {prefix + format(initial, locale)}
     </span>
   )
 }

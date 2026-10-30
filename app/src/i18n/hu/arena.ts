@@ -18,7 +18,7 @@ export default {
     joinHint: 'Olvasd be a játékvezető QR-kódját, vagy írd be a kódot a képernyőjéről.',
     or: 'vagy',
     host: 'Játék vezetése',
-    questions: '{n} kérdés',
+    questions: '{n} ❓',
     create: '🖥️ Játék létrehozása (ez a képernyő lesz a kivetítő)',
     hostHint: 'Laptopon vagy tableten a legjobb, amit mindenki lát. Te is játszanál? Létrehozás után csatlakozz a telefonodról.',
   },
@@ -59,7 +59,7 @@ export default {
     keepPlaying: 'Játszunk tovább',
     stay: 'Maradok',
     next: 'Tovább ▸',
-    skip: 'Átugrás ▸',
+    skip: 'Tovább ▸',
   },
   errors: {
     enterCode: 'Írd be a játékkódot',

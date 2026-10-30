@@ -1,5 +1,5 @@
 export default {
-  categories: { torah: 'Tóra', history: 'Történeti könyvek', wisdom: 'Bölcsesség', prophets: 'Próféták', gospels: 'Evangéliumok', epistles: 'Levelek' },
+  categories: { torah: 'Tóra', history: 'Történelem', wisdom: 'Bölcsesség', prophets: 'Próféták', gospels: 'Evangéliumok', epistles: 'Levelek' },
   bots: { Miriam: 'Mirjám', Caleb: 'Káleb', Tabitha: 'Tábita', Eli: 'Éli', Phoebe: 'Fébé', Silas: 'Silás' },
   lobby: {
     starting: 'Indul a verseny…',
@@ -10,7 +10,7 @@ export default {
   race: {
     leave: 'Kilépés',
     next: 'Tovább ▸',
-    skip: 'Átugrás ▸',
+    skip: 'Tovább ▸',
     won: 'A versenyt megnyerték!',
     leaveTitle: 'Kilépsz a versenyből?',
     leaveText: 'Elveszik az ebben a versenyben elért haladásod – nem kapsz pontot, érmét és statisztikát.',

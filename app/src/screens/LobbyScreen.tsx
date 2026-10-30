@@ -1,6 +1,7 @@
 import { useGameStore } from '../game/store'
 import { Avatar } from '../avatars/Avatar'
 import { useT } from '../i18n'
+import { nameTag } from '../ceremony/names'
 
 const SLOTS = 4
 
@@ -24,7 +25,7 @@ export function LobbyScreen() {
                   <div className="avatar">
                     <Avatar id={racer.profile.avatar} />
                   </div>
-                  <div className="slot-name">{racer.profile.name}</div>
+                  <div className="slot-name">{racer.isBot ? racer.profile.name : nameTag(t, { name: racer.profile.name, you: true })}</div>
                   <div className="slot-level">{t('quiz.lobby.level', { n: racer.profile.level })}</div>
                 </>
               ) : (

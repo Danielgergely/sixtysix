@@ -297,7 +297,7 @@ button:disabled{ cursor: default; }
 }
 .host-qr svg{ display: block; width: 100%; height: auto; }
 
-.host-config-chips{ display: flex; justify-content: center; gap: 0.4rem; margin-top: 0.5rem; }
+.host-config-chips{ display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; margin-top: 0.5rem; }
 .host-config-chips .chip{ font-size: 0.72rem; padding: 2px 10px; }
 
 /* ── Desktop-first host board (laptop / tablet-landscape / projector) ──

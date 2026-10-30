@@ -10,7 +10,7 @@ export default {
   race: {
     leave: 'Verlassen',
     next: 'Weiter ▸',
-    skip: 'Überspringen ▸',
+    skip: 'Weiter ▸',
     won: 'Das Rennen ist gewonnen!',
     leaveTitle: 'Rennen verlassen?',
     leaveText: 'Dein Fortschritt in diesem Rennen geht verloren – keine Punkte, keine Münzen, keine Statistik.',
@@ -31,7 +31,7 @@ export default {
   },
   question: {
     trial: 'Prüfung',
-    of: '{n} von {total}',
+    of: '{n} / {total}',
     points: 'Punkte in diesem Spiel',
     double: 'Doppelter Anteil',
     coins: 'Münzen in diesem Spiel – deine, wenn du bis zum Ende spielst',

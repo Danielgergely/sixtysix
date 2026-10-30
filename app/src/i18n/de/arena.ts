@@ -18,7 +18,7 @@ export default {
     joinHint: 'Scanne den QR-Code des Spielleiters oder tippe den Code von seinem Bildschirm ein.',
     or: 'oder',
     host: 'Ein Spiel leiten',
-    questions: '{n} Fragen',
+    questions: '{n} ❓',
     create: '🖥️ Spiel erstellen (dieser Bildschirm wird zum Großbild)',
     hostHint: 'Am besten auf einem Laptop oder Tablet, das alle sehen. Willst du mitspielen? Tritt nach dem Erstellen mit deinem Handy bei.',
   },
@@ -59,7 +59,7 @@ export default {
     keepPlaying: 'Weiterspielen',
     stay: 'Bleiben',
     next: 'Weiter ▸',
-    skip: 'Überspringen ▸',
+    skip: 'Weiter ▸',
   },
   errors: {
     enterCode: 'Gib den Spielcode ein',
