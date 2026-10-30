@@ -161,7 +161,7 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
                 <motion.div className={`cr-name ${TIER[rank]}`} initial={{ scale: 0, y: 8 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.6 }}>
                   <span className="cr-medal">{rank}</span>
                   {r.name}
-                  {r.you && ' (you)'}
+                  {r.you && r.name !== 'You' && ' (you)'}
                   <b>{r.score.toLocaleString('en-US')}</b>
                 </motion.div>
               )}
