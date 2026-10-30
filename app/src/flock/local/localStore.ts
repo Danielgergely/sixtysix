@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { t } from '../../i18n'
 import { FLOCK_CATEGORIES, type FlockCategory, type FlockWord, type FlockWordList } from '@sixtysix/shared'
 
 /**
@@ -159,8 +160,8 @@ export const useLocalFlock = create<LocalStore>((set, get) => {
 
     start: async () => {
       const { setup } = get()
-      if (setup.players.length < LOCAL_MIN_PLAYERS) return set({ error: `At least ${LOCAL_MIN_PLAYERS} players` })
-      if (setup.categories.length === 0) return set({ error: 'Pick at least one category' })
+      if (setup.players.length < LOCAL_MIN_PLAYERS) return set({ error: t('flockLocal.errors.minPlayers', { n: LOCAL_MIN_PLAYERS }) })
+      if (setup.categories.length === 0) return set({ error: t('flockLocal.errors.pickCategory') })
       // Last round's wolves still sit out when possible, even after a setup change.
       set({ wolves: get().wolves.filter((i) => i < setup.players.length) })
       await deal()

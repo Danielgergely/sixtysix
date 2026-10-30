@@ -4,7 +4,8 @@ import type { FlockPlayer, FlockSecret, FlockState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring } from '../../motion'
 import { useFlockStore } from '../../flock/flockStore'
-import { CATEGORY_LABEL, playerById } from '../../flock/util'
+import { categoryLabel, playerById } from '../../flock/util'
+import { useT } from '../../i18n'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
   const [svg, setSvg] = useState('')
@@ -29,10 +30,11 @@ export function Timer({ size = 54 }: { size?: number }) {
 }
 
 export function Token({ player, size = 44, badge, dim }: { player: FlockPlayer; size?: number; badge?: string; dim?: boolean }) {
+  const t = useT()
   return (
     <span className={`fl-token ${player.connected ? '' : 'off'} ${dim ? 'dim' : ''}`} style={{ width: size, height: size }}>
       <Avatar id={player.avatar} />
-      {player.bot && <span className="fl-token-bot" title="Bot">🤖</span>}
+      {player.bot && <span className="fl-token-bot" title={t('flock.common.bot')}>🤖</span>}
       {badge && <span className="fl-token-badge">{badge}</span>}
     </span>
   )
@@ -41,6 +43,7 @@ export function Token({ player, size = 44, badge, dim }: { player: FlockPlayer; 
 /** The private card. Tap to peek — keeps it hidden from the neighbours' eyes. */
 export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?: boolean }) {
   const [open, setOpen] = useState(false)
+  const t = useT()
   const wolf = secret.role === 'wolf'
   return (
     <motion.button
@@ -49,18 +52,18 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
       initial={big ? { rotateY: 180, opacity: 0 } : false}
       animate={{ rotateY: 0, opacity: 1 }}
       transition={spring.gentle}
-      aria-label={open ? 'Hide your card' : 'Show your card'}
+      aria-label={open ? t('flock.card.hide') : t('flock.card.show')}
     >
       <AnimatePresence mode="wait" initial={false}>
         {open ? (
           <motion.span key="face" className="fl-card-face" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.15 }}>
-            <span className="fl-card-role">{wolf ? (secret.wolfCount > 1 ? '🐺 You are a wolf' : '🐺 You are the wolf') : '🐑 You are a sheep'}</span>
-            <span className="fl-card-cat">{CATEGORY_LABEL[secret.category]}</span>
+            <span className="fl-card-role">{wolf ? (secret.wolfCount > 1 ? t('flock.card.aWolf') : t('flock.card.theWolf')) : t('flock.card.sheep')}</span>
+            <span className="fl-card-cat">{categoryLabel(secret.category)}</span>
             {wolf ? (
               <>
                 <span className="fl-card-word wolf">???</span>
-                {secret.wolfHint && <span className="fl-card-wolfhint">You speak first. Hint: {secret.wolfHint}</span>}
-                {big && <span className="fl-card-hint">You don’t know the word. {secret.wolfCount > 1 ? 'There is one more wolf, but you don’t know who. ' : ''}Listen to the clues, blend in, and don’t get caught!</span>}
+                {secret.wolfHint && <span className="fl-card-wolfhint">{t('flock.card.firstHint', { hint: secret.wolfHint })}</span>}
+                {big && <span className="fl-card-hint">{secret.wolfCount > 1 ? t('flock.card.wolfHelpTwo') : t('flock.card.wolfHelp')}</span>}
               </>
             ) : (
               <>
@@ -73,7 +76,7 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
         ) : (
           <motion.span key="back" className="fl-card-back" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <span className="fl-card-seal">✠</span>
-            <span>{big ? 'Tap to peek at your card' : 'Your card'}</span>
+            <span>{big ? t('flock.card.peek') : t('flock.card.yours')}</span>
           </motion.span>
         )}
       </AnimatePresence>
@@ -83,7 +86,8 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
 
 /** Clues so far, grouped by lap. */
 export function ClueList({ state, large = false }: { state: FlockState; large?: boolean }) {
-  if (state.clues.length === 0) return <p className="fl-empty">No clues yet…</p>
+  const t = useT()
+  if (state.clues.length === 0) return <p className="fl-empty">{t('flock.clues.none')}</p>
   return (
     <ol className={`fl-clues ${large ? 'large' : ''}`}>
       <AnimatePresence initial={false}>
@@ -99,8 +103,8 @@ export function ClueList({ state, large = false }: { state: FlockState; large?: 
               transition={{ ...spring.snappy, delay: STAGGER }}
             >
               {p ? <Token player={p} size={large ? 44 : 30} /> : <span className="fl-token ghost" style={{ width: 30, height: 30 }} />}
-              <span className="fl-clue-name">{p?.name ?? 'Left'}</span>
-              <span className="fl-clue-text">{c.skipped ? '— silent —' : `“${c.text}”`}</span>
+              <span className="fl-clue-name">{p?.name ?? t('flock.common.left')}</span>
+              <span className="fl-clue-text">{c.skipped ? t('flock.clues.silent') : t('flock.common.quoted', { text: c.text })}</span>
             </motion.li>
           )
         })}
@@ -130,10 +134,11 @@ export function TurnRibbon({ state, size = 38 }: { state: FlockState; size?: num
 
 /** Games won in this room. */
 export function Scoreboard({ state }: { state: FlockState }) {
+  const t = useT()
   const rows = [...state.players].sort((a, b) => b.wins - a.wins)
   return (
     <div className="fl-scores">
-      <div className="fl-scores-head">Wins in this room</div>
+      <div className="fl-scores-head">{t('flock.scores.title')}</div>
       {rows.map((p, i) => (
         <motion.div key={p.id} layout transition={spring.gentle} className="fl-score-row">
           <span className="fl-score-rank">{i + 1}</span>

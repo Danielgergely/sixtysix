@@ -4,7 +4,8 @@ import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring } from '../../motion'
 import { useSpiesStore } from '../../spies/spiesStore'
-import { TRIBE, iconFor, playerById, tribeName, wordSize } from '../../spies/util'
+import { TRIBE, chiefName, iconFor, playerById, rich, tribeName, wordSize } from '../../spies/util'
+import { useT } from '../../i18n'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
   const [svg, setSvg] = useState('')
@@ -39,6 +40,7 @@ export function Token({ player, size = 40, badge, team }: { player: SpiesPlayer;
 
 /** Both tribes' hidden-card counts; the active tribe glows. */
 export function ScoreBar({ state, large = false }: { state: SpiesState; large?: boolean }) {
+  useT() // re-render on a language switch (tribe names)
   const teams: SpiesTeam[] = ['judah', 'ephraim']
   return (
     <div className={`ts-scorebar ${large ? 'large' : ''}`}>
@@ -139,26 +141,29 @@ export function ClueBanner({ state, large = false }: { state: SpiesState; large?
 
 /** The clue log, newest first. */
 export function History({ state, large = false }: { state: SpiesState; large?: boolean }) {
+  const t = useT()
   const turns = [...state.history].reverse()
-  if (turns.length === 0) return <p className="ts-empty">No clues yet.</p>
+  if (turns.length === 0) return <p className="ts-empty">{t('spies.common.noClues')}</p>
   return (
     <ol className={`ts-history ${large ? 'large' : ''}`}>
-      {turns.map((t, k) => (
-        <li key={state.history.length - k} className={`ts-hist ${t.team}`}>
-          {t.word ? (
+      {turns.map((h, k) => (
+        <li key={state.history.length - k} className={`ts-hist ${h.team}`}>
+          {h.word ? (
             <span className="ts-hist-clue">
-              {state.mode === 'coop' ? '🦁' : TRIBE[t.team].emblem} <b>{t.word}</b> · {t.number}
+              {state.mode === 'coop' ? '🦁' : TRIBE[h.team].emblem} <b>{h.word}</b> · {h.number}
             </span>
           ) : (
-            <span className="ts-hist-clue muted">{TRIBE[t.team].emblem} time ran out</span>
+            <span className="ts-hist-clue muted">
+              {TRIBE[h.team].emblem} {t('spies.common.timeRanOut')}
+            </span>
           )}
           <span className="ts-hist-picks">
-            {t.picks.map((p) => (
+            {h.picks.map((p) => (
               <span key={p.index} className={`ts-chip ${p.colour}`}>
                 {state.cards[p.index]?.word}
               </span>
             ))}
-            {t.rival !== undefined && <span className="ts-chip ephraim rival">🏰 {state.cards[t.rival]?.word}</span>}
+            {h.rival !== undefined && <span className="ts-chip ephraim rival">🏰 {state.cards[h.rival]?.word}</span>}
           </span>
         </li>
       ))}
@@ -168,6 +173,7 @@ export function History({ state, large = false }: { state: SpiesState; large?: b
 
 /** One tribe's roster: spy master first, then agents. */
 export function TribeList({ state, team, me, large = false }: { state: SpiesState; team: SpiesTeam; me?: string | null; large?: boolean }) {
+  const t = useT()
   const sm = state.spymasters[team]
   const members = state.players.filter((p) => p.team === team).sort((a, b) => (a.id === sm ? -1 : b.id === sm ? 1 : 0))
   return (
@@ -175,7 +181,7 @@ export function TribeList({ state, team, me, large = false }: { state: SpiesStat
       <div className="ts-tribe-head">
         <span>{TRIBE[team].emblem}</span> {tribeName(state, team)}
       </div>
-      {members.length === 0 && <p className="ts-empty">Nobody yet</p>}
+      {members.length === 0 && <p className="ts-empty">{t('spies.common.nobody')}</p>}
       <AnimatePresence initial={false}>
         {members.map((p) => (
           <motion.div key={p.id} layout className="ts-member" initial={{ opacity: 0, x: -20 }} animate={{ opacity: p.connected ? 1 : 0.5, x: 0 }} exit={{ opacity: 0 }} transition={spring.snappy}>
@@ -183,9 +189,9 @@ export function TribeList({ state, team, me, large = false }: { state: SpiesStat
             <span className="ts-member-name">
               {p.id === state.leaderId && '👑 '}
               {p.name}
-              {p.id === me && ' (you)'}
+              {p.id === me && t('spies.common.you')}
             </span>
-            {p.id === sm && <span className="ts-member-role">{TRIBE[team].chief}</span>}
+            {p.id === sm && <span className="ts-member-role">{chiefName(team)}</span>}
             {p.wins > 0 && <span className="ts-member-wins">🏆{p.wins}</span>}
           </motion.div>
         ))}
@@ -195,26 +201,15 @@ export function TribeList({ state, team, me, large = false }: { state: SpiesStat
 }
 
 export function Rules() {
+  const t = useT()
   return (
     <ol className="ts-rules">
-      <li>
-        Two tribes, <b>Judah</b> 🦁 and <b>Ephraim</b> 🐂. Each has one <b>spy master</b> (Caleb or Joshua) who secretly sees which of the 25 words belong to whom.
-      </li>
-      <li>
-        The spy master gives <b>one word and a number</b>: “Shepherd 2” means two cards fit. No word from the grid (or part of one) allowed.
-      </li>
-      <li>
-        The other members are <b>agents</b>. Tap a card to propose it; teammates tap it too to agree. A majority reveals it — or the proposer can confirm alone after 3 seconds.
-      </li>
-      <li>
-        You may reveal up to <b>number + 1</b> cards. Hit the wilderness 🏜️ or the other tribe’s land and your turn ends.
-      </li>
-      <li>
-        First tribe to find all its words wins. Turn over <b>Goliath</b> ⚔️ and your tribe loses at once!
-      </li>
-      <li>
-        <b>Co-op</b> (2+ players): one tribe races the Canaanites — after every turn they take one of their own cards.
-      </li>
+      <li>{rich(t('spies.rules.r1'))}</li>
+      <li>{rich(t('spies.rules.r2'))}</li>
+      <li>{rich(t('spies.rules.r3'))}</li>
+      <li>{rich(t('spies.rules.r4'))}</li>
+      <li>{rich(t('spies.rules.r5'))}</li>
+      <li>{rich(t('spies.rules.r6'))}</li>
     </ol>
   )
 }

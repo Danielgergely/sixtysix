@@ -9,6 +9,7 @@ import type {
   SpiesTeam,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { t } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { markSpiesPlayed, paySpies } from '../game/boardRewards'
@@ -95,7 +96,7 @@ function getSocket(): SpiesSocket {
     const { role, state } = getState()
     if (!state || !socket) return
     const onRejoin = (res: { ok: boolean; error?: string }) => {
-      if (!res.ok) closeLocally(res.error ?? 'The game has ended')
+      if (!res.ok) closeLocally(res.error ?? t('spies.errors.ended'))
     }
     const player = useGameStore.getState().player
     if (role === 'player') socket.emit('spies:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
@@ -146,7 +147,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
 
   join: (code) => {
     const trimmed = code.trim().toUpperCase()
-    if (trimmed.length < 4) return set({ error: 'Enter the game code' })
+    if (trimmed.length < 4) return set({ error: t('spies.errors.enterCode') })
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
     getSocket().emit('spies:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
@@ -195,7 +196,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
       getSocket()
         .timeout(5000)
         .emit('spies:clue', { word, number }, (err, res) => {
-          if (err) return resolve('No answer from the server — try again')
+          if (err) return resolve(t('spies.errors.noAnswer'))
           if (res.ok) playSfx('submit')
           resolve(res.ok ? null : res.error)
         })
