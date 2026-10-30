@@ -5,13 +5,12 @@ import { levelForXp } from '../game/persistence'
 import { useAccountStore } from '../account/accountStore'
 import { fetchCity, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { levelDef } from '@sixtysix/shared'
 import { usePlotStore } from '../plot/plotStore'
+import { useT } from '../i18n'
 import { artFor } from './home/homeUtil'
+import { houseName } from './home/plotText'
 import { CityMap } from '../world/CityMap'
 import { CitySheet, type CitySheetKind, type LotPick } from '../world/CitySheet'
-
-const houseName = (level: number) => levelDef('house', level)?.name ?? 'Tent'
 
 /**
  * The city: a painted map of Jerusalem to drag around. Landmarks (Temple,
@@ -24,6 +23,7 @@ export function JerusalemScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const visitPlot = useGameStore((s) => s.visitPlot)
   const account = useAccountStore((s) => s.account)
+  const t = useT()
   const [residents, setResidents] = useState<Resident[] | null>(null)
   const [failed, setFailed] = useState(false)
   const [list, setList] = useState(false)
@@ -45,9 +45,9 @@ export function JerusalemScreen() {
   const openResident = (r: Resident) => (r.username === me ? goTo('home') : visitPlot(r.username))
   const toggle = (
     <button className="cm-chip" onClick={() => setList((v) => !v)}>
-      {list ? '🗺️ Map' : (
+      {list ? t('city.screen.map') : (
         <>
-          ☰ <span>List</span>
+          ☰ <span>{t('city.screen.list')}</span>
         </>
       )}
     </button>
@@ -71,33 +71,33 @@ export function JerusalemScreen() {
               extra={toggle}
             />
           ) : (
-            <p className="tab-note cm-loading">Walking up to Jerusalem…</p>
+            <p className="tab-note cm-loading">{t('city.screen.loading')}</p>
           )}
-          {failed && !residents && <p className="cm-offline">Can’t reach the city right now — only the streets are shown.</p>}
+          {failed && !residents && <p className="cm-offline">{t('city.screen.offline')}</p>}
         </>
       )}
 
       {list && (
         <>
           <div className="jr-list-head">
-            <div className="jr-heading">Residents</div>
+            <div className="jr-heading">{t('city.screen.residents')}</div>
             {toggle}
           </div>
           {account ? (
             <button className="jr-home jr-home-btn" onClick={() => goTo('home')}>
               <img className="jr-home-art" src={artFor('house', residents?.find((r) => r.username === me)?.house ?? 1)} alt="" />
               <span>
-                <strong>Your home</strong>
-                <small>tap to build ›</small>
+                <strong>{t('city.screen.yourHome')}</strong>
+                <small>{t('city.screen.tapToBuild')}</small>
               </span>
             </button>
           ) : (
             <button className="tab-banner" onClick={() => goTo('profile')}>
-              🔒 Get your own plot in Jerusalem — create a free account ›
+              {t('city.screen.signUp')}
             </button>
           )}
-          {failed && !residents && <p className="tab-note">Can’t reach the city right now.</p>}
-          {residents?.length === 0 && <p className="tab-note">No one lives here yet — be the first family in the city!</p>}
+          {failed && !residents && <p className="tab-note">{t('city.screen.offlineList')}</p>}
+          {residents?.length === 0 && <p className="tab-note">{t('city.screen.empty')}</p>}
           <div className="jr-grid">
             {residents?.map((r, i) => (
               <motion.button
@@ -112,7 +112,7 @@ export function JerusalemScreen() {
                 <img className="jr-plot-house" src={artFor('house', r.house)} alt={houseName(r.house)} title={houseName(r.house)} draggable={false} />
                 <PaintedPortrait id={r.avatar} className="jr-plot-portrait" />
                 <strong>{r.name}</strong>
-                <small>Lv {levelForXp(r.xp)}</small>
+                <small>{t('city.screen.lv', { n: levelForXp(r.xp) })}</small>
               </motion.button>
             ))}
           </div>

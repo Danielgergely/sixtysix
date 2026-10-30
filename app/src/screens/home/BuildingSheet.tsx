@@ -6,7 +6,6 @@ import {
   MATERIALS,
   PRODUCERS,
   checkUpgrade,
-  formatMinutes,
   levelDef,
   modsOf,
   ready,
@@ -19,10 +18,14 @@ import { usePlotStore } from '../../plot/plotStore'
 import { PARCHMENT } from '../../art/textures'
 import { PaintedCoin } from '../../art/PaintedPortrait'
 import { fireConfetti, spring } from '../../motion'
-import { artFor, COURTYARD_ART, countdown, listMaterials } from './homeUtil'
+import { t as tNow, tServer, useLocale, useT } from '../../i18n'
+import { artFor, COURTYARD_ART, countdown } from './homeUtil'
+import { buildingName, buildingWhat, formatMinutes, levelName, listMaterials, materialAmount, materialName, requirementLabels } from './plotText'
+import { rich } from './rich'
 
 /** Bottom sheet for one spot: what it does, the next level, and the Upgrade / Buy-missing buttons. */
 export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'courtyard'; plot: PlotState; onClose: () => void }) {
+  const t = useT()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -39,7 +42,7 @@ export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'cou
         exit={{ y: '100%', transition: { duration: 0.2 } }}
         role="dialog"
       >
-        <button className="hp-sheet-close" onClick={onClose} title="Close">
+        <button className="hp-sheet-close" onClick={onClose} title={t('home.close')}>
           ✕
         </button>
         {spot === 'courtyard' ? <Courtyard /> : <Building b={spot} plot={plot} />}
@@ -49,16 +52,17 @@ export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'cou
 }
 
 function Courtyard() {
+  const t = useT()
   return (
     <div className="hp-sheet-body">
       <div className="hp-sheet-head">
         <img className="hp-sheet-art" src={COURTYARD_ART} alt="" />
         <div>
-          <h3>Courtyard</h3>
-          <small>Decorations</small>
+          <h3>{t('home.sheet.courtyard')}</h3>
+          <small>{t('home.sheet.decorations')}</small>
         </div>
       </div>
-      <p className="hp-what">Fig trees, palms, lamp stands and banners from the Market will stand here. Coming soon.</p>
+      <p className="hp-what">{t('home.sheet.courtyardWhat')}</p>
     </div>
   )
 }
@@ -66,6 +70,8 @@ function Courtyard() {
 function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
   const coins = useGameStore((s) => s.player.coins)
   const { busy, upgrade, collect, startScroll, say, error, now, select } = usePlotStore()
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const def = BUILDINGS[b]
   const level = plot.levels[b]
   const cur = levelDef(b, level)
@@ -74,71 +80,75 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
   const art = artFor(b, Math.max(1, level))
   const make = cur?.make
   const waiting = PRODUCERS.includes(b) ? ready(plot, b) : 0
+  const reqLabels = requirementLabels(plot, c)
 
   const start = async (buyMissing: boolean) => {
     if (await upgrade(b, buyMissing)) {
-      say(`${c.def?.name} — the builders are at work`)
+      if (c.toLevel) say(tNow('home.started', { name: levelName(b, c.toLevel) }))
       fireConfetti({ y: 0.6, count: 60 })
       select(null)
     }
   }
+
+  const rate = make
+    ? make.perHour < 1
+      ? t('home.sheet.every', { amount: materialAmount(make.material, 1), h: Math.round(1 / make.perHour) })
+      : t('home.sheet.perHour', { amount: materialAmount(make.material, make.perHour) })
+    : ''
 
   return (
     <div className="hp-sheet-body">
       <div className="hp-sheet-head">
         <img className={`hp-sheet-art ${level ? '' : 'empty'}`} src={art} alt="" />
         <div>
-          <h3>{def.name}</h3>
-          <small>{cur ? `Level ${level} · ${cur.name}` : 'Not built yet'}</small>
+          <h3>{buildingName(b)}</h3>
+          <small>{cur ? t('home.sheet.level', { level, name: levelName(b, level) }) : t('home.sheet.notBuilt')}</small>
         </div>
       </div>
       <p className="hp-what">
-        {def.what} <em>{def.verse}</em>
+        {buildingWhat(b)} <em>{def.verse}</em>
       </p>
 
       {make && (
         <div className="hp-row-box">
           <span>
-            Makes <b>{make.perHour < 1 ? `1 ${MATERIAL_INFO[make.material].name.toLowerCase()} every ${Math.round(1 / make.perHour)} h` : `${make.perHour} ${MATERIAL_INFO[make.material].name.toLowerCase()}/h`}</b> · holds {storeCap(plot.levels, modsOf(plot))}
-            {cur?.water ? ` · uses ${cur.water} 💧` : ''}
+            {rich(t('home.sheet.makes', { rate }))} · {t('home.sheet.holds', { n: storeCap(plot.levels, modsOf(plot)).toLocaleString(locale) })}
+            {cur?.water ? ` · ${t('home.sheet.usesWater', { n: cur.water })}` : ''}
           </span>
           <button
             className="hp-btn small gold"
             disabled={busy || waiting === 0}
             onClick={async () => {
               const got = await collect(b)
-              if (got && Object.keys(got).length) say(`Collected ${listMaterials(got)}`)
+              if (got && Object.keys(got).length) say(tNow('home.collected', { list: listMaterials(got) }))
             }}
           >
-            Collect {waiting ? `${waiting} ${MATERIAL_INFO[make.material].icon}` : ''}
+            {waiting ? t('home.sheet.collectN', { n: waiting, icon: MATERIAL_INFO[make.material].icon }) : t('home.sheet.collect')}
           </button>
         </div>
       )}
-      {b === 'well' && cur?.water && <div className="hp-row-box">Supplies <b>{cur.water} 💧 water</b> for the kiln, sheepfold and grove.</div>}
-      {b === 'store' && cur?.cap && <div className="hp-row-box">Each producer holds up to <b>{cur.cap}</b> before you collect.</div>}
-      {b === 'house' && level < 4 && <div className="hp-row-box">House 4 brings a <b>second builder</b>.</div>}
+      {b === 'well' && cur?.water && <div className="hp-row-box">{rich(t('home.sheet.well', { n: cur.water }))}</div>}
+      {b === 'store' && cur?.cap && <div className="hp-row-box">{rich(t('home.sheet.store', { n: cur.cap }))}</div>}
+      {b === 'house' && level < 4 && <div className="hp-row-box">{rich(t('home.sheet.house'))}</div>}
 
       {build ? (
         <div className="hp-building">
-          <strong>
-            🔨 Building level {build.toLevel}: {levelDef(b, build.toLevel)?.name}
-          </strong>
+          <strong>{t('home.sheet.building', { level: build.toLevel, name: levelName(b, build.toLevel) })}</strong>
           <span className="hp-bar big">
             <span style={{ width: `${Math.min(100, ((now() - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100)}%` }} />
           </span>
-          <small>{countdown(build.endsAt - now())} left</small>
+          <small>{t('home.sheet.left', { time: countdown(build.endsAt - now()) })}</small>
           <button className="hp-btn" disabled={busy} onClick={() => void startScroll()}>
-            📜 Workers’ scroll: answer 3, get 2 right → −{modsOf(plot).scrollMin} min
+            {t('home.sheet.scroll', { n: modsOf(plot).scrollMin })}
           </button>
         </div>
       ) : c.maxed ? (
-        <p className="hp-what done">This building is complete.</p>
+        <p className="hp-what done">{t('home.sheet.complete')}</p>
       ) : (
-        c.def && (
+        c.def &&
+        c.toLevel && (
           <div className="hp-next-level">
-            <h4>
-              Level {c.toLevel}: {c.def.name}
-            </h4>
+            <h4>{t('home.sheet.nextLevel', { level: c.toLevel, name: levelName(b, c.toLevel) })}</h4>
             <ul className="hp-cost">
               {MATERIALS.filter((m) => c.cost[m]).map((m) => {
                 const have = plot.inventory[m]
@@ -146,7 +156,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
                 return (
                   <li key={m} className={have >= need ? 'ok' : 'short'}>
                     <span>{MATERIAL_INFO[m].icon}</span>
-                    <span className="hp-cost-name">{MATERIAL_INFO[m].name}</span>
+                    <span className="hp-cost-name">{materialName(m)}</span>
                     <b>
                       {Math.min(have, need)}/{need}
                     </b>
@@ -155,30 +165,30 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
               })}
             </ul>
             <ul className="hp-reqs">
-              {c.reqs.map((r) => (
+              {c.reqs.map((r, i) => (
                 <li key={r.label} className={r.met ? 'ok' : 'short'}>
-                  {r.met ? '✓' : '✗'} {r.label}
+                  {r.met ? '✓' : '✗'} {reqLabels[i] ?? r.label}
                 </li>
               ))}
-              <li className={c.freeBuilder ? 'ok' : 'short'}>{c.freeBuilder ? '✓ A builder is free' : '✗ Your builders are busy'}</li>
-              <li className="ok">⏳ Build time {c.minutes ? formatMinutes(c.minutes) : 'instant'}</li>
+              <li className={c.freeBuilder ? 'ok' : 'short'}>{c.freeBuilder ? t('home.sheet.builderFree') : t('home.sheet.buildersBusy')}</li>
+              <li className="ok">{t('home.sheet.buildTime', { time: c.minutes ? formatMinutes(c.minutes) : t('home.sheet.instant') })}</li>
             </ul>
             <div className="hp-sheet-btns">
               {c.missingCoins === 0 ? (
                 <button className="hp-btn gold big" disabled={busy || !c.reqsMet || !c.freeBuilder} onClick={() => void start(false)}>
-                  Upgrade
+                  {t('home.sheet.upgrade')}
                 </button>
               ) : (
                 <button className="hp-btn gold big" disabled={busy || !c.reqsMet || !c.freeBuilder || coins < c.missingCoins} onClick={() => void start(true)}>
-                  Buy missing &amp; build: <PaintedCoin size={18} /> {c.missingCoins}
+                  {t('home.sheet.buyBuild')} <PaintedCoin size={18} /> {c.missingCoins.toLocaleString(locale)}
                 </button>
               )}
-              {c.missingCoins > coins && <small className="hp-short">You have {coins} coins — answer questions to earn more.</small>}
+              {c.missingCoins > coins && <small className="hp-short">{t('home.sheet.short', { count: coins, n: coins.toLocaleString(locale) })}</small>}
             </div>
           </div>
         )
       )}
-      {error && <p className="hp-error">{error}</p>}
+      {error && <p className="hp-error">{tServer(error)}</p>}
     </div>
   )
 }

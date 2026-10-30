@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { INNER_MIN_HOUSE, MOVE_COST, levelDef, moveError, type MoveError } from '@sixtysix/shared'
+import { INNER_MIN_HOUSE, MOVE_COST, moveError } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { useAccountStore } from '../account/accountStore'
 import { fetchLeaderboard, type LeaderboardData, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
 import { spring } from '../motion'
+import { tServer, useLocale, useT } from '../i18n'
 import { INNER_LOTS, type LandmarkId } from './cityLayout'
 import { artFor } from '../screens/home/homeUtil'
+import { houseName } from '../screens/home/plotText'
+import { rich } from '../screens/home/rich'
 import { moveHome } from './cityApi'
 
 export type CitySheetKind = Exclude<LandmarkId, 'market'> | 'lot'
@@ -34,6 +37,7 @@ export function CitySheet({
   onMoved?: () => void
   onClose: () => void
 }) {
+  const t = useT()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -50,7 +54,7 @@ export function CitySheet({
         exit={{ y: '100%', transition: { duration: 0.2 } }}
         role="dialog"
       >
-        <button className="hp-sheet-close" onClick={onClose} title="Close">
+        <button className="hp-sheet-close" onClick={onClose} title={t('city.map.close')}>
           ✕
         </button>
         {kind === 'temple' && <Temple />}
@@ -76,18 +80,13 @@ function Head({ art, title, sub }: { art: string; title: string; sub: string }) 
 }
 
 function Temple() {
+  const t = useT()
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-temple.webp" title="Solomon’s Temple" sub="The city’s shared building project · coming soon" />
-      <p className="hp-what">
-        “So Solomon built the house, and finished it.” <em>1 Kgs 6:14</em>
-      </p>
-      <p className="hp-what">
-        One day every group — a church youth group, a class, a family — will raise its own Temple together: a share of the coins from every arena game goes
-        in, and it rises in stages, from the foundation to the walls, the bronze pillars Jachin and Boaz, the Holy Place and the dedication (1 Kgs 6–8). Every
-        player’s name goes on the donor stones.
-      </p>
-      <p className="hp-short">Until then, build up your own home — the Temple will stand behind every plot.</p>
+      <Head art="/art/land-temple.webp" title={t('city.temple.title')} sub={t('city.temple.sub')} />
+      <p className="hp-what">{rich(t('city.temple.verse'))}</p>
+      <p className="hp-what">{t('city.temple.text')}</p>
+      <p className="hp-short">{t('city.temple.until')}</p>
     </div>
   )
 }
@@ -95,6 +94,8 @@ function Temple() {
 function NoticeBoard({ residents }: { residents: Resident[] }) {
   const goTo = useGameStore((s) => s.goTo)
   const viewPlayer = useGameStore((s) => s.viewPlayer)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const [week, setWeek] = useState<LeaderboardData | null>(null)
   useEffect(() => {
     let live = true
@@ -121,53 +122,45 @@ function NoticeBoard({ residents }: { residents: Resident[] }) {
 
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-governor.webp" title="Notice board" sub="The governor’s house · Nehemiah" />
-      <p className="hp-what">
-        “You see the evil case that we are in… Come, let us build up the wall of Jerusalem.” <em>Neh 2:17</em>
-      </p>
+      <Head art="/art/land-governor.webp" title={t('city.notice.title')} sub={t('city.notice.sub')} />
+      <p className="hp-what">{rich(t('city.notice.verse'))}</p>
       <div className="cs-facts">
-        <span>
-          <b>{residents.length}</b> families
-        </span>
-        <span>
-          <b>{towers}</b> stone houses
-        </span>
-        <span>
-          <b>{week?.top.length ?? '–'}</b> active this week
-        </span>
+        <span>{rich(t('city.notice.families', { count: residents.length, n: residents.length.toLocaleString(locale) }))}</span>
+        <span>{rich(t('city.notice.stone', { count: towers, n: towers.toLocaleString(locale) }))}</span>
+        <span>{rich(t('city.notice.active', { n: week ? week.top.length.toLocaleString(locale) : '–' }))}</span>
       </div>
       {week && week.top.length > 0 && (
         <section>
-          <h4 className="cs-h">This week’s most faithful</h4>
+          <h4 className="cs-h">{t('city.notice.faithful')}</h4>
           <ol className="cs-list">
             {week.top.slice(0, 3).map((p) => (
-              <Row key={p.username} r={p} note={`${p.weekXp.toLocaleString('en-US')} XP`} />
+              <Row key={p.username} r={p} note={t('city.notice.xp', { n: p.weekXp.toLocaleString(locale) })} />
             ))}
           </ol>
         </section>
       )}
       {finest.length > 0 && (
         <section>
-          <h4 className="cs-h">Finest houses</h4>
+          <h4 className="cs-h">{t('city.notice.finest')}</h4>
           <ol className="cs-list">
             {finest.map((r) => (
-              <Row key={r.username} r={r} note={levelDef('house', r.house)?.name ?? ''} />
+              <Row key={r.username} r={r} note={houseName(r.house)} />
             ))}
           </ol>
         </section>
       )}
       {newest.length > 0 && (
         <section>
-          <h4 className="cs-h">Newest families</h4>
+          <h4 className="cs-h">{t('city.notice.newest')}</h4>
           <ol className="cs-list">
             {newest.map((r) => (
-              <Row key={r.username} r={r} note={r.lot ? `lot ${r.lot}` : 'outside the walls'} />
+              <Row key={r.username} r={r} note={r.lot ? t('city.notice.lot', { n: r.lot }) : t('city.notice.outside')} />
             ))}
           </ol>
         </section>
       )}
       <button className="hp-btn gold big" onClick={() => goTo('leaderboard')}>
-        🏆 The full Leaderboard
+        {t('city.notice.leaderboard')}
       </button>
     </div>
   )
@@ -175,43 +168,28 @@ function NoticeBoard({ residents }: { residents: Resident[] }) {
 
 function Gate() {
   const goTo = useGameStore((s) => s.goTo)
+  const t = useT()
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-gate.webp" title="The Sheep Gate" sub="Neh 3:1" />
-      <p className="hp-what">
-        “Then Eliashib the high priest rose up with his brothers the priests, and they built the sheep gate.” <em>Neh 3:1</em>
-      </p>
-      <p className="hp-what">Every coin for building is earned out there, answering questions. The road leads back to the quiz.</p>
+      <Head art="/art/land-gate.webp" title={t('city.gate.title')} sub="Neh 3:1" />
+      <p className="hp-what">{rich(t('city.gate.verse'))}</p>
+      <p className="hp-what">{t('city.gate.text')}</p>
       <button className="hp-btn gold big" onClick={() => goTo('menu')}>
-        📜 Back to the quiz
+        {t('city.gate.back')}
       </button>
     </div>
   )
 }
 
 function Pool() {
+  const t = useT()
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-pool.webp" title="Pool of Siloam" sub="John 9:7" />
-      <p className="hp-what">
-        “Go, wash in the pool of Siloam.” So he went away, washed, and came back seeing. <em>John 9:7</em>
-      </p>
-      <p className="hp-what">
-        Hezekiah “made the pool, and the conduit, and brought water into the city” (2 Kgs 20:20) — the same idea as the cistern your own well can
-        become.
-      </p>
+      <Head art="/art/land-pool.webp" title={t('city.pool.title')} sub="John 9:7" />
+      <p className="hp-what">{rich(t('city.pool.verse'))}</p>
+      <p className="hp-what">{t('city.pool.text')}</p>
     </div>
   )
-}
-
-const MOVE_REASON: Record<MoveError, string> = {
-  'signed-out': '',
-  'no-lot': '',
-  same: 'This is your home.',
-  taken: 'A family lives here.',
-  house: `Taking over a place inside the wall needs a ${levelDef('house', INNER_MIN_HOUSE)?.name ?? 'bigger house'} (house level ${INNER_MIN_HOUSE}).`,
-  coins: 'Not enough coins yet.',
-  cooldown: 'You moved this week already.',
 }
 
 /** Free land, or an inner place whose family has been away 60+ days: move your homestead here. */
@@ -219,16 +197,24 @@ function LotCard({ pick, residents, onMoved, onClose }: { pick: LotPick; residen
   const goTo = useGameStore((s) => s.goTo)
   const coins = useGameStore((s) => s.player.coins)
   const account = useAccountStore((s) => s.account)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const inner = pick.n <= INNER_LOTS
-  const cost = inner ? MOVE_COST.inner : MOVE_COST.outer
+  const cost = (inner ? MOVE_COST.inner : MOVE_COST.outer).toLocaleString(locale)
   const me = residents.find((r) => r.username === account?.username)
   const owner = pick.resident
   // The server checks the week between moves; everything else is known here.
   const reason = account
     ? moveError({ inner, owner: owner ? { idleDays: owner.idleDays, isMe: owner.username === account.username } : null, house: me?.house ?? 1, coins, lastMoveAt: null, now: 0 })
     : null
+  const why =
+    reason === 'house'
+      ? t('city.lot.why.house', { house: houseName(INNER_MIN_HOUSE), n: INNER_MIN_HOUSE })
+      : reason && reason !== 'signed-out' && reason !== 'no-lot'
+        ? t(`city.lot.why.${reason}`)
+        : ''
   const move = async () => {
     setBusy(true)
     const err = await moveHome(pick.n)
@@ -237,37 +223,32 @@ function LotCard({ pick, residents, onMoved, onClose }: { pick: LotPick; residen
     onMoved?.()
     onClose()
   }
-  const where = `${inner ? 'Inside the wall' : 'Outside the wall'} · lot ${pick.n}`
+  const where = t(inner ? 'city.lot.inside' : 'city.lot.outside', { n: pick.n })
   return (
     <div className="hp-sheet-body">
       {owner ? (
         <>
-          <Head art={artFor('house', owner.house)} title={`${owner.name}’s home is for sale`} sub={where} />
-          <p className="hp-what">
-            {owner.name} hasn’t played or built for {owner.idleDays} days, and the weeds have taken over. An active family may take this place
-            {inner ? ' inside the wall (with a Courtyard house or better)' : ''}. {owner.name} keeps their buildings and gets a free lot when they come back.
-          </p>
+          <Head art={artFor('house', owner.house)} title={t('city.lot.saleTitle', { name: owner.name })} sub={where} />
+          <p className="hp-what">{t(inner ? 'city.lot.saleTextInner' : 'city.lot.saleText', { name: owner.name, days: owner.idleDays })}</p>
         </>
       ) : (
         <>
-          <Head art="/art/land-free.webp" title="Free land" sub={where} />
-          <p className="hp-what">
-            “The rest of the people also cast lots, to bring one of ten to dwell in Jerusalem the holy city.” <em>Neh 11:1</em>
-          </p>
-          <p className="hp-what">New families settle on the first free lot, inside the wall while there is room. You can move your homestead here too — your buildings come with you.</p>
+          <Head art="/art/land-free.webp" title={t('city.lot.freeTitle')} sub={where} />
+          <p className="hp-what">{rich(t('city.lot.freeVerse'))}</p>
+          <p className="hp-what">{t('city.lot.freeText')}</p>
         </>
       )}
       {!account ? (
         <button className="hp-btn gold big" onClick={() => goTo('profile')}>
-          Create an account to get a plot
+          {t('city.lot.signUp')}
         </button>
       ) : (
         <>
           <button className="hp-btn gold big" disabled={!!reason || busy} onClick={() => void move()}>
-            {owner ? 'Take over this place' : 'Move my home here'} · {cost} 🪙
+            {t(owner ? 'city.lot.takeOver' : 'city.lot.move', { cost })}
           </button>
-          {(reason || error) && <p className="hp-what cs-why">{error ?? MOVE_REASON[reason!]}</p>}
-          <p className="hp-what cs-small">One move a week. Your buildings, stock and builders move with you.</p>
+          {(reason || error) && <p className="hp-what cs-why">{error ? tServer(error) : why}</p>}
+          <p className="hp-what cs-small">{t('city.lot.small')}</p>
         </>
       )}
     </div>

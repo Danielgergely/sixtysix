@@ -1,0 +1,20 @@
+export default {
+  title: 'Piac',
+  hero: 'A piac a Juh-kapunál',
+  heroSub: 'Vedd meg, ami kell. A fölösleget fél áron adhatod el.',
+  signUp: '🔒 Hozz létre ingyenes fiókot, hogy kereskedhess a piacon ›',
+  madeBy: {
+    wood: 'Műhely',
+    bricks: 'Téglaégető',
+    stone: 'Csak a piacon',
+    wool: 'Akol',
+    oil: 'Olajfaliget',
+    cedar: 'Csak a piacon · 1 Kgs 5:6',
+    gold: 'Csak a piacon',
+  },
+  buy: 'Vétel',
+  sell: 'Eladás +{n}',
+  bought: 'Megvetted: {amount}',
+  sold: 'Eladtad: {amount}',
+  note: 'Érmét csak kérdések megválaszolásával szerezhetsz. Valódi pénzért itt semmit sem lehet venni.',
+}

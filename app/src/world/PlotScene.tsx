@@ -1,8 +1,10 @@
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
-import { BUILDINGS, MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
+import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
+import { useT } from '../i18n'
 import { artFor, COURTYARD_ART, countdown } from '../screens/home/homeUtil'
+import { buildingName, levelName } from '../screens/home/plotText'
 import { PanZoom } from './PanZoom'
 import { PlotLife } from './PlotLife'
 import { useWasDragged } from './dragged'
@@ -45,6 +47,7 @@ interface Props {
 
 export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: Props) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
+  const t = useT()
   return (
     <PanZoom
       className={`ps ${className ?? ''}`}
@@ -61,10 +64,10 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: 
       }
       overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
         <div className="pz-zoom">
-          <button onClick={() => zoomBy(1)} disabled={!canZoomIn} title="Zoom in">
+          <button onClick={() => zoomBy(1)} disabled={!canZoomIn} title={t('home.scene.zoomIn')}>
             +
           </button>
-          <button onClick={() => zoomBy(-1)} disabled={!canZoomOut} title="Zoom out">
+          <button onClick={() => zoomBy(-1)} disabled={!canZoomOut} title={t('home.scene.zoomOut')}>
             −
           </button>
         </div>
@@ -85,6 +88,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: 
 
 function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Spot; index: number } & Omit<Props, 'className'> & { now: number }) {
   const wasDragged = useWasDragged()
+  const t = useT()
   const place = PLACES[spot]
   const style = { left: `${place.x}%`, top: `${place.y}%`, width: `${place.w}%`, zIndex: Math.round(place.y) }
   const tap = onSelect && (() => !wasDragged() && onSelect(spot))
@@ -104,7 +108,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
   const waiting = plot && PRODUCERS.includes(b) ? ready(plot, b) : 0
   const isNew = seen && plot ? level > seen[b] : false
   const pct = build ? Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100) : 0
-  const name = level ? (levelDef(b, level)?.name ?? BUILDINGS[b].name) : BUILDINGS[b].name
+  const name = levelName(b, level)
 
   return (
     <motion.button
@@ -124,7 +128,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
           <small>🔨 {countdown(build.endsAt - now)}</small>
         </span>
       )}
-      {isNew && !build && <span className="hp-ribbon new">New!</span>}
+      {isNew && !build && <span className="hp-ribbon new">{t('home.scene.new')}</span>}
       {!isNew && waiting > 0 && (
         <span className="hp-ribbon">
           +{waiting} {MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon}
@@ -137,6 +141,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
 /** A spot's name tag, placed just under its sprite (the sprite's foot is 86% down its height, ~0.9 × its width). */
 function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 'levels' | 'plot' | 'onSelect'>) {
   const wasDragged = useWasDragged()
+  const t = useT()
   const place = PLACES[spot]
   const style = { left: `${place.x}%`, top: `${place.y + place.w * 0.1}%` }
   const tap = onSelect && (() => !wasDragged() && onSelect(spot))
@@ -144,7 +149,7 @@ function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 
     return (
       <button className="ps-tagspot court" style={style} onClick={tap} aria-disabled={!onSelect} tabIndex={-1}>
         <span className="ps-tag">
-          Courtyard <small>soon</small>
+          {t('home.sheet.courtyard')} <small>{t('home.scene.soon')}</small>
         </span>
       </button>
     )
@@ -154,7 +159,7 @@ function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 
   return (
     <button className={`ps-tagspot ${spot === 'house' ? 'house' : ''} ${level ? '' : 'empty'}`} style={style} onClick={tap} aria-disabled={!onSelect} tabIndex={-1}>
       <span className="ps-tag">
-        {BUILDINGS[spot].name} <small>{level ? `Lv ${level}` : build ? 'going up' : plot ? 'empty' : '—'}</small>
+        {buildingName(spot)} <small>{level ? t('home.scene.lv', { n: level }) : build ? t('home.scene.goingUp') : plot ? t('home.scene.empty') : '—'}</small>
       </span>
     </button>
   )
