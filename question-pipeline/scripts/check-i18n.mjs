@@ -46,13 +46,19 @@ const sameNames = new Set(
     .filter(([en, x]) => en === x)
     .map(([en]) => en),
 );
+const sameNamesLower = new Set([...sameNames].map((n) => n.toLowerCase()));
+for (const [en, x] of Object.entries(names)) if (en.toLowerCase() === x.toLowerCase()) sameNamesLower.add(en.toLowerCase());
 // Returns 'ok', 'warn' (a single word: may be spelled the same, e.g. "Gold",
 // "Manna" — listed for a human look) or 'error' (a phrase left in English).
 function sameAsEnglish(a) {
   if (!/[A-Za-z]/.test(a)) return 'ok'; // numbers, symbols
+  if (sameNamesLower.has(a.toLowerCase())) return 'ok';
   const words = a.split(/[\s,/()–-]+/).filter(Boolean);
-  if (words.every((w) => sameNames.has(w.replace(/['’]s$/, '')) || /^\d/.test(w))) return 'ok';
-  return words.length === 1 ? 'warn' : 'error';
+  const isName = (w) => sameNamesLower.has(w.replace(/['’]s$/, '').toLowerCase()) || /^\d/.test(w);
+  if (words.every(isName)) return 'ok';
+  // One word, or names plus a single short word ("in Jerusalem"): may well
+  // be the same in the target language, so it is only listed for a look.
+  return words.filter((w) => !isName(w)).length === 1 ? 'warn' : 'error';
 }
 
 const bankIds = new Set(bank.map((q) => q.id));
@@ -60,7 +66,7 @@ for (const id of Object.keys(tr)) if (!bankIds.has(id)) err(id, 'not in bank.jso
 
 // Glossary lookup: longest names first so "John the Baptist" wins over "John".
 const glossary = Object.entries(names)
-  .filter(([en]) => en.length > 1)
+  .filter(([en]) => en.length > 2) // "On", "Er" also match plain English words
   .sort((a, b) => b[0].length - a[0].length)
   .map(([en, x]) => [en, x, new RegExp(`(^|[^A-Za-z])${escapeRe(en)}(?=$|[^A-Za-z])`)]);
 
@@ -98,10 +104,16 @@ for (const q of bank) {
   for (const [en, x, re] of glossary) {
     if (!re.test(rest)) continue;
     rest = rest.replace(new RegExp(re.source, 'g'), '$1 ');
-    // Compare on the stem (drop a trailing inflection like -s/-n/-en).
-    const stem = x.normalize('NFC').replace(/^(der|die|das) /, '');
-    const core = stem.length > 4 ? stem.slice(0, -1) : stem;
-    if (!trAll.toLowerCase().includes(core.toLowerCase())) {
+    // Compare word by word on the stem, so inflected forms count
+    // ("Johannes den Täufer", "Abrahams", "äthiopische").
+    const lowTr = trAll.toLowerCase();
+    const cores = x
+      .normalize('NFC')
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((w) => !['der', 'die', 'das', 'a', 'az'].includes(w))
+      .map((w) => (w.length > 5 ? w.slice(0, -2) : w.length > 3 ? w.slice(0, -1) : w));
+    if (!cores.every((c) => lowTr.includes(c))) {
       warnings.push(`${q.id}: "${en}" → expected "${x}"`);
     }
   }
