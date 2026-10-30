@@ -3,9 +3,11 @@ import { useGameStore } from '../../game/store'
 import { motion } from 'motion/react'
 import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, spring } from '../../motion'
-import { MODE_INFO } from './modes'
+import { useT } from '../../i18n'
+import { rich } from './rich'
 
 export function ArenaPlayerLobbyScreen() {
+  const t = useT()
   const room = useArenaStore((s) => s.room)
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const player = useGameStore((s) => s.player)
@@ -14,10 +16,10 @@ export function ArenaPlayerLobbyScreen() {
   return (
     <div className="screen player-lobby-screen emp">
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={leaveArena} title="Leave game">
+        <button className="icon-btn" onClick={leaveArena} title={t('arena.playerLobby.leave')}>
           ✕
         </button>
-        <h2 className="topbar-heading">You’re in!</h2>
+        <h2 className="topbar-heading">{t('arena.playerLobby.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
@@ -44,16 +46,13 @@ export function ArenaPlayerLobbyScreen() {
         >
           {player.name}
         </motion.div>
-        <div className="chip">Game {room.code}</div>
-        <div className="chip chip-mode">{MODE_INFO[room.config.mode ?? 'classic'].label}</div>
-        <p className="arena-hint player-mode-desc">{MODE_INFO[room.config.mode ?? 'classic'].desc}</p>
+        <div className="chip">{t('arena.playerLobby.game', { code: room.code })}</div>
+        <div className="chip chip-mode">{t(`arena.modes.${room.config.mode ?? 'classic'}.label`)}</div>
+        <p className="arena-hint player-mode-desc">{t(`arena.modes.${room.config.mode ?? 'classic'}.desc`)}</p>
 
         <div className="player-lobby-wait">
           <div className="slot-spinner" />
-          <span>
-            <AnimatedNumber value={room.players.length} duration={0.4} /> in the lobby — waiting for the host to
-            start…
-          </span>
+          <span>{rich(t('arena.playerLobby.waiting'), { n: <AnimatedNumber value={room.players.length} duration={0.4} /> })}</span>
         </div>
       </div>
     </div>

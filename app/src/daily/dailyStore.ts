@@ -4,6 +4,7 @@ import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
+import { t } from '../i18n'
 
 /**
  * Daily Scroll: five questions per calendar day, the SAME five for everyone
@@ -157,5 +158,5 @@ export const DAILY_COUNT = COUNT
 export function shareText(saved: Saved, questions: Question[]): string {
   const squares = saved.picks.map((p, i) => (p === questions[i]?.correctIndex ? '🟩' : '🟥')).join('')
   const right = saved.picks.filter((p, i) => p === questions[i]?.correctIndex).length
-  return `66 · Daily Scroll #${dayNumber(saved.date)}\n${squares} ${right}/${COUNT}${saved.streak > 1 ? ` · 🔥${saved.streak} days` : ''}`
+  return `${t('daily.shareTitle', { n: dayNumber(saved.date) })}\n${squares} ${right}/${COUNT}${saved.streak > 1 ? t('daily.shareStreak', { count: saved.streak }) : ''}`
 }

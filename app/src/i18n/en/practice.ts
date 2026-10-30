@@ -1,0 +1,23 @@
+/** Practice: untimed solo questions. */
+export default {
+  back: 'Back to home',
+  title: 'Practice',
+  intro: 'No clock, no rivals. Every answer shows its verse, and the ones you miss come back later.',
+  books: 'Books',
+  allBooks: 'All books',
+  difficulty: 'Difficulty',
+  levels: { easy: 'Gentle', mixed: 'Mixed', hard: 'Deep cuts' },
+  loading: 'Opening the scrolls…',
+  begin: 'Begin',
+  review: 'Review my mistakes ({n})',
+  end: 'End practice',
+  rightly: 'Rightly answered',
+  later: 'It comes back later',
+  next: 'Next ›',
+  mended: 'All mistakes mended',
+  studied: 'Well studied',
+  correctOf: '{correct} of {total} correct',
+  weakest: 'Worth another look: {category}.',
+  again: 'Practice again',
+  home: 'Home',
+}

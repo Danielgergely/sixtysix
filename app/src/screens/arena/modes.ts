@@ -1,10 +1,13 @@
-import type { ArenaMode } from '@sixtysix/shared'
-
-export const MODE_INFO: Record<ArenaMode, { label: string; desc: string }> = {
-  classic: { label: '👑 Classic', desc: 'Everyone for themselves — race up the Road to the Throne.' },
-  goliath: { label: '🪨 David vs Goliath', desc: 'The whole room against one giant. Every right answer is a stone from the sling.' },
-  wall: { label: '🧱 Rebuild the Wall', desc: 'Teams race to rebuild their gate of Jerusalem (Nehemiah 3). Needs 2+ players.' },
-}
+import type { Vars } from '../../i18n'
 
 /** Team colours for Rebuild the Wall, by team id. */
 export const TEAM_COLORS = ['#2f6fd8', '#d2332f', '#2f9a45', '#d89a1f']
+
+/** The server names teams after Jerusalem's gates (in English); these are their translation keys. */
+const GATE_KEYS: Record<string, string> = { 'Sheep Gate': 'sheep', 'Fish Gate': 'fish', 'Valley Gate': 'valley', 'Fountain Gate': 'fountain' }
+
+/** A team's name in the current language (unknown names pass through). */
+export function gateName(t: (key: string, vars?: Vars) => string, name: string): string {
+  const key = GATE_KEYS[name]
+  return key ? t(`ceremony.wall.gates.${key}`) : name
+}

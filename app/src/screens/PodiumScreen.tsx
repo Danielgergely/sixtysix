@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useGameStore } from '../game/store'
 import { Crowning } from '../ceremony/Crowning'
+import { useT } from '../i18n'
 
 /** End of a Bible Blitz race → The Crowning, then play again / review the questions. */
 export function PodiumScreen() {
+  const t = useT()
   const racers = useGameStore((s) => s.racers)
   const questions = useGameStore((s) => s.questions)
   const answerLog = useGameStore((s) => s.answerLog)
@@ -26,9 +28,9 @@ export function PodiumScreen() {
         coins={raceCoins}
         actions={
           <>
-            <button onClick={findMatch}>Play again</button>
-            <button onClick={() => goTo('menu')}>Home</button>
-            {played.length > 0 && <button onClick={() => setReviewing(true)}>Review</button>}
+            <button onClick={findMatch}>{t('quiz.podium.again')}</button>
+            <button onClick={() => goTo('menu')}>{t('quiz.podium.home')}</button>
+            {played.length > 0 && <button onClick={() => setReviewing(true)}>{t('quiz.podium.review')}</button>}
           </>
         }
       />
@@ -41,7 +43,7 @@ export function PodiumScreen() {
             </button>
             {/* Post-race review: every played question, your pick vs the right one. */}
             <div className="review-list">
-              <h3 className="review-heading">Questions from this race</h3>
+              <h3 className="review-heading">{t('quiz.podium.heading')}</h3>
               {played.map((q, i) => {
                 const yours = answerLog[i]
                 const flagged = flaggedIds.includes(q.id)
@@ -49,15 +51,15 @@ export function PodiumScreen() {
                   <div key={q.id} className="review-item">
                     <div className="review-meta">
                       <span>
-                        Q{i + 1} · <span className="question-ref">{q.reference}</span>
-                        {yours === -1 && <span className="timeout-note"> · ⏰ no answer</span>}
+                        {t('quiz.podium.q', { n: i + 1 })} · <span className="question-ref">{q.reference}</span>
+                        {yours === -1 && <span className="timeout-note"> · {t('quiz.podium.noAnswer')}</span>}
                       </span>
                       <button
                         className={`flag-btn ${flagged ? 'flagged' : ''}`}
                         onClick={() => toggleFlag(q.id)}
-                        title="Flag this question as wrong or unclear"
+                        title={t('quiz.podium.flagTitle')}
                       >
-                        {flagged ? '🚩 Flagged' : '⚐ Flag'}
+                        {flagged ? t('quiz.podium.flagged') : t('quiz.podium.flag')}
                       </button>
                     </div>
                     <div className="review-question">{q.text.en}</div>
@@ -73,8 +75,7 @@ export function PodiumScreen() {
                         return (
                           <span key={ai} className={cls}>
                             {isCorrect ? '✓ ' : isYours ? '✗ ' : ''}
-                            {a}
-                            {isYours ? ' — you' : ''}
+                            {isYours ? t('quiz.podium.yours', { answer: a }) : a}
                           </span>
                         )
                       })}
