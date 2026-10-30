@@ -32,6 +32,7 @@ export function Token({ player, size = 44, badge, dim }: { player: FlockPlayer; 
   return (
     <span className={`fl-token ${player.connected ? '' : 'off'} ${dim ? 'dim' : ''}`} style={{ width: size, height: size }}>
       <Avatar id={player.avatar} />
+      {player.bot && <span className="fl-token-bot" title="Bot">🤖</span>}
       {badge && <span className="fl-token-badge">{badge}</span>}
     </span>
   )
