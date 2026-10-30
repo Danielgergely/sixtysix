@@ -3,8 +3,9 @@
 
 /* ── layout ──────────────────────────────────────────────────────────── */
 .fl{ overflow: hidden; }
-.fl .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; }
-.fl .topbar-heading{ font-size: 1.15rem; }
+.fl .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; grid-template-columns: 42px 1fr minmax(42px, auto); }
+.fl .topbar-heading{ font-size: 1.15rem; min-width: 0; }
+@media (max-width: 400px){ .fl .topbar-heading{ font-size: 0.95rem; } }
 .fl-body{ flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 4px 14px 18px; display: flex; flex-direction: column; }
 .fl-phase{ flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .fl-col{ flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }

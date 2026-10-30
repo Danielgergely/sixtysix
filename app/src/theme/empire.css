@@ -983,6 +983,8 @@
 .emp .account-settings-heading{ font-size: 1.15rem; overflow-wrap: anywhere; }
 .account-settings-section h3{ margin: 0 0 6px; }
 .account-settings-section .profile-name-input{ font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; text-transform: none; letter-spacing: 0; }
+/* Long hints ("New password (at least 8 characters)") must fit beside the eye button. */
+.account-settings-section .profile-name-input::placeholder, .account-form .pw-field .profile-name-input::placeholder{ font-size: 0.85em; }
 .account-logins{ list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 6px; }
 .account-logins li{ display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 4px 8px; border: 2px solid #c9a24a; border-radius: 8px; background: rgb(255 255 255 / 0.35); font: 700 14px/1.2 'Cinzel', serif; color: #3b2412; }
 .account-logins small{ font: italic 12px/1.2 Georgia, serif; color: #6b4120; text-align: right; }
