@@ -7,7 +7,8 @@ import { PARCHMENT } from '../../art/textures'
 import { AnimatedNumber, STAGGER, spring } from '../../motion'
 import { AnswerCard } from '../arena/game/AnswerCard'
 import { quoteVerse } from '../../questions/quoteVerse'
-import { useT } from '../../i18n'
+import { useLocale, useT } from '../../i18n'
+import { questionIn, useVerses, verseOf } from '../../questions/localize'
 import { rich } from '../arena/rich'
 
 /** Time until local midnight, "5h 12m". */
@@ -28,7 +29,9 @@ function useUntilTomorrow(): string {
 export function DailyScreen() {
   const t = useT()
   const goTo = useGameStore((s) => s.goTo)
-  const { saved, questions, verses, coins, answer } = useDailyStore()
+  const { saved, questions, coins, answer } = useDailyStore()
+  const locale = useLocale((s) => s.locale)
+  const verses = useVerses()
   // The question whose verdict is on screen; null while choosing.
   const [shown, setShown] = useState<number | null>(null)
   const done = saved.picks.length >= DAILY_COUNT && shown === null
@@ -66,19 +69,19 @@ export function DailyScreen() {
           {t('daily.meta', { n: index + 1, total: DAILY_COUNT, category: t(`quiz.categories.${q.category}`) })} {'●'.repeat(q.difficulty)}
           {'○'.repeat(5 - q.difficulty)}
         </div>
-        <div className="pr-q">{q.text.en}</div>
+        <div className="pr-q">{questionIn(q, locale).text}</div>
         <AnimatePresence>
           {answered && (
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-              {verses[q.id] && <>{quoteVerse(verses[q.id])} </>}
-              <em>— {q.reference}</em>
+              {verseOf(verses, q).text && <>{quoteVerse(verseOf(verses, q).text, locale)} </>}
+              <em>— {verseOf(verses, q).ref}</em>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
 
       <div className="pr-grid">
-        {q.answers.en.map((text, i) => {
+        {questionIn(q, locale).answers.map((text, i) => {
           const isRight = answered && i === q.correctIndex
           const isWrongPick = answered && i === picked && !correct
           return (

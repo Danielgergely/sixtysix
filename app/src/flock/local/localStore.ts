@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { t } from '../../i18n'
+import { t, useLocale, type Locale } from '../../i18n'
 import { FLOCK_CATEGORIES, type FlockCategory, type FlockWord, type FlockWordList } from '@sixtysix/shared'
 
 /**
@@ -90,8 +90,14 @@ function saveSetup(setup: LocalSetup): void {
   }
 }
 
-let words: Promise<FlockWordList> | null = null
-const loadWords = () => (words ??= import('@sixtysix/shared/flockWords.json').then((m) => m.default as FlockWordList))
+/** The word list per language (same entries in the same order; each loads when first needed). */
+const LOADERS: Record<Locale, () => Promise<{ default: unknown }>> = {
+  en: () => import('@sixtysix/shared/flockWords.json'),
+  de: () => import('@sixtysix/shared/flockWords.de.json'),
+  hu: () => import('@sixtysix/shared/flockWords.hu.json'),
+}
+const lists: Partial<Record<Locale, Promise<FlockWordList>>> = {}
+const loadWords = (locale: Locale) => (lists[locale] ??= LOADERS[locale]().then((m) => m.default as FlockWordList))
 
 const shuffle = <T,>(xs: T[]): T[] => {
   for (let i = xs.length - 1; i > 0; i--) {
@@ -102,22 +108,24 @@ const shuffle = <T,>(xs: T[]): T[] => {
 }
 const pick = <T,>(xs: readonly T[]): T => xs[Math.floor(Math.random() * xs.length)]
 
-/** Words already dealt to this group (avoid repeats until a category runs out). */
+/** Words already dealt to this group, by English word (avoid repeats until a category runs out). */
 const used = new Set<string>()
+const idOf = (w: FlockWord) => w.en ?? w.word
 
 export const useLocalFlock = create<LocalStore>((set, get) => {
   /** Deal a new word and new wolves (not last round's wolves when there are enough others). */
   const deal = async () => {
     const { setup, wolves: prev } = get()
-    const list = await loadWords()
+    // Dealt in the app's language at the moment (one phone = one language).
+    const list = await loadWords(useLocale.getState().locale)
     const category = pick(setup.categories)
-    let pool = list[category].filter((w) => !used.has(w.word))
+    let pool = list[category].filter((w) => !used.has(idOf(w)))
     if (pool.length === 0) {
-      for (const w of list[category]) used.delete(w.word)
+      for (const w of list[category]) used.delete(idOf(w))
       pool = list[category]
     }
     const word = pick(pool)
-    used.add(word.word)
+    used.add(idOf(word))
     const everyone = setup.players.map((_, i) => i)
     const fresh = everyone.filter((i) => !prev.includes(i))
     const wolves = shuffle(fresh.length >= setup.wolves ? fresh : everyone).slice(0, setup.wolves)

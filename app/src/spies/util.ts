@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { SPIES_PASS, type SpiesColour, type SpiesPlayer, type SpiesState, type SpiesTeam } from '@sixtysix/shared'
-import { t } from '../i18n'
+import { SPIES_PASS, type SpiesCard, type SpiesColour, type SpiesPlayer, type SpiesState, type SpiesTeam } from '@sixtysix/shared'
+import { t, useLocale } from '../i18n'
 
 export { rich, useJoinOrigin } from '../flock/util'
 
@@ -9,6 +9,14 @@ export const TRIBE: Record<SpiesTeam, { emblem: string }> = {
   judah: { emblem: '🦁' },
   ephraim: { emblem: '🐂' },
 }
+
+/**
+ * A card's word in the app's language (cards carry every language; the deal is
+ * shared by all players). Components pass `useLocale((s) => s.locale)` so they
+ * re-render on a switch; stores use the current one.
+ */
+export const cardWord = (card: SpiesCard | undefined, locale = useLocale.getState().locale): string =>
+  card ? (card.words?.[locale] ?? card.word) : ''
 
 /** Caleb / Joshua in the current language. */
 export const chiefName = (team: SpiesTeam): string => t(`spies.chief.${team}`)
@@ -57,7 +65,7 @@ export function statusLine(state: SpiesState): string {
   if (state.phase === 'clue') return t('spies.status.thinking', { tribe, name: sm?.name ?? t('spies.status.theSpymaster') })
   const prop = state.proposal
   if (prop) {
-    const what = prop.pick === SPIES_PASS ? t('spies.status.endTurn') : t('spies.status.quoted', { word: state.cards[prop.pick]?.word ?? '' })
+    const what = prop.pick === SPIES_PASS ? t('spies.status.endTurn') : t('spies.status.quoted', { word: cardWord(state.cards[prop.pick]) })
     return t('spies.status.suggests', { name: playerById(state, prop.proposerId)?.name ?? t('spies.status.someone'), what })
   }
   return t('spies.status.searching', { tribe, count: state.guessesLeft })

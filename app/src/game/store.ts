@@ -22,6 +22,7 @@ import type { CharacterId } from './types'
 import { ALL_ANSWERED_BEAT_MS, GIFT_EXTRA_MS, READING_MS, coinsForAnswer, coinsForPlacement, type GiftId, type YourResult } from '@sixtysix/shared'
 import { useGiftStore } from '../skills/giftStore'
 import { bundledBank, loadVerses } from '../questions/provider'
+import { useLocale } from '../i18n'
 import { queueGrant } from '../account/outbox'
 import type { Question } from '../questions/types'
 
@@ -77,8 +78,6 @@ interface GameStore {
   /** Deadline and length of the reading countdown / answer timer. */
   phaseEndsAt: number
   phaseDuration: number
-  /** Cited verse text per question id, shown at the reveal. */
-  verses: Record<string, string>
   /** Your verdict for the question being revealed. */
   lastResult: YourResult | null
   questions: Question[]
@@ -147,9 +146,9 @@ export const useGameStore = create<GameStore>((set, get) => {
 
   async function startRace() {
     let bank: Question[]
-    let verses: Record<string, string>
     try {
-      ;[bank, verses] = await Promise.all([bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }), loadVerses()])
+      // The verses load along (cached for the reveal, also offline).
+      ;[bank] = await Promise.all([bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: useLocale.getState().locale }), loadVerses(useLocale.getState().locale)])
     } catch {
       // The question chunk didn't load (offline web build): don't strand the
       // player on a lobby with no buttons.
@@ -164,7 +163,6 @@ export const useGameStore = create<GameStore>((set, get) => {
     set({
       screen: 'race',
       questions,
-      verses,
       questionIndex: 0,
       answerLog: [],
       raceCoins: 0,
@@ -347,7 +345,6 @@ export const useGameStore = create<GameStore>((set, get) => {
     phaseEndsAt: 0,
     phaseDuration: READING_MS,
     lastResult: null,
-    verses: {},
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,

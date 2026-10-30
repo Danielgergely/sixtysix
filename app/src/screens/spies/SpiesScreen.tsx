@@ -16,7 +16,7 @@ import { useGameStore } from '../../game/store'
 import { isLeader, lastSpiesCode, useSpiesStore } from '../../spies/spiesStore'
 import { Avatar } from '../../avatars/Avatar'
 import { popIn, shake, spring } from '../../motion'
-import { TRIBE, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
+import { TRIBE, cardWord, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
 import { t as tr, tServer, useLocale, useT } from '../../i18n'
 import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
 import { SpiesBoard } from './SpiesBoard'
@@ -393,7 +393,7 @@ function AgentBar({ state }: { state: SpiesState }) {
   const canForce = useAfter(mine ? store.forceAt : 0)
   const t = useT()
   const made = state.clue ? state.clue.number + 1 - state.guessesLeft : 0
-  const label = prop ? (prop.pick === SPIES_PASS ? t('spies.agents.endTurn') : t('spies.status.quoted', { word: state.cards[prop.pick]?.word ?? '' })) : ''
+  const label = prop ? (prop.pick === SPIES_PASS ? t('spies.agents.endTurn') : t('spies.status.quoted', { word: cardWord(state.cards[prop.pick]) })) : ''
   return (
     <div className="ts-agentbar">
       {!prop && <p className="ts-hint">{t('spies.agents.tapHint')}</p>}

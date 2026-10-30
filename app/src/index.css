@@ -471,6 +471,7 @@ button:disabled{ cursor: default; }
 .profile-section{ display: flex; flex-direction: column; gap: 0.45rem; }
 
 .profile-label{ font-size: 0.8rem; font-weight: 700; color: var(--brown-deep); }
+.profile-credit{ margin: 0.5rem 0 0; font-size: 0.72rem; line-height: 1.35; color: var(--brown-deep); opacity: 0.7; }
 
 .profile-name-input{
   font: inherit;

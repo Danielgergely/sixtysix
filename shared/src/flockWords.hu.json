@@ -1,0 +1,5471 @@
+{
+ "person": [
+  {
+   "en": "Noah",
+   "word": "Noé",
+   "hint": "Bárkát épített, és bevitte az állatokat",
+   "ref": "1Móz 6–9",
+   "wolfHint": "Állatok",
+   "aliases": [],
+   "clues": [
+    "bárka",
+    "özönvíz",
+    "szivárvány",
+    "galamb",
+    "holló",
+    "negyven nap",
+    "állatpárok",
+    "Ararát",
+    "Sém"
+   ]
+  },
+  {
+   "en": "Abraham",
+   "word": "Ábrahám",
+   "hint": "Sok nép atyja; Isten hívására elhagyta Úrt",
+   "ref": "1Móz 12",
+   "wolfHint": "Ígéret",
+   "aliases": [
+    "Ábrám"
+   ],
+   "clues": [
+    "Úr városa",
+    "Izsák",
+    "Sára",
+    "csillagok",
+    "Kánaán",
+    "szövetség",
+    "kos",
+    "Mórijá",
+    "Hágár"
+   ]
+  },
+  {
+   "en": "Sarah",
+   "word": "Sára",
+   "hint": "Nevetett, amikor idős korára fiút ígértek neki",
+   "ref": "1Móz 18",
+   "wolfHint": "Nevetés",
+   "aliases": [
+    "Szárai"
+   ],
+   "clues": [
+    "nevetett",
+    "Izsák",
+    "Ábrahám",
+    "idős kor",
+    "meddő",
+    "sátor",
+    "Hágár",
+    "Egyiptom",
+    "hercegnő"
+   ]
+  },
+  {
+   "en": "Joseph",
+   "word": "József",
+   "hint": "Díszes ruhája volt, a bátyjai eladták",
+   "ref": "1Móz 37",
+   "wolfHint": "Álmok",
+   "aliases": [],
+   "clues": [
+    "tarka köntös",
+    "álmok",
+    "testvérek",
+    "Egyiptom",
+    "Pótifár",
+    "börtön",
+    "éhínség",
+    "Benjámin",
+    "gabona"
+   ]
+  },
+  {
+   "en": "Moses",
+   "word": "Mózes",
+   "hint": "Kivezette Izraelt Egyiptomból a Vörös-tengeren át",
+   "ref": "2Móz 14",
+   "wolfHint": "Sivatag",
+   "aliases": [],
+   "clues": [
+    "Vörös-tenger",
+    "égő csipkebokor",
+    "tízparancsolat",
+    "fáraó",
+    "csapások",
+    "Sínai",
+    "vessző",
+    "gyékénykosár",
+    "manna"
+   ]
+  },
+  {
+   "en": "Miriam",
+   "word": "Mirjám",
+   "hint": "Mózes nővére; dobbal táncolt",
+   "ref": "2Móz 15,20",
+   "wolfHint": "Zene",
+   "aliases": [],
+   "clues": [
+    "dob",
+    "nővér",
+    "tánc",
+    "ének",
+    "leprás",
+    "Áron",
+    "kosár",
+    "Nílus",
+    "prófétanő"
+   ]
+  },
+  {
+   "en": "Joshua",
+   "word": "Józsué",
+   "hint": "Körbevonult Izraellel Jerikó falai körül",
+   "ref": "Józs 6",
+   "wolfHint": "Csata",
+   "aliases": [],
+   "clues": [
+    "Jerikó",
+    "falak",
+    "kürtök",
+    "Kánaán",
+    "kémek",
+    "megállt a nap",
+    "Jordán",
+    "Ráháb",
+    "Nún fia"
+   ]
+  },
+  {
+   "en": "Gideon",
+   "word": "Gedeon",
+   "hint": "Háromszáz emberrel győzött kürttel és korsóval",
+   "ref": "Bír 7",
+   "wolfHint": "Katonák",
+   "aliases": [],
+   "clues": [
+    "háromszáz",
+    "kürtök",
+    "korsók",
+    "fáklyák",
+    "gyapjú",
+    "midjániták",
+    "borsajtó",
+    "vizet nyaltak",
+    "angyal"
+   ]
+  },
+  {
+   "en": "Samson",
+   "word": "Sámson",
+   "hint": "Erős bíra hosszú hajjal",
+   "ref": "Bír 16",
+   "wolfHint": "Erő",
+   "aliases": [],
+   "clues": [
+    "haj",
+    "erő",
+    "Delila",
+    "oroszlán",
+    "szamárállkapocs",
+    "oszlopok",
+    "filiszteusok",
+    "názírfogadalom",
+    "találós kérdés"
+   ]
+  },
+  {
+   "en": "Ruth",
+   "word": "Ruth",
+   "hint": "Moábi asszony: „Ahova te mégy, oda megyek én”",
+   "ref": "Ruth 1,16",
+   "wolfHint": "Aratás",
+   "aliases": [],
+   "clues": [
+    "Naomi",
+    "Boáz",
+    "kalászszedés",
+    "Moáb",
+    "árpa",
+    "szérű",
+    "Betlehem",
+    "hűség",
+    "Óbéd"
+   ]
+  },
+  {
+   "en": "Samuel",
+   "word": "Sámuel",
+   "hint": "Fiú, aki éjjel meghallotta Isten hívását",
+   "ref": "1Sám 3",
+   "wolfHint": "Templom",
+   "aliases": [],
+   "clues": [
+    "Anna",
+    "Éli",
+    "Szólj Uram",
+    "szentély",
+    "felkenés",
+    "próféta",
+    "Siló",
+    "éjszaka",
+    "figyel"
+   ]
+  },
+  {
+   "en": "David",
+   "word": "Dávid",
+   "hint": "Pásztorfiú, aki parittyával legyőzte az óriást",
+   "ref": "1Sám 17",
+   "wolfHint": "Király",
+   "aliases": [
+    "Dávid király"
+   ],
+   "clues": [
+    "parittya",
+    "Góliát",
+    "pásztor",
+    "hárfa",
+    "zsoltárok",
+    "Betsabé",
+    "Isai",
+    "Betlehem",
+    "Jónátán"
+   ]
+  },
+  {
+   "en": "Goliath",
+   "word": "Góliát",
+   "hint": "Óriás filiszteus harcos Gátból",
+   "ref": "1Sám 17",
+   "wolfHint": "Páncél",
+   "aliases": [],
+   "clues": [
+    "óriás",
+    "parittya",
+    "kő",
+    "Gát",
+    "filiszteus",
+    "vért",
+    "Dávid",
+    "bajnok",
+    "homlok"
+   ]
+  },
+  {
+   "en": "Solomon",
+   "word": "Salamon",
+   "hint": "Bölcs király, aki felépítette a templomot",
+   "ref": "1Kir 3; 6",
+   "wolfHint": "Bölcsesség",
+   "aliases": [
+    "Salamon király"
+   ],
+   "clues": [
+    "bölcsesség",
+    "templom",
+    "Példabeszédek",
+    "Sába királynője",
+    "feleségek",
+    "két anya",
+    "Prédikátor",
+    "Betsabé",
+    "gazdagság"
+   ]
+  },
+  {
+   "en": "Elijah",
+   "word": "Illés",
+   "hint": "Hollók táplálták; forgószélben ragadtatott fel",
+   "ref": "1Kir 17; 2Kir 2",
+   "wolfHint": "Tűz",
+   "aliases": [],
+   "clues": [
+    "hollók",
+    "tüzes szekér",
+    "forgószél",
+    "Kármel",
+    "Baál",
+    "özvegy",
+    "Jezábel",
+    "halk hang",
+    "palást"
+   ]
+  },
+  {
+   "en": "Elisha",
+   "word": "Elizeus",
+   "hint": "Átvette Illés palástját; meggyógyította Naamánt",
+   "ref": "2Kir 2; 5",
+   "wolfHint": "Csodák",
+   "aliases": [],
+   "clues": [
+    "kétszeres rész",
+    "köpeny",
+    "Naamán",
+    "fejsze",
+    "kopasz",
+    "súnémi asszony",
+    "medvék",
+    "olajos korsók",
+    "Illés"
+   ]
+  },
+  {
+   "en": "Esther",
+   "word": "Eszter",
+   "hint": "Királyné, aki megmentette a népét",
+   "ref": "Eszt 4,14",
+   "wolfHint": "Királyné",
+   "aliases": [
+    "Eszter királyné",
+    "Hadassza"
+   ],
+   "clues": [
+    "Mordokaj",
+    "Hámán",
+    "Ahasvérós",
+    "Perzsia",
+    "lakoma",
+    "böjt",
+    "jogar",
+    "púrim",
+    "korona"
+   ]
+  },
+  {
+   "en": "Daniel",
+   "word": "Dániel",
+   "hint": "Az oroszlánok vermébe vetették",
+   "ref": "Dán 6",
+   "wolfHint": "Imádság",
+   "aliases": [
+    "Béltesaccar"
+   ],
+   "clues": [
+    "oroszlánok",
+    "verem",
+    "Babilon",
+    "írás a falon",
+    "Dárius",
+    "imádság",
+    "álmok",
+    "zöldség",
+    "ablak"
+   ]
+  },
+  {
+   "en": "Jonah",
+   "word": "Jónás",
+   "hint": "Elnyelte egy nagy hal",
+   "ref": "Jón 1–2",
+   "wolfHint": "Tenger",
+   "aliases": [],
+   "clues": [
+    "nagy hal",
+    "Ninive",
+    "vihar",
+    "vízbe dobták",
+    "próféta",
+    "elnyelt",
+    "három nap",
+    "megtérés",
+    "Tarsís"
+   ]
+  },
+  {
+   "en": "Nehemiah",
+   "word": "Nehémiás",
+   "hint": "52 nap alatt újjáépítette Jeruzsálem falait",
+   "ref": "Neh 6,15",
+   "wolfHint": "Falak",
+   "aliases": [],
+   "clues": [
+    "falak",
+    "Jeruzsálem",
+    "pohárnok",
+    "Artahsasztá",
+    "újjáépítés",
+    "Szanballat",
+    "kapuk",
+    "ötvenkét nap",
+    "imádság"
+   ]
+  },
+  {
+   "en": "Mary",
+   "word": "Mária",
+   "hint": "Jézus anyja",
+   "ref": "Lk 1–2",
+   "wolfHint": "Anya",
+   "aliases": [
+    "Szűz Mária",
+    "Jézus anyja"
+   ],
+   "clues": [
+    "Gábriel",
+    "Betlehem",
+    "jászol",
+    "Názáret",
+    "József",
+    "Magnificat",
+    "angyal",
+    "Erzsébet",
+    "pólya"
+   ]
+  },
+  {
+   "en": "John the Baptist",
+   "word": "Keresztelő János",
+   "hint": "Megkeresztelte Jézust a Jordánban; sáskát evett",
+   "ref": "Mt 3",
+   "wolfHint": "Folyó",
+   "aliases": [
+    "Bemerítő János"
+   ],
+   "clues": [
+    "sáskák",
+    "vadméz",
+    "teveszőr",
+    "Jordán",
+    "puszta",
+    "Heródes",
+    "lefejezték",
+    "térjetek meg",
+    "Erzsébet"
+   ]
+  },
+  {
+   "en": "Peter",
+   "word": "Péter",
+   "hint": "Halász, aki egy pillanatra a vízen járt",
+   "ref": "Mt 14,29",
+   "wolfHint": "Halász",
+   "aliases": [
+    "Simon Péter",
+    "Simon",
+    "Kéfás"
+   ],
+   "clues": [
+    "kőszikla",
+    "kulcsok",
+    "kakas",
+    "megtagadta",
+    "vízen járás",
+    "halász",
+    "András",
+    "pünkösd",
+    "Galilea"
+   ]
+  },
+  {
+   "en": "Zacchaeus",
+   "word": "Zákeus",
+   "hint": "Alacsony vámszedő, aki fára mászott",
+   "ref": "Lk 19",
+   "wolfHint": "Fa",
+   "aliases": [],
+   "clues": [
+    "eperfügefa",
+    "vámszedő",
+    "alacsony",
+    "Jerikó",
+    "szállj le",
+    "Jézus",
+    "négyszeres",
+    "vacsora",
+    "gazdag"
+   ]
+  },
+  {
+   "en": "Lazarus",
+   "word": "Lázár",
+   "hint": "Jézus feltámasztotta négy nap után a sírból",
+   "ref": "Jn 11",
+   "wolfHint": "Sír",
+   "aliases": [],
+   "clues": [
+    "sírbolt",
+    "négy nap",
+    "Jézus könnyezett",
+    "Betánia",
+    "Márta",
+    "Mária",
+    "jöjj ki",
+    "kő",
+    "halotti lepel"
+   ]
+  },
+  {
+   "en": "Thomas",
+   "word": "Tamás",
+   "hint": "Kételkedett, amíg nem látta a szögek nyomát",
+   "ref": "Jn 20",
+   "wolfHint": "Bizonyíték",
+   "aliases": [
+    "Hitetlen Tamás",
+    "Kételkedő Tamás"
+   ],
+   "clues": [
+    "kétely",
+    "szögek nyoma",
+    "iker",
+    "oldal",
+    "Uram és Istenem",
+    "felház",
+    "hinni",
+    "érintés",
+    "nyolc nap"
+   ]
+  },
+  {
+   "en": "Paul",
+   "word": "Pál",
+   "hint": "Damaszkusz felé megvakult; sok levelet írt",
+   "ref": "ApCsel 9",
+   "wolfHint": "Levelek",
+   "aliases": [
+    "Tarzuszi Saul",
+    "Pál apostol"
+   ],
+   "clues": [
+    "Damaszkusz",
+    "megvakult",
+    "levelek",
+    "hajótörés",
+    "Barnabás",
+    "Anániás",
+    "Róma",
+    "misszió",
+    "Szilász"
+   ]
+  },
+  {
+   "en": "Lydia",
+   "word": "Lídia",
+   "hint": "Bíborárus asszony Filippiben",
+   "ref": "ApCsel 16,14",
+   "wolfHint": "Kereskedő",
+   "aliases": [],
+   "clues": [
+    "bíbor",
+    "Filippi",
+    "kelme",
+    "kereskedő",
+    "Thiatira",
+    "folyópart",
+    "megkeresztelkedett",
+    "Pál",
+    "háza népe"
+   ]
+  },
+  {
+   "en": "Adam",
+   "word": "Ádám",
+   "hint": "Az első ember, porból formálva",
+   "ref": "1Móz 2,7",
+   "wolfHint": "Kert",
+   "aliases": [],
+   "clues": [
+    "Éden",
+    "Éva",
+    "por",
+    "oldalborda",
+    "kert",
+    "gyümölcs",
+    "állatok elnevezése",
+    "kígyó",
+    "első ember"
+   ]
+  },
+  {
+   "en": "Jacob",
+   "word": "Jákób",
+   "hint": "Álmában mennyei létrát látott; Izrael lett a neve",
+   "ref": "1Móz 28; 32",
+   "wolfHint": "Ikrek",
+   "aliases": [
+    "Izrael",
+    "Jákob"
+   ],
+   "clues": [
+    "létra",
+    "Ézsau",
+    "birkózás",
+    "Ráhel",
+    "Lea",
+    "tizenkét fiú",
+    "lencsefőzelék",
+    "Bétel",
+    "Lábán"
+   ]
+  },
+  {
+   "en": "Eve",
+   "word": "Éva",
+   "hint": "Az első asszony, Ádám oldalbordájából",
+   "ref": "1Móz 2,22",
+   "wolfHint": "Kígyó",
+   "aliases": [],
+   "clues": [
+    "Éden",
+    "Ádám",
+    "borda",
+    "kígyó",
+    "gyümölcs",
+    "első asszony",
+    "Kain",
+    "kert",
+    "fügefalevél"
+   ]
+  },
+  {
+   "en": "Cain",
+   "word": "Kain",
+   "hint": "Irigységből megölte a testvérét",
+   "ref": "1Móz 4,8",
+   "wolfHint": "Mező",
+   "aliases": [],
+   "clues": [
+    "Ábel",
+    "gyilkosság",
+    "mező",
+    "bélyeg",
+    "földműves",
+    "bujdosó",
+    "Nód",
+    "testvérem őrzője",
+    "irigység"
+   ]
+  },
+  {
+   "en": "Abel",
+   "word": "Ábel",
+   "hint": "Pásztor, akinek áldozata kedves volt Istennek",
+   "ref": "1Móz 4,4",
+   "wolfHint": "Áldozat",
+   "aliases": [],
+   "clues": [
+    "bárány",
+    "pásztor",
+    "áldozat",
+    "Kain",
+    "kiált a vér",
+    "elsőszülött",
+    "meggyilkolták",
+    "hit",
+    "Ádám"
+   ]
+  },
+  {
+   "en": "Isaac",
+   "word": "Izsák",
+   "hint": "Az ígéret fia; Ábrahám százéves volt",
+   "ref": "1Móz 21,5",
+   "wolfHint": "Oltár",
+   "aliases": [],
+   "clues": [
+    "Ábrahám",
+    "Sára",
+    "nevetés",
+    "kos",
+    "oltár",
+    "Rebeka",
+    "Jákób",
+    "Ézsau",
+    "kút"
+   ]
+  },
+  {
+   "en": "Esau",
+   "word": "Ézsau",
+   "hint": "Egy tál lencséért eladta elsőszülöttségét",
+   "ref": "1Móz 25,29–34",
+   "wolfHint": "Vadász",
+   "aliases": [
+    "Edóm"
+   ],
+   "clues": [
+    "lencsefőzelék",
+    "elsőszülöttség",
+    "szőrös",
+    "vadász",
+    "Jákób",
+    "iker",
+    "vörös",
+    "áldás",
+    "Izsák"
+   ]
+  },
+  {
+   "en": "Lot",
+   "word": "Lót",
+   "hint": "Elmenekült Sodomából; a felesége visszanézett",
+   "ref": "1Móz 19",
+   "wolfHint": "Só",
+   "aliases": [],
+   "clues": [
+    "Sodoma",
+    "só",
+    "oszlop",
+    "feleség",
+    "Ábrahám",
+    "angyalok",
+    "unokaöcs",
+    "Cóar",
+    "visszanézett"
+   ]
+  },
+  {
+   "en": "Aaron",
+   "word": "Áron",
+   "hint": "Mózes bátyja, az első főpap",
+   "ref": "2Móz 28,1",
+   "wolfHint": "Pap",
+   "aliases": [],
+   "clues": [
+    "főpap",
+    "aranyborjú",
+    "vessző",
+    "kivirágzott",
+    "Mózes",
+    "lévita",
+    "efód",
+    "papi ruha",
+    "szószóló"
+   ]
+  },
+  {
+   "en": "Pharaoh",
+   "word": "Fáraó",
+   "hint": "Egyiptom királya, aki nem engedte el Izraelt",
+   "ref": "2Móz 5,1–2",
+   "wolfHint": "Csapások",
+   "aliases": [
+    "Egyiptom királya",
+    "A fáraó"
+   ],
+   "clues": [
+    "csapások",
+    "Mózes",
+    "kemény szív",
+    "békák",
+    "Vörös-tenger",
+    "harci kocsik",
+    "álmok",
+    "Nílus",
+    "Gósen"
+   ]
+  },
+  {
+   "en": "Rahab",
+   "word": "Ráháb",
+   "hint": "Jerikóban a háztetőn rejtette el a kémeket",
+   "ref": "Józs 2",
+   "wolfHint": "Kémek",
+   "aliases": [],
+   "clues": [
+    "skarlátpiros zsinór",
+    "kémek",
+    "háztető",
+    "Jerikó",
+    "len",
+    "ablak",
+    "falak",
+    "hit",
+    "elrejtette"
+   ]
+  },
+  {
+   "en": "Deborah",
+   "word": "Débóra",
+   "hint": "Prófétanő, aki pálmafa alatt bíráskodott",
+   "ref": "Bír 4,4–5",
+   "wolfHint": "Bíró",
+   "aliases": [
+    "Debóra"
+   ],
+   "clues": [
+    "pálmafa",
+    "bíró",
+    "Bárák",
+    "Siszera",
+    "Jáél",
+    "prófétanő",
+    "sátorcölöp",
+    "ének",
+    "Tábor-hegy"
+   ]
+  },
+  {
+   "en": "Delilah",
+   "word": "Delila",
+   "hint": "Ezüstért elárulta Sámson titkát",
+   "ref": "Bír 16",
+   "wolfHint": "Haj",
+   "aliases": [],
+   "clues": [
+    "Sámson",
+    "hajvágás",
+    "ezüst",
+    "filiszteusok",
+    "árulás",
+    "borotva",
+    "titok",
+    "Szórék",
+    "nyaggatás"
+   ]
+  },
+  {
+   "en": "Hannah",
+   "word": "Anna",
+   "hint": "Fiúért imádkozott, és Istennek adta",
+   "ref": "1Sám 1",
+   "wolfHint": "Imádság",
+   "aliases": [
+    "Hanna"
+   ],
+   "clues": [
+    "Sámuel",
+    "ima",
+    "Éli",
+    "szentély",
+    "fogadalom",
+    "kis köntös",
+    "meddő",
+    "Siló",
+    "Elkána"
+   ]
+  },
+  {
+   "en": "Saul",
+   "word": "Saul",
+   "hint": "Izrael első királya; magas és féltékeny",
+   "ref": "1Sám 10",
+   "wolfHint": "Lándzsa",
+   "aliases": [
+    "Saul király"
+   ],
+   "clues": [
+    "Benjámin",
+    "magas",
+    "dárda",
+    "Jónátán",
+    "Endor",
+    "féltékeny",
+    "Sámuel",
+    "felkenés",
+    "Gilbóa"
+   ]
+  },
+  {
+   "en": "Jonathan",
+   "word": "Jónátán",
+   "hint": "Saul fia és Dávid legjobb barátja",
+   "ref": "1Sám 18,1–3",
+   "wolfHint": "Barátság",
+   "aliases": [],
+   "clues": [
+    "Dávid",
+    "barát",
+    "nyilak",
+    "Saul",
+    "szövetség",
+    "köntös",
+    "Mefibóset",
+    "méz",
+    "filiszteusok"
+   ]
+  },
+  {
+   "en": "Bathsheba",
+   "word": "Betsabé",
+   "hint": "Dávid a tetőről látta meg; Salamon anyja",
+   "ref": "2Sám 11–12",
+   "wolfHint": "Háztető",
+   "aliases": [],
+   "clues": [
+    "háztető",
+    "Úriás",
+    "Salamon",
+    "Dávid",
+    "Nátán",
+    "özvegy",
+    "gyönyörű",
+    "anyakirályné",
+    "Jeruzsálem"
+   ]
+  },
+  {
+   "en": "Absalom",
+   "word": "Absolon",
+   "hint": "Lázadó királyfi, akinek haja fennakadt egy fán",
+   "ref": "2Sám 18,9",
+   "wolfHint": "Lázadás",
+   "aliases": [
+    "Absolom"
+   ],
+   "clues": [
+    "haj",
+    "tölgyfa",
+    "lázadás",
+    "Jóáb",
+    "öszvér",
+    "Dávid",
+    "síró apa",
+    "Támár",
+    "királyfi"
+   ]
+  },
+  {
+   "en": "Jezebel",
+   "word": "Jezábel",
+   "hint": "Gonosz királyné, aki Illést üldözte",
+   "ref": "1Kir 19,1–2",
+   "wolfHint": "Bálványok",
+   "aliases": [
+    "Jezábel királyné"
+   ],
+   "clues": [
+    "Baál",
+    "Illés",
+    "Aháb",
+    "Nábót",
+    "ablak",
+    "kutyák",
+    "kifestett szem",
+    "próféták",
+    "Szidón"
+   ]
+  },
+  {
+   "en": "Ahab",
+   "word": "Aháb",
+   "hint": "Gonosz király, aki elvette Nábót szőlőjét",
+   "ref": "1Kir 21",
+   "wolfHint": "Szőlőskert",
+   "aliases": [
+    "Aháb király"
+   ],
+   "clues": [
+    "Nábót",
+    "szőlőskert",
+    "Jezábel",
+    "Illés",
+    "Baál",
+    "Samária",
+    "Kármel",
+    "nyílvessző",
+    "duzzogás"
+   ]
+  },
+  {
+   "en": "Naaman",
+   "word": "Naamán",
+   "hint": "Szír hadvezér, akit a Jordán meggyógyított",
+   "ref": "2Kir 5",
+   "wolfHint": "Leprás",
+   "aliases": [],
+   "clues": [
+    "lepra",
+    "Jordán",
+    "hétszer",
+    "Arám",
+    "hadvezér",
+    "Elizeus",
+    "szolgálólány",
+    "Géhazi",
+    "megmerítkezett"
+   ]
+  },
+  {
+   "en": "Isaiah",
+   "word": "Ézsaiás",
+   "hint": "Próféta, aki megjövendölte Immánuelt",
+   "ref": "Ézs 7,14",
+   "wolfHint": "Jövendölés",
+   "aliases": [
+    "Ésaiás",
+    "Izajás"
+   ],
+   "clues": [
+    "Immánuel",
+    "szeráfok",
+    "parázs",
+    "Küldj engem",
+    "szűz",
+    "szenvedő szolga",
+    "Ezékiás",
+    "ajkak",
+    "tekercs"
+   ]
+  },
+  {
+   "en": "Jeremiah",
+   "word": "Jeremiás",
+   "hint": "Síró próféta, akit sáros ciszternába vetettek",
+   "ref": "Jer 38,6",
+   "wolfHint": "Könnyek",
+   "aliases": [],
+   "clues": [
+    "ciszterna",
+    "sírás",
+    "Siralmak",
+    "fazekas",
+    "agyag",
+    "iga",
+    "Báruk",
+    "fiatal",
+    "Babilon"
+   ]
+  },
+  {
+   "en": "Ezekiel",
+   "word": "Ezékiel",
+   "hint": "Próféta, aki a száraz csontok völgyét látta",
+   "ref": "Ez 37",
+   "wolfHint": "Csontok",
+   "aliases": [],
+   "clues": [
+    "száraz csontok",
+    "völgy",
+    "kerekek",
+    "kerubok",
+    "őrálló",
+    "fogság",
+    "Babilon",
+    "megette a tekercset",
+    "folyó"
+   ]
+  },
+  {
+   "en": "Job",
+   "word": "Jób",
+   "hint": "Mindenét elvesztette, mégis megmaradt a hitben",
+   "ref": "Jób 1–2",
+   "wolfHint": "Szenvedés",
+   "aliases": [],
+   "clues": [
+    "fekélyek",
+    "Sátán",
+    "barátok",
+    "hamu",
+    "türelem",
+    "Úc",
+    "forgószél",
+    "kétszeres",
+    "tevék"
+   ]
+  },
+  {
+   "en": "Haman",
+   "word": "Hámán",
+   "hint": "A zsidók vesztére tört; saját akasztófáján végezte",
+   "ref": "Eszt 7,10",
+   "wolfHint": "Összeesküvés",
+   "aliases": [],
+   "clues": [
+    "akasztófa",
+    "Mordokaj",
+    "Eszter",
+    "púrim",
+    "sorsvetés",
+    "meghajlás",
+    "Perzsia",
+    "cselszövés",
+    "agági"
+   ]
+  },
+  {
+   "en": "Nebuchadnezzar",
+   "word": "Nabukodonozor",
+   "hint": "Babilon királya, aki aranyszobrot állíttatott",
+   "ref": "Dán 3",
+   "wolfHint": "Szobor",
+   "aliases": [
+    "Nebukadneccar",
+    "Nabukodonozor király"
+   ],
+   "clues": [
+    "aranyszobor",
+    "tüzes kemence",
+    "Babilon",
+    "álom",
+    "fű",
+    "Dániel",
+    "Sadrak",
+    "őrület",
+    "Jeruzsálem"
+   ]
+  },
+  {
+   "en": "Elizabeth",
+   "word": "Erzsébet",
+   "hint": "Keresztelő János anyja",
+   "ref": "Lk 1,57",
+   "wolfHint": "Rokon",
+   "aliases": [],
+   "clues": [
+    "János",
+    "Zakariás",
+    "idős kor",
+    "felugrott",
+    "rokon",
+    "meddő",
+    "Mária",
+    "papfeleség",
+    "Júdea hegyei"
+   ]
+  },
+  {
+   "en": "Herod",
+   "word": "Heródes",
+   "hint": "Király, aki megölette a betlehemi kisfiúkat",
+   "ref": "Mt 2,16",
+   "wolfHint": "Féltékenység",
+   "aliases": [
+    "Heródes király",
+    "Nagy Heródes"
+   ],
+   "clues": [
+    "bölcsek",
+    "Betlehem",
+    "kisfiúk",
+    "csillag",
+    "féltékeny",
+    "Egyiptom",
+    "mágusok",
+    "Jeruzsálem",
+    "dühös"
+   ]
+  },
+  {
+   "en": "Andrew",
+   "word": "András",
+   "hint": "Halász, aki elvitte a testvérét Jézushoz",
+   "ref": "Jn 1,40–41",
+   "wolfHint": "Testvér",
+   "aliases": [],
+   "clues": [
+    "Péter",
+    "halász",
+    "testvér",
+    "kenyerek",
+    "fiú",
+    "Bétszaida",
+    "görögök",
+    "hálók",
+    "apostol"
+   ]
+  },
+  {
+   "en": "James",
+   "word": "Jakab",
+   "hint": "Zebedeus fia, a „mennydörgés fia”",
+   "ref": "Mk 1,19; 3,17",
+   "wolfHint": "Mennydörgés",
+   "aliases": [
+    "Idősebb Jakab",
+    "Zebedeus fia Jakab"
+   ],
+   "clues": [
+    "mennydörgés",
+    "halász",
+    "János",
+    "testvér",
+    "kard",
+    "megdicsőülés",
+    "hálók",
+    "Galilea",
+    "Péter"
+   ]
+  },
+  {
+   "en": "John",
+   "word": "János",
+   "hint": "A szeretett tanítvány, aki evangéliumot írt",
+   "ref": "Jn 21,20–24",
+   "wolfHint": "Szeretet",
+   "aliases": [
+    "János apostol",
+    "Szeretett tanítvány"
+   ],
+   "clues": [
+    "Jelenések",
+    "Patmosz",
+    "evangélium",
+    "mennydörgés",
+    "szeretet",
+    "Zebedeus",
+    "halász",
+    "kereszt",
+    "sas"
+   ]
+  },
+  {
+   "en": "Matthew",
+   "word": "Máté",
+   "hint": "Vámszedő, akiből apostol lett",
+   "ref": "Mt 9,9",
+   "wolfHint": "Adó",
+   "aliases": [
+    "Lévi"
+   ],
+   "clues": [
+    "vámszedő",
+    "evangélium",
+    "kövess engem",
+    "vámház",
+    "apostol",
+    "Kapernaum",
+    "lakoma",
+    "Alfeus",
+    "nemzetségtábla"
+   ]
+  },
+  {
+   "en": "Judas",
+   "word": "Júdás",
+   "hint": "Csókkal árulta el Jézust",
+   "ref": "Lk 22,47–48",
+   "wolfHint": "Csók",
+   "aliases": [
+    "Iskáriótes Júdás"
+   ],
+   "clues": [
+    "harminc ezüst",
+    "csók",
+    "árulás",
+    "erszény",
+    "Gecsemáné",
+    "fazekas mezeje",
+    "utolsó vacsora",
+    "kötél",
+    "pénz"
+   ]
+  },
+  {
+   "en": "Pontius Pilate",
+   "word": "Poncius Pilátus",
+   "hint": "Kezet mosott Jézus perében",
+   "ref": "Mt 27,24",
+   "wolfHint": "Helytartó",
+   "aliases": [
+    "Pilátus"
+   ],
+   "clues": [
+    "kézmosás",
+    "helytartó",
+    "Róma",
+    "per",
+    "Barabás",
+    "igazság",
+    "feszítsd meg",
+    "felirat",
+    "feleség álma"
+   ]
+  },
+  {
+   "en": "Mary Magdalene",
+   "word": "Mária Magdolna",
+   "hint": "Elsőként látta a feltámadt Jézust",
+   "ref": "Jn 20,11–18",
+   "wolfHint": "Kert",
+   "aliases": [
+    "Magdolna"
+   ],
+   "clues": [
+    "üres sír",
+    "kert",
+    "kertész",
+    "hét démon",
+    "Rabbuni",
+    "feltámadt",
+    "illatszerek",
+    "első tanú",
+    "sírás"
+   ]
+  },
+  {
+   "en": "Martha",
+   "word": "Márta",
+   "hint": "Sürgölődött, míg a nővére Jézust hallgatta",
+   "ref": "Lk 10,38–42",
+   "wolfHint": "Főzés",
+   "aliases": [],
+   "clues": [
+    "Mária",
+    "sürgés-forgás",
+    "konyha",
+    "Betánia",
+    "Lázár",
+    "szolgálat",
+    "sok gond",
+    "feltámadás",
+    "nővér"
+   ]
+  },
+  {
+   "en": "Nicodemus",
+   "word": "Nikodémus",
+   "hint": "Farizeus, aki éjjel ment Jézushoz",
+   "ref": "Jn 3,1–2",
+   "wolfHint": "Éjszaka",
+   "aliases": [],
+   "clues": [
+    "éjszaka",
+    "újjászületés",
+    "farizeus",
+    "tanító",
+    "mirha",
+    "temetés",
+    "szél",
+    "főtanács",
+    "aloé"
+   ]
+  },
+  {
+   "en": "Stephen",
+   "word": "István",
+   "hint": "Az első vértanú, akit megköveztek",
+   "ref": "ApCsel 7,59–60",
+   "wolfHint": "Kövek",
+   "aliases": [],
+   "clues": [
+    "megkövezés",
+    "vértanú",
+    "diakónus",
+    "Saul",
+    "angyalarc",
+    "nyitott ég",
+    "megbocsátás",
+    "ruhák",
+    "hét"
+   ]
+  }
+ ],
+ "place": [
+  {
+   "en": "Garden of Eden",
+   "word": "Édenkert",
+   "hint": "Ádám és Éva első otthona",
+   "ref": "1Móz 2",
+   "wolfHint": "Gyümölcs",
+   "aliases": [
+    "Éden",
+    "Paradicsom",
+    "Az Éden kertje"
+   ],
+   "clues": [
+    "Ádám",
+    "Éva",
+    "kígyó",
+    "tiltott gyümölcs",
+    "két fa",
+    "kerubok",
+    "lángoló kard",
+    "fügefalevél",
+    "folyók"
+   ]
+  },
+  {
+   "en": "Tower of Babel",
+   "word": "Bábel tornya",
+   "hint": "Ahol Isten összezavarta a nyelveket",
+   "ref": "1Móz 11",
+   "wolfHint": "Nyelvek",
+   "aliases": [
+    "Bábel",
+    "Bábeli torony"
+   ],
+   "clues": [
+    "téglák",
+    "nyelvek",
+    "Sineár",
+    "szétszóródás",
+    "ég",
+    "Nimród",
+    "zűrzavar",
+    "gőg",
+    "szurok"
+   ]
+  },
+  {
+   "en": "Egypt",
+   "word": "Egyiptom",
+   "hint": "A fáraó és a csapások földje",
+   "ref": "2Móz 7–12",
+   "wolfHint": "Rabszolgaság",
+   "aliases": [],
+   "clues": [
+    "fáraó",
+    "csapások",
+    "József",
+    "piramisok",
+    "rabszolgaság",
+    "páska",
+    "téglák",
+    "békák",
+    "kivonulás"
+   ]
+  },
+  {
+   "en": "Red Sea",
+   "word": "Vörös-tenger",
+   "hint": "Kettévált, hogy Izrael szárazon átkelhessen",
+   "ref": "2Móz 14",
+   "wolfHint": "Menekülés",
+   "aliases": [
+    "Sás-tenger"
+   ],
+   "clues": [
+    "kettévált",
+    "Mózes",
+    "szárazföld",
+    "fáraó serege",
+    "harci kocsik",
+    "vízfalak",
+    "vessző",
+    "keleti szél",
+    "Mirjám"
+   ]
+  },
+  {
+   "en": "Mount Sinai",
+   "word": "Sínai-hegy",
+   "hint": "Itt kapta Mózes a tízparancsolatot",
+   "ref": "2Móz 19–20",
+   "wolfHint": "Törvény",
+   "aliases": [
+    "Sínai",
+    "Hóreb",
+    "Hóreb-hegy"
+   ],
+   "clues": [
+    "tízparancsolat",
+    "kőtáblák",
+    "Mózes",
+    "égő csipkebokor",
+    "aranyborjú",
+    "mennydörgés",
+    "felhő",
+    "negyven nap",
+    "szövetség"
+   ]
+  },
+  {
+   "en": "Jericho",
+   "word": "Jerikó",
+   "hint": "A város, amelynek leomlottak a falai",
+   "ref": "Józs 6",
+   "wolfHint": "Kürtök",
+   "aliases": [],
+   "clues": [
+    "falak",
+    "kürtök",
+    "Ráháb",
+    "Józsué",
+    "hét nap",
+    "kiáltás",
+    "skarlátpiros zsinór",
+    "kémek",
+    "Zákeus"
+   ]
+  },
+  {
+   "en": "Jordan River",
+   "word": "Jordán",
+   "hint": "Ebben a folyóban keresztelték meg Jézust",
+   "ref": "Mt 3,13",
+   "wolfHint": "Keresztség",
+   "aliases": [
+    "Jordán folyó"
+   ],
+   "clues": [
+    "keresztség",
+    "János",
+    "galamb",
+    "Naamán",
+    "Illés",
+    "átkelés",
+    "Józsué",
+    "kövek",
+    "Elizeus"
+   ]
+  },
+  {
+   "en": "Bethlehem",
+   "word": "Betlehem",
+   "hint": "A város, ahol Jézus született",
+   "ref": "Lk 2",
+   "wolfHint": "Születés",
+   "aliases": [],
+   "clues": [
+    "jászol",
+    "pásztorok",
+    "csillag",
+    "bölcsek",
+    "Dávid",
+    "Ruth",
+    "Boáz",
+    "népszámlálás",
+    "Mikeás"
+   ]
+  },
+  {
+   "en": "Nazareth",
+   "word": "Názáret",
+   "hint": "A város, ahol Jézus felnőtt",
+   "ref": "Lk 2,51",
+   "wolfHint": "Gyermekkor",
+   "aliases": [],
+   "clues": [
+    "ács",
+    "József",
+    "Mária",
+    "Gábriel",
+    "szülőváros",
+    "zsinagóga",
+    "szakadék",
+    "Galilea",
+    "Nátánael"
+   ]
+  },
+  {
+   "en": "Jerusalem",
+   "word": "Jeruzsálem",
+   "hint": "Dávid városa a templommal",
+   "ref": "2Sám 5",
+   "wolfHint": "Főváros",
+   "aliases": [
+    "Sion",
+    "Dávid városa"
+   ],
+   "clues": [
+    "templom",
+    "Salamon",
+    "Dávid",
+    "pálmaágak",
+    "pünkösd",
+    "Nehémiás",
+    "főváros",
+    "zarándokok",
+    "páska"
+   ]
+  },
+  {
+   "en": "Nineveh",
+   "word": "Ninive",
+   "hint": "A nagy város, ahová Jónást küldték",
+   "ref": "Jón 3",
+   "wolfHint": "Megtérés",
+   "aliases": [],
+   "clues": [
+    "Jónás",
+    "megtérés",
+    "zsákruha",
+    "Asszíria",
+    "nagy hal",
+    "negyven nap",
+    "király",
+    "jószág",
+    "Náhum"
+   ]
+  },
+  {
+   "en": "Babylon",
+   "word": "Babilon",
+   "hint": "Birodalom, ahol Dániel fogságban élt",
+   "ref": "Dán 1",
+   "wolfHint": "Fogság",
+   "aliases": [],
+   "clues": [
+    "Dániel",
+    "fogság",
+    "Nabukodonozor",
+    "kemence",
+    "írás a falon",
+    "aranyszobor",
+    "folyóvizek",
+    "Bélsaccar",
+    "rabság"
+   ]
+  },
+  {
+   "en": "Sea of Galilee",
+   "word": "Galileai-tenger",
+   "hint": "Tó, ahol Jézus lecsendesítette a vihart",
+   "ref": "Mk 4",
+   "wolfHint": "Csónakok",
+   "aliases": [
+    "Genezáreti-tó",
+    "Tibériás-tó",
+    "Galileai-tó"
+   ],
+   "clues": [
+    "halászok",
+    "vihar",
+    "vízen járás",
+    "Péter",
+    "hálók",
+    "csónak",
+    "csend",
+    "Kapernaum",
+    "csodálatos halfogás"
+   ]
+  },
+  {
+   "en": "Mount of Olives",
+   "word": "Olajfák hegye",
+   "hint": "Hegy Jeruzsálemnél, ahol Jézus sokat imádkozott",
+   "ref": "Lk 22,39",
+   "wolfHint": "Mennybemenetel",
+   "aliases": [
+    "Olajfa-hegy",
+    "Olajhegy"
+   ],
+   "clues": [
+    "mennybemenetel",
+    "Betánia",
+    "virágvasárnap",
+    "sírt",
+    "Zakariás",
+    "szamár",
+    "Kidron",
+    "végidők",
+    "Betfagé"
+   ]
+  },
+  {
+   "en": "Gethsemane",
+   "word": "Gecsemáné",
+   "hint": "Kert, ahol Jézus az elfogatása előtt imádkozott",
+   "ref": "Mt 26,36",
+   "wolfHint": "Imádság",
+   "aliases": [
+    "Gecsemáné-kert"
+   ],
+   "clues": [
+    "olajprés",
+    "imádság",
+    "elfogatás",
+    "Júdás",
+    "csók",
+    "véres verejték",
+    "alvó tanítványok",
+    "pohár",
+    "kard"
+   ]
+  },
+  {
+   "en": "Golgotha",
+   "word": "Golgota",
+   "hint": "„Koponyahely”, ahol Jézust keresztre feszítették",
+   "ref": "Jn 19,17",
+   "wolfHint": "Domb",
+   "aliases": [
+    "Kálvária",
+    "Koponyahely"
+   ],
+   "clues": [
+    "kereszt",
+    "koponya",
+    "latrok",
+    "szögek",
+    "cirénei Simon",
+    "sötétség",
+    "százados",
+    "elvégeztetett",
+    "dárda"
+   ]
+  },
+  {
+   "en": "Damascus",
+   "word": "Damaszkusz",
+   "hint": "Saul ide tartott, amikor találkozott Jézussal",
+   "ref": "ApCsel 9",
+   "wolfHint": "Vakság",
+   "aliases": [],
+   "clues": [
+    "Saul",
+    "megvakult",
+    "vakító fény",
+    "Anániás",
+    "Egyenes utca",
+    "kosár",
+    "megtérés",
+    "Naamán",
+    "pikkely"
+   ]
+  },
+  {
+   "en": "Rome",
+   "word": "Róma",
+   "hint": "A birodalom fővárosa; Pál levelet írt ide",
+   "ref": "Róm 1,7",
+   "wolfHint": "Birodalom",
+   "aliases": [],
+   "clues": [
+    "császár",
+    "Pál",
+    "levél",
+    "bilincs",
+    "fellebbezés",
+    "birodalom",
+    "Akvila",
+    "házi őrizet",
+    "Péter"
+   ]
+  },
+  {
+   "en": "Ark",
+   "word": "Bárka",
+   "hint": "Úszó otthon Noé családjának és az állatoknak",
+   "ref": "1Móz 7",
+   "wolfHint": "Eső",
+   "aliases": [
+    "Noé bárkája"
+   ],
+   "clues": [
+    "Noé",
+    "özönvíz",
+    "állatok",
+    "párok",
+    "galamb",
+    "szivárvány",
+    "góferfa",
+    "szurok",
+    "negyven nap"
+   ]
+  },
+  {
+   "en": "Wilderness",
+   "word": "Puszta",
+   "hint": "Izrael negyven évig vándorolt itt",
+   "ref": "4Móz 14,33",
+   "wolfHint": "Vándorlás",
+   "aliases": [
+    "Sivatag",
+    "Pusztaság"
+   ],
+   "clues": [
+    "manna",
+    "fürjek",
+    "negyven év",
+    "vándorlás",
+    "kísértés",
+    "szent sátor",
+    "rézkígyó",
+    "zúgolódás",
+    "tűzoszlop"
+   ]
+  },
+  {
+   "en": "Mount Carmel",
+   "word": "Kármel-hegy",
+   "hint": "Illés párviadala Baál prófétáival",
+   "ref": "1Kir 18",
+   "wolfHint": "Oltár",
+   "aliases": [
+    "Kármel"
+   ],
+   "clues": [
+    "Illés",
+    "Baál",
+    "tűz",
+    "oltár",
+    "próféták",
+    "vizeskorsók",
+    "eső",
+    "Aháb",
+    "áldozat"
+   ]
+  },
+  {
+   "en": "Temple",
+   "word": "Templom",
+   "hint": "Salamon építette; Jézus gyermekként itt tanított",
+   "ref": "1Kir 6; Lk 2",
+   "wolfHint": "Istentisztelet",
+   "aliases": [
+    "Salamon temploma",
+    "Isten háza"
+   ],
+   "clues": [
+    "Salamon",
+    "papok",
+    "oltár",
+    "szentek szentje",
+    "kárpit",
+    "pénzváltók",
+    "áldozat",
+    "a gyermek Jézus",
+    "tömjén"
+   ]
+  },
+  {
+   "en": "Lions' Den",
+   "word": "Oroszlánverem",
+   "hint": "Dániel itt töltötte az éjszakát",
+   "ref": "Dán 6",
+   "wolfHint": "Veszély",
+   "aliases": [
+    "Oroszlánok verme"
+   ],
+   "clues": [
+    "Dániel",
+    "angyal",
+    "bezárt száj",
+    "Dárius",
+    "imádság",
+    "kő",
+    "rendelet",
+    "éjszaka",
+    "sértetlen"
+   ]
+  },
+  {
+   "en": "Upper Room",
+   "word": "Felház",
+   "hint": "Itt tartotta Jézus az utolsó vacsorát",
+   "ref": "Mk 14,15",
+   "wolfHint": "Étkezés",
+   "aliases": [
+    "Emeleti terem"
+   ],
+   "clues": [
+    "kenyér",
+    "bor",
+    "lábmosás",
+    "pünkösd",
+    "tanítványok",
+    "páska",
+    "Júdás",
+    "lángnyelvek",
+    "imádság"
+   ]
+  },
+  {
+   "en": "Patmos",
+   "word": "Patmosz",
+   "hint": "Sziget, ahol János a Jelenéseket látta",
+   "ref": "Jel 1,9",
+   "wolfHint": "Látomások",
+   "aliases": [],
+   "clues": [
+    "János",
+    "Jelenések",
+    "sziget",
+    "száműzetés",
+    "látomások",
+    "hét gyülekezet",
+    "Alfa",
+    "gyertyatartók",
+    "Égei-tenger"
+   ]
+  },
+  {
+   "en": "Canaan",
+   "word": "Kánaán",
+   "hint": "Az ígéret földje, ahol tej és méz folyik",
+   "ref": "2Móz 3,8",
+   "wolfHint": "Ígéret",
+   "aliases": [
+    "Ígéret földje",
+    "Az ígéret földje"
+   ],
+   "clues": [
+    "tej",
+    "méz",
+    "Ábrahám",
+    "Józsué",
+    "kémek",
+    "szőlőfürt",
+    "óriások",
+    "Jerikó",
+    "honfoglalás"
+   ]
+  },
+  {
+   "en": "Ur",
+   "word": "Úr",
+   "hint": "Ábrahám szülővárosa, mielőtt Isten elhívta",
+   "ref": "1Móz 11,31",
+   "wolfHint": "Szülőföld",
+   "aliases": [
+    "Káldeai Úr",
+    "Ur"
+   ],
+   "clues": [
+    "Ábrahám",
+    "Terah",
+    "Sára",
+    "Mezopotámia",
+    "bálványok",
+    "elindulás",
+    "Hárán",
+    "holdimádat",
+    "elhívás"
+   ]
+  },
+  {
+   "en": "Sodom",
+   "word": "Sodoma",
+   "hint": "Tűzzel és kénkővel elpusztított város",
+   "ref": "1Móz 19,24",
+   "wolfHint": "Kénkő",
+   "aliases": [
+    "Sodoma és Gomora"
+   ],
+   "clues": [
+    "Lót",
+    "sóoszlop",
+    "kénkő",
+    "angyalok",
+    "Ábrahám",
+    "tíz igaz",
+    "visszanézni",
+    "Cóar",
+    "pusztulás"
+   ]
+  },
+  {
+   "en": "Mount Moriah",
+   "word": "Mórijá-hegy",
+   "hint": "Itt akarta Ábrahám feláldozni Izsákot",
+   "ref": "1Móz 22,2",
+   "wolfHint": "Áldozat",
+   "aliases": [
+    "Mórijá",
+    "Mória"
+   ],
+   "clues": [
+    "Ábrahám",
+    "Izsák",
+    "kos",
+    "oltár",
+    "kés",
+    "próbatétel",
+    "bozót",
+    "az Úr gondoskodik",
+    "templom"
+   ]
+  },
+  {
+   "en": "Bethel",
+   "word": "Bétel",
+   "hint": "Itt álmodott Jákób a mennyei létráról",
+   "ref": "1Móz 28,19",
+   "wolfHint": "Álom",
+   "aliases": [],
+   "clues": [
+    "Jákób",
+    "létra",
+    "angyalok",
+    "kőpárna",
+    "álom",
+    "olaj",
+    "aranyborjú",
+    "Lúz",
+    "Jeroboám"
+   ]
+  },
+  {
+   "en": "Goshen",
+   "word": "Gósen",
+   "hint": "Egyiptomi vidék, ahol Jákób családja letelepedett",
+   "ref": "1Móz 47,27",
+   "wolfHint": "Legelő",
+   "aliases": [
+    "Gósen földje"
+   ],
+   "clues": [
+    "Jákób",
+    "József",
+    "Egyiptom",
+    "pásztorok",
+    "nyájak",
+    "legelő",
+    "izraeliták",
+    "nincs bögöly",
+    "fáraó"
+   ]
+  },
+  {
+   "en": "Mount Nebo",
+   "word": "Nebó-hegy",
+   "hint": "Innen nézte Mózes az ígéret földjét",
+   "ref": "5Móz 34,1",
+   "wolfHint": "Kilátás",
+   "aliases": [
+    "Nebó",
+    "Piszga"
+   ],
+   "clues": [
+    "Mózes",
+    "Móáb",
+    "kilátás",
+    "utolsó pillantás",
+    "halál",
+    "csúcs",
+    "Jerikó",
+    "Józsué",
+    "búcsú"
+   ]
+  },
+  {
+   "en": "Shiloh",
+   "word": "Siló",
+   "hint": "Itt imádkozott Anna az Úr házában",
+   "ref": "1Sám 1,3",
+   "wolfHint": "Anna",
+   "aliases": [],
+   "clues": [
+    "Anna",
+    "Éli",
+    "Sámuel",
+    "szent sátor",
+    "szövetségláda",
+    "imádság",
+    "fogadalom",
+    "sorsvetés",
+    "Efraim"
+   ]
+  },
+  {
+   "en": "Valley of Elah",
+   "word": "Élá völgye",
+   "hint": "Itt harcolt Dávid Góliáttal",
+   "ref": "1Sám 17,2",
+   "wolfHint": "Óriás",
+   "aliases": [
+    "Élá",
+    "Élá-völgy"
+   ],
+   "clues": [
+    "Dávid",
+    "Góliát",
+    "parittya",
+    "öt kő",
+    "óriás",
+    "filiszteusok",
+    "Saul",
+    "patak",
+    "pásztorfiú"
+   ]
+  },
+  {
+   "en": "Hebron",
+   "word": "Hebron",
+   "hint": "Dávid itt uralkodott hét évig",
+   "ref": "2Sám 5,5",
+   "wolfHint": "Ősatyák",
+   "aliases": [],
+   "clues": [
+    "Ábrahám",
+    "Makpéla",
+    "Káleb",
+    "Dávid",
+    "hét év",
+    "Mamré",
+    "Sára",
+    "temetkezés",
+    "menedékváros"
+   ]
+  },
+  {
+   "en": "Gath",
+   "word": "Gát",
+   "hint": "Góliát szülővárosa",
+   "ref": "1Sám 17,4",
+   "wolfHint": "Filiszteusok",
+   "aliases": [],
+   "clues": [
+    "Góliát",
+    "filiszteusok",
+    "óriások",
+    "Ákis",
+    "nyáladzás",
+    "szövetségláda",
+    "hat ujj",
+    "Ittaj",
+    "Dávid menekül"
+   ]
+  },
+  {
+   "en": "Tarshish",
+   "word": "Tarsís",
+   "hint": "Ide akart elszökni Jónás",
+   "ref": "Jón 1,3",
+   "wolfHint": "Hajó",
+   "aliases": [
+    "Tarsis"
+   ],
+   "clues": [
+    "Jónás",
+    "hajó",
+    "viteldíj",
+    "menekülés",
+    "vihar",
+    "ezüst",
+    "Salamon flottája",
+    "tengerészek",
+    "messzeség"
+   ]
+  },
+  {
+   "en": "Susa",
+   "word": "Súsán",
+   "hint": "Eszter királyné palotavárosa",
+   "ref": "Eszt 2,8",
+   "wolfHint": "Palota",
+   "aliases": [
+    "Susán",
+    "Szúza"
+   ],
+   "clues": [
+    "Eszter",
+    "Ahasvérós",
+    "Mordokaj",
+    "Hámán",
+    "palota",
+    "Nehémiás",
+    "Dániel",
+    "fellegvár",
+    "púrim"
+   ]
+  },
+  {
+   "en": "Persia",
+   "word": "Perzsia",
+   "hint": "Círusz és Ahasvérós birodalma",
+   "ref": "Ezsd 1,1; Eszt 1,3",
+   "wolfHint": "Királyok",
+   "aliases": [
+    "Perzsa Birodalom"
+   ],
+   "clues": [
+    "Círusz",
+    "Xerxész",
+    "Eszter",
+    "Dárius",
+    "médek",
+    "birodalom",
+    "rendelet",
+    "Ezsdrás",
+    "Dániel"
+   ]
+  },
+  {
+   "en": "Samaria",
+   "word": "Samária",
+   "hint": "Vidék, amelynek népét a zsidók elkerülték",
+   "ref": "Jn 4,4–9",
+   "wolfHint": "Kút",
+   "aliases": [],
+   "clues": [
+    "Omri",
+    "Aháb",
+    "Jezábel",
+    "északi ország",
+    "Fülöp",
+    "Simon mágus",
+    "Asszíria",
+    "Szikár",
+    "elkerülték"
+   ]
+  },
+  {
+   "en": "Cana",
+   "word": "Kána",
+   "hint": "Falu, ahol a víz borrá változott",
+   "ref": "Jn 2,1",
+   "wolfHint": "Menyegző",
+   "aliases": [
+    "Galileai Kána"
+   ],
+   "clues": [
+    "menyegző",
+    "víz",
+    "bor",
+    "kőedények",
+    "első csoda",
+    "Nátánael",
+    "Mária",
+    "násznagy",
+    "királyi tisztviselő"
+   ]
+  },
+  {
+   "en": "Capernaum",
+   "word": "Kapernaum",
+   "hint": "Tóparti város, Jézus működésének központja",
+   "ref": "Mk 1,21",
+   "wolfHint": "Zsinagóga",
+   "aliases": [],
+   "clues": [
+    "Péter háza",
+    "háztető",
+    "béna",
+    "százados",
+    "zsinagóga",
+    "halászat",
+    "Máté",
+    "vámház",
+    "Jairus"
+   ]
+  },
+  {
+   "en": "Bethany",
+   "word": "Betánia",
+   "hint": "Mária, Márta és Lázár otthona",
+   "ref": "Jn 11,1",
+   "wolfHint": "Barátok",
+   "aliases": [],
+   "clues": [
+    "Lázár",
+    "Mária",
+    "Márta",
+    "feltámasztás",
+    "sírbolt",
+    "nárduszolaj",
+    "leprás Simon",
+    "mennybemenetel",
+    "négy nap"
+   ]
+  },
+  {
+   "en": "Dead Sea",
+   "word": "Holt-tenger",
+   "hint": "Sós tenger a föld legmélyebb pontján",
+   "ref": "1Móz 14,3",
+   "wolfHint": "Só",
+   "aliases": [
+    "Sós-tenger"
+   ],
+   "clues": [
+    "só",
+    "lebegés",
+    "legmélyebb",
+    "Kumrán",
+    "tekercsek",
+    "Ezékiel",
+    "Sodoma",
+    "Én-Gedi",
+    "nincs hal"
+   ]
+  },
+  {
+   "en": "Mount Ararat",
+   "word": "Ararát-hegy",
+   "hint": "Itt állt meg a bárka",
+   "ref": "1Móz 8,4",
+   "wolfHint": "Kikötés",
+   "aliases": [
+    "Ararát",
+    "Ararát hegyei"
+   ],
+   "clues": [
+    "Noé",
+    "bárka",
+    "galamb",
+    "olajág",
+    "megpihent",
+    "özönvíz",
+    "holló",
+    "szivárvány",
+    "Törökország"
+   ]
+  },
+  {
+   "en": "Pool of Bethesda",
+   "word": "Betesda-tó",
+   "hint": "Itt gyógyult meg egy 38 éve beteg ember",
+   "ref": "Jn 5,2–9",
+   "wolfHint": "Gyógyulás",
+   "aliases": [
+    "Betesda",
+    "Betezda",
+    "Bethesda"
+   ],
+   "clues": [
+    "béna ember",
+    "harmincnyolc év",
+    "felkavart víz",
+    "öt oszlopcsarnok",
+    "gyékény",
+    "szombat",
+    "angyal",
+    "Juh-kapu",
+    "kelj fel"
+   ]
+  },
+  {
+   "en": "Pool of Siloam",
+   "word": "Siloám tava",
+   "hint": "Egy vak ember itt mosakodott meg, és látott",
+   "ref": "Jn 9,7",
+   "wolfHint": "Sár",
+   "aliases": [
+    "Siloám",
+    "Siloám-tó"
+   ],
+   "clues": [
+    "vak",
+    "sár",
+    "köpés",
+    "mosakodás",
+    "látás",
+    "torony",
+    "Ezékiás",
+    "alagút",
+    "szombat"
+   ]
+  },
+  {
+   "en": "Jacob's Well",
+   "word": "Jákób kútja",
+   "hint": "Itt találkozott Jézus a samáriai asszonnyal",
+   "ref": "Jn 4,6",
+   "wolfHint": "Víz",
+   "aliases": [
+    "Jákób-kút",
+    "Jákób forrása"
+   ],
+   "clues": [
+    "samáriai asszony",
+    "élő víz",
+    "dél",
+    "szomjas",
+    "öt férj",
+    "Szikár",
+    "vödör",
+    "imádat",
+    "ivás"
+   ]
+  },
+  {
+   "en": "Emmaus",
+   "word": "Emmaus",
+   "hint": "Két tanítvány útközben itt ismerte fel Jézust",
+   "ref": "Lk 24,13",
+   "wolfHint": "Út",
+   "aliases": [
+    "Emmausi út",
+    "Út Emmausba"
+   ],
+   "clues": [
+    "két tanítvány",
+    "Kleopás",
+    "gyaloglás",
+    "lángoló szív",
+    "kenyértörés",
+    "este",
+    "idegen",
+    "hatvan stádium",
+    "megnyílt szemek"
+   ]
+  },
+  {
+   "en": "Antioch",
+   "word": "Antiókhia",
+   "hint": "Itt nevezték először keresztyéneknek a hívőket",
+   "ref": "ApCsel 11,26",
+   "wolfHint": "Keresztyének",
+   "aliases": [
+    "Antiochia"
+   ],
+   "clues": [
+    "keresztyének",
+    "Barnabás",
+    "Pál",
+    "misszionáriusok",
+    "Péter",
+    "kiküldés",
+    "segély",
+    "Pizídia",
+    "Szíria"
+   ]
+  },
+  {
+   "en": "Corinth",
+   "word": "Korinthus",
+   "hint": "Pál két levelet írt az itteni gyülekezetnek",
+   "ref": "1Kor 1,2",
+   "wolfHint": "Levelek",
+   "aliases": [],
+   "clues": [
+    "két levél",
+    "szeretethimnusz",
+    "Priszcilla",
+    "sátorkészítés",
+    "Apollós",
+    "Gallió",
+    "szakadások",
+    "test",
+    "Akvila"
+   ]
+  },
+  {
+   "en": "Ephesus",
+   "word": "Efezus",
+   "hint": "Artemisz miatt lázadás tört ki itt",
+   "ref": "ApCsel 19",
+   "wolfHint": "Lázadás",
+   "aliases": [],
+   "clues": [
+    "Artemisz",
+    "zavargás",
+    "ezüstművesek",
+    "Démétriosz",
+    "színház",
+    "fegyverzet",
+    "Timóteus",
+    "első szeretet",
+    "varázskönyvek"
+   ]
+  },
+  {
+   "en": "Philippi",
+   "word": "Filippi",
+   "hint": "Pál és Szilász a börtönben énekelt itt",
+   "ref": "ApCsel 16,12–40",
+   "wolfHint": "Börtön",
+   "aliases": [],
+   "clues": [
+    "Lídia",
+    "bíbor",
+    "tömlöc",
+    "földrengés",
+    "börtönőr",
+    "éneklés",
+    "Szilász",
+    "öröm",
+    "jósnő"
+   ]
+  },
+  {
+   "en": "Athens",
+   "word": "Athén",
+   "hint": "Pál az „ismeretlen istenről” prédikált itt",
+   "ref": "ApCsel 17,22–23",
+   "wolfHint": "Filozófusok",
+   "aliases": [
+    "Areopágosz",
+    "Areopágusz"
+   ],
+   "clues": [
+    "ismeretlen isten",
+    "bálványok",
+    "filozófusok",
+    "epikureusok",
+    "sztoikusok",
+    "Pál",
+    "Dionüsziosz",
+    "oltár",
+    "piactér"
+   ]
+  },
+  {
+   "en": "Malta",
+   "word": "Málta",
+   "hint": "Sziget, ahol Pál lerázott egy kígyót",
+   "ref": "ApCsel 28,1–6",
+   "wolfHint": "Kígyó",
+   "aliases": [],
+   "clues": [
+    "hajótörés",
+    "vipera",
+    "tűz",
+    "Publiusz",
+    "szigetlakók",
+    "Pál",
+    "vihar",
+    "gyógyítás",
+    "három hónap"
+   ]
+  },
+  {
+   "en": "Tarsus",
+   "word": "Tarzusz",
+   "hint": "Pál szülővárosa",
+   "ref": "ApCsel 22,3",
+   "wolfHint": "Szülőhely",
+   "aliases": [
+    "Tarsus"
+   ],
+   "clues": [
+    "Saul",
+    "Kilikia",
+    "sátorkészítő",
+    "római polgár",
+    "szülőváros",
+    "Barnabás",
+    "farizeus",
+    "Benjámin törzse",
+    "születés"
+   ]
+  },
+  {
+   "en": "Gaza",
+   "word": "Gáza",
+   "hint": "Sámson elvitte a város kapuit",
+   "ref": "Bír 16,1–3",
+   "wolfHint": "Kapuk",
+   "aliases": [],
+   "clues": [
+    "Sámson",
+    "kapuszárnyak",
+    "Delila",
+    "filiszteusok",
+    "Dágon",
+    "megvakítva",
+    "őrlés",
+    "Fülöp",
+    "etióp kincstárnok"
+   ]
+  },
+  {
+   "en": "Nile",
+   "word": "Nílus",
+   "hint": "Folyó, ahol a kis Mózest elrejtették",
+   "ref": "2Móz 2,3",
+   "wolfHint": "Kosár",
+   "aliases": [
+    "Nílus folyó"
+   ],
+   "clues": [
+    "kis Mózes",
+    "gyékénykosár",
+    "sás",
+    "vér",
+    "békák",
+    "fáraó lánya",
+    "krokodilok",
+    "áradás",
+    "Egyiptom"
+   ]
+  },
+  {
+   "en": "Euphrates",
+   "word": "Eufrátesz",
+   "hint": "Nagy folyó, amely Édenből ered",
+   "ref": "1Móz 2,14",
+   "wolfHint": "Folyó",
+   "aliases": [
+    "Eufrátesz folyó"
+   ],
+   "clues": [
+    "Éden",
+    "Babilon",
+    "nagy folyó",
+    "Ábrahám",
+    "Asszíria",
+    "határ",
+    "kiszáradt",
+    "hatodik angyal",
+    "Jeremiás"
+   ]
+  },
+  {
+   "en": "Joppa",
+   "word": "Joppé",
+   "hint": "Jónás innen hajózott el; Péter itt látomást látott",
+   "ref": "Jón 1,3; ApCsel 10,9–16",
+   "wolfHint": "Kikötő",
+   "aliases": [
+    "Jaffa",
+    "Jafó"
+   ],
+   "clues": [
+    "Jónás",
+    "kikötő",
+    "Péter",
+    "látomás",
+    "lepedő",
+    "Tabita",
+    "Dorkász",
+    "tímár",
+    "cédrus"
+   ]
+  },
+  {
+   "en": "Synagogue",
+   "word": "Zsinagóga",
+   "hint": "Jézus itt olvasott fel Ézsaiás tekercséből",
+   "ref": "Lk 4,16",
+   "wolfHint": "Szombat",
+   "aliases": [],
+   "clues": [
+    "Ézsaiás tekercse",
+    "szombat",
+    "rabbi",
+    "Tóra",
+    "Jairus",
+    "tanítás",
+    "felolvasás",
+    "elöljáró",
+    "sorvadt kéz"
+   ]
+  },
+  {
+   "en": "Tabernacle",
+   "word": "Szent sátor",
+   "hint": "Sátor, ahol Isten találkozott népével a pusztában",
+   "ref": "2Móz 26",
+   "wolfHint": "Kárpitok",
+   "aliases": [
+    "Kijelentés sátra",
+    "Szövetség sátra",
+    "Szent hajlék"
+   ],
+   "clues": [
+    "szövetségláda",
+    "kárpit",
+    "mécstartó",
+    "Mózes",
+    "Becalél",
+    "oltár",
+    "felhő",
+    "papok",
+    "akácfa"
+   ]
+  },
+  {
+   "en": "Inn",
+   "word": "Fogadó",
+   "hint": "Nem volt hely Máriának és Józsefnek",
+   "ref": "Lk 2,7",
+   "wolfHint": "Utazók",
+   "aliases": [
+    "Szálláshely",
+    "Vendégfogadó"
+   ],
+   "clues": [
+    "nincs hely",
+    "Betlehem",
+    "Mária",
+    "József",
+    "istálló",
+    "jászol",
+    "népszámlálás",
+    "irgalmas samaritánus",
+    "két dénár"
+   ]
+  },
+  {
+   "en": "New Jerusalem",
+   "word": "Új Jeruzsálem",
+   "hint": "Szent város gyöngykapukkal és aranyutcákkal",
+   "ref": "Jel 21",
+   "wolfHint": "Menny",
+   "aliases": [
+    "Szent város",
+    "Mennyei Jeruzsálem"
+   ],
+   "clues": [
+    "gyöngykapuk",
+    "arany utcák",
+    "Jelenések",
+    "nincs könny",
+    "élet folyója",
+    "menyasszony",
+    "tizenkét alap",
+    "mennyország",
+    "jáspis"
+   ]
+  }
+ ],
+ "story": [
+  {
+   "en": "Creation",
+   "word": "Teremtés",
+   "hint": "Isten hat nap alatt alkotott meg mindent",
+   "ref": "1Móz 1",
+   "wolfHint": "Kezdet",
+   "aliases": [
+    "A teremtés hete",
+    "Világ teremtése"
+   ],
+   "clues": [
+    "világosság",
+    "Éden",
+    "hat nap",
+    "szombati pihenés",
+    "Ádám",
+    "por",
+    "oldalborda",
+    "csillagok",
+    "kert"
+   ]
+  },
+  {
+   "en": "The Flood",
+   "word": "Özönvíz",
+   "hint": "Negyven nap és negyven éjjel esett",
+   "ref": "1Móz 7",
+   "wolfHint": "Eső",
+   "aliases": [
+    "Noé özönvize",
+    "Vízözön"
+   ],
+   "clues": [
+    "bárka",
+    "Noé",
+    "szivárvány",
+    "galamb",
+    "állatok",
+    "negyven nap",
+    "Ararát",
+    "holló",
+    "párok"
+   ]
+  },
+  {
+   "en": "Burning Bush",
+   "word": "Égő csipkebokor",
+   "hint": "Egy bokor lángolt, mégsem égett el",
+   "ref": "2Móz 3",
+   "wolfHint": "Tűz",
+   "aliases": [
+    "Mózes és az égő csipkebokor",
+    "Csipkebokor"
+   ],
+   "clues": [
+    "Mózes",
+    "saru",
+    "szent föld",
+    "VAGYOK",
+    "Hóreb",
+    "juhok",
+    "lángok",
+    "Midján",
+    "fáraó"
+   ]
+  },
+  {
+   "en": "Ten Plagues",
+   "word": "Tíz csapás",
+   "hint": "Békák, szúnyogok, jégeső, sáskák…",
+   "ref": "2Móz 7–12",
+   "wolfHint": "Békák",
+   "aliases": [
+    "Egyiptomi csapások",
+    "Tíz csapás Egyiptomban"
+   ],
+   "clues": [
+    "békák",
+    "sáskák",
+    "jégeső",
+    "szúnyogok",
+    "sötétség",
+    "elsőszülöttek",
+    "fekélyek",
+    "fáraó",
+    "vér"
+   ]
+  },
+  {
+   "en": "Passover",
+   "word": "Páska",
+   "hint": "Vér az ajtófélfán; az angyal elhaladt",
+   "ref": "2Móz 12",
+   "wolfHint": "Bárány",
+   "aliases": [
+    "Az első páska",
+    "Pészah"
+   ],
+   "clues": [
+    "bárány",
+    "vér",
+    "ajtófélfa",
+    "kovásztalan kenyér",
+    "elsőszülött",
+    "Egyiptom",
+    "izsóp",
+    "keserű füvek",
+    "angyal"
+   ]
+  },
+  {
+   "en": "Manna",
+   "word": "Manna",
+   "hint": "Mennyei kenyér minden reggel",
+   "ref": "2Móz 16",
+   "wolfHint": "Éhség",
+   "aliases": [
+    "Mennyei kenyér"
+   ],
+   "clues": [
+    "puszta",
+    "fürjek",
+    "reggel",
+    "harmat",
+    "méz",
+    "szombat",
+    "ómer",
+    "zúgolódás",
+    "Mózes"
+   ]
+  },
+  {
+   "en": "Walls of Jericho",
+   "word": "Jerikó falai",
+   "hint": "Menetelés, kürtszó, kiáltás – és leomlottak",
+   "ref": "Józs 6",
+   "wolfHint": "Kürtök",
+   "aliases": [
+    "Jerikó ostroma",
+    "Jerikó eleste",
+    "Jerikó"
+   ],
+   "clues": [
+    "Józsué",
+    "kürtök",
+    "Ráháb",
+    "hét nap",
+    "kiáltás",
+    "menetelés",
+    "skarlátpiros zsinór",
+    "papok",
+    "szövetségláda"
+   ]
+  },
+  {
+   "en": "David and Goliath",
+   "word": "Dávid és Góliát",
+   "hint": "Öt sima kő és egy parittya",
+   "ref": "1Sám 17",
+   "wolfHint": "Óriás",
+   "aliases": [
+    "Dávid Góliát ellen"
+   ],
+   "clues": [
+    "parittya",
+    "kövek",
+    "óriás",
+    "filiszteusok",
+    "pásztor",
+    "páncél",
+    "Élá",
+    "patak",
+    "homlok"
+   ]
+  },
+  {
+   "en": "Fiery Furnace",
+   "word": "Tüzes kemence",
+   "hint": "Három barát sértetlenül járt a tűzben",
+   "ref": "Dán 3",
+   "wolfHint": "Hőség",
+   "aliases": [
+    "Sadrak, Mésak és Abédnegó",
+    "Kemence"
+   ],
+   "clues": [
+    "Babilon",
+    "aranyszobor",
+    "negyedik férfi",
+    "leborulás",
+    "három barát",
+    "nincs füstszag",
+    "Nabukodonozor",
+    "Sadrak",
+    "hétszer hevítve"
+   ]
+  },
+  {
+   "en": "Writing on the Wall",
+   "word": "Írás a falon",
+   "hint": "Egy kéz írt Bélsaccar lakomáján",
+   "ref": "Dán 5",
+   "wolfHint": "Lakoma",
+   "aliases": [
+    "Bélsaccar lakomája",
+    "Írás a falra"
+   ],
+   "clues": [
+    "Bélsaccar",
+    "Dániel",
+    "mene tekel",
+    "ujjak",
+    "kelyhek",
+    "megmérettél",
+    "perzsák",
+    "vendégség",
+    "gyertyatartó"
+   ]
+  },
+  {
+   "en": "Jonah and the Fish",
+   "word": "Jónás és a hal",
+   "hint": "Három nap egy nagy hal gyomrában",
+   "ref": "Jón 1–2",
+   "wolfHint": "Tenger",
+   "aliases": [
+    "Jónás és a cethal",
+    "Jónás",
+    "Nagy hal"
+   ],
+   "clues": [
+    "Ninive",
+    "cethal",
+    "vihar",
+    "vízbe dobták",
+    "Tarsís",
+    "három nap",
+    "megtérés",
+    "bokor",
+    "próféta"
+   ]
+  },
+  {
+   "en": "Nativity",
+   "word": "Jézus születése",
+   "hint": "Pásztorok, angyalok és egy jászol",
+   "ref": "Lk 2",
+   "wolfHint": "Pásztorok",
+   "aliases": [
+    "Karácsony",
+    "Karácsonyi történet"
+   ],
+   "clues": [
+    "jászol",
+    "pásztorok",
+    "Betlehem",
+    "angyalok",
+    "szálláshely",
+    "istálló",
+    "pólya",
+    "Mária",
+    "népszámlálás"
+   ]
+  },
+  {
+   "en": "Wise Men",
+   "word": "Napkeleti bölcsek",
+   "hint": "Csillagot követtek arannyal, tömjénnel és mirhával",
+   "ref": "Mt 2",
+   "wolfHint": "Ajándékok",
+   "aliases": [
+    "Bölcsek",
+    "Háromkirályok",
+    "Három királyok",
+    "Mágusok"
+   ],
+   "clues": [
+    "csillag",
+    "arany",
+    "mirha",
+    "tömjén",
+    "Heródes",
+    "kelet",
+    "tevék",
+    "ajándékok",
+    "Betlehem"
+   ]
+  },
+  {
+   "en": "Water into Wine",
+   "word": "Kánai menyegző",
+   "hint": "Jézus első jele egy lakodalomban",
+   "ref": "Jn 2",
+   "wolfHint": "Lakodalom",
+   "aliases": [
+    "Víz borrá változtatása",
+    "Víz borrá változik"
+   ],
+   "clues": [
+    "víz",
+    "bor",
+    "kőedények",
+    "szolgák",
+    "Mária",
+    "első jel",
+    "násznagy",
+    "elfogyott",
+    "legjobb"
+   ]
+  },
+  {
+   "en": "Feeding the 5,000",
+   "word": "Ötezer ember etetése",
+   "hint": "Öt kenyér és két hal",
+   "ref": "Jn 6",
+   "wolfHint": "Tömeg",
+   "aliases": [
+    "Ötezer megvendégelése",
+    "Kenyérszaporítás",
+    "Ötezer ember",
+    "Kenyerek és halak"
+   ],
+   "clues": [
+    "kenyerek",
+    "két hal",
+    "kosarak",
+    "fiú",
+    "maradék",
+    "tömeg",
+    "fű",
+    "tizenkét",
+    "Fülöp"
+   ]
+  },
+  {
+   "en": "Walking on Water",
+   "word": "Vízen járás",
+   "hint": "Jézus a tavon át ment a tanítványokhoz",
+   "ref": "Mt 14",
+   "wolfHint": "Hullámok",
+   "aliases": [
+    "Jézus a vízen jár"
+   ],
+   "clues": [
+    "Péter",
+    "süllyedés",
+    "tó",
+    "kísértet",
+    "éjszaka",
+    "kicsinyhitű",
+    "csónak",
+    "szél",
+    "negyedik őrváltás"
+   ]
+  },
+  {
+   "en": "Calming the Storm",
+   "word": "Vihar lecsendesítése",
+   "hint": "„Hallgass, némulj el!” – és elállt a szél",
+   "ref": "Mk 4,39",
+   "wolfHint": "Csónak",
+   "aliases": [
+    "Jézus lecsendesíti a vihart",
+    "Lecsendesíti a vihart"
+   ],
+   "clues": [
+    "csónak",
+    "alszik",
+    "vánkos",
+    "szél",
+    "hullámok",
+    "elnémult",
+    "tanítványok",
+    "Galilea",
+    "félelem"
+   ]
+  },
+  {
+   "en": "Good Samaritan",
+   "word": "Irgalmas samaritánus",
+   "hint": "Egy idegen segített az út szélén hagyott emberen",
+   "ref": "Lk 10",
+   "wolfHint": "Felebarát",
+   "aliases": [
+    "Az irgalmas samaritánus példázata",
+    "Jó samaritánus"
+   ],
+   "clues": [
+    "jerikói út",
+    "rablók",
+    "pap",
+    "lévita",
+    "fogadó",
+    "olaj",
+    "szamár",
+    "felebarát",
+    "kötés"
+   ]
+  },
+  {
+   "en": "Prodigal Son",
+   "word": "Tékozló fiú",
+   "hint": "Az apa elébe futott, amikor hazatért",
+   "ref": "Lk 15",
+   "wolfHint": "Apa",
+   "aliases": [
+    "Elveszett fiú",
+    "A tékozló fiú példázata"
+   ],
+   "clues": [
+    "disznók",
+    "apa",
+    "köntös",
+    "gyűrű",
+    "hízott borjú",
+    "idősebb testvér",
+    "örökség",
+    "éhínség",
+    "mulatság"
+   ]
+  },
+  {
+   "en": "Lost Sheep",
+   "word": "Elveszett bárány",
+   "hint": "A pásztor otthagyta a 99-et, hogy megkeresse az egyet",
+   "ref": "Lk 15",
+   "wolfHint": "Pásztor",
+   "aliases": [
+    "Elveszett juh",
+    "Az elveszett juh példázata"
+   ],
+   "clues": [
+    "kilencvenkilenc",
+    "pásztor",
+    "vállán",
+    "öröm",
+    "eltévedt",
+    "megtalálta",
+    "nyáj",
+    "példázat",
+    "keresés"
+   ]
+  },
+  {
+   "en": "Last Supper",
+   "word": "Utolsó vacsora",
+   "hint": "Kenyér és pohár a tizenkettővel",
+   "ref": "Lk 22",
+   "wolfHint": "Kenyér",
+   "aliases": [
+    "Úrvacsora",
+    "Az utolsó vacsora"
+   ],
+   "clues": [
+    "kenyér",
+    "pohár",
+    "felház",
+    "Júdás",
+    "tizenkettő",
+    "árulás",
+    "páska",
+    "emlékezés",
+    "bor"
+   ]
+  },
+  {
+   "en": "Resurrection",
+   "word": "Feltámadás",
+   "hint": "Az üres sír a harmadik napon",
+   "ref": "Lk 24",
+   "wolfHint": "Sír",
+   "aliases": [
+    "Húsvét",
+    "Üres sír"
+   ],
+   "clues": [
+    "kő",
+    "harmadik nap",
+    "Magdolna",
+    "angyal",
+    "halotti lepel",
+    "él",
+    "kertész",
+    "napfelkelte",
+    "Emmaus"
+   ]
+  },
+  {
+   "en": "Pentecost",
+   "word": "Pünkösd",
+   "hint": "Lángnyelvek és sok nyelv",
+   "ref": "ApCsel 2",
+   "wolfHint": "Szél",
+   "aliases": [],
+   "clues": [
+    "szél",
+    "lángok",
+    "nyelvek",
+    "Szentlélek",
+    "Péter",
+    "részegség",
+    "háromezer",
+    "Jeruzsálem",
+    "zúgás"
+   ]
+  },
+  {
+   "en": "Road to Damascus",
+   "word": "Damaszkuszi út",
+   "hint": "Vakító fény és egy hang az égből",
+   "ref": "ApCsel 9",
+   "wolfHint": "Fény",
+   "aliases": [
+    "Pál megtérése",
+    "Saul megtérése"
+   ],
+   "clues": [
+    "Saul",
+    "megvakult",
+    "vakító fény",
+    "Anániás",
+    "pikkelyek",
+    "hang",
+    "üldözés",
+    "Egyenes utca",
+    "három nap"
+   ]
+  },
+  {
+   "en": "Paul's Shipwreck",
+   "word": "Pál hajótörése",
+   "hint": "Mindenki épségben kijutott Máltára",
+   "ref": "ApCsel 27–28",
+   "wolfHint": "Sziget",
+   "aliases": [
+    "Hajótörés"
+   ],
+   "clues": [
+    "Málta",
+    "vipera",
+    "vihar",
+    "horgonyok",
+    "Róma",
+    "százados",
+    "fogoly",
+    "tábortűz",
+    "sziget"
+   ]
+  },
+  {
+   "en": "The Fall",
+   "word": "Bűneset",
+   "hint": "Éva és Ádám evett a tiltott gyümölcsből",
+   "ref": "1Móz 3",
+   "wolfHint": "Kígyó",
+   "aliases": [
+    "Bűnbeesés",
+    "Az ember bűnbeesése",
+    "Eredendő bűn",
+    "Ádám és Éva"
+   ],
+   "clues": [
+    "kígyó",
+    "gyümölcs",
+    "Éden",
+    "fügefalevél",
+    "Éva",
+    "Ádám",
+    "kerubok",
+    "bujkálás",
+    "fa"
+   ]
+  },
+  {
+   "en": "Cain and Abel",
+   "word": "Kain és Ábel",
+   "hint": "Az első gyilkosság, testvér a testvér ellen",
+   "ref": "1Móz 4",
+   "wolfHint": "Irigység",
+   "aliases": [],
+   "clues": [
+    "áldozat",
+    "mező",
+    "testvérem őrzője",
+    "gyilkosság",
+    "bélyeg",
+    "bujdosó",
+    "Nód",
+    "irigység",
+    "földműves"
+   ]
+  },
+  {
+   "en": "Sacrifice of Isaac",
+   "word": "Izsák feláldozása",
+   "hint": "Isten kost adott Izsák helyett",
+   "ref": "1Móz 22",
+   "wolfHint": "Kés",
+   "aliases": [
+    "Izsák megkötözése",
+    "Ábrahám és Izsák"
+   ],
+   "clues": [
+    "Ábrahám",
+    "Mórijá",
+    "kos",
+    "oltár",
+    "kés",
+    "angyal",
+    "bozót",
+    "fa",
+    "gondoskodás"
+   ]
+  },
+  {
+   "en": "Jacob and Esau",
+   "word": "Jákób és Ézsau",
+   "hint": "Ikertestvérek és egy ellopott áldás",
+   "ref": "1Móz 27",
+   "wolfHint": "Áldás",
+   "aliases": [
+    "Az ellopott áldás"
+   ],
+   "clues": [
+    "ikrek",
+    "lencsefőzelék",
+    "elsőszülöttség",
+    "áldás",
+    "Rebeka",
+    "kecskebőr",
+    "szőrös",
+    "vadász",
+    "vörös"
+   ]
+  },
+  {
+   "en": "Baby Moses",
+   "word": "Mózes a kosárban",
+   "hint": "Gyékénykosárban rejtették el a sás között",
+   "ref": "2Móz 2,1–10",
+   "wolfHint": "Királylány",
+   "aliases": [
+    "A kis Mózes",
+    "Mózes a gyékénykosárban",
+    "Mózes a Níluson"
+   ],
+   "clues": [
+    "gyékény",
+    "Nílus",
+    "sás",
+    "fáraó lánya",
+    "Mirjám",
+    "Jókebed",
+    "szurok",
+    "dajka",
+    "lévita"
+   ]
+  },
+  {
+   "en": "Parting the Red Sea",
+   "word": "Vörös-tengeri átkelés",
+   "hint": "Izrael szárazon ment át a tengeren",
+   "ref": "2Móz 14,21–22",
+   "wolfHint": "Szekerek",
+   "aliases": [
+    "Átkelés a Vörös-tengeren",
+    "Kettévált tenger"
+   ],
+   "clues": [
+    "Mózes",
+    "vessző",
+    "száraz föld",
+    "harci szekerek",
+    "fáraó",
+    "keleti szél",
+    "Mirjám",
+    "felhőoszlop",
+    "vízbe fúltak"
+   ]
+  },
+  {
+   "en": "Water from the Rock",
+   "word": "Víz a sziklából",
+   "hint": "Mózes megütötte a sziklát, és víz fakadt",
+   "ref": "2Móz 17,6",
+   "wolfHint": "Szomjúság",
+   "aliases": [
+    "Mózes megüti a sziklát"
+   ],
+   "clues": [
+    "Mózes",
+    "vessző",
+    "ütés",
+    "Meríba",
+    "szomjas",
+    "Masszá",
+    "zúgolódás",
+    "kétszer",
+    "puszta"
+   ]
+  },
+  {
+   "en": "Spying Out Canaan",
+   "word": "Kánaán kikémlelése",
+   "hint": "Tízen féltek; Józsué és Káleb bízott",
+   "ref": "4Móz 13–14",
+   "wolfHint": "Szőlő",
+   "aliases": [
+    "Tizenkét kém",
+    "Kémek Kánaánban"
+   ],
+   "clues": [
+    "Józsué",
+    "Káleb",
+    "szőlőfürt",
+    "óriások",
+    "tej és méz",
+    "negyven nap",
+    "Anák fiai",
+    "jelentés",
+    "sáskák"
+   ]
+  },
+  {
+   "en": "Balaam's Donkey",
+   "word": "Bálám szamara",
+   "hint": "Egy szamár meglátta az angyalt, és megszólalt",
+   "ref": "4Móz 22,28",
+   "wolfHint": "Beszéd",
+   "aliases": [
+    "Beszélő szamár"
+   ],
+   "clues": [
+    "angyal",
+    "kard",
+    "Bálák",
+    "átok",
+    "Móáb",
+    "verés",
+    "megszólalt",
+    "szűk út",
+    "háromszor"
+   ]
+  },
+  {
+   "en": "Samson and Delilah",
+   "word": "Sámson és Delila",
+   "hint": "Elárult titok, levágott haj, elszállt erő",
+   "ref": "Bír 16",
+   "wolfHint": "Árulás",
+   "aliases": [],
+   "clues": [
+    "hajvágás",
+    "erő",
+    "filiszteusok",
+    "hét hajfonat",
+    "oszlopok",
+    "megvakítva",
+    "názír",
+    "Dágon",
+    "ezüst"
+   ]
+  },
+  {
+   "en": "God Calls Samuel",
+   "word": "Isten hívja Sámuelt",
+   "hint": "„Szólj, Uram, mert hallja a te szolgád!”",
+   "ref": "1Sám 3",
+   "wolfHint": "Éjszaka",
+   "aliases": [
+    "Sámuel elhívása",
+    "Sámuel elhívatása"
+   ],
+   "clues": [
+    "Éli",
+    "templom",
+    "éjszaka",
+    "felébredt",
+    "mécses",
+    "Anna",
+    "hallgatás",
+    "fiú",
+    "Siló"
+   ]
+  },
+  {
+   "en": "Judgement of Solomon",
+   "word": "Salamon ítélete",
+   "hint": "Két anya, egy csecsemő és egy kard",
+   "ref": "1Kir 3,16–28",
+   "wolfHint": "Csecsemő",
+   "aliases": [
+    "Salamon bölcs ítélete",
+    "Két anya"
+   ],
+   "clues": [
+    "kard",
+    "csecsemő",
+    "anyák",
+    "bölcsesség",
+    "trón",
+    "kettévágás",
+    "élő gyermek",
+    "döntés",
+    "szánalom"
+   ]
+  },
+  {
+   "en": "Chariot of Fire",
+   "word": "Tüzes szekér",
+   "hint": "Illés forgószélben ment fel a mennybe",
+   "ref": "2Kir 2,11",
+   "wolfHint": "Forgószél",
+   "aliases": [
+    "Illés mennybe ragadtatása",
+    "Illés elragadtatása"
+   ],
+   "clues": [
+    "Illés",
+    "Elizeus",
+    "forgószél",
+    "palást",
+    "lovak",
+    "Jordán",
+    "kétszeres rész",
+    "menny",
+    "felragadtatás"
+   ]
+  },
+  {
+   "en": "Valley of Dry Bones",
+   "word": "Száraz csontok völgye",
+   "hint": "Csontok összeálltak és életre keltek",
+   "ref": "Ez 37",
+   "wolfHint": "Lehelet",
+   "aliases": [
+    "Száraz csontok"
+   ],
+   "clues": [
+    "Ezékiel",
+    "lehelet",
+    "inak",
+    "sereg",
+    "prófétálás",
+    "csontváz",
+    "zörgés",
+    "Lélek",
+    "élő"
+   ]
+  },
+  {
+   "en": "Annunciation",
+   "word": "Angyali üdvözlet",
+   "hint": "Gábriel hírül adja Máriának, hogy fia születik",
+   "ref": "Lk 1,26–38",
+   "wolfHint": "Angyal",
+   "aliases": [
+    "Gábriel Máriánál"
+   ],
+   "clues": [
+    "Gábriel",
+    "Mária",
+    "Názáret",
+    "szűz",
+    "kegyelem",
+    "Erzsébet",
+    "szolgálóleány",
+    "József",
+    "liliom"
+   ]
+  },
+  {
+   "en": "Boy Jesus",
+   "word": "Jézus a templomban",
+   "hint": "Három nap után a templomban találták meg",
+   "ref": "Lk 2,41–52",
+   "wolfHint": "Tanítók",
+   "aliases": [
+    "A tizenkét éves Jézus",
+    "Gyermek Jézus a templomban"
+   ],
+   "clues": [
+    "tizenkét év",
+    "tanítók",
+    "páska",
+    "Atyám háza",
+    "három nap",
+    "Názáret",
+    "kérdések",
+    "Jeruzsálem",
+    "aggódó szülők"
+   ]
+  },
+  {
+   "en": "Baptism of Jesus",
+   "word": "Jézus megkeresztelése",
+   "hint": "A Lélek galamb formájában szállt le",
+   "ref": "Mt 3,13–17",
+   "wolfHint": "Folyó",
+   "aliases": [
+    "Jézus keresztsége",
+    "Jézus megkeresztelkedése"
+   ],
+   "clues": [
+    "galamb",
+    "János",
+    "Jordán",
+    "hang az égből",
+    "szeretett Fiam",
+    "folyó",
+    "megnyílt ég",
+    "Lélek",
+    "gyönyörködöm"
+   ]
+  },
+  {
+   "en": "Temptation of Jesus",
+   "word": "Jézus megkísértése",
+   "hint": "Negyven nap a pusztában, az ördög próbára tette",
+   "ref": "Mt 4,1–11",
+   "wolfHint": "Ördög",
+   "aliases": [
+    "Megkísértés a pusztában",
+    "Jézus megkísértetése"
+   ],
+   "clues": [
+    "negyven nap",
+    "puszta",
+    "ördög",
+    "kenyér",
+    "templom ormán",
+    "királyságok",
+    "imádás",
+    "böjt",
+    "Írás"
+   ]
+  },
+  {
+   "en": "Sermon on the Mount",
+   "word": "Hegyi beszéd",
+   "hint": "„Boldogok a lelki szegények…”",
+   "ref": "Mt 5–7",
+   "wolfHint": "Tanítás",
+   "aliases": [
+    "Boldogmondások"
+   ],
+   "clues": [
+    "boldogok",
+    "só",
+    "világosság",
+    "Miatyánk",
+    "szelídek",
+    "domboldal",
+    "másik orca",
+    "liliomok",
+    "békességszerzők"
+   ]
+  },
+  {
+   "en": "Fishers of Men",
+   "word": "Emberhalászok",
+   "hint": "Jézus elhívta a halászokat, hogy kövessék",
+   "ref": "Mk 1,16–20",
+   "wolfHint": "Hálók",
+   "aliases": [
+    "A tanítványok elhívása",
+    "Jézus elhívja a tanítványokat"
+   ],
+   "clues": [
+    "hálók",
+    "Péter",
+    "András",
+    "Jakab",
+    "János",
+    "Galilea",
+    "kövessetek engem",
+    "csónakok",
+    "Zebedeus"
+   ]
+  },
+  {
+   "en": "Hole in the Roof",
+   "word": "Lyuk a tetőn",
+   "hint": "Barátok leengedtek egy béna embert Jézushoz",
+   "ref": "Mk 2,1–12",
+   "wolfHint": "Hordágy",
+   "aliases": [
+    "A béna meggyógyítása",
+    "Négy barát",
+    "Bénult ember"
+   ],
+   "clues": [
+    "fekhely",
+    "leengedték",
+    "barátok",
+    "tömeg",
+    "Kapernaum",
+    "bűnbocsánat",
+    "járás",
+    "írástudók",
+    "cserepek"
+   ]
+  },
+  {
+   "en": "Jairus' Daughter",
+   "word": "Jairus lánya",
+   "hint": "„Kislány, kelj fel!”",
+   "ref": "Mk 5,21–43",
+   "wolfHint": "Kislány",
+   "aliases": [
+    "Jairus lányának feltámasztása"
+   ],
+   "clues": [
+    "Talitha kúmi",
+    "zsinagóga",
+    "tizenkét év",
+    "alszik",
+    "siratók",
+    "kinevették",
+    "vérfolyásos asszony",
+    "feltámasztás",
+    "Péter"
+   ]
+  },
+  {
+   "en": "Blind Bartimaeus",
+   "word": "Vak Bartimeus",
+   "hint": "„Dávid Fia, könyörülj rajtam!”",
+   "ref": "Mk 10,46–52",
+   "wolfHint": "Látás",
+   "aliases": [
+    "Bartimeus",
+    "Bartimeus meggyógyítása"
+   ],
+   "clues": [
+    "Jerikó",
+    "koldus",
+    "rendreutasították",
+    "könyörülj",
+    "kiáltozás",
+    "ledobott köntös",
+    "útszél",
+    "látás",
+    "hit"
+   ]
+  },
+  {
+   "en": "Ten Lepers",
+   "word": "Tíz leprás",
+   "hint": "Csak egy jött vissza, hogy megköszönje",
+   "ref": "Lk 17,11–19",
+   "wolfHint": "Hála",
+   "aliases": [
+    "A tíz leprás meggyógyítása"
+   ],
+   "clues": [
+    "köszönet",
+    "samaritánus",
+    "papok",
+    "bőr",
+    "megtisztultak",
+    "kilenc",
+    "egy visszatért",
+    "falu",
+    "gyógyulás"
+   ]
+  },
+  {
+   "en": "Raising of Lazarus",
+   "word": "Lázár feltámasztása",
+   "hint": "„Lázár, jöjj ki!”",
+   "ref": "Jn 11",
+   "wolfHint": "Könnyek",
+   "aliases": [
+    "Lázár feltámadása",
+    "Lázár"
+   ],
+   "clues": [
+    "Betánia",
+    "Márta",
+    "Mária",
+    "sírbolt",
+    "négy nap",
+    "Jézus könnyezett",
+    "kő",
+    "halotti lepel",
+    "bűz"
+   ]
+  },
+  {
+   "en": "Woman at the Well",
+   "word": "Asszony a kútnál",
+   "hint": "Jézus inni kért egy samáriai asszonytól",
+   "ref": "Jn 4",
+   "wolfHint": "Samária",
+   "aliases": [
+    "Samáriai asszony",
+    "A samáriai asszony"
+   ],
+   "clues": [
+    "Szikár",
+    "élő víz",
+    "dél",
+    "öt férj",
+    "vizeskorsó",
+    "szomjúság",
+    "Messiás",
+    "imádás",
+    "Jákób forrása"
+   ]
+  },
+  {
+   "en": "Triumphal Entry",
+   "word": "Bevonulás Jeruzsálembe",
+   "hint": "Pálmaágak és egy szamár, irány Jeruzsálem",
+   "ref": "Mt 21,1–11",
+   "wolfHint": "Szamár",
+   "aliases": [
+    "Virágvasárnap",
+    "Jézus bevonulása"
+   ],
+   "clues": [
+    "pálmaágak",
+    "hozsánna",
+    "ruhák az úton",
+    "csikó",
+    "tömeg",
+    "király",
+    "Zakariás",
+    "Betfagé",
+    "szamár"
+   ]
+  },
+  {
+   "en": "Cleansing the Temple",
+   "word": "Templomtisztítás",
+   "hint": "Jézus felborította a pénzváltók asztalait",
+   "ref": "Jn 2,13–16",
+   "wolfHint": "Asztalok",
+   "aliases": [
+    "Pénzváltók kiűzése",
+    "Jézus kiűzi a kufárokat"
+   ],
+   "clues": [
+    "asztalok",
+    "ostor",
+    "galambok",
+    "rablók barlangja",
+    "imádság háza",
+    "marhák",
+    "pénz",
+    "buzgóság",
+    "felborította"
+   ]
+  },
+  {
+   "en": "Washing Feet",
+   "word": "Lábmosás",
+   "hint": "Jézus megmosta a tanítványai lábát",
+   "ref": "Jn 13,1–17",
+   "wolfHint": "Törölköző",
+   "aliases": [
+    "Jézus megmossa a tanítványok lábát"
+   ],
+   "clues": [
+    "törölköző",
+    "mosdótál",
+    "Péter",
+    "szolga",
+    "utolsó vacsora",
+    "alázat",
+    "példa",
+    "víz",
+    "felház"
+   ]
+  },
+  {
+   "en": "Peter's Denial",
+   "word": "Péter tagadása",
+   "hint": "Háromszor, mielőtt a kakas megszólalt",
+   "ref": "Lk 22,54–62",
+   "wolfHint": "Kakas",
+   "aliases": [
+    "Péter megtagadja Jézust"
+   ],
+   "clues": [
+    "kakas",
+    "háromszor",
+    "udvar",
+    "tűz",
+    "szolgálólány",
+    "tájszólás",
+    "keserves sírás",
+    "galileai",
+    "esküdözés"
+   ]
+  },
+  {
+   "en": "Crucifixion",
+   "word": "Keresztre feszítés",
+   "hint": "Jézus két gonosztevő között halt meg",
+   "ref": "Lk 23,33",
+   "wolfHint": "Péntek",
+   "aliases": [
+    "Nagypéntek",
+    "Jézus halála"
+   ],
+   "clues": [
+    "szögek",
+    "Golgota",
+    "latrok",
+    "töviskorona",
+    "elvégeztetett",
+    "sötétség",
+    "kárpit",
+    "százados",
+    "ecet"
+   ]
+  },
+  {
+   "en": "Ascension",
+   "word": "Mennybemenetel",
+   "hint": "Jézust felhő takarta el a szemük elől",
+   "ref": "ApCsel 1,9",
+   "wolfHint": "Felhők",
+   "aliases": [
+    "Jézus mennybemenetele"
+   ],
+   "clues": [
+    "felhő",
+    "Olajfák hegye",
+    "két férfi",
+    "negyven nap",
+    "tanúk",
+    "Betánia",
+    "ég",
+    "áldás",
+    "visszajön"
+   ]
+  },
+  {
+   "en": "Philippian Jailer",
+   "word": "Filippi börtönőr",
+   "hint": "Földrengés nyitotta meg a börtön ajtaját",
+   "ref": "ApCsel 16,25–34",
+   "wolfHint": "Földrengés",
+   "aliases": [
+    "Pál és Szilász a börtönben"
+   ],
+   "clues": [
+    "Pál",
+    "Szilász",
+    "földrengés",
+    "bilincsek",
+    "himnuszok",
+    "éjfél",
+    "kard",
+    "megkeresztelkedés",
+    "kaloda"
+   ]
+  },
+  {
+   "en": "Sower",
+   "word": "Magvető",
+   "hint": "Mag hullott útra, sziklára, tövisek közé, jó földbe",
+   "ref": "Mt 13,3–9",
+   "wolfHint": "Talaj",
+   "aliases": [
+    "A magvető példázata",
+    "Négyféle talaj"
+   ],
+   "clues": [
+    "mag",
+    "útfél",
+    "kősziklás",
+    "tövisek",
+    "jó föld",
+    "madarak",
+    "százszoros",
+    "nap",
+    "példázat"
+   ]
+  },
+  {
+   "en": "House on the Rock",
+   "word": "Sziklára épített ház",
+   "hint": "Az okos sziklára, a bolond homokra épített",
+   "ref": "Mt 7,24–27",
+   "wolfHint": "Homok",
+   "aliases": [
+    "Okos és bolond építő",
+    "Ház a sziklán"
+   ],
+   "clues": [
+    "homok",
+    "építő",
+    "eső",
+    "árvíz",
+    "szél",
+    "alap",
+    "balga",
+    "összeomlás",
+    "vihar"
+   ]
+  },
+  {
+   "en": "Ten Bridesmaids",
+   "word": "Tíz szűz",
+   "hint": "Öt okos és öt balga várt lámpással",
+   "ref": "Mt 25,1–13",
+   "wolfHint": "Lámpások",
+   "aliases": [
+    "Tíz szűz példázata",
+    "Okos és balga szüzek",
+    "Tíz koszorúslány"
+   ],
+   "clues": [
+    "lámpások",
+    "olaj",
+    "vőlegény",
+    "éjfél",
+    "okosak",
+    "balgák",
+    "bezárt ajtó",
+    "alvás",
+    "menyegző"
+   ]
+  },
+  {
+   "en": "Talents",
+   "word": "Tálentumok",
+   "hint": "Gazdájuk pénzt bízott a szolgákra",
+   "ref": "Mt 25,14–30",
+   "wolfHint": "Pénz",
+   "aliases": [
+    "A tálentumok példázata",
+    "Talentum"
+   ],
+   "clues": [
+    "gazda",
+    "szolgák",
+    "elásta",
+    "befektetés",
+    "jól van",
+    "arany",
+    "utazás",
+    "hűséges",
+    "kamat"
+   ]
+  },
+  {
+   "en": "Lost Coin",
+   "word": "Elveszett drahma",
+   "hint": "Egy asszony felsöpörte a házat, hogy megtalálja",
+   "ref": "Lk 15,8–10",
+   "wolfHint": "Seprű",
+   "aliases": [
+    "Elveszett drachma",
+    "Elveszett pénz",
+    "Elveszett ezüstpénz"
+   ],
+   "clues": [
+    "mécses",
+    "söprés",
+    "tíz ezüstpénz",
+    "asszony",
+    "szomszédok",
+    "örvendezés",
+    "megtalálta",
+    "ház",
+    "kincs"
+   ]
+  },
+  {
+   "en": "Widow's Offering",
+   "word": "Özvegy két fillére",
+   "hint": "Két kis pénz – több mindenki másénál",
+   "ref": "Mk 12,41–44",
+   "wolfHint": "Persely",
+   "aliases": [
+    "Szegény özvegy adománya",
+    "Két fillér"
+   ],
+   "clues": [
+    "templom",
+    "persely",
+    "szegény",
+    "gazdagok",
+    "mindenét",
+    "rézpénz",
+    "nagylelkű",
+    "kevés",
+    "adakozás"
+   ]
+  },
+  {
+   "en": "Transfiguration",
+   "word": "Megdicsőülés",
+   "hint": "Jézus ragyogott a hegyen Mózessel és Illéssel",
+   "ref": "Mt 17,1–8",
+   "wolfHint": "Hegy",
+   "aliases": [
+    "Színeváltozás",
+    "Jézus megdicsőülése"
+   ],
+   "clues": [
+    "hegy",
+    "Mózes",
+    "Illés",
+    "ragyogás",
+    "felhő",
+    "sátrak",
+    "Péter",
+    "hófehér",
+    "hang"
+   ]
+  }
+ ],
+ "thing": [
+  {
+   "en": "Rainbow",
+   "word": "Szivárvány",
+   "hint": "Isten ígéretének jele az özönvíz után",
+   "ref": "1Móz 9,13",
+   "wolfHint": "Ígéret",
+   "aliases": [],
+   "clues": [
+    "Noé",
+    "özönvíz",
+    "ígéret",
+    "szövetség",
+    "színek",
+    "ég",
+    "felhők",
+    "soha többé",
+    "eső után"
+   ]
+  },
+  {
+   "en": "Coat of Many Colours",
+   "word": "Tarka ruha",
+   "hint": "Jákób ajándéka Józsefnek",
+   "ref": "1Móz 37,3",
+   "wolfHint": "Féltékenység",
+   "aliases": [
+    "József ruhája",
+    "Díszes ruha",
+    "Tarka köntös"
+   ],
+   "clues": [
+    "József",
+    "Jákób",
+    "kedvenc fiú",
+    "testvérek",
+    "féltékenység",
+    "kecskevér",
+    "eladták",
+    "álmok",
+    "Egyiptom"
+   ]
+  },
+  {
+   "en": "Staff",
+   "word": "Bot",
+   "hint": "Mózes botja, amely kígyóvá változott",
+   "ref": "2Móz 4",
+   "wolfHint": "Járás",
+   "aliases": [
+    "Vessző",
+    "Mózes botja",
+    "Pásztorbot"
+   ],
+   "clues": [
+    "Mózes",
+    "Áron",
+    "kígyó",
+    "Vörös-tenger",
+    "kivirágzott",
+    "fáraó",
+    "pásztor",
+    "sziklaütés",
+    "csapások"
+   ]
+  },
+  {
+   "en": "Stone Tablets",
+   "word": "Kőtáblák",
+   "hint": "Ezekre írták fel a tízparancsolatot",
+   "ref": "2Móz 31,18",
+   "wolfHint": "Törvény",
+   "aliases": [
+    "Tízparancsolat",
+    "A törvény táblái",
+    "Táblák"
+   ],
+   "clues": [
+    "Mózes",
+    "Sínai",
+    "Isten ujja",
+    "összetörte",
+    "kettő",
+    "törvény",
+    "szövetségláda",
+    "bevésve",
+    "hegy"
+   ]
+  },
+  {
+   "en": "Ark of the Covenant",
+   "word": "Szövetségláda",
+   "hint": "Arannyal bevont láda, rudakon hordozták",
+   "ref": "2Móz 25",
+   "wolfHint": "Arany",
+   "aliases": [
+    "Bizonyság ládája",
+    "Frigyláda"
+   ],
+   "clues": [
+    "rudak",
+    "kerubok",
+    "arany",
+    "léviták",
+    "Jordán",
+    "Uzzá",
+    "engesztelés fedele",
+    "filiszteusok",
+    "szentek szentje"
+   ]
+  },
+  {
+   "en": "Golden Calf",
+   "word": "Aranyborjú",
+   "hint": "Bálvány, amelyet Mózes távollétében öntöttek",
+   "ref": "2Móz 32",
+   "wolfHint": "Bálvány",
+   "aliases": [],
+   "clues": [
+    "Áron",
+    "bálvány",
+    "fülbevalók",
+    "Sínai",
+    "beolvasztva",
+    "tánc",
+    "por",
+    "léviták",
+    "bűn"
+   ]
+  },
+  {
+   "en": "Trumpet",
+   "word": "Kürt",
+   "hint": "Jerikónál és Gedeon emberei fújták",
+   "ref": "Józs 6; Bír 7",
+   "wolfHint": "Hang",
+   "aliases": [
+    "Harsona",
+    "Sófár",
+    "Kosszarv",
+    "Trombita"
+   ],
+   "clues": [
+    "Jerikó",
+    "Gedeon",
+    "falak",
+    "fújás",
+    "hét pap",
+    "jubileum",
+    "utolsó ítélet",
+    "Józsué",
+    "angyalok"
+   ]
+  },
+  {
+   "en": "Sling",
+   "word": "Parittya",
+   "hint": "Dávid fegyvere az óriás ellen",
+   "ref": "1Sám 17,40",
+   "wolfHint": "Fegyver",
+   "aliases": [
+    "Csúzli"
+   ],
+   "clues": [
+    "Dávid",
+    "Góliát",
+    "kő",
+    "óriás",
+    "homlok",
+    "pásztor",
+    "Élá",
+    "tarisznya",
+    "benjáminiak"
+   ]
+  },
+  {
+   "en": "Harp",
+   "word": "Hárfa",
+   "hint": "Dávid ezzel nyugtatta meg Saul királyt",
+   "ref": "1Sám 16,23",
+   "wolfHint": "Zene",
+   "aliases": [
+    "Lant",
+    "Citera"
+   ],
+   "clues": [
+    "Dávid",
+    "Saul",
+    "zene",
+    "húrok",
+    "zsoltárok",
+    "gonosz lélek",
+    "fűzfák",
+    "dicsőítés",
+    "játék"
+   ]
+  },
+  {
+   "en": "Crown",
+   "word": "Korona",
+   "hint": "Királyok és királynék viselik",
+   "ref": "Eszt 2,17",
+   "wolfHint": "Király",
+   "aliases": [],
+   "clues": [
+    "király",
+    "arany",
+    "fej",
+    "fenség",
+    "drágakövek",
+    "uralkodás",
+    "győzelem",
+    "Jelenések",
+    "trón"
+   ]
+  },
+  {
+   "en": "Manger",
+   "word": "Jászol",
+   "hint": "Ebbe fektették a kis Jézust",
+   "ref": "Lk 2,7",
+   "wolfHint": "Állatok",
+   "aliases": [
+    "Etetővályú"
+   ],
+   "clues": [
+    "Betlehem",
+    "kisbaba",
+    "széna",
+    "istálló",
+    "pásztorok",
+    "állatok",
+    "karácsony",
+    "nincs hely",
+    "Mária"
+   ]
+  },
+  {
+   "en": "Star",
+   "word": "Csillag",
+   "hint": "A napkeleti bölcseket vezette",
+   "ref": "Mt 2,9",
+   "wolfHint": "Éjszaka",
+   "aliases": [
+    "Betlehemi csillag"
+   ],
+   "clues": [
+    "bölcsek",
+    "kelet",
+    "Heródes",
+    "égbolt",
+    "ragyogás",
+    "Betlehem",
+    "követték",
+    "éjszaka",
+    "mágusok"
+   ]
+  },
+  {
+   "en": "Fishing Net",
+   "word": "Háló",
+   "hint": "Péter és András otthagyta, hogy kövesse Jézust",
+   "ref": "Mt 4,20",
+   "wolfHint": "Tó",
+   "aliases": [
+    "Halászháló"
+   ],
+   "clues": [
+    "Péter",
+    "András",
+    "Galilea",
+    "kivetés",
+    "foltozás",
+    "jobb oldal",
+    "szakadásig tele",
+    "csónak",
+    "kövess engem"
+   ]
+  },
+  {
+   "en": "Five Loaves",
+   "word": "Öt kenyér",
+   "hint": "Egy fiú elemózsiája, amely ezreket táplált",
+   "ref": "Jn 6,9",
+   "wolfHint": "Fiú",
+   "aliases": [
+    "Kenyér és hal",
+    "Öt kenyér és két hal"
+   ],
+   "clues": [
+    "fiú",
+    "ebéd",
+    "két hal",
+    "ezrek",
+    "kosarak",
+    "tizenkét",
+    "domboldal",
+    "árpa",
+    "csoda"
+   ]
+  },
+  {
+   "en": "Mustard Seed",
+   "word": "Mustármag",
+   "hint": "A legkisebb mag, nagy növény lesz belőle",
+   "ref": "Mt 13,31",
+   "wolfHint": "Kicsi",
+   "aliases": [],
+   "clues": [
+    "apró",
+    "hit",
+    "példázat",
+    "fa",
+    "madarak",
+    "fészek",
+    "Isten országa",
+    "hegy",
+    "növekedés"
+   ]
+  },
+  {
+   "en": "Lamp",
+   "word": "Mécses",
+   "hint": "Ne tedd véka alá",
+   "ref": "Mt 5,15",
+   "wolfHint": "Fény",
+   "aliases": [
+    "Lámpás",
+    "Lámpa"
+   ],
+   "clues": [
+    "véka",
+    "fény",
+    "olaj",
+    "hegyen épült város",
+    "szüzek",
+    "világít",
+    "kanóc",
+    "lábam előtt",
+    "gyertyatartó"
+   ]
+  },
+  {
+   "en": "Pearl",
+   "word": "Gyöngy",
+   "hint": "Egy kereskedő mindenét eladta érte",
+   "ref": "Mt 13,46",
+   "wolfHint": "Kincs",
+   "aliases": [
+    "Drága gyöngy",
+    "Igazgyöngy"
+   ],
+   "clues": [
+    "kereskedő",
+    "mindenét eladta",
+    "mennyek országa",
+    "disznók",
+    "kapuk",
+    "kincs",
+    "felbecsülhetetlen",
+    "tenger",
+    "Jelenések"
+   ]
+  },
+  {
+   "en": "Cross",
+   "word": "Kereszt",
+   "hint": "Jézus ezen halt meg",
+   "ref": "Jn 19",
+   "wolfHint": "Fa",
+   "aliases": [],
+   "clues": [
+    "Golgota",
+    "Kálvária",
+    "szögek",
+    "fa",
+    "cirénei Simon",
+    "cipelés",
+    "megfeszítve",
+    "nagypéntek",
+    "áldozat"
+   ]
+  },
+  {
+   "en": "Crown of Thorns",
+   "word": "Töviskorona",
+   "hint": "A katonák ezzel gúnyolták Jézust",
+   "ref": "Jn 19,2",
+   "wolfHint": "Katonák",
+   "aliases": [
+    "Tövisből font korona"
+   ],
+   "clues": [
+    "katonák",
+    "gúny",
+    "Pilátus",
+    "fej",
+    "bíbor",
+    "zsidók királya",
+    "vér",
+    "Jézus",
+    "font"
+   ]
+  },
+  {
+   "en": "Thirty Silver Coins",
+   "word": "Harminc ezüstpénz",
+   "hint": "Júdás árulásának ára",
+   "ref": "Mt 26,15",
+   "wolfHint": "Árulás",
+   "aliases": [
+    "Harminc ezüst",
+    "30 ezüstpénz"
+   ],
+   "clues": [
+    "Júdás",
+    "árulás",
+    "főpapok",
+    "fazekas mezeje",
+    "vérdíj",
+    "csók",
+    "Zakariás",
+    "templom",
+    "ár"
+   ]
+  },
+  {
+   "en": "Stone",
+   "word": "Kő",
+   "hint": "A sírról hengerítették el",
+   "ref": "Mk 16,4",
+   "wolfHint": "Nehéz",
+   "aliases": [
+    "Elhengerített kő",
+    "Sírkő"
+   ],
+   "clues": [
+    "sír",
+    "elhengerítve",
+    "húsvét",
+    "angyal",
+    "lepecsételt",
+    "őrök",
+    "üres",
+    "kert",
+    "feltámadás"
+   ]
+  },
+  {
+   "en": "Armour of God",
+   "word": "Isten fegyverzete",
+   "hint": "Az igazság öve, a hit pajzsa…",
+   "ref": "Ef 6",
+   "wolfHint": "Harc",
+   "aliases": [
+    "Isten teljes fegyverzete",
+    "Lelki fegyverzet"
+   ],
+   "clues": [
+    "Efezus",
+    "öv",
+    "pajzs",
+    "sisak",
+    "mellvért",
+    "igazság",
+    "hit",
+    "kard",
+    "Pál"
+   ]
+  },
+  {
+   "en": "Dove",
+   "word": "Galamb",
+   "hint": "Olajágat hozott Noénak",
+   "ref": "1Móz 8,11",
+   "wolfHint": "Béke",
+   "aliases": [],
+   "clues": [
+    "Noé",
+    "olajág",
+    "özönvíz",
+    "keresztség",
+    "Szentlélek",
+    "béke",
+    "Jordán",
+    "szárnyak",
+    "holló"
+   ]
+  },
+  {
+   "en": "Ladder",
+   "word": "Létra",
+   "hint": "Jákób álmában angyalok jártak rajta fel és le",
+   "ref": "1Móz 28,12",
+   "wolfHint": "Álom",
+   "aliases": [
+    "Jákób létrája",
+    "Lépcső"
+   ],
+   "clues": [
+    "Jákób",
+    "álom",
+    "angyalok",
+    "Bétel",
+    "kőpárna",
+    "menny",
+    "felmenni",
+    "Hárán",
+    "Lúz"
+   ]
+  },
+  {
+   "en": "Jar of Oil",
+   "word": "Olajos korsó",
+   "hint": "Az özvegy korsója, amely nem ürült ki",
+   "ref": "1Kir 17,16",
+   "wolfHint": "Özvegy",
+   "aliases": [
+    "Az özvegy olaja",
+    "Olajkorsó"
+   ],
+   "clues": [
+    "özvegy",
+    "Elizeus",
+    "adósság",
+    "kölcsönkért edények",
+    "fiak",
+    "öntés",
+    "Sarepta",
+    "liszt",
+    "csoda"
+   ]
+  },
+  {
+   "en": "Scroll",
+   "word": "Tekercs",
+   "hint": "Jézus ebből olvasta fel Ézsaiást Názáretben",
+   "ref": "Lk 4,17",
+   "wolfHint": "Olvasás",
+   "aliases": [
+    "Írástekercs"
+   ],
+   "clues": [
+    "Názáret",
+    "Ézsaiás",
+    "zsinagóga",
+    "kitekerte",
+    "pergamen",
+    "pecsétek",
+    "Báruk",
+    "elégették",
+    "Ezsdrás"
+   ]
+  },
+  {
+   "en": "Forbidden Fruit",
+   "word": "Tiltott gyümölcs",
+   "hint": "Éva evett belőle a kertben",
+   "ref": "1Móz 3,6",
+   "wolfHint": "Fa",
+   "aliases": [
+    "Alma",
+    "A fa gyümölcse"
+   ],
+   "clues": [
+    "Éva",
+    "Ádám",
+    "kígyó",
+    "Éden",
+    "tudás fája",
+    "jó és rossz",
+    "kert",
+    "harapás",
+    "meztelenség"
+   ]
+  },
+  {
+   "en": "Bowl of Stew",
+   "word": "Lencsefőzelék",
+   "hint": "Ézsau ezért adta el elsőszülöttségi jogát",
+   "ref": "1Móz 25,34",
+   "wolfHint": "Éhség",
+   "aliases": [
+    "Vörös főzelék",
+    "Lencse",
+    "Tál lencse"
+   ],
+   "clues": [
+    "Ézsau",
+    "Jákób",
+    "elsőszülöttség",
+    "éhes",
+    "vörös",
+    "Edóm",
+    "vadászat",
+    "eladta",
+    "tál"
+   ]
+  },
+  {
+   "en": "Basket",
+   "word": "Kosár",
+   "hint": "Ebben úszott a kis Mózes a folyón",
+   "ref": "2Móz 2,3",
+   "wolfHint": "Sás",
+   "aliases": [
+    "Gyékénykosár",
+    "Mózes kosara"
+   ],
+   "clues": [
+    "Mózes",
+    "Nílus",
+    "sás",
+    "Mirjám",
+    "fáraó lánya",
+    "szurok",
+    "lebegés",
+    "csecsemő",
+    "Pál"
+   ]
+  },
+  {
+   "en": "Bronze Snake",
+   "word": "Rézkígyó",
+   "hint": "Mózes póznára tette, hogy meggyógyítsa a népet",
+   "ref": "4Móz 21,9",
+   "wolfHint": "Pózna",
+   "aliases": [
+    "Rézből készült kígyó",
+    "Kígyó a póznán"
+   ],
+   "clues": [
+    "Mózes",
+    "pózna",
+    "marás",
+    "feltekint",
+    "gyógyulás",
+    "puszta",
+    "Nehustán",
+    "Ezékiás",
+    "méreg"
+   ]
+  },
+  {
+   "en": "Pillar of Fire",
+   "word": "Tűzoszlop",
+   "hint": "Éjjel vezette Izraelt a pusztában",
+   "ref": "2Móz 13,21",
+   "wolfHint": "Éjszaka",
+   "aliases": [
+    "Felhőoszlop",
+    "Felhő- és tűzoszlop"
+   ],
+   "clues": [
+    "éjszaka",
+    "felhő",
+    "kivonulás",
+    "puszta",
+    "Vörös-tenger",
+    "vezetés",
+    "egyiptomiak",
+    "világosság",
+    "izraeliták"
+   ]
+  },
+  {
+   "en": "Lampstand",
+   "word": "Gyertyatartó",
+   "hint": "Hétágú aranylámpás a szent sátorban",
+   "ref": "2Móz 25,31–37",
+   "wolfHint": "Hét",
+   "aliases": [
+    "Menóra",
+    "Arany gyertyatartó",
+    "Mécstartó"
+   ],
+   "clues": [
+    "hét ág",
+    "szent sátor",
+    "olajfaolaj",
+    "arany",
+    "mandulavirág",
+    "papok",
+    "Zakariás",
+    "Jelenések",
+    "fény"
+   ]
+  },
+  {
+   "en": "Altar",
+   "word": "Oltár",
+   "hint": "Kövekből rakták az áldozatokhoz",
+   "ref": "1Móz 8,20",
+   "wolfHint": "Áldozat",
+   "aliases": [],
+   "clues": [
+    "áldozat",
+    "Illés",
+    "Kármel",
+    "kövek",
+    "Ábrahám",
+    "Izsák",
+    "tömjén",
+    "füst",
+    "szarvak"
+   ]
+  },
+  {
+   "en": "Scarlet Cord",
+   "word": "Skarlátpiros zsinór",
+   "hint": "Ráháb kiengedte az ablakából",
+   "ref": "Józs 2,18",
+   "wolfHint": "Ablak",
+   "aliases": [
+    "Piros zsinór",
+    "Vörös zsinór",
+    "Skarlát fonal",
+    "Piros kötél"
+   ],
+   "clues": [
+    "Ráháb",
+    "Jerikó",
+    "ablak",
+    "kémek",
+    "fal",
+    "ígéret",
+    "kötél",
+    "megmenekülés",
+    "Józsué"
+   ]
+  },
+  {
+   "en": "Fleece",
+   "word": "Gyapjú",
+   "hint": "Gedeon jele: nedves, aztán száraz",
+   "ref": "Bír 6,37–40",
+   "wolfHint": "Harmat",
+   "aliases": [
+    "Gedeon gyapja",
+    "Gyapjúfürt"
+   ],
+   "clues": [
+    "Gedeon",
+    "harmat",
+    "nedves",
+    "száraz",
+    "birka",
+    "jel",
+    "szérű",
+    "föld",
+    "midjániták"
+   ]
+  },
+  {
+   "en": "Jawbone",
+   "word": "Állkapocs",
+   "hint": "Sámson fegyvere: egy szamár állkapcsa",
+   "ref": "Bír 15,15",
+   "wolfHint": "Fegyver",
+   "aliases": [
+    "Szamár állkapcsa",
+    "Szamárállkapocs"
+   ],
+   "clues": [
+    "Sámson",
+    "szamár",
+    "filiszteusok",
+    "ezer",
+    "Lehí",
+    "forrás",
+    "erő",
+    "rakások",
+    "názír"
+   ]
+  },
+  {
+   "en": "Five Smooth Stones",
+   "word": "Öt sima kő",
+   "hint": "Dávid egy patakból szedte őket",
+   "ref": "1Sám 17,40",
+   "wolfHint": "Patak",
+   "aliases": [
+    "Öt kő",
+    "Sima kövek"
+   ],
+   "clues": [
+    "Dávid",
+    "Góliát",
+    "patak",
+    "parittya",
+    "tarisznya",
+    "pásztor",
+    "óriás",
+    "Élá",
+    "filiszteus"
+   ]
+  },
+  {
+   "en": "Spear",
+   "word": "Dárda",
+   "hint": "Saul Dávidhoz vágta",
+   "ref": "1Sám 18,11",
+   "wolfHint": "Harag",
+   "aliases": [
+    "Lándzsa",
+    "Gerely"
+   ],
+   "clues": [
+    "Saul",
+    "Dávid",
+    "kitért",
+    "fal",
+    "Góliát",
+    "átdöfte",
+    "oldal",
+    "katona",
+    "Abnér"
+   ]
+  },
+  {
+   "en": "Sword",
+   "word": "Kard",
+   "hint": "Péter levágta vele egy szolga fülét",
+   "ref": "Jn 18,10",
+   "wolfHint": "Fül",
+   "aliases": [],
+   "clues": [
+    "Péter",
+    "fül",
+    "Malkus",
+    "Gecsemáné",
+    "szolga",
+    "Lélek",
+    "Góliát",
+    "kétélű",
+    "hüvely"
+   ]
+  },
+  {
+   "en": "Elijah's Cloak",
+   "word": "Illés palástja",
+   "hint": "Elizeus felvette, és a Jordánra ütött vele",
+   "ref": "2Kir 2,13–14",
+   "wolfHint": "Próféta",
+   "aliases": [
+    "Palást",
+    "Illés köpenye"
+   ],
+   "clues": [
+    "Elizeus",
+    "Jordán",
+    "kétszeres rész",
+    "szekér",
+    "forgószél",
+    "tűz",
+    "próféta",
+    "kettévált",
+    "szántás"
+   ]
+  },
+  {
+   "en": "Golden Statue",
+   "word": "Aranyszobor",
+   "hint": "Nabukodonozor parancsára mindenki leborult előtte",
+   "ref": "Dán 3,1",
+   "wolfHint": "Hódolat",
+   "aliases": [
+    "Arany szobor",
+    "Aranyból készült szobor"
+   ],
+   "clues": [
+    "Nabukodonozor",
+    "Babilon",
+    "leborulás",
+    "kemence",
+    "Sadrak",
+    "Mésak",
+    "Abédnegó",
+    "zene",
+    "Dúra"
+   ]
+  },
+  {
+   "en": "Frankincense",
+   "word": "Tömjén",
+   "hint": "A napkeleti bölcsek egyik ajándéka",
+   "ref": "Mt 2,11",
+   "wolfHint": "Ajándékok",
+   "aliases": [],
+   "clues": [
+    "bölcsek",
+    "arany",
+    "mirha",
+    "ajándék",
+    "füst",
+    "mágusok",
+    "imádat",
+    "pap",
+    "illatos"
+   ]
+  },
+  {
+   "en": "Swaddling Cloths",
+   "word": "Pólya",
+   "hint": "Ebbe takarták a kis Jézust",
+   "ref": "Lk 2,7",
+   "wolfHint": "Kisbaba",
+   "aliases": [
+    "Pólyába takarva",
+    "Bepólyálva"
+   ],
+   "clues": [
+    "kisbaba",
+    "jászol",
+    "Betlehem",
+    "pásztorok",
+    "jel",
+    "betakarva",
+    "Mária",
+    "újszülött",
+    "karácsony"
+   ]
+  },
+  {
+   "en": "Lamb",
+   "word": "Bárány",
+   "hint": "„Íme, az Isten Báránya!”",
+   "ref": "Jn 1,29",
+   "wolfHint": "Gyapjú",
+   "aliases": [
+    "Isten Báránya"
+   ],
+   "clues": [
+    "Keresztelő",
+    "páska",
+    "áldozat",
+    "juh",
+    "vér",
+    "hibátlan",
+    "Jelenések",
+    "megöletett",
+    "nyáj"
+   ]
+  },
+  {
+   "en": "Alabaster Jar",
+   "word": "Alabástromtégely",
+   "hint": "Drága olaj, amelyet Jézus fejére öntöttek",
+   "ref": "Mk 14,3",
+   "wolfHint": "Illatszer",
+   "aliases": [
+    "Kenetes tégely",
+    "Alabástrom",
+    "Nárduszolaj"
+   ],
+   "clues": [
+    "Mária",
+    "Betánia",
+    "illatszer",
+    "nárdusz",
+    "felkenés",
+    "Júdás",
+    "temetés",
+    "összetört",
+    "drága"
+   ]
+  },
+  {
+   "en": "Purple Robe",
+   "word": "Bíborpalást",
+   "hint": "A katonák ebbe öltöztették, hogy kigúnyolják",
+   "ref": "Jn 19,2",
+   "wolfHint": "Gúny",
+   "aliases": [
+    "Skarlátpiros köpeny",
+    "Bíbor köntös"
+   ],
+   "clues": [
+    "katonák",
+    "gúnyolódás",
+    "Pilátus",
+    "király",
+    "töviskorona",
+    "Heródes",
+    "helytartóság",
+    "fenség",
+    "Jézus"
+   ]
+  },
+  {
+   "en": "Nails",
+   "word": "Szögek",
+   "hint": "Tamás látni akarta a nyomukat",
+   "ref": "Jn 20,25",
+   "wolfHint": "Kalapács",
+   "aliases": [],
+   "clues": [
+    "kereszt",
+    "kezek",
+    "lábak",
+    "Tamás",
+    "sebek",
+    "kalapács",
+    "Golgota",
+    "vas",
+    "átszegezve"
+   ]
+  },
+  {
+   "en": "Tongues of Fire",
+   "word": "Lángnyelvek",
+   "hint": "Pünkösdkor szálltak a tanítványokra",
+   "ref": "ApCsel 2,3",
+   "wolfHint": "Lélek",
+   "aliases": [
+    "Tüzes nyelvek",
+    "Lángok"
+   ],
+   "clues": [
+    "pünkösd",
+    "Szentlélek",
+    "szél",
+    "nyelvek",
+    "Péter",
+    "felház",
+    "tanítványok",
+    "apostolok",
+    "leszálltak"
+   ]
+  },
+  {
+   "en": "Chains",
+   "word": "Bilincsek",
+   "hint": "Lehullottak Péter kezéről a börtönben",
+   "ref": "ApCsel 12,7",
+   "wolfHint": "Börtön",
+   "aliases": [
+    "Láncok",
+    "Béklyó"
+   ],
+   "clues": [
+    "Péter",
+    "börtön",
+    "angyal",
+    "Pál",
+    "Szilász",
+    "földrengés",
+    "őrök",
+    "fogoly",
+    "Heródes"
+   ]
+  },
+  {
+   "en": "Serpent",
+   "word": "Kígyó",
+   "hint": "Megkísértette Évát a kertben",
+   "ref": "1Móz 3,1",
+   "wolfHint": "Hazugság",
+   "aliases": [
+    "Ősi kígyó",
+    "Ravasz kígyó"
+   ],
+   "clues": [
+    "Éva",
+    "Éden",
+    "ravasz",
+    "gyümölcs",
+    "hazugság",
+    "kísértés",
+    "por",
+    "has",
+    "Sátán"
+   ]
+  },
+  {
+   "en": "Fig Tree",
+   "word": "Fügefa",
+   "hint": "Jézus csak leveleket talált rajta, és megátkozta",
+   "ref": "Mk 11,13–14",
+   "wolfHint": "Levelek",
+   "aliases": [],
+   "clues": [
+    "megátkozott",
+    "levelek",
+    "elszáradt",
+    "Nátánael",
+    "terméketlen",
+    "Ádám",
+    "Betánia",
+    "nyár",
+    "éhes"
+   ]
+  },
+  {
+   "en": "Keys of the Kingdom",
+   "word": "A mennyek kulcsai",
+   "hint": "Jézus Péternek ígérte őket",
+   "ref": "Mt 16,19",
+   "wolfHint": "Zár",
+   "aliases": [
+    "Kulcsok",
+    "A mennyek országának kulcsai"
+   ],
+   "clues": [
+    "Péter",
+    "kőszikla",
+    "megkötni",
+    "feloldani",
+    "egyház",
+    "ég",
+    "Cézárea",
+    "kapuk",
+    "nyitás"
+   ]
+  },
+  {
+   "en": "Salt",
+   "word": "Só",
+   "hint": "„Ti vagytok a föld sója”",
+   "ref": "Mt 5,13",
+   "wolfHint": "Íz",
+   "aliases": [
+    "A föld sója"
+   ],
+   "clues": [
+    "föld",
+    "Lót felesége",
+    "oszlop",
+    "ízesítés",
+    "világosság",
+    "kénkő",
+    "tartósítás",
+    "Elizeus",
+    "szövetség"
+   ]
+  },
+  {
+   "en": "Eye of a Needle",
+   "word": "Tű foka",
+   "hint": "Könnyebb a tevének átmenni rajta",
+   "ref": "Mk 10,25",
+   "wolfHint": "Teve",
+   "aliases": [
+    "Tű",
+    "A tű fokán"
+   ],
+   "clues": [
+    "teve",
+    "gazdag ember",
+    "lehetetlen",
+    "Isten országa",
+    "cérna",
+    "varrás",
+    "vagyon",
+    "kis lyuk",
+    "Jézus"
+   ]
+  },
+  {
+   "en": "Fatted Calf",
+   "word": "Hízott borjú",
+   "hint": "A tékozló fiú hazatérésére vágták le",
+   "ref": "Lk 15,23",
+   "wolfHint": "Lakoma",
+   "aliases": [],
+   "clues": [
+    "tékozló fiú",
+    "apa",
+    "lakoma",
+    "idősebb testvér",
+    "gyűrű",
+    "köntös",
+    "zene",
+    "saru",
+    "disznók"
+   ]
+  },
+  {
+   "en": "Sceptre",
+   "word": "Jogar",
+   "hint": "A király Eszter felé nyújtotta",
+   "ref": "Eszt 5,2",
+   "wolfHint": "Királyi",
+   "aliases": [
+    "Arany jogar"
+   ],
+   "clues": [
+    "Eszter",
+    "király",
+    "Ahasvérós",
+    "trón",
+    "megérintette",
+    "arany",
+    "Júda",
+    "uralkodó",
+    "palota"
+   ]
+  },
+  {
+   "en": "Locusts and Honey",
+   "word": "Sáska és vadméz",
+   "hint": "Keresztelő János eledele a pusztában",
+   "ref": "Mt 3,4",
+   "wolfHint": "Eledel",
+   "aliases": [
+    "Sáskák",
+    "Vadméz"
+   ],
+   "clues": [
+    "Keresztelő",
+    "puszta",
+    "teveszőr",
+    "Jordán",
+    "vad",
+    "étrend",
+    "méhek",
+    "rovarok",
+    "bőröv"
+   ]
+  },
+  {
+   "en": "Burning Coal",
+   "word": "Izzó parázs",
+   "hint": "Egy szeráf ezzel érintette meg Ézsaiás ajkát",
+   "ref": "Ézs 6,6–7",
+   "wolfHint": "Ajkak",
+   "aliases": [
+    "Parázs",
+    "Izzó szén"
+   ],
+   "clues": [
+    "Ézsaiás",
+    "szeráf",
+    "ajkak",
+    "fogó",
+    "oltár",
+    "tisztátalan",
+    "templom",
+    "Küldj engem",
+    "bűn"
+   ]
+  },
+  {
+   "en": "Potter's Clay",
+   "word": "Fazekas agyaga",
+   "hint": "A fazekas újraformálta a korongon",
+   "ref": "Jer 18,1–6",
+   "wolfHint": "Formálás",
+   "aliases": [
+    "Agyag",
+    "Fazekaskorong"
+   ],
+   "clues": [
+    "Jeremiás",
+    "formálás",
+    "edény",
+    "elrontott",
+    "kezek",
+    "minta",
+    "Ézsaiás",
+    "újrakezdés",
+    "cserép"
+   ]
+  },
+  {
+   "en": "Silver Cup",
+   "word": "Ezüstpohár",
+   "hint": "Benjámin gabonászsákjába rejtették",
+   "ref": "1Móz 44,2",
+   "wolfHint": "Zsák",
+   "aliases": [
+    "József pohara",
+    "Ezüstserleg"
+   ],
+   "clues": [
+    "József",
+    "Benjámin",
+    "zsák",
+    "gabona",
+    "Egyiptom",
+    "jövendölés",
+    "testvérek",
+    "sáfár",
+    "lopás"
+   ]
+  },
+  {
+   "en": "Tree of Life",
+   "word": "Életfa",
+   "hint": "Az Édenben és az új Jeruzsálemben nőtt",
+   "ref": "1Móz 2,9; Jel 22,2",
+   "wolfHint": "Örökkévalóság",
+   "aliases": [
+    "Az élet fája",
+    "Élet fája"
+   ],
+   "clues": [
+    "Éden",
+    "kerubok",
+    "lángoló kard",
+    "Jelenések",
+    "új Jeruzsálem",
+    "levelek",
+    "gyógyulás",
+    "gyümölcs",
+    "folyó"
+   ]
+  },
+  {
+   "en": "Boat",
+   "word": "Csónak",
+   "hint": "Jézus aludt benne a vihar idején",
+   "ref": "Mk 4,38",
+   "wolfHint": "Vitorla",
+   "aliases": [
+    "Halászcsónak",
+    "Halászhajó"
+   ],
+   "clues": [
+    "vihar",
+    "Galilea",
+    "alvás",
+    "Péter",
+    "hullámok",
+    "tanítványok",
+    "evezők",
+    "csend",
+    "halászok"
+   ]
+  },
+  {
+   "en": "Ram",
+   "word": "Kos",
+   "hint": "Szarvánál fogva akadt fenn a bozótban",
+   "ref": "1Móz 22,13",
+   "wolfHint": "Szarvak",
+   "aliases": [],
+   "clues": [
+    "Ábrahám",
+    "Izsák",
+    "bozót",
+    "szarvak",
+    "Mórijá",
+    "áldozat",
+    "gondoskodott",
+    "hegy",
+    "helyettes"
+   ]
+  },
+  {
+   "en": "Sackcloth",
+   "word": "Zsákruha",
+   "hint": "Ninive ebbe öltözött bűnbánatul",
+   "ref": "Jón 3,5",
+   "wolfHint": "Gyász",
+   "aliases": [
+    "Zsák és hamu",
+    "Zsákruha és hamu"
+   ],
+   "clues": [
+    "Ninive",
+    "hamu",
+    "gyász",
+    "megtérés",
+    "Jónás",
+    "böjt",
+    "kecskeszőr",
+    "durva",
+    "Mordokaj"
+   ]
+  }
+ ]
+}

@@ -8,7 +8,7 @@ import type {
 } from '@sixtysix/shared'
 import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { applyModeRound, endsEarly, finalBonus, setupMode } from './modes.js'
-import { pickQuestions, verseFor } from './bank.js'
+import { pickQuestions, verseFor, versesFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
@@ -33,6 +33,9 @@ function publicQuestion(room: Room, q: Question): ArenaQuestion {
     text: q.text.en,
     answers: q.answers.en,
     difficulty: q.difficulty,
+    translations: Object.fromEntries(
+      (['de', 'hu'] as const).filter((l) => q.text[l] && q.answers[l]).map((l) => [l, { text: q.text[l]!, answers: q.answers[l]! }]),
+    ),
   }
 }
 
@@ -203,6 +206,7 @@ function resolveQuestion(io: IO, room: Room): void {
     correctIndex: q.correctIndex,
     reference: q.reference,
     verse: verseFor(q.id),
+    verses: versesFor(q.id),
     distribution,
     answeredCount,
   }

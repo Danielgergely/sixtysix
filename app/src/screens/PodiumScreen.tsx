@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useGameStore } from '../game/store'
 import { Crowning } from '../ceremony/Crowning'
-import { useT } from '../i18n'
+import { useLocale, useT } from '../i18n'
+import { questionIn, useVerses, verseOf } from '../questions/localize'
 
 /** End of a Bible Blitz race → The Crowning, then play again / review the questions. */
 export function PodiumScreen() {
   const t = useT()
+  const locale = useLocale((s) => s.locale)
+  const verses = useVerses()
   const racers = useGameStore((s) => s.racers)
   const questions = useGameStore((s) => s.questions)
   const answerLog = useGameStore((s) => s.answerLog)
@@ -51,7 +54,7 @@ export function PodiumScreen() {
                   <div key={q.id} className="review-item">
                     <div className="review-meta">
                       <span>
-                        {t('quiz.podium.q', { n: i + 1 })} · <span className="question-ref">{q.reference}</span>
+                        {t('quiz.podium.q', { n: i + 1 })} · <span className="question-ref">{verseOf(verses, q).ref}</span>
                         {yours === -1 && <span className="timeout-note"> · {t('quiz.podium.noAnswer')}</span>}
                       </span>
                       <button
@@ -62,9 +65,9 @@ export function PodiumScreen() {
                         {flagged ? t('quiz.podium.flagged') : t('quiz.podium.flag')}
                       </button>
                     </div>
-                    <div className="review-question">{q.text.en}</div>
+                    <div className="review-question">{questionIn(q, locale).text}</div>
                     <div className="review-answers">
-                      {q.answers.en.map((a, ai) => {
+                      {questionIn(q, locale).answers.map((a, ai) => {
                         const isCorrect = ai === q.correctIndex
                         const isYours = ai === yours
                         const cls = [

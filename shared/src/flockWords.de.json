@@ -1,0 +1,5522 @@
+{
+ "person": [
+  {
+   "en": "Noah",
+   "word": "Noah",
+   "hint": "Baute die Arche und nahm die Tiere an Bord",
+   "ref": "1. Mose 6–9",
+   "wolfHint": "Tiere",
+   "aliases": [],
+   "clues": [
+    "Arche",
+    "Sintflut",
+    "Regenbogen",
+    "Taube",
+    "Rabe",
+    "vierzig Tage",
+    "Tierpaare",
+    "Ararat",
+    "Sem"
+   ]
+  },
+  {
+   "en": "Abraham",
+   "word": "Abraham",
+   "hint": "Vater vieler Völker; verließ Ur auf Gottes Ruf",
+   "ref": "1. Mose 12",
+   "wolfHint": "Verheißung",
+   "aliases": [
+    "Abram"
+   ],
+   "clues": [
+    "Ur",
+    "Isaak",
+    "Sara",
+    "Sterne",
+    "Kanaan",
+    "Bund",
+    "Widder",
+    "Morija",
+    "Hagar"
+   ]
+  },
+  {
+   "en": "Sarah",
+   "word": "Sara",
+   "hint": "Lachte, als ihr im Alter ein Sohn verheißen wurde",
+   "ref": "1. Mose 18",
+   "wolfHint": "Lachen",
+   "aliases": [
+    "Sarai",
+    "Sarah"
+   ],
+   "clues": [
+    "lachte",
+    "Isaak",
+    "Abraham",
+    "hohes Alter",
+    "unfruchtbar",
+    "Zelt",
+    "Hagar",
+    "Ägypten",
+    "Fürstin"
+   ]
+  },
+  {
+   "en": "Joseph",
+   "word": "Josef",
+   "hint": "Bunter Rock, von seinen Brüdern verkauft",
+   "ref": "1. Mose 37",
+   "wolfHint": "Träume",
+   "aliases": [
+    "Joseph"
+   ],
+   "clues": [
+    "bunter Rock",
+    "Träume",
+    "Brüder",
+    "Ägypten",
+    "Potifar",
+    "Gefängnis",
+    "Hungersnot",
+    "Benjamin",
+    "Pharao"
+   ]
+  },
+  {
+   "en": "Moses",
+   "word": "Mose",
+   "hint": "Führte Israel aus Ägypten durchs Rote Meer",
+   "ref": "2. Mose 14",
+   "wolfHint": "Wüste",
+   "aliases": [
+    "Moses"
+   ],
+   "clues": [
+    "Rotes Meer",
+    "brennender Dornbusch",
+    "Zehn Gebote",
+    "Pharao",
+    "Plagen",
+    "Sinai",
+    "Stab",
+    "Körbchen",
+    "Manna"
+   ]
+  },
+  {
+   "en": "Miriam",
+   "word": "Mirjam",
+   "hint": "Schwester des Mose; tanzte mit der Pauke",
+   "ref": "2. Mose 15,20",
+   "wolfHint": "Musik",
+   "aliases": [
+    "Miriam"
+   ],
+   "clues": [
+    "Pauke",
+    "Schwester",
+    "Tanz",
+    "Lied",
+    "Aussatz",
+    "Aaron",
+    "Binsenkorb",
+    "Nil",
+    "Prophetin"
+   ]
+  },
+  {
+   "en": "Joshua",
+   "word": "Josua",
+   "hint": "Führte Israel um die Mauern Jerichos",
+   "ref": "Josua 6",
+   "wolfHint": "Kampf",
+   "aliases": [],
+   "clues": [
+    "Jericho",
+    "Mauern",
+    "Posaunen",
+    "Kanaan",
+    "Kundschafter",
+    "Sonne stand still",
+    "Jordan",
+    "Rahab",
+    "Nun"
+   ]
+  },
+  {
+   "en": "Gideon",
+   "word": "Gideon",
+   "hint": "Siegte mit 300 Mann, Posaunen und Krügen",
+   "ref": "Richter 7",
+   "wolfHint": "Soldaten",
+   "aliases": [],
+   "clues": [
+    "dreihundert",
+    "Posaunen",
+    "Krüge",
+    "Fackeln",
+    "Vlies",
+    "Midianiter",
+    "Kelter",
+    "Wasser lecken",
+    "Engel"
+   ]
+  },
+  {
+   "en": "Samson",
+   "word": "Simson",
+   "hint": "Bärenstarker Richter mit langen Haaren",
+   "ref": "Richter 16",
+   "wolfHint": "Stärke",
+   "aliases": [
+    "Samson"
+   ],
+   "clues": [
+    "Haare",
+    "Kraft",
+    "Delila",
+    "Löwe",
+    "Eselskinnbacken",
+    "Säulen",
+    "Philister",
+    "Nasiräer",
+    "Rätsel"
+   ]
+  },
+  {
+   "en": "Ruth",
+   "word": "Rut",
+   "hint": "Moabiterin: „Wo du hingehst, da will ich auch hingehen“",
+   "ref": "Rut 1,16",
+   "wolfHint": "Ernte",
+   "aliases": [
+    "Ruth"
+   ],
+   "clues": [
+    "Noomi",
+    "Boas",
+    "Ähren lesen",
+    "Moab",
+    "Gerste",
+    "Tenne",
+    "Betlehem",
+    "Treue",
+    "Obed"
+   ]
+  },
+  {
+   "en": "Samuel",
+   "word": "Samuel",
+   "hint": "Junge, den Gott nachts beim Namen rief",
+   "ref": "1. Samuel 3",
+   "wolfHint": "Tempel",
+   "aliases": [
+    "Prophet Samuel"
+   ],
+   "clues": [
+    "Hanna",
+    "Eli",
+    "Rede Herr",
+    "Tempel",
+    "gesalbt",
+    "Prophet",
+    "Silo",
+    "zuhören",
+    "Nacht"
+   ]
+  },
+  {
+   "en": "David",
+   "word": "David",
+   "hint": "Hirtenjunge, der mit der Schleuder einen Riesen besiegte",
+   "ref": "1. Samuel 17",
+   "wolfHint": "König",
+   "aliases": [
+    "König David"
+   ],
+   "clues": [
+    "Schleuder",
+    "Goliat",
+    "Hirte",
+    "Harfe",
+    "Psalmen",
+    "Batseba",
+    "Isai",
+    "Betlehem",
+    "Jonatan"
+   ]
+  },
+  {
+   "en": "Goliath",
+   "word": "Goliat",
+   "hint": "Riese der Philister aus Gat",
+   "ref": "1. Samuel 17",
+   "wolfHint": "Rüstung",
+   "aliases": [
+    "Goliath"
+   ],
+   "clues": [
+    "Riese",
+    "Schleuder",
+    "Stein",
+    "Gat",
+    "Philister",
+    "Panzer",
+    "David",
+    "Kämpfer",
+    "Stirn"
+   ]
+  },
+  {
+   "en": "Solomon",
+   "word": "Salomo",
+   "hint": "Weiser König, der den Tempel baute",
+   "ref": "1. Könige 3; 6",
+   "wolfHint": "Weisheit",
+   "aliases": [
+    "König Salomo",
+    "Salomon"
+   ],
+   "clues": [
+    "weise",
+    "Tempel",
+    "Sprüche",
+    "Königin von Saba",
+    "viele Frauen",
+    "Kind teilen",
+    "Prediger",
+    "Batseba",
+    "Reichtum"
+   ]
+  },
+  {
+   "en": "Elijah",
+   "word": "Elija",
+   "hint": "Prophet, von Raben versorgt; fuhr im Sturm zum Himmel",
+   "ref": "1. Könige 17; 2. Könige 2",
+   "wolfHint": "Feuer",
+   "aliases": [
+    "Elia",
+    "Elias"
+   ],
+   "clues": [
+    "Raben",
+    "feuriger Wagen",
+    "Wirbelwind",
+    "Karmel",
+    "Baal",
+    "Witwe",
+    "Isebel",
+    "leises Säuseln",
+    "Mantel"
+   ]
+  },
+  {
+   "en": "Elisha",
+   "word": "Elisa",
+   "hint": "Nahm Elijas Mantel auf; heilte Naaman",
+   "ref": "2. Könige 2; 5",
+   "wolfHint": "Wunder",
+   "aliases": [
+    "Elischa"
+   ],
+   "clues": [
+    "doppelter Anteil",
+    "Umhang",
+    "Naaman",
+    "Axtkopf",
+    "Glatze",
+    "Schunemiterin",
+    "Bären",
+    "Ölkrüge",
+    "Elija"
+   ]
+  },
+  {
+   "en": "Esther",
+   "word": "Esther",
+   "hint": "Königin, die ihr Volk rettete – „für eine Zeit wie diese“",
+   "ref": "Esther 4,14",
+   "wolfHint": "Königin",
+   "aliases": [
+    "Königin Esther",
+    "Hadassa"
+   ],
+   "clues": [
+    "Mordechai",
+    "Haman",
+    "Ahasveros",
+    "Persien",
+    "Festmahl",
+    "Fasten",
+    "Xerxes",
+    "Purim",
+    "Krone"
+   ]
+  },
+  {
+   "en": "Daniel",
+   "word": "Daniel",
+   "hint": "In die Löwengrube geworfen",
+   "ref": "Daniel 6",
+   "wolfHint": "Gebet",
+   "aliases": [
+    "Beltschazar"
+   ],
+   "clues": [
+    "Löwen",
+    "Grube",
+    "Babylon",
+    "Menetekel",
+    "Darius",
+    "beten",
+    "Träume",
+    "Gemüse",
+    "Fenster"
+   ]
+  },
+  {
+   "en": "Jonah",
+   "word": "Jona",
+   "hint": "Von einem großen Fisch verschluckt",
+   "ref": "Jona 1–2",
+   "wolfHint": "Meer",
+   "aliases": [
+    "Jonas"
+   ],
+   "clues": [
+    "Fisch",
+    "Ninive",
+    "Sturm",
+    "über Bord",
+    "Prophet",
+    "verschluckt",
+    "drei Tage",
+    "Buße",
+    "Tarsis"
+   ]
+  },
+  {
+   "en": "Nehemiah",
+   "word": "Nehemia",
+   "hint": "Baute Jerusalems Mauern in 52 Tagen wieder auf",
+   "ref": "Nehemia 6,15",
+   "wolfHint": "Mauern",
+   "aliases": [],
+   "clues": [
+    "Mauern",
+    "Jerusalem",
+    "Mundschenk",
+    "Artahsasta",
+    "Wiederaufbau",
+    "Sanballat",
+    "Tore",
+    "zweiundfünfzig",
+    "Gebet"
+   ]
+  },
+  {
+   "en": "Mary",
+   "word": "Maria",
+   "hint": "Mutter Jesu",
+   "ref": "Lukas 1–2",
+   "wolfHint": "Mutter",
+   "aliases": [
+    "Jungfrau Maria",
+    "Maria, Mutter Jesu"
+   ],
+   "clues": [
+    "Gabriel",
+    "Betlehem",
+    "Krippe",
+    "Nazaret",
+    "Josef",
+    "Lobgesang",
+    "Engel",
+    "Elisabet",
+    "Windeln"
+   ]
+  },
+  {
+   "en": "John the Baptist",
+   "word": "Johannes der Täufer",
+   "hint": "Taufte Jesus im Jordan; aß Heuschrecken",
+   "ref": "Matthäus 3",
+   "wolfHint": "Fluss",
+   "aliases": [
+    "Täufer",
+    "Johannes, der Täufer"
+   ],
+   "clues": [
+    "Heuschrecken",
+    "wilder Honig",
+    "Kamelhaar",
+    "Jordan",
+    "Wüste",
+    "Herodes",
+    "enthauptet",
+    "Buße tun",
+    "Elisabet"
+   ]
+  },
+  {
+   "en": "Peter",
+   "word": "Petrus",
+   "hint": "Fischer, der kurz auf dem Wasser ging",
+   "ref": "Matthäus 14,29",
+   "wolfHint": "Fischer",
+   "aliases": [
+    "Simon Petrus",
+    "Simon",
+    "Kephas"
+   ],
+   "clues": [
+    "Fels",
+    "Schlüssel",
+    "Hahn",
+    "verleugnet",
+    "übers Wasser",
+    "Netze",
+    "Andreas",
+    "Pfingsten",
+    "Galiläa"
+   ]
+  },
+  {
+   "en": "Zacchaeus",
+   "word": "Zachäus",
+   "hint": "Kleiner Zöllner, der auf einen Baum stieg",
+   "ref": "Lukas 19",
+   "wolfHint": "Baum",
+   "aliases": [],
+   "clues": [
+    "Maulbeerfeige",
+    "Zöllner",
+    "klein",
+    "Jericho",
+    "steig herab",
+    "Jesus",
+    "vierfach",
+    "Gast",
+    "reich"
+   ]
+  },
+  {
+   "en": "Lazarus",
+   "word": "Lazarus",
+   "hint": "Jesus erweckte ihn nach vier Tagen im Grab",
+   "ref": "Johannes 11",
+   "wolfHint": "Grab",
+   "aliases": [],
+   "clues": [
+    "Gruft",
+    "vier Tage",
+    "Jesus weinte",
+    "Betanien",
+    "Marta",
+    "Maria",
+    "komm heraus",
+    "Stein",
+    "Grabtücher"
+   ]
+  },
+  {
+   "en": "Thomas",
+   "word": "Thomas",
+   "hint": "Zweifelte, bis er die Nägelmale sah",
+   "ref": "Johannes 20",
+   "wolfHint": "Beweis",
+   "aliases": [
+    "Ungläubiger Thomas",
+    "Didymus"
+   ],
+   "clues": [
+    "Zweifel",
+    "Nägelmale",
+    "Zwilling",
+    "Seite",
+    "mein Herr",
+    "Obergemach",
+    "glauben",
+    "berühren",
+    "acht Tage"
+   ]
+  },
+  {
+   "en": "Paul",
+   "word": "Paulus",
+   "hint": "Vor Damaskus geblendet; schrieb viele Briefe",
+   "ref": "Apostelgeschichte 9",
+   "wolfHint": "Briefe",
+   "aliases": [
+    "Saulus",
+    "Apostel Paulus",
+    "Saulus von Tarsus"
+   ],
+   "clues": [
+    "Damaskus",
+    "blind",
+    "Briefe",
+    "Schiffbruch",
+    "Barnabas",
+    "Hananias",
+    "Römer",
+    "Missionar",
+    "Silas"
+   ]
+  },
+  {
+   "en": "Lydia",
+   "word": "Lydia",
+   "hint": "Purpurhändlerin in Philippi",
+   "ref": "Apostelgeschichte 16,14",
+   "wolfHint": "Händlerin",
+   "aliases": [],
+   "clues": [
+    "Purpur",
+    "Philippi",
+    "Stoffe",
+    "Kauffrau",
+    "Thyatira",
+    "Fluss",
+    "getauft",
+    "Paulus",
+    "ganzes Haus"
+   ]
+  },
+  {
+   "en": "Adam",
+   "word": "Adam",
+   "hint": "Der erste Mensch, aus Erde gemacht",
+   "ref": "1. Mose 2,7",
+   "wolfHint": "Garten",
+   "aliases": [],
+   "clues": [
+    "Eden",
+    "Eva",
+    "Staub",
+    "Rippe",
+    "Paradies",
+    "Frucht",
+    "Tiere benennen",
+    "Schlange",
+    "erster Mensch"
+   ]
+  },
+  {
+   "en": "Jacob",
+   "word": "Jakob",
+   "hint": "Träumte von der Himmelsleiter; bekam den Namen Israel",
+   "ref": "1. Mose 28; 32",
+   "wolfHint": "Zwillinge",
+   "aliases": [
+    "Israel"
+   ],
+   "clues": [
+    "Leiter",
+    "Esau",
+    "gerungen",
+    "Rahel",
+    "Lea",
+    "zwölf Söhne",
+    "Linsengericht",
+    "Bethel",
+    "Laban"
+   ]
+  },
+  {
+   "en": "Eve",
+   "word": "Eva",
+   "hint": "Erste Frau, aus Adams Rippe gemacht",
+   "ref": "1. Mose 2,22",
+   "wolfHint": "Schlange",
+   "aliases": [],
+   "clues": [
+    "Eden",
+    "Adam",
+    "Rippe",
+    "Schlange",
+    "Frucht",
+    "erste Frau",
+    "Kain",
+    "Garten",
+    "Feigenblätter"
+   ]
+  },
+  {
+   "en": "Cain",
+   "word": "Kain",
+   "hint": "Erschlug seinen Bruder aus Neid",
+   "ref": "1. Mose 4,8",
+   "wolfHint": "Feld",
+   "aliases": [],
+   "clues": [
+    "Abel",
+    "Mord",
+    "Feld",
+    "Zeichen",
+    "Ackerbauer",
+    "unstet",
+    "Nod",
+    "Bruders Hüter",
+    "Eifersucht"
+   ]
+  },
+  {
+   "en": "Abel",
+   "word": "Abel",
+   "hint": "Hirte, dessen Opfer Gott gefiel",
+   "ref": "1. Mose 4,4",
+   "wolfHint": "Opfer",
+   "aliases": [],
+   "clues": [
+    "Lamm",
+    "Schafhirte",
+    "Opfergabe",
+    "Kain",
+    "Blut schreit",
+    "Erstlinge",
+    "ermordet",
+    "Glaube",
+    "Adam"
+   ]
+  },
+  {
+   "en": "Isaac",
+   "word": "Isaak",
+   "hint": "Sohn der Verheißung; geboren, als Abraham 100 war",
+   "ref": "1. Mose 21,5",
+   "wolfHint": "Altar",
+   "aliases": [],
+   "clues": [
+    "Abraham",
+    "Sara",
+    "Lachen",
+    "Widder",
+    "Altar",
+    "Rebekka",
+    "Jakob",
+    "Esau",
+    "Brunnen"
+   ]
+  },
+  {
+   "en": "Esau",
+   "word": "Esau",
+   "hint": "Verkaufte sein Erstgeburtsrecht für ein Linsengericht",
+   "ref": "1. Mose 25,29–34",
+   "wolfHint": "Jäger",
+   "aliases": [
+    "Edom"
+   ],
+   "clues": [
+    "Linsengericht",
+    "Erstgeburt",
+    "behaart",
+    "Jäger",
+    "Jakob",
+    "Zwilling",
+    "rot",
+    "Segen",
+    "Isaak"
+   ]
+  },
+  {
+   "en": "Lot",
+   "word": "Lot",
+   "hint": "Floh aus Sodom; seine Frau sah zurück",
+   "ref": "1. Mose 19",
+   "wolfHint": "Salz",
+   "aliases": [],
+   "clues": [
+    "Sodom",
+    "Salzsäule",
+    "Ehefrau",
+    "Abraham",
+    "Engel",
+    "Neffe",
+    "Zoar",
+    "zurückgeschaut",
+    "Gomorra"
+   ]
+  },
+  {
+   "en": "Aaron",
+   "word": "Aaron",
+   "hint": "Bruder des Mose und erster Hoherpriester",
+   "ref": "2. Mose 28,1",
+   "wolfHint": "Priester",
+   "aliases": [],
+   "clues": [
+    "Hoherpriester",
+    "goldenes Kalb",
+    "Stab",
+    "gegrünt",
+    "Mose",
+    "Levit",
+    "Efod",
+    "Brustschild",
+    "Sprecher"
+   ]
+  },
+  {
+   "en": "Pharaoh",
+   "word": "Pharao",
+   "hint": "Ägyptens König, der Israel nicht ziehen ließ",
+   "ref": "2. Mose 5,1–2",
+   "wolfHint": "Plagen",
+   "aliases": [
+    "König von Ägypten"
+   ],
+   "clues": [
+    "Plagen",
+    "Mose",
+    "verstocktes Herz",
+    "Frösche",
+    "Rotes Meer",
+    "Streitwagen",
+    "Träume",
+    "Nil",
+    "Goschen"
+   ]
+  },
+  {
+   "en": "Rahab",
+   "word": "Rahab",
+   "hint": "Versteckte zwei Kundschafter auf ihrem Dach in Jericho",
+   "ref": "Josua 2",
+   "wolfHint": "Kundschafter",
+   "aliases": [],
+   "clues": [
+    "rotes Seil",
+    "Kundschafter",
+    "Dach",
+    "Jericho",
+    "Flachs",
+    "Fenster",
+    "Stadtmauer",
+    "Glaube",
+    "versteckt"
+   ]
+  },
+  {
+   "en": "Deborah",
+   "word": "Debora",
+   "hint": "Prophetin, die unter einer Palme Israel richtete",
+   "ref": "Richter 4,4–5",
+   "wolfHint": "Richterin",
+   "aliases": [
+    "Deborah"
+   ],
+   "clues": [
+    "Palme",
+    "Barak",
+    "Sisera",
+    "Jaël",
+    "Prophetin",
+    "Zeltpflock",
+    "Lied",
+    "Berg Tabor",
+    "Richterin"
+   ]
+  },
+  {
+   "en": "Delilah",
+   "word": "Delila",
+   "hint": "Verriet Simsons Geheimnis für Silber",
+   "ref": "Richter 16",
+   "wolfHint": "Haare",
+   "aliases": [
+    "Delilah"
+   ],
+   "clues": [
+    "Simson",
+    "Haarschnitt",
+    "Silber",
+    "Philister",
+    "Verrat",
+    "Schermesser",
+    "Geheimnis",
+    "Sorek",
+    "Quengeln"
+   ]
+  },
+  {
+   "en": "Hannah",
+   "word": "Hanna",
+   "hint": "Betete um einen Sohn und gab ihn Gott",
+   "ref": "1. Samuel 1",
+   "wolfHint": "Gebet",
+   "aliases": [],
+   "clues": [
+    "Samuel",
+    "Gebet",
+    "Eli",
+    "Tempel",
+    "Gelübde",
+    "kleines Röcklein",
+    "unfruchtbar",
+    "Silo",
+    "Elkana"
+   ]
+  },
+  {
+   "en": "Saul",
+   "word": "Saul",
+   "hint": "Israels erster König; groß und eifersüchtig",
+   "ref": "1. Samuel 10",
+   "wolfHint": "Speer",
+   "aliases": [
+    "König Saul"
+   ],
+   "clues": [
+    "Benjamin",
+    "groß",
+    "Speer",
+    "Jonatan",
+    "Endor",
+    "eifersüchtig",
+    "Samuel",
+    "gesalbt",
+    "Gilboa"
+   ]
+  },
+  {
+   "en": "Jonathan",
+   "word": "Jonatan",
+   "hint": "Sauls Sohn und Davids bester Freund",
+   "ref": "1. Samuel 18,1–3",
+   "wolfHint": "Freundschaft",
+   "aliases": [
+    "Jonathan"
+   ],
+   "clues": [
+    "David",
+    "Freund",
+    "Pfeile",
+    "Saul",
+    "Bund",
+    "Mantel",
+    "Mefi-Boschet",
+    "Honig",
+    "Philister"
+   ]
+  },
+  {
+   "en": "Bathsheba",
+   "word": "Batseba",
+   "hint": "David sah sie vom Dach aus; Salomos Mutter",
+   "ref": "2. Samuel 11–12",
+   "wolfHint": "Dach",
+   "aliases": [
+    "Bathseba"
+   ],
+   "clues": [
+    "Dachterrasse",
+    "Uria",
+    "Salomo",
+    "David",
+    "Nathan",
+    "Witwe",
+    "schön",
+    "Königinmutter",
+    "Jerusalem"
+   ]
+  },
+  {
+   "en": "Absalom",
+   "word": "Absalom",
+   "hint": "Aufständischer Prinz, der mit dem Haar im Baum hing",
+   "ref": "2. Samuel 18,9",
+   "wolfHint": "Aufstand",
+   "aliases": [],
+   "clues": [
+    "Haare",
+    "Eiche",
+    "Aufruhr",
+    "Joab",
+    "Maultier",
+    "David",
+    "weinender Vater",
+    "Tamar",
+    "Prinz"
+   ]
+  },
+  {
+   "en": "Jezebel",
+   "word": "Isebel",
+   "hint": "Böse Königin, die Elija verfolgte",
+   "ref": "1. Könige 19,1–2",
+   "wolfHint": "Götzen",
+   "aliases": [
+    "Königin Isebel"
+   ],
+   "clues": [
+    "Baal",
+    "Elija",
+    "Ahab",
+    "Nabot",
+    "Fenster",
+    "Hunde",
+    "geschminkte Augen",
+    "Propheten",
+    "Sidon"
+   ]
+  },
+  {
+   "en": "Ahab",
+   "word": "Ahab",
+   "hint": "Böser König, der Nabots Weinberg an sich riss",
+   "ref": "1. Könige 21",
+   "wolfHint": "Weinberg",
+   "aliases": [
+    "König Ahab"
+   ],
+   "clues": [
+    "Nabot",
+    "Weinberg",
+    "Isebel",
+    "Elija",
+    "Baal",
+    "Samarien",
+    "Karmel",
+    "Pfeil",
+    "schmollen"
+   ]
+  },
+  {
+   "en": "Naaman",
+   "word": "Naaman",
+   "hint": "Syrischer Feldherr, im Jordan geheilt",
+   "ref": "2. Könige 5",
+   "wolfHint": "Aussatz",
+   "aliases": [],
+   "clues": [
+    "Aussatz",
+    "Jordan",
+    "siebenmal",
+    "Syrien",
+    "Feldhauptmann",
+    "Elisa",
+    "Dienstmädchen",
+    "Gehasi",
+    "untergetaucht"
+   ]
+  },
+  {
+   "en": "Isaiah",
+   "word": "Jesaja",
+   "hint": "Prophet, der den Immanuel ankündigte",
+   "ref": "Jesaja 7,14",
+   "wolfHint": "Prophezeiung",
+   "aliases": [],
+   "clues": [
+    "Immanuel",
+    "Serafim",
+    "glühende Kohle",
+    "sende mich",
+    "Jungfrau",
+    "Gottesknecht",
+    "Hiskia",
+    "Lippen",
+    "Schriftrolle"
+   ]
+  },
+  {
+   "en": "Jeremiah",
+   "word": "Jeremia",
+   "hint": "Weinender Prophet, in eine schlammige Zisterne geworfen",
+   "ref": "Jeremia 38,6",
+   "wolfHint": "Tränen",
+   "aliases": [],
+   "clues": [
+    "Zisterne",
+    "Weinen",
+    "Klagelieder",
+    "Töpfer",
+    "Ton",
+    "Joch",
+    "Baruch",
+    "zu jung",
+    "Babylon"
+   ]
+  },
+  {
+   "en": "Ezekiel",
+   "word": "Hesekiel",
+   "hint": "Prophet, der ein Tal voller Totengebeine sah",
+   "ref": "Hesekiel 37",
+   "wolfHint": "Knochen",
+   "aliases": [
+    "Ezechiel"
+   ],
+   "clues": [
+    "Totengebeine",
+    "Tal",
+    "Räder",
+    "Cherubim",
+    "Wächter",
+    "Exil",
+    "Babylon",
+    "Buchrolle essen",
+    "Fluss"
+   ]
+  },
+  {
+   "en": "Job",
+   "word": "Hiob",
+   "hint": "Verlor alles und hielt doch am Glauben fest",
+   "ref": "Hiob 1–2",
+   "wolfHint": "Leiden",
+   "aliases": [
+    "Ijob"
+   ],
+   "clues": [
+    "Geschwüre",
+    "Satan",
+    "Freunde",
+    "Asche",
+    "Geduld",
+    "Uz",
+    "Wettersturm",
+    "doppelt",
+    "Kamele"
+   ]
+  },
+  {
+   "en": "Haman",
+   "word": "Haman",
+   "hint": "Plante den Mord an den Juden; hing am eigenen Galgen",
+   "ref": "Esther 7,10",
+   "wolfHint": "Komplott",
+   "aliases": [],
+   "clues": [
+    "Galgen",
+    "Mordechai",
+    "Esther",
+    "Purim",
+    "Lose",
+    "verbeugen",
+    "Persien",
+    "Verschwörung",
+    "Agagiter"
+   ]
+  },
+  {
+   "en": "Nebuchadnezzar",
+   "word": "Nebukadnezzar",
+   "hint": "König von Babel, der ein goldenes Bild aufstellen ließ",
+   "ref": "Daniel 3",
+   "wolfHint": "Standbild",
+   "aliases": [
+    "König Nebukadnezzar"
+   ],
+   "clues": [
+    "goldenes Bild",
+    "Feuerofen",
+    "Babylon",
+    "Traum",
+    "Gras fressen",
+    "Daniel",
+    "Schadrach",
+    "Wahnsinn",
+    "Jerusalem"
+   ]
+  },
+  {
+   "en": "Elizabeth",
+   "word": "Elisabet",
+   "hint": "Mutter von Johannes dem Täufer",
+   "ref": "Lukas 1,57",
+   "wolfHint": "Verwandte",
+   "aliases": [],
+   "clues": [
+    "Johannes",
+    "Zacharias",
+    "hohes Alter",
+    "Kind hüpfte",
+    "Base",
+    "unfruchtbar",
+    "Maria",
+    "Priesterfrau",
+    "Bergland"
+   ]
+  },
+  {
+   "en": "Herod",
+   "word": "Herodes",
+   "hint": "König, der Betlehems kleine Jungen töten ließ",
+   "ref": "Matthäus 2,16",
+   "wolfHint": "Eifersucht",
+   "aliases": [
+    "König Herodes",
+    "Herodes der Große"
+   ],
+   "clues": [
+    "Weise",
+    "Betlehem",
+    "Kindermord",
+    "Stern",
+    "neidisch",
+    "Ägypten",
+    "Sterndeuter",
+    "Jerusalem",
+    "zornig"
+   ]
+  },
+  {
+   "en": "Andrew",
+   "word": "Andreas",
+   "hint": "Fischer, der seinen Bruder zu Jesus brachte",
+   "ref": "Johannes 1,40–41",
+   "wolfHint": "Bruder",
+   "aliases": [],
+   "clues": [
+    "Petrus",
+    "Fischer",
+    "Brüderpaar",
+    "Brote",
+    "Junge",
+    "Betsaida",
+    "Griechen",
+    "Netze",
+    "Apostel"
+   ]
+  },
+  {
+   "en": "James",
+   "word": "Jakobus",
+   "hint": "Sohn des Zebedäus, ein „Donnersohn“",
+   "ref": "Markus 1,19; 3,17",
+   "wolfHint": "Donner",
+   "aliases": [
+    "Jakobus, Sohn des Zebedäus"
+   ],
+   "clues": [
+    "Donnersohn",
+    "Fischer",
+    "Johannes",
+    "Bruder",
+    "Schwert",
+    "Verklärung",
+    "Netze",
+    "Galiläa",
+    "Petrus"
+   ]
+  },
+  {
+   "en": "John",
+   "word": "Johannes",
+   "hint": "Lieblingsjünger, der ein Evangelium schrieb",
+   "ref": "Johannes 21,20–24",
+   "wolfHint": "Liebe",
+   "aliases": [
+    "Apostel Johannes",
+    "Lieblingsjünger"
+   ],
+   "clues": [
+    "Offenbarung",
+    "Patmos",
+    "Evangelium",
+    "Donnersohn",
+    "Liebe",
+    "Zebedäus",
+    "Fischer",
+    "Kreuz",
+    "Adler"
+   ]
+  },
+  {
+   "en": "Matthew",
+   "word": "Matthäus",
+   "hint": "Zöllner, der Apostel wurde",
+   "ref": "Matthäus 9,9",
+   "wolfHint": "Steuern",
+   "aliases": [
+    "Levi"
+   ],
+   "clues": [
+    "Zöllner",
+    "Evangelium",
+    "folge mir",
+    "Zollhaus",
+    "Apostel",
+    "Kapernaum",
+    "Festessen",
+    "Alphäus",
+    "Stammbaum"
+   ]
+  },
+  {
+   "en": "Judas",
+   "word": "Judas",
+   "hint": "Verriet Jesus mit einem Kuss",
+   "ref": "Lukas 22,47–48",
+   "wolfHint": "Kuss",
+   "aliases": [
+    "Judas Iskariot"
+   ],
+   "clues": [
+    "dreißig Silberlinge",
+    "Kuss",
+    "verraten",
+    "Geldbeutel",
+    "Gethsemane",
+    "Blutacker",
+    "Abendmahl",
+    "Hohepriester",
+    "Iskariot"
+   ]
+  },
+  {
+   "en": "Pontius Pilate",
+   "word": "Pontius Pilatus",
+   "hint": "Wusch beim Prozess Jesu seine Hände",
+   "ref": "Matthäus 27,24",
+   "wolfHint": "Statthalter",
+   "aliases": [
+    "Pilatus"
+   ],
+   "clues": [
+    "Hände waschen",
+    "Statthalter",
+    "Rom",
+    "Verhör",
+    "Barabbas",
+    "Wahrheit",
+    "kreuzigen",
+    "Inschrift",
+    "Traum seiner Frau"
+   ]
+  },
+  {
+   "en": "Mary Magdalene",
+   "word": "Maria Magdalena",
+   "hint": "Sah als Erste den auferstandenen Jesus",
+   "ref": "Johannes 20,11–18",
+   "wolfHint": "Garten",
+   "aliases": [
+    "Magdalena"
+   ],
+   "clues": [
+    "leeres Grab",
+    "Garten",
+    "Gärtner",
+    "sieben Dämonen",
+    "Rabbuni",
+    "auferstanden",
+    "Salben",
+    "erste Zeugin",
+    "weinen"
+   ]
+  },
+  {
+   "en": "Martha",
+   "word": "Marta",
+   "hint": "War geschäftig, während ihre Schwester zuhörte",
+   "ref": "Lukas 10,38–42",
+   "wolfHint": "Kochen",
+   "aliases": [],
+   "clues": [
+    "Maria",
+    "geschäftig",
+    "Küche",
+    "Betanien",
+    "Lazarus",
+    "bedienen",
+    "Sorgen",
+    "Auferstehung",
+    "Schwester"
+   ]
+  },
+  {
+   "en": "Nicodemus",
+   "word": "Nikodemus",
+   "hint": "Pharisäer, der nachts zu Jesus kam",
+   "ref": "Johannes 3,1–2",
+   "wolfHint": "Nacht",
+   "aliases": [],
+   "clues": [
+    "Nacht",
+    "wiedergeboren",
+    "Pharisäer",
+    "Lehrer",
+    "Myrrhe",
+    "Begräbnis",
+    "Wind",
+    "Hoher Rat",
+    "Aloe"
+   ]
+  },
+  {
+   "en": "Stephen",
+   "word": "Stephanus",
+   "hint": "Erster christlicher Märtyrer, gesteinigt",
+   "ref": "Apostelgeschichte 7,59–60",
+   "wolfHint": "Steine",
+   "aliases": [],
+   "clues": [
+    "gesteinigt",
+    "Märtyrer",
+    "Diakon",
+    "Saulus",
+    "Engelsgesicht",
+    "Himmel offen",
+    "vergeben",
+    "Kleider",
+    "die Sieben"
+   ]
+  }
+ ],
+ "place": [
+  {
+   "en": "Garden of Eden",
+   "word": "Garten Eden",
+   "hint": "Erstes Zuhause von Adam und Eva",
+   "ref": "1. Mose 2",
+   "wolfHint": "Frucht",
+   "aliases": [
+    "Eden",
+    "Paradies"
+   ],
+   "clues": [
+    "Adam",
+    "Eva",
+    "Schlange",
+    "verbotene Frucht",
+    "zwei Bäume",
+    "Cherubim",
+    "Flammenschwert",
+    "Feigenblätter",
+    "Ströme"
+   ]
+  },
+  {
+   "en": "Tower of Babel",
+   "word": "Turmbau zu Babel",
+   "hint": "Wo Gott die Sprachen verwirrte",
+   "ref": "1. Mose 11",
+   "wolfHint": "Sprachen",
+   "aliases": [
+    "Babel",
+    "Turm zu Babel",
+    "Turmbau"
+   ],
+   "clues": [
+    "Ziegel",
+    "Sprachen",
+    "Schinar",
+    "zerstreut",
+    "Himmel",
+    "Nimrod",
+    "Verwirrung",
+    "Hochmut",
+    "Asphalt"
+   ]
+  },
+  {
+   "en": "Egypt",
+   "word": "Ägypten",
+   "hint": "Land des Pharao und der Plagen",
+   "ref": "2. Mose 7–12",
+   "wolfHint": "Sklaverei",
+   "aliases": [],
+   "clues": [
+    "Pharao",
+    "Plagen",
+    "Josef",
+    "Pyramiden",
+    "Sklaven",
+    "Passa",
+    "Ziegel",
+    "Frösche",
+    "Auszug"
+   ]
+  },
+  {
+   "en": "Red Sea",
+   "word": "Rotes Meer",
+   "hint": "Teilte sich, damit Israel trocken hindurchzog",
+   "ref": "2. Mose 14",
+   "wolfHint": "Flucht",
+   "aliases": [
+    "Schilfmeer"
+   ],
+   "clues": [
+    "geteilt",
+    "Mose",
+    "trockener Boden",
+    "Pharaos Heer",
+    "Streitwagen",
+    "Wassermauern",
+    "Stab",
+    "Ostwind",
+    "Mirjam"
+   ]
+  },
+  {
+   "en": "Mount Sinai",
+   "word": "Berg Sinai",
+   "hint": "Hier empfing Mose die Zehn Gebote",
+   "ref": "2. Mose 19–20",
+   "wolfHint": "Gesetz",
+   "aliases": [
+    "Sinai",
+    "Horeb",
+    "Berg Horeb"
+   ],
+   "clues": [
+    "Zehn Gebote",
+    "Steintafeln",
+    "Mose",
+    "brennender Dornbusch",
+    "goldenes Kalb",
+    "Donner",
+    "Wolke",
+    "vierzig Tage",
+    "Bund"
+   ]
+  },
+  {
+   "en": "Jericho",
+   "word": "Jericho",
+   "hint": "Stadt, deren Mauern einstürzten",
+   "ref": "Josua 6",
+   "wolfHint": "Posaunen",
+   "aliases": [],
+   "clues": [
+    "Mauern",
+    "Posaunen",
+    "Rahab",
+    "Josua",
+    "sieben Tage",
+    "Kriegsgeschrei",
+    "rotes Seil",
+    "Kundschafter",
+    "Zachäus"
+   ]
+  },
+  {
+   "en": "Jordan River",
+   "word": "Jordan",
+   "hint": "Hier wurde Jesus getauft",
+   "ref": "Matthäus 3,13",
+   "wolfHint": "Taufe",
+   "aliases": [
+    "Fluss Jordan",
+    "Jordanfluss"
+   ],
+   "clues": [
+    "Taufe",
+    "Johannes",
+    "Taube",
+    "Naaman",
+    "Elija",
+    "Durchzug",
+    "Josua",
+    "Gedenksteine",
+    "Elisa"
+   ]
+  },
+  {
+   "en": "Bethlehem",
+   "word": "Betlehem",
+   "hint": "Stadt, in der Jesus geboren wurde",
+   "ref": "Lukas 2",
+   "wolfHint": "Geburt",
+   "aliases": [],
+   "clues": [
+    "Krippe",
+    "Hirten",
+    "Stern",
+    "Weise",
+    "David",
+    "Rut",
+    "Boas",
+    "Volkszählung",
+    "Micha"
+   ]
+  },
+  {
+   "en": "Nazareth",
+   "word": "Nazaret",
+   "hint": "Stadt, in der Jesus aufwuchs",
+   "ref": "Lukas 2,51",
+   "wolfHint": "Kindheit",
+   "aliases": [],
+   "clues": [
+    "Zimmermann",
+    "Josef",
+    "Maria",
+    "Gabriel",
+    "Heimatstadt",
+    "Synagoge",
+    "Abhang",
+    "Galiläa",
+    "Natanaël"
+   ]
+  },
+  {
+   "en": "Jerusalem",
+   "word": "Jerusalem",
+   "hint": "Stadt Davids mit dem Tempel",
+   "ref": "2. Samuel 5",
+   "wolfHint": "Hauptstadt",
+   "aliases": [
+    "Zion",
+    "Stadt Davids"
+   ],
+   "clues": [
+    "Tempel",
+    "Salomo",
+    "David",
+    "Palmzweige",
+    "Pfingsten",
+    "Nehemia",
+    "Hauptstadt",
+    "Pilger",
+    "Passa"
+   ]
+  },
+  {
+   "en": "Nineveh",
+   "word": "Ninive",
+   "hint": "Große Stadt, die Jona warnen sollte",
+   "ref": "Jona 3",
+   "wolfHint": "Umkehr",
+   "aliases": [],
+   "clues": [
+    "Jona",
+    "Buße",
+    "Sacktuch",
+    "Assyrien",
+    "großer Fisch",
+    "vierzig Tage",
+    "König",
+    "Vieh",
+    "Nahum"
+   ]
+  },
+  {
+   "en": "Babylon",
+   "word": "Babylon",
+   "hint": "Reich, in dem Daniel im Exil lebte",
+   "ref": "Daniel 1",
+   "wolfHint": "Exil",
+   "aliases": [],
+   "clues": [
+    "Daniel",
+    "Verbannung",
+    "Nebukadnezzar",
+    "Feuerofen",
+    "Menetekel",
+    "goldenes Bild",
+    "Flüsse",
+    "Belsazar",
+    "Gefangenschaft"
+   ]
+  },
+  {
+   "en": "Sea of Galilee",
+   "word": "See Genezareth",
+   "hint": "See, auf dem Jesus einen Sturm stillte",
+   "ref": "Markus 4",
+   "wolfHint": "Boote",
+   "aliases": [
+    "See Gennesaret",
+    "Galiläisches Meer",
+    "See von Tiberias"
+   ],
+   "clues": [
+    "Fischer",
+    "Sturm",
+    "übers Wasser",
+    "Petrus",
+    "Netze",
+    "Boot",
+    "Stille",
+    "Kapernaum",
+    "reicher Fischfang"
+   ]
+  },
+  {
+   "en": "Mount of Olives",
+   "word": "Ölberg",
+   "hint": "Hügel östlich von Jerusalem, wo Jesus oft betete",
+   "ref": "Lukas 22,39",
+   "wolfHint": "Himmelfahrt",
+   "aliases": [],
+   "clues": [
+    "Himmelfahrt",
+    "Betanien",
+    "Palmsonntag",
+    "weinte",
+    "Sacharja",
+    "Esel",
+    "Kidron",
+    "Endzeit",
+    "Betfage"
+   ]
+  },
+  {
+   "en": "Gethsemane",
+   "word": "Gethsemane",
+   "hint": "Garten, in dem Jesus vor der Verhaftung betete",
+   "ref": "Matthäus 26,36",
+   "wolfHint": "Gebet",
+   "aliases": [
+    "Garten Gethsemane"
+   ],
+   "clues": [
+    "Ölpresse",
+    "beten",
+    "Verhaftung",
+    "Judas",
+    "Kuss",
+    "Blutschweiß",
+    "schlafende Jünger",
+    "Kelch",
+    "Schwert"
+   ]
+  },
+  {
+   "en": "Golgotha",
+   "word": "Golgatha",
+   "hint": "„Schädelstätte“, wo Jesus gekreuzigt wurde",
+   "ref": "Johannes 19,17",
+   "wolfHint": "Hügel",
+   "aliases": [
+    "Schädelstätte",
+    "Kalvarienberg"
+   ],
+   "clues": [
+    "Kreuz",
+    "Schädel",
+    "Schächer",
+    "Nägel",
+    "Simon von Kyrene",
+    "Finsternis",
+    "Hauptmann",
+    "es ist vollbracht",
+    "Dornenkrone"
+   ]
+  },
+  {
+   "en": "Damascus",
+   "word": "Damaskus",
+   "hint": "Auf dem Weg dorthin begegnete Saulus Jesus",
+   "ref": "Apostelgeschichte 9",
+   "wolfHint": "Blindheit",
+   "aliases": [],
+   "clues": [
+    "Saulus",
+    "geblendet",
+    "helles Licht",
+    "Hananias",
+    "Gerade Straße",
+    "Korb",
+    "Bekehrung",
+    "Naaman",
+    "Schuppen"
+   ]
+  },
+  {
+   "en": "Rome",
+   "word": "Rom",
+   "hint": "Hauptstadt des Reiches; Paulus schrieb der Gemeinde dort",
+   "ref": "Römer 1,7",
+   "wolfHint": "Weltreich",
+   "aliases": [],
+   "clues": [
+    "Kaiser",
+    "Paulus",
+    "Brief",
+    "Ketten",
+    "Berufung",
+    "Imperium",
+    "Aquila",
+    "Hausarrest",
+    "Petrus"
+   ]
+  },
+  {
+   "en": "Ark",
+   "word": "Arche",
+   "hint": "Schwimmendes Zuhause für Noahs Familie und die Tiere",
+   "ref": "1. Mose 7",
+   "wolfHint": "Regen",
+   "aliases": [
+    "Arche Noah"
+   ],
+   "clues": [
+    "Noah",
+    "Sintflut",
+    "Tiere",
+    "paarweise",
+    "Taube",
+    "Regenbogen",
+    "Gopherholz",
+    "Pech",
+    "vierzig Tage"
+   ]
+  },
+  {
+   "en": "Wilderness",
+   "word": "Wüste",
+   "hint": "Israel zog dort 40 Jahre umher",
+   "ref": "4. Mose 14,33",
+   "wolfHint": "Wanderung",
+   "aliases": [
+    "Wildnis"
+   ],
+   "clues": [
+    "Manna",
+    "Wachteln",
+    "vierzig Jahre",
+    "umherziehen",
+    "Versuchung",
+    "Stiftshütte",
+    "eherne Schlange",
+    "Murren",
+    "Feuersäule"
+   ]
+  },
+  {
+   "en": "Mount Carmel",
+   "word": "Berg Karmel",
+   "hint": "Elijas Kräftemessen mit den Baalspropheten",
+   "ref": "1. Könige 18",
+   "wolfHint": "Altar",
+   "aliases": [
+    "Karmel"
+   ],
+   "clues": [
+    "Elija",
+    "Baal",
+    "Feuer",
+    "Altar",
+    "Propheten",
+    "Wasserkrüge",
+    "Regen",
+    "Ahab",
+    "Opfer"
+   ]
+  },
+  {
+   "en": "Temple",
+   "word": "Tempel",
+   "hint": "Salomo baute ihn; Jesus lehrte dort als Junge",
+   "ref": "1. Könige 6; Lukas 2",
+   "wolfHint": "Anbetung",
+   "aliases": [
+    "Salomos Tempel",
+    "Haus Gottes"
+   ],
+   "clues": [
+    "Salomo",
+    "Priester",
+    "Altar",
+    "Allerheiligstes",
+    "Vorhang",
+    "Geldwechsler",
+    "Opfer",
+    "zwölfjähriger Jesus",
+    "Weihrauch"
+   ]
+  },
+  {
+   "en": "Lions' Den",
+   "word": "Löwengrube",
+   "hint": "Daniel verbrachte dort die Nacht",
+   "ref": "Daniel 6",
+   "wolfHint": "Gefahr",
+   "aliases": [
+    "Grube der Löwen"
+   ],
+   "clues": [
+    "Daniel",
+    "Engel",
+    "Rachen verschlossen",
+    "Darius",
+    "Gebet",
+    "Stein",
+    "Erlass",
+    "Nacht",
+    "unversehrt"
+   ]
+  },
+  {
+   "en": "Upper Room",
+   "word": "Obergemach",
+   "hint": "Hier hielt Jesus das letzte Abendmahl",
+   "ref": "Markus 14,15",
+   "wolfHint": "Mahlzeit",
+   "aliases": [
+    "Abendmahlssaal",
+    "Großer Saal",
+    "Saal"
+   ],
+   "clues": [
+    "Brot",
+    "Wein",
+    "Fußwaschung",
+    "Pfingsten",
+    "Jünger",
+    "Passa",
+    "Judas",
+    "Feuerzungen",
+    "Gebet"
+   ]
+  },
+  {
+   "en": "Patmos",
+   "word": "Patmos",
+   "hint": "Insel, auf der Johannes die Offenbarung sah",
+   "ref": "Offenbarung 1,9",
+   "wolfHint": "Visionen",
+   "aliases": [],
+   "clues": [
+    "Johannes",
+    "Offenbarung",
+    "Insel",
+    "Verbannung",
+    "Gesichte",
+    "sieben Gemeinden",
+    "Alpha",
+    "Leuchter",
+    "Ägäis"
+   ]
+  },
+  {
+   "en": "Canaan",
+   "word": "Kanaan",
+   "hint": "Das Gelobte Land, wo Milch und Honig fließen",
+   "ref": "2. Mose 3,8",
+   "wolfHint": "Verheißung",
+   "aliases": [
+    "Gelobtes Land",
+    "Verheißenes Land"
+   ],
+   "clues": [
+    "Milch",
+    "Honig",
+    "Abraham",
+    "Josua",
+    "Kundschafter",
+    "Trauben",
+    "Riesen",
+    "Jericho",
+    "Eroberung"
+   ]
+  },
+  {
+   "en": "Ur",
+   "word": "Ur",
+   "hint": "Abrahams Heimatstadt, bevor Gott ihn rief",
+   "ref": "1. Mose 11,31",
+   "wolfHint": "Heimat",
+   "aliases": [
+    "Ur in Chaldäa",
+    "Ur der Chaldäer"
+   ],
+   "clues": [
+    "Abraham",
+    "Terach",
+    "Sara",
+    "Mesopotamien",
+    "Götzen",
+    "Aufbruch",
+    "Haran",
+    "Mondgott",
+    "Berufung"
+   ]
+  },
+  {
+   "en": "Sodom",
+   "word": "Sodom",
+   "hint": "Stadt, die durch Feuer und Schwefel unterging",
+   "ref": "1. Mose 19,24",
+   "wolfHint": "Schwefel",
+   "aliases": [
+    "Sodom und Gomorra"
+   ],
+   "clues": [
+    "Lot",
+    "Salzsäule",
+    "Schwefel",
+    "Engel",
+    "Abraham",
+    "zehn Gerechte",
+    "zurückblicken",
+    "Zoar",
+    "zerstört"
+   ]
+  },
+  {
+   "en": "Mount Moriah",
+   "word": "Berg Morija",
+   "hint": "Hier hätte Abraham beinahe Isaak geopfert",
+   "ref": "1. Mose 22,2",
+   "wolfHint": "Opfer",
+   "aliases": [
+    "Morija"
+   ],
+   "clues": [
+    "Abraham",
+    "Isaak",
+    "Widder",
+    "Altar",
+    "Messer",
+    "Prüfung",
+    "Gestrüpp",
+    "Gott sieht",
+    "Jerusalem"
+   ]
+  },
+  {
+   "en": "Bethel",
+   "word": "Bethel",
+   "hint": "Wo Jakob von der Himmelsleiter träumte",
+   "ref": "1. Mose 28,19",
+   "wolfHint": "Traum",
+   "aliases": [
+    "Bet-El"
+   ],
+   "clues": [
+    "Jakob",
+    "Leiter",
+    "Engel",
+    "Steinkissen",
+    "Traum",
+    "Salböl",
+    "goldenes Kalb",
+    "Lus",
+    "Jerobeam"
+   ]
+  },
+  {
+   "en": "Goshen",
+   "word": "Goschen",
+   "hint": "Gegend in Ägypten, wo Jakobs Familie wohnte",
+   "ref": "1. Mose 47,27",
+   "wolfHint": "Weideland",
+   "aliases": [
+    "Gosen"
+   ],
+   "clues": [
+    "Jakob",
+    "Josef",
+    "Ägypten",
+    "Hirten",
+    "Herden",
+    "Weide",
+    "Israeliten",
+    "keine Stechfliegen",
+    "Pharao"
+   ]
+  },
+  {
+   "en": "Mount Nebo",
+   "word": "Berg Nebo",
+   "hint": "Von hier sah Mose das Gelobte Land",
+   "ref": "5. Mose 34,1",
+   "wolfHint": "Aussicht",
+   "aliases": [
+    "Nebo",
+    "Pisga"
+   ],
+   "clues": [
+    "Mose",
+    "Moab",
+    "Ausblick",
+    "Gipfel",
+    "Tod",
+    "Abschied",
+    "Jericho",
+    "Josua",
+    "Grab unbekannt"
+   ]
+  },
+  {
+   "en": "Shiloh",
+   "word": "Silo",
+   "hint": "Wo Hanna im Haus des Herrn betete",
+   "ref": "1. Samuel 1,3",
+   "wolfHint": "Hanna",
+   "aliases": [
+    "Schilo"
+   ],
+   "clues": [
+    "Hanna",
+    "Eli",
+    "Samuel",
+    "Stiftshütte",
+    "Bundeslade",
+    "Gebet",
+    "Gelübde",
+    "Lose",
+    "Ephraim"
+   ]
+  },
+  {
+   "en": "Valley of Elah",
+   "word": "Tal Ela",
+   "hint": "Hier kämpfte David gegen Goliat",
+   "ref": "1. Samuel 17,2",
+   "wolfHint": "Riese",
+   "aliases": [
+    "Ela",
+    "Eichgrund",
+    "Terebinthental"
+   ],
+   "clues": [
+    "David",
+    "Goliat",
+    "Schleuder",
+    "fünf Steine",
+    "Zweikampf",
+    "Philister",
+    "Saul",
+    "Bach",
+    "Hirtenjunge"
+   ]
+  },
+  {
+   "en": "Hebron",
+   "word": "Hebron",
+   "hint": "David regierte dort sieben Jahre",
+   "ref": "2. Samuel 5,5",
+   "wolfHint": "Erzväter",
+   "aliases": [],
+   "clues": [
+    "Abraham",
+    "Machpela",
+    "Kaleb",
+    "David",
+    "sieben Jahre",
+    "Mamre",
+    "Sara",
+    "Grabhöhle",
+    "Freistadt"
+   ]
+  },
+  {
+   "en": "Gath",
+   "word": "Gat",
+   "hint": "Goliats Heimatstadt",
+   "ref": "1. Samuel 17,4",
+   "wolfHint": "Philister",
+   "aliases": [],
+   "clues": [
+    "Goliat",
+    "Philister",
+    "Riesen",
+    "Achisch",
+    "Wahnsinn gespielt",
+    "Bundeslade",
+    "sechs Zehen",
+    "Ittai",
+    "David floh"
+   ]
+  },
+  {
+   "en": "Tarshish",
+   "word": "Tarsis",
+   "hint": "Wohin Jona fliehen wollte",
+   "ref": "Jona 1,3",
+   "wolfHint": "Schiff",
+   "aliases": [],
+   "clues": [
+    "Jona",
+    "Schiff",
+    "Fahrgeld",
+    "weglaufen",
+    "Sturm",
+    "Silber",
+    "Salomos Flotte",
+    "Seeleute",
+    "fernes Land"
+   ]
+  },
+  {
+   "en": "Susa",
+   "word": "Susa",
+   "hint": "Königsstadt der Königin Esther",
+   "ref": "Esther 2,8",
+   "wolfHint": "Palast",
+   "aliases": [
+    "Schuschan"
+   ],
+   "clues": [
+    "Esther",
+    "Xerxes",
+    "Mordechai",
+    "Haman",
+    "Palast",
+    "Nehemia",
+    "Daniel",
+    "Burg",
+    "Purim"
+   ]
+  },
+  {
+   "en": "Persia",
+   "word": "Persien",
+   "hint": "Reich von Kyrus und König Xerxes",
+   "ref": "Esra 1,1; Esther 1,3",
+   "wolfHint": "Könige",
+   "aliases": [
+    "Perserreich"
+   ],
+   "clues": [
+    "Kyrus",
+    "Xerxes",
+    "Esther",
+    "Darius",
+    "Meder",
+    "Weltreich",
+    "Erlass",
+    "Esra",
+    "Daniel"
+   ]
+  },
+  {
+   "en": "Samaria",
+   "word": "Samarien",
+   "hint": "Gegend, deren Bewohner die Juden mieden",
+   "ref": "Johannes 4,4–9",
+   "wolfHint": "Brunnen",
+   "aliases": [
+    "Samaria"
+   ],
+   "clues": [
+    "Omri",
+    "Ahab",
+    "Isebel",
+    "Nordreich",
+    "Philippus",
+    "Simon der Zauberer",
+    "Assyrien",
+    "Sychar",
+    "gemieden"
+   ]
+  },
+  {
+   "en": "Cana",
+   "word": "Kana",
+   "hint": "Dorf, in dem Wasser zu Wein wurde",
+   "ref": "Johannes 2,1",
+   "wolfHint": "Hochzeit",
+   "aliases": [
+    "Kana in Galiläa"
+   ],
+   "clues": [
+    "Hochzeit",
+    "Wasser",
+    "Wein",
+    "Krüge",
+    "erstes Wunder",
+    "Natanaël",
+    "Maria",
+    "Speisemeister",
+    "königlicher Beamter"
+   ]
+  },
+  {
+   "en": "Capernaum",
+   "word": "Kapernaum",
+   "hint": "Ort am See, wo Jesus wohnte und wirkte",
+   "ref": "Markus 1,21",
+   "wolfHint": "Synagoge",
+   "aliases": [],
+   "clues": [
+    "Haus des Petrus",
+    "Dach",
+    "Gelähmter",
+    "Hauptmann",
+    "Synagoge",
+    "Fischerei",
+    "Matthäus",
+    "Zollstation",
+    "Jaïrus"
+   ]
+  },
+  {
+   "en": "Bethany",
+   "word": "Betanien",
+   "hint": "Heimat von Maria, Marta und Lazarus",
+   "ref": "Johannes 11,1",
+   "wolfHint": "Freunde",
+   "aliases": [
+    "Bethanien"
+   ],
+   "clues": [
+    "Lazarus",
+    "Maria",
+    "Marta",
+    "auferweckt",
+    "Grab",
+    "Salböl",
+    "Simon der Aussätzige",
+    "Himmelfahrt",
+    "vier Tage"
+   ]
+  },
+  {
+   "en": "Dead Sea",
+   "word": "Totes Meer",
+   "hint": "Salziges Meer am tiefsten Punkt der Erde",
+   "ref": "1. Mose 14,3",
+   "wolfHint": "Salz",
+   "aliases": [
+    "Salzmeer"
+   ],
+   "clues": [
+    "Salz",
+    "schwimmen",
+    "Tiefpunkt",
+    "Qumran",
+    "Schriftrollen",
+    "Hesekiel",
+    "Sodom",
+    "En-Gedi",
+    "keine Fische"
+   ]
+  },
+  {
+   "en": "Mount Ararat",
+   "word": "Berg Ararat",
+   "hint": "Wo die Arche zur Ruhe kam",
+   "ref": "1. Mose 8,4",
+   "wolfHint": "Landung",
+   "aliases": [
+    "Ararat",
+    "Gebirge Ararat"
+   ],
+   "clues": [
+    "Noah",
+    "Arche",
+    "Taube",
+    "Ölblatt",
+    "Ruhe",
+    "Sintflut",
+    "Rabe",
+    "Regenbogen",
+    "Türkei"
+   ]
+  },
+  {
+   "en": "Pool of Bethesda",
+   "word": "Teich Betesda",
+   "hint": "Wo ein seit 38 Jahren Gelähmter geheilt wurde",
+   "ref": "Johannes 5,2–9",
+   "wolfHint": "Heilung",
+   "aliases": [
+    "Betesda"
+   ],
+   "clues": [
+    "Gelähmter",
+    "achtunddreißig",
+    "bewegtes Wasser",
+    "fünf Hallen",
+    "Matte",
+    "Sabbat",
+    "Engel",
+    "Schaftor",
+    "steh auf"
+   ]
+  },
+  {
+   "en": "Pool of Siloam",
+   "word": "Teich Siloah",
+   "hint": "Ein Blinder wusch sich dort und konnte sehen",
+   "ref": "Johannes 9,7",
+   "wolfHint": "Schlamm",
+   "aliases": [
+    "Siloah",
+    "Schiloach"
+   ],
+   "clues": [
+    "blind",
+    "Brei",
+    "Spucke",
+    "waschen",
+    "sehen",
+    "Turm",
+    "Hiskia",
+    "Tunnel",
+    "Sabbat"
+   ]
+  },
+  {
+   "en": "Jacob's Well",
+   "word": "Jakobsbrunnen",
+   "hint": "Hier traf Jesus eine Samariterin",
+   "ref": "Johannes 4,6",
+   "wolfHint": "Wasser",
+   "aliases": [
+    "Brunnen Jakobs"
+   ],
+   "clues": [
+    "Samariterin",
+    "lebendiges Wasser",
+    "Mittag",
+    "Durst",
+    "fünf Männer",
+    "Sychar",
+    "Schöpfeimer",
+    "anbeten",
+    "trinken"
+   ]
+  },
+  {
+   "en": "Emmaus",
+   "word": "Emmaus",
+   "hint": "Dorf, wo zwei Jünger dem Auferstandenen begegneten",
+   "ref": "Lukas 24,13",
+   "wolfHint": "Weg",
+   "aliases": [
+    "Weg nach Emmaus"
+   ],
+   "clues": [
+    "zwei Jünger",
+    "Kleopas",
+    "wandern",
+    "brennende Herzen",
+    "Brotbrechen",
+    "Abend",
+    "Fremder",
+    "sechzig Stadien",
+    "Augen geöffnet"
+   ]
+  },
+  {
+   "en": "Antioch",
+   "word": "Antiochia",
+   "hint": "Hier hießen die Gläubigen zuerst Christen",
+   "ref": "Apostelgeschichte 11,26",
+   "wolfHint": "Christen",
+   "aliases": [
+    "Antiochien"
+   ],
+   "clues": [
+    "Christen",
+    "Barnabas",
+    "Paulus",
+    "Missionare",
+    "Petrus",
+    "ausgesandt",
+    "Hungerhilfe",
+    "Pisidien",
+    "Syrien"
+   ]
+  },
+  {
+   "en": "Corinth",
+   "word": "Korinth",
+   "hint": "Paulus schrieb der Gemeinde dort zwei Briefe",
+   "ref": "1. Korinther 1,2",
+   "wolfHint": "Briefe",
+   "aliases": [],
+   "clues": [
+    "zwei Briefe",
+    "Hohelied der Liebe",
+    "Priszilla",
+    "Zeltmacher",
+    "Apollos",
+    "Gallio",
+    "Spaltungen",
+    "ein Leib",
+    "Aquila"
+   ]
+  },
+  {
+   "en": "Ephesus",
+   "word": "Ephesus",
+   "hint": "Wegen Artemis gab es dort einen Aufruhr",
+   "ref": "Apostelgeschichte 19",
+   "wolfHint": "Aufruhr",
+   "aliases": [
+    "Ephesos"
+   ],
+   "clues": [
+    "Artemis",
+    "Tumult",
+    "Silberschmiede",
+    "Demetrius",
+    "Theater",
+    "Waffenrüstung",
+    "Timotheus",
+    "erste Liebe",
+    "Zauberbücher"
+   ]
+  },
+  {
+   "en": "Philippi",
+   "word": "Philippi",
+   "hint": "Paulus und Silas sangen dort im Gefängnis",
+   "ref": "Apostelgeschichte 16,12–40",
+   "wolfHint": "Kerker",
+   "aliases": [],
+   "clues": [
+    "Lydia",
+    "Purpur",
+    "Gefängnis",
+    "Erdbeben",
+    "Kerkermeister",
+    "singen",
+    "Silas",
+    "Freude",
+    "Magd"
+   ]
+  },
+  {
+   "en": "Athens",
+   "word": "Athen",
+   "hint": "Paulus predigte über den „unbekannten Gott“",
+   "ref": "Apostelgeschichte 17,22–23",
+   "wolfHint": "Philosophen",
+   "aliases": [
+    "Areopag"
+   ],
+   "clues": [
+    "unbekannter Gott",
+    "Götzenbilder",
+    "Philosophen",
+    "Epikureer",
+    "Stoiker",
+    "Paulus",
+    "Dionysius",
+    "Altar",
+    "Marktplatz"
+   ]
+  },
+  {
+   "en": "Malta",
+   "word": "Malta",
+   "hint": "Insel, auf der Paulus eine Schlange abschüttelte",
+   "ref": "Apostelgeschichte 28,1–6",
+   "wolfHint": "Schlange",
+   "aliases": [],
+   "clues": [
+    "Schiffbruch",
+    "Otter",
+    "Feuer",
+    "Publius",
+    "Inselbewohner",
+    "Paulus",
+    "Sturm",
+    "Heilung",
+    "drei Monate"
+   ]
+  },
+  {
+   "en": "Tarsus",
+   "word": "Tarsus",
+   "hint": "Heimatstadt des Paulus",
+   "ref": "Apostelgeschichte 22,3",
+   "wolfHint": "Geburtsort",
+   "aliases": [],
+   "clues": [
+    "Saulus",
+    "Kilikien",
+    "Zeltmacher",
+    "römischer Bürger",
+    "Heimatstadt",
+    "Barnabas",
+    "Pharisäer",
+    "Benjaminiter",
+    "geboren"
+   ]
+  },
+  {
+   "en": "Gaza",
+   "word": "Gaza",
+   "hint": "Simson trug ihre Stadttore davon",
+   "ref": "Richter 16,1–3",
+   "wolfHint": "Tore",
+   "aliases": [],
+   "clues": [
+    "Simson",
+    "Stadttor",
+    "Delila",
+    "Philister",
+    "Dagon",
+    "geblendet",
+    "Mühle",
+    "Philippus",
+    "Kämmerer"
+   ]
+  },
+  {
+   "en": "Nile",
+   "word": "Nil",
+   "hint": "Fluss, in dem der kleine Mose versteckt wurde",
+   "ref": "2. Mose 2,3",
+   "wolfHint": "Körbchen",
+   "aliases": [
+    "Nilfluss"
+   ],
+   "clues": [
+    "Baby Mose",
+    "Binsenkorb",
+    "Schilf",
+    "Blut",
+    "Frösche",
+    "Pharaos Tochter",
+    "Krokodile",
+    "Überschwemmung",
+    "Ägypten"
+   ]
+  },
+  {
+   "en": "Euphrates",
+   "word": "Euphrat",
+   "hint": "Großer Strom, der aus Eden fließt",
+   "ref": "1. Mose 2,14",
+   "wolfHint": "Strom",
+   "aliases": [],
+   "clues": [
+    "Eden",
+    "Babylon",
+    "großer Fluss",
+    "Abraham",
+    "Assyrien",
+    "Grenze",
+    "ausgetrocknet",
+    "sechster Engel",
+    "Jeremia"
+   ]
+  },
+  {
+   "en": "Joppa",
+   "word": "Joppe",
+   "hint": "Hafen, von dem Jona floh; Petrus sah dort eine Vision",
+   "ref": "Jona 1,3; Apostelgeschichte 10,9–16",
+   "wolfHint": "Hafen",
+   "aliases": [
+    "Jafo",
+    "Jaffa"
+   ],
+   "clues": [
+    "Jona",
+    "Hafen",
+    "Petrus",
+    "Vision",
+    "Tuch",
+    "Tabita",
+    "Gerber",
+    "Zedernholz",
+    "Schiff"
+   ]
+  },
+  {
+   "en": "Synagogue",
+   "word": "Synagoge",
+   "hint": "Hier las Jesus aus der Jesaja-Rolle",
+   "ref": "Lukas 4,16",
+   "wolfHint": "Sabbat",
+   "aliases": [],
+   "clues": [
+    "Jesaja-Rolle",
+    "Sabbat",
+    "Rabbi",
+    "Tora",
+    "Jaïrus",
+    "lehren",
+    "vorlesen",
+    "Vorsteher",
+    "verdorrte Hand"
+   ]
+  },
+  {
+   "en": "Tabernacle",
+   "word": "Stiftshütte",
+   "hint": "Zelt, in dem Gott Israel in der Wüste begegnete",
+   "ref": "2. Mose 26",
+   "wolfHint": "Vorhänge",
+   "aliases": [
+    "Zelt der Begegnung",
+    "Heiligtum"
+   ],
+   "clues": [
+    "Bundeslade",
+    "Vorhang",
+    "Leuchter",
+    "Mose",
+    "Bezalel",
+    "Altar",
+    "Wolkensäule",
+    "Priester",
+    "Akazienholz"
+   ]
+  },
+  {
+   "en": "Inn",
+   "word": "Herberge",
+   "hint": "Für Maria und Josef war darin kein Raum",
+   "ref": "Lukas 2,7",
+   "wolfHint": "Reisende",
+   "aliases": [
+    "Gasthaus"
+   ],
+   "clues": [
+    "kein Raum",
+    "Betlehem",
+    "Maria",
+    "Josef",
+    "Stall",
+    "Krippe",
+    "Volkszählung",
+    "barmherziger Samariter",
+    "zwei Silbergroschen"
+   ]
+  },
+  {
+   "en": "New Jerusalem",
+   "word": "Neues Jerusalem",
+   "hint": "Heilige Stadt mit Perlentoren und Straßen aus Gold",
+   "ref": "Offenbarung 21",
+   "wolfHint": "Himmel",
+   "aliases": [
+    "Heilige Stadt",
+    "Himmlisches Jerusalem"
+   ],
+   "clues": [
+    "Perlentore",
+    "goldene Gassen",
+    "Offenbarung",
+    "keine Tränen",
+    "Strom des Lebens",
+    "Braut",
+    "zwölf Grundsteine",
+    "Himmel",
+    "Jaspis"
+   ]
+  }
+ ],
+ "story": [
+  {
+   "en": "Creation",
+   "word": "Schöpfung",
+   "hint": "Gott schuf alles in sechs Tagen",
+   "ref": "1. Mose 1",
+   "wolfHint": "Anfang",
+   "aliases": [
+    "Schöpfungsgeschichte",
+    "Erschaffung der Welt"
+   ],
+   "clues": [
+    "Licht",
+    "Eden",
+    "sechs Tage",
+    "Ruhetag",
+    "Adam",
+    "Staub",
+    "Rippe",
+    "Sterne",
+    "Garten"
+   ]
+  },
+  {
+   "en": "The Flood",
+   "word": "Sintflut",
+   "hint": "Regen, 40 Tage und 40 Nächte lang",
+   "ref": "1. Mose 7",
+   "wolfHint": "Regen",
+   "aliases": [
+    "Flut",
+    "Noahs Flut"
+   ],
+   "clues": [
+    "Arche",
+    "Noah",
+    "Regenbogen",
+    "Taube",
+    "Tiere",
+    "vierzig Tage",
+    "Ararat",
+    "Rabe",
+    "paarweise"
+   ]
+  },
+  {
+   "en": "Burning Bush",
+   "word": "Brennender Dornbusch",
+   "hint": "Ein Busch brannte und verbrannte doch nicht",
+   "ref": "2. Mose 3",
+   "wolfHint": "Feuer",
+   "aliases": [
+    "Dornbusch",
+    "Mose und der Dornbusch"
+   ],
+   "clues": [
+    "Mose",
+    "Sandalen",
+    "heiliger Boden",
+    "Ich bin",
+    "Horeb",
+    "Schafe",
+    "Flammen",
+    "Midian",
+    "Pharao"
+   ]
+  },
+  {
+   "en": "Ten Plagues",
+   "word": "Zehn Plagen",
+   "hint": "Frösche, Mücken, Hagel, Heuschrecken …",
+   "ref": "2. Mose 7–12",
+   "wolfHint": "Frösche",
+   "aliases": [
+    "Plagen Ägyptens"
+   ],
+   "clues": [
+    "Frösche",
+    "Heuschrecken",
+    "Hagel",
+    "Stechmücken",
+    "Finsternis",
+    "Erstgeburt",
+    "Geschwüre",
+    "Pharao",
+    "Blut"
+   ]
+  },
+  {
+   "en": "Passover",
+   "word": "Passa",
+   "hint": "Blut an den Türpfosten; der Engel ging vorüber",
+   "ref": "2. Mose 12",
+   "wolfHint": "Lamm",
+   "aliases": [
+    "Pessach",
+    "Passafest"
+   ],
+   "clues": [
+    "Lamm",
+    "Blut",
+    "Türpfosten",
+    "ungesäuert",
+    "Erstgeborene",
+    "Ägypten",
+    "Ysop",
+    "Bitterkräuter",
+    "Todesengel"
+   ]
+  },
+  {
+   "en": "Manna",
+   "word": "Manna",
+   "hint": "Brot vom Himmel, jeden Morgen",
+   "ref": "2. Mose 16",
+   "wolfHint": "Hunger",
+   "aliases": [
+    "Himmelsbrot",
+    "Brot vom Himmel"
+   ],
+   "clues": [
+    "Wüste",
+    "Wachteln",
+    "Morgen",
+    "Tau",
+    "Honig",
+    "Sabbat",
+    "Gomer",
+    "Murren",
+    "Mose"
+   ]
+  },
+  {
+   "en": "Walls of Jericho",
+   "word": "Mauern von Jericho",
+   "hint": "Marschieren, Posaunen, Geschrei – und sie fielen",
+   "ref": "Josua 6",
+   "wolfHint": "Posaunen",
+   "aliases": [
+    "Fall Jerichos",
+    "Eroberung Jerichos",
+    "Jericho"
+   ],
+   "clues": [
+    "Josua",
+    "Posaunen",
+    "Rahab",
+    "sieben Tage",
+    "Kriegsgeschrei",
+    "Umzug",
+    "rotes Seil",
+    "Priester",
+    "Bundeslade"
+   ]
+  },
+  {
+   "en": "David and Goliath",
+   "word": "David und Goliat",
+   "hint": "Fünf glatte Steine und eine Schleuder",
+   "ref": "1. Samuel 17",
+   "wolfHint": "Riese",
+   "aliases": [
+    "David gegen Goliat"
+   ],
+   "clues": [
+    "Schleuder",
+    "Kieselsteine",
+    "Riese",
+    "Philister",
+    "Hirtenjunge",
+    "Rüstung",
+    "Eichgrund",
+    "Saul",
+    "Stirn"
+   ]
+  },
+  {
+   "en": "Fiery Furnace",
+   "word": "Feuerofen",
+   "hint": "Drei Freunde gingen unversehrt durchs Feuer",
+   "ref": "Daniel 3",
+   "wolfHint": "Hitze",
+   "aliases": [
+    "Schadrach, Meschach und Abed-Nego",
+    "Glühender Ofen",
+    "Ofen"
+   ],
+   "clues": [
+    "Babylon",
+    "goldenes Bild",
+    "Nebukadnezzar",
+    "vierter Mann",
+    "niederknien",
+    "drei Freunde",
+    "kein Rauch",
+    "siebenfach",
+    "Schadrach"
+   ]
+  },
+  {
+   "en": "Writing on the Wall",
+   "word": "Schrift an der Wand",
+   "hint": "Eine Hand schrieb bei Belsazars Festmahl",
+   "ref": "Daniel 5",
+   "wolfHint": "Festmahl",
+   "aliases": [
+    "Menetekel",
+    "Belsazars Gastmahl"
+   ],
+   "clues": [
+    "Belsazar",
+    "Daniel",
+    "gewogen",
+    "Finger",
+    "goldene Becher",
+    "zu leicht",
+    "Perser",
+    "Gelage",
+    "Leuchter"
+   ]
+  },
+  {
+   "en": "Jonah and the Fish",
+   "word": "Jona und der Fisch",
+   "hint": "Drei Tage im Bauch eines großen Fisches",
+   "ref": "Jona 1–2",
+   "wolfHint": "Meer",
+   "aliases": [
+    "Jona und der Wal",
+    "Jona",
+    "Großer Fisch"
+   ],
+   "clues": [
+    "Ninive",
+    "Wal",
+    "Sturm",
+    "über Bord",
+    "Tarsis",
+    "drei Tage",
+    "Buße",
+    "Rizinus",
+    "Prophet"
+   ]
+  },
+  {
+   "en": "Nativity",
+   "word": "Geburt Jesu",
+   "hint": "Hirten, Engel und eine Krippe",
+   "ref": "Lukas 2",
+   "wolfHint": "Hirten",
+   "aliases": [
+    "Weihnachten",
+    "Weihnachtsgeschichte",
+    "Christi Geburt"
+   ],
+   "clues": [
+    "Krippe",
+    "Hirten",
+    "Betlehem",
+    "Engel",
+    "Herberge",
+    "Stall",
+    "Windeln",
+    "Maria",
+    "Volkszählung"
+   ]
+  },
+  {
+   "en": "Wise Men",
+   "word": "Sterndeuter",
+   "hint": "Folgten einem Stern mit Gold, Weihrauch und Myrrhe",
+   "ref": "Matthäus 2",
+   "wolfHint": "Geschenke",
+   "aliases": [
+    "Weise aus dem Morgenland",
+    "Heilige Drei Könige",
+    "Drei Könige",
+    "Weisen",
+    "Magier"
+   ],
+   "clues": [
+    "Stern",
+    "Gold",
+    "Myrrhe",
+    "Weihrauch",
+    "Herodes",
+    "Osten",
+    "Kamele",
+    "Geschenke",
+    "Betlehem"
+   ]
+  },
+  {
+   "en": "Water into Wine",
+   "word": "Wasser zu Wein",
+   "hint": "Jesu erstes Zeichen auf einer Hochzeit in Kana",
+   "ref": "Johannes 2",
+   "wolfHint": "Hochzeit",
+   "aliases": [
+    "Hochzeit zu Kana",
+    "Wasser in Wein"
+   ],
+   "clues": [
+    "Kana",
+    "Hochzeit",
+    "Steinkrüge",
+    "Diener",
+    "Maria",
+    "erstes Zeichen",
+    "Speisemeister",
+    "ausgegangen",
+    "Feier"
+   ]
+  },
+  {
+   "en": "Feeding the 5,000",
+   "word": "Speisung der 5000",
+   "hint": "Fünf Brote und zwei Fische",
+   "ref": "Johannes 6",
+   "wolfHint": "Menge",
+   "aliases": [
+    "Speisung der Fünftausend",
+    "Brotvermehrung",
+    "Fünftausend",
+    "Brote und Fische"
+   ],
+   "clues": [
+    "Brote",
+    "zwei Fische",
+    "Körbe",
+    "Junge",
+    "Reste",
+    "Menschenmenge",
+    "Gras",
+    "zwölf",
+    "Philippus"
+   ]
+  },
+  {
+   "en": "Walking on Water",
+   "word": "Jesus auf dem Wasser",
+   "hint": "Jesus kam übers Wasser zu den Jüngern",
+   "ref": "Matthäus 14",
+   "wolfHint": "Wellen",
+   "aliases": [
+    "Jesus geht auf dem Wasser",
+    "Seewandel"
+   ],
+   "clues": [
+    "Petrus",
+    "versinken",
+    "See",
+    "Gespenst",
+    "Nacht",
+    "Kleinglaube",
+    "Boot",
+    "Wind",
+    "vierte Nachtwache"
+   ]
+  },
+  {
+   "en": "Calming the Storm",
+   "word": "Sturmstillung",
+   "hint": "„Schweig und verstumme!“ – und der Wind legte sich",
+   "ref": "Markus 4,39",
+   "wolfHint": "Boot",
+   "aliases": [
+    "Stillung des Sturms",
+    "Jesus stillt den Sturm"
+   ],
+   "clues": [
+    "Boot",
+    "schlafen",
+    "Kissen",
+    "Wind",
+    "Wellen",
+    "Schweig",
+    "Jünger",
+    "Galiläa",
+    "Angst"
+   ]
+  },
+  {
+   "en": "Good Samaritan",
+   "word": "Barmherziger Samariter",
+   "hint": "Ein Fremder half dem Mann am Wegrand",
+   "ref": "Lukas 10",
+   "wolfHint": "Nächster",
+   "aliases": [
+    "Der barmherzige Samariter",
+    "Gleichnis vom barmherzigen Samariter"
+   ],
+   "clues": [
+    "Straße nach Jericho",
+    "Räuber",
+    "Priester",
+    "Levit",
+    "Herberge",
+    "Öl",
+    "Esel",
+    "Nächstenliebe",
+    "Verband"
+   ]
+  },
+  {
+   "en": "Prodigal Son",
+   "word": "Verlorener Sohn",
+   "hint": "Der Vater lief ihm entgegen",
+   "ref": "Lukas 15",
+   "wolfHint": "Vater",
+   "aliases": [
+    "Der verlorene Sohn",
+    "Gleichnis vom verlorenen Sohn"
+   ],
+   "clues": [
+    "Schweine",
+    "Vater",
+    "Gewand",
+    "Ring",
+    "Mastkalb",
+    "älterer Bruder",
+    "Erbteil",
+    "Hungersnot",
+    "Fest"
+   ]
+  },
+  {
+   "en": "Lost Sheep",
+   "word": "Verlorenes Schaf",
+   "hint": "Der Hirte ließ die 99 zurück, um eines zu finden",
+   "ref": "Lukas 15",
+   "wolfHint": "Hirte",
+   "aliases": [
+    "Das verlorene Schaf",
+    "Gleichnis vom verlorenen Schaf"
+   ],
+   "clues": [
+    "neunundneunzig",
+    "Hirte",
+    "Schultern",
+    "Freude",
+    "verirrt",
+    "gefunden",
+    "Herde",
+    "Suche",
+    "Wüste"
+   ]
+  },
+  {
+   "en": "Last Supper",
+   "word": "Abendmahl",
+   "hint": "Brot und Kelch mit den Zwölf",
+   "ref": "Lukas 22",
+   "wolfHint": "Brot",
+   "aliases": [
+    "Letztes Abendmahl",
+    "Herrenmahl"
+   ],
+   "clues": [
+    "Brot",
+    "Kelch",
+    "Obergemach",
+    "Judas",
+    "die Zwölf",
+    "verraten",
+    "Passa",
+    "Gedächtnis",
+    "Wein"
+   ]
+  },
+  {
+   "en": "Resurrection",
+   "word": "Auferstehung",
+   "hint": "Das leere Grab am dritten Tag",
+   "ref": "Lukas 24",
+   "wolfHint": "Grab",
+   "aliases": [
+    "Ostern",
+    "Leeres Grab"
+   ],
+   "clues": [
+    "Stein",
+    "dritter Tag",
+    "Magdalena",
+    "Engel",
+    "Grabtücher",
+    "auferstanden",
+    "Gärtner",
+    "Sonnenaufgang",
+    "Emmaus"
+   ]
+  },
+  {
+   "en": "Pentecost",
+   "word": "Pfingsten",
+   "hint": "Feuerzungen und viele Sprachen",
+   "ref": "Apostelgeschichte 2",
+   "wolfHint": "Wind",
+   "aliases": [
+    "Pfingstfest"
+   ],
+   "clues": [
+    "Wind",
+    "Flammen",
+    "Zungen",
+    "Heiliger Geist",
+    "Petrus",
+    "Sprachen",
+    "betrunken",
+    "dreitausend",
+    "Jerusalem"
+   ]
+  },
+  {
+   "en": "Road to Damascus",
+   "word": "Bekehrung des Paulus",
+   "hint": "Ein helles Licht und eine Stimme vom Himmel",
+   "ref": "Apostelgeschichte 9",
+   "wolfHint": "Licht",
+   "aliases": [
+    "Weg nach Damaskus",
+    "Damaskuserlebnis",
+    "Saulus wird Paulus"
+   ],
+   "clues": [
+    "Saulus",
+    "geblendet",
+    "helles Licht",
+    "Hananias",
+    "Schuppen",
+    "Stimme",
+    "verfolgen",
+    "Gerade Straße",
+    "drei Tage"
+   ]
+  },
+  {
+   "en": "Paul's Shipwreck",
+   "word": "Schiffbruch des Paulus",
+   "hint": "Alle erreichten Malta wohlbehalten",
+   "ref": "Apostelgeschichte 27–28",
+   "wolfHint": "Insel",
+   "aliases": [
+    "Schiffbruch"
+   ],
+   "clues": [
+    "Malta",
+    "Otter",
+    "Sturm",
+    "Anker",
+    "Rom",
+    "Hauptmann",
+    "Gefangener",
+    "Lagerfeuer",
+    "Insel"
+   ]
+  },
+  {
+   "en": "The Fall",
+   "word": "Sündenfall",
+   "hint": "Eva und Adam aßen die verbotene Frucht",
+   "ref": "1. Mose 3",
+   "wolfHint": "Schlange",
+   "aliases": [
+    "Der Sündenfall",
+    "Erbsünde",
+    "Adam und Eva"
+   ],
+   "clues": [
+    "Schlange",
+    "Frucht",
+    "Eden",
+    "Feigenblätter",
+    "Eva",
+    "Adam",
+    "Cherubim",
+    "verstecken",
+    "Baum"
+   ]
+  },
+  {
+   "en": "Cain and Abel",
+   "word": "Kain und Abel",
+   "hint": "Der erste Mord – Bruder gegen Bruder",
+   "ref": "1. Mose 4",
+   "wolfHint": "Eifersucht",
+   "aliases": [
+    "Brudermord"
+   ],
+   "clues": [
+    "Opfer",
+    "Feld",
+    "Hüter",
+    "Mord",
+    "Zeichen",
+    "unstet",
+    "Nod",
+    "Neid",
+    "Ackerbauer"
+   ]
+  },
+  {
+   "en": "Sacrifice of Isaac",
+   "word": "Opferung Isaaks",
+   "hint": "Gott sorgte für einen Widder an Isaaks Stelle",
+   "ref": "1. Mose 22",
+   "wolfHint": "Messer",
+   "aliases": [
+    "Bindung Isaaks",
+    "Abraham und Isaak"
+   ],
+   "clues": [
+    "Abraham",
+    "Morija",
+    "Widder",
+    "Altar",
+    "Messer",
+    "Engel",
+    "Gestrüpp",
+    "Holz",
+    "Gott sieht"
+   ]
+  },
+  {
+   "en": "Jacob and Esau",
+   "word": "Jakob und Esau",
+   "hint": "Zwillingsbrüder und ein erschlichener Segen",
+   "ref": "1. Mose 27",
+   "wolfHint": "Segen",
+   "aliases": [
+    "Gestohlener Segen",
+    "Erschlichener Segen"
+   ],
+   "clues": [
+    "Zwillinge",
+    "Linsengericht",
+    "Erstgeburtsrecht",
+    "Segen",
+    "Rebekka",
+    "Ziegenfelle",
+    "behaart",
+    "Jäger",
+    "rot"
+   ]
+  },
+  {
+   "en": "Baby Moses",
+   "word": "Mose im Körbchen",
+   "hint": "Im Schilf in einem Kästchen versteckt",
+   "ref": "2. Mose 2,1–10",
+   "wolfHint": "Prinzessin",
+   "aliases": [
+    "Baby Mose",
+    "Mose im Schilf",
+    "Kleiner Mose"
+   ],
+   "clues": [
+    "Nil",
+    "Schilf",
+    "Pharaos Tochter",
+    "Mirjam",
+    "Jochebed",
+    "Pech",
+    "Amme",
+    "Levit",
+    "Binsen"
+   ]
+  },
+  {
+   "en": "Parting the Red Sea",
+   "word": "Durchs Rote Meer",
+   "hint": "Israel ging auf trockenem Boden hindurch",
+   "ref": "2. Mose 14,21–22",
+   "wolfHint": "Streitwagen",
+   "aliases": [
+    "Durchzug durchs Rote Meer",
+    "Teilung des Roten Meeres",
+    "Rotes Meer"
+   ],
+   "clues": [
+    "Mose",
+    "Stab",
+    "trockener Boden",
+    "Streitwagen",
+    "Pharao",
+    "Ostwind",
+    "Mirjam",
+    "Wolkensäule",
+    "ertrunken"
+   ]
+  },
+  {
+   "en": "Water from the Rock",
+   "word": "Wasser aus dem Felsen",
+   "hint": "Mose schlug an den Felsen, und Wasser floss",
+   "ref": "2. Mose 17,6",
+   "wolfHint": "Durst",
+   "aliases": [
+    "Mose schlägt den Felsen"
+   ],
+   "clues": [
+    "Mose",
+    "Stab",
+    "geschlagen",
+    "Meriba",
+    "durstig",
+    "Massa",
+    "Murren",
+    "zweimal",
+    "Wüste"
+   ]
+  },
+  {
+   "en": "Spying Out Canaan",
+   "word": "Kundschafter in Kanaan",
+   "hint": "Zehn hatten Angst; Josua und Kaleb vertrauten",
+   "ref": "4. Mose 13–14",
+   "wolfHint": "Trauben",
+   "aliases": [
+    "Zwölf Kundschafter",
+    "Die zwölf Kundschafter",
+    "Erkundung Kanaans"
+   ],
+   "clues": [
+    "Josua",
+    "Kaleb",
+    "Weintraube",
+    "Riesen",
+    "Milch",
+    "vierzig Tage",
+    "Anakiter",
+    "Bericht",
+    "Heuschrecken"
+   ]
+  },
+  {
+   "en": "Balaam's Donkey",
+   "word": "Bileams Eselin",
+   "hint": "Eine Eselin sah den Engel und redete",
+   "ref": "4. Mose 22,28",
+   "wolfHint": "Sprechen",
+   "aliases": [
+    "Sprechende Eselin",
+    "Bileam"
+   ],
+   "clues": [
+    "Engel",
+    "Schwert",
+    "Balak",
+    "Fluch",
+    "Moab",
+    "geschlagen",
+    "redete",
+    "Hohlweg",
+    "dreimal"
+   ]
+  },
+  {
+   "en": "Samson and Delilah",
+   "word": "Simson und Delila",
+   "hint": "Ein verratenes Geheimnis, die Haare ab, die Kraft weg",
+   "ref": "Richter 16",
+   "wolfHint": "Verrat",
+   "aliases": [],
+   "clues": [
+    "Haarschnitt",
+    "Kraft",
+    "Philister",
+    "sieben Locken",
+    "Säulen",
+    "geblendet",
+    "Nasiräer",
+    "Dagon",
+    "Silberlinge"
+   ]
+  },
+  {
+   "en": "God Calls Samuel",
+   "word": "Gott ruft Samuel",
+   "hint": "„Rede, Herr, denn dein Knecht hört“",
+   "ref": "1. Samuel 3",
+   "wolfHint": "Nacht",
+   "aliases": [
+    "Berufung Samuels",
+    "Samuels Berufung"
+   ],
+   "clues": [
+    "Eli",
+    "Tempel",
+    "Nacht",
+    "aufgewacht",
+    "Lampe",
+    "Hanna",
+    "hören",
+    "Knabe",
+    "Silo"
+   ]
+  },
+  {
+   "en": "Judgement of Solomon",
+   "word": "Salomos Urteil",
+   "hint": "Zwei Mütter, ein Baby und ein Schwert",
+   "ref": "1. Könige 3,16–28",
+   "wolfHint": "Baby",
+   "aliases": [
+    "Salomonisches Urteil",
+    "Zwei Mütter"
+   ],
+   "clues": [
+    "Schwert",
+    "Säugling",
+    "Mütter",
+    "Weisheit",
+    "Thron",
+    "teilen",
+    "lebendes Kind",
+    "Richterspruch",
+    "Mitleid"
+   ]
+  },
+  {
+   "en": "Chariot of Fire",
+   "word": "Feuriger Wagen",
+   "hint": "Elija fuhr im Wetter zum Himmel",
+   "ref": "2. Könige 2,11",
+   "wolfHint": "Wirbelwind",
+   "aliases": [
+    "Elijas Himmelfahrt",
+    "Feurige Pferde"
+   ],
+   "clues": [
+    "Elija",
+    "Elisa",
+    "Wirbelwind",
+    "Mantel",
+    "Pferde",
+    "Jordan",
+    "doppelter Anteil",
+    "Himmel",
+    "hinaufgenommen"
+   ]
+  },
+  {
+   "en": "Valley of Dry Bones",
+   "word": "Tal der Totengebeine",
+   "hint": "Knochen fügten sich zusammen und wurden lebendig",
+   "ref": "Hesekiel 37",
+   "wolfHint": "Atem",
+   "aliases": [
+    "Totengebeine",
+    "Verdorrte Gebeine"
+   ],
+   "clues": [
+    "Hesekiel",
+    "Odem",
+    "Sehnen",
+    "Heer",
+    "weissagen",
+    "Skelett",
+    "Rasseln",
+    "Geist",
+    "lebendig"
+   ]
+  },
+  {
+   "en": "Annunciation",
+   "word": "Verkündigung",
+   "hint": "Gabriel kündigt Maria die Geburt eines Sohnes an",
+   "ref": "Lukas 1,26–38",
+   "wolfHint": "Engel",
+   "aliases": [
+    "Mariä Verkündigung",
+    "Engel bei Maria"
+   ],
+   "clues": [
+    "Gabriel",
+    "Maria",
+    "Nazaret",
+    "Jungfrau",
+    "Begnadete",
+    "Elisabet",
+    "Magd",
+    "Engel",
+    "Josef"
+   ]
+  },
+  {
+   "en": "Boy Jesus",
+   "word": "Jesus im Tempel",
+   "hint": "Nach drei Tagen im Tempel gefunden",
+   "ref": "Lukas 2,41–52",
+   "wolfHint": "Lehrer",
+   "aliases": [
+    "Der zwölfjährige Jesus",
+    "Zwölfjähriger Jesus"
+   ],
+   "clues": [
+    "zwölf",
+    "Lehrer",
+    "Passa",
+    "Haus meines Vaters",
+    "drei Tage",
+    "Nazaret",
+    "Fragen",
+    "Jerusalem",
+    "Eltern"
+   ]
+  },
+  {
+   "en": "Baptism of Jesus",
+   "word": "Taufe Jesu",
+   "hint": "Der Geist kam herab wie eine Taube",
+   "ref": "Matthäus 3,13–17",
+   "wolfHint": "Fluss",
+   "aliases": [
+    "Jesu Taufe",
+    "Jesus wird getauft"
+   ],
+   "clues": [
+    "Taube",
+    "Johannes",
+    "Jordan",
+    "Stimme",
+    "geliebter Sohn",
+    "Fluss",
+    "Himmel offen",
+    "Geist",
+    "Wohlgefallen"
+   ]
+  },
+  {
+   "en": "Temptation of Jesus",
+   "word": "Versuchung Jesu",
+   "hint": "Vierzig Tage in der Wüste, vom Teufel versucht",
+   "ref": "Matthäus 4,1–11",
+   "wolfHint": "Teufel",
+   "aliases": [
+    "Versuchung in der Wüste",
+    "Jesus wird versucht"
+   ],
+   "clues": [
+    "vierzig Tage",
+    "Wüste",
+    "Teufel",
+    "Brot",
+    "Zinne",
+    "Königreiche",
+    "anbeten",
+    "Fasten",
+    "Es steht geschrieben"
+   ]
+  },
+  {
+   "en": "Sermon on the Mount",
+   "word": "Bergpredigt",
+   "hint": "„Selig sind, die da geistlich arm sind …“",
+   "ref": "Matthäus 5–7",
+   "wolfHint": "Lehre",
+   "aliases": [
+    "Seligpreisungen"
+   ],
+   "clues": [
+    "selig",
+    "Salz",
+    "Licht",
+    "Vaterunser",
+    "sanftmütig",
+    "Berghang",
+    "andere Wange",
+    "Lilien",
+    "Friedensstifter"
+   ]
+  },
+  {
+   "en": "Fishers of Men",
+   "word": "Menschenfischer",
+   "hint": "Jesus rief Fischer in seine Nachfolge",
+   "ref": "Markus 1,16–20",
+   "wolfHint": "Netze",
+   "aliases": [
+    "Berufung der Jünger",
+    "Jesus beruft die Jünger"
+   ],
+   "clues": [
+    "Netze",
+    "Petrus",
+    "Andreas",
+    "Jakobus",
+    "Johannes",
+    "Galiläa",
+    "folgt mir",
+    "Boote",
+    "Zebedäus"
+   ]
+  },
+  {
+   "en": "Hole in the Roof",
+   "word": "Loch im Dach",
+   "hint": "Freunde ließen einen Gelähmten zu Jesus hinab",
+   "ref": "Markus 2,1–12",
+   "wolfHint": "Trage",
+   "aliases": [
+    "Heilung des Gelähmten",
+    "Gelähmter",
+    "Vier Freunde"
+   ],
+   "clues": [
+    "Matte",
+    "hinabgelassen",
+    "Freunde",
+    "Menschenmenge",
+    "Kapernaum",
+    "vergeben",
+    "gehen",
+    "Schriftgelehrte",
+    "Ziegel"
+   ]
+  },
+  {
+   "en": "Jairus' Daughter",
+   "word": "Tochter des Jaïrus",
+   "hint": "„Mädchen, steh auf!“",
+   "ref": "Markus 5,21–43",
+   "wolfHint": "Mädchen",
+   "aliases": [
+    "Jaïrus’ Tochter",
+    "Auferweckung der Tochter des Jaïrus"
+   ],
+   "clues": [
+    "Talita kum",
+    "Synagoge",
+    "zwölf Jahre",
+    "schläft",
+    "Klageweiber",
+    "ausgelacht",
+    "blutflüssige Frau",
+    "auferweckt",
+    "Petrus"
+   ]
+  },
+  {
+   "en": "Blind Bartimaeus",
+   "word": "Blinder Bartimäus",
+   "hint": "„Sohn Davids, erbarme dich meiner!“",
+   "ref": "Markus 10,46–52",
+   "wolfHint": "Augenlicht",
+   "aliases": [
+    "Bartimäus",
+    "Heilung des Bartimäus"
+   ],
+   "clues": [
+    "Jericho",
+    "Bettler",
+    "angefahren",
+    "erbarme dich",
+    "schreien",
+    "Mantel weg",
+    "Wegrand",
+    "sehen",
+    "Glaube"
+   ]
+  },
+  {
+   "en": "Ten Lepers",
+   "word": "Zehn Aussätzige",
+   "hint": "Nur einer kam zurück, um Danke zu sagen",
+   "ref": "Lukas 17,11–19",
+   "wolfHint": "Dank",
+   "aliases": [
+    "Heilung der zehn Aussätzigen"
+   ],
+   "clues": [
+    "Samariter",
+    "Priester",
+    "Haut",
+    "rein",
+    "neun",
+    "einer kehrte um",
+    "Dorf",
+    "geheilt",
+    "Dankbarkeit"
+   ]
+  },
+  {
+   "en": "Raising of Lazarus",
+   "word": "Lazarus’ Auferweckung",
+   "hint": "„Lazarus, komm heraus!“",
+   "ref": "Johannes 11",
+   "wolfHint": "Tränen",
+   "aliases": [
+    "Auferweckung des Lazarus",
+    "Lazarus"
+   ],
+   "clues": [
+    "Betanien",
+    "Marta",
+    "Maria",
+    "Grab",
+    "vier Tage",
+    "Jesus weinte",
+    "Stein",
+    "Leichentücher",
+    "stinkt schon"
+   ]
+  },
+  {
+   "en": "Woman at the Well",
+   "word": "Frau am Brunnen",
+   "hint": "Jesus bat eine Samariterin um Wasser",
+   "ref": "Johannes 4",
+   "wolfHint": "Samarien",
+   "aliases": [
+    "Samariterin",
+    "Samaritanerin"
+   ],
+   "clues": [
+    "Sychar",
+    "lebendiges Wasser",
+    "Mittag",
+    "fünf Männer",
+    "Krug",
+    "durstig",
+    "Messias",
+    "anbeten",
+    "Jakob"
+   ]
+  },
+  {
+   "en": "Triumphal Entry",
+   "word": "Einzug in Jerusalem",
+   "hint": "Mit Palmzweigen und einem Esel nach Jerusalem",
+   "ref": "Matthäus 21,1–11",
+   "wolfHint": "Esel",
+   "aliases": [
+    "Palmsonntag",
+    "Einzug Jesu"
+   ],
+   "clues": [
+    "Palmzweige",
+    "Esel",
+    "Hosianna",
+    "Kleider",
+    "Füllen",
+    "Menge",
+    "König",
+    "Sacharja",
+    "Betfage"
+   ]
+  },
+  {
+   "en": "Cleansing the Temple",
+   "word": "Tempelreinigung",
+   "hint": "Jesus stieß die Tische der Geldwechsler um",
+   "ref": "Johannes 2,13–16",
+   "wolfHint": "Tische",
+   "aliases": [
+    "Jesus reinigt den Tempel",
+    "Geldwechsler"
+   ],
+   "clues": [
+    "Tische",
+    "Peitsche",
+    "Tauben",
+    "Räuberhöhle",
+    "Bethaus",
+    "Rinder",
+    "Münzen",
+    "Eifer",
+    "umgestoßen"
+   ]
+  },
+  {
+   "en": "Washing Feet",
+   "word": "Fußwaschung",
+   "hint": "Jesus wusch seinen Jüngern die Füße",
+   "ref": "Johannes 13,1–17",
+   "wolfHint": "Handtuch",
+   "aliases": [
+    "Jesus wäscht die Füße"
+   ],
+   "clues": [
+    "Handtuch",
+    "Schüssel",
+    "Petrus",
+    "Diener",
+    "Abendmahl",
+    "Demut",
+    "Vorbild",
+    "Wasser",
+    "Obergemach"
+   ]
+  },
+  {
+   "en": "Peter's Denial",
+   "word": "Verleugnung des Petrus",
+   "hint": "Dreimal, bevor der Hahn krähte",
+   "ref": "Lukas 22,54–62",
+   "wolfHint": "Hahn",
+   "aliases": [
+    "Petrus verleugnet Jesus"
+   ],
+   "clues": [
+    "Hahn",
+    "dreimal",
+    "Hof",
+    "Feuer",
+    "Magd",
+    "Dialekt",
+    "weinte bitterlich",
+    "Galiläer",
+    "Fluch"
+   ]
+  },
+  {
+   "en": "Crucifixion",
+   "word": "Kreuzigung",
+   "hint": "Jesus starb zwischen zwei Verbrechern",
+   "ref": "Lukas 23,33",
+   "wolfHint": "Freitag",
+   "aliases": [
+    "Karfreitag",
+    "Tod Jesu"
+   ],
+   "clues": [
+    "Kreuz",
+    "Nägel",
+    "Golgatha",
+    "Schächer",
+    "Dornen",
+    "vollbracht",
+    "Finsternis",
+    "Vorhang zerriss",
+    "Hauptmann"
+   ]
+  },
+  {
+   "en": "Ascension",
+   "word": "Himmelfahrt",
+   "hint": "Jesus wurde in einer Wolke emporgehoben",
+   "ref": "Apostelgeschichte 1,9",
+   "wolfHint": "Wolken",
+   "aliases": [
+    "Christi Himmelfahrt",
+    "Jesus fährt zum Himmel"
+   ],
+   "clues": [
+    "Wolke",
+    "Ölberg",
+    "zwei Männer",
+    "vierzig Tage",
+    "Zeugen",
+    "Betanien",
+    "segnen",
+    "Wiederkunft",
+    "aufwärts"
+   ]
+  },
+  {
+   "en": "Philippian Jailer",
+   "word": "Kerkermeister",
+   "hint": "Ein Erdbeben öffnete die Gefängnistüren",
+   "ref": "Apostelgeschichte 16,25–34",
+   "wolfHint": "Erdbeben",
+   "aliases": [
+    "Paulus und Silas im Gefängnis",
+    "Kerkermeister von Philippi"
+   ],
+   "clues": [
+    "Paulus",
+    "Silas",
+    "Erdbeben",
+    "Ketten",
+    "Lobgesang",
+    "Mitternacht",
+    "Schwert",
+    "getauft",
+    "Block"
+   ]
+  },
+  {
+   "en": "Sower",
+   "word": "Sämann",
+   "hint": "Saat fiel auf Weg, Fels, Dornen und gutes Land",
+   "ref": "Matthäus 13,3–9",
+   "wolfHint": "Boden",
+   "aliases": [
+    "Gleichnis vom Sämann",
+    "Vierfacher Ackerboden"
+   ],
+   "clues": [
+    "Samen",
+    "Weg",
+    "Felsen",
+    "Dornen",
+    "gutes Land",
+    "Vögel",
+    "hundertfach",
+    "Sonne",
+    "Gleichnis"
+   ]
+  },
+  {
+   "en": "House on the Rock",
+   "word": "Haus auf dem Felsen",
+   "hint": "Der Kluge baute auf Fels, der Törichte auf Sand",
+   "ref": "Matthäus 7,24–27",
+   "wolfHint": "Sand",
+   "aliases": [
+    "Hausbau auf Fels",
+    "Kluger und törichter Baumann"
+   ],
+   "clues": [
+    "Sand",
+    "Baumeister",
+    "Platzregen",
+    "Wasser",
+    "Wind",
+    "Fundament",
+    "töricht",
+    "Einsturz",
+    "Sturm"
+   ]
+  },
+  {
+   "en": "Ten Bridesmaids",
+   "word": "Zehn Jungfrauen",
+   "hint": "Fünf kluge, fünf törichte – alle warten mit Lampen",
+   "ref": "Matthäus 25,1–13",
+   "wolfHint": "Lampen",
+   "aliases": [
+    "Kluge und törichte Jungfrauen",
+    "Zehn Brautjungfern",
+    "Gleichnis von den zehn Jungfrauen"
+   ],
+   "clues": [
+    "Lampen",
+    "Öl",
+    "Bräutigam",
+    "Mitternacht",
+    "klug",
+    "töricht",
+    "Tür zu",
+    "eingeschlafen",
+    "Hochzeit"
+   ]
+  },
+  {
+   "en": "Talents",
+   "word": "Talente",
+   "hint": "Diener bekamen Geld von ihrem Herrn, um es anzulegen",
+   "ref": "Matthäus 25,14–30",
+   "wolfHint": "Geld",
+   "aliases": [
+    "Anvertraute Talente",
+    "Gleichnis von den Talenten",
+    "Anvertraute Zentner"
+   ],
+   "clues": [
+    "Herr",
+    "Knechte",
+    "vergraben",
+    "Zinsen",
+    "recht so",
+    "Gold",
+    "Reise",
+    "treu",
+    "Wechsler"
+   ]
+  },
+  {
+   "en": "Lost Coin",
+   "word": "Verlorener Groschen",
+   "hint": "Eine Frau fegte das Haus, um ihn zu finden",
+   "ref": "Lukas 15,8–10",
+   "wolfHint": "Besen",
+   "aliases": [
+    "Verlorene Münze",
+    "Verlorene Drachme",
+    "Gleichnis vom verlorenen Groschen"
+   ],
+   "clues": [
+    "Lampe",
+    "fegen",
+    "zehn Silberstücke",
+    "Frau",
+    "Nachbarinnen",
+    "freuen",
+    "wiedergefunden",
+    "Drachme",
+    "Haus"
+   ]
+  },
+  {
+   "en": "Widow's Offering",
+   "word": "Scherflein der Witwe",
+   "hint": "Zwei kleine Münzen – mehr als alles andere",
+   "ref": "Markus 12,41–44",
+   "wolfHint": "Opferkasten",
+   "aliases": [
+    "Opfer der Witwe",
+    "Zwei Scherflein",
+    "Die arme Witwe"
+   ],
+   "clues": [
+    "Tempel",
+    "Gotteskasten",
+    "arm",
+    "reiche Leute",
+    "alles gegeben",
+    "Kupfermünzen",
+    "großzügig",
+    "wenig",
+    "Jesus sah zu"
+   ]
+  },
+  {
+   "en": "Transfiguration",
+   "word": "Verklärung",
+   "hint": "Jesus leuchtete auf dem Berg mit Mose und Elija",
+   "ref": "Matthäus 17,1–8",
+   "wolfHint": "Berg",
+   "aliases": [
+    "Verklärung Jesu"
+   ],
+   "clues": [
+    "Berg",
+    "Mose",
+    "Elija",
+    "leuchten",
+    "Wolke",
+    "Hütten",
+    "Petrus",
+    "weiß wie Licht",
+    "Stimme"
+   ]
+  }
+ ],
+ "thing": [
+  {
+   "en": "Rainbow",
+   "word": "Regenbogen",
+   "hint": "Zeichen für Gottes Versprechen nach der Flut",
+   "ref": "1. Mose 9,13",
+   "wolfHint": "Versprechen",
+   "aliases": [],
+   "clues": [
+    "Noah",
+    "Sintflut",
+    "Verheißung",
+    "Bund",
+    "Farben",
+    "Himmel",
+    "Wolken",
+    "nie wieder",
+    "Sonnenschein"
+   ]
+  },
+  {
+   "en": "Coat of Many Colours",
+   "word": "Bunter Rock",
+   "hint": "Jakobs Geschenk an Josef",
+   "ref": "1. Mose 37,3",
+   "wolfHint": "Eifersucht",
+   "aliases": [
+    "Josefs Rock",
+    "Josefs bunter Rock",
+    "Prachtgewand"
+   ],
+   "clues": [
+    "Josef",
+    "Jakob",
+    "Lieblingssohn",
+    "Brüder",
+    "Neid",
+    "Ziegenblut",
+    "verkauft",
+    "Träume",
+    "Ägypten"
+   ]
+  },
+  {
+   "en": "Staff",
+   "word": "Stab",
+   "hint": "Der Stab des Mose, der zur Schlange wurde",
+   "ref": "2. Mose 4",
+   "wolfHint": "Wandern",
+   "aliases": [
+    "Hirtenstab",
+    "Stab des Mose"
+   ],
+   "clues": [
+    "Mose",
+    "Aaron",
+    "Schlange",
+    "Rotes Meer",
+    "grünte",
+    "Pharao",
+    "Hirte",
+    "Felsen geschlagen",
+    "Plagen"
+   ]
+  },
+  {
+   "en": "Stone Tablets",
+   "word": "Steintafeln",
+   "hint": "Darauf standen die Zehn Gebote",
+   "ref": "2. Mose 31,18",
+   "wolfHint": "Gesetz",
+   "aliases": [
+    "Zehn Gebote",
+    "Gesetzestafeln",
+    "Tafeln"
+   ],
+   "clues": [
+    "Mose",
+    "Sinai",
+    "Finger Gottes",
+    "zerbrochen",
+    "zwei",
+    "Gesetz",
+    "Bundeslade",
+    "eingemeißelt",
+    "Berg"
+   ]
+  },
+  {
+   "en": "Ark of the Covenant",
+   "word": "Bundeslade",
+   "hint": "Mit Gold überzogene Truhe, an Stangen getragen",
+   "ref": "2. Mose 25",
+   "wolfHint": "Gold",
+   "aliases": [
+    "Lade des Bundes",
+    "Lade Gottes"
+   ],
+   "clues": [
+    "Stangen",
+    "Cherubim",
+    "Gold",
+    "Leviten",
+    "Jordan",
+    "Usa",
+    "Gnadenthron",
+    "Philister",
+    "Allerheiligstes"
+   ]
+  },
+  {
+   "en": "Golden Calf",
+   "word": "Goldenes Kalb",
+   "hint": "Götzenbild, während Mose auf dem Berg war",
+   "ref": "2. Mose 32",
+   "wolfHint": "Götze",
+   "aliases": [
+    "Goldkalb"
+   ],
+   "clues": [
+    "Aaron",
+    "Ohrringe",
+    "Sinai",
+    "geschmolzen",
+    "Tanz",
+    "Staub",
+    "Leviten",
+    "Sünde",
+    "Götzendienst"
+   ]
+  },
+  {
+   "en": "Trumpet",
+   "word": "Posaune",
+   "hint": "Erklang in Jericho und bei Gideons Männern",
+   "ref": "Josua 6; Richter 7",
+   "wolfHint": "Klang",
+   "aliases": [
+    "Schofar",
+    "Widderhorn",
+    "Trompete"
+   ],
+   "clues": [
+    "Jericho",
+    "Gideon",
+    "Mauern",
+    "blasen",
+    "sieben Priester",
+    "Jubeljahr",
+    "Jüngster Tag",
+    "Josua",
+    "Engel"
+   ]
+  },
+  {
+   "en": "Sling",
+   "word": "Schleuder",
+   "hint": "Davids Waffe gegen den Riesen",
+   "ref": "1. Samuel 17,40",
+   "wolfHint": "Waffe",
+   "aliases": [
+    "Steinschleuder"
+   ],
+   "clues": [
+    "David",
+    "Goliat",
+    "Stein",
+    "Riese",
+    "Stirn",
+    "Hirte",
+    "Tasche",
+    "Benjaminiter",
+    "zielen"
+   ]
+  },
+  {
+   "en": "Harp",
+   "word": "Harfe",
+   "hint": "David spielte sie, um König Saul zu beruhigen",
+   "ref": "1. Samuel 16,23",
+   "wolfHint": "Musik",
+   "aliases": [
+    "Leier"
+   ],
+   "clues": [
+    "David",
+    "Saul",
+    "Musik",
+    "Saiten",
+    "Psalmen",
+    "böser Geist",
+    "Weiden",
+    "Lobpreis",
+    "spielen"
+   ]
+  },
+  {
+   "en": "Crown",
+   "word": "Krone",
+   "hint": "Von Königen und Königinnen getragen",
+   "ref": "Esther 2,17",
+   "wolfHint": "König",
+   "aliases": [
+    "Königskrone"
+   ],
+   "clues": [
+    "König",
+    "Gold",
+    "Kopf",
+    "königlich",
+    "Edelsteine",
+    "regieren",
+    "Sieg",
+    "Offenbarung",
+    "Thron"
+   ]
+  },
+  {
+   "en": "Manger",
+   "word": "Krippe",
+   "hint": "Hier wurde das Jesuskind hineingelegt",
+   "ref": "Lukas 2,7",
+   "wolfHint": "Tiere",
+   "aliases": [
+    "Futtertrog",
+    "Futterkrippe"
+   ],
+   "clues": [
+    "Betlehem",
+    "Baby",
+    "Heu",
+    "Stall",
+    "Hirten",
+    "Ochs und Esel",
+    "Weihnachten",
+    "kein Raum",
+    "Maria"
+   ]
+  },
+  {
+   "en": "Star",
+   "word": "Stern",
+   "hint": "Er führte die Weisen",
+   "ref": "Matthäus 2,9",
+   "wolfHint": "Nacht",
+   "aliases": [
+    "Stern von Betlehem",
+    "Weihnachtsstern"
+   ],
+   "clues": [
+    "Weise",
+    "Morgenland",
+    "Herodes",
+    "Himmel",
+    "leuchten",
+    "Betlehem",
+    "gefolgt",
+    "Nacht",
+    "Magier"
+   ]
+  },
+  {
+   "en": "Fishing Net",
+   "word": "Fischernetz",
+   "hint": "Petrus und Andreas ließen es liegen und folgten Jesus",
+   "ref": "Matthäus 4,20",
+   "wolfHint": "See",
+   "aliases": [
+    "Netz",
+    "Netze"
+   ],
+   "clues": [
+    "Petrus",
+    "Andreas",
+    "Galiläa",
+    "auswerfen",
+    "flicken",
+    "rechte Seite",
+    "übervoll",
+    "Boot",
+    "folgt mir"
+   ]
+  },
+  {
+   "en": "Five Loaves",
+   "word": "Fünf Brote",
+   "hint": "Das Essen eines Jungen, von dem Tausende satt wurden",
+   "ref": "Johannes 6,9",
+   "wolfHint": "Junge",
+   "aliases": [
+    "Brote und Fische",
+    "Fünf Brote und zwei Fische"
+   ],
+   "clues": [
+    "Junge",
+    "Proviant",
+    "zwei Fische",
+    "Tausende",
+    "Körbe",
+    "zwölf",
+    "Wiese",
+    "Gerste",
+    "Wunder"
+   ]
+  },
+  {
+   "en": "Mustard Seed",
+   "word": "Senfkorn",
+   "hint": "Kleinstes Samenkorn, wird zu einer großen Pflanze",
+   "ref": "Matthäus 13,31",
+   "wolfHint": "Klein",
+   "aliases": [
+    "Senfsamen"
+   ],
+   "clues": [
+    "winzig",
+    "Glaube",
+    "Gleichnis",
+    "Baum",
+    "Vögel",
+    "Nest",
+    "Himmelreich",
+    "Berge versetzen",
+    "wachsen"
+   ]
+  },
+  {
+   "en": "Lamp",
+   "word": "Lampe",
+   "hint": "Stell sie nicht unter einen Scheffel",
+   "ref": "Matthäus 5,15",
+   "wolfHint": "Licht",
+   "aliases": [
+    "Öllampe",
+    "Leuchte"
+   ],
+   "clues": [
+    "Scheffel",
+    "Licht",
+    "Öl",
+    "Stadt am Berg",
+    "Jungfrauen",
+    "scheinen",
+    "Docht",
+    "Füße",
+    "brennen"
+   ]
+  },
+  {
+   "en": "Pearl",
+   "word": "Perle",
+   "hint": "Ein Kaufmann verkaufte alles für eine",
+   "ref": "Matthäus 13,46",
+   "wolfHint": "Schatz",
+   "aliases": [
+    "Kostbare Perle"
+   ],
+   "clues": [
+    "Kaufmann",
+    "alles verkauft",
+    "Himmelreich",
+    "Säue",
+    "Tore",
+    "Schatz",
+    "unbezahlbar",
+    "Meer",
+    "Offenbarung"
+   ]
+  },
+  {
+   "en": "Cross",
+   "word": "Kreuz",
+   "hint": "Jesus starb daran",
+   "ref": "Johannes 19",
+   "wolfHint": "Holz",
+   "aliases": [],
+   "clues": [
+    "Golgatha",
+    "Nägel",
+    "Holz",
+    "Simon",
+    "tragen",
+    "Karfreitag",
+    "Opfer",
+    "INRI",
+    "Balken"
+   ]
+  },
+  {
+   "en": "Crown of Thorns",
+   "word": "Dornenkrone",
+   "hint": "Damit verspotteten die Soldaten Jesus",
+   "ref": "Johannes 19,2",
+   "wolfHint": "Soldaten",
+   "aliases": [],
+   "clues": [
+    "Soldaten",
+    "Spott",
+    "Pilatus",
+    "Kopf",
+    "Purpur",
+    "König der Juden",
+    "Blut",
+    "Jesus",
+    "geflochten"
+   ]
+  },
+  {
+   "en": "Thirty Silver Coins",
+   "word": "Dreißig Silberlinge",
+   "hint": "Der Preis des Judas für den Verrat",
+   "ref": "Matthäus 26,15",
+   "wolfHint": "Verrat",
+   "aliases": [
+    "30 Silberlinge",
+    "Silberlinge",
+    "Dreißig Silberstücke"
+   ],
+   "clues": [
+    "Judas",
+    "Verrat",
+    "Hohepriester",
+    "Töpferacker",
+    "Blutgeld",
+    "Kuss",
+    "Sacharja",
+    "Tempel",
+    "Preis"
+   ]
+  },
+  {
+   "en": "Stone",
+   "word": "Stein",
+   "hint": "Er wurde vom Grab weggerollt",
+   "ref": "Markus 16,4",
+   "wolfHint": "Schwer",
+   "aliases": [
+    "Weggerollter Stein"
+   ],
+   "clues": [
+    "Grab",
+    "weggewälzt",
+    "Ostern",
+    "Engel",
+    "versiegelt",
+    "Wächter",
+    "leer",
+    "Garten",
+    "Auferstehung"
+   ]
+  },
+  {
+   "en": "Armour of God",
+   "word": "Waffenrüstung Gottes",
+   "hint": "Gürtel der Wahrheit, Schild des Glaubens …",
+   "ref": "Epheser 6",
+   "wolfHint": "Kampf",
+   "aliases": [
+    "Rüstung Gottes",
+    "Geistliche Waffenrüstung"
+   ],
+   "clues": [
+    "Epheser",
+    "Gürtel",
+    "Schild",
+    "Helm",
+    "Panzer",
+    "Wahrheit",
+    "Glaube",
+    "Schwert des Geistes",
+    "Paulus"
+   ]
+  },
+  {
+   "en": "Dove",
+   "word": "Taube",
+   "hint": "Brachte Noah ein Ölblatt",
+   "ref": "1. Mose 8,11",
+   "wolfHint": "Frieden",
+   "aliases": [
+    "Friedenstaube"
+   ],
+   "clues": [
+    "Noah",
+    "Ölblatt",
+    "Sintflut",
+    "Taufe",
+    "Heiliger Geist",
+    "Friede",
+    "Jordan",
+    "Flügel",
+    "Rabe"
+   ]
+  },
+  {
+   "en": "Ladder",
+   "word": "Himmelsleiter",
+   "hint": "Engel stiegen in Jakobs Traum auf und ab",
+   "ref": "1. Mose 28,12",
+   "wolfHint": "Traum",
+   "aliases": [
+    "Jakobsleiter",
+    "Leiter",
+    "Treppe"
+   ],
+   "clues": [
+    "Jakob",
+    "Traum",
+    "Engel",
+    "Bethel",
+    "Steinkissen",
+    "aufsteigen",
+    "Haran",
+    "Lus",
+    "Sprossen"
+   ]
+  },
+  {
+   "en": "Jar of Oil",
+   "word": "Ölkrug",
+   "hint": "Der Krug der Witwe, der nicht leer wurde",
+   "ref": "1. Könige 17,16",
+   "wolfHint": "Witwe",
+   "aliases": [
+    "Öl der Witwe",
+    "Krug mit Öl"
+   ],
+   "clues": [
+    "Witwe",
+    "Elisa",
+    "Schulden",
+    "geliehen",
+    "Söhne",
+    "gießen",
+    "Sarepta",
+    "Mehltopf",
+    "Gefäße"
+   ]
+  },
+  {
+   "en": "Scroll",
+   "word": "Schriftrolle",
+   "hint": "Jesus las daraus in Nazaret Jesaja vor",
+   "ref": "Lukas 4,17",
+   "wolfHint": "Lesen",
+   "aliases": [
+    "Buchrolle",
+    "Rolle"
+   ],
+   "clues": [
+    "Nazaret",
+    "Jesaja",
+    "Synagoge",
+    "aufgerollt",
+    "Pergament",
+    "Siegel",
+    "Baruch",
+    "verbrannt",
+    "Esra"
+   ]
+  },
+  {
+   "en": "Forbidden Fruit",
+   "word": "Verbotene Frucht",
+   "hint": "Eva aß sie vom Baum im Garten",
+   "ref": "1. Mose 3,6",
+   "wolfHint": "Baum",
+   "aliases": [
+    "Apfel",
+    "Frucht vom Baum"
+   ],
+   "clues": [
+    "Eva",
+    "Adam",
+    "Schlange",
+    "Eden",
+    "Baum",
+    "Erkenntnis",
+    "Garten",
+    "abbeißen",
+    "nackt"
+   ]
+  },
+  {
+   "en": "Bowl of Stew",
+   "word": "Linsengericht",
+   "hint": "Dafür verkaufte Esau sein Erstgeburtsrecht",
+   "ref": "1. Mose 25,34",
+   "wolfHint": "Hunger",
+   "aliases": [
+    "Rotes Gericht",
+    "Linseneintopf",
+    "Linsensuppe"
+   ],
+   "clues": [
+    "Esau",
+    "Jakob",
+    "Erstgeburt",
+    "hungrig",
+    "rot",
+    "Edom",
+    "Jagd",
+    "verkauft",
+    "müde"
+   ]
+  },
+  {
+   "en": "Basket",
+   "word": "Körbchen",
+   "hint": "Der kleine Mose trieb darin auf dem Nil",
+   "ref": "2. Mose 2,3",
+   "wolfHint": "Schilf",
+   "aliases": [
+    "Binsenkorb",
+    "Kästchen",
+    "Korb"
+   ],
+   "clues": [
+    "Mose",
+    "Nil",
+    "Schilf",
+    "Mirjam",
+    "Pharaos Tochter",
+    "Pech",
+    "schwimmen",
+    "Baby",
+    "Paulus"
+   ]
+  },
+  {
+   "en": "Bronze Snake",
+   "word": "Eherne Schlange",
+   "hint": "Mose hängte sie an eine Stange, damit das Volk heil wurde",
+   "ref": "4. Mose 21,9",
+   "wolfHint": "Stange",
+   "aliases": [
+    "Bronzeschlange",
+    "Kupferne Schlange"
+   ],
+   "clues": [
+    "Mose",
+    "Stange",
+    "gebissen",
+    "aufschauen",
+    "geheilt",
+    "Wüste",
+    "Nehuschtan",
+    "Hiskia",
+    "Gift"
+   ]
+  },
+  {
+   "en": "Pillar of Fire",
+   "word": "Feuersäule",
+   "hint": "Führte Israel nachts durch die Wüste",
+   "ref": "2. Mose 13,21",
+   "wolfHint": "Nacht",
+   "aliases": [
+    "Wolkensäule",
+    "Wolken- und Feuersäule"
+   ],
+   "clues": [
+    "Nacht",
+    "Wolke",
+    "Auszug",
+    "Wüste",
+    "Rotes Meer",
+    "Führung",
+    "Ägypter",
+    "Licht",
+    "Israeliten"
+   ]
+  },
+  {
+   "en": "Lampstand",
+   "word": "Leuchter",
+   "hint": "Siebenarmiger goldener Leuchter im Heiligtum",
+   "ref": "2. Mose 25,31–37",
+   "wolfHint": "Sieben",
+   "aliases": [
+    "Menora",
+    "Goldener Leuchter"
+   ],
+   "clues": [
+    "sieben Arme",
+    "Stiftshütte",
+    "Olivenöl",
+    "Gold",
+    "Mandelblüten",
+    "Heiliges",
+    "Sacharja",
+    "Offenbarung",
+    "Licht"
+   ]
+  },
+  {
+   "en": "Altar",
+   "word": "Altar",
+   "hint": "Aufgeschichtete Steine für Opfer",
+   "ref": "1. Mose 8,20",
+   "wolfHint": "Opfer",
+   "aliases": [
+    "Brandopferaltar"
+   ],
+   "clues": [
+    "Opfer",
+    "Elija",
+    "Karmel",
+    "Steine",
+    "Abraham",
+    "Isaak",
+    "Räucherwerk",
+    "Brandopfer",
+    "Hörner"
+   ]
+  },
+  {
+   "en": "Scarlet Cord",
+   "word": "Rotes Seil",
+   "hint": "Rahab hängte es aus ihrem Fenster",
+   "ref": "Josua 2,18",
+   "wolfHint": "Fenster",
+   "aliases": [
+    "Rote Schnur",
+    "Scharlachrotes Seil"
+   ],
+   "clues": [
+    "Rahab",
+    "Jericho",
+    "Fenster",
+    "Kundschafter",
+    "Stadtmauer",
+    "Versprechen",
+    "Strick",
+    "gerettet",
+    "Josua"
+   ]
+  },
+  {
+   "en": "Fleece",
+   "word": "Vlies",
+   "hint": "Gideons Zeichen: nass, dann trocken",
+   "ref": "Richter 6,37–40",
+   "wolfHint": "Tau",
+   "aliases": [
+    "Gideons Vlies",
+    "Schaffell",
+    "Wollvlies"
+   ],
+   "clues": [
+    "Gideon",
+    "Tau",
+    "nass",
+    "trocken",
+    "Wolle",
+    "Zeichen",
+    "Tenne",
+    "Boden",
+    "Midianiter"
+   ]
+  },
+  {
+   "en": "Jawbone",
+   "word": "Eselskinnbacken",
+   "hint": "Simsons Waffe von einem Esel",
+   "ref": "Richter 15,15",
+   "wolfHint": "Waffe",
+   "aliases": [
+    "Kinnbacken",
+    "Kieferknochen"
+   ],
+   "clues": [
+    "Simson",
+    "Philister",
+    "tausend Mann",
+    "Lehi",
+    "Quelle",
+    "Kraft",
+    "Haufen",
+    "Nasiräer",
+    "Rache"
+   ]
+  },
+  {
+   "en": "Five Smooth Stones",
+   "word": "Fünf glatte Steine",
+   "hint": "David holte sie aus dem Bach",
+   "ref": "1. Samuel 17,40",
+   "wolfHint": "Bach",
+   "aliases": [
+    "Fünf Steine",
+    "Glatte Steine",
+    "Kieselsteine"
+   ],
+   "clues": [
+    "David",
+    "Goliat",
+    "Bach",
+    "Schleuder",
+    "Hirtentasche",
+    "Riese",
+    "Eichgrund",
+    "Philister",
+    "Stirn"
+   ]
+  },
+  {
+   "en": "Spear",
+   "word": "Speer",
+   "hint": "Saul schleuderte ihn nach David",
+   "ref": "1. Samuel 18,11",
+   "wolfHint": "Zorn",
+   "aliases": [
+    "Lanze",
+    "Wurfspeer"
+   ],
+   "clues": [
+    "Saul",
+    "David",
+    "ausgewichen",
+    "Wand",
+    "Goliat",
+    "durchbohrt",
+    "Seite",
+    "Soldat",
+    "Abner"
+   ]
+  },
+  {
+   "en": "Sword",
+   "word": "Schwert",
+   "hint": "Petrus schlug damit einem Diener das Ohr ab",
+   "ref": "Johannes 18,10",
+   "wolfHint": "Ohr",
+   "aliases": [],
+   "clues": [
+    "Petrus",
+    "Ohr",
+    "Malchus",
+    "Gethsemane",
+    "Knecht",
+    "Geist",
+    "Goliat",
+    "zweischneidig",
+    "Scheide"
+   ]
+  },
+  {
+   "en": "Elijah's Cloak",
+   "word": "Mantel des Elija",
+   "hint": "Elisa hob ihn auf und schlug damit aufs Wasser",
+   "ref": "2. Könige 2,13–14",
+   "wolfHint": "Prophet",
+   "aliases": [
+    "Elijas Mantel",
+    "Prophetenmantel",
+    "Mantel"
+   ],
+   "clues": [
+    "Elisa",
+    "Jordan",
+    "doppelter Anteil",
+    "Wagen",
+    "Wirbelwind",
+    "Feuer",
+    "Prophet",
+    "geteilt",
+    "pflügen"
+   ]
+  },
+  {
+   "en": "Golden Statue",
+   "word": "Goldenes Standbild",
+   "hint": "Nebukadnezzar befahl allen, sich davor zu verneigen",
+   "ref": "Daniel 3,1",
+   "wolfHint": "Verneigen",
+   "aliases": [
+    "Goldenes Bild",
+    "Goldene Statue"
+   ],
+   "clues": [
+    "Nebukadnezzar",
+    "Babylon",
+    "niederfallen",
+    "Feuerofen",
+    "Schadrach",
+    "Meschach",
+    "Abed-Nego",
+    "Musik",
+    "Dura"
+   ]
+  },
+  {
+   "en": "Frankincense",
+   "word": "Weihrauch",
+   "hint": "Ein Geschenk der Weisen",
+   "ref": "Matthäus 2,11",
+   "wolfHint": "Geschenke",
+   "aliases": [],
+   "clues": [
+    "Weise",
+    "Gold",
+    "Myrrhe",
+    "Gabe",
+    "Rauch",
+    "Sterndeuter",
+    "anbeten",
+    "Priester",
+    "Duft"
+   ]
+  },
+  {
+   "en": "Swaddling Cloths",
+   "word": "Windeln",
+   "hint": "Das Jesuskind wurde darin gewickelt",
+   "ref": "Lukas 2,7",
+   "wolfHint": "Baby",
+   "aliases": [
+    "Windeltücher"
+   ],
+   "clues": [
+    "Baby",
+    "Krippe",
+    "Betlehem",
+    "Hirten",
+    "Zeichen",
+    "gewickelt",
+    "Maria",
+    "Neugeborenes",
+    "Weihnachten"
+   ]
+  },
+  {
+   "en": "Lamb",
+   "word": "Lamm",
+   "hint": "„Siehe, das ist Gottes Lamm!“",
+   "ref": "Johannes 1,29",
+   "wolfHint": "Wolle",
+   "aliases": [
+    "Lamm Gottes",
+    "Gotteslamm"
+   ],
+   "clues": [
+    "Täufer",
+    "Passa",
+    "Opfer",
+    "Schaf",
+    "Blut",
+    "makellos",
+    "Offenbarung",
+    "geschlachtet",
+    "Herde"
+   ]
+  },
+  {
+   "en": "Alabaster Jar",
+   "word": "Alabasterkrug",
+   "hint": "Kostbares Salböl, über Jesu Kopf gegossen",
+   "ref": "Markus 14,3",
+   "wolfHint": "Duft",
+   "aliases": [
+    "Nardenöl",
+    "Kostbares Salböl"
+   ],
+   "clues": [
+    "Maria",
+    "Betanien",
+    "Parfüm",
+    "Narde",
+    "salben",
+    "Judas",
+    "Begräbnis",
+    "zerbrochen",
+    "teuer"
+   ]
+  },
+  {
+   "en": "Purple Robe",
+   "word": "Purpurmantel",
+   "hint": "Soldaten zogen ihn Jesus zum Spott an",
+   "ref": "Johannes 19,2",
+   "wolfHint": "Spott",
+   "aliases": [
+    "Purpurgewand",
+    "Purpurkleid",
+    "Scharlachmantel"
+   ],
+   "clues": [
+    "Soldaten",
+    "Hohn",
+    "Pilatus",
+    "König",
+    "Dornen",
+    "Herodes",
+    "Prätorium",
+    "königlich",
+    "Jesus"
+   ]
+  },
+  {
+   "en": "Nails",
+   "word": "Nägel",
+   "hint": "Thomas wollte ihre Male sehen",
+   "ref": "Johannes 20,25",
+   "wolfHint": "Hammer",
+   "aliases": [
+    "Nagel"
+   ],
+   "clues": [
+    "Kreuz",
+    "Hände",
+    "Füße",
+    "Thomas",
+    "Wunden",
+    "Hammer",
+    "Golgatha",
+    "Eisen",
+    "durchbohrt"
+   ]
+  },
+  {
+   "en": "Tongues of Fire",
+   "word": "Feuerzungen",
+   "hint": "Ließen sich an Pfingsten auf den Jüngern nieder",
+   "ref": "Apostelgeschichte 2,3",
+   "wolfHint": "Geist",
+   "aliases": [
+    "Zungen wie von Feuer",
+    "Flammen"
+   ],
+   "clues": [
+    "Pfingsten",
+    "Heiliger Geist",
+    "Wind",
+    "Sprachen",
+    "Petrus",
+    "Obergemach",
+    "Jünger",
+    "Apostelgeschichte",
+    "Brausen"
+   ]
+  },
+  {
+   "en": "Chains",
+   "word": "Ketten",
+   "hint": "Fielen Petrus im Gefängnis von den Händen",
+   "ref": "Apostelgeschichte 12,7",
+   "wolfHint": "Gefängnis",
+   "aliases": [
+    "Fesseln"
+   ],
+   "clues": [
+    "Petrus",
+    "Kerker",
+    "Engel",
+    "Paulus",
+    "Silas",
+    "Erdbeben",
+    "Wachen",
+    "Gefangener",
+    "Herodes"
+   ]
+  },
+  {
+   "en": "Serpent",
+   "word": "Schlange",
+   "hint": "Verführte Eva im Garten",
+   "ref": "1. Mose 3,1",
+   "wolfHint": "Lügen",
+   "aliases": [],
+   "clues": [
+    "Eva",
+    "Eden",
+    "listig",
+    "Frucht",
+    "Täuschung",
+    "versucht",
+    "Staub",
+    "Bauch",
+    "Teufel"
+   ]
+  },
+  {
+   "en": "Fig Tree",
+   "word": "Feigenbaum",
+   "hint": "Jesus fand nur Blätter und verfluchte ihn",
+   "ref": "Markus 11,13–14",
+   "wolfHint": "Blätter",
+   "aliases": [],
+   "clues": [
+    "verflucht",
+    "Blätter",
+    "verdorrt",
+    "Natanaël",
+    "unfruchtbar",
+    "Adam",
+    "Betanien",
+    "Sommer",
+    "hungrig"
+   ]
+  },
+  {
+   "en": "Keys of the Kingdom",
+   "word": "Himmelsschlüssel",
+   "hint": "Jesus versprach sie Petrus",
+   "ref": "Matthäus 16,19",
+   "wolfHint": "Schloss",
+   "aliases": [
+    "Schlüssel",
+    "Schlüssel des Himmelreichs",
+    "Schlüssel des Himmels"
+   ],
+   "clues": [
+    "Petrus",
+    "Fels",
+    "binden",
+    "lösen",
+    "Gemeinde",
+    "Himmelreich",
+    "Cäsarea",
+    "Pforten",
+    "aufsperren"
+   ]
+  },
+  {
+   "en": "Salt",
+   "word": "Salz",
+   "hint": "„Ihr seid das Salz der Erde“",
+   "ref": "Matthäus 5,13",
+   "wolfHint": "Würze",
+   "aliases": [
+    "Salz der Erde"
+   ],
+   "clues": [
+    "Erde",
+    "Lots Frau",
+    "Säule",
+    "Geschmack",
+    "Licht",
+    "Sodom",
+    "haltbar",
+    "Elisa",
+    "Bund"
+   ]
+  },
+  {
+   "en": "Eye of a Needle",
+   "word": "Nadelöhr",
+   "hint": "Ein Kamel kommt leichter hindurch",
+   "ref": "Markus 10,25",
+   "wolfHint": "Kamel",
+   "aliases": [
+    "Öhr einer Nadel",
+    "Nadel"
+   ],
+   "clues": [
+    "Kamel",
+    "Reicher",
+    "unmöglich",
+    "Himmelreich",
+    "Faden",
+    "nähen",
+    "Besitz",
+    "kleines Loch",
+    "Jesus"
+   ]
+  },
+  {
+   "en": "Fatted Calf",
+   "word": "Mastkalb",
+   "hint": "Geschlachtet zur Heimkehr des verlorenen Sohnes",
+   "ref": "Lukas 15,23",
+   "wolfHint": "Festmahl",
+   "aliases": [
+    "Gemästetes Kalb"
+   ],
+   "clues": [
+    "verlorener Sohn",
+    "Vater",
+    "Fest",
+    "älterer Bruder",
+    "Ring",
+    "Gewand",
+    "Musik",
+    "Sandalen",
+    "Schweine"
+   ]
+  },
+  {
+   "en": "Sceptre",
+   "word": "Zepter",
+   "hint": "Der König streckte es Esther entgegen",
+   "ref": "Esther 5,2",
+   "wolfHint": "Königlich",
+   "aliases": [
+    "Goldenes Zepter"
+   ],
+   "clues": [
+    "Esther",
+    "König",
+    "Xerxes",
+    "Thron",
+    "berührt",
+    "Gold",
+    "Juda",
+    "Herrscher",
+    "Palast"
+   ]
+  },
+  {
+   "en": "Locusts and Honey",
+   "word": "Heuschrecken und Honig",
+   "hint": "Das Essen von Johannes dem Täufer in der Wüste",
+   "ref": "Matthäus 3,4",
+   "wolfHint": "Essen",
+   "aliases": [
+    "Heuschrecken",
+    "Wilder Honig"
+   ],
+   "clues": [
+    "Täufer",
+    "Wüste",
+    "Kamelhaar",
+    "Jordan",
+    "wild",
+    "Speiseplan",
+    "Bienen",
+    "Insekten",
+    "Ledergürtel"
+   ]
+  },
+  {
+   "en": "Burning Coal",
+   "word": "Glühende Kohle",
+   "hint": "Ein Engel berührte damit Jesajas Lippen",
+   "ref": "Jesaja 6,6–7",
+   "wolfHint": "Lippen",
+   "aliases": [
+    "Kohle",
+    "Brennende Kohle"
+   ],
+   "clues": [
+    "Jesaja",
+    "Seraf",
+    "Lippen",
+    "Zange",
+    "Altar",
+    "unrein",
+    "Tempel",
+    "sende mich",
+    "Schuld"
+   ]
+  },
+  {
+   "en": "Potter's Clay",
+   "word": "Töpferton",
+   "hint": "Auf der Töpferscheibe neu geformt bei Jeremia",
+   "ref": "Jeremia 18,1–6",
+   "wolfHint": "Formen",
+   "aliases": [
+    "Ton",
+    "Ton des Töpfers",
+    "Töpferscheibe"
+   ],
+   "clues": [
+    "Jeremia",
+    "geformt",
+    "Gefäß",
+    "missraten",
+    "Hände",
+    "Werkstatt",
+    "Jesaja",
+    "neu gemacht",
+    "irden"
+   ]
+  },
+  {
+   "en": "Silver Cup",
+   "word": "Silberner Becher",
+   "hint": "In Benjamins Getreidesack versteckt",
+   "ref": "1. Mose 44,2",
+   "wolfHint": "Sack",
+   "aliases": [
+    "Josefs Becher",
+    "Silberbecher"
+   ],
+   "clues": [
+    "Josef",
+    "Benjamin",
+    "Sack",
+    "Getreide",
+    "Ägypten",
+    "Wahrsagen",
+    "Brüder",
+    "Verwalter",
+    "gestohlen"
+   ]
+  },
+  {
+   "en": "Tree of Life",
+   "word": "Baum des Lebens",
+   "hint": "Wuchs in Eden und im neuen Jerusalem",
+   "ref": "1. Mose 2,9; Offenbarung 22,2",
+   "wolfHint": "Ewigkeit",
+   "aliases": [
+    "Lebensbaum"
+   ],
+   "clues": [
+    "Eden",
+    "Cherubim",
+    "Flammenschwert",
+    "Offenbarung",
+    "neues Jerusalem",
+    "Blätter",
+    "Heilung",
+    "Früchte",
+    "Strom"
+   ]
+  },
+  {
+   "en": "Boat",
+   "word": "Boot",
+   "hint": "Jesus schlief darin während eines Sturms",
+   "ref": "Markus 4,38",
+   "wolfHint": "Segel",
+   "aliases": [
+    "Fischerboot",
+    "Schiff"
+   ],
+   "clues": [
+    "Sturm",
+    "Galiläa",
+    "schlafen",
+    "Petrus",
+    "Wellen",
+    "Jünger",
+    "Ruder",
+    "Stille",
+    "Fischer"
+   ]
+  },
+  {
+   "en": "Ram",
+   "word": "Widder",
+   "hint": "Mit den Hörnern im Gestrüpp verfangen",
+   "ref": "1. Mose 22,13",
+   "wolfHint": "Hörner",
+   "aliases": [
+    "Schafbock"
+   ],
+   "clues": [
+    "Abraham",
+    "Isaak",
+    "Gestrüpp",
+    "Hörner",
+    "Morija",
+    "Opfer",
+    "Gott sorgt",
+    "Berg",
+    "stellvertretend"
+   ]
+  },
+  {
+   "en": "Sackcloth",
+   "word": "Sacktuch",
+   "hint": "Ninive trug es zur Buße",
+   "ref": "Jona 3,5",
+   "wolfHint": "Trauer",
+   "aliases": [
+    "Sack und Asche",
+    "Sack",
+    "Trauerkleid"
+   ],
+   "clues": [
+    "Ninive",
+    "Asche",
+    "Trauer",
+    "Buße",
+    "Jona",
+    "Fasten",
+    "Ziegenhaar",
+    "rau",
+    "Mordechai"
+   ]
+  }
+ ]
+}

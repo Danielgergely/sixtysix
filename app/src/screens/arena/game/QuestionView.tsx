@@ -9,7 +9,7 @@ import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
 import { quoteVerse } from '../../../questions/quoteVerse'
 import { PlayerResult } from './PlayerResult'
-import { useT } from '../../../i18n'
+import { useLocale, useT } from '../../../i18n'
 import { rich } from '../rich'
 
 /** Fan angle per card in the player's hand. */
@@ -107,6 +107,7 @@ function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewPro
 export function QuestionView(props: QuestionViewProps) {
   const { index, total, text, answers, phase, endsAt, durationMs, isPlayer, myAnswer, reveal, result, score, onAnswer } = props
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const [scope, animate] = useAnimate()
   const remaining = useRemaining(endsAt, phase === 'question')
   const revealed = phase === 'reveal' && reveal !== null
@@ -183,7 +184,7 @@ export function QuestionView(props: QuestionViewProps) {
               <AnimatePresence>
                 {revealed && (
                   <motion.div className="empire-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                    {reveal.verse && <>{quoteVerse(reveal.verse)} </>}
+                    {reveal.verse && <>{quoteVerse(reveal.verse, locale)} </>}
                     <em>— {reveal.reference}</em>
                   </motion.div>
                 )}

@@ -9,7 +9,8 @@ import { PARCHMENT } from '../art/textures'
 import { duration, ease } from '../motion'
 import { useGiftStore } from '../skills/giftStore'
 import { GiftBar } from '../skills/GiftBar'
-import { useT } from '../i18n'
+import { useLocale, useT } from '../i18n'
+import { questionIn, useVerses, verseOf } from '../questions/localize'
 
 /** 1-based ranks by score; ties keep seating order. */
 function ranks(racers: Racer[], score: (r: Racer) => number): Map<string, number> {
@@ -68,7 +69,8 @@ export function RaceScreen() {
   const phaseEndsAt = useGameStore((s) => s.phaseEndsAt)
   const phaseDuration = useGameStore((s) => s.phaseDuration)
   const lastResult = useGameStore((s) => s.lastResult)
-  const verses = useGameStore((s) => s.verses)
+  const locale = useLocale((s) => s.locale)
+  const verses = useVerses()
   const raceCoins = useGameStore((s) => s.raceCoins)
   const answer = useGameStore((s) => s.answer)
   const skip = useGameStore((s) => s.skip)
@@ -117,14 +119,14 @@ export function RaceScreen() {
             <QuestionView
               index={questionIndex}
               total={questions.length}
-              text={q.text.en}
-              answers={q.answers.en}
+              text={questionIn(q, locale).text}
+              answers={questionIn(q, locale).answers}
               phase={phase}
               endsAt={phaseEndsAt}
               durationMs={phaseDuration}
               isPlayer
               myAnswer={myIndex === undefined || myIndex < 0 ? null : myIndex}
-              reveal={phase === 'reveal' ? { correctIndex: q.correctIndex, reference: q.reference, verse: verses[q.id] ?? '' } : null}
+              reveal={phase === 'reveal' ? { correctIndex: q.correctIndex, reference: verseOf(verses, q).ref, verse: verseOf(verses, q).text } : null}
               result={phase === 'reveal' ? lastResult : null}
               score={you?.score}
               answered={racers.map((r) => ({ id: r.profile.id, avatar: r.profile.avatar, name: r.profile.name, done: !!r.lastAnswer, you: !r.isBot }))}
@@ -132,7 +134,7 @@ export function RaceScreen() {
               onAnswer={answer}
               giftBar={<GiftBar enabled={phase === 'question' && myIndex === undefined} onUse={playGift} />}
               removed={removed}
-              hint={used.includes('lamp') ? q.reference : null}
+              hint={used.includes('lamp') ? verseOf(verses, q).ref : null}
               votes={votes}
               doubled={used.includes('double')}
             />
