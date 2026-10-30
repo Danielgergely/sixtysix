@@ -233,9 +233,18 @@ export function saveProfile(id: number, profile: AccountProfile): void {
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
 
 /** The caller's address. Behind Fly's proxy `req.ip` is the proxy, shared by every player; Fly names the real client. */
+/**
+ * The player's address behind a proxy, for rate limits. Coolify's Traefik
+ * replaces any X-Forwarded-For sent by the client with the real address, and
+ * the nearest proxy's entry is the last one; Fly sets Fly-Client-IP. Without
+ * a proxy (local dev) it is the socket address.
+ */
 export function clientIp(req: FastifyRequest): string {
   const fly = req.headers['fly-client-ip']
-  return typeof fly === 'string' && fly ? fly : req.ip
+  if (typeof fly === 'string' && fly) return fly
+  const xff = req.headers['x-forwarded-for']
+  const last = (Array.isArray(xff) ? xff.join(',') : (xff ?? '')).split(',').map((s) => s.trim()).filter(Boolean).pop()
+  return last || req.ip
 }
 
 const attempts = new Map<string, number[]>()
