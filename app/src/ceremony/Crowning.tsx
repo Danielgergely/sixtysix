@@ -6,6 +6,9 @@ import { PaintedCoin, PaintedPortrait } from '../art/PaintedPortrait'
 import { characterOrDefault } from '../art/characters'
 import { PARCHMENT } from '../art/textures'
 import { BODY_ART, type Pose } from '../art/bodyArt'
+import { useLocale, useT } from '../i18n'
+import { rich } from '../screens/arena/rich'
+import { nameTag } from './names'
 
 export interface CrownEntry {
   id: string
@@ -61,6 +64,8 @@ interface Props {
  * final tableau stays until someone ends the game.
  */
 export function Crowning({ entries, wide, actions, coins }: Props) {
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const st = wide ? STAGE.wide : STAGE.phone
   const top3 = useMemo(() => entries.slice(0, 3), [entries])
   const script = useMemo(() => buildScript(top3.length), [top3.length])
@@ -160,14 +165,13 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
               {state !== 'arrive' && (
                 <motion.div className={`cr-name ${TIER[rank]}`} initial={{ scale: 0, y: 8 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.6 }}>
                   <span className="cr-medal">{rank}</span>
-                  {r.name}
-                  {r.you && r.name !== 'You' && ' (you)'}
-                  <b>{r.score.toLocaleString('en-US')}</b>
+                  {nameTag(t, r)}
+                  <b>{r.score.toLocaleString(locale)}</b>
                 </motion.div>
               )}
               {r.you && state === 'crowned' && (
                 <motion.div className="cr-itsyou" initial={{ scale: 0 }} animate={{ scale: [0, 1.2, 1] }} transition={{ delay: 0.8 }}>
-                  It’s you!
+                  {t('ceremony.crowning.itsYou')}
                 </motion.div>
               )}
             </motion.div>
@@ -178,13 +182,13 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
       <AnimatePresence>
         {step < 1 && (
           <motion.div className="cr-title" style={{ backgroundImage: PARCHMENT }} initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -80, opacity: 0 }}>
-            The Crowning
+            {t('ceremony.crowning.title')}
           </motion.div>
         )}
         {champion && (
           <motion.div className="cr-champion" initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 14 }}>
-            <span>Champion</span>
-            <small>“I have finished the race… there is laid up for me the crown.” — 2 Timothy 4:7–8</small>
+            <span>{t('ceremony.crowning.champion')}</span>
+            <small>{t('ceremony.crowning.verse')}</small>
           </motion.div>
         )}
       </AnimatePresence>
@@ -206,7 +210,7 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
           ) : (
             youRank > 0 && (
               <div className="cr-you">
-                You finished <b>#{youRank}</b> · {entries[youRank - 1].score.toLocaleString('en-US')} pts
+                {rich(t('ceremony.crowning.finished', { score: entries[youRank - 1].score.toLocaleString(locale) }), { rank: <b>#{youRank}</b> })}
                 {coins !== undefined && (
                   <span className="cr-coins">
                     <PaintedCoin size={18} /> +{coins}

@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import { AnimatedNumber } from '../motion'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
+import { useLocale, useT } from '../i18n'
+import { nameTag } from './names'
 
 /** Six chariot liveries; a player keeps theirs for the whole game. */
 const RACE_COLORS = [
@@ -115,6 +117,8 @@ interface Props {
 }
 
 export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const g = wide ? GEOMETRY.wide : GEOMETRY.phone
   const before = useMemo(() => layout(entries, 'before', g, total, goal), [entries, g, total, goal])
   const after = useMemo(() => layout(entries, 'after', g, total, goal), [entries, g, total, goal])
@@ -168,14 +172,13 @@ export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
                 <PaintedPortrait id={r.avatar} className="tr-portrait" />
               </div>
               <div className="tr-tag">
-                {r.name}
-                {r.you && r.name !== 'You' && ' (you)'}
+                {nameTag(t, r)}
                 {settled && climbed && <span className="tr-up">▲{r.rankBefore - r.rankAfter}</span>}
               </div>
               <AnimatePresence>
                 {settled && banner && (
                   <motion.div className="tr-overtake" initial={{ scale: 0, y: 10 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 12 }}>
-                    {r.rankAfter === 1 ? '👑 Takes the lead!' : '⚡ Overtake!'}
+                    {r.rankAfter === 1 ? t('ceremony.road.lead') : t('ceremony.road.overtake')}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -185,13 +188,13 @@ export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
       </div>
 
       <motion.div className="tr-title" style={{ backgroundImage: PARCHMENT }} initial={{ y: -80 }} animate={{ y: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 16 }}>
-        Road to the Throne
-        <small>{goal ? `first to ${goal.toLocaleString('en-US')} glory` : `after trial ${played} of ${total}`}</small>
+        {t('ceremony.road.title')}
+        <small>{goal ? t('ceremony.road.firstTo', { n: goal.toLocaleString(locale) }) : t('ceremony.road.after', { played, total })}</small>
       </motion.div>
 
       {!wide && you && you.rankAfter > SHOWN && (
         <div className="tr-you-card" style={{ '--c': color(you).hex } as React.CSSProperties}>
-          #{you.rankAfter} · {you.name} · {you.after.toLocaleString('en-US')}
+          #{you.rankAfter} · {you.name} · {you.after.toLocaleString(locale)}
         </div>
       )}
       {wide && (

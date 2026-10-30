@@ -5,6 +5,8 @@ import { PaintedCoin, PaintedPortrait } from '../../../art/PaintedPortrait'
 import { Sparkles } from '../../../art/Sparkles'
 import { useGameStore } from '../../../game/store'
 import { AnimatedNumber } from '../../../motion'
+import { useT } from '../../../i18n'
+import { rich } from '../rich'
 
 interface Props {
   result: YourResult
@@ -17,7 +19,9 @@ interface Props {
 export function PlayerResult({ result, answered, correctText }: Props) {
   const avatar = useGameStore((s) => s.player.avatar)
   const { correct, gain, streak, coins } = result
-  const [headline] = useState(() => (correct ? 'Victorious' : answered ? 'Not this time' : 'Time’s up'))
+  const t = useT()
+  // Fixed per result; translated on render so a language switch still applies.
+  const [headline] = useState(() => (correct ? 'victorious' : answered ? 'notThisTime' : 'timesUp'))
 
   return (
     <motion.div className="empire-result" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -39,12 +43,12 @@ export function PlayerResult({ result, answered, correctText }: Props) {
         animate={{ letterSpacing: '0.12em', opacity: 1 }}
         transition={{ delay: 0.9, duration: 0.6 }}
       >
-        {headline}
+        {t(`quiz.result.${headline}`)}
       </motion.div>
       {correct ? (
         <>
           <motion.div className="empire-gain" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}>
-            +<AnimatedNumber value={gain} from={0} delay={1.1} /> glory
+            {rich(t('quiz.result.glory'), { n: <AnimatedNumber value={gain} from={0} delay={1.1} /> })}
           </motion.div>
           {coins > 0 && (
             <motion.div
@@ -61,13 +65,13 @@ export function PlayerResult({ result, answered, correctText }: Props) {
               {Array.from({ length: Math.min(streak, 5) }, (_, i) => (
                 <span key={i}>⚜</span>
               ))}{' '}
-              Streak of {streak}
+              {t('quiz.result.streak', { n: streak })}
             </motion.div>
           )}
         </>
       ) : (
         <motion.div className="empire-gain small" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}>
-          The answer was <strong>{correctText}</strong>
+          {rich(t('quiz.result.answerWas'), { answer: <strong>{correctText}</strong> })}
         </motion.div>
       )}
     </motion.div>

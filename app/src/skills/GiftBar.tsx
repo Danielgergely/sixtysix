@@ -3,23 +3,14 @@ import { AnimatePresence, motion } from 'motion/react'
 import { GIFT_IDS, GIFT_INFO, type GiftId } from '@sixtysix/shared'
 import { useGiftStore } from './giftStore'
 import { spring } from '../motion'
-
-const NOTE: Record<string, string> = {
-  lamp: 'A lamp to your feet: the reference is shown',
-  fifty: 'The waters part: two wrong answers are gone',
-  time: 'The sun stands still: +10 seconds',
-  double: 'Double portion: this question counts twice',
-  elders: 'The elders show how the others voted',
-  retry: 'Seventy times seven: try again',
-  steadfast: 'Steadfast: your streak holds',
-  solomon: 'Wisdom of Solomon: one extra gift',
-}
+import { useT } from '../i18n'
 
 /**
  * Round gift buttons above the card hand (Blitz) or the answers (Practice),
  * each with its uses left. Renders nothing without gifts (guests, the arena).
  */
 export function GiftBar({ enabled, onUse }: { enabled: boolean; onUse: (id: GiftId) => void }) {
+  const t = useT()
   const { mode, total, uses, used, flash, bonus } = useGiftStore()
   // The note fades after a moment.
   const flashKey = flash?.key
@@ -42,7 +33,7 @@ export function GiftBar({ enabled, onUse }: { enabled: boolean; onUse: (id: Gift
             exit={{ opacity: 0, y: -10 }}
             transition={spring.snappy}
           >
-            {flash.id === 'solomon' && bonus ? `${NOTE.solomon} (${GIFT_INFO[bonus].icon})` : NOTE[flash.id]}
+            {flash.id === 'solomon' && bonus ? t('gifts.notes.solomonBonus', { icon: GIFT_INFO[bonus].icon }) : t(`gifts.notes.${flash.id}`)}
           </motion.div>
         )}
       </AnimatePresence>
@@ -57,8 +48,8 @@ export function GiftBar({ enabled, onUse }: { enabled: boolean; onUse: (id: Gift
               <motion.button
                 key={g}
                 className={`gift-btn ${on ? 'on' : ''} ${info.passive ? 'passive' : ''} ${left === 0 && !on ? 'spent' : ''}`}
-                title={info.name}
-                aria-label={`${info.name} (${left} left)`}
+                title={t(`gifts.names.${g}`)}
+                aria-label={t('gifts.left', { name: t(`gifts.names.${g}`), n: left })}
                 disabled={!can}
                 onClick={() => onUse(g)}
                 whileTap={can ? { scale: 0.85 } : undefined}

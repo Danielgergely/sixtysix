@@ -13,6 +13,7 @@ import type {
 import { useGameStore } from '../game/store'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
+import { t } from '../i18n'
 
 type ArenaSocket = Socket<ServerToClientEvents, ClientToServerEvents>
 
@@ -152,7 +153,7 @@ function getSocket(): ArenaSocket {
     // If the room died while we were offline (host gone, server restart), the
     // rejoin is refused and room:closed was never received — close here.
     const onRejoin = (res: { ok: boolean; error?: string }) => {
-      if (!res.ok) closeLocally(res.error ?? 'The game has ended')
+      if (!res.ok) closeLocally(res.error ?? t('arena.errors.ended'))
     }
     if (role === 'player') {
       const player = useGameStore.getState().player
@@ -303,7 +304,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   joinGame: (code: string) => {
     const trimmed = code.trim().toUpperCase()
     if (trimmed.length < 4) {
-      set({ error: 'Enter the game code' })
+      set({ error: t('arena.errors.enterCode') })
       return
     }
     set({ busy: true, error: null })
