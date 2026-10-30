@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "q_b180_001",
+    "reference": "Isaiah 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah saw his vision in the days of Uzziah, Jotham, Ahaz and which other king of Judah?"
+    },
+    "answers": {
+      "en": [
+        "Josiah",
+        "Manasseh",
+        "Jehoshaphat",
+        "Hezekiah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_002",
+    "reference": "Isaiah 1:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 1: the daughter of Zion is left like a hut in a field of what?"
+    },
+    "answers": {
+      "en": [
+        "Wheat",
+        "Barley",
+        "Flax",
+        "Melons"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_003",
+    "reference": "Isaiah 1:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Without a remnant, says Isaiah 1, we would have been like Sodom and which city?"
+    },
+    "answers": {
+      "en": [
+        "Admah",
+        "Zeboiim",
+        "Gomorrah",
+        "Zoar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_004",
+    "reference": "Isaiah 1:17",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 1:17 says: judge the fatherless and plead for whom?"
+    },
+    "answers": {
+      "en": [
+        "The stranger",
+        "The prisoner",
+        "The widow",
+        "The Levite"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_005",
+    "reference": "Isaiah 1:22",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 1, what has Jerusalem's silver become?"
+    },
+    "answers": {
+      "en": [
+        "Rust",
+        "Lead",
+        "Dross",
+        "Clay"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_006",
+    "reference": "Isaiah 1:18",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 1: though your sins are red like crimson, they shall be as what?"
+    },
+    "answers": {
+      "en": [
+        "Milk",
+        "Salt",
+        "Wool",
+        "Linen"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_007",
+    "reference": "Isaiah 2:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 2: out of which place will the law go forth?"
+    },
+    "answers": {
+      "en": [
+        "Sinai",
+        "Horeb",
+        "Zion",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_008",
+    "reference": "Isaiah 2:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 2: into what will the nations beat their spears?"
+    },
+    "answers": {
+      "en": [
+        "Sickles",
+        "Pruning hooks",
+        "Shovels",
+        "Shepherd's staffs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_009",
+    "reference": "Isaiah 4:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 4:1, how many women will take hold of one man?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_010",
+    "reference": "Isaiah 4:5",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Over Mount Zion Yahweh will create a cloud by day and what by night?"
+    },
+    "answers": {
+      "en": [
+        "A bright star",
+        "A rainbow",
+        "A flaming fire",
+        "Moonlight"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_011",
+    "reference": "Isaiah 5:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 5, the vineyard of Yahweh is the house of whom?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Edom",
+        "Israel",
+        "Moab"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_012",
+    "reference": "Isaiah 5:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 5: woe to those who join house to house and lay what to what?"
+    },
+    "answers": {
+      "en": [
+        "Stone to stone",
+        "Field to field",
+        "Vine to vine",
+        "Gold to gold"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_013",
+    "reference": "Isaiah 5:20",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 5: woe to those who call evil what?"
+    },
+    "answers": {
+      "en": [
+        "Wise",
+        "Good",
+        "Holy",
+        "Strong"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_014",
+    "reference": "Isaiah 6:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah's temple vision, what filled the house as the seraph called?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Smoke",
+        "Water",
+        "Rain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_015",
+    "reference": "Isaiah 6:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "With what did the seraph take the live coal from off the altar?"
+    },
+    "answers": {
+      "en": [
+        "A shovel",
+        "Tongs",
+        "A golden cup",
+        "A ladle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_016",
+    "reference": "Isaiah 6:13",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 6:13 ends: 'so the holy seed is its' what?"
+    },
+    "answers": {
+      "en": [
+        "Root",
+        "Stock",
+        "Branch",
+        "Fruit"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_017",
+    "reference": "Isaiah 7:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ahaz should not fear 'two tails of smoking torches': Rezin and the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Remaliah",
+        "Nebat",
+        "Uzziah",
+        "Zichri"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_018",
+    "reference": "Isaiah 7:15",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What will Immanuel eat, according to Isaiah 7:15?"
+    },
+    "answers": {
+      "en": [
+        "Butter and honey",
+        "Bread and wine",
+        "Milk and figs",
+        "Locusts and honey"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_019",
+    "reference": "Isaiah 8:2",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which priest did Isaiah take as a faithful witness in Isaiah 8?"
+    },
+    "answers": {
+      "en": [
+        "Uriah",
+        "Hilkiah",
+        "Zadok",
+        "Abiathar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_020",
+    "reference": "Isaiah 8:14",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 8: for those living in Jerusalem, God will be a trap and what?"
+    },
+    "answers": {
+      "en": [
+        "A net",
+        "A snare",
+        "A pit",
+        "A wall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_021",
+    "reference": "Isaiah 9:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Which two lands does Isaiah 9:1 say were brought into contempt in the former time?"
+    },
+    "answers": {
+      "en": [
+        "Zebulun and Naphtali",
+        "Asher and Dan",
+        "Reuben and Gad",
+        "Ephraim and Manasseh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_022",
+    "reference": "Isaiah 9:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 9: what of Yahweh of Armies will perform this?"
+    },
+    "answers": {
+      "en": [
+        "The zeal",
+        "The arm",
+        "The word",
+        "The breath"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_023",
+    "reference": "Isaiah 10:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Which nation does Isaiah 10 call 'the rod of my anger'?"
+    },
+    "answers": {
+      "en": [
+        "Assyria",
+        "Babylon",
+        "Egypt",
+        "Edom"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_024",
+    "reference": "Isaiah 10:15",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 10: should what brag against him who chops with it?"
+    },
+    "answers": {
+      "en": [
+        "An ax",
+        "A hammer",
+        "A sickle",
+        "A plow"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_025",
+    "reference": "Isaiah 11:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 11:2: the Spirit of counsel and of what will rest on him?"
+    },
+    "answers": {
+      "en": [
+        "Might",
+        "Joy",
+        "Mercy",
+        "Glory"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_026",
+    "reference": "Isaiah 11:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 11: the wolf will live with which animal?"
+    },
+    "answers": {
+      "en": [
+        "The lion",
+        "The bear",
+        "The goat",
+        "The lamb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_027",
+    "reference": "Isaiah 11:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 11: which animal will graze together with the cow?"
+    },
+    "answers": {
+      "en": [
+        "The camel",
+        "The deer",
+        "The horse",
+        "The bear"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_028",
+    "reference": "Isaiah 11:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 11: the nursing child will play near the hole of which creature?"
+    },
+    "answers": {
+      "en": [
+        "A scorpion",
+        "A fox",
+        "A badger",
+        "A cobra"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_029",
+    "reference": "Isaiah 11:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "The earth will be full of the knowledge of Yahweh, as the waters cover what?"
+    },
+    "answers": {
+      "en": [
+        "The land",
+        "The mountains",
+        "The valleys",
+        "The sea"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_030",
+    "reference": "Isaiah 12:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 12: with joy you will draw water out of the wells of what?"
+    },
+    "answers": {
+      "en": [
+        "Mercy",
+        "Life",
+        "Wisdom",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_031",
+    "reference": "Isaiah 13:17",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Which people does God stir up against Babylon in Isaiah 13?"
+    },
+    "answers": {
+      "en": [
+        "The Egyptians",
+        "The Philistines",
+        "The Edomites",
+        "The Medes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_032",
+    "reference": "Isaiah 14:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 14, the people mock which king: 'How the oppressor has ceased!'?"
+    },
+    "answers": {
+      "en": [
+        "The king of Egypt",
+        "The king of Tyre",
+        "The king of Moab",
+        "The king of Babylon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_033",
+    "reference": "Isaiah 14:12",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 14: the fallen one is called 'morning star, son of' what?"
+    },
+    "answers": {
+      "en": [
+        "The night",
+        "The sun",
+        "The sea",
+        "The dawn"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_034",
+    "reference": "Isaiah 14:28",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In the year which king died came Isaiah's burden against Philistia?"
+    },
+    "answers": {
+      "en": [
+        "Uzziah",
+        "Jotham",
+        "Hezekiah",
+        "Ahaz"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_035",
+    "reference": "Isaiah 17:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 17: which city will be taken away and become a ruinous heap?"
+    },
+    "answers": {
+      "en": [
+        "Tyre",
+        "Nineveh",
+        "Damascus",
+        "Gaza"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_036",
+    "reference": "Isaiah 18:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 18: 'the land of the rustling of wings' lies beyond the rivers of which land?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Assyria",
+        "Ethiopia",
+        "Arabia"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_037",
+    "reference": "Isaiah 19:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 19: Yahweh rides on a swift cloud and comes to which land?"
+    },
+    "answers": {
+      "en": [
+        "Assyria",
+        "Moab",
+        "Egypt",
+        "Edom"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_038",
+    "reference": "Isaiah 19:19",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 19: what will stand to Yahweh at the border of Egypt?"
+    },
+    "answers": {
+      "en": [
+        "A tower",
+        "A tree",
+        "A pillar",
+        "A gate"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_039",
+    "reference": "Isaiah 19:24",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 19, Israel will be the third with Egypt and which nation?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Edom",
+        "Assyria",
+        "Moab"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_040",
+    "reference": "Isaiah 20:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of Assyria sent the Tartan to take Ashdod?"
+    },
+    "answers": {
+      "en": [
+        "Sennacherib",
+        "Shalmaneser",
+        "Sargon",
+        "Esarhaddon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_041",
+    "reference": "Isaiah 21:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 21: 'Fallen, fallen is ___!'"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Tyre",
+        "Babylon",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_042",
+    "reference": "Isaiah 21:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 21, one calls from Seir: 'Watchman, what of' what?"
+    },
+    "answers": {
+      "en": [
+        "The day",
+        "The city",
+        "The night",
+        "The wall"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_043",
+    "reference": "Isaiah 22:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 22 is the burden of which valley?"
+    },
+    "answers": {
+      "en": [
+        "The valley of Achor",
+        "The valley of Hinnom",
+        "The valley of vision",
+        "The valley of salt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b180_044",
+    "reference": "Isaiah 22:13",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 22: 'Let's eat and drink, for tomorrow we will' what?"
+    },
+    "answers": {
+      "en": [
+        "Fast",
+        "Die",
+        "Fight",
+        "Travel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_045",
+    "reference": "Isaiah 22:23",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 22: God will fasten Eliakim like what in a sure place?"
+    },
+    "answers": {
+      "en": [
+        "A tent peg",
+        "A nail",
+        "A seal",
+        "A gate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_046",
+    "reference": "Isaiah 23:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "'Howl, you ships of Tarshish' begins Isaiah's burden against which city?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Tyre",
+        "Gaza",
+        "Nineveh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_047",
+    "reference": "Isaiah 23:15",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "For how many years will Tyre be forgotten, according to Isaiah 23?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Seventy",
+        "Twelve",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_048",
+    "reference": "Isaiah 24:20",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 24: the earth will sway back and forth like what?"
+    },
+    "answers": {
+      "en": [
+        "A ship",
+        "A hammock",
+        "A reed",
+        "A cradle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_049",
+    "reference": "Isaiah 25:8",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 25: what has God swallowed up forever?"
+    },
+    "answers": {
+      "en": [
+        "Death",
+        "Sin",
+        "Sorrow",
+        "Darkness"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_050",
+    "reference": "Isaiah 26:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 26: in Yah, Yahweh, is an everlasting what?"
+    },
+    "answers": {
+      "en": [
+        "Fortress",
+        "Rock",
+        "Light",
+        "Throne"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_051",
+    "reference": "Isaiah 27:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 27: with his great sword Yahweh will punish which fleeing serpent?"
+    },
+    "answers": {
+      "en": [
+        "Behemoth",
+        "Leviathan",
+        "Rahab",
+        "Dagon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_052",
+    "reference": "Isaiah 28:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 28 begins: woe to the crown of pride of the drunkards of where?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Ephraim",
+        "Moab",
+        "Edom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b180_053",
+    "reference": "Isaiah 28:16",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 28: what does God lay in Zion for a foundation?"
+    },
+    "answers": {
+      "en": [
+        "A stone",
+        "A pillar",
+        "A wall",
+        "A tower"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_054",
+    "reference": "Isaiah 29:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 29: the vision is like the words of a book that is what?"
+    },
+    "answers": {
+      "en": [
+        "Sealed",
+        "Burned",
+        "Lost",
+        "Torn"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_055",
+    "reference": "Isaiah 29:13",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 29: this people honors God with their lips but has removed what far from him?"
+    },
+    "answers": {
+      "en": [
+        "Their heart",
+        "Their hands",
+        "Their eyes",
+        "Their feet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_056",
+    "reference": "Isaiah 30:15",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 30: in quietness and in confidence will be your what?"
+    },
+    "answers": {
+      "en": [
+        "Strength",
+        "Reward",
+        "Wealth",
+        "Glory"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_057",
+    "reference": "Isaiah 30:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 30, where will your ears hear a voice saying, 'This is the way'?"
+    },
+    "answers": {
+      "en": [
+        "Behind you",
+        "Before you",
+        "Above you",
+        "Beside you"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_058",
+    "reference": "Isaiah 31:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 31: woe to those who go down to Egypt for help and rely on what?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Idols",
+        "Walls",
+        "Horses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_059",
+    "reference": "Isaiah 31:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 31: the Egyptians are men, and their horses are what, not spirit?"
+    },
+    "answers": {
+      "en": [
+        "Iron",
+        "Dust",
+        "Grass",
+        "Flesh"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_060",
+    "reference": "Isaiah 32:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 32: a king shall reign in what?"
+    },
+    "answers": {
+      "en": [
+        "Righteousness",
+        "Wealth",
+        "Fear",
+        "Splendor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_061",
+    "reference": "Isaiah 32:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 32: a man will be like the shade of what in a weary land?"
+    },
+    "answers": {
+      "en": [
+        "A large rock",
+        "A tall tree",
+        "A tent",
+        "A cloud"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b180_062",
+    "reference": "Isaiah 33:22",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 33:22 calls Yahweh our judge, our lawgiver and our what?"
+    },
+    "answers": {
+      "en": [
+        "Shepherd",
+        "Father",
+        "Rock",
+        "King"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b180_063",
+    "reference": "Isaiah 33:24",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 33: what will the inhabitant of Zion no longer say?"
+    },
+    "answers": {
+      "en": [
+        "I am hungry",
+        "I am afraid",
+        "I am poor",
+        "I am sick"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

@@ -1,0 +1,560 @@
+[
+  {
+    "id": "q_b189_001",
+    "reference": "Jonah 1:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What did Jonah pay at Joppa before going down into the ship?"
+    },
+    "answers": {
+      "en": [
+        "A tithe",
+        "A bribe",
+        "Its fare",
+        "A ransom"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_002",
+    "reference": "Jonah 1:5",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Who was fast asleep inside the ship during the great storm?"
+    },
+    "answers": {
+      "en": [
+        "The ship master",
+        "Paul",
+        "Jonah",
+        "Peter"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_003",
+    "reference": "Daniel 6:19",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Early in the morning, where did King Darius hurry?"
+    },
+    "answers": {
+      "en": [
+        "To the temple",
+        "To the furnace",
+        "To the den of lions",
+        "To the river"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_004",
+    "reference": "Daniel 6:26",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "After Daniel was saved, King Darius decreed that men should fear whose God?"
+    },
+    "answers": {
+      "en": [
+        "The god of Darius",
+        "The God of Daniel",
+        "The god Bel",
+        "The god of the Medes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_005",
+    "reference": "Daniel 3:26",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Who came out of the fiery furnace when the king called them?"
+    },
+    "answers": {
+      "en": [
+        "Daniel alone",
+        "Shadrach, Meshach, and Abednego",
+        "The king's guards",
+        "Nobody at all"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_006",
+    "reference": "Daniel 3:28",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Whom did Nebuchadnezzar say God sent to deliver the three friends?"
+    },
+    "answers": {
+      "en": [
+        "A prophet",
+        "His angel",
+        "A great wind",
+        "Rain from heaven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_007",
+    "reference": "Daniel 5:5",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did King Belshazzar see writing on the palace wall?"
+    },
+    "answers": {
+      "en": [
+        "A flaming sword",
+        "The fingers of a man's hand",
+        "A bird's claw",
+        "A shadow of a king"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_008",
+    "reference": "Daniel 1:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "From which tribe were Daniel, Hananiah, Mishael, and Azariah?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Judah",
+        "Benjamin",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_009",
+    "reference": "Daniel 2:47",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "After Daniel explained the dream, what did the king call Daniel's God?"
+    },
+    "answers": {
+      "en": [
+        "The God of gods",
+        "A god of the hills",
+        "A god of Judah only",
+        "A lesser god"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_010",
+    "reference": "Daniel 4:37",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "At the end of Daniel 4, whom does Nebuchadnezzar praise and honor?"
+    },
+    "answers": {
+      "en": [
+        "His own wisdom",
+        "The King of heaven",
+        "The gods of Babylon",
+        "The moon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_011",
+    "reference": "Daniel 6:16",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What did King Darius tell Daniel as he was cast into the den?"
+    },
+    "answers": {
+      "en": [
+        "Goodbye, my friend",
+        "Your God will deliver you",
+        "You deserve this",
+        "Pray to my gods"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_012",
+    "reference": "Isaiah 9:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 9:6: his name will be called Wonderful, Counselor, Mighty what?"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "God",
+        "Warrior",
+        "Lord"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b189_013",
+    "reference": "Isaiah 9:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 9: the government will be on his what?"
+    },
+    "answers": {
+      "en": [
+        "Shoulders",
+        "Head",
+        "Throne",
+        "Hands"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_014",
+    "reference": "Isaiah 6:8",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 6, what question did the Lord ask before Isaiah said 'Send me'?"
+    },
+    "answers": {
+      "en": [
+        "Whom shall I send?",
+        "Where are you?",
+        "Who is holy?",
+        "What do you see?"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_015",
+    "reference": "Isaiah 40:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: what will the shepherd gather in his arm?"
+    },
+    "answers": {
+      "en": [
+        "The lambs",
+        "The goats",
+        "The calves",
+        "The doves"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_016",
+    "reference": "Isaiah 40:29",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: to whom does God give power?"
+    },
+    "answers": {
+      "en": [
+        "The weak",
+        "The kings",
+        "The proud",
+        "The rich"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_017",
+    "reference": "Isaiah 55:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 55: seek Yahweh while he may be what?"
+    },
+    "answers": {
+      "en": [
+        "Found",
+        "Asleep",
+        "Angry",
+        "Far away"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_018",
+    "reference": "Jeremiah 1:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 1: God appointed Jeremiah a prophet to whom?"
+    },
+    "answers": {
+      "en": [
+        "The priests",
+        "The kings of Judah",
+        "The exiles",
+        "The nations"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_019",
+    "reference": "Jeremiah 18:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 18: Israel is in God's hand like what in the potter's hand?"
+    },
+    "answers": {
+      "en": [
+        "The wheel",
+        "The water",
+        "The fire",
+        "The clay"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_020",
+    "reference": "Ezekiel 37:1",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 37: the valley where the Spirit set Ezekiel down was full of what?"
+    },
+    "answers": {
+      "en": [
+        "Bones",
+        "Flowers",
+        "Soldiers",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_021",
+    "reference": "Ezekiel 37:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 37: besides sinews, flesh and skin, what did God put in the bones?"
+    },
+    "answers": {
+      "en": [
+        "Breath",
+        "Gold",
+        "Light",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b189_022",
+    "reference": "Joel 2:28",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: when God pours out his Spirit, who will prophesy?"
+    },
+    "answers": {
+      "en": [
+        "Only the priests",
+        "Only the kings",
+        "Only the old men",
+        "Your sons and your daughters"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_023",
+    "reference": "Isaiah 1:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 1: whom does the prophet first call to hear and listen?"
+    },
+    "answers": {
+      "en": [
+        "The kings and the princes",
+        "The priests and the prophets",
+        "The sons of Jacob",
+        "The heavens and the earth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_024",
+    "reference": "Isaiah 53:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 53: what has Yahweh laid on him?"
+    },
+    "answers": {
+      "en": [
+        "A crown of gold",
+        "A heavy yoke",
+        "The keys of the house",
+        "The iniquity of us all"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_025",
+    "reference": "Isaiah 40:28",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: the everlasting God doesn't faint and isn't what?"
+    },
+    "answers": {
+      "en": [
+        "Silent",
+        "Angry",
+        "Hidden",
+        "Weary"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_026",
+    "reference": "Daniel 9:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 9: Daniel sought God with prayer, fasting, sackcloth and what?"
+    },
+    "answers": {
+      "en": [
+        "Oil",
+        "Silence",
+        "Songs",
+        "Ashes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_027",
+    "reference": "Daniel 2:44",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 2: what will the God of heaven set up that will never be destroyed?"
+    },
+    "answers": {
+      "en": [
+        "A temple",
+        "A wall",
+        "A kingdom",
+        "A statue"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_028",
+    "reference": "Hosea 14:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 14: Israel, return to Yahweh, for you have fallen because of what?"
+    },
+    "answers": {
+      "en": [
+        "Your enemies",
+        "Your poverty",
+        "Your sin",
+        "Your kings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_029",
+    "reference": "Jeremiah 10:10",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 10: Yahweh is the true God, the living God, and an everlasting what?"
+    },
+    "answers": {
+      "en": [
+        "Rock",
+        "Judge",
+        "King",
+        "Light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b189_030",
+    "reference": "Isaiah 12:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 12: 'God is my salvation. I will trust, and will not be' what?"
+    },
+    "answers": {
+      "en": [
+        "Moved",
+        "Ashamed",
+        "Silent",
+        "Afraid"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b189_031",
+    "reference": "Ezekiel 34:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 34: what does God say he himself will search for?"
+    },
+    "answers": {
+      "en": [
+        "His crown",
+        "A lost coin",
+        "His sheep",
+        "Silver"
+      ]
+    },
+    "correctIndex": 2
+  }
+]
