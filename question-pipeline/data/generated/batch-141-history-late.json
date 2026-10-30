@@ -1,0 +1,1496 @@
+[
+  {
+    "id": "q_b141_001",
+    "reference": "1 Kings 12:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which city did all Israel come to make Rehoboam king?"
+    },
+    "answers": {
+      "en": [
+        "Hebron",
+        "Bethel",
+        "Shechem",
+        "Gibeon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_002",
+    "reference": "1 Kings 12:8",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whose advice did Rehoboam follow instead of the old men's?"
+    },
+    "answers": {
+      "en": [
+        "The young men who grew up with him",
+        "The prophets of Judah",
+        "The priests of the temple",
+        "His mother Naamah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_003",
+    "reference": "1 Kings 12:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Rehoboam said, \"My little finger is thicker than\" what?"
+    },
+    "answers": {
+      "en": [
+        "My father's arm",
+        "A cedar beam",
+        "A giant's thumb",
+        "My father's waist"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_004",
+    "reference": "1 Kings 12:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Rehoboam said his father used whips, but he would punish them with what?"
+    },
+    "answers": {
+      "en": [
+        "Rods",
+        "Scorpions",
+        "Chains",
+        "Swords"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_005",
+    "reference": "1 Kings 12:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Whom did Israel stone to death when Rehoboam sent him to them?"
+    },
+    "answers": {
+      "en": [
+        "Shemaiah",
+        "Adoram",
+        "Ahijah",
+        "Benaiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_006",
+    "reference": "1 Kings 12:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which tribe joined Judah when Rehoboam gathered warriors to fight Israel?"
+    },
+    "answers": {
+      "en": [
+        "Ephraim",
+        "Dan",
+        "Simeon",
+        "Benjamin"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_007",
+    "reference": "1 Kings 12:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which man of God told Rehoboam not to fight against Israel?"
+    },
+    "answers": {
+      "en": [
+        "Shemaiah",
+        "Ahijah",
+        "Nathan",
+        "Iddo"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_008",
+    "reference": "1 Kings 12:25",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Jeroboam built Shechem and lived there. Which other city did he build?"
+    },
+    "answers": {
+      "en": [
+        "Tirzah",
+        "Samaria",
+        "Penuel",
+        "Gibeon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_009",
+    "reference": "1 Kings 12:32",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "In which month did Jeroboam hold a feast like the feast in Judah?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The fourth month",
+        "The twelfth month",
+        "The eighth month"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_010",
+    "reference": "1 Kings 13:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The man of God foretold that a son of David would burn priests' bones on Bethel's altar. Who?"
+    },
+    "answers": {
+      "en": [
+        "Hezekiah",
+        "Jehu",
+        "Josiah",
+        "Asa"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_011",
+    "reference": "1 Kings 13:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What happened to Jeroboam's hand when he stretched it out against the man of God?"
+    },
+    "answers": {
+      "en": [
+        "It turned white with leprosy",
+        "It dried up",
+        "It caught fire",
+        "It was cut off"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_012",
+    "reference": "1 Kings 13:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who lived in Bethel and later lied to the man of God from Judah?"
+    },
+    "answers": {
+      "en": [
+        "An old prophet",
+        "A young priest",
+        "Jeroboam's son",
+        "A Levite from Dan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_013",
+    "reference": "1 Kings 13:24",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What killed the man of God from Judah on his way home?"
+    },
+    "answers": {
+      "en": [
+        "A bear",
+        "A snake",
+        "A lion",
+        "Robbers"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_014",
+    "reference": "1 Kings 13:28",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was strange about the lion that killed the man of God?"
+    },
+    "answers": {
+      "en": [
+        "It hadn't eaten the body or the donkey",
+        "It carried the body away",
+        "It also killed the old prophet",
+        "It slept on the road"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_015",
+    "reference": "1 Kings 14:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which son of Jeroboam fell sick?"
+    },
+    "answers": {
+      "en": [
+        "Nadab",
+        "Zimri",
+        "Elah",
+        "Abijah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_016",
+    "reference": "1 Kings 14:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Whom did Jeroboam send in disguise to the prophet Ahijah?"
+    },
+    "answers": {
+      "en": [
+        "His son",
+        "His wife",
+        "His servant",
+        "His captain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_017",
+    "reference": "1 Kings 14:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why could Ahijah not see Jeroboam's wife?"
+    },
+    "answers": {
+      "en": [
+        "It was night",
+        "His eyes were set with age",
+        "She wore a veil",
+        "He was in prison"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_018",
+    "reference": "1 Kings 14:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Rehoboam when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Sixteen",
+        "Twenty-five",
+        "Thirty",
+        "Forty-one"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_019",
+    "reference": "1 Kings 14:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the name of Rehoboam's mother?"
+    },
+    "answers": {
+      "en": [
+        "Naamah",
+        "Maacah",
+        "Azubah",
+        "Jezebel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_020",
+    "reference": "1 Kings 14:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which king of Egypt attacked Jerusalem in Rehoboam's fifth year?"
+    },
+    "answers": {
+      "en": [
+        "Neco",
+        "So",
+        "Shishak",
+        "Hophra"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_021",
+    "reference": "1 Kings 14:27",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Rehoboam replaced the gold shields with shields of what?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Wood",
+        "Iron",
+        "Brass"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_022",
+    "reference": "1 Kings 15:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which king of Judah did what was right in Yahweh's eyes, like David his father?"
+    },
+    "answers": {
+      "en": [
+        "Abijam",
+        "Rehoboam",
+        "Asa",
+        "Jehoram"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_023",
+    "reference": "1 Kings 15:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Asa removed whom from being queen mother because of her idol?"
+    },
+    "answers": {
+      "en": [
+        "Jezebel",
+        "Maacah",
+        "Athaliah",
+        "Naamah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_024",
+    "reference": "1 Kings 15:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Asa sent the temple treasures to which king of Syria?"
+    },
+    "answers": {
+      "en": [
+        "Ben Hadad",
+        "Hazael",
+        "Rezin",
+        "Naaman"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_025",
+    "reference": "1 Kings 15:22",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Asa used the stones of Ramah to build which two cities?"
+    },
+    "answers": {
+      "en": [
+        "Bethel and Dan",
+        "Tirzah and Samaria",
+        "Geba and Mizpah",
+        "Hebron and Gibeon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_026",
+    "reference": "1 Kings 15:27",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who killed King Nadab son of Jeroboam and reigned in his place?"
+    },
+    "answers": {
+      "en": [
+        "Baasha",
+        "Zimri",
+        "Omri",
+        "Elah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_027",
+    "reference": "1 Kings 16:10",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who killed King Elah while he was drunk in Tirzah?"
+    },
+    "answers": {
+      "en": [
+        "Omri",
+        "Tibni",
+        "Jehu",
+        "Zimri"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_028",
+    "reference": "1 Kings 16:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For how many days did Zimri reign in Tirzah?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Forty",
+        "Ten"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_029",
+    "reference": "1 Kings 16:18",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Zimri die when Tirzah was taken?"
+    },
+    "answers": {
+      "en": [
+        "He fell in battle",
+        "He burned the palace over himself",
+        "He was stoned by the people",
+        "He was killed by a lion"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_030",
+    "reference": "1 Kings 16:21",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "When Israel split, half followed Omri and half followed whom?"
+    },
+    "answers": {
+      "en": [
+        "Zimri",
+        "Baasha",
+        "Jehu",
+        "Tibni"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_031",
+    "reference": "1 Kings 16:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which city did Omri build and name after Shemer, the hill's owner?"
+    },
+    "answers": {
+      "en": [
+        "Samaria",
+        "Tirzah",
+        "Jezreel",
+        "Shechem"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_032",
+    "reference": "1 Kings 16:32",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Ahab built a house in Samaria for which god?"
+    },
+    "answers": {
+      "en": [
+        "Dagon",
+        "Molech",
+        "Baal",
+        "Chemosh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_033",
+    "reference": "1 Kings 17:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Elijah told Ahab there would be no dew and no what?"
+    },
+    "answers": {
+      "en": [
+        "Hail",
+        "Snow",
+        "Wind",
+        "Rain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_034",
+    "reference": "1 Kings 17:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Elijah the Tishbite was one of the settlers of which region?"
+    },
+    "answers": {
+      "en": [
+        "Galilee",
+        "Bashan",
+        "Gilead",
+        "Sharon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_035",
+    "reference": "1 Kings 17:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "By which brook did Elijah hide himself?"
+    },
+    "answers": {
+      "en": [
+        "Kidron",
+        "Cherith",
+        "Kishon",
+        "Jabbok"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_036",
+    "reference": "1 Kings 17:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Why did Elijah have to leave the brook Cherith?"
+    },
+    "answers": {
+      "en": [
+        "The brook dried up",
+        "Ahab's soldiers found him",
+        "The ravens stopped coming",
+        "A lion lived there"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_037",
+    "reference": "1 Kings 17:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What was the widow of Zarephath doing when Elijah met her?"
+    },
+    "answers": {
+      "en": [
+        "Drawing water",
+        "Grinding grain",
+        "Gathering sticks",
+        "Picking olives"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_038",
+    "reference": "1 Kings 17:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many times did Elijah stretch himself on the widow's dead son?"
+    },
+    "answers": {
+      "en": [
+        "3",
+        "7",
+        "2",
+        "1"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_039",
+    "reference": "1 Kings 17:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After her son lived again, what did the widow say she now knew about Elijah?"
+    },
+    "answers": {
+      "en": [
+        "A king's son",
+        "A rich man",
+        "An angel",
+        "A man of God"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_040",
+    "reference": "1 Kings 18:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was killing Yahweh's prophets, so that Obadiah hid a hundred of them?"
+    },
+    "answers": {
+      "en": [
+        "Ahab",
+        "Jezebel",
+        "Athaliah",
+        "Maacah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_041",
+    "reference": "1 Kings 18:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who was over Ahab's household, yet feared Yahweh greatly?"
+    },
+    "answers": {
+      "en": [
+        "Micaiah",
+        "Obadiah",
+        "Jehu",
+        "Naboth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_042",
+    "reference": "1 Kings 18:17",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Ahab call Elijah when he met him?"
+    },
+    "answers": {
+      "en": [
+        "Man of God",
+        "My father",
+        "Prophet of doom",
+        "Troubler of Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_043",
+    "reference": "1 Kings 18:19",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many prophets of Baal did Elijah face on Mount Carmel?"
+    },
+    "answers": {
+      "en": [
+        "450",
+        "400",
+        "850",
+        "300"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_044",
+    "reference": "1 Kings 18:24",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Elijah said the true God would answer by sending what?"
+    },
+    "answers": {
+      "en": [
+        "Rain",
+        "Thunder",
+        "Fire",
+        "An earthquake"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_045",
+    "reference": "1 Kings 18:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "From when to when did the prophets of Baal call on Baal?"
+    },
+    "answers": {
+      "en": [
+        "From noon until evening",
+        "All night long",
+        "For seven days",
+        "From morning until noon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_046",
+    "reference": "1 Kings 18:27",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Elijah mocked: maybe Baal is on a journey, or maybe he what?"
+    },
+    "answers": {
+      "en": [
+        "Is sick and must be healed",
+        "Is hiding and must be found",
+        "Sleeps and must be awakened",
+        "Is angry and must be calmed"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_047",
+    "reference": "1 Kings 18:31",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many stones did Elijah use to rebuild the altar?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "Ten",
+        "Four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_048",
+    "reference": "1 Kings 18:33",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many jars of water did Elijah have poured on the offering each time?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Twelve",
+        "Seven",
+        "Two"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_049",
+    "reference": "1 Kings 18:34",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many times was water poured over Elijah's offering?"
+    },
+    "answers": {
+      "en": [
+        "7 times",
+        "2 times",
+        "3 times",
+        "4 times"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_050",
+    "reference": "1 Kings 18:39",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the people cry when the fire fell on Mount Carmel?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh, he is God!",
+        "Long live King Ahab!",
+        "Baal has answered!",
+        "Elijah is king!"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_051",
+    "reference": "1 Kings 18:40",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "At which brook did Elijah kill the prophets of Baal?"
+    },
+    "answers": {
+      "en": [
+        "Cherith",
+        "Kidron",
+        "Arnon",
+        "Kishon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_052",
+    "reference": "1 Kings 18:42",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Praying for rain on Carmel, where did Elijah put his face?"
+    },
+    "answers": {
+      "en": [
+        "On the altar",
+        "Between his knees",
+        "In the dust",
+        "Toward the sea"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_053",
+    "reference": "1 Kings 18:43",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many times did Elijah send his servant to look toward the sea?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Twelve",
+        "Five"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_054",
+    "reference": "1 Kings 18:45",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What came after Elijah prayed on Mount Carmel and the sky grew black?"
+    },
+    "answers": {
+      "en": [
+        "Hail",
+        "Snow",
+        "Locusts",
+        "A great rain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_055",
+    "reference": "1 Kings 18:46",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Elijah ran ahead of Ahab's chariot to which city?"
+    },
+    "answers": {
+      "en": [
+        "Jezreel",
+        "Samaria",
+        "Tirzah",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_056",
+    "reference": "1 Kings 19:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who threatened to kill Elijah after the fire on Mount Carmel?"
+    },
+    "answers": {
+      "en": [
+        "Ahab",
+        "Athaliah",
+        "Jezebel",
+        "Obadiah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_057",
+    "reference": "1 Kings 19:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which town did Elijah leave his servant as he fled?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Jericho",
+        "Gilgal",
+        "Beersheba"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_058",
+    "reference": "1 Kings 19:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When the angel woke Elijah, what did he find at his head?"
+    },
+    "answers": {
+      "en": [
+        "Honey and locusts",
+        "Bread and wine",
+        "A cake and a jar of water",
+        "Figs and raisins"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_059",
+    "reference": "1 Kings 19:8",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "For how many days and nights did Elijah travel to Horeb?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Three",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_060",
+    "reference": "1 Kings 19:9",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Where did Elijah spend the night at Horeb?"
+    },
+    "answers": {
+      "en": [
+        "In a cave",
+        "In a tent",
+        "Under a tree",
+        "In a tower"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_061",
+    "reference": "1 Kings 19:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom was Elijah told to anoint king over Syria?"
+    },
+    "answers": {
+      "en": [
+        "Ben Hadad",
+        "Rezin",
+        "Hazael",
+        "Naaman"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_062",
+    "reference": "1 Kings 19:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom was Elijah told to anoint king over Israel?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Joram",
+        "Ahaziah",
+        "Omri"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_063",
+    "reference": "1 Kings 19:18",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many in Israel had not bowed their knees to Baal?"
+    },
+    "answers": {
+      "en": [
+        "700",
+        "70",
+        "70,000",
+        "7,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_064",
+    "reference": "1 Kings 19:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha use as fuel to boil the meat of the oxen?"
+    },
+    "answers": {
+      "en": [
+        "Cedar wood",
+        "The instruments of the oxen",
+        "Thorn bushes",
+        "Olive branches"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_065",
+    "reference": "1 Kings 20:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many kings were with Ben Hadad when he besieged Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Thirty-two",
+        "Seven",
+        "Five"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_066",
+    "reference": "1 Kings 20:23",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The Syrians said Israel's god was a god of what, so they should fight in the plain?"
+    },
+    "answers": {
+      "en": [
+        "The valleys",
+        "The sea",
+        "The desert",
+        "The hills"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_067",
+    "reference": "1 Kings 20:26",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Where did Ben Hadad gather the Syrians to fight Israel the next year?"
+    },
+    "answers": {
+      "en": [
+        "Aphek",
+        "Ramoth Gilead",
+        "Dothan",
+        "Megiddo"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_068",
+    "reference": "1 Kings 20:30",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many Syrian men died when a wall fell on them at Aphek?"
+    },
+    "answers": {
+      "en": [
+        "100,000",
+        "7,000",
+        "27,000",
+        "32,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_069",
+    "reference": "1 Kings 21:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Why did Naboth refuse to give his vineyard to Ahab?"
+    },
+    "answers": {
+      "en": [
+        "The price was too low",
+        "It belonged to the temple",
+        "He wanted to plant wheat there",
+        "It was his fathers' inheritance"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_070",
+    "reference": "1 Kings 21:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Jezebel send her orders against Naboth?"
+    },
+    "answers": {
+      "en": [
+        "A herald at the gate",
+        "A word from the prophets",
+        "Letters sealed with Ahab's seal",
+        "A soldier with a spear"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_071",
+    "reference": "1 Kings 21:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many false witnesses were set against Naboth?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Two",
+        "Seven",
+        "Ten"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_072",
+    "reference": "1 Kings 21:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Elijah said dogs would eat Jezebel by the wall of which city?"
+    },
+    "answers": {
+      "en": [
+        "Jezreel",
+        "Samaria",
+        "Tirzah",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_073",
+    "reference": "1 Kings 21:27",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Ahab do when he heard Elijah's words of judgment?"
+    },
+    "answers": {
+      "en": [
+        "Threw Elijah into prison",
+        "Fled to Damascus",
+        "Put on sackcloth and fasted",
+        "Gave the vineyard away"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_074",
+    "reference": "1 Kings 22:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which king of Judah went with Ahab to fight at Ramoth Gilead?"
+    },
+    "answers": {
+      "en": [
+        "Jehoshaphat",
+        "Asa",
+        "Joash",
+        "Amaziah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_075",
+    "reference": "1 Kings 22:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "About how many prophets told Ahab to go up to Ramoth Gilead?"
+    },
+    "answers": {
+      "en": [
+        "850",
+        "100",
+        "50",
+        "400"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_076",
+    "reference": "1 Kings 22:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The prophet Zedekiah made himself horns of what?"
+    },
+    "answers": {
+      "en": [
+        "Bronze",
+        "Iron",
+        "Gold",
+        "Ivory"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_077",
+    "reference": "1 Kings 22:17",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Micaiah saw all Israel scattered on the mountains like what?"
+    },
+    "answers": {
+      "en": [
+        "Chaff before the wind",
+        "Sheep without a shepherd",
+        "Leaves in autumn",
+        "Locusts in a field"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b141_078",
+    "reference": "1 Kings 22:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In Micaiah's vision, what kind of spirit went out to entice Ahab?"
+    },
+    "answers": {
+      "en": [
+        "A spirit of fear",
+        "A spirit of sleep",
+        "A spirit of wisdom",
+        "A lying spirit"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_079",
+    "reference": "1 Kings 22:30",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How did Ahab go into the battle at Ramoth Gilead?"
+    },
+    "answers": {
+      "en": [
+        "In disguise",
+        "In his royal robes",
+        "In a golden chariot",
+        "Carried on a throne"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b141_080",
+    "reference": "1 Kings 22:38",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where was Ahab's chariot washed, where dogs licked his blood?"
+    },
+    "answers": {
+      "en": [
+        "The brook Kishon",
+        "The Jordan River",
+        "The pool of Samaria",
+        "The pool of Siloam"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_081",
+    "reference": "1 Kings 22:39",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What kind of house did Ahab build?"
+    },
+    "answers": {
+      "en": [
+        "A golden house",
+        "A marble palace",
+        "A cedar tower",
+        "An ivory house"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b141_082",
+    "reference": "1 Kings 22:40",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which son of Ahab reigned in his place?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Omri",
+        "Ahaziah",
+        "Jotham"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b141_083",
+    "reference": "1 Kings 22:48",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where were Jehoshaphat's ships for Ophir wrecked?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Ezion Geber",
+        "Tarshish",
+        "Tyre"
+      ]
+    },
+    "correctIndex": 1
+  }
+]

@@ -1,0 +1,5222 @@
+{
+  "q_b140_001": {
+    "text": "Melyik fiatal lányt hozták Dávid király mellé, hogy gondozza öregkorában?",
+    "answers": [
+      "Abigailt",
+      "Míkalt",
+      "Abisagot",
+      "Támárt"
+    ]
+  },
+  "q_b140_002": {
+    "text": "Dávid melyik fia fuvalkodott fel, mondván: „Én leszek a király!”?",
+    "answers": [
+      "Adónijjá",
+      "Absolon",
+      "Amnón",
+      "Salamon"
+    ]
+  },
+  "q_b140_003": {
+    "text": "Dávid seregének melyik vezére állt Adónijjá mellé?",
+    "answers": [
+      "Benájá",
+      "Abnér",
+      "Amászá",
+      "Jóáb"
+    ]
+  },
+  "q_b140_004": {
+    "text": "Melyik pap támogatta Adónijjá trónra jutását?",
+    "answers": [
+      "Cádók",
+      "Ebjátár",
+      "Hilkijjá",
+      "Éli"
+    ]
+  },
+  "q_b140_005": {
+    "text": "Melyik kőnél áldozott Adónijjá juhokat és marhákat?",
+    "answers": [
+      "Ében-Ézer",
+      "Zóhelet",
+      "Bóhan",
+      "Ezel"
+    ]
+  },
+  "q_b140_006": {
+    "text": "Melyik próféta figyelmeztette Betsabét, hogy Adónijjá királlyá tette magát?",
+    "answers": [
+      "Gád",
+      "Ahijjá",
+      "Illés",
+      "Nátán"
+    ]
+  },
+  "q_b140_007": {
+    "text": "Melyik forráshoz vitték le Salamont, hogy királlyá kenjék?",
+    "answers": [
+      "Gihónhoz",
+      "Siloámhoz",
+      "Én-Rógélhoz",
+      "Kidrónhoz"
+    ]
+  },
+  "q_b140_008": {
+    "text": "Mit kiáltott a nép, amikor Salamont felkenték?",
+    "answers": [
+      "Hozsánna Dávid fiának!",
+      "Dicsőség Izráel Istenének!",
+      "Éljen Salamon király!",
+      "Salamon a kiválasztott!"
+    ]
+  },
+  "q_b140_009": {
+    "text": "Mibe kapaszkodott Adónijjá, amikor félt Salamontól?",
+    "answers": [
+      "A láda rúdjaiba",
+      "A király palástjába",
+      "A kapu ajtófélfáiba",
+      "Az oltár szarvaiba"
+    ]
+  },
+  "q_b140_010": {
+    "text": "Hol temették el Dávid királyt?",
+    "answers": [
+      "Betlehemben",
+      "Hebrónban",
+      "Dávid városában",
+      "A Mórijjá-hegyen"
+    ]
+  },
+  "q_b140_011": {
+    "text": "Hány évig uralkodott Dávid Izráelen?",
+    "answers": [
+      "30",
+      "40",
+      "20",
+      "50"
+    ]
+  },
+  "q_b140_012": {
+    "text": "Hány évig uralkodott Dávid Hebrónban?",
+    "answers": [
+      "7",
+      "3",
+      "10",
+      "12"
+    ]
+  },
+  "q_b140_013": {
+    "text": "Kit kért feleségül Adónijjá Betsabé közvetítésével?",
+    "answers": [
+      "Abigailt",
+      "Míkalt",
+      "Abisagot",
+      "Maakát"
+    ]
+  },
+  "q_b140_014": {
+    "text": "Kit küldött Salamon, hogy végezzen Adónijjával?",
+    "answers": [
+      "Benáját",
+      "Jóábot",
+      "Cádókot",
+      "Simeit"
+    ]
+  },
+  "q_b140_015": {
+    "text": "Melyik városba küldték el Ebjátár papot?",
+    "answers": [
+      "Silóba",
+      "Nóbba",
+      "Gibeónba",
+      "Anátótba"
+    ]
+  },
+  "q_b140_016": {
+    "text": "Hová menekült Jóáb, amikor meghallotta, mit tett Salamon?",
+    "answers": [
+      "Hebrónba",
+      "Az ÚR sátrához",
+      "Adullám barlangjába",
+      "Jerikóba"
+    ]
+  },
+  "q_b140_017": {
+    "text": "Melyik patakon nem kelhetett át Simei, különben meghal?",
+    "answers": [
+      "Kerít",
+      "Kidrón",
+      "Jabbók",
+      "Arnón"
+    ]
+  },
+  "q_b140_018": {
+    "text": "Gát melyik királyához szökött el Simei két szolgája?",
+    "answers": [
+      "Abímelekhez",
+      "Hírámhoz",
+      "Hadadhoz",
+      "Ákishoz"
+    ]
+  },
+  "q_b140_019": {
+    "text": "Melyik királlyal kötött szövetséget Salamon, amikor feleségül vette a lányát?",
+    "answers": [
+      "A fáraóval, Egyiptom királyával",
+      "Hírámmal, Tírusz királyával",
+      "Sába királyával",
+      "A szír Ben-Hadaddal"
+    ]
+  },
+  "q_b140_020": {
+    "text": "Hol mutatott be Salamon ezer égőáldozatot?",
+    "answers": [
+      "Bételben",
+      "Silóban",
+      "Gibeónban",
+      "Hebrónban"
+    ]
+  },
+  "q_b140_021": {
+    "text": "Hogyan jelent meg az ÚR Salamonnak Gibeónban?",
+    "answers": [
+      "Égő csipkebokorban",
+      "Forgószélben",
+      "Felhőoszlopban",
+      "Álomban"
+    ]
+  },
+  "q_b140_022": {
+    "text": "Mit adott Isten Salamonnak azon felül, amit nem is kért?",
+    "answers": [
+      "Győzelmet Egyiptom felett",
+      "Sok fiút",
+      "Gazdagságot és dicsőséget",
+      "Aranypalotát"
+    ]
+  },
+  "q_b140_023": {
+    "text": "Kik jöttek Salamon királyhoz egy csecsemő miatt vitatkozva?",
+    "answers": [
+      "Két pásztor",
+      "Két asszony",
+      "Két pap",
+      "Két testvér"
+    ]
+  },
+  "q_b140_024": {
+    "text": "Hogyan halt meg éjjel a másik asszony gyermeke?",
+    "answers": [
+      "Ráfeküdt",
+      "Megbetegedett",
+      "Leejtették",
+      "Ellopták"
+    ]
+  },
+  "q_b140_025": {
+    "text": "A gyermek ügyében hozott ítélet után mit láttak Salamonban Izráel fiai?",
+    "answers": [
+      "Nagy erőt",
+      "Gőgös szívet",
+      "Isten bölcsességét",
+      "Dávid lelkét"
+    ]
+  },
+  "q_b140_026": {
+    "text": "Hány tisztviselő látta el élelemmel Salamon udvarát, mindegyik egy hónapig?",
+    "answers": [
+      "12",
+      "7",
+      "10",
+      "40"
+    ]
+  },
+  "q_b140_027": {
+    "text": "Hány istállója volt Salamonnak a harci kocsik lovainak?",
+    "answers": [
+      "7000",
+      "12 000",
+      "400",
+      "40 000"
+    ]
+  },
+  "q_b140_028": {
+    "text": "Salamon bölcsebb volt Hémánnál, Kalkólnál, Dardánál és melyik ezráhinál?",
+    "answers": [
+      "Ászáfnál",
+      "Étánnál",
+      "Jedútúnnál",
+      "Kórahnál"
+    ]
+  },
+  "q_b140_029": {
+    "text": "Hány példabeszédet mondott Salamon?",
+    "answers": [
+      "1005",
+      "3000",
+      "300",
+      "10 000"
+    ]
+  },
+  "q_b140_030": {
+    "text": "Hány éneket szerzett Salamon?",
+    "answers": [
+      "3000",
+      "150",
+      "500",
+      "1005"
+    ]
+  },
+  "q_b140_031": {
+    "text": "Salamon a libanoni cédrustól melyik falon termő növényig beszélt?",
+    "answers": [
+      "Izsópig",
+      "Mustárig",
+      "Bogáncsig",
+      "Mentáig"
+    ]
+  },
+  "q_b140_032": {
+    "text": "Tírusz melyik királya szerette mindig Dávidot, és küldött szolgákat Salamonhoz?",
+    "answers": [
+      "Ben-Hadad",
+      "Tói",
+      "Hírám",
+      "Ákis"
+    ]
+  },
+  "q_b140_033": {
+    "text": "Milyen fákat kért Salamon Hírámtól a Libanonról?",
+    "answers": [
+      "Tölgyeket",
+      "Olajfákat",
+      "Pálmafákat",
+      "Cédrusokat"
+    ]
+  },
+  "q_b140_034": {
+    "text": "Hogyan szállították Hírám emberei a fát a tengeren?",
+    "answers": [
+      "Tevéken",
+      "Szekereken",
+      "Tutajokon",
+      "A hátukon cipelve"
+    ]
+  },
+  "q_b140_035": {
+    "text": "Hány emberből állt Salamon robotosainak serege egész Izráelből?",
+    "answers": [
+      "10 000",
+      "30 000",
+      "70 000",
+      "3300"
+    ]
+  },
+  "q_b140_036": {
+    "text": "Ki volt Salamon robotmunkásainak felügyelője?",
+    "answers": [
+      "Adónírám",
+      "Benájá",
+      "Zabúd",
+      "Jósáfát"
+    ]
+  },
+  "q_b140_037": {
+    "text": "Hány teherhordója volt Salamonnak?",
+    "answers": [
+      "80 000",
+      "30 000",
+      "70 000",
+      "3300"
+    ]
+  },
+  "q_b140_038": {
+    "text": "Hány könyök hosszú volt a ház, amelyet Salamon az ÚRnak épített?",
+    "answers": [
+      "60",
+      "40",
+      "20",
+      "100"
+    ]
+  },
+  "q_b140_039": {
+    "text": "Miért nem hallatszott kalapácsütés a templom építésekor?",
+    "answers": [
+      "Csak fából épült",
+      "Éjjel építették",
+      "Törvény tiltotta a kalapácsot",
+      "A köveket a kőfejtőben készítették elő"
+    ]
+  },
+  "q_b140_040": {
+    "text": "Mivel borította be Salamon a templom egész belsejét?",
+    "answers": [
+      "Ezüsttel",
+      "Arannyal",
+      "Bronzzal",
+      "Elefántcsonttal"
+    ]
+  },
+  "q_b140_041": {
+    "text": "Milyen két, tíz könyök magas olajfa alak állt a belső szentélyben?",
+    "answers": [
+      "Oroszlánok",
+      "Kerubok",
+      "Ökrök",
+      "Sasok"
+    ]
+  },
+  "q_b140_042": {
+    "text": "Hány évig építette Salamon a templomot?",
+    "answers": [
+      "13",
+      "3",
+      "20",
+      "7"
+    ]
+  },
+  "q_b140_043": {
+    "text": "Hogy hívták Salamon egyik nagy épületét?",
+    "answers": [
+      "Libanon-erdő háza",
+      "Cédrusház",
+      "Dávid tornya",
+      "Elefántcsontház"
+    ]
+  },
+  "q_b140_044": {
+    "text": "Melyik törzsből való özvegy fia volt Hírám, a bronzműves?",
+    "answers": [
+      "Júda",
+      "Simeon",
+      "Naftáli",
+      "Ásér"
+    ]
+  },
+  "q_b140_045": {
+    "text": "Hogy hívták Salamon templomának hatalmas öntött bronzmedencéjét?",
+    "answers": [
+      "A nagy kút",
+      "Salamon tava",
+      "Mózes mosdómedencéje",
+      "Az öntött tenger"
+    ]
+  },
+  "q_b140_046": {
+    "text": "Hány bikán állt a nagy bronztenger?",
+    "answers": [
+      "4",
+      "7",
+      "12",
+      "10"
+    ]
+  },
+  "q_b140_047": {
+    "text": "Hány kisebb bronzmedencét készített Hírám a templomhoz?",
+    "answers": [
+      "12",
+      "10",
+      "7",
+      "4"
+    ]
+  },
+  "q_b140_048": {
+    "text": "Mi volt a ládában, amikor bevitték a templomba?",
+    "answers": [
+      "Csak a két kőtábla",
+      "Áron vesszője és a táblák",
+      "Egy korsó manna",
+      "Mózes botja"
+    ]
+  },
+  "q_b140_049": {
+    "text": "Mi töltötte be az ÚR házát, hogy a papok nem tudtak ott szolgálni?",
+    "answers": [
+      "Füst",
+      "Tűz",
+      "A felhő",
+      "Víz"
+    ]
+  },
+  "q_b140_050": {
+    "text": "A templomszenteléskor merre tárta ki Salamon a kezét?",
+    "answers": [
+      "Az ég felé",
+      "A láda felé",
+      "Kelet felé",
+      "A tenger felé"
+    ]
+  },
+  "q_b140_051": {
+    "text": "Salamon imája: az egek sem fogadhatnak be téged, hát még mi?",
+    "answers": [
+      "Dávid városa",
+      "A szent sátor",
+      "Izráel földje",
+      "Ez a ház, amelyet építettem"
+    ]
+  },
+  "q_b140_052": {
+    "text": "Hány juhot áldozott Salamon a templom felszentelésekor?",
+    "answers": [
+      "22 000",
+      "120 000",
+      "12 000",
+      "70 000"
+    ]
+  },
+  "q_b140_053": {
+    "text": "Összesen hány napig tartotta Salamon a templomszentelési ünnepet?",
+    "answers": [
+      "7",
+      "14",
+      "8",
+      "40"
+    ]
+  },
+  "q_b140_054": {
+    "text": "Hány galileai várost adott Salamon Hírámnak?",
+    "answers": [
+      "12",
+      "10",
+      "40",
+      "20"
+    ]
+  },
+  "q_b140_055": {
+    "text": "Minek nevezte Hírám a Salamontól kapott városokat, mert nem tetszettek neki?",
+    "answers": [
+      "Kábúl földjének",
+      "Gósen földjének",
+      "Tób földjének",
+      "Nód földjének"
+    ]
+  },
+  "q_b140_056": {
+    "text": "Melyik várost foglalta el a fáraó, és adta lányának, Salamon feleségének?",
+    "answers": [
+      "Megiddót",
+      "Hácórt",
+      "Gézert",
+      "Lákíst"
+    ]
+  },
+  "q_b140_057": {
+    "text": "Hol építtetett Salamon hajóhadat?",
+    "answers": [
+      "Joppéban",
+      "Tíruszban",
+      "Tarsísban",
+      "Ecjón-Geberben"
+    ]
+  },
+  "q_b140_058": {
+    "text": "Melyik földre hajóztak Salamon hajói aranyért?",
+    "answers": [
+      "Tarsísba",
+      "Sábába",
+      "Ofírba",
+      "Havilába"
+    ]
+  },
+  "q_b140_059": {
+    "text": "A fűszereken és drágaköveken kívül mit hozott Sába királynője nagy mennyiségben?",
+    "answers": [
+      "Ezüstöt",
+      "Aranyat",
+      "Elefántcsontot",
+      "Lovakat"
+    ]
+  },
+  "q_b140_060": {
+    "text": "Mit mondott Sába királynője a Salamonról hallott hírről?",
+    "answers": [
+      "A felét sem mondták el nekem",
+      "Mind kitalálás volt",
+      "Pontosan igaz volt",
+      "Későn jöttem, hogy lássam"
+    ]
+  },
+  "q_b140_061": {
+    "text": "Hány talentum arany jött be Salamonhoz egy év alatt?",
+    "answers": [
+      "120",
+      "420",
+      "666",
+      "1000"
+    ]
+  },
+  "q_b140_062": {
+    "text": "Miből készült Salamon nagy, arannyal bevont trónja?",
+    "answers": [
+      "Elefántcsontból",
+      "Cédrusból",
+      "Bronzból",
+      "Márványból"
+    ]
+  },
+  "q_b140_063": {
+    "text": "Hány lépcső vezetett fel Salamon trónjához?",
+    "answers": [
+      "7",
+      "12",
+      "3",
+      "6"
+    ]
+  },
+  "q_b140_064": {
+    "text": "Hány oroszlán állt Salamon trónjának lépcsőin?",
+    "answers": [
+      "6",
+      "12",
+      "10",
+      "14"
+    ]
+  },
+  "q_b140_065": {
+    "text": "Melyik fémet nem becsülték semmire Salamon idejében?",
+    "answers": [
+      "Az aranyat",
+      "Az ezüstöt",
+      "A bronzot",
+      "A vasat"
+    ]
+  },
+  "q_b140_066": {
+    "text": "Az aranyon és elefántcsonton kívül mit hoztak a tarsísi hajók?",
+    "answers": [
+      "Oroszlánokat és medvéket",
+      "Tevéket és lovakat",
+      "Kecskéket és ökröket",
+      "Majmokat és pávákat"
+    ]
+  },
+  "q_b140_067": {
+    "text": "Honnan hozták Salamon lovait?",
+    "answers": [
+      "Egyiptomból",
+      "Asszíriából",
+      "Sábából",
+      "Tíruszból"
+    ]
+  },
+  "q_b140_068": {
+    "text": "Hány mellékfelesége volt Salamonnak?",
+    "answers": [
+      "700",
+      "1000",
+      "300",
+      "60"
+    ]
+  },
+  "q_b140_069": {
+    "text": "Mit tettek Salamon feleségei, amikor megöregedett?",
+    "answers": [
+      "Háborúra beszélték rá",
+      "Elrejtették a kincseit",
+      "Új palotát építtettek neki",
+      "Más istenek felé fordították a szívét"
+    ]
+  },
+  "q_b140_070": {
+    "text": "Móáb melyik istenének épített Salamon áldozóhalmot?",
+    "answers": [
+      "Dágónnak",
+      "Baalnak",
+      "Kemósnak",
+      "Marduknak"
+    ]
+  },
+  "q_b140_071": {
+    "text": "Melyik edómi férfit támasztotta az ÚR Salamon ellenségéül?",
+    "answers": [
+      "Rezónt",
+      "Hadadot",
+      "Jeroboámot",
+      "Hírámot"
+    ]
+  },
+  "q_b140_072": {
+    "text": "Eljádá melyik fia lett Salamon ellensége, és uralkodott Damaszkuszban?",
+    "answers": [
+      "Rezón",
+      "Hadad",
+      "Hazáél",
+      "Ben-Hadad"
+    ]
+  },
+  "q_b140_073": {
+    "text": "Melyik silói próféta találkozott Jeroboámmal Jeruzsálemen kívül?",
+    "answers": [
+      "Nátán",
+      "Semajá",
+      "Ahijjá",
+      "Illés"
+    ]
+  },
+  "q_b140_074": {
+    "text": "Hány darabra szakította Ahijjá az új köpenyét?",
+    "answers": [
+      "12",
+      "10",
+      "2",
+      "7"
+    ]
+  },
+  "q_b140_075": {
+    "text": "Hány darabot vegyen el Jeroboám Ahijjá köpenyéből?",
+    "answers": [
+      "12",
+      "2",
+      "1",
+      "10"
+    ]
+  },
+  "q_b140_076": {
+    "text": "Hová menekült Jeroboám Salamon elől?",
+    "answers": [
+      "Móábba",
+      "Egyiptomba",
+      "Tíruszba",
+      "Damaszkuszba"
+    ]
+  },
+  "q_b140_077": {
+    "text": "Hány évig uralkodott Salamon Jeruzsálemben egész Izráelen?",
+    "answers": [
+      "30",
+      "40",
+      "50",
+      "20"
+    ]
+  },
+  "q_b141_001": {
+    "text": "Melyik városba gyűlt össze egész Izráel, hogy Roboámot királlyá tegye?",
+    "answers": [
+      "Hebrónba",
+      "Bételbe",
+      "Sikembe",
+      "Gibeónba"
+    ]
+  },
+  "q_b141_002": {
+    "text": "Kiknek a tanácsát fogadta meg Roboám az öregekéi helyett?",
+    "answers": [
+      "A vele együtt felnőtt ifjakét",
+      "Júda prófétáiét",
+      "A templom papjaiét",
+      "Anyjáét, Naamáét"
+    ]
+  },
+  "q_b141_003": {
+    "text": "Roboám ezt mondta: „A kisujjam vastagabb, mint…” mi?",
+    "answers": [
+      "Apám karja",
+      "Egy cédrusgerenda",
+      "Egy óriás hüvelykujja",
+      "Apám dereka"
+    ]
+  },
+  "q_b141_004": {
+    "text": "Roboám szerint apja ostorral fenyítette őket, ő viszont mivel fogja?",
+    "answers": [
+      "Vesszővel",
+      "Skorpiókkal",
+      "Láncokkal",
+      "Karddal"
+    ]
+  },
+  "q_b141_005": {
+    "text": "Kit köveztek halálra Izráel fiai, amikor Roboám elküldte hozzájuk?",
+    "answers": [
+      "Semaját",
+      "Adórámot",
+      "Ahijját",
+      "Benáját"
+    ]
+  },
+  "q_b141_006": {
+    "text": "Melyik törzs csatlakozott Júdához, amikor Roboám harcosokat gyűjtött Izráel ellen?",
+    "answers": [
+      "Efraim",
+      "Dán",
+      "Simeon",
+      "Benjámin"
+    ]
+  },
+  "q_b141_007": {
+    "text": "Melyik Isten embere mondta Roboámnak, hogy ne harcoljon Izráel ellen?",
+    "answers": [
+      "Semajá",
+      "Ahijjá",
+      "Nátán",
+      "Iddó"
+    ]
+  },
+  "q_b141_008": {
+    "text": "Jeroboám felépítette Sikemet, és ott lakott. Melyik másik várost építette még?",
+    "answers": [
+      "Tircát",
+      "Samáriát",
+      "Penúélt",
+      "Gibeónt"
+    ]
+  },
+  "q_b141_009": {
+    "text": "Melyik hónapban tartott Jeroboám a júdaihoz hasonló ünnepet?",
+    "answers": [
+      "Az első hónapban",
+      "A negyedik hónapban",
+      "A tizenkettedik hónapban",
+      "A nyolcadik hónapban"
+    ]
+  },
+  "q_b141_010": {
+    "text": "Isten embere megjövendölte: Dávid házának egy sarja papok csontjait égeti el Bétel oltárán. Ki?",
+    "answers": [
+      "Ezékiás",
+      "Jéhú",
+      "Jósiás",
+      "Ászá"
+    ]
+  },
+  "q_b141_011": {
+    "text": "Mi történt Jeroboám kezével, amikor kinyújtotta Isten embere ellen?",
+    "answers": [
+      "Leprától fehér lett",
+      "Elszáradt",
+      "Lángra kapott",
+      "Levágták"
+    ]
+  },
+  "q_b141_012": {
+    "text": "Ki lakott Bételben, és csapta be később a júdai Isten emberét?",
+    "answers": [
+      "Egy öreg próféta",
+      "Egy fiatal pap",
+      "Jeroboám fia",
+      "Egy dáni lévita"
+    ]
+  },
+  "q_b141_013": {
+    "text": "Mi ölte meg a júdai Isten emberét hazafelé menet?",
+    "answers": [
+      "Egy medve",
+      "Egy kígyó",
+      "Egy oroszlán",
+      "Rablók"
+    ]
+  },
+  "q_b141_014": {
+    "text": "Mi volt furcsa az oroszlánban, amely megölte Isten emberét?",
+    "answers": [
+      "Nem ette meg sem a holttestet, sem a szamarat",
+      "Elvitte a holttestet",
+      "Az öreg prófétát is megölte",
+      "Elaludt az úton"
+    ]
+  },
+  "q_b141_015": {
+    "text": "Jeroboám melyik fia betegedett meg?",
+    "answers": [
+      "Nádáb",
+      "Zimri",
+      "Élá",
+      "Abijjá"
+    ]
+  },
+  "q_b141_016": {
+    "text": "Kit küldött Jeroboám álruhában Ahijjá prófétához?",
+    "answers": [
+      "A fiát",
+      "A feleségét",
+      "A szolgáját",
+      "A kapitányát"
+    ]
+  },
+  "q_b141_017": {
+    "text": "Miért nem látta Ahijjá Jeroboám feleségét?",
+    "answers": [
+      "Éjszaka volt",
+      "Szeme elhomályosult a kortól",
+      "Fátyol volt rajta",
+      "Börtönben volt"
+    ]
+  },
+  "q_b141_018": {
+    "text": "Hány éves volt Roboám, amikor uralkodni kezdett?",
+    "answers": [
+      "16",
+      "25",
+      "30",
+      "41"
+    ]
+  },
+  "q_b141_019": {
+    "text": "Hogy hívták Roboám anyját?",
+    "answers": [
+      "Naamá",
+      "Maaká",
+      "Azúbá",
+      "Jezábel"
+    ]
+  },
+  "q_b141_020": {
+    "text": "Egyiptom melyik királya támadta meg Jeruzsálemet Roboám ötödik évében?",
+    "answers": [
+      "Nékó",
+      "Szó",
+      "Sísak",
+      "Hofra"
+    ]
+  },
+  "q_b141_021": {
+    "text": "Mivel pótolta Roboám az aranypajzsokat?",
+    "answers": [
+      "Ezüstpajzsokkal",
+      "Fapajzsokkal",
+      "Vaspajzsokkal",
+      "Rézpajzsokkal"
+    ]
+  },
+  "q_b141_022": {
+    "text": "Júda melyik királya cselekedett helyesen az ÚR szemében, mint ősatyja, Dávid?",
+    "answers": [
+      "Abijjám",
+      "Roboám",
+      "Ászá",
+      "Jórám"
+    ]
+  },
+  "q_b141_023": {
+    "text": "Kit fosztott meg Ászá az anyakirálynéi méltóságtól a bálványa miatt?",
+    "answers": [
+      "Jezábelt",
+      "Maakát",
+      "Atalját",
+      "Naamát"
+    ]
+  },
+  "q_b141_024": {
+    "text": "Arám melyik királyának küldte el Ászá a templom kincseit?",
+    "answers": [
+      "Ben-Hadadnak",
+      "Hazáélnak",
+      "Recínnek",
+      "Naamánnak"
+    ]
+  },
+  "q_b141_025": {
+    "text": "Mely két várost építette fel Ászá Ráma köveiből?",
+    "answers": [
+      "Bételt és Dánt",
+      "Tircát és Samáriát",
+      "Gebát és Micpát",
+      "Hebrónt és Gibeónt"
+    ]
+  },
+  "q_b141_026": {
+    "text": "Ki ölte meg Nádáb királyt, Jeroboám fiát, és lett király helyette?",
+    "answers": [
+      "Baasá",
+      "Zimri",
+      "Omri",
+      "Élá"
+    ]
+  },
+  "q_b141_027": {
+    "text": "Ki ölte meg Élá királyt, miközben részeg volt Tircában?",
+    "answers": [
+      "Omri",
+      "Tibni",
+      "Jéhú",
+      "Zimri"
+    ]
+  },
+  "q_b141_028": {
+    "text": "Hány napig uralkodott Zimri Tircában?",
+    "answers": [
+      "3",
+      "7",
+      "40",
+      "10"
+    ]
+  },
+  "q_b141_029": {
+    "text": "Hogyan halt meg Zimri, amikor bevették Tircát?",
+    "answers": [
+      "Elesett a csatában",
+      "Rágyújtotta a palotát",
+      "Megkövezte a nép",
+      "Oroszlán ölte meg"
+    ]
+  },
+  "q_b141_030": {
+    "text": "Amikor Izráel kettészakadt, a nép fele Omrit követte, a másik fele kit?",
+    "answers": [
+      "Zimrit",
+      "Baasát",
+      "Jéhút",
+      "Tibnit"
+    ]
+  },
+  "q_b141_031": {
+    "text": "Melyik várost építette Omri, és nevezte el a domb gazdájáról, Semerről?",
+    "answers": [
+      "Samáriát",
+      "Tircát",
+      "Jezréelt",
+      "Sikemet"
+    ]
+  },
+  "q_b141_032": {
+    "text": "Melyik istennek épített Aháb templomot Samáriában?",
+    "answers": [
+      "Dágónnak",
+      "Moloknak",
+      "Baalnak",
+      "Kemósnak"
+    ]
+  },
+  "q_b141_033": {
+    "text": "Illés azt mondta Ahábnak, hogy nem lesz harmat, és nem lesz mi?",
+    "answers": [
+      "Jégeső",
+      "Hó",
+      "Szél",
+      "Eső"
+    ]
+  },
+  "q_b141_034": {
+    "text": "A tisbei Illés melyik vidék jövevényei közül való volt?",
+    "answers": [
+      "Galilea",
+      "Básán",
+      "Gileád",
+      "Sárón"
+    ]
+  },
+  "q_b141_035": {
+    "text": "Melyik pataknál rejtőzött el Illés?",
+    "answers": [
+      "A Kidrónnál",
+      "A Kerítnél",
+      "A Kísónnál",
+      "A Jabbóknál"
+    ]
+  },
+  "q_b141_036": {
+    "text": "Miért kellett Illésnek elhagynia a Kerít-patakot?",
+    "answers": [
+      "Kiszáradt a patak",
+      "Aháb katonái megtalálták",
+      "Nem jöttek többé a hollók",
+      "Oroszlán élt ott"
+    ]
+  },
+  "q_b141_037": {
+    "text": "Mit csinált a sareptai özvegy, amikor Illés találkozott vele?",
+    "answers": [
+      "Vizet merített",
+      "Gabonát őrölt",
+      "Rőzsét szedegetett",
+      "Olajbogyót szedett"
+    ]
+  },
+  "q_b141_038": {
+    "text": "Hányszor nyújtózott rá Illés az özvegy halott fiára?",
+    "answers": [
+      "3",
+      "7",
+      "2",
+      "1"
+    ]
+  },
+  "q_b141_039": {
+    "text": "Miután fia életre kelt, mit mondott az özvegy, hogy most már tudja Illésről?",
+    "answers": [
+      "Király fia",
+      "Gazdag ember",
+      "Angyal",
+      "Isten embere"
+    ]
+  },
+  "q_b141_040": {
+    "text": "Ki irtotta az ÚR prófétáit, amiért Abdiás elrejtett közülük százat?",
+    "answers": [
+      "Aháb",
+      "Jezábel",
+      "Atalja",
+      "Maaká"
+    ]
+  },
+  "q_b141_041": {
+    "text": "Ki volt Aháb házának gondnoka, aki mégis nagyon félte az URat?",
+    "answers": [
+      "Mikájehú",
+      "Abdiás",
+      "Jéhú",
+      "Nábót"
+    ]
+  },
+  "q_b141_042": {
+    "text": "Minek nevezte Aháb Illést, amikor találkozott vele?",
+    "answers": [
+      "Isten emberének",
+      "Atyámnak",
+      "Végzet prófétájának",
+      "Izráel megrontójának"
+    ]
+  },
+  "q_b141_043": {
+    "text": "Baal hány prófétájával állt szemben Illés a Kármel-hegyen?",
+    "answers": [
+      "450",
+      "400",
+      "850",
+      "300"
+    ]
+  },
+  "q_b141_044": {
+    "text": "Illés szerint az igaz Isten mivel felel majd?",
+    "answers": [
+      "Esővel",
+      "Mennydörgéssel",
+      "Tűzzel",
+      "Földrengéssel"
+    ]
+  },
+  "q_b141_045": {
+    "text": "Mettől meddig kiáltották Baal prófétái Baalt?",
+    "answers": [
+      "Déltől estig",
+      "Egész éjjel",
+      "Hét napon át",
+      "Reggeltől délig"
+    ]
+  },
+  "q_b141_046": {
+    "text": "Illés gúnyolódott: talán úton van Baal, vagy talán mi?",
+    "answers": [
+      "Beteg, és meg kell gyógyítani",
+      "Elbújt, és meg kell keresni",
+      "Alszik, és fel kell kelteni",
+      "Haragszik, és le kell csillapítani"
+    ]
+  },
+  "q_b141_047": {
+    "text": "Hány kőből építette újjá Illés az oltárt?",
+    "answers": [
+      "7",
+      "12",
+      "10",
+      "4"
+    ]
+  },
+  "q_b141_048": {
+    "text": "Hány korsó vizet öntetett Illés egy-egy alkalommal az áldozatra?",
+    "answers": [
+      "4",
+      "12",
+      "7",
+      "2"
+    ]
+  },
+  "q_b141_049": {
+    "text": "Hányszor öntöttek vizet Illés áldozatára?",
+    "answers": [
+      "7-szer",
+      "2-szer",
+      "3-szor",
+      "4-szer"
+    ]
+  },
+  "q_b141_050": {
+    "text": "Mit kiáltott a nép, amikor a tűz leszállt a Kármel-hegyen?",
+    "answers": [
+      "Az ÚR az Isten!",
+      "Éljen Aháb király!",
+      "Baal felelt!",
+      "Illés a király!"
+    ]
+  },
+  "q_b141_051": {
+    "text": "Melyik pataknál ölte meg Illés Baal prófétáit?",
+    "answers": [
+      "A Kerítnél",
+      "A Kidrónnál",
+      "Az Arnónnál",
+      "A Kísónnál"
+    ]
+  },
+  "q_b141_052": {
+    "text": "Esőért imádkozva a Kármelen hová hajtotta Illés az arcát?",
+    "answers": [
+      "Az oltárra",
+      "A térdei közé",
+      "A porba",
+      "A tenger felé"
+    ]
+  },
+  "q_b141_053": {
+    "text": "Hányszor küldte el Illés a szolgáját, hogy nézzen a tenger felé?",
+    "answers": [
+      "3",
+      "7",
+      "12",
+      "5"
+    ]
+  },
+  "q_b141_054": {
+    "text": "Mi jött, miután Illés imádkozott a Kármel-hegyen, és elsötétült az ég?",
+    "answers": [
+      "Jégeső",
+      "Hó",
+      "Sáskák",
+      "Nagy eső"
+    ]
+  },
+  "q_b141_055": {
+    "text": "Melyik városig futott Illés Aháb harci kocsija előtt?",
+    "answers": [
+      "Jezréelig",
+      "Samáriáig",
+      "Tircáig",
+      "Bételig"
+    ]
+  },
+  "q_b141_056": {
+    "text": "Ki fenyegette meg Illést halállal a Kármel-hegyi tűz után?",
+    "answers": [
+      "Aháb",
+      "Atalja",
+      "Jezábel",
+      "Abdiás"
+    ]
+  },
+  "q_b141_057": {
+    "text": "Melyik városban hagyta hátra Illés a szolgáját menekülés közben?",
+    "answers": [
+      "Bételben",
+      "Jerikóban",
+      "Gilgálban",
+      "Beérsebában"
+    ]
+  },
+  "q_b141_058": {
+    "text": "Amikor az angyal felébresztette Illést, mit talált a feje mellett?",
+    "answers": [
+      "Mézet és sáskát",
+      "Kenyeret és bort",
+      "Lepényt és egy korsó vizet",
+      "Fügét és mazsolát"
+    ]
+  },
+  "q_b141_059": {
+    "text": "Hány nap és hány éjjel ment Illés a Hóreb-hegyig?",
+    "answers": [
+      "7",
+      "40",
+      "3",
+      "12"
+    ]
+  },
+  "q_b141_060": {
+    "text": "Hol töltötte az éjszakát Illés a Hórebon?",
+    "answers": [
+      "Egy barlangban",
+      "Egy sátorban",
+      "Egy fa alatt",
+      "Egy toronyban"
+    ]
+  },
+  "q_b141_061": {
+    "text": "Kit kellett Illésnek Arám királyává kennie?",
+    "answers": [
+      "Ben-Hadadot",
+      "Recínt",
+      "Hazáélt",
+      "Naamánt"
+    ]
+  },
+  "q_b141_062": {
+    "text": "Kit kellett Illésnek Izráel királyává kennie?",
+    "answers": [
+      "Jéhút",
+      "Jórámot",
+      "Ahazjját",
+      "Omrit"
+    ]
+  },
+  "q_b141_063": {
+    "text": "Hányan nem hajtottak térdet Baal előtt Izráelben?",
+    "answers": [
+      "700",
+      "70",
+      "70 000",
+      "7000"
+    ]
+  },
+  "q_b141_064": {
+    "text": "Mivel tüzelt Elizeus, amikor megfőzte az ökrök húsát?",
+    "answers": [
+      "Cédrusfával",
+      "Az ökrök igájával és szerszámaival",
+      "Tövisbokrokkal",
+      "Olajfaágakkal"
+    ]
+  },
+  "q_b141_065": {
+    "text": "Hány király volt Ben-Hadaddal, amikor ostrom alá vette Samáriát?",
+    "answers": [
+      "12",
+      "32",
+      "7",
+      "5"
+    ]
+  },
+  "q_b141_066": {
+    "text": "Az arámiak szerint Izráel istene minek az istene, ezért a síkságon kell harcolni?",
+    "answers": [
+      "A völgyeké",
+      "A tengeré",
+      "A pusztáé",
+      "A hegyeké"
+    ]
+  },
+  "q_b141_067": {
+    "text": "Hová gyűjtötte Ben-Hadad az arámiakat a következő évben Izráel ellen?",
+    "answers": [
+      "Afékba",
+      "Rámót-Gileádba",
+      "Dótánba",
+      "Megiddóba"
+    ]
+  },
+  "q_b141_068": {
+    "text": "Hány arámi férfira omlott rá a fal Afékban?",
+    "answers": [
+      "100 000",
+      "7000",
+      "27 000",
+      "32 000"
+    ]
+  },
+  "q_b141_069": {
+    "text": "Miért nem akarta Nábót odaadni a szőlőjét Ahábnak?",
+    "answers": [
+      "Túl kevés volt az ár",
+      "A templomé volt",
+      "Búzát akart vetni bele",
+      "Atyái öröksége volt"
+    ]
+  },
+  "q_b141_070": {
+    "text": "Hogyan küldte el Jezábel a Nábót elleni parancsait?",
+    "answers": [
+      "Hírnökkel a kapuban",
+      "A próféták szavával",
+      "Aháb pecsétjével lepecsételt levelekkel",
+      "Lándzsás katonával"
+    ]
+  },
+  "q_b141_071": {
+    "text": "Hány hamis tanút állítottak Nábót ellen?",
+    "answers": [
+      "3",
+      "2",
+      "7",
+      "10"
+    ]
+  },
+  "q_b141_072": {
+    "text": "Illés szerint melyik város falánál falják fel a kutyák Jezábelt?",
+    "answers": [
+      "Jezréel",
+      "Samária",
+      "Tirca",
+      "Bétel"
+    ]
+  },
+  "q_b141_073": {
+    "text": "Mit tett Aháb, amikor meghallotta Illés ítéletét?",
+    "answers": [
+      "Börtönbe vetette Illést",
+      "Damaszkuszba menekült",
+      "Zsákruhát öltött és böjtölt",
+      "Odaadta a szőlőt"
+    ]
+  },
+  "q_b141_074": {
+    "text": "Júda melyik királya vonult Ahábbal Rámót-Gileád ellen?",
+    "answers": [
+      "Jósáfát",
+      "Ászá",
+      "Jóás",
+      "Amacjá"
+    ]
+  },
+  "q_b141_075": {
+    "text": "Körülbelül hány próféta mondta Ahábnak, hogy vonuljon fel Rámót-Gileád ellen?",
+    "answers": [
+      "850",
+      "100",
+      "50",
+      "400"
+    ]
+  },
+  "q_b141_076": {
+    "text": "Miből készített magának szarvakat Sedékiás próféta?",
+    "answers": [
+      "Bronzból",
+      "Vasból",
+      "Aranyból",
+      "Elefántcsontból"
+    ]
+  },
+  "q_b141_077": {
+    "text": "Mikájehú minek látta egész Izráelt szétszóródva a hegyeken?",
+    "answers": [
+      "Szél hajtotta pelyvának",
+      "Pásztor nélküli juhoknak",
+      "Őszi faleveleknek",
+      "Mezei sáskáknak"
+    ]
+  },
+  "q_b141_078": {
+    "text": "Mikájehú látomásában milyen lélek ment ki, hogy rászedje Ahábot?",
+    "answers": [
+      "A félelem lelke",
+      "Az álom lelke",
+      "A bölcsesség lelke",
+      "A hazugság lelke"
+    ]
+  },
+  "q_b141_079": {
+    "text": "Hogyan ment Aháb a csatába Rámót-Gileádnál?",
+    "answers": [
+      "Álruhában",
+      "Királyi ruhában",
+      "Arany harci kocsin",
+      "Trónon hordozva"
+    ]
+  },
+  "q_b141_080": {
+    "text": "Hol mosták le Aháb harci kocsiját, ahol a kutyák felnyalták a vérét?",
+    "answers": [
+      "A Kísón-pataknál",
+      "A Jordán folyónál",
+      "Samária tavánál",
+      "A Siloám-tónál"
+    ]
+  },
+  "q_b141_081": {
+    "text": "Milyen házat épített Aháb?",
+    "answers": [
+      "Aranyházat",
+      "Márványpalotát",
+      "Cédrustornyot",
+      "Elefántcsontházat"
+    ]
+  },
+  "q_b141_082": {
+    "text": "Aháb melyik fia lett király utána?",
+    "answers": [
+      "Jéhú",
+      "Omri",
+      "Ahazjá",
+      "Jótám"
+    ]
+  },
+  "q_b141_083": {
+    "text": "Hol törtek össze Jósáfát Ofírba induló hajói?",
+    "answers": [
+      "Joppénál",
+      "Ecjón-Gebernél",
+      "Tarsísnál",
+      "Tírusznál"
+    ]
+  },
+  "q_b142_001": {
+    "text": "Miután leesett a rácsos ablakon át, Ahazjá király Ekrón melyik istenét akarta megkérdezni?",
+    "answers": [
+      "Dágónt",
+      "Kemóst",
+      "Baal-Zebúbot",
+      "Molokot"
+    ]
+  },
+  "q_b142_002": {
+    "text": "Hogyan írták le a férfit, aki Ahazjá követei elé állt?",
+    "answers": [
+      "Szőrös ember, derekán bőrövvel",
+      "Magas ember aranybottal",
+      "Fehér ruhás ifjú",
+      "Szamáron ülő öregember"
+    ]
+  },
+  "q_b142_003": {
+    "text": "Mi szállt le az égből az ötvenes csapatok vezéreire, akik Illést el akarták fogni?",
+    "answers": [
+      "Jégeső",
+      "Eső",
+      "Kövek",
+      "Tűz"
+    ]
+  },
+  "q_b142_004": {
+    "text": "Mit tett a harmadik ötvenes csapat vezére, amikor Illéshez ért?",
+    "answers": [
+      "Kardot rántott",
+      "Térdre esett és könyörgött",
+      "Nyilat lőtt rá",
+      "Félelmében elfutott"
+    ]
+  },
+  "q_b142_005": {
+    "text": "Izráel királya, Ahazjá fiú nélkül halt meg. Ki lett király helyette?",
+    "answers": [
+      "Jéhú",
+      "Jórám",
+      "Jóás",
+      "Omri"
+    ]
+  },
+  "q_b142_006": {
+    "text": "Melyik városból indult el Illés Elizeussal, mielőtt felvitetett?",
+    "answers": [
+      "Dótánból",
+      "Silóból",
+      "Hebrónból",
+      "Gilgálból"
+    ]
+  },
+  "q_b142_007": {
+    "text": "Mi választotta el Illést és Elizeust közvetlenül Illés felvitele előtt?",
+    "answers": [
+      "Tüzes szekér",
+      "Egy folyó",
+      "Felhőoszlop",
+      "Angyalsereg"
+    ]
+  },
+  "q_b142_008": {
+    "text": "Mit kiáltott Elizeus, amikor látta, hogy Illés felvitetik?",
+    "answers": [
+      "Uram, királyom!",
+      "Vigyél magaddal!",
+      "Atyám, atyám!",
+      "Ne hagyj el!"
+    ]
+  },
+  "q_b142_009": {
+    "text": "Mit vett fel Elizeus, ami leesett Illésről?",
+    "answers": [
+      "Illés botját",
+      "Illés saruját",
+      "Illés övét",
+      "Illés köpenyét"
+    ]
+  },
+  "q_b142_010": {
+    "text": "Hány férfi kereste Illést három napon át?",
+    "answers": [
+      "12",
+      "7",
+      "50",
+      "100"
+    ]
+  },
+  "q_b142_011": {
+    "text": "Mit dobott Elizeus Jerikó forrásába, hogy meggyógyítsa a vizet?",
+    "answers": [
+      "Lisztet",
+      "Sót",
+      "Egy botot",
+      "Olajat"
+    ]
+  },
+  "q_b142_012": {
+    "text": "Minek csúfolták a fiúk Elizeust a Bételbe vezető úton?",
+    "answers": [
+      "Kopasznak",
+      "Öregembernek",
+      "Idegennek",
+      "Koldusnak"
+    ]
+  },
+  "q_b142_013": {
+    "text": "Milyen állatokat tenyésztett Mésa, Móáb királya?",
+    "answers": [
+      "Lovakat",
+      "Tevéket",
+      "Juhokat",
+      "Kecskéket"
+    ]
+  },
+  "q_b142_014": {
+    "text": "Elizeust úgy ismerték, mint aki kinek a kezére öntötte a vizet?",
+    "answers": [
+      "Illésére",
+      "Ahábéra",
+      "Naamánéra",
+      "Sámuelére"
+    ]
+  },
+  "q_b142_015": {
+    "text": "Mit kért Elizeus, mielőtt prófétált a három királynak?",
+    "answers": [
+      "Áldozatot",
+      "Egy tekercset",
+      "Egy pohár vizet",
+      "Egy lantost"
+    ]
+  },
+  "q_b142_016": {
+    "text": "Miért látszott a víz vérvörösnek a móábiak szemében?",
+    "answers": [
+      "Agyag keveredett bele",
+      "Rásütött a nap",
+      "Katonák megfestették",
+      "Vörös sziklákon folyt át"
+    ]
+  },
+  "q_b142_017": {
+    "text": "Egy próféta özvegye attól félt, hogy a hitelező kiket visz el rabszolgának?",
+    "answers": [
+      "A férje testvéreit",
+      "A két gyermekét",
+      "A szüleit",
+      "A szolgáit"
+    ]
+  },
+  "q_b142_018": {
+    "text": "Mikor szűnt meg folyni az özvegy olaja?",
+    "answers": [
+      "Hét nap után",
+      "Napnyugtakor",
+      "Amikor jött a hitelező",
+      "Amikor nem maradt több edény"
+    ]
+  },
+  "q_b142_019": {
+    "text": "Mit mondott Elizeus az özvegynek, mit tegyen az olajjal?",
+    "answers": [
+      "Adja el, és fizesse ki az adósságát",
+      "Öntse az oltárra",
+      "Adja a szegényeknek",
+      "Kenje meg vele a fiait"
+    ]
+  },
+  "q_b142_020": {
+    "text": "Mit akart készíteni a súnémi asszony Elizeusnak a házában?",
+    "answers": [
+      "Egy kertet",
+      "Egy istállót",
+      "Egy kis emeleti szobát",
+      "Egy őrtornyot"
+    ]
+  },
+  "q_b142_021": {
+    "text": "Hogy hívták Elizeus szolgáját?",
+    "answers": [
+      "Naamán",
+      "Abdiás",
+      "Mikájehú",
+      "Géhazi"
+    ]
+  },
+  "q_b142_022": {
+    "text": "Mit ígért Elizeus a Súnemben élő asszonynak?",
+    "answers": [
+      "Egy mezőt",
+      "Egy férjet",
+      "Egy fiút",
+      "Nagy gazdagságot"
+    ]
+  },
+  "q_b142_023": {
+    "text": "Mit kiáltott a súnémi asszony fia az apjának a mezőn?",
+    "answers": [
+      "Jaj, a lábam!",
+      "Jaj, a fejem, a fejem!",
+      "Szomjas vagyok!",
+      "Anyám, segíts!"
+    ]
+  },
+  "q_b142_024": {
+    "text": "Melyik hegyre lovagolt a súnémi asszony, hogy megtalálja Elizeust?",
+    "answers": [
+      "A Kármel-hegyre",
+      "A Hóreb-hegyre",
+      "A Hermón-hegyre",
+      "A Tábor-hegyre"
+    ]
+  },
+  "q_b142_025": {
+    "text": "Mit küldött Elizeus Géhazival, hogy tegye a halott fiú arcára?",
+    "answers": [
+      "A köpenyét",
+      "Egy kendőt",
+      "A botját",
+      "Egy kis olajat"
+    ]
+  },
+  "q_b142_026": {
+    "text": "Mit kiáltottak a prófétatanítványok a főzelékről?",
+    "answers": [
+      "Halál van a fazékban!",
+      "Üres a fazék!",
+      "Odaégett a főzelék!",
+      "Kígyó van a fazékban!"
+    ]
+  },
+  "q_b142_027": {
+    "text": "Mit dobott Elizeus a főzelékbe, hogy ártalmatlanná tegye?",
+    "answers": [
+      "Sót",
+      "Olajat",
+      "Mézet",
+      "Lisztet"
+    ]
+  },
+  "q_b142_028": {
+    "text": "Hány árpakenyérből etetett meg Elizeus száz embert?",
+    "answers": [
+      "5",
+      "20",
+      "12",
+      "7"
+    ]
+  },
+  "q_b142_029": {
+    "text": "Milyen betegsége volt Naamánnak, az arámi hadseregparancsnoknak?",
+    "answers": [
+      "Vakság",
+      "Lepra",
+      "Láz",
+      "Elszáradt kéz"
+    ]
+  },
+  "q_b142_030": {
+    "text": "Ki beszélt Naamán feleségének a samáriai prófétáról?",
+    "answers": [
+      "Egy arámi katona",
+      "Egy vándorkereskedő",
+      "Egy damaszkuszi pap",
+      "Egy izráeli kislány"
+    ]
+  },
+  "q_b142_031": {
+    "text": "Elizeus szerint hányszor kellett Naamánnak megmerítkeznie a Jordánban?",
+    "answers": [
+      "7",
+      "3",
+      "12",
+      "Egyszer"
+    ]
+  },
+  "q_b142_032": {
+    "text": "Damaszkusz melyik két folyóját tartotta Naamán jobbnak Izráel vizeinél?",
+    "answers": [
+      "A Tigrist és az Eufráteszt",
+      "A Jabbókot és az Arnónt",
+      "Az Abanát és a Farpart",
+      "A Kísónt és a Kidrónt"
+    ]
+  },
+  "q_b142_033": {
+    "text": "Megmerítkezése után minek a testéhez lett hasonló Naamán teste?",
+    "answers": [
+      "Egy ifjúéhoz",
+      "Egy újszülött bárányéhoz",
+      "Egy angyaléhoz",
+      "Egy kisgyermekéhez"
+    ]
+  },
+  "q_b142_034": {
+    "text": "Mit kért Naamán, hogy hazavihessen Izráelből?",
+    "answers": [
+      "Vizet a Jordánból",
+      "Köveket egy oltárhoz",
+      "Két öszvérnyi földet",
+      "Egy törvénytekercset"
+    ]
+  },
+  "q_b142_035": {
+    "text": "Hány talentum ezüstöt adott Naamán Géhazinak?",
+    "answers": [
+      "1",
+      "2",
+      "10",
+      "5"
+    ]
+  },
+  "q_b142_036": {
+    "text": "Mit dobott Elizeus a vízbe, hogy felússzon a vas fejsze?",
+    "answers": [
+      "Egy botot",
+      "Sót",
+      "Lisztet",
+      "Egy követ"
+    ]
+  },
+  "q_b142_037": {
+    "text": "Melyik városban volt Elizeus, amikor az arámi sereg körülvette?",
+    "answers": [
+      "Samáriában",
+      "Bételben",
+      "Dótánban",
+      "Jerikóban"
+    ]
+  },
+  "q_b142_038": {
+    "text": "Mit látott a hegyen Elizeus szolgája, amikor megnyílt a szeme?",
+    "answers": [
+      "Tüzes lovakat és szekereket",
+      "Nagy árvizet",
+      "Oroszlánokat és medvéket",
+      "Sáskafelhőt"
+    ]
+  },
+  "q_b142_039": {
+    "text": "Elizeus imájára mivel sújtotta az ÚR az arámi sereget?",
+    "answers": [
+      "Dögvésszel",
+      "Leprával",
+      "Mély álommal",
+      "Vaksággal"
+    ]
+  },
+  "q_b142_040": {
+    "text": "Mit mondott Elizeus Izráel királyának, mit tegyen a foglyul ejtett arámiakkal?",
+    "answers": [
+      "Ölje meg mindet",
+      "Tegyen eléjük kenyeret és vizet",
+      "Adja el őket rabszolgának",
+      "Tartsa őket börtönben"
+    ]
+  },
+  "q_b142_041": {
+    "text": "Arám melyik királya ostromolta Samáriát, nagy éhínséget okozva?",
+    "answers": [
+      "Hazáél",
+      "Ben-Hadad",
+      "Recín",
+      "Naamán"
+    ]
+  },
+  "q_b142_042": {
+    "text": "Samária ostromakor hány ezüstpénzért adtak el egy szamárfejet?",
+    "answers": [
+      "5",
+      "30",
+      "50",
+      "80"
+    ]
+  },
+  "q_b142_043": {
+    "text": "Elizeus szerint holnapra mennyiért adnak egy mérték finomlisztet?",
+    "answers": [
+      "Egy sekelért",
+      "Egy talentumért",
+      "Tíz sekelért",
+      "Ötven sekelért"
+    ]
+  },
+  "q_b142_044": {
+    "text": "Kik vették észre, hogy az arámi tábor üres?",
+    "answers": [
+      "Két kém",
+      "Elizeus szolgája",
+      "Négy leprás férfi",
+      "A király kapitánya"
+    ]
+  },
+  "q_b142_045": {
+    "text": "Mit hallatott az Úr az arámiakkal, hogy elmeneküljenek?",
+    "answers": [
+      "Mennydörgést és földrengést",
+      "Elizeus hangját",
+      "Oroszlánok ordítását",
+      "Harci kocsik és lovak zaját"
+    ]
+  },
+  "q_b142_046": {
+    "text": "Mi történt a kapitánnyal, aki kételkedett Elizeus szavában a lisztről?",
+    "answers": [
+      "Megvakult",
+      "Leprás lett",
+      "Agyontaposták a kapuban",
+      "Arámba menekült"
+    ]
+  },
+  "q_b142_047": {
+    "text": "Hány évig élt a súnémi asszony a filiszteusok földjén?",
+    "answers": [
+      "3",
+      "7",
+      "10",
+      "40"
+    ]
+  },
+  "q_b142_048": {
+    "text": "Hány tevényi ajándékot vitt Hazáél Elizeusnak?",
+    "answers": [
+      "40",
+      "10",
+      "7",
+      "12"
+    ]
+  },
+  "q_b142_049": {
+    "text": "Hogyan ölte meg Hazáél Ben-Hadad királyt?",
+    "answers": [
+      "Karddal az ágyában",
+      "Mérget tett a borába",
+      "Vizes takarót borított az arcára",
+      "Ledobta a falról"
+    ]
+  },
+  "q_b142_050": {
+    "text": "Melyik nép szakadt el Júdától Jórám idejében, és választott saját királyt?",
+    "answers": [
+      "Edóm",
+      "Móáb",
+      "Ammón",
+      "Filisztea"
+    ]
+  },
+  "q_b142_051": {
+    "text": "Kit küldött Elizeus, hogy királlyá kenje Jéhút?",
+    "answers": [
+      "Géhazit",
+      "Illést",
+      "Egy bételi papot",
+      "Az egyik prófétatanítványt"
+    ]
+  },
+  "q_b142_052": {
+    "text": "Mit terítettek Jéhú alá a lépcsőn tiszttársai?",
+    "answers": [
+      "Pálmaágakat",
+      "Mindegyik a ruháját",
+      "Virágokat",
+      "Szőnyegeket"
+    ]
+  },
+  "q_b142_053": {
+    "text": "Hogyan ölte meg Jéhú Jórám királyt?",
+    "answers": [
+      "Lándzsát hajított rá",
+      "Nyilat lőtt belé",
+      "Karddal vágta le",
+      "Ledöntötte a falról"
+    ]
+  },
+  "q_b142_054": {
+    "text": "Kinek a mezejére dobták Jórám király holttestét?",
+    "answers": [
+      "Abdiáséra",
+      "Semeréra",
+      "Híéléra",
+      "A jezréeli Nábótéra"
+    ]
+  },
+  "q_b142_055": {
+    "text": "Mit tett Jezábel, amikor meghallotta, hogy Jéhú Jezréelbe érkezett?",
+    "answers": [
+      "Kifestette a szemét",
+      "Elbújt a templomban",
+      "Szidónba menekült",
+      "Kiküldte a seregét"
+    ]
+  },
+  "q_b142_056": {
+    "text": "Mi maradt Jezábelből, amikor el akarták temetni?",
+    "answers": [
+      "Csak a koronája",
+      "A ruhája és a saruja",
+      "A koponyája, lábai és tenyerei",
+      "Semmi"
+    ]
+  },
+  "q_b142_057": {
+    "text": "Hány fia volt Ahábnak Samáriában?",
+    "answers": [
+      "12",
+      "40",
+      "7",
+      "70"
+    ]
+  },
+  "q_b142_058": {
+    "text": "Kit vett fel Jéhú a harci kocsijára, hogy lássa buzgóságát az ÚRért?",
+    "answers": [
+      "Elizeust",
+      "Bidkart",
+      "Jónádábot",
+      "Jósáfátot"
+    ]
+  },
+  "q_b142_059": {
+    "text": "Jeroboám melyik bűnétől nem tért el Jéhú?",
+    "answers": [
+      "Baal imádásától",
+      "A bételi és dáni aranyborjaktól",
+      "A gyermekek Moloknak égetésétől",
+      "A damaszkuszi oltártól"
+    ]
+  },
+  "q_b142_060": {
+    "text": "Hányadik nemzedékig ülhettek Jéhú fiai Izráel trónján?",
+    "answers": [
+      "A negyedikig",
+      "A hetedikig",
+      "A harmadikig",
+      "A tizedikig"
+    ]
+  },
+  "q_b142_061": {
+    "text": "Hány évig uralkodott Jéhú Izráelen Samáriában?",
+    "answers": [
+      "40",
+      "12",
+      "28",
+      "7"
+    ]
+  },
+  "q_b143_001": {
+    "text": "Ki pusztította ki az egész királyi családot, amikor fia, Ahazjá meghalt?",
+    "answers": [
+      "Jezábel",
+      "Maaká",
+      "Atalja",
+      "Jóseba"
+    ]
+  },
+  "q_b143_002": {
+    "text": "Hány évig rejtegették a kis Jóást az ÚR házában?",
+    "answers": [
+      "6",
+      "7",
+      "3",
+      "10"
+    ]
+  },
+  "q_b143_003": {
+    "text": "Melyik pap hozta elő a kis Jóást, és tette királlyá?",
+    "answers": [
+      "Hilkijjá",
+      "Cádók",
+      "Úriás",
+      "Jójádá"
+    ]
+  },
+  "q_b143_004": {
+    "text": "Mit kiáltott a nép, amikor Jóást megkoronázták?",
+    "answers": [
+      "Hozsánna!",
+      "Éljen a király!",
+      "Le Ataljával!",
+      "Dicsőség az ÚRnak!"
+    ]
+  },
+  "q_b143_005": {
+    "text": "Mit kiáltott Atalja, amikor meglátta az új királyt?",
+    "answers": [
+      "Segítség! Segítség!",
+      "Árulás! Árulás!",
+      "Fogjátok el!",
+      "Ő nem a király!"
+    ]
+  },
+  "q_b143_006": {
+    "text": "Hány éves volt Jóás, amikor uralkodni kezdett?",
+    "answers": [
+      "8",
+      "12",
+      "16",
+      "7"
+    ]
+  },
+  "q_b143_007": {
+    "text": "Mibe gyűjtötte Jójádá pap a pénzt a templom javítására?",
+    "answers": [
+      "Egy ládába, amelynek fedelén lyuk volt",
+      "Egy aranytálba",
+      "Egy agyagkorsóba",
+      "Egy bőrzsákba"
+    ]
+  },
+  "q_b143_008": {
+    "text": "Jóás király Arám melyik királyának küldte el a templom szent tárgyait?",
+    "answers": [
+      "Ben-Hadadnak",
+      "Recínnek",
+      "Hazáélnak",
+      "Naamánnak"
+    ]
+  },
+  "q_b143_009": {
+    "text": "Hogyan halt meg Jóás, Júda királya?",
+    "answers": [
+      "Elesett a csatában",
+      "Öregkorában halt meg",
+      "Leesett a rácsos ablakon át",
+      "A szolgái megölték"
+    ]
+  },
+  "q_b143_010": {
+    "text": "Izráel melyik királya sírt a haldokló Elizeus felett?",
+    "answers": [
+      "Jéhú",
+      "Aháb",
+      "Jóás",
+      "Jeroboám"
+    ]
+  },
+  "q_b143_011": {
+    "text": "Elizeus minek nevezte az ablakon kilőtt nyilat: az ÚR nyila, a… mié?",
+    "answers": [
+      "Az ítéleté",
+      "A győzelemé",
+      "A békéé",
+      "A tűzé"
+    ]
+  },
+  "q_b143_012": {
+    "text": "Hányszor ütött Jóás király a nyilakkal a földre?",
+    "answers": [
+      "3",
+      "5",
+      "7",
+      "6"
+    ]
+  },
+  "q_b143_013": {
+    "text": "Miért nem ölte meg Amacjá apja gyilkosainak gyermekeit?",
+    "answers": [
+      "Egyiptomba menekültek",
+      "Az anyjuk könyörgött értük",
+      "Mózes törvénye tiltotta",
+      "Egy próféta megakadályozta"
+    ]
+  },
+  "q_b143_014": {
+    "text": "Melyik völgyben ölt meg Amacjá tízezer edómit?",
+    "answers": [
+      "A Só-völgyben",
+      "Élá völgyében",
+      "A Kidrón-völgyben",
+      "A Jezréel-völgyben"
+    ]
+  },
+  "q_b143_015": {
+    "text": "Jóás példázatában mit kért a bogáncs a cédrustól?",
+    "answers": [
+      "Az ágait árnyéknak",
+      "A gyökereit vízért",
+      "A magjait vetésre",
+      "A lányát a fia feleségéül"
+    ]
+  },
+  "q_b143_016": {
+    "text": "Hány könyöknyit rombolt le Jeruzsálem falából Jóás, Izráel királya?",
+    "answers": [
+      "40",
+      "400",
+      "100",
+      "70"
+    ]
+  },
+  "q_b143_017": {
+    "text": "Melyik próféta, Amittaj fia szólt II. Jeroboám idejében?",
+    "answers": [
+      "Ámósz",
+      "Jónás",
+      "Hóseás",
+      "Jóel"
+    ]
+  },
+  "q_b143_018": {
+    "text": "Júda melyik királya volt leprás halála napjáig?",
+    "answers": [
+      "Jótám",
+      "Amacjá",
+      "Áház",
+      "Azarjá"
+    ]
+  },
+  "q_b143_019": {
+    "text": "Ki szőtt összeesküvést Zakariás, Izráel királya ellen, és ölte meg?",
+    "answers": [
+      "Sallúm",
+      "Menahém",
+      "Peka",
+      "Hósea"
+    ]
+  },
+  "q_b143_020": {
+    "text": "Mennyi ideig uralkodott Sallúm Samáriában?",
+    "answers": [
+      "7 napig",
+      "2 évig",
+      "1 hónapig",
+      "10 évig"
+    ]
+  },
+  "q_b143_021": {
+    "text": "Asszíria melyik királyának fizetett Menahém ezer talentum ezüstöt?",
+    "answers": [
+      "Szanhéribnek",
+      "Észar-Haddónnak",
+      "Salmanasszárnak",
+      "Púlnak"
+    ]
+  },
+  "q_b143_022": {
+    "text": "Asszíria melyik királya foglalta el Galileát és Naftáli földjét Peka idejében?",
+    "answers": [
+      "Szanhérib",
+      "Salmanasszár",
+      "Tiglat-Pileszer",
+      "Észar-Haddón"
+    ]
+  },
+  "q_b143_023": {
+    "text": "Ki szőtt összeesküvést Peka ellen, és ölte meg?",
+    "answers": [
+      "Menahém",
+      "Hósea",
+      "Sallúm",
+      "Recín"
+    ]
+  },
+  "q_b143_024": {
+    "text": "Júda melyik királya vitte át a fiát a tűzön?",
+    "answers": [
+      "Áház",
+      "Ezékiás",
+      "Jótám",
+      "Uzzijjá"
+    ]
+  },
+  "q_b143_025": {
+    "text": "Melyik városban látott oltár mintáját másoltatta le Áház?",
+    "answers": [
+      "Ninivében",
+      "Babilonban",
+      "Damaszkuszban",
+      "Samáriában"
+    ]
+  },
+  "q_b143_026": {
+    "text": "Melyik pap építette meg az oltárt az Áház küldte minta szerint?",
+    "answers": [
+      "Úrijjá",
+      "Hilkijjá",
+      "Jójádá",
+      "Cádók"
+    ]
+  },
+  "q_b143_027": {
+    "text": "Hósea király Egyiptom melyik királyához küldött követeket?",
+    "answers": [
+      "Sísakhoz",
+      "Nékóhoz",
+      "Hofrához",
+      "Szóhoz"
+    ]
+  },
+  "q_b143_028": {
+    "text": "Melyik birodalom hurcolta fogságba Izráel népét Samáriából?",
+    "answers": [
+      "Babilon",
+      "Asszíria",
+      "Egyiptom",
+      "Perzsia"
+    ]
+  },
+  "q_b143_029": {
+    "text": "Hová telepítette Asszíria királya a Babilonból és Kútból hozott népet?",
+    "answers": [
+      "Jeruzsálembe",
+      "Samária városaiba",
+      "Damaszkuszba",
+      "Ninivébe"
+    ]
+  },
+  "q_b143_030": {
+    "text": "Mit küldött az ÚR Samária új lakói közé?",
+    "answers": [
+      "Medvéket",
+      "Sáskákat",
+      "Kígyókat",
+      "Oroszlánokat"
+    ]
+  },
+  "q_b143_031": {
+    "text": "Hány éves volt Ezékiás, amikor uralkodni kezdett?",
+    "answers": [
+      "25",
+      "8",
+      "16",
+      "30"
+    ]
+  },
+  "q_b143_032": {
+    "text": "Asszíria melyik királya támadta meg Júda erődített városait Ezékiás 14. évében?",
+    "answers": [
+      "Salmanasszár",
+      "Tiglat-Pileszer",
+      "Szanhérib",
+      "Észar-Haddón"
+    ]
+  },
+  "q_b143_033": {
+    "text": "Rabsaké szerint Egyiptom milyen bothoz hasonlít?",
+    "answers": [
+      "Száraz bothoz",
+      "Aranypálcához",
+      "Törött lándzsához",
+      "Megrepedt nádszálhoz"
+    ]
+  },
+  "q_b143_034": {
+    "text": "Rabsaké megígérte: mindenki a saját szőlőjéből és a saját mijéről eszik?",
+    "answers": [
+      "Olajfájáról",
+      "Mezejéről",
+      "Fügefájáról",
+      "Nyájából"
+    ]
+  },
+  "q_b143_035": {
+    "text": "Melyik asszír tiszt kiáltott Jeruzsálem népének a zsidók nyelvén?",
+    "answers": [
+      "Szanhérib",
+      "Rabsaké",
+      "Hazáél",
+      "Nebuzaradán"
+    ]
+  },
+  "q_b143_036": {
+    "text": "Melyik prófétához küldte Ezékiás zsákruhába öltözött embereit?",
+    "answers": [
+      "Ézsaiáshoz",
+      "Jeremiáshoz",
+      "Elizeushoz",
+      "Náhumhoz"
+    ]
+  },
+  "q_b143_037": {
+    "text": "Mit tett Ezékiás Szanhérib fenyegető levelével?",
+    "answers": [
+      "Tűzbe vetette",
+      "Szétszakítva visszaküldte",
+      "Kiterítette az ÚR előtt",
+      "Eltitkolta a nép elől"
+    ]
+  },
+  "q_b143_038": {
+    "text": "Melyik isten templomában ölték meg Szanhéribet a fiai?",
+    "answers": [
+      "Niszrókéban",
+      "Dágónéban",
+      "Mardukéban",
+      "Baaléban"
+    ]
+  },
+  "q_b143_039": {
+    "text": "Melyik fia lett a király Szanhérib helyett?",
+    "answers": [
+      "Salmanasszár",
+      "Tiglat-Pileszer",
+      "Meródak",
+      "Észar-Haddón"
+    ]
+  },
+  "q_b143_040": {
+    "text": "Melyik király betegedett halálosan, és kapta az üzenetet, hogy rendezze el a házát?",
+    "answers": [
+      "Jósiás",
+      "Ezékiás",
+      "Áház",
+      "Manassé"
+    ]
+  },
+  "q_b143_041": {
+    "text": "Hány évet toldott meg az ÚR Ezékiás életéhez?",
+    "answers": [
+      "10",
+      "15",
+      "7",
+      "20"
+    ]
+  },
+  "q_b143_042": {
+    "text": "Mit tetetett Ézsaiás Ezékiás fekélyére?",
+    "answers": [
+      "Olajat és bort",
+      "Sót",
+      "Mézet",
+      "Fügepogácsát"
+    ]
+  },
+  "q_b143_043": {
+    "text": "Babilon melyik királya küldött levelet és ajándékot, amikor Ezékiás beteg volt?",
+    "answers": [
+      "Beródak-Baladán",
+      "Nabukodonozor",
+      "Evil-Meródak",
+      "Bélsaccar"
+    ]
+  },
+  "q_b143_044": {
+    "text": "Mit készíttetett Ezékiás, hogy vizet vezessen a városba?",
+    "answers": [
+      "Gátat a Jordánon",
+      "Csatornát a tengertől",
+      "Tavat és vízvezetéket",
+      "Kutat a templomban"
+    ]
+  },
+  "q_b143_045": {
+    "text": "Hány éves volt Manassé, amikor uralkodni kezdett?",
+    "answers": [
+      "8",
+      "7",
+      "16",
+      "12"
+    ]
+  },
+  "q_b143_046": {
+    "text": "Az ÚR azt mondta, úgy törli ki Jeruzsálemet, ahogyan az ember kitöröl egy… mit?",
+    "answers": [
+      "Asztalt",
+      "Kardot",
+      "Tálat",
+      "Ablakot"
+    ]
+  },
+  "q_b143_047": {
+    "text": "Hány évig uralkodott Ámón király Jeruzsálemben?",
+    "answers": [
+      "12",
+      "2",
+      "7",
+      "40"
+    ]
+  },
+  "q_b143_048": {
+    "text": "Kik ölték meg Ámón király gyilkosait, és tették királlyá Jósiást?",
+    "answers": [
+      "Az ország népe",
+      "A papok",
+      "Egyiptom serege",
+      "A próféták"
+    ]
+  },
+  "q_b143_049": {
+    "text": "Melyik íródeák olvasta fel a törvénykönyvet Jósiás királynak?",
+    "answers": [
+      "Hilkijjá",
+      "Báruk",
+      "Sáfán",
+      "Ezsdrás"
+    ]
+  },
+  "q_b143_050": {
+    "text": "Mit tett Jósiás, amikor meghallotta a törvénykönyv szavait?",
+    "answers": [
+      "Megszaggatta a ruháját",
+      "Lakomát rendelt",
+      "Egyiptomba küldte",
+      "Elrejtette"
+    ]
+  },
+  "q_b143_051": {
+    "text": "Melyik prófétanőhöz mentek Jósiás emberei, hogy a könyvről kérdezzék?",
+    "answers": [
+      "Debórához",
+      "Mirjámhoz",
+      "Nóadjához",
+      "Huldához"
+    ]
+  },
+  "q_b143_052": {
+    "text": "Jósiás tisztátalanná tette a Tófetet, hogy senki ne vigye át gyermekét a tűzön melyik istenért?",
+    "answers": [
+      "Kemósért",
+      "Molokért",
+      "Dágónért",
+      "Asérá kedvéért"
+    ]
+  },
+  "q_b143_053": {
+    "text": "Melyik város oltárán égetett el Jósiás csontokat, ahogy Isten embere megjövendölte?",
+    "answers": [
+      "Dánén",
+      "Bételén",
+      "Gilgálén",
+      "Silóén"
+    ]
+  },
+  "q_b143_054": {
+    "text": "Melyik ünnepet tartotta meg Jósiás úgy, ahogy a bírák kora óta senki?",
+    "answers": [
+      "A sátoros ünnepet",
+      "A purimot",
+      "A hetek ünnepét",
+      "A páskát"
+    ]
+  },
+  "q_b143_055": {
+    "text": "Melyik fáraó ölte meg Jósiás királyt Megiddónál?",
+    "answers": [
+      "Nékó",
+      "Sísak",
+      "Szó",
+      "Hofra"
+    ]
+  },
+  "q_b143_056": {
+    "text": "Mennyi ideig uralkodott Jóáház Jeruzsálemben?",
+    "answers": [
+      "7 napig",
+      "3 évig",
+      "3 hónapig",
+      "11 évig"
+    ]
+  },
+  "q_b143_057": {
+    "text": "Mire változtatta Nékó fáraó Eljákím nevét?",
+    "answers": [
+      "Jójákinra",
+      "Sedékiásra",
+      "Jóáházra",
+      "Jójákimra"
+    ]
+  },
+  "q_b143_058": {
+    "text": "Hány évig szolgálta Jójákim Nabukodonozort, mielőtt fellázadt?",
+    "answers": [
+      "7",
+      "10",
+      "3",
+      "1"
+    ]
+  },
+  "q_b143_059": {
+    "text": "Júda melyik királya ment ki anyjával együtt megadni magát Babilon királyának?",
+    "answers": [
+      "Sedékiás",
+      "Jójákin",
+      "Jósiás",
+      "Jóáház"
+    ]
+  },
+  "q_b143_060": {
+    "text": "Kiket hagyott ott Nabukodonozor, amikor elhurcolta Jeruzsálemet?",
+    "answers": [
+      "Az ország legszegényebb népét",
+      "A papokat és lévitákat",
+      "A főembereket és nemeseket",
+      "A mestereket és kovácsokat"
+    ]
+  },
+  "q_b143_061": {
+    "text": "Melyik városba hurcolták fogságba Jójákin királyt?",
+    "answers": [
+      "Ninivébe",
+      "Damaszkuszba",
+      "Babilonba",
+      "Memfiszbe"
+    ]
+  },
+  "q_b143_062": {
+    "text": "Mire változtatta Babilon királya Mattanjá nevét?",
+    "answers": [
+      "Sedékiásra",
+      "Jójákimra",
+      "Jójákinra",
+      "Gedaljára"
+    ]
+  },
+  "q_b143_063": {
+    "text": "Amikor rést törtek a városfalon, mikor menekültek el a harcosok?",
+    "answers": [
+      "Délben",
+      "Hajnalban",
+      "Szombaton",
+      "Éjjel"
+    ]
+  },
+  "q_b143_064": {
+    "text": "Hol érte utol a káldeus sereg Sedékiás királyt?",
+    "answers": [
+      "Bételnél",
+      "Jerikó síkságán",
+      "Gibeónnál",
+      "Lákísnál"
+    ]
+  },
+  "q_b143_065": {
+    "text": "Melyik városba vitték Sedékiást Babilon királya elé?",
+    "answers": [
+      "Karkemisba",
+      "Riblába",
+      "Ninivébe",
+      "Damaszkuszba"
+    ]
+  },
+  "q_b143_066": {
+    "text": "Kit tett Nabukodonozor helytartóvá a Júdában maradt nép felett?",
+    "answers": [
+      "Sedékiást",
+      "Izmaelt",
+      "Jeremiást",
+      "Gedalját"
+    ]
+  },
+  "q_b143_067": {
+    "text": "Ki ölte meg Gedalját Micpában?",
+    "answers": [
+      "Izmael",
+      "Jóhánán",
+      "Baalisz",
+      "Jaazanjá"
+    ]
+  },
+  "q_b143_068": {
+    "text": "Fogsága hányadik évében engedték ki Jójákint a börtönből?",
+    "answers": [
+      "A 12. évben",
+      "A 70. évben",
+      "A 37. évben",
+      "A 40. évben"
+    ]
+  },
+  "q_b144_001": {
+    "text": "Kús melyik fia kezdett hatalmassá lenni a földön?",
+    "answers": [
+      "Peleg",
+      "Éber",
+      "Nimród",
+      "Assúr"
+    ]
+  },
+  "q_b144_002": {
+    "text": "Éber melyik fia kapta a nevét arról, hogy az ő idejében oszlott meg a föld?",
+    "answers": [
+      "Peleg",
+      "Joktán",
+      "Reú",
+      "Szerúg"
+    ]
+  },
+  "q_b144_003": {
+    "text": "A Krónikák első könyve szerint ki volt Izsák két fia?",
+    "answers": [
+      "Izmael és Izsák",
+      "Káin és Ábel",
+      "Perec és Zerah",
+      "Ézsau és Izráel"
+    ]
+  },
+  "q_b144_004": {
+    "text": "A Krónikák első könyve szerint Ákár minek a megrontója volt?",
+    "answers": [
+      "Júdáé",
+      "Izráelé",
+      "A táboré",
+      "Jerikóé"
+    ]
+  },
+  "q_b144_005": {
+    "text": "Miért adta Jabec anyja ezt a nevet a fiának?",
+    "answers": [
+      "Viharban született",
+      "Fájdalommal szülte",
+      "Ő volt az elsőszülöttje",
+      "Éjjel született"
+    ]
+  },
+  "q_b144_006": {
+    "text": "Rúben elsőszülöttségi joga kinek a fiaira szállt?",
+    "answers": [
+      "Júdáéira",
+      "Léviéire",
+      "Benjáminéira",
+      "Józseféire"
+    ]
+  },
+  "q_b144_007": {
+    "text": "Miért kapott segítséget Rúben, Gád és fél Manassé a hagriak ellen?",
+    "answers": [
+      "Istenhez kiáltottak a harcban",
+      "Több harci kocsijuk volt",
+      "Éjjel támadtak",
+      "Egyiptom segített nekik"
+    ]
+  },
+  "q_b144_008": {
+    "text": "A Krónikák első könyve szerint melyik isten házában szegezték ki Saul fejét a filiszteusok?",
+    "answers": [
+      "Baaléban",
+      "Kemóséban",
+      "Dágónéban",
+      "Molokéban"
+    ]
+  },
+  "q_b144_009": {
+    "text": "A Krónikák első könyve szerint Saul részben azért halt meg, mert kitől kért tanácsot?",
+    "answers": [
+      "Sámuel prófétától",
+      "Nób papjaitól",
+      "Móáb királyától",
+      "Egy halottidéző asszonytól"
+    ]
+  },
+  "q_b144_010": {
+    "text": "Saul halála után kinek adta az ÚR a királyságot?",
+    "answers": [
+      "Jónátánnak",
+      "Abnérnak",
+      "Dávidnak, Isai fiának",
+      "Isbósetnek"
+    ]
+  },
+  "q_b144_011": {
+    "text": "Melyik városban kenték királlyá Dávidot Izráel vénei?",
+    "answers": [
+      "Betlehemben",
+      "Hebrónban",
+      "Jeruzsálemben",
+      "Gibeában"
+    ]
+  },
+  "q_b144_012": {
+    "text": "Hogy hívták Jeruzsálemet, amikor Dávid elfoglalni indult?",
+    "answers": [
+      "Jebúsz",
+      "Sálem",
+      "Bétel",
+      "Lúz"
+    ]
+  },
+  "q_b144_013": {
+    "text": "Dávid megígérte: aki elsőként megveri a jebúsziakat, az lesz a vezér. Ki ment fel elsőként?",
+    "answers": [
+      "Abísaj",
+      "Benájá",
+      "Jóáb",
+      "Aszáél"
+    ]
+  },
+  "q_b144_014": {
+    "text": "Milyen időben ölt meg Benájá egy oroszlánt egy veremben?",
+    "answers": [
+      "Havas napon",
+      "Zivatarban",
+      "Nagy hőségben",
+      "Sűrű ködben"
+    ]
+  },
+  "q_b144_015": {
+    "text": "Milyen magas volt az egyiptomi férfi, akit Benájá megölt?",
+    "answers": [
+      "6 könyök",
+      "7 könyök",
+      "4 könyök",
+      "5 könyök"
+    ]
+  },
+  "q_b144_016": {
+    "text": "Melyik kezükkel tudtak lőni a Dávidhoz csatlakozó benjáminita íjászok?",
+    "answers": [
+      "Csak a balkezükkel",
+      "Jobbal és ballal is",
+      "Csak a jobbkezükkel",
+      "Egyikkel sem, csak parittyáztak"
+    ]
+  },
+  "q_b144_017": {
+    "text": "A Dávidhoz csatlakozó gádiak arca minek az arcához hasonlított?",
+    "answers": [
+      "Sasokéhoz",
+      "Oroszlánokéhoz",
+      "Medvékéhez",
+      "Farkasokéhoz"
+    ]
+  },
+  "q_b144_018": {
+    "text": "Kit ragadott meg a Lélek, hogy azt mondta: „Tieid vagyunk, Dávid”?",
+    "answers": [
+      "Abísajt",
+      "Ahiezert",
+      "Aszáélt",
+      "Amászajt"
+    ]
+  },
+  "q_b144_019": {
+    "text": "Melyik törzs emberei értettek az időkhöz, hogy tudják, mit kell tennie Izráelnek?",
+    "answers": [
+      "Issakáréi",
+      "Zebulonéi",
+      "Naftálié",
+      "Ásérét"
+    ]
+  },
+  "q_b144_020": {
+    "text": "Hány napig maradtak a harcosok Dáviddal Hebrónban, enni és inni?",
+    "answers": [
+      "7",
+      "40",
+      "3",
+      "10"
+    ]
+  },
+  "q_b144_021": {
+    "text": "Min vitték először a ládát Abínádáb házából?",
+    "answers": [
+      "Rudakon a vállukon",
+      "Arany harci kocsin",
+      "Tevéken",
+      "Új szekéren"
+    ]
+  },
+  "q_b144_022": {
+    "text": "A Krónikák első könyve szerint minek a szérűjénél nyúlt Uzzá a ládához?",
+    "answers": [
+      "Aravnáénál",
+      "Átádénál",
+      "Kídónénál",
+      "Gilgálénál"
+    ]
+  },
+  "q_b144_023": {
+    "text": "Minek nevezte Dávid azt a helyet, ahol az ÚR lesújtott Uzzára?",
+    "answers": [
+      "Ében-Ézernek",
+      "Perec-Uzzának",
+      "Bókímnak",
+      "Micpának"
+    ]
+  },
+  "q_b144_024": {
+    "text": "Mennyi ideig maradt a láda Óbéd-Edóm házában?",
+    "answers": [
+      "3 hónapig",
+      "3 napig",
+      "7 évig",
+      "1 évig"
+    ]
+  },
+  "q_b144_025": {
+    "text": "Milyen hang az eperfák tetején jelezte Dávidnak, hogy támadjon a filiszteusokra?",
+    "answers": [
+      "Kürtszó",
+      "Zúgó szél",
+      "Lépések zaja",
+      "Madárének"
+    ]
+  },
+  "q_b144_026": {
+    "text": "Dávid szerint kik vihetik egyedül Isten ládáját?",
+    "answers": [
+      "A léviták",
+      "A vének",
+      "A hősök",
+      "A király fiai"
+    ]
+  },
+  "q_b144_027": {
+    "text": "Hogyan vitték a léviták a ládát másodszor?",
+    "answers": [
+      "Új szekéren",
+      "Tevén",
+      "Harci kocsin",
+      "A vállukon, rúdjain"
+    ]
+  },
+  "q_b144_028": {
+    "text": "A léviták melyik vezetője irányította az éneket, mert értett hozzá?",
+    "answers": [
+      "Uriél",
+      "Kenanjá",
+      "Aszájá",
+      "Semajá"
+    ]
+  },
+  "q_b144_029": {
+    "text": "Ki nézett ki az ablakon, és vetette meg Dávidot, amikor a láda előtt táncolt?",
+    "answers": [
+      "Betsabé",
+      "Míkal",
+      "Abigail",
+      "Ahínóam"
+    ]
+  },
+  "q_b144_030": {
+    "text": "Ki volt a főénekes, aki cintányért pengetett a láda előtt?",
+    "answers": [
+      "Hémán",
+      "Jedútún",
+      "Étán",
+      "Ászáf"
+    ]
+  },
+  "q_b144_031": {
+    "text": "Dávid cédrusházban lakott, a láda pedig mi alatt volt?",
+    "answers": [
+      "Sátorlapok alatt",
+      "A szabad ég alatt",
+      "Kőtető alatt",
+      "Egy fa alatt"
+    ]
+  },
+  "q_b144_032": {
+    "text": "A Krónikák első könyve szerint Elhánán megölte Lahmit, kinek a testvérét?",
+    "answers": [
+      "Jisbi-Benóbét",
+      "Szafét",
+      "Góliátét",
+      "Ógét"
+    ]
+  },
+  "q_b144_033": {
+    "text": "Összesen hány ujja volt a gáti óriásnak a kezén és lábán?",
+    "answers": [
+      "22",
+      "26",
+      "20",
+      "24"
+    ]
+  },
+  "q_b144_034": {
+    "text": "Dávid három választási lehetőségének egyike: meddig tartó éhínség?",
+    "answers": [
+      "10 évig",
+      "3 hónapig",
+      "3 évig",
+      "3 napig"
+    ]
+  },
+  "q_b144_035": {
+    "text": "Hány izráeli férfi halt meg a dögvészben Dávid népszámlálása után?",
+    "answers": [
+      "7000",
+      "70 000",
+      "100 000",
+      "17 000"
+    ]
+  },
+  "q_b144_036": {
+    "text": "Mit látott Dávid az ÚR angyalának kezében Jeruzsálem fölött?",
+    "answers": [
+      "Kivont kardot",
+      "Aranytálat",
+      "Mérőzsinórt",
+      "Kürtöt"
+    ]
+  },
+  "q_b144_037": {
+    "text": "Mit csinált Ornán, amikor meglátta az angyalt?",
+    "answers": [
+      "Szőlőt metszett",
+      "Juhot nyírt",
+      "Búzát csépelt",
+      "Vizet merített"
+    ]
+  },
+  "q_b144_038": {
+    "text": "Hogyan felelt az ÚR Dávidnak az oltáron Ornán szérűjén?",
+    "answers": [
+      "Tűzzel az égből",
+      "Hanggal álmában",
+      "Földrengéssel",
+      "Füstfelhővel"
+    ]
+  },
+  "q_b144_039": {
+    "text": "Hol volt a Mózes készítette hajlék Dávid népszámlálása idején?",
+    "answers": [
+      "Silóban",
+      "Bételben",
+      "Dávid városában",
+      "A gibeóni áldozóhalmon"
+    ]
+  },
+  "q_b144_040": {
+    "text": "Miért nem építhette meg Dávid a házat az ÚR nevének?",
+    "answers": [
+      "Túl öreg volt",
+      "Sok vért ontott",
+      "Nem volt pénze",
+      "Hebrónban lakott"
+    ]
+  },
+  "q_b144_041": {
+    "text": "Isten szerint Salamon milyen ember lesz?",
+    "answers": [
+      "A háború embere",
+      "A nyugalom embere",
+      "A szomorúság embere",
+      "A gazdagság embere"
+    ]
+  },
+  "q_b144_042": {
+    "text": "Hány talentum aranyat készített elő Dávid nyomorúságában az ÚR házára?",
+    "answers": [
+      "10 000",
+      "3000",
+      "1 000 000",
+      "100 000"
+    ]
+  },
+  "q_b144_043": {
+    "text": "Hány éves kortól számolták a lévitákat, amikor Dávid összeszámlálta őket?",
+    "answers": [
+      "30",
+      "20",
+      "25",
+      "50"
+    ]
+  },
+  "q_b144_044": {
+    "text": "Melyik papra esett az első sors, amikor a papokat osztályokba sorolták?",
+    "answers": [
+      "Jedajára",
+      "Abijjára",
+      "Jehójáribra",
+      "Hakkócra"
+    ]
+  },
+  "q_b144_045": {
+    "text": "Hány fiút adott Isten Hémánnak, a király látnokának?",
+    "answers": [
+      "12",
+      "7",
+      "24",
+      "14"
+    ]
+  },
+  "q_b144_046": {
+    "text": "Hány hozzáértő énekes volt összesen a testvéreikkel együtt?",
+    "answers": [
+      "120",
+      "4000",
+      "288",
+      "24"
+    ]
+  },
+  "q_b144_047": {
+    "text": "Hány ember volt Dávid seregének egy-egy havi csoportjában?",
+    "answers": [
+      "12 000",
+      "24 000",
+      "1000",
+      "40 000"
+    ]
+  },
+  "q_b144_048": {
+    "text": "Kit neveznek Dávid udvarában „a király barátjának”?",
+    "answers": [
+      "Az arki Húsajt",
+      "Ahítófelt",
+      "Jóábot",
+      "Jónátánt"
+    ]
+  },
+  "q_b144_049": {
+    "text": "Isten szerint Dávid azért nem építhette meg a házat, mert milyen ember volt?",
+    "answers": [
+      "Az imádság embere",
+      "A zene embere",
+      "Harcos ember",
+      "A béke embere"
+    ]
+  },
+  "q_b144_050": {
+    "text": "Mit adott át Dávid Salamonnak a templom építéséhez?",
+    "answers": [
+      "A tervrajzot",
+      "A koronáját",
+      "A kardját",
+      "A hárfáját"
+    ]
+  },
+  "q_b144_051": {
+    "text": "Hány talentum ofíri aranyat adott Dávid a saját kincséből?",
+    "answers": [
+      "7000",
+      "5000",
+      "10 000",
+      "3000"
+    ]
+  },
+  "q_b144_052": {
+    "text": "A nagy ünnepen az ÚR előtt hányadszor tették királlyá Salamont?",
+    "answers": [
+      "Először",
+      "Másodszor",
+      "Harmadszor",
+      "Hetedszer"
+    ]
+  },
+  "q_b144_053": {
+    "text": "Hány évig uralkodott Dávid Jeruzsálemben?",
+    "answers": [
+      "7",
+      "33",
+      "40",
+      "20"
+    ]
+  },
+  "q_b144_054": {
+    "text": "A Krónikák első könyve szerint hogyan halt meg Dávid?",
+    "answers": [
+      "Csatában a Gilbóa-hegynél",
+      "Leesett a tetőről",
+      "Móáb földjén",
+      "Szép öregkorban, betelve napokkal"
+    ]
+  },
+  "q_b145_001": {
+    "text": "A Krónikák második könyve szerint mit kért Salamon Istentől?",
+    "answers": [
+      "Gazdagságot és dicsőséget",
+      "Hosszú életet",
+      "Bölcsességet és tudást",
+      "Győzelmet ellenségei felett"
+    ]
+  },
+  "q_b145_002": {
+    "text": "A Krónikák második könyvében hogy hívják Tírusz királyát, aki segített Salamonnak?",
+    "answers": [
+      "Húrám",
+      "Hadad",
+      "Hazáél",
+      "Híél"
+    ]
+  },
+  "q_b145_003": {
+    "text": "A Krónikák második könyve szerint melyik törzsből való volt a mesterember anyja?",
+    "answers": [
+      "Júda",
+      "Lévi",
+      "Ásér",
+      "Dán"
+    ]
+  },
+  "q_b145_004": {
+    "text": "Melyik hegyen építette fel Salamon az ÚR házát?",
+    "answers": [
+      "A Kármel-hegyen",
+      "A Mórijjá-hegyen",
+      "A Sínai-hegyen",
+      "Az Olajfák hegyén"
+    ]
+  },
+  "q_b145_005": {
+    "text": "Kinek a szérűjén építette fel Salamon a templomot?",
+    "answers": [
+      "A betlehemi Boázén",
+      "A jebúszi Ornánén",
+      "Óbéd-Edómén",
+      "Abínádábén"
+    ]
+  },
+  "q_b145_006": {
+    "text": "Hány gránátalmát tett Salamon az oszlopok láncaira?",
+    "answers": [
+      "200",
+      "12",
+      "400",
+      "100"
+    ]
+  },
+  "q_b145_007": {
+    "text": "Hol öntötték agyagos földben a templom bronztárgyait?",
+    "answers": [
+      "A Jordán síkságán",
+      "A Hinnóm-völgyben",
+      "A Libanon-hegyen",
+      "Joppé partján"
+    ]
+  },
+  "q_b145_008": {
+    "text": "Hány pap fújt trombitát a templom felszentelésekor?",
+    "answers": [
+      "12",
+      "70",
+      "120",
+      "24"
+    ]
+  },
+  "q_b145_009": {
+    "text": "Amikor az énekesek dicsérték: „mert örökké tart szeretete”, mi töltötte be a házat?",
+    "answers": [
+      "Füst",
+      "Tűz",
+      "Ragyogó fény",
+      "Felhő"
+    ]
+  },
+  "q_b145_010": {
+    "text": "Min állt és térdelt Salamon, amikor a templom udvarán imádkozott?",
+    "answers": [
+      "Aranytrónon",
+      "Az oltár lépcsőin",
+      "Egy bronzemelvényen",
+      "Egy kőoszlopon"
+    ]
+  },
+  "q_b145_011": {
+    "text": "Mit tett Izráel, amikor látta, hogy leszáll a tűz és a dicsőség a házra?",
+    "answers": [
+      "Kifutott a városból",
+      "Arcra borult a földre",
+      "Trombitákat fújt",
+      "Megszaggatta ruháját"
+    ]
+  },
+  "q_b145_012": {
+    "text": "Isten szerint ha népe megalázza magát, imádkozik és megtér, megbocsát, és mit gyógyít meg?",
+    "answers": [
+      "A földjüket",
+      "A királyukat",
+      "Az állataikat",
+      "A templomukat"
+    ]
+  },
+  "q_b145_013": {
+    "text": "Hány talentum aranyat hoztak Húrám és Salamon szolgái Ofírból?",
+    "answers": [
+      "666",
+      "120",
+      "450",
+      "1000"
+    ]
+  },
+  "q_b145_014": {
+    "text": "Mit adott Sába királynője Salamonnak, amilyet azelőtt soha senki?",
+    "answers": [
+      "Fűszert",
+      "Lovakat",
+      "Elefántcsontot",
+      "Pávákat"
+    ]
+  },
+  "q_b145_015": {
+    "text": "Milyen fából készíttetett Salamon hárfákat és lantokat?",
+    "answers": [
+      "Cédrusfából",
+      "Olajfából",
+      "Fenyőfából",
+      "Algumfából"
+    ]
+  },
+  "q_b145_016": {
+    "text": "Kiknek a tanácsát követte Roboám, amikor keményen felelt a népnek?",
+    "answers": [
+      "Az öregekét",
+      "Az ifjakét",
+      "A prófétákét",
+      "A papokét"
+    ]
+  },
+  "q_b145_017": {
+    "text": "Jeroboám papokat rendelt az áldozóhalmokhoz, a borjakhoz és mihez még?",
+    "answers": [
+      "Oroszlánokhoz",
+      "Bakokhoz",
+      "Kígyókhoz",
+      "Bikákhoz"
+    ]
+  },
+  "q_b145_018": {
+    "text": "Melyik feleségét szerette Roboám mindegyiknél jobban?",
+    "answers": [
+      "Naamát",
+      "Mahalatot",
+      "Abihajilt",
+      "Maakát"
+    ]
+  },
+  "q_b145_019": {
+    "text": "Hány fia volt Roboámnak?",
+    "answers": [
+      "28",
+      "60",
+      "18",
+      "12"
+    ]
+  },
+  "q_b145_020": {
+    "text": "Hány lovas jött Sísakkal Jeruzsálem ellen?",
+    "answers": [
+      "12 000",
+      "6000",
+      "60 000",
+      "100 000"
+    ]
+  },
+  "q_b145_021": {
+    "text": "Abijjá seregében 400 000 ember volt. Hányat hozott ellene Jeroboám?",
+    "answers": [
+      "500 000",
+      "1 000 000",
+      "300 000",
+      "800 000"
+    ]
+  },
+  "q_b145_022": {
+    "text": "Melyik hegyen állt Abijjá, amikor Jeroboámhoz és Izráelhez szólt?",
+    "answers": [
+      "A Gilbóa-hegyen",
+      "Az Ébál-hegyen",
+      "A Cemárajim-hegyen",
+      "A Garizim-hegyen"
+    ]
+  },
+  "q_b145_023": {
+    "text": "Abijjá szerint Isten milyen szövetséggel adta a királyságot Dávidnak?",
+    "answers": [
+      "Vérszövetséggel",
+      "Sószövetséggel",
+      "Tűzszövetséggel",
+      "Olajszövetséggel"
+    ]
+  },
+  "q_b145_024": {
+    "text": "Milyen cselt alkalmazott Jeroboám az Abijjá elleni csatában?",
+    "answers": [
+      "Hátulról lest vetett",
+      "Hamis békeajánlatot tett",
+      "Éjjel támadott",
+      "Megmérgezte a kutakat"
+    ]
+  },
+  "q_b145_025": {
+    "text": "Mit tettek Júda emberei közvetlenül azelőtt, hogy Isten megverte Jeroboám seregét?",
+    "answers": [
+      "Elfutottak",
+      "Letették a fegyvert",
+      "Harci kiáltást hallattak",
+      "Tüzet gyújtottak"
+    ]
+  },
+  "q_b145_026": {
+    "text": "Mi történt Jeroboámmal Abijjá idejében?",
+    "answers": [
+      "Az ÚR megverte, és meghalt",
+      "Asszíriába vitték",
+      "Békét kötött Júdával",
+      "Oroszlán ölte meg"
+    ]
+  },
+  "q_b145_027": {
+    "text": "Melyik etióp vonult Ászá ellen egymilliós sereggel?",
+    "answers": [
+      "Sísak",
+      "Szó",
+      "Tirháká",
+      "Zerah"
+    ]
+  },
+  "q_b145_028": {
+    "text": "Melyik völgyben állt csatarendbe Ászá Zerah ellen?",
+    "answers": [
+      "Az Élá-völgyben",
+      "A Cefáta-völgyben",
+      "A Refáim-völgyben",
+      "Az Ákór-völgyben"
+    ]
+  },
+  "q_b145_029": {
+    "text": "Kit ragadott meg Isten Lelke, hogy szóljon Ászá királyhoz?",
+    "answers": [
+      "Hanáni látnokot",
+      "Azarját, Ódéd fiát",
+      "Jéhút, Hanáni fiát",
+      "Iddó látnokot"
+    ]
+  },
+  "q_b145_030": {
+    "text": "Melyik látnok feddte meg Ászát, amiért Arám királyára támaszkodott?",
+    "answers": [
+      "Jéhú",
+      "Gád",
+      "Nátán",
+      "Hanáni"
+    ]
+  },
+  "q_b145_031": {
+    "text": "Hanáni ezt mondta: „Az ÚR szeme beláthatja…” mit?",
+    "answers": [
+      "Az egész földet",
+      "A szent várost",
+      "A templom udvarait",
+      "Júda földjét"
+    ]
+  },
+  "q_b145_032": {
+    "text": "Mit tett Ászá a látnokkal, aki megfeddte?",
+    "answers": [
+      "Megölte",
+      "Megajándékozta",
+      "Börtönbe záratta",
+      "Egyiptomba küldte"
+    ]
+  },
+  "q_b145_033": {
+    "text": "Ászá királyt illatszerekkel és mivel telt ágyba fektették?",
+    "answers": [
+      "Virágokkal",
+      "Mirhalevelekkel",
+      "Aranyporral",
+      "Fűszerekkel"
+    ]
+  },
+  "q_b145_034": {
+    "text": "Miért küldte el Jósáfát vezetőit, lévitáit és papjait Júda városaiba?",
+    "answers": [
+      "Adót szedni",
+      "Népet számlálni",
+      "Tanítani",
+      "Oltárokat építeni"
+    ]
+  },
+  "q_b145_035": {
+    "text": "Mit vittek a filiszteusok közül néhányan Jósáfát királynak?",
+    "answers": [
+      "Dágón bálványait",
+      "Ajándékot és ezüstöt adóként",
+      "Vas harci kocsikat",
+      "Gabonát és bort"
+    ]
+  },
+  "q_b145_036": {
+    "text": "Ki kérdezte Jósáfát királytól: „Hát a gonosznak kell segítened?”",
+    "answers": [
+      "Jéhú, Hanáni fia",
+      "Mikájehú",
+      "Illés",
+      "Jahaziél"
+    ]
+  },
+  "q_b145_037": {
+    "text": "Hacecón-Támár, ahol a nagy sokaság táborozott, más néven micsoda?",
+    "answers": [
+      "Beérseba",
+      "Gilgál",
+      "Én-Gedi",
+      "Én-Gannim"
+    ]
+  },
+  "q_b145_038": {
+    "text": "Mit hirdetett Jósáfát egész Júdában, amikor jött a nagy sereg?",
+    "answers": [
+      "Böjtöt",
+      "Ünnepet",
+      "Népszámlálást",
+      "Jubileumi évet"
+    ]
+  },
+  "q_b145_039": {
+    "text": "Melyik lévitát ragadta meg az ÚR Lelke a gyülekezetben?",
+    "answers": [
+      "Zakariást",
+      "Ászáfot",
+      "Eliézert",
+      "Jahaziélt"
+    ]
+  },
+  "q_b145_040": {
+    "text": "„Ne féljetek… mert nem a tietek a harc, hanem…” kié?",
+    "answers": [
+      "A királyé",
+      "Istené",
+      "A lévitáké",
+      "Izráelé"
+    ]
+  },
+  "q_b145_041": {
+    "text": "Kiket küldött Jósáfát a sereg élén?",
+    "answers": [
+      "A papokat a ládával",
+      "Az URat dicsérő énekeseket",
+      "Lovas íjászokat",
+      "Vas harci kocsikat"
+    ]
+  },
+  "q_b145_042": {
+    "text": "Ammón és Móáb serege kik ellen fordult először?",
+    "answers": [
+      "Júda emberei ellen",
+      "Saját királyaik ellen",
+      "A filiszteusok ellen",
+      "A Széír-hegy lakói ellen"
+    ]
+  },
+  "q_b145_043": {
+    "text": "Hány napig tartott, míg Júda összeszedte a zsákmányt?",
+    "answers": [
+      "3",
+      "1",
+      "7",
+      "40"
+    ]
+  },
+  "q_b145_044": {
+    "text": "Melyik próféta mondta, hogy az ÚR összetörte Jósáfát hajóit?",
+    "answers": [
+      "Jahaziél",
+      "Hanáni",
+      "Eliézer",
+      "Mikájehú"
+    ]
+  },
+  "q_b146_001": {
+    "text": "Kitől kapott ítéletet hirdető levelet Jórám, Júda királya?",
+    "answers": [
+      "Elizeustól",
+      "Ézsaiástól",
+      "Illés prófétától",
+      "Jeremiástól"
+    ]
+  },
+  "q_b146_002": {
+    "text": "Jórám melyik fia maradt meg egyedül az arabok rablótámadása után?",
+    "answers": [
+      "Jóáház",
+      "Jóás",
+      "Amacjá",
+      "Jótám"
+    ]
+  },
+  "q_b146_003": {
+    "text": "A Krónikák második könyve szerint hogyan távozott el Jórám?",
+    "answers": [
+      "Nagy tisztességben",
+      "Tüzes szekéren",
+      "Egész Júda gyászolta",
+      "Senki sem sajnálta"
+    ]
+  },
+  "q_b146_004": {
+    "text": "A Krónikák második könyve szerint ki lopta el és rejtette el a kis Jóást Atalja elől?",
+    "answers": [
+      "Jerúsá",
+      "Jehósabat",
+      "Maaká",
+      "Hefcibá"
+    ]
+  },
+  "q_b146_005": {
+    "text": "Hány éves volt Jójádá, amikor meghalt?",
+    "answers": [
+      "120",
+      "130",
+      "100",
+      "175"
+    ]
+  },
+  "q_b146_006": {
+    "text": "Hová temették el Jójádá papot?",
+    "answers": [
+      "Bételbe",
+      "Áron sírjába",
+      "Anátótba",
+      "A királyok közé, Dávid városába"
+    ]
+  },
+  "q_b146_007": {
+    "text": "Mit mondott Zakariás, amikor meghalt?",
+    "answers": [
+      "Lássa meg az ÚR, és torolja meg!",
+      "Atyám, bocsáss meg nekik!",
+      "Látom a megnyílt eget!",
+      "Emlékezz rám, Istenem!"
+    ]
+  },
+  "q_b146_008": {
+    "text": "Mekkora volt az arámi sereg, amely legyőzte Jóás igen nagy seregét?",
+    "answers": [
+      "Egymillió ember",
+      "32 király",
+      "Kis létszámú csapat",
+      "500 harci kocsi"
+    ]
+  },
+  "q_b146_009": {
+    "text": "Hány talentumot fizetett Amacjá 100 000 izráeli katona felfogadásáért?",
+    "answers": [
+      "1000",
+      "10",
+      "50",
+      "100"
+    ]
+  },
+  "q_b146_010": {
+    "text": "Isten embere ezt mondta Amacjának: „Az ÚR adhat neked…” mit?",
+    "answers": [
+      "Új sereget",
+      "Aranykoronát",
+      "Sokkal többet ennél",
+      "Békét Edómmal"
+    ]
+  },
+  "q_b146_011": {
+    "text": "Mit hozott haza és imádott Amacjá Edóm legyőzése után?",
+    "answers": [
+      "Edóm ládáját",
+      "Széír isteneit",
+      "Egy aranyborjút",
+      "A rézkígyót"
+    ]
+  },
+  "q_b146_012": {
+    "text": "Melyik városba menekült Amacjá, mielőtt megölték?",
+    "answers": [
+      "Lákísba",
+      "Hebrónba",
+      "Gátba",
+      "Libnába"
+    ]
+  },
+  "q_b146_013": {
+    "text": "Hány éves volt Uzzijjá, amikor uralkodni kezdett?",
+    "answers": [
+      "8",
+      "12",
+      "16",
+      "25"
+    ]
+  },
+  "q_b146_014": {
+    "text": "Uzzijjá kinek az idejében kereste Istent, aki értett Isten látomásaihoz?",
+    "answers": [
+      "Zakariáséban",
+      "Ézsaiáséban",
+      "Azarjáéban",
+      "Ódédéban"
+    ]
+  },
+  "q_b146_015": {
+    "text": "A Krónikák második könyve szerint mit szeretett Uzzijjá?",
+    "answers": [
+      "A vadászatot",
+      "A zenét",
+      "A hajókat",
+      "A földművelést"
+    ]
+  },
+  "q_b146_016": {
+    "text": "Mit állíttatott Uzzijjá Jeruzsálem tornyaira nyilak és nagy kövek kilövésére?",
+    "answers": [
+      "Katapultszekereket",
+      "Hadigépeket",
+      "Óriás íjakat",
+      "Vas harci kocsikat"
+    ]
+  },
+  "q_b146_017": {
+    "text": "Hány pap ment be Azarjával, hogy megakadályozza Uzzijjá füstölőáldozatát?",
+    "answers": [
+      "12",
+      "80",
+      "7",
+      "40"
+    ]
+  },
+  "q_b146_018": {
+    "text": "Hol lakott Uzzijjá, miután leprás lett?",
+    "answers": [
+      "A templomban",
+      "Jeruzsálem falain kívül",
+      "Betlehemben",
+      "Egy külön házban"
+    ]
+  },
+  "q_b146_019": {
+    "text": "Mit adtak az ammóniak Jótámnak, miután legyőzte őket?",
+    "answers": [
+      "Ezüstöt, búzát és árpát",
+      "Aranyat és lovakat",
+      "Cédrusfát",
+      "Királyuk koronáját"
+    ]
+  },
+  "q_b146_020": {
+    "text": "Hány éves volt Áház, amikor uralkodni kezdett?",
+    "answers": [
+      "16",
+      "12",
+      "20",
+      "25"
+    ]
+  },
+  "q_b146_021": {
+    "text": "Melyik próféta szólította fel Izráel seregét, hogy engedje vissza a júdai foglyokat?",
+    "answers": [
+      "Hanáni",
+      "Mikájehú",
+      "Semajá",
+      "Ódéd"
+    ]
+  },
+  "q_b146_022": {
+    "text": "Mit tettek Izráel emberei a mezítelen júdai foglyokkal?",
+    "answers": [
+      "Eladták őket rabszolgának",
+      "Falat építtettek velük",
+      "Felöltöztették és enni adtak nekik",
+      "Asszíriába küldték őket"
+    ]
+  },
+  "q_b146_023": {
+    "text": "Melyik városba, a pálmák városába vitték vissza a foglyokat?",
+    "answers": [
+      "Jeruzsálembe",
+      "Jerikóba",
+      "Hebrónba",
+      "Samáriába"
+    ]
+  },
+  "q_b146_024": {
+    "text": "Mit tett Ezékiás uralkodása első évének első hónapjában?",
+    "answers": [
+      "Kinyitotta az ÚR házának ajtóit",
+      "Új palotát épített",
+      "Háborúba indult Asszíria ellen",
+      "Aranyborjút készített"
+    ]
+  },
+  "q_b146_025": {
+    "text": "Az első hónap hányadik napján végezték el az ÚR házának megtisztítását?",
+    "answers": [
+      "A 7. napon",
+      "A 10. napon",
+      "A 16. napon",
+      "A 30. napon"
+    ]
+  },
+  "q_b146_026": {
+    "text": "Kik segítettek a papoknak megnyúzni az égőáldozatokat, mert kevés volt a pap?",
+    "answers": [
+      "A léviták",
+      "A vezetők",
+      "Az énekesek",
+      "A király testőrei"
+    ]
+  },
+  "q_b146_027": {
+    "text": "Melyik hónapban tartotta meg Ezékiás népe a páskát?",
+    "answers": [
+      "Az első hónapban",
+      "A hetedik hónapban",
+      "A tizenkettedik hónapban",
+      "A második hónapban"
+    ]
+  },
+  "q_b146_028": {
+    "text": "Hogyan fogadták sokan Efraimban és Manasséban Ezékiás futárait?",
+    "answers": [
+      "Lakomával fogadták őket",
+      "Kinevették és kigúnyolták őket",
+      "Megölték őket",
+      "Azonnal követték őket"
+    ]
+  },
+  "q_b146_029": {
+    "text": "A páska hete után mit határozott el a gyülekezet?",
+    "answers": [
+      "Azonnal hazamegy",
+      "Még hét napig ünnepel",
+      "Három napig böjtöl",
+      "Asszíria ellen vonul"
+    ]
+  },
+  "q_b146_030": {
+    "text": "Hogyan gyűjtötték össze a tizedet Ezékiás idejében?",
+    "answers": [
+      "Korsókban",
+      "Zsákokban",
+      "A kincstári ládákban",
+      "Rakásokban"
+    ]
+  },
+  "q_b146_031": {
+    "text": "Ezékiás Asszíria királyáról ezt mondta: „Vele csak testi…” mi van?",
+    "answers": [
+      "Kar",
+      "Vas",
+      "Bronz",
+      "Kő"
+    ]
+  },
+  "q_b146_032": {
+    "text": "Kit küldött az ÚR, hogy kiirtsa a hősöket az asszír táborban?",
+    "answers": [
+      "Békacsapást",
+      "Jégesőt",
+      "Egy angyalt",
+      "Egyiptom seregét"
+    ]
+  },
+  "q_b146_033": {
+    "text": "Mi romlott el Ezékiásban, miután az ÚR meggyógyította?",
+    "answers": [
+      "Elfelejtett imádkozni",
+      "Idegen nőket vett feleségül",
+      "Eladta a templom aranyát",
+      "Elbizakodott a szíve"
+    ]
+  },
+  "q_b146_034": {
+    "text": "Melyik forrást tömte el Ezékiás, és vezette le a város nyugati oldalára?",
+    "answers": [
+      "Én-Rógélt",
+      "Siloámot",
+      "Gihónt",
+      "Márát"
+    ]
+  },
+  "q_b146_035": {
+    "text": "Hová temették Ezékiást?",
+    "answers": [
+      "A kertjébe",
+      "Dávid fiainak sírjaihoz vezető feljárónál",
+      "Az Olajfák hegyére",
+      "Hebrónba"
+    ]
+  },
+  "q_b146_036": {
+    "text": "Melyik domb körül épített Manassé külső falat, miután hazatért?",
+    "answers": [
+      "Az Ofel körül",
+      "A Mórijjá körül",
+      "A Sion körül",
+      "Az Olajfák hegye körül"
+    ]
+  },
+  "q_b146_037": {
+    "text": "Miután Manassé hazatért Babilonból, mit vitt ki az ÚR házából?",
+    "answers": [
+      "A szövetség ládáját",
+      "Az arany lámpatartót",
+      "Az idegen isteneket és a bálványt",
+      "A bronzoltárt"
+    ]
+  },
+  "q_b146_038": {
+    "text": "Uralkodása hányadik évében kezdte keresni Dávid Istenét az ifjú Jósiás?",
+    "answers": [
+      "A 8. évben",
+      "Az 1. évben",
+      "A 12. évben",
+      "A 18. évben"
+    ]
+  },
+  "q_b146_039": {
+    "text": "Jeruzsálem melyik részén lakott Hulda prófétanő?",
+    "answers": [
+      "A felső városban",
+      "A Hal-kapunál",
+      "A király kertjében",
+      "Az újvárosban"
+    ]
+  },
+  "q_b146_040": {
+    "text": "Hány bárányt és kecskegidát adott Jósiás a népnek a páskára?",
+    "answers": [
+      "3000",
+      "30 000",
+      "7000",
+      "12 000"
+    ]
+  },
+  "q_b146_041": {
+    "text": "A Krónikák második könyve szerint kinek a kora óta nem tartottak olyan páskát, mint Jósiásé?",
+    "answers": [
+      "Mózesé",
+      "Sámuel prófétáé",
+      "Salamoné",
+      "Ezékiásé"
+    ]
+  },
+  "q_b146_042": {
+    "text": "Ki mondta Jósiásnak: „Isten megparancsolta, hogy siessek”?",
+    "answers": [
+      "Nabukodonozor",
+      "Szanhérib",
+      "Círusz",
+      "Nékó, Egyiptom királya"
+    ]
+  },
+  "q_b146_043": {
+    "text": "Miután Jósiás megsebesült, min vitték Jeruzsálembe?",
+    "answers": [
+      "A második harci kocsiján",
+      "Hordágyon",
+      "Csónakon",
+      "Ökrös szekéren"
+    ]
+  },
+  "q_b146_044": {
+    "text": "Melyik próféta siratta el Jósiást?",
+    "answers": [
+      "Ézsaiás",
+      "Ezékiel",
+      "Jeremiás",
+      "Habakuk"
+    ]
+  },
+  "q_b146_045": {
+    "text": "Sedékiás fellázadt Nabukodonozor ellen, aki megesküdtette őt – kire?",
+    "answers": [
+      "Baalra",
+      "Egyiptom királyára",
+      "A saját életére",
+      "Istenre"
+    ]
+  },
+  "q_b146_046": {
+    "text": "Hogyan bánt a nép Isten követeivel Jeruzsálem eleste előtt?",
+    "answers": [
+      "Engedelmeskedett nekik",
+      "Megfizette őket",
+      "Kigúnyolta őket",
+      "Királlyá tette őket"
+    ]
+  },
+  "q_b146_047": {
+    "text": "Hány évig tartotta a föld a szombatot, amíg pusztán hevert?",
+    "answers": [
+      "40",
+      "70",
+      "7",
+      "12"
+    ]
+  },
+  "q_b146_048": {
+    "text": "Perzsia melyik királya rendelte el, hogy építsék fel az ÚR házát Jeruzsálemben?",
+    "answers": [
+      "Círusz",
+      "Dárjávesz",
+      "Artahsaszta",
+      "Ahasvérós"
+    ]
+  },
+  "q_b147_001": {
+    "text": "Círusz rendelete az ÚR melyik próféta által kimondott igéjét teljesítette be?",
+    "answers": [
+      "Ézsaiás",
+      "Ezékiel",
+      "Jeremiás",
+      "Dániel"
+    ]
+  },
+  "q_b147_002": {
+    "text": "Mit hozatott elő Círusz abból, amit Nabukodonozor elvitt Jeruzsálemből?",
+    "answers": [
+      "Az ÚR házának edényeit",
+      "A szövetség ládáját",
+      "Dávid koronáját",
+      "A törvénytáblákat"
+    ]
+  },
+  "q_b147_003": {
+    "text": "Kinek, „Júda fejedelmének” számolta át Círusz a templom edényeit?",
+    "answers": [
+      "Ezsdrásnak",
+      "Nehémiásnak",
+      "Jésuának",
+      "Sésbaccarnak"
+    ]
+  },
+  "q_b147_004": {
+    "text": "Melyik kincstárnok hozta elő a templom edényeit Círusz számára?",
+    "answers": [
+      "Tattenaj",
+      "Mitredát",
+      "Rehúm",
+      "Simsaj"
+    ]
+  },
+  "q_b147_005": {
+    "text": "Hány aranytál volt a templomi edények között, amelyeket Círusz visszaadott?",
+    "answers": [
+      "40",
+      "30",
+      "12",
+      "70"
+    ]
+  },
+  "q_b147_006": {
+    "text": "Ki szerepel elsőként a fogságból hazatérők között Ezsdrás 2. fejezetében?",
+    "answers": [
+      "Ezsdrás",
+      "Nehémiás",
+      "Mordokaj",
+      "Zerubbábel"
+    ]
+  },
+  "q_b147_007": {
+    "text": "A helytartó szerint a családfa nélküli papoknak milyen papra kell várniuk?",
+    "answers": [
+      "Akinél ott az urim és a tummim",
+      "Akinél ott a láda",
+      "Akinek aranyserpenyője van",
+      "Akinél Mózes tekercse van"
+    ]
+  },
+  "q_b147_008": {
+    "text": "Hány énekes férfi és nő tért haza a hazatérő foglyokkal?",
+    "answers": [
+      "70",
+      "120",
+      "200",
+      "1000"
+    ]
+  },
+  "q_b147_009": {
+    "text": "Hány lovat hoztak magukkal a hazatérő foglyok?",
+    "answers": [
+      "245",
+      "435",
+      "6720",
+      "736"
+    ]
+  },
+  "q_b147_010": {
+    "text": "Hány papi ruhát adtak a családfők Isten házára?",
+    "answers": [
+      "70",
+      "12",
+      "100",
+      "1000"
+    ]
+  },
+  "q_b147_011": {
+    "text": "Melyik hónapban gyűlt össze a nép egy emberként Jeruzsálembe, hogy oltárt építsen?",
+    "answers": [
+      "Az első hónapban",
+      "A hetedik hónapban",
+      "Az ötödik hónapban",
+      "A tizedik hónapban"
+    ]
+  },
+  "q_b147_012": {
+    "text": "Melyik pap, Jócádák fia építette meg az oltárt Zerubbábellel?",
+    "answers": [
+      "Jésua",
+      "Hilkijjá",
+      "Eljásíb",
+      "Cádók"
+    ]
+  },
+  "q_b147_013": {
+    "text": "Melyik ünnepet tartották meg a hazatértek, miután felállították az oltárt?",
+    "answers": [
+      "A purimot",
+      "A hetek ünnepét",
+      "A sátoros ünnepet",
+      "A páskát"
+    ]
+  },
+  "q_b147_014": {
+    "text": "Melyik kikötőbe szállították a libanoni cédrusokat a második templomhoz?",
+    "answers": [
+      "Joppéba",
+      "Tíruszba",
+      "Ecjón-Geberbe",
+      "Szidónba"
+    ]
+  },
+  "q_b147_015": {
+    "text": "Mit tett a nép, amikor letették az ÚR templomának alapját?",
+    "answers": [
+      "Félve elmenekült",
+      "Csendben ült",
+      "Hazament aludni",
+      "Nagy örömkiáltásban tört ki"
+    ]
+  },
+  "q_b147_016": {
+    "text": "Miért sírt hangosan sok idős pap és lévita az új alapok láttán?",
+    "answers": [
+      "Betegek voltak",
+      "Látták még az első házat",
+      "Nem engedték be őket",
+      "Elveszett a családjuk"
+    ]
+  },
+  "q_b147_017": {
+    "text": "Mit nem tudott megkülönböztetni a nép, amikor letették az alapot?",
+    "answers": [
+      "A papokat és a lévitákat",
+      "Az örömkiáltást és a sírást",
+      "Az öregeket és az ifjakat",
+      "A trombitákat és a cintányérokat"
+    ]
+  },
+  "q_b147_018": {
+    "text": "Mit mondott Zerubbábel az ellenségeknek, akik segíteni akartak az építésben?",
+    "answers": [
+      "Építsetek velünk!",
+      "Hozzátok az aranyatokat!",
+      "Várjatok jövő évig!",
+      "Semmi közötök hozzánk!"
+    ]
+  },
+  "q_b147_019": {
+    "text": "Rehúm kancellár melyik íródeákkal írt levelet Jeruzsálem ellen?",
+    "answers": [
+      "Simsajjal",
+      "Tattenajjal",
+      "Mitredáttal",
+      "Bislámmal"
+    ]
+  },
+  "q_b147_020": {
+    "text": "Az ellenségek levele milyen városnak nevezte Jeruzsálemet?",
+    "answers": [
+      "A béke városának",
+      "A szent városnak",
+      "A lázadó és gonosz városnak",
+      "Dávid városának"
+    ]
+  },
+  "q_b147_021": {
+    "text": "Dárjávesz király hányadik évéig szünetelt az Isten házán folyó munka?",
+    "answers": [
+      "Az első évéig",
+      "A hatodik évéig",
+      "A tizedik évéig",
+      "A második évéig"
+    ]
+  },
+  "q_b147_022": {
+    "text": "Ezsdrás könyvében kinek a fia Zakariás próféta?",
+    "answers": [
+      "Ámócé",
+      "Hilkijjáé",
+      "Iddóé",
+      "Jócádáké"
+    ]
+  },
+  "q_b147_023": {
+    "text": "Melyik helytartó kérdezte a folyamon túlról, ki adott parancsot a ház építésére?",
+    "answers": [
+      "Rehúm",
+      "Tattenaj",
+      "Szanballat",
+      "Gedaljá"
+    ]
+  },
+  "q_b147_024": {
+    "text": "Hol találták meg a tekercset Círusz rendeletével?",
+    "answers": [
+      "Ahmetában, Médiában",
+      "Babilon templomában",
+      "Súsán palotájában",
+      "Jeruzsálem romjai között"
+    ]
+  },
+  "q_b147_025": {
+    "text": "A rendelet szerint hány sor nagy kőre került egy-egy sor új gerenda?",
+    "answers": [
+      "2",
+      "7",
+      "3",
+      "12"
+    ]
+  },
+  "q_b147_026": {
+    "text": "Dárjávesz rendelete szerint mit húznak ki annak a házából, aki megváltoztatja?",
+    "answers": [
+      "Egy gerendát",
+      "Egy ajtót",
+      "Egy követ",
+      "Egy ablakot"
+    ]
+  },
+  "q_b147_027": {
+    "text": "Haggeus és Zakariás prófétálása nyomán mit tettek a zsidók vénei?",
+    "answers": [
+      "Egyiptomba menekültek",
+      "Visszamentek Babilonba",
+      "Abbahagyták a munkát",
+      "Építettek, és jól haladtak"
+    ]
+  },
+  "q_b147_028": {
+    "text": "Dárjávesz hányadik évében készült el az újjáépített Isten háza?",
+    "answers": [
+      "A 2. évében",
+      "A 6. évében",
+      "A 10. évében",
+      "A 20. évében"
+    ]
+  },
+  "q_b147_029": {
+    "text": "Hány bakot áldoztak vétekáldozatul egész Izráelért a felszenteléskor?",
+    "answers": [
+      "7",
+      "12",
+      "100",
+      "2"
+    ]
+  },
+  "q_b147_030": {
+    "text": "Melyik perzsa király uralkodása alatt jött fel Ezsdrás Babilonból?",
+    "answers": [
+      "Círusz",
+      "Dárjávesz",
+      "Xerxész",
+      "Artahsaszta"
+    ]
+  },
+  "q_b147_031": {
+    "text": "Ezsdrás családfája melyik főpapig vezethető vissza?",
+    "answers": [
+      "Áronig",
+      "Éliig",
+      "Cádókig",
+      "Melkisédekig"
+    ]
+  },
+  "q_b147_032": {
+    "text": "Mennyi ideig tartott Ezsdrás útja Babilonból Jeruzsálembe?",
+    "answers": [
+      "40 napig",
+      "7 napig",
+      "Az első hónaptól az ötödikig",
+      "Egy teljes évig"
+    ]
+  },
+  "q_b147_033": {
+    "text": "Ezsdrás elhatározta, hogy kutatja az ÚR törvényét, megtartja, és mit tesz még?",
+    "answers": [
+      "Elrejti",
+      "Másolatokat árul belőle",
+      "Felolvassa a királynak",
+      "Tanítja Izráelben"
+    ]
+  },
+  "q_b147_034": {
+    "text": "Milyen címet adott magának Artahsaszta az Ezsdrásnak írt levélben?",
+    "answers": [
+      "Urak Ura",
+      "A világ világossága",
+      "Királyok királya",
+      "Az istenek fia"
+    ]
+  },
+  "q_b147_035": {
+    "text": "Ezsdrást a király és hány tanácsosa küldte?",
+    "answers": [
+      "12",
+      "7",
+      "3",
+      "70"
+    ]
+  },
+  "q_b147_036": {
+    "text": "Az Ahavá-folyónál melyik csoport hiányzott Ezsdrás népéből?",
+    "answers": [
+      "Lévi fiai",
+      "Az énekesek",
+      "A vének",
+      "A templomszolgák"
+    ]
+  },
+  "q_b147_037": {
+    "text": "Ezsdrás Iddóhoz, a melyik helység elöljárójához küldött Isten házának szolgáiért?",
+    "answers": [
+      "Ahavá",
+      "Ahmetá",
+      "Kászifjá",
+      "Tél-Melah"
+    ]
+  },
+  "q_b147_038": {
+    "text": "Miért nem kért Ezsdrás katonákat a királytól az út védelmére?",
+    "answers": [
+      "Szégyellt kérni",
+      "A király megtagadta",
+      "Biztonságos volt az út",
+      "Saját seregük volt"
+    ]
+  },
+  "q_b147_039": {
+    "text": "Hány főpapot különített el Ezsdrás az adományok szállítására?",
+    "answers": [
+      "7",
+      "70",
+      "3",
+      "12"
+    ]
+  },
+  "q_b147_040": {
+    "text": "Hány napot pihent Ezsdrás csapata, amikor Jeruzsálembe ért?",
+    "answers": [
+      "7",
+      "3",
+      "1",
+      "40"
+    ]
+  },
+  "q_b147_041": {
+    "text": "Mit tett Ezsdrás, amikor hallotta, hogy a nép összeházasodott az országok népeivel?",
+    "answers": [
+      "Felgyújtotta a házakat",
+      "Megszaggatta ruháját és tépte a haját",
+      "Sereget hívott",
+      "Levelet írt a királynak"
+    ]
+  },
+  "q_b147_042": {
+    "text": "Mikor kelt fel Ezsdrás a gyászából, és térdelt le imádkozni?",
+    "answers": [
+      "Éjfélkor",
+      "Napkeltekor",
+      "Délben",
+      "Az esti áldozat idején"
+    ]
+  },
+  "q_b147_043": {
+    "text": "Ki mondta Ezsdrásnak: „De most még van remény Izráel számára”?",
+    "answers": [
+      "Sekanjá",
+      "Jehiél",
+      "Mesullám",
+      "Jónátán"
+    ]
+  },
+  "q_b147_044": {
+    "text": "Melyik hónapban gyűltek össze Júda és Benjámin férfiai Jeruzsálemben az esőben?",
+    "answers": [
+      "Az első hónapban",
+      "A hetedik hónapban",
+      "A kilencedik hónapban",
+      "A tizenkettedik hónapban"
+    ]
+  },
+  "q_b147_045": {
+    "text": "Miért mondta a nép, hogy nem tud kint állni a meghallgatáskor?",
+    "answers": [
+      "Túl meleg volt",
+      "Közel volt az ellenség",
+      "Szombat volt",
+      "Nagy esőzés ideje volt"
+    ]
+  },
+  "q_b148_001": {
+    "text": "Melyik palotában volt Nehémiás, amikor hírt kapott Jeruzsálemről?",
+    "answers": [
+      "Babilonban",
+      "Ninivében",
+      "Súsánban",
+      "Damaszkuszban"
+    ]
+  },
+  "q_b148_002": {
+    "text": "Nehémiás melyik testvére érkezett júdai emberekkel?",
+    "answers": [
+      "Hanáni",
+      "Hananjá",
+      "Hakaljá",
+      "Hánún"
+    ]
+  },
+  "q_b148_003": {
+    "text": "Mit hallott Nehémiás Jeruzsálem faláról?",
+    "answers": [
+      "Elkészült",
+      "Aranyból van",
+      "Túl magas",
+      "Le van rombolva"
+    ]
+  },
+  "q_b148_004": {
+    "text": "Mit tett Nehémiás, amikor hallott Jeruzsálemről?",
+    "answers": [
+      "Háborúba indult",
+      "Leült, sírt, böjtölt és imádkozott",
+      "Írt a helytartóknak",
+      "Azonnal Jeruzsálembe sietett"
+    ]
+  },
+  "q_b148_005": {
+    "text": "Kinek a fia volt Nehémiás?",
+    "answers": [
+      "Hilkijjáé",
+      "Hakaljáé",
+      "Hanáníé",
+      "Jócádáké"
+    ]
+  },
+  "q_b148_006": {
+    "text": "Mit vett észre a király Nehémiáson, miközben a bort szolgálta fel?",
+    "answers": [
+      "Kilöttyintette a bort",
+      "Nagyon fáradt volt",
+      "Mosolygott",
+      "Szomorú volt az arca"
+    ]
+  },
+  "q_b148_007": {
+    "text": "Amikor a király megkérdezte, mit kér, mit tett Nehémiás először?",
+    "answers": [
+      "Imádkozott az ég Istenéhez",
+      "Meghajolt a királyné előtt",
+      "Aranyat kért",
+      "Kiment a teremből"
+    ]
+  },
+  "q_b148_008": {
+    "text": "Ki ült a király mellett, amikor Nehémiás előadta kérését?",
+    "answers": [
+      "Hámán",
+      "Ezsdrás",
+      "A királyné",
+      "Mordokaj"
+    ]
+  },
+  "q_b148_009": {
+    "text": "Mit őrzött a királynak Ászáf, akinek szóló levelet kért Nehémiás?",
+    "answers": [
+      "A király kincstárát",
+      "A király lovait",
+      "A király borát",
+      "A király erdejét"
+    ]
+  },
+  "q_b148_010": {
+    "text": "A leveleken kívül kiket küldött a király Nehémiással?",
+    "answers": [
+      "12 papot",
+      "A saját fiát",
+      "Hadvezéreket és lovasokat",
+      "Tíruszi építőket"
+    ]
+  },
+  "q_b148_011": {
+    "text": "Hány napot töltött Nehémiás Jeruzsálemben, mielőtt éjjel kiment?",
+    "answers": [
+      "7",
+      "3",
+      "40",
+      "1"
+    ]
+  },
+  "q_b148_012": {
+    "text": "Mikor ment ki Nehémiás először megnézni Jeruzsálem lerombolt falait?",
+    "answers": [
+      "Éjjel",
+      "Hajnalban",
+      "Délben",
+      "Szombaton"
+    ]
+  },
+  "q_b148_013": {
+    "text": "Melyik kapun ment ki Nehémiás éjjel, hogy megnézze a falakat?",
+    "answers": [
+      "A Juh-kapun",
+      "A Hal-kapun",
+      "A Völgy-kapun",
+      "A Víz-kapun"
+    ]
+  },
+  "q_b148_014": {
+    "text": "Amikor Nehémiás elmondta, hogy Isten jó keze volt rajta, mit mondott a nép?",
+    "answers": [
+      "Rajta, építsünk!",
+      "Menjünk vissza Perzsiába!",
+      "Várjunk a királyra!",
+      "Kérdezzük meg a prófétákat!"
+    ]
+  },
+  "q_b148_015": {
+    "text": "Nehémiás így felelt a gúnyolódóknak: „Az ég Istene…” mit tesz?",
+    "answers": [
+      "Megbüntet titeket",
+      "Felépíti helyettünk",
+      "Hazaküld minket",
+      "Sikert ad nekünk"
+    ]
+  },
+  "q_b148_016": {
+    "text": "Melyik kaput építette fel Eljásíb főpap a papokkal?",
+    "answers": [
+      "A Hal-kaput",
+      "A Juh-kaput",
+      "A Szemét-kaput",
+      "A Ló-kaput"
+    ]
+  },
+  "q_b148_017": {
+    "text": "Melyik kaput építették fel Hasszenáá fiai?",
+    "answers": [
+      "A Juh-kaput",
+      "A Hal-kaput",
+      "Az Óvárosi kaput",
+      "A Völgy-kaput"
+    ]
+  },
+  "q_b148_018": {
+    "text": "Hány könyöknyi falat javítottak ki Hánún és Zánóah lakói a Szemét-kapuig?",
+    "answers": [
+      "100",
+      "500",
+      "50",
+      "1000"
+    ]
+  },
+  "q_b148_019": {
+    "text": "Melyik kapu fölött javítottak a papok, mindegyik a saját háza előtt?",
+    "answers": [
+      "A Ló-kapu",
+      "A Hal-kapu",
+      "A Juh-kapu",
+      "A Völgy-kapu"
+    ]
+  },
+  "q_b148_020": {
+    "text": "Kik javították a falat a sarok feljárója és a Juh-kapu között?",
+    "answers": [
+      "Az énekesek",
+      "A templomszolgák",
+      "Az ötvösök és a kereskedők",
+      "Jerikó emberei"
+    ]
+  },
+  "q_b148_021": {
+    "text": "Ki haragudott meg, és gúnyolta a zsidókat, amikor hallotta, hogy építik a falat?",
+    "answers": [
+      "Tóbijjá",
+      "Gesem",
+      "Artahsaszta",
+      "Szanballat"
+    ]
+  },
+  "q_b148_022": {
+    "text": "Tóbijjá gúnyolódott: ha melyik állat felmászna rá, leomlana a fal?",
+    "answers": [
+      "Egy kecske",
+      "Egy macska",
+      "Egy róka",
+      "Egy egér"
+    ]
+  },
+  "q_b148_023": {
+    "text": "Miért épült fel a fal olyan gyorsan a feléig?",
+    "answers": [
+      "A király rabszolgákat küldött",
+      "A nép szívvel-lélekkel dolgozott",
+      "Az ellenség segített",
+      "A kövek már ki voltak faragva"
+    ]
+  },
+  "q_b148_024": {
+    "text": "Az imádságon kívül mit tettek az építők az ellenség terve ellen?",
+    "answers": [
+      "Éjjel-nappal őrséget állítottak",
+      "Elmenekültek",
+      "Ezüstöt fizettek nekik",
+      "Abbahagyták az építést"
+    ]
+  },
+  "q_b148_025": {
+    "text": "Az építők egyik kezükkel dolgoztak. Mit tartottak a másikban?",
+    "answers": [
+      "Fáklyát",
+      "Vakolókanalat",
+      "Fegyvert",
+      "Tekercset"
+    ]
+  },
+  "q_b148_026": {
+    "text": "Ki állt Nehémiás mellett, hogy figyelmeztesse az építőket?",
+    "answers": [
+      "A kürtfúvó",
+      "A főpap",
+      "A király kapitánya",
+      "A kapu őre"
+    ]
+  },
+  "q_b148_027": {
+    "text": "Nehémiás szerint hová gyűljön a nép, ahonnan mit hall?",
+    "answers": [
+      "Harangszót",
+      "Riadókiáltást",
+      "Dobszót",
+      "Kürtszót"
+    ]
+  },
+  "q_b148_028": {
+    "text": "Mit nem vetett le Nehémiás és emberei, amíg a falat őrizték?",
+    "answers": [
+      "A sarujukat",
+      "A ruhájukat",
+      "A sisakjukat",
+      "A gyűrűjüket"
+    ]
+  },
+  "q_b148_029": {
+    "text": "Miért adták zálogba egyesek a mezejüket és szőlőjüket?",
+    "answers": [
+      "Hogy felépítsék a falat",
+      "Hogy gabonát kapjanak az éhínségben",
+      "Hogy fizessenek a papoknak",
+      "Hogy lovakat vegyenek"
+    ]
+  },
+  "q_b148_030": {
+    "text": "Nehémiás kirázta ruhája ölét: így rázza ki Isten azt, aki nem tartja meg… mit?",
+    "answers": [
+      "A szombatot",
+      "A király rendeletét",
+      "Az ünnepet",
+      "Ezt az ígéretet"
+    ]
+  },
+  "q_b148_031": {
+    "text": "Hány évig volt Nehémiás helytartó úgy, hogy nem élt a helytartói ellátással?",
+    "answers": [
+      "12",
+      "7",
+      "20",
+      "40"
+    ]
+  },
+  "q_b148_032": {
+    "text": "A vendégeken kívül hány zsidó és elöljáró evett Nehémiás asztalánál?",
+    "answers": [
+      "70",
+      "12",
+      "150",
+      "300"
+    ]
+  },
+  "q_b148_033": {
+    "text": "Melyik síkságon akart Szanballat és Gesem találkozni Nehémiással, hogy ártson neki?",
+    "answers": [
+      "Sárónban",
+      "Jezréelben",
+      "Móábban",
+      "Ónóban"
+    ]
+  },
+  "q_b148_034": {
+    "text": "Nehémiás így szólt: „Nagy munkát végzek, ezért nem…” mit tehetek?",
+    "answers": [
+      "Alhatok",
+      "Ehetek",
+      "Mehetek le",
+      "Pihenhetek"
+    ]
+  },
+  "q_b148_035": {
+    "text": "Mit küldött Szanballat ötödszörre a szolgájával?",
+    "answers": [
+      "Egy zsák aranyat",
+      "Egy nyitott levelet",
+      "Egy kardot",
+      "Egy lepecsételt tekercset"
+    ]
+  },
+  "q_b148_036": {
+    "text": "Ki biztatta Nehémiást, hogy rejtőzzön el a templomban, és zárják be az ajtókat?",
+    "answers": [
+      "Semajá, Delájá fia",
+      "Nóadjá",
+      "Hanáni",
+      "Eljásíb"
+    ]
+  },
+  "q_b148_037": {
+    "text": "Melyik prófétanő próbálta szintén megfélemlíteni Nehémiást?",
+    "answers": [
+      "Hulda",
+      "Debóra",
+      "Nóadjá",
+      "Anna"
+    ]
+  },
+  "q_b148_038": {
+    "text": "Melyik hónap 25. napján készült el a fal?",
+    "answers": [
+      "Elúl",
+      "Niszán",
+      "Ádár",
+      "Kiszlév"
+    ]
+  },
+  "q_b148_039": {
+    "text": "Hananjá azért kapta Jeruzsálem vezetését, mert félte Istent, és milyen ember volt?",
+    "answers": [
+      "Gazdag",
+      "Erős katona",
+      "Papnak a fia",
+      "Megbízható"
+    ]
+  },
+  "q_b148_040": {
+    "text": "Nehémiás szerint mikor nyithatták ki Jeruzsálem kapuit?",
+    "answers": [
+      "Pirkadatkor",
+      "Amikor már melegen süt a nap",
+      "Éjfélkor",
+      "Csak ünnepnapokon"
+    ]
+  },
+  "q_b148_041": {
+    "text": "Melyik kapu előtt gyűlt össze az egész nép, hogy hallja a törvényt?",
+    "answers": [
+      "A Juh-kapu",
+      "A Víz-kapu",
+      "A Hal-kapu",
+      "A Szemét-kapu"
+    ]
+  },
+  "q_b148_042": {
+    "text": "Mettől meddig olvasta Ezsdrás a törvényt a népnek?",
+    "answers": [
+      "Déltől estig",
+      "Egész éjjel",
+      "Hajnaltól napnyugtáig",
+      "Kora reggeltől délig"
+    ]
+  },
+  "q_b148_043": {
+    "text": "Mit felelt a nép, amikor Ezsdrás áldotta az URat?",
+    "answers": [
+      "Ámen, ámen!",
+      "Halleluja!",
+      "Hozsánna!",
+      "Éljen a király!"
+    ]
+  },
+  "q_b148_044": {
+    "text": "„Ne szomorkodjatok, mert az ÚR öröme a ti…” micsodátok?",
+    "answers": [
+      "Éneketek",
+      "Pajzsotok",
+      "Erősségetek",
+      "Kenyeretek"
+    ]
+  },
+  "q_b148_045": {
+    "text": "Az olajfán és a vadolajfán kívül milyen ágakból készítettek kunyhókat?",
+    "answers": [
+      "Cédrus- és fenyőágakból",
+      "Tölgy- és fűzágakból",
+      "Szőlő- és fügeágakból",
+      "Mirtusz-, pálma- és lombos ágakból"
+    ]
+  },
+  "q_b148_046": {
+    "text": "Hová építettek egyesek kunyhót?",
+    "answers": [
+      "A templom belsejébe",
+      "A városfalra",
+      "A házuk tetejére",
+      "A pusztába"
+    ]
+  },
+  "q_b148_047": {
+    "text": "Kinek az ideje óta nem laktak így sátorban?",
+    "answers": [
+      "Dávidé",
+      "Józsuéé, Nún fiáé",
+      "Salamoné",
+      "Sámuelé"
+    ]
+  },
+  "q_b148_048": {
+    "text": "A hónap hányadik napján gyűltek össze böjtölve és zsákruhában Izráel fiai?",
+    "answers": [
+      "A 24. napon",
+      "Az 1. napon",
+      "A 10. napon",
+      "A 15. napon"
+    ]
+  },
+  "q_b148_049": {
+    "text": "A léviták imája szerint a pusztában Izráel ruhái nem lettek… milyenek?",
+    "answers": [
+      "Piszkosak",
+      "Szűkek",
+      "Elnyűttek",
+      "Szakadtak"
+    ]
+  },
+  "q_b148_050": {
+    "text": "Sorsvetéssel tízből hányat költöztettek Jeruzsálembe?",
+    "answers": [
+      "1",
+      "2",
+      "5",
+      "9"
+    ]
+  },
+  "q_b148_051": {
+    "text": "Hány nagy hálaadó kórus vonult a falon a felszenteléskor?",
+    "answers": [
+      "3",
+      "12",
+      "7",
+      "2"
+    ]
+  },
+  "q_b148_052": {
+    "text": "A fal felszentelésekor milyen messzire hallatszott Jeruzsálem öröme?",
+    "answers": [
+      "Csak a templomban",
+      "Messzire",
+      "Csak a városban",
+      "Csak a falon"
+    ]
+  },
+  "q_b148_053": {
+    "text": "Kit béreltek fel az ammóniak és a móábiak, hogy megátkozza Izráelt?",
+    "answers": [
+      "Bálákot",
+      "Bálámot",
+      "Szíhónt",
+      "Ógot"
+    ]
+  },
+  "q_b148_054": {
+    "text": "Mit dobott ki Nehémiás Isten házának kamrájából?",
+    "answers": [
+      "A pénzváltókat",
+      "Baal bálványait",
+      "A törött oltárt",
+      "Tóbijjá holmiját"
+    ]
+  },
+  "q_b148_055": {
+    "text": "Miért mentek vissza a léviták és énekesek a földjeikre?",
+    "answers": [
+      "Nem kapták meg a részüket",
+      "Bezárták a templomot",
+      "Leégtek a házaik",
+      "A király hazaküldte őket"
+    ]
+  },
+  "q_b148_056": {
+    "text": "Melyik város emberei árultak halat Jeruzsálemben szombaton?",
+    "answers": [
+      "Joppé",
+      "Szidón",
+      "Tírusz",
+      "Gáza"
+    ]
+  },
+  "q_b148_057": {
+    "text": "Mit rendelt el Nehémiás a kapukkal a szombat kezdete előtt?",
+    "answers": [
+      "Fessék le",
+      "Csak katonák őrizzék",
+      "Tárják ki",
+      "Zárják be"
+    ]
+  },
+  "q_b148_058": {
+    "text": "Egyes gyermekek fele melyik város nyelvén beszélt a zsidók nyelve helyett?",
+    "answers": [
+      "Tíruszén",
+      "Damaszkuszén",
+      "Asdódén",
+      "Gázáén"
+    ]
+  },
+  "q_b148_059": {
+    "text": "Eljásíb főpap egyik unokája kinek a veje volt?",
+    "answers": [
+      "Az ammóni Tóbijjáé",
+      "A hóróni Szanballaté",
+      "Az arab Gesemé",
+      "Sekanjáé"
+    ]
+  },
+  "q_b149_001": {
+    "text": "Melyik palotában ült Ahasvérós király a trónján?",
+    "answers": [
+      "Babilonban",
+      "Ninivében",
+      "Súsánban",
+      "Damaszkuszban"
+    ]
+  },
+  "q_b149_002": {
+    "text": "Hány napig tartott a király lakomája Súsán egész népének?",
+    "answers": [
+      "7",
+      "3",
+      "40",
+      "12"
+    ]
+  },
+  "q_b149_003": {
+    "text": "Ki rendezett lakomát az asszonyoknak, miközben a király lakomázott?",
+    "answers": [
+      "Eszter",
+      "Zeres",
+      "Sába királynője",
+      "Vasti királyné"
+    ]
+  },
+  "q_b149_004": {
+    "text": "Mit tett Vasti királyné, amikor a király hívatta?",
+    "answers": [
+      "Azonnal ment",
+      "Nem volt hajlandó menni",
+      "Ajándékot küldött",
+      "Elszökött"
+    ]
+  },
+  "q_b149_005": {
+    "text": "Melyik főember adott tanácsot a királynak, mit tegyen Vastival?",
+    "answers": [
+      "Hámán",
+      "Memúkán",
+      "Hégaj",
+      "Harbóná"
+    ]
+  },
+  "q_b149_006": {
+    "text": "A Vasti elleni rendeletet mely népek törvényei közé írták, hogy ne lehessen megváltoztatni?",
+    "answers": [
+      "A babiloniakéi közé",
+      "Az egyiptomiakéi közé",
+      "A görögökéi közé",
+      "A perzsákéi és médekéi közé"
+    ]
+  },
+  "q_b149_007": {
+    "text": "Kinek a felügyelete alá gyűjtötték a fiatal lányokat Súsánban?",
+    "answers": [
+      "Hégajé alá",
+      "Hataké alá",
+      "Saasgazé alá",
+      "Harbónáé alá"
+    ]
+  },
+  "q_b149_008": {
+    "text": "Mordokaj, Jáír fia melyik törzsből való volt?",
+    "answers": [
+      "Lévi",
+      "Efraim",
+      "Benjámin",
+      "Júda"
+    ]
+  },
+  "q_b149_009": {
+    "text": "Milyen rokonságban állt Eszter Mordokajjal?",
+    "answers": [
+      "A húga volt",
+      "Az unokahúga volt",
+      "A felesége volt",
+      "A nagybátyja lánya volt"
+    ]
+  },
+  "q_b149_010": {
+    "text": "Mit hagyott meg Mordokaj Eszternek, hogy ne árulja el?",
+    "answers": [
+      "A korát",
+      "Az igazi nevét",
+      "A népét és a rokonságát",
+      "A vagyonát"
+    ]
+  },
+  "q_b149_011": {
+    "text": "Mennyi ideig tartott minden lány szépségápolása, mielőtt a királyhoz ment?",
+    "answers": [
+      "7 napig",
+      "12 hónapig",
+      "3 hónapig",
+      "Másfél évig"
+    ]
+  },
+  "q_b149_012": {
+    "text": "Melyik hónapban vitték Esztert Ahasvérós királyhoz?",
+    "answers": [
+      "Tébétben",
+      "Niszánban",
+      "Ádárban",
+      "Szivánban"
+    ]
+  },
+  "q_b149_013": {
+    "text": "Hová jegyezték fel, hogy Mordokaj leleplezte az összeesküvést?",
+    "answers": [
+      "A palota kapujára",
+      "Egy kőtáblára",
+      "Az évkönyvbe",
+      "A királyné levelébe"
+    ]
+  },
+  "q_b149_014": {
+    "text": "Hámán Hammedátá fia volt, és minek nevezték?",
+    "answers": [
+      "Agági",
+      "Amáléki király",
+      "Perzsa",
+      "Edómi"
+    ]
+  },
+  "q_b149_015": {
+    "text": "Miért haragudott Hámán Mordokajra?",
+    "answers": [
+      "Meglopta",
+      "Megsértette a királyt",
+      "Kinevette",
+      "Nem hajolt meg előtte"
+    ]
+  },
+  "q_b149_016": {
+    "text": "Mit vetettek Hámán előtt, hogy kiválasszák a napot?",
+    "answers": [
+      "Csontkockát",
+      "Púrt, azaz sorsot",
+      "Nyilakat",
+      "Folyami köveket"
+    ]
+  },
+  "q_b149_017": {
+    "text": "Hány talentum ezüstöt ajánlott fel Hámán a király kincstárának?",
+    "answers": [
+      "1000",
+      "10 000",
+      "100",
+      "50 000"
+    ]
+  },
+  "q_b149_018": {
+    "text": "Mit adott át a király Hámánnak a kezéről?",
+    "answers": [
+      "A jogarát",
+      "A koronáját",
+      "A kardját",
+      "A gyűrűjét"
+    ]
+  },
+  "q_b149_019": {
+    "text": "Miután a rendelet kiment, mit csinált a király és Hámán?",
+    "answers": [
+      "Leültek inni",
+      "Vadászni mentek",
+      "Együtt sírtak",
+      "Végiglovagoltak Súsánon"
+    ]
+  },
+  "q_b149_020": {
+    "text": "Mit öltött magára Mordokaj, amikor megtudta a rendeletet?",
+    "answers": [
+      "Királyi ruhát",
+      "Páncélt",
+      "Zsákruhát és hamut",
+      "Aranykoronát"
+    ]
+  },
+  "q_b149_021": {
+    "text": "Melyik udvari embert küldte Eszter, hogy megtudja, miért gyászol Mordokaj?",
+    "answers": [
+      "Hégajt",
+      "Harbónát",
+      "Bigtánt",
+      "Hatakot"
+    ]
+  },
+  "q_b149_022": {
+    "text": "Mi történt azzal, aki hívatlanul ment be a király belső udvarába?",
+    "answers": [
+      "Meggazdagodott",
+      "Elküldték",
+      "Halállal lakolt",
+      "Ezüstöt kellett fizetnie"
+    ]
+  },
+  "q_b149_023": {
+    "text": "Mit nyújtott Eszter felé a király, amikor meglátta az udvarban?",
+    "answers": [
+      "A gyűrűjét",
+      "Az aranyjogart",
+      "Egy pohár bort",
+      "Egy koronát"
+    ]
+  },
+  "q_b149_024": {
+    "text": "A király megígérte Eszternek a kérését, akár a királyság mekkora részéig?",
+    "answers": [
+      "A feléig",
+      "Az egészéig",
+      "A negyedéig",
+      "A tizedéig"
+    ]
+  },
+  "q_b149_025": {
+    "text": "Kit hívott meg Eszter a királlyal együtt a lakomájára?",
+    "answers": [
+      "Mordokajt",
+      "Hégajt",
+      "Hámánt",
+      "Memúkánt"
+    ]
+  },
+  "q_b149_026": {
+    "text": "Hámán szerint semmi sem örvendeztette meg, amíg kit látott a király kapujában?",
+    "answers": [
+      "Mordokajt",
+      "Esztert",
+      "Hatakot",
+      "Harbónát"
+    ]
+  },
+  "q_b149_027": {
+    "text": "Mi történt Ahasvérós királlyal Eszter második lakomája előtti éjjel?",
+    "answers": [
+      "Rosszat álmodott",
+      "Megbetegedett",
+      "Hangot hallott",
+      "Nem jött álom a szemére"
+    ]
+  },
+  "q_b149_028": {
+    "text": "Milyen kitüntetést kapott Mordokaj, amiért megmentette a király életét?",
+    "answers": [
+      "Aranyláncot",
+      "Semmit",
+      "Egy házat",
+      "Helyet a király asztalánál"
+    ]
+  },
+  "q_b149_029": {
+    "text": "Hámán ezt gondolta: „Kit akarna a király inkább megtisztelni, mint…” kit?",
+    "answers": [
+      "Mordokajt",
+      "Engem",
+      "Memúkánt",
+      "A királynét"
+    ]
+  },
+  "q_b149_030": {
+    "text": "Hámán szerint a király mijén lovagoljon a kitüntetett ember?",
+    "answers": [
+      "A harci kocsiján",
+      "A tevéjén",
+      "Az öszvérén",
+      "A lován"
+    ]
+  },
+  "q_b149_031": {
+    "text": "Hogyan ment haza Hámán, miután végigvezette Mordokajt a téren?",
+    "answers": [
+      "Gyászolva, eltakart fejjel",
+      "Énekelve és táncolva",
+      "Királyi kocsin",
+      "Koronával a fején"
+    ]
+  },
+  "q_b149_032": {
+    "text": "Eszter elmondta a királynak, hogy ővele és népével mi történt?",
+    "answers": [
+      "Száműzték őket",
+      "A király elfelejtette őket",
+      "Eladták őket pusztulásra",
+      "Túl nagy adót vetettek ki rájuk"
+    ]
+  },
+  "q_b149_033": {
+    "text": "Kit nevezett meg Eszter „ellenfélnek és ellenségnek”?",
+    "answers": [
+      "Mordokajt",
+      "Memúkánt",
+      "Hégajt",
+      "Hámánt"
+    ]
+  },
+  "q_b149_034": {
+    "text": "Hová ment haragjában a király a lakoma közben?",
+    "answers": [
+      "A hálószobájába",
+      "A város kapujához",
+      "A palota kertjébe",
+      "Az istállókba"
+    ]
+  },
+  "q_b149_035": {
+    "text": "Kinek adta a király a Hámántól visszavett gyűrűjét?",
+    "answers": [
+      "Eszternek",
+      "Mordokajnak",
+      "Hataknak",
+      "Harbónának"
+    ]
+  },
+  "q_b149_036": {
+    "text": "Melyik hónapban írták meg a zsidókat megmentő leveleket?",
+    "answers": [
+      "Szivánban",
+      "Ádárban",
+      "Niszánban",
+      "Tébétben"
+    ]
+  },
+  "q_b149_037": {
+    "text": "Milyen színű volt Mordokaj királyi ruhája, amikor kijött a királytól?",
+    "answers": [
+      "Piros és arany",
+      "Fekete és bíbor",
+      "Kék és fehér",
+      "Zöld és fehér"
+    ]
+  },
+  "q_b149_038": {
+    "text": "Ádár hónap hányadik napján kellett volna elpusztulniuk a zsidóknak, akik inkább legyőzték ellenségeiket?",
+    "answers": [
+      "A 13. napon",
+      "Az 1. napon",
+      "A 7. napon",
+      "A 20. napon"
+    ]
+  },
+  "q_b149_039": {
+    "text": "Mihez nem nyúltak a zsidók Súsánban?",
+    "answers": [
+      "A király palotájához",
+      "Az istenek templomához",
+      "A város kapuihoz",
+      "A zsákmányhoz"
+    ]
+  },
+  "q_b149_040": {
+    "text": "Mit küldtek egymásnak a zsidók purimkor?",
+    "answers": [
+      "Köszönőleveleket",
+      "Ételajándékot",
+      "Aranypénzt",
+      "Virágot"
+    ]
+  },
+  "q_b149_041": {
+    "text": "Ki volt Ahasvérós király után a második ember Eszter könyve végén?",
+    "answers": [
+      "Hámán",
+      "A zsidó Mordokaj",
+      "Memúkán",
+      "Hégaj"
+    ]
+  }
+}
