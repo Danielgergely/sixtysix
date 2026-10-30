@@ -7,8 +7,9 @@
   --ts-blue: #5b8fd6; --ts-blue-deep: #1f3f7a;
   --ts-sand: #cdb791; --ts-ink: #3b2412; --ts-dark: #1d0f06;
 }
-.ts .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; }
-.ts .topbar-heading{ font-size: 1.15rem; }
+.ts .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; grid-template-columns: 42px 1fr minmax(42px, auto); }
+.ts .topbar-heading{ font-size: 1.15rem; min-width: 0; }
+@media (max-width: 400px){ .ts .topbar-heading{ font-size: 0.95rem; } }
 .ts-body{ flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 4px 12px 18px; display: flex; flex-direction: column; }
 .ts-phase{ flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .ts-col{ display: flex; flex-direction: column; gap: 10px; }
@@ -146,6 +147,7 @@
 .ts-card-face{ display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 100%; height: 100%; min-width: 0; }
 .ts-card-word{ font: 800 13px/1.05 'Cinzel', serif; letter-spacing: -0.01em; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: clip; }
 .ts-card-word.small{ font-size: 8px; opacity: 0.9; }
+.ts-card-word.wrap{ white-space: normal; hyphens: manual; text-align: center; line-height: 1.1; }
 .ts-card-icon{ font-size: 22px; line-height: 1; filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.4)); }
 .ts-card-mark{ position: absolute; top: 2px; right: 3px; font-size: 10px; }
 /* Spy master's key: hidden cards tinted with their owner. */
