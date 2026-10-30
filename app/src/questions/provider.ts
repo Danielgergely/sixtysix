@@ -1,4 +1,4 @@
-import type { Difficulty, Locale, Question } from './types'
+import type { Difficulty, Locale, Question, VerseText } from './types'
 
 /**
  * bank.json is generated + verified by question-pipeline/ — do not edit by
@@ -7,8 +7,30 @@ import type { Difficulty, Locale, Question } from './types'
  */
 export const loadBank = () => import('./bank.json').then((m) => m.default as Question[])
 
-/** Cited verse text (WEB) per question id — also its own lazy chunk. */
-export const loadVerses = () => import('./verses.json').then((m) => m.default as Record<string, string>)
+/**
+ * Cited verse per question id in one language — each its own lazy chunk.
+ * English (WEB) is bare text: its reference is the question's own.
+ */
+const VERSE_FILES: Record<Locale, () => Promise<Record<string, VerseText>>> = {
+  en: () =>
+    import('./verses.json').then((m) =>
+      Object.fromEntries(Object.entries(m.default as Record<string, string>).map(([id, text]) => [id, { ref: '', text }])),
+    ),
+  de: () => import('./verses.de.json').then((m) => m.default as Record<string, VerseText>),
+  hu: () => import('./verses.hu.json').then((m) => m.default as Record<string, VerseText>),
+}
+const verseCache = new Map<Locale, Promise<Record<string, VerseText>>>()
+export function loadVerses(locale: Locale): Promise<Record<string, VerseText>> {
+  let p = verseCache.get(locale)
+  if (!p) {
+    p = VERSE_FILES[locale]().catch((err) => {
+      verseCache.delete(locale)
+      throw err
+    })
+    verseCache.set(locale, p)
+  }
+  return p
+}
 
 export interface GetQuestionsOptions {
   count: number

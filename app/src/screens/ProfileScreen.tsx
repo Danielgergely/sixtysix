@@ -137,6 +137,7 @@ function LanguagePicker() {
           </button>
         ))}
       </div>
+      <p className="profile-credit">{t('profile.bibleText')}</p>
     </div>
   )
 }

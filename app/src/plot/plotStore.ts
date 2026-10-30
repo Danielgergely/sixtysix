@@ -8,6 +8,7 @@ import {
   type PlotState,
   type ScrollQuestion,
 } from '@sixtysix/shared'
+import { useLocale } from '../i18n'
 import { getToken, readOutbox } from '../account/outbox'
 import { acceptRev, useAccountStore } from '../account/accountStore'
 import { useGameStore } from '../game/store'
@@ -195,7 +196,7 @@ export const usePlotStore = create<PlotStore>((set, get) => {
 
     startScroll: async () => {
       set({ busy: true })
-      const res = take(await call<{ scrollId: string; questions: ScrollQuestion[] }>('/scroll', {}))
+      const res = take(await call<{ scrollId: string; questions: ScrollQuestion[] }>('/scroll', { locale: useLocale.getState().locale }))
       if (res) set({ scroll: { id: res.scrollId, questions: res.questions } })
     },
 

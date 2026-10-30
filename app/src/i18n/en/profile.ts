@@ -18,4 +18,6 @@ export default {
     answered: 'Questions answered',
     correct: 'Correct answers',
   },
+  /** Where the quiz's verse texts come from in this language (license credit). */
+  bibleText: 'Bible verses: World English Bible (public domain).',
 }

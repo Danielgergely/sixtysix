@@ -3,7 +3,7 @@
  * Server owns all timers and scoring; clients render state and send answers.
  */
 
-import type { Category } from './question'
+import type { AnswerSet, Category, Locale, VerseText } from './question'
 
 export type RoomType = 'in-person' | 'remote'
 
@@ -95,6 +95,8 @@ export interface ArenaQuestion {
   text: string
   answers: [string, string, string, string]
   difficulty: number
+  /** The same question in the other languages; each phone shows its own, the board the host's. */
+  translations?: Partial<Record<Locale, { text: string; answers: AnswerSet }>>
 }
 
 export interface RevealPayload {
@@ -102,6 +104,8 @@ export interface RevealPayload {
   reference: string
   /** Cited verse text (WEB); empty if unavailable. */
   verse: string
+  /** The verse in the other languages, reference included. */
+  verses?: Partial<Record<Locale, VerseText>>
   /** Count of players who picked each answer. */
   distribution: [number, number, number, number]
   answeredCount: number

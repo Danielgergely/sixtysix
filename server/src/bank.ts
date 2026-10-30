@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { Category, DifficultyPreset, Question } from '@sixtysix/shared'
+import type { Category, DifficultyPreset, Locale, Question, VerseText } from '@sixtysix/shared'
 
 // Same compiled bank the app bundles — question-pipeline/ is the single source.
 const bankPath = join(
@@ -12,9 +12,28 @@ const bankPath = join(
 const BANK: Question[] = JSON.parse(readFileSync(bankPath, 'utf8'))
 // Cited verse text by question id — compiled alongside the bank.
 const VERSES: Record<string, string> = JSON.parse(readFileSync(join(dirname(bankPath), 'verses.json'), 'utf8'))
+// German and Hungarian verses with their references (question-pipeline/scripts/compile-i18n.mjs).
+const LOCAL_VERSES: Partial<Record<Locale, Record<string, VerseText>>> = {}
+for (const locale of ['de', 'hu'] as const) {
+  try {
+    LOCAL_VERSES[locale] = JSON.parse(readFileSync(join(dirname(bankPath), `verses.${locale}.json`), 'utf8'))
+  } catch {
+    console.warn(`[bank] no verses.${locale}.json — English verses only`)
+  }
+}
 console.log(`[bank] loaded ${BANK.length} questions`)
 
 export const verseFor = (id: string): string => VERSES[id] ?? ''
+
+/** The question's verse in every other language there is one for. */
+export function versesFor(id: string): Partial<Record<Locale, VerseText>> {
+  const out: Partial<Record<Locale, VerseText>> = {}
+  for (const [locale, verses] of Object.entries(LOCAL_VERSES)) if (verses?.[id]) out[locale as Locale] = verses[id]
+  return out
+}
+
+/** A question's reference written the way `locale` does ("1. Mose 2,22"). */
+export const referenceIn = (q: Question, locale: Locale): string => LOCAL_VERSES[locale]?.[q.id]?.ref ?? q.reference
 
 const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = {
   easy: [1, 2],

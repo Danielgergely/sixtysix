@@ -13,7 +13,9 @@ import { create } from 'zustand'
  *   Intl.PluralRules of the locale) when they exist.
  */
 
-export type Locale = 'en' | 'de' | 'hu'
+import type { Locale } from '@sixtysix/shared'
+
+export type { Locale }
 export const LOCALES: { id: Locale; name: string }[] = [
   { id: 'en', name: 'English' },
   { id: 'de', name: 'Deutsch' },

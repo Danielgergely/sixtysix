@@ -9,7 +9,7 @@ import { RotateHint } from './RotateHint'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
 import { TEAM_COLORS, gateName } from './modes'
-import { useT } from '../../i18n'
+import { useLocale, useT } from '../../i18n'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -57,7 +57,12 @@ function ArenaQuestion() {
   const answer = useArenaStore((s) => s.answer)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const answeredIds = useArenaStore((s) => s.answeredIds)
+  const locale = useLocale((s) => s.locale)
   if (!room || !question) return null
+  // Each phone shows its own language; the board shows the host's (it runs on the host's device).
+  const local = question.translations?.[locale] ?? question
+  const verse = reveal?.verses?.[locale]
+  const localReveal = reveal && verse ? { ...reveal, reference: verse.ref, verse: verse.text } : reveal
   const phase = room.phase === 'reading' || room.phase === 'question' ? room.phase : 'reveal'
   const isPlayer = role === 'player'
   const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
@@ -66,14 +71,14 @@ function ArenaQuestion() {
     <QuestionView
       index={question.index}
       total={question.total}
-      text={question.text}
-      answers={question.answers}
+      text={local.text}
+      answers={local.answers}
       phase={phase}
       endsAt={phaseEndsAt}
       durationMs={phaseDuration}
       isPlayer={isPlayer}
       myAnswer={myAnswer}
-      reveal={room.phase === 'reveal' ? reveal : null}
+      reveal={room.phase === 'reveal' ? localReveal : null}
       result={yourResult}
       score={me?.score}
       answerCount={answerCount}

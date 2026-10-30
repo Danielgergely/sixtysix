@@ -4,7 +4,7 @@ import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
-import { t } from '../i18n'
+import { t, useLocale } from '../i18n'
 
 /**
  * Daily Scroll: five questions per calendar day, the SAME five for everyone
@@ -92,7 +92,6 @@ function save(s: Saved): void {
 interface DailyStore {
   saved: Saved
   questions: Question[]
-  verses: Record<string, string>
   loading: boolean
   /** Coins earned today (shown on the result). */
   coins: number
@@ -103,7 +102,6 @@ interface DailyStore {
 export const useDailyStore = create<DailyStore>((set, get) => ({
   saved: load(),
   questions: [],
-  verses: {},
   loading: false,
   coins: 0,
 
@@ -112,9 +110,8 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
     set({ loading: true })
     const saved = load()
     let bank: Question[]
-    let verses: Record<string, string>
     try {
-      ;[bank, verses] = await Promise.all([loadBank(), loadVerses()])
+      ;[bank] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale)])
     } catch {
       // Chunk failed to load (offline web build) — tapping again retries.
       set({ loading: false })
@@ -122,7 +119,7 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
     }
     const questions = pickDaily(bank, saved.date)
     const coins = saved.picks.reduce((n, p, i) => n + (p === questions[i]?.correctIndex ? COINS_PER_CORRECT : 0), 0)
-    set({ saved, questions, verses, loading: false, coins: saved.picks.length === COUNT && coins === COUNT * COINS_PER_CORRECT ? coins + DAILY_PERFECT_BONUS : coins })
+    set({ saved, questions, loading: false, coins: saved.picks.length === COUNT && coins === COUNT * COINS_PER_CORRECT ? coins + DAILY_PERFECT_BONUS : coins })
     // Only from the Quiz tab — don't yank the player out of whatever they opened meanwhile.
     if (useGameStore.getState().screen === 'menu') useGameStore.getState().goTo('daily')
   },

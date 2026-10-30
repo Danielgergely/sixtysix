@@ -1,6 +1,8 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
+  isLocale,
+  questionIn,
   DAY_MS,
   BUILDING_IDS,
   MATERIALS,
@@ -28,7 +30,7 @@ import {
   type ScrollQuestion,
 } from '@sixtysix/shared'
 import { db, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
-import { pickQuestions } from './bank.js'
+import { pickQuestions, referenceIn } from './bank.js'
 
 /**
  * My Home in Jerusalem (docs/jerusalem-plot.md): the plot, the Market and the
@@ -228,7 +230,8 @@ export function registerPlotRoutes(app: FastifyInstance): void {
    * is being built. One open scroll per player: asking again returns the same
    * questions, so they can't be rerolled until answered or expired.
    */
-  route(app, 'post', '/api/plot/scroll', (c) => {
+  route(app, 'post', '/api/plot/scroll', (c, body) => {
+    const locale = isLocale(body.locale) ? body.locale : 'en'
     if (c.plot.builds.length === 0) return fail('Nothing is being built')
     const open = scrolls.get(c.row.id)
     if (open && open.expiresAt > c.now) return view(c, { scrollId: open.id, questions: open.questions })
@@ -240,7 +243,8 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     const questions: ScrollQuestion[] = qs.map((q, i) => {
       const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5)
       correct.push(order.indexOf(q.correctIndex))
-      return { id: String(i), reference: q.reference, text: q.text.en, answers: order.map((k) => q.answers.en[k]) as ScrollQuestion['answers'] }
+      const { text, answers } = questionIn(q, locale)
+      return { id: String(i), reference: referenceIn(q, locale), text, answers: order.map((k) => answers[k]) as ScrollQuestion['answers'] }
     })
     const pending: PendingScroll = { id: randomBytes(9).toString('base64url'), questions, correct, expiresAt: c.now + SCROLL_TTL_MS }
     scrolls.set(c.row.id, pending)

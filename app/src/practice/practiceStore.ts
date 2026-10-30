@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
+import { useLocale } from '../i18n'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
 import { useGiftStore } from '../skills/giftStore'
@@ -51,7 +52,6 @@ interface PracticeStore {
   loading: boolean
 
   question: Question | null
-  verse: string
   /** Picked answer for the current question, null until answered. */
   picked: number | null
   streak: number
@@ -74,7 +74,6 @@ interface PracticeStore {
 
 // Session-only bookkeeping, outside React state.
 let bank: Question[] = []
-let verses: Record<string, string> = {}
 let seen = new Set<string>()
 let retryQueue: Array<{ id: string; at: number }> = []
 let served = 0
@@ -121,7 +120,6 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   missed: loadMissed(),
   loading: false,
   question: null,
-  verse: '',
   picked: null,
   streak: 0,
   coins: 0,
@@ -137,7 +135,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     if (get().loading) return
     set({ loading: true })
     try {
-      if (!bank.length) [bank, verses] = await Promise.all([loadBank(), loadVerses()])
+      if (!bank.length) [bank] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale)])
     } catch {
       // Chunk failed to load (offline web build) — let the player try again.
       set({ loading: false })
@@ -200,7 +198,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     seen.add(q.id)
     served++
     useGiftStore.getState().newQuestion()
-    set({ question: q, verse: verses[q.id] ?? '', picked: null })
+    set({ question: q, picked: null })
   },
 
   finish: () => {

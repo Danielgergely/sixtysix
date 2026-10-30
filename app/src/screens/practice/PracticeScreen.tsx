@@ -9,14 +9,17 @@ import { AnswerCard } from '../arena/game/AnswerCard'
 import { quoteVerse } from '../../questions/quoteVerse'
 import { useGiftStore } from '../../skills/giftStore'
 import { GiftBar } from '../../skills/GiftBar'
-import { useT } from '../../i18n'
+import { useLocale, useT } from '../../i18n'
+import { questionIn, useVerses, verseOf } from '../../questions/localize'
 import { rich } from '../arena/rich'
 
 /** Untimed solo questions: tap a card, see the verse, carry on. */
 export function PracticeScreen() {
   const t = useT()
   const goTo = useGameStore((s) => s.goTo)
-  const { question, verse, picked, streak, coins, tally, finished, answer, next, finish, playGift } = usePracticeStore()
+  const { question, picked, streak, coins, tally, finished, answer, next, finish, playGift } = usePracticeStore()
+  const locale = useLocale((s) => s.locale)
+  const verses = useVerses()
   const removed = useGiftStore((s) => s.removed)
   const used = useGiftStore((s) => s.used)
 
@@ -56,17 +59,17 @@ export function PracticeScreen() {
           {t(`quiz.categories.${question.category}`)} · {'●'.repeat(question.difficulty)}
           {'○'.repeat(5 - question.difficulty)}
         </div>
-        <div className="pr-q">{question.text.en}</div>
+        <div className="pr-q">{questionIn(question, locale).text}</div>
         {used.includes('lamp') && !answered && (
           <motion.div className="gift-hint" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
-            {rich(t('quiz.question.lookIn'), { ref: <b>{question.reference}</b> })}
+            {rich(t('quiz.question.lookIn'), { ref: <b>{verseOf(verses, question).ref}</b> })}
           </motion.div>
         )}
         <AnimatePresence>
           {answered && (
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-              {verse && <>{quoteVerse(verse)} </>}
-              <em>— {question.reference}</em>
+              {verseOf(verses, question).text && <>{quoteVerse(verseOf(verses, question).text, locale)} </>}
+              <em>— {verseOf(verses, question).ref}</em>
             </motion.div>
           )}
         </AnimatePresence>
@@ -75,7 +78,7 @@ export function PracticeScreen() {
       <div className="pr-gifts">{!answered && <GiftBar enabled={!answered} onUse={playGift} />}</div>
 
       <div className="pr-grid">
-        {question.answers.en.map((text, i) => {
+        {questionIn(question, locale).answers.map((text, i) => {
           const isRight = answered && i === question.correctIndex
           const isWrongPick = answered && i === picked && !correct
           // Taken out by a gift (50/50, a retried wrong answer): it sinks away.
