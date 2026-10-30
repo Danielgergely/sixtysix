@@ -22,6 +22,11 @@ import {
   checkUpgrade,
   collect,
   newPlot,
+  giftError,
+  isGiftFigure,
+  takeGift,
+  GIFT_FIGURES,
+  type GiftLog,
   type AccountProfile,
   type BuildingId,
   type Material,
@@ -64,6 +69,11 @@ function parsePlot(raw: string, now: number): PlotState {
   )
   base.updatedAt = num(p.updatedAt, now)
   if (p.boostUntil !== undefined) base.boostUntil = num(p.boostUntil)
+  if (p.gifts && typeof p.gifts === 'object') {
+    const last: GiftLog['last'] = {}
+    for (const f of GIFT_FIGURES) if (p.gifts.last?.[f] !== undefined) last[f] = num(p.gifts.last[f])
+    base.gifts = { day: Math.floor(num(p.gifts.day)), n: Math.floor(num(p.gifts.n)), last }
+  }
   return base
 }
 
@@ -282,6 +292,21 @@ export function registerPlotRoutes(app: FastifyInstance): void {
       }
     }
     return view(c, { right, passed, building: target, cutMs, correct: pending.correct, references: pending.questions.map((q) => q.reference) })
+  })
+
+  /**
+   * A carrier in the yard hands over what they carry (shared/src/life.ts):
+   * { figure }. Capped per day and per carrier; only on your own plot.
+   */
+  route(app, 'post', '/api/plot/gift', (c, body) => {
+    if (!isGiftFigure(body.figure)) return fail('Unknown figure')
+    const why = giftError(c.plot, body.figure, c.now)
+    if (why === 'absent') return fail('Nobody like that lives here yet')
+    if (why === 'daily') return fail('That’s all the gifts for today')
+    if (why === 'cooldown') return fail('They have nothing left to give — come back later')
+    const got = takeGift(c.plot, body.figure, c.now)
+    savePlot(c) // materials only: the coins (and the profile's rev) stay as they are
+    return view(c, { collected: { [got.material]: got.qty } })
   })
 
   // ── weekly skill perks (the week's use is kept in profile.skills) ────

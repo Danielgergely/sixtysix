@@ -784,6 +784,141 @@
         "refs/style-d.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style), seen from above at a classic 3/4 isometric angle: ONE small piece of a hedge for a family homestead in ancient Jerusalem, centred, filling about 85% of the frame, with only a small soft shadow at its base, no ground patch, no scenery. A small bushy thorn shrub with a few dry twigs sticking out and two or three small red berries, rounded."
+    },
+    {
+      "id": "walk-man",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A bearded man in a long brown robe with a striped red-and-cream head cloth, holding a wooden walking staff."
+    },
+    {
+      "id": "walk-woman",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A woman in a long crimson robe and a cream headscarf, balancing a clay water jar on her head with one hand."
+    },
+    {
+      "id": "walk-woodcutter",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A sturdy man in a short belted tunic carrying a bundle of chopped firewood logs on his shoulder."
+    },
+    {
+      "id": "walk-merchant",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A plump merchant in a blue-and-gold striped robe and turban, carrying a big cloth bundle on his back."
+    },
+    {
+      "id": "walk-boy",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A small boy in a simple red belted tunic and sandals, running happily."
+    },
+    {
+      "id": "walk-elder",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. An old man with a long white beard in a cream robe with a blue fringed prayer shawl, walking slowly with a cane."
+    },
+    {
+      "id": "walk-mason",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A young man in a short tan tunic and leather apron carrying a square cut limestone block on his shoulder."
+    },
+    {
+      "id": "walk-shepherd",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A young shepherd in a brown wool cloak with a crook staff and a small lamb across his shoulders."
+    },
+    {
+      "id": "walk-picker",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A woman in a long green-and-cream robe and headscarf carrying a woven basket full of green olives on her hip."
+    },
+    {
+      "id": "walk-dog",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A slim sandy-coloured Canaan dog with pointed ears and a curled tail, trotting. (An animal: four legs; left frame legs spread, right frame legs gathered.)"
+    },
+    {
+      "id": "walk-cat",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A small striped tabby cat walking with its tail up. (An animal: four legs; left frame legs spread, right frame legs gathered.)"
+    },
+    {
+      "id": "walk-goat",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A black-and-brown goat with small horns walking. (An animal: four legs; left frame legs spread, right frame legs gathered.)"
+    },
+    {
+      "id": "walk-sheep",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A fluffy white sheep walking. (An animal: four legs; left frame legs spread, right frame legs gathered.)"
+    },
+    {
+      "id": "walk-hen",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A plump brown hen strutting. (A bird: left frame one foot lifted forward, right frame both feet down.)"
+    },
+    {
+      "id": "walk-donkey",
+      "aspect": "16:9",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Game sprite sheet for an isometric city-builder (Forge of Empires style): exactly TWO frames side by side on one row, of the SAME small figure from ancient Jerusalem, seen from slightly above at a classic 3/4 isometric angle, full body, walking to the RIGHT (side view facing right). Left frame: mid-stride, front leg forward and back leg behind, arms swinging. Right frame: the passing pose of the same walk, legs together under the body. Identical character, clothes, colours, size and scale in both frames; each frame centred in its own half with wide empty space between them, feet at the same height in both; no shadow, no ground, no scenery. A grey donkey with long ears and a red saddle blanket walking. (An animal: four legs; left frame legs spread, right frame legs gathered.)"
     }
   ]
 }

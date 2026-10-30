@@ -146,7 +146,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
       )}
     >
       <div className="cm-world" style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }}>
-      <CityLife homes={homes} />
+      <CityLife homes={homes} view={view} />
       {LANDMARKS.map((l) => (
         <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
       ))}

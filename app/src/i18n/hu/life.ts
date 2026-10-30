@@ -1,0 +1,142 @@
+/** Emberek és állatok a telken és a városban (world/life): mit mondanak, ha megérinted őket. */
+export default {
+  name: {
+    man: 'Vándor',
+    woman: 'Vízhordó asszony',
+    woodcutter: 'Favágó',
+    merchant: 'Kereskedő',
+    boy: 'Kisfiú',
+    elder: 'Vén',
+    mason: 'Kőműves',
+    shepherd: 'Pásztor',
+    picker: 'Olajbogyó-szedő',
+    dog: 'Kutya',
+    cat: 'Macska',
+    goat: 'Kecske',
+    sheep: 'Bárány',
+    hen: 'Tyúk',
+    donkey: 'Szamár',
+    carpenter: 'Ács',
+    brickmaker: 'Téglavető',
+    watchman: 'Őrálló',
+    camel: 'Teve',
+  },
+
+  say: {
+    man: {
+      l1: 'Sálom! Békesség e háznak.',
+      l2: 'Felmegyek a templomba. Jössz velem?',
+      l3: 'Milyen jó és milyen gyönyörűséges, ha a testvérek egyetértésben élnek! (Zsolt 133)',
+      l4: 'Hosszú az út Jerikóból – de Jeruzsálem megéri.',
+    },
+    woman: {
+      l1: 'Mély ma a kút!',
+      l2: 'Aki ebből a vízből iszik, ismét megszomjazik… (Jn 4)',
+      l3: 'Vigyázat – csordultig van a korsó!',
+      l4: 'Rebeka tíz tevét itatott meg. Én maradok egy korsónál, köszönöm.',
+    },
+    woodcutter: {
+      l1: 'Csitt-csatt! Fa a télre.',
+      l2: 'Még Salamonnak is rengeteg fa kellett a templomhoz.',
+      l3: 'Lábakat félre – jönnek a rönkök!',
+      l4: 'Éles fejsze, jó ének – könnyű a munka.',
+    },
+    merchant: {
+      l1: 'A legfinomabb damaszkuszi gyapjú! Na jó… majdnem.',
+      l2: 'Csak igaz mérleg – az Úr a pontos súlyt kedveli! (Péld 11,1)',
+      l3: 'Füge, datolya, gránátalma! Ki vesz?',
+      l4: 'A felét a szamaram viszi, a másik felét én.',
+    },
+    boy: {
+      l1: 'Kapj el, ha tudsz!',
+      l2: 'Én vagyok Dávid, te meg Góliát! Bumm!',
+      l3: 'Mikor eszünk már?',
+      l4: 'Láttam egy bárányt, akkora volt, mint egy tehén! …Majdnem.',
+    },
+    elder: {
+      l1: 'Az én időmben sárral és türelemmel építkeztünk.',
+      l2: 'Az ősz haj ékes korona. (Péld 16,31)',
+      l3: 'Ülj le, gyermekem. Mesélek neked Nehémiásról.',
+      l4: 'Ha az Úr nem építi a házat, hiába fáradoznak az építők. (Zsolt 127)',
+    },
+    mason: {
+      l1: 'Kétszer mérj, egyszer vágj!',
+      l2: 'Ez a kő a sarokba kell. Nagyon fontos kő.',
+      l3: 'Nehéz? Á, dehogy… csak egy kicsit.',
+      l4: 'A kő, amelyet az építők megvetettek… én elviszem! (Zsolt 118)',
+    },
+    shepherd: {
+      l1: 'Az Úr az én pásztorom – én csak a segítő vagyok.',
+      l2: 'Kilencvenkilenc… már megint hiányzik egy!',
+      l3: 'Ez a kisbárány nem akar gyalogolni, hát lovagol.',
+      l4: 'A juhok ismerik a hangomat. Többnyire.',
+    },
+    picker: {
+      l1: 'Olajbogyó a présnek, olaj a mécseseknek!',
+      l2: 'Óvatosan verd az ágakat – hagyj a szegényeknek is. (5Móz 24,20)',
+      l3: 'Jó termés idén, hála Istennek!',
+      l4: 'Nehezebb a kosaram, mint amilyennek látszik.',
+    },
+    carpenter: {
+      l1: 'Mindenütt forgács – jó napi munka!',
+      l2: 'Egy názáreti ács? Sosem hallottam róla… még.',
+      l3: 'Sima, mint a selyem, ez a deszka.',
+      l4: 'Ideadnád azt a vésőt?',
+    },
+    brickmaker: {
+      l1: 'Sár, szalma, egy forma – a többit elvégzi a nap.',
+      l2: 'Legalább a szalmámat nem veszi el senki. (2Móz 5)',
+      l3: 'Egy tégla, két tégla… még ezer!',
+      l4: 'A nedveseket ne tapodd!',
+    },
+    watchman: {
+      l1: 'Minden csendes a falon.',
+      l2: 'Őrálló, mennyi van még az éjszakából? – Eljön a reggel! (Ézs 21,11)',
+      l3: 'Ellátok egészen az Olajfák hegyéig.',
+      l4: 'Állj! Ja – te vagy az. Mehetsz.',
+    },
+    dog: {
+      l1: 'Vau! 🐕',
+      l2: 'Csóválja a farkát, és megszaglássza a kezed.',
+      l3: 'Vau-vau! (Kérne egy morzsát az asztalról.)',
+    },
+    cat: {
+      l1: 'Miaú. 🐈',
+      l2: 'Dorombol, és a lábadhoz dörgölőzik.',
+      l3: 'Rád bámul, aztán megmossa a mancsát.',
+    },
+    goat: {
+      l1: 'Mek-mek-mek! 🐐',
+      l2: 'Megpróbálja megenni az ujjadat… mármint a ruhaujjadat.',
+      l3: 'Mekeg egyet, és elszökken.',
+    },
+    sheep: {
+      l1: 'Bee! 🐑',
+      l2: 'Kérődzve felnéz, aztán legel tovább.',
+      l3: 'Be-e-e! A pásztora hangját ismeri, nem a tiédet.',
+    },
+    hen: {
+      l1: 'Kot-kot-kotkodács! 🐔',
+      l2: 'Sértődötten elröppen.',
+      l3: 'Kotty! Szárnya alá gyűjti a csibéit. (Mt 23,37)',
+    },
+    donkey: {
+      l1: 'Iá-iá! 🫏',
+      l2: 'Megrebbenti hosszú füleit.',
+      l3: 'Bálám szamara beszélt. Ez csak iázik.',
+    },
+    camel: {
+      l1: 'Morog és kérődzik.',
+      l2: 'Nagyon magasról néz le rád. 🐪',
+      l3: 'Könnyebb a tevének átmenni a tű fokán… meg sem próbálja.',
+    },
+  },
+
+  gift: {
+    woodcutter: 'Tessék, egy hasáb a tüzedre! +{n} {icon}',
+    shepherd: 'Friss gyapjú a nyájtól – neked! +{n} {icon}',
+    mason: 'Egy jó kő a falaidhoz! +{n} {icon}',
+    picker: 'Egy kis korsó olaj, frissen a présből! +{n} {icon}',
+    later: 'Most nincs nálam semmi – gyere vissza később!',
+  },
+}
