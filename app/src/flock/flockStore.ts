@@ -84,8 +84,10 @@ function getSocket(): FlockSocket {
     // Transparent recovery after a drop: rejoin with the same device id.
     const { role, state } = getState()
     if (!state || !socket) return
-    const onRejoin = (res: { ok: boolean; error?: string }) => {
-      if (!res.ok) closeLocally(res.error ?? 'The game has ended')
+    const onRejoin = (res: { ok: boolean; error?: string; playerId?: string }) => {
+      if (!res.ok) return closeLocally(res.error ?? 'The game has ended')
+      // A seat dropped while offline (a new game deals only those online) comes back with a new public id.
+      if (res.playerId) setState({ myId: res.playerId })
     }
     const player = useGameStore.getState().player
     if (role === 'player') socket.emit('flock:join', { code: state.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
