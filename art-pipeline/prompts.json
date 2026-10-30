@@ -640,6 +640,123 @@
         "refs/style-d.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style): an EMPTY building plot in ancient Jerusalem, seen from above at a classic 3/4 isometric angle: a flat diamond-shaped patch of cleared sandy earth marked out at its four corners with small wooden stakes joined by a rope, a few stones and tufts of grass. Centred, filling about 85% of the frame, nothing else around it."
+    },
+    {
+      "id": "life-child",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A small boy in a simple belted tunic running happily with his arms out, side view facing right."
+    },
+    {
+      "id": "life-girl",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A small girl in a simple dress and headscarf rolling a wooden hoop with a stick, side view facing right."
+    },
+    {
+      "id": "life-hen",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A single plump brown hen pecking at the ground, side view facing right."
+    },
+    {
+      "id": "life-sheep",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A single fluffy white sheep grazing with its head down, side view facing right."
+    },
+    {
+      "id": "life-goat",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A single black-and-brown goat with small horns standing, side view facing right."
+    },
+    {
+      "id": "life-donkey",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A single grey donkey with long ears standing calmly, side view facing right."
+    },
+    {
+      "id": "life-camel",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A single tan one-humped camel standing, side view facing right."
+    },
+    {
+      "id": "life-donkey-sacks",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A grey donkey carrying two bulging grain sacks across its back, walking, side view facing right."
+    },
+    {
+      "id": "life-carpenter",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A bearded carpenter in a work apron planing a wooden plank on a small sawhorse, wood shavings at his feet, three-quarter view."
+    },
+    {
+      "id": "life-brickmaker",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A man kneeling and pressing mud into a wooden brick mould, a small stack of drying mud bricks beside him, three-quarter view."
+    },
+    {
+      "id": "life-water",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A woman in a long robe and headscarf walking with a large clay water jar on her shoulder, side view facing right."
+    },
+    {
+      "id": "life-picker",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A woman in a long robe carrying a woven basket full of green olives on her hip, side view facing right."
+    },
+    {
+      "id": "life-watchman",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A watchman in a short tunic and leather cap standing guard holding a tall spear, three-quarter view."
     }
   ]
 }

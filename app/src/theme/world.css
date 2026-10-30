@@ -176,6 +176,8 @@
 }
 .ps-ground{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .ps-fence{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35)); }
+/* The front sides cover the feet of the buildings behind them; only the gate (wall spot, y 95) stands in front. */
+.ps-fence.front{ z-index: 90; }
 .ps-spot{
   position: absolute; translate: -50% -86%; display: flex; flex-direction: column; align-items: center;
   background: none; border: 0; padding: 0; color: inherit;
@@ -187,15 +189,17 @@
 .ps-spot.court .ps-art{ filter: saturate(0.6) opacity(0.8); }
 .ps-spot.building .ps-art{ filter: sepia(0.4) brightness(0.9); }
 .ps-spot.empty.building .ps-art{ filter: grayscale(0.6) opacity(0.65); }
+.ps-tagspot{ position: absolute; z-index: 100; translate: -50% 0; background: none; border: 0; padding: 0; color: inherit; }
+.ps-tagspot[aria-disabled='true']{ cursor: inherit; }
 .ps-tag{
-  display: inline-flex; align-items: baseline; gap: 5px; margin-top: -8px; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  display: inline-flex; align-items: baseline; gap: 5px; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
   background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a; color: #ffe7a3; font: 900 14px/1.1 'Cinzel', serif; box-shadow: 0 2px 5px rgb(0 0 0 / 0.4);
 }
 .ps-tag small{ font: 800 12px/1 'Cinzel', serif; color: #ffd36b; }
-.ps-spot.house .ps-tag{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-size: 16px; }
-.ps-spot.house .ps-tag small{ color: #6b1d0e; }
-.ps-spot.empty .ps-tag{ background: rgb(243 226 187 / 0.85); border-color: #8a5a2a; color: #5a3412; }
-.ps-spot.empty .ps-tag small{ color: #8a5a2a; }
+.ps-tagspot.house .ps-tag{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-size: 16px; }
+.ps-tagspot.house .ps-tag small{ color: #6b1d0e; }
+.ps-tagspot.empty .ps-tag{ background: rgb(243 226 187 / 0.85); border-color: #8a5a2a; color: #5a3412; }
+.ps-tagspot.empty .ps-tag small{ color: #8a5a2a; }
 .ps-build{
   position: absolute; left: 50%; top: 30%; translate: -50% 0; width: 82%; min-width: 86px; display: flex; flex-direction: column; gap: 3px; align-items: center;
   padding: 4px 6px; border-radius: 9px; background: rgb(29 15 6 / 0.85); border: 1px solid #e3b754;
@@ -229,3 +233,33 @@
   position: absolute; left: 50%; bottom: 14px; translate: -50% 0; z-index: 6; width: max-content; max-width: calc(100% - 90px);
   padding: 7px 14px; border-radius: 999px; background: rgb(29 15 6 / 0.88); border: 2px solid #b3262b; color: #ffe7a3; font: italic 600 12px/1.3 Georgia, serif;
 }
+
+/* ── Life on the plot (world/PlotLife.tsx) ─────────────────────────────── */
+/* Each figure: the outer span walks (translate), the inner one faces the way it goes and bobs. */
+.pl-fig{ position: absolute; translate: -50% -92%; pointer-events: none; animation: pl-roam var(--period) ease-in-out infinite; }
+.pl-face{ display: block; animation: pl-face var(--period) steps(1) infinite; }
+.pl-face img{ display: block; width: 100%; height: auto; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.35)); }
+.pl-face.flip{ scale: -1 1; animation-name: pl-face-flip; }
+.pl-fig.run .pl-face img{ animation: pl-hop 0.35s ease-in-out infinite alternate; }
+.pl-fig.roam .pl-face img{ animation: pl-hop 0.5s ease-in-out infinite alternate; }
+.pl-fig.graze{ animation-timing-function: linear; }
+.pl-fig.graze .pl-face img{ animation: pl-graze 3.2s ease-in-out infinite; transform-origin: 70% 90%; }
+.pl-fig.peck .pl-face img{ animation: pl-peck 1.1s ease-in-out infinite; transform-origin: 60% 90%; }
+.pl-fig.work{ animation: none; }
+.pl-fig.work .pl-face{ animation: none; }
+.pl-fig.work .pl-face img{ animation: pl-work var(--period) ease-in-out infinite; transform-origin: 50% 95%; }
+.pl-fig.stand{ animation: none; }
+.pl-fig.stand .pl-face{ animation: none; }
+.pl-fig.stand .pl-face img{ animation: pl-breathe var(--period) ease-in-out infinite; transform-origin: 50% 100%; }
+/* Out and back: there in the first half, a pause, home again; facing follows. */
+@keyframes pl-roam{ 0%, 100%{ translate: -50% -92%; } 45%, 55%{ translate: calc(-50% + var(--dx)) calc(-92% + var(--dy)); } }
+@keyframes pl-face{ 0%{ scale: 1 1; } 50%{ scale: -1 1; } }
+@keyframes pl-face-flip{ 0%{ scale: -1 1; } 50%{ scale: 1 1; } }
+@keyframes pl-hop{ from{ translate: 0 0; } to{ translate: 0 -2px; } }
+@keyframes pl-graze{ 0%, 60%, 100%{ rotate: 0deg; } 70%, 90%{ rotate: 8deg; } }
+@keyframes pl-peck{ 0%, 50%, 100%{ rotate: 0deg; } 65%, 80%{ rotate: 22deg; } }
+@keyframes pl-work{ 0%, 100%{ rotate: -3deg; translate: 0 0; } 50%{ rotate: 3deg; translate: 0 -1px; } }
+@keyframes pl-breathe{ 0%, 100%{ scale: 1 1; } 50%{ scale: 1 1.02; } }
+/* Moving the yard with a finger: pause them, like the walkers on the city map. */
+.pz-dragging .pl-fig, .pz-dragging .pl-face, .pz-dragging .pl-face img{ animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce){ .pl-fig, .pl-face, .pl-face img{ animation: none !important; } }
