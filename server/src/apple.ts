@@ -1,5 +1,6 @@
 import { createPublicKey, randomBytes, verify as verifySignature, type JsonWebKey } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
+import { usernameKey } from '@sixtysix/shared'
 import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 import { freeUsername } from './google.js'
 
@@ -19,12 +20,7 @@ export const APPLE_REDIRECT_URI = process.env.APPLE_REDIRECT_URI ?? 'https://66.
 const AUDIENCES = [APPLE_SERVICES_ID, ...(process.env.APPLE_EXTRA_AUDIENCES ?? '').split(',')].map((s) => s.trim()).filter(Boolean)
 const ISSUER = 'https://appleid.apple.com'
 
-try {
-  db.exec('ALTER TABLE users ADD COLUMN apple_sub TEXT')
-} catch {
-  // column exists
-}
-db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_apple_sub ON users(apple_sub)')
+// users.apple_sub (unique) is created with the other account columns in accounts.ts.
 
 interface AppleIdentity {
   sub: string
@@ -91,9 +87,9 @@ export function registerAppleRoutes(app: FastifyInstance): void {
       const username = freeUsername(hidden ? `${given.replace(/\s+/g, '') || 'player'}@x` : id.email)
       try {
         const { lastInsertRowid } = db
-          .prepare('INSERT INTO users (username, pass_hash, created_at, profile, apple_sub) VALUES (?, ?, ?, ?, ?)')
-          // Password sign-in stays possible only after the player sets one; this hash matches nothing.
-          .run(username, hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
+          .prepare('INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile, apple_sub) VALUES (?, ?, ?, 0, ?, ?, ?)')
+          // Password sign-in stays possible only after the player sets one (Account settings); this hash matches nothing.
+          .run(username, usernameKey(username), hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
         row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
         created = true
       } catch {
@@ -116,7 +112,8 @@ export function registerAppleRoutes(app: FastifyInstance): void {
     const other = db.prepare('SELECT id FROM users WHERE apple_sub = ?').get(id.sub) as { id: number } | undefined
     if (other && other.id !== me.id) return { ok: false, error: 'This Apple ID belongs to another player' }
     db.prepare('UPDATE users SET apple_sub = ? WHERE id = ?').run(id.sub, me.id)
-    return { ok: true, account: toAccount(me) }
+    console.log(`[account] ${me.username} linked apple`)
+    return { ok: true, account: toAccount({ ...me, apple_sub: id.sub }) }
   })
 
   /** Return URL registered with Apple. The popup flow never lands here; a full-page fallback just goes home. */

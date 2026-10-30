@@ -1,5 +1,6 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
+import { usernameKey } from '@sixtysix/shared'
 import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 
 /**
@@ -12,12 +13,7 @@ import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAcc
 
 export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? ''
 
-try {
-  db.exec('ALTER TABLE users ADD COLUMN google_sub TEXT')
-} catch {
-  // column exists
-}
-db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_google_sub ON users(google_sub)')
+// users.google_sub (unique) is created with the other account columns in accounts.ts.
 
 interface GoogleIdentity {
   sub: string
@@ -43,11 +39,11 @@ async function verify(credential: unknown): Promise<GoogleIdentity | null> {
 /** A free username from the email's local part, e.g. "dani.g" → "dani.g" or "dani.g27". */
 export function freeUsername(email: string): string {
   const base = (email.split('@')[0] ?? '').replace(/[^A-Za-z0-9_.-]/g, '').slice(0, 16).padEnd(3, '0') || 'player'
-  const taken = db.prepare('SELECT 1 FROM users WHERE username = ?')
-  if (!taken.get(base)) return base
+  const taken = db.prepare('SELECT 1 FROM users WHERE username_key = ?')
+  if (!taken.get(usernameKey(base))) return base
   for (;;) {
     const candidate = `${base}${Math.floor(10 + Math.random() * 990)}`.slice(0, 20)
-    if (!taken.get(candidate)) return candidate
+    if (!taken.get(usernameKey(candidate))) return candidate
   }
 }
 
@@ -67,9 +63,9 @@ export function registerGoogleRoutes(app: FastifyInstance): void {
       const username = freeUsername(id.email)
       try {
         const { lastInsertRowid } = db
-          .prepare('INSERT INTO users (username, pass_hash, created_at, profile, google_sub) VALUES (?, ?, ?, ?, ?)')
-          // Password sign-in stays possible only after the player sets one; this hash matches nothing.
-          .run(username, hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
+          .prepare('INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile, google_sub) VALUES (?, ?, ?, 0, ?, ?, ?)')
+          // Password sign-in stays possible only after the player sets one (Account settings); this hash matches nothing.
+          .run(username, usernameKey(username), hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
         row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
         created = true
       } catch {
@@ -92,6 +88,7 @@ export function registerGoogleRoutes(app: FastifyInstance): void {
     const other = db.prepare('SELECT id FROM users WHERE google_sub = ?').get(id.sub) as { id: number } | undefined
     if (other && other.id !== me.id) return { ok: false, error: 'This Google account belongs to another player' }
     db.prepare('UPDATE users SET google_sub = ? WHERE id = ?').run(id.sub, me.id)
-    return { ok: true, account: toAccount(me) }
+    console.log(`[account] ${me.username} linked google`)
+    return { ok: true, account: toAccount({ ...me, google_sub: id.sub }) }
   })
 }

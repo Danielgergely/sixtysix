@@ -241,6 +241,9 @@ How it behaves:
   `dani.g`.
 - **Later uses** sign in to that account. Guest progress on the device is
   added, as with a normal sign-in.
+- Players link or unlink Google (and Apple) in **Profile → Account settings**,
+  where a Google-only account can also set a password. The last way to sign in
+  can't be unlinked.
 - The ID token is verified with Google's `tokeninfo` endpoint: our client ID,
   Google as issuer, not expired, verified email.
 - **Not built yet:** email login links (needs a mail-sending API key, for
@@ -281,3 +284,14 @@ How it behaves:
   cached for an hour), for our Services ID, and unexpired.
 - A future iOS app (Capacitor) would sign tokens for its bundle ID: add it to
   `APPLE_EXTRA_AUDIENCES`.
+
+## Account settings
+
+Players manage their account in **Profile → Account settings**
+(`server/src/accountSettings.ts`): change the username, change or set the
+password, link / unlink Google and Apple, sign out on every device, and delete
+the account (typed username + password). Deleting removes the user's sessions,
+grants and plot and the `users` row (which frees the city lot); their question
+flags stay, anonymous. Nothing needs configuring. `ADMIN_USERNAMES` names can't
+be taken by a rename, and admins can't rename themselves (their role comes
+from the name).
