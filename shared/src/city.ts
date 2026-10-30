@@ -6,9 +6,8 @@
  * - Every account owns at most one lot (1…LOTS.length, see cityLayout.ts).
  *   New families take the first free lot, inside the wall first.
  * - Inactivity shows on the map (weeds at 20 days, overgrown at 40).
- * - Places inside the wall are the prize: when an inner lot's family has been
- *   away 60+ days, an active player with a well-built home (INNER_MIN_HOUSE)
- *   may take it over. Lots outside the wall are never taken from anyone.
+ * - After 60 days away a lot is for sale: an active player may take it over
+ *   (inside the wall only with a well-built home, INNER_MIN_HOUSE).
  * - A lot is the place, not the homestead: buildings stay with the player
  *   when they move, and a family that lost its lot gets the next free one
  *   when it comes back.
@@ -30,8 +29,8 @@ export function idleStage(idleDays: number): IdleStage {
 
 /** Taking over an inner lot needs at least this house level (Courtyard house). */
 export const INNER_MIN_HOUSE = 4
-/** Coins to move to (or take over) a lot. */
-export const MOVE_COST = { outer: 50, inner: 250 } as const
+/** Coins to move to (or take over) a lot: a place inside the wall costs double. */
+export const MOVE_COST = { outer: 500, inner: 1000 } as const
 /** One move per week. */
 export const MOVE_COOLDOWN_MS = 7 * DAY_MS
 
@@ -48,9 +47,9 @@ export function moveError(o: {
   now: number
 }): MoveError | null {
   if (o.owner?.isMe) return 'same'
-  // Only an inner lot whose family has been away long enough can change hands.
-  if (o.owner && (!o.inner || idleStage(o.owner.idleDays) < 3)) return 'taken'
-  if (o.owner && o.house < INNER_MIN_HOUSE) return 'house'
+  // A lot changes hands only when its family has been away long enough.
+  if (o.owner && idleStage(o.owner.idleDays) < 3) return 'taken'
+  if (o.owner && o.inner && o.house < INNER_MIN_HOUSE) return 'house'
   if (o.lastMoveAt && o.now - o.lastMoveAt < MOVE_COOLDOWN_MS) return 'cooldown'
   if (o.coins < (o.inner ? MOVE_COST.inner : MOVE_COST.outer)) return 'coins'
   return null

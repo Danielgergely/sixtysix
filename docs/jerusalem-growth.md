@@ -18,18 +18,18 @@ How the city stays alive as it grows from a handful of families to thousands. Ru
 |---|---|
 | 20 days | a few weeds, slightly faded house |
 | 40 days | overgrown: more weeds, faded and dusty |
-| 60 days | overgrown + **🪧 For sale** (inner city only) |
+| 60 days | overgrown + **🪧 For sale** |
 
-Any activity removes the weeds at once. Player and visit pages show "🌿 away N days".
+Any activity removes the weeds at once. Player and visit pages show "🌿 away N days"; My Home warns its owner from 20 days on (and says when the lot goes up for sale).
 
 ## Moving house (built)
 
 `POST /api/city/move { lot }`, checked by `moveError`:
 
-- **Free lot** anywhere: 50 coins outside the wall, 250 inside.
-- **Taking over an inner lot** whose family has been away **60+ days**: 250 coins and a **Courtyard house (house level 4)** or better. This is the only way a lot changes hands: places inside the wall reward active builders. **Outside the wall nothing is ever taken from anyone.**
+- **Free lot** anywhere: 500 coins outside the wall, 1,000 inside.
+- **Taking over a lot** whose family has been away **60+ days**: the same price; inside the wall it also needs a **Courtyard house (house level 4)** or better, so the best places go to active builders.
 - One move per week (`last_move_at`).
-- The family that lost its inner place keeps everything and gets the first free lot when it comes back.
+- The family that lost its place keeps everything and gets the first free lot when it comes back.
 
 ## Growth beyond 413 families (planned)
 

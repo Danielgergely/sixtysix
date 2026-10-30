@@ -39,7 +39,7 @@ export function registerCityRoutes(app: FastifyInstance): void {
     }
   })
 
-  /** Move your homestead to a free lot, or take over an inner lot whose family has been away 60+ days. */
+  /** Move your homestead to a free lot, or take over one whose family has been away 60+ days. */
   app.post('/api/city/move', (req, reply) => {
     const me = userFromRequest(req)
     if (!me) return reply.code(401).send({ ok: false, error: MOVE_MESSAGES['signed-out'] })

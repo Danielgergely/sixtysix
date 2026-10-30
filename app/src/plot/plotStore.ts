@@ -38,7 +38,13 @@ function saveSeen(levels: Levels): void {
   }
 }
 
-type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; rev?: number; now: number } & T) | { ok: false; error: string }
+/** Where the homestead stands and how long its family has been away (weeds: shared/src/city.ts). */
+export interface HomeInfo {
+  lot: number | null
+  idleDays: number
+}
+
+type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; rev?: number; now: number; home?: HomeInfo } & T) | { ok: false; error: string }
 
 async function call<T = object>(path: string, body?: unknown): Promise<Res<T>> {
   const token = getToken()
@@ -84,6 +90,7 @@ export interface ScrollRound {
 
 interface PlotStore {
   plot: PlotState | null
+  home: HomeInfo | null
   /** server clock − device clock, so timers don't depend on the phone's clock. */
   offset: number
   loading: boolean
@@ -129,13 +136,14 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       seen = { ...res.plot.levels }
       saveSeen(seen)
     }
-    set({ plot: res.plot, offset: res.now - Date.now(), error: '', busy: false, seen })
+    set({ plot: res.plot, home: res.home ?? get().home, offset: res.now - Date.now(), error: '', busy: false, seen })
     adoptCoins(res.coins, res.rev)
     return res as Res<T> & { ok: true }
   }
 
   return {
     plot: null,
+    home: null,
     offset: 0,
     loading: false,
     busy: false,
@@ -230,5 +238,5 @@ export const usePlotStore = create<PlotStore>((set, get) => {
 // Another account (or a sign-out) on this device: drop the previous player's plot.
 useAccountStore.subscribe((s, prev) => {
   if (s.account?.username === prev.account?.username) return
-  usePlotStore.setState({ plot: null, scroll: null, selected: null, error: '', toast: null, seen: loadSeen() })
+  usePlotStore.setState({ plot: null, home: null, scroll: null, selected: null, error: '', toast: null, seen: loadSeen() })
 })

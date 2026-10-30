@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
+  DAY_MS,
   BUILDING_IDS,
   MATERIALS,
   MATERIAL_INFO,
@@ -101,7 +102,21 @@ function save(c: Ctx): void {
   saveProfile(c.row.id, c.profile)
 }
 
-const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({ ok: true, plot: c.plot, coins: c.profile.coins, rev: c.profile.rev, now: c.now, ...extra })
+/** Where the homestead stands and how long its family has been away (weeds, shared/src/city.ts). */
+function home(userId: number, now: number): { lot: number | null; idleDays: number } {
+  const r = db.prepare('SELECT lot, last_active, created_at FROM users WHERE id = ?').get(userId) as { lot: number | null; last_active: number | null; created_at: number }
+  return { lot: r.lot, idleDays: Math.max(0, Math.floor((now - (r.last_active ?? r.created_at)) / DAY_MS)) }
+}
+
+const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({
+  ok: true,
+  plot: c.plot,
+  coins: c.profile.coins,
+  rev: c.profile.rev,
+  now: c.now,
+  home: home(c.row.id, c.now),
+  ...extra,
+})
 const fail = (error: string) => ({ ok: false, error })
 
 type Handler = (c: Ctx, body: Record<string, unknown>) => unknown

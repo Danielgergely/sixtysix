@@ -16,6 +16,14 @@
 .hp-mat i{ font-style: normal; font-size: 19px; line-height: 1.1; }
 .hp-mat.none{ opacity: 0.45; }
 
+/* Weeds on a home left alone (WeedsNote) */
+.hp-weeds{
+  margin-bottom: 12px; padding: 10px 12px; border-radius: 12px; font: 700 13px/1.4 Georgia, serif; color: #2b1408;
+  background: linear-gradient(90deg, #d7e3a6, #b9c97a); border: 2px solid #5e7a2a; box-shadow: 0 4px 10px rgb(0 0 0 / 0.3);
+}
+.hp-weeds.stage-2{ background: linear-gradient(90deg, #e6d48a, #c9a24a); border-color: #8a5a10; }
+.hp-weeds.stage-3{ background: linear-gradient(90deg, #ffb38a, #e07a4a); border-color: #8e3b1e; }
+
 /* One suggested next step */
 .hp-next{
   width: 100%; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding: 10px 12px; border-radius: 12px; text-align: left;

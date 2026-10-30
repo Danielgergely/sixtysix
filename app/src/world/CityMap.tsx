@@ -5,7 +5,7 @@ import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { popIn } from '../motion'
 import { artFor } from '../screens/home/homeUtil'
-import { INNER_LOTS, LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
 
@@ -137,8 +137,8 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
         if (!lot) return null
         const special = r.username === me || r.username === found?.username
         const stage = idleStage(r.idleDays)
-        // A place inside the wall whose family has been away 60+ days can be taken over.
-        const forSale = stage === 3 && r.lot! <= INNER_LOTS && r.username !== me
+        // A home whose family has been away 60+ days can be taken over.
+        const forSale = stage === 3 && r.username !== me
         return inView(lot.x, lot.y) || special ? (
           <ResidentLot
             key={r.username}

@@ -244,8 +244,8 @@ function LotCard({ pick, residents, onMoved, onClose }: { pick: LotPick; residen
         <>
           <Head art={artFor('house', owner.house)} title={`${owner.name}’s home is for sale`} sub={where} />
           <p className="hp-what">
-            {owner.name} hasn’t played or built for {owner.idleDays} days, and the weeds have taken over. An active family with a well-built home may take this
-            place inside the wall. {owner.name} keeps their buildings and gets a free lot when they come back.
+            {owner.name} hasn’t played or built for {owner.idleDays} days, and the weeds have taken over. An active family may take this place
+            {inner ? ' inside the wall (with a Courtyard house or better)' : ''}. {owner.name} keeps their buildings and gets a free lot when they come back.
           </p>
         </>
       ) : (

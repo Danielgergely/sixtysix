@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import {
   BUILDINGS,
+  IDLE_DAYS,
   MATERIAL_INFO,
   MATERIALS,
   PRODUCERS,
   builderCount,
   formatMinutes,
+  idleStage,
   levelDef,
   modsOf,
   ready,
@@ -80,6 +82,7 @@ export function HomeScreen() {
       {plot && (
         <>
           <Summary plot={plot} />
+          <WeedsNote />
           <NextStep plot={plot} />
           <HomeScene plot={plot} now={now} seen={seen} />
           <Actions plot={plot} />
@@ -117,6 +120,24 @@ function Summary({ plot }: { plot: PlotState }) {
       </div>
     </div>
   )
+}
+
+/** Homes left alone grow weeds; after 60 days someone may take the lot over (shared/src/city.ts). */
+function WeedsNote() {
+  const home = usePlotStore((s) => s.home)
+  if (!home) return null
+  if (home.lot === null) {
+    return <div className="hp-weeds">⛺ Your family is camping outside the walls until a lot is free. Your homestead works as usual — play or build and you’ll get the next free lot.</div>
+  }
+  const stage = idleStage(home.idleDays)
+  if (stage === 0) return null
+  const text = [
+    '',
+    `🌿 Weeds are growing on your plot — ${home.idleDays} days since you last played or built. Play a game or build something to tend it.`,
+    `🌾 Your plot is overgrown (${home.idleDays} days away). In ${IDLE_DAYS.forSale - home.idleDays} days it goes up for sale — play or build to keep it.`,
+    `🪧 Your plot is for sale (${home.idleDays} days away): another family may take it over. Play or build now to keep it — your buildings stay yours either way.`,
+  ][stage]
+  return <div className={`hp-weeds stage-${stage}`}>{text}</div>
 }
 
 function NextStep({ plot }: { plot: PlotState }) {
