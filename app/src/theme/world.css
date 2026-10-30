@@ -178,6 +178,7 @@
 .ps-fence{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35)); }
 /* The front sides cover the feet of the buildings behind them; only the gate (wall spot, y 95) stands in front. */
 .ps-fence.front{ z-index: 90; }
+.ps-bush{ position: absolute; translate: -50% -82%; height: auto; pointer-events: none; }
 .ps-spot{
   position: absolute; translate: -50% -86%; display: flex; flex-direction: column; align-items: center;
   background: none; border: 0; padding: 0; color: inherit;

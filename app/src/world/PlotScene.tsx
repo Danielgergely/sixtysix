@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import { motion } from 'motion/react'
 import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
@@ -77,6 +77,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: 
         <SpotView key={spot} spot={spot} index={i} levels={levels} plot={plot} now={now} seen={seen} onSelect={onSelect} />
       ))}
       <PlotLife levels={levels} />
+      {levels.wall === 1 && <Hedge />}
       <Fence level={levels.wall} side="front" />
       {/* Name tags on their own layer above the fence, so the front sides never hide them. */}
       {order.map((spot) => (
@@ -169,23 +170,31 @@ function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 
 
 type Pt = readonly [number, number]
 /**
- * Where the painted earth meets the grass (plot-ground.webp), clockwise from
- * the top corner, in % of the painting; the earth runs to the picture's edge
- * on both sides, so the ring does too. Traced against a 5% grid overlay;
- * re-trace it if the ground is regenerated.
+ * Where the painted earth meets the grass (plot-ground.webp), in % of the
+ * painting: traced by colour (green grass vs. earth, stone and field) from
+ * the yard's centre, then corrected by hand where the trace caught a tuft or
+ * a dirt patch outside. The earth runs to the picture's edge on both sides,
+ * so the ring does too. Re-trace it if the ground is regenerated.
  */
 const EDGE = {
-  top: [49.7, 10.3],
-  rightTop: [99, 39.6],
-  rightBottom: [99, 60.5],
-  bottom: [49.7, 91],
-  leftBottom: [1, 56],
-  leftTop: [1, 40.2],
+  top: [49.5, 9.2],
+  rightTop: [99.5, 40.5],
+  rightBottom: [99.5, 58],
+  bottom: [49.7, 91.6],
+  leftBottom: [0.5, 59],
+  leftTop: [0.5, 38.5],
 } as const
 /** Back half: from the left edge over the top to the right edge (behind the buildings). */
-const BACK: Pt[] = [EDGE.leftBottom, EDGE.leftTop, [5.9, 38.1], [14.6, 34.2], [22.5, 26.9], [32.2, 21.5], [44.9, 14.6], EDGE.top, [60.9, 17.1], [72.7, 26.9], [84.4, 33.2], EDGE.rightTop, EDGE.rightBottom]
+const BACK: Pt[] = [
+  EDGE.leftBottom, EDGE.leftTop, [6, 35], [15, 30], [23, 24.5], [30, 19.5], [37, 15], [43, 11.5], EDGE.top,
+  [55, 9.8], [61, 12.2], [65.5, 15], [70, 20.3], [77, 25.5], [83, 29.3], [90, 32.2], [96.5, 36.5], EDGE.rightTop, EDGE.rightBottom,
+]
 /** Front half: from the right edge down to the bottom corner and up to the left edge (drawn over the buildings' feet). */
-const FRONT: Pt[] = [EDGE.rightBottom, [89.3, 66.4], [77.5, 73.2], [67.8, 80.1], [57, 85.9], EDGE.bottom, [39, 86.9], [29.3, 82], [22.5, 75.5], [12.7, 71], [4, 61], EDGE.leftBottom]
+const FRONT: Pt[] = [
+  EDGE.rightBottom, [97, 63.5], [93, 65.6], [90, 67.8], [87.5, 69.8], [85.7, 72.4], [83, 74], [80.3, 75.4], [77.5, 76.6], [75, 77.7],
+  [72.5, 78.7], [70.3, 80.3], [67, 82.5], [63, 84.8], [59, 87], [55, 89.5], EDGE.bottom, [45.5, 90.2], [42, 88.8], [38, 86.4],
+  [34, 83.7], [30.5, 81], [27.7, 78.6], [25.6, 77.1], [23, 75.3], [19, 73.6], [14, 72.5], [8.5, 69.5], [8, 64], [4, 61], EDGE.leftBottom,
+]
 /** The front stops this far (in %) either side of the bottom corner: the gate stands in the gap. */
 const GATE_GAP = 6.5
 
@@ -241,24 +250,10 @@ function Fence({ level, side }: { level: number; side: 'back' | 'front' }) {
     const stakes = side === 'back' ? [EDGE.leftTop, EDGE.top, EDGE.rightTop] : [EDGE.rightBottom, EDGE.leftBottom]
     stakes.forEach(([x, y], i) => parts.push(<Stake key={i} x={x} y={y} />))
   } else if (level === 1) {
-    // A thorn hedge: a soft shadow on the ground, a dark back row and a lighter front row of leafy
-    // clumps, sunlit leaves on top and the odd white blossom. No outlines: it should read as foliage.
-    const shadow: React.ReactNode[] = []
-    const back: React.ReactNode[] = []
-    const front: React.ReactNode[] = []
-    const lights: React.ReactNode[] = []
-    paths.forEach((path, i) => {
-      shadow.push(<polyline key={`s${i}`} points={poly(path.map(([x, y]) => [x, y + 0.45] as Pt))} fill="none" stroke="rgb(30 40 10 / 0.35)" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />)
-      along(path, 1.3).forEach(([x, y], k) => {
-        const v = ((k * 37) % 11) / 10 // 0…1, stable per clump
-        back.push(<circle key={`b${i}-${k}`} cx={x} cy={y - 2.3 - v * 0.4} r={1.5 + v * 0.5} fill={v > 0.5 ? '#2e5216' : '#355c1b'} />)
-        front.push(<circle key={`f${i}-${k}`} cx={x + 0.5} cy={y - 1.25} r={1.25 + v * 0.4} fill={v > 0.3 ? '#4a7a24' : '#558a2b'} />)
-        lights.push(<circle key={`l${i}-${k}`} cx={x - 0.45} cy={y - 3.1 - v * 0.4} r={0.45 + v * 0.25} fill="#7fb04a" opacity={0.85} />)
-        if (k % 3 === 0) lights.push(<circle key={`m${i}-${k}`} cx={x + 0.9} cy={y - 1.8} r={0.4} fill="#6a9c3a" />)
-        if (k % 5 === 2) lights.push(<circle key={`w${i}-${k}`} cx={x + 0.3} cy={y - 2.7} r={0.28} fill="#f6efe0" stroke="#e8b4c0" strokeWidth={0.08} />)
-      })
-    })
-    parts.push(...shadow, ...back, ...front, ...lights)
+    // The bushes themselves are sprites (Hedge, sorted with the buildings); here only their shadow on the ground.
+    paths.forEach((path, i) =>
+      parts.push(<polyline key={`s${i}`} points={poly(path.map(([x, y]) => [x, y + 0.4] as Pt))} fill="none" stroke="rgb(30 40 10 / 0.3)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />),
+    )
   } else if (level === 2) {
     paths.forEach((path, i) => {
       parts.push(<polyline key={`r1${i}`} points={poly(up(path, 1.1))} fill="none" stroke="#6b4420" strokeWidth={0.5} strokeLinecap="round" strokeLinejoin="round" />)
@@ -321,3 +316,29 @@ function Tower({ x, y }: { x: number; y: number }) {
     </g>
   )
 }
+
+/**
+ * The thorn hedge (wall level 1): painted bushes (plot-hedge-1…4.webp) along
+ * the earth edge, overlapping like one hedge, each sorted by its foot with the
+ * buildings so it passes behind the house and in front of the workshop.
+ */
+const HEDGE = [...[BACK], ...cutAround(FRONT, EDGE.bottom, GATE_GAP)].flatMap((path) => along(path, 2.1))
+const Hedge = memo(function Hedge() {
+  return (
+    <>
+      {HEDGE.map(([x, y], k) => {
+        const v = ((k * 37) % 11) / 10 // stable 0…1 per bush
+        return (
+          <img
+            key={k}
+            className="ps-bush"
+            src={`/art/plot-hedge-${(k * 7) % 4 + 1}.webp`}
+            alt=""
+            draggable={false}
+            style={{ left: `${x}%`, top: `${y}%`, width: `${4.4 + v * 1.4}%`, zIndex: Math.round(y), scale: k % 3 ? '1 1' : '-1 1' }}
+          />
+        )
+      })}
+    </>
+  )
+})
