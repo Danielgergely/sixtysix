@@ -386,7 +386,7 @@ function CluePhase({ state }: { state: FlockState }) {
       <div className="fl-row-between">
         <span className="fl-cat-chip">{state.category && CATEGORY_LABEL[state.category]}</span>
         <span className="fl-lap">
-          Lap {state.lap}/{FLOCK_MAX_LAPS}
+          {state.lap > FLOCK_MAX_LAPS ? `Lap ${state.lap}` : `Lap ${state.lap}/${FLOCK_MAX_LAPS}`}
         </span>
         <Timer size={46} />
       </div>
@@ -468,17 +468,19 @@ function DecidePhase({ state }: { state: FlockState }) {
 function VotePhase({ state }: { state: FlockState }) {
   const { myId, secret, me, out } = useMine(state)
   const vote = useFlockStore((s) => s.vote)
-  const [picks, setPicks] = useState<string[]>([])
+  const [picked, setPicks] = useState<string[]>([])
   const voted = me?.done
   const can = !!secret && !out
   const need = state.votesEach
   const candidates = state.turnOrder
     .map((id) => playerById(state, id))
     .filter((p): p is NonNullable<typeof p> => !!p && p.id !== myId && !p.out)
+  // Someone picked may leave mid-vote: the server would refuse the whole vote.
+  const picks = picked.filter((id) => candidates.some((p) => p.id === id))
   const voters = state.players.filter((p) => p.playing && !p.out && p.connected)
   const votedCount = voters.filter((p) => p.done).length
   const toggle = (id: string) =>
-    setPicks((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : need === 1 ? [id] : cur.length < need ? [...cur, id] : [...cur.slice(1), id]))
+    setPicks(picks.includes(id) ? picks.filter((x) => x !== id) : need === 1 ? [id] : picks.length < need ? [...picks, id] : [...picks.slice(1), id])
   const names = picks.map((id) => playerById(state, id)?.name.toUpperCase()).join(' & ')
   return (
     <div className="fl-col">

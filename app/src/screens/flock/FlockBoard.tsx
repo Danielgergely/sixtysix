@@ -27,7 +27,7 @@ export function FlockBoard() {
         </span>
         {state.phase !== 'lobby' && state.phase !== 'over' && (
           <span className="flb-round">
-            Lap {state.lap}/{FLOCK_MAX_LAPS}
+            {state.lap > FLOCK_MAX_LAPS ? `Lap ${state.lap}` : `Lap ${state.lap}/${FLOCK_MAX_LAPS}`}
           </span>
         )}
       </header>
