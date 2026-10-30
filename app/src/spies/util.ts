@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
 import { SPIES_PASS, type SpiesColour, type SpiesPlayer, type SpiesState, type SpiesTeam } from '@sixtysix/shared'
+import { t } from '../i18n'
 
-export { useJoinOrigin } from '../flock/util'
+export { rich, useJoinOrigin } from '../flock/util'
 
-/** Tribe names, emblems and their spy master's title (Numbers 13:6, 13:8). */
-export const TRIBE: Record<SpiesTeam, { name: string; emblem: string; chief: string }> = {
-  judah: { name: 'Judah', emblem: '🦁', chief: 'Caleb' },
-  ephraim: { name: 'Ephraim', emblem: '🐂', chief: 'Joshua' },
+/** Tribe emblems. Names and the spy masters' names (Numbers 13:6, 13:8) are translated: `spies.tribe.*`, `spies.chief.*`. */
+export const TRIBE: Record<SpiesTeam, { emblem: string }> = {
+  judah: { emblem: '🦁' },
+  ephraim: { emblem: '🐂' },
 }
+
+/** Caleb / Joshua in the current language. */
+export const chiefName = (team: SpiesTeam): string => t(`spies.chief.${team}`)
 
 /** In co-op Ephraim's cards belong to the rival tribe. */
 export const tribeName = (state: SpiesState, team: SpiesTeam): string =>
-  state.mode === 'coop' && team === 'ephraim' ? 'Canaanites' : TRIBE[team].name
+  t(state.mode === 'coop' && team === 'ephraim' ? 'spies.tribe.canaanites' : `spies.tribe.${team}`)
 
 export const COLOUR_ICON: Record<SpiesColour, string> = {
   judah: '🦁',
@@ -34,8 +38,8 @@ export function useAfter(at: number): boolean {
   const [passedFor, setPassedFor] = useState(0)
   useEffect(() => {
     if (!at) return
-    const t = setTimeout(() => setPassedFor(at), Math.max(0, at - Date.now()))
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => setPassedFor(at), Math.max(0, at - Date.now()))
+    return () => clearTimeout(timer)
   }, [at])
   return at > 0 && passedFor === at
 }
@@ -50,11 +54,11 @@ export function statusLine(state: SpiesState): string {
   if (!state.turn) return ''
   const sm = playerById(state, state.spymasters[state.turn])
   const tribe = tribeName(state, state.turn)
-  if (state.phase === 'clue') return `${tribe}: ${sm?.name ?? 'the spy master'} is thinking of a clue…`
+  if (state.phase === 'clue') return t('spies.status.thinking', { tribe, name: sm?.name ?? t('spies.status.theSpymaster') })
   const prop = state.proposal
   if (prop) {
-    const what = prop.pick === SPIES_PASS ? 'end the turn' : `“${state.cards[prop.pick]?.word}”`
-    return `${playerById(state, prop.proposerId)?.name ?? 'Someone'} suggests ${what}`
+    const what = prop.pick === SPIES_PASS ? t('spies.status.endTurn') : t('spies.status.quoted', { word: state.cards[prop.pick]?.word ?? '' })
+    return t('spies.status.suggests', { name: playerById(state, prop.proposerId)?.name ?? t('spies.status.someone'), what })
   }
-  return `${tribe} is searching · ${state.guessesLeft} pick${state.guessesLeft === 1 ? '' : 's'} left`
+  return t('spies.status.searching', { tribe, count: state.guessesLeft })
 }

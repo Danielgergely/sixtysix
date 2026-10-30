@@ -1,11 +1,14 @@
 import { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { idleStage, levelDef } from '@sixtysix/shared'
+import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { popIn } from '../motion'
+import { useT } from '../i18n'
 import { artFor } from '../screens/home/homeUtil'
-import { LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { houseName } from '../screens/home/plotText'
+import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { CityLife } from './CityLife'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
 
@@ -17,6 +20,12 @@ const START_ZOOM = 0.5
 const MARGIN = 320
 /** View changes are rounded to this grid so panning doesn't re-render every frame. */
 const STEP = 160
+/**
+ * Room around the painting (world px each side), so lots at its edges show in full;
+ * the painting fades into a blurred copy of itself there. Map coordinates stay in
+ * painting px: the world inside PanZoom is offset by PAD.
+ */
+const PAD = 150
 /** Level of detail: everyone's names from NEAR up; walkers hide below MID. */
 const NEAR = 0.68
 const MID = 0.34
@@ -42,11 +51,13 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
   const start = home ? { x: home.x, y: home.y - 40 } : { x: TEMPLE.x, y: TEMPLE.y }
   const [view, setView] = useState<View | null>(null)
   const [found, setFound] = useState<Resident | null>(null)
+  const t = useT()
 
   const onView = useCallback((v: ViewRect) => {
     const q = (n: number) => Math.floor(n / STEP) * STEP
     const lod = v.zoom >= NEAR ? 'near' : v.zoom >= MID ? 'mid' : 'far'
-    const next: View = { x0: q(v.x - MARGIN), y0: q(v.y - MARGIN), x1: q(v.x + v.w + MARGIN) + STEP, y1: q(v.y + v.h + MARGIN) + STEP, lod }
+    const [x, y] = [v.x - PAD, v.y - PAD]
+    const next: View = { x0: q(x - MARGIN), y0: q(y - MARGIN), x1: q(x + v.w + MARGIN) + STEP, y1: q(y + v.h + MARGIN) + STEP, lod }
     setView((cur) => (cur && cur.x0 === next.x0 && cur.y0 === next.y0 && cur.x1 === next.x1 && cur.y1 === next.y1 && cur.lod === next.lod ? cur : next))
   }, [])
 
@@ -56,47 +67,55 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
     return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
   }, [residents])
 
+  /** The townsfolk come and go between these homes; more of them with every family, more still when they're active. */
+  const homes = useMemo(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
+
   const inView = (x: number, y: number) => !view || (x > view.x0 && x < view.x1 && y > view.y0 && y < view.y1)
   const flyTo = (r: Resident) => {
     const lot = r.lot ? lotFor(r.lot) : undefined
     setFound(r)
-    if (lot) pz.current?.centerOn(lot.x, lot.y - 40, 0.9)
+    if (lot) pz.current?.centerOn(lot.x + PAD, lot.y - 40 + PAD, 0.9)
   }
 
   return (
     <PanZoom
       ref={pz}
       className={`cm lod-${view?.lod ?? 'mid'}`}
-      worldW={WORLD}
-      worldH={WORLD}
+      worldW={WORLD + 2 * PAD}
+      worldH={WORLD + 2 * PAD}
       maxZoom={MAX_ZOOM}
       initialZoom={START_ZOOM}
-      initialCenter={start}
+      initialCenter={{ x: start.x + PAD, y: start.y + PAD }}
       wheelZoom
       onView={onView}
-      background={<img className="cm-ground" src="/art/city-map.webp" alt="" draggable={false} />}
+      background={
+        <>
+          <img className="cm-surround" src="/art/city-map.webp" alt="" draggable={false} />
+          <img className="cm-ground" src="/art/city-map.webp" alt="" draggable={false} style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }} />
+        </>
+      }
       overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
         <>
           <div className="cm-top">
             <Search residents={residents} onPick={flyTo} />
             <div className="cm-tools">
               {home ? (
-                <button className="cm-chip gold" onClick={() => mine && flyTo(mine)} title="Back to my home">
-                  📍 <span>My home</span>
+                <button className="cm-chip gold" onClick={() => mine && flyTo(mine)} title={t('city.map.myHomeTitle')}>
+                  📍 <span>{t('city.map.myHome')}</span>
                 </button>
               ) : (
-                <button className="cm-chip" onClick={() => pz.current?.centerOn(TEMPLE.x, TEMPLE.y, START_ZOOM)} title="Back to the Temple">
-                  🏛️ <span>Temple</span>
+                <button className="cm-chip" onClick={() => pz.current?.centerOn(TEMPLE.x + PAD, TEMPLE.y + PAD, START_ZOOM)} title={t('city.map.templeTitle')}>
+                  🏛️ <span>{t('city.map.temple')}</span>
                 </button>
               )}
               {extra}
             </div>
           </div>
           <div className="pz-zoom">
-            <button onClick={() => zoomBy(1)} disabled={!canZoomIn} title="Zoom in">
+            <button onClick={() => zoomBy(1)} disabled={!canZoomIn} title={t('city.map.zoomIn')}>
               +
             </button>
-            <button onClick={() => zoomBy(-1)} disabled={!canZoomOut} title="Zoom out — the whole city">
+            <button onClick={() => zoomBy(-1)} disabled={!canZoomOut} title={t('city.map.zoomOut')}>
               −
             </button>
           </div>
@@ -105,15 +124,19 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
               <motion.div key={found.username} className="cm-found" {...popIn}>
                 <PaintedPortrait id={found.avatar} className="cm-found-portrait" />
                 <span className="cm-found-text">
-                  <strong>{found.username === me ? 'Your home' : found.name}</strong>
+                  <strong>{found.username === me ? t('city.map.yourHome') : found.name}</strong>
                   <small>
-                    @{found.username} · {levelDef('house', found.house)?.name ?? 'Tent'} · {found.lot ? `lot ${found.lot}` : 'camping outside the walls'}
+                    {t('city.map.foundSub', {
+                      user: found.username,
+                      house: houseName(found.house),
+                      where: found.lot ? t('city.map.lot', { n: found.lot }) : t('city.map.camping'),
+                    })}
                   </small>
                 </span>
                 <button className="cm-chip gold" onClick={() => onResident(found)}>
-                  {found.username === me ? 'Build ›' : 'Visit ›'}
+                  {found.username === me ? t('city.map.build') : t('city.map.visit')}
                 </button>
-                <button className="cm-found-x" onClick={() => setFound(null)} title="Close">
+                <button className="cm-found-x" onClick={() => setFound(null)} title={t('city.map.close')}>
                   ✕
                 </button>
               </motion.div>
@@ -122,9 +145,10 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
         </>
       )}
     >
-      {STREETS.map((path, i) => (inView(path.cx, path.cy) || !view ? <Walkers key={i} d={path.d} index={i} /> : null))}
+      <div className="cm-world" style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }}>
+      <CityLife homes={homes} />
       {LANDMARKS.map((l) => (
-        <LandmarkView key={l.id} id={l.id} name={l.name} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
+        <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
       ))}
       {/* Free land: the next few lots always (they're labelled); the rest only close up. */}
       {free.map((n, i) => {
@@ -152,6 +176,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
           />
         ) : null
       })}
+      </div>
     </PanZoom>
   )
 }
@@ -160,6 +185,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
 function Search({ residents, onPick }: { residents: Resident[]; onPick: (r: Resident) => void }) {
   const [q, setQ] = useState('')
   const [open, setOpen] = useState(false)
+  const t = useT()
   const term = q.trim().replace(/^@/, '').toLowerCase()
   const hits = term
     ? residents
@@ -178,8 +204,8 @@ function Search({ residents, onPick }: { residents: Resident[]; onPick: (r: Resi
       <input
         type="search"
         value={q}
-        placeholder={`Find a family (${residents.length})`}
-        aria-label="Find a family in Jerusalem"
+        placeholder={t('city.map.search', { n: residents.length })}
+        aria-label={t('city.map.searchAria')}
         onChange={(e) => {
           setQ(e.target.value)
           setOpen(true)
@@ -205,7 +231,7 @@ function Search({ residents, onPick }: { residents: Resident[]; onPick: (r: Resi
               </button>
             </li>
           ))}
-          {hits.length === 0 && <li className="cm-hits-none">No family by that name yet</li>}
+          {hits.length === 0 && <li className="cm-hits-none">{t('city.map.noHits')}</li>}
         </ul>
       )}
     </div>
@@ -244,14 +270,14 @@ const ResidentLot = memo(function ResidentLot({
   onTap: (r: Resident) => void
 }) {
   const wasDragged = useWasDragged()
-  const house = levelDef('house', r.house)?.name ?? 'Tent'
-  const away = stage ? ` · away ${r.idleDays} days` : ''
+  const t = useT()
+  const vars = { name: r.name, house: houseName(r.house), n: r.lot ?? '', days: r.idleDays }
   return (
     <button
       className={`cm-lot ${mine ? 'me' : ''} ${found ? 'found' : ''} ${stage ? `idle-${stage}` : ''}`}
       style={{ left: lot.x, top: lot.y }}
       onClick={() => !wasDragged() && onTap(r)}
-      title={`${r.name} · ${house} · lot ${r.lot}${away}`}
+      title={t(stage ? 'city.map.lotTitleAway' : 'city.map.lotTitle', vars)}
     >
       <img className="cm-house" src={artFor('house', r.house)} alt="" draggable={false} loading="lazy" style={{ width: LOT_SIZE, zIndex: Math.round(lot.y) }} />
       {stage > 0 && (
@@ -261,13 +287,13 @@ const ResidentLot = memo(function ResidentLot({
       )}
       {forSale && (
         <span className="cm-sale" style={{ zIndex: Math.round(lot.y) + 2 }}>
-          🪧 For sale
+          {t('city.map.forSale')}
         </span>
       )}
       <span className="cm-hit" style={{ width: LOT_SIZE * 0.8, height: LOT_SIZE * 0.72, zIndex: Math.round(lot.y) }} />
       <span className="cm-name">
         <PaintedPortrait id={r.avatar} className="cm-portrait" />
-        <span className="cm-label">{mine ? 'You' : r.name}</span>
+        <span className="cm-label">{mine ? t('city.map.you') : r.name}</span>
       </span>
     </button>
   )
@@ -275,46 +301,17 @@ const ResidentLot = memo(function ResidentLot({
 
 const FreeLot = memo(function FreeLot({ n, lot, labelled, onTap }: { n: number; lot: Lot; labelled: boolean; onTap: (n: number, r: null) => void }) {
   const wasDragged = useWasDragged()
+  const t = useT()
   return (
-    <button className={`cm-lot free ${labelled ? '' : 'quiet'}`} style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap(n, null)} aria-label={`Free land, lot ${n}`}>
+    <button className={`cm-lot free ${labelled ? '' : 'quiet'}`} style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap(n, null)} aria-label={t('city.map.freeAria', { n })}>
       <img className="cm-house" src="/art/land-free.webp" alt="" draggable={false} loading="lazy" style={{ width: LOT_SIZE, zIndex: Math.round(lot.y) - 40 }} />
       <span className="cm-hit" style={{ width: LOT_SIZE * 0.8, height: LOT_SIZE * 0.5, zIndex: Math.round(lot.y) - 40 }} />
       {labelled && (
         <span className="cm-name free">
-          <span className="cm-label">Free land</span>
+          <span className="cm-label">{t('city.map.free')}</span>
         </span>
       )}
     </button>
   )
 })
 
-const ROBES = ['#b3262b', '#2f5a8a', '#6b4120', '#e0a12a', '#4f7a2a', '#7a3a7a', '#f3e2bb']
-
-/** Two or three townsfolk walking a street, there and back (CSS offset-path: cheap, compositor-driven). */
-const Walkers = memo(function Walkers({ d, index }: { d: string; index: number }) {
-  return (
-    <>
-      {[0, 1, 2].slice(0, 2 + (index % 2)).map((k) => {
-        const n = index * 3 + k
-        return (
-          <span
-            key={k}
-            className="cm-walker"
-            aria-hidden
-            style={
-              {
-                offsetPath: `path('${d}')`,
-                animationDuration: `${26 + ((n * 7) % 17)}s`,
-                animationDelay: `-${(n * 5.3) % 26}s`,
-                '--robe': ROBES[n % ROBES.length],
-                '--scarf': ROBES[(n + 3) % ROBES.length],
-              } as React.CSSProperties
-            }
-          >
-            <i />
-          </span>
-        )
-      })}
-    </>
-  )
-})

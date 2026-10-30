@@ -7,7 +7,6 @@ import {
   SKILL_PATHS,
   TIER_NEEDS,
   TREE_POINTS,
-  learnError,
   levelProgress,
   pathPoints,
   pointsForXp,
@@ -27,6 +26,9 @@ import { PaintedCoin } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
 import { AnimatedNumber, fireConfetti, spring, STAGGER } from '../motion'
 import { claimCedar, learnSkill, masterBuild, respecSkills } from '../skills/skillsApi'
+import { learnErrorText, pathName, pathWhat, skillEffect, skillName, skillWhere } from '../skills/skillText'
+import { tServer, useLocale, useT } from '../i18n'
+import { rich } from './home/rich'
 
 
 const GOLD = ['#f7d36b', '#e9b23a', '#fff1b8', '#c98a12']
@@ -35,6 +37,8 @@ const GOLD = ['#f7d36b', '#e9b23a', '#fff1b8', '#c98a12']
 export function SkillTreeScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const account = useAccountStore((s) => s.account)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const [path, setPath] = useState<SkillPath>('scholar')
   const [open, setOpen] = useState<SkillDef | null>(null)
   const [confirmRespec, setConfirmRespec] = useState(false)
@@ -47,6 +51,7 @@ export function SkillTreeScreen() {
   const total = pointsForXp(xp)
   const free = Math.max(0, total - spentPoints(skills.ranks))
   const respecCost = skills.respecs >= 1 ? RESPEC_COST : 0
+  const cost = RESPEC_COST.toLocaleString(locale)
 
   const run = async (fn: () => Promise<string | null>): Promise<boolean> => {
     setBusy(true)
@@ -66,56 +71,49 @@ export function SkillTreeScreen() {
   return (
     <div className="screen emp st">
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={() => goTo(skillTreeBack())} title="Back">
+        <button className="icon-btn" onClick={() => goTo(skillTreeBack())} title={t('skills.back')}>
           ←
         </button>
-        <h2 className="topbar-heading">Gifts</h2>
+        <h2 className="topbar-heading">{t('skills.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
       <div className="st-scroll">
         <motion.div className="st-level" style={{ backgroundImage: PARCHMENT }} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.gentle}>
           <div className="st-level-num">
-            <small>Level</small>
+            <small>{t('skills.level')}</small>
             <strong>{level}</strong>
           </div>
           <div className="st-level-bar">
             <div className="st-bar">
               <motion.span initial={{ width: 0 }} animate={{ width: `${Math.min(100, (into / need) * 100)}%` }} transition={{ duration: 0.8 }} />
             </div>
-            <small>
-              {into.toLocaleString('en-US')} / {need.toLocaleString('en-US')} XP to level {level + 1}
-            </small>
+            <small>{t('skills.xpTo', { into: into.toLocaleString(locale), need: need.toLocaleString(locale), next: level + 1 })}</small>
           </div>
-          <div className={`st-points ${free > 0 && account ? 'has' : ''}`} title="Skill points to spend">
+          <div className={`st-points ${free > 0 && account ? 'has' : ''}`} title={t('skills.pointsTitle')}>
             <strong>
               <AnimatedNumber value={account ? free : 0} />
             </strong>
-            <small>{free === 1 ? 'point' : 'points'}</small>
+            <small>{t('skills.points', { count: free })}</small>
           </div>
         </motion.div>
 
         {!account ? (
           <div className="st-locked" style={{ backgroundImage: PARCHMENT }}>
             <span className="st-locked-icon">🔒</span>
-            <p>
-              <b>The skill tree needs an account.</b> You keep earning XP and levels as a guest; sign in and every level from 2 on gives you a
-              skill point to spend here.
-            </p>
+            <p>{rich(t('skills.locked'))}</p>
             <button className="hp-btn gold big" onClick={() => goTo('profile')}>
-              Sign in or create an account ›
+              {t('skills.signIn')}
             </button>
           </div>
         ) : (
-          <p className="st-intro">
-            One point per level. {spentPoints(skills.ranks)} of {TREE_POINTS} spent: nobody gets everything, so choose your path.
-          </p>
+          <p className="st-intro">{t('skills.intro', { spent: spentPoints(skills.ranks), total: TREE_POINTS })}</p>
         )}
 
         <div className="seg-row st-tabs" role="tablist">
           {SKILL_PATHS.map((p) => (
             <button key={p} role="tab" aria-selected={path === p} className={`seg-btn ${path === p ? 'selected' : ''}`} onClick={() => setPath(p)}>
-              {PATH_INFO[p].icon} {PATH_INFO[p].name} <small>{pathPoints(skills.ranks, p)}</small>
+              {PATH_INFO[p].icon} {pathName(p)} <small>{pathPoints(skills.ranks, p)}</small>
             </button>
           ))}
         </div>
@@ -129,11 +127,11 @@ export function SkillTreeScreen() {
         {account && (
           <div className="st-foot">
             <button className="hp-btn" disabled={busy || spentPoints(skills.ranks) === 0} onClick={() => setConfirmRespec(true)}>
-              ↺ Re-spec {respecCost ? <small>· {RESPEC_COST} coins</small> : <small>· free once</small>}
+              {t('skills.respec')} {respecCost ? <small>{t('skills.respecCost', { n: cost })}</small> : <small>{t('skills.respecFreeOnce')}</small>}
             </button>
           </div>
         )}
-        {error && !open && <p className="hp-error">{error}</p>}
+        {error && !open && <p className="hp-error">{tServer(error)}</p>}
       </div>
 
       <AnimatePresence>
@@ -160,16 +158,10 @@ export function SkillTreeScreen() {
         {confirmRespec && (
           <div className="modal-overlay" onClick={() => setConfirmRespec(false)}>
             <motion.div className="modal-card" onClick={(e: React.MouseEvent) => e.stopPropagation()} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-              <div className="modal-title">Take every point back?</div>
+              <div className="modal-title">{t('skills.confirm.title')}</div>
               <p className="modal-text">
-                All {spentPoints(skills.ranks)} points return and you can spend them again.{' '}
-                {respecCost ? (
-                  <>
-                    This costs <b>{RESPEC_COST} coins</b>.
-                  </>
-                ) : (
-                  'The first re-spec is free; after that it costs ' + RESPEC_COST + ' coins.'
-                )}
+                {t('skills.confirm.text', { count: spentPoints(skills.ranks) })}{' '}
+                {respecCost ? rich(t('skills.confirm.costs', { n: cost })) : t('skills.confirm.firstFree', { n: cost })}
               </p>
               <button
                 className="btn-play"
@@ -180,14 +172,14 @@ export function SkillTreeScreen() {
               >
                 {respecCost ? (
                   <>
-                    Re-spec for <PaintedCoin size={16} /> {RESPEC_COST}
+                    {t('skills.confirm.pay')} <PaintedCoin size={16} /> {cost}
                   </>
                 ) : (
-                  'Re-spec for free'
+                  t('skills.confirm.free')
                 )}
               </button>
               <button className="btn-secondary" onClick={() => setConfirmRespec(false)}>
-                Keep my gifts
+                {t('skills.confirm.keep')}
               </button>
             </motion.div>
           </div>
@@ -210,6 +202,7 @@ function PathColumn({
   active: boolean
   onOpen: (d: SkillDef) => void
 }) {
+  const t = useT()
   const info = PATH_INFO[path]
   const inPath = pathPoints(skills.ranks, path)
   const all = skillsInPath(path)
@@ -218,9 +211,9 @@ function PathColumn({
       <header className="st-path-head">
         <span className="st-path-icon">{info.icon}</span>
         <span>
-          <strong>{info.name}</strong>
+          <strong>{pathName(path)}</strong>
           <small>
-            {info.what} · {info.ref}
+            {pathWhat(path)} · {info.ref}
           </small>
         </span>
         <b className="st-path-pts">{inPath}</b>
@@ -231,7 +224,7 @@ function PathColumn({
           <div key={tier} className={`st-tier ${opened ? 'open' : 'locked'}`}>
             <div className="st-tier-label">
               <span>{['I', 'II', 'III', 'IV', 'V'][tier - 1]}</span>
-              {!opened && <small>🔒 {TIER_NEEDS[tier - 1] - inPath} more</small>}
+              {!opened && <small>{t('skills.tierMore', { n: TIER_NEEDS[tier - 1] - inPath })}</small>}
             </div>
             <div className="st-nodes">
               {all
@@ -253,9 +246,9 @@ function PathColumn({
                         <span>{opened || rank ? s.icon : '🔒'}</span>
                         {learnable && <span className="st-plus">+</span>}
                       </span>
-                      <span className="st-node-name">{s.name}</span>
-                      <span className="st-pips" aria-label={`Rank ${rank} of ${s.ranks}`}>
-                        {s.soon ? <em>soon</em> : Array.from({ length: s.ranks }, (_, k) => <i key={k} className={k < rank ? 'on' : ''} />)}
+                      <span className="st-node-name">{skillName(s.id)}</span>
+                      <span className="st-pips" aria-label={t('skills.rankAria', { rank, ranks: s.ranks })}>
+                        {s.soon ? <em>{t('skills.soon')}</em> : Array.from({ length: s.ranks }, (_, k) => <i key={k} className={k < rank ? 'on' : ''} />)}
                       </span>
                     </motion.button>
                   )
@@ -289,14 +282,15 @@ function SkillSheet({
   onLearn: () => void
   onPerk: (fn: () => Promise<string | null>) => void
 }) {
+  const t = useT()
   const rank = rankOf(skills.ranks, def.id)
-  const why = signedIn ? learnError(skills, def.id, xp) : 'Sign in to learn skills'
+  const why = signedIn ? learnErrorText(skills, def.id, xp) : t('skills.sheet.signIn')
   const [week] = useState(() => weekStartUtc(Date.now()))
   return (
     <>
       <motion.div className="hp-scrim" onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
       <motion.div className="hp-sheet st-sheet" initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={spring.gentle}>
-        <button className="hp-sheet-close" onClick={onClose} aria-label="Close">
+        <button className="hp-sheet-close" onClick={onClose} aria-label={t('skills.close')}>
           ✕
         </button>
         <div className="hp-sheet-body">
@@ -305,41 +299,42 @@ function SkillSheet({
               <span>{def.icon}</span>
             </span>
             <span>
-              <h3>{def.name}</h3>
+              <h3>{skillName(def.id)}</h3>
               <small>
-                {PATH_INFO[def.path].name} · tier {def.tier}
-                {def.ref ? ` · ${def.ref}` : ''}
+                {def.ref
+                  ? t('skills.sheet.subRef', { path: pathName(def.path), tier: def.tier, ref: def.ref })
+                  : t('skills.sheet.sub', { path: pathName(def.path), tier: def.tier })}
               </small>
             </span>
           </div>
           <ol className="st-ranks">
-            {def.effect.map((e, k) => (
+            {def.effect.map((_, k) => (
               <li key={k} className={k < rank ? 'on' : k === rank ? 'next' : ''}>
-                <b>{def.ranks > 1 ? `Rank ${k + 1}` : 'Effect'}</b> {e}
+                <b>{def.ranks > 1 ? t('skills.sheet.rank', { n: k + 1 }) : t('skills.sheet.effect')}</b> {skillEffect(def.id, k + 1)}
               </li>
             ))}
           </ol>
-          {def.where && <p className="st-where">Works in {def.where}. Never in the Open Arena or the Daily Scroll.</p>}
-          {def.soon && <p className="st-where">Coming later, together with visiting friends' plots.</p>}
+          {def.where && <p className="st-where">{t('skills.sheet.where', { where: skillWhere(def.id) })}</p>}
+          {def.soon && <p className="st-where">{t('skills.sheet.soonNote')}</p>}
 
           {def.id === 'cedar' && rank > 0 && (
             <button className="hp-btn big" disabled={busy || skills.cedarWeek === week} onClick={() => onPerk(claimCedar)}>
-              🌲 {skills.cedarWeek === week ? 'Collected this week' : 'Collect 2 cedar for this week'}
+              🌲 {skills.cedarWeek === week ? t('skills.sheet.cedarDone') : t('skills.sheet.cedar')}
             </button>
           )}
           {def.id === 'master' && rank > 0 && (
             <button className="hp-btn big" disabled={busy || skills.masterWeek === week} onClick={() => onPerk(() => masterBuild())}>
-              🏛️ {skills.masterWeek === week ? 'Used this week' : 'Finish your longest build now'}
+              🏛️ {skills.masterWeek === week ? t('skills.sheet.masterDone') : t('skills.sheet.master')}
             </button>
           )}
 
-          {error && <p className="hp-error">{error}</p>}
+          {error && <p className="hp-error">{tServer(error)}</p>}
           {rank < def.ranks && !def.soon && (
             <button className="hp-btn gold big" disabled={busy || !!why} onClick={onLearn}>
-              {why ?? `Learn ${def.ranks > 1 ? `rank ${rank + 1}` : 'it'} for 1 point`}
+              {why ?? (def.ranks > 1 ? t('skills.sheet.learnRank', { n: rank + 1 }) : t('skills.sheet.learnIt'))}
             </button>
           )}
-          {rank === def.ranks && <p className="st-max">✦ Fully learned</p>}
+          {rank === def.ranks && <p className="st-max">{t('skills.sheet.full')}</p>}
         </div>
       </motion.div>
     </>

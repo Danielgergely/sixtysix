@@ -6,13 +6,15 @@ import { PaintedCoin } from '../../art/PaintedPortrait'
 import { PARCHMENT } from '../../art/textures'
 import { AnimatedNumber, STAGGER, spring } from '../../motion'
 import { AnswerCard } from '../arena/game/AnswerCard'
-import { CATEGORY_LABELS } from '../arena/categories'
 import { quoteVerse } from '../../questions/quoteVerse'
 import { useGiftStore } from '../../skills/giftStore'
 import { GiftBar } from '../../skills/GiftBar'
+import { useT } from '../../i18n'
+import { rich } from '../arena/rich'
 
 /** Untimed solo questions: tap a card, see the verse, carry on. */
 export function PracticeScreen() {
+  const t = useT()
   const goTo = useGameStore((s) => s.goTo)
   const { question, verse, picked, streak, coins, tally, finished, answer, next, finish, playGift } = usePracticeStore()
   const removed = useGiftStore((s) => s.removed)
@@ -27,7 +29,7 @@ export function PracticeScreen() {
     <div className="screen pr-play">
       <div className="pr-bg" />
       <header className="pr-top">
-        <button className="pr-back" onClick={finish} title="End practice">
+        <button className="pr-back" onClick={finish} title={t('practice.end')}>
           ✕
         </button>
         <div className="pr-stats">
@@ -51,13 +53,13 @@ export function PracticeScreen() {
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="pr-meta">
-          {CATEGORY_LABELS[question.category]} · {'●'.repeat(question.difficulty)}
+          {t(`quiz.categories.${question.category}`)} · {'●'.repeat(question.difficulty)}
           {'○'.repeat(5 - question.difficulty)}
         </div>
         <div className="pr-q">{question.text.en}</div>
         {used.includes('lamp') && !answered && (
           <motion.div className="gift-hint" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
-            🪔 Look in <b>{question.reference}</b>
+            {rich(t('quiz.question.lookIn'), { ref: <b>{question.reference}</b> })}
           </motion.div>
         )}
         <AnimatePresence>
@@ -99,9 +101,9 @@ export function PracticeScreen() {
         <AnimatePresence mode="wait">
           {answered && (
             <motion.div key="verdict" className="pr-verdict" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }}>
-              <span className={correct ? 'good' : 'bad'}>{correct ? 'Rightly answered' : 'It comes back later'}</span>
+              <span className={correct ? 'good' : 'bad'}>{correct ? t('practice.rightly') : t('practice.later')}</span>
               <button className="pr-next" onClick={next}>
-                Next ›
+                {t('practice.next')}
               </button>
             </motion.div>
           )}
@@ -112,49 +114,48 @@ export function PracticeScreen() {
 }
 
 function PracticeSummary({ onDone }: { onDone: () => void }) {
+  const t = useT()
   const { tally, coins, byCategory, reviewOnly } = usePracticeStore()
   const goTo = useGameStore((s) => s.goTo)
   const rows = (Object.entries(byCategory) as Array<[Category, { answered: number; correct: number }]>).sort(
     (a, b) => a[1].correct / a[1].answered - b[1].correct / b[1].answered,
   )
-  const weakest = rows.find(([, t]) => t.answered >= 2 && t.correct / t.answered < 0.7)
+  const weakest = rows.find(([, row]) => row.answered >= 2 && row.correct / row.answered < 0.7)
   const pct = tally.answered ? Math.round((tally.correct / tally.answered) * 100) : 0
 
   return (
     <div className="screen pr-play">
       <div className="pr-bg" />
       <motion.div className="pr-summary" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={spring.gentle}>
-        <h2>{reviewOnly && tally.answered > 0 && tally.correct === tally.answered ? 'All mistakes mended' : 'Well studied'}</h2>
+        <h2>{reviewOnly && tally.answered > 0 && tally.correct === tally.answered ? t('practice.mended') : t('practice.studied')}</h2>
         <div className="pr-big">
           <AnimatedNumber value={pct} from={0} />%
         </div>
-        <div className="pr-sub">
-          {tally.correct} of {tally.answered} correct
-        </div>
+        <div className="pr-sub">{t('practice.correctOf', { correct: tally.correct, total: tally.answered })}</div>
         <div className="pr-coins big">
           <PaintedCoin size={24} /> +{coins}
         </div>
         {rows.length > 0 && (
           <div className="pr-rows">
-            {rows.map(([cat, t]) => (
+            {rows.map(([cat, row]) => (
               <div key={cat} className="pr-row">
-                <span>{CATEGORY_LABELS[cat]}</span>
+                <span>{t(`quiz.categories.${cat}`)}</span>
                 <span className="pr-bar">
-                  <motion.span initial={{ width: 0 }} animate={{ width: `${(t.correct / t.answered) * 100}%` }} transition={{ duration: 0.8, delay: 0.3 }} />
+                  <motion.span initial={{ width: 0 }} animate={{ width: `${(row.correct / row.answered) * 100}%` }} transition={{ duration: 0.8, delay: 0.3 }} />
                 </span>
                 <b>
-                  {t.correct}/{t.answered}
+                  {row.correct}/{row.answered}
                 </b>
               </div>
             ))}
           </div>
         )}
-        {weakest && <p className="pr-hint">Worth another look: {CATEGORY_LABELS[weakest[0]]}.</p>}
+        {weakest && <p className="pr-hint">{t('practice.weakest', { category: t(`quiz.categories.${weakest[0]}`) })}</p>}
         <button className="pr-go" onClick={onDone}>
-          Practice again
+          {t('practice.again')}
         </button>
         <button className="pr-review" onClick={() => goTo('menu')}>
-          Home
+          {t('practice.home')}
         </button>
       </motion.div>
     </div>

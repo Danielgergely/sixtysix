@@ -9,6 +9,8 @@ import { PARCHMENT, STONE } from '../../../art/textures'
 import { AnswerCard } from './AnswerCard'
 import { quoteVerse } from '../../../questions/quoteVerse'
 import { PlayerResult } from './PlayerResult'
+import { useT } from '../../../i18n'
+import { rich } from '../rich'
 
 /** Fan angle per card in the player's hand. */
 const FAN = [-9, -3, 3, 9]
@@ -68,6 +70,7 @@ export interface QuestionViewProps {
 
 /** Faces in the room: lit with a ✓ once answered, so you can see who's still thinking. */
 function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewProps['answered']>; wide: boolean }) {
+  const t = useT()
   const max = wide ? 16 : 8
   // Answered first so the "+N" overflow hides the ones still thinking least.
   const shown = [...players].sort((a, b) => Number(b.done) - Number(a.done)).slice(0, max)
@@ -90,7 +93,7 @@ function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewPro
         {players.length > max && <span className="eh-who-more">+{players.length - max}</span>}
       </div>
       <span className="eh-who-count">
-        <AnimatedNumber value={done} duration={0.3} /> / {players.length} answered
+        {rich(t('quiz.question.answered', { total: players.length }), { done: <AnimatedNumber value={done} duration={0.3} /> })}
       </span>
     </div>
   )
@@ -103,6 +106,7 @@ function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewPro
  */
 export function QuestionView(props: QuestionViewProps) {
   const { index, total, text, answers, phase, endsAt, durationMs, isPlayer, myAnswer, reveal, result, score, onAnswer } = props
+  const t = useT()
   const [scope, animate] = useAnimate()
   const remaining = useRemaining(endsAt, phase === 'question')
   const revealed = phase === 'reveal' && reveal !== null
@@ -136,25 +140,23 @@ export function QuestionView(props: QuestionViewProps) {
       <div className="eh-col">
         <div className="empire-top">
           <div className="empire-plate" style={{ backgroundImage: STONE }}>
-            <span>Trial</span>
-            <strong>
-              {index + 1} of {total}
-            </strong>
+            <span>{t('quiz.question.trial')}</span>
+            <strong>{t('quiz.question.of', { n: index + 1, total })}</strong>
           </div>
           {score !== undefined && (
-            <div className="empire-purse score" title="Points this game">
+            <div className="empire-purse score" title={t('quiz.question.points')}>
               <span className="glory-mark">⚜</span>
               <AnimatedNumber value={score} />
             </div>
           )}
           {props.badge}
           {props.doubled && (
-            <motion.div className="empire-purse score gift-x2" title="Double portion" initial={{ scale: 0 }} animate={{ scale: 1 }}>
+            <motion.div className="empire-purse score gift-x2" title={t('quiz.question.double')} initial={{ scale: 0 }} animate={{ scale: 1 }}>
               ×2
             </motion.div>
           )}
           {props.coins !== undefined && (
-            <div className="empire-purse score" title="Coins this game — yours when you finish">
+            <div className="empire-purse score" title={t('quiz.question.coins')}>
               <PaintedCoin size={18} />
               <AnimatedNumber value={props.coins} duration={0.5} />
             </div>
@@ -175,7 +177,7 @@ export function QuestionView(props: QuestionViewProps) {
               <div className="empire-q">{text}</div>
               {props.hint && !revealed && (
                 <motion.div className="gift-hint" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
-                  🪔 Look in <b>{props.hint}</b>
+                  {rich(t('quiz.question.lookIn'), { ref: <b>{props.hint}</b> })}
                 </motion.div>
               )}
               <AnimatePresence>
@@ -203,7 +205,7 @@ export function QuestionView(props: QuestionViewProps) {
         {phase === 'question' && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
         {!isPlayer && phase === 'question' && !props.answered && props.answerCount !== undefined && (
           <div className="eh-count">
-            ✓ <AnimatedNumber value={props.answerCount} duration={0.3} /> / {props.playerCount} answered
+            ✓ {rich(t('quiz.question.answered', { total: props.playerCount ?? 0 }), { done: <AnimatedNumber value={props.answerCount} duration={0.3} /> })}
           </div>
         )}
 
@@ -235,7 +237,7 @@ export function QuestionView(props: QuestionViewProps) {
                     {correct && <span className="empire-gleam" />}
                     <span className="eh-verdict">{correct ? '✦' : '✖'}</span>
                     <span className="eh-card-text">{reveal ? answers[correct ? myAnswer : reveal.correctIndex] : ''}</span>
-                    <small>{correct ? 'Rightly answered' : 'was the answer'}</small>
+                    <small>{correct ? t('quiz.question.rightly') : t('quiz.question.wasAnswer')}</small>
                     {!correct && <span className="empire-crack" />}
                   </div>
                 </motion.div>

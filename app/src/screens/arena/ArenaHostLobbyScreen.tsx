@@ -4,13 +4,12 @@ import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
 import { AnimatedNumber, spring } from '../../motion'
-import { CATEGORY_LABELS } from './categories'
 import { RotateHint } from './RotateHint'
-import { MODE_INFO } from './modes'
-
-const DIFFICULTY_LABEL = { easy: '🌱 Easy', mixed: '⚖️ Mixed', hard: '🔥 Hard' } as const
+import { useT } from '../../i18n'
+import { rich } from './rich'
 
 export function ArenaHostLobbyScreen() {
+  const t = useT()
   const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
   const leaveArena = useArenaStore((s) => s.leaveArena)
@@ -58,38 +57,37 @@ export function ArenaHostLobbyScreen() {
     <div className="screen host-lobby-screen emp">
       <RotateHint />
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={leaveArena} title={isHost ? 'Close game' : 'Stop watching'}>
+        <button className="icon-btn" onClick={leaveArena} title={isHost ? t('arena.hostLobby.close') : t('arena.hostLobby.stopWatching')}>
           ✕
         </button>
-        <h2 className="topbar-heading">Game Lobby</h2>
+        <h2 className="topbar-heading">{t('arena.hostLobby.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
       <div className="host-code-card">
-        <div className="host-code-label">Join with code</div>
+        <div className="host-code-label">{t('arena.hostLobby.joinWith')}</div>
         <div className="arena-code">{room.code}</div>
         {qrSvg && <div className="host-qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />}
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
         <div className="host-config-chips">
-          <span className="chip chip-mode">{MODE_INFO[room.config.mode ?? 'classic'].label}</span>
-          <span className="chip">{room.config.questionCount} questions</span>
-          <span className="chip">{DIFFICULTY_LABEL[room.config.difficulty ?? 'mixed']}</span>
+          <span className="chip chip-mode">{t(`arena.modes.${room.config.mode ?? 'classic'}.label`)}</span>
+          <span className="chip">{t('arena.hostLobby.questions', { n: room.config.questionCount })}</span>
+          <span className="chip">{t(`arena.difficulty.${room.config.difficulty ?? 'mixed'}`)}</span>
           <span className="chip">
-            {cats.length === 0 ? '📖 All books' : cats.map((c) => CATEGORY_LABELS[c]).join(' · ')}
+            {cats.length === 0 ? t('arena.allBooks') : cats.map((c) => t(`quiz.categories.${c}`)).join(' · ')}
           </span>
-          <span className="chip">{room.config.roomType === 'remote' ? '🌍 Remote' : '🏠 In person'}</span>
+          <span className="chip">{room.config.roomType === 'remote' ? t('arena.remote') : t('arena.inPerson')}</span>
         </div>
       </div>
 
       <div className="host-players">
         <div className="host-players-heading">
           {room.players.length === 0 ? (
-            'Waiting for players…'
+            t('arena.hostLobby.waitingPlayers')
           ) : (
-            <>
-              <AnimatedNumber value={room.players.length} duration={0.4} className="host-player-count" />{' '}
-              player{room.players.length === 1 ? '' : 's'} joined
-            </>
+            rich(t('arena.hostLobby.joined', { count: room.players.length }), {
+              n: <AnimatedNumber value={room.players.length} duration={0.4} className="host-player-count" />,
+            })
           )}
         </div>
         <div className="player-chip-grid">
@@ -123,15 +121,15 @@ export function ArenaHostLobbyScreen() {
               disabled={room.players.length < minPlayers}
               onClick={startGame}
             >
-              START GAME
+              {t('arena.hostLobby.start')}
             </button>
             {room.players.length < minPlayers && (
-              <p className="arena-hint">{minPlayers > 1 ? 'Rebuild the Wall needs at least two players — teams are drawn at the start.' : 'Waiting for at least one player…'}</p>
+              <p className="arena-hint">{minPlayers > 1 ? t('arena.hostLobby.wallNeeds') : t('arena.hostLobby.waitingOne')}</p>
             )}
-            {room.config.mode === 'wall' && room.players.length >= minPlayers && <p className="arena-hint">Teams are drawn when the game starts.</p>}
+            {room.config.mode === 'wall' && room.players.length >= minPlayers && <p className="arena-hint">{t('arena.hostLobby.teamsDrawn')}</p>}
           </>
         ) : (
-          <p className="arena-hint">👀 Watching — the host starts the game.</p>
+          <p className="arena-hint">{t('arena.hostLobby.watching')}</p>
         )}
       </div>
     </div>

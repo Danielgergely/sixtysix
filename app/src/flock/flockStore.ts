@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
 import type { FlockBotLevel, FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents, FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { t } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { payFlock } from '../game/boardRewards'
@@ -85,7 +86,7 @@ function getSocket(): FlockSocket {
     const { role, state } = getState()
     if (!state || !socket) return
     const onRejoin = (res: { ok: boolean; error?: string; playerId?: string }) => {
-      if (!res.ok) return closeLocally(res.error ?? 'The game has ended')
+      if (!res.ok) return closeLocally(res.error ?? t('flock.errors.ended'))
       // A seat dropped while offline (a new game deals only those online) comes back with a new public id.
       if (res.playerId) setState({ myId: res.playerId })
     }
@@ -137,7 +138,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
 
   join: (code) => {
     const trimmed = code.trim().toUpperCase()
-    if (trimmed.length < 4) return set({ error: 'Enter the game code' })
+    if (trimmed.length < 4) return set({ error: t('flock.errors.enterCode') })
     set({ busy: true, error: null })
     const player = useGameStore.getState().player
     getSocket().emit('flock:join', { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) => {
@@ -183,7 +184,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
       getSocket()
         .timeout(5000)
         .emit('flock:clue', { text }, (err, res) => {
-          if (err) return resolve('No answer from the server — try again')
+          if (err) return resolve(t('flock.errors.noAnswer'))
           if (res.ok) playSfx('submit')
           resolve(res.ok ? null : res.error)
         })
@@ -201,7 +202,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
       getSocket()
         .timeout(5000)
         .emit('flock:guess', { word }, (err, res) => {
-          if (err) return resolve('No answer from the server — try again')
+          if (err) return resolve(t('flock.errors.noAnswer'))
           if (res.ok) playSfx('submit')
           resolve(res.ok ? null : res.error)
         })

@@ -4,6 +4,7 @@ import { setOnProfileEdited, useGameStore } from '../game/store'
 import { EMPTY_STATS } from '../game/persistence'
 import { getToken, queueGrant, readOutbox, setOnQueued, setToken, writeOutbox } from './outbox'
 import { setMyRanks } from '../skills/mySkills'
+import { t } from '../i18n'
 
 /**
  * Optional account. Signed out ("guest"), progress lives on the device as
@@ -126,7 +127,13 @@ export const useAccountStore = create<AccountStore>((set, get) => {
   /** After a successful sign-in reply: store the session, merge guest progress if asked, adopt the account. */
   async function signedIn(res: AccountResponse, mergeGuest: boolean): Promise<boolean> {
     if (!res.ok || !res.token) {
-      const error = res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error === 'signed-out' ? 'Sign-in failed' : res.error
+      const error = res.ok
+        ? t('account.errors.generic')
+        : res.error === 'offline'
+          ? t('account.errors.offline')
+          : res.error === 'signed-out'
+            ? t('account.errors.signInFailed')
+            : res.error
       set({ busy: false, error })
       return false
     }
@@ -179,7 +186,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       const res = await api('signup', { username, password, profile: guestProgress() })
       set({ busy: false })
       if (!res.ok || !res.token) {
-        set({ error: res.ok ? 'Something went wrong' : res.error === 'offline' ? 'No connection to the server' : res.error })
+        set({ error: res.ok ? t('account.errors.generic') : res.error === 'offline' ? t('account.errors.offline') : res.error })
         return false
       }
       setToken(res.token)

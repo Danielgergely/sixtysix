@@ -757,6 +757,33 @@
         "refs/style-d.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small living figure for a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, full body, centred, filling about 80% of the frame, with only a small soft shadow under the feet and no ground patch, no scenery, nothing else in the picture. A watchman in a short tunic and leather cap standing guard holding a tall spear, three-quarter view."
+    },
+    {
+      "id": "hedge-a",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style), seen from above at a classic 3/4 isometric angle: ONE small piece of a hedge for a family homestead in ancient Jerusalem, centred, filling about 85% of the frame, with only a small soft shadow at its base, no ground patch, no scenery. A dense, rounded clump of dark green thorny shrub (like a hawthorn or caper bush) with small leaves, about as wide as it is tall."
+    },
+    {
+      "id": "hedge-b",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style), seen from above at a classic 3/4 isometric angle: ONE small piece of a hedge for a family homestead in ancient Jerusalem, centred, filling about 85% of the frame, with only a small soft shadow at its base, no ground patch, no scenery. A slightly longer, lower mound of mixed green thorny hedge with a few tiny white blossoms, wider than it is tall."
+    },
+    {
+      "id": "hedge-c",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style), seen from above at a classic 3/4 isometric angle: ONE small piece of a hedge for a family homestead in ancient Jerusalem, centred, filling about 85% of the frame, with only a small soft shadow at its base, no ground patch, no scenery. A small bushy thorn shrub with a few dry twigs sticking out and two or three small red berries, rounded."
     }
   ]
 }

@@ -18,7 +18,17 @@
 .tab-screen.jr-map{ padding: 0; overflow: hidden; }
 .tab-screen.jr-map > .pz{ position: absolute; inset: 0; z-index: 1; background: #6d7a3c; }
 .tab-screen.jr-map > .tab-note{ margin-top: 40vh; }
-.cm-ground{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cm-ground{
+  position: absolute; pointer-events: none;
+  /* Fade the painting's edges into the blurred surround. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%, #000 97%, transparent);
+  mask-composite: intersect;
+}
+/* The room around the painting: the painting itself, stretched over the whole world, blurred and a little darker. */
+.cm-surround{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: blur(22px) saturate(0.85) brightness(0.82); }
+.cm-world{ position: absolute; }
 
 .tab-screen.jr-map > .cm-loading{ position: absolute; inset: 0; display: grid; place-items: center; }
 
@@ -143,6 +153,9 @@
 .cm-walker::after{ content: ''; position: absolute; left: -7px; top: -3px; width: 14px; height: 5px; border-radius: 50%; background: rgb(0 0 0 / 0.25); }
 /* Paused while a finger drags the map, so phones only move the picture. */
 .pz-dragging .cm-walker, .pz-dragging .cm-walker i{ animation-play-state: paused; }
+/* A trip from door to door: fade in, walk the path once, fade out (inside, or out of town). */
+.cm-walker.trip{ animation: cm-trip linear 1 forwards; }
+@keyframes cm-trip{ 0%{ offset-distance: 0%; opacity: 0; } 6%{ opacity: 1; } 94%{ opacity: 1; } 100%{ offset-distance: 100%; opacity: 0; } }
 @keyframes cm-walk{ from{ offset-distance: 0%; } to{ offset-distance: 100%; } }
 @keyframes cm-bob{ from{ translate: 0 0; } to{ translate: 0 -2px; } }
 @media (prefers-reduced-motion: reduce){ .cm-walker{ display: none; } .cm-lot.found::before{ animation: none; } }
@@ -178,6 +191,7 @@
 .ps-fence{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35)); }
 /* The front sides cover the feet of the buildings behind them; only the gate (wall spot, y 95) stands in front. */
 .ps-fence.front{ z-index: 90; }
+.ps-bush{ position: absolute; translate: -50% -82%; height: auto; pointer-events: none; }
 .ps-spot{
   position: absolute; translate: -50% -86%; display: flex; flex-direction: column; align-items: center;
   background: none; border: 0; padding: 0; color: inherit;

@@ -4,7 +4,8 @@ import { FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, type FlockState } from '@sixtysix/sh
 import { useFlockStore } from '../../flock/flockStore'
 import { spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, Timer, Token, TurnRibbon } from './parts'
-import { CATEGORY_LABEL, playerById, useJoinOrigin } from '../../flock/util'
+import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
+import { useT } from '../../i18n'
 import { GameReveal, OutReveal, Rules } from './reveal'
 
 /**
@@ -14,20 +15,19 @@ import { GameReveal, OutReveal, Rules } from './reveal'
 export function FlockBoard() {
   const state = useFlockStore((s) => s.state)
   const leave = useFlockStore((s) => s.leave)
+  const t = useT()
   if (!state) return null
   return (
     <div className="screen fl fl-board emp">
       <header className="flb-top">
-        <button className="icon-btn" onClick={leave} title="Close board">
+        <button className="icon-btn" onClick={leave} title={t('flock.board.close')}>
           ✕
         </button>
-        <h1>🐺 Wolf in the Flock</h1>
-        <span className="flb-code">
-          Code <b>{state.code}</b>
-        </span>
+        <h1>{t('flock.boardTitle')}</h1>
+        <span className="flb-code">{rich(t('flock.board.code', { code: state.code }))}</span>
         {state.phase !== 'lobby' && state.phase !== 'over' && (
           <span className="flb-round">
-            {state.lap > FLOCK_MAX_LAPS ? `Lap ${state.lap}` : `Lap ${state.lap}/${FLOCK_MAX_LAPS}`}
+            {state.lap > FLOCK_MAX_LAPS ? t('flock.common.lap', { lap: state.lap }) : t('flock.common.lapOf', { lap: state.lap, max: FLOCK_MAX_LAPS })}
           </span>
         )}
       </header>
@@ -48,6 +48,7 @@ export function FlockBoard() {
 
 function BoardPhase({ state }: { state: FlockState }) {
   const origin = useJoinOrigin()
+  const t = useT()
   const paper = useRef<HTMLDivElement>(null)
   useEffect(() => {
     paper.current?.scrollTo({ top: paper.current.scrollHeight, behavior: 'smooth' })
@@ -57,7 +58,7 @@ function BoardPhase({ state }: { state: FlockState }) {
     return (
       <div className="flb-lobby">
         <div className="arena-section flb-join">
-          <div className="profile-label">Scan to join</div>
+          <div className="profile-label">{t('flock.board.scan')}</div>
           <QrCode url={joinUrl} className="big" />
           <div className="arena-code">{state.code}</div>
           <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
@@ -65,7 +66,7 @@ function BoardPhase({ state }: { state: FlockState }) {
         <div className="flb-side">
           <div className="arena-section flb-panel">
             <div className="profile-label">
-              {state.players.length} in the flock{state.players.length < FLOCK_MIN_PLAYERS && ` · need ${FLOCK_MIN_PLAYERS}`}
+              {state.players.length < FLOCK_MIN_PLAYERS ? t('flock.common.inFlockNeed', { n: state.players.length, min: FLOCK_MIN_PLAYERS }) : t('flock.common.inFlock', { n: state.players.length })}
             </div>
             <div className="flb-flock">
               <AnimatePresence>
@@ -82,7 +83,7 @@ function BoardPhase({ state }: { state: FlockState }) {
             </div>
           </div>
           <div className="arena-section">
-            <div className="profile-label">How to play</div>
+            <div className="profile-label">{t('flock.common.howToPlay')}</div>
             <Rules />
           </div>
         </div>
@@ -95,7 +96,7 @@ function BoardPhase({ state }: { state: FlockState }) {
         <GameReveal state={state} large />
         <div className="flb-side">
           <Scoreboard state={state} />
-          <p className="fl-wait">Waiting for 👑 {playerById(state, state.leaderId)?.name} to start a new word…</p>
+          <p className="fl-wait">{t('flock.board.waitingNew', { name: playerById(state, state.leaderId)?.name ?? '' })}</p>
         </div>
       </div>
     )
@@ -116,24 +117,24 @@ function BoardPhase({ state }: { state: FlockState }) {
   const banner =
     state.phase === 'secret'
       ? state.wolfCount > 1
-        ? 'Look at your card — two of you are wolves…'
-        : 'Look at your card — one of you is the wolf…'
+        ? t('flock.board.secretTwo')
+        : t('flock.board.secretOne')
       : state.phase === 'clues'
-        ? `${speaker?.name ?? '…'}, your clue!`
+        ? t('flock.board.yourClue', { name: speaker?.name ?? '…' })
         : state.phase === 'vote'
           ? state.votesEach > 1
-            ? `Vote now: everyone names ${state.votesEach} wolves!`
+            ? t('flock.board.voteN', { n: state.votesEach })
             : state.finalVote
-              ? 'Final vote: a tie lets the wolf escape!'
-              : 'Vote now: who is the wolf?'
+              ? t('flock.board.voteFinal')
+              : t('flock.board.vote')
           : state.phase === 'judge'
-            ? `${judged?.name ?? 'A wolf'} was caught — but guessed close! Does ${state.judge?.guess ? `“${state.judge.guess}”` : 'it'} count?  👍 ${state.judge?.yes.length ?? 0} · 👎 ${state.judge?.no.length ?? 0}`
-            : `Lap ${state.lap} done — vote now or one more lap?${d ? `  🗳️ ${d.vote.length} · 🔁 ${d.more.length}` : ''}`
+            ? `${state.judge?.guess ? t('flock.board.judgeGuess', { name: judged?.name ?? t('flock.board.aWolf'), guess: state.judge.guess }) : t('flock.board.judgeIt', { name: judged?.name ?? t('flock.board.aWolf') })}  👍 ${state.judge?.yes.length ?? 0} · 👎 ${state.judge?.no.length ?? 0}`
+            : `${t('flock.board.decide', { lap: state.lap })}${d ? `  🗳️ ${d.vote.length} · 🔁 ${d.more.length}` : ''}`
   return (
     <div className="flb-split">
       <div className="flb-stage">
         <div className="flb-banner">
-          <span className="fl-cat-chip big">{state.category && CATEGORY_LABEL[state.category]}</span>
+          <span className="fl-cat-chip big">{state.category && categoryLabel(state.category)}</span>
           <motion.h2 key={banner} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={spring.snappy}>
             {banner}
           </motion.h2>
@@ -150,12 +151,12 @@ function BoardPhase({ state }: { state: FlockState }) {
       </div>
       <div className="flb-side">
         <div className="arena-section flb-panel">
-          <div className="profile-label">{state.phase === 'vote' ? 'Votes cast' : state.phase === 'secret' ? 'Ready' : state.phase === 'decide' ? 'Decided' : 'The flock'}</div>
+          <div className="profile-label">{state.phase === 'vote' ? t('flock.board.votesCast') : state.phase === 'secret' ? t('flock.board.ready') : state.phase === 'decide' ? t('flock.board.decided') : t('flock.board.theFlock')}</div>
           {state.players.map((p) => (
             <div key={p.id} className="flb-player">
               <Token player={p} size={40} badge={p.out ? '✕' : p.done ? '✓' : undefined} dim={!p.playing || p.out} />
               <span>{p.name}</span>
-              <b title="Wins">{p.wins}</b>
+              <b title={t('flock.board.wins')}>{p.wins}</b>
             </div>
           ))}
         </div>

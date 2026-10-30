@@ -1,20 +1,16 @@
 import { useState } from 'react'
 import { ARENA_MODES, CATEGORIES, type ArenaMode, type Category, type DifficultyPreset, type RoomType } from '@sixtysix/shared'
-import { MODE_INFO } from './modes'
-import { CATEGORY_LABELS } from './categories'
+import { tServer, useT } from '../../i18n'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { CHARACTERS, type CharacterId } from '@sixtysix/shared'
 
 const QUESTION_COUNTS = [5, 10, 15, 20]
-const DIFFICULTIES: Array<{ id: DifficultyPreset; label: string }> = [
-  { id: 'easy', label: '🌱 Easy' },
-  { id: 'mixed', label: '⚖️ Mixed' },
-  { id: 'hard', label: '🔥 Hard' },
-]
+const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 
 export function ArenaMenuScreen() {
+  const t = useT()
   const goTo = useGameStore((s) => s.goTo)
   const player = useGameStore((s) => s.player)
   const updateProfile = useGameStore((s) => s.updateProfile)
@@ -47,20 +43,20 @@ export function ArenaMenuScreen() {
   return (
     <div className="screen arena-menu-screen emp">
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={() => goTo('menu')} title="Back to home">
+        <button className="icon-btn" onClick={() => goTo('menu')} title={t('arena.menu.back')}>
           ←
         </button>
-        <h2 className="topbar-heading">Open Arena</h2>
+        <h2 className="topbar-heading">{t('arena.menu.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
       <div className="arena-menu-body">
         <div className="arena-section">
-          <div className="profile-label">Join a game</div>
+          <div className="profile-label">{t('arena.menu.join')}</div>
           <input
             className="profile-name-input code-input"
             type="text"
-            placeholder="GAME CODE"
+            placeholder={t('arena.menu.codePlaceholder')}
             maxLength={6}
             autoCapitalize="characters"
             autoCorrect="off"
@@ -71,7 +67,7 @@ export function ArenaMenuScreen() {
           <input
             className="profile-name-input"
             type="text"
-            placeholder="Your nickname"
+            placeholder={t('arena.menu.namePlaceholder')}
             maxLength={14}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -92,23 +88,23 @@ export function ArenaMenuScreen() {
             ))}
           </div>
           <button className="btn-play join-btn" disabled={!canJoin} onClick={join}>
-            JOIN
+            {t('arena.menu.joinButton')}
           </button>
-          <p className="arena-hint">Scan the host’s QR code or type the code from their screen.</p>
+          <p className="arena-hint">{t('arena.menu.joinHint')}</p>
         </div>
 
-        <div className="arena-divider">or</div>
+        <div className="arena-divider">{t('arena.menu.or')}</div>
 
         <div className="arena-section">
-          <div className="profile-label">Host a game</div>
+          <div className="profile-label">{t('arena.menu.host')}</div>
           <div className="mode-picker">
             {ARENA_MODES.map((m) => (
               <button key={m} className={`seg-btn mode-btn ${mode === m ? 'selected' : ''}`} onClick={() => setMode(m)}>
-                {MODE_INFO[m].label}
+                {t(`arena.modes.${m}.label`)}
               </button>
             ))}
           </div>
-          <p className="arena-hint mode-desc">{MODE_INFO[mode].desc}</p>
+          <p className="arena-hint mode-desc">{t(`arena.modes.${mode}.desc`)}</p>
           <div className="seg-row">
             {QUESTION_COUNTS.map((n) => (
               <button
@@ -116,18 +112,18 @@ export function ArenaMenuScreen() {
                 className={`seg-btn ${questionCount === n ? 'selected' : ''}`}
                 onClick={() => setQuestionCount(n)}
               >
-                {n} Q
+                {t('arena.menu.questions', { n })}
               </button>
             ))}
           </div>
           <div className="seg-row">
             {DIFFICULTIES.map((d) => (
               <button
-                key={d.id}
-                className={`seg-btn ${difficulty === d.id ? 'selected' : ''}`}
-                onClick={() => setDifficulty(d.id)}
+                key={d}
+                className={`seg-btn ${difficulty === d ? 'selected' : ''}`}
+                onClick={() => setDifficulty(d)}
               >
-                {d.label}
+                {t(`arena.difficulty.${d}`)}
               </button>
             ))}
           </div>
@@ -136,7 +132,7 @@ export function ArenaMenuScreen() {
               className={`seg-btn ${categories.length === 0 ? 'selected' : ''}`}
               onClick={() => setCategories([])}
             >
-              📖 All books
+              {t('arena.allBooks')}
             </button>
             {CATEGORIES.map((c) => (
               <button
@@ -144,7 +140,7 @@ export function ArenaMenuScreen() {
                 className={`seg-btn ${categories.includes(c) ? 'selected' : ''}`}
                 onClick={() => toggleCategory(c)}
               >
-                {CATEGORY_LABELS[c]}
+                {t(`quiz.categories.${c}`)}
               </button>
             ))}
           </div>
@@ -153,13 +149,13 @@ export function ArenaMenuScreen() {
               className={`seg-btn ${roomType === 'in-person' ? 'selected' : ''}`}
               onClick={() => setRoomType('in-person')}
             >
-              🏠 In person
+              {t('arena.inPerson')}
             </button>
             <button
               className={`seg-btn ${roomType === 'remote' ? 'selected' : ''}`}
               onClick={() => setRoomType('remote')}
             >
-              🌍 Remote
+              {t('arena.remote')}
             </button>
           </div>
           <button
@@ -167,14 +163,14 @@ export function ArenaMenuScreen() {
             disabled={busy}
             onClick={() => hostGame({ questionCount, roomType, difficulty, categories, mode })}
           >
-            🖥️ Create game (this screen becomes the host board)
+            {t('arena.menu.create')}
           </button>
           <p className="arena-hint">
-            Best on a laptop or tablet everyone can see. Want to play too? Join from your phone after creating.
+            {t('arena.menu.hostHint')}
           </p>
         </div>
 
-        {error && <div className="arena-error">{error}</div>}
+        {error && <div className="arena-error">{tServer(error)}</div>}
       </div>
     </div>
   )

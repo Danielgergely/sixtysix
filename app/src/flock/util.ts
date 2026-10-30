@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { createElement, Fragment, useEffect, useState, type ReactNode } from 'react'
 import type { FlockCategory, FlockPlayer, FlockState } from '@sixtysix/shared'
+import { t } from '../i18n'
 
-export const CATEGORY_LABEL: Record<FlockCategory, string> = {
-  person: '👤 A person',
-  place: '🗺️ A place',
-  story: '📖 A story',
-  thing: '🏺 An object',
+/** "👤 A person" … in the current language (call from a component that uses `useT`). */
+export const categoryLabel = (c: FlockCategory): string => t(`flock.category.${c}`)
+
+/** Renders a translated text whose `<b>…</b>` parts are bold (rules, hints). */
+export function rich(text: string): ReactNode {
+  const parts = text.split(/<b>(.*?)<\/b>/g)
+  return createElement(Fragment, null, ...parts.map((p, i) => (i % 2 ? createElement('b', { key: i }, p) : p)))
 }
 
 export const playerById = (state: FlockState, id: string | null | undefined): FlockPlayer | undefined =>

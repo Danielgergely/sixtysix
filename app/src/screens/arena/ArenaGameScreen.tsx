@@ -8,32 +8,32 @@ import { QuestionView } from './game/QuestionView'
 import { RotateHint } from './RotateHint'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
-import { TEAM_COLORS } from './modes'
+import { TEAM_COLORS, gateName } from './modes'
+import { useT } from '../../i18n'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
+  const t = useT()
   const isHost = role === 'host'
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const [confirm, setConfirm] = useState(false)
   return (
     <>
       <button className="leave-race-btn arena-leave" onClick={() => setConfirm(true)}>
-        {isHost ? 'End' : 'Leave'}
+        {isHost ? t('arena.game.end') : t('arena.game.leave')}
       </button>
       {confirm && (
         <div className="modal-overlay" onClick={() => setConfirm(false)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">{isHost ? 'End the game?' : 'Leave the game?'}</div>
+            <div className="modal-title">{isHost ? t('arena.game.endTitle') : t('arena.game.leaveTitle')}</div>
             <p className="modal-text">
-              {isHost
-                ? 'This ends the game for all players in the room.'
-                : 'You’ll drop out of this game and lose your score.'}
+              {isHost ? t('arena.game.endText') : t('arena.game.leaveText')}
             </p>
             <button className="btn-play btn-danger" onClick={leaveArena}>
-              {isHost ? 'End game' : 'Leave game'}
+              {isHost ? t('arena.game.endGame') : t('arena.game.leaveGame')}
             </button>
             <button className="btn-secondary" onClick={() => setConfirm(false)}>
-              {isHost ? 'Keep playing' : 'Stay'}
+              {isHost ? t('arena.game.keepPlaying') : t('arena.game.stay')}
             </button>
           </div>
         </div>
@@ -44,6 +44,7 @@ function LeaveControl({ role }: { role: string | null }) {
 
 /** Feeds the shared QuestionView from the live arena state. */
 function ArenaQuestion() {
+  const t = useT()
   const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
   const question = useArenaStore((s) => s.question)
@@ -84,7 +85,7 @@ function ArenaQuestion() {
       badge={
         team ? (
           <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
-            🧱 {team.name}
+            🧱 {gateName(t, team.name)}
           </span>
         ) : room.goliath ? (
           <span className="mode-badge goliath">🪨 {Math.round((room.goliath.hp / room.goliath.maxHp) * 100)}%</span>
@@ -95,6 +96,7 @@ function ArenaQuestion() {
 }
 
 export function ArenaGameScreen() {
+  const t = useT()
   const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
   const question = useArenaStore((s) => s.question)
@@ -114,7 +116,7 @@ export function ArenaGameScreen() {
   // reveal (so tiles animate in place); leaderboard and podium are new scenes.
   let scene: { key: string; node: React.ReactNode } | null = null
   const myTeam = room.players.find((p) => p.id === myPlayerId)?.team
-  const endButton = <button onClick={leaveArena}>{isHost ? 'End game' : 'Leave'}</button>
+  const endButton = <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
   if (phase === 'podium' && podium) {
     let node = <Podium entries={podium} isPlayer={isPlayer} isHost={isHost} onLeave={leaveArena} />
     if (room.goliath) {
@@ -142,7 +144,7 @@ export function ArenaGameScreen() {
     scene = { key: `q-${question.index}`, node: <ArenaQuestion /> }
   }
 
-  const skipLabel = phase === 'leaderboard' ? 'Next ▸' : 'Skip ▸'
+  const skipLabel = phase === 'leaderboard' ? t('arena.game.next') : t('arena.game.skip')
   const canSkip = isHost && (phase === 'question' || phase === 'reveal' || phase === 'leaderboard')
 
   return (

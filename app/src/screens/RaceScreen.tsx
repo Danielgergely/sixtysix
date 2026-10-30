@@ -9,6 +9,7 @@ import { PARCHMENT } from '../art/textures'
 import { duration, ease } from '../motion'
 import { useGiftStore } from '../skills/giftStore'
 import { GiftBar } from '../skills/GiftBar'
+import { useT } from '../i18n'
 
 /** 1-based ranks by score; ties keep seating order. */
 function ranks(racers: Racer[], score: (r: Racer) => number): Map<string, number> {
@@ -18,6 +19,7 @@ function ranks(racers: Racer[], score: (r: Racer) => number): Map<string, number
 
 /** Standings after a question: the four racers on the Road to the Throne. */
 function BlitzStandings({ finished }: { finished: boolean }) {
+  const t = useT()
   const racers = useGameStore((s) => s.racers)
   const questionIndex = useGameStore((s) => s.questionIndex)
   const questions = useGameStore((s) => s.questions)
@@ -49,7 +51,7 @@ function BlitzStandings({ finished }: { finished: boolean }) {
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.6 }}
         >
-          The race is won!
+          {t('quiz.race.won')}
         </motion.div>
       )}
     </>
@@ -58,6 +60,7 @@ function BlitzStandings({ finished }: { finished: boolean }) {
 
 /** Bible Blitz in the Empire style: the arena's question scene, then the Road to the Throne. */
 export function RaceScreen() {
+  const t = useT()
   const phase = useGameStore((s) => s.phase)
   const racers = useGameStore((s) => s.racers)
   const questionIndex = useGameStore((s) => s.questionIndex)
@@ -93,11 +96,11 @@ export function RaceScreen() {
   return (
     <div className="screen arena-game-shell">
       <button className="leave-race-btn arena-leave" onClick={() => setConfirmLeave(true)}>
-        Leave
+        {t('quiz.race.leave')}
       </button>
       {(phase === 'reveal' || phase === 'progress') && (
         <button className="leave-race-btn arena-skip" onClick={skip}>
-          {phase === 'progress' ? 'Next ▸' : 'Skip ▸'}
+          {phase === 'progress' ? t('quiz.race.next') : t('quiz.race.skip')}
         </button>
       )}
       <AnimatePresence mode="wait">
@@ -141,13 +144,13 @@ export function RaceScreen() {
       {confirmLeave && (
         <div className="modal-overlay" onClick={() => setConfirmLeave(false)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">Leave the race?</div>
-            <p className="modal-text">Your progress in this race will be lost — no points, coins, or stats.</p>
+            <div className="modal-title">{t('quiz.race.leaveTitle')}</div>
+            <p className="modal-text">{t('quiz.race.leaveText')}</p>
             <button className="btn-play btn-danger" onClick={() => goTo('menu')}>
-              Leave race
+              {t('quiz.race.leaveConfirm')}
             </button>
             <button className="btn-secondary" onClick={() => setConfirmLeave(false)}>
-              Keep racing
+              {t('quiz.race.keep')}
             </button>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Component, type ReactNode } from 'react'
+import { useT } from '../../i18n'
 
 /**
  * Catches a screen that fails to load or render, so the app never goes white.
@@ -18,13 +19,18 @@ export class ScreenBoundary extends Component<{ children: ReactNode; resetKey: s
 
   render() {
     if (!this.state.failed) return this.props.children
-    return (
-      <div className="screen screen-failed">
-        <p>This page couldn’t load — the game may have just been updated.</p>
-        <button className="btn-play" onClick={() => window.location.reload()}>
-          Reload
-        </button>
-      </div>
-    )
+    return <Failed />
   }
+}
+
+function Failed() {
+  const t = useT()
+  return (
+    <div className="screen screen-failed">
+      <p>{t('shell.failed.text')}</p>
+      <button className="btn-play" onClick={() => window.location.reload()}>
+        {t('shell.failed.reload')}
+      </button>
+    </div>
+  )
 }

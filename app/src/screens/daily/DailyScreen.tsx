@@ -6,11 +6,13 @@ import { PaintedCoin } from '../../art/PaintedPortrait'
 import { PARCHMENT } from '../../art/textures'
 import { AnimatedNumber, STAGGER, spring } from '../../motion'
 import { AnswerCard } from '../arena/game/AnswerCard'
-import { CATEGORY_LABELS } from '../arena/categories'
 import { quoteVerse } from '../../questions/quoteVerse'
+import { useT } from '../../i18n'
+import { rich } from '../arena/rich'
 
 /** Time until local midnight, "5h 12m". */
 function useUntilTomorrow(): string {
+  const t = useT()
   const [now, setNow] = useState(() => Date.now())
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 30_000)
@@ -19,11 +21,12 @@ function useUntilTomorrow(): string {
   const midnight = new Date(now)
   midnight.setHours(24, 0, 0, 0)
   const mins = Math.max(0, Math.round((midnight.getTime() - now) / 60_000))
-  return `${Math.floor(mins / 60)}h ${mins % 60}m`
+  return t('daily.time', { h: Math.floor(mins / 60), m: mins % 60 })
 }
 
 /** Five questions a day; one card at a time, then the shareable result. */
 export function DailyScreen() {
+  const t = useT()
   const goTo = useGameStore((s) => s.goTo)
   const { saved, questions, verses, coins, answer } = useDailyStore()
   // The question whose verdict is on screen; null while choosing.
@@ -43,7 +46,7 @@ export function DailyScreen() {
     <div className="screen pr-play daily">
       <div className="pr-bg daily-bg" />
       <header className="pr-top">
-        <button className="pr-back" onClick={() => goTo('menu')} title="Home">
+        <button className="pr-back" onClick={() => goTo('menu')} title={t('daily.home')}>
           ←
         </button>
         <div className="daily-pips">
@@ -60,7 +63,7 @@ export function DailyScreen() {
 
       <motion.div key={q.id} className="pr-scroll" style={{ backgroundImage: PARCHMENT, originY: 0 }} initial={{ scaleY: 0.2, opacity: 0 }} animate={{ scaleY: 1, opacity: 1 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
         <div className="pr-meta">
-          Scroll {index + 1} of {DAILY_COUNT} · {CATEGORY_LABELS[q.category]} · {'●'.repeat(q.difficulty)}
+          {t('daily.meta', { n: index + 1, total: DAILY_COUNT, category: t(`quiz.categories.${q.category}`) })} {'●'.repeat(q.difficulty)}
           {'○'.repeat(5 - q.difficulty)}
         </div>
         <div className="pr-q">{q.text.en}</div>
@@ -101,9 +104,9 @@ export function DailyScreen() {
       <div className="pr-foot">
         {answered && (
           <motion.div className="pr-verdict" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-            <span className={correct ? 'good' : 'bad'}>{correct ? 'Rightly answered' : 'Not this time'}</span>
+            <span className={correct ? 'good' : 'bad'}>{correct ? t('daily.rightly') : t('daily.notThisTime')}</span>
             <button className="pr-next" onClick={() => setShown(null)}>
-              {index + 1 < DAILY_COUNT ? 'Next ›' : 'Result ›'}
+              {index + 1 < DAILY_COUNT ? t('daily.next') : t('daily.result')}
             </button>
           </motion.div>
         )}
@@ -113,6 +116,7 @@ export function DailyScreen() {
 }
 
 function DailyResult({ onHome, coins }: { onHome: () => void; coins: number }) {
+  const t = useT()
   const { saved, questions } = useDailyStore()
   const until = useUntilTomorrow()
   const [copied, setCopied] = useState(false)
@@ -136,7 +140,7 @@ function DailyResult({ onHome, coins }: { onHome: () => void; coins: number }) {
     <div className="screen pr-play daily">
       <div className="pr-bg daily-bg" />
       <motion.div className="pr-summary" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={spring.gentle}>
-        <h2>{right === DAILY_COUNT ? 'A perfect scroll!' : 'Today’s scroll'}</h2>
+        <h2>{right === DAILY_COUNT ? t('daily.perfect') : t('daily.today')}</h2>
         <div className="daily-squares">
           {saved.picks.map((p, i) => (
             <motion.span
@@ -148,22 +152,20 @@ function DailyResult({ onHome, coins }: { onHome: () => void; coins: number }) {
             />
           ))}
         </div>
-        <div className="pr-sub">
-          {right} of {DAILY_COUNT} correct
-        </div>
+        <div className="pr-sub">{t('daily.correctOf', { correct: right, total: DAILY_COUNT })}</div>
         <div className="daily-streak">
-          <span>🔥 {saved.streak}</span> day{saved.streak === 1 ? '' : 's'} in a row
+          {rich(t('daily.streak', { count: saved.streak }), { streak: <span>🔥 {saved.streak}</span> })}
         </div>
         <div className="pr-coins big">
           <PaintedCoin size={24} /> +{coins}
         </div>
         <button className="pr-go" onClick={() => void share()}>
-          {copied ? 'Copied — paste it in your group' : 'Share result'}
+          {copied ? t('daily.copied') : t('daily.share')}
         </button>
         <button className="pr-review" onClick={onHome}>
-          Home
+          {t('daily.home')}
         </button>
-        <p className="pr-hint">Next scroll in {until}</p>
+        <p className="pr-hint">{t('daily.nextIn', { time: until })}</p>
       </motion.div>
     </div>
   )

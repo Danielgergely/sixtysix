@@ -1,6 +1,7 @@
 import type { Difficulty } from '../questions/types'
 import type { BotPersona, CharacterId, Racer } from './types'
 import { QUESTION_TIME_MS } from './scoring'
+import { t } from '../i18n'
 
 /**
  * Bot opponents for Phase 1 (PLAN.md §2). Not throwaway: this becomes
@@ -43,7 +44,7 @@ export function pickBots(count: number, avoidAvatar?: CharacterId): BotRacer[] {
     return {
       profile: {
         id: `bot_${i}`,
-        name: bot.name,
+        name: t(`quiz.bots.${bot.name}`),
         avatar: bot.avatar,
         level,
         xp: 0,

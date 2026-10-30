@@ -6,7 +6,8 @@ import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
 import { STAGGER, popIn, shake, spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
-import { CATEGORY_LABEL, playerById, useJoinOrigin } from '../../flock/util'
+import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
+import { tServer, useT } from '../../i18n'
 import { FlockBoard } from './FlockBoard'
 import { GameReveal, OutReveal, Rules } from './reveal'
 import { RewardChip } from '../shell/RewardChip'
@@ -70,14 +71,15 @@ function PhaseView({ state }: { state: FlockState }) {
 function FlockTopBar({ state }: { state: FlockState }) {
   const leave = useFlockStore((s) => s.leave)
   const [confirm, setConfirm] = useState(false)
+  const t = useT()
   const inGame = state.phase !== 'lobby' && state.phase !== 'over'
   return (
     <header className="screen-topbar fl-topbar">
-      <button className="icon-btn" onClick={() => (inGame && !confirm ? setConfirm(true) : leave())} title="Leave game">
+      <button className="icon-btn" onClick={() => (inGame && !confirm ? setConfirm(true) : leave())} title={t('flock.common.leaveGame')}>
         {confirm ? '✓' : '✕'}
       </button>
-      <h2 className="topbar-heading">{confirm ? 'Leave? Tap ✓' : 'Wolf in the Flock'}</h2>
-      {inGame ? <span className="fl-round-chip">Lap {state.lap}</span> : <span className="topbar-spacer" />}
+      <h2 className="topbar-heading">{confirm ? t('flock.common.leaveConfirm') : t('flock.title')}</h2>
+      {inGame ? <span className="fl-round-chip">{t('flock.common.lap', { lap: state.lap })}</span> : <span className="topbar-spacer" />}
     </header>
   )
 }
@@ -96,32 +98,33 @@ function FlockMenu() {
   const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
   const named = name.trim().length > 0
   const save = () => updateProfile({ name: name.trim(), avatar })
+  const t = useT()
 
   return (
     <div className="screen fl emp">
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={() => goTo('boardGames')} title="Back">
+        <button className="icon-btn" onClick={() => goTo('boardGames')} title={t('flock.common.back')}>
           ←
         </button>
-        <h2 className="topbar-heading">Wolf in the Flock</h2>
+        <h2 className="topbar-heading">{t('flock.title')}</h2>
         <span className="topbar-spacer" />
       </header>
       <div className="fl-body fl-menu">
         <motion.div className="fl-hero" {...popIn}>
           <span className="fl-hero-icons">🐑🐑🐺🐑</span>
-          <p>Everyone gets a secret Bible word — except the wolf. Give clues in turn and find the wolf before it finds out the word!</p>
-          <small>~5 min a game · together in one room, or from anywhere online</small>
+          <p>{t('flock.menu.intro')}</p>
+          <small>{t('flock.menu.meta')}</small>
         </motion.div>
 
         <div className="arena-section fl-mode">
-          <div className="profile-label">📱 Pass one phone around</div>
-          <p className="fl-mode-text">3–20 players in one room. No internet needed: each player peeks at their card on this phone, then you talk it out.</p>
+          <div className="profile-label">{t('flock.menu.localTitle')}</div>
+          <p className="fl-mode-text">{t('flock.menu.localText')}</p>
           <button className="btn-play" onClick={() => goTo('flockLocal')}>
-            PLAY ON THIS PHONE
+            {t('flock.menu.localPlay')}
           </button>
         </div>
 
-        <div className="fl-mode-divider">or everyone on their own phone · 3–12 players, in the room or far apart</div>
+        <div className="fl-mode-divider">{t('flock.menu.divider')}</div>
 
         {last && !prefillCode && (
           <button
@@ -132,13 +135,13 @@ function FlockMenu() {
               join(last)
             }}
           >
-            ↩ BACK TO GAME {last}
+            {t('flock.menu.rejoin', { code: last })}
           </button>
         )}
 
         <div className="arena-section">
-          <div className="profile-label">You</div>
-          <input className="profile-name-input" placeholder="Your nickname" maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
+          <div className="profile-label">{t('flock.menu.you')}</div>
+          <input className="profile-name-input" placeholder={t('flock.menu.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
           <div className="avatar-grid arena-avatar-grid">
             {CHARACTERS.map((c) => (
               <button key={c} className={`avatar-option ${avatar === c ? 'selected' : ''}`} onClick={() => setAvatar(c)} title={c}>
@@ -151,10 +154,10 @@ function FlockMenu() {
         </div>
 
         <div className="arena-section">
-          <div className="profile-label">Join a flock</div>
+          <div className="profile-label">{t('flock.menu.joinTitle')}</div>
           <input
             className="profile-name-input code-input"
-            placeholder="GAME CODE"
+            placeholder={t('flock.menu.codePlaceholder')}
             maxLength={6}
             autoCapitalize="characters"
             autoCorrect="off"
@@ -170,10 +173,10 @@ function FlockMenu() {
               join(code)
             }}
           >
-            JOIN
+            {t('flock.menu.join')}
           </button>
           <button className="fl-link" disabled={busy || code.length < 4} onClick={() => watch(code)}>
-            📺 Show the board on this screen instead
+            {t('flock.menu.watch')}
           </button>
         </div>
 
@@ -185,10 +188,10 @@ function FlockMenu() {
             create()
           }}
         >
-          🐑 NEW GAME
+          {t('flock.menu.create')}
         </button>
-        {!named && <p className="fl-hint-light">Pick a nickname first.</p>}
-        {error && <div className="arena-error">{error}</div>}
+        {!named && <p className="fl-hint-light">{t('flock.menu.needName')}</p>}
+        {error && <div className="arena-error">{tServer(error)}</div>}
       </div>
     </div>
   )
@@ -204,19 +207,20 @@ function Lobby({ state }: { state: FlockState }) {
   const ready = state.players.filter((p) => p.connected).length >= FLOCK_MIN_PLAYERS
   const humans = state.players.filter((p) => !p.bot).length
   const [rules, setRules] = useState(false)
+  const t = useT()
   return (
     <div className="fl-lobby">
       <div className="host-code-card fl-code-card">
-        <div className="host-code-label">Game code</div>
+        <div className="host-code-label">{t('flock.lobby.gameCode')}</div>
         <div className="arena-code">{state.code}</div>
         <QrCode url={joinUrl} />
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
-        <div className="fl-board-hint">📺 Big screen? Open <b>{origin.replace(/^https?:\/\//, '')}/flock/{state.code}/board</b></div>
+        <div className="fl-board-hint">{rich(t('flock.lobby.boardHint', { url: `${origin.replace(/^https?:\/\//, '')}/flock/${state.code}/board` }))}</div>
       </div>
 
       <div className="host-players">
         <div className="host-players-heading">
-          {state.players.length} in the flock {state.players.length < FLOCK_MIN_PLAYERS && `· need ${FLOCK_MIN_PLAYERS}`}
+          {state.players.length < FLOCK_MIN_PLAYERS ? t('flock.common.inFlockNeed', { n: state.players.length, min: FLOCK_MIN_PLAYERS }) : t('flock.common.inFlock', { n: state.players.length })}
         </div>
         <div className="player-chip-grid">
           <AnimatePresence initial={false}>
@@ -237,10 +241,10 @@ function Lobby({ state }: { state: FlockState }) {
                   {p.id === state.leaderId && '👑 '}
                   {p.bot && '🤖 '}
                   {p.name}
-                  {p.id === store.myId && ' (you)'}
+                  {p.id === store.myId && t('flock.common.you')}
                 </span>
                 {p.bot && leader && (
-                  <button className="fl-bot-x" onClick={() => store.removeBot(p.id)} title={`Remove ${p.name}`}>
+                  <button className="fl-bot-x" onClick={() => store.removeBot(p.id)} title={t('flock.lobby.removeBot', { name: p.name })}>
                     ✕
                   </button>
                 )}
@@ -252,36 +256,36 @@ function Lobby({ state }: { state: FlockState }) {
 
       {leader && (
         <div className="arena-section fl-settings">
-          <div className="profile-label">🤖 Bots</div>
+          <div className="profile-label">{t('flock.lobby.bots')}</div>
           <div className="fl-bot-row">
             <button className="btn-secondary" disabled={state.players.length >= FLOCK_MAX_PLAYERS} onClick={store.addBot}>
-              + Add bot
+              {t('flock.lobby.addBot')}
             </button>
             <div className="seg-row">
               {(['easy', 'normal'] as const).map((l) => (
                 <button key={l} className={`seg-btn ${state.botLevel === l ? 'selected' : ''}`} onClick={() => store.setBotLevel(l)}>
-                  {l === 'easy' ? 'Easy' : 'Normal'}
+                  {l === 'easy' ? t('flock.lobby.easy') : t('flock.lobby.normal')}
                 </button>
               ))}
             </div>
           </div>
         </div>
       )}
-      {humans < FLOCK_REWARD_HUMANS && <p className="fl-practice">🤖 Practice game — rewards need {FLOCK_REWARD_HUMANS}+ people</p>}
+      {humans < FLOCK_REWARD_HUMANS && <p className="fl-practice">{t('flock.common.practice', { n: FLOCK_REWARD_HUMANS })}</p>}
 
       <div className="arena-section fl-settings">
         <button className="fl-link dark" onClick={() => setRules((r) => !r)}>
-          {rules ? 'Hide the rules' : '📜 How to play'}
+          {rules ? t('flock.common.hideRules') : t('flock.common.showRules')}
         </button>
         {rules && <Rules />}
       </div>
 
       {leader ? (
         <button className={`btn-play fl-start ${ready ? 'btn-ready' : ''}`} disabled={!ready} onClick={store.start}>
-          {ready ? 'START' : `WAITING FOR ${FLOCK_MIN_PLAYERS - state.players.filter((p) => p.connected).length} MORE`}
+          {ready ? t('flock.lobby.start') : t('flock.lobby.waitingFor', { n: FLOCK_MIN_PLAYERS - state.players.filter((p) => p.connected).length })}
         </button>
       ) : (
-        <p className="fl-hint-light">👑 {playerById(state, state.leaderId)?.name ?? 'The leader'} starts the game.</p>
+        <p className="fl-hint-light">{t('flock.common.leaderStarts', { name: playerById(state, state.leaderId)?.name ?? t('flock.common.theLeader') })}</p>
       )}
     </div>
   )
@@ -299,7 +303,8 @@ function useMine(state: FlockState) {
 }
 
 function SpectatingNote({ out = false }: { out?: boolean }) {
-  return <p className="fl-wait">{out ? '👀 You are watching — the word is revealed at the end.' : 'You joined mid-game — you’ll be dealt in next game. Watch the clues!'}</p>
+  const t = useT()
+  return <p className="fl-wait">{out ? t('flock.spectating.out') : t('flock.spectating.joined')}</p>
 }
 
 /**
@@ -311,17 +316,18 @@ function CaughtBanner({ state }: { state: FlockState }) {
   const { out } = useMine(state)
   const leave = useFlockStore((s) => s.leave)
   const [watching, setWatching] = useState<number | null>(null)
+  const t = useT()
   if (!out || state.phase === 'over' || watching === state.game) return null
   return (
     <motion.div className="fl-caughtbar" {...popIn}>
-      <strong>🐺 You were caught — this game is lost for you.</strong>
-      <span>Watch how the other wolf does? You’ll see the word at the end and still get the consolation reward (leaving forfeits it).</span>
+      <strong>{t('flock.caught.title')}</strong>
+      <span>{t('flock.caught.text')}</span>
       <div className="fl-caughtbar-actions">
         <button className="btn-play" onClick={() => setWatching(state.game)}>
-          👀 WATCH
+          {t('flock.caught.watch')}
         </button>
         <button className="btn-secondary" onClick={leave}>
-          Leave
+          {t('flock.common.leave')}
         </button>
       </div>
     </motion.div>
@@ -332,25 +338,26 @@ function SecretPhase({ state }: { state: FlockState }) {
   const { secret, me } = useMine(state)
   const ready = useFlockStore((s) => s.ready)
   const doneCount = state.players.filter((p) => p.done).length
+  const t = useT()
   if (!secret) return <SpectatingNote />
   return (
     <div className="fl-center">
       <div className="fl-phase-title">
-        <span>Game {state.game}</span>
-        <strong>Your secret card</strong>
+        <span>{t('flock.secret.game', { n: state.game })}</span>
+        <strong>{t('flock.secret.title')}</strong>
       </div>
       <SecretCard secret={secret} big />
       <p className="fl-hint-light">
-        Keep it hidden!{' '}
-        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. Type your guess of the word above — if they catch you and it’s right, you still win.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
+        {t('flock.secret.keepHidden')}{' '}
+        {secret.role === 'wolf' ? t('flock.secret.wolf') : secret.wolfCount > 1 ? t('flock.secret.twoWolves') : t('flock.secret.oneWolf')}
       </p>
       {me?.done ? (
         <p className="fl-wait">
-          Waiting for the others… {doneCount}/{state.players.filter((p) => p.playing && p.connected).length}
+          {t('flock.secret.waiting', { done: doneCount, total: state.players.filter((p) => p.playing && p.connected).length })}
         </p>
       ) : (
         <button className="btn-play fl-cta" onClick={ready}>
-          GOT IT
+          {t('flock.secret.gotIt')}
         </button>
       )}
       <Timer />
@@ -367,6 +374,7 @@ function CluePhase({ state }: { state: FlockState }) {
   const listRef = useRef<HTMLDivElement>(null)
   const mine = state.turnPlayerId === myId
   const speaker = playerById(state, state.turnPlayerId)
+  const t = useT()
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
@@ -384,9 +392,9 @@ function CluePhase({ state }: { state: FlockState }) {
   return (
     <div className="fl-col">
       <div className="fl-row-between">
-        <span className="fl-cat-chip">{state.category && CATEGORY_LABEL[state.category]}</span>
+        <span className="fl-cat-chip">{state.category && categoryLabel(state.category)}</span>
         <span className="fl-lap">
-          {state.lap > FLOCK_MAX_LAPS ? `Lap ${state.lap}` : `Lap ${state.lap}/${FLOCK_MAX_LAPS}`}
+          {state.lap > FLOCK_MAX_LAPS ? t('flock.common.lap', { lap: state.lap }) : t('flock.common.lapOf', { lap: state.lap, max: FLOCK_MAX_LAPS })}
         </span>
         <Timer size={46} />
       </div>
@@ -399,13 +407,13 @@ function CluePhase({ state }: { state: FlockState }) {
       <AnimatePresence mode="wait">
         {mine ? (
           <motion.div key="input" className="fl-clue-input" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={spring.bouncy}>
-            <div className="fl-your-turn">✍️ Your turn — give a clue</div>
+            <div className="fl-your-turn">{t('flock.cluePhase.yourTurn')}</div>
             <motion.div className="fl-input-row" animate={err ? shake : undefined} key={err ?? 'ok'}>
               <input
                 className="profile-name-input"
                 autoFocus
                 maxLength={FLOCK_CLUE_MAX}
-                placeholder={secret?.role === 'wolf' ? 'Bluff a clue…' : 'One to three words'}
+                placeholder={secret?.role === 'wolf' ? t('flock.cluePhase.bluff') : t('flock.cluePhase.placeholder')}
                 value={text}
                 onChange={(e) => {
                   setText(e.target.value)
@@ -417,11 +425,11 @@ function CluePhase({ state }: { state: FlockState }) {
                 ➤
               </button>
             </motion.div>
-            {err && <div className="arena-error">{err}</div>}
+            {err && <div className="arena-error">{tServer(err)}</div>}
           </motion.div>
         ) : (
           <motion.p key="wait" className="fl-wait" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            {speaker ? `${speaker.name} is thinking of a clue…` : 'Next clue…'}
+            {speaker ? t('flock.cluePhase.thinking', { name: speaker.name }) : t('flock.cluePhase.next')}
           </motion.p>
         )}
       </AnimatePresence>
@@ -436,12 +444,13 @@ function DecidePhase({ state }: { state: FlockState }) {
   const mine = myId && d.vote.includes(myId) ? 'vote' : myId && d.more.includes(myId) ? 'more' : null
   const voters = state.players.filter((p) => p.playing && !p.out && p.connected).length
   const need = Math.floor(voters / 2) + 1
+  const t = useT()
   return (
     <div className="fl-col">
       <div className="fl-row-between">
         <div className="fl-phase-title left">
-          <span>Lap {state.lap} done</span>
-          <strong>Vote now, or one more lap?</strong>
+          <span>{t('flock.decide.lapDone', { lap: state.lap })}</span>
+          <strong>{t('flock.decide.title')}</strong>
         </div>
         <Timer size={46} />
       </div>
@@ -451,16 +460,16 @@ function DecidePhase({ state }: { state: FlockState }) {
       {secret && !out ? (
         <div className="fl-decide">
           <button className={`fl-decide-btn vote ${mine === 'vote' ? 'picked' : ''}`} onClick={() => decide(true)}>
-            🗳️ Vote now <small>{d.vote.length}/{need}</small>
+            {t('flock.decide.vote')} <small>{d.vote.length}/{need}</small>
           </button>
           <button className={`fl-decide-btn more ${mine === 'more' ? 'picked' : ''}`} onClick={() => decide(false)}>
-            🔁 One more lap <small>{d.more.length}</small>
+            {t('flock.decide.more')} <small>{d.more.length}</small>
           </button>
         </div>
       ) : (
         <SpectatingNote out={out} />
       )}
-      <p className="fl-hint-light">A majority starts the vote. After lap {FLOCK_MAX_LAPS} the vote is final.</p>
+      <p className="fl-hint-light">{t('flock.decide.hint', { max: FLOCK_MAX_LAPS })}</p>
     </div>
   )
 }
@@ -482,23 +491,24 @@ function VotePhase({ state }: { state: FlockState }) {
   const toggle = (id: string) =>
     setPicks(picks.includes(id) ? picks.filter((x) => x !== id) : need === 1 ? [id] : picks.length < need ? [...picks, id] : [...picks.slice(1), id])
   const names = picks.map((id) => playerById(state, id)?.name.toUpperCase()).join(' & ')
+  const t = useT()
   return (
     <div className="fl-col">
       <div className="fl-row-between">
         <div className="fl-phase-title left">
-          <span>{state.finalVote ? 'Final vote' : `Vote · lap ${state.lap}`}</span>
-          <strong>{need > 1 ? `Name ${need} wolves` : state.wolfCount > 1 ? 'Who is the last wolf?' : 'Who is the wolf?'}</strong>
+          <span>{state.finalVote ? t('flock.vote.final') : t('flock.vote.lap', { lap: state.lap })}</span>
+          <strong>{need > 1 ? t('flock.vote.nameN', { n: need }) : state.wolfCount > 1 ? t('flock.vote.lastWolf') : t('flock.vote.whoWolf')}</strong>
         </div>
         <Timer size={46} />
       </div>
       {!can ? (
         <SpectatingNote out={out} />
       ) : voted ? (
-        <p className="fl-wait">🗳️ Vote cast! {votedCount}/{voters.length} have voted…</p>
+        <p className="fl-wait">{t('flock.vote.cast', { done: votedCount, total: voters.length })}</p>
       ) : (
         <p className="fl-hint-light">
-          {secret.role === 'wolf' ? 'Point at sheep to throw them off!' : need > 1 ? `You have ${need} votes: pick ${need} different players. The ${need} most-voted are out.` : 'The most-voted player is out.'}{' '}
-          {state.finalVote ? 'A tie lets the wolves escape.' : 'A tie: nobody leaves.'}
+          {secret.role === 'wolf' ? t('flock.vote.wolfTip') : need > 1 ? t('flock.vote.multi', { n: need }) : t('flock.vote.single')}{' '}
+          {state.finalVote ? t('flock.vote.tieFinal') : t('flock.vote.tie')}
         </p>
       )}
       <div className="fl-vote-grid fl-scroll">
@@ -523,7 +533,7 @@ function VotePhase({ state }: { state: FlockState }) {
       </div>
       {can && !voted && (
         <button className="btn-play fl-cta" disabled={picks.length !== need} onClick={() => picks.length === need && vote(picks)}>
-          {picks.length === need ? `VOTE OUT ${names}` : need > 1 ? `PICK ${need - picks.length} MORE` : 'PICK A PLAYER'}
+          {picks.length === need ? t('flock.vote.voteOut', { names }) : need > 1 ? t('flock.vote.pickMore', { n: need - picks.length }) : t('flock.vote.pickOne')}
         </button>
       )}
     </div>
@@ -540,6 +550,7 @@ function WolfGuessBar({ state }: { state: FlockState }) {
   const [text, setText] = useState('')
   const [editing, setEditing] = useState(false)
   const [err, setErr] = useState<string | null>(null)
+  const t = useT()
   const live = ['secret', 'clues', 'decide', 'out', 'vote', 'judge'].includes(state.phase)
   if (!live || out || secret?.role !== 'wolf') return null
   const locked = state.phase === 'vote' || state.phase === 'judge'
@@ -552,10 +563,10 @@ function WolfGuessBar({ state }: { state: FlockState }) {
   if (locked || (!editing && current)) {
     return (
       <div className={`fl-guessbar ${locked ? 'locked' : ''}`}>
-        <span>🐺 Your guess:</span>
-        <strong>{current ? `“${current}”` : 'none'}</strong>
+        <span>{t('flock.guess.yours')}</span>
+        <strong>{current ? t('flock.common.quoted', { text: current }) : t('flock.guess.none')}</strong>
         {locked ? (
-          <small>🔒 locked for the vote</small>
+          <small>{t('flock.guess.locked')}</small>
         ) : (
           <button
             className="fl-link"
@@ -564,7 +575,7 @@ function WolfGuessBar({ state }: { state: FlockState }) {
               setEditing(true)
             }}
           >
-            change
+            {t('flock.guess.change')}
           </button>
         )}
       </div>
@@ -572,12 +583,12 @@ function WolfGuessBar({ state }: { state: FlockState }) {
   }
   return (
     <div className="fl-guessbar">
-      <span>🐺 Guess the word (until the vote):</span>
+      <span>{t('flock.guess.prompt')}</span>
       <div className="fl-input-row">
         <input
           className="profile-name-input"
           maxLength={FLOCK_GUESS_MAX}
-          placeholder="Your guess…"
+          placeholder={t('flock.guess.placeholder')}
           value={text}
           onChange={(e) => {
             setText(e.target.value)
@@ -589,7 +600,7 @@ function WolfGuessBar({ state }: { state: FlockState }) {
           ✓
         </button>
       </div>
-      {err && <div className="arena-error">{err}</div>}
+      {err && <div className="arena-error">{tServer(err)}</div>}
     </div>
   )
 }
@@ -598,6 +609,7 @@ function WolfGuessBar({ state }: { state: FlockState }) {
 function JudgePhase({ state }: { state: FlockState }) {
   const { myId, secret, out } = useMine(state)
   const judge = useFlockStore((s) => s.judge)
+  const t = useT()
   const j = state.judge
   if (!j) return null
   const wolf = playerById(state, j.wolfId)
@@ -607,32 +619,30 @@ function JudgePhase({ state }: { state: FlockState }) {
   return (
     <div className="fl-center">
       <div className="fl-phase-title">
-        <span>Close call</span>
-        <strong>Does it count?</strong>
+        <span>{t('flock.judge.kicker')}</span>
+        <strong>{t('flock.judge.title')}</strong>
       </div>
       <div className="fl-judge-card">
         {wolf && <Token player={wolf} size={56} badge="🐺" />}
-        <span>{wolf?.name ?? 'The wolf'} typed</span>
-        <strong>{guess ? `“${guess}”` : '…'}</strong>
+        <span>{t('flock.judge.typed', { name: wolf?.name ?? t('flock.judge.theWolf') })}</span>
+        <strong>{guess ? t('flock.common.quoted', { text: guess }) : '…'}</strong>
         {canJudge && secret.word && (
-          <small>
-            The word is <b>{secret.word}</b>
-          </small>
+          <small>{rich(t('flock.judge.wordIs', { word: secret.word }))}</small>
         )}
       </div>
       {canJudge ? (
         <div className="fl-decide">
           <button className={`fl-decide-btn more ${mine === 'yes' ? 'picked' : ''}`} onClick={() => judge(true)}>
-            👍 Counts <small>{j.yes.length}</small>
+            {t('flock.judge.counts')} <small>{j.yes.length}</small>
           </button>
           <button className={`fl-decide-btn vote ${mine === 'no' ? 'picked' : ''}`} onClick={() => judge(false)}>
-            👎 Doesn’t <small>{j.no.length}</small>
+            {t('flock.judge.doesnt')} <small>{j.no.length}</small>
           </button>
         </div>
       ) : (
-        <p className="fl-wait">The flock is deciding whether the guess counts… 👍 {j.yes.length} · 👎 {j.no.length}</p>
+        <p className="fl-wait">{t('flock.judge.deciding', { yes: j.yes.length, no: j.no.length })}</p>
       )}
-      <p className="fl-hint-light">Be fair! A tie counts for the wolf.</p>
+      <p className="fl-hint-light">{t('flock.judge.fair')}</p>
       <Timer size={46} />
     </div>
   )
@@ -644,22 +654,25 @@ function OverPhase({ state }: { state: FlockState }) {
   const store = useFlockStore()
   const leader = isLeader(store)
   const online = state.players.filter((p) => p.connected).length
+  const t = useT()
   return (
     <div className="fl-col fl-scroll">
       <GameReveal state={state} />
       <RewardChip reward={flockRewardFor(state, store.myId)} />
-      {state.result?.winner && !state.result.rewarded && <p className="fl-practice">🤖 Practice game — rewards need {FLOCK_REWARD_HUMANS}+ people</p>}
+      {state.result?.winner && !state.result.rewarded && <p className="fl-practice">{t('flock.common.practice', { n: FLOCK_REWARD_HUMANS })}</p>}
       <Scoreboard state={state} />
-      <p className="fl-verse">“I am the good shepherd. I know my own, and I’m known by my own.” <em>John 10:14</em></p>
+      <p className="fl-verse">
+        {t('flock.over.verse')} <em>{t('flock.over.verseRef')}</em>
+      </p>
       {leader ? (
         <button className="btn-play fl-cta" onClick={store.again}>
-          {online >= FLOCK_MIN_PLAYERS ? 'NEW WORD' : 'BACK TO THE LOBBY'}
+          {online >= FLOCK_MIN_PLAYERS ? t('flock.over.newWord') : t('flock.over.toLobby')}
         </button>
       ) : (
-        <p className="fl-wait">👑 {playerById(state, state.leaderId)?.name} can start another game.</p>
+        <p className="fl-wait">{t('flock.common.leaderAgain', { name: playerById(state, state.leaderId)?.name ?? '' })}</p>
       )}
       <button className="btn-secondary" onClick={store.leave}>
-        Leave
+        {t('flock.common.leave')}
       </button>
     </div>
   )
