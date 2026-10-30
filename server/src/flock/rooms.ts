@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState, FlockWord, FlockWordList } from '@sixtysix/shared'
+import type { FlockBotLevel, FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState, FlockWord, FlockWordList } from '@sixtysix/shared'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 
 /**
@@ -26,6 +26,10 @@ export interface FPlayer {
   wins: number
   connected: boolean
   socketId: string | null
+  /** A server-side bot (bots.ts): always connected, no socket, a `bot-…` secret. */
+  bot: boolean
+  /** The bot's next action, if one is scheduled. */
+  botTimer?: ReturnType<typeof setTimeout>
 }
 
 export interface FRoom {
@@ -34,6 +38,7 @@ export interface FRoom {
   /** Keyed by the SECRET device id; `id` inside is the public id. */
   players: Map<string, FPlayer>
   leaderSecret: string | null
+  botLevel: FlockBotLevel
   /** Games started in this room (rewards are paid once per game). */
   game: number
   category: FlockCategory | null
@@ -104,6 +109,7 @@ export function createFlockRoom(): FRoom {
     phase: 'lobby',
     players: new Map(),
     leaderSecret: null,
+    botLevel: 'normal',
     game: 0,
     category: null,
     word: null,
@@ -143,6 +149,7 @@ export function getFlockRoom(code: unknown): FRoom | undefined {
 
 export function deleteFlockRoom(room: FRoom): void {
   clearTimeout(room.timer)
+  for (const p of room.players.values()) clearTimeout(p.botTimer)
   rooms.delete(room.code)
 }
 
@@ -187,8 +194,10 @@ export function toFlockState(room: FRoom): FlockState {
       playing: room.phase !== 'lobby' && room.dealt.has(secret),
       out: room.phase !== 'lobby' && room.out.has(secret),
       done: room.done.has(secret),
+      bot: p.bot,
     })),
     leaderId: pub(room.leaderSecret),
+    botLevel: room.botLevel,
     game: room.game,
     lap: room.lap,
     category: room.category,
@@ -216,8 +225,8 @@ export function startFlockGC(onClose: (room: FRoom) => void): void {
   setInterval(() => {
     const now = Date.now()
     for (const room of rooms.values()) {
-      // Nobody connected (e.g. created and abandoned): gone after 10 minutes.
-      const empty = ![...room.players.values()].some((p) => p.connected)
+      // No person connected (e.g. created and abandoned; bots don't count): gone after 10 minutes.
+      const empty = ![...room.players.values()].some((p) => p.connected && !p.bot)
       if (now - room.lastActivity > (empty ? EMPTY_ROOM_MS : ROOM_IDLE_MS)) {
         onClose(room)
         deleteFlockRoom(room)
