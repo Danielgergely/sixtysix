@@ -67,10 +67,12 @@ export interface FRoom {
   finalVote: boolean
   /** Votes each player casts this vote (wolves still hiding when it began). */
   votesEach: number
-  /** Phase 'guess' / 'judge': the wolves just caught (secrets). */
+  /** Phase 'judge': the wolves just caught (secrets). */
   caught: string[]
-  /** Phase 'guess': typed guesses (wolf secret → text). */
+  /** Each wolf's current guess of the word (wolf secret → text); locked during a vote. */
   typed: Map<string, string>
+  /** Wolves caught whose guess failed (secrets): they lose even if the other wolf wins. */
+  lost: Set<string>
   /** Close guesses waiting for the flock's judgement (wolf secrets), first = now. */
   judgeQueue: string[]
   /** Phase 'judge': sheep secret → counts? */
@@ -128,6 +130,7 @@ export function createFlockRoom(): FRoom {
     votesEach: 1,
     caught: [],
     typed: new Map(),
+    lost: new Set(),
     judgeQueue: [],
     judgeVotes: new Map(),
     guessLog: [],
@@ -210,7 +213,6 @@ export function toFlockState(room: FRoom): FlockState {
         : null,
     finalVote: room.finalVote,
     votesEach: room.votesEach,
-    guessers: room.phase === 'guess' ? ids(room.caught) : [],
     judge: room.phase === 'judge' && room.judgeQueue[0] ? judgeView(room, room.judgeQueue[0], ids) : null,
     endsInMs: room.phaseEndsAt ? Math.max(0, room.phaseEndsAt - Date.now()) : 0,
     phaseMs: room.phaseMs,

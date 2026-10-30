@@ -37,7 +37,8 @@ interface FlockStore {
   clue: (text: string) => Promise<string | null>
   decide: (vote: boolean) => void
   vote: (targetIds: string[]) => void
-  guess: (word: string) => void
+  /** Set or change the wolf's guess (before a vote). Resolves to an error message or null. */
+  guess: (word: string) => Promise<string | null>
   judge: (ok: boolean) => void
   again: () => void
   setPrefillCode: (code: string) => void
@@ -95,7 +96,7 @@ function getSocket(): FlockSocket {
       if (state.phase === 'secret') playSfx('flip')
       if (state.phase === 'vote') playSfx('go')
       if (state.phase === 'decide') playSfx('tick')
-      if (state.phase === 'out' || state.phase === 'guess') playSfx('reveal')
+      if (state.phase === 'out') playSfx('reveal')
       if (state.phase === 'over') playSfx('podium')
     }
     if (prev?.phase === 'clues' && state.phase === 'clues' && state.turnPlayerId === getState().myId && prev.turnPlayerId !== state.turnPlayerId) playSfx('tick')
@@ -189,10 +190,16 @@ export const useFlockStore = create<FlockStore>((set) => ({
     playSfx('submit')
     getSocket().emit('flock:vote', { targetIds })
   },
-  guess: (word) => {
-    playSfx('submit')
-    getSocket().emit('flock:guess', { word })
-  },
+  guess: (word) =>
+    new Promise((resolve) => {
+      getSocket()
+        .timeout(5000)
+        .emit('flock:guess', { word }, (err, res) => {
+          if (err) return resolve('No answer from the server — try again')
+          if (res.ok) playSfx('submit')
+          resolve(res.ok ? null : res.error)
+        })
+    }),
   judge: (ok) => {
     playSfx('submit')
     getSocket().emit('flock:judge', { ok })

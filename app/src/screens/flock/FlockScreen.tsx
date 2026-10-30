@@ -23,6 +23,7 @@ export function FlockScreen() {
     <div className="screen fl emp">
       <FlockTopBar state={state} />
       <div className="fl-body">
+        <WolfGuessBar state={state} />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
@@ -51,8 +52,6 @@ function PhaseView({ state }: { state: FlockState }) {
       return <DecidePhase state={state} />
     case 'vote':
       return <VotePhase state={state} />
-    case 'guess':
-      return <GuessPhase state={state} />
     case 'judge':
       return <JudgePhase state={state} />
     case 'out':
@@ -280,7 +279,7 @@ function SecretPhase({ state }: { state: FlockState }) {
       <SecretCard secret={secret} big />
       <p className="fl-hint-light">
         Keep it hidden!{' '}
-        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. If they catch you, you can still win by typing the word.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
+        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. Type your guess of the word above — if they catch you and it’s right, you still win.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
       </p>
       {me?.done ? (
         <p className="fl-wait">
@@ -466,49 +465,66 @@ function VotePhase({ state }: { state: FlockState }) {
   )
 }
 
-/** A caught wolf types the word; everyone else waits. */
-function GuessPhase({ state }: { state: FlockState }) {
-  const { myId, me } = useMine(state)
+/**
+ * The wolf's guess of the word: typed and changed any time until a vote starts,
+ * then locked. It only counts if this wolf is caught.
+ */
+function WolfGuessBar({ state }: { state: FlockState }) {
+  const { secret, out } = useMine(state)
   const guess = useFlockStore((s) => s.guess)
   const [text, setText] = useState('')
-  const caught = state.guessers.map((id) => playerById(state, id)).filter((p): p is NonNullable<typeof p> => !!p)
-  const typing = !!myId && state.guessers.includes(myId) && !me?.done
-  const names = caught.map((p) => p.name).join(' & ')
+  const [editing, setEditing] = useState(false)
+  const [err, setErr] = useState<string | null>(null)
+  const live = ['secret', 'clues', 'decide', 'out', 'vote', 'judge'].includes(state.phase)
+  if (!live || out || secret?.role !== 'wolf') return null
+  const locked = state.phase === 'vote' || state.phase === 'judge'
+  const current = secret.myGuess
+  const save = async () => {
+    const e = await guess(text)
+    setErr(e)
+    if (!e) setEditing(false)
+  }
+  if (locked || (!editing && current)) {
+    return (
+      <div className={`fl-guessbar ${locked ? 'locked' : ''}`}>
+        <span>🐺 Your guess:</span>
+        <strong>{current ? `“${current}”` : 'none'}</strong>
+        {locked ? (
+          <small>🔒 locked for the vote</small>
+        ) : (
+          <button
+            className="fl-link"
+            onClick={() => {
+              setText(current ?? '')
+              setEditing(true)
+            }}
+          >
+            change
+          </button>
+        )}
+      </div>
+    )
+  }
   return (
-    <div className="fl-center">
-      <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
-        <div className="fl-caught-row">
-          {caught.map((p) => (
-            <Token key={p.id} player={p} size={caught.length > 1 ? 84 : 110} badge="🐺" />
-          ))}
-        </div>
-        <strong>
-          {names} {caught.length > 1 ? 'were wolves!' : 'was a wolf!'}
-        </strong>
-      </motion.div>
-      {typing ? (
-        <div className="fl-clue-input">
-          <div className="fl-your-turn">🐺 Caught! Type the word to win anyway</div>
-          <p className="fl-hint-light">{state.category && CATEGORY_LABEL[state.category]} — small typos are fine.</p>
-          <div className="fl-input-row">
-            <input
-              className="profile-name-input"
-              autoFocus
-              maxLength={FLOCK_GUESS_MAX}
-              placeholder="The secret word…"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && text.trim() && guess(text)}
-            />
-            <button className="btn-play fl-send" disabled={!text.trim()} onClick={() => guess(text)}>
-              ➤
-            </button>
-          </div>
-        </div>
-      ) : (
-        <p className="fl-wait">{me?.done ? 'Guess sent — fingers crossed…' : `${caught.length > 1 ? 'The wolves get' : 'The wolf gets'} one last chance: typing the word…`}</p>
-      )}
-      <Timer size={70} />
+    <div className="fl-guessbar">
+      <span>🐺 Guess the word (until the vote):</span>
+      <div className="fl-input-row">
+        <input
+          className="profile-name-input"
+          maxLength={FLOCK_GUESS_MAX}
+          placeholder="Your guess…"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value)
+            setErr(null)
+          }}
+          onKeyDown={(e) => e.key === 'Enter' && text.trim() && void save()}
+        />
+        <button className="btn-play fl-send" disabled={!text.trim()} onClick={() => void save()}>
+          ✓
+        </button>
+      </div>
+      {err && <div className="arena-error">{err}</div>}
     </div>
   )
 }

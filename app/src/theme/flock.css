@@ -145,7 +145,16 @@
 .fl-decide-btn.vote{ background: linear-gradient(#ffb38a, #c9502a); }
 .fl-decide-btn.more{ background: linear-gradient(#f3e2bb, #c9a24a); }
 .fl-decide-btn.picked{ outline: 3px solid #fff; transform: translateY(2px); box-shadow: 0 2px 0 #1d0f06; }
-.fl-caught-row{ display: flex; gap: 14px; justify-content: center; }
+.fl-guessbar{
+  flex-shrink: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 8px; padding: 8px 12px; border-radius: 12px;
+  background: radial-gradient(circle at 50% 30%, #6b2a1a, #3a120b 75%); border: 2px solid #ffb347; color: #ffe7a3; font: 700 13px 'Cinzel', serif;
+}
+.fl-guessbar > span{ flex: 1 1 auto; }
+.fl-guessbar strong{ font: 900 16px 'Cinzel', serif; color: #ffd98a; }
+.fl-guessbar small{ font: italic 12px Georgia, serif; opacity: 0.8; }
+.fl-guessbar .fl-input-row{ flex: 1 1 100%; }
+.fl-guessbar .fl-link{ color: #ffb347; }
+.fl-guessbar.locked{ opacity: 0.85; }
 .fl-judge-card{
   display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 18px; border-radius: 14px; text-align: center;
   background: radial-gradient(circle at 50% 30%, #fff6da, #f3e2bb 60%, #dcc08a); border: 3px solid #e3b754; box-shadow: 0 0 0 2px #1d0f06; color: #3b2412;

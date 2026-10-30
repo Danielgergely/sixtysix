@@ -50,11 +50,12 @@ const SECRET_MS = 15_000 // look at your card
 const TURN_MS = 40_000 // one clue
 const DECIDE_MS = 20_000 // vote now or another lap?
 const VOTE_MS = 60_000
-const GUESS_MS = 30_000 // the caught wolf types the word
 const JUDGE_MS = 20_000 // does a close guess count?
 const OUT_MS = 7_000 // "X was a wolf — one more is hiding"
 
-const ACTIVE = ['secret', 'clues', 'decide', 'vote', 'guess', 'judge', 'out']
+const ACTIVE = ['secret', 'clues', 'decide', 'vote', 'judge', 'out']
+/** A wolf may set or change their guess until a vote starts. */
+const GUESSING = ['secret', 'clues', 'decide', 'out']
 
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 const ackOf = (cb: unknown): Ack => (typeof cb === 'function' ? (cb as Ack) : () => {})
@@ -101,6 +102,7 @@ function secretFor(room: FRoom, secret: string): FlockSecret | null {
       role: 'wolf',
       // Opening with no clues to go on: an associated word to start from.
       wolfHint: room.turnOrder[0] === secret ? room.word?.wolfHint : undefined,
+      myGuess: room.typed.get(secret),
     }
   }
   const judged = room.phase === 'judge' && room.judgeQueue[0] ? room.typed.get(room.judgeQueue[0]) : undefined
@@ -169,6 +171,7 @@ function startGame(io: FlockIO, room: FRoom): void {
   room.votesEach = 1
   room.caught = []
   room.typed = new Map()
+  room.lost = new Set()
   room.judgeQueue = []
   room.judgeVotes = new Map()
   room.guessLog = []
@@ -297,41 +300,28 @@ function resolveVote(io: FlockIO, room: FRoom): void {
   }
   if (outIds.length === 0) {
     if (room.finalVote) return endGame(io, room, 'wolves', 'escaped', { votes })
-    return showOut(io, room, { playerIds: [], reason: 'tie', votes }, 'lap')
+    return showOut(io, room, { playerIds: [], reason: 'tie' }, 'lap')
   }
   const outSecrets = outIds.map((id) => secretOf(room, id)!)
   for (const s of outSecrets) room.out.add(s)
   if (outSecrets.some((s) => !room.wolves.includes(s))) return endGame(io, room, 'wolves', 'wrongVote', { outIds, votes })
-  // Only wolves were voted out: each may still type the word.
+  // Only wolves were voted out: their locked-in guesses decide.
   room.caught = outSecrets
   room.lastVotes = votes
-  beginGuess(io, room)
-}
-
-function beginGuess(io: FlockIO, room: FRoom): void {
-  room.phase = 'guess'
-  room.typed = new Map()
-  room.done = new Set()
-  setTimer(io, room, GUESS_MS, () => resolveGuesses(io, room))
-  if (!maybeResolveGuesses(io, room)) broadcast(io, room)
-}
-
-/** Every caught wolf who is still online has typed. */
-function maybeResolveGuesses(io: FlockIO, room: FRoom): boolean {
-  if (room.phase !== 'guess') return false
-  const waiting = room.caught.filter((s) => room.players.get(s)?.connected && !room.typed.has(s))
-  if (waiting.length) return false
   resolveGuesses(io, room)
-  return true
 }
 
+/** Check the caught wolves' guesses (typed before the vote). */
 function resolveGuesses(io: FlockIO, room: FRoom): void {
-  if (room.phase !== 'guess' || !room.word) return
+  if (!room.word) return
   const close: string[] = []
   for (const s of room.caught) {
     const text = room.typed.get(s)
     const wolfId = pubId(room, s) ?? ''
-    if (!text) continue
+    if (!text) {
+      room.guessLog.push({ wolfId, guess: '', verdict: 'wrong' })
+      continue
+    }
     const rivals = WORDS[room.category!].filter((w) => w !== room.word).map((w) => [w.word, ...(w.aliases ?? [])])
     const verdict = judgeGuess(text, room.word.word, room.word.aliases, rivals)
     if (verdict === 'match') {
@@ -377,12 +367,13 @@ function settleJudge(io: FlockIO, room: FRoom, timeUp: boolean): boolean {
   return true
 }
 
-/** No caught wolf named the word. */
+/** No caught wolf had the word: they have lost, whatever the other wolf does. */
 function afterGuesses(io: FlockIO, room: FRoom): void {
+  for (const s of room.caught) room.lost.add(s)
   const outIds = room.caught.map((s) => pubId(room, s)).filter((id): id is string => !!id)
   if (wolvesLeft(room).length === 0) return endGame(io, room, 'sheep', 'caught', { outIds, votes: room.lastVotes })
   if (wolvesLeft(room).length >= sheepLeft(room).length) return endGame(io, room, 'wolves', 'escaped', { outIds, votes: room.lastVotes })
-  showOut(io, room, { playerIds: outIds, reason: 'caught', votes: room.lastVotes }, 'lap')
+  showOut(io, room, { playerIds: outIds, reason: 'caught' }, 'lap')
 }
 
 /** Someone is out (or a tie) and the game goes on: a new lap, or back to the current one. */
@@ -414,13 +405,14 @@ function endGame(
     ref: room.word?.ref ?? '',
     outIds: extra.outIds ?? [],
     guesses: room.guessLog,
+    lostIds: [...room.lost].map((s) => pubId(room, s)).filter((id): id is string => !!id),
     votes: extra.votes ?? {},
   }
   if (winner) {
     for (const secret of room.dealt) {
       const p = room.players.get(secret)
       const side: FlockSide = room.wolves.includes(secret) ? 'wolves' : 'sheep'
-      if (p && side === winner) p.wins++
+      if (p && side === winner && !room.lost.has(secret)) p.wins++
     }
   }
   room.result = result
@@ -506,7 +498,7 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
   }
   if (maybeBeginClues(io, room)) return
   if (room.phase === 'clues' && wasTurn) return nextTurn(io, room)
-  if (settleDecide(io, room) || maybeResolveVote(io, room) || maybeResolveGuesses(io, room) || settleJudge(io, room, false)) return
+  if (settleDecide(io, room) || maybeResolveVote(io, room) || settleJudge(io, room, false)) return
   broadcast(io, room)
 }
 
@@ -665,15 +657,17 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     if (!maybeResolveVote(io, s.room)) broadcast(io, s.room)
   })
 
-  on('flock:guess', (raw) => {
-    const s = seat()
+  on('flock:guess', (raw, cb) => {
+    const ack = ackOf(cb)
+    const s = playingSeat()
     const room = s?.room
-    if (!s || !room || room.phase !== 'guess' || !room.caught.includes(s.secret) || room.typed.has(s.secret)) return
+    if (!s || !room || !room.wolves.includes(s.secret)) return ack({ ok: false, error: 'Not now' })
+    if (!GUESSING.includes(room.phase)) return ack({ ok: false, error: 'Too late — the vote has started' })
     const word = cleanClue((raw as { word?: unknown } | undefined)?.word, FLOCK_GUESS_MAX)
-    if (!word) return
-    room.typed.set(s.secret, word)
-    room.done.add(s.secret)
-    if (!maybeResolveGuesses(io, room)) broadcast(io, room)
+    if (word) room.typed.set(s.secret, word)
+    else room.typed.delete(s.secret)
+    ack({ ok: true })
+    sendSecret(io, room, s.secret)
   })
 
   on('flock:judge', (raw) => {

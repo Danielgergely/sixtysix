@@ -12,7 +12,8 @@ export function Rules() {
       <li>In turn (random order), each player gives a <b>short clue</b> (up to 3 words). Sheep: prove you know the word without giving it away. Wolf: bluff! A wolf who has to go first gets a hint.</li>
       <li>After every lap the flock decides: <b>vote now</b> or <b>one more lap</b>. After lap {FLOCK_MAX_LAPS} the vote is final.</li>
       <li>The most-voted player is out (with two wolves hiding, everyone has two votes and the two most-voted are out). A sheep out? <b>The wolf wins.</b> A tie: nobody leaves (on the final vote, the wolf escapes).</li>
-      <li>A caught wolf gets one last chance: <b>type the word</b>. Right: the wolf wins. Wrong: <b>the flock wins.</b> Small typos and other names count; for a close call, the flock decides.</li>
+      <li>The wolf may <b>type a guess of the word</b> at any time until a vote starts (then it is locked). If the wolf is caught and the guess is right, the wolf still wins; otherwise <b>the flock wins</b>. Small typos and other names count; for a close call, the flock decides.</li>
+      <li>With two wolves, a caught wolf with a wrong guess is out and has lost; the other wolf plays on. The votes are only shown at the end.</li>
     </ol>
   )
 }
@@ -61,7 +62,7 @@ function verdictLine(state: FlockState, r: FlockResult): string {
     case 'wrongVote':
       return `${outNames} ${r.outIds.length > 1 ? 'were voted out — not all wolves!' : 'was a sheep!'}`
     case 'guessed':
-      return `Caught — but ${playerById(state, won?.wolfId)?.name ?? 'the wolf'} knew the word!`
+      return `Caught — but ${playerById(state, won?.wolfId)?.name ?? 'the wolf'} had guessed the word!`
     case 'escaped':
       return r.outIds.length ? 'The wolves now outnumber the sheep.' : `The final vote tied — the ${two ? 'wolves' : 'wolf'} slipped away.`
     case 'fled':
@@ -106,12 +107,11 @@ export function GameReveal({ state, large = false }: { state: FlockState; large?
           <div>
             <span className="fl-reveal-label">{two ? 'A wolf' : 'The wolf'}</span>
             <strong>{wolf?.name ?? 'Left the game'}</strong>
+            {wolf && r.lostIds.includes(wolf.id) && r.winner === 'wolves' && <small>Caught earlier — no win this time</small>}
             {r.guesses
               .filter((g) => g.wolfId === wolf?.id)
               .map((g, j) => (
-                <small key={j}>
-                  Typed “{g.guess}” {VERDICT_MARK[g.verdict]}
-                </small>
+                <small key={j}>{g.guess ? `Guessed “${g.guess}” ${VERDICT_MARK[g.verdict]}` : 'Never guessed the word ✘'}</small>
               ))}
           </div>
         </motion.div>
@@ -127,7 +127,7 @@ export function OutReveal({ state, large = false }: { state: FlockState; large?:
   if (!o) return null
   const caught = o.playerIds.map((id) => playerById(state, id)).filter((p): p is NonNullable<typeof p> => !!p)
   const left = state.wolvesLeft
-  const line = o.reason === 'tie' ? 'The vote tied — nobody leaves the flock.' : `${caught.map((p) => p.name).join(' & ')} was a wolf — and didn’t know the word!`
+  const line = o.reason === 'tie' ? 'The vote tied — nobody leaves the flock.' : `${caught.map((p) => p.name).join(' & ')} was a wolf — and didn’t have the word!`
   return (
     <div className={`fl-reveal ${large ? 'large' : ''}`}>
       <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
@@ -137,7 +137,6 @@ export function OutReveal({ state, large = false }: { state: FlockState; large?:
       <p className="fl-wait">
         {left === 1 ? 'One wolf is still hiding.' : left > 1 ? `${left} wolves are still hiding.` : ''} The game goes on…
       </p>
-      <VoteTable state={state} votes={o.votes} wolfIds={o.playerIds} large={large} />
     </div>
   )
 }

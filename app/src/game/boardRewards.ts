@@ -41,7 +41,9 @@ export function flockRewardFor(state: FlockState, myId: string | null): BoardRew
   const r = state.phase === 'over' ? state.result : null
   const me = state.players.find((p) => p.id === myId)
   if (!r?.winner || !me?.playing) return null
-  return flockReward((r.wolfIds.includes(me.id) ? 'wolves' : 'sheep') === r.winner)
+  // A wolf caught earlier (wrong guess) has lost, even if the other wolf wins.
+  const side = r.wolfIds.includes(me.id) ? 'wolves' : 'sheep'
+  return flockReward(side === r.winner && !r.lostIds.includes(me.id))
 }
 
 /** My reward for a finished Twelve Spies game (abandoned games pay nothing). */
