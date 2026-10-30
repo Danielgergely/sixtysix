@@ -23,12 +23,12 @@ type Spot = BuildingId | 'courtyard'
 const PLACES: Record<Spot, { x: number; y: number; w: number }> = {
   house: { x: 50, y: 38, w: 31 },
   store: { x: 76, y: 45, w: 19 },
-  grove: { x: 83, y: 63, w: 21 },
+  grove: { x: 84, y: 64, w: 21 },
   well: { x: 62, y: 63, w: 15 },
   courtyard: { x: 38, y: 56, w: 17 },
-  fold: { x: 19, y: 60, w: 20 },
-  workshop: { x: 32, y: 72, w: 19 },
-  kiln: { x: 64, y: 75, w: 17 },
+  fold: { x: 17, y: 60, w: 20 },
+  workshop: { x: 31, y: 78, w: 19 },
+  kiln: { x: 64, y: 80, w: 17 },
   // The gate stands in the fence's gap at the front corner.
   wall: { x: 50, y: 95, w: 17 },
 }
@@ -162,97 +162,128 @@ function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 
 
 // ── The fence ring ──────────────────────────────────────────────────────
 
-/** The yard's corners on the painting (top, right, bottom, left), in %. */
-const CORNERS = { top: [50, 11], right: [98, 60], bottom: [50, 91], left: [2, 45] } as const
 type Pt = readonly [number, number]
-/** Back sides lie behind the buildings; front sides are drawn over them (z-index above every spot but the gate). */
-const SIDES: Record<'back' | 'front', [Pt, Pt][]> = {
-  back: [
-    [CORNERS.left, CORNERS.top],
-    [CORNERS.top, CORNERS.right],
-  ],
-  front: [
-    [CORNERS.left, CORNERS.bottom],
-    [CORNERS.bottom, CORNERS.right],
-  ],
-}
-/** Front sides stop this far (in %) short of the bottom corner: the gate stands in the gap. */
-const GATE_GAP = 7
+/**
+ * Where the painted earth meets the grass (plot-ground.webp), clockwise from
+ * the top corner, in % of the painting; the earth runs to the picture's edge
+ * on both sides, so the ring does too. Traced against a 5% grid overlay;
+ * re-trace it if the ground is regenerated.
+ */
+const EDGE = {
+  top: [49.7, 10.3],
+  rightTop: [99, 39.6],
+  rightBottom: [99, 60.5],
+  bottom: [49.7, 91],
+  leftBottom: [1, 56],
+  leftTop: [1, 40.2],
+} as const
+/** Back half: from the left edge over the top to the right edge (behind the buildings). */
+const BACK: Pt[] = [EDGE.leftBottom, EDGE.leftTop, [5.9, 38.1], [14.6, 34.2], [22.5, 26.9], [32.2, 21.5], [44.9, 14.6], EDGE.top, [60.9, 17.1], [72.7, 26.9], [84.4, 33.2], EDGE.rightTop, EDGE.rightBottom]
+/** Front half: from the right edge down to the bottom corner and up to the left edge (drawn over the buildings' feet). */
+const FRONT: Pt[] = [EDGE.rightBottom, [89.3, 66.4], [77.5, 73.2], [67.8, 80.1], [57, 85.9], EDGE.bottom, [39, 86.9], [29.3, 82], [22.5, 75.5], [12.7, 71], [4, 61], EDGE.leftBottom]
+/** The front stops this far (in %) either side of the bottom corner: the gate stands in the gap. */
+const GATE_GAP = 6.5
 
-/** Points every `step` along a→b (from `from` to `to` of its length, as fractions). */
-function along(a: Pt, b: Pt, step: number, from = 0, to = 1): Pt[] {
-  const len = Math.hypot(b[0] - a[0], b[1] - a[1])
-  const n = Math.max(1, Math.round(((to - from) * len) / step))
-  return Array.from({ length: n + 1 }, (_, i) => {
-    const t = from + ((to - from) * i) / n
-    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t] as Pt
-  })
+const dist = (a: Pt, b: Pt) => Math.hypot(b[0] - a[0], b[1] - a[1])
+const lerp = (a: Pt, b: Pt, t: number): Pt => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]
+
+/** The polyline cut where it comes within `gap` of point `at` (walking along it): the pieces either side. */
+function cutAround(path: Pt[], at: Pt, gap: number): Pt[][] {
+  const i = path.indexOf(at)
+  if (i < 0) return [path]
+  const walkBack = (pts: Pt[]) => {
+    // pts ends at `at`; drop `gap` from that end.
+    let left = gap
+    const out = [...pts]
+    while (out.length > 1) {
+      const d = dist(out[out.length - 2], out[out.length - 1])
+      if (d > left) {
+        out[out.length - 1] = lerp(out[out.length - 1], out[out.length - 2], left / d)
+        return out
+      }
+      left -= d
+      out.pop()
+    }
+    return out
+  }
+  return [walkBack(path.slice(0, i + 1)), walkBack(path.slice(i).reverse()).reverse()]
 }
 
-/** A side with the gate gap cut out of the front (both front sides end at the bottom corner). */
-function span(a: Pt, b: Pt, side: 'back' | 'front'): [number, number] {
-  if (side === 'back') return [0, 1]
-  const len = Math.hypot(b[0] - a[0], b[1] - a[1])
-  const cut = GATE_GAP / len
-  return a === CORNERS.bottom ? [cut, 1] : [0, 1 - cut]
+/** Points every `step` along a polyline. */
+function along(path: Pt[], step: number): Pt[] {
+  const out: Pt[] = []
+  for (let i = 0; i + 1 < path.length; i++) {
+    const [a, b] = [path[i], path[i + 1]]
+    const n = Math.max(1, Math.round(dist(a, b) / step))
+    for (let k = i === 0 ? 0 : 1; k <= n; k++) out.push(lerp(a, b, k / n))
+  }
+  return out
 }
 
-const poly = (pts: Pt[]) => pts.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2)}`).join(' ')
+const poly = (pts: readonly Pt[]) => pts.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2)}`).join(' ')
+const up = (pts: readonly Pt[], h: number) => pts.map(([x, y]) => [x, y - h] as Pt)
 
 /**
- * The boundary of the plot, drawn along the painting's yard edge for each wall
- * level: 0 corner stakes, 1 thorn hedge, 2 wooden fence, 3 stone wall,
- * 4 a higher wall with merlons (the gate sprite fills the gap), 5 the same
- * with a watchtower at the left corner.
+ * The boundary of the plot along the painting's earth edge, for each wall
+ * level: 0 surveyor's stakes, 1 thorn hedge, 2 wooden fence, 3 stone wall,
+ * 4 a higher wall with merlons (the gate sprite fills the gap at the bottom),
+ * 5 the same with a watchtower on the left.
  */
 function Fence({ level, side }: { level: number; side: 'back' | 'front' }) {
+  const paths = side === 'back' ? [BACK] : cutAround(FRONT, EDGE.bottom, GATE_GAP)
   const parts: React.ReactNode[] = []
-  SIDES[side].forEach(([a, b], i) => {
-    const [from, to] = span(a, b, side)
-    if (level === 0) {
-      // Surveyor's stakes at the corners, nothing in between.
-      for (const [x, y] of [a, b]) parts.push(<Stake key={`s${i}${x}${y}`} x={x} y={y} />)
-    } else if (level === 1) {
-      // Bushes of uneven size and shade, a lighter top on each, the odd red berry.
-      along(a, b, 1.25, from, to).forEach(([x, y], k) => {
-        const r = 1.05 + ((k * 7) % 5) * 0.12
-        parts.push(
-          <g key={`h${i}-${k}`}>
-            <ellipse cx={x} cy={y - r * 0.8} rx={r} ry={r * 0.9} fill={['#3f6b22', '#4f7a2a', '#5a8a31'][k % 3]} stroke="#26401a" strokeWidth={0.2} />
-            <ellipse cx={x - r * 0.3} cy={y - r * 1.2} rx={r * 0.45} ry={r * 0.35} fill="#86b452" opacity={0.7} />
-            {k % 4 === 1 && <circle cx={x + r * 0.4} cy={y - r * 0.7} r={0.22} fill="#b8322a" />}
-          </g>,
-        )
+  if (level === 0) {
+    const stakes = side === 'back' ? [EDGE.leftTop, EDGE.top, EDGE.rightTop] : [EDGE.rightBottom, EDGE.leftBottom]
+    stakes.forEach(([x, y], i) => parts.push(<Stake key={i} x={x} y={y} />))
+  } else if (level === 1) {
+    // A thorn hedge: a soft shadow on the ground, a dark back row and a lighter front row of leafy
+    // clumps, sunlit leaves on top and the odd white blossom. No outlines: it should read as foliage.
+    const shadow: React.ReactNode[] = []
+    const back: React.ReactNode[] = []
+    const front: React.ReactNode[] = []
+    const lights: React.ReactNode[] = []
+    paths.forEach((path, i) => {
+      shadow.push(<polyline key={`s${i}`} points={poly(path.map(([x, y]) => [x, y + 0.45] as Pt))} fill="none" stroke="rgb(30 40 10 / 0.35)" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />)
+      along(path, 1.3).forEach(([x, y], k) => {
+        const v = ((k * 37) % 11) / 10 // 0…1, stable per clump
+        back.push(<circle key={`b${i}-${k}`} cx={x} cy={y - 2.3 - v * 0.4} r={1.5 + v * 0.5} fill={v > 0.5 ? '#2e5216' : '#355c1b'} />)
+        front.push(<circle key={`f${i}-${k}`} cx={x + 0.5} cy={y - 1.25} r={1.25 + v * 0.4} fill={v > 0.3 ? '#4a7a24' : '#558a2b'} />)
+        lights.push(<circle key={`l${i}-${k}`} cx={x - 0.45} cy={y - 3.1 - v * 0.4} r={0.45 + v * 0.25} fill="#7fb04a" opacity={0.85} />)
+        if (k % 3 === 0) lights.push(<circle key={`m${i}-${k}`} cx={x + 0.9} cy={y - 1.8} r={0.4} fill="#6a9c3a" />)
+        if (k % 5 === 2) lights.push(<circle key={`w${i}-${k}`} cx={x + 0.3} cy={y - 2.7} r={0.28} fill="#f6efe0" stroke="#e8b4c0" strokeWidth={0.08} />)
       })
-    } else if (level === 2) {
-      const rail = (h: number) => poly(along(a, b, 50, from, to).map(([x, y]) => [x, y - h] as Pt))
-      parts.push(<polyline key={`r1${i}`} points={rail(1.1)} fill="none" stroke="#6b4420" strokeWidth={0.5} strokeLinecap="round" />)
-      parts.push(<polyline key={`r2${i}`} points={rail(2.3)} fill="none" stroke="#8b5a2b" strokeWidth={0.5} strokeLinecap="round" />)
-      along(a, b, 2.6, from, to).forEach(([x, y], k) =>
+    })
+    parts.push(...shadow, ...back, ...front, ...lights)
+  } else if (level === 2) {
+    paths.forEach((path, i) => {
+      parts.push(<polyline key={`r1${i}`} points={poly(up(path, 1.1))} fill="none" stroke="#6b4420" strokeWidth={0.5} strokeLinecap="round" strokeLinejoin="round" />)
+      parts.push(<polyline key={`r2${i}`} points={poly(up(path, 2.3))} fill="none" stroke="#8b5a2b" strokeWidth={0.5} strokeLinecap="round" strokeLinejoin="round" />)
+      along(path, 2.6).forEach(([x, y], k) =>
         parts.push(<rect key={`p${i}-${k}`} x={x - 0.32} y={y - 3} width={0.64} height={3.1} rx={0.15} fill="#9a6532" stroke="#4a2a10" strokeWidth={0.15} />),
       )
-    } else {
-      const h = level >= 4 ? 3.2 : 2.4
-      const ends = along(a, b, 1000, from, to)
-      const [p, q] = [ends[0], ends[ends.length - 1]]
-      // Front face, then a lighter top, then mortar lines and staggered joints.
-      parts.push(<polygon key={`f${i}`} points={poly([p, q, [q[0], q[1] - h], [p[0], p[1] - h]])} fill="#cdb48a" stroke="#6b5636" strokeWidth={0.25} />)
-      parts.push(<polygon key={`t${i}`} points={poly([[p[0], p[1] - h], [q[0], q[1] - h], [q[0], q[1] - h - 0.6], [p[0], p[1] - h - 0.6]])} fill="#ead8b0" stroke="#6b5636" strokeWidth={0.2} />)
-      for (const row of [h / 3, (2 * h) / 3]) {
-        parts.push(<polyline key={`m${i}${row}`} points={poly([[p[0], p[1] - row], [q[0], q[1] - row]])} stroke="#9c835c" strokeWidth={0.14} />)
+    })
+  } else {
+    const h = level >= 4 ? 3.2 : 2.4
+    paths.forEach((path, i) => {
+      for (let s = 0; s + 1 < path.length; s++) {
+        const [p, q] = [path[s], path[s + 1]]
+        // Front face, a lighter top, mortar lines.
+        parts.push(<polygon key={`f${i}-${s}`} points={poly([p, q, ...up([q, p], h)])} fill="#cdb48a" stroke="#6b5636" strokeWidth={0.25} />)
+        parts.push(<polygon key={`t${i}-${s}`} points={poly([...up([p, q], h), ...up([q, p], h + 0.6)])} fill="#ead8b0" stroke="#6b5636" strokeWidth={0.2} />)
+        for (const row of [h / 3, (2 * h) / 3]) parts.push(<polyline key={`m${i}-${s}-${row}`} points={poly(up([p, q], row))} stroke="#9c835c" strokeWidth={0.14} />)
       }
-      along(a, b, 1.6, from, to).forEach(([x, y], k) => {
+      along(path, 1.6).forEach(([x, y], k) => {
         const row = k % 2 ? h / 3 : 0
         parts.push(<line key={`j${i}-${k}`} x1={x} y1={y - row} x2={x} y2={y - row - h / 3} stroke="#9c835c" strokeWidth={0.14} />)
       })
       if (level >= 4) {
-        along(a, b, 2.2, from, to).forEach(([x, y], k) =>
+        along(path, 2.2).forEach(([x, y], k) =>
           parts.push(<rect key={`c${i}-${k}`} x={x - 0.55} y={y - h - 1.6} width={1.1} height={1.1} fill="#ead8b0" stroke="#6b5636" strokeWidth={0.18} />),
         )
       }
-    }
-  })
-  if (level >= 5 && side === 'back') parts.push(<Tower key="tower" x={CORNERS.left[0] + 3} y={CORNERS.left[1] + 0.5} />)
+    })
+  }
+  if (level >= 5 && side === 'back') parts.push(<Tower key="tower" x={4.5} y={47} />)
   return (
     <svg className={`ps-fence ${side}`} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
       {parts}
