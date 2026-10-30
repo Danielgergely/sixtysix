@@ -163,6 +163,7 @@ export function startGame(io: FlockIO, room: FRoom): void {
   room.usedWords.add(room.word.word)
 
   room.dealt = new Set(everyone)
+  room.dealtHumans = everyone.filter((s) => !room.players.get(s)?.bot).length
   room.out = new Set()
   // Random order: a wolf opens about wolves/players of the time, and then gets a hint (wolfHint).
   room.turnOrder = shuffle([...everyone])
@@ -412,7 +413,7 @@ function endGame(
     guesses: room.guessLog,
     lostIds: [...room.lost].map((s) => pubId(room, s)).filter((id): id is string => !!id),
     votes: extra.votes ?? {},
-    rewarded: [...room.dealt].filter((s) => room.players.get(s)?.bot === false).length >= FLOCK_REWARD_HUMANS,
+    rewarded: room.dealtHumans >= FLOCK_REWARD_HUMANS,
   }
   if (winner) {
     for (const secret of room.dealt) {
@@ -444,6 +445,7 @@ const letters = (s: string) =>
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
+    .replace(/['’]s\b/g, '') // possessive: "Jacob's Well" must not block every "it's"
     .replace(/[^a-z0-9 ]/g, ' ')
 
 /** True if the clue gives the word away (whole word or any key part of it). */
@@ -517,6 +519,7 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
   if (inGame && explicit) {
     if (room.wolves.includes(secret) && wolvesLeft(room).length === 0) return endGame(io, room, 'sheep', 'fled', {})
     if ([...room.dealt].filter((s) => isIn(room, s)).length < FLOCK_MIN_PLAYERS) return endGame(io, room, null, 'abandoned', {})
+    if (wolvesLeft(room).length >= sheepLeft(room).length) return endGame(io, room, 'wolves', 'escaped', {})
   }
   if (maybeBeginClues(io, room)) return
   if (room.phase === 'clues' && wasTurn) return nextTurn(io, room)
