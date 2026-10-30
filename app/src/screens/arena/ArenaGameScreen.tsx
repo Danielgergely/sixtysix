@@ -6,6 +6,7 @@ import { Leaderboard } from './game/Leaderboard'
 import { Podium } from './game/Podium'
 import { QuestionView } from './game/QuestionView'
 import { RotateHint } from './RotateHint'
+import { usePortraitBoard } from './usePortraitBoard'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
 import { TEAM_COLORS, gateName } from './modes'
@@ -115,10 +116,13 @@ export function ArenaGameScreen() {
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
   const reveal = useArenaStore((s) => s.reveal)
   const locale = useLocale((s) => s.locale)
+  const upright = usePortraitBoard()
   if (!room) return null
 
   const phase = room.phase
   const isPlayer = role === 'player'
+  // Goliath and the Wall: a board kept upright on a phone uses the phone scenes.
+  const landscape = !isPlayer && !upright
   const isHost = role === 'host'
 
   // One key per "scene": a question keeps its key through reading → question →
@@ -139,14 +143,14 @@ export function ArenaGameScreen() {
   if (phase === 'podium' && podium) {
     let node = <Podium entries={podium} isPlayer={isPlayer} actions={endButton} />
     if (room.goliath) {
-      node = <GoliathFinale goliath={room.goliath} entries={podium} wide={!isPlayer} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
+      node = <GoliathFinale goliath={room.goliath} entries={podium} wide={landscape} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
     } else if (room.teams) {
       node = (
         <WallFinale
           teams={room.teams}
           players={room.players}
           questionTotal={room.questionTotal}
-          wide={!isPlayer}
+          wide={landscape}
           myTeam={isPlayer ? myTeam : undefined}
           coins={isPlayer ? coinsEarned : undefined}
           actions={endButton}
@@ -156,8 +160,8 @@ export function ArenaGameScreen() {
     scene = { key: 'podium', node }
   } else if (phase === 'leaderboard' && leaderboard) {
     let node = <Leaderboard entries={leaderboard} isPlayer={isPlayer} />
-    if (room.goliath) node = <GoliathRound goliath={room.goliath} entries={leaderboard} wide={!isPlayer} />
-    else if (room.teams) node = <WallRound teams={room.teams} questionTotal={room.questionTotal} wide={!isPlayer} myTeam={isPlayer ? myTeam : undefined} />
+    if (room.goliath) node = <GoliathRound goliath={room.goliath} entries={leaderboard} wide={landscape} />
+    else if (room.teams) node = <WallRound teams={room.teams} questionTotal={room.questionTotal} wide={landscape} myTeam={isPlayer ? myTeam : undefined} />
     scene = { key: `lb-${room.questionIndex}`, node }
   } else if (question) {
     scene = { key: `q-${question.index}`, node: <ArenaQuestion /> }

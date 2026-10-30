@@ -3,6 +3,7 @@ import type { LeaderboardEntry } from '@sixtysix/shared'
 import { useArenaStore } from '../../../arena/arenaStore'
 import { RoadToThrone, type RaceEntry } from '../../../ceremony/RoadToThrone'
 import { Standing } from './Standing'
+import { usePortraitBoard } from '../usePortraitBoard'
 
 /** Arena standings between questions → the Road to the Throne race. */
 export function Leaderboard({ entries, isPlayer }: { entries: LeaderboardEntry[]; isPlayer: boolean }) {
@@ -10,6 +11,8 @@ export function Leaderboard({ entries, isPlayer }: { entries: LeaderboardEntry[]
   const question = useArenaStore((s) => s.question)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const me = isPlayer ? myPlayerId : null
+  // A host who kept the board upright on a phone gets the portrait road, not the landscape one squeezed.
+  const upright = usePortraitBoard()
 
   const race: RaceEntry[] = useMemo(() => {
     // Colour = join order, so a player keeps their chariot all game.
@@ -29,7 +32,7 @@ export function Leaderboard({ entries, isPlayer }: { entries: LeaderboardEntry[]
 
   const total = question?.total ?? room?.questionTotal ?? 10
   const played = (question?.index ?? room?.questionIndex ?? 0) + 1
-  if (!isPlayer) return <RoadToThrone entries={race} played={played} total={total} wide />
+  if (!isPlayer) return <RoadToThrone entries={race} played={played} total={total} wide={!upright} />
   // Phones also get their own standing: place, score, gaps and a short top list.
   return (
     <div className="tr-split">

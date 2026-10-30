@@ -8,6 +8,7 @@ import { PARCHMENT } from '../art/textures'
 import { BUST_ANCHORS } from '../looks/bustArt'
 import { useLocale, useT } from '../i18n'
 import { rich } from '../screens/arena/rich'
+import { usePortraitBoard } from '../screens/arena/usePortraitBoard'
 import { nameTag } from './names'
 
 export interface CrownEntry {
@@ -75,7 +76,10 @@ interface Props {
 export function Crowning({ entries, wide, actions, coins }: Props) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
-  const st = wide ? STAGE.wide : STAGE.phone
+  // A board on an upright phone ("Continue upright") keeps its ranking but uses the portrait stage.
+  const upright = usePortraitBoard()
+  const landscape = wide && !upright
+  const st = landscape ? STAGE.wide : STAGE.phone
   const top3 = useMemo(() => entries.slice(0, 3), [entries])
   const script = useMemo(() => buildScript(top3.length), [top3.length])
   const youRank = entries.findIndex((r) => r.you) + 1
@@ -113,7 +117,7 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
   const glowing = current?.ev === 'crown'
 
   return (
-    <motion.div className={`cr ${wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div className={`cr ${landscape ? 'wide' : ''} ${wide ? 'board' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="cr-stage" style={{ aspectRatio: st.aspect, backgroundImage: `url(${st.img})` }}>
         {/* Glory of the throne: always present, flares on every crowning. */}
         <motion.div
