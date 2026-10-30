@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "q_b186_001",
+    "reference": "Daniel 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of King Jehoiakim did Nebuchadnezzar besiege Jerusalem (Daniel 1)?"
+    },
+    "answers": {
+      "en": [
+        "The third year",
+        "The first year",
+        "The seventh year",
+        "The eleventh year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_002",
+    "reference": "Daniel 1:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who was the master of the eunuchs in Daniel 1?"
+    },
+    "answers": {
+      "en": [
+        "Arioch",
+        "Nebuzaradan",
+        "Belshazzar",
+        "Ashpenaz"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_003",
+    "reference": "Daniel 1:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "For how many years were the young men to be trained before serving the king?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Two",
+        "Five",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_004",
+    "reference": "Daniel 1:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What was Shadrach's Hebrew name?"
+    },
+    "answers": {
+      "en": [
+        "Mishael",
+        "Azariah",
+        "Daniel",
+        "Hananiah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_005",
+    "reference": "Daniel 1:12",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "For how many days did Daniel ask to be tested on vegetables and water?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Forty",
+        "Ten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_006",
+    "reference": "Daniel 1:15",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "After the test, how did Daniel and his friends look compared to the other youths?"
+    },
+    "answers": {
+      "en": [
+        "Thinner and paler",
+        "Tired and weak",
+        "Exactly the same",
+        "Fairer and fatter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_007",
+    "reference": "Daniel 1:20",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel and his friends were how many times better than the king's magicians?"
+    },
+    "answers": {
+      "en": [
+        "Seven times",
+        "Twice",
+        "Ten times",
+        "A hundred times"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_008",
+    "reference": "Daniel 1:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel continued until the first year of which king?"
+    },
+    "answers": {
+      "en": [
+        "Darius",
+        "Belshazzar",
+        "Cyrus",
+        "Artaxerxes"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_009",
+    "reference": "Daniel 2:3",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did King Nebuchadnezzar want his wise men to make known to him?"
+    },
+    "answers": {
+      "en": [
+        "A riddle",
+        "A letter",
+        "His dream",
+        "A song"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_010",
+    "reference": "Daniel 2:14",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who was the captain of the king's guard sent to kill the wise men of Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Ashpenaz",
+        "Nebuzaradan",
+        "Belshazzar",
+        "Arioch"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_011",
+    "reference": "Daniel 2:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How was the secret of the king's dream revealed to Daniel?"
+    },
+    "answers": {
+      "en": [
+        "By an angel at noon",
+        "By casting lots",
+        "In a vision of the night",
+        "In the temple"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_012",
+    "reference": "Daniel 2:32",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In the king's dream, what were the image's chest and arms made of?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Bronze",
+        "Silver",
+        "Iron"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_013",
+    "reference": "Daniel 2:33",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What were the feet of the image in Nebuchadnezzar's dream made of?"
+    },
+    "answers": {
+      "en": [
+        "Pure gold",
+        "Bronze and silver",
+        "Iron and clay",
+        "Stone and wood"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_014",
+    "reference": "Daniel 2:32",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In the king's dream, what were the image's belly and thighs made of?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Gold",
+        "Brass",
+        "Clay"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_015",
+    "reference": "Daniel 2:34",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Where did the stone cut out without hands strike the image?"
+    },
+    "answers": {
+      "en": [
+        "On its head",
+        "On its chest",
+        "On its feet",
+        "On its arms"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_016",
+    "reference": "Daniel 2:38",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel told Nebuchadnezzar, 'You are the head of' what?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Gold",
+        "Bronze",
+        "Iron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_017",
+    "reference": "Daniel 2:48",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Over which province did the king make Daniel ruler?"
+    },
+    "answers": {
+      "en": [
+        "Persia",
+        "Babylon",
+        "Media",
+        "Elam"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_018",
+    "reference": "Daniel 3:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How high was Nebuchadnezzar's image of gold?"
+    },
+    "answers": {
+      "en": [
+        "Six cubits",
+        "Sixty cubits",
+        "Ten cubits",
+        "Thirty cubits"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_019",
+    "reference": "Daniel 3:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "On which plain did Nebuchadnezzar set up the golden image?"
+    },
+    "answers": {
+      "en": [
+        "Shinar",
+        "Dura",
+        "Moab",
+        "Sharon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_020",
+    "reference": "Daniel 3:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In Daniel 3, what was the signal to fall down and worship the golden image?"
+    },
+    "answers": {
+      "en": [
+        "The ringing of bells",
+        "The sound of music",
+        "A shout from the king",
+        "The setting sun"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_021",
+    "reference": "Daniel 3:18",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Even if God did not deliver them, what would the three friends never serve?"
+    },
+    "answers": {
+      "en": [
+        "The king's army",
+        "The king's gods",
+        "The king's sons",
+        "The magicians"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_022",
+    "reference": "Daniel 3:21",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Into what were Shadrach, Meshach, and Abednego cast?"
+    },
+    "answers": {
+      "en": [
+        "A lions' den",
+        "A burning fiery furnace",
+        "A dry well",
+        "A dark prison"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_023",
+    "reference": "Daniel 3:22",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Who was killed by the flames when the three friends were thrown in?"
+    },
+    "answers": {
+      "en": [
+        "The king's magicians",
+        "The men who took them up",
+        "The king's sons",
+        "The satraps"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_024",
+    "reference": "Daniel 3:25",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Nebuchadnezzar said the fourth man in the fire looked like what?"
+    },
+    "answers": {
+      "en": [
+        "A great king",
+        "A son of the gods",
+        "A Chaldean wizard",
+        "A prince of Persia"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_025",
+    "reference": "Daniel 4:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In Nebuchadnezzar's second dream, what grew great and reached to the sky?"
+    },
+    "answers": {
+      "en": [
+        "A tree",
+        "A mountain",
+        "A tower",
+        "A vine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_026",
+    "reference": "Daniel 4:16",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 4: how many 'times' would pass over the king while he had an animal's heart?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_027",
+    "reference": "Daniel 4:30",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Nebuchadnezzar boast about just before he was humbled?"
+    },
+    "answers": {
+      "en": [
+        "Great Babylon, which he had built",
+        "His golden image",
+        "His mighty armies",
+        "His wise men"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_028",
+    "reference": "Daniel 4:33",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 4: Nebuchadnezzar's hair grew like the feathers of which bird?"
+    },
+    "answers": {
+      "en": [
+        "Eagles",
+        "Ravens",
+        "Doves",
+        "Ostriches"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_029",
+    "reference": "Daniel 4:34",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Nebuchadnezzar do just before his understanding returned to him?"
+    },
+    "answers": {
+      "en": [
+        "Lifted his eyes to heaven",
+        "Ate bread",
+        "Washed his face",
+        "Called for Daniel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_030",
+    "reference": "Daniel 5:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "At Belshazzar's feast, from what did the king and his guests drink?"
+    },
+    "answers": {
+      "en": [
+        "Vessels from the temple in Jerusalem",
+        "Cups of ivory",
+        "Golden horns",
+        "Clay jars"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_031",
+    "reference": "Daniel 5:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Belshazzar's knees do when he saw the hand writing?"
+    },
+    "answers": {
+      "en": [
+        "Struck one against another",
+        "Gave way completely",
+        "Turned white",
+        "Bent to the ground"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_032",
+    "reference": "Daniel 5:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What rank did Belshazzar offer whoever could read the writing?"
+    },
+    "answers": {
+      "en": [
+        "Third ruler in the kingdom",
+        "Second ruler in the kingdom",
+        "Chief of the magicians",
+        "Governor of Babylon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_033",
+    "reference": "Daniel 5:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Who came into the banquet house and told Belshazzar about Daniel?"
+    },
+    "answers": {
+      "en": [
+        "The queen",
+        "Ashpenaz",
+        "Arioch",
+        "The chief magician"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_034",
+    "reference": "Daniel 5:27",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What does 'Tekel' mean, according to Daniel?"
+    },
+    "answers": {
+      "en": [
+        "Numbered and finished",
+        "Divided and given away",
+        "Cast down",
+        "Weighed in the balances"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_035",
+    "reference": "Daniel 5:28",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "'Peres': to whom was Belshazzar's kingdom given?"
+    },
+    "answers": {
+      "en": [
+        "The Greeks",
+        "The Egyptians",
+        "The Assyrians",
+        "The Medes and Persians"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_036",
+    "reference": "Daniel 5:31",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "About how old was Darius the Mede when he received the kingdom?"
+    },
+    "answers": {
+      "en": [
+        "40",
+        "70",
+        "81",
+        "62"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_037",
+    "reference": "Daniel 6:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How many presidents were set over the satraps, Daniel being one?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Twelve",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_038",
+    "reference": "Daniel 6:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Why could the officials find no fault in Daniel?"
+    },
+    "answers": {
+      "en": [
+        "He was rich",
+        "He was the king's cousin",
+        "He was hidden",
+        "He was faithful"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_039",
+    "reference": "Daniel 6:17",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 6: what was laid on the mouth of the lions' den?"
+    },
+    "answers": {
+      "en": [
+        "A net",
+        "An iron gate",
+        "A stone",
+        "A wooden lid"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_040",
+    "reference": "Daniel 6:18",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "How did King Darius spend the night Daniel was in the lions' den?"
+    },
+    "answers": {
+      "en": [
+        "Feasting",
+        "Singing",
+        "Hunting",
+        "Fasting"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_041",
+    "reference": "Daniel 6:28",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel prospered in the reign of Darius and of which Persian king?"
+    },
+    "answers": {
+      "en": [
+        "Artaxerxes",
+        "Xerxes",
+        "Ahasuerus",
+        "Cyrus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_042",
+    "reference": "Daniel 7:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In the first year of which king did Daniel dream of four great animals?"
+    },
+    "answers": {
+      "en": [
+        "Nebuchadnezzar",
+        "Darius",
+        "Cyrus",
+        "Belshazzar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b186_043",
+    "reference": "Daniel 7:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 7: the first animal was like a lion with the wings of what?"
+    },
+    "answers": {
+      "en": [
+        "A dove",
+        "A bat",
+        "An eagle",
+        "A raven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_044",
+    "reference": "Daniel 7:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 7: what did the bear-like animal have in its mouth?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A scroll",
+        "Three ribs",
+        "A crown"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_045",
+    "reference": "Daniel 7:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How many heads did the leopard-like animal have in Daniel 7?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Two",
+        "Four",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_046",
+    "reference": "Daniel 7:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "How many horns did the fourth animal have in Daniel 7?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Four",
+        "Ten",
+        "Two"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_047",
+    "reference": "Daniel 7:13",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 7: one like a son of man came with what?"
+    },
+    "answers": {
+      "en": [
+        "A host of angels",
+        "Chariots of fire",
+        "The clouds of the sky",
+        "A great wind"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_048",
+    "reference": "Daniel 8:2",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "By which river was Daniel in his vision at Susa?"
+    },
+    "answers": {
+      "en": [
+        "Chebar",
+        "Ulai",
+        "Euphrates",
+        "Jordan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_049",
+    "reference": "Daniel 8:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 8: which animal with a notable horn struck the ram?"
+    },
+    "answers": {
+      "en": [
+        "A lion",
+        "A male goat",
+        "A bull",
+        "A leopard"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_050",
+    "reference": "Daniel 8:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 8: the rough male goat is the king of which land?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Assyria",
+        "Greece",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_051",
+    "reference": "Daniel 8:27",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What happened to Daniel after his vision of the ram and the goat?"
+    },
+    "answers": {
+      "en": [
+        "He went blind for a week",
+        "He fled to Egypt",
+        "He fainted and was sick for days",
+        "He was made king"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b186_052",
+    "reference": "Daniel 9:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "From which prophet's words did Daniel learn of the seventy years of desolation?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Jeremiah",
+        "Ezekiel",
+        "Moses"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_053",
+    "reference": "Daniel 9:21",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "At what time did Gabriel come to Daniel while he prayed (Daniel 9)?"
+    },
+    "answers": {
+      "en": [
+        "Midnight",
+        "The time of the evening offering",
+        "Sunrise",
+        "Noon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_054",
+    "reference": "Daniel 10:4",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 10: by which great river was Daniel when he saw the man in linen?"
+    },
+    "answers": {
+      "en": [
+        "Ulai",
+        "Hiddekel",
+        "Chebar",
+        "Jordan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_055",
+    "reference": "Daniel 10:13",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How many days did the prince of Persia withstand the messenger in Daniel 10?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twenty-one",
+        "Forty",
+        "Three"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_056",
+    "reference": "Daniel 10:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Who came to help the messenger against the prince of Persia?"
+    },
+    "answers": {
+      "en": [
+        "Gabriel",
+        "Michael",
+        "Raphael",
+        "Uriel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b186_057",
+    "reference": "Daniel 12:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 12: the many who will awake sleep where?"
+    },
+    "answers": {
+      "en": [
+        "In the dust of the earth",
+        "In the depths of the sea",
+        "In the caves",
+        "Under the altar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_058",
+    "reference": "Daniel 12:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 12: those who turn many to righteousness will shine like what?"
+    },
+    "answers": {
+      "en": [
+        "The stars",
+        "The sun",
+        "The moon",
+        "Lightning"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_059",
+    "reference": "Daniel 12:4",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "At the end of his book, what was Daniel told to do with the book?"
+    },
+    "answers": {
+      "en": [
+        "Seal it",
+        "Burn it",
+        "Read it aloud",
+        "Give it to the king"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b186_060",
+    "reference": "Daniel 12:12",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Daniel 12: blessed is he who waits and comes to how many days?"
+    },
+    "answers": {
+      "en": [
+        "1,290",
+        "1,335",
+        "2,300",
+        "1,260"
+      ]
+    },
+    "correctIndex": 1
+  }
+]

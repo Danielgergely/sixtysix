@@ -1,0 +1,578 @@
+[
+  {
+    "id": "q_b184_001",
+    "reference": "Ezekiel 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In which year did Ezekiel see visions of God by the river Chebar (Ezekiel 1:1)?"
+    },
+    "answers": {
+      "en": [
+        "The twentieth year",
+        "The fortieth year",
+        "The thirtieth year",
+        "The twelfth year"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_002",
+    "reference": "Ezekiel 1:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel's first vision came in which year of King Jehoiachin's captivity?"
+    },
+    "answers": {
+      "en": [
+        "The third",
+        "The seventh",
+        "The fifth",
+        "The tenth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_003",
+    "reference": "Ezekiel 1:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "From which direction did the stormy wind come in Ezekiel's first vision?"
+    },
+    "answers": {
+      "en": [
+        "The south",
+        "The east",
+        "The north",
+        "The west"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_004",
+    "reference": "Ezekiel 1:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How many wings did each living creature have in Ezekiel 1?"
+    },
+    "answers": {
+      "en": [
+        "Six",
+        "Four",
+        "Two",
+        "Eight"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_005",
+    "reference": "Ezekiel 1:18",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 1: the rims of the wheels were full of what?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Eyes",
+        "Jewels",
+        "Stars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_006",
+    "reference": "Ezekiel 1:28",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 1: the brightness around the throne looked like what in the cloud?"
+    },
+    "answers": {
+      "en": [
+        "Lightning",
+        "The rainbow",
+        "The sun",
+        "A flame"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_007",
+    "reference": "Ezekiel 2:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 2: though Ezekiel lived among what, he must not be afraid?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Scorpions",
+        "Wolves",
+        "Wild dogs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_008",
+    "reference": "Ezekiel 2:10",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What was written on the scroll spread before Ezekiel?"
+    },
+    "answers": {
+      "en": [
+        "Blessings and promises",
+        "Lamentation, mourning, and woe",
+        "Names of the twelve tribes",
+        "Songs of praise"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_009",
+    "reference": "Ezekiel 3:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 3: God made Ezekiel's forehead like an adamant, harder than what?"
+    },
+    "answers": {
+      "en": [
+        "Flint",
+        "Iron",
+        "Bronze",
+        "Cedar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_010",
+    "reference": "Ezekiel 3:26",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 3: what would God make stick to the roof of Ezekiel's mouth?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "His tongue",
+        "Honey",
+        "Dust"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_011",
+    "reference": "Ezekiel 4:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How many days was Ezekiel to lie on his right side for the house of Judah?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Seventy",
+        "Ten"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_012",
+    "reference": "Ezekiel 5:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 5: how much of his shaved hair was Ezekiel to burn in the city?"
+    },
+    "answers": {
+      "en": [
+        "Half of it",
+        "A third part",
+        "A tenth part",
+        "All of it"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b184_013",
+    "reference": "Ezekiel 6:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 6: toward what was Ezekiel to set his face and prophesy?"
+    },
+    "answers": {
+      "en": [
+        "The mountains of Israel",
+        "The rivers of Babylon",
+        "The sea",
+        "The wilderness"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_014",
+    "reference": "Ezekiel 7:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 7: 'An end! The end has come on the four' what of the land?"
+    },
+    "answers": {
+      "en": [
+        "Corners",
+        "Gates",
+        "Winds",
+        "Rivers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_015",
+    "reference": "Ezekiel 8:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 8: by what did the Spirit lift Ezekiel between earth and sky?"
+    },
+    "answers": {
+      "en": [
+        "A lock of his head",
+        "His right hand",
+        "His robe",
+        "His shoulders"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_016",
+    "reference": "Ezekiel 8:11",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Who stood among the seventy elders offering incense to idols in Ezekiel 8?"
+    },
+    "answers": {
+      "en": [
+        "Jaazaniah son of Shaphan",
+        "Pelatiah son of Benaiah",
+        "Hananiah son of Azzur",
+        "Seraiah son of Neriah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_017",
+    "reference": "Ezekiel 8:16",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 8: the men with their backs to the temple were worshiping what?"
+    },
+    "answers": {
+      "en": [
+        "The sun",
+        "The moon",
+        "The stars",
+        "A golden calf"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_018",
+    "reference": "Ezekiel 9:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Ezekiel 9, what did the man clothed in linen have by his side?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A measuring reed",
+        "A trumpet",
+        "A writer's inkhorn"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_019",
+    "reference": "Ezekiel 10:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 10: what was the man in linen told to scatter over the city?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Ashes",
+        "Water",
+        "Coals of fire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_020",
+    "reference": "Ezekiel 11:23",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 11: where did Yahweh's glory stand after leaving the city?"
+    },
+    "answers": {
+      "en": [
+        "On the mountain east of the city",
+        "At the north gate",
+        "On Mount Zion",
+        "In the Kidron Valley"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_021",
+    "reference": "Ezekiel 12:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 12: when carrying out his baggage at dusk, what was Ezekiel to cover?"
+    },
+    "answers": {
+      "en": [
+        "His face",
+        "His head",
+        "His hands",
+        "His feet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b184_022",
+    "reference": "Ezekiel 13:10",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 13: the false prophets plaster the wall with what?"
+    },
+    "answers": {
+      "en": [
+        "Clay",
+        "Gold",
+        "Pitch",
+        "Whitewash"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_023",
+    "reference": "Ezekiel 15:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 15: which wood is only good to be cast into the fire for fuel?"
+    },
+    "answers": {
+      "en": [
+        "The cedar",
+        "The oak",
+        "The olive",
+        "The vine"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_024",
+    "reference": "Ezekiel 16:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 16: Jerusalem's mother was what?"
+    },
+    "answers": {
+      "en": [
+        "A Moabite",
+        "An Egyptian",
+        "A Philistine",
+        "A Hittite"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_025",
+    "reference": "Ezekiel 16:46",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 16: which city is called Jerusalem's elder sister?"
+    },
+    "answers": {
+      "en": [
+        "Tyre",
+        "Gaza",
+        "Damascus",
+        "Samaria"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_026",
+    "reference": "Ezekiel 17:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 17: the great eagle took the top of which tree in Lebanon?"
+    },
+    "answers": {
+      "en": [
+        "The oak",
+        "The palm",
+        "The fig",
+        "The cedar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_027",
+    "reference": "Ezekiel 18:32",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 18: God has no pleasure in what?"
+    },
+    "answers": {
+      "en": [
+        "The songs of the proud",
+        "The feasts of the rich",
+        "The death of him who dies",
+        "The tears of the poor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_028",
+    "reference": "Ezekiel 20:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 20: what did God give Israel as a sign between him and them?"
+    },
+    "answers": {
+      "en": [
+        "The rainbow",
+        "The ark",
+        "His Sabbaths",
+        "The manna"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_029",
+    "reference": "Ezekiel 21:21",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 21: at the fork of the road, the king of Babylon looked in what to divine?"
+    },
+    "answers": {
+      "en": [
+        "The stars",
+        "A cup",
+        "The liver",
+        "The fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_030",
+    "reference": "Ezekiel 22:30",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 22: God sought a man to build up the wall and stand where?"
+    },
+    "answers": {
+      "en": [
+        "At the gate",
+        "On the tower",
+        "By the altar",
+        "In the gap"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b184_031",
+    "reference": "Ezekiel 23:4",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 23: which name is given to Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Oholibah",
+        "Hephzibah",
+        "Oholah",
+        "Beulah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b184_032",
+    "reference": "Ezekiel 24:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 24: the parable spoken to the rebellious house is about what?"
+    },
+    "answers": {
+      "en": [
+        "A vine",
+        "A potter's jar",
+        "A cauldron",
+        "A cedar"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

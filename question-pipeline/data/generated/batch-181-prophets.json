@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "q_b181_001",
+    "reference": "Isaiah 35:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 35: the desert will rejoice and blossom like what?"
+    },
+    "answers": {
+      "en": [
+        "A rose",
+        "A lily",
+        "An almond tree",
+        "A vine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_002",
+    "reference": "Isaiah 35:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 35: the lame man will leap like which animal?"
+    },
+    "answers": {
+      "en": [
+        "A lamb",
+        "A goat",
+        "A horse",
+        "A deer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_003",
+    "reference": "Isaiah 35:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What will the highway in Isaiah 35 be called?"
+    },
+    "answers": {
+      "en": [
+        "The King's Highway",
+        "The Way of Peace",
+        "The Road of Zion",
+        "The Holy Way"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_004",
+    "reference": "Isaiah 36:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of Hezekiah did Sennacherib attack the fortified cities of Judah?"
+    },
+    "answers": {
+      "en": [
+        "The sixth year",
+        "The tenth year",
+        "The twentieth year",
+        "The fourteenth year"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_005",
+    "reference": "Isaiah 36:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Who was the recorder who went out to Rabshakeh with Eliakim and Shebna?"
+    },
+    "answers": {
+      "en": [
+        "Jehudi son of Nethaniah",
+        "Shaphan son of Azaliah",
+        "Baruch son of Neriah",
+        "Joah son of Asaph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_006",
+    "reference": "Isaiah 36:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Rabshakeh called Egypt the staff of what kind of reed?"
+    },
+    "answers": {
+      "en": [
+        "A green reed",
+        "A golden reed",
+        "A tall reed",
+        "A bruised reed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_007",
+    "reference": "Isaiah 37:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "To which prophet did Hezekiah send his officials, covered with sackcloth?"
+    },
+    "answers": {
+      "en": [
+        "Jeremiah",
+        "Micah",
+        "Isaiah",
+        "Nahum"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_008",
+    "reference": "Isaiah 37:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of Ethiopia was said to be coming out to fight Sennacherib?"
+    },
+    "answers": {
+      "en": [
+        "Shishak",
+        "Necho",
+        "Tirhakah",
+        "Hophra"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_009",
+    "reference": "Isaiah 37:29",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 37: what will God put in the proud Assyrian king's nose?"
+    },
+    "answers": {
+      "en": [
+        "A ring",
+        "A rope",
+        "His hook",
+        "A thorn"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_010",
+    "reference": "Isaiah 37:38",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which son reigned after Sennacherib was killed?"
+    },
+    "answers": {
+      "en": [
+        "Adrammelech",
+        "Sharezer",
+        "Shalmaneser",
+        "Esar Haddon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_011",
+    "reference": "Isaiah 40:4",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: every valley will be exalted, and every mountain and hill will be what?"
+    },
+    "answers": {
+      "en": [
+        "Moved",
+        "Split",
+        "Made low",
+        "Burned"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_012",
+    "reference": "Isaiah 40:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: all flesh is like what?"
+    },
+    "answers": {
+      "en": [
+        "Dust",
+        "Smoke",
+        "Grass",
+        "Wind"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_013",
+    "reference": "Isaiah 40:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: who has measured the waters in the hollow of his what?"
+    },
+    "answers": {
+      "en": [
+        "Cloak",
+        "Cup",
+        "Hand",
+        "Bowl"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_014",
+    "reference": "Isaiah 40:15",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: the nations are like a drop in what?"
+    },
+    "answers": {
+      "en": [
+        "A cup",
+        "The sea",
+        "A bucket",
+        "A barrel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_015",
+    "reference": "Isaiah 40:22",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 40: to him who sits above the earth, its inhabitants are like what?"
+    },
+    "answers": {
+      "en": [
+        "Ants",
+        "Sheep",
+        "Grasshoppers",
+        "Sparrows"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_016",
+    "reference": "Isaiah 41:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 41, whom does God call 'my friend'?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Abraham",
+        "David",
+        "Noah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_017",
+    "reference": "Isaiah 41:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 41:10: God will uphold you with the right hand of his what?"
+    },
+    "answers": {
+      "en": [
+        "Power",
+        "Righteousness",
+        "Glory",
+        "Love"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_018",
+    "reference": "Isaiah 42:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 42: what will God's servant not quench?"
+    },
+    "answers": {
+      "en": [
+        "A burning bush",
+        "A dimly burning wick",
+        "A torch",
+        "The altar fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_019",
+    "reference": "Isaiah 42:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 42: God will not give his praise to what?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Engraved images",
+        "Angels",
+        "The stars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_020",
+    "reference": "Isaiah 43:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 43: 'I have called you by your name. You are' what?"
+    },
+    "answers": {
+      "en": [
+        "Free",
+        "Mine",
+        "Blessed",
+        "Chosen"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_021",
+    "reference": "Isaiah 43:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 43: where will God make rivers?"
+    },
+    "answers": {
+      "en": [
+        "In the city",
+        "In the desert",
+        "On the mountains",
+        "In the valleys"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_022",
+    "reference": "Isaiah 44:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 44: Yahweh says, 'I am the first, and I am' what?"
+    },
+    "answers": {
+      "en": [
+        "The only",
+        "The last",
+        "The highest",
+        "The strongest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_023",
+    "reference": "Isaiah 45:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Which king does Yahweh call 'his anointed' in Isaiah 45?"
+    },
+    "answers": {
+      "en": [
+        "Darius",
+        "Cyrus",
+        "Artaxerxes",
+        "Nebuchadnezzar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_024",
+    "reference": "Isaiah 45:9",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 45: what should not ask him who fashions it, 'What are you making?'"
+    },
+    "answers": {
+      "en": [
+        "The wood",
+        "The clay",
+        "The stone",
+        "The iron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_025",
+    "reference": "Isaiah 45:23",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 45: every knee shall bow to God, and every tongue shall do what?"
+    },
+    "answers": {
+      "en": [
+        "Take an oath",
+        "Sing praise",
+        "Keep silent",
+        "Tell his deeds"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_026",
+    "reference": "Isaiah 46:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 46: Bel bows down, and which other god stoops?"
+    },
+    "answers": {
+      "en": [
+        "Nebo",
+        "Dagon",
+        "Molech",
+        "Baal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_027",
+    "reference": "Isaiah 47:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 47: who is told to come down and sit in the dust?"
+    },
+    "answers": {
+      "en": [
+        "The virgin daughter of Babylon",
+        "The virgin daughter of Zion",
+        "The daughter of Tyre",
+        "The daughter of Egypt"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_028",
+    "reference": "Isaiah 48:10",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 48: God has chosen you in the furnace of what?"
+    },
+    "answers": {
+      "en": [
+        "Affliction",
+        "Trial",
+        "Sorrow",
+        "Exile"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_029",
+    "reference": "Isaiah 49:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 49: God's servant will be given as a light to whom?"
+    },
+    "answers": {
+      "en": [
+        "The nations",
+        "The priests",
+        "The kings",
+        "The angels"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_030",
+    "reference": "Isaiah 49:15",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 49: 'Can a woman forget her' what? God will not forget you."
+    },
+    "answers": {
+      "en": [
+        "Nursing child",
+        "Husband",
+        "Mother",
+        "Home"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_031",
+    "reference": "Isaiah 50:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 50: the servant gave his cheeks to those who did what?"
+    },
+    "answers": {
+      "en": [
+        "Plucked off the hair",
+        "Struck them with rods",
+        "Anointed them",
+        "Washed them"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_032",
+    "reference": "Isaiah 51:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 51: look to Abraham your father, and to whom, who bore you?"
+    },
+    "answers": {
+      "en": [
+        "Sarah",
+        "Rebekah",
+        "Rachel",
+        "Leah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_033",
+    "reference": "Isaiah 52:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 52: 'Awake, awake! Put on your strength,' calls the prophet to whom?"
+    },
+    "answers": {
+      "en": [
+        "Zion",
+        "Babylon",
+        "Moab",
+        "Egypt"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b181_034",
+    "reference": "Isaiah 53:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 53: he grew up like a root out of what?"
+    },
+    "answers": {
+      "en": [
+        "Rich soil",
+        "A rock",
+        "Deep water",
+        "Dry ground"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_035",
+    "reference": "Isaiah 53:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 53: with whom was his grave made in his death?"
+    },
+    "answers": {
+      "en": [
+        "A king",
+        "A priest",
+        "A poor man",
+        "A rich man"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_036",
+    "reference": "Isaiah 54:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 54: 'Enlarge the place of your' what?"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "Field",
+        "Vineyard",
+        "Tent"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_037",
+    "reference": "Isaiah 55:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 55: those who have no money are invited to buy wine and what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Oil",
+        "Honey",
+        "Milk"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_038",
+    "reference": "Isaiah 55:12",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 55: what will clap their hands?"
+    },
+    "answers": {
+      "en": [
+        "The rivers",
+        "The stars",
+        "The islands",
+        "The trees of the fields"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_039",
+    "reference": "Isaiah 55:13",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 55: instead of the brier, which tree will come up?"
+    },
+    "answers": {
+      "en": [
+        "The cedar",
+        "The olive",
+        "The myrtle",
+        "The palm"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_040",
+    "reference": "Isaiah 56:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 56: God's house will be called a house of prayer for whom?"
+    },
+    "answers": {
+      "en": [
+        "Israel alone",
+        "The priests",
+        "The kings",
+        "All peoples"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_041",
+    "reference": "Isaiah 58:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 58: the fast God chooses includes sharing your bread with whom?"
+    },
+    "answers": {
+      "en": [
+        "The priests",
+        "The kings",
+        "The Levites",
+        "The hungry"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_042",
+    "reference": "Isaiah 58:13",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 58: what should you call a delight?"
+    },
+    "answers": {
+      "en": [
+        "The feast",
+        "The new moon",
+        "The temple",
+        "The Sabbath"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b181_043",
+    "reference": "Isaiah 59:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 59: Yahweh's hand is not what, that it can't save?"
+    },
+    "answers": {
+      "en": [
+        "Tired",
+        "Weak",
+        "Shortened",
+        "Closed"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_044",
+    "reference": "Isaiah 59:17",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 59: God put on a helmet of what on his head?"
+    },
+    "answers": {
+      "en": [
+        "Glory",
+        "Strength",
+        "Salvation",
+        "Hope"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_045",
+    "reference": "Isaiah 60:1",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 60: 'Arise, shine; for your' what has come?"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "Day",
+        "Light",
+        "Harvest"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_046",
+    "reference": "Isaiah 60:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 60: those from Sheba will bring gold and what?"
+    },
+    "answers": {
+      "en": [
+        "Myrrh",
+        "Ivory",
+        "Frankincense",
+        "Spices"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_047",
+    "reference": "Isaiah 61:1",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 61: the anointed one is sent to proclaim liberty to whom?"
+    },
+    "answers": {
+      "en": [
+        "The kings",
+        "The priests",
+        "The captives",
+        "The rich"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_048",
+    "reference": "Isaiah 62:4",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 62: what new name will the land be given?"
+    },
+    "answers": {
+      "en": [
+        "Ichabod",
+        "Beulah",
+        "Ebenezer",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_049",
+    "reference": "Isaiah 62:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 62: what has God set on Jerusalem's walls?"
+    },
+    "answers": {
+      "en": [
+        "Archers",
+        "Watchmen",
+        "Banners",
+        "Lamps"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_050",
+    "reference": "Isaiah 63:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 63: the one with dyed garments comes from which city?"
+    },
+    "answers": {
+      "en": [
+        "Teman",
+        "Sela",
+        "Bozrah",
+        "Dedan"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_051",
+    "reference": "Isaiah 63:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 63: what has he trodden alone?"
+    },
+    "answers": {
+      "en": [
+        "The threshing floor",
+        "The road",
+        "The wine press",
+        "The battlefield"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b181_052",
+    "reference": "Isaiah 64:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 64: all our righteousness is like a polluted what?"
+    },
+    "answers": {
+      "en": [
+        "Well",
+        "Garment",
+        "Cup",
+        "Field"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_053",
+    "reference": "Isaiah 65:17",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 65: what does God say he creates?"
+    },
+    "answers": {
+      "en": [
+        "A new temple",
+        "New heavens and a new earth",
+        "A new law",
+        "A new sun and moon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_054",
+    "reference": "Isaiah 65:20",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 65: at what age will the child die in the coming days?"
+    },
+    "answers": {
+      "en": [
+        "70 years old",
+        "100 years old",
+        "40 years old",
+        "30 years old"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_055",
+    "reference": "Isaiah 66:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 66: 'As one whom his ___ comforts, so will I comfort you.'"
+    },
+    "answers": {
+      "en": [
+        "Father",
+        "Mother",
+        "Brother",
+        "Friend"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b181_056",
+    "reference": "Isaiah 66:24",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 66 ends: their worm will not die, nor will their what be quenched?"
+    },
+    "answers": {
+      "en": [
+        "Thirst",
+        "Fire",
+        "Anger",
+        "Lamp"
+      ]
+    },
+    "correctIndex": 1
+  }
+]
