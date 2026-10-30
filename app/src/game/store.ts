@@ -146,7 +146,18 @@ export const useGameStore = create<GameStore>((set, get) => {
     set({ racers: get().racers.map((r) => (r.profile.id === id ? { ...r, ...patch } : r)) })
 
   async function startRace() {
-    const [bank, verses] = await Promise.all([bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }), loadVerses()])
+    let bank: Question[]
+    let verses: Record<string, string>
+    try {
+      ;[bank, verses] = await Promise.all([bundledBank.getQuestions({ count: MAX_QUESTIONS, locale: 'en' }), loadVerses()])
+    } catch {
+      // The question chunk didn't load (offline web build): don't strand the
+      // player on a lobby with no buttons.
+      if (get().screen === 'lobby') get().goTo('menu')
+      return
+    }
+    // The player left the lobby while the bank was loading.
+    if (get().screen !== 'lobby') return
     const questions = bank
       // Races ramp up: start with easy questions, end with hard ones.
       .sort((a, b) => a.difficulty - b.difficulty)

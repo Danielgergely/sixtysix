@@ -107,13 +107,23 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
   coins: 0,
 
   open: async () => {
+    if (get().loading) return
     set({ loading: true })
     const saved = load()
-    const [bank, verses] = await Promise.all([loadBank(), loadVerses()])
+    let bank: Question[]
+    let verses: Record<string, string>
+    try {
+      ;[bank, verses] = await Promise.all([loadBank(), loadVerses()])
+    } catch {
+      // Chunk failed to load (offline web build) — tapping again retries.
+      set({ loading: false })
+      return
+    }
     const questions = pickDaily(bank, saved.date)
     const coins = saved.picks.reduce((n, p, i) => n + (p === questions[i]?.correctIndex ? COINS_PER_CORRECT : 0), 0)
     set({ saved, questions, verses, loading: false, coins: saved.picks.length === COUNT && coins === COUNT * COINS_PER_CORRECT ? coins + DAILY_PERFECT_BONUS : coins })
-    useGameStore.getState().goTo('daily')
+    // Only from the Quiz tab — don't yank the player out of whatever they opened meanwhile.
+    if (useGameStore.getState().screen === 'menu') useGameStore.getState().goTo('daily')
   },
 
   answer: (index) => {

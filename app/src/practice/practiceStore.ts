@@ -95,7 +95,13 @@ function pickNext(state: PracticeStore): Question | null {
   }
   // 2. saved misses from earlier sessions
   const savedPool = bank.filter((q) => missed.includes(q.id) && !seen.has(q.id))
-  if (reviewOnly) return savedPool[Math.floor(Math.random() * savedPool.length)] ?? null
+  if (reviewOnly) {
+    if (savedPool.length) return savedPool[Math.floor(Math.random() * savedPool.length)]
+    // Nothing new left: bring back this session's misses early instead of ending
+    // while the screen still promises "it comes back later". Ends once all are mended.
+    const [r] = retryQueue.splice(0, 1)
+    return r ? (bank.find((b) => b.id === r.id) ?? null) : null
+  }
   if (savedPool.length && Math.random() < MISSED_SHARE) {
     const fromMissed = savedPool.filter((q) => eligible(q, categories, difficulty))
     if (fromMissed.length) return fromMissed[Math.floor(Math.random() * fromMissed.length)]
@@ -128,8 +134,17 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   setDifficulty: (difficulty) => set({ difficulty }),
 
   start: async ({ reviewOnly = false } = {}) => {
+    if (get().loading) return
     set({ loading: true })
-    if (!bank.length) [bank, verses] = await Promise.all([loadBank(), loadVerses()])
+    try {
+      if (!bank.length) [bank, verses] = await Promise.all([loadBank(), loadVerses()])
+    } catch {
+      // Chunk failed to load (offline web build) — let the player try again.
+      set({ loading: false })
+      return
+    }
+    // The player went back while the bank was loading.
+    if (useGameStore.getState().screen !== 'practiceSetup') return set({ loading: false })
     seen = new Set()
     retryQueue = []
     served = 0
