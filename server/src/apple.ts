@@ -1,6 +1,6 @@
 import { createPublicKey, randomBytes, verify as verifySignature, type JsonWebKey } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
-import { cleanProfile, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
+import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 import { freeUsername } from './google.js'
 
 /**
@@ -75,7 +75,7 @@ export function registerAppleRoutes(app: FastifyInstance): void {
    * first sign-in, from the popup: the app passes it along.
    */
   app.post('/api/account/apple', async (req, reply) => {
-    if (tooMany(req.ip)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { idToken?: unknown; name?: unknown; profile?: unknown }
     const id = await verify(body.idToken)
     if (!id) return reply.code(401).send({ ok: false, error: 'Apple sign-in failed' })

@@ -6,6 +6,7 @@ import type { FastifyInstance, FastifyRequest } from 'fastify'
 import {
   CHARACTERS,
   DAY_MS,
+  IDLE_DAYS,
   MIN_PASSWORD,
   STAT_COUNTERS,
   STAT_MAXES,
@@ -78,9 +79,16 @@ const userColumns = new Set((db.prepare('PRAGMA table_info(users)').all() as { n
 for (const col of ['lot', 'last_active', 'last_move_at']) if (!userColumns.has(col)) db.exec(`ALTER TABLE users ADD COLUMN ${col} INTEGER`)
 db.exec('UPDATE users SET last_active = MAX(created_at, COALESCE((SELECT MAX(at) FROM grants WHERE grants.user_id = users.id), 0)) WHERE last_active IS NULL')
 db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_lot ON users(lot)')
-/** Families without a lot get the first free ones, in sign-up order (existing families keep their old place). */
+/**
+ * Families without a lot get the first free ones, in sign-up order (existing families keep their old place).
+ * Once the city has residents, a family whose lot was taken over while away is skipped: it gets a lot when it
+ * comes back (markActive), not at every server start.
+ */
 function settleHomeless(): void {
-  const homeless = db.prepare('SELECT id FROM users WHERE lot IS NULL ORDER BY id').all() as { id: number }[]
+  const fresh = !db.prepare('SELECT 1 FROM users WHERE lot IS NOT NULL').get()
+  const homeless = db
+    .prepare('SELECT id FROM users WHERE lot IS NULL AND (? OR last_active >= ?) ORDER BY id')
+    .all(fresh ? 1 : 0, Date.now() - IDLE_DAYS.forSale * DAY_MS) as { id: number }[]
   let settled = 0
   for (const { id } of homeless) {
     const lot = freeLot()
@@ -224,12 +232,20 @@ export function saveProfile(id: number, profile: AccountProfile): void {
 
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
 
+/** The caller's address. Behind Fly's proxy `req.ip` is the proxy, shared by every player; Fly names the real client. */
+export function clientIp(req: FastifyRequest): string {
+  const fly = req.headers['fly-client-ip']
+  return typeof fly === 'string' && fly ? fly : req.ip
+}
+
 const attempts = new Map<string, number[]>()
-export function tooMany(ip: string): boolean {
+/** Counts this attempt (unless `record` is false) and says whether the caller has had too many this minute. */
+export function tooMany(ip: string, record = true): boolean {
   const now = Date.now()
   const recent = (attempts.get(ip) ?? []).filter((t) => now - t < 60_000)
-  recent.push(now)
-  attempts.set(ip, recent)
+  if (record) recent.push(now)
+  if (recent.length) attempts.set(ip, recent)
+  else attempts.delete(ip)
   return recent.length > 10
 }
 
@@ -237,7 +253,7 @@ export function tooMany(ip: string): boolean {
 
 export function registerAccountRoutes(app: FastifyInstance): void {
   app.post('/api/account/signup', (req, reply) => {
-    if (tooMany(req.ip)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown; profile?: unknown }
     const username = typeof body.username === 'string' ? body.username.trim() : ''
     const password = typeof body.password === 'string' ? body.password : ''
@@ -256,10 +272,12 @@ export function registerAccountRoutes(app: FastifyInstance): void {
   })
 
   app.post('/api/account/login', (req, reply) => {
-    if (tooMany(req.ip)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    // Only wrong passwords count, so a family signing in behind one router isn't locked out.
+    if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown }
     const row = typeof body.username === 'string' ? (db.prepare('SELECT * FROM users WHERE username = ?').get(body.username.trim()) as UserRow | undefined) : undefined
     if (!row || typeof body.password !== 'string' || !checkPassword(body.password, row.pass_hash)) {
+      tooMany(clientIp(req))
       return { ok: false, error: 'Wrong username or password' }
     }
     markActive(row.id)

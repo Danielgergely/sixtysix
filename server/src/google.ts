@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
-import { cleanProfile, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
+import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 
 /**
  * "Sign in with Google" (Google Identity Services). Enabled only when the
@@ -54,7 +54,7 @@ export function freeUsername(email: string): string {
 export function registerGoogleRoutes(app: FastifyInstance): void {
   /** Sign in (or sign up on first use). `created` tells the app whether to merge guest progress. */
   app.post('/api/account/google', async (req, reply) => {
-    if (tooMany(req.ip)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { credential?: unknown; profile?: unknown }
     const id = await verify(body.credential)
     if (!id) return reply.code(401).send({ ok: false, error: 'Google sign-in failed' })
