@@ -11,6 +11,8 @@
  * `spies:key` and becomes public only when the game is over.
  */
 
+import type { GameLocale } from './locale'
+
 export type SpiesTeam = 'judah' | 'ephraim'
 export const SPIES_TEAMS: readonly SpiesTeam[] = ['judah', 'ephraim']
 /** Card colours: a tribe's land, empty wilderness, or the giant (instant loss). */
@@ -50,7 +52,10 @@ export interface SpiesPlayer {
 }
 
 export interface SpiesCard {
+  /** The English word (the id of the card). */
   word: string
+  /** The card in every language (server/src/spies/words.<lang>.json); each client shows its own. */
+  words: Record<GameLocale, string>
   /** null = still hidden. */
   revealed: SpiesColour | null
 }
@@ -133,12 +138,15 @@ export interface SpiesKey {
 type Ack<T> = (res: ({ ok: true } & T) | { ok: false; error: string }) => void
 
 export interface SpiesClientToServerEvents {
-  'spies:create': (payload: { name: string; avatar: string; playerId: string }, cb: Ack<{ playerId: string; state: SpiesState }>) => void
+  /** `locale`: the player's app language (default 'en'); grid and clue checks cover every language in the room. */
+  'spies:create': (payload: { name: string; avatar: string; playerId: string; locale: GameLocale }, cb: Ack<{ playerId: string; state: SpiesState }>) => void
   /** Join or REJOIN (same device id rebinds and keeps team and role). */
-  'spies:join': (payload: { code: string; name: string; avatar: string; playerId: string }, cb: Ack<{ playerId: string; state: SpiesState }>) => void
+  'spies:join': (payload: { code: string; name: string; avatar: string; playerId: string; locale: GameLocale }, cb: Ack<{ playerId: string; state: SpiesState }>) => void
   /** Read-only shared board (laptop / projector). */
   'spies:watch': (payload: { code: string }, cb: Ack<{ state: SpiesState }>) => void
   'spies:leave': (cb: (ok: boolean) => void) => void
+  /** The player switched the app language while seated. */
+  'spies:locale': (payload: { locale: GameLocale }) => void
   /** Lobby: switch to a tribe. */
   'spies:team': (payload: { team: SpiesTeam }) => void
   /** Lobby: volunteer as your tribe's spy master. */

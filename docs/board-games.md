@@ -50,9 +50,23 @@ In the lobby the leader can **+ Add bot** (up to 12 seats; ✕ removes one) and 
 
 Balance (all-bot simulation, 400 games per cell, share won by the wolves): Normal 44 % / 47 % / 54 % with 4 / 5 / 6 players, Easy 37 % / 39 % / 43 %. With 3 players the flock wins most games (Normal 28 %), with two wolves (8 players) the wolves do (Normal 85 %).
 
+### Languages (mixed rooms)
+
+Players with different app languages (English, German, Hungarian) can share a room. Each client sends its language (`locale`) with `flock:create` / `flock:join` (and `flock:locale` after a switch); the server keeps it per seat. Bots speak the leader's language.
+
+- **One deal, every language.** The game deals one entry (category + index; `flockWords.<lang>.json` has the same entries in the same order). Each card (`flock:secret`) shows the word, hint, reference and wolf hint in its player's language; `FlockResult.words` has the word, hint and reference in every language and each phone shows its own (`word` stays English, the id).
+- **Clues** may not say the word, a key part of it or a whole alias in **any language seated in the room** (a German sheep may not type Hungarian "Kéfás" for Peter). The no-repeat rule compares the words as typed.
+- **Guesses** match the word or an alias in any seated language, each with its own category list as rivals. In the judge phase every sheep sees the guess next to the word in their language.
+- **Matching** (`server/src/flock/match.ts`): "ß" counts as "ss"; German and Hungarian articles and little words are filler like "the" (der, das, ein…, und, von, zu…; a, az, egy, és), while "die", "den" and "am" are filler only with a German player seated (English has a Lions' Den). With a Hungarian player seated, a guess or clue word is also read without a common case ending (-ban/-ben, -ból/-ből, -val/-vel, -nak/-nek, -hoz/-hez/-höz, -ról/-ről, -ra/-re, -t/-ot/-et/-öt/-at, -ja/-je/-a/-e; at least 3 letters left), so "Noét", "Betlehemben" and "Mózest" count. An English-only room matches exactly as before.
+- **Bots** clue from their language's list (and a generic word list per language); a wolf bot scores candidates with every seated language's clues, hints and names, and types its guess in its own language.
+
+Twelve Spies works the same way: `spies:create` / `spies:join` carry `locale` (`spies:locale` after a switch); every `SpiesCard` has `words` in all three languages and each phone shows its own. The deal never puts two words on one grid where one contains the other in any seated language (so Hungarian "Jezábel" and "Ábel" only meet in rooms without Hungarian), and a clue is refused when it is, contains or is part of a visible word in any seated language.
+
+Word lists: `shared/src/flockWords.<lang>.json` (entries `{ en, word, hint, ref, wolfHint, aliases, clues }`) and `server/src/spies/words.<lang>.json` (English word → translation). Check them with `npx tsx scripts/check-words-i18n.mts de` (or `hu`).
+
 ### One phone, passed around (`flockLocal` screen)
 
-The Splash-style way to play: no server, no internet and no word checking, because everyone is in one room and talks. Code: `app/src/flock/local/localStore.ts` (zustand; the setup is saved in `sixtysix.flockLocal.v1`) and `app/src/screens/flock/local/LocalFlockScreen.tsx`; it uses the same word list as the online game (`shared/src/flockWords.json`, loaded lazily). No rewards: one phone could otherwise "play" for 20 people.
+The Splash-style way to play: no server, no internet and no word checking, because everyone is in one room and talks. Code: `app/src/flock/local/localStore.ts` (zustand; the setup is saved in `sixtysix.flockLocal.v1`) and `app/src/screens/flock/local/LocalFlockScreen.tsx`; it uses the same word lists as the online game (`shared/src/flockWords.json` or `flockWords.<lang>.json` for the app's language, loaded lazily). No rewards: one phone could otherwise "play" for 20 people.
 
 1. **Setup:** player names in passing order (3–20; add, remove, move), wolves 1–3 (suggested: 1 for 3–6 players, 2 for 7–12, 3 from 13; never half the group or more), categories, the wolf hint on/off, a talking timer (none / 3 / 5 min).
 2. **Pass & peek:** "Pass the phone to Anna" → the card shows only while it is held (sheep: the word; wolf: the category, the hint if on, and how many wolves there are) → "Done — pass to Ben".

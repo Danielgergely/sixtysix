@@ -46,11 +46,21 @@ export const FLOCK_REWARD_HUMANS = 3
 /** Server-side bot players (server/src/flock/bots.ts); the leader picks the level in the lobby. */
 export type FlockBotLevel = 'easy' | 'normal'
 
+import type { GameLocale } from './locale'
+
 export const FLOCK_CATEGORIES = ['person', 'place', 'story', 'thing'] as const
 export type FlockCategory = (typeof FLOCK_CATEGORIES)[number]
 
-/** An entry of the word list (shared/src/flockWords.json, used by the server and the one-phone mode). */
+/**
+ * An entry of the word list (shared/src/flockWords.json, used by the server and
+ * the one-phone mode). The German and Hungarian lists (flockWords.<lang>.json)
+ * have the same categories, order and length; their entries add `en`, the
+ * English word (the id). A game deals one entry (category + index) and every
+ * player sees it in their own language.
+ */
 export interface FlockWord {
+  /** Translated lists only: the English word of the same entry. */
+  en?: string
   word: string
   hint: string
   ref: string
@@ -118,9 +128,11 @@ export interface FlockResult {
   reason: FlockEndReason
   /** Public ids of the game's wolves. */
   wolfIds: string[]
+  /** The word in English (the id); `words` has it in every language, each client shows its own. */
   word: string
   hint: string
   ref: string
+  words: Record<GameLocale, { word: string; hint: string; ref: string }>
   /** Players voted out by the deciding vote. */
   outIds: string[]
   /** The caught wolves' guesses, in order (guess '' = they never typed one). */
@@ -181,7 +193,7 @@ export interface FlockSecret {
   role: 'sheep' | 'wolf'
   category: FlockCategory
   wolfCount: number
-  /** Sheep only. */
+  /** Sheep only, in the player's language. */
   word?: string
   hint?: string
   ref?: string
@@ -199,12 +211,15 @@ export interface FlockSecret {
 type Ack<T> = (res: ({ ok: true } & T) | { ok: false; error: string }) => void
 
 export interface FlockClientToServerEvents {
-  'flock:create': (payload: { name: string; avatar: string; playerId: string }, cb: Ack<{ playerId: string; state: FlockState }>) => void
+  /** `locale`: the player's app language (cards, hints and bots' clues come in it; default 'en'). */
+  'flock:create': (payload: { name: string; avatar: string; playerId: string; locale: GameLocale }, cb: Ack<{ playerId: string; state: FlockState }>) => void
   /** Join or REJOIN (same device id rebinds and keeps the seat). */
-  'flock:join': (payload: { code: string; name: string; avatar: string; playerId: string }, cb: Ack<{ playerId: string; state: FlockState }>) => void
+  'flock:join': (payload: { code: string; name: string; avatar: string; playerId: string; locale: GameLocale }, cb: Ack<{ playerId: string; state: FlockState }>) => void
   /** Read-only shared board (laptop / projector). */
   'flock:watch': (payload: { code: string }, cb: Ack<{ state: FlockState }>) => void
   'flock:leave': (cb: (ok: boolean) => void) => void
+  /** The player switched the app language while seated: the card comes again in the new one. */
+  'flock:locale': (payload: { locale: GameLocale }) => void
   'flock:start': () => void
   'flock:ready': () => void
   'flock:clue': (payload: { text: string }, cb: Ack<object>) => void

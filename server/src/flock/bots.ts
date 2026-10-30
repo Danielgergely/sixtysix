@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto'
-import type { FlockBotLevel, FlockCategory, FlockWord } from '@sixtysix/shared'
+import type { FlockBotLevel, FlockCategory, FlockWord, GameLocale } from '@sixtysix/shared'
 import { CHARACTERS } from '@sixtysix/shared'
-import { tokens } from './match.js'
-import { WORDS, newPlayerId, type FPlayer, type FRoom } from './rooms.js'
+import { huStem, tokens } from './match.js'
+import { LISTS, localeOf, newPlayerId, roomLocales, type FPlayer, type FRoom } from './rooms.js'
 
 /**
  * Wolf in the Flock bots (docs/board-games.md → Bots). A bot is an ordinary
@@ -16,6 +16,11 @@ import { WORDS, newPlayerId, type FPlayer, type FRoom } from './rooms.js'
  * The brain only uses what a player could know: sheep know the word and its
  * clue list; a wolf scores every word of the category by how well the others'
  * clues fit it (token overlap with each word's clues, hint and names).
+ *
+ * Languages: a bot speaks its leader's language (`localeOf`): its clues come
+ * from that language's list and a wolf types its guess in it. To understand
+ * clues it reads every language seated in the room (a word's profile merges
+ * them), so a German clue still points a Hungarian-speaking wolf the right way.
  */
 
 export interface BotActions {
@@ -57,11 +62,25 @@ const NAMES = [
 ]
 
 /** Last-resort clues: vague words that fit most entries of the category. */
-const GENERIC: Record<FlockCategory, string[]> = {
-  person: ['faithful', 'chosen', 'family', 'prayer', 'servant', 'obedient', 'courage', 'leader', 'calling', 'blessed'],
-  place: ['journey', 'desert', 'ancient', 'travel', 'road', 'land', 'stones', 'far away', 'pilgrims', 'map'],
-  story: ['miracle', 'lesson', 'surprise', 'crowd', 'danger', 'rescue', 'famous', 'promise', 'wonder', 'faith'],
-  thing: ['useful', 'precious', 'carry', 'symbol', 'wooden', 'special', 'ancient', 'handmade', 'treasure', 'hold'],
+const GENERIC: Record<GameLocale, Record<FlockCategory, string[]>> = {
+  en: {
+    person: ['faithful', 'chosen', 'family', 'prayer', 'servant', 'obedient', 'courage', 'leader', 'calling', 'blessed'],
+    place: ['journey', 'desert', 'ancient', 'travel', 'road', 'land', 'stones', 'far away', 'pilgrims', 'map'],
+    story: ['miracle', 'lesson', 'surprise', 'crowd', 'danger', 'rescue', 'famous', 'promise', 'wonder', 'faith'],
+    thing: ['useful', 'precious', 'carry', 'symbol', 'wooden', 'special', 'ancient', 'handmade', 'treasure', 'hold'],
+  },
+  de: {
+    person: ['treu', 'erwählt', 'Familie', 'Gebet', 'Diener', 'gehorsam', 'Mut', 'Anführer', 'Berufung', 'gesegnet'],
+    place: ['Reise', 'Wüste', 'uralt', 'unterwegs', 'Straße', 'Land', 'Steine', 'weit weg', 'Pilger', 'Landkarte'],
+    story: ['Wunder', 'Lektion', 'Überraschung', 'Menge', 'Gefahr', 'Rettung', 'berühmt', 'Verheißung', 'staunen', 'Glaube'],
+    thing: ['nützlich', 'kostbar', 'tragen', 'Symbol', 'hölzern', 'besonders', 'uralt', 'handgemacht', 'Schatz', 'halten'],
+  },
+  hu: {
+    person: ['hűséges', 'kiválasztott', 'család', 'imádság', 'szolga', 'engedelmes', 'bátorság', 'vezető', 'elhívás', 'áldott'],
+    place: ['utazás', 'sivatag', 'ősi', 'vándorlás', 'országút', 'föld', 'kövek', 'messze', 'zarándokok', 'térkép'],
+    story: ['csoda', 'tanulság', 'meglepetés', 'tömeg', 'veszély', 'mentés', 'híres', 'ígéret', 'ámulat', 'hit'],
+    thing: ['hasznos', 'értékes', 'hordoz', 'jelkép', 'fából', 'különleges', 'régi', 'kézműves', 'kincs', 'tartani'],
+  },
 }
 
 const rand = (a: number, b: number) => a + Math.random() * (b - a)
@@ -76,20 +95,32 @@ function shuffle<T>(xs: T[]): T[] {
 // ── word profiles ───────────────────────────────────────────────────────
 
 type Profile = Map<string, number>
-const profiles = new Map<FlockWord, Profile>()
+const profiles = new Map<string, Profile>()
 
-/** Weighted key words of an entry: its names and clues count most, the hint less (wolfHint is never used: players don't see it). */
-function profileOf(w: FlockWord): Profile {
-  let prof = profiles.get(w)
+/**
+ * Weighted key words of an entry (category + index) in these languages: its
+ * names and clues count most, the hint less (wolfHint is never used: players
+ * don't see it). With Hungarian in the room, words also count without their
+ * case endings.
+ */
+function profileOf(category: FlockCategory, idx: number, langs: readonly GameLocale[]): Profile {
+  const key = `${category}:${idx}:${langs.join(',')}`
+  let prof = profiles.get(key)
   if (prof) return prof
   prof = new Map()
+  const hu = langs.includes('hu')
   const add = (text: string, weight: number) => {
-    for (const t of tokens(text)) if (t.length >= 3) prof!.set(t, Math.max(prof!.get(t) ?? 0, weight))
+    for (const t of tokens(text, langs)) {
+      for (const x of hu ? [t, huStem(t)] : [t]) if (x.length >= 3) prof!.set(x, Math.max(prof!.get(x) ?? 0, weight))
+    }
   }
-  for (const c of w.clues) add(c, 2)
-  add(w.hint, 1)
-  for (const name of [w.word, ...(w.aliases ?? [])]) add(name, 2)
-  profiles.set(w, prof)
+  for (const l of langs) {
+    const w = LISTS[l][category][idx]
+    for (const c of w.clues) add(c, 2)
+    add(w.hint, 1)
+    for (const name of [w.word, ...(w.aliases ?? [])]) add(name, 2)
+  }
+  profiles.set(key, prof)
   return prof
 }
 
@@ -104,12 +135,14 @@ function tokenScore(t: string, prof: Profile): number {
 }
 
 const keyTokens = (text: string) => tokens(text).filter((t) => t.length >= 3)
-const clueScore = (text: string, prof: Profile) => Math.min(3, keyTokens(text).reduce((n, t) => n + tokenScore(t, prof), 0))
+/** How well a clue word fits a profile (also without a Hungarian case ending; the better reading). */
+const tokenFit = (t: string, prof: Profile) => Math.max(tokenScore(t, prof), tokenScore(huStem(t), prof))
+const clueScore = (text: string, prof: Profile) => Math.min(3, keyTokens(text).reduce((n, t) => n + tokenFit(t, prof), 0))
 
 /** Share of these clues' key words that fit the profile (null = nothing said). */
 function fit(texts: string[], prof: Profile): number | null {
   const ts = texts.flatMap(keyTokens)
-  return ts.length ? ts.filter((t) => tokenScore(t, prof) > 0).length / ts.length : null
+  return ts.length ? ts.filter((t) => tokenFit(t, prof) > 0).length / ts.length : null
 }
 
 // ── bot memory ──────────────────────────────────────────────────────────
@@ -149,8 +182,10 @@ export function addBot(room: FRoom): FPlayer {
     connected: true,
     socketId: null,
     bot: true,
+    locale: 'en',
   }
   room.players.set(`bot-${randomUUID()}`, p)
+  p.locale = localeOf(room, p)
   return p
 }
 
@@ -158,6 +193,15 @@ export function addBot(room: FRoom): FPlayer {
 
 const isIn = (room: FRoom, secret: string) => room.dealt.has(secret) && !room.out.has(secret) && room.players.has(secret)
 const level = (room: FRoom) => LEVELS[room.botLevel] ?? LEVELS.normal
+/** The bot's language. */
+const langOf = (room: FRoom, secret: string): GameLocale => {
+  const p = room.players.get(secret)
+  return p ? localeOf(room, p) : 'en'
+}
+/** An entry of the dealt category in a language. */
+const entry = (room: FRoom, idx: number, lang: GameLocale): FlockWord => LISTS[lang][room.category!][idx]
+/** An entry's profile over every language in the room. */
+const prof = (room: FRoom, idx: number) => profileOf(room.category!, idx, roomLocales(room))
 
 /** Key words said so far this game (the no-repeat rule). */
 const usedTokens = (room: FRoom) => new Set(room.clues.filter((c) => !c.skipped).flatMap((c) => keyTokens(c.text)))
@@ -178,7 +222,8 @@ function giveClue(acts: BotActions, room: FRoom, secret: string, options: string
 }
 
 interface Candidate {
-  word: FlockWord
+  /** Index in the category. */
+  idx: number
   score: number
 }
 
@@ -192,48 +237,55 @@ function candidates(room: FRoom, secret: string, mind: Mind): Candidate[] {
     if (!mind.heard.has(i)) mind.heard.set(i, Math.random() < lvl.recall)
     if (mind.heard.get(i)) heard.push(c.text)
   })
-  // An opening wolf sees the word's wolfHint on its card.
-  if (room.turnOrder[0] === secret && room.word?.wolfHint) heard.push(room.word.wolfHint)
-  const list = WORDS[room.category!]
-  return list
-    .map((word) => ({ word, score: heard.reduce((n, text) => n + clueScore(text, profileOf(word)), 0) + Math.random() * 0.01 }))
+  // An opening wolf sees the word's wolfHint on its card (in its language).
+  const hint = entry(room, room.wordIdx, langOf(room, secret)).wolfHint
+  if (room.turnOrder[0] === secret && hint) heard.push(hint)
+  return LISTS.en[room.category!]
+    .map((_, idx) => ({ idx, score: heard.reduce((n, text) => n + clueScore(text, prof(room, idx)), 0) + Math.random() * 0.01 }))
     .sort((a, b) => b.score - a.score)
 }
 
-/** Wolf: the word it is confident enough to type, if any. */
-function confident(room: FRoom, cands: Candidate[]): FlockWord | null {
+/** Wolf: the entry (index) it is confident enough to type, if any. */
+function confident(room: FRoom, cands: Candidate[]): number | null {
   const [a, b] = cands
-  return a && a.score >= 2 && a.score - (b?.score ?? 0) >= level(room).guessMargin ? a.word : null
+  return a && a.score >= 2 && a.score - (b?.score ?? 0) >= level(room).guessMargin ? a.idx : null
 }
 
+/** The wolf's guess: the entry's word in its own language. */
+const guessText = (room: FRoom, secret: string, idx: number) => entry(room, idx, langOf(room, secret)).word
+
 function updateGuess(acts: BotActions, room: FRoom, secret: string, mind: Mind): void {
-  const word = confident(room, candidates(room, secret, mind))
-  if (word && room.typed.get(secret) !== word.word) acts.guess(room, secret, word.word)
+  const idx = confident(room, candidates(room, secret, mind))
+  if (idx === null) return
+  const text = guessText(room, secret, idx)
+  if (room.typed.get(secret) !== text) acts.guess(room, secret, text)
 }
 
 function sheepClue(acts: BotActions, room: FRoom, secret: string): void {
-  const w = room.word!
+  const lang = langOf(room, secret)
+  const w = entry(room, room.wordIdx, lang)
   const hintWords = w.hint.split(/[^\p{L}'’-]+/u).filter((x) => x.length >= 4)
   let clues = shuffle([...w.clues])
   if (level(room).vague) {
     // How many other words of the category this clue also fits; the vaguest few first, in random order.
-    const others = WORDS[room.category!].filter((x) => x !== w).map(profileOf)
+    const others = LISTS.en[room.category!].map((_, i) => i).filter((i) => i !== room.wordIdx).map((i) => prof(room, i))
     const vague = new Map(clues.map((c) => [c, others.filter((p) => clueScore(c, p) > 0).length]))
     clues = clues.sort((a, b) => vague.get(b)! - vague.get(a)!)
     clues = [...shuffle(clues.slice(0, 4)), ...clues.slice(4)]
   }
-  giveClue(acts, room, secret, [...clues, ...shuffle(hintWords), ...shuffle([...GENERIC[room.category!]])])
+  giveClue(acts, room, secret, [...clues, ...shuffle(hintWords), ...shuffle([...GENERIC[lang][room.category!]])])
 }
 
 function wolfClue(acts: BotActions, room: FRoom, secret: string, mind: Mind): void {
+  const lang = langOf(room, secret)
   const cands = candidates(room, secret, mind)
   const sure = confident(room, cands)
-  const generic = shuffle([...GENERIC[room.category!]])
-  if (sure) return giveClue(acts, room, secret, [...shuffle([...sure.clues]), ...generic])
+  const generic = shuffle([...GENERIC[lang][room.category!]])
+  if (sure !== null) return giveClue(acts, room, secret, [...shuffle([...entry(room, sure, lang).clues]), ...generic])
   if (!level(room).blend || cands[0].score < 1) return giveClue(acts, room, secret, generic)
   // Unsure: a clue from the front-runners that fits as many of them as possible.
-  const top = cands.slice(0, 5).map((c) => profileOf(c.word))
-  const options = shuffle(cands.slice(0, 3).flatMap((c) => c.word.clues))
+  const top = cands.slice(0, 5).map((c) => prof(room, c.idx))
+  const options = shuffle(cands.slice(0, 3).flatMap((c) => entry(room, c.idx, lang).clues))
   const fits = (o: string) => top.filter((p) => clueScore(o, p) > 0).length
   giveClue(acts, room, secret, [...options.sort((a, b) => fits(b) - fits(a)), ...generic])
 }
@@ -242,15 +294,15 @@ function wolfClue(acts: BotActions, room: FRoom, secret: string, mind: Mind): vo
  * How suspicious each other player looks: the share of their clue words that
  * don't fit the word (a sheep's true word, a wolf's best guess), plus noise.
  */
-function suspicion(room: FRoom, secret: string, word: FlockWord | null): { id: string; score: number }[] {
+function suspicion(room: FRoom, secret: string, idx: number | null): { id: string; score: number }[] {
   const lvl = level(room)
-  const prof = word ? profileOf(word) : null
+  const profile = idx === null ? null : prof(room, idx)
   const out: { id: string; score: number }[] = []
   for (const s of room.dealt) {
     const p = room.players.get(s)
     if (s === secret || !p || !isIn(room, s)) continue
     const mine = room.clues.filter((c) => c.playerId === p.id)
-    const f = prof ? fit(mine.filter((c) => !c.skipped).map((c) => c.text), prof) : null
+    const f = profile ? fit(mine.filter((c) => !c.skipped).map((c) => c.text), profile) : null
     const silent = mine.filter((c) => c.skipped).length
     out.push({ id: p.id, score: (f === null ? 0.5 : 1 - f) + 0.1 * Math.min(2, silent) + Math.random() * lvl.noise })
   }
@@ -263,15 +315,15 @@ function decide(acts: BotActions, room: FRoom, secret: string, mind: Mind): void
   if (room.wolves.includes(secret)) {
     updateGuess(acts, room, secret, mind)
     // A wolf who has the word is happy to vote; one who doesn't wants to listen longer.
-    const sure = !!confident(room, candidates(room, secret, mind))
+    const sure = confident(room, candidates(room, secret, mind)) !== null
     vote = Math.random() < (sure ? 0.7 : room.lap >= 3 ? 0.5 : 0.2)
   } else {
-    const prof = profileOf(room.word!)
+    const profile = prof(room, room.wordIdx)
     const worst = Math.max(
       0,
       ...[...room.dealt]
         .filter((s) => s !== secret && isIn(room, s))
-        .map((s) => 1 - (fit(room.clues.filter((c) => !c.skipped && c.playerId === room.players.get(s)?.id).map((c) => c.text), prof) ?? 1)),
+        .map((s) => 1 - (fit(room.clues.filter((c) => !c.skipped && c.playerId === room.players.get(s)?.id).map((c) => c.text), profile) ?? 1)),
     )
     vote = Math.random() < (worst >= 0.6 ? lvl.voteSure : room.lap >= 2 ? lvl.voteLater : 0.1)
   }
@@ -280,17 +332,22 @@ function decide(acts: BotActions, room: FRoom, secret: string, mind: Mind): void
 
 function vote(acts: BotActions, room: FRoom, secret: string, mind: Mind): void {
   const wolf = room.wolves.includes(secret)
-  const word = wolf ? (candidates(room, secret, mind)[0]?.word ?? null) : room.word
-  acts.vote(room, secret, suspicion(room, secret, word).slice(0, room.votesEach).map((x) => x.id))
+  const idx = wolf ? (candidates(room, secret, mind)[0]?.idx ?? null) : room.wordIdx
+  acts.vote(room, secret, suspicion(room, secret, idx).slice(0, room.votesEach).map((x) => x.id))
 }
 
-/** A close guess counts if it has the word's main key word or one of an alias's. */
+/** A close guess counts if it has the word's main key word or one of an alias's (in any language in the room). */
 function judge(acts: BotActions, room: FRoom, secret: string): void {
-  const w = room.word!
-  const guess = new Set(tokens(room.typed.get(room.judgeQueue[0]) ?? ''))
-  const main = tokens(w.word).filter((t) => t.length >= 4).sort((a, b) => b.length - a.length)[0]
-  const alias = (w.aliases ?? []).flatMap((a) => tokens(a)).filter((t) => t.length >= 4)
-  acts.judge(room, secret, (!!main && guess.has(main)) || alias.some((t) => guess.has(t)))
+  const langs = roomLocales(room)
+  const said = tokens(room.typed.get(room.judgeQueue[0]) ?? '')
+  const guess = new Set(langs.includes('hu') ? [...said, ...said.map(huStem)] : said)
+  const ok = langs.some((l) => {
+    const w = entry(room, room.wordIdx, l)
+    const main = tokens(w.word).filter((t) => t.length >= 4).sort((a, b) => b.length - a.length)[0]
+    const alias = (w.aliases ?? []).flatMap((a) => tokens(a)).filter((t) => t.length >= 4)
+    return (!!main && guess.has(main)) || alias.some((t) => guess.has(t))
+  })
+  acts.judge(room, secret, ok)
 }
 
 // ── scheduling ──────────────────────────────────────────────────────────
@@ -309,8 +366,9 @@ function planFor(room: FRoom, secret: string, p: FPlayer, acts: BotActions): Pla
   const g = `${room.game}:`
   const guessPlan = (): Plan | null => {
     if (!wolf) return null
-    const word = confident(room, candidates(room, secret, mind))
-    return word && room.typed.get(secret) !== word.word ? { step: `${g}guess:${room.clues.length}:${word.word}`, delay: [1, 3], run: () => updateGuess(acts, room, secret, mind) } : null
+    const idx = confident(room, candidates(room, secret, mind))
+    const text = idx === null ? null : guessText(room, secret, idx)
+    return text && room.typed.get(secret) !== text ? { step: `${g}guess:${room.clues.length}:${text}`, delay: [1, 3], run: () => updateGuess(acts, room, secret, mind) } : null
   }
   switch (room.phase) {
     case 'secret':

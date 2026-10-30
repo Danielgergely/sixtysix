@@ -4,7 +4,7 @@ import { FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, type FlockGuess, type FlockResul
 import { fireCannons, fireConfetti, spring } from '../../motion'
 import { Token } from './parts'
 import { playerById, rich } from '../../flock/util'
-import { t as tr, useT } from '../../i18n'
+import { t as tr, useLocale, useT } from '../../i18n'
 
 export function Rules() {
   const t = useT()
@@ -87,6 +87,7 @@ const GUESS_KEY: Record<FlockGuess['verdict'], string> = {
 export function GameReveal({ state, large = false }: { state: FlockState; large?: boolean }) {
   const r = state.result
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const fired = useRef(false)
   useEffect(() => {
     if (!r || fired.current) return
@@ -98,6 +99,8 @@ export function GameReveal({ state, large = false }: { state: FlockState; large?
   const two = r.wolfIds.length > 1
   const headline = r.winner === 'sheep' ? t('flock.reveal.sheepWin') : r.winner === 'wolves' ? (two ? t('flock.reveal.wolvesWin') : t('flock.reveal.wolfWins')) : t('flock.reveal.calledOff')
   const wolves = r.wolfIds.map((id) => playerById(state, id))
+  // The word in this phone's language (every player saw it in their own).
+  const shown = r.words?.[locale] ?? r
   return (
     <div className={`fl-reveal ${large ? 'large' : ''}`}>
       <motion.div className={`fl-verdict-big ${r.winner ?? ''}`} initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={spring.bouncy}>
@@ -106,9 +109,9 @@ export function GameReveal({ state, large = false }: { state: FlockState; large?
       </motion.div>
       <motion.div className="fl-reveal-word" initial={{ rotateX: 90, opacity: 0 }} animate={{ rotateX: 0, opacity: 1 }} transition={{ ...spring.gentle, delay: 0.3 }}>
         <span>{t('flock.reveal.wordWas')}</span>
-        <strong>{r.word}</strong>
+        <strong>{shown.word}</strong>
         <small>
-          {r.hint} · <em>{r.ref}</em>
+          {shown.hint} · <em>{shown.ref}</em>
         </small>
       </motion.div>
       {(wolves.length ? wolves : [undefined]).map((wolf, i) => (

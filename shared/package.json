@@ -6,6 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./flockWords.json": "./src/flockWords.json",
+    "./flockWords.de.json": "./src/flockWords.de.json",
+    "./flockWords.hu.json": "./src/flockWords.hu.json",
     "./cityLayout": "./src/cityLayout.ts"
   }
 }

@@ -9,8 +9,10 @@ import type {
   FlockServerToClientEvents,
   FlockSide,
   FlockWord,
+  GameLocale,
 } from '@sixtysix/shared'
 import {
+  cleanLocale,
   FLOCK_CATEGORIES,
   FLOCK_CLUE_MAX,
   FLOCK_GUESS_MAX,
@@ -21,19 +23,23 @@ import {
   flockWolfCount,
 } from '@sixtysix/shared'
 import { cleanAvatar, cleanName } from '../rooms.js'
-import { judgeGuess, tokens } from './match.js'
+import { bestVerdict, FILLER_DE, fold, FOREIGN_FILLER, huStem, judgeGuess, tokens, type GuessVerdict, type Langs } from './match.js'
 import { addBot, scheduleBots, type BotActions } from './bots.js'
 import {
+  LISTS,
   WORDS,
   channel,
   createFlockRoom,
   deleteFlockRoom,
   findFlockRoomBySocket,
   getFlockRoom,
+  localeOf,
   newPlayerId,
+  roomLocales,
   startFlockGC,
   toFlockState,
   touch,
+  wordIn,
   type FPlayer,
   type FRoom,
 } from './rooms.js'
@@ -101,17 +107,20 @@ function broadcast(io: FlockIO, room: FRoom): void {
 function secretFor(room: FRoom, secret: string): FlockSecret | null {
   if (!room.category || !room.dealt.has(secret) || !ACTIVE.includes(room.phase)) return null
   const base = { game: room.game, category: room.category, wolfCount: room.wolves.length }
+  // The card in the player's own language.
+  const p = room.players.get(secret)
+  const w = p ? wordIn(room, localeOf(room, p)) : room.word
   if (room.wolves.includes(secret)) {
     return {
       ...base,
       role: 'wolf',
       // Opening with no clues to go on: an associated word to start from.
-      wolfHint: room.turnOrder[0] === secret ? room.word?.wolfHint : undefined,
+      wolfHint: room.turnOrder[0] === secret ? w?.wolfHint : undefined,
       myGuess: room.typed.get(secret),
     }
   }
   const judged = room.phase === 'judge' && room.judgeQueue[0] ? room.typed.get(room.judgeQueue[0]) : undefined
-  return { ...base, role: 'sheep', word: room.word?.word, hint: room.word?.hint, ref: room.word?.ref, judgeGuess: judged }
+  return { ...base, role: 'sheep', word: w?.word, hint: w?.hint, ref: w?.ref, judgeGuess: judged }
 }
 
 function sendSecret(io: FlockIO, room: FRoom, secret: string): void {
@@ -152,14 +161,17 @@ export function startGame(io: FlockIO, room: FRoom): void {
   const fresh = everyone.filter((s) => !room.wolves.includes(s))
   room.wolves = shuffle([...(fresh.length >= count ? fresh : everyone)]).slice(0, count)
 
+  // One entry (category + index) for everyone; each card shows it in its player's language.
   const category = FLOCK_CATEGORIES[Math.floor(Math.random() * FLOCK_CATEGORIES.length)]
-  let pool = WORDS[category].filter((w) => !room.usedWords.has(w.word))
+  const all = WORDS[category].map((_, i) => i)
+  let pool = all.filter((i) => !room.usedWords.has(WORDS[category][i].word))
   if (pool.length === 0) {
     for (const w of WORDS[category]) room.usedWords.delete(w.word)
-    pool = WORDS[category]
+    pool = all
   }
   room.category = category
-  room.word = pool[Math.floor(Math.random() * pool.length)]
+  room.wordIdx = pool[Math.floor(Math.random() * pool.length)]
+  room.word = WORDS[category][room.wordIdx]
   room.usedWords.add(room.word.word)
 
   room.dealt = new Set(everyone)
@@ -328,8 +340,7 @@ function resolveGuesses(io: FlockIO, room: FRoom): void {
       room.guessLog.push({ wolfId, guess: '', verdict: 'wrong' })
       continue
     }
-    const rivals = WORDS[room.category!].filter((w) => w !== room.word).map((w) => [w.word, ...(w.aliases ?? [])])
-    const verdict = judgeGuess(text, room.word.word, room.word.aliases, rivals)
+    const verdict = judgeInRoom(room, text)
     if (verdict === 'match') {
       room.guessLog.push({ wolfId, guess: text, verdict: 'match' })
       return endGame(io, room, 'wolves', 'guessed', { outIds: room.caught.map((x) => pubId(room, x) ?? ''), votes: room.lastVotes })
@@ -340,6 +351,23 @@ function resolveGuesses(io: FlockIO, room: FRoom): void {
   room.judgeQueue = close
   if (close.length) return beginJudge(io, room)
   afterGuesses(io, room)
+}
+
+/**
+ * A guess against the word in every language seated in the room (each with its
+ * own category list as rivals); the best verdict counts.
+ */
+export function judgeInRoom(room: FRoom, text: string): GuessVerdict {
+  const langs = roomLocales(room)
+  let best: GuessVerdict = 'no'
+  for (const l of langs) {
+    const list = LISTS[l][room.category!]
+    const w = list[room.wordIdx]
+    const rivals = list.filter((x) => x !== w).map((x) => [x.word, ...(x.aliases ?? [])])
+    best = bestVerdict(best, judgeGuess(text, w.word, w.aliases, rivals, langs))
+    if (best === 'match') break
+  }
+  return best
 }
 
 /** The flock (sheep still in, online) judges the first close guess in the queue. */
@@ -409,6 +437,12 @@ function endGame(
     word: room.word?.word ?? '',
     hint: room.word?.hint ?? '',
     ref: room.word?.ref ?? '',
+    words: Object.fromEntries(
+      (Object.keys(LISTS) as GameLocale[]).map((l) => {
+        const w = wordIn(room, l)
+        return [l, { word: w?.word ?? '', hint: w?.hint ?? '', ref: w?.ref ?? '' }]
+      }),
+    ) as FlockResult['words'],
     outIds: extra.outIds ?? [],
     guesses: room.guessLog,
     lostIds: [...room.lost].map((s) => pubId(room, s)).filter((id): id is string => !!id),
@@ -440,27 +474,41 @@ function maybeBeginClues(io: FlockIO, room: FRoom): boolean {
 // ── clue validation ─────────────────────────────────────────────────────
 
 const STOP = new Set(['the', 'and', 'of', 'on', 'in', 'into', 'to', 'a', 'an'])
+/** Not a key part of a word: little words (German and Hungarian ones as in match.ts; "die", "den", "am" only with a German player). */
+const isStop = (t: string, langs: Langs) => STOP.has(t) || FOREIGN_FILLER.has(t) || (FILLER_DE.has(t) && langs.includes('de'))
 const letters = (s: string) =>
-  s
-    .normalize('NFD')
-    .replace(/\p{M}/gu, '')
-    .toLowerCase()
+  fold(s)
     .replace(/['’]s\b/g, '') // possessive: "Jacob's Well" must not block every "it's"
     .replace(/[^a-z0-9 ]/g, ' ')
 
-/** True if the clue gives the word away (whole word or any key part of it). */
-export function revealsWord(clue: string, word: string): boolean {
+/**
+ * True if the clue gives the word away (whole word or any key part of it).
+ * `langs`: the room's languages; with Hungarian, a clue word also counts
+ * without its case ending ("Noéval" says "Noé").
+ */
+export function revealsWord(clue: string, word: string, langs: Langs = ['en']): boolean {
   const clueTokens = letters(clue).split(/\s+/).filter(Boolean)
   const clueFlat = clueTokens.join('')
-  const parts = letters(word).split(/\s+/).filter((t) => t && !STOP.has(t))
+  const parts = letters(word).split(/\s+/).filter((t) => t && !isStop(t, langs))
+  if (!parts.length) return false
   if (clueFlat.includes(parts.join(''))) return true
-  return parts.some((t) => (t.length >= 4 ? clueFlat.includes(t) : clueTokens.includes(t)))
+  const whole = langs.includes('hu') ? [...clueTokens, ...clueTokens.map(huStem)] : clueTokens
+  return parts.some((t) => (t.length >= 4 ? clueFlat.includes(t) : whole.includes(t)))
 }
 
 /** A sheep's clue says the word: the word or a key part of it, or a whole alias ("King David" blocks that, not "king"). */
-export function saysWord(clue: string, word: FlockWord): boolean {
-  const flat = (x: string) => tokens(x).join('')
-  return revealsWord(clue, word.word) || (word.aliases ?? []).some((a) => flat(clue).includes(flat(a)))
+export function saysWord(clue: string, word: FlockWord, langs: Langs = ['en']): boolean {
+  const flat = (x: string) => tokens(x, langs).join('')
+  return revealsWord(clue, word.word, langs) || (word.aliases ?? []).some((a) => !!flat(a) && flat(clue).includes(flat(a)))
+}
+
+/** The clue says the word (or an alias) in any language seated in the room. */
+export function saysWordInRoom(room: FRoom, clue: string): boolean {
+  const langs = roomLocales(room)
+  return langs.some((l) => {
+    const w = wordIn(room, l)
+    return !!w && saysWord(clue, w, langs)
+  })
 }
 
 /**
@@ -468,8 +516,9 @@ export function saysWord(clue: string, word: FlockWord): boolean {
  * and little words) that someone already said this game. Returns that word.
  */
 function repeatedWord(room: FRoom, text: string): string | null {
-  const earlier = new Set(room.clues.filter((c) => !c.skipped).flatMap((c) => tokens(c.text)).filter((t) => t.length >= 3))
-  return tokens(text).find((t) => t.length >= 3 && earlier.has(t)) ?? null
+  const langs = roomLocales(room)
+  const earlier = new Set(room.clues.filter((c) => !c.skipped).flatMap((c) => tokens(c.text, langs)).filter((t) => t.length >= 3))
+  return tokens(text, langs).find((t) => t.length >= 3 && earlier.has(t)) ?? null
 }
 
 function cleanClue(raw: unknown, max = FLOCK_CLUE_MAX): string {
@@ -545,7 +594,7 @@ export function actClue(io: FlockIO, room: FRoom, secret: string, raw: unknown):
   if (!text) return 'Type a clue'
   if (text.split(' ').length > 3) return 'Three words at most'
   // The word or any key part of it; an alias only as a whole ("King David" blocks that, not "king").
-  if (!room.wolves.includes(secret) && room.word && saysWord(text, room.word)) return 'Too obvious — don’t say the word!'
+  if (!room.wolves.includes(secret) && room.word && saysWordInRoom(room, text)) return 'Too obvious — don’t say the word!'
   const repeat = repeatedWord(room, text)
   if (repeat) return `“${repeat}” was already said — try another clue`
   pushClue(room, secret, text, false)
@@ -618,7 +667,7 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     const p = found.room.players.get(found.secret)
     return p ? { room: found.room, secret: found.secret, p } : undefined
   }
-  const join = (room: FRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown }, ack: Ack) => {
+  const join = (room: FRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown; locale?: unknown }, ack: Ack) => {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
     // One seat per socket: leave any other flock room first.
@@ -636,9 +685,19 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
       p.connected = true
       if (typeof payload.name === 'string' && payload.name.trim()) p.name = cleanName(payload.name)
       if (payload.avatar !== undefined) p.avatar = cleanAvatar(payload.avatar)
+      if (payload.locale !== undefined) p.locale = cleanLocale(payload.locale)
     } else {
       if (room.players.size >= FLOCK_MAX_PLAYERS) return ack({ ok: false, error: `The flock is full (${FLOCK_MAX_PLAYERS} players)` })
-      p = { id: newPlayerId(), name: cleanName(payload.name), avatar: cleanAvatar(payload.avatar), wins: 0, connected: true, socketId: socket.id, bot: false }
+      p = {
+        id: newPlayerId(),
+        name: cleanName(payload.name),
+        avatar: cleanAvatar(payload.avatar),
+        wins: 0,
+        connected: true,
+        socketId: socket.id,
+        bot: false,
+        locale: cleanLocale(payload.locale),
+      }
       room.players.set(secret, p) // mid-game joiners watch and are dealt into the next game
     }
     ensureLeader(room)
@@ -683,6 +742,15 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     // Boards just stop listening.
     for (const r of socket.rooms) if (r.startsWith('flock:')) void socket.leave(r)
     ackOf(cb)(true)
+  })
+
+  on('flock:locale', (raw) => {
+    const s = seat()
+    if (!s) return
+    s.p.locale = cleanLocale((raw as { locale?: unknown } | undefined)?.locale)
+    // The leader's switch changes the bots' language too: their cards don't matter
+    // to anyone else, so only this player's card is sent again.
+    sendSecret(io, s.room, s.secret)
   })
 
   const leaderSeat = () => {

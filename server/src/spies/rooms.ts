@@ -2,16 +2,37 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { SpiesColour, SpiesMode, SpiesPhase, SpiesResult, SpiesState, SpiesTeam, SpiesTurn } from '@sixtysix/shared'
-import { SPIES_FORCE_MS, SPIES_GRID } from '@sixtysix/shared'
+import type { GameLocale, SpiesColour, SpiesMode, SpiesPhase, SpiesResult, SpiesState, SpiesTeam, SpiesTurn } from '@sixtysix/shared'
+import { GAME_LOCALES, SPIES_FORCE_MS, SPIES_GRID } from '@sixtysix/shared'
 
 /**
  * Twelve Spies rooms: an in-memory registry with its own codes and GC,
  * separate from the arena's and the flock's so the games never interact.
  */
 
-export const WORDS: string[] = JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'words.json'), 'utf8'))
+const here = dirname(fileURLToPath(import.meta.url))
+/** The English words: the ids of the cards. */
+export const WORDS: string[] = JSON.parse(readFileSync(join(here, 'words.json'), 'utf8'))
 if (WORDS.length < SPIES_GRID * 3) throw new Error('[spies] not enough words')
+/** Each card in every language (words.<lang>.json maps the English word to its translation). */
+export const TRANSLATIONS: Record<string, Record<GameLocale, string>> = (() => {
+  const maps = Object.fromEntries(
+    GAME_LOCALES.filter((l) => l !== 'en').map((l) => [l, JSON.parse(readFileSync(join(here, `words.${l}.json`), 'utf8')) as Record<string, string>]),
+  )
+  const out: Record<string, Record<GameLocale, string>> = {}
+  for (const w of WORDS) {
+    out[w] = { en: w } as Record<GameLocale, string>
+    for (const l of GAME_LOCALES) {
+      if (l === 'en') continue
+      const t = maps[l][w]
+      if (typeof t !== 'string' || !t.trim()) throw new Error(`[spies] no ${l} word for "${w}"`)
+      out[w][l] = t
+    }
+  }
+  return out
+})()
+/** A card's word in a language. */
+export const wordIn = (word: string, locale: GameLocale): string => TRANSLATIONS[word]?.[locale] ?? word
 
 export interface SPlayer {
   id: string
@@ -27,6 +48,8 @@ export interface SPlayer {
   lastServed: number
   /** Join order (ties when picking spy masters, colour of the token ring). */
   seq: number
+  /** The player's app language: the grid is dealt and clues are checked for every language seated. */
+  locale: GameLocale
 }
 
 export interface SProposal {
@@ -139,6 +162,13 @@ export const touch = (room: SRoom): void => {
 
 export const newPlayerId = (): string => randomUUID()
 
+/** Every language seated in the room (English first when present). */
+export function roomLocales(room: SRoom): GameLocale[] {
+  const present = new Set([...room.players.values()].map((p) => p.locale))
+  const out = GAME_LOCALES.filter((l) => present.has(l))
+  return out.length ? out : ['en']
+}
+
 /** Field agents of a tribe (everyone but its spy master). */
 export function agents(room: SRoom, team: SpiesTeam, connectedOnly = true): string[] {
   return [...room.players]
@@ -175,7 +205,7 @@ export function toSpiesState(room: SRoom): SpiesState {
     startingTeam: room.startingTeam,
     turn: room.phase === 'clue' || room.phase === 'guess' ? room.turn : null,
     // Only revealed colours — the key itself stays on the server until the end.
-    cards: room.words.map((word, i) => ({ word, revealed: room.revealed[i] ?? null })),
+    cards: room.words.map((word, i) => ({ word, words: TRANSLATIONS[word] ?? { en: word, de: word, hu: word }, revealed: room.revealed[i] ?? null })),
     remaining: { judah: remaining(room, 'judah'), ephraim: remaining(room, 'ephraim') },
     clue: room.phase === 'guess' ? room.clue : null,
     guessesLeft: room.phase === 'guess' ? room.guessesLeft : 0,

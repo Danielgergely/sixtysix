@@ -1,4 +1,5 @@
 export * from './question'
+export * from './locale'
 export * from './protocol'
 export * from './scoring'
 export * from './coins'
