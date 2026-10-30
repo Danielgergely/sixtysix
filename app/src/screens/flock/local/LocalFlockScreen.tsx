@@ -267,7 +267,7 @@ function PlayView() {
         <strong>Talk it out!</strong>
       </div>
       <ol className="fl-rules arena-section fll-rules">
-        <li>Going round the table, everyone says one word or a short clue about the secret word.</li>
+        <li>Going round the table, everyone says one word or a short clue about the secret word — no repeating what someone already said.</li>
         <li>Sheep: prove you know it without giving it away. {two ? 'Wolves' : 'Wolf'}: bluff!</li>
         <li>Play as many rounds as you like, then point at {two ? `the ${wolves.length} wolves` : 'the wolf'} together.</li>
         <li>A caught wolf may still guess the word out loud to win.</li>

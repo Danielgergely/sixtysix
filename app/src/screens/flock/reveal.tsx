@@ -9,7 +9,7 @@ export function Rules() {
   return (
     <ol className="fl-rules">
       <li>Everyone secretly gets the same Bible word — a person, place, story or object. One player is the <b>wolf</b> 🐺 and only sees the category. With {FLOCK_TWO_WOLVES_FROM}+ players there are <b>two wolves</b>, who don’t know each other.</li>
-      <li>In turn (random order), each player gives a <b>short clue</b> (up to 3 words). Sheep: prove you know the word without giving it away. Wolf: bluff! A wolf who has to go first gets a hint.</li>
+      <li>In turn (random order), each player gives a <b>short clue</b> (up to 3 words, no word that was already said). Sheep: prove you know the word without giving it away. Wolf: bluff! A wolf who has to go first gets a hint.</li>
       <li>After every lap the flock decides: <b>vote now</b> or <b>one more lap</b>. After lap {FLOCK_MAX_LAPS} the vote is final.</li>
       <li>The most-voted player is out (with two wolves hiding, everyone has two votes and the two most-voted are out). A sheep out? <b>The wolf wins.</b> A tie: nobody leaves (on the final vote, the wolf escapes).</li>
       <li>The wolf may <b>type a guess of the word</b> at any time until a vote starts (then it is locked). If the wolf is caught and the guess is right, the wolf still wins; otherwise <b>the flock wins</b>. Small typos and other names count; for a close call, the flock decides.</li>

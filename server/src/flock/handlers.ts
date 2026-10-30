@@ -449,6 +449,15 @@ export function revealsWord(clue: string, word: string): boolean {
   return parts.some((t) => (t.length >= 4 ? clueFlat.includes(t) : clueTokens.includes(t)))
 }
 
+/**
+ * No repeats: a clue may not reuse a key word (3+ letters, ignoring case, plurals
+ * and little words) that someone already said this game. Returns that word.
+ */
+function repeatedWord(room: FRoom, text: string): string | null {
+  const earlier = new Set(room.clues.filter((c) => !c.skipped).flatMap((c) => tokens(c.text)).filter((t) => t.length >= 3))
+  return tokens(text).find((t) => t.length >= 3 && earlier.has(t)) ?? null
+}
+
 function cleanClue(raw: unknown, max = FLOCK_CLUE_MAX): string {
   if (typeof raw !== 'string') return ''
   const s = raw.normalize('NFC').replace(/[\p{Cc}\p{Cf}]/gu, '').replace(/\s+/g, ' ').trim()
@@ -627,6 +636,8 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     if (!room.wolves.includes(s.secret) && said) {
       return ack({ ok: false, error: 'Too obvious — don’t say the word!' })
     }
+    const repeat = repeatedWord(room, text)
+    if (repeat) return ack({ ok: false, error: `“${repeat}” was already said — try another clue` })
     pushClue(room, s.secret, text, false)
     ack({ ok: true })
     nextTurn(io, room)
