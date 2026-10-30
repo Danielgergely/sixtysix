@@ -19,7 +19,7 @@ import {
   flockWolfCount,
 } from '@sixtysix/shared'
 import { cleanAvatar, cleanName } from '../rooms.js'
-import { judgeGuess } from './match.js'
+import { judgeGuess, tokens } from './match.js'
 import {
   WORDS,
   channel,
@@ -332,7 +332,8 @@ function resolveGuesses(io: FlockIO, room: FRoom): void {
     const text = room.typed.get(s)
     const wolfId = pubId(room, s) ?? ''
     if (!text) continue
-    const verdict = judgeGuess(text, room.word.word, room.word.aliases)
+    const rivals = WORDS[room.category!].filter((w) => w !== room.word).map((w) => [w.word, ...(w.aliases ?? [])])
+    const verdict = judgeGuess(text, room.word.word, room.word.aliases, rivals)
     if (verdict === 'match') {
       room.guessLog.push({ wolfId, guess: text, verdict: 'match' })
       return endGame(io, room, 'wolves', 'guessed', { outIds: room.caught.map((x) => pubId(room, x) ?? ''), votes: room.lastVotes })
@@ -628,8 +629,10 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     const text = cleanClue((raw as { text?: unknown } | undefined)?.text)
     if (!text) return ack({ ok: false, error: 'Type a clue' })
     if (text.split(' ').length > 3) return ack({ ok: false, error: 'Three words at most' })
-    const names = room.word ? [room.word.word, ...(room.word.aliases ?? [])] : []
-    if (!room.wolves.includes(s.secret) && names.some((n) => revealsWord(text, n))) {
+    // The word or any key part of it; an alias only as a whole ("King David" blocks that, not "king").
+    const flat = (x: string) => tokens(x).join('')
+    const said = room.word && (revealsWord(text, room.word.word) || (room.word.aliases ?? []).some((a) => flat(text).includes(flat(a))))
+    if (!room.wolves.includes(s.secret) && said) {
       return ack({ ok: false, error: 'Too obvious — don’t say the word!' })
     }
     pushClue(room, s.secret, text, false)

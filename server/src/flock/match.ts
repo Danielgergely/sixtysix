@@ -58,13 +58,31 @@ function compare(guess: string[], target: string[]): GuessVerdict {
   return 'no'
 }
 
-export function judgeGuess(guess: string, word: string, aliases: readonly string[] = []): GuessVerdict {
+/** Edit distance from the guess to the nearest of these names. */
+function nearest(guess: string[], names: readonly string[]): number {
+  const g = guess.join('')
+  return Math.min(...names.map((n) => distance(g, tokens(n).join(''))))
+}
+
+/**
+ * `rivals` = the category's other entries (word + aliases each): a guess at least
+ * as close to one of them is not taken as a typo of this word (Jeremiah ≠ Nehemiah).
+ */
+export function judgeGuess(guess: string, word: string, aliases: readonly string[] = [], rivals: readonly (readonly string[])[] = []): GuessVerdict {
   const g = tokens(guess)
   let best: GuessVerdict = 'no'
   for (const target of [word, ...aliases]) {
     const v = compare(g, tokens(target))
-    if (v === 'match') return 'match'
+    if (v === 'match') {
+      best = 'match'
+      break
+    }
     if (v === 'close') best = 'close'
   }
+  if (best === 'no' || rivals.length === 0) return best
+  const mine = nearest(g, [word, ...aliases])
+  const theirs = Math.min(...rivals.map((r) => nearest(g, r)))
+  if (theirs < mine) return 'no'
+  if (theirs === mine) return 'close'
   return best
 }
