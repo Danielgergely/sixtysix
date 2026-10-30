@@ -30,9 +30,7 @@ export interface RoomConfig {
 
 export const MAX_ARENA_PLAYERS = 100
 
-/** Playable characters; any other avatar value is replaced by the first. */
-export const CHARACTERS = ['david', 'moses', 'esther', 'ruth'] as const
-export type CharacterId = (typeof CHARACTERS)[number]
+// Playable characters (CHARACTERS) and the look string carried in every `avatar` field: shared/src/looks.ts.
 
 export type ArenaPhase =
   | 'lobby'

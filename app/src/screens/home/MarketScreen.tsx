@@ -8,6 +8,7 @@ import { PaintedCoin } from '../../art/PaintedPortrait'
 import { AnimatedNumber, STAGGER, pulse, spring } from '../../motion'
 import { t as tNow, tServer, useLocale, useT } from '../../i18n'
 import { Top, Toast } from './parts'
+import { openLookPicker } from '../../looks/lookStore'
 import { materialAmount, materialName } from './plotText'
 
 const AMOUNTS = [1, 10, 50] as const
@@ -50,6 +51,10 @@ export function MarketScreen() {
           <AnimatedNumber value={coins} />
         </span>
       </div>
+      {/* Finery for your character: bought in the look picker (looks/LookPicker.tsx). */}
+      <button className="tab-banner mk-finery" onClick={() => openLookPicker('look')}>
+        {t('looks.market')}
+      </button>
       {!account && (
         <button className="tab-banner" onClick={() => goTo('profile')}>
           {t('market.signUp')}

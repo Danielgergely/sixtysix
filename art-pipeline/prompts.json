@@ -784,6 +784,738 @@
         "refs/style-d.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style), seen from above at a classic 3/4 isometric angle: ONE small piece of a hedge for a family homestead in ancient Jerusalem, centred, filling about 85% of the frame, with only a small soft shadow at its base, no ground patch, no scenery. A small bushy thorn shrub with a few dry twigs sticking out and two or three small red berries, rounded."
+    },
+    {
+      "id": "bust-abraham",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of ABRAHAM, the old patriarch (long flowing white hair and a long white beard, deep kind eyes with laugh lines, a cream-and-indigo striped wool mantle over a plain tunic, a few tiny embroidered stars along the mantle edge). Warm wise smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-sarah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of SARAH, Abraham's wife, an elderly woman around seventy (silver-grey hair in a long loose braid over one shoulder, a light rose-coloured veil resting at the back of her head so her hair and forehead show, small gold earrings, simple rose and cream robe). Joyful laughing smile, eyes crinkled with delight, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-noah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of NOAH, an old shipbuilder (short-cropped grey hair and a thick bushy grey beard, sturdy weathered face, a rough brown work tunic with a leather apron strap, a small white dove holding a green olive twig perched on his raised hand next to his shoulder). Kind grandfatherly smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-rebekah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of REBEKAH as a young woman at the well (long wavy dark-brown hair loose with a thin teal ribbon, uncovered head, teal and saffron dress, a large clay water jar balanced on one shoulder, small gold earrings). Bright generous smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-joseph",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of JOSEPH as a young man of seventeen (short dark wavy hair, no beard, uncovered head, wearing his famous long-sleeved coat of many colours with bold red, blue, yellow and green stripes). Confident dreamy smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-miriam",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of MIRIAM as a young girl of about ten (dark curly hair tied back with a red cloth, uncovered head, child proportions, simple ochre dress, holding up a round tambourine (timbrel) with little brass jingles). Cheerful excited grin, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-deborah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of DEBORAH, the judge and prophetess, a woman of about forty (black hair in a thick braid, uncovered head, deep green robe with a gold-trimmed sash, holding a palm frond). Calm, wise, confident expression with a slight smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-gideon",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of GIDEON, a young farmer turned warrior (short black hair and a short black beard, uncovered head, plain leather breastplate over a rust-red tunic, holding a ram's-horn trumpet (shofar) at his side). Determined, brave smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-hannah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of HANNAH, a young mother (a soft sky-blue headscarf loosely draped showing her dark hair and forehead, cream dress, hands pressed together in prayer in front of her chest). Peaceful thankful smile, eyes looking slightly upward, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-samuel",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of SAMUEL as a little boy of about seven serving in the temple (short dark hair, uncovered head, child proportions, a small white linen ephod over a little blue tunic, holding a small lit clay oil lamp). Sweet attentive face, as if listening, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-elijah",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of ELIJAH the prophet (wild untamed dark-grey hair and a rough grey beard, uncovered head, a hairy dark-brown mantle with a leather belt, a black raven perched on his shoulder). Fiery intense but kind look, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-naomi",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of NAOMI, an elderly widow (grey hair pulled back under a simple brown headscarf that leaves her forehead and some hair showing, a soft wrinkled face, plain brown and olive shawl). Gentle, tender, slightly tired smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-daniel",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of DANIEL as a young Hebrew nobleman in Babylon (short black hair, neat short beard, uncovered head, a rich blue Babylonian robe with gold trim, a friendly young lion beside his shoulder). Calm, faithful, quietly confident smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-mary",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of MARY, the mother of Jesus, as a young woman (a simple deep-blue veil over long dark-brown hair, white dress, hands folded). Gentle humble serene smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-peter",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of PETER, the fisherman apostle (short curly grey-black hair and a short curly beard, uncovered head, broad shoulders, a rough sea-blue fisherman's tunic, a fishing net slung over one shoulder). Big hearty open grin, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-john",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of JOHN, the youngest apostle (shoulder-length wavy brown hair, no beard, uncovered head, a red mantle over a pale green tunic, holding a scroll and a reed pen). Warm gentle smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-martha",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of MARTHA of Bethany (brown hair tied up in a cloth wrap that leaves her forehead showing, sleeves rolled up, an apron over a mustard-yellow dress, holding a round loaf of bread). Busy, cheerful, slightly flustered smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-lydia",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of LYDIA, the seller of purple cloth (elegant dark hair in a bun with a gold pin, uncovered head, a rich royal-purple robe, a fold of shimmering purple fabric draped over her arm). Gracious welcoming smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-paul",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of PAUL the apostle (balding head with short dark hair at the sides, a full dark beard, intense eyes, a brown travelling cloak over a cream tunic, holding a rolled letter scroll). Earnest determined look with a faint smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "bust-priscilla",
+      "aspect": "1:1",
+      "refs": [
+        "refs/bust-style.jpg"
+      ],
+      "transparent": true,
+      "prompt": "Head-and-shoulders portrait bust of PRISCILLA, the tentmaker and teacher (auburn-brown hair in a long braid, uncovered head, a practical terracotta work dress, a coil of strong cord and a bone needle in her hand). Friendly clever smile, centred, facing the viewer. Framing exactly like the attached reference sheet: the top of the head about 8% below the top edge, the head about 40% of the image width, shoulders running out at the bottom edge. Match the attached reference sheet EXACTLY in painting style, clean dark outlines, line work, shading, colour richness and proportions (it shows other characters; do not copy their faces or clothes). Medium olive-brown Middle-Eastern skin tone. One single character only."
+    },
+    {
+      "id": "item-band-red",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a simple red woven cloth headband with a small knot and two short ribbon tails at the right side, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-flowers",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a flower crown woven of small white, yellow and pink wildflowers (lilies of the field) and green leaves, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-olive",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a wreath of olive branches with silver-green leaves and a few small dark olives, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-turban",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a white linen turban with a small gold-and-red jewelled brooch at the front, as worn on a head and seen straight from the front at eye level. It is a rounded dome of wrapped cloth folds; its bottom edge is the solid, gently curved cloth rim where the forehead would be. NO opening, hole, hollow or inside is visible at the bottom: the bottom is closed by the rim, as if worn by an invisible head. Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-coins",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: an ancient bridal headdress band: a dark red cord hung with a row of small gold coins along its lower edge, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-circlet",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a slim polished GOLD royal circlet with a single red ruby set at the front centre and fine engraved lines, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-scholar",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a deep blue scholar's turban wrapped with bands of gold cloth, a small rolled parchment scroll tucked into its side, as worn on a head and seen straight from the front at eye level. It is a rounded dome of wrapped cloth folds; its bottom edge is the solid, gently curved cloth rim where the forehead would be. NO opening, hole, hollow or inside is visible at the bottom: the bottom is closed by the rim, as if worn by an invisible head. Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-victor",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Recreate the attached wreath EXACTLY (same arch shape, angle, size and position in the frame, same painting style) but made of shining polished GOLD metal laurel leaves with warm highlights, a victor's golden laurel wreath; no olives. Only the item.",
+      "refs": [
+        "out/par/out/raw/item-olive-1.png"
+      ]
+    },
+    {
+      "id": "item-cord",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a simple brown leather cord necklace with a small round clay pendant, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-beads",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a necklace of round polished wooden beads in warm browns, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-shells",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a necklace of small white and pink seashells on a thin cord, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-amber",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a necklace of glowing honey-coloured amber beads, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-silver",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a fine silver chain necklace with a small silver pendant set with a blue stone, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-gold",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a heavy gold chain necklace of large links, like the chain Pharaoh gave Joseph, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-pearls",
+      "aspect": "1:1",
+      "transparent": true,
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no neck or person: a string of lustrous white pearls with one larger, glowing pearl at the centre, seen from the front exactly as it would hang on a chest: a U-shaped curve whose two ends rise to the top left and top right corners (as if going round the back of an invisible neck), only the front part visible. Centred, filling about 80% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+    },
+    {
+      "id": "item-band-blue",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/par/out/raw/item-band-red-2.png"
+      ],
+      "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed deep royal blue instead of red. Only the item."
+    },
+    {
+      "id": "item-band-green",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/par/out/raw/item-band-red-2.png"
+      ],
+      "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed emerald green instead of red. Only the item."
+    },
+    {
+      "id": "item-band-purple",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/par/out/raw/item-band-red-2.png"
+      ],
+      "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed royal purple instead of red. Only the item."
+    },
+    {
+      "id": "tone-david-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-david.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-david-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-david.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-moses-olive",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-moses.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a medium olive-brown Mediterranean skin tone."
+    },
+    {
+      "id": "tone-moses-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-moses.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-esther-olive",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-esther.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a medium olive-brown Mediterranean skin tone."
+    },
+    {
+      "id": "tone-esther-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-esther.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-ruth-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-ruth.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-ruth-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/src-ruth.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-abraham-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-abraham-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-abraham-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-abraham-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-sarah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-sarah-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-sarah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-sarah-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-noah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-noah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-noah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-noah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-rebekah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-rebekah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-rebekah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-rebekah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-joseph-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-joseph-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-joseph-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-joseph-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-miriam-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-miriam-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-miriam-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-miriam-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-deborah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-deborah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-deborah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-deborah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-gideon-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-gideon-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-gideon-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-gideon-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-hannah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-hannah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-hannah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-hannah-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-samuel-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-samuel-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-samuel-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-samuel-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-elijah-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-elijah-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-elijah-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-elijah-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-naomi-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-naomi-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-naomi-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-naomi-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-mary-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-mary-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-mary-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-mary-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-peter-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-peter-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-peter-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-peter-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-john-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-john-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-john-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-john-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-martha-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-martha-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-martha-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-martha-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-lydia-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-lydia-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-lydia-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-lydia-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-paul-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-paul-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-paul-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-paul-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-priscilla-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-priscilla-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-priscilla-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-priscilla-2.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "tone-daniel-light",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-daniel-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a light, fair skin tone (pale peach with warm undertones)."
+    },
+    {
+      "id": "tone-daniel-dark",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "out/raw/bust-daniel-1.png"
+      ],
+      "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
     }
   ]
 }

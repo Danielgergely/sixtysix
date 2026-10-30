@@ -1,20 +1,18 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import {
-  CHARACTERS,
   SPIES_CLUE_MAX,
   SPIES_MAX_NUMBER,
   SPIES_MIN_COOP,
   SPIES_MIN_VERSUS,
   SPIES_PASS,
   SPIES_TIMER_OPTIONS,
-  type CharacterId,
   type SpiesState,
   type SpiesTeam,
 } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastSpiesCode, useSpiesStore } from '../../spies/spiesStore'
-import { Avatar } from '../../avatars/Avatar'
+import { LookButton } from '../../looks/LookPicker'
 import { popIn, shake, spring } from '../../motion'
 import { TRIBE, cardWord, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
 import { t as tr, tServer, useLocale, useT } from '../../i18n'
@@ -92,9 +90,8 @@ function SpiesMenu() {
   // A reload drops the in-memory game; the device id still owns the seat.
   const [last] = useState(lastSpiesCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
-  const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
   const named = name.trim().length > 0
-  const save = () => updateProfile({ name: name.trim(), avatar })
+  const save = () => updateProfile({ name: name.trim() })
   const t = useT()
 
   return (
@@ -129,15 +126,7 @@ function SpiesMenu() {
         <div className="arena-section">
           <div className="profile-label">{t('spies.menu.you')}</div>
           <input className="profile-name-input" placeholder={t('spies.menu.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
-          <div className="avatar-grid arena-avatar-grid">
-            {CHARACTERS.map((c) => (
-              <button key={c} className={`avatar-option ${avatar === c ? 'selected' : ''}`} onClick={() => setAvatar(c)} title={c}>
-                <span className="avatar-option-pic">
-                  <Avatar id={c} />
-                </span>
-              </button>
-            ))}
-          </div>
+          <LookButton />
         </div>
 
         <div className="arena-section">

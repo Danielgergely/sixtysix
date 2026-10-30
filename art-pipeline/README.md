@@ -24,3 +24,29 @@ node generate.mjs                           # every asset once
   the keepers into `app/public/art/`.
 - **Style reference:** `refs/style-d.png` is a screenshot of the chosen
   "Empire hand" direction. Character prompts also send the sketches in `../assets/`.
+
+## Character busts and look items
+
+`looks.mjs` turns chosen candidates into app assets (see `app/src/looks/` and
+`docs/economy.md`):
+
+```bash
+node looks.mjs bust <id> <tone> out/raw/bust-<id>-<n>.png   # → app/public/art/char-<id>-<tone>.webp (320×320)
+node looks.mjs edit-src <id> <png>                          # a cut-out bust back on magenta, as an edit input
+node looks.mjs item <id> <png> [cut=cx,cy,rx,ry]            # → app/public/art/item-<id>.webp (cut: an ellipse made
+                                                            #   transparent, e.g. a turban's open underside)
+node looks.mjs grid out.png <webp…>                         # 10 % grid, for measuring app/src/looks/bustArt.ts
+```
+
+- **New characters** are `bust-<id>` in `prompts.json`, with `refs/bust-style.jpg`
+  (the four original busts) as the style reference, painted in the olive tone.
+- **Skin tones** are `tone-<id>-<tone>`: an *edit* of the chosen bust ("same
+  person, change only the skin tone"), so all three tones share one pose and one
+  anchor entry. Moses and Esther were first painted light, the rest olive
+  (`NATURAL_TONE` in `shared/src/looks.ts`).
+- `looks.mjs` has its own keyer: only the backdrop and a thin band along its
+  edge turn transparent, so grey hair and beards stay solid (the generic keyer
+  in `generate.mjs` tints their midtones green).
+- After regenerating a bust, re-measure its head and neck anchors in
+  `app/src/looks/bustArt.ts`; the Motion Lab (`/motion-lab`, dev only) shows every
+  character wearing each item.

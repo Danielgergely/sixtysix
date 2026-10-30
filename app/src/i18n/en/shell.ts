@@ -16,5 +16,9 @@ export default {
   },
   reward: { xp: '+{xp} XP' },
   /** Character display names (art/characters.ts). */
-  characters: { david: 'David', moses: 'Moses', esther: 'Esther', ruth: 'Ruth' },
+  characters: {
+    david: 'David', moses: 'Moses', esther: 'Esther', ruth: 'Ruth', abraham: 'Abraham', sarah: 'Sarah', noah: 'Noah', rebekah: 'Rebekah',
+    joseph: 'Joseph', miriam: 'Miriam', deborah: 'Deborah', gideon: 'Gideon', hannah: 'Hannah', samuel: 'Samuel', elijah: 'Elijah',
+    naomi: 'Naomi', daniel: 'Daniel', mary: 'Mary', peter: 'Peter', john: 'John', martha: 'Martha', lydia: 'Lydia', paul: 'Paul', priscilla: 'Priscilla',
+  },
 }

@@ -217,14 +217,16 @@
 /* ── AI art (art-pipeline picks) ─────────────────────────────────────── */
 .painted-portrait{
   display: block;
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 30%, #8a3a24, #3a140c);
   box-shadow: 0 0 0 2px #e3b754, 0 0 0 4px #1d0f06;
 }
-.painted-portrait img{ width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+/* Looks (art/PaintedPortrait.tsx, theme/looks.css): the disc clips bust + neck item; head items may rise above it. */
+.pp-disc{ position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 30%, #8a3a24, #3a140c); }
+.pp-bust{ display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.pp-framed{ box-shadow: 0 2px 5px rgb(0 0 0 / 0.4); } /* the frame ring replaces the gilt edge; call sites with their own ring (chariots) keep theirs */
 .eh-bg{ background: url('/art/bg-throne-room.webp') center / cover; }
 .eh-bg::before{ display: none; }
 .eh-medal{ position: relative; width: 230px; height: 220px; transform-style: preserve-3d; display: grid; place-items: center; }
@@ -410,7 +412,22 @@
 /* Character box: anchored at the feet (bottom-centre). Height drives size. */
 .cr-char{ position: absolute; translate: -50% -100%; display: flex; flex-direction: column; align-items: center; }
 .cr-figure{ position: relative; height: 100%; filter: drop-shadow(0 8px 10px rgb(0 0 0 / 0.5)); }
-.cr-figure > img:not(.cr-crown){ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom; }
+/* Portrait on a pedestal (Crowning.tsx: FIGURE_ASPECT, PORTRAIT_TOP). */
+.cr-portrait-wrap{ position: absolute; left: 0; width: 100%; aspect-ratio: 1; }
+.cr-portrait{ width: 100%; height: 100%; box-shadow: 0 0 0 3px #e3b754, 0 0 0 6px #1d0f06; }
+.cr-portrait.pp-framed{ box-shadow: none; }
+.cr-pedestal{
+  position: absolute; left: 18%; right: 18%; bottom: 0; border-radius: 3px 3px 2px 2px;
+  background: linear-gradient(90deg, #6d6155, #cfc3ac 30%, #efe6d2 48%, #b3a68e 70%, #5a4f44);
+  border: 2px solid #1d0f06; border-top-width: 3px;
+}
+.cr-pedestal::before, .cr-pedestal::after{
+  content: ''; position: absolute; left: -14%; right: -14%; height: 16%; border: 2px solid #1d0f06; border-radius: 3px;
+  background: linear-gradient(90deg, #6d6155, #d8ccb5 35%, #f3ead8 50%, #b3a68e 72%, #5a4f44);
+}
+.cr-pedestal::before{ top: -2px; }
+.cr-pedestal::after{ bottom: -2px; }
+.cr-pedestal.gold{ box-shadow: inset 0 0 0 999px rgb(255 214 100 / 0.12); }
 .cr-char.gold .cr-figure{ filter: drop-shadow(0 0 18px rgb(255 214 100 / 0.7)) drop-shadow(0 8px 10px rgb(0 0 0 / 0.5)); }
 .cr-crown{ position: absolute; translate: -50% -85%; z-index: 2; filter: drop-shadow(0 0 10px rgb(255 230 150 / 0.9)); }
 .cr-flash{ position: absolute; left: 50%; top: 8%; width: 60%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, #fff, rgb(255 230 150 / 0.6) 40%, transparent 70%); z-index: 3; pointer-events: none; }

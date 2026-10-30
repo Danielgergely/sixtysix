@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MAX_PLAYERS, FLOCK_MIN_PLAYERS, FLOCK_REWARD_HUMANS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
+import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MAX_PLAYERS, FLOCK_MIN_PLAYERS, FLOCK_REWARD_HUMANS, type FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
+import { LookButton } from '../../looks/LookPicker'
 import { STAGGER, popIn, shake, spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
 import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
@@ -95,9 +96,8 @@ function FlockMenu() {
   // A reload drops the in-memory game; the device id still owns the seat.
   const [last] = useState(lastFlockCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
-  const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
   const named = name.trim().length > 0
-  const save = () => updateProfile({ name: name.trim(), avatar })
+  const save = () => updateProfile({ name: name.trim() })
   const t = useT()
 
   return (
@@ -142,15 +142,7 @@ function FlockMenu() {
         <div className="arena-section">
           <div className="profile-label">{t('flock.menu.you')}</div>
           <input className="profile-name-input" placeholder={t('flock.menu.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
-          <div className="avatar-grid arena-avatar-grid">
-            {CHARACTERS.map((c) => (
-              <button key={c} className={`avatar-option ${avatar === c ? 'selected' : ''}`} onClick={() => setAvatar(c)} title={c}>
-                <span className="avatar-option-pic">
-                  <Avatar id={c} />
-                </span>
-              </button>
-            ))}
-          </div>
+          <LookButton />
         </div>
 
         <div className="arena-section">

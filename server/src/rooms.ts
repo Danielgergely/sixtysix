@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
-import { CHARACTERS, MAX_ARENA_PLAYERS } from '@sixtysix/shared'
+import { MAX_ARENA_PLAYERS, cleanLook } from '@sixtysix/shared'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
 export interface RoomPlayer extends ArenaPlayer {
@@ -103,8 +103,8 @@ export function cleanName(name: unknown): string {
   return Array.from(cleaned).slice(0, 14).join('') || 'Player'
 }
 
-export const cleanAvatar = (avatar: unknown): string =>
-  CHARACTERS.includes(avatar as (typeof CHARACTERS)[number]) ? (avatar as string) : CHARACTERS[0]
+/** A look string (shared/src/looks.ts): old character ids stay valid, unknown parts become the default. Worn items are trusted here (family game). */
+export const cleanAvatar = (avatar: unknown): string => cleanLook(avatar)
 
 /** Add a new player, or rebind an existing one (reconnection). */
 export function addOrRebindPlayer(

@@ -29,6 +29,9 @@ export interface PlayerStats {
   bestScore: number
   currentStreak: number
   bestStreak: number
+  /** Open Arena wins and the longest Daily Scroll run: they unlock rare look items (shared/src/looks.ts). */
+  arenaWins: number
+  bestDailyStreak: number
 }
 
 export const EMPTY_STATS: PlayerStats = {
@@ -41,6 +44,8 @@ export const EMPTY_STATS: PlayerStats = {
   bestScore: 0,
   currentStreak: 0,
   bestStreak: 0,
+  arenaWins: 0,
+  bestDailyStreak: 0,
 }
 
 /** Apply a reward's stats: counters add, best* take the max, currentStreak is set (as on the server). */

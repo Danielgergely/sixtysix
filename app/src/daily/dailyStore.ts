@@ -163,7 +163,9 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
     }
     const next = { ...saved, picks, streak, streakDate, ids: questions.map((x) => x.id) }
     save(next)
-    if (earned) useGameStore.getState().addCoins(earned, correct ? UNTIMED_XP_PER_CORRECT : 0)
+    // A finished scroll also reports the day run (it unlocks the jewelled frame, shared/src/looks.ts).
+    const done = picks.length === COUNT ? { bestDailyStreak: streak } : undefined
+    if (earned || done) useGameStore.getState().addCoins(earned, correct ? UNTIMED_XP_PER_CORRECT : 0, done)
     playSfx(correct ? 'correct' : 'wrong')
     set({ saved: next, coins: coins + earned })
   },

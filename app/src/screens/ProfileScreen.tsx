@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useGameStore } from '../game/store'
-import { CHARACTERS, hasRole } from '@sixtysix/shared'
-import { Avatar } from '../avatars/Avatar'
-import { characterName } from '../art/characters'
+import { hasRole } from '@sixtysix/shared'
+import { LookButton } from '../looks/LookPicker'
 import { AccountPanel } from './AccountPanel'
 import { openSkillTree } from '../skills/nav'
 import { LOCALES, useLocale, useT } from '../i18n'
@@ -73,20 +72,7 @@ export function ProfileScreen() {
 
       <div className="profile-section">
         <div className="profile-label">{t('profile.racer')}</div>
-        <div className="avatar-grid">
-          {CHARACTERS.map((id) => (
-            <button
-              key={id}
-              className={`avatar-option ${player.avatar === id ? 'selected' : ''}`}
-              onClick={() => updateProfile({ avatar: id })}
-            >
-              <span className="avatar-option-pic">
-                <Avatar id={id} />
-              </span>
-              <span>{characterName(id)}</span>
-            </button>
-          ))}
-        </div>
+        <LookButton />
       </div>
 
       <div className="profile-section">

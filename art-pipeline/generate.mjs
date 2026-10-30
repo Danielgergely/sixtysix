@@ -33,7 +33,7 @@ const dryRun = Boolean(args['dry-run'])
 // survives across machines). A run that could push the total past BUDGET_USD
 // is refused up front. Prices: Standard tier, 1K images
 // (https://ai.google.dev/gemini-api/docs/pricing, checked 2026-10-29).
-const BUDGET_USD = 9.5
+const BUDGET_USD = 12 // raised 2026-10-30 for the character picker (busts, skin tones, look items; ≤ $6)
 const PRICE_USD = { 'gemini-nano-banana-2.1': 0.0336, 'gemini-3.1-flash-lite-image': 0, 'gemini-3-pro-image': 0.134 }
 const usageFile = join(root, 'usage.json')
 const usage = existsSync(usageFile) ? JSON.parse(readFileSync(usageFile, 'utf8')) : { images: 0, usd: 0 }

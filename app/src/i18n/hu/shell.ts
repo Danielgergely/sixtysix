@@ -14,5 +14,9 @@ export default {
     reload: 'Újratöltés',
   },
   reward: { xp: '+{xp} XP' },
-  characters: { david: 'Dávid', moses: 'Mózes', esther: 'Eszter', ruth: 'Ruth' },
+  characters: {
+    david: 'Dávid', moses: 'Mózes', esther: 'Eszter', ruth: 'Ruth', abraham: 'Ábrahám', sarah: 'Sára', noah: 'Nóé', rebekah: 'Rebeka',
+    joseph: 'József', miriam: 'Mirjám', deborah: 'Débóra', gideon: 'Gedeon', hannah: 'Anna', samuel: 'Sámuel', elijah: 'Illés',
+    naomi: 'Naomi', daniel: 'Dániel', mary: 'Mária', peter: 'Péter', john: 'János', martha: 'Márta', lydia: 'Lídia', paul: 'Pál', priscilla: 'Priszcilla',
+  },
 }
