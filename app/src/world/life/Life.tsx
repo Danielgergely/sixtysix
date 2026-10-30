@@ -224,6 +224,25 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
       const s = b && sims.current.get(b.id)
       if (!el || !s) return
       el.style.transform = `translate3d(${s.x.toFixed(1)}px, ${(s.y - s.a.h - 4).toFixed(1)}px, 0)`
+      // Keep the bubble inside the visible window: slide it sideways (screen px), the tail stays on the figure.
+      const bub = el.firstElementChild as HTMLElement | null
+      const pz = el.closest('.pz')
+      if (!bub || !pz) return
+      const view = pz.getBoundingClientRect()
+      const r = bub.getBoundingClientRect()
+      const prev = Number(bub.dataset.dx ?? 0)
+      const left = r.left - prev
+      const right = r.right - prev
+      const pad = 6
+      let dx = 0
+      if (right - left > view.width - 2 * pad) dx = view.left + view.width / 2 - (left + right) / 2
+      else if (left < view.left + pad) dx = view.left + pad - left
+      else if (right > view.right - pad) dx = view.right - pad - right
+      dx = Math.round(dx)
+      if (dx !== prev) {
+        bub.dataset.dx = String(dx)
+        bub.style.setProperty('--dx', `${dx}px`)
+      }
     }
 
     const frame = (now: number) => {
