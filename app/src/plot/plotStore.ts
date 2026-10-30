@@ -3,6 +3,7 @@ import {
   advance,
   BUILDING_IDS,
   type BuildingId,
+  type GiftFigure,
   type Material,
   type Materials,
   type PlotState,
@@ -116,6 +117,8 @@ interface PlotStore {
   sell: (m: Material, qty: number) => Promise<boolean>
   upgrade: (b: BuildingId, buyMissing: boolean) => Promise<boolean>
   collect: (b?: BuildingId) => Promise<Materials | null>
+  /** A carrier in the yard hands over a gift (shared/src/life.ts): what was given, or the error text. */
+  gift: (figure: GiftFigure) => Promise<{ got: Materials } | { error: string }>
   startScroll: () => Promise<void>
   answerScroll: (answers: number[], building?: BuildingId) => Promise<void>
   closeScroll: () => void
@@ -192,6 +195,14 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       set({ busy: true })
       const res = take(await call<{ collected: Materials }>('/collect', building ? { building } : {}))
       return res ? res.collected : null
+    },
+
+    gift: async (figure) => {
+      // Not `busy`: the bubble shows the answer, the buttons stay as they are.
+      const res = await call<{ collected: Materials }>('/gift', { figure })
+      if (!res.ok) return { error: res.error }
+      const ok = take(res)
+      return ok ? { got: ok.collected } : { error: '' }
     },
 
     startScroll: async () => {

@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
+import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
 import { useT } from '../i18n'
 import { artFor, COURTYARD_ART, countdown } from '../screens/home/homeUtil'
@@ -42,10 +42,12 @@ interface Props {
   now?: number
   seen?: Record<BuildingId, number> | null
   onSelect?: (spot: Spot) => void
+  /** Your own plot: a carrier in the yard hands over a gift (PlotLife). */
+  onGift?: (figure: GiftFigure) => Promise<string>
   className?: string
 }
 
-export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: Props) {
+export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className }: Props) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
   const t = useT()
   return (
@@ -76,7 +78,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: 
       {order.map((spot, i) => (
         <SpotView key={spot} spot={spot} index={i} levels={levels} plot={plot} now={now} seen={seen} onSelect={onSelect} />
       ))}
-      <PlotLife levels={levels} />
+      <PlotLife levels={levels} plot={plot} now={now} onGift={onGift} />
       {levels.wall === 1 && <Hedge />}
       <Fence level={levels.wall} side="front" />
       {/* Name tags on their own layer above the fence, so the front sides never hide them. */}
@@ -87,11 +89,12 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, className }: 
   )
 }
 
-function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Spot; index: number } & Omit<Props, 'className'> & { now: number }) {
+function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Spot; index: number } & Omit<Props, 'className' | 'onGift'> & { now: number }) {
   const wasDragged = useWasDragged()
   const t = useT()
   const place = PLACES[spot]
-  const style = { left: `${place.x}%`, top: `${place.y}%`, width: `${place.w}%`, zIndex: Math.round(place.y) }
+  // z-index = foot y in % × 10, the scale the people in the yard sort by too (PlotLife).
+  const style = { left: `${place.x}%`, top: `${place.y}%`, width: `${place.w}%`, zIndex: Math.round(place.y * 10) }
   const tap = onSelect && (() => !wasDragged() && onSelect(spot))
   const enter = { initial: { opacity: 0, y: -14, scale: 0.9 }, animate: { opacity: 1, y: 0, scale: 1 }, transition: { ...spring.bouncy, delay: index * STAGGER } }
 
@@ -335,7 +338,7 @@ const Hedge = memo(function Hedge() {
             src={`/art/plot-hedge-${(k * 7) % 4 + 1}.webp`}
             alt=""
             draggable={false}
-            style={{ left: `${x}%`, top: `${y}%`, width: `${4.4 + v * 1.4}%`, zIndex: Math.round(y), scale: k % 3 ? '1 1' : '-1 1' }}
+            style={{ left: `${x}%`, top: `${y}%`, width: `${4.4 + v * 1.4}%`, zIndex: Math.round(y * 10), scale: k % 3 ? '1 1' : '-1 1' }}
           />
         )
       })}

@@ -10,6 +10,7 @@
  * (`PlotState.mods`), and every rule below reads them from there.
  */
 import { NO_MODS, SEVEN_YEARS_MS, type PlotMods } from './skills'
+import type { GiftLog } from './life'
 
 export const MATERIALS = ['wood', 'bricks', 'stone', 'wool', 'oil', 'cedar', 'gold'] as const
 export type Material = (typeof MATERIALS)[number]
@@ -214,6 +215,8 @@ export interface PlotState {
   mods?: PlotMods
   /** Seven good years: producers +50 % until then. */
   boostUntil?: number
+  /** Gifts from the people in the yard (shared/src/life.ts). */
+  gifts?: GiftLog
 }
 
 export const modsOf = (s: Pick<PlotState, 'mods'>): PlotMods => s.mods ?? NO_MODS
