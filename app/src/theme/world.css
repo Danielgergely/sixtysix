@@ -128,6 +128,8 @@
 }
 .cm-walker i::before{ content: ''; position: absolute; left: 2.5px; top: -8px; width: 9px; height: 9px; border-radius: 50%; background: #c98b5a; box-shadow: 0 0 0 1.5px #2b1408; }
 .cm-walker::after{ content: ''; position: absolute; left: -7px; top: -3px; width: 14px; height: 5px; border-radius: 50%; background: rgb(0 0 0 / 0.25); }
+/* Paused while a finger drags the map, so phones only move the picture. */
+.pz-dragging .cm-walker, .pz-dragging .cm-walker i{ animation-play-state: paused; }
 @keyframes cm-walk{ from{ offset-distance: 0%; } to{ offset-distance: 100%; } }
 @keyframes cm-bob{ from{ translate: 0 0; } to{ translate: 0 -2px; } }
 @media (prefers-reduced-motion: reduce){ .cm-walker{ display: none; } .cm-lot.found::before{ animation: none; } }

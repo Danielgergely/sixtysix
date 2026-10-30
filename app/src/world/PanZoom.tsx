@@ -235,6 +235,8 @@ export function PanZoom({ worldW, worldH, maxZoom, initialZoom, initialCenter, w
     if (!moved.current && Math.hypot(mx - g.sx, my - g.sy) < 6 && pts.length < 2) return
     if (!moved.current) {
       moved.current = true
+      // Lets the map pause costly decorations (walking figures) while it moves.
+      box.current?.classList.add('pz-dragging')
       // Capture only once it's really a drag, so taps still reach the buttons.
       try {
         box.current?.setPointerCapture(e.pointerId)
@@ -254,6 +256,7 @@ export function PanZoom({ worldW, worldH, maxZoom, initialZoom, initialCenter, w
       return
     }
     gesture.current = null
+    box.current?.classList.remove('pz-dragging')
     // A little momentum after a flick.
     const sm = samples.current
     if (moved.current && sm.length > 1) {
@@ -279,7 +282,12 @@ export function PanZoom({ worldW, worldH, maxZoom, initialZoom, initialCenter, w
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
-      onLostPointerCapture={onPointerUp}
+      onLostPointerCapture={(e) => {
+        // Only our own capture ending counts. On touch screens the browser first captures
+        // the finger to the element under it; taking it over for the drag fires
+        // lostpointercapture on that child, which bubbles here and must not end the drag.
+        if (e.target === e.currentTarget) onPointerUp(e)
+      }}
     >
       <motion.div className="pz-inner" style={{ width: worldW, height: worldH, x, y, scale: s, originX: 0, originY: 0 }}>
         {background}
