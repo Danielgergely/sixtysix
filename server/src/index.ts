@@ -40,14 +40,16 @@ app.get('/api/server-info', () => ({
   apple: APPLE_SERVICES_ID ? { clientId: APPLE_SERVICES_ID, redirectUri: APPLE_REDIRECT_URI } : null,
 }))
 
+/** Home-network addresses first (what phones on the same wifi can reach); self-assigned 169.254.x never. */
 function lanUrls(): string[] {
-  const urls: string[] = []
+  const rank = (ip: string) => (ip.startsWith('192.168.') ? 0 : /^10\./.test(ip) || /^172\.(1[6-9]|2\d|3[01])\./.test(ip) ? 1 : 2)
+  const ips: string[] = []
   for (const addrs of Object.values(networkInterfaces())) {
     for (const a of addrs ?? []) {
-      if (a.family === 'IPv4' && !a.internal) urls.push(`http://${a.address}:${PORT}`)
+      if (a.family === 'IPv4' && !a.internal && !a.address.startsWith('169.254.')) ips.push(a.address)
     }
   }
-  return urls
+  return ips.sort((a, b) => rank(a) - rank(b)).map((ip) => `http://${ip}:${PORT}`)
 }
 
 // Serve the built web app (same origin as the socket → QR join links work).

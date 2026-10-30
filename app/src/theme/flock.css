@@ -12,7 +12,7 @@
 .fl-row-between{ display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .fl-scroll{ overflow-y: auto; min-height: 0; }
 .fl-col.fl-scroll{ overflow-y: auto; }
-.fl-round-chip{
+.fl-round-chip{ white-space: nowrap;
   justify-self: end; padding: 4px 8px; border-radius: 999px; font: 900 13px/1 'Cinzel', serif; color: #ffe7a3;
   background: rgb(29 15 6 / 0.8); border: 2px solid #e3b754;
 }
