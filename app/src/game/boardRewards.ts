@@ -36,13 +36,12 @@ function payOnce(key: string, reward: BoardReward): void {
   useGameStore.getState().addCoins(reward.coins, reward.xp)
 }
 
-/** My reward for a finished Wolf in the Flock game (null = not finished / not playing). */
+/** My reward for a finished Wolf in the Flock game (abandoned games and onlookers get nothing). */
 export function flockRewardFor(state: FlockState, myId: string | null): BoardReward | null {
-  const me = state.phase === 'final' ? state.players.find((p) => p.id === myId) : undefined
-  if (!me) return null
-  // Ties share the better rank.
-  const rank = state.players.filter((p) => p.score > me.score).length
-  return flockReward(me.score, rank)
+  const r = state.phase === 'over' ? state.result : null
+  const me = state.players.find((p) => p.id === myId)
+  if (!r?.winner || !me?.playing) return null
+  return flockReward((r.wolfIds.includes(me.id) ? 'wolves' : 'sheep') === r.winner)
 }
 
 /** My reward for a finished Twelve Spies game (abandoned games pay nothing). */

@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FlockCategory, FlockClue, FlockPhase, FlockRoundResult, FlockState } from '@sixtysix/shared'
+import type { FlockCategory, FlockClue, FlockOut, FlockPhase, FlockResult, FlockState } from '@sixtysix/shared'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 
 /**
@@ -30,7 +30,7 @@ export interface FPlayer {
   id: string
   name: string
   avatar: string
-  score: number
+  wins: number
   connected: boolean
   socketId: string | null
 }
@@ -41,28 +41,31 @@ export interface FRoom {
   /** Keyed by the SECRET device id; `id` inside is the public id. */
   players: Map<string, FPlayer>
   leaderSecret: string | null
-  totalRounds: number
-  clueLaps: number
   /** Games started in this room (rewards are paid once per game). */
   game: number
-  round: number
   category: FlockCategory | null
   word: FlockWord | null
-  /** This round's wolves (secrets). */
+  /** This game's wolves (secrets), out or not. */
   wolves: string[]
-  /** Players dealt a card this round (late joiners wait for the next one). */
+  /** Players dealt into this game (late joiners wait for the next one). */
   dealt: Set<string>
-  /** Clue order (secrets); a turn index walks it clueLaps times. */
+  /** Voted out / guessed wrong this game. */
+  out: Set<string>
+  /** Clue order (secrets); the turn index walks it lap after lap. */
   turnOrder: string[]
   turnIdx: number
+  /** Current clue lap (1-based); a lap is one pass over turnOrder. */
+  lap: number
   clues: FlockClue[]
-  /** 'secret': who has looked; 'vote': who has voted. */
+  /** 'secret': who has looked; 'decide': choice per player; 'vote': who has voted. */
   done: Set<string>
+  decide: Map<string, boolean>
   /** voter secret → target public id */
   votes: Map<string, string>
-  accusedId: string | null
+  finalVote: boolean
   guessOptions: string[]
-  result: FlockRoundResult | null
+  lastOut: FlockOut | null
+  result: FlockResult | null
   usedWords: Set<string>
   phaseEndsAt: number
   phaseMs: number
@@ -93,21 +96,22 @@ export function createFlockRoom(): FRoom {
     phase: 'lobby',
     players: new Map(),
     leaderSecret: null,
-    totalRounds: 5,
-    clueLaps: 2,
     game: 0,
-    round: 0,
     category: null,
     word: null,
     wolves: [],
     dealt: new Set(),
+    out: new Set(),
     turnOrder: [],
     turnIdx: 0,
+    lap: 1,
     clues: [],
     done: new Set(),
+    decide: new Map(),
     votes: new Map(),
-    accusedId: null,
+    finalVote: false,
     guessOptions: [],
+    lastOut: null,
     result: null,
     usedWords: new Set(),
     phaseEndsAt: 0,
@@ -144,6 +148,7 @@ export function toFlockState(room: FRoom): FlockState {
   const turnSecret =
     room.phase === 'clues' && room.turnOrder.length ? room.turnOrder[room.turnIdx % room.turnOrder.length] : null
   const pub = (secret: string | null) => (secret && room.players.get(secret)?.id) || null
+  const ids = (secrets: Iterable<string>) => [...secrets].map(pub).filter((x): x is string => x !== null)
   return {
     code: room.code,
     phase: room.phase,
@@ -151,25 +156,31 @@ export function toFlockState(room: FRoom): FlockState {
       id: p.id,
       name: p.name,
       avatar: p.avatar,
-      score: p.score,
+      wins: p.wins,
       connected: p.connected,
+      playing: room.phase !== 'lobby' && room.dealt.has(secret),
+      out: room.phase !== 'lobby' && room.out.has(secret),
       done: room.done.has(secret),
     })),
     leaderId: pub(room.leaderSecret),
     game: room.game,
-    round: room.round,
-    totalRounds: room.totalRounds,
-    clueLaps: room.clueLaps,
+    lap: room.lap,
     category: room.category,
     wolfCount: room.wolves.length,
-    // Left players drop out of the public order; their skipped clues stay.
-    turnOrder: room.turnOrder.map(pub).filter((x): x is string => x !== null),
+    wolvesLeft: room.wolves.filter((s) => !room.out.has(s) && room.players.has(s)).length,
+    // Left players drop out of the public order; their clues stay.
+    turnOrder: ids(room.turnOrder),
     turnPlayerId: pub(turnSecret),
     clues: room.clues,
+    decide:
+      room.phase === 'decide'
+        ? { vote: ids([...room.decide].filter(([, v]) => v).map(([s]) => s)), more: ids([...room.decide].filter(([, v]) => !v).map(([s]) => s)) }
+        : null,
+    finalVote: room.finalVote,
     endsInMs: room.phaseEndsAt ? Math.max(0, room.phaseEndsAt - Date.now()) : 0,
     phaseMs: room.phaseMs,
-    result: room.phase === 'result' || room.phase === 'final' ? room.result : null,
-    accusedId: room.phase === 'guess' ? room.accusedId : null,
+    lastOut: room.phase === 'out' ? room.lastOut : null,
+    result: room.phase === 'over' ? room.result : null,
   }
 }
 

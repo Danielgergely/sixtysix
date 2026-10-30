@@ -117,8 +117,8 @@ export function TurnRibbon({ state, size = 38 }: { state: FlockState; size?: num
         if (!p) return null
         const now = id === state.turnPlayerId
         return (
-          <motion.span key={id} className={`fl-ribbon-item ${now ? 'now' : ''}`} animate={{ scale: now ? 1.15 : 1, y: now ? -4 : 0 }} transition={spring.bouncy}>
-            <Token player={p} size={size} />
+          <motion.span key={id} className={`fl-ribbon-item ${now ? 'now' : ''} ${p.out ? 'out' : ''}`} animate={{ scale: now ? 1.15 : 1, y: now ? -4 : 0 }} transition={spring.bouncy}>
+            <Token player={p} size={size} dim={p.out} badge={p.out ? '✕' : undefined} />
             <small>{p.name}</small>
           </motion.span>
         )
@@ -127,21 +127,18 @@ export function TurnRibbon({ state, size = 38 }: { state: FlockState; size?: num
   )
 }
 
-export function Scoreboard({ state, gains }: { state: FlockState; gains?: Record<string, number> }) {
-  const rows = [...state.players].sort((a, b) => b.score - a.score)
+/** Games won in this room. */
+export function Scoreboard({ state }: { state: FlockState }) {
+  const rows = [...state.players].sort((a, b) => b.wins - a.wins)
   return (
     <div className="fl-scores">
+      <div className="fl-scores-head">Wins in this room</div>
       {rows.map((p, i) => (
         <motion.div key={p.id} layout transition={spring.gentle} className="fl-score-row">
           <span className="fl-score-rank">{i + 1}</span>
           <Token player={p} size={32} />
           <span className="fl-score-name">{p.name}</span>
-          {gains?.[p.id] ? (
-            <motion.span className="fl-gain" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ ...spring.bouncy, delay: 0.4 + i * STAGGER }}>
-              +{gains[p.id]}
-            </motion.span>
-          ) : null}
-          <span className="fl-score-pts">{p.score}</span>
+          <span className="fl-score-pts">{p.wins}</span>
         </motion.div>
       ))}
     </div>

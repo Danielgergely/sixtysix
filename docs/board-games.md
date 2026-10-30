@@ -23,15 +23,21 @@
 
 ## Rules (as implemented)
 
-1. **Setup.** 3–12 players, each on a phone. A shared board (laptop / projector) is optional. The leader picks 3, 5 or 8 rounds and one or two clues per player.
-2. **Cards.** Each round the server picks a word from `server/src/flock/words.json` (≈100 curated people, places, stories and objects, each with a hint, a reference and a `wolfHint`). Every player sees the word, except **the wolf**, who only sees the category. From 7 players (`FLOCK_TWO_WOLVES_FROM`) there are **two wolves**, who don't know each other; everyone knows how many there are. Wolves are random each round, avoiding last round's wolves when enough others are left. The clue order is random, so a wolf opens about wolves ÷ players of the time; a wolf who opens gets the word's `wolfHint` on the card, one associated word written by hand (Jonah → "Sea", Manger → "Animals") that points the right way without naming it.
-3. **Clues.** In turn order (random each round), each player types a short clue (≤ 3 words, 24 characters, 40 s). Sheep may not say the word or a key part of it (checked by the server). Missed turns are skipped.
-4. **Vote.** Everyone votes for one other player (60 s).
-5. **Scoring.** Each sheep who voted for a wolf: **+1**. Each wolf who is not the single most-voted player (a tie counts as escaping): **+3**. A caught wolf picks the word from six options in the category: **+2** if right. With two wolves only one can be caught, so the other always escapes.
-6. **End.** Points add up over the rounds (everyone is sometimes a sheep, sometimes a wolf), so the podium ranks the whole game. After the last round the podium shows; the leader can **Play again** (back to the lobby, scores reset).
-7. **Rewards.** Playing a game to the end pays coins and XP once (`flockReward` in `shared/src/coins.ts`): 3 coins per point plus 30 / 20 / 10 for the top three (10 for everyone else), and 1,500 XP plus 300 per point. Twelve Spies pays 40 coins + 3,000 XP for a win and 15 coins + 1,500 XP for a loss; an abandoned game pays nothing. Leaving early forfeits the reward.
+One game = one secret word, a few minutes long; the leader starts a new word straight from the result screen.
 
-Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are skipped while they are away. If the wolf leaves, the round is called off; if fewer than 3 players remain, the game ends. The leader role passes to the next connected player.
+1. **Setup.** 3–12 players, each on a phone. A shared board (laptop / projector) is optional. No settings.
+2. **Cards.** The server picks a word from `server/src/flock/words.json` (≈100 curated people, places, stories and objects, each with a hint, a reference and a `wolfHint`). Every player sees the word, except **the wolf**, who sees only the category and a list of 8 candidates (the word among them). From 7 players (`FLOCK_TWO_WOLVES_FROM`) there are **two wolves**, who don't know each other; everyone knows how many there are. Wolves are random each game, avoiding last game's wolves when enough others are left.
+3. **Clues.** In a random order (fixed for the game), each player types a short clue (≤ 3 words, 24 characters, 40 s). Sheep may not say the word or a key part of it (checked by the server). Missed turns are silent. A wolf who opens gets the word's `wolfHint` on the card: one associated word written by hand (Jonah → "Sea", Manger → "Animals") that points the right way without naming it.
+4. **Decide.** After every full lap, everyone still in chooses **Vote now** or **One more lap** (20 s). A majority of the players still in starts the vote; a tie or the timer without a vote majority means another lap. After lap 4 (`FLOCK_MAX_LAPS`) the vote is final, with no choice.
+5. **Vote.** Everyone still in votes for one other player (60 s). The single most-voted player is out:
+   - a sheep → **the wolves win**;
+   - the last wolf → **the flock wins**; with another wolf still hiding, everyone sees "X was a wolf!" and a new lap starts;
+   - a tie → nobody leaves and a new lap starts; on the final vote a tie lets **the wolves escape**.
+6. **The wolf's guess.** At any time during the game a wolf may tap "I know the word!" and pick from their candidates. Right → **the wolves win**. Wrong → that wolf is out (the flock wins if it was the last one).
+7. **End.** The result shows the winner, the word, the wolves and the deciding vote. Players keep a count of wins in the room.
+8. **Rewards.** Every player dealt into a finished game gets coins and XP once (`flockReward` in `shared/src/coins.ts`): 20 coins + 1,200 XP for the winning side, 8 coins + 600 XP for the losers. Twelve Spies pays 40 coins + 3,000 XP for a win and 15 coins + 1,500 XP for a loss. Abandoned games pay nothing; leaving early forfeits the reward.
+
+Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are silent and they don't count for the decision or the vote while away. Players who join mid-game watch and are dealt into the next one. If the last wolf leaves, the flock wins; if fewer than 3 players are still in, the game is abandoned. The leader role passes to the next connected player.
 
 ## Second game: **Twelve Spies** (Bible Codenames)
 

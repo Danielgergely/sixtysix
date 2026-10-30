@@ -143,6 +143,28 @@
 }
 .fl-guess:disabled{ opacity: 0.5; }
 .fl-guess.picked{ opacity: 1; background: linear-gradient(#fff2b8, #e3b754); outline: 3px solid #fff; }
+.fl-decide{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fl-decide-btn{
+  display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 74px; padding: 10px; border-radius: 14px; cursor: pointer;
+  font: 900 16px/1.2 'Cinzel', serif; color: #2b1408; border: 2px solid #1d0f06; box-shadow: 0 4px 0 #1d0f06;
+}
+.fl-decide-btn small{ font: 800 13px 'Cinzel', serif; opacity: 0.75; }
+.fl-decide-btn.vote{ background: linear-gradient(#ffb38a, #c9502a); }
+.fl-decide-btn.more{ background: linear-gradient(#f3e2bb, #c9a24a); }
+.fl-decide-btn.picked{ outline: 3px solid #fff; transform: translateY(2px); box-shadow: 0 2px 0 #1d0f06; }
+.fl-wolf-fab{
+  align-self: center; flex-shrink: 0; margin-bottom: 8px; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  font: 900 14px 'Cinzel', serif; color: #ffe7a3; background: radial-gradient(circle at 50% 30%, #6b2a1a, #3a120b 75%); border: 2px solid #ffb347;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.5);
+}
+.fl-sheet-backdrop{ position: fixed; inset: 0; z-index: 30; display: flex; align-items: flex-end; justify-content: center; background: rgb(0 0 0 / 0.55); }
+.fl-sheet{
+  width: min(100%, 520px); max-height: 90dvh; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom)); border-radius: 20px 20px 0 0;
+  background: radial-gradient(circle at 50% 0%, #4a1c10, #24100a 70%); border-top: 3px solid #c9a24a;
+}
+.fl-sheet-actions{ display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+.fl-ribbon-item.out{ opacity: 0.5; }
 .fl-caught{ display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .fl-caught strong{ font: 900 26px/1.2 'Cinzel Decorative', serif; color: #ffe08a; text-shadow: 0 3px 6px #000; }
 
@@ -161,9 +183,14 @@
 .fl-reveal-label{ font: 700 11px 'Cinzel', serif; letter-spacing: 0.2em; text-transform: uppercase; color: #e9c98a; }
 .fl-reveal-wolf strong{ font: 900 22px 'Cinzel Decorative', serif; }
 .fl-reveal-wolf small{ font: italic 13px Georgia, serif; }
-.fl-verdict{ text-align: center; font: 900 18px/1.3 'Cinzel', serif; text-shadow: 0 2px 4px #000; }
-.fl-verdict.good{ color: #b6f09a; }
-.fl-verdict.bad{ color: #ffb38a; }
+.fl-verdict-big{ display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; text-shadow: 0 2px 4px #000; }
+.fl-verdict-big strong{ font: 900 30px/1.15 'Cinzel Decorative', serif; color: #ffe08a; }
+.fl-verdict-big.sheep strong{ color: #c8f5a8; }
+.fl-verdict-big.wolves strong{ color: #ffb38a; }
+.fl-verdict-big span{ font: 700 16px/1.3 'Cinzel', serif; color: #ffe7a3; }
+.fl-reveal.large .fl-verdict-big strong{ font-size: 46px; }
+.fl-reveal.large .fl-verdict-big span{ font-size: 24px; }
+.fl-out-tie{ font-size: 80px; line-height: 1; }
 .fl-votes{ display: flex; flex-direction: column; gap: 4px; }
 .fl-vote-row{ display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 8px; border-radius: 10px; background: rgb(29 15 6 / 0.7); border: 1px solid #8a6a2a; color: #ffe7a3; font: 700 13px 'Cinzel', serif; }
 .fl-vote-row.wolf{ border-color: #ffe08a; background: rgb(90 30 15 / 0.85); }
@@ -171,6 +198,7 @@
 .fl-vote-by{ display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
 
 .fl-scores{ display: flex; flex-direction: column; gap: 4px; padding: 8px; border-radius: 12px; background: rgb(243 226 187 / 0.96); border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06; }
+.fl-scores-head{ font: 900 11px 'Cinzel', serif; letter-spacing: 0.15em; text-transform: uppercase; color: #8e3b1e; text-align: center; }
 .fl-score-row{ display: flex; align-items: center; gap: 8px; color: #3b2412; font: 700 14px 'Cinzel', serif; }
 .fl-score-rank{ width: 18px; text-align: center; color: #8e3b1e; }
 .fl-score-name{ flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -219,7 +247,6 @@
 .fl-reveal.large .fl-reveal-word strong{ font-size: clamp(36px, 5vw, 64px); }
 .fl-reveal.large .fl-reveal-word small{ font-size: 18px; }
 .fl-reveal.large .fl-reveal-wolf strong{ font-size: 32px; }
-.fl-reveal.large .fl-verdict{ font-size: 28px; }
 .fl-reveal.large .fl-vote-row{ font-size: 17px; }
 .flb-final{ flex: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .flb-headline{ font: 900 clamp(26px, 3.4vw, 46px) 'Cinzel Decorative', serif; color: #ffe08a; text-shadow: 0 3px 8px #000; }

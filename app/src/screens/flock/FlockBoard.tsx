@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_MIN_PLAYERS, type FlockState } from '@sixtysix/shared'
+import { FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, type FlockState } from '@sixtysix/shared'
 import { useFlockStore } from '../../flock/flockStore'
 import { spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, Timer, Token, TurnRibbon } from './parts'
 import { CATEGORY_LABEL, playerById, useJoinOrigin } from '../../flock/util'
-import { Podium, RoundReveal, Rules } from './reveal'
+import { GameReveal, OutReveal, Rules } from './reveal'
 
 /**
  * Shared board for a laptop / projector (`/flock/CODE/board`). Shows only public
@@ -25,15 +25,15 @@ export function FlockBoard() {
         <span className="flb-code">
           Code <b>{state.code}</b>
         </span>
-        {state.phase !== 'lobby' && state.phase !== 'final' && (
+        {state.phase !== 'lobby' && state.phase !== 'over' && (
           <span className="flb-round">
-            Round {state.round}/{state.totalRounds}
+            Lap {state.lap}/{FLOCK_MAX_LAPS}
           </span>
         )}
       </header>
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key={state.phase === 'lobby' || state.phase === 'final' ? state.phase : `${state.round}-${state.phase}`}
+          key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
           className="flb-main"
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1, transition: spring.gentle }}
@@ -89,30 +89,29 @@ function BoardPhase({ state }: { state: FlockState }) {
       </div>
     )
   }
-  if (state.phase === 'final') {
+  if (state.phase === 'over') {
     return (
-      <div className="flb-final">
-        <h2 className="flb-headline">The flock has spoken!</h2>
-        <Podium state={state} large />
-        <div className="flb-final-scores">
+      <div className="flb-split">
+        <GameReveal state={state} large />
+        <div className="flb-side">
           <Scoreboard state={state} />
+          <p className="fl-wait">Waiting for 👑 {playerById(state, state.leaderId)?.name} to start a new word…</p>
         </div>
       </div>
     )
   }
-  if (state.phase === 'result') {
+  if (state.phase === 'out') {
     return (
       <div className="flb-split">
-        <RoundReveal state={state} large />
+        <OutReveal state={state} large />
         <div className="flb-side">
-          <Scoreboard state={state} gains={state.result?.gains} />
-          <p className="fl-wait">Waiting for 👑 {playerById(state, state.leaderId)?.name} to continue…</p>
+          <Timer size={96} />
         </div>
       </div>
     )
   }
   const speaker = playerById(state, state.turnPlayerId)
-  const wolf = playerById(state, state.accusedId)
+  const d = state.decide
   const banner =
     state.phase === 'secret'
       ? state.wolfCount > 1
@@ -121,10 +120,12 @@ function BoardPhase({ state }: { state: FlockState }) {
       : state.phase === 'clues'
         ? `${speaker?.name ?? '…'}, your clue!`
         : state.phase === 'vote'
-          ? state.wolfCount > 1
+          ? state.finalVote
+            ? 'Final vote: a tie lets the wolf escape!'
+            : state.wolfCount > 1
             ? 'Vote now: who is a wolf?'
             : 'Vote now: who is the wolf?'
-          : `${wolf?.name ?? 'The wolf'} was caught! Can they name the word?`
+          : `Lap ${state.lap} done — vote now or one more lap?${d ? `  🗳️ ${d.vote.length} · 🔁 ${d.more.length}` : ''}`
   return (
     <div className="flb-split">
       <div className="flb-stage">
@@ -146,12 +147,12 @@ function BoardPhase({ state }: { state: FlockState }) {
       </div>
       <div className="flb-side">
         <div className="arena-section flb-panel">
-          <div className="profile-label">{state.phase === 'vote' ? 'Votes cast' : state.phase === 'secret' ? 'Ready' : 'Scores'}</div>
+          <div className="profile-label">{state.phase === 'vote' ? 'Votes cast' : state.phase === 'secret' ? 'Ready' : state.phase === 'decide' ? 'Decided' : 'The flock'}</div>
           {state.players.map((p) => (
             <div key={p.id} className="flb-player">
-              <Token player={p} size={40} badge={(state.phase === 'vote' || state.phase === 'secret') && p.done ? '✓' : undefined} dim={!state.turnOrder.includes(p.id)} />
+              <Token player={p} size={40} badge={p.out ? '✕' : p.done ? '✓' : undefined} dim={!p.playing || p.out} />
               <span>{p.name}</span>
-              <b>{p.score}</b>
+              <b title="Wins">{p.wins}</b>
             </div>
           ))}
         </div>

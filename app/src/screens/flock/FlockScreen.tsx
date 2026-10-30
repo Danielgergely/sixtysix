@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_CLUE_MAX, FLOCK_MIN_PLAYERS, FLOCK_ROUND_OPTIONS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
+import { FLOCK_CLUE_MAX, FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, CHARACTERS, type CharacterId, type FlockSecret, type FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
@@ -8,7 +8,7 @@ import { STAGGER, popIn, shake, spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
 import { CATEGORY_LABEL, playerById, useJoinOrigin } from '../../flock/util'
 import { FlockBoard } from './FlockBoard'
-import { Podium, RoundReveal, Rules } from './reveal'
+import { GameReveal, OutReveal, Rules } from './reveal'
 import { RewardChip } from '../shell/RewardChip'
 import { flockRewardFor } from '../../game/boardRewards'
 import '../../theme/flock.css'
@@ -23,9 +23,10 @@ export function FlockScreen() {
     <div className="screen fl emp">
       <FlockTopBar state={state} />
       <div className="fl-body">
+        <WolfGuess state={state} />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={state.phase === 'lobby' || state.phase === 'final' ? state.phase : `${state.round}-${state.phase}`}
+            key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
             className="fl-phase"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
@@ -47,28 +48,33 @@ function PhaseView({ state }: { state: FlockState }) {
       return <SecretPhase state={state} />
     case 'clues':
       return <CluePhase state={state} />
+    case 'decide':
+      return <DecidePhase state={state} />
     case 'vote':
       return <VotePhase state={state} />
-    case 'guess':
-      return <GuessPhase state={state} />
-    case 'result':
-      return <ResultPhase state={state} />
-    case 'final':
-      return <FinalPhase state={state} />
+    case 'out':
+      return (
+        <div className="fl-col fl-scroll">
+          <OutReveal state={state} />
+          <Timer size={46} />
+        </div>
+      )
+    case 'over':
+      return <OverPhase state={state} />
   }
 }
 
 function FlockTopBar({ state }: { state: FlockState }) {
   const leave = useFlockStore((s) => s.leave)
   const [confirm, setConfirm] = useState(false)
-  const inGame = state.phase !== 'lobby' && state.phase !== 'final'
+  const inGame = state.phase !== 'lobby' && state.phase !== 'over'
   return (
     <header className="screen-topbar fl-topbar">
       <button className="icon-btn" onClick={() => (inGame && !confirm ? setConfirm(true) : leave())} title="Leave game">
         {confirm ? '✓' : '✕'}
       </button>
       <h2 className="topbar-heading">{confirm ? 'Leave? Tap ✓' : 'Wolf in the Flock'}</h2>
-      {inGame ? <span className="fl-round-chip">{state.round}/{state.totalRounds}</span> : <span className="topbar-spacer" />}
+      {inGame ? <span className="fl-round-chip">Lap {state.lap}</span> : <span className="topbar-spacer" />}
     </header>
   )
 }
@@ -100,8 +106,8 @@ function FlockMenu() {
       <div className="fl-body fl-menu">
         <motion.div className="fl-hero" {...popIn}>
           <span className="fl-hero-icons">🐑🐑🐺🐑</span>
-          <p>Everyone gets a secret Bible word — except the wolf. Give one clue each, then find the wolf! Points add up over the rounds.</p>
-          <small>3–12 players · each on their phone · ~15 min</small>
+          <p>Everyone gets a secret Bible word — except the wolf. Give clues in turn and find the wolf before it finds out the word!</p>
+          <small>3–12 players · each on their phone · ~5 min a game</small>
         </motion.div>
 
         {last && !prefillCode && (
@@ -225,22 +231,6 @@ function Lobby({ state }: { state: FlockState }) {
       </div>
 
       <div className="arena-section fl-settings">
-        <div className="profile-label">Rounds</div>
-        <div className="seg-row">
-          {FLOCK_ROUND_OPTIONS.map((r) => (
-            <button key={r} className={`seg-btn ${state.totalRounds === r ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings(r, state.clueLaps)}>
-              {r}
-            </button>
-          ))}
-        </div>
-        <div className="profile-label">Clues per player</div>
-        <div className="seg-row">
-          {[1, 2].map((l) => (
-            <button key={l} className={`seg-btn ${state.clueLaps === l ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings(state.totalRounds, l)}>
-              {l === 1 ? 'One (quick)' : 'Two (classic)'}
-            </button>
-          ))}
-        </div>
         <button className="fl-link dark" onClick={() => setRules((r) => !r)}>
           {rules ? 'Hide the rules' : '📜 How to play'}
         </button>
@@ -264,12 +254,13 @@ function useMine(state: FlockState) {
   const myId = useFlockStore((s) => s.myId)
   const secret = useFlockStore((s) => s.secret)
   const me = playerById(state, myId)
-  // No card this round = joined mid-round.
-  return { myId, secret: secret && secret.round === state.round ? secret : null, me }
+  // No card this game = joined mid-game; out = voted out or guessed wrong (watches the rest).
+  const mine = secret && secret.game === state.game && me?.playing ? secret : null
+  return { myId, secret: mine, me, out: !!me?.out }
 }
 
-function SpectatingNote() {
-  return <p className="fl-wait">You joined mid-round — you’ll be dealt in next round. Watch the clues!</p>
+function SpectatingNote({ out = false }: { out?: boolean }) {
+  return <p className="fl-wait">{out ? 'You are out of this game — watch how it ends!' : 'You joined mid-game — you’ll be dealt in next game. Watch the clues!'}</p>
 }
 
 function SecretPhase({ state }: { state: FlockState }) {
@@ -280,14 +271,17 @@ function SecretPhase({ state }: { state: FlockState }) {
   return (
     <div className="fl-center">
       <div className="fl-phase-title">
-        <span>Round {state.round}</span>
+        <span>Game {state.game}</span>
         <strong>Your secret card</strong>
       </div>
       <SecretCard secret={secret} big />
-      <p className="fl-hint-light">Keep it hidden! {secret.role === 'wolf' ? 'Nobody else knows you are a wolf.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}</p>
+      <p className="fl-hint-light">
+        Keep it hidden!{' '}
+        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. You may name the word at any time.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
+      </p>
       {me?.done ? (
         <p className="fl-wait">
-          Waiting for the others… {doneCount}/{state.turnOrder.length}
+          Waiting for the others… {doneCount}/{state.players.filter((p) => p.playing && p.connected).length}
         </p>
       ) : (
         <button className="btn-play fl-cta" onClick={ready}>
@@ -300,7 +294,7 @@ function SecretPhase({ state }: { state: FlockState }) {
 }
 
 function CluePhase({ state }: { state: FlockState }) {
-  const { myId, secret } = useMine(state)
+  const { myId, secret, out } = useMine(state)
   const sendClue = useFlockStore((s) => s.clue)
   const [text, setText] = useState('')
   const [err, setErr] = useState<string | null>(null)
@@ -308,7 +302,6 @@ function CluePhase({ state }: { state: FlockState }) {
   const listRef = useRef<HTMLDivElement>(null)
   const mine = state.turnPlayerId === myId
   const speaker = playerById(state, state.turnPlayerId)
-  const lap = Math.min(state.clueLaps, Math.floor(state.clues.length / Math.max(1, state.turnOrder.length)) + 1)
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
@@ -327,14 +320,17 @@ function CluePhase({ state }: { state: FlockState }) {
     <div className="fl-col">
       <div className="fl-row-between">
         <span className="fl-cat-chip">{state.category && CATEGORY_LABEL[state.category]}</span>
-        {state.clueLaps > 1 && <span className="fl-lap">Lap {lap}/{state.clueLaps}</span>}
+        <span className="fl-lap">
+          Lap {state.lap}/{FLOCK_MAX_LAPS}
+        </span>
         <Timer size={46} />
       </div>
       <TurnRibbon state={state} size={34} />
       <div className="fl-scroll" ref={listRef}>
         <ClueList state={state} />
       </div>
-      {secret && <SecretCard secret={secret} />}
+      {secret && !out && <SecretCard secret={secret} />}
+      {out && <SpectatingNote out />}
       <AnimatePresence mode="wait">
         {mine ? (
           <motion.div key="input" className="fl-clue-input" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={spring.bouncy}>
@@ -368,28 +364,70 @@ function CluePhase({ state }: { state: FlockState }) {
   )
 }
 
-function VotePhase({ state }: { state: FlockState }) {
-  const { myId, secret, me } = useMine(state)
-  const vote = useFlockStore((s) => s.vote)
-  const [pick, setPick] = useState<string | null>(null)
-  const voted = me?.done
-  const candidates = state.turnOrder.map((id) => playerById(state, id)).filter((p): p is NonNullable<typeof p> => !!p && p.id !== myId)
-  const votedCount = state.players.filter((p) => p.done).length
+function DecidePhase({ state }: { state: FlockState }) {
+  const { myId, secret, out } = useMine(state)
+  const decide = useFlockStore((s) => s.decide)
+  const d = state.decide ?? { vote: [], more: [] }
+  const mine = myId && d.vote.includes(myId) ? 'vote' : myId && d.more.includes(myId) ? 'more' : null
+  const voters = state.players.filter((p) => p.playing && !p.out && p.connected).length
+  const need = Math.floor(voters / 2) + 1
   return (
     <div className="fl-col">
       <div className="fl-row-between">
         <div className="fl-phase-title left">
-          <span>Round {state.round}</span>
+          <span>Lap {state.lap} done</span>
+          <strong>Vote now, or one more lap?</strong>
+        </div>
+        <Timer size={46} />
+      </div>
+      <div className="fl-scroll">
+        <ClueList state={state} />
+      </div>
+      {secret && !out ? (
+        <div className="fl-decide">
+          <button className={`fl-decide-btn vote ${mine === 'vote' ? 'picked' : ''}`} onClick={() => decide(true)}>
+            🗳️ Vote now <small>{d.vote.length}/{need}</small>
+          </button>
+          <button className={`fl-decide-btn more ${mine === 'more' ? 'picked' : ''}`} onClick={() => decide(false)}>
+            🔁 One more lap <small>{d.more.length}</small>
+          </button>
+        </div>
+      ) : (
+        <SpectatingNote out={out} />
+      )}
+      <p className="fl-hint-light">A majority starts the vote. After lap {FLOCK_MAX_LAPS} the vote is final.</p>
+    </div>
+  )
+}
+
+function VotePhase({ state }: { state: FlockState }) {
+  const { myId, secret, me, out } = useMine(state)
+  const vote = useFlockStore((s) => s.vote)
+  const [pick, setPick] = useState<string | null>(null)
+  const voted = me?.done
+  const can = !!secret && !out
+  const candidates = state.turnOrder
+    .map((id) => playerById(state, id))
+    .filter((p): p is NonNullable<typeof p> => !!p && p.id !== myId && !p.out)
+  const voters = state.players.filter((p) => p.playing && !p.out && p.connected)
+  const votedCount = voters.filter((p) => p.done).length
+  return (
+    <div className="fl-col">
+      <div className="fl-row-between">
+        <div className="fl-phase-title left">
+          <span>{state.finalVote ? 'Final vote' : `Vote · lap ${state.lap}`}</span>
           <strong>{state.wolfCount > 1 ? 'Who is a wolf?' : 'Who is the wolf?'}</strong>
         </div>
         <Timer size={46} />
       </div>
-      {!secret ? (
-        <SpectatingNote />
+      {!can ? (
+        <SpectatingNote out={out} />
       ) : voted ? (
-        <p className="fl-wait">🗳️ Vote cast! {votedCount}/{state.turnOrder.length} have voted…</p>
+        <p className="fl-wait">🗳️ Vote cast! {votedCount}/{voters.length} have voted…</p>
       ) : (
-        <p className="fl-hint-light">{secret.role === 'wolf' ? 'Point at a sheep to throw them off!' : state.wolfCount > 1 ? 'Tap one player you suspect. Each vote on a wolf scores.' : 'Tap the player you suspect.'}</p>
+        <p className="fl-hint-light">
+          {secret.role === 'wolf' ? 'Point at a sheep to throw them off!' : 'The most-voted player is out.'} {state.finalVote ? 'A tie lets the wolf escape.' : 'A tie: nobody leaves.'}
+        </p>
       )}
       <div className="fl-vote-grid fl-scroll">
         {candidates.map((p, i) => {
@@ -398,7 +436,7 @@ function VotePhase({ state }: { state: FlockState }) {
             <motion.button
               key={p.id}
               className={`fl-vote-card ${pick === p.id ? 'picked' : ''}`}
-              disabled={!secret || voted}
+              disabled={!can || voted}
               onClick={() => setPick(p.id)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -411,102 +449,98 @@ function VotePhase({ state }: { state: FlockState }) {
           )
         })}
       </div>
-      {secret && !voted && (
+      {can && !voted && (
         <button className="btn-play fl-cta" disabled={!pick} onClick={() => pick && vote(pick)}>
-          {pick ? `ACCUSE ${playerById(state, pick)?.name.toUpperCase()}` : 'PICK A PLAYER'}
+          {pick ? `VOTE OUT ${playerById(state, pick)?.name.toUpperCase()}` : 'PICK A PLAYER'}
         </button>
       )}
     </div>
   )
 }
 
-function GuessPhase({ state }: { state: FlockState }) {
-  const { secret } = useMine(state)
+/** The wolf's "I know the word!" — available all game long; a wrong pick puts the wolf out. */
+function WolfGuess({ state }: { state: FlockState }) {
+  const { secret, out } = useMine(state)
   const guess = useFlockStore((s) => s.guess)
+  const [open, setOpen] = useState(false)
   const [picked, setPicked] = useState<string | null>(null)
-  const wolf = playerById(state, state.accusedId)
-  if (secret?.role === 'wolf' && secret.guessOptions) {
-    return (
-      <div className="fl-col">
-        <div className="fl-row-between">
-          <div className="fl-phase-title left">
-            <span>Caught!</span>
-            <strong>Name the word for +2</strong>
-          </div>
-          <Timer size={46} />
-        </div>
-        <p className="fl-hint-light">{state.category && CATEGORY_LABEL[state.category]} — which one were the sheep talking about?</p>
-        <div className="fl-guess-grid">
-          {secret.guessOptions.map((w, i) => (
-            <motion.button
-              key={w}
-              className={`fl-guess ${picked === w ? 'picked' : ''}`}
-              disabled={picked !== null}
-              onClick={() => {
-                setPicked(w)
-                guess(w)
-              }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ ...spring.bouncy, delay: i * STAGGER }}
-            >
-              {w}
-            </motion.button>
-          ))}
-        </div>
-      </div>
-    )
-  }
+  const live = ['secret', 'clues', 'decide', 'vote'].includes(state.phase)
+  if (!live || out || secret?.role !== 'wolf' || !secret.guessOptions) return null
   return (
-    <div className="fl-center">
-      <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
-        {wolf && <Token player={wolf} size={110} badge="🐺" />}
-        <strong>{wolf?.name} was {state.wolfCount > 1 ? 'a' : 'the'} wolf!</strong>
-      </motion.div>
-      <p className="fl-wait">The wolf has one last chance to name the word…</p>
-      <Timer size={70} />
-    </div>
+    <>
+      <button className="fl-wolf-fab" onClick={() => setOpen(true)}>
+        🐺 I know the word!
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div className="fl-sheet-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)}>
+            <motion.div className="fl-sheet" initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} transition={spring.snappy} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+              <GuessSheet secret={secret} category={state.category} picked={picked} onPick={setPicked} />
+              <div className="fl-sheet-actions">
+                <button className="btn-secondary" onClick={() => setOpen(false)}>
+                  Not yet
+                </button>
+                <button
+                  className="btn-play"
+                  disabled={!picked}
+                  onClick={() => {
+                    if (!picked) return
+                    guess(picked)
+                    setOpen(false)
+                  }}
+                >
+                  {picked ? `IT’S ${picked.toUpperCase()}!` : 'PICK A WORD'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
-// ── result & final ─────────────────────────────────────────────────────
-
-function ResultPhase({ state }: { state: FlockState }) {
-  const store = useFlockStore()
-  const leader = isLeader(store)
-  const last = state.round >= state.totalRounds
+function GuessSheet({ secret, category, picked, onPick }: { secret: FlockSecret; category: FlockState['category']; picked: string | null; onPick: (w: string) => void }) {
   return (
-    <div className="fl-col fl-scroll">
-      <RoundReveal state={state} />
-      <Scoreboard state={state} gains={state.result?.gains} />
-      {leader ? (
-        <button className="btn-play fl-cta" onClick={store.next}>
-          {last ? 'FINAL SCORES' : 'NEXT ROUND'}
-        </button>
-      ) : (
-        <p className="fl-wait">👑 {playerById(state, state.leaderId)?.name} starts the next round.</p>
-      )}
-    </div>
+    <>
+      <div className="fl-phase-title left">
+        <span>{category && CATEGORY_LABEL[category]}</span>
+        <strong>Name the word</strong>
+      </div>
+      <p className="fl-hint-light">Right: you win at once. Wrong: you are out.</p>
+      <div className="fl-guess-grid">
+        {secret.guessOptions!.map((w, i) => (
+          <motion.button
+            key={w}
+            className={`fl-guess ${picked === w ? 'picked' : ''}`}
+            onClick={() => onPick(w)}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...spring.bouncy, delay: i * STAGGER }}
+          >
+            {w}
+          </motion.button>
+        ))}
+      </div>
+    </>
   )
 }
 
-function FinalPhase({ state }: { state: FlockState }) {
+// ── game over ──────────────────────────────────────────────────────────
+
+function OverPhase({ state }: { state: FlockState }) {
   const store = useFlockStore()
   const leader = isLeader(store)
-  const winner = [...state.players].sort((a, b) => b.score - a.score)[0]
+  const online = state.players.filter((p) => p.connected).length
   return (
     <div className="fl-col fl-scroll">
-      <div className="fl-phase-title">
-        <span>Game over</span>
-        <strong>{winner ? `${winner.name} wins!` : 'Well played!'}</strong>
-      </div>
+      <GameReveal state={state} />
       <RewardChip reward={flockRewardFor(state, store.myId)} />
-      <Podium state={state} />
       <Scoreboard state={state} />
       <p className="fl-verse">“I am the good shepherd. I know my own, and I’m known by my own.” <em>John 10:14</em></p>
       {leader ? (
         <button className="btn-play fl-cta" onClick={store.again}>
-          PLAY AGAIN
+          {online >= FLOCK_MIN_PLAYERS ? 'NEW WORD' : 'BACK TO THE LOBBY'}
         </button>
       ) : (
         <p className="fl-wait">👑 {playerById(state, state.leaderId)?.name} can start another game.</p>
