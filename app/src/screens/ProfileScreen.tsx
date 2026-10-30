@@ -4,6 +4,7 @@ import { Avatar } from '../avatars/Avatar'
 import { characterName } from '../art/characters'
 import { AccountPanel } from './AccountPanel'
 import { openSkillTree } from '../skills/nav'
+import { LOCALES, useLocale, useT } from '../i18n'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
 
@@ -43,6 +44,8 @@ export function ProfileScreen() {
         </header>
 
       <AccountPanel />
+
+      <LanguagePicker />
 
       <div className="profile-section">
         <label className="profile-label" htmlFor="player-name">
@@ -110,6 +113,25 @@ export function ProfileScreen() {
           </div>
         ))}
       </div>
+      </div>
+    </div>
+  )
+}
+
+/** The app's language (docs/i18n.md); remembered on the device. */
+function LanguagePicker() {
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
+  const setLocale = useLocale((s) => s.setLocale)
+  return (
+    <div className="profile-section">
+      <div className="profile-label">{t('shell.language')}</div>
+      <div className="seg-row">
+        {LOCALES.map((l) => (
+          <button key={l.id} className={`seg-btn ${locale === l.id ? 'selected' : ''}`} onClick={() => setLocale(l.id)} lang={l.id}>
+            {l.name}
+          </button>
+        ))}
       </div>
     </div>
   )
