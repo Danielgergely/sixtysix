@@ -50,7 +50,8 @@ interface SpiesStore {
   clue: (word: string, number: number) => Promise<string | null>
   pick: (pick: number) => void
   confirm: () => void
-  again: () => void
+  /** Leader, game over: back to the lobby (same code), or `now` = next game at once. */
+  again: (now?: boolean) => void
   setPrefillCode: (code: string) => void
 }
 
@@ -108,6 +109,8 @@ function getSocket(): SpiesSocket {
     const prev = getState().state
     setState({ state, ...timing(state) })
     if (getState().role === 'player') {
+      // Every new game in the room refreshes "Back to game" (same code, played again).
+      if (prev && prev.game !== state.game) rememberCode(state.code)
       markSpiesPlayed(state)
       if (state.phase === 'over') paySpies(state, getState().myId)
     }
@@ -214,7 +217,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
     playSfx('submit')
     getSocket().emit('spies:confirm')
   },
-  again: () => getSocket().emit('spies:again'),
+  again: (now = false) => getSocket().emit('spies:again', { now }),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),
 }))
 

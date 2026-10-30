@@ -1,11 +1,9 @@
 export default {
   topbar: {
-    back: 'Zurück',
     backToSetup: 'Zurück zur Einrichtung',
     endConfirm: 'Runde beenden? Tippe ✓',
   },
   setup: {
-    tagline: 'Ein Handy, das am Tisch herumgeht.',
     sub: 'Alle schauen heimlich auf ihre Karte, dann redet ihr es aus und findet den Wolf.',
     players: 'Spieler ({n}/{max}) · der Reihe nach',
     moveUp: 'Nach oben',

@@ -12,7 +12,7 @@ export default {
     you: ' (te)',
     theLeader: 'A játékvezető',
     leaderStarts: '👑 {name} indítja a játékot.',
-    leaderAgain: '👑 {name} indíthat új játékot.',
+    leaderAgain: '👑 {name} indíthat új játékot – maradj itt, a helyed megmarad.',
     howToPlay: 'Játékszabály',
     showRules: '📜 Játékszabály',
     hideRules: 'Szabályok elrejtése',
@@ -33,15 +33,9 @@ export default {
   menu: {
     intro: 'Két törzs, egy titkos térkép. A kémfőnökötök egyszavas tippeket ad – találjátok meg a törzsetek szavait a másik törzs előtt, és sose ébresszétek fel Góliátot!',
     meta: '4–12 játékos (kooperatív 2-től) · telefonok + kivetítő, ha van · ~20 perc',
-    rejoin: '↩ VISSZA A JÁTÉKBA: {code}',
-    you: 'Te',
-    nickname: 'Beceneved',
+    online: '🌐 Mindenki a saját telefonján, online – egy szobában vagy messze egymástól',
     joinTitle: 'Csatlakozás egy táborhoz',
-    codePlaceholder: 'JÁTÉKKÓD',
-    join: 'BELÉPÉS',
-    watch: '📺 Inkább a kivetítő nézet ezen a képernyőn',
     create: '🍇 ÚJ JÁTÉK',
-    needName: 'Előbb válassz becenevet.',
   },
   lobby: {
     gameCode: 'Játékkód',
@@ -87,7 +81,11 @@ export default {
     agree: 'EGYETÉRTEK',
     endOurTurn: '✋ Befejezzük a kört',
   },
-  over: { playAgain: 'ÚJ JÁTÉK' },
+  over: {
+    playAgain: '↻ ÚJRA',
+    startNow: '▶ A következő játék azonnal',
+    againNote: 'Ugyanaz a kód ({code}), mindenki bent marad, a kémfőnökök cserélődnek. A váróban indítás előtt módosíthatjátok a törzseket, a módot vagy az időt.',
+  },
   verdict: {
     calledOff: 'A küldetés elmaradt',
     tooFew: 'Túl kevés kém maradt a folytatáshoz.',

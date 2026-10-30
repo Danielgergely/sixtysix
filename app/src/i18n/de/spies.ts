@@ -12,7 +12,7 @@ export default {
     you: ' (du)',
     theLeader: 'Der Spielleiter',
     leaderStarts: '👑 {name} startet das Spiel.',
-    leaderAgain: '👑 {name} kann eine neue Partie starten.',
+    leaderAgain: '👑 {name} kann eine neue Partie starten – bleib hier, dein Platz bleibt frei.',
     howToPlay: 'So wird gespielt',
     showRules: '📜 So wird gespielt',
     hideRules: 'Regeln ausblenden',
@@ -33,15 +33,9 @@ export default {
   menu: {
     intro: 'Zwei Stämme, eine geheime Karte. Euer Anführer gibt Hinweise aus einem Wort – findet die Wörter eures Stammes vor dem anderen Stamm und weckt niemals Goliat!',
     meta: '4–12 Spieler (kooperativ ab 2) · Handys + optional Großbild · ~20 Min.',
-    rejoin: '↩ ZURÜCK ZUM SPIEL {code}',
-    you: 'Du',
-    nickname: 'Dein Spitzname',
+    online: '🌐 Jeder am eigenen Handy, online – im selben Raum oder weit weg',
     joinTitle: 'Einem Lager beitreten',
-    codePlaceholder: 'SPIELCODE',
-    join: 'BEITRETEN',
-    watch: '📺 Stattdessen das Großbild hier zeigen',
     create: '🍇 NEUES SPIEL',
-    needName: 'Wähle zuerst einen Spitznamen.',
   },
   lobby: {
     gameCode: 'Spielcode',
@@ -87,7 +81,11 @@ export default {
     agree: 'DAFÜR',
     endOurTurn: '✋ Zug beenden',
   },
-  over: { playAgain: 'NOCHMAL SPIELEN' },
+  over: {
+    playAgain: '↻ NOCHMAL SPIELEN',
+    startNow: '▶ Sofort die nächste Partie starten',
+    againNote: 'Gleicher Code ({code}), alle bleiben drin, die Anführer wechseln. In der Lobby könnt ihr vor dem Start Stämme, Modus oder Zeit ändern.',
+  },
   verdict: {
     calledOff: 'Die Mission wurde abgebrochen',
     tooFew: 'Zu wenige Kundschafter übrig, um weiterzumachen.',

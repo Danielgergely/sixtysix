@@ -231,8 +231,12 @@ export interface FlockClientToServerEvents {
   'flock:guess': (payload: { word: string }, cb: Ack<object>) => void
   /** A sheep, phase 'judge': does the close guess count? */
   'flock:judge': (payload: { ok: boolean }) => void
-  /** Leader: over → lobby for the next game. */
-  'flock:again': () => void
+  /**
+   * Leader, phase 'over': play again in the same room. Default: back to the lobby
+   * (everyone stays seated, offline players are dropped). `now`: deal the next
+   * word straight away (falls back to the lobby with too few players).
+   */
+  'flock:again': (payload?: { now?: boolean }) => void
   /** Leader, lobby only: add a bot player / remove one / set how well the bots play. */
   'flock:addBot': () => void
   'flock:removeBot': (payload: { playerId: string }) => void

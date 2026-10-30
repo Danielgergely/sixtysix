@@ -1,12 +1,10 @@
 /** Wolf in the Flock on one phone passed around (no server). Card texts come from `flock.card`. */
 export default {
   topbar: {
-    back: 'Back',
     backToSetup: 'Back to the setup',
     endConfirm: 'End this round? Tap ✓',
   },
   setup: {
-    tagline: 'One phone, passed around the table.',
     sub: 'Everyone peeks at their card, then you talk it out and find the wolf.',
     players: 'Players ({n}/{max}) · in passing order',
     moveUp: 'Move up',

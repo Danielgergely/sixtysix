@@ -41,7 +41,8 @@ interface FlockStore {
   /** Set or change the wolf's guess (before a vote). Resolves to an error message or null. */
   guess: (word: string) => Promise<string | null>
   judge: (ok: boolean) => void
-  again: () => void
+  /** Leader, game over: back to the lobby (same code), or `now` = next word at once. */
+  again: (now?: boolean) => void
   /** Leader, lobby: bot players. */
   addBot: () => void
   removeBot: (playerId: string) => void
@@ -100,6 +101,8 @@ function getSocket(): FlockSocket {
     const prev = getState().state
     setState({ state, endsAt: state.endsInMs ? Date.now() + state.endsInMs : 0 })
     if (state.phase === 'over' && getState().role === 'player') payFlock(state, getState().myId)
+    // Every new game in the room refreshes "Back to game" (same code, played again).
+    if (prev && prev.game !== state.game && getState().role === 'player') rememberCode(state.code)
     if (prev && prev.phase !== state.phase) {
       if (state.phase === 'secret') playSfx('flip')
       if (state.phase === 'vote') playSfx('go')
@@ -216,7 +219,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
     playSfx('submit')
     getSocket().emit('flock:judge', { ok })
   },
-  again: () => getSocket().emit('flock:again'),
+  again: (now = false) => getSocket().emit('flock:again', { now }),
   addBot: () => getSocket().emit('flock:addBot'),
   removeBot: (playerId) => getSocket().emit('flock:removeBot', { playerId }),
   setBotLevel: (level) => getSocket().emit('flock:botLevel', { level }),
