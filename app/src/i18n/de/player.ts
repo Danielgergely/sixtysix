@@ -1,0 +1,20 @@
+export default {
+  failed: 'Dieses Profil konnte nicht geladen werden.',
+  level: 'Stufe {n} · {xp} XP',
+  homeLot: 'Zuhause in Jerusalem · Parzelle {lot}',
+  homeCamping: 'Zuhause in Jerusalem · zeltet vor den Mauern',
+  house: '{name} (Haus Stufe {n})',
+  tent: 'Zelt',
+  away_one: '🌿 seit {count} Tag weg',
+  away_other: '🌿 seit {count} Tagen weg',
+  visit: 'besuchen ›',
+  since: 'In Jerusalem seit {date}',
+  stats: {
+    games: 'Spiele',
+    wins: 'Siege',
+    podiums: 'Podestplätze',
+    bestScore: 'Bestes Ergebnis',
+    answered: 'Beantwortet',
+    correct: 'Richtig',
+  },
+}

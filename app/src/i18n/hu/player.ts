@@ -1,0 +1,20 @@
+export default {
+  failed: 'Nem sikerült betölteni ezt a játékost.',
+  level: '{n}. szint · {xp} XP',
+  homeLot: 'Otthon Jeruzsálemben · {lot}. parcella',
+  homeCamping: 'Otthon Jeruzsálemben · a falakon kívül sátorozik',
+  house: '{name} ({n}. szintű ház)',
+  tent: 'Sátor',
+  away_one: '🌿 {count} napja nincs itt',
+  away_other: '🌿 {count} napja nincs itt',
+  visit: 'látogatás ›',
+  since: 'Jeruzsálemben {date} óta',
+  stats: {
+    games: 'Játékok',
+    wins: 'Győzelmek',
+    podiums: 'Dobogók',
+    bestScore: 'Legjobb pontszám',
+    answered: 'Megválaszolt',
+    correct: 'Helyes',
+  },
+}
