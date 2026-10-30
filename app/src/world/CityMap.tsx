@@ -7,7 +7,8 @@ import { popIn } from '../motion'
 import { useT } from '../i18n'
 import { artFor } from '../screens/home/homeUtil'
 import { houseName } from '../screens/home/plotText'
-import { LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { CityLife } from './CityLife'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
 
@@ -19,6 +20,12 @@ const START_ZOOM = 0.5
 const MARGIN = 320
 /** View changes are rounded to this grid so panning doesn't re-render every frame. */
 const STEP = 160
+/**
+ * Room around the painting (world px each side), so lots at its edges show in full;
+ * the painting fades into a blurred copy of itself there. Map coordinates stay in
+ * painting px: the world inside PanZoom is offset by PAD.
+ */
+const PAD = 150
 /** Level of detail: everyone's names from NEAR up; walkers hide below MID. */
 const NEAR = 0.68
 const MID = 0.34
@@ -49,7 +56,8 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
   const onView = useCallback((v: ViewRect) => {
     const q = (n: number) => Math.floor(n / STEP) * STEP
     const lod = v.zoom >= NEAR ? 'near' : v.zoom >= MID ? 'mid' : 'far'
-    const next: View = { x0: q(v.x - MARGIN), y0: q(v.y - MARGIN), x1: q(v.x + v.w + MARGIN) + STEP, y1: q(v.y + v.h + MARGIN) + STEP, lod }
+    const [x, y] = [v.x - PAD, v.y - PAD]
+    const next: View = { x0: q(x - MARGIN), y0: q(y - MARGIN), x1: q(x + v.w + MARGIN) + STEP, y1: q(y + v.h + MARGIN) + STEP, lod }
     setView((cur) => (cur && cur.x0 === next.x0 && cur.y0 === next.y0 && cur.x1 === next.x1 && cur.y1 === next.y1 && cur.lod === next.lod ? cur : next))
   }, [])
 
@@ -59,25 +67,33 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
     return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
   }, [residents])
 
+  /** The townsfolk come and go between these homes; more of them with every family, more still when they're active. */
+  const homes = useMemo(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
+
   const inView = (x: number, y: number) => !view || (x > view.x0 && x < view.x1 && y > view.y0 && y < view.y1)
   const flyTo = (r: Resident) => {
     const lot = r.lot ? lotFor(r.lot) : undefined
     setFound(r)
-    if (lot) pz.current?.centerOn(lot.x, lot.y - 40, 0.9)
+    if (lot) pz.current?.centerOn(lot.x + PAD, lot.y - 40 + PAD, 0.9)
   }
 
   return (
     <PanZoom
       ref={pz}
       className={`cm lod-${view?.lod ?? 'mid'}`}
-      worldW={WORLD}
-      worldH={WORLD}
+      worldW={WORLD + 2 * PAD}
+      worldH={WORLD + 2 * PAD}
       maxZoom={MAX_ZOOM}
       initialZoom={START_ZOOM}
-      initialCenter={start}
+      initialCenter={{ x: start.x + PAD, y: start.y + PAD }}
       wheelZoom
       onView={onView}
-      background={<img className="cm-ground" src="/art/city-map.webp" alt="" draggable={false} />}
+      background={
+        <>
+          <img className="cm-surround" src="/art/city-map.webp" alt="" draggable={false} />
+          <img className="cm-ground" src="/art/city-map.webp" alt="" draggable={false} style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }} />
+        </>
+      }
       overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
         <>
           <div className="cm-top">
@@ -88,7 +104,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
                   📍 <span>{t('city.map.myHome')}</span>
                 </button>
               ) : (
-                <button className="cm-chip" onClick={() => pz.current?.centerOn(TEMPLE.x, TEMPLE.y, START_ZOOM)} title={t('city.map.templeTitle')}>
+                <button className="cm-chip" onClick={() => pz.current?.centerOn(TEMPLE.x + PAD, TEMPLE.y + PAD, START_ZOOM)} title={t('city.map.templeTitle')}>
                   🏛️ <span>{t('city.map.temple')}</span>
                 </button>
               )}
@@ -129,9 +145,10 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
         </>
       )}
     >
-      {STREETS.map((path, i) => (inView(path.cx, path.cy) || !view ? <Walkers key={i} d={path.d} index={i} /> : null))}
+      <div className="cm-world" style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }}>
+      <CityLife homes={homes} />
       {LANDMARKS.map((l) => (
-        <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)}art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
+        <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
       ))}
       {/* Free land: the next few lots always (they're labelled); the rest only close up. */}
       {free.map((n, i) => {
@@ -159,6 +176,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
           />
         ) : null
       })}
+      </div>
     </PanZoom>
   )
 }
@@ -297,33 +315,3 @@ const FreeLot = memo(function FreeLot({ n, lot, labelled, onTap }: { n: number; 
   )
 })
 
-const ROBES = ['#b3262b', '#2f5a8a', '#6b4120', '#e0a12a', '#4f7a2a', '#7a3a7a', '#f3e2bb']
-
-/** Two or three townsfolk walking a street, there and back (CSS offset-path: cheap, compositor-driven). */
-const Walkers = memo(function Walkers({ d, index }: { d: string; index: number }) {
-  return (
-    <>
-      {[0, 1, 2].slice(0, 2 + (index % 2)).map((k) => {
-        const n = index * 3 + k
-        return (
-          <span
-            key={k}
-            className="cm-walker"
-            aria-hidden
-            style={
-              {
-                offsetPath: `path('${d}')`,
-                animationDuration: `${26 + ((n * 7) % 17)}s`,
-                animationDelay: `-${(n * 5.3) % 26}s`,
-                '--robe': ROBES[n % ROBES.length],
-                '--scarf': ROBES[(n + 3) % ROBES.length],
-              } as React.CSSProperties
-            }
-          >
-            <i />
-          </span>
-        )
-      })}
-    </>
-  )
-})
