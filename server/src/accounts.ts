@@ -4,7 +4,6 @@ import { join } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 import type { FastifyInstance, FastifyRequest } from 'fastify'
 import {
-  CHARACTERS,
   DAY_MS,
   IDLE_DAYS,
   MAX_PASSWORD,
@@ -18,6 +17,8 @@ import {
   usernameProblem,
   cleanSkills,
   coinBonus,
+  settleWardrobe,
+  wearableLook,
   xpBonus,
   type Account,
   type AccountProfile,
@@ -26,7 +27,7 @@ import {
   type StaffRole,
 } from '@sixtysix/shared'
 import { LOTS } from '@sixtysix/shared/cityLayout'
-import { cleanAvatar, cleanName } from './rooms.js'
+import { cleanName } from './rooms.js'
 import { publicLevels } from './plot.js'
 
 /**
@@ -193,6 +194,8 @@ const EMPTY_STATS: AccountStats = {
   bestScore: 0,
   currentStreak: 0,
   bestStreak: 0,
+  arenaWins: 0,
+  bestDailyStreak: 0,
 }
 
 // Sanity caps: one grant is one game or answer, never more than this.
@@ -267,7 +270,7 @@ export function cleanProfile(raw: unknown): AccountProfile {
   const p = (raw ?? {}) as Record<string, unknown>
   return {
     name: cleanName(p.name),
-    avatar: cleanAvatar(p.avatar),
+    avatar: wearableLook(p.avatar, []), // a new account owns no items yet
     coins: int(p.coins, SIGNUP_MAX_COINS),
     xp: int(p.xp, SIGNUP_MAX_XP),
     stats: cleanStats(p.stats),
@@ -469,7 +472,9 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     }
     if (applied) markActive(row.id) // a game played tends the home
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
-    if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string
+    // Rare look items earned by now join the wardrobe; only owned items can be worn (shared/src/looks.ts).
+    const wardrobe = settleWardrobe(account.profile)
+    if (body.avatar !== undefined) account.profile.avatar = wearableLook(body.avatar, wardrobe)
     saveProfile(row.id, account.profile)
     return { ok: true, account, bonus }
   })

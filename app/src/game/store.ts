@@ -16,7 +16,6 @@ import {
   type PlayerStats,
 } from './persistence'
 import { setMuted } from './sfx'
-import type { CharacterId } from './types'
 import { ALL_ANSWERED_BEAT_MS, GIFT_EXTRA_MS, READING_MS, coinsForAnswer, coinsForPlacement, type GiftId, type YourResult } from '@sixtysix/shared'
 import { useGiftStore } from '../skills/giftStore'
 import { bundledBank, loadVerses } from '../questions/provider'
@@ -98,7 +97,7 @@ interface GameStore {
   /** Player taps an answer; bots click on their own timers. */
   answer: (index: number) => void
   toggleMute: () => void
-  updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
+  updateProfile: (patch: { name?: string; avatar?: string }) => void
   /** Credit coins to the persisted profile (every mode earns them). */
   /** Credit coins (and optionally XP) to the saved profile. */
   addCoins: (amount: number, xp?: number, stats?: Partial<PlayerStats>) => void
@@ -304,6 +303,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     const won = rank === 0
     const currentStreak = won ? stats.currentStreak + 1 : 0
     const newStats: PlayerStats = {
+      ...stats,
       gamesPlayed: stats.gamesPlayed + 1,
       firstPlace: stats.firstPlace + (rank === 0 ? 1 : 0),
       secondPlace: stats.secondPlace + (rank === 1 ? 1 : 0),
@@ -448,7 +448,7 @@ export const useGameStore = create<GameStore>((set, get) => {
     },
 
     adoptProgress: ({ name, avatar, coins, xp, stats }) => {
-      const player = { ...get().player, name, avatar: avatar as CharacterId, coins, xp, level: levelForXp(xp) }
+      const player = { ...get().player, name, avatar, coins, xp, level: levelForXp(xp) }
       savePlayer(player)
       saveStats(stats)
       set({ player, stats })

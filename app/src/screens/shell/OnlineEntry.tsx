@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
-import { CHARACTERS, type CharacterId } from '@sixtysix/shared'
+import { openLookPicker } from '../../looks/lookStore'
 import { useGameStore } from '../../game/store'
 import { Avatar } from '../../avatars/Avatar'
 import { tServer, useT } from '../../i18n'
@@ -29,10 +28,9 @@ export function OnlineEntry(props: {
   const updateProfile = useGameStore((s) => s.updateProfile)
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
-  const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
-  const [picking, setPicking] = useState(false)
+  const avatar = player.avatar
   const named = name.trim().length > 0
-  const save = () => updateProfile({ name: name.trim(), avatar })
+  const save = () => updateProfile({ name: name.trim() })
   const t = useT()
 
   const createBtn = (
@@ -102,35 +100,12 @@ export function OnlineEntry(props: {
       <div className="arena-section be-card">
         <div className="profile-label">{t('boardGames.entry.you')}</div>
         <div className="be-you">
-          <button className={`be-avatar ${picking ? 'open' : ''}`} onClick={() => setPicking((p) => !p)} title={t('boardGames.entry.pickPortrait')} aria-expanded={picking}>
+          <button className="be-avatar" onClick={() => openLookPicker()} title={t('boardGames.entry.pickPortrait')}>
             <Avatar id={avatar} />
             <span className="be-avatar-edit">✎</span>
           </button>
           <input className="profile-name-input be-name" placeholder={t('boardGames.entry.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        <AnimatePresence initial={false}>
-          {picking && (
-            <motion.div className="be-avatars" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
-              <div className="avatar-grid arena-avatar-grid">
-                {CHARACTERS.map((c) => (
-                  <button
-                    key={c}
-                    className={`avatar-option ${avatar === c ? 'selected' : ''}`}
-                    onClick={() => {
-                      setAvatar(c)
-                      setPicking(false)
-                    }}
-                    title={c}
-                  >
-                    <span className="avatar-option-pic">
-                      <Avatar id={c} />
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
         {!named && <p className="be-hint">{t('boardGames.entry.needName')}</p>}
       </div>
 

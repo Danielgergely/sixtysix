@@ -16,6 +16,10 @@ export interface AccountStats {
   bestScore: number
   currentStreak: number
   bestStreak: number
+  /** Open Arena games won (1st place); unlocks the gold circlet (shared/src/looks.ts). Counted from 2026-10. */
+  arenaWins: number
+  /** Longest run of Daily Scroll days; unlocks the jewelled frame. Counted from 2026-10. */
+  bestDailyStreak: number
 }
 
 export interface AccountProfile {
@@ -26,6 +30,8 @@ export interface AccountProfile {
   stats: AccountStats
   /** Skill tree (shared/skills.ts). Owned by the server: learned only through /api/skills. */
   skills?: SkillState
+  /** Look items owned (shared/src/looks.ts). Owned by the server: bought or earned through /api/looks only. */
+  wardrobe?: string[]
   /** Bumped by the server on every save, so the app can ignore stale replies. */
   rev?: number
   /** Guest progress already brought in (sign-up + sign-in merges), capped once per account. */
@@ -52,8 +58,8 @@ export const hasRole = (role: StaffRole | null | undefined, need: StaffRole): bo
   role === 'admin' || (need === 'reviewer' && role === 'reviewer')
 
 /** Counters in a grant's `stats` are added; best* take the max; currentStreak is set. */
-export const STAT_COUNTERS = ['gamesPlayed', 'firstPlace', 'secondPlace', 'thirdPlace', 'questionsAnswered', 'questionsCorrect'] as const
-export const STAT_MAXES = ['bestScore', 'bestStreak'] as const
+export const STAT_COUNTERS = ['gamesPlayed', 'firstPlace', 'secondPlace', 'thirdPlace', 'questionsAnswered', 'questionsCorrect', 'arenaWins'] as const
+export const STAT_MAXES = ['bestScore', 'bestStreak', 'bestDailyStreak'] as const
 
 /**
  * One reward (a finished race, an arena podium, a practice answer…). Sent at

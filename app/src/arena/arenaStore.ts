@@ -244,6 +244,7 @@ function getSocket(): ArenaSocket {
           firstPlace: rank === 0 ? 1 : 0,
           secondPlace: rank === 1 ? 1 : 0,
           thirdPlace: rank === 2 ? 1 : 0,
+          arenaWins: rank === 0 ? 1 : 0, // unlocks the golden circlet (shared/src/looks.ts)
           questionsAnswered: tally.answered,
           questionsCorrect: tally.correct,
           bestScore: entries[rank].score,

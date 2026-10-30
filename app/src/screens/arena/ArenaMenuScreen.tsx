@@ -3,8 +3,7 @@ import type { RoomConfig } from '@sixtysix/shared'
 import { tServer, useT } from '../../i18n'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
-import { Avatar } from '../../avatars/Avatar'
-import { CHARACTERS, type CharacterId } from '@sixtysix/shared'
+import { LookButton } from '../../looks/LookPicker'
 import { RoomOptions } from './RoomOptions'
 
 export function ArenaMenuScreen() {
@@ -19,7 +18,6 @@ export function ArenaMenuScreen() {
   const prefillCode = useArenaStore((s) => s.prefillCode)
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
-  const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
   const [config, setConfig] = useState<RoomConfig>({ questionCount: 10, roomType: 'in-person', difficulty: 'mixed', categories: [], mode: 'classic' })
 
   const canJoin = !busy && code.length >= 4 && name.trim().length > 0
@@ -27,7 +25,7 @@ export function ArenaMenuScreen() {
   const join = () => {
     if (!canJoin) return
     // Persist the choice — it's also the Bible Blitz identity.
-    updateProfile({ name: name.trim(), avatar })
+    updateProfile({ name: name.trim() })
     void joinGame(code)
   }
 
@@ -64,20 +62,7 @@ export function ArenaMenuScreen() {
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && join()}
           />
-          <div className="avatar-grid arena-avatar-grid">
-            {CHARACTERS.map((c) => (
-              <button
-                key={c}
-                className={`avatar-option ${avatar === c ? 'selected' : ''}`}
-                onClick={() => setAvatar(c)}
-                title={c}
-              >
-                <span className="avatar-option-pic">
-                  <Avatar id={c} />
-                </span>
-              </button>
-            ))}
-          </div>
+          <LookButton />
           <button className="btn-play join-btn" disabled={!canJoin} onClick={join}>
             {t('arena.menu.joinButton')}
           </button>

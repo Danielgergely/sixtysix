@@ -7,7 +7,7 @@ Status: **proposal** (2026-10-29). Coins are already earned and saved:
 - A finishing bonus of 50/30/20 for the top three, 10 for everyone else.
 - Half rate (5 per correct answer) in Practice.
 
-All of these live in `shared/src/coins.ts`. Nothing can be bought yet.
+All of these live in `shared/src/coins.ts`. Coins buy Jerusalem materials (`docs/jerusalem-plot.md`) and look items (below).
 
 ## Design rules
 
@@ -97,25 +97,62 @@ adding new buildings.
 - This turns individual play into a group project, a reason to come back next
   week.
 
-## Second coin sink: wardrobe and chariots (cosmetics)
+## Second coin sink: characters and looks (built, 2026-10)
 
-These are cheap and fun, and they show up in matches, which makes them
-"social proof". Being seen in a game is what makes cosmetics worth buying.
+Cosmetics show up in every game, which is what makes them worth having. The
+rules and the item table are `shared/src/looks.ts`; the picker is
+`app/src/looks/LookPicker.tsx` (Profile, and the join screens of the arena and
+board games); the Market screen links to it.
 
-- **Clothing per character:**
-  - Joseph's coat of many colours (Gen 37:3)
-  - priestly ephod (Ex 28)
-  - Elijah's mantle (2 Kgs 2:13)
-  - Lydia's purple cloth (Acts 16:14)
-  - shepherd's cloak
-- **Crowns / headwear** for the crowning ceremony: laurel, olive wreath,
-  shepherd's turban.
-- **Chariot liveries** for the Road to the Throne. The six colours already
-  exist; add gilded, cedar and "chariot of fire" skins.
-- **Portrait frames:** bronze → silver → gold → jewelled, shown everywhere
-  your portrait appears.
-- **More characters**, unlocked with coins: Deborah, Daniel, Mary, Paul,
-  Peter, Miriam, Joshua. This also fixes "two players look identical".
+**Free for everyone, guests included:**
+
+- **24 characters**: David, Moses, Esther, Ruth, Abraham, Sarah, Noah, Rebekah,
+  Joseph, Miriam (as a girl), Deborah, Gideon, Hannah, Samuel (as a boy),
+  Elijah, Naomi, Daniel, Mary, Peter, John, Martha, Lydia, Paul, Priscilla.
+- **3 skin tones** each (light, olive, dark), painted as the same person.
+- Frames *gilt edge* (the default) and *wood*; backdrops crimson (default),
+  sand, sky, meadow.
+
+**Market (signed-in players, 100–1,000 coins):**
+
+| Slot | Items (price) |
+|---|---|
+| Head | red / blue headband (100), green (150), purple (200), flower crown (300), olive wreath (400), linen turban (500), coin headdress (800) |
+| Neck | leather cord (100), wooden beads (200), shells (300), amber (500), silver chain (700), gold chain (1,000) |
+| Frame | bronze (250), silver (500), gold (900) |
+| Backdrop | sea (200), royal purple (400), sunset (600), starry night (800) |
+
+**Rare, earned and never sold** (the picker shows how, with progress):
+
+| Item | How |
+|---|---|
+| Golden circlet (head) | win 10 Open Arena games (`stats.arenaWins`) |
+| Scholar's turban (head) | spend 6 points on the Scholar path of the Gifts tree |
+| Golden laurel (head) | reach level 20 |
+| Pearl of great price (neck, Matt 13:46) | answer 1,000 questions right |
+| Jewelled frame | read the Daily Scroll 30 days in a row (`stats.bestDailyStreak`) |
+
+`arenaWins` and `bestDailyStreak` are new account stats (counted from
+2026-10, reported with the arena podium / finished scroll grants like every
+other stat).
+
+**How ownership works.** The wardrobe is `profile.wardrobe` in the account
+(a list of item ids, like the skill ranks), changed only by the server:
+`POST /api/looks/buy { item }` checks the price against the server's coins,
+deducts them and replies with the account (the app adopts it, coins included);
+`/api/account/sync` adds rare items once their condition is met (kept after a
+re-spec) and strips any worn item the account doesn't own. Sign-up starts
+with free items only.
+
+**How a look travels.** One string in the old `avatar` field everywhere
+(profile, arena, board games, leaderboard, city): `base.tone.head.neck.frame.backdrop`,
+e.g. `ruth.dark.flowers..gold-frame.night`. A bare old id (`david`) is still
+valid (David in his painted tone, nothing worn); `cleanLook` turns any value
+into a valid look, unknown parts become the default. Multiplayer servers
+trust the worn items (family game) but always clean them.
+
+Still ideas: chariot liveries for the Road to the Throne (gilded, cedar,
+"chariot of fire"), and outfits per character (Joseph's coat, Elijah's mantle).
 
 ## Not bought with coins: the 66 Books collection
 
@@ -145,8 +182,8 @@ in the browser.
    - Start with the existing device id plus an optional "claim with email
      link", so nobody needs a password.
    - Store data in SQLite on the same Fly machine (see `docs/deploy.md`).
-2. **Shop v1: portrait frames + chariot liveries.** These use art we already
-   have and show up immediately in games.
+2. **Shop v1: characters, looks and frames** (done, see above). Chariot
+   liveries are still open.
 3. **Jerusalem plot v1:** wall + house with 3 levels each, layered art from
    the art pipeline (about 25–30 images, about $1).
 4. **Public profiles.**

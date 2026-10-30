@@ -16,6 +16,7 @@ import { registerCityRoutes } from './city.js'
 import { registerSkillRoutes } from './skills.js'
 import { registerFlagRoutes } from './flags.js'
 import { registerRoleRoutes } from './roles.js'
+import { registerLookRoutes } from './looks.js'
 import { roomCount, startRoomGC } from './rooms.js'
 import { registerFlockHandlers, startFlock, type FlockIO } from './flock/handlers.js'
 import { registerSpiesHandlers, startSpies, type SpiesIO } from './spies/handlers.js'
@@ -38,6 +39,7 @@ registerCityRoutes(app)
 registerSkillRoutes(app)
 registerFlagRoutes(app)
 registerRoleRoutes(app)
+registerLookRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
 app.get('/api/server-info', () => ({

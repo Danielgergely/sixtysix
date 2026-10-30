@@ -1,7 +1,6 @@
 import type { Difficulty } from '../questions/types'
 
 export type { CharacterId } from '@sixtysix/shared'
-import type { CharacterId } from '@sixtysix/shared'
 
 export type RacePhase =
   | 'reading' // question flashed without answers + 3-2-1 countdown — time to read
@@ -13,7 +12,8 @@ export type RacePhase =
 export interface PlayerProfile {
   id: string
   name: string
-  avatar: CharacterId
+  /** Look string (shared/src/looks.ts): character, skin tone and what they wear. */
+  avatar: string
   level: number
   xp: number
   coins: number

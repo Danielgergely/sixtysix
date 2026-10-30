@@ -1,5 +1,6 @@
 import type { Difficulty } from '../questions/types'
-import type { BotPersona, CharacterId, Racer } from './types'
+import { parseLook } from '@sixtysix/shared'
+import type { BotPersona, Racer } from './types'
 import { QUESTION_TIME_MS } from './scoring'
 import { t } from '../i18n'
 
@@ -22,13 +23,14 @@ export function personaForLevel(level: number): BotPersona {
   }
 }
 
-const BOT_ROSTER: Array<{ name: string; avatar: CharacterId }> = [
-  { name: 'Miriam', avatar: 'esther' },
-  { name: 'Caleb', avatar: 'david' },
-  { name: 'Tabitha', avatar: 'ruth' },
-  { name: 'Eli', avatar: 'moses' },
-  { name: 'Phoebe', avatar: 'esther' },
-  { name: 'Silas', avatar: 'david' },
+/** Bots wear looks too (shared/src/looks.ts: base.tone.head.neck.frame.backdrop). */
+const BOT_ROSTER: Array<{ name: string; avatar: string }> = [
+  { name: 'Miriam', avatar: 'rebekah.light.flowers' },
+  { name: 'Caleb', avatar: 'gideon.dark.band-red' },
+  { name: 'Tabitha', avatar: 'lydia.olive..beads..sand' },
+  { name: 'Eli', avatar: 'noah.light' },
+  { name: 'Phoebe', avatar: 'priscilla.dark..shells' },
+  { name: 'Silas', avatar: 'paul.olive..cord..sky' },
 ]
 
 export interface BotRacer extends Racer {
@@ -37,9 +39,11 @@ export interface BotRacer extends Racer {
 }
 
 /** Pick `count` distinct bots, avoiding the player's avatar where possible. */
-export function pickBots(count: number, avoidAvatar?: CharacterId): BotRacer[] {
+export function pickBots(count: number, avoidAvatar?: string): BotRacer[] {
+  const avoid = avoidAvatar && parseLook(avoidAvatar).base
+  const same = (avatar: string) => Number(parseLook(avatar).base === avoid)
   const pool = [...BOT_ROSTER].sort(() => Math.random() - 0.5)
-  pool.sort((a, b) => Number(a.avatar === avoidAvatar) - Number(b.avatar === avoidAvatar))
+  pool.sort((a, b) => same(a.avatar) - same(b.avatar))
   return pool.slice(0, count).map((bot, i) => {
     const level = 1 + Math.floor(Math.random() * 9)
     return {
