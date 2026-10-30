@@ -1055,10 +1055,10 @@
   "q_b03_038": {
     "text": "„Lege mich wie ein Siegel auf dein Herz, denn die Liebe ist stark wie ___.“",
     "answers": [
-      "Eisen",
+      "das Eisen",
       "das Meer",
       "der Tod",
-      "Feuer"
+      "das Feuer"
     ]
   },
   "q_b03_039": {
@@ -3141,7 +3141,7 @@
     ]
   },
   "q_b09_030": {
-    "text": "Woran erinnerten sich die Israeliten, das sie in Ägypten gegessen hatten?",
+    "text": "An welches Essen aus Ägypten erinnerten sich die Israeliten?",
     "answers": [
       "Feigen",
       "Datteln",
@@ -3222,7 +3222,7 @@
     ]
   },
   "q_b09_039": {
-    "text": "In Israel stand kein Prophet mehr auf wie wer, den der HERR von Angesicht zu Angesicht kannte?",
+    "text": "Welchem Propheten, den der HERR von Angesicht zu Angesicht kannte, glich in Israel keiner mehr?",
     "answers": [
       "Aaron",
       "Mose",
@@ -4887,12 +4887,12 @@
     ]
   },
   "q_b14_022": {
-    "text": "Unter was für einem Strauch oder Baum setzte sich Elija und wünschte sich den Tod?",
+    "text": "Unter welcher Pflanze setzte sich Elija und wünschte sich den Tod?",
     "answers": [
-      "Eiche",
-      "Feigenbaum",
-      "Olivenbaum",
-      "Ginsterstrauch"
+      "Unter einer Eiche",
+      "Unter einem Feigenbaum",
+      "Unter einem Ölbaum",
+      "Unter einem Ginsterstrauch"
     ]
   },
   "q_b14_023": {
@@ -6669,12 +6669,12 @@
     ]
   },
   "q_b19_012": {
-    "text": "In Psalm 1 sind die Gottlosen wie was, das der Wind verweht?",
+    "text": "Psalm 1: Womit werden die Gottlosen verglichen, die der Wind verweht?",
     "answers": [
-      "Staub",
-      "Spreu",
-      "Rauch",
-      "Laub"
+      "Mit Staub",
+      "Mit Spreu",
+      "Mit Rauch",
+      "Mit Laub"
     ]
   },
   "q_b19_013": {
@@ -6723,16 +6723,16 @@
     ]
   },
   "q_b19_018": {
-    "text": "Psalm 68 nennt Gott einen Helfer der Witwen und einen Vater von wem?",
+    "text": "Psalm 68 nennt Gott einen Helfer der Witwen und einen Vater – wessen?",
     "answers": [
-      "Den Waisen",
-      "Den Armen",
-      "Den Völkern",
-      "Den Propheten"
+      "Der Waisen",
+      "Der Armen",
+      "Der Völker",
+      "Der Propheten"
     ]
   },
   "q_b19_019": {
-    "text": "Psalm 84: Ein Tag in Gottes Vorhöfen ist besser als wie viele anderswo?",
+    "text": "Psalm 84: Ein Tag in Gottes Vorhöfen ist besser als wie viele Tage anderswo?",
     "answers": [
       "Hundert",
       "Tausend",
@@ -6822,12 +6822,12 @@
     ]
   },
   "q_b19_029": {
-    "text": "Psalm 147: Wovon zählt Gott die Zahl und ruft sie alle mit Namen?",
+    "text": "Psalm 147: Was zählt Gott und nennt sie alle mit Namen?",
     "answers": [
-      "Von den Sternen",
-      "Von den Sandkörnern",
-      "Von den Schafen",
-      "Von den Völkern"
+      "Die Sterne",
+      "Die Sandkörner",
+      "Die Schafe",
+      "Die Völker"
     ]
   },
   "q_b19_030": {
@@ -6849,7 +6849,7 @@
     ]
   },
   "q_b19_032": {
-    "text": "Psalm 95: Wie viele Jahre empfand Gott Ekel vor der Generation in der Wüste?",
+    "text": "Psalm 95: Wie viele Jahre lang war Gott die Generation in der Wüste zuwider?",
     "answers": [
       "Sieben",
       "Siebzig",
@@ -6966,7 +6966,7 @@
     ]
   },
   "q_b20_004": {
-    "text": "Prediger 5: Wer was liebt, wird davon nicht satt?",
+    "text": "Prediger 5: Wovon wird nicht satt, wer es liebt?",
     "answers": [
       "Silber",
       "Wein",
@@ -6993,12 +6993,12 @@
     ]
   },
   "q_b20_007": {
-    "text": "Prediger 12: Des Machens wovon ist kein Ende?",
+    "text": "Prediger 12: Was zu machen, nimmt kein Ende?",
     "answers": [
-      "Bücher",
-      "Gesetze",
-      "Lieder",
-      "Götzenbilder"
+      "Viele Bücher",
+      "Viele Gesetze",
+      "Viele Lieder",
+      "Viele Götzenbilder"
     ]
   },
   "q_b20_008": {
@@ -7047,12 +7047,12 @@
     ]
   },
   "q_b20_013": {
-    "text": "Psalm 78: Als Gott Manna regnen ließ, aß der Mensch das Brot von wem?",
+    "text": "Psalm 78: Als Gott Manna regnen ließ, was für Brot aß da der Mensch?",
     "answers": [
-      "Von Königen",
-      "Von Engeln",
-      "Von Priestern",
-      "Von Helden"
+      "Das Brot der Könige",
+      "Das Brot der Engel",
+      "Das Brot der Priester",
+      "Das Brot der Helden"
     ]
   },
   "q_b20_014": {
@@ -8658,12 +8658,12 @@
     ]
   },
   "q_b24_024": {
-    "text": "Amos sagte, er sei kein Prophet, sondern ein Viehhirte, der was anbaut?",
+    "text": "Amos sagte, er sei kein Prophet, sondern Viehhirte. Womit hatte er außerdem zu tun?",
     "answers": [
-      "Oliven",
-      "Weizen",
-      "Trauben",
-      "Maulbeerfeigen"
+      "Mit Oliven",
+      "Mit Weizen",
+      "Mit Trauben",
+      "Mit Maulbeerfeigen"
     ]
   },
   "q_b24_025": {
@@ -8793,7 +8793,7 @@
     ]
   },
   "q_b24_039": {
-    "text": "Maleachi 4: Er wird das Herz der Väter wem zuwenden?",
+    "text": "Maleachi 4: Wem wird er das Herz der Väter zuwenden?",
     "answers": [
       "Gott",
       "Den Priestern",
@@ -9486,12 +9486,12 @@
     ]
   },
   "q_b26_029": {
-    "text": "Die zwei Frauen, die das Epha-Gefäß hochhoben, hatten Flügel wie welcher Vogel?",
+    "text": "Die zwei Frauen, die das Epha-Gefäß hochhoben, hatten Flügel wie …?",
     "answers": [
-      "Ein Storch",
-      "Ein Adler",
-      "Eine Taube",
-      "Ein Rabe"
+      "die eines Storchs",
+      "die eines Adlers",
+      "die einer Taube",
+      "die eines Raben"
     ]
   },
   "q_b26_030": {
@@ -10368,7 +10368,7 @@
     ]
   },
   "q_b29_004": {
-    "text": "Barabbas war mit Aufrührern gefangen, die beim Aufruhr was begangen hatten?",
+    "text": "Was hatten die Aufrührer, mit denen Barabbas gefangen war, beim Aufruhr begangen?",
     "answers": [
       "Gotteslästerung",
       "Bestechung",
@@ -10719,7 +10719,7 @@
     ]
   },
   "q_b30_002": {
-    "text": "Der ältere Bruder des verlorenen Sohnes klagte, sein Vater habe ihm nie was gegeben?",
+    "text": "Was hatte ihm sein Vater nie gegeben, klagte der ältere Bruder des verlorenen Sohnes?",
     "answers": [
       "Ein Pferd",
       "Einen Ring",
@@ -11502,7 +11502,7 @@
     ]
   },
   "q_b32_003": {
-    "text": "In der Waffenrüstung Gottes ist der Helm der Helm … wovon?",
+    "text": "In der Waffenrüstung Gottes heißt der Helm: der Helm …?",
     "answers": [
       "der Wahrheit",
       "des Friedens",
@@ -12222,7 +12222,7 @@
     ]
   },
   "q_b34_003": {
-    "text": "Mehr als wie vielen Brüdern auf einmal erschien der auferstandene Christus?",
+    "text": "Mehr als wie viele Brüder sahen den auferstandenen Christus auf einmal?",
     "answers": [
       "Siebzig",
       "Hundertzwanzig",
