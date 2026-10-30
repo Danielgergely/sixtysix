@@ -100,6 +100,8 @@ export interface ArenaQuestion {
 }
 
 export interface RevealPayload {
+  /** The question's bank id, so a player can flag it after the reveal. */
+  questionId?: string
   correctIndex: number
   reference: string
   /** Cited verse text (WEB); empty if unavailable. */

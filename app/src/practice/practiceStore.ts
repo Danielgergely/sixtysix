@@ -6,6 +6,7 @@ import { useLocale } from '../i18n'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
 import { useGiftStore } from '../skills/giftStore'
+import { excludedNow, loadExclusions } from '../flags/flagStore'
 
 /**
  * Practice: solo, untimed, endless. Missed questions are remembered on the
@@ -85,6 +86,9 @@ function eligible(q: Question, cats: Category[], difficulty: DifficultyPreset): 
 
 function pickNext(state: PracticeStore): Question | null {
   const { categories, difficulty, missed, reviewOnly } = state
+  // Flagged questions are out of play, even one flagged a moment ago.
+  const out = excludedNow()
+  retryQueue = retryQueue.filter((r) => !out.has(r.id))
   // 1. a question missed earlier this session whose turn has come
   const due = retryQueue.findIndex((r) => r.at <= served)
   if (due >= 0) {
@@ -93,7 +97,7 @@ function pickNext(state: PracticeStore): Question | null {
     if (q) return q
   }
   // 2. saved misses from earlier sessions
-  const savedPool = bank.filter((q) => missed.includes(q.id) && !seen.has(q.id))
+  const savedPool = bank.filter((q) => missed.includes(q.id) && !seen.has(q.id) && !out.has(q.id))
   if (reviewOnly) {
     if (savedPool.length) return savedPool[Math.floor(Math.random() * savedPool.length)]
     // Nothing new left: bring back this session's misses early instead of ending
@@ -106,10 +110,10 @@ function pickNext(state: PracticeStore): Question | null {
     if (fromMissed.length) return fromMissed[Math.floor(Math.random() * fromMissed.length)]
   }
   // 3. fresh question; once everything was seen, start over
-  let pool = bank.filter((q) => eligible(q, categories, difficulty) && !seen.has(q.id))
+  let pool = bank.filter((q) => eligible(q, categories, difficulty) && !seen.has(q.id) && !out.has(q.id))
   if (pool.length === 0) {
     seen = new Set()
-    pool = bank.filter((q) => eligible(q, categories, difficulty))
+    pool = bank.filter((q) => eligible(q, categories, difficulty) && !out.has(q.id))
   }
   return pool[Math.floor(Math.random() * pool.length)] ?? null
 }
@@ -135,7 +139,9 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     if (get().loading) return
     set({ loading: true })
     try {
-      if (!bank.length) [bank] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale)])
+      // The out-of-play list is refreshed along (the cached one covers offline play).
+      const [loaded] = await Promise.all([bank.length ? bank : loadBank(), loadVerses(useLocale.getState().locale), loadExclusions()])
+      bank = loaded
     } catch {
       // Chunk failed to load (offline web build) — let the player try again.
       set({ loading: false })

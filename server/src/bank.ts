@@ -25,6 +25,18 @@ console.log(`[bank] loaded ${BANK.length} questions`)
 
 export const verseFor = (id: string): string => VERSES[id] ?? ''
 
+const BY_ID = new Map(BANK.map((q) => [q.id, q]))
+export const questionById = (id: string): Question | undefined => BY_ID.get(id)
+
+/**
+ * Questions out of play: an open or confirmed flag (server/src/flags.ts keeps
+ * this up to date). No game or scroll draws them until they are resolved.
+ */
+let outOfPlay = new Set<string>()
+export function setOutOfPlay(ids: Iterable<string>): void {
+  outOfPlay = new Set(ids)
+}
+
 /** The question's verse in every other language there is one for. */
 export function versesFor(id: string): Partial<Record<Locale, VerseText>> {
   const out: Partial<Record<Locale, VerseText>> = {}
@@ -61,7 +73,7 @@ export function pickQuestions(count: number, opts: PickOptions = {}): Question[]
   const [min, max] = DIFFICULTY_RANGE[opts.difficulty ?? 'mixed']
   const cats = opts.categories?.length ? new Set(opts.categories) : null
   const eligible = BANK.filter(
-    (q) => q.difficulty >= min && q.difficulty <= max && (!cats || cats.has(q.category)),
+    (q) => q.difficulty >= min && q.difficulty <= max && (!cats || cats.has(q.category)) && !outOfPlay.has(q.id),
   )
   // Prefer unseen questions; top up with seen ones once the fresh pool runs dry.
   const fresh = shuffle(eligible.filter((q) => !opts.exclude?.has(q.id)))

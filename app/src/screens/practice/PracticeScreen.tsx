@@ -12,6 +12,7 @@ import { GiftBar } from '../../skills/GiftBar'
 import { useLocale, useT } from '../../i18n'
 import { questionIn, useVerses, verseOf } from '../../questions/localize'
 import { rich } from '../arena/rich'
+import { FlagButton } from '../../flags/FlagSheet'
 
 /** Untimed solo questions: tap a card, see the verse, carry on. */
 export function PracticeScreen() {
@@ -70,6 +71,7 @@ export function PracticeScreen() {
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
               {verseOf(verses, question).text && <>{quoteVerse(verseOf(verses, question).text, locale)} </>}
               <em>— {verseOf(verses, question).ref}</em>
+              <FlagButton target={{ questionId: question.id, shown: questionIn(question, locale) }} />
             </motion.div>
           )}
         </AnimatePresence>

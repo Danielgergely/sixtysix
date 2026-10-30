@@ -36,7 +36,18 @@ export interface Account {
   username: string
   createdAt: number
   profile: AccountProfile
+  /** Staff role: 'admin' (ADMIN_USERNAMES on the server) or 'reviewer' (granted by an admin); absent for everyone else. */
+  role?: StaffRole
 }
+
+/**
+ * Staff roles. Reviewers review flagged (and later submitted) questions;
+ * admins can do that too and grant or revoke the reviewer role.
+ */
+export type StaffRole = 'admin' | 'reviewer'
+/** Whether `role` may do what `need` may: an admin is also a reviewer. */
+export const hasRole = (role: StaffRole | null | undefined, need: StaffRole): boolean =>
+  role === 'admin' || (need === 'reviewer' && role === 'reviewer')
 
 /** Counters in a grant's `stats` are added; best* take the max; currentStreak is set. */
 export const STAT_COUNTERS = ['gamesPlayed', 'firstPlace', 'secondPlace', 'thirdPlace', 'questionsAnswered', 'questionsCorrect'] as const

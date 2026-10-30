@@ -5,6 +5,7 @@ import { usePracticeStore } from '../../practice/practiceStore'
 import { PARCHMENT } from '../../art/textures'
 import { spring } from '../../motion'
 import { useT } from '../../i18n'
+import { excludedNow, useFlagStore } from '../../flags/flagStore'
 
 const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 
@@ -13,6 +14,10 @@ export function PracticeSetupScreen() {
   const t = useT()
   const goTo = useGameStore((s) => s.goTo)
   const { categories, difficulty, missed, loading, setCategories, setDifficulty, start } = usePracticeStore()
+  // Flagged questions are out of play, so they don't count as mistakes to review.
+  useFlagStore((s) => s.serverExcluded.length + s.mine.length)
+  const out = excludedNow()
+  const reviewable = missed.filter((id) => !out.has(id)).length
   const toggle = (c: Category) => setCategories(categories.includes(c) ? categories.filter((x) => x !== c) : [...categories, c])
 
   return (
@@ -53,9 +58,9 @@ export function PracticeSetupScreen() {
         <button className="pr-go" disabled={loading} onClick={() => void start()}>
           {loading ? t('practice.loading') : t('practice.begin')}
         </button>
-        {missed.length > 0 && (
+        {reviewable > 0 && (
           <button className="pr-review" disabled={loading} onClick={() => void start({ reviewOnly: true })}>
-            {t('practice.review', { n: missed.length })}
+            {t('practice.review', { n: reviewable })}
           </button>
         )}
       </motion.div>

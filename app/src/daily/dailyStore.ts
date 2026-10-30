@@ -5,6 +5,7 @@ import { loadBank, loadVerses } from '../questions/provider'
 import { useGameStore } from '../game/store'
 import { playSfx } from '../game/sfx'
 import { t, useLocale } from '../i18n'
+import { loadExclusions } from '../flags/flagStore'
 
 /**
  * Daily Scroll: five questions per calendar day, the SAME five for everyone
@@ -19,6 +20,11 @@ interface Saved {
   /** YYYY-MM-DD the picks belong to. */
   date: string
   picks: number[]
+  /**
+   * The day's question ids, saved once the player has started: a question
+   * flagged mid-day must not shift the picks under an answered scroll.
+   */
+  ids?: string[]
   /** Last day completed and the run of consecutive days ending there. */
   streakDate: string
   streak: number
@@ -74,8 +80,9 @@ function load(): Saved {
     const raw = localStorage.getItem(KEY)
     const s = raw ? ({ ...fresh, ...JSON.parse(raw) } as Saved) : fresh
     if (!Array.isArray(s.picks)) s.picks = []
+    if (s.ids !== undefined && !(Array.isArray(s.ids) && s.ids.every((id) => typeof id === 'string'))) delete s.ids
     // A new day: keep the streak record, drop yesterday's answers.
-    return s.date === today() ? s : { ...s, date: today(), picks: [] }
+    return s.date === today() ? s : { ...s, date: today(), picks: [], ids: undefined }
   } catch {
     return fresh
   }
@@ -108,16 +115,29 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
   open: async () => {
     if (get().loading) return
     set({ loading: true })
-    const saved = load()
+    let saved = load()
     let bank: Question[]
+    let excluded: Set<string>
     try {
-      ;[bank] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale)])
+      ;[bank, , excluded] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale), loadExclusions()])
     } catch {
       // Chunk failed to load (offline web build) — tapping again retries.
       set({ loading: false })
       return
     }
-    const questions = pickDaily(bank, saved.date)
+    const byId = new Map(bank.map((q) => [q.id, q]))
+    const kept = saved.ids?.length === COUNT ? saved.ids.map((id) => byId.get(id)) : null
+    let questions: Question[]
+    if (kept?.every((q): q is Question => !!q)) questions = kept
+    else if (saved.picks.length) {
+      // Started before the ids were saved: the five they answered, then keep them.
+      questions = pickDaily(bank, saved.date)
+      saved = { ...saved, ids: questions.map((q) => q.id) }
+      save(saved)
+    } else {
+      // Not started yet: flagged questions are out of play.
+      questions = pickDaily(bank.filter((q) => !excluded.has(q.id)), saved.date)
+    }
     const coins = saved.picks.reduce((n, p, i) => n + (p === questions[i]?.correctIndex ? COINS_PER_CORRECT : 0), 0)
     set({ saved, questions, loading: false, coins: saved.picks.length === COUNT && coins === COUNT * COINS_PER_CORRECT ? coins + DAILY_PERFECT_BONUS : coins })
     // Only from the Quiz tab — don't yank the player out of whatever they opened meanwhile.
@@ -141,7 +161,7 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
         streakDate = saved.date
       }
     }
-    const next = { ...saved, picks, streak, streakDate }
+    const next = { ...saved, picks, streak, streakDate, ids: questions.map((x) => x.id) }
     save(next)
     if (earned) useGameStore.getState().addCoins(earned, correct ? UNTIMED_XP_PER_CORRECT : 0)
     playSfx(correct ? 'correct' : 'wrong')

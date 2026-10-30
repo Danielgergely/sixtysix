@@ -1,0 +1,100 @@
+/* ══ Question flags: the flag sheet (flags/FlagSheet.tsx) and the review screen ══ */
+
+/* Over everything, including the arena's scene layers and leave/skip buttons. */
+.flag-overlay {
+  position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-end; justify-content: center;
+  background: rgb(20 8 4 / 0.55);
+}
+.flag-sheet {
+  position: relative; width: min(100%, 480px); max-height: 92dvh; overflow-y: auto;
+  padding: 20px 16px calc(18px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0;
+  background-color: #f3e2bb; background-size: 300px 300px; color: #3b2412;
+  border: 3px solid #b88a3a; border-bottom: 0; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 24px rgb(120 70 20 / 0.35), 0 -10px 30px rgb(0 0 0 / 0.5);
+  display: flex; flex-direction: column; gap: 8px; font-family: 'Cinzel', Georgia, serif; text-align: left;
+}
+.flag-close {
+  position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%;
+  background: rgb(255 255 255 / 0.5); border: 2px solid #b88a3a; color: #6b1d0e; font-size: 15px;
+}
+.flag-title { margin: 0 40px 0 0; font: 900 20px/1.15 'Cinzel Decorative', serif; color: #6b1d0e; }
+.flag-question { margin: 0; font: italic 14px/1.4 Georgia, serif; color: #6b4120; }
+.flag-label { margin-top: 6px; font-weight: 900; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b1d0e; }
+.flag-reasons { display: flex; flex-wrap: wrap; gap: 8px; }
+.flag-reason {
+  padding: 9px 12px; border-radius: 999px; background: rgb(255 255 255 / 0.45); border: 2px solid #c9a24a;
+  font: 700 13px/1.1 'Cinzel', serif; color: #3b2412;
+}
+.flag-reason.on { background: linear-gradient(#ffe08a, #d39b22); border-color: #1d0f06; box-shadow: 0 2px 0 #1d0f06; }
+.flag-comment {
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 72px; padding: 10px; border-radius: 10px;
+  border: 2px solid #c9a24a; background: rgb(255 255 255 / 0.6); font: 15px/1.35 Georgia, serif; color: #2b1e12;
+}
+.flag-count { align-self: flex-end; font: 600 11px/1 Georgia, serif; color: #8a5a32; }
+.flag-error { margin: 0; font: 700 13px/1.3 Georgia, serif; color: #a3241c; }
+.flag-send { width: 100%; margin-top: 4px; }
+.flag-thanks { padding: 18px 0 10px; text-align: center; }
+.flag-thanks-icon { font-size: 40px; }
+.flag-thanks h3 { margin: 6px 0; font: 900 22px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.flag-thanks p { margin: 0; font: italic 14px/1.4 Georgia, serif; color: #6b4120; }
+
+/* Where the button sits: under the verse (Practice, Daily Scroll), over the throne room (arena player). */
+.pr-verse .flag-btn { display: block; margin: 8px auto 0; font-family: 'Cinzel', serif; font-style: normal; }
+.flag-btn.arena-flag {
+  position: absolute; z-index: 40; left: 50%; bottom: calc(10px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: rgb(29 15 6 / 0.75); border-color: #e3b754; color: #ffe7a3; padding: 6px 14px; font-size: 0.75rem;
+}
+.flag-btn.arena-flag.flagged { background: var(--answer-red); border-color: var(--answer-red); color: #fff; }
+
+/* ── Review screen (reviewers, admins) ─────────────────────────────────────────── */
+.fa-screen { position: relative; overflow-y: auto; color: #3b2412; font-family: 'Cinzel', Georgia, serif; }
+.fa-screen > *:not(.pr-bg) { position: relative; z-index: 1; }
+.fa-tabs { display: flex; gap: 6px; padding: 12px 14px 0; }
+.fa-tab {
+  flex: 1; padding: 9px 4px; border-radius: 10px; background: rgb(29 15 6 / 0.7); border: 2px solid #c9a24a;
+  font: 700 13px/1 'Cinzel', serif; color: #ffe7a3;
+}
+.fa-tab.on { background: linear-gradient(#ffe08a, #d39b22); border-color: #1d0f06; color: #2b1408; }
+.fa-export { display: block; margin: 10px 14px 0; text-align: center; font: 700 13px/1 'Cinzel', serif; color: #ffe7a3; text-decoration: underline; background: none; border: 0; width: calc(100% - 28px); }
+.fa-empty { margin: 30px 14px; text-align: center; font: italic 15px/1.4 Georgia, serif; color: #ffe7a3; text-shadow: 0 2px 4px #000; }
+.fa-group {
+  margin: 14px; padding: 14px; border-radius: 12px; background-color: #f3e2bb; background-size: 300px 300px;
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 24px rgb(120 70 20 / 0.35), 0 10px 20px rgb(0 0 0 / 0.45);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.fa-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font: 700 11px/1.2 'Cinzel', serif; color: #8a5a32; letter-spacing: 0.06em; }
+.fa-pill { padding: 2px 8px; border-radius: 999px; border: 1.5px solid currentColor; text-transform: uppercase; }
+.fa-pill.open { color: #a3241c; }
+.fa-pill.confirmed { color: #8a5a10; }
+.fa-pill.dismissed, .fa-pill.fixed { color: #3b7a3b; }
+.fa-lang { border-top: 1px solid rgb(184 138 58 / 0.5); padding-top: 6px; }
+.fa-lang:first-of-type { border-top: 0; padding-top: 0; }
+.fa-lang-code { font: 900 11px/1 'Cinzel', serif; color: #6b1d0e; text-transform: uppercase; }
+.fa-q { margin: 2px 0 4px; font: 700 15px/1.3 Georgia, serif; }
+.fa-answers { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.fa-answers li { padding: 2px 8px; border-radius: 999px; border: 1.5px solid #c9a24a; font: 600 12px/1.3 Georgia, serif; }
+.fa-answers li.right { background: #3ba23b; border-color: #2f8d2f; color: #fff; }
+.fa-verse { margin: 4px 0 0; font: italic 13px/1.4 Georgia, serif; color: #6b4120; }
+.fa-verse b { font-style: normal; font-family: 'Cinzel', serif; }
+.fa-flags { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.fa-flag { padding: 8px 10px; border-radius: 8px; background: rgb(255 255 255 / 0.45); border: 1.5px solid #c9a24a; font: 13px/1.4 Georgia, serif; }
+.fa-flag-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; font: 700 12px/1.3 'Cinzel', serif; color: #6b1d0e; }
+.fa-flag-head .fa-when { margin-left: auto; font: 600 11px/1 Georgia, serif; color: #8a5a32; }
+.fa-flag-comment { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.fa-flag-shown { margin: 4px 0 0; font-size: 12px; color: #6b4120; }
+.fa-flag-note { margin: 4px 0 0; font-size: 12px; color: #3b7a3b; }
+.fa-note { width: 100%; box-sizing: border-box; padding: 8px; border-radius: 8px; border: 2px solid #c9a24a; background: rgb(255 255 255 / 0.6); font: 14px/1.3 Georgia, serif; }
+.fa-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fa-actions button { margin: 0; padding: 11px 6px; font-size: 13px; }
+.fa-error { margin: 0; font: 700 13px/1.3 Georgia, serif; color: #a3241c; }
+.profile-admin-link { width: 100%; }
+.fa-sections .fa-tab { font-size: 14px; padding: 11px 4px; }
+.fa-filters { padding-top: 8px; }
+.fa-filters .fa-tab { font-size: 12px; padding: 7px 4px; }
+.fa-intro { margin: 0; font: italic 14px/1.4 Georgia, serif; color: #6b4120; }
+.fa-add { display: flex; gap: 8px; align-items: stretch; }
+.fa-add .fa-note { flex: 1; min-width: 0; }
+.fa-add .pr-go { margin: 0; padding: 10px 14px; font-size: 14px; }
+.fa-reviewers { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.fa-reviewers li { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: rgb(255 255 255 / 0.45); border: 1.5px solid #c9a24a; font: 700 14px/1.2 'Cinzel', serif; }
+.fa-reviewers li span { flex: 1; overflow-wrap: anywhere; }
+.fa-reviewers li .pr-review { padding: 7px 10px; font-size: 12px; }

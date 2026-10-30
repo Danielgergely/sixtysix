@@ -23,6 +23,27 @@ node scripts/review.mjs        # interactive: walk the review queue
 node scripts/compile.mjs       # → app/src/questions/bank.json
 ```
 
+## Fixing flagged questions
+
+Players flag questions in the app (CLAUDE.md → Question flags). A reviewer
+marks a flag **Needs fixing** on the review screen (Profile → Flagged questions);
+the question then stays out of play until it is fixed here.
+
+1. Download the list: the review screen's "To fix" tab → *Download the to-fix
+   list (JSON)*, or `GET /api/admin/flags/export?status=confirmed` with a
+   reviewer's or admin's bearer token. Each group has the question in every
+   language, the verses, and every flag (reason, comment, what the player saw).
+2. Fix the question in its source (`data/generated/*.json` or
+   `data/approved-manual.json`) and in `i18n/<lang>.json` for each translation.
+3. Run `node scripts/compile.mjs` and then `node scripts/compile-i18n.mjs`.
+4. Deploy. On start the server compares each open or confirmed flag with a hash
+   of the question's bank entry (text and answers in every language, the right
+   answer, the reference). Any change, or a question that left the bank, turns
+   its flags **fixed** and the question is back in play. Nothing else to do.
+
+A question that is fine after all: **It's fine** on the review screen (all its
+flags → dismissed, back in play at once).
+
 `verify.mjs` prints a per-batch summary (verified / review / rejected with
 reasons tallied) and the shippable distribution by category × difficulty.
 Pass `--quiet` to suppress the per-question rejection list.

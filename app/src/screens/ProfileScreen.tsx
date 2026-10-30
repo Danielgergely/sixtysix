@@ -1,10 +1,13 @@
+import { useEffect, useState } from 'react'
 import { useGameStore } from '../game/store'
-import { CHARACTERS } from '@sixtysix/shared'
+import { CHARACTERS, hasRole } from '@sixtysix/shared'
 import { Avatar } from '../avatars/Avatar'
 import { characterName } from '../art/characters'
 import { AccountPanel } from './AccountPanel'
 import { openSkillTree } from '../skills/nav'
 import { LOCALES, useLocale, useT } from '../i18n'
+import { useAccountStore } from '../account/accountStore'
+import { fetchFlagSummary } from '../flags/adminApi'
 
 const pct = (part: number, total: number, locale: string) =>
   total > 0 ? (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 0 }) : '–'
@@ -48,6 +51,8 @@ export function ProfileScreen() {
         </header>
 
       <AccountPanel />
+
+      <FlagsLink />
 
       <LanguagePicker />
 
@@ -138,6 +143,33 @@ function LanguagePicker() {
         ))}
       </div>
       <p className="profile-credit">{t('profile.bibleText')}</p>
+    </div>
+  )
+}
+
+/** Reviewers and admins: the way to the review screen, with how many flagged questions wait for a decision. */
+function FlagsLink() {
+  const t = useT()
+  const admin = useAccountStore((s) => hasRole(s.account?.role, 'reviewer'))
+  const goTo = useGameStore((s) => s.goTo)
+  const [open, setOpen] = useState<number | null>(null)
+  useEffect(() => {
+    if (!admin) return
+    let live = true
+    fetchFlagSummary()
+      .then((s) => live && setOpen(s.open))
+      .catch(() => {})
+    return () => {
+      live = false
+    }
+  }, [admin])
+  if (!admin) return null
+  return (
+    <div className="profile-section">
+      <button className="setting-row profile-admin-link" onClick={() => goTo('review')}>
+        <span>{t('flags.admin.link', { n: open ?? '…' })}</span>
+        <span>›</span>
+      </button>
     </div>
   )
 }
