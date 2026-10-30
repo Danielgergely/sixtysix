@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
-import type { FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents, FlockState } from '@sixtysix/shared'
+import type { FlockBotLevel, FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents, FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
@@ -41,6 +41,10 @@ interface FlockStore {
   guess: (word: string) => Promise<string | null>
   judge: (ok: boolean) => void
   again: () => void
+  /** Leader, lobby: bot players. */
+  addBot: () => void
+  removeBot: (playerId: string) => void
+  setBotLevel: (level: FlockBotLevel) => void
   setPrefillCode: (code: string) => void
 }
 
@@ -205,6 +209,9 @@ export const useFlockStore = create<FlockStore>((set) => ({
     getSocket().emit('flock:judge', { ok })
   },
   again: () => getSocket().emit('flock:again'),
+  addBot: () => getSocket().emit('flock:addBot'),
+  removeBot: (playerId) => getSocket().emit('flock:removeBot', { playerId }),
+  setBotLevel: (level) => getSocket().emit('flock:botLevel', { level }),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),
 }))
 

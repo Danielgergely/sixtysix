@@ -8,6 +8,7 @@ import type {
   FlockSecret,
   FlockServerToClientEvents,
   FlockSide,
+  FlockWord,
 } from '@sixtysix/shared'
 import {
   FLOCK_CATEGORIES,
@@ -16,10 +17,12 @@ import {
   FLOCK_MAX_LAPS,
   FLOCK_MAX_PLAYERS,
   FLOCK_MIN_PLAYERS,
+  FLOCK_REWARD_HUMANS,
   flockWolfCount,
 } from '@sixtysix/shared'
 import { cleanAvatar, cleanName } from '../rooms.js'
 import { judgeGuess, tokens } from './match.js'
+import { addBot, scheduleBots, type BotActions } from './bots.js'
 import {
   WORDS,
   channel,
@@ -90,6 +93,8 @@ function secretOf(room: FRoom, publicId: string | null): string | undefined {
 function broadcast(io: FlockIO, room: FRoom): void {
   touch(room)
   io.to(channel(room)).emit('flock:state', toFlockState(room))
+  // Every state change: the bots (re)plan their next move.
+  scheduleBots(room, botActions(io))
 }
 
 /** The card a player may see right now (null = none). Never leaks the word to a wolf. */
@@ -138,7 +143,7 @@ function setTimer(io: FlockIO, room: FRoom, ms: number, fn: () => void): void {
 const connectedSecrets = (room: FRoom) => [...room.players].filter(([, p]) => p.connected).map(([s]) => s)
 
 /** Deal a new game to everyone online (offline seats are dropped). */
-function startGame(io: FlockIO, room: FRoom): void {
+export function startGame(io: FlockIO, room: FRoom): void {
   for (const [secret, p] of room.players) if (!p.connected) room.players.delete(secret)
   const everyone = [...room.players.keys()]
   room.game++
@@ -407,6 +412,7 @@ function endGame(
     guesses: room.guessLog,
     lostIds: [...room.lost].map((s) => pubId(room, s)).filter((id): id is string => !!id),
     votes: extra.votes ?? {},
+    rewarded: [...room.dealt].filter((s) => room.players.get(s)?.bot === false).length >= FLOCK_REWARD_HUMANS,
   }
   if (winner) {
     for (const secret of room.dealt) {
@@ -449,6 +455,12 @@ export function revealsWord(clue: string, word: string): boolean {
   return parts.some((t) => (t.length >= 4 ? clueFlat.includes(t) : clueTokens.includes(t)))
 }
 
+/** A sheep's clue says the word: the word or a key part of it, or a whole alias ("King David" blocks that, not "king"). */
+export function saysWord(clue: string, word: FlockWord): boolean {
+  const flat = (x: string) => tokens(x).join('')
+  return revealsWord(clue, word.word) || (word.aliases ?? []).some((a) => flat(clue).includes(flat(a)))
+}
+
 /**
  * No repeats: a clue may not reuse a key word (3+ letters, ignoring case, plurals
  * and little words) that someone already said this game. Returns that word.
@@ -469,7 +481,8 @@ function cleanClue(raw: unknown, max = FLOCK_CLUE_MAX): string {
 function ensureLeader(room: FRoom): void {
   const current = room.leaderSecret ? room.players.get(room.leaderSecret) : undefined
   if (current?.connected) return
-  const next = [...room.players].find(([, p]) => p.connected)
+  // Bots never lead.
+  const next = [...room.players].find(([, p]) => p.connected && !p.bot)
   if (next) room.leaderSecret = next[0]
   else if (!current) room.leaderSecret = null
 }
@@ -494,8 +507,8 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
     p.connected = false
     p.socketId = null
   }
-  if (room.players.size === 0) {
-    io.to(channel(room)).emit('flock:closed', 'Everyone left the game') // boards still watching
+  if (![...room.players.values()].some((x) => !x.bot)) {
+    io.to(channel(room)).emit('flock:closed', 'Everyone left the game') // boards still watching (bots go too)
     deleteFlockRoom(room)
     console.log(`[flock] room ${room.code} closed (empty)`)
     return
@@ -510,6 +523,78 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
   if (settleDecide(io, room) || maybeResolveVote(io, room) || settleJudge(io, room, false)) return
   broadcast(io, room)
 }
+
+// ── player actions ──────────────────────────────────────────────────────
+// Shared by the socket handlers and the bots (bots.ts), so both go through the
+// same checks. Each takes the player's secret; those returning a string give an
+// error message (null = done).
+
+export function actReady(io: FlockIO, room: FRoom, secret: string): void {
+  if (!isIn(room, secret) || room.phase !== 'secret') return
+  room.done.add(secret)
+  if (!maybeBeginClues(io, room)) broadcast(io, room)
+}
+
+export function actClue(io: FlockIO, room: FRoom, secret: string, raw: unknown): string | null {
+  if (!isIn(room, secret) || room.phase !== 'clues') return 'Not now'
+  if (room.turnOrder[room.turnIdx] !== secret) return 'Not your turn'
+  const text = cleanClue(raw)
+  if (!text) return 'Type a clue'
+  if (text.split(' ').length > 3) return 'Three words at most'
+  // The word or any key part of it; an alias only as a whole ("King David" blocks that, not "king").
+  if (!room.wolves.includes(secret) && room.word && saysWord(text, room.word)) return 'Too obvious — don’t say the word!'
+  const repeat = repeatedWord(room, text)
+  if (repeat) return `“${repeat}” was already said — try another clue`
+  pushClue(room, secret, text, false)
+  nextTurn(io, room)
+  return null
+}
+
+export function actDecide(io: FlockIO, room: FRoom, secret: string, vote: unknown): void {
+  if (!isIn(room, secret) || room.phase !== 'decide' || typeof vote !== 'boolean') return
+  room.decide.set(secret, vote)
+  room.done.add(secret)
+  if (!settleDecide(io, room)) broadcast(io, room)
+}
+
+export function actVote(io: FlockIO, room: FRoom, secret: string, ids: unknown): void {
+  if (!isIn(room, secret) || room.phase !== 'vote' || room.votes.has(secret)) return
+  if (!Array.isArray(ids) || ids.length !== room.votesEach || new Set(ids).size !== ids.length) return
+  for (const id of ids) {
+    if (typeof id !== 'string' || id === pubId(room, secret)) return
+    const target = secretOf(room, id)
+    if (!target || !isIn(room, target)) return
+  }
+  room.votes.set(secret, ids as string[])
+  room.done.add(secret)
+  if (!maybeResolveVote(io, room)) broadcast(io, room)
+}
+
+export function actGuess(io: FlockIO, room: FRoom, secret: string, raw: unknown): string | null {
+  if (!isIn(room, secret) || !room.wolves.includes(secret)) return 'Not now'
+  if (!GUESSING.includes(room.phase)) return 'Too late — the vote has started'
+  const word = cleanClue(raw, FLOCK_GUESS_MAX)
+  if (word) room.typed.set(secret, word)
+  else room.typed.delete(secret)
+  sendSecret(io, room, secret)
+  return null
+}
+
+export function actJudge(io: FlockIO, room: FRoom, secret: string, ok: unknown): void {
+  if (!isIn(room, secret) || room.phase !== 'judge' || room.wolves.includes(secret) || typeof ok !== 'boolean') return
+  room.judgeVotes.set(secret, ok)
+  room.done.add(secret)
+  if (!settleJudge(io, room, false)) broadcast(io, room)
+}
+
+const botActions = (io: FlockIO): BotActions => ({
+  ready: (room, s) => actReady(io, room, s),
+  clue: (room, s, text) => actClue(io, room, s, text),
+  decide: (room, s, vote) => actDecide(io, room, s, vote),
+  vote: (room, s, ids) => actVote(io, room, s, ids),
+  guess: (room, s, word) => actGuess(io, room, s, word),
+  judge: (room, s, ok) => actJudge(io, room, s, ok),
+})
 
 // ── handlers ────────────────────────────────────────────────────────────
 
@@ -530,12 +615,6 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     const p = found.room.players.get(found.secret)
     return p ? { room: found.room, secret: found.secret, p } : undefined
   }
-  /** A seat that is still in the current game and online. */
-  const playingSeat = () => {
-    const s = seat()
-    return s && isIn(s.room, s.secret) ? s : undefined
-  }
-
   const join = (room: FRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown }, ack: Ack) => {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
@@ -556,7 +635,7 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
       if (payload.avatar !== undefined) p.avatar = cleanAvatar(payload.avatar)
     } else {
       if (room.players.size >= FLOCK_MAX_PLAYERS) return ack({ ok: false, error: `The flock is full (${FLOCK_MAX_PLAYERS} players)` })
-      p = { id: newPlayerId(), name: cleanName(payload.name), avatar: cleanAvatar(payload.avatar), wins: 0, connected: true, socketId: socket.id }
+      p = { id: newPlayerId(), name: cleanName(payload.name), avatar: cleanAvatar(payload.avatar), wins: 0, connected: true, socketId: socket.id, bot: false }
       room.players.set(secret, p) // mid-game joiners watch and are dealt into the next game
     }
     ensureLeader(room)
@@ -615,81 +694,62 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
   })
 
   on('flock:ready', () => {
-    const s = playingSeat()
-    if (!s || s.room.phase !== 'secret') return
-    s.room.done.add(s.secret)
-    if (!maybeBeginClues(io, s.room)) broadcast(io, s.room)
+    const s = seat()
+    if (s) actReady(io, s.room, s.secret)
   })
 
   on('flock:clue', (raw, cb) => {
-    const ack = ackOf(cb)
-    const s = playingSeat()
-    if (!s || s.room.phase !== 'clues') return ack({ ok: false, error: 'Not now' })
-    const { room } = s
-    if (room.turnOrder[room.turnIdx] !== s.secret) return ack({ ok: false, error: 'Not your turn' })
-    const text = cleanClue((raw as { text?: unknown } | undefined)?.text)
-    if (!text) return ack({ ok: false, error: 'Type a clue' })
-    if (text.split(' ').length > 3) return ack({ ok: false, error: 'Three words at most' })
-    // The word or any key part of it; an alias only as a whole ("King David" blocks that, not "king").
-    const flat = (x: string) => tokens(x).join('')
-    const said = room.word && (revealsWord(text, room.word.word) || (room.word.aliases ?? []).some((a) => flat(text).includes(flat(a))))
-    if (!room.wolves.includes(s.secret) && said) {
-      return ack({ ok: false, error: 'Too obvious — don’t say the word!' })
-    }
-    const repeat = repeatedWord(room, text)
-    if (repeat) return ack({ ok: false, error: `“${repeat}” was already said — try another clue` })
-    pushClue(room, s.secret, text, false)
-    ack({ ok: true })
-    nextTurn(io, room)
+    const s = seat()
+    const error = s ? actClue(io, s.room, s.secret, (raw as { text?: unknown } | undefined)?.text) : 'Not now'
+    ackOf(cb)(error ? { ok: false, error } : { ok: true })
   })
 
   on('flock:decide', (raw) => {
-    const s = playingSeat()
-    if (!s || s.room.phase !== 'decide') return
-    const vote = (raw as { vote?: unknown } | undefined)?.vote
-    if (typeof vote !== 'boolean') return
-    s.room.decide.set(s.secret, vote)
-    s.room.done.add(s.secret)
-    if (!settleDecide(io, s.room)) broadcast(io, s.room)
+    const s = seat()
+    if (s) actDecide(io, s.room, s.secret, (raw as { vote?: unknown } | undefined)?.vote)
   })
 
   on('flock:vote', (raw) => {
-    const s = playingSeat()
-    if (!s || s.room.phase !== 'vote' || s.room.votes.has(s.secret)) return
-    const ids = (raw as { targetIds?: unknown } | undefined)?.targetIds
-    if (!Array.isArray(ids) || ids.length !== s.room.votesEach || new Set(ids).size !== ids.length) return
-    for (const id of ids) {
-      if (typeof id !== 'string' || id === s.p.id) return
-      const target = secretOf(s.room, id)
-      if (!target || !isIn(s.room, target)) return
-    }
-    s.room.votes.set(s.secret, ids as string[])
-    s.room.done.add(s.secret)
-    if (!maybeResolveVote(io, s.room)) broadcast(io, s.room)
+    const s = seat()
+    if (s) actVote(io, s.room, s.secret, (raw as { targetIds?: unknown } | undefined)?.targetIds)
   })
 
   on('flock:guess', (raw, cb) => {
-    const ack = ackOf(cb)
-    const s = playingSeat()
-    const room = s?.room
-    if (!s || !room || !room.wolves.includes(s.secret)) return ack({ ok: false, error: 'Not now' })
-    if (!GUESSING.includes(room.phase)) return ack({ ok: false, error: 'Too late — the vote has started' })
-    const word = cleanClue((raw as { word?: unknown } | undefined)?.word, FLOCK_GUESS_MAX)
-    if (word) room.typed.set(s.secret, word)
-    else room.typed.delete(s.secret)
-    ack({ ok: true })
-    sendSecret(io, room, s.secret)
+    const s = seat()
+    const error = s ? actGuess(io, s.room, s.secret, (raw as { word?: unknown } | undefined)?.word) : 'Not now'
+    ackOf(cb)(error ? { ok: false, error } : { ok: true })
   })
 
   on('flock:judge', (raw) => {
-    const s = playingSeat()
-    const room = s?.room
-    if (!s || !room || room.phase !== 'judge' || room.wolves.includes(s.secret)) return
-    const ok = (raw as { ok?: unknown } | undefined)?.ok
-    if (typeof ok !== 'boolean') return
-    room.judgeVotes.set(s.secret, ok)
-    room.done.add(s.secret)
-    if (!settleJudge(io, room, false)) broadcast(io, room)
+    const s = seat()
+    if (s) actJudge(io, s.room, s.secret, (raw as { ok?: unknown } | undefined)?.ok)
+  })
+
+  on('flock:addBot', () => {
+    const s = leaderSeat()
+    if (!s || s.room.phase !== 'lobby' || s.room.players.size >= FLOCK_MAX_PLAYERS) return
+    addBot(s.room)
+    broadcast(io, s.room)
+  })
+
+  on('flock:removeBot', (raw) => {
+    const s = leaderSeat()
+    const id = (raw as { playerId?: unknown } | undefined)?.playerId
+    if (!s || s.room.phase !== 'lobby' || typeof id !== 'string') return
+    const secret = secretOf(s.room, id)
+    const bot = secret ? s.room.players.get(secret) : undefined
+    if (!secret || !bot?.bot) return
+    clearTimeout(bot.botTimer)
+    s.room.players.delete(secret)
+    broadcast(io, s.room)
+  })
+
+  on('flock:botLevel', (raw) => {
+    const s = leaderSeat()
+    const level = (raw as { level?: unknown } | undefined)?.level
+    if (!s || s.room.phase !== 'lobby' || (level !== 'easy' && level !== 'normal')) return
+    s.room.botLevel = level
+    broadcast(io, s.room)
   })
 
   on('flock:again', () => {

@@ -40,6 +40,11 @@ export const FLOCK_TWO_WOLVES_FROM = 7
 export const flockWolfCount = (players: number): number => (players >= FLOCK_TWO_WOLVES_FROM ? 2 : 1)
 /** Longest typed guess. */
 export const FLOCK_GUESS_MAX = 40
+/** Games pay coins and XP only with at least this many people (not bots) dealt in. */
+export const FLOCK_REWARD_HUMANS = 3
+
+/** Server-side bot players (server/src/flock/bots.ts); the leader picks the level in the lobby. */
+export type FlockBotLevel = 'easy' | 'normal'
 
 export const FLOCK_CATEGORIES = ['person', 'place', 'story', 'thing'] as const
 export type FlockCategory = (typeof FLOCK_CATEGORIES)[number]
@@ -53,6 +58,8 @@ export interface FlockWord {
   wolfHint: string
   /** Other names that count as the word when a caught wolf types it (and that sheep may not say). */
   aliases?: string[]
+  /** Short clues a sheep might give (1–2 words, none says the word); the bots draw from them. */
+  clues: string[]
 }
 export type FlockWordList = Record<FlockCategory, FlockWord[]>
 
@@ -79,6 +86,8 @@ export interface FlockPlayer {
   out: boolean
   /** Phase 'secret': has looked at the card. 'decide' / 'vote' / 'judge': has chosen. */
   done: boolean
+  /** A server-side bot (added by the leader in the lobby). */
+  bot: boolean
 }
 
 export interface FlockClue {
@@ -120,6 +129,8 @@ export interface FlockResult {
   lostIds: string[]
   /** The deciding vote, if any: voterId → targetIds. */
   votes: Record<string, string[]>
+  /** At least FLOCK_REWARD_HUMANS people (not bots) were dealt in: the game pays rewards. */
+  rewarded: boolean
 }
 
 /** Safe to broadcast to everyone in the room (and to the board). */
@@ -128,6 +139,7 @@ export interface FlockState {
   phase: FlockPhase
   players: FlockPlayer[]
   leaderId: string | null
+  botLevel: FlockBotLevel
   /** Game number in this room (1-based once started; "Play again" adds one). */
   game: number
   /** Current clue lap (1-based). */
@@ -206,6 +218,10 @@ export interface FlockClientToServerEvents {
   'flock:judge': (payload: { ok: boolean }) => void
   /** Leader: over → lobby for the next game. */
   'flock:again': () => void
+  /** Leader, lobby only: add a bot player / remove one / set how well the bots play. */
+  'flock:addBot': () => void
+  'flock:removeBot': (payload: { playerId: string }) => void
+  'flock:botLevel': (payload: { level: FlockBotLevel }) => void
 }
 
 export interface FlockServerToClientEvents {

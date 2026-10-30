@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
+import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MAX_PLAYERS, FLOCK_MIN_PLAYERS, FLOCK_REWARD_HUMANS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
@@ -202,6 +202,7 @@ function Lobby({ state }: { state: FlockState }) {
   const origin = useJoinOrigin()
   const joinUrl = `${origin}/flock/${state.code}`
   const ready = state.players.filter((p) => p.connected).length >= FLOCK_MIN_PLAYERS
+  const humans = state.players.filter((p) => !p.bot).length
   const [rules, setRules] = useState(false)
   return (
     <div className="fl-lobby">
@@ -234,14 +235,39 @@ function Lobby({ state }: { state: FlockState }) {
                 </span>
                 <span className="player-chip-name">
                   {p.id === state.leaderId && '👑 '}
+                  {p.bot && '🤖 '}
                   {p.name}
                   {p.id === store.myId && ' (you)'}
                 </span>
+                {p.bot && leader && (
+                  <button className="fl-bot-x" onClick={() => store.removeBot(p.id)} title={`Remove ${p.name}`}>
+                    ✕
+                  </button>
+                )}
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
       </div>
+
+      {leader && (
+        <div className="arena-section fl-settings">
+          <div className="profile-label">🤖 Bots</div>
+          <div className="fl-bot-row">
+            <button className="btn-secondary" disabled={state.players.length >= FLOCK_MAX_PLAYERS} onClick={store.addBot}>
+              + Add bot
+            </button>
+            <div className="seg-row">
+              {(['easy', 'normal'] as const).map((l) => (
+                <button key={l} className={`seg-btn ${state.botLevel === l ? 'selected' : ''}`} onClick={() => store.setBotLevel(l)}>
+                  {l === 'easy' ? 'Easy' : 'Normal'}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {humans < FLOCK_REWARD_HUMANS && <p className="fl-practice">🤖 Practice game — rewards need {FLOCK_REWARD_HUMANS}+ people</p>}
 
       <div className="arena-section fl-settings">
         <button className="fl-link dark" onClick={() => setRules((r) => !r)}>
@@ -620,6 +646,7 @@ function OverPhase({ state }: { state: FlockState }) {
     <div className="fl-col fl-scroll">
       <GameReveal state={state} />
       <RewardChip reward={flockRewardFor(state, store.myId)} />
+      {state.result?.winner && !state.result.rewarded && <p className="fl-practice">🤖 Practice game — rewards need {FLOCK_REWARD_HUMANS}+ people</p>}
       <Scoreboard state={state} />
       <p className="fl-verse">“I am the good shepherd. I know my own, and I’m known by my own.” <em>John 10:14</em></p>
       {leader ? (
