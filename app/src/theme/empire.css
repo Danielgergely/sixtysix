@@ -191,9 +191,15 @@
   padding: 4px;
 }
 .eh-card-text{ font-family: 'Cinzel', serif; font-weight: 900; font-size: 15px; line-height: 1.1; hyphens: auto; overflow-wrap: break-word; max-width: 100%; }
-/* The panel is a size container: .eh-fit caps the size so the longest word fits its width (--w = letters). */
+/*
+ * The panel is a size container: .eh-fit shrinks the text so its longest word
+ * (--w letters) fits the width and the whole answer (--s = √length / 0.79)
+ * fits the panel, down to 0.64em. Words that fit are never
+ * hyphenated; only very long ones (.long, e.g. German compounds) may be.
+ */
 .eh-card-panel{ container-type: inline-size; }
-.eh-fit{ font-size: min(1em, calc(100cqi / (var(--w) * 0.8))); }
+.eh-fit{ font-size: max(0.64em, min(1em, calc(100cqi / (var(--w) * 0.8)), calc(100cqi / var(--s, 1)))); hyphens: manual; }
+.eh-fit.long{ hyphens: auto; }
 .eh-hand .eh-card-text{ font-size: 12.5px; letter-spacing: -0.01em; }
 .eh-corner{ position: absolute; width: 14px; height: 14px; border: 2px solid #ffe08a; opacity: 0.8; }
 .eh-corner.c-tr{ top: 6px; right: 6px; border-left: 0; border-bottom: 0; }
@@ -906,7 +912,12 @@
 .emp .player-mode-desc{ color: #e9d6a8; max-width: 300px; text-align: center; }
 @media (max-width: 480px){
   .mode-badge{ font-size: 10px; padding: 3px 8px; }
-  .empire-top{ padding-left: 10px; padding-right: 74px; gap: 6px; }
+  .empire-top{ padding-left: 6px; padding-right: 80px; gap: 5px; }
+  /* Room for a longer Leave ("Verlassen", "Kilépés") at the top right. */
+  .empire-plate{ padding: 4px 8px; }
+  .empire-plate strong{ font-size: 16px; }
+  .empire-purse, .empire-purse.score{ padding: 3px 9px 3px 5px; gap: 4px; font-size: 15px; }
+  .leave-race-btn{ padding: 4px 9px; letter-spacing: 0; }
 }
 /* Phones: clear the Leave/Skip buttons at the top and the action button at the bottom. */
 .gl:not(.wide) .gl-hp, .wl:not(.wide) .wl-title{ top: calc(env(safe-area-inset-top) + 52px); }
@@ -967,7 +978,7 @@
 .account-rule{ color: #6b4120; font: italic 12px/1.35 Georgia, serif; margin-top: -2px; }
 .account-ok{ background: #e3f1d6; border: 2px solid #4f7a2a; color: #29470f; border-radius: 8px; padding: 6px 10px; font: 700 13px/1.35 Georgia, serif; }
 .emp .profile-name-input[aria-invalid='true']{ border-color: #b3262b; }
-.account-manage{ width: 100%; text-align: left; padding: 8px 2px 0; }
+.account-manage{ width: 100%; text-align: left; margin-top: 8px; padding: 0.6rem 0.9rem; }
 .account-settings-section{ margin-bottom: 12px; }
 .emp .account-settings-heading{ font-size: 1.15rem; overflow-wrap: anywhere; }
 .account-settings-section h3{ margin: 0 0 6px; }
@@ -982,11 +993,12 @@
 .account-confirm span{ flex: 1 1 100%; }
 .account-link{ display: grid; justify-items: center; gap: 6px; margin-bottom: 8px; }
 .visually-hidden{ position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.eh-hand .eh-card{ width: min(112px, 25.5vw); }
+.eh-hand .eh-card{ width: min(112px, 24vw); }
 .eh-hand-slot{ margin: 0 -9px; }
 /* Usernames and passwords are case-sensitive: show exactly what was typed. */
 .account-form .profile-name-input{ font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant: normal; text-transform: none; letter-spacing: 0; }
-.eh-hand-slot{ margin: 0 -13px; }
+/* Cards only touch at the corners, so no card hides the end of its neighbour's answer. */
+.eh-hand-slot{ margin: 0 -3px; }
 
 /* ---------- App shell: top bar + bottom tabs (screens/shell) ---------- */
 .app-tabbed{ background: #1d0b06; }
