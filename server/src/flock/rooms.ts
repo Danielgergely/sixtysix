@@ -14,12 +14,17 @@ export interface FlockWord {
   word: string
   hint: string
   ref: string
+  /** Shown to a wolf who has to give the first clue: associated, never the word. */
+  wolfHint: string
 }
 
 export const WORDS: Record<FlockCategory, FlockWord[]> = JSON.parse(
   readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'words.json'), 'utf8'),
 )
-for (const c of FLOCK_CATEGORIES) if (!WORDS[c]?.length) throw new Error(`[flock] no words for ${c}`)
+for (const c of FLOCK_CATEGORIES) {
+  if (!WORDS[c]?.length) throw new Error(`[flock] no words for ${c}`)
+  for (const w of WORDS[c]) if (!w.wolfHint) throw new Error(`[flock] no wolfHint for ${w.word}`)
+}
 
 export interface FPlayer {
   id: string
@@ -43,7 +48,8 @@ export interface FRoom {
   round: number
   category: FlockCategory | null
   word: FlockWord | null
-  wolfSecret: string | null
+  /** This round's wolves (secrets). */
+  wolves: string[]
   /** Players dealt a card this round (late joiners wait for the next one). */
   dealt: Set<string>
   /** Clue order (secrets); a turn index walks it clueLaps times. */
@@ -93,7 +99,7 @@ export function createFlockRoom(): FRoom {
     round: 0,
     category: null,
     word: null,
-    wolfSecret: null,
+    wolves: [],
     dealt: new Set(),
     turnOrder: [],
     turnIdx: 0,
@@ -155,6 +161,7 @@ export function toFlockState(room: FRoom): FlockState {
     totalRounds: room.totalRounds,
     clueLaps: room.clueLaps,
     category: room.category,
+    wolfCount: room.wolves.length,
     // Left players drop out of the public order; their skipped clues stay.
     turnOrder: room.turnOrder.map(pub).filter((x): x is string => x !== null),
     turnPlayerId: pub(turnSecret),

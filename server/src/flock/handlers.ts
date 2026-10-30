@@ -12,6 +12,7 @@ import {
   FLOCK_MIN_PLAYERS,
   FLOCK_POINTS,
   FLOCK_ROUND_OPTIONS,
+  flockWolfCount,
 } from '@sixtysix/shared'
 import { cleanAvatar, cleanName } from '../rooms.js'
 import {
@@ -67,16 +68,20 @@ function broadcast(io: FlockIO, room: FRoom): void {
 function secretFor(room: FRoom, secret: string): FlockSecret | null {
   if (!room.category || !room.dealt.has(secret)) return null
   if (room.phase === 'lobby' || room.phase === 'final') return null
-  if (secret === room.wolfSecret) {
+  const wolfCount = room.wolves.length
+  if (room.wolves.includes(secret)) {
     return {
       round: room.round,
       role: 'wolf',
       category: room.category,
-      guessOptions: room.phase === 'guess' ? room.guessOptions : undefined,
-      wolfHint: room.turnOrder[0] === secret && room.word ? wolfHint(room.word.word, room.word.ref) : undefined,
+      wolfCount,
+      // Only the caught wolf guesses.
+      guessOptions: room.phase === 'guess' && secretOf(room, room.accusedId) === secret ? room.guessOptions : undefined,
+      // Opening with no clues to go on: an associated word to start from.
+      wolfHint: room.turnOrder[0] === secret ? room.word?.wolfHint : undefined,
     }
   }
-  return { round: room.round, role: 'sheep', category: room.category, word: room.word?.word, hint: room.word?.hint, ref: room.word?.ref }
+  return { round: room.round, role: 'sheep', category: room.category, wolfCount, word: room.word?.word, hint: room.word?.hint, ref: room.word?.ref }
 }
 
 function sendSecret(io: FlockIO, room: FRoom, secret: string): void {
@@ -105,6 +110,13 @@ function setTimer(io: FlockIO, room: FRoom, ms: number, fn: () => void): void {
 
 // ── round loop ──────────────────────────────────────────────────────────
 
+/** A player's secret from their public id. */
+function secretOf(room: FRoom, publicId: string | null): string | undefined {
+  if (!publicId) return undefined
+  for (const [secret, p] of room.players) if (p.id === publicId) return secret
+  return undefined
+}
+
 const connectedSecrets = (room: FRoom) => [...room.players].filter(([, p]) => p.connected).map(([s]) => s)
 
 function startGame(io: FlockIO, room: FRoom): void {
@@ -118,11 +130,13 @@ function startGame(io: FlockIO, room: FRoom): void {
 function startRound(io: FlockIO, room: FRoom): void {
   room.round++
   const everyone = [...room.players.keys()]
-  // Random each round (never the same wolf twice in a row). A fixed rotation
-  // would let players deduce the wolf by elimination once results reveal it.
+  // Random each round, avoiding last round's wolves when there are enough others.
+  // A fixed rotation would let players deduce the wolf by elimination.
   const candidates = connectedSecrets(room)
-  const wolves = candidates.length > 1 ? candidates.filter((s) => s !== room.wolfSecret) : candidates
-  room.wolfSecret = wolves[Math.floor(Math.random() * wolves.length)] ?? everyone[0]
+  const count = flockWolfCount(candidates.length)
+  const fresh = candidates.filter((s) => !room.wolves.includes(s))
+  room.wolves = shuffle([...(fresh.length >= count ? fresh : candidates)]).slice(0, count)
+  if (room.wolves.length === 0 && everyone[0]) room.wolves = [everyone[0]]
 
   const category = FLOCK_CATEGORIES[Math.floor(Math.random() * FLOCK_CATEGORIES.length)]
   let pool = WORDS[category].filter((w) => !room.usedWords.has(w.word))
@@ -135,7 +149,7 @@ function startRound(io: FlockIO, room: FRoom): void {
   room.usedWords.add(room.word.word)
 
   room.dealt = new Set(everyone)
-  // Anyone may open, the wolf included; an opening wolf gets a hint on the card (wolfHint).
+  // Random order: a wolf opens about wolves/players of the time, and then gets a hint (wolfHint).
   room.turnOrder = shuffle([...everyone])
   room.turnIdx = 0
   room.clues = []
@@ -211,8 +225,9 @@ function resolveVote(io: FlockIO, room: FRoom): void {
   const max = Math.max(0, ...tally.values())
   const top = [...tally].filter(([, n]) => n === max).map(([id]) => id)
   room.accusedId = max > 0 && top.length === 1 ? top[0] : null
-  const wolf = room.wolfSecret ? room.players.get(room.wolfSecret) : undefined
-  if (wolf && room.accusedId === wolf.id) {
+  const caught = secretOf(room, room.accusedId)
+  const wolf = caught && room.wolves.includes(caught) ? room.players.get(caught) : undefined
+  if (caught && wolf) {
     // Caught — but the wolf may still steal points by naming the word.
     const others = shuffle(WORDS[room.category!].filter((w) => w.word !== room.word!.word)).slice(0, GUESS_OPTIONS - 1)
     room.guessOptions = shuffle([room.word!.word, ...others.map((w) => w.word)])
@@ -220,7 +235,7 @@ function resolveVote(io: FlockIO, room: FRoom): void {
     if (!wolf.connected) return finishRound(io, room, null, false)
     setTimer(io, room, GUESS_MS, () => finishRound(io, room, null, false))
     broadcast(io, room)
-    sendSecret(io, room, room.wolfSecret!)
+    sendSecret(io, room, caught)
     return
   }
   finishRound(io, room, null, false)
@@ -228,28 +243,32 @@ function resolveVote(io: FlockIO, room: FRoom): void {
 
 function finishRound(io: FlockIO, room: FRoom, guess: string | null, wolfFled: boolean): void {
   if (!['secret', 'clues', 'vote', 'guess'].includes(room.phase)) return
-  const wolf = room.wolfSecret ? room.players.get(room.wolfSecret) : undefined
   const gains: Record<string, number> = {}
   const add = (p: FPlayer | undefined, n: number) => {
     if (!p || n === 0) return
     p.score += n
     gains[p.id] = (gains[p.id] ?? 0) + n
   }
-  const wolfId = wolf?.id ?? ''
+  const wolfIds = room.wolves.map((s) => room.players.get(s)?.id).filter((id): id is string => !!id)
   const votes: Record<string, string> = {}
   for (const [voter, target] of room.votes) {
     const p = room.players.get(voter)
     if (p) votes[p.id] = target
   }
-  const wolfCaught = !wolfFled && room.accusedId !== null && room.accusedId === wolfId
+  const wolfCaught = !wolfFled && room.accusedId !== null && wolfIds.includes(room.accusedId)
   const guessCorrect = wolfCaught && guess === room.word?.word
   if (!wolfFled) {
-    for (const [voter, target] of room.votes) if (target === wolfId && voter !== room.wolfSecret) add(room.players.get(voter), FLOCK_POINTS.sheepFoundWolf)
-    if (!wolfCaught) add(wolf, FLOCK_POINTS.wolfEscaped)
-    if (guessCorrect) add(wolf, FLOCK_POINTS.wolfGuessed)
+    for (const [voter, target] of room.votes) {
+      if (wolfIds.includes(target) && !room.wolves.includes(voter)) add(room.players.get(voter), FLOCK_POINTS.sheepFoundWolf)
+    }
+    for (const s of room.wolves) {
+      const w = room.players.get(s)
+      if (w && w.id !== room.accusedId) add(w, FLOCK_POINTS.wolfEscaped)
+      else if (w && guessCorrect) add(w, FLOCK_POINTS.wolfGuessed)
+    }
   }
   const result: FlockRoundResult = {
-    wolfId,
+    wolfIds,
     word: room.word?.word ?? '',
     hint: room.word?.hint ?? '',
     ref: room.word?.ref ?? '',
@@ -280,22 +299,6 @@ function endGame(io: FlockIO, room: FRoom): void {
   setTimer(io, room, 0, () => {})
   broadcast(io, room)
   sendAllSecrets(io, room)
-}
-
-// ── the opening wolf's hint ─────────────────────────────────────────────
-
-const NEW_TESTAMENT = new Set(['Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans', 'Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 'Thessalonians', 'Timothy', 'Titus', 'Philemon', 'Hebrews', 'James', 'Peter', 'Jude', 'Revelation'])
-
-/**
- * Where the word is found: its book(s) ("Joshua / Judges"), or the testament when
- * a book name would give the word away (Jonah is in "Jonah 1–2").
- */
-export function wolfHint(word: string, ref: string): string {
-  // "1 Kings 3; 6": a bare chapter after the semicolon belongs to the book before it.
-  const books = [...new Set(ref.split(';').map((r) => r.trim().replace(/\s+\d[\d:–\-, ]*$/, '')).filter((b) => /[a-z]/i.test(b)))]
-  if (books.length && !books.some((b) => revealsWord(b, word))) return books.join(' / ')
-  const nt = books.some((b) => NEW_TESTAMENT.has(b.replace(/^\d\s+/, '')))
-  return nt ? 'the New Testament' : 'the Old Testament'
 }
 
 // ── clue validation ─────────────────────────────────────────────────────
@@ -372,7 +375,7 @@ function leaveRoom(io: FlockIO, room: FRoom, secret: string, explicit: boolean):
   }
   ensureLeader(room)
   if (midRound && explicit) {
-    if (secret === room.wolfSecret) return finishRound(io, room, null, true)
+    if (room.wolves.includes(secret)) return finishRound(io, room, null, true)
     if (room.players.size < FLOCK_MIN_PLAYERS) return endGame(io, room)
   }
   if (room.phase === 'secret' && maybeBeginClues(io, room)) return
@@ -511,7 +514,7 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     const text = cleanClue((raw as { text?: unknown } | undefined)?.text)
     if (!text) return ack({ ok: false, error: 'Type a clue' })
     if (text.split(' ').length > 3) return ack({ ok: false, error: 'Three words at most' })
-    if (s.secret !== room.wolfSecret && room.word && revealsWord(text, room.word.word)) {
+    if (!room.wolves.includes(s.secret) && room.word && revealsWord(text, room.word.word)) {
       return ack({ ok: false, error: 'Too obvious — don’t say the word!' })
     }
     pushClue(room, s.secret, text, false)
@@ -534,7 +537,7 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
 
   on('flock:guess', (raw) => {
     const s = seat()
-    if (!s || s.room.phase !== 'guess' || s.secret !== s.room.wolfSecret) return
+    if (!s || s.room.phase !== 'guess' || s.p.id !== s.room.accusedId || !s.room.wolves.includes(s.secret)) return
     const word = (raw as { word?: unknown } | undefined)?.word
     if (typeof word !== 'string' || !s.room.guessOptions.includes(word)) return
     finishRound(io, s.room, word, false)
@@ -558,13 +561,13 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     room.result = null
     room.category = null
     room.word = null
-    room.wolfSecret = null
+    room.wolves = []
     room.dealt = new Set()
     room.turnOrder = []
     room.clues = []
     room.done = new Set()
     room.votes = new Map()
-      ensureLeader(room)
+    ensureLeader(room)
     setTimer(io, room, 0, () => {})
     broadcast(io, room)
     sendAllSecrets(io, room)

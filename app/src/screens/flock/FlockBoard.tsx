@@ -115,11 +115,15 @@ function BoardPhase({ state }: { state: FlockState }) {
   const wolf = playerById(state, state.accusedId)
   const banner =
     state.phase === 'secret'
-      ? 'Look at your card — one of you is the wolf…'
+      ? state.wolfCount > 1
+        ? 'Look at your card — two of you are wolves…'
+        : 'Look at your card — one of you is the wolf…'
       : state.phase === 'clues'
         ? `${speaker?.name ?? '…'}, your clue!`
         : state.phase === 'vote'
-          ? 'Vote now: who is the wolf?'
+          ? state.wolfCount > 1
+            ? 'Vote now: who is a wolf?'
+            : 'Vote now: who is the wolf?'
           : `${wolf?.name ?? 'The wolf'} was caught! Can they name the word?`
   return (
     <div className="flb-split">

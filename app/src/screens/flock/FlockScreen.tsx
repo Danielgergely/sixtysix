@@ -100,7 +100,7 @@ function FlockMenu() {
       <div className="fl-body fl-menu">
         <motion.div className="fl-hero" {...popIn}>
           <span className="fl-hero-icons">🐑🐑🐺🐑</span>
-          <p>Everyone gets a secret Bible word — except the wolf. Give one clue each, then find the wolf!</p>
+          <p>Everyone gets a secret Bible word — except the wolf. Give one clue each, then find the wolf! Points add up over the rounds.</p>
           <small>3–12 players · each on their phone · ~15 min</small>
         </motion.div>
 
@@ -284,7 +284,7 @@ function SecretPhase({ state }: { state: FlockState }) {
         <strong>Your secret card</strong>
       </div>
       <SecretCard secret={secret} big />
-      <p className="fl-hint-light">Keep it hidden! {secret.role === 'wolf' ? 'Nobody else knows you are the wolf.' : 'One of the others is the wolf.'}</p>
+      <p className="fl-hint-light">Keep it hidden! {secret.role === 'wolf' ? 'Nobody else knows you are a wolf.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}</p>
       {me?.done ? (
         <p className="fl-wait">
           Waiting for the others… {doneCount}/{state.turnOrder.length}
@@ -380,7 +380,7 @@ function VotePhase({ state }: { state: FlockState }) {
       <div className="fl-row-between">
         <div className="fl-phase-title left">
           <span>Round {state.round}</span>
-          <strong>Who is the wolf?</strong>
+          <strong>{state.wolfCount > 1 ? 'Who is a wolf?' : 'Who is the wolf?'}</strong>
         </div>
         <Timer size={46} />
       </div>
@@ -389,7 +389,7 @@ function VotePhase({ state }: { state: FlockState }) {
       ) : voted ? (
         <p className="fl-wait">🗳️ Vote cast! {votedCount}/{state.turnOrder.length} have voted…</p>
       ) : (
-        <p className="fl-hint-light">{secret.role === 'wolf' ? 'Point at a sheep to throw them off!' : 'Tap the player you suspect.'}</p>
+        <p className="fl-hint-light">{secret.role === 'wolf' ? 'Point at a sheep to throw them off!' : state.wolfCount > 1 ? 'Tap one player you suspect. Each vote on a wolf scores.' : 'Tap the player you suspect.'}</p>
       )}
       <div className="fl-vote-grid fl-scroll">
         {candidates.map((p, i) => {
@@ -461,7 +461,7 @@ function GuessPhase({ state }: { state: FlockState }) {
     <div className="fl-center">
       <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
         {wolf && <Token player={wolf} size={110} badge="🐺" />}
-        <strong>{wolf?.name} was the wolf!</strong>
+        <strong>{wolf?.name} was {state.wolfCount > 1 ? 'a' : 'the'} wolf!</strong>
       </motion.div>
       <p className="fl-wait">The wolf has one last chance to name the word…</p>
       <Timer size={70} />

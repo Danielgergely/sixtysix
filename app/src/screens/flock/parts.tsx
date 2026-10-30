@@ -53,13 +53,13 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
       <AnimatePresence mode="wait" initial={false}>
         {open ? (
           <motion.span key="face" className="fl-card-face" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.15 }}>
-            <span className="fl-card-role">{wolf ? '🐺 You are the wolf' : '🐑 You are a sheep'}</span>
+            <span className="fl-card-role">{wolf ? (secret.wolfCount > 1 ? '🐺 You are a wolf' : '🐺 You are the wolf') : '🐑 You are a sheep'}</span>
             <span className="fl-card-cat">{CATEGORY_LABEL[secret.category]}</span>
             {wolf ? (
               <>
                 <span className="fl-card-word wolf">???</span>
-                {secret.wolfHint && <span className="fl-card-wolfhint">You speak first. Hint: it’s in {secret.wolfHint}</span>}
-                {big && <span className="fl-card-hint">You don’t know the word. Listen to the clues, blend in, and don’t get caught!</span>}
+                {secret.wolfHint && <span className="fl-card-wolfhint">You speak first. Hint: {secret.wolfHint}</span>}
+                {big && <span className="fl-card-hint">You don’t know the word. {secret.wolfCount > 1 ? 'There is one more wolf, but you don’t know who. ' : ''}Listen to the clues, blend in, and don’t get caught!</span>}
               </>
             ) : (
               <>

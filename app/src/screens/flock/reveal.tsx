@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
-import type { FlockState } from '@sixtysix/shared'
+import { FLOCK_TWO_WOLVES_FROM, type FlockState } from '@sixtysix/shared'
 import { fireCannons, fireConfetti, spring } from '../../motion'
 import { Token } from './parts'
 import { playerById } from '../../flock/util'
@@ -8,11 +8,12 @@ import { playerById } from '../../flock/util'
 export function Rules() {
   return (
     <ol className="fl-rules">
-      <li>Everyone secretly gets the same Bible word — a person, place, story or object. One player is the <b>wolf</b> 🐺 and only sees the category.</li>
-      <li>In turn, each player gives a <b>short clue</b> (up to 3 words). Sheep: prove you know the word without giving it away. Wolf: bluff!</li>
-      <li>Everyone <b>votes</b> for the wolf. Each sheep who votes for the wolf scores <b>+1</b>.</li>
-      <li>If the wolf isn’t the single most-voted player, the wolf escapes: <b>+3</b>.</li>
+      <li>Everyone secretly gets the same Bible word — a person, place, story or object. One player is the <b>wolf</b> 🐺 and only sees the category. With {FLOCK_TWO_WOLVES_FROM}+ players there are <b>two wolves</b>, who don’t know each other.</li>
+      <li>In turn (random order), each player gives a <b>short clue</b> (up to 3 words). Sheep: prove you know the word without giving it away. Wolf: bluff! A wolf who has to go first gets a hint.</li>
+      <li>Everyone <b>votes</b>. Each sheep who votes for a wolf scores <b>+1</b>.</li>
+      <li>Each wolf who isn’t the single most-voted player escapes: <b>+3</b>.</li>
       <li>A caught wolf gets one last chance: pick the word from six for <b>+2</b>.</li>
+      <li>The wolf changes every round. Points add up, and the most points after the last round wins.</li>
     </ol>
   )
 }
@@ -26,17 +27,20 @@ export function RoundReveal({ state, large = false }: { state: FlockState; large
     if (r.wolfCaught && !r.guessCorrect) fireConfetti({ count: large ? 160 : 100 })
   }, [r, large])
   if (!r) return null
-  const wolf = playerById(state, r.wolfId)
+  const wolves = r.wolfIds.map((id) => playerById(state, id))
+  const two = r.wolfIds.length > 1
   const accused = playerById(state, r.accusedId)
   const verdict = r.wolfFled
-    ? 'The wolf ran off! Round called off.'
+    ? 'A wolf ran off! Round called off.'
     : r.wolfCaught
       ? r.guessCorrect
-        ? 'Caught — but the wolf named the word!'
-        : 'The flock caught the wolf!'
+        ? `Caught — but ${accused?.name ?? 'the wolf'} named the word!`
+        : two
+          ? `The flock caught ${accused?.name ?? 'a wolf'} — the other wolf escaped!`
+          : 'The flock caught the wolf!'
       : accused
-        ? `${accused.name} was a sheep — the wolf escaped!`
-        : 'A tie — the wolf slipped away!'
+        ? `${accused.name} was a sheep — the ${two ? 'wolves' : 'wolf'} escaped!`
+        : `A tie — the ${two ? 'wolves' : 'wolf'} slipped away!`
   const tally = new Map<string, string[]>()
   for (const [voter, target] of Object.entries(r.votes)) tally.set(target, [...(tally.get(target) ?? []), voter])
   return (
@@ -48,14 +52,16 @@ export function RoundReveal({ state, large = false }: { state: FlockState; large
           {r.hint} · <em>{r.ref}</em>
         </small>
       </motion.div>
-      <motion.div className="fl-reveal-wolf" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ ...spring.bouncy, delay: 0.5 }}>
-        {wolf ? <Token player={wolf} size={large ? 96 : 64} badge="🐺" /> : <span className="fl-token ghost" style={{ width: 64, height: 64 }} />}
-        <div>
-          <span className="fl-reveal-label">The wolf</span>
-          <strong>{wolf?.name ?? 'Left the game'}</strong>
-          {r.guess && <small>Guessed “{r.guess}” {r.guessCorrect ? '✔' : '✘'}</small>}
-        </div>
-      </motion.div>
+      {(wolves.length ? wolves : [undefined]).map((wolf, i) => (
+        <motion.div key={wolf?.id ?? i} className="fl-reveal-wolf" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ ...spring.bouncy, delay: 0.5 + i * 0.2 }}>
+          {wolf ? <Token player={wolf} size={large ? 96 : 64} badge="🐺" /> : <span className="fl-token ghost" style={{ width: 64, height: 64 }} />}
+          <div>
+            <span className="fl-reveal-label">{two ? 'A wolf' : 'The wolf'}</span>
+            <strong>{wolf?.name ?? 'Left the game'}</strong>
+            {r.guess && wolf && wolf.id === r.accusedId && <small>Guessed “{r.guess}” {r.guessCorrect ? '✔' : '✘'}</small>}
+          </div>
+        </motion.div>
+      ))}
       <motion.p className={`fl-verdict ${r.wolfCaught && !r.guessCorrect ? 'good' : 'bad'}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
         {verdict}
       </motion.p>
@@ -68,9 +74,9 @@ export function RoundReveal({ state, large = false }: { state: FlockState; large
           {[...tally].map(([target, vs]) => {
             const t = playerById(state, target)
             return (
-              <div key={target} className={`fl-vote-row ${target === r.wolfId ? 'wolf' : ''}`}>
+              <div key={target} className={`fl-vote-row ${r.wolfIds.includes(target) ? 'wolf' : ''}`}>
                 <span className="fl-vote-target">
-                  {t && <Token player={t} size={large ? 40 : 26} />} {t?.name ?? '?'} {target === r.wolfId && '🐺'}
+                  {t && <Token player={t} size={large ? 40 : 26} />} {t?.name ?? '?'} {r.wolfIds.includes(target) && '🐺'}
                 </span>
                 <span className="fl-vote-by">
                   {vs.map((v) => {

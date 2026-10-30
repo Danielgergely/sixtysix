@@ -3,543 +3,650 @@
   {
    "word": "Noah",
    "hint": "Built the ark and took the animals aboard",
-   "ref": "Genesis 6–9"
+   "ref": "Genesis 6–9",
+   "wolfHint": "Animals"
   },
   {
    "word": "Abraham",
    "hint": "Father of many nations; left Ur at God's call",
-   "ref": "Genesis 12"
+   "ref": "Genesis 12",
+   "wolfHint": "Promise"
   },
   {
    "word": "Sarah",
    "hint": "Laughed when told she'd have a son in old age",
-   "ref": "Genesis 18"
+   "ref": "Genesis 18",
+   "wolfHint": "Laughter"
   },
   {
    "word": "Joseph",
    "hint": "Coat of many colours, sold by his brothers",
-   "ref": "Genesis 37"
+   "ref": "Genesis 37",
+   "wolfHint": "Dreams"
   },
   {
    "word": "Moses",
    "hint": "Led Israel out of Egypt through the Red Sea",
-   "ref": "Exodus 14"
+   "ref": "Exodus 14",
+   "wolfHint": "Desert"
   },
   {
    "word": "Miriam",
    "hint": "Moses' sister; danced with a tambourine",
-   "ref": "Exodus 15:20"
+   "ref": "Exodus 15:20",
+   "wolfHint": "Music"
   },
   {
    "word": "Joshua",
    "hint": "Led Israel around Jericho's walls",
-   "ref": "Joshua 6"
+   "ref": "Joshua 6",
+   "wolfHint": "Battle"
   },
   {
    "word": "Gideon",
    "hint": "Won with 300 men, trumpets and jars",
-   "ref": "Judges 7"
+   "ref": "Judges 7",
+   "wolfHint": "Soldiers"
   },
   {
    "word": "Samson",
    "hint": "Super-strong judge with long hair",
-   "ref": "Judges 16"
+   "ref": "Judges 16",
+   "wolfHint": "Strength"
   },
   {
    "word": "Ruth",
    "hint": "Moabite who said 'Where you go, I will go'",
-   "ref": "Ruth 1:16"
+   "ref": "Ruth 1:16",
+   "wolfHint": "Harvest"
   },
   {
    "word": "Samuel",
    "hint": "Boy who heard God call him at night",
-   "ref": "1 Samuel 3"
+   "ref": "1 Samuel 3",
+   "wolfHint": "Temple"
   },
   {
    "word": "David",
    "hint": "Shepherd boy who beat a giant with a sling",
-   "ref": "1 Samuel 17"
+   "ref": "1 Samuel 17",
+   "wolfHint": "King"
   },
   {
    "word": "Goliath",
    "hint": "Philistine giant from Gath",
-   "ref": "1 Samuel 17"
+   "ref": "1 Samuel 17",
+   "wolfHint": "Armour"
   },
   {
    "word": "Solomon",
    "hint": "Wise king who built the Temple",
-   "ref": "1 Kings 3; 6"
+   "ref": "1 Kings 3; 6",
+   "wolfHint": "Wisdom"
   },
   {
    "word": "Elijah",
    "hint": "Prophet fed by ravens; taken up in a whirlwind",
-   "ref": "1 Kings 17; 2 Kings 2"
+   "ref": "1 Kings 17; 2 Kings 2",
+   "wolfHint": "Fire"
   },
   {
    "word": "Elisha",
    "hint": "Took up Elijah's cloak; healed Naaman",
-   "ref": "2 Kings 2; 5"
+   "ref": "2 Kings 2; 5",
+   "wolfHint": "Miracles"
   },
   {
    "word": "Esther",
    "hint": "Queen who saved her people 'for such a time as this'",
-   "ref": "Esther 4:14"
+   "ref": "Esther 4:14",
+   "wolfHint": "Queen"
   },
   {
    "word": "Daniel",
    "hint": "Thrown into the lions' den",
-   "ref": "Daniel 6"
+   "ref": "Daniel 6",
+   "wolfHint": "Prayer"
   },
   {
    "word": "Jonah",
    "hint": "Swallowed by a great fish",
-   "ref": "Jonah 1–2"
+   "ref": "Jonah 1–2",
+   "wolfHint": "Sea"
   },
   {
    "word": "Nehemiah",
    "hint": "Rebuilt Jerusalem's walls in 52 days",
-   "ref": "Nehemiah 6:15"
+   "ref": "Nehemiah 6:15",
+   "wolfHint": "Walls"
   },
   {
    "word": "Mary",
    "hint": "Mother of Jesus",
-   "ref": "Luke 1–2"
+   "ref": "Luke 1–2",
+   "wolfHint": "Mother"
   },
   {
    "word": "John the Baptist",
    "hint": "Baptised Jesus in the Jordan; ate locusts",
-   "ref": "Matthew 3"
+   "ref": "Matthew 3",
+   "wolfHint": "River"
   },
   {
    "word": "Peter",
    "hint": "Fisherman who walked on water for a moment",
-   "ref": "Matthew 14:29"
+   "ref": "Matthew 14:29",
+   "wolfHint": "Fisherman"
   },
   {
    "word": "Zacchaeus",
    "hint": "Short tax collector who climbed a tree",
-   "ref": "Luke 19"
+   "ref": "Luke 19",
+   "wolfHint": "Tree"
   },
   {
    "word": "Lazarus",
    "hint": "Jesus raised him after four days in the tomb",
-   "ref": "John 11"
+   "ref": "John 11",
+   "wolfHint": "Tomb"
   },
   {
    "word": "Thomas",
    "hint": "Doubted until he saw the nail marks",
-   "ref": "John 20"
+   "ref": "John 20",
+   "wolfHint": "Proof"
   },
   {
    "word": "Paul",
    "hint": "Blinded on the road to Damascus; wrote many letters",
-   "ref": "Acts 9"
+   "ref": "Acts 9",
+   "wolfHint": "Letters"
   },
   {
    "word": "Lydia",
    "hint": "Seller of purple cloth in Philippi",
-   "ref": "Acts 16:14"
+   "ref": "Acts 16:14",
+   "wolfHint": "Merchant"
   },
   {
    "word": "Adam",
    "hint": "The first man, made from dust",
-   "ref": "Genesis 2:7"
+   "ref": "Genesis 2:7",
+   "wolfHint": "Garden"
   },
   {
    "word": "Jacob",
    "hint": "Dreamed of a ladder to heaven; renamed Israel",
-   "ref": "Genesis 28; 32"
+   "ref": "Genesis 28; 32",
+   "wolfHint": "Twins"
   }
  ],
  "place": [
   {
    "word": "Garden of Eden",
    "hint": "First home of Adam and Eve",
-   "ref": "Genesis 2"
+   "ref": "Genesis 2",
+   "wolfHint": "Fruit"
   },
   {
    "word": "Tower of Babel",
    "hint": "Where languages were confused",
-   "ref": "Genesis 11"
+   "ref": "Genesis 11",
+   "wolfHint": "Languages"
   },
   {
    "word": "Egypt",
    "hint": "Land of Pharaoh and the plagues",
-   "ref": "Exodus 7–12"
+   "ref": "Exodus 7–12",
+   "wolfHint": "Slavery"
   },
   {
    "word": "Red Sea",
    "hint": "Parted so Israel could cross on dry ground",
-   "ref": "Exodus 14"
+   "ref": "Exodus 14",
+   "wolfHint": "Escape"
   },
   {
    "word": "Mount Sinai",
    "hint": "Where Moses received the Ten Commandments",
-   "ref": "Exodus 19–20"
+   "ref": "Exodus 19–20",
+   "wolfHint": "Law"
   },
   {
    "word": "Jericho",
    "hint": "City whose walls fell down",
-   "ref": "Joshua 6"
+   "ref": "Joshua 6",
+   "wolfHint": "Trumpets"
   },
   {
    "word": "Jordan River",
    "hint": "Jesus was baptised in it",
-   "ref": "Matthew 3:13"
+   "ref": "Matthew 3:13",
+   "wolfHint": "Baptism"
   },
   {
    "word": "Bethlehem",
    "hint": "Town where Jesus was born",
-   "ref": "Luke 2"
+   "ref": "Luke 2",
+   "wolfHint": "Birth"
   },
   {
    "word": "Nazareth",
    "hint": "Town where Jesus grew up",
-   "ref": "Luke 2:51"
+   "ref": "Luke 2:51",
+   "wolfHint": "Childhood"
   },
   {
    "word": "Jerusalem",
    "hint": "City of David with the Temple",
-   "ref": "2 Samuel 5"
+   "ref": "2 Samuel 5",
+   "wolfHint": "Capital"
   },
   {
    "word": "Nineveh",
    "hint": "Great city Jonah was sent to warn",
-   "ref": "Jonah 3"
+   "ref": "Jonah 3",
+   "wolfHint": "Repentance"
   },
   {
    "word": "Babylon",
    "hint": "Empire where Daniel lived in exile",
-   "ref": "Daniel 1"
+   "ref": "Daniel 1",
+   "wolfHint": "Exile"
   },
   {
    "word": "Sea of Galilee",
    "hint": "Lake where Jesus calmed a storm",
-   "ref": "Mark 4"
+   "ref": "Mark 4",
+   "wolfHint": "Boats"
   },
   {
    "word": "Mount of Olives",
    "hint": "Hill east of Jerusalem where Jesus often prayed",
-   "ref": "Luke 22:39"
+   "ref": "Luke 22:39",
+   "wolfHint": "Ascension"
   },
   {
    "word": "Gethsemane",
    "hint": "Garden where Jesus prayed before his arrest",
-   "ref": "Matthew 26:36"
+   "ref": "Matthew 26:36",
+   "wolfHint": "Prayer"
   },
   {
    "word": "Golgotha",
    "hint": "'Place of the skull' where Jesus was crucified",
-   "ref": "John 19:17"
+   "ref": "John 19:17",
+   "wolfHint": "Hill"
   },
   {
    "word": "Damascus",
    "hint": "Saul was on his way there when he met Jesus",
-   "ref": "Acts 9"
+   "ref": "Acts 9",
+   "wolfHint": "Blindness"
   },
   {
    "word": "Rome",
    "hint": "Capital of the empire; Paul wrote its church a letter",
-   "ref": "Romans 1:7"
+   "ref": "Romans 1:7",
+   "wolfHint": "Empire"
   },
   {
    "word": "Ark",
    "hint": "Floating home for Noah's family and animals",
-   "ref": "Genesis 7"
+   "ref": "Genesis 7",
+   "wolfHint": "Rain"
   },
   {
    "word": "Wilderness",
    "hint": "Israel wandered there for 40 years",
-   "ref": "Numbers 14:33"
+   "ref": "Numbers 14:33",
+   "wolfHint": "Wandering"
   },
   {
    "word": "Mount Carmel",
    "hint": "Elijah's showdown with the prophets of Baal",
-   "ref": "1 Kings 18"
+   "ref": "1 Kings 18",
+   "wolfHint": "Altar"
   },
   {
    "word": "Temple",
    "hint": "Solomon built it; Jesus taught in it as a boy",
-   "ref": "1 Kings 6; Luke 2"
+   "ref": "1 Kings 6; Luke 2",
+   "wolfHint": "Worship"
   },
   {
    "word": "Lions' Den",
    "hint": "Daniel spent the night there",
-   "ref": "Daniel 6"
+   "ref": "Daniel 6",
+   "wolfHint": "Danger"
   },
   {
    "word": "Upper Room",
    "hint": "Where Jesus shared the Last Supper",
-   "ref": "Mark 14:15"
+   "ref": "Mark 14:15",
+   "wolfHint": "Meal"
   },
   {
    "word": "Patmos",
    "hint": "Island where John saw the Revelation",
-   "ref": "Revelation 1:9"
+   "ref": "Revelation 1:9",
+   "wolfHint": "Visions"
   },
   {
    "word": "Canaan",
    "hint": "The Promised Land, flowing with milk and honey",
-   "ref": "Exodus 3:8"
+   "ref": "Exodus 3:8",
+   "wolfHint": "Promise"
   }
  ],
  "story": [
   {
    "word": "Creation",
    "hint": "God made everything in six days",
-   "ref": "Genesis 1"
+   "ref": "Genesis 1",
+   "wolfHint": "Beginning"
   },
   {
    "word": "The Flood",
    "hint": "Rain for 40 days and 40 nights",
-   "ref": "Genesis 7"
+   "ref": "Genesis 7",
+   "wolfHint": "Rain"
   },
   {
    "word": "Burning Bush",
    "hint": "A bush on fire that did not burn up",
-   "ref": "Exodus 3"
+   "ref": "Exodus 3",
+   "wolfHint": "Fire"
   },
   {
    "word": "Ten Plagues",
    "hint": "Frogs, gnats, hail, locusts…",
-   "ref": "Exodus 7–12"
+   "ref": "Exodus 7–12",
+   "wolfHint": "Frogs"
   },
   {
    "word": "Passover",
    "hint": "Blood on the doorposts; the angel passed over",
-   "ref": "Exodus 12"
+   "ref": "Exodus 12",
+   "wolfHint": "Lamb"
   },
   {
    "word": "Manna",
    "hint": "Bread from heaven every morning",
-   "ref": "Exodus 16"
+   "ref": "Exodus 16",
+   "wolfHint": "Hunger"
   },
   {
    "word": "Walls of Jericho",
    "hint": "Marching, trumpets, shouting — and down they came",
-   "ref": "Joshua 6"
+   "ref": "Joshua 6",
+   "wolfHint": "Trumpets"
   },
   {
    "word": "David and Goliath",
    "hint": "Five smooth stones and a sling",
-   "ref": "1 Samuel 17"
+   "ref": "1 Samuel 17",
+   "wolfHint": "Giant"
   },
   {
    "word": "Fiery Furnace",
    "hint": "Three friends walked in the fire unharmed",
-   "ref": "Daniel 3"
+   "ref": "Daniel 3",
+   "wolfHint": "Heat"
   },
   {
    "word": "Writing on the Wall",
    "hint": "A hand wrote at Belshazzar's feast",
-   "ref": "Daniel 5"
+   "ref": "Daniel 5",
+   "wolfHint": "Feast"
   },
   {
    "word": "Jonah and the Fish",
    "hint": "Three days inside a great fish",
-   "ref": "Jonah 1–2"
+   "ref": "Jonah 1–2",
+   "wolfHint": "Sea"
   },
   {
    "word": "Nativity",
    "hint": "Shepherds, angels and a manger",
-   "ref": "Luke 2"
+   "ref": "Luke 2",
+   "wolfHint": "Shepherds"
   },
   {
    "word": "Wise Men",
    "hint": "Followed a star with gold, frankincense and myrrh",
-   "ref": "Matthew 2"
+   "ref": "Matthew 2",
+   "wolfHint": "Gifts"
   },
   {
    "word": "Water into Wine",
    "hint": "Jesus' first sign at a wedding in Cana",
-   "ref": "John 2"
+   "ref": "John 2",
+   "wolfHint": "Wedding"
   },
   {
    "word": "Feeding the 5,000",
    "hint": "Five loaves and two fish",
-   "ref": "John 6"
+   "ref": "John 6",
+   "wolfHint": "Crowd"
   },
   {
    "word": "Walking on Water",
    "hint": "Jesus came to the disciples across the lake",
-   "ref": "Matthew 14"
+   "ref": "Matthew 14",
+   "wolfHint": "Waves"
   },
   {
    "word": "Calming the Storm",
    "hint": "'Quiet! Be still!' — and the wind stopped",
-   "ref": "Mark 4:39"
+   "ref": "Mark 4:39",
+   "wolfHint": "Boat"
   },
   {
    "word": "Good Samaritan",
    "hint": "A stranger helped the man left by the road",
-   "ref": "Luke 10"
+   "ref": "Luke 10",
+   "wolfHint": "Neighbour"
   },
   {
    "word": "Prodigal Son",
    "hint": "The father ran to welcome him home",
-   "ref": "Luke 15"
+   "ref": "Luke 15",
+   "wolfHint": "Father"
   },
   {
    "word": "Lost Sheep",
    "hint": "The shepherd left the 99 to find one",
-   "ref": "Luke 15"
+   "ref": "Luke 15",
+   "wolfHint": "Shepherd"
   },
   {
    "word": "Last Supper",
    "hint": "Bread and cup with the twelve",
-   "ref": "Luke 22"
+   "ref": "Luke 22",
+   "wolfHint": "Bread"
   },
   {
    "word": "Resurrection",
    "hint": "The empty tomb on the third day",
-   "ref": "Luke 24"
+   "ref": "Luke 24",
+   "wolfHint": "Tomb"
   },
   {
    "word": "Pentecost",
    "hint": "Tongues of fire and many languages",
-   "ref": "Acts 2"
+   "ref": "Acts 2",
+   "wolfHint": "Wind"
   },
   {
    "word": "Road to Damascus",
    "hint": "A bright light and a voice from heaven",
-   "ref": "Acts 9"
+   "ref": "Acts 9",
+   "wolfHint": "Light"
   },
   {
    "word": "Paul's Shipwreck",
    "hint": "Everyone reached Malta safely",
-   "ref": "Acts 27–28"
+   "ref": "Acts 27–28",
+   "wolfHint": "Island"
   }
  ],
  "thing": [
   {
    "word": "Rainbow",
    "hint": "Sign of God's promise after the flood",
-   "ref": "Genesis 9:13"
+   "ref": "Genesis 9:13",
+   "wolfHint": "Promise"
   },
   {
    "word": "Coat of Many Colours",
    "hint": "Jacob's gift to Joseph",
-   "ref": "Genesis 37:3"
+   "ref": "Genesis 37:3",
+   "wolfHint": "Jealousy"
   },
   {
    "word": "Staff",
    "hint": "Moses' rod that became a snake",
-   "ref": "Exodus 4"
+   "ref": "Exodus 4",
+   "wolfHint": "Walking"
   },
   {
    "word": "Stone Tablets",
    "hint": "The Ten Commandments were written on them",
-   "ref": "Exodus 31:18"
+   "ref": "Exodus 31:18",
+   "wolfHint": "Law"
   },
   {
    "word": "Ark of the Covenant",
    "hint": "Gold-covered chest carried on poles",
-   "ref": "Exodus 25"
+   "ref": "Exodus 25",
+   "wolfHint": "Gold"
   },
   {
    "word": "Golden Calf",
    "hint": "Idol made while Moses was on the mountain",
-   "ref": "Exodus 32"
+   "ref": "Exodus 32",
+   "wolfHint": "Idol"
   },
   {
    "word": "Trumpet",
    "hint": "Blown at Jericho and by Gideon's men",
-   "ref": "Joshua 6; Judges 7"
+   "ref": "Joshua 6; Judges 7",
+   "wolfHint": "Sound"
   },
   {
    "word": "Sling",
    "hint": "David's weapon against the giant",
-   "ref": "1 Samuel 17:40"
+   "ref": "1 Samuel 17:40",
+   "wolfHint": "Weapon"
   },
   {
    "word": "Harp",
    "hint": "David played it to calm King Saul",
-   "ref": "1 Samuel 16:23"
+   "ref": "1 Samuel 16:23",
+   "wolfHint": "Music"
   },
   {
    "word": "Crown",
    "hint": "Worn by kings and queens",
-   "ref": "Esther 2:17"
+   "ref": "Esther 2:17",
+   "wolfHint": "King"
   },
   {
    "word": "Manger",
    "hint": "Baby Jesus was laid in it",
-   "ref": "Luke 2:7"
+   "ref": "Luke 2:7",
+   "wolfHint": "Animals"
   },
   {
    "word": "Star",
    "hint": "Guided the wise men",
-   "ref": "Matthew 2:9"
+   "ref": "Matthew 2:9",
+   "wolfHint": "Night"
   },
   {
    "word": "Fishing Net",
    "hint": "Peter and Andrew left them to follow Jesus",
-   "ref": "Matthew 4:20"
+   "ref": "Matthew 4:20",
+   "wolfHint": "Lake"
   },
   {
    "word": "Five Loaves",
    "hint": "A boy's lunch that fed thousands",
-   "ref": "John 6:9"
+   "ref": "John 6:9",
+   "wolfHint": "Boy"
   },
   {
    "word": "Mustard Seed",
    "hint": "Smallest seed, grows into a large plant",
-   "ref": "Matthew 13:31"
+   "ref": "Matthew 13:31",
+   "wolfHint": "Small"
   },
   {
    "word": "Lamp",
    "hint": "Don't hide it under a bowl",
-   "ref": "Matthew 5:15"
+   "ref": "Matthew 5:15",
+   "wolfHint": "Light"
   },
   {
    "word": "Pearl",
    "hint": "A merchant sold everything for one",
-   "ref": "Matthew 13:46"
+   "ref": "Matthew 13:46",
+   "wolfHint": "Treasure"
   },
   {
    "word": "Cross",
    "hint": "Jesus died on it",
-   "ref": "John 19"
+   "ref": "John 19",
+   "wolfHint": "Wood"
   },
   {
    "word": "Crown of Thorns",
    "hint": "Soldiers mocked Jesus with it",
-   "ref": "John 19:2"
+   "ref": "John 19:2",
+   "wolfHint": "Soldiers"
   },
   {
    "word": "Thirty Silver Coins",
    "hint": "Judas' price for betrayal",
-   "ref": "Matthew 26:15"
+   "ref": "Matthew 26:15",
+   "wolfHint": "Betrayal"
   },
   {
    "word": "Stone",
    "hint": "Rolled away from the tomb",
-   "ref": "Mark 16:4"
+   "ref": "Mark 16:4",
+   "wolfHint": "Heavy"
   },
   {
    "word": "Armour of God",
    "hint": "Belt of truth, shield of faith…",
-   "ref": "Ephesians 6"
+   "ref": "Ephesians 6",
+   "wolfHint": "Battle"
   },
   {
    "word": "Dove",
    "hint": "Brought Noah an olive leaf",
-   "ref": "Genesis 8:11"
+   "ref": "Genesis 8:11",
+   "wolfHint": "Peace"
   },
   {
    "word": "Ladder",
    "hint": "Angels went up and down it in Jacob's dream",
-   "ref": "Genesis 28:12"
+   "ref": "Genesis 28:12",
+   "wolfHint": "Dream"
   },
   {
    "word": "Jar of Oil",
    "hint": "The widow's jar that didn't run dry",
-   "ref": "1 Kings 17:16"
+   "ref": "1 Kings 17:16",
+   "wolfHint": "Widow"
   },
   {
    "word": "Scroll",
    "hint": "Jesus read Isaiah from one in Nazareth",
-   "ref": "Luke 4:17"
+   "ref": "Luke 4:17",
+   "wolfHint": "Reading"
   }
  ]
 }

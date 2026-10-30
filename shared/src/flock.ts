@@ -1,7 +1,8 @@
 /**
  * Wolf in the Flock — a hidden-role party game (docs/board-games.md).
  *
- * Every player is a sheep who sees a secret Bible word, except one wolf who
+ * Every player is a sheep who sees a secret Bible word, except the wolf (two
+ * wolves from FLOCK_TWO_WOLVES_FROM players, who don't know each other) who
  * only sees the category. Players give one short clue each in turn, then vote
  * out the wolf. A caught wolf can still win points by picking the word.
  *
@@ -23,15 +24,18 @@ export const FLOCK_MIN_PLAYERS = 3
 export const FLOCK_MAX_PLAYERS = 12
 export const FLOCK_ROUND_OPTIONS = [3, 5, 8] as const
 export const FLOCK_CLUE_MAX = 24
+/** Rounds dealt to this many players or more have two wolves. */
+export const FLOCK_TWO_WOLVES_FROM = 7
+export const flockWolfCount = (dealt: number): number => (dealt >= FLOCK_TWO_WOLVES_FROM ? 2 : 1)
 
 export const FLOCK_CATEGORIES = ['person', 'place', 'story', 'thing'] as const
 export type FlockCategory = (typeof FLOCK_CATEGORIES)[number]
 
 /** Points (see docs/board-games.md → Scoring). */
 export const FLOCK_POINTS = {
-  /** Each sheep whose vote pointed at the wolf. */
+  /** Each sheep whose vote pointed at a wolf. */
   sheepFoundWolf: 1,
-  /** The wolf was not the single most-voted player. */
+  /** Each wolf who was not the single most-voted player. */
   wolfEscaped: 3,
   /** Caught wolf picked the secret word. */
   wolfGuessed: 2,
@@ -57,7 +61,8 @@ export interface FlockClue {
 }
 
 export interface FlockRoundResult {
-  wolfId: string
+  /** Public ids of this round's wolves (one, or two in big groups). */
+  wolfIds: string[]
   word: string
   hint: string
   ref: string
@@ -65,13 +70,14 @@ export interface FlockRoundResult {
   votes: Record<string, string>
   /** Single most-voted player, or null on a tie / no votes. */
   accusedId: string | null
+  /** The accused was a wolf (with two wolves, the other one escaped). */
   wolfCaught: boolean
   /** The caught wolf's pick (null = no pick / not caught). */
   guess: string | null
   guessCorrect: boolean
   /** Points won this round by public id. */
   gains: Record<string, number>
-  /** The wolf left mid-round; the round was called off. */
+  /** A wolf left mid-round; the round was called off. */
   wolfFled: boolean
 }
 
@@ -87,6 +93,8 @@ export interface FlockState {
   totalRounds: number
   clueLaps: number
   category: FlockCategory | null
+  /** Wolves this round (public: everyone knows how many to look for). */
+  wolfCount: number
   /** Public ids in clue order for this round. */
   turnOrder: string[]
   /** Whose clue turn it is (phase 'clues'). */
@@ -110,13 +118,15 @@ export interface FlockSecret {
   word?: string
   hint?: string
   ref?: string
-  /** Wolf only, during 'guess'. */
+  /** The caught wolf only, during 'guess'. */
   guessOptions?: string[]
   /**
-   * Wolf only, when the wolf gives the round's first clue (no clues to go on yet):
-   * where the word is found, e.g. "Genesis" or "the New Testament".
+   * Wolf only, when they give the round's first clue (no clues to go on yet):
+   * a word associated with the secret word, e.g. "Sea" for Jonah.
    */
   wolfHint?: string
+  /** Wolves this round (a wolf doesn't learn who the other one is). */
+  wolfCount: number
 }
 
 type Ack<T> = (res: ({ ok: true } & T) | { ok: false; error: string }) => void
