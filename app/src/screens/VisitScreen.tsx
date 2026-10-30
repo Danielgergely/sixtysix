@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BUILDING_IDS, levelDef, type BuildingId } from '@sixtysix/shared'
+import { BUILDING_IDS, IDLE_DAYS, levelDef, type BuildingId } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
@@ -43,7 +43,8 @@ export function VisitScreen() {
             <span>
               <strong>{player.name}</strong>
               <small>
-                {levelDef('house', levels.house)?.name ?? 'Tent'} · plot {player.plot} · Level {levelForXp(player.xp)}
+                {levelDef('house', levels.house)?.name ?? 'Tent'} · {player.lot ? `lot ${player.lot}` : 'outside the walls'} · Level {levelForXp(player.xp)}
+                {player.idleDays >= IDLE_DAYS.weeds ? ` · 🌿 away ${player.idleDays} days` : ''}
               </small>
             </span>
             <span className="vs-go">Profile ›</span>

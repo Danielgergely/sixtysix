@@ -107,6 +107,19 @@
 .cm-lot.found .cm-name{ z-index: 9200; background: #b3262b; border-color: #ffe08a; color: #fff; }
 @keyframes cm-ping{ 0%{ scale: 0.6; opacity: 1; } 100%{ scale: 1.6; opacity: 0; } }
 .cm-lot.free .cm-house{ opacity: 0.85; filter: none; }
+.cm-lot.free.quiet .cm-house{ opacity: 0.5; }
+/* Homes left alone (shared/src/city.ts): weeds at 20 days, overgrown at 40, for sale at 60 (inner city). */
+.cm-lot.idle-1 .cm-house{ filter: saturate(0.8); }
+.cm-lot.idle-2 .cm-house, .cm-lot.idle-3 .cm-house{ filter: saturate(0.45) sepia(0.35) brightness(0.88); }
+.cm-weeds{
+  position: absolute; left: 0; top: -10px; transform: translateX(-50%); width: 92px; text-align: center; pointer-events: none;
+  font-size: 18px; line-height: 1; letter-spacing: -2px; white-space: nowrap; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.5));
+}
+.cm-lot.idle-2 .cm-weeds, .cm-lot.idle-3 .cm-weeds{ font-size: 24px; top: -16px; }
+.cm-sale{
+  position: absolute; left: 0; top: -78px; translate: -50% 0; padding: 2px 6px; border-radius: 6px; pointer-events: none; white-space: nowrap;
+  background: #f3e2bb; border: 2px solid #6b4120; color: #6b1d0e; font: 900 12px 'Cinzel', serif; box-shadow: 0 2px 4px rgb(0 0 0 / 0.4);
+}
 .cm-lot.free .cm-name{ z-index: 8000; }
 
 /* Behind the painting when zoomed all the way out: the painting itself, blurred and dimmed */
@@ -144,6 +157,8 @@
 .cs-facts{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .cs-facts span{ display: flex; flex-direction: column; align-items: center; padding: 8px 4px; border-radius: 10px; background: rgb(255 255 255 / 0.4); border: 1px solid #c9a24a; font: 700 10px/1.2 'Cinzel', serif; text-align: center; color: #6b4120; }
 .cs-facts b{ font: 900 20px/1.1 'Cinzel', serif; color: #6b1d0e; }
+.cs-why{ color: #8e3b1e; font-weight: 700; }
+.cs-small{ font-size: 12px; opacity: 0.8; }
 .cs-h{ margin: 2px 0 5px; font: 900 11px/1 'Cinzel', serif; letter-spacing: 0.14em; text-transform: uppercase; color: #8a5a10; }
 .cs-list{ list-style: none; display: grid; gap: 4px; }
 .cs-row{

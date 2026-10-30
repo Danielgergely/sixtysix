@@ -3,7 +3,7 @@ import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { levelDef } from '@sixtysix/shared'
+import { IDLE_DAYS, levelDef } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
 
 const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
@@ -53,9 +53,10 @@ export function PlayerScreen() {
           <button className="jr-home jr-home-btn" onClick={() => visitPlot(player.username)}>
             <img className="jr-home-art" src={artFor('house', player.house)} alt="" />
             <span>
-              <strong>Home in Jerusalem · plot {player.plot}</strong>
+              <strong>Home in Jerusalem · {player.lot ? `lot ${player.lot}` : 'camping outside the walls'}</strong>
               <small>
-                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house}) · visit ›
+                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house})
+                {player.idleDays >= IDLE_DAYS.weeds ? ` · 🌿 away ${player.idleDays} days` : ''} · visit ›
               </small>
             </span>
           </button>

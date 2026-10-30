@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
-import { cleanProfile, db, hashPassword, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
+import { cleanProfile, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
 
 /**
  * "Sign in with Google" (Google Identity Services). Enabled only when the
@@ -79,6 +79,7 @@ export function registerGoogleRoutes(app: FastifyInstance): void {
       }
       console.log(`[account] google signup ${username}`)
     }
+    markActive(row.id)
     return { ok: true, created, token: newSession(row.id), account: toAccount(row) }
   })
 

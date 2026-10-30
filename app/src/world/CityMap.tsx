@@ -1,16 +1,16 @@
 import { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { levelDef } from '@sixtysix/shared'
+import { idleStage, levelDef } from '@sixtysix/shared'
 import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { popIn } from '../motion'
 import { artFor } from '../screens/home/homeUtil'
-import { LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { INNER_LOTS, LANDMARKS, LOT_SIZE, LOTS, STREETS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
 
-/** How many empty lots past the last family read "Free land". */
-const FREE_LOTS = 6
+/** How many of the next free lots (where new families settle) are labelled "Free land". */
+const FREE_LABELS = 6
 const MAX_ZOOM = 1.2
 const START_ZOOM = 0.5
 /** Lots are drawn only near the window: this much world margin around it. */
@@ -26,7 +26,8 @@ interface Props {
   me: string | null
   onLandmark: (id: LandmarkId) => void
   onResident: (r: Resident) => void
-  onFree: () => void
+  /** A free lot, or an inner lot whose family has been away long enough to be taken over. */
+  onLot: (lot: number, r: Resident | null) => void
   /** Rendered over the map, top right (List toggle etc.). */
   extra?: React.ReactNode
 }
@@ -34,10 +35,10 @@ interface Props {
 type View = { x0: number; y0: number; x1: number; y1: number; lod: 'near' | 'mid' | 'far' }
 
 /** The painted Jerusalem map: landmarks, one lot per family, a few free lots, people in the streets. */
-export function CityMap({ residents, me, onLandmark, onResident, onFree, extra }: Props) {
+export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }: Props) {
   const pz = useRef<PanZoomHandle>(null)
   const mine = residents.find((r) => r.username === me)
-  const home = mine ? lotFor(mine.plot) : null
+  const home = mine?.lot ? lotFor(mine.lot) : undefined
   const start = home ? { x: home.x, y: home.y - 40 } : { x: TEMPLE.x, y: TEMPLE.y }
   const [view, setView] = useState<View | null>(null)
   const [found, setFound] = useState<Resident | null>(null)
@@ -49,16 +50,17 @@ export function CityMap({ residents, me, onLandmark, onResident, onFree, extra }
     setView((cur) => (cur && cur.x0 === next.x0 && cur.y0 === next.y0 && cur.x1 === next.x1 && cur.y1 === next.y1 && cur.lod === next.lod ? cur : next))
   }, [])
 
+  /** Empty lots (1-based numbers), nearest the Temple first. */
   const free = useMemo(() => {
-    const used = Math.max(residents.length, ...residents.map((r) => r.plot))
-    return LOTS.slice(used, used + FREE_LOTS)
+    const taken = new Set(residents.map((r) => r.lot))
+    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
   }, [residents])
 
   const inView = (x: number, y: number) => !view || (x > view.x0 && x < view.x1 && y > view.y0 && y < view.y1)
   const flyTo = (r: Resident) => {
-    const lot = lotFor(r.plot)
+    const lot = r.lot ? lotFor(r.lot) : undefined
     setFound(r)
-    pz.current?.centerOn(lot.x, lot.y - 40, 0.9)
+    if (lot) pz.current?.centerOn(lot.x, lot.y - 40, 0.9)
   }
 
   return (
@@ -105,7 +107,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onFree, extra }
                 <span className="cm-found-text">
                   <strong>{found.username === me ? 'Your home' : found.name}</strong>
                   <small>
-                    @{found.username} · {levelDef('house', found.house)?.name ?? 'Tent'} · plot {found.plot}
+                    @{found.username} · {levelDef('house', found.house)?.name ?? 'Tent'} · {found.lot ? `lot ${found.lot}` : 'camping outside the walls'}
                   </small>
                 </span>
                 <button className="cm-chip gold" onClick={() => onResident(found)}>
@@ -124,16 +126,30 @@ export function CityMap({ residents, me, onLandmark, onResident, onFree, extra }
       {LANDMARKS.map((l) => (
         <LandmarkView key={l.id} id={l.id} name={l.name} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
       ))}
-      {free
-        .filter((l) => inView(l.x, l.y))
-        .map((l) => (
-          <FreeLot key={`${l.x},${l.y}`} lot={l} onTap={onFree} />
-        ))}
+      {/* Free land: the next few lots always (they're labelled); the rest only close up. */}
+      {free.map((n, i) => {
+        const l = LOTS[n - 1]
+        const labelled = i < FREE_LABELS
+        return (labelled || view?.lod === 'near') && inView(l.x, l.y) ? <FreeLot key={n} n={n} lot={l} labelled={labelled} onTap={onLot} /> : null
+      })}
       {residents.map((r) => {
-        const lot = lotFor(r.plot)
+        const lot = r.lot ? lotFor(r.lot) : undefined
+        if (!lot) return null
         const special = r.username === me || r.username === found?.username
+        const stage = idleStage(r.idleDays)
+        // A place inside the wall whose family has been away 60+ days can be taken over.
+        const forSale = stage === 3 && r.lot! <= INNER_LOTS && r.username !== me
         return inView(lot.x, lot.y) || special ? (
-          <ResidentLot key={r.username} r={r} lot={lot} mine={r.username === me} found={r.username === found?.username} onTap={onResident} />
+          <ResidentLot
+            key={r.username}
+            r={r}
+            lot={lot}
+            stage={stage}
+            forSale={forSale}
+            mine={r.username === me}
+            found={r.username === found?.username}
+            onTap={forSale ? () => onLot(r.lot!, r) : onResident}
+          />
         ) : null
       })}
     </PanZoom>
@@ -148,7 +164,7 @@ function Search({ residents, onPick }: { residents: Resident[]; onPick: (r: Resi
   const hits = term
     ? residents
         .filter((r) => r.name.toLowerCase().includes(term) || r.username.toLowerCase().includes(term))
-        .sort((a, b) => Number(!a.name.toLowerCase().startsWith(term)) - Number(!b.name.toLowerCase().startsWith(term)) || a.plot - b.plot)
+        .sort((a, b) => Number(!a.name.toLowerCase().startsWith(term)) - Number(!b.name.toLowerCase().startsWith(term)) || (a.lot ?? 1e9) - (b.lot ?? 1e9))
         .slice(0, 6)
     : []
   const pick = (r: Resident) => {
@@ -207,17 +223,47 @@ const LandmarkView = memo(function LandmarkView({ id, name, art, x, y, size, onT
   )
 })
 
-const ResidentLot = memo(function ResidentLot({ r, lot, mine, found, onTap }: { r: Resident; lot: Lot; mine: boolean; found: boolean; onTap: (r: Resident) => void }) {
+/** Weeds grow on a home whose family stays away (shared/src/city.ts): a few tufts, then overgrown. */
+const WEEDS = ['', '🌿 🌱', '🌿🌾🌿 🌱🌾', '🌾🌿🌾 🌿🌱🌾']
+
+const ResidentLot = memo(function ResidentLot({
+  r,
+  lot,
+  stage,
+  forSale,
+  mine,
+  found,
+  onTap,
+}: {
+  r: Resident
+  lot: Lot
+  stage: number
+  forSale: boolean
+  mine: boolean
+  found: boolean
+  onTap: (r: Resident) => void
+}) {
   const wasDragged = useWasDragged()
   const house = levelDef('house', r.house)?.name ?? 'Tent'
+  const away = stage ? ` · away ${r.idleDays} days` : ''
   return (
     <button
-      className={`cm-lot ${mine ? 'me' : ''} ${found ? 'found' : ''}`}
+      className={`cm-lot ${mine ? 'me' : ''} ${found ? 'found' : ''} ${stage ? `idle-${stage}` : ''}`}
       style={{ left: lot.x, top: lot.y }}
       onClick={() => !wasDragged() && onTap(r)}
-      title={`${r.name} · ${house} · plot ${r.plot}`}
+      title={`${r.name} · ${house} · lot ${r.lot}${away}`}
     >
       <img className="cm-house" src={artFor('house', r.house)} alt="" draggable={false} loading="lazy" style={{ width: LOT_SIZE, zIndex: Math.round(lot.y) }} />
+      {stage > 0 && (
+        <span className="cm-weeds" aria-hidden style={{ zIndex: Math.round(lot.y) + 1 }}>
+          {WEEDS[stage]}
+        </span>
+      )}
+      {forSale && (
+        <span className="cm-sale" style={{ zIndex: Math.round(lot.y) + 2 }}>
+          🪧 For sale
+        </span>
+      )}
       <span className="cm-hit" style={{ width: LOT_SIZE * 0.8, height: LOT_SIZE * 0.72, zIndex: Math.round(lot.y) }} />
       <span className="cm-name">
         <PaintedPortrait id={r.avatar} className="cm-portrait" />
@@ -227,15 +273,17 @@ const ResidentLot = memo(function ResidentLot({ r, lot, mine, found, onTap }: { 
   )
 })
 
-const FreeLot = memo(function FreeLot({ lot, onTap }: { lot: Lot; onTap: () => void }) {
+const FreeLot = memo(function FreeLot({ n, lot, labelled, onTap }: { n: number; lot: Lot; labelled: boolean; onTap: (n: number, r: null) => void }) {
   const wasDragged = useWasDragged()
   return (
-    <button className="cm-lot free" style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap()} aria-label="Free land">
+    <button className={`cm-lot free ${labelled ? '' : 'quiet'}`} style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap(n, null)} aria-label={`Free land, lot ${n}`}>
       <img className="cm-house" src="/art/land-free.webp" alt="" draggable={false} loading="lazy" style={{ width: LOT_SIZE, zIndex: Math.round(lot.y) - 40 }} />
       <span className="cm-hit" style={{ width: LOT_SIZE * 0.8, height: LOT_SIZE * 0.5, zIndex: Math.round(lot.y) - 40 }} />
-      <span className="cm-name free">
-        <span className="cm-label">Free land</span>
-      </span>
+      {labelled && (
+        <span className="cm-name free">
+          <span className="cm-label">Free land</span>
+        </span>
+      )}
     </button>
   )
 })

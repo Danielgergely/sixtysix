@@ -5,6 +5,7 @@ import { DatabaseSync } from 'node:sqlite'
 import type { FastifyInstance, FastifyRequest } from 'fastify'
 import {
   CHARACTERS,
+  DAY_MS,
   MIN_PASSWORD,
   STAT_COUNTERS,
   STAT_MAXES,
@@ -18,8 +19,9 @@ import {
   type AccountStats,
   type Grant,
 } from '@sixtysix/shared'
+import { LOTS } from '@sixtysix/shared/cityLayout'
 import { cleanAvatar, cleanName } from './rooms.js'
-import { houseLevels, publicLevels } from './plot.js'
+import { publicLevels } from './plot.js'
 
 /**
  * Optional accounts: username + password, sessions as bearer tokens, progress
@@ -70,6 +72,44 @@ try {
 } catch {
   // column exists
 }
+// v4: Jerusalem keeps each family's lot and when they were last active (shared/src/city.ts).
+// Each step checks for itself, so a half-finished upgrade simply completes on the next start.
+const userColumns = new Set((db.prepare('PRAGMA table_info(users)').all() as { name: string }[]).map((c) => c.name))
+for (const col of ['lot', 'last_active', 'last_move_at']) if (!userColumns.has(col)) db.exec(`ALTER TABLE users ADD COLUMN ${col} INTEGER`)
+db.exec('UPDATE users SET last_active = MAX(created_at, COALESCE((SELECT MAX(at) FROM grants WHERE grants.user_id = users.id), 0)) WHERE last_active IS NULL')
+db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_lot ON users(lot)')
+/** Families without a lot get the first free ones, in sign-up order (existing families keep their old place). */
+function settleHomeless(): void {
+  const homeless = db.prepare('SELECT id FROM users WHERE lot IS NULL ORDER BY id').all() as { id: number }[]
+  let settled = 0
+  for (const { id } of homeless) {
+    const lot = freeLot()
+    if (lot === null) break
+    db.prepare('UPDATE users SET lot = ? WHERE id = ?').run(lot, id)
+    settled++
+  }
+  if (settled) console.log(`[city] settled ${settled} famil${settled === 1 ? 'y' : 'ies'} without a lot`)
+}
+
+// ── Jerusalem: lots and activity ──────────────────────────────────────
+
+/** The first free lot (inside the wall first), or null when the city is full (they camp outside the walls until it grows). */
+function freeLot(): number | null {
+  const taken = new Set((db.prepare('SELECT lot FROM users WHERE lot IS NOT NULL').all() as { lot: number }[]).map((r) => r.lot))
+  for (let n = 1; n <= LOTS.length; n++) if (!taken.has(n)) return n
+  return null
+}
+
+/** Playing, building or signing in: the home is tended (weeds go), and a family without a lot gets one. */
+export function markActive(userId: number): void {
+  const now = Date.now()
+  db.prepare('UPDATE users SET last_active = ? WHERE id = ?').run(now, userId)
+  const row = db.prepare('SELECT lot FROM users WHERE id = ?').get(userId) as { lot: number | null } | undefined
+  if (!row || row.lot !== null) return
+  const lot = freeLot()
+  if (lot !== null) db.prepare('UPDATE users SET lot = ? WHERE id = ?').run(lot, userId)
+}
+settleHomeless()
 
 export interface UserRow {
   id: number
@@ -209,6 +249,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     const { lastInsertRowid } = db
       .prepare('INSERT INTO users (username, pass_hash, created_at, profile) VALUES (?, ?, ?, ?)')
       .run(username, hashPassword(password), Date.now(), JSON.stringify(profile))
+    markActive(Number(lastInsertRowid))
     const row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
     console.log(`[account] signup ${username}`)
     return { ok: true, token: newSession(row.id), account: toAccount(row) }
@@ -221,6 +262,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     if (!row || typeof body.password !== 'string' || !checkPassword(body.password, row.pass_hash)) {
       return { ok: false, error: 'Wrong username or password' }
     }
+    markActive(row.id)
     return { ok: true, token: newSession(row.id), account: toAccount(row) }
   })
 
@@ -251,6 +293,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     // Skill bonuses (Diligent student, Faithful in little) are added here, on the
     // server, inside the daily ceiling; guest progress merged at sign-in gets none.
     const bonus = { xp: 0, coins: 0 }
+    let applied = 0
     for (const g of grants) {
       if (typeof g?.id !== 'string' || g.id.length > 64) continue
       const merge = g.source === 'merge'
@@ -277,7 +320,9 @@ export function registerAccountRoutes(app: FastifyInstance): void {
       bonus.coins += Math.max(0, Math.min(coins, wantCoins - baseCoins))
       bonus.xp += Math.max(0, Math.min(xp, wantXp - baseXp))
       applyGrant(account.profile, g, coins, xp)
+      applied++
     }
+    if (applied) markActive(row.id) // a game played tends the home
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
     if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string
     saveProfile(row.id, account.profile)
@@ -306,6 +351,8 @@ function publicPlayer(r: PublicRow) {
   return { username: r.username, name: p.name, avatar: p.avatar, xp: p.xp, weekXp: r.week_xp ?? 0, joinedAt: r.created_at }
 }
 
+export { publicPlayer, type PublicRow }
+
 export function registerPublicRoutes(app: FastifyInstance): void {
   /** ?period=week|all → top 50, plus the caller's own row when signed in. */
   app.get('/api/leaderboard', (req) => {
@@ -332,25 +379,25 @@ export function registerPublicRoutes(app: FastifyInstance): void {
     }
   })
 
-  /** Everyone with a home in Jerusalem, in the order they arrived (= plot number). */
-  app.get('/api/city', () => {
-    const rows = db.prepare('SELECT id, username, profile, created_at FROM users ORDER BY id LIMIT 1000').all() as unknown as (PublicRow & { id: number })[]
-    const houses = houseLevels()
-    return { ok: true, residents: rows.map((r, i) => ({ ...publicPlayer(r), plot: i + 1, house: houses.get(r.id) ?? 1 })) }
-  })
-
   app.get('/api/players/:username', (req, reply) => {
     const { username } = req.params as { username: string }
     const row = db.prepare('SELECT id, username, profile, created_at FROM users WHERE username = ?').get(username) as
       | (PublicRow & { id: number })
       | undefined
     if (!row) return reply.code(404).send({ ok: false, error: 'No such player' })
-    const plot = (db.prepare('SELECT COUNT(*) AS n FROM users WHERE id <= ?').get(row.id) as { n: number }).n
+    const home = db.prepare('SELECT lot, last_active FROM users WHERE id = ?').get(row.id) as { lot: number | null; last_active: number | null }
     const profile = JSON.parse(row.profile) as AccountProfile
     const levels = publicLevels(row.id)
     return {
       ok: true,
-      player: { ...publicPlayer(row), plot, house: levels?.house ?? 1, levels, stats: { ...EMPTY_STATS, ...profile.stats } },
+      player: {
+        ...publicPlayer(row),
+        lot: home.lot,
+        idleDays: Math.floor((Date.now() - (home.last_active ?? row.created_at)) / DAY_MS),
+        house: levels?.house ?? 1,
+        levels,
+        stats: { ...EMPTY_STATS, ...profile.stats },
+      },
     }
   })
 }

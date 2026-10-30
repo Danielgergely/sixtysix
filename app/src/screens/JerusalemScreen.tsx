@@ -9,14 +9,15 @@ import { levelDef } from '@sixtysix/shared'
 import { usePlotStore } from '../plot/plotStore'
 import { artFor } from './home/homeUtil'
 import { CityMap } from '../world/CityMap'
-import { CitySheet, type CitySheetKind } from '../world/CitySheet'
+import { CitySheet, type CitySheetKind, type LotPick } from '../world/CitySheet'
 
 const houseName = (level: number) => levelDef('house', level)?.name ?? 'Tent'
 
 /**
  * The city: a painted map of Jerusalem to drag around. Landmarks (Temple,
  * Market, governor's house, a gate, a pool) open cards; every account has a
- * lot by plot number. Guests can look around and visit; building
+ * stored lot (shared/src/city.ts: weeds on homes left alone, inner places
+ * changing hands). Guests can look around and visit; building
  * (docs/jerusalem-plot.md) needs an account.
  */
 export function JerusalemScreen() {
@@ -27,6 +28,8 @@ export function JerusalemScreen() {
   const [failed, setFailed] = useState(false)
   const [list, setList] = useState(false)
   const [sheet, setSheet] = useState<CitySheetKind | null>(null)
+  const [lot, setLot] = useState<LotPick | null>(null)
+  const [reload, setReload] = useState(0)
 
   useEffect(() => {
     let live = true
@@ -36,7 +39,7 @@ export function JerusalemScreen() {
     return () => {
       live = false
     }
-  }, [])
+  }, [reload])
 
   const me = account?.username ?? null
   const openResident = (r: Resident) => (r.username === me ? goTo('home') : visitPlot(r.username))
@@ -61,7 +64,10 @@ export function JerusalemScreen() {
               me={me}
               onLandmark={(id) => (id === 'market' ? usePlotStore.getState().openMarket(null) : setSheet(id))}
               onResident={openResident}
-              onFree={() => setSheet('free')}
+              onLot={(n, r) => {
+                setLot({ n, resident: r })
+                setSheet('lot')
+              }}
               extra={toggle}
             />
           ) : (
@@ -102,7 +108,7 @@ export function JerusalemScreen() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: Math.min(i, 16) * 0.03 }}
               >
-                <span className="jr-plot-num">#{r.plot}</span>
+                <span className="jr-plot-num">{r.lot ? `#${r.lot}` : '⛺'}</span>
                 <img className="jr-plot-house" src={artFor('house', r.house)} alt={houseName(r.house)} title={houseName(r.house)} draggable={false} />
                 <PaintedPortrait id={r.avatar} className="jr-plot-portrait" />
                 <strong>{r.name}</strong>
@@ -113,7 +119,11 @@ export function JerusalemScreen() {
         </>
       )}
 
-      <AnimatePresence>{sheet && <CitySheet key={sheet} kind={sheet} residents={residents ?? []} onClose={() => setSheet(null)} />}</AnimatePresence>
+      <AnimatePresence>
+        {sheet && (
+          <CitySheet key={sheet} kind={sheet} residents={residents ?? []} lot={lot ?? undefined} onMoved={() => setReload((n) => n + 1)} onClose={() => setSheet(null)} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

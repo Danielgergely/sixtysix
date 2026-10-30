@@ -1,18 +1,39 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { levelDef } from '@sixtysix/shared'
+import { INNER_MIN_HOUSE, MOVE_COST, levelDef, moveError, type MoveError } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { useAccountStore } from '../account/accountStore'
 import { fetchLeaderboard, type LeaderboardData, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
 import { spring } from '../motion'
-import type { LandmarkId } from './cityLayout'
+import { INNER_LOTS, type LandmarkId } from './cityLayout'
+import { artFor } from '../screens/home/homeUtil'
+import { moveHome } from './cityApi'
 
-export type CitySheetKind = Exclude<LandmarkId, 'market'> | 'free'
+export type CitySheetKind = Exclude<LandmarkId, 'market'> | 'lot'
 
-/** The card a landmark (or a free lot) opens on the city map. */
-export function CitySheet({ kind, residents, onClose }: { kind: CitySheetKind; residents: Resident[]; onClose: () => void }) {
+/** A lot tapped on the map: free land, or an inner lot whose family has been away long enough. */
+export interface LotPick {
+  n: number
+  resident: Resident | null
+}
+
+/** The card a landmark (or a lot) opens on the city map. */
+export function CitySheet({
+  kind,
+  residents,
+  lot,
+  onMoved,
+  onClose,
+}: {
+  kind: CitySheetKind
+  residents: Resident[]
+  lot?: LotPick
+  /** After moving house: reload the city. */
+  onMoved?: () => void
+  onClose: () => void
+}) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -36,7 +57,7 @@ export function CitySheet({ kind, residents, onClose }: { kind: CitySheetKind; r
         {kind === 'governor' && <NoticeBoard residents={residents} />}
         {kind === 'gate' && <Gate />}
         {kind === 'pool' && <Pool />}
-        {kind === 'free' && <FreeLand />}
+        {kind === 'lot' && lot && <LotCard pick={lot} residents={residents} onMoved={onMoved} onClose={onClose} />}
       </motion.div>
     </>
   )
@@ -140,7 +161,7 @@ function NoticeBoard({ residents }: { residents: Resident[] }) {
           <h4 className="cs-h">Newest families</h4>
           <ol className="cs-list">
             {newest.map((r) => (
-              <Row key={r.username} r={r} note={`plot ${r.plot}`} />
+              <Row key={r.username} r={r} note={r.lot ? `lot ${r.lot}` : 'outside the walls'} />
             ))}
           </ol>
         </section>
@@ -183,23 +204,70 @@ function Pool() {
   )
 }
 
-function FreeLand() {
+const MOVE_REASON: Record<MoveError, string> = {
+  'signed-out': '',
+  'no-lot': '',
+  same: 'This is your home.',
+  taken: 'A family lives here.',
+  house: `Taking over a place inside the wall needs a ${levelDef('house', INNER_MIN_HOUSE)?.name ?? 'bigger house'} (house level ${INNER_MIN_HOUSE}).`,
+  coins: 'Not enough coins yet.',
+  cooldown: 'You moved this week already.',
+}
+
+/** Free land, or an inner place whose family has been away 60+ days: move your homestead here. */
+function LotCard({ pick, residents, onMoved, onClose }: { pick: LotPick; residents: Resident[]; onMoved?: () => void; onClose: () => void }) {
   const goTo = useGameStore((s) => s.goTo)
+  const coins = useGameStore((s) => s.player.coins)
   const account = useAccountStore((s) => s.account)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const inner = pick.n <= INNER_LOTS
+  const cost = inner ? MOVE_COST.inner : MOVE_COST.outer
+  const me = residents.find((r) => r.username === account?.username)
+  const owner = pick.resident
+  // The server checks the week between moves; everything else is known here.
+  const reason = account
+    ? moveError({ inner, owner: owner ? { idleDays: owner.idleDays, isMe: owner.username === account.username } : null, house: me?.house ?? 1, coins, lastMoveAt: null, now: 0 })
+    : null
+  const move = async () => {
+    setBusy(true)
+    const err = await moveHome(pick.n)
+    setBusy(false)
+    if (err) return setError(err)
+    onMoved?.()
+    onClose()
+  }
+  const where = `${inner ? 'Inside the wall' : 'Outside the wall'} · lot ${pick.n}`
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-free.webp" title="Free land" sub="Neh 11:1 · lots are cast for the next family" />
-      <p className="hp-what">
-        “The rest of the people also cast lots, to bring one of ten to dwell in Jerusalem the holy city.” <em>Neh 11:1</em>
-      </p>
-      {account ? (
-        <p className="hp-what">The next families to join will settle here. Invite a friend — their home will rise beside the others.</p>
+      {owner ? (
+        <>
+          <Head art={artFor('house', owner.house)} title={`${owner.name}’s home is for sale`} sub={where} />
+          <p className="hp-what">
+            {owner.name} hasn’t played or built for {owner.idleDays} days, and the weeds have taken over. An active family with a well-built home may take this
+            place inside the wall. {owner.name} keeps their buildings and gets a free lot when they come back.
+          </p>
+        </>
       ) : (
         <>
-          <p className="hp-what">Create a free account and this could be your plot: a tent first, then a house of cedar.</p>
-          <button className="hp-btn gold big" onClick={() => goTo('profile')}>
-            Create an account to get a plot
+          <Head art="/art/land-free.webp" title="Free land" sub={where} />
+          <p className="hp-what">
+            “The rest of the people also cast lots, to bring one of ten to dwell in Jerusalem the holy city.” <em>Neh 11:1</em>
+          </p>
+          <p className="hp-what">New families settle on the first free lot, inside the wall while there is room. You can move your homestead here too — your buildings come with you.</p>
+        </>
+      )}
+      {!account ? (
+        <button className="hp-btn gold big" onClick={() => goTo('profile')}>
+          Create an account to get a plot
+        </button>
+      ) : (
+        <>
+          <button className="hp-btn gold big" disabled={!!reason || busy} onClick={() => void move()}>
+            {owner ? 'Take over this place' : 'Move my home here'} · {cost} 🪙
           </button>
+          {(reason || error) && <p className="hp-what cs-why">{error ?? MOVE_REASON[reason!]}</p>}
+          <p className="hp-what cs-small">One move a week. Your buildings, stock and builders move with you.</p>
         </>
       )}
     </div>

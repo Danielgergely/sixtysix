@@ -8,7 +8,8 @@
     "noEmit": true,
     "types": ["node"],
     "paths": {
-      "@sixtysix/shared": ["../shared/src/index.ts"]
+      "@sixtysix/shared": ["../shared/src/index.ts"],
+      "@sixtysix/shared/*": ["../shared/src/*"]
     }
   },
   "include": ["src"]

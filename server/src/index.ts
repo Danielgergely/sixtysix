@@ -10,6 +10,7 @@ import { registerArenaHandlers } from './arena.js'
 import { registerAccountRoutes, registerPublicRoutes } from './accounts.js'
 import { GOOGLE_CLIENT_ID, registerGoogleRoutes } from './google.js'
 import { registerPlotRoutes } from './plot.js'
+import { registerCityRoutes } from './city.js'
 import { registerSkillRoutes } from './skills.js'
 import { roomCount, startRoomGC } from './rooms.js'
 import { registerFlockHandlers, startFlock, type FlockIO } from './flock/handlers.js'
@@ -27,6 +28,7 @@ registerAccountRoutes(app)
 registerPublicRoutes(app)
 registerGoogleRoutes(app)
 registerPlotRoutes(app)
+registerCityRoutes(app)
 registerSkillRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */

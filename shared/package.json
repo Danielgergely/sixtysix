@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./flockWords.json": "./src/flockWords.json"
+    "./flockWords.json": "./src/flockWords.json",
+    "./cityLayout": "./src/cityLayout.ts"
   }
 }
