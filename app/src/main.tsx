@@ -5,6 +5,7 @@ import './theme/empire.css'
 import './theme/home.css'
 import './theme/world.css'
 import './theme/skills.css'
+import './theme/flags.css'
 import App from './App.tsx'
 import { useGameStore } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
@@ -12,6 +13,7 @@ import { useFlockStore } from './flock/flockStore'
 import { useSpiesStore } from './spies/spiesStore'
 import { playSfx } from './game/sfx'
 import { useAccountStore } from './account/accountStore'
+import { initFlags } from './flags/flagStore'
 
 // One delegated listener gives every button a click sound. Answer buttons
 // are excluded — they have their own (louder) submit sound.
@@ -63,6 +65,8 @@ if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch) useArenaStore.getSt
 // Signed in: deliver rewards earned offline and pick up the account's totals.
 void useAccountStore.getState().init()
 window.addEventListener('online', () => void useAccountStore.getState().sync())
+// Question flags sent offline go out now; the out-of-play list is refreshed.
+initFlags()
 
 // A lazily loaded file vanished (new deploy while this tab was open): reload once.
 window.addEventListener('vite:preloadError', () => {

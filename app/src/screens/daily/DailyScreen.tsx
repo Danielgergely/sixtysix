@@ -10,6 +10,7 @@ import { quoteVerse } from '../../questions/quoteVerse'
 import { useLocale, useT } from '../../i18n'
 import { questionIn, useVerses, verseOf } from '../../questions/localize'
 import { rich } from '../arena/rich'
+import { FlagButton } from '../../flags/FlagSheet'
 
 /** Time until local midnight, "5h 12m". */
 function useUntilTomorrow(): string {
@@ -75,6 +76,7 @@ export function DailyScreen() {
             <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
               {verseOf(verses, q).text && <>{quoteVerse(verseOf(verses, q).text, locale)} </>}
               <em>— {verseOf(verses, q).ref}</em>
+              <FlagButton target={{ questionId: q.id, shown: questionIn(q, locale) }} />
             </motion.div>
           )}
         </AnimatePresence>

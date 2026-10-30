@@ -13,6 +13,8 @@ import { APPLE_REDIRECT_URI, APPLE_SERVICES_ID, registerAppleRoutes } from './ap
 import { registerPlotRoutes } from './plot.js'
 import { registerCityRoutes } from './city.js'
 import { registerSkillRoutes } from './skills.js'
+import { registerFlagRoutes } from './flags.js'
+import { registerRoleRoutes } from './roles.js'
 import { roomCount, startRoomGC } from './rooms.js'
 import { registerFlockHandlers, startFlock, type FlockIO } from './flock/handlers.js'
 import { registerSpiesHandlers, startSpies, type SpiesIO } from './spies/handlers.js'
@@ -32,6 +34,8 @@ registerAppleRoutes(app)
 registerPlotRoutes(app)
 registerCityRoutes(app)
 registerSkillRoutes(app)
+registerFlagRoutes(app)
+registerRoleRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
 app.get('/api/server-info', () => ({

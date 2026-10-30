@@ -4,6 +4,7 @@ import { useGameStore } from '../game/store'
 import { Crowning } from '../ceremony/Crowning'
 import { useLocale, useT } from '../i18n'
 import { questionIn, useVerses, verseOf } from '../questions/localize'
+import { FlagButton } from '../flags/FlagSheet'
 
 /** End of a Bible Blitz race → The Crowning, then play again / review the questions. */
 export function PodiumScreen() {
@@ -13,8 +14,6 @@ export function PodiumScreen() {
   const racers = useGameStore((s) => s.racers)
   const questions = useGameStore((s) => s.questions)
   const answerLog = useGameStore((s) => s.answerLog)
-  const flaggedIds = useGameStore((s) => s.flaggedIds)
-  const toggleFlag = useGameStore((s) => s.toggleFlag)
   const goTo = useGameStore((s) => s.goTo)
   const findMatch = useGameStore((s) => s.findMatch)
   const raceCoins = useGameStore((s) => s.raceCoins)
@@ -49,7 +48,7 @@ export function PodiumScreen() {
               <h3 className="review-heading">{t('quiz.podium.heading')}</h3>
               {played.map((q, i) => {
                 const yours = answerLog[i]
-                const flagged = flaggedIds.includes(q.id)
+                const shown = questionIn(q, locale)
                 return (
                   <div key={q.id} className="review-item">
                     <div className="review-meta">
@@ -57,17 +56,11 @@ export function PodiumScreen() {
                         {t('quiz.podium.q', { n: i + 1 })} · <span className="question-ref">{verseOf(verses, q).ref}</span>
                         {yours === -1 && <span className="timeout-note"> · {t('quiz.podium.noAnswer')}</span>}
                       </span>
-                      <button
-                        className={`flag-btn ${flagged ? 'flagged' : ''}`}
-                        onClick={() => toggleFlag(q.id)}
-                        title={t('quiz.podium.flagTitle')}
-                      >
-                        {flagged ? t('quiz.podium.flagged') : t('quiz.podium.flag')}
-                      </button>
+                      <FlagButton target={{ questionId: q.id, shown }} />
                     </div>
-                    <div className="review-question">{questionIn(q, locale).text}</div>
+                    <div className="review-question">{shown.text}</div>
                     <div className="review-answers">
-                      {questionIn(q, locale).answers.map((a, ai) => {
+                      {shown.answers.map((a, ai) => {
                         const isCorrect = ai === q.correctIndex
                         const isYours = ai === yours
                         const cls = [

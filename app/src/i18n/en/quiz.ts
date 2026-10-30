@@ -26,9 +26,6 @@ export default {
     heading: 'Questions from this race',
     q: 'Q{n}',
     noAnswer: '⏰ no answer',
-    flagTitle: 'Flag this question as wrong or unclear',
-    flagged: '🚩 Flagged',
-    flag: '⚐ Flag',
     yours: '{answer} — you',
   },
   /** The question scene, shared by Bible Blitz and Open Arena. */

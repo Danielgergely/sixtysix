@@ -6,12 +6,10 @@ import { playSfx } from './sfx'
 import {
   levelForXp,
   addStats,
-  loadFlaggedIds,
   DEFAULT_PLAYER,
   loadPlayer,
   loadSettings,
   loadStats,
-  saveFlaggedIds,
   savePlayer,
   saveSettings,
   saveStats,
@@ -50,6 +48,7 @@ export type Screen =
   | 'flock'
   | 'flockLocal'
   | 'spies'
+  | 'review'
 
 /** Screens with the bottom tab bar (and the shared top bar). */
 export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const
@@ -85,8 +84,6 @@ interface GameStore {
   questionStartedAt: number
   /** Your answer index per played question (-1 = timed out) — for the podium review. */
   answerLog: number[]
-  /** Question ids flagged as wrong/unclear; persisted. */
-  flaggedIds: string[]
   muted: boolean
   stats: PlayerStats
   /** Bible Blitz: coins earned in the current race (answers + finishing bonus). */
@@ -99,7 +96,6 @@ interface GameStore {
   findMatch: () => void
   /** Player taps an answer; bots click on their own timers. */
   answer: (index: number) => void
-  toggleFlag: (questionId: string) => void
   toggleMute: () => void
   updateProfile: (patch: { name?: string; avatar?: CharacterId }) => void
   /** Credit coins to the persisted profile (every mode earns them). */
@@ -349,7 +345,6 @@ export const useGameStore = create<GameStore>((set, get) => {
     questionIndex: 0,
     questionStartedAt: 0,
     answerLog: [],
-    flaggedIds: loadFlaggedIds(),
     raceCoins: 0,
     raceStreak: 0,
     muted: initialSettings.muted,
@@ -422,15 +417,6 @@ export const useGameStore = create<GameStore>((set, get) => {
         clearTimeout(questionTimer)
         questionTimer = setTimeout(() => resolveQuestion(), phaseEndsAt - Date.now())
       }
-    },
-
-    toggleFlag: (questionId) => {
-      const current = get().flaggedIds
-      const flaggedIds = current.includes(questionId)
-        ? current.filter((id) => id !== questionId)
-        : [...current, questionId]
-      saveFlaggedIds(flaggedIds)
-      set({ flaggedIds })
     },
 
     toggleMute: () => {

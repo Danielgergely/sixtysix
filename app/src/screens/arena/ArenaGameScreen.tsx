@@ -10,6 +10,7 @@ import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
 import { TEAM_COLORS, gateName } from './modes'
 import { useLocale, useT } from '../../i18n'
+import { FlagButton } from '../../flags/FlagSheet'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -111,6 +112,8 @@ export function ArenaGameScreen() {
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
+  const reveal = useArenaStore((s) => s.reveal)
+  const locale = useLocale((s) => s.locale)
   if (!room) return null
 
   const phase = room.phase
@@ -157,6 +160,13 @@ export function ArenaGameScreen() {
       {!isPlayer && <RotateHint />}
       {/* Always offer a way out, unless the Crowning shows its own buttons. */}
       {(phase !== 'podium' || !scene) && <LeaveControl role={role} />}
+      {/* Players may flag the question once it is revealed; the sheet floats above the game, which goes on. */}
+      {isPlayer && phase === 'reveal' && question && reveal?.questionId && (
+        <FlagButton
+          className="arena-flag"
+          target={{ questionId: reveal.questionId, shown: question.translations?.[locale] ?? { text: question.text, answers: question.answers } }}
+        />
+      )}
       {canSkip && (
         <button className="leave-race-btn arena-skip" onClick={skip}>
           {skipLabel}

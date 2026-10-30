@@ -1,4 +1,5 @@
 import type { Difficulty, Locale, Question, VerseText } from './types'
+import { loadExclusions } from '../flags/flagStore'
 
 /**
  * bank.json is generated + verified by question-pipeline/ — do not edit by
@@ -62,8 +63,9 @@ export class BundledBankProvider implements QuestionProvider {
       this.bank = null
       throw err
     })
-    const bank = await this.bank
-    const pool = difficulty ? bank.filter((q) => q.difficulty === difficulty) : [...bank]
+    // Flagged questions (open or confirmed on the server, or flagged on this device) are out of play.
+    const [bank, excluded] = await Promise.all([this.bank, loadExclusions()])
+    const pool = bank.filter((q) => !excluded.has(q.id) && (!difficulty || q.difficulty === difficulty))
     // Fisher–Yates shuffle, then take the first `count`.
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))

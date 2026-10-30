@@ -4,7 +4,6 @@ import type { PlayerProfile } from './types'
 // localStorage works in Capacitor webviews and browsers alike.
 // Swap for capacitor-community/sqlite if the data ever outgrows this.
 const PLAYER_KEY = 'sixtysix.player.v1'
-const FLAGS_KEY = 'sixtysix.flaggedQuestions.v1'
 const SETTINGS_KEY = 'sixtysix.settings.v1'
 const STATS_KEY = 'sixtysix.stats.v1'
 
@@ -154,20 +153,3 @@ export function savePlayer(player: PlayerProfile): void {
   }
 }
 
-/** Question ids the player flagged as wrong/unclear — feeds back into the pipeline. */
-export function loadFlaggedIds(): string[] {
-  try {
-    const parsed: unknown = JSON.parse(localStorage.getItem(FLAGS_KEY) ?? '[]')
-    return Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === 'string') : []
-  } catch {
-    return []
-  }
-}
-
-export function saveFlaggedIds(ids: string[]): void {
-  try {
-    localStorage.setItem(FLAGS_KEY, JSON.stringify(ids))
-  } catch {
-    // best effort
-  }
-}

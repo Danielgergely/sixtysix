@@ -203,6 +203,7 @@ function resolveQuestion(io: IO, room: Room): void {
   applyModeRound(room)
 
   room.lastReveal = {
+    questionId: q.id,
     correctIndex: q.correctIndex,
     reference: q.reference,
     verse: verseFor(q.id),

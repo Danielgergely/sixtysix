@@ -24,9 +24,6 @@ export default {
     heading: 'Die Fragen aus diesem Rennen',
     q: 'F{n}',
     noAnswer: '⏰ keine Antwort',
-    flagTitle: 'Diese Frage als falsch oder unklar melden',
-    flagged: '🚩 Gemeldet',
-    flag: '⚐ Melden',
     yours: '{answer} – du',
   },
   question: {

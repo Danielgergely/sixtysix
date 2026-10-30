@@ -19,6 +19,7 @@ import {
   type AccountProfile,
   type AccountStats,
   type Grant,
+  type StaffRole,
 } from '@sixtysix/shared'
 import { LOTS } from '@sixtysix/shared/cityLayout'
 import { cleanAvatar, cleanName } from './rooms.js'
@@ -59,6 +60,25 @@ db.exec(`
     state TEXT NOT NULL,
     created_at INTEGER NOT NULL
   );
+  -- Question flags from players, guests included (server/src/flags.ts).
+  CREATE TABLE IF NOT EXISTS question_flags (
+    id INTEGER PRIMARY KEY,
+    question_id TEXT NOT NULL,
+    locale TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    comment TEXT NOT NULL DEFAULT '',
+    shown_text TEXT NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    ip_key TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'open',
+    content_hash TEXT NOT NULL,
+    resolved_at INTEGER,
+    resolved_by TEXT,
+    note TEXT NOT NULL DEFAULT ''
+  );
+  CREATE INDEX IF NOT EXISTS question_flags_status ON question_flags(status, question_id);
+  CREATE INDEX IF NOT EXISTS question_flags_ip ON question_flags(ip_key, created_at);
 `)
 
 // v2: grants remember their XP, for the weekly leaderboard.
@@ -77,6 +97,8 @@ try {
 // Each step checks for itself, so a half-finished upgrade simply completes on the next start.
 const userColumns = new Set((db.prepare('PRAGMA table_info(users)').all() as { name: string }[]).map((c) => c.name))
 for (const col of ['lot', 'last_active', 'last_move_at']) if (!userColumns.has(col)) db.exec(`ALTER TABLE users ADD COLUMN ${col} INTEGER`)
+// v5: staff roles granted in the app ('reviewer'; server/src/roles.ts).
+if (!userColumns.has('role')) db.exec('ALTER TABLE users ADD COLUMN role TEXT')
 db.exec('UPDATE users SET last_active = MAX(created_at, COALESCE((SELECT MAX(at) FROM grants WHERE grants.user_id = users.id), 0)) WHERE last_active IS NULL')
 db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_lot ON users(lot)')
 /**
@@ -125,6 +147,8 @@ export interface UserRow {
   pass_hash: string
   created_at: number
   profile: string
+  /** 'reviewer' when an admin granted it (server/src/roles.ts); admins come from ADMIN_USERNAMES. */
+  role?: string | null
 }
 
 const EMPTY_STATS: AccountStats = {
@@ -218,11 +242,27 @@ function applyGrant(profile: AccountProfile, g: Grant, coins: number, xp: number
   profile.stats.bestStreak = Math.max(profile.stats.bestStreak, profile.stats.currentStreak)
 }
 
+/** Admins: ADMIN_USERNAMES, comma-separated, any case. Set on the server only; never granted or revoked in the app. */
+const ADMINS = new Set(
+  (process.env.ADMIN_USERNAMES ?? '')
+    .split(',')
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean),
+)
+export const isAdminName = (username: string): boolean => ADMINS.has(username.toLowerCase())
+
+/** The account's staff role: admin from the env, reviewer from users.role (server/src/roles.ts). */
+export function roleOf(row: Pick<UserRow, 'username' | 'role'> | undefined): StaffRole | null {
+  if (!row) return null
+  if (isAdminName(row.username)) return 'admin'
+  return row.role === 'reviewer' ? 'reviewer' : null
+}
+
 export function toAccount(row: UserRow): Account {
   const profile = JSON.parse(row.profile) as AccountProfile
   profile.stats = { ...EMPTY_STATS, ...profile.stats }
   profile.skills = cleanSkills(profile.skills)
-  return { username: row.username, createdAt: row.created_at, profile }
+  return { username: row.username, createdAt: row.created_at, profile, ...(roleOf(row) && { role: roleOf(row)! }) }
 }
 
 export function saveProfile(id: number, profile: AccountProfile): void {

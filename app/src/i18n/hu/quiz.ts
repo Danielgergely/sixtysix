@@ -24,9 +24,6 @@ export default {
     heading: 'A verseny kérdései',
     q: '{n}. kérdés',
     noAnswer: '⏰ nincs válasz',
-    flagTitle: 'Jelöld meg, ha a kérdés hibás vagy nem egyértelmű',
-    flagged: '🚩 Megjelölve',
-    flag: '⚐ Jelölés',
     yours: '{answer} – te',
   },
   question: {

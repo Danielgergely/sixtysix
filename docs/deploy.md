@@ -206,6 +206,14 @@ Measured on the 2026-10-29 build:
   `docker build -t sixtysix . && docker run -p 8080:8080 sixtysix`, then open
   http://localhost:8080.
 
+## Admins and reviewers (question flags)
+
+Set `ADMIN_USERNAMES` on the server: comma-separated account usernames, any
+case (e.g. `ADMIN_USERNAMES=daniel`). Admins see **Flagged questions** in
+Profile and can grant or revoke the **reviewer** role for any account on that
+screen's *Reviewers* tab (stored in `users.role`). Reviewers review flags like
+admins but can't manage roles. Admins are only ever set through the env var.
+
 ## Sign in with Google (optional, ~10 minutes)
 
 The code is ready; it switches on when the server has a `GOOGLE_CLIENT_ID`.
