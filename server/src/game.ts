@@ -96,9 +96,16 @@ export function sendCurrentPhase(
 ): void {
   if (room.phase === 'leaderboard') return void socket.emit('game:leaderboard', room.lastEntries)
   if (room.phase === 'podium') return void socket.emit('game:podium', room.lastEntries)
-  if (room.phase !== 'reading' && room.phase !== 'question') return
   const q = room.questions[room.questionIndex]
   if (!q) return
+  if (room.phase === 'reveal') {
+    // The question (answering already closed: phase is 'reveal') and then its result.
+    const answered = secret ? room.players.get(secret)?.answer?.index : undefined
+    socket.emit('game:question', publicQuestion(room, q), 'question', 0, answered)
+    if (room.lastReveal) socket.emit('game:reveal', room.lastReveal)
+    return
+  }
+  if (room.phase !== 'reading' && room.phase !== 'question') return
   const remaining =
     room.phase === 'question'
       ? Math.max(0, QUESTION_TIME_MS - (Date.now() - room.questionStartedAt))
@@ -146,7 +153,15 @@ export function handleAnswer(io: IO, room: Room, playerId: string, index: unknow
   touch(room)
 
   emitAnswered(io, room)
+  resolveIfAllAnswered(io, room)
+}
 
+/**
+ * Everyone still connected has answered: resolve after a short beat. Also
+ * called when a player drops, so the room doesn't wait out the timer for them.
+ */
+export function resolveIfAllAnswered(io: IO, room: Room): void {
+  if (room.phase !== 'question') return
   const connected = [...room.players.values()].filter((p) => p.connected)
   if (connected.length > 0 && connected.every((p) => p.answer)) {
     schedule(room, () => resolveQuestion(io, room), ALL_ANSWERED_BEAT_MS)
@@ -184,13 +199,14 @@ function resolveQuestion(io: IO, room: Room): void {
   }
   applyModeRound(room)
 
-  io.to(room.code).emit('game:reveal', {
+  room.lastReveal = {
     correctIndex: q.correctIndex,
     reference: q.reference,
     verse: verseFor(q.id),
     distribution,
     answeredCount,
-  })
+  }
+  io.to(room.code).emit('game:reveal', room.lastReveal)
   broadcastState(io, room)
   schedule(room, () => afterReveal(io, room), REVEAL_MS)
 }

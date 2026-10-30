@@ -2,7 +2,7 @@ import type { Server, Socket } from 'socket.io'
 import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, ServerToClientEvents } from '@sixtysix/shared'
 import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
-import { broadcastState, endIfEmpty, handleAnswer, sendCurrentPhase, skipPhase, startGame } from './game.js'
+import { broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
 import { assignLateJoiner } from './modes.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
@@ -35,6 +35,9 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     const ack = ackOf(cb)
     const payload = (raw ?? {}) as { hostId?: unknown; config?: Record<string, unknown> }
     if (!isId(payload.hostId)) return ack({ ok: false, error: 'Invalid host id' })
+    // One room per connection: a double tap on "Host" (or a second create) must
+    // not leave this socket steering an orphaned first room.
+    handleDeparture(io, socket, true)
     const cfg = payload.config ?? {}
     const room = createRoom(
       {
@@ -164,6 +167,8 @@ function handleDeparture(io: IO, socket: ArenaSocket, explicit: boolean): void {
       broadcastState(io, room)
       // Only explicit leaves end a game early — a locked phone may come back.
       if (explicit) endIfEmpty(io, room)
+      // The others may all have answered already: don't wait for the leaver.
+      resolveIfAllAnswered(io, room)
       return
     }
   }
