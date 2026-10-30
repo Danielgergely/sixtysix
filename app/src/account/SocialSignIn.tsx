@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useAccountStore } from './accountStore'
+import { useLocale, useT, type Locale } from '../i18n'
 
 /**
  * "Continue with Google" and "Sign in with Apple". Each shows only when the
@@ -44,10 +45,11 @@ export function SocialSignIn() {
       live = false
     }
   }, [])
+  const t = useT()
   if (!info?.googleClientId && !info?.apple) return null
   return (
     <div className="social-signin">
-      <div className="social-or">or</div>
+      <div className="social-or">{t('account.or')}</div>
       {info.apple && <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} />}
       {info.googleClientId && <GoogleButton clientId={info.googleClientId} />}
     </div>
@@ -75,7 +77,7 @@ function GoogleButton({ clientId }: { clientId: string }) {
       const gsi = (window as unknown as { google?: Gsi }).google
       if (!ok || !gsi || !live || !ref.current) return
       gsi.accounts.id.initialize({ client_id: clientId, callback: (r) => void googleSignIn(r.credential) })
-      gsi.accounts.id.renderButton(ref.current, { theme: 'outline', size: 'large', shape: 'pill', text: 'continue_with', width: 280, locale: 'en' })
+      gsi.accounts.id.renderButton(ref.current, { theme: 'outline', size: 'large', shape: 'pill', text: 'continue_with', width: 280, locale: useLocale.getState().locale })
     })
     return () => {
       live = false
@@ -94,14 +96,18 @@ interface AppleAuth {
   }
 }
 
-const APPLE_JS = 'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js'
+const APPLE_LANG: Record<Locale, string> = { en: 'en_US', de: 'de_DE', hu: 'hu_HU' }
+const appleJs = (locale: Locale) => `https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/${APPLE_LANG[locale]}/appleid.auth.js`
 
 function AppleButton({ clientId, redirectUri }: { clientId: string; redirectUri: string }) {
   const appleSignIn = useAccountStore((s) => s.appleSignIn)
   const [ready, setReady] = useState(false)
+  const t = useT()
+  // The script's language is fixed when it first loads; a later switch keeps it.
+  const [src] = useState(() => appleJs(useLocale.getState().locale))
   useEffect(() => {
     let live = true
-    void loadScript(APPLE_JS).then((ok) => {
+    void loadScript(src).then((ok) => {
       const apple = (window as unknown as { AppleID?: AppleAuth }).AppleID
       if (!ok || !apple || !live) return
       apple.auth.init({ clientId, scope: 'name email', redirectURI: redirectUri, usePopup: true })
@@ -110,7 +116,7 @@ function AppleButton({ clientId, redirectUri }: { clientId: string; redirectUri:
     return () => {
       live = false
     }
-  }, [clientId, redirectUri])
+  }, [clientId, redirectUri, src])
   const start = async () => {
     const apple = (window as unknown as { AppleID?: AppleAuth }).AppleID
     if (!apple) return
@@ -130,7 +136,7 @@ function AppleButton({ clientId, redirectUri }: { clientId: string; redirectUri:
           d="M788 341c-6 4-108 62-108 190 0 148 130 200 134 202-1 3-21 72-69 142-43 62-88 124-156 124s-86-40-165-40c-77 0-104 41-166 41s-106-57-156-127C44 791 0 669 0 553 0 367 121 268 240 268c63 0 116 42 156 42 38 0 97-44 169-44 27 0 126 2 191 75zM565 166c30-35 51-84 51-133 0-7-1-14-2-19-48 2-106 32-140 72-27 31-53 80-53 130 0 8 1 15 2 18 3 1 9 1 14 1 43 0 97-29 128-69z"
         />
       </svg>
-      Sign in with Apple
+      {t('account.apple')}
     </button>
   )
 }

@@ -1,0 +1,20 @@
+export default {
+  title: 'Profil',
+  yourName: 'A neved',
+  racer: 'A versenyződ',
+  sound: 'Hangeffektek',
+  on: '🔊 Be',
+  off: '🔇 Ki',
+  skillTree: 'Ajándékok',
+  levelGifts: '⭐ {n}. szint · 🌳 Ajándékok ›',
+  xp: '✨ {xp} XP',
+  stats: {
+    gamesPlayed: 'Lejátszott játékok',
+    wins: 'Győzelmek',
+    winStreak: 'Győzelmi sorozat',
+    winStreakValue: '{n} (rekord: {best})',
+    bestScore: 'Legjobb pontszám',
+    answered: 'Megválaszolt kérdések',
+    correct: 'Helyes válaszok',
+  },
+}

@@ -5,8 +5,10 @@ import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { IDLE_DAYS, levelDef } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
+import { useLocale, useT } from '../i18n'
 
-const pct = (part: number, total: number) => (total > 0 ? `${Math.round((part / total) * 100)}%` : '–')
+const pct = (part: number, total: number, locale: string) =>
+  total > 0 ? (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 0 }) : '–'
 
 /** Another player's public page: who they are, their home, their record. */
 export function PlayerScreen() {
@@ -16,6 +18,9 @@ export function PlayerScreen() {
   const visitPlot = useGameStore((s) => s.visitPlot)
   const [player, setPlayer] = useState<PlayerPage | null>(null)
   const [failed, setFailed] = useState(false)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
+  const num = (n: number) => n.toLocaleString(locale)
 
   useEffect(() => {
     if (!username) return
@@ -33,13 +38,13 @@ export function PlayerScreen() {
     <div className="screen tab-screen pl emp">
       <div className="tab-bg" />
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={() => goTo(lastTab)} title="Back">
+        <button className="icon-btn" onClick={() => goTo(lastTab)} title={t('shell.back')}>
           ←
         </button>
         <h2 className="topbar-heading">{player?.name ?? username}</h2>
         <span className="topbar-spacer" />
       </header>
-      {failed && <p className="tab-note">Couldn’t load this player.</p>}
+      {failed && <p className="tab-note">{t('player.failed')}</p>}
       {player && s && (
         <>
           <div className="pl-card">
@@ -47,35 +52,40 @@ export function PlayerScreen() {
             <div className="pl-who">
               <strong>{player.name}</strong>
               <small>@{player.username}</small>
-              <span className="pl-level">Level {levelForXp(player.xp)} · {player.xp.toLocaleString('en-US')} XP</span>
+              <span className="pl-level">{t('player.level', { n: levelForXp(player.xp), xp: num(player.xp) })}</span>
             </div>
           </div>
           <button className="jr-home jr-home-btn" onClick={() => visitPlot(player.username)}>
             <img className="jr-home-art" src={artFor('house', player.house)} alt="" />
             <span>
-              <strong>Home in Jerusalem · {player.lot ? `lot ${player.lot}` : 'camping outside the walls'}</strong>
+              <strong>{player.lot ? t('player.homeLot', { lot: player.lot }) : t('player.homeCamping')}</strong>
               <small>
-                {levelDef('house', player.house)?.name ?? 'Tent'} (house level {player.house})
-                {player.idleDays >= IDLE_DAYS.weeds ? ` · 🌿 away ${player.idleDays} days` : ''} · visit ›
+                {[
+                  t('player.house', { name: levelDef('house', player.house)?.name ?? t('player.tent'), n: player.house }),
+                  player.idleDays >= IDLE_DAYS.weeds && t('player.away', { count: player.idleDays }),
+                  t('player.visit'),
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
               </small>
             </span>
           </button>
           <div className="pl-stats">
             {[
-              ['Games', s.gamesPlayed],
-              ['Wins', s.firstPlace],
-              ['Podiums', s.firstPlace + s.secondPlace + s.thirdPlace],
-              ['Best score', s.bestScore.toLocaleString('en-US')],
-              ['Answered', s.questionsAnswered],
-              ['Correct', pct(s.questionsCorrect, s.questionsAnswered)],
-            ].map(([label, value]) => (
-              <div key={label} className="pl-stat">
+              ['games', num(s.gamesPlayed)],
+              ['wins', num(s.firstPlace)],
+              ['podiums', num(s.firstPlace + s.secondPlace + s.thirdPlace)],
+              ['bestScore', num(s.bestScore)],
+              ['answered', num(s.questionsAnswered)],
+              ['correct', pct(s.questionsCorrect, s.questionsAnswered, locale)],
+            ].map(([id, value]) => (
+              <div key={id} className="pl-stat">
                 <strong>{value}</strong>
-                <small>{label}</small>
+                <small>{t(`player.stats.${id}`)}</small>
               </div>
             ))}
           </div>
-          <p className="tab-note">In Jerusalem since {new Date(player.joinedAt).toLocaleDateString()}</p>
+          <p className="tab-note">{t('player.since', { date: new Date(player.joinedAt).toLocaleDateString(locale) })}</p>
         </>
       )}
     </div>

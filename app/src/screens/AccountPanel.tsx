@@ -4,18 +4,20 @@ import { useAccountStore } from '../account/accountStore'
 import { SocialSignIn } from '../account/SocialSignIn'
 import { useGameStore, type Screen } from '../game/store'
 import { openSkillTree } from '../skills/nav'
+import { tServer, useT } from '../i18n'
 
-/** What an account unlocks; guests see these locked. `open` = where it lives once unlocked. */
-const UNLOCKS: Array<{ icon: string; name: string; desc: string; open?: Screen; soon?: boolean }> = [
-  { icon: '🌳', name: 'Skill tree', desc: 'Spend a skill point per level on gifts and bonuses', open: 'skills' },
-  { icon: '🏠', name: 'My Home in Jerusalem', desc: 'Build and upgrade your own plot with your coins', open: 'home' },
-  { icon: '☁️', name: 'Progress saved online', desc: 'Keep your level and coins on any device' },
+/** What an account unlocks (texts: account.unlocks.<id>); guests see these locked. `open` = where it lives once unlocked. */
+const UNLOCKS: Array<{ id: 'skills' | 'home' | 'cloud'; icon: string; open?: Screen; soon?: boolean }> = [
+  { id: 'skills', icon: '🌳', open: 'skills' },
+  { id: 'home', icon: '🏠', open: 'home' },
+  { id: 'cloud', icon: '☁️' },
 ]
 
 /** Optional account: sign in / create, or who you are signed in as. */
 export function AccountPanel() {
   const { account, busy, error, signup, login, logout } = useAccountStore()
   const goTo = useGameStore((s) => s.goTo)
+  const t = useT()
   const [mode, setMode] = useState<'login' | 'signup'>('signup')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -30,32 +32,34 @@ export function AccountPanel() {
 
   return (
     <div className="profile-section account-panel">
-      <div className="profile-label">Account {account ? '' : '(optional)'}</div>
+      <div className="profile-label">{account ? t('account.title') : t('account.titleGuest')}</div>
       {account ? (
         <div className="account-in">
           <span>
-            Signed in as <strong>{account.username}</strong>
+            {t('account.signedInAs', { name: '\u0000' })
+              .split('\u0000')
+              .map((part, i) => (i === 0 ? part : [<strong key={i}>{account.username}</strong>, part]))}
           </span>
           <button className="btn-secondary account-out" onClick={() => void logout()}>
-            Sign out
+            {t('account.signOut')}
           </button>
         </div>
       ) : (
         <>
-          <p className="account-why">You can play everything without an account — XP and coins stay on this device. An account unlocks:</p>
+          <p className="account-why">{t('account.why')}</p>
         </>
       )}
       <ul className="account-unlocks">
         {UNLOCKS.map((u) => (
-          <li key={u.name} className={account ? 'open' : ''}>
+          <li key={u.id} className={account ? 'open' : ''}>
             <span className="account-unlock-icon">{account ? u.icon : '🔒'}</span>
             <span>
-              <strong>{u.name}</strong>
-              <small>{account && u.soon ? 'Coming soon' : u.desc}</small>
+              <strong>{t(`account.unlocks.${u.id}.name`)}</strong>
+              <small>{account && u.soon ? t('account.comingSoon') : t(`account.unlocks.${u.id}.desc`)}</small>
             </span>
             {account && u.open && (
               <button className="account-open" onClick={() => (u.open === 'skills' ? openSkillTree('profile') : goTo(u.open!))}>
-                Open ›
+                {t('account.open')}
               </button>
             )}
           </li>
@@ -71,15 +75,15 @@ export function AccountPanel() {
         >
           <div className="seg-row">
             <button type="button" className={`seg-btn ${mode === 'signup' ? 'selected' : ''}`} onClick={() => setMode('signup')}>
-              Create account
+              {t('account.create')}
             </button>
             <button type="button" className={`seg-btn ${mode === 'login' ? 'selected' : ''}`} onClick={() => setMode('login')}>
-              Sign in
+              {t('account.signIn')}
             </button>
           </div>
           <input
             className="profile-name-input"
-            placeholder="Username"
+            placeholder={t('account.username')}
             autoComplete="username"
             autoCapitalize="off"
             spellCheck={false}
@@ -91,7 +95,7 @@ export function AccountPanel() {
             <input
               className="profile-name-input"
               type={showPassword ? 'text' : 'password'}
-              placeholder={mode === 'signup' ? `Password (at least ${MIN_PASSWORD} characters)` : 'Password'}
+              placeholder={mode === 'signup' ? t('account.passwordNew', { n: MIN_PASSWORD }) : t('account.password')}
               autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
               autoCapitalize="off"
               spellCheck={false}
@@ -102,8 +106,8 @@ export function AccountPanel() {
               type="button"
               className="pw-eye"
               onClick={() => setShowPassword((v) => !v)}
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
-              title={showPassword ? 'Hide password' : 'Show password'}
+              aria-label={showPassword ? t('account.hidePassword') : t('account.showPassword')}
+              title={showPassword ? t('account.hidePassword') : t('account.showPassword')}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
@@ -112,15 +116,15 @@ export function AccountPanel() {
               </svg>
             </button>
           </div>
-          {error && <div className="arena-error">{error}</div>}
+          {error && <div className="arena-error">{tServer(error)}</div>}
           <button className="btn-play account-submit" type="submit" disabled={!valid || busy}>
-            {busy ? '…' : mode === 'signup' ? 'Create account' : 'Sign in'}
+            {busy ? '…' : mode === 'signup' ? t('account.create') : t('account.signIn')}
           </button>
           <SocialSignIn />
           <p className="arena-hint">
             {mode === 'signup'
-              ? 'Your progress so far on this device becomes your account’s start.'
-              : 'Progress you made on this device as a guest is added to your account.'}
+              ? t('account.hintSignup')
+              : t('account.hintLogin')}
           </p>
         </form>
       )}

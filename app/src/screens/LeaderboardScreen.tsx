@@ -5,6 +5,7 @@ import { levelForXp } from '../game/persistence'
 import { useAccountStore } from '../account/accountStore'
 import { fetchLeaderboard, type LeaderboardData } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
+import { useLocale, useT } from '../i18n'
 
 const MEDALS = ['🥇', '🥈', '🥉']
 
@@ -16,6 +17,8 @@ export function LeaderboardScreen() {
   const [period, setPeriod] = useState<'week' | 'all'>('week')
   const [data, setData] = useState<LeaderboardData | null>(null)
   const [failed, setFailed] = useState(false)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
 
   useEffect(() => {
     let live = true
@@ -35,27 +38,27 @@ export function LeaderboardScreen() {
     <div className="screen tab-screen emp">
       <div className="tab-bg" />
       <div className="tab-title">
-        <h2>Leaderboard</h2>
-        <p>{period === 'week' ? 'XP this week · resets Monday' : 'All-time XP'}</p>
+        <h2>{t('leaderboard.title')}</h2>
+        <p>{period === 'week' ? t('leaderboard.subWeek') : t('leaderboard.subAll')}</p>
       </div>
       <div className="seg-row lb-switch">
         <button className={`seg-btn ${period === 'week' ? 'selected' : ''}`} onClick={() => setPeriod('week')}>
-          This week
+          {t('leaderboard.week')}
         </button>
         <button className={`seg-btn ${period === 'all' ? 'selected' : ''}`} onClick={() => setPeriod('all')}>
-          All time
+          {t('leaderboard.all')}
         </button>
       </div>
 
       {!account && (
         <button className="tab-banner" onClick={() => goTo('profile')}>
-          🔒 Create a free account to appear on the leaderboard ›
+          {t('leaderboard.join')}
         </button>
       )}
 
       <div className="lbx-list">
-        {failed && !shown && <p className="tab-note">Can’t reach the server right now.</p>}
-        {shown && shown.top.length === 0 && <p className="tab-note">{period === 'week' ? 'Nobody has earned XP this week yet — be the first!' : 'No one is ranked yet.'}</p>}
+        {failed && !shown && <p className="tab-note">{t('leaderboard.offline')}</p>}
+        {shown && shown.top.length === 0 && <p className="tab-note">{period === 'week' ? t('leaderboard.emptyWeek') : t('leaderboard.emptyAll')}</p>}
         {shown?.top.map((p, i) => (
           <motion.button
             key={p.username}
@@ -69,11 +72,9 @@ export function LeaderboardScreen() {
             <PaintedPortrait id={p.avatar} className="lbx-portrait" />
             <span className="lbx-name">
               <strong>{p.name}</strong>
-              <small>
-                @{p.username} · Lv {levelForXp(p.xp)}
-              </small>
+              <small>{t('leaderboard.who', { user: p.username, n: levelForXp(p.xp) })}</small>
             </span>
-            <span className="lbx-xp">{value(p).toLocaleString('en-US')}</span>
+            <span className="lbx-xp">{value(p).toLocaleString(locale)}</span>
           </motion.button>
         ))}
         {meOffBoard && shown?.me && (
@@ -82,9 +83,9 @@ export function LeaderboardScreen() {
             <PaintedPortrait id={shown.me.avatar} className="lbx-portrait" />
             <span className="lbx-name">
               <strong>{shown.me.name}</strong>
-              <small>you</small>
+              <small>{t('leaderboard.you')}</small>
             </span>
-            <span className="lbx-xp">{value(shown.me).toLocaleString('en-US')}</span>
+            <span className="lbx-xp">{value(shown.me).toLocaleString(locale)}</span>
           </button>
         )}
       </div>
