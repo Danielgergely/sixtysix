@@ -9,6 +9,7 @@ import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/share
 import { registerArenaHandlers } from './arena.js'
 import { registerAccountRoutes, registerPublicRoutes } from './accounts.js'
 import { GOOGLE_CLIENT_ID, registerGoogleRoutes } from './google.js'
+import { APPLE_REDIRECT_URI, APPLE_SERVICES_ID, registerAppleRoutes } from './apple.js'
 import { registerPlotRoutes } from './plot.js'
 import { registerCityRoutes } from './city.js'
 import { registerSkillRoutes } from './skills.js'
@@ -27,12 +28,17 @@ app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
 registerAccountRoutes(app)
 registerPublicRoutes(app)
 registerGoogleRoutes(app)
+registerAppleRoutes(app)
 registerPlotRoutes(app)
 registerCityRoutes(app)
 registerSkillRoutes(app)
 
 /** LAN URLs for QR codes when the host opened the page via localhost. */
-app.get('/api/server-info', () => ({ lanUrls: lanUrls(), googleClientId: GOOGLE_CLIENT_ID || null }))
+app.get('/api/server-info', () => ({
+  lanUrls: lanUrls(),
+  googleClientId: GOOGLE_CLIENT_ID || null,
+  apple: APPLE_SERVICES_ID ? { clientId: APPLE_SERVICES_ID, redirectUri: APPLE_REDIRECT_URI } : null,
+}))
 
 function lanUrls(): string[] {
   const urls: string[] = []

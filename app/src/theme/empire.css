@@ -1112,8 +1112,15 @@
 .eh-who.wide .eh-who-count{ font-size: clamp(13px, 1.3vw, 20px); }
 .hp-scroll-error{ margin: 4px 0 8px; padding: 6px 10px; border-radius: 8px; background: #f8d7cf; border: 1px solid #b3261b; color: #7a1a10; font: 700 13px/1.3 Georgia, serif; }
 .account-open{ margin-left: auto; padding: 6px 12px; border-radius: 8px; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06; font: 900 12px/1 "Cinzel", serif; color: #2b1408; white-space: nowrap; }
-.google-signin{ display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.google-signin:not(.ready){ display: none; }
-.google-or{ font: italic 600 12px/1 Georgia, serif; color: #6b4120; }
+.social-signin{ display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.social-or{ font: italic 600 12px/1 Georgia, serif; color: #6b4120; }
+.google-btn:empty{ display: none; }
+/* Apple's button guidelines: black, white logo and text, rounded; same width as Google's. */
+.apple-btn{
+  width: 280px; height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px;
+  background: #000; color: #fff; border: 0; font: 600 15px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; cursor: pointer;
+}
+.apple-btn svg{ width: 16px; height: 16px; margin-top: -2px; }
+.apple-btn:disabled{ opacity: 0.6; cursor: default; }
 .screen-loading{ background: #1d0b06; }
 .screen-failed{ display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; text-align: center; background: #1d0b06; color: #ffe7a3; font: 700 15px/1.4 Georgia, serif; }

@@ -41,7 +41,7 @@ async function verify(credential: unknown): Promise<GoogleIdentity | null> {
 }
 
 /** A free username from the email's local part, e.g. "dani.g" → "dani.g" or "dani.g27". */
-function freeUsername(email: string): string {
+export function freeUsername(email: string): string {
   const base = (email.split('@')[0] ?? '').replace(/[^A-Za-z0-9_.-]/g, '').slice(0, 16).padEnd(3, '0') || 'player'
   const taken = db.prepare('SELECT 1 FROM users WHERE username = ?')
   if (!taken.get(base)) return base

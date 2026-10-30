@@ -76,6 +76,8 @@ interface AccountStore {
   login: (username: string, password: string) => Promise<boolean>
   /** Sign in with a Google ID token (button in AccountPanel; needs GOOGLE_CLIENT_ID on the server). */
   googleSignIn: (credential: string) => Promise<boolean>
+  /** `name` = the first name Apple shares on the first sign-in only. */
+  appleSignIn: (idToken: string, name: string) => Promise<boolean>
   logout: () => Promise<void>
   /** Send queued rewards (and name/avatar), then adopt the server totals. */
   sync: () => Promise<void>
@@ -194,6 +196,13 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       set({ busy: true, error: '' })
       const res = await api('google', { credential, profile: guestProgress() })
       // A brand-new Google account already started from the guest progress.
+      return signedIn(res, !(res.ok && (res as { created?: boolean }).created))
+    },
+
+    appleSignIn: async (idToken, name) => {
+      set({ busy: true, error: '' })
+      const res = await api('apple', { idToken, name, profile: guestProgress() })
+      // A brand-new Apple account already started from the guest progress.
       return signedIn(res, !(res.ok && (res as { created?: boolean }).created))
     },
 

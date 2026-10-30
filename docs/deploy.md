@@ -211,7 +211,8 @@ Measured on the 2026-10-29 build:
 The code is ready; it switches on when the server has a `GOOGLE_CLIENT_ID`.
 
 1. Open [Google Cloud Console](https://console.cloud.google.com/) and create a
-   project (for example "66").
+   project (for example "66"). You can also reuse the Bros Cafe project you made
+   for Google Wallet.
 2. Go to **APIs & Services → OAuth consent screen**:
    - User type: **External**
    - App name: "66", with your support email
@@ -234,6 +235,41 @@ How it behaves:
   added, as with a normal sign-in.
 - The ID token is verified with Google's `tokeninfo` endpoint: our client ID,
   Google as issuer, not expired, verified email.
-- **Not built yet:** "Sign in with Apple" (needs a Services ID and key from
-  the Apple developer account), and email login links (needs a mail-sending
-  API key, for example Resend).
+- **Not built yet:** email login links (needs a mail-sending API key, for
+  example Resend).
+
+## Sign in with Apple (optional, ~15 minutes)
+
+The code is ready (`server/src/apple.ts`, `app/src/account/SocialSignIn.tsx`);
+it switches on when the server has an `APPLE_SERVICES_ID`. It uses the same
+Apple Developer account as the Bros Cafe wallet passes (Team ID `S6BT656CHX`).
+No private key is needed: the app uses Apple's popup, and the server checks the
+ID token against Apple's published keys.
+
+1. [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list),
+   **+** → **App IDs** → **App**:
+   - Description "66", Bundle ID (explicit) `hu.broscafe.sixtysix`
+   - Capabilities: tick **Sign in with Apple** → Continue → Register.
+2. **+** → **Services IDs**:
+   - Description "66 website", Identifier `hu.broscafe.sixtysix.web` → Register.
+   - Open it, tick **Sign in with Apple** → **Configure**:
+     - Primary App ID: `hu.broscafe.sixtysix`
+     - Domains and Subdomains: `66.broscafe.hu`
+     - Return URLs: `https://66.broscafe.hu/api/account/apple/return`
+   - Save → Continue → Save.
+3. In Coolify, add `APPLE_SERVICES_ID=hu.broscafe.sixtysix.web`. Redeploy.
+   (`APPLE_REDIRECT_URI` defaults to the return URL above; set it only if the
+   domain changes.)
+
+How it behaves:
+
+- A black "Sign in with Apple" button appears above the Google one. It only
+  works on the real domain: Apple doesn't allow localhost or IP addresses.
+- **First use** creates an account from the guest progress. Apple shares the
+  first name only on this first sign-in; when the email is hidden (Apple's
+  relay address), the username comes from that name.
+- **Later uses** sign in to that account (linked by `users.apple_sub`).
+- The token must be signed by Apple (RS256, keys from `appleid.apple.com/auth/keys`,
+  cached for an hour), for our Services ID, and unexpired.
+- A future iOS app (Capacitor) would sign tokens for its bundle ID: add it to
+  `APPLE_EXTRA_AUDIENCES`.

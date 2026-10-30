@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MIN_PASSWORD, USERNAME_RE } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
-import { GoogleButton } from '../account/GoogleButton'
+import { SocialSignIn } from '../account/SocialSignIn'
 import { useGameStore, type Screen } from '../game/store'
 import { openSkillTree } from '../skills/nav'
 
@@ -116,7 +116,7 @@ export function AccountPanel() {
           <button className="btn-play account-submit" type="submit" disabled={!valid || busy}>
             {busy ? '…' : mode === 'signup' ? 'Create account' : 'Sign in'}
           </button>
-          <GoogleButton />
+          <SocialSignIn />
           <p className="arena-hint">
             {mode === 'signup'
               ? 'Your progress so far on this device becomes your account’s start.'
