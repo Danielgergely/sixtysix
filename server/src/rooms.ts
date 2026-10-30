@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
+import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
 import { CHARACTERS, MAX_ARENA_PLAYERS } from '@sixtysix/shared'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
@@ -28,6 +28,8 @@ export interface Room {
   questionStartedAt: number
   /** Last leaderboard/podium payload, re-sent to anyone (re)joining mid-phase. */
   lastEntries: LeaderboardEntry[]
+  /** Current question's reveal, re-sent to anyone (re)joining during the reveal. */
+  lastReveal?: RevealPayload
   /** Previous leaderboard ranks, for delta arrows. */
   prevRanks: Map<string, number>
   /** Single pending phase timer for this room. */

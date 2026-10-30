@@ -55,6 +55,8 @@ interface ArenaStore {
   answer: (index: number) => void
   leaveArena: () => void
   setPrefillCode: (code: string) => void
+  /** After a page reload: rejoin / reclaim / re-watch the saved room, silently. */
+  resume: () => void
   clearError: () => void
 }
 
@@ -84,6 +86,37 @@ const coinsPaid = {
   },
 }
 
+/**
+ * The room this device is in, so a reload (phone tab discarded, host refreshing
+ * the TV) lands back in the game instead of the menu. Cleared on leave/close.
+ */
+const SESSION_KEY = 'sixtysix.arenaSession.v1'
+type Session = { code: string; role: ArenaRole; at: number }
+const session = {
+  save: (code: string, role: ArenaRole) => {
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ code, role, at: Date.now() } satisfies Session))
+    } catch {
+      // storage unavailable — a reload then needs the code again
+    }
+  },
+  load: (): Session | null => {
+    try {
+      const s = JSON.parse(localStorage.getItem(SESSION_KEY) ?? 'null') as Session | null
+      return s && typeof s.code === 'string' && Date.now() - s.at < PAID_TTL_MS ? s : null
+    } catch {
+      return null
+    }
+  },
+  clear: () => {
+    try {
+      localStorage.removeItem(SESSION_KEY)
+    } catch {
+      // ignore
+    }
+  },
+}
+
 /** Per-game state; spread on every entry/exit so nothing leaks between games. */
 const FRESH_GAME = {
   question: null,
@@ -100,6 +133,7 @@ const FRESH_GAME = {
 
 /** Back to the arena menu (room gone / rejoin refused / ended). */
 function closeLocally(reason: string | null): void {
+  session.clear()
   useArenaStore.setState({ ...FRESH_GAME, room: null, role: null, myPlayerId: null, error: reason, busy: false })
   useGameStore.getState().goTo('arenaMenu')
 }
@@ -156,7 +190,7 @@ function getSocket(): ArenaSocket {
     }))
     // Sounds play on every surface — in person, the host machine IS the speaker.
     if (phase === 'reading') playSfx('flip')
-    if (phase === 'question') playSfx('go')
+    if (phase === 'question' && endsInMs > 0) playSfx('go') // 0 = re-sent during the reveal
   })
 
   socket.on('game:answerCount', (count, ids) => setState({ answerCount: count, answeredIds: Array.isArray(ids) ? ids : [] }))
@@ -235,6 +269,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
     getSocket().emit('room:create', { config, hostId: getDeviceId() }, (res) => {
       if (res.ok) {
         set({ ...FRESH_GAME, role: 'host', room: res.state, busy: false, myPlayerId: null })
+        session.save(res.state.code, 'host')
         useGameStore.getState().goTo('arenaHostLobby')
       } else {
         set({ error: res.error, busy: false })
@@ -256,6 +291,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
     getSocket().emit('room:watch', { code: code.trim().toUpperCase() }, (res) => {
       if (res.ok) {
         set({ ...FRESH_GAME, role: 'spectator', room: res.state, busy: false, myPlayerId: null })
+        session.save(res.state.code, 'spectator')
         useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaHostLobby' : 'arenaGame')
       } else {
         set({ error: res.error, busy: false })
@@ -278,6 +314,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       (res) => {
         if (res.ok) {
           set({ ...FRESH_GAME, role: 'player', room: res.state, busy: false, prefillCode: '', myPlayerId: res.playerId })
+          session.save(res.state.code, 'player')
           useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaPlayerLobby' : 'arenaGame')
         } else {
           set({ error: res.error, busy: false })
@@ -316,5 +353,29 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   },
 
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase() }),
+
+  resume: () => {
+    const saved = session.load()
+    if (!saved) return session.clear()
+    const { code, role } = saved
+    const s = getSocket()
+    const enter = (state: RoomState, myPlayerId: string | null) => {
+      set({ ...FRESH_GAME, role, room: state, busy: false, myPlayerId })
+      const lobby = role === 'player' ? 'arenaPlayerLobby' : 'arenaHostLobby'
+      useGameStore.getState().goTo(state.phase === 'lobby' ? lobby : 'arenaGame')
+    }
+    // The room is gone (game over, host left, server restarted): forget it quietly.
+    const fail = () => session.clear()
+    if (role === 'host') {
+      s.emit('room:rehost', { code, hostId: getDeviceId() }, (res) => (res.ok ? enter(res.state, null) : fail()))
+    } else if (role === 'spectator') {
+      s.emit('room:watch', { code }, (res) => (res.ok ? enter(res.state, null) : fail()))
+    } else {
+      const player = useGameStore.getState().player
+      s.emit('room:join', { code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) =>
+        res.ok ? enter(res.state, res.playerId) : fail(),
+      )
+    }
+  },
   clearError: () => set({ error: null }),
 }))

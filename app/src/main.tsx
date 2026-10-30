@@ -57,6 +57,9 @@ if (spiesMatch) {
   window.history.replaceState(null, '', '/')
 }
 
+// Reloaded mid-game (no deep link): back into the arena room this device was in.
+if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch) useArenaStore.getState().resume()
+
 // Signed in: deliver rewards earned offline and pick up the account's totals.
 void useAccountStore.getState().init()
 window.addEventListener('online', () => void useAccountStore.getState().sync())

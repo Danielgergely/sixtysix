@@ -117,7 +117,8 @@ export function QuestionView(props: QuestionViewProps) {
   const showVerdict = revealed && verdictFor === index
 
   // Reveal feedback: gold confetti for a right answer, a jolt for a wrong one.
-  const correct = result?.correct
+  // No result after a reload mid-reveal: judge the restored answer against the reveal.
+  const correct = result?.correct ?? (reveal && myAnswer !== null ? myAnswer === reveal.correctIndex : undefined)
   useEffect(() => {
     if (!revealed || !isPlayer || correct === undefined) return
     if (correct) fireConfetti({ y: 0.55, count: 70, spread: 90, power: 12, colors: GOLD_CONFETTI })
