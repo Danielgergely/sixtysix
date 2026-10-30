@@ -22432,7 +22432,7 @@
     "answers": [
       "Ében-Ézer",
       "Bóhan",
-      "Ezel",
+      "Az útmutató kőnél",
       "Zóhelet"
     ]
   },
@@ -25556,7 +25556,7 @@
       "Áldozatot",
       "Egy tekercset",
       "Egy pohár vizet",
-      "Egy lantost"
+      "Egy énekest"
     ]
   },
   "q_b142_016": {
@@ -29399,7 +29399,7 @@
       "Gamáliél",
       "Nikodémus",
       "Jairus",
-      "Alexandrosz"
+      "Sándor"
     ]
   },
   "q_b220_024": {
@@ -30699,12 +30699,12 @@
     ]
   },
   "q_b222_036": {
-    "text": "Hogy hívták a viharos szelet, amely lecsapott Pál hajójára?",
+    "text": "Minek nevezik a viharos szélvészt, amely lecsapott Pál hajójára?",
     "answers": [
-      "Leviátán",
-      "Eurakülón",
-      "Sirokkó",
-      "Boreász"
+      "Leviátánnak",
+      "Észak-keleti szélnek",
+      "Sirokkónak",
+      "Déli szélnek"
     ]
   },
   "q_b222_037": {
@@ -33842,7 +33842,7 @@
   "q_b230_004": {
     "text": "A Jelenések 1 szerint a feltámadott Krisztusnál van a halál és minek a kulcsa?",
     "answers": [
-      "A halottak birodalma",
+      "A pokol",
       "A menny",
       "Dávid",
       "A templom"
@@ -35581,7 +35581,7 @@
     "answers": [
       "Sábából",
       "Havilából",
-      "Ufázból",
+      "Ofírból",
       "Dedánból"
     ]
   },
@@ -44883,11 +44883,11 @@
     ]
   },
   "q_b160_046": {
-    "text": "30. zsoltár: „Gyászomat ___ változtattad.”",
+    "text": "30. zsoltár: „Siralmamat ___ fordítottad.”",
     "answers": [
       "Nevetésre",
       "Lakomára",
-      "Táncra",
+      "Vígságra",
       "Éneklésre"
     ]
   },
@@ -45513,10 +45513,10 @@
     ]
   },
   "q_b161_048": {
-    "text": "89. zsoltár: kit zúzott össze Isten, mint egy elesettet?",
+    "text": "89. zsoltár: kit rontott meg Isten, mint egy átdöföttet?",
     "answers": [
       "Leviátánt",
-      "Ráhábot",
+      "Égyiptomot",
       "Ógot",
       "Szíhónt"
     ]
@@ -45558,12 +45558,12 @@
     ]
   },
   "q_b161_053": {
-    "text": "68. zsoltár: hová helyezi Isten a magányosokat?",
+    "text": "68. zsoltár: hová hozza ki Isten a foglyokat?",
     "answers": [
-      "Városokba",
-      "Palotákba",
-      "Családokba",
-      "Kertekbe"
+      "Gazdagságra",
+      "Hazájukba",
+      "Boldogságra",
+      "Világosságra"
     ]
   },
   "q_b161_054": {
@@ -45891,12 +45891,12 @@
     ]
   },
   "q_b162_021": {
-    "text": "104. zsoltár: melyik lényt formálta Isten, hogy a tengerben játsszon?",
+    "text": "104. zsoltár: melyik állatot formálta Isten, hogy a tengerben játszadozzék?",
     "answers": [
       "Behémót",
       "A delfin",
-      "A nagy hal",
-      "Leviátán"
+      "A krokodil",
+      "A cethal"
     ]
   },
   "q_b162_022": {

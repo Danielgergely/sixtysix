@@ -47545,7 +47545,7 @@
       "hu": [
         "Ében-Ézer",
         "Bóhan",
-        "Ezel",
+        "Az útmutató kőnél",
         "Zóhelet"
       ]
     },
@@ -48657,7 +48657,7 @@
         "The ark"
       ],
       "de": [
-        "Das Los Urim",
+        "Die Lichter",
         "Engel",
         "Zeichen am Himmel",
         "Die Lade"
@@ -61306,7 +61306,7 @@
         "Áldozatot",
         "Egy tekercset",
         "Egy pohár vizet",
-        "Egy lantost"
+        "Egy énekest"
       ]
     },
     "correctIndex": 3
@@ -78343,7 +78343,7 @@
     "text": {
       "en": "Psalm 30: 'You have turned my mourning into ___ for me.'",
       "de": "Psalm 30: „Du hast mir meine Klage verwandelt in ___.“",
-      "hu": "30. zsoltár: „Gyászomat ___ változtattad.”"
+      "hu": "30. zsoltár: „Siralmamat ___ fordítottad.”"
     },
     "answers": {
       "en": [
@@ -78361,7 +78361,7 @@
       "hu": [
         "Nevetésre",
         "Lakomára",
-        "Táncra",
+        "Vígságra",
         "Éneklésre"
       ]
     },
@@ -80583,7 +80583,7 @@
     "text": {
       "en": "Psalm 89: whom did God break in pieces, like one who is slain?",
       "de": "Psalm 89: Wen zerschlug Gott wie einen Erschlagenen?",
-      "hu": "89. zsoltár: kit zúzott össze Isten, mint egy elesettet?"
+      "hu": "89. zsoltár: kit rontott meg Isten, mint egy átdöföttet?"
     },
     "answers": {
       "en": [
@@ -80600,7 +80600,7 @@
       ],
       "hu": [
         "Leviátánt",
-        "Ráhábot",
+        "Égyiptomot",
         "Ógot",
         "Szíhónt"
       ]
@@ -80743,7 +80743,7 @@
     "text": {
       "en": "Psalm 68: God sets the lonely in what?",
       "de": "Psalm 68: Wo lässt Gott die Einsamen wohnen?",
-      "hu": "68. zsoltár: hová helyezi Isten a magányosokat?"
+      "hu": "68. zsoltár: hová hozza ki Isten a foglyokat?"
     },
     "answers": {
       "en": [
@@ -80759,10 +80759,10 @@
         "In Gärten"
       ],
       "hu": [
-        "Városokba",
-        "Palotákba",
-        "Családokba",
-        "Kertekbe"
+        "Gazdagságra",
+        "Hazájukba",
+        "Boldogságra",
+        "Világosságra"
       ]
     },
     "correctIndex": 2
@@ -81927,7 +81927,7 @@
     "text": {
       "en": "Psalm 104: which creature did God form to play in the sea?",
       "de": "Psalm 104: Welches Wesen hat Gott gemacht, damit es im Meer spielt?",
-      "hu": "104. zsoltár: melyik lényt formálta Isten, hogy a tengerben játsszon?"
+      "hu": "104. zsoltár: melyik állatot formálta Isten, hogy a tengerben játszadozzék?"
     },
     "answers": {
       "en": [
@@ -81945,8 +81945,8 @@
       "hu": [
         "Behémót",
         "A delfin",
-        "A nagy hal",
-        "Leviátán"
+        "A krokodil",
+        "A cethal"
       ]
     },
     "correctIndex": 3
@@ -102297,7 +102297,7 @@
       "hu": [
         "Sábából",
         "Havilából",
-        "Ufázból",
+        "Ofírból",
         "Dedánból"
       ]
     },
@@ -111014,7 +111014,7 @@
     "category": "prophets",
     "text": {
       "en": "Obadiah: 'Your mighty men will be dismayed,' is said to which place of Edom?",
-      "de": "Obadja: „Deine Helden werden verzagen“ – zu welchem Ort Edoms wird das gesagt?",
+      "de": "Obadja 9: Auf wessen Gebirge soll beim Gemetzel jedermann ausgerottet werden?",
       "hu": "Abdiás: „Megrettennek hőseid” – Edóm melyik helyéhez szól?"
     },
     "answers": {
@@ -111025,10 +111025,10 @@
         "Dedan"
       ],
       "de": [
-        "Teman",
-        "Bozra",
-        "Sela",
-        "Dedan"
+        "Esaus",
+        "Jakobs",
+        "Moabs",
+        "Ammons"
       ],
       "hu": [
         "Témánhoz",
@@ -139482,7 +139482,7 @@
         "Gamáliél",
         "Nikodémus",
         "Jairus",
-        "Alexandrosz"
+        "Sándor"
       ]
     },
     "correctIndex": 3
@@ -144102,8 +144102,8 @@
     "category": "history",
     "text": {
       "en": "What was the stormy wind called that struck Paul's ship?",
-      "de": "Wie hieß der Sturmwind, der das Schiff des Paulus erfasste?",
-      "hu": "Hogy hívták a viharos szelet, amely lecsapott Pál hajójára?"
+      "de": "Wie wurde der Wirbelwind genannt, der das Schiff des Paulus erfasste?",
+      "hu": "Minek nevezik a viharos szélvészt, amely lecsapott Pál hajójára?"
     },
     "answers": {
       "en": [
@@ -144114,15 +144114,15 @@
       ],
       "de": [
         "Leviatan",
-        "Euroklydon",
+        "«Nord-Ost»",
         "Schirokko",
-        "Boreas"
+        "«Süd-West»"
       ],
       "hu": [
-        "Leviátán",
-        "Eurakülón",
-        "Sirokkó",
-        "Boreász"
+        "Leviátánnak",
+        "Észak-keleti szélnek",
+        "Sirokkónak",
+        "Déli szélnek"
       ]
     },
     "correctIndex": 1
@@ -156535,7 +156535,7 @@
         "Des Tempels"
       ],
       "hu": [
-        "A halottak birodalma",
+        "A pokol",
         "A menny",
         "Dávid",
         "A templom"
