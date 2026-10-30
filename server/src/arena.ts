@@ -3,7 +3,7 @@ import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, RoomConfig, Se
 import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
 import { backToLobby, broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
-import { assignLateJoiner } from './modes.js'
+import { assignLateJoiner, formTeams } from './modes.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
@@ -121,6 +121,15 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     if (!room || room.phase !== 'lobby') return
     room.config = cleanConfig(raw, { ...room.config, questionCount: room.requestedCount })
     room.requestedCount = room.config.questionCount
+    formTeams(room) // wall: teams appear in the lobby; other modes clear them
+    touch(room)
+    broadcastState(io, room)
+  })
+
+  on('host:shuffleTeams', () => {
+    const room = hostedRoom(socket)
+    if (!room || room.phase !== 'lobby' || room.config.mode !== 'wall') return
+    formTeams(room, true)
     touch(room)
     broadcastState(io, room)
   })
@@ -183,6 +192,7 @@ function handleDeparture(io: IO, socket: ArenaSocket, explicit: boolean): void {
     if (p.socketId === socket.id) {
       if (room.phase === 'lobby' || explicit) {
         room.players.delete(secret) // lobby leavers and explicit leavers are gone
+        if (room.phase === 'lobby') formTeams(room)
       } else {
         p.connected = false // mid-game drop: keep score for reconnection
       }

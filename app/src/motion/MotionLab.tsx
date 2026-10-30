@@ -8,6 +8,8 @@ import { STAGGER, glow, popIn, pulse, shake, spring } from './tokens'
 import { CHARACTERS, SKIN_TONES, itemsIn } from '@sixtysix/shared'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { Crowning } from '../ceremony/Crowning'
+import { WallFinale, WallRound } from '../ceremony/Wall'
+import type { TeamState } from '@sixtysix/shared'
 
 const HEADS = itemsIn('head')
 const NECKS = itemsIn('neck')
@@ -20,6 +22,18 @@ const CROWNED = [
   { id: 'd', name: 'Dan', avatar: 'daniel', score: 3000 },
 ]
 
+const GATES = ['Sheep Gate', 'Fish Gate', 'Valley Gate', 'Fountain Gate']
+const WALL_PLAYERS = CROWNED.map((p, i) => ({ ...p, connected: true, team: i % 2 }))
+/** Rebuild the Wall preview: each click plays one more round of 10 (random gains per team). */
+function wallTeams(round: number, n: number): TeamState[] {
+  return GATES.slice(0, n).map((name, id) => {
+    const gain = (r: number) => Math.round(Math.abs(Math.sin(r * 7.3 + id * 3.1)) * 9)
+    let stones = 0
+    for (let r = 1; r < round; r++) stones += gain(r)
+    return { id, name, stones: stones + gain(round), lastGain: gain(round), members: 2 }
+  })
+}
+
 /** Dev-only playground for the motion primitives — open /motion-lab. */
 export function MotionLab() {
   const [score, setScore] = useState(1200)
@@ -31,6 +45,7 @@ export function MotionLab() {
   // Looks gallery: every character wearing the n-th head / neck item (checks looks/bustArt.ts anchors).
   const [look, setLook] = useState(0)
   const [crowning, setCrowning] = useState(0)
+  const [wall, setWall] = useState<{ round: number; teams: number; final: boolean } | null>(null)
 
   return (
     <MotionConfig reducedMotion="user">
@@ -123,6 +138,14 @@ export function MotionLab() {
             <button className="btn-secondary" onClick={() => setLook((n) => n + 1)}>next items</button>
             <button className="btn-secondary" onClick={() => setCrowning((n) => n + 1)}>crowning</button>
           </div>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            {[2, 3, 4].map((n) => (
+              <button key={n} className="btn-secondary" onClick={() => setWall({ round: 1, teams: n, final: false })}>
+                wall ×{n}
+              </button>
+            ))}
+            <button className="btn-secondary" onClick={() => setWall({ round: 10, teams: 3, final: true })}>wall finale</button>
+          </div>
         </section>
 
         <section className="profile-section" style={{ paddingBottom: '3rem' }}>
@@ -136,6 +159,21 @@ export function MotionLab() {
       {crowning > 0 && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 50, background: '#000' }} onDoubleClick={() => setCrowning(0)}>
           <Crowning key={crowning} entries={CROWNED} wide={false} coins={120} />
+        </div>
+      )}
+      {wall && (
+        // Click: next round; double-click: close.
+        <div
+          className="wall-lab"
+          style={{ position: 'fixed', inset: 0, zIndex: 50, background: '#000' }}
+          onClick={() => setWall((w) => (w ? { ...w, round: w.round + 1 } : w))}
+          onDoubleClick={() => setWall(null)}
+        >
+          {wall.final ? (
+            <WallFinale teams={wallTeams(wall.round, wall.teams)} players={WALL_PLAYERS} questionTotal={10} wide={window.innerWidth > 700} myTeam={0} actions={null} />
+          ) : (
+            <WallRound key={wall.round} teams={wallTeams(wall.round, wall.teams)} players={WALL_PLAYERS} questionTotal={10} wide={window.innerWidth > 700} myTeam={0} />
+          )}
         </div>
       )}
       <ConfettiLayer />

@@ -62,7 +62,11 @@ export interface GoliathState {
   fallen: boolean
 }
 
-/** Rebuild the Wall: one team per gate of Nehemiah 3. */
+/**
+ * Rebuild the Wall: one team per gate of Nehemiah 3. Teams form in the lobby
+ * as players join (balanced, join order) and stay for "Play again"; the host
+ * may shuffle them before the start.
+ */
 export interface TeamState {
   id: number
   name: string
@@ -111,6 +115,19 @@ export interface RevealPayload {
   /** Count of players who picked each answer. */
   distribution: [number, number, number, number]
   answeredCount: number
+}
+
+/**
+ * Wall mode, "team voice": how the player's OWN teammates have answered so far
+ * this question (the receiver's own answer left out). Sent only to that team's
+ * members (never another team's picks, never the correct answer), ~4/s at most.
+ */
+export interface TeamVotes {
+  questionIndex: number
+  /** Teammates' picks per answer. */
+  counts: [number, number, number, number]
+  /** Teammates who have answered (= sum of counts). */
+  answered: number
 }
 
 export interface LeaderboardEntry {
@@ -173,6 +190,8 @@ export interface ClientToServerEvents {
   'host:start': () => void
   /** Lobby only: change the options before (re)starting. Validated like room:create. */
   'host:options': (config: Partial<RoomConfig>) => void
+  /** Lobby only, wall mode: deal the players into new teams at random. */
+  'host:shuffleTeams': () => void
   /** Podium only: back to the lobby with the same code; players stay, scores reset. */
   'host:rematch': () => void
   /** Host advances the game: resolves the question / skips the leaderboard wait. */
@@ -188,6 +207,8 @@ export interface ServerToClientEvents {
   'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
   /** Public ids of the players who have answered the current question (count = length). */
   'game:answerCount': (count: number, answeredIds: string[]) => void
+  /** Wall mode: your team's answers so far (to that team's members only). */
+  'game:teamVotes': (votes: TeamVotes) => void
   'game:reveal': (payload: RevealPayload) => void
   'game:leaderboard': (entries: LeaderboardEntry[]) => void
   'game:podium': (entries: LeaderboardEntry[]) => void

@@ -1,23 +1,15 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { Suspense, lazy, useEffect, useState, type ReactNode } from 'react'
 import { motion } from 'motion/react'
-import type { ArenaPlayer, TeamState } from '@sixtysix/shared'
-import { AnimatedNumber, fireCannons, fireConfetti } from '../motion'
+import type { ArenaPlayer, LeaderboardEntry, RoomState, TeamState } from '@sixtysix/shared'
+import { fireCannons, fireConfetti } from '../motion'
 import { PaintedCoin, PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
-import { TEAM_COLORS, gateName } from '../screens/arena/modes'
-import { rich } from '../screens/arena/rich'
+import { gateName } from '../screens/arena/modes'
+import { TeamRound } from '../screens/arena/game/Team'
 import { useT } from '../i18n'
 
-/**
- * Stones a perfect, fast team could lay over the whole game is 10 per question;
- * a wall reads as "complete" around 70 % of that.
- */
-const STONES_FOR_FULL_WALL_PER_QUESTION = 7
-/** Tallest wall, in % of the scene height. */
-const MAX_WALL_PCT = 52
-
-const heightPct = (stones: number, total: number) =>
-  Math.min(1, stones / Math.max(1, total * STONES_FOR_FULL_WALL_PER_QUESTION)) * MAX_WALL_PCT
+/** The stone-by-stone canvas scene loads with the first wall round. */
+const WallScene = lazy(() => import('./wall/WallScene'))
 
 interface Props {
   teams: TeamState[]
@@ -25,63 +17,41 @@ interface Props {
   wide: boolean
   /** The viewer's team (players), highlighted. */
   myTeam?: number
+  players?: ArenaPlayer[]
 }
 
-/** The wall sections side by side; each rises from its previous height. */
-function Sections({ teams, questionTotal, myTeam, final }: Props & { final: boolean }) {
+function Title() {
   const t = useT()
-  const best = Math.max(...teams.map((team) => team.stones))
   return (
-    <div className="wl-sections">
-      {teams.map((team, i) => {
-        const before = final ? 0 : team.stones - team.lastGain
-        const leading = team.stones === best && best > 0
-        return (
-          <div key={team.id} className={`wl-section ${myTeam === team.id ? 'mine' : ''}`} style={{ '--c': TEAM_COLORS[team.id % TEAM_COLORS.length] } as React.CSSProperties}>
-            <motion.div
-              className="wl-wall"
-              initial={{ height: `${heightPct(before, questionTotal)}%` }}
-              animate={{ height: `${heightPct(team.stones, questionTotal)}%` }}
-              transition={{ duration: final ? 2.2 : 1.6, delay: 0.5 + i * 0.15, ease: [0.3, 0, 0.2, 1] }}
-            >
-              <div className="wl-flag">
-                <span className="wl-flag-name">
-                  {leading && '👑 '}
-                  {gateName(t, team.name)}
-                </span>
-                <span className="wl-flag-stones">
-                  {rich(t('ceremony.wall.stones'), { n: <AnimatedNumber value={team.stones} from={before} delay={0.5 + i * 0.15} duration={1.6} /> })}
-                </span>
-              </div>
-              {!final && team.lastGain > 0 && (
-                <motion.span className="wl-gain" initial={{ opacity: 0, y: 10 }} animate={{ opacity: [0, 1, 1, 0], y: -40 }} transition={{ delay: 1.2 + i * 0.15, duration: 1.8 }}>
-                  +{team.lastGain}
-                </motion.span>
-              )}
-            </motion.div>
-            <div className="wl-team-size">
-              {t('ceremony.wall.builders', { count: team.members })}
-              {myTeam === team.id && ` · ${t('ceremony.wall.yourTeam')}`}
-            </div>
-          </div>
-        )
-      })}
-    </div>
+    <motion.div className="wl-title" style={{ backgroundImage: PARCHMENT }} initial={{ y: -80 }} animate={{ y: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 16 }}>
+      {t('ceremony.wall.title')}
+      <small>{t('ceremony.wall.verse')}</small>
+    </motion.div>
   )
 }
 
-/** Between questions: every team's wall section grows by its new stones. */
-export function WallRound(props: Props) {
-  const t = useT()
-  return (
-    <motion.div className={`wl ${props.wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+/**
+ * Between questions: every team's section rises by the round's new stones.
+ * Phones also get their team: each teammate's points this round and the
+ * team's average against the other gates.
+ */
+export function WallRound(props: Props & { room?: RoomState; entries?: LeaderboardEntry[]; myPlayerId?: string | null }) {
+  const { room, entries, myPlayerId, ...scene } = props
+  const sceneNode = (
+    <motion.div className={`wl ${scene.wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="wl-bg" />
-      <motion.div className="wl-title" style={{ backgroundImage: PARCHMENT }} initial={{ y: -80 }} animate={{ y: 0 }} transition={{ type: 'spring', stiffness: 200, damping: 16 }}>
-        {t('ceremony.wall.title')}
-        <small>{t('ceremony.wall.verse')}</small>
-      </motion.div>
-      <Sections {...props} final={false} />
+      <Title />
+      <Suspense fallback={null}>
+        <WallScene {...scene} final={false} />
+      </Suspense>
     </motion.div>
+  )
+  if (scene.wide || !room || !entries) return sceneNode
+  return (
+    <div className="tr-split">
+      <div className="tr-split-road">{sceneNode}</div>
+      <TeamRound room={room} entries={entries} myPlayerId={myPlayerId ?? null} />
+    </div>
   )
 }
 
@@ -98,14 +68,16 @@ export function WallFinale({ players, coins, actions, ...props }: Props & { play
       setSettled(true)
       fireCannons()
       fireConfetti({ y: 0.35, count: 120, spread: 110 })
-    }, 2900)
+    }, 3900)
     return () => clearTimeout(id)
   }, [])
 
   return (
     <motion.div className={`wl finale ${props.wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="wl-bg" />
-      <Sections {...props} final />
+      <Suspense fallback={null}>
+        <WallScene {...props} players={players} final />
+      </Suspense>
       {settled && (
         <motion.div className="wl-verdict" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 15 }}>
           <strong>{winners.length > 1 ? t('ceremony.wall.tie') : t('ceremony.wall.rebuilt', { gate: gateName(t, winners[0]?.name ?? '') })}</strong>

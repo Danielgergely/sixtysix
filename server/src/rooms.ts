@@ -44,6 +44,9 @@ export interface Room {
   /** Mode state (see modes.ts); undefined in classic games. */
   goliath?: GoliathState
   teams?: TeamState[]
+  /** Wall mode: teams whose team voice changed, and the throttle timer (modes.ts). */
+  teamVotesDirty: Set<number>
+  teamVotesTimer?: ReturnType<typeof setTimeout>
 }
 
 const rooms = new Map<string, Room>()
@@ -80,6 +83,7 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     lastActivity: Date.now(),
     game: 1,
     requestedCount: config.questionCount,
+    teamVotesDirty: new Set(),
   }
   rooms.set(room.code, room)
   return room
@@ -94,6 +98,7 @@ export function deleteRoom(code: string): void {
   if (room) {
     clearTimeout(room.timer)
     clearTimeout(room.hostGraceTimer)
+    clearTimeout(room.teamVotesTimer)
   }
   rooms.delete(code)
 }

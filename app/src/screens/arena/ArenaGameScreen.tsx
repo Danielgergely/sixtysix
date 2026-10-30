@@ -9,9 +9,10 @@ import { RotateHint } from './RotateHint'
 import { usePortraitBoard } from './usePortraitBoard'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
-import { TEAM_COLORS, gateName } from './modes'
+import { TEAM_COLORS, gateName, myTeamOf, teamVoice } from './modes'
 import { useLocale, useT } from '../../i18n'
 import { FlagButton } from '../../flags/FlagSheet'
+import { TeamStrip } from './game/Team'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -59,6 +60,7 @@ function ArenaQuestion() {
   const answer = useArenaStore((s) => s.answer)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const answeredIds = useArenaStore((s) => s.answeredIds)
+  const teamVotes = useArenaStore((s) => s.teamVotes)
   const locale = useLocale((s) => s.locale)
   if (!room || !question) return null
   // Each phone shows its own language; the board shows the host's (it runs on the host's device).
@@ -69,6 +71,8 @@ function ArenaQuestion() {
   const isPlayer = role === 'player'
   const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
   const team = me?.team !== undefined ? room.teams?.[me.team] : undefined
+  const mine = isPlayer ? myTeamOf(room, myPlayerId) : null
+  const connected = room.players.filter((p) => p.connected || answeredIds.includes(p.id))
   return (
     <QuestionView
       index={question.index}
@@ -89,8 +93,21 @@ function ArenaQuestion() {
         .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
       playerCount={room.players.length}
       onAnswer={answer}
+      teamStrip={
+        mine ? (
+          <TeamStrip
+            team={mine.team}
+            mates={mine.mates}
+            you={me}
+            answeredIds={answeredIds}
+            allDone={answerCount}
+            allTotal={connected.length}
+          />
+        ) : undefined
+      }
+      teamVoice={mine && phase === 'question' ? teamVoice(teamVotes) : null}
       badge={
-        team ? (
+        team && (!mine || phase === 'reveal') ? (
           <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
             🧱 {gateName(t, team.name)}
           </span>
@@ -161,7 +178,19 @@ export function ArenaGameScreen() {
   } else if (phase === 'leaderboard' && leaderboard) {
     let node = <Leaderboard entries={leaderboard} isPlayer={isPlayer} />
     if (room.goliath) node = <GoliathRound goliath={room.goliath} entries={leaderboard} wide={landscape} />
-    else if (room.teams) node = <WallRound teams={room.teams} questionTotal={room.questionTotal} wide={landscape} myTeam={isPlayer ? myTeam : undefined} />
+    else if (room.teams)
+      node = (
+        <WallRound
+          teams={room.teams}
+          questionTotal={room.questionTotal}
+          wide={landscape}
+          myTeam={isPlayer ? myTeam : undefined}
+          players={room.players}
+          room={room}
+          entries={leaderboard}
+          myPlayerId={myPlayerId}
+        />
+      )
     scene = { key: `lb-${room.questionIndex}`, node }
   } else if (question) {
     scene = { key: `q-${question.index}`, node: <ArenaQuestion /> }

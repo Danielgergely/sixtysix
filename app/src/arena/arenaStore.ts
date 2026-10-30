@@ -8,6 +8,7 @@ import type {
   RoomConfig,
   RoomState,
   ServerToClientEvents,
+  TeamVotes,
   YourResult,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
@@ -38,6 +39,8 @@ interface ArenaStore {
   /** Public ids of players who have answered this question. */
   answeredIds: string[]
   reveal: RevealPayload | null
+  /** Wall mode: how your own team has answered this question so far (team voice). */
+  teamVotes: TeamVotes | null
   yourResult: YourResult | null
   leaderboard: LeaderboardEntry[] | null
   podium: LeaderboardEntry[] | null
@@ -54,6 +57,8 @@ interface ArenaStore {
   setOptions: (config: Partial<RoomConfig>) => void
   /** Host, at the podium: back to the lobby with the same code ("Play again"). */
   playAgain: () => void
+  /** Host, lobby, wall mode: deal new teams at random. */
+  shuffleTeams: () => void
   skip: () => void
   joinGame: (code: string) => void
   watchGame: (code: string) => void
@@ -128,6 +133,7 @@ const FRESH_GAME = {
   question: null,
   myAnswer: null,
   reveal: null,
+  teamVotes: null,
   yourResult: null,
   leaderboard: null,
   podium: null,
@@ -196,6 +202,7 @@ function getSocket(): ArenaSocket {
       // re-send after a reload restores the answer the server already has.
       myAnswer: yourAnswer ?? (phase === 'reading' ? null : s.question?.index === q.index ? s.myAnswer : null),
       reveal: phase === 'reading' ? null : s.reveal,
+      teamVotes: phase === 'reading' || s.question?.index !== q.index ? null : s.teamVotes,
       yourResult: phase === 'reading' ? null : s.yourResult,
       answerCount: phase === 'reading' ? 0 : s.answerCount,
       answeredIds: phase === 'reading' ? [] : s.answeredIds,
@@ -206,6 +213,10 @@ function getSocket(): ArenaSocket {
   })
 
   socket.on('game:answerCount', (count, ids) => setState({ answerCount: count, answeredIds: Array.isArray(ids) ? ids : [] }))
+
+  socket.on('game:teamVotes', (votes) => {
+    if (getState().question?.index === votes.questionIndex) setState({ teamVotes: votes })
+  })
 
   socket.on('game:reveal', (payload) => {
     setState({ reveal: payload })
@@ -271,6 +282,7 @@ export const useArenaStore = create<ArenaStore>((set) => ({
   answerCount: 0,
   answeredIds: [],
   reveal: null,
+  teamVotes: null,
   yourResult: null,
   leaderboard: null,
   podium: null,
@@ -301,6 +313,10 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   playAgain: () => {
     getSocket().emit('host:rematch')
+  },
+
+  shuffleTeams: () => {
+    getSocket().emit('host:shuffleTeams')
   },
 
   skip: () => {
