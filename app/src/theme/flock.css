@@ -145,6 +145,13 @@
 .fl-decide-btn.vote{ background: linear-gradient(#ffb38a, #c9502a); }
 .fl-decide-btn.more{ background: linear-gradient(#f3e2bb, #c9a24a); }
 .fl-decide-btn.picked{ outline: 3px solid #fff; transform: translateY(2px); box-shadow: 0 2px 0 #1d0f06; }
+.fl-caughtbar{
+  flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; padding: 12px; border-radius: 12px; text-align: center;
+  background: radial-gradient(circle at 50% 30%, #6b2a1a, #3a120b 75%); border: 2px solid #ffb347; color: #ffe7a3;
+}
+.fl-caughtbar strong{ font: 900 15px 'Cinzel', serif; }
+.fl-caughtbar span{ font: 600 13px/1.35 Georgia, serif; }
+.fl-caughtbar-actions{ display: grid; grid-template-columns: 2fr 1fr; gap: 8px; }
 .fl-guessbar{
   flex-shrink: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 8px; padding: 8px 12px; border-radius: 12px;
   background: radial-gradient(circle at 50% 30%, #6b2a1a, #3a120b 75%); border: 2px solid #ffb347; color: #ffe7a3; font: 700 13px 'Cinzel', serif;

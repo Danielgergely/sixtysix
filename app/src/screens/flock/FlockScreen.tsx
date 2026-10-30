@@ -24,6 +24,7 @@ export function FlockScreen() {
       <FlockTopBar state={state} />
       <div className="fl-body">
         <WolfGuessBar state={state} />
+        <CaughtBanner state={state} />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
@@ -262,7 +263,33 @@ function useMine(state: FlockState) {
 }
 
 function SpectatingNote({ out = false }: { out?: boolean }) {
-  return <p className="fl-wait">{out ? 'You are out of this game — watch how it ends!' : 'You joined mid-game — you’ll be dealt in next game. Watch the clues!'}</p>
+  return <p className="fl-wait">{out ? '👀 You are watching — the word is revealed at the end.' : 'You joined mid-game — you’ll be dealt in next game. Watch the clues!'}</p>
+}
+
+/**
+ * A wolf caught while the other wolf plays on has lost this game. They may watch
+ * the rest (the word stays hidden until the end; staying keeps the loser's reward)
+ * or leave.
+ */
+function CaughtBanner({ state }: { state: FlockState }) {
+  const { out } = useMine(state)
+  const leave = useFlockStore((s) => s.leave)
+  const [watching, setWatching] = useState<number | null>(null)
+  if (!out || state.phase === 'over' || watching === state.game) return null
+  return (
+    <motion.div className="fl-caughtbar" {...popIn}>
+      <strong>🐺 You were caught — this game is lost for you.</strong>
+      <span>Watch how the other wolf does? You’ll see the word at the end and still get the consolation reward (leaving forfeits it).</span>
+      <div className="fl-caughtbar-actions">
+        <button className="btn-play" onClick={() => setWatching(state.game)}>
+          👀 WATCH
+        </button>
+        <button className="btn-secondary" onClick={leave}>
+          Leave
+        </button>
+      </div>
+    </motion.div>
+  )
 }
 
 function SecretPhase({ state }: { state: FlockState }) {
