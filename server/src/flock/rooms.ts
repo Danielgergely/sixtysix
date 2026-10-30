@@ -47,6 +47,8 @@ export interface FRoom {
   wolves: string[]
   /** Players dealt into this game (late joiners wait for the next one). */
   dealt: Set<string>
+  /** People (not bots) dealt in, counted at the deal so later departures don't change the rewards. */
+  dealtHumans: number
   /** Voted out / guessed wrong this game. */
   out: Set<string>
   /** Clue order (secrets); the turn index walks it lap after lap. */
@@ -115,6 +117,7 @@ export function createFlockRoom(): FRoom {
     word: null,
     wolves: [],
     dealt: new Set(),
+    dealtHumans: 0,
     out: new Set(),
     turnOrder: [],
     turnIdx: 0,
