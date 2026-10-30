@@ -30,7 +30,8 @@ export function TopBar() {
       )}
       <button className="tb-me" onClick={() => goTo('profile')} title={t('shell.topBar.profile')}>
         <span className="tb-name">
-          <span>{player.name}</span>
+          {/* The default name is stored as "You"; show it in the player's language. */}
+          <span>{player.name === 'You' ? t('ceremony.youAlone') : player.name}</span>
           <small>{t('shell.topBar.level', { n: player.level })}</small>
         </span>
         <span className="tb-portrait-wrap">
