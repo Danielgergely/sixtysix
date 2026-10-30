@@ -1267,6 +1267,8 @@
 /* Arena phones between questions: the road on top, your standing below. */
 .tr-split{ position: absolute; inset: 0; z-index: 12; display: flex; flex-direction: column; background: #1d0b06; }
 .tr-split-road{ position: relative; flex: 1; min-height: 0; }
+/* Leave room under the start line so the last name tag isn't hidden behind the standings panel. */
+.tr-split-road .tr-stage{ height: 94%; }
 .st{
   flex: none; position: relative; z-index: 13;
   padding: 10px 14px calc(env(safe-area-inset-bottom) + 12px);
