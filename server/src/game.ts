@@ -7,7 +7,7 @@ import type {
   ServerToClientEvents,
 } from '@sixtysix/shared'
 import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
-import { applyModeRound, endsEarly, finalBonus, setupMode } from './modes.js'
+import { applyModeRound, endsEarly, finalBonus, formTeams, queueTeamVotes, setupMode, teamVotesFor } from './modes.js'
 import { pickQuestions, verseFor, versesFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
@@ -118,6 +118,8 @@ export function sendCurrentPhase(
   if (room.phase === 'question') {
     const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
     socket.emit('game:answerCount', ids.length, ids)
+    const me = secret ? room.players.get(secret) : undefined
+    if (me?.team !== undefined && room.teams) socket.emit('game:teamVotes', teamVotesFor(room, me))
   }
 }
 
@@ -137,7 +139,6 @@ export function backToLobby(io: IO, room: Room): void {
     p.lastGain = 0
     p.coins = 0
     p.answer = undefined
-    p.team = undefined
   }
   room.phase = 'lobby'
   room.game++
@@ -148,7 +149,7 @@ export function backToLobby(io: IO, room: Room): void {
   room.lastReveal = undefined
   room.prevRanks = new Map()
   room.goliath = undefined
-  room.teams = undefined
+  formTeams(room) // the same teams play again (the host may shuffle)
   touch(room)
   broadcastState(io, room)
   console.log(`[game] ${room.code} back to the lobby for game ${room.game}`)
@@ -189,6 +190,7 @@ export function handleAnswer(io: IO, room: Room, playerId: string, index: unknow
   touch(room)
 
   emitAnswered(io, room)
+  queueTeamVotes(io, room, player.team)
   resolveIfAllAnswered(io, room)
 }
 

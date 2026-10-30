@@ -13,6 +13,7 @@ import { useLocale, useT } from '../../../i18n'
 import { rich } from '../rich'
 import { useGameStore } from '../../../game/store'
 import { useClockTicks } from '../../../game/useClockTicks'
+import { VoiceBadge, VoiceRow } from './Team'
 
 /** Sound on/off right on the question screen; the same setting as in Profile. */
 function SoundToggle() {
@@ -69,6 +70,11 @@ export interface QuestionViewProps {
   answerCount?: number
   playerCount?: number
   onAnswer?: (index: number) => void
+  // ── Rebuild the Wall (arena players only) ──
+  /** Your team with who has answered; replaces the room-wide strip. */
+  teamStrip?: ReactNode
+  /** Team voice: % of your answered teammates on each card (null until one has answered). */
+  teamVoice?: { pct: number[]; n: number } | null
   // ── Scholar gifts (Bible Blitz only; the arena never passes these) ──
   /** Gift buttons, shown above the hand while you can still answer. */
   giftBar?: ReactNode
@@ -220,7 +226,8 @@ export function QuestionView(props: QuestionViewProps) {
             }}
           />
         </div>
-        {phase === 'question' && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
+        {phase !== 'reveal' && props.teamStrip}
+        {phase === 'question' && !props.teamStrip && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
         {!isPlayer && phase === 'question' && !props.answered && props.answerCount !== undefined && (
           <div className="eh-count">
             ✓ {rich(t('quiz.question.answered', { total: props.playerCount ?? 0 }), { done: <AnimatedNumber value={props.answerCount} duration={0.3} /> })}
@@ -268,6 +275,9 @@ export function QuestionView(props: QuestionViewProps) {
         {isPlayer ? (
           <div className="eh-hand">
             {(handOpen || phase === 'reading') && props.giftBar}
+            {phase === 'question' && myAnswer !== null && props.teamVoice && (
+              <VoiceRow pct={props.teamVoice.pct} n={props.teamVoice.n} myAnswer={myAnswer} />
+            )}
             {answers.map((answer, i) => {
               if (myAnswer === i) return null
               // A card taken out by a gift sinks away ("into the sea").
@@ -287,6 +297,7 @@ export function QuestionView(props: QuestionViewProps) {
                   onClick={() => onAnswer?.(i)}
                 >
                   <AnswerCard index={i} text={answer} />
+                  {open && props.teamVoice && <VoiceBadge pct={props.teamVoice.pct[i]} />}
                   {open && voters.length > 0 && (
                     <span className="gift-votes">
                       {voters.map((v) => (

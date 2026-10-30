@@ -5,6 +5,8 @@ import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, spring } from '../../motion'
 import { useT } from '../../i18n'
 import { rich } from './rich'
+import { TeamCard } from './game/Team'
+import { myTeamOf } from './modes'
 
 export function ArenaPlayerLobbyScreen() {
   const t = useT()
@@ -15,6 +17,8 @@ export function ArenaPlayerLobbyScreen() {
   if (!room) return null
   // Everyone else in the room, live as they join (you are the big portrait above).
   const others = room.players.filter((p) => p.id !== myPlayerId)
+  // Rebuild the Wall: teams form as people join, so show yours right away.
+  const mine = myTeamOf(room, myPlayerId)
 
   return (
     <div className="screen player-lobby-screen emp">
@@ -52,6 +56,7 @@ export function ArenaPlayerLobbyScreen() {
         <div className="chip">{t('arena.playerLobby.game', { code: room.code })}</div>
         <div className="chip chip-mode">{t(`arena.modes.${room.config.mode ?? 'classic'}.label`)}</div>
         <p className="arena-hint player-mode-desc">{t(`arena.modes.${room.config.mode ?? 'classic'}.desc`)}</p>
+        {mine && <TeamCard team={mine.team} mates={mine.mates} />}
 
         <div className="player-lobby-wait">
           <div className="slot-spinner" />
