@@ -60,7 +60,10 @@ export function loadStats(): PlayerStats {
     if (!raw) return EMPTY_STATS
     const parsed = JSON.parse(raw)
     if (parsed.wins !== undefined && parsed.firstPlace === undefined) parsed.firstPlace = parsed.wins // legacy
-    return { ...EMPTY_STATS, ...parsed }
+    // Only finite numbers survive — a damaged entry must not crash the Profile screen.
+    const out = { ...EMPTY_STATS }
+    for (const k of Object.keys(out) as Array<keyof PlayerStats>) if (Number.isFinite(parsed[k])) out[k] = parsed[k]
+    return out
   } catch {
     return EMPTY_STATS
   }
@@ -131,8 +134,13 @@ export function loadPlayer(): PlayerProfile | null {
     const raw = localStorage.getItem(PLAYER_KEY)
     // Merge over defaults so profiles saved before a field existed still load.
     if (!raw) return null
-    const player = { ...DEFAULT_PLAYER, ...(JSON.parse(raw) as Partial<PlayerProfile>) } as PlayerProfile
-    return { ...player, level: levelForXp(player.xp) } // the saved level may be from an older curve
+    const p = { ...DEFAULT_PLAYER, ...(JSON.parse(raw) as Partial<PlayerProfile>) } as PlayerProfile
+    // A damaged entry must not crash the screens that format these.
+    if (typeof p.name !== 'string') p.name = DEFAULT_PLAYER.name
+    if (!Number.isFinite(p.coins)) p.coins = 0
+    if (!Number.isFinite(p.xp)) p.xp = 0
+    p.level = levelForXp(p.xp) // the saved level may be from an older curve
+    return p
   } catch {
     return null
   }
