@@ -119,7 +119,7 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
     let bank: Question[]
     let excluded: Set<string>
     try {
-      ;[bank, , excluded] = await Promise.all([loadBank(), loadVerses(useLocale.getState().locale), loadExclusions()])
+      ;[bank, , excluded] = await Promise.all([loadBank(useLocale.getState().locale), loadVerses(useLocale.getState().locale), loadExclusions()])
     } catch {
       // Chunk failed to load (offline web build) — tapping again retries.
       set({ loading: false })

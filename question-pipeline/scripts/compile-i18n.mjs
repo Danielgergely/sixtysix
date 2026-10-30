@@ -4,7 +4,8 @@
 //   node scripts/compile-i18n.mjs
 // In:  i18n/<lang>.json (translated questions), data/<lang>-bible.json
 //      (fetch-bibles-i18n.mjs + fetch-bibles-modern.mjs), data/hu-karoli.json.
-// Out: ../app/src/questions/bank.json (text/answers gain de, hu),
+// Out: ../app/src/questions/bank.json (text/answers gain de, hu) and bank.<lang>.json
+//      (the app's per-language copies),
 //      ../app/src/questions/verses.<lang>.json: { [id]: { ref, text } }, the
 //      reference written the way that language does ("1. Mose 2,22", "1Móz 2,22").
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
@@ -170,3 +171,11 @@ for (const lang of ['de', 'hu']) {
   console.log(`${lang}: ${translated}/${bank.length} questions translated, ${Object.keys(verses).length} verses`)
 }
 writeFileSync(join(appQ, 'bank.json'), JSON.stringify(bank, null, 2) + '\n')
+// The app downloads only the player's language (+ English as the fallback):
+// bank.<lang>.json is bank.json with the other languages left out. The arena
+// server keeps reading the full bank.json.
+for (const lang of ['en', 'de', 'hu']) {
+  const keep = (o) => Object.fromEntries(Object.entries(o).filter(([l]) => l === 'en' || l === lang))
+  const slim = bank.map((q) => ({ ...q, text: keep(q.text), answers: keep(q.answers) }))
+  writeFileSync(join(appQ, `bank.${lang}.json`), JSON.stringify(slim))
+}

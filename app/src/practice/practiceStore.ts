@@ -140,7 +140,8 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     set({ loading: true })
     try {
       // The out-of-play list is refreshed along (the cached one covers offline play).
-      const [loaded] = await Promise.all([bank.length ? bank : loadBank(), loadVerses(useLocale.getState().locale), loadExclusions()])
+      // Reloaded per start: cached per language, so a language switch picks up the new one.
+      const [loaded] = await Promise.all([loadBank(useLocale.getState().locale), loadVerses(useLocale.getState().locale), loadExclusions()])
       bank = loaded
     } catch {
       // Chunk failed to load (offline web build) — let the player try again.
