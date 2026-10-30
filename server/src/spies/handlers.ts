@@ -325,6 +325,7 @@ function gameOver(io: SpiesIO, room: SRoom, winner: SpiesTeam | null, reason: Sp
   if (winner) for (const p of room.players.values()) if (p.team === winner) p.wins++
   setTimer(io, room, 0, () => {})
   for (const t of SPIES_TEAMS) clearTimeout(room.smTimers[t])
+  room.smTimers = {}
   console.log(`[spies] ${room.code}: game ${room.game} over (${reason}, ${winner ?? 'nobody'} wins)`)
   broadcast(io, room)
   sendAllKeys(io, room)
@@ -349,7 +350,7 @@ const fold = (s: string) =>
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
-    .replace(/[^a-z0-9]/g, '')
+    .replace(/[^\p{L}\p{N}]/gu, '')
 const stem = (s: string) => s.replace(/(es|s)$/, '')
 
 /** Clean a clue: one word (letters, digits, ' and -), or '' if invalid. */
@@ -365,11 +366,13 @@ export function cleanClueWord(raw: unknown): string {
 export function clashesWithGrid(clue: string, words: string[]): boolean {
   const c = fold(clue)
   if (!c) return true
+  // "Yes" must not count as part of every word with a y in it.
+  const part = stem(c).length >= 3 ? stem(c) : c
   return words.some((w) => {
     const g = fold(w)
     if (c === g || stem(c) === stem(g)) return true
     if (g.length >= 3 && c.includes(g)) return true
-    if (c.length >= 3 && g.includes(stem(c))) return true
+    if (c.length >= 3 && g.includes(part)) return true
     return false
   })
 }
@@ -455,7 +458,10 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
       p.connected = true
       if (typeof payload.name === 'string' && payload.name.trim()) p.name = cleanName(payload.name)
       if (payload.avatar !== undefined) p.avatar = cleanAvatar(payload.avatar)
-      if (room.spymasters[p.team] === secret) clearTimeout(room.smTimers[p.team])
+      if (room.spymasters[p.team] === secret) {
+        clearTimeout(room.smTimers[p.team])
+        room.smTimers[p.team] = undefined
+      }
     } else {
       if (room.players.size >= SPIES_MAX_PLAYERS) return ack({ ok: false, error: `The camp is full (${SPIES_MAX_PLAYERS} players)` })
       // New players join the smaller tribe (co-op: Judah) as field agents.
@@ -476,6 +482,13 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     }
     ensureLeader(room)
     if (room.phase === 'lobby') ensureSpymasters(room)
+    // A tribe whose spy master is gone (grace over, nobody was online to take
+    // the key) gets one now that someone is back.
+    if (inGame(room))
+      for (const t of playingTeams(room)) {
+        const sm = room.spymasters[t]
+        if (!(sm && room.players.get(sm)?.connected) && !room.smTimers[t]) promote(io, room, t)
+      }
     void socket.join(channel(room))
     ack({ ok: true, playerId: p.id, state: toSpiesState(room) })
     afterRosterChange(io, room)
