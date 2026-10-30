@@ -1,5 +1,6 @@
 import type { Server, Socket } from 'socket.io'
 import type {
+  GameLocale,
   SpiesClientToServerEvents,
   SpiesColour,
   SpiesEndReason,
@@ -8,6 +9,7 @@ import type {
   SpiesTeam,
 } from '@sixtysix/shared'
 import {
+  cleanLocale,
   SPIES_CLUE_MAX,
   SPIES_FORCE_MS,
   SPIES_GRID,
@@ -31,9 +33,11 @@ import {
   getSpiesRoom,
   newPlayerId,
   remaining,
+  roomLocales,
   startSpiesGC,
   toSpiesState,
   touch,
+  wordIn,
   type SPlayer,
   type SRoom,
 } from './rooms.js'
@@ -183,17 +187,27 @@ function startCheck(room: SRoom): string | null {
 
 // ── game loop ───────────────────────────────────────────────────────────
 
-/** 25 words, none of which contains another (so clue checks stay fair), fresh ones first. */
-function dealWords(room: SRoom): string[] {
+/**
+ * 25 words, fresh ones first, none of which contains another in any language
+ * seated in the room (so clue checks stay fair: Hungarian "Jezábel" and "Ábel"
+ * never share a grid when a Hungarian player is in). A player who joins in
+ * mid-game with a new language may see such a pair; the clue check still covers them.
+ */
+export function dealWords(room: SRoom, langs: readonly GameLocale[] = roomLocales(room)): string[] {
   let pool = shuffle(WORDS.filter((w) => !room.usedWords.has(w)))
   if (pool.length < SPIES_GRID * 2) {
     room.usedWords.clear()
     pool = shuffle([...WORDS])
   }
   const picked: string[] = []
+  const clash = (a: string, b: string) =>
+    langs.some((l) => {
+      const x = fold(wordIn(a, l))
+      const y = fold(wordIn(b, l))
+      return x.includes(y) || y.includes(x)
+    })
   for (const w of pool) {
-    const lw = w.toLowerCase()
-    if (picked.some((x) => x.toLowerCase().includes(lw) || lw.includes(x.toLowerCase()))) continue
+    if (picked.some((x) => clash(x, w))) continue
     picked.push(w)
     if (picked.length === SPIES_GRID) break
   }
@@ -347,6 +361,8 @@ function afterRosterChange(io: SpiesIO, room: SRoom): void {
 
 const fold = (s: string) =>
   s
+    .toLowerCase()
+    .replace(/ß/g, 'ss') // German: no accent to drop
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
@@ -362,7 +378,10 @@ export function cleanClueWord(raw: unknown): string {
   return s
 }
 
-/** True if the clue is a visible grid word, contains one, or is part of one. */
+/**
+ * True if the clue is a visible grid word, contains one, or is part of one.
+ * `words`: the visible cards in every language seated in the room (`visibleWords`).
+ */
 export function clashesWithGrid(clue: string, words: string[]): boolean {
   const c = fold(clue)
   if (!c) return true
@@ -375,6 +394,12 @@ export function clashesWithGrid(clue: string, words: string[]): boolean {
     if (c.length >= 3 && g.includes(part)) return true
     return false
   })
+}
+
+/** The hidden cards' words in every language seated in the room. */
+export function visibleWords(room: SRoom): string[] {
+  const langs = roomLocales(room)
+  return room.words.filter((_, i) => !room.revealed[i]).flatMap((w) => langs.map((l) => wordIn(w, l)))
 }
 
 // ── departures ──────────────────────────────────────────────────────────
@@ -443,7 +468,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     return p ? { room: found.room, secret: found.secret, p } : undefined
   }
 
-  const join = (room: SRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown }, ack: Ack) => {
+  const join = (room: SRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown; locale?: unknown }, ack: Ack) => {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
     // One seat per socket: leave any other spies room first.
@@ -458,6 +483,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
       p.connected = true
       if (typeof payload.name === 'string' && payload.name.trim()) p.name = cleanName(payload.name)
       if (payload.avatar !== undefined) p.avatar = cleanAvatar(payload.avatar)
+      if (payload.locale !== undefined) p.locale = cleanLocale(payload.locale)
       if (room.spymasters[p.team] === secret) {
         clearTimeout(room.smTimers[p.team])
         room.smTimers[p.team] = undefined
@@ -477,6 +503,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
         served: 0,
         lastServed: 0,
         seq: room.seq++,
+        locale: cleanLocale(payload.locale),
       }
       room.players.set(secret, p)
     }
@@ -530,6 +557,12 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     // Boards just stop listening.
     for (const r of socket.rooms) if (r.startsWith('spies:')) void socket.leave(r)
     ackOf(cb)(true)
+  })
+
+  // The player switched the app language: cards carry every language, so only the clue check changes.
+  on('spies:locale', (raw) => {
+    const s = seat()
+    if (s) s.p.locale = cleanLocale((raw as { locale?: unknown } | undefined)?.locale)
   })
 
   const lobbySeat = () => {
@@ -595,8 +628,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     if (!word) return ack({ ok: false, error: 'One word only (no spaces)' })
     const n = payload.number
     if (typeof n !== 'number' || !Number.isInteger(n) || n < 1 || n > SPIES_MAX_NUMBER) return ack({ ok: false, error: 'Pick a number' })
-    const visible = room.words.filter((_, i) => !room.revealed[i])
-    if (clashesWithGrid(word, visible)) return ack({ ok: false, error: 'That’s a word on the board (or part of one)!' })
+    if (clashesWithGrid(word, visibleWords(room))) return ack({ ok: false, error: 'That’s a word on the board (or part of one)!' })
     ack({ ok: true })
     beginGuess(io, room, word, n)
   })

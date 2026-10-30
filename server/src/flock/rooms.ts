@@ -2,21 +2,38 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FlockBotLevel, FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState, FlockWord, FlockWordList } from '@sixtysix/shared'
-import { FLOCK_CATEGORIES } from '@sixtysix/shared'
+import type { FlockBotLevel, FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState, FlockWord, FlockWordList, GameLocale } from '@sixtysix/shared'
+import { FLOCK_CATEGORIES, GAME_LOCALES } from '@sixtysix/shared'
 
 /**
  * Wolf in the Flock rooms: an in-memory registry with its own codes and GC,
  * separate from the arena's (rooms.ts) so the two games never interact.
  */
 
-// Shared with the app's one-phone mode.
-export const WORDS: FlockWordList = JSON.parse(
-  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'shared', 'src', 'flockWords.json'), 'utf8'),
-)
+// Shared with the app's one-phone mode. The translated lists have the same
+// categories, order and length (scripts/check-words-i18n.mts checks them), so
+// a dealt word is a category + an index, shown to each player in their language.
+const readList = (locale: GameLocale): FlockWordList =>
+  JSON.parse(
+    readFileSync(
+      join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'shared', 'src', locale === 'en' ? 'flockWords.json' : `flockWords.${locale}.json`),
+      'utf8',
+    ),
+  )
+export const LISTS = Object.fromEntries(GAME_LOCALES.map((l) => [l, readList(l)])) as Record<GameLocale, FlockWordList>
+/** The English list (the ids). */
+export const WORDS: FlockWordList = LISTS.en
 for (const c of FLOCK_CATEGORIES) {
   if (!WORDS[c]?.length) throw new Error(`[flock] no words for ${c}`)
   for (const w of WORDS[c]) if (!w.wolfHint) throw new Error(`[flock] no wolfHint for ${w.word}`)
+  for (const l of GAME_LOCALES) {
+    const list = LISTS[l][c]
+    if (list?.length !== WORDS[c].length) throw new Error(`[flock] ${l} ${c}: ${list?.length} words, English has ${WORDS[c].length}`)
+    list.forEach((w, i) => {
+      if (l !== 'en' && w.en !== WORDS[c][i].word) throw new Error(`[flock] ${l} ${c}[${i}] is "${w.en}", English has "${WORDS[c][i].word}"`)
+      if (!w.wolfHint) throw new Error(`[flock] no wolfHint for ${l} ${w.word}`)
+    })
+  }
 }
 
 export interface FPlayer {
@@ -28,6 +45,8 @@ export interface FPlayer {
   socketId: string | null
   /** A server-side bot (bots.ts): always connected, no socket, a `bot-…` secret. */
   bot: boolean
+  /** The player's app language (a bot uses its leader's: `localeOf`). */
+  locale: GameLocale
   /** The bot's next action, if one is scheduled. */
   botTimer?: ReturnType<typeof setTimeout>
 }
@@ -42,7 +61,10 @@ export interface FRoom {
   /** Games started in this room (rewards are paid once per game). */
   game: number
   category: FlockCategory | null
+  /** The dealt entry in English (the id); `wordIn` gives it in another language. */
   word: FlockWord | null
+  /** Its index in the category (the same in every language's list). */
+  wordIdx: number
   /** This game's wolves (secrets), out or not. */
   wolves: string[]
   /** Players dealt into this game (late joiners wait for the next one). */
@@ -115,6 +137,7 @@ export function createFlockRoom(): FRoom {
     game: 0,
     category: null,
     word: null,
+    wordIdx: 0,
     wolves: [],
     dealt: new Set(),
     dealtHumans: 0,
@@ -168,6 +191,27 @@ export const touch = (room: FRoom): void => {
 }
 
 export const newPlayerId = (): string => randomUUID()
+
+// ── languages ───────────────────────────────────────────────────────────
+
+/** A seat's language; bots speak the leader's. */
+export function localeOf(room: FRoom, p: FPlayer): GameLocale {
+  if (!p.bot) return p.locale
+  const leader = room.leaderSecret ? room.players.get(room.leaderSecret) : undefined
+  return leader && !leader.bot ? leader.locale : p.locale
+}
+
+/** Every language seated in the room (English first when present); the clue and guess checks cover all of them. */
+export function roomLocales(room: FRoom): GameLocale[] {
+  const present = new Set([...room.players.values()].map((p) => localeOf(room, p)))
+  const out = GAME_LOCALES.filter((l) => present.has(l))
+  return out.length ? out : ['en']
+}
+
+/** The dealt word in a language. */
+export function wordIn(room: FRoom, locale: GameLocale): FlockWord | null {
+  return room.category ? (LISTS[locale][room.category][room.wordIdx] ?? null) : null
+}
 
 function judgeView(room: FRoom, wolf: string, ids: (s: Iterable<string>) => string[]): FlockState['judge'] {
   // While another wolf hides, the guess (a near-miss of the word) goes only to the sheep.

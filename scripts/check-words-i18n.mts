@@ -7,6 +7,11 @@
  * - Wolf in the Flock: shared/src/flockWords.<lang>.json — same categories, order and
  *   length as shared/src/flockWords.json; each entry { en, word, hint, ref, wolfHint, aliases, clues }.
  * - Twelve Spies: server/src/spies/words.<lang>.json — { "<English word>": "<translation>" }.
+ *   Words that contain each other are fine (dealing keeps them off one grid per
+ *   room language); two English words with the same translation are not.
+ *
+ * The flock checks use the server's rules for a room with this language
+ * (German filler words, Hungarian case endings).
  *
  * Exits 1 on any error (warnings don't fail).
  */
@@ -16,7 +21,7 @@ import { fileURLToPath } from 'node:url'
 import { judgeGuess, tokens } from '../server/src/flock/match.ts'
 import { revealsWord, saysWord } from '../server/src/flock/handlers.ts'
 
-const lang = process.argv[2]
+const lang = process.argv[2] as 'de' | 'hu'
 if (!lang || !/^[a-z]{2}$/.test(lang) || lang === 'en') {
   console.error('usage: npx tsx scripts/check-words-i18n.mts <lang>   (e.g. de, hu)')
   process.exit(2)
@@ -28,6 +33,7 @@ const readJson = (p: string) => JSON.parse(readFileSync(join(root, p), 'utf8'))
 const errors: string[] = []
 const warnings: string[] = []
 const err = (m: string) => errors.push(m)
+const langs = [lang]
 const warn = (m: string) => warnings.push(m)
 
 // ── Wolf in the Flock ───────────────────────────────────────────────────
@@ -76,29 +82,28 @@ for (const cat of enCats) {
     // The word and each alias count as the word (with the category's other entries as rivals).
     const rivals = rivalsOf(e)
     for (const name of [e.word, ...aliases]) {
-      const v = judgeGuess(name, e.word, aliases, rivals)
+      const v = judgeGuess(name, e.word, aliases, rivals, langs)
       if (v !== 'match') err(`${at}: "${name}" is judged "${v}", not a match`)
-      if (!tokens(name).length) err(`${at}: "${name}" has no letters the server can compare`)
+      if (!tokens(name, langs).length) err(`${at}: "${name}" has no letters the server can compare`)
     }
     // No other entry of the category is taken for this one.
     for (const o of list) {
       if (o === e) continue
       for (const name of [o.word, ...(o.aliases ?? [])]) {
-        if (judgeGuess(name, e.word, aliases, rivals) === 'match') err(`${at}: "${name}" (${o.word}) is also judged a match`)
+        if (judgeGuess(name, e.word, aliases, rivals, langs) === 'match') err(`${at}: "${name}" (${o.word}) is also judged a match`)
       }
     }
     // Neither the wolf hint nor a clue gives the word away.
-    if (saysWord(e.wolfHint, e) || revealsWord(e.wolfHint, e.word)) err(`${at}: wolfHint "${e.wolfHint}" says the word`)
+    if (saysWord(e.wolfHint, e, langs) || revealsWord(e.wolfHint, e.word, langs)) err(`${at}: wolfHint "${e.wolfHint}" says the word`)
     const seen = new Map<string, string>()
     for (const c of e.clues) {
-      if (saysWord(c, e)) err(`${at}: clue "${c}" says the word or an alias`)
+      if (saysWord(c, e, langs)) err(`${at}: clue "${c}" says the word or an alias`)
       if (c.trim().split(/\s+/).length > 3 || Array.from(c).length > 24) err(`${at}: clue "${c}" is too long for a player clue (≤ 3 words, 24 chars)`)
-      for (const t of new Set(tokens(c).filter((t) => t.length >= 3))) {
+      for (const t of new Set(tokens(c, langs).filter((t) => t.length >= 3))) {
         if (seen.has(t)) err(`${at}: clues "${seen.get(t)}" and "${c}" repeat "${t}"`)
         else seen.set(t, c)
       }
     }
-    if (/ß/.test([e.word, ...aliases].join(' '))) warn(`${at}: "ß" in the word/aliases — the server's tokens() turns it into a word break`)
   })
 }
 
@@ -106,6 +111,8 @@ for (const cat of enCats) {
 
 const fold = (s: string) =>
   s
+    .toLowerCase()
+    .replace(/ß/g, 'ss')
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
@@ -122,6 +129,7 @@ for (const w of enSpies) {
 }
 for (const k of Object.keys(spies)) if (!enSpies.includes(k)) err(`spies: "${k}" is not an English word of the list`)
 const vals = enSpies.map((w) => [w, spies[w]] as const).filter(([, t]) => typeof t === 'string' && t.trim())
+const contained: string[] = []
 for (const [w, t] of vals) {
   for (const [w2, t2] of vals) {
     if (w === w2) continue
@@ -129,9 +137,11 @@ for (const [w, t] of vals) {
     const b = fold(t2)
     if (a === b) {
       if (w < w2) err(`spies: "${w}" and "${w2}" both → "${t}"`)
-    } else if (a.includes(b)) err(`spies: "${t}" (${w}) contains "${t2}" (${w2})`)
+    } else if (a.includes(b)) contained.push(`${t} ⊃ ${t2}`)
   }
 }
+// Fine: dealWords never puts both on one grid in a room with this language.
+if (contained.length) console.log(`spies: ${contained.length} pairs contain each other (never dealt together): ${contained.join(', ')}`)
 
 // ── report ──────────────────────────────────────────────────────────────
 
