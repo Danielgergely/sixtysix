@@ -112,6 +112,8 @@ function BoardPhase({ state }: { state: FlockState }) {
   }
   const speaker = playerById(state, state.turnPlayerId)
   const d = state.decide
+  const caught = state.guessers.map((id) => playerById(state, id)?.name ?? '?').join(' & ')
+  const judged = playerById(state, state.judge?.wolfId)
   const banner =
     state.phase === 'secret'
       ? state.wolfCount > 1
@@ -120,12 +122,16 @@ function BoardPhase({ state }: { state: FlockState }) {
       : state.phase === 'clues'
         ? `${speaker?.name ?? '…'}, your clue!`
         : state.phase === 'vote'
-          ? state.finalVote
-            ? 'Final vote: a tie lets the wolf escape!'
-            : state.wolfCount > 1
-            ? 'Vote now: who is a wolf?'
-            : 'Vote now: who is the wolf?'
-          : `Lap ${state.lap} done — vote now or one more lap?${d ? `  🗳️ ${d.vote.length} · 🔁 ${d.more.length}` : ''}`
+          ? state.votesEach > 1
+            ? `Vote now: everyone names ${state.votesEach} wolves!`
+            : state.finalVote
+              ? 'Final vote: a tie lets the wolf escape!'
+              : 'Vote now: who is the wolf?'
+          : state.phase === 'guess'
+            ? `${caught} caught! One last chance: type the word…`
+            : state.phase === 'judge'
+              ? `Close call! Does ${judged?.name ?? 'the wolf'}’s ${state.judge?.guess ? `“${state.judge.guess}”` : 'guess'} count?  👍 ${state.judge?.yes.length ?? 0} · 👎 ${state.judge?.no.length ?? 0}`
+              : `Lap ${state.lap} done — vote now or one more lap?${d ? `  🗳️ ${d.vote.length} · 🔁 ${d.more.length}` : ''}`
   return (
     <div className="flb-split">
       <div className="flb-stage">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_CLUE_MAX, FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, CHARACTERS, type CharacterId, type FlockSecret, type FlockState } from '@sixtysix/shared'
+import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
@@ -23,7 +23,6 @@ export function FlockScreen() {
     <div className="screen fl emp">
       <FlockTopBar state={state} />
       <div className="fl-body">
-        <WolfGuess state={state} />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
@@ -52,6 +51,10 @@ function PhaseView({ state }: { state: FlockState }) {
       return <DecidePhase state={state} />
     case 'vote':
       return <VotePhase state={state} />
+    case 'guess':
+      return <GuessPhase state={state} />
+    case 'judge':
+      return <JudgePhase state={state} />
     case 'out':
       return (
         <div className="fl-col fl-scroll">
@@ -277,7 +280,7 @@ function SecretPhase({ state }: { state: FlockState }) {
       <SecretCard secret={secret} big />
       <p className="fl-hint-light">
         Keep it hidden!{' '}
-        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. You may name the word at any time.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
+        {secret.role === 'wolf' ? 'Nobody else knows you are a wolf. If they catch you, you can still win by typing the word.' : secret.wolfCount > 1 ? 'Two of the others are wolves.' : 'One of the others is the wolf.'}
       </p>
       {me?.done ? (
         <p className="fl-wait">
@@ -403,20 +406,24 @@ function DecidePhase({ state }: { state: FlockState }) {
 function VotePhase({ state }: { state: FlockState }) {
   const { myId, secret, me, out } = useMine(state)
   const vote = useFlockStore((s) => s.vote)
-  const [pick, setPick] = useState<string | null>(null)
+  const [picks, setPicks] = useState<string[]>([])
   const voted = me?.done
   const can = !!secret && !out
+  const need = state.votesEach
   const candidates = state.turnOrder
     .map((id) => playerById(state, id))
     .filter((p): p is NonNullable<typeof p> => !!p && p.id !== myId && !p.out)
   const voters = state.players.filter((p) => p.playing && !p.out && p.connected)
   const votedCount = voters.filter((p) => p.done).length
+  const toggle = (id: string) =>
+    setPicks((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : need === 1 ? [id] : cur.length < need ? [...cur, id] : [...cur.slice(1), id]))
+  const names = picks.map((id) => playerById(state, id)?.name.toUpperCase()).join(' & ')
   return (
     <div className="fl-col">
       <div className="fl-row-between">
         <div className="fl-phase-title left">
           <span>{state.finalVote ? 'Final vote' : `Vote · lap ${state.lap}`}</span>
-          <strong>{state.wolfCount > 1 ? 'Who is a wolf?' : 'Who is the wolf?'}</strong>
+          <strong>{need > 1 ? `Name ${need} wolves` : state.wolfCount > 1 ? 'Who is the last wolf?' : 'Who is the wolf?'}</strong>
         </div>
         <Timer size={46} />
       </div>
@@ -426,7 +433,8 @@ function VotePhase({ state }: { state: FlockState }) {
         <p className="fl-wait">🗳️ Vote cast! {votedCount}/{voters.length} have voted…</p>
       ) : (
         <p className="fl-hint-light">
-          {secret.role === 'wolf' ? 'Point at a sheep to throw them off!' : 'The most-voted player is out.'} {state.finalVote ? 'A tie lets the wolf escape.' : 'A tie: nobody leaves.'}
+          {secret.role === 'wolf' ? 'Point at sheep to throw them off!' : need > 1 ? `You have ${need} votes: pick ${need} different players. The ${need} most-voted are out.` : 'The most-voted player is out.'}{' '}
+          {state.finalVote ? 'A tie lets the wolves escape.' : 'A tie: nobody leaves.'}
         </p>
       )}
       <div className="fl-vote-grid fl-scroll">
@@ -435,9 +443,9 @@ function VotePhase({ state }: { state: FlockState }) {
           return (
             <motion.button
               key={p.id}
-              className={`fl-vote-card ${pick === p.id ? 'picked' : ''}`}
+              className={`fl-vote-card ${picks.includes(p.id) ? 'picked' : ''}`}
               disabled={!can || voted}
-              onClick={() => setPick(p.id)}
+              onClick={() => toggle(p.id)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring.gentle, delay: i * STAGGER }}
@@ -450,79 +458,102 @@ function VotePhase({ state }: { state: FlockState }) {
         })}
       </div>
       {can && !voted && (
-        <button className="btn-play fl-cta" disabled={!pick} onClick={() => pick && vote(pick)}>
-          {pick ? `VOTE OUT ${playerById(state, pick)?.name.toUpperCase()}` : 'PICK A PLAYER'}
+        <button className="btn-play fl-cta" disabled={picks.length !== need} onClick={() => picks.length === need && vote(picks)}>
+          {picks.length === need ? `VOTE OUT ${names}` : need > 1 ? `PICK ${need - picks.length} MORE` : 'PICK A PLAYER'}
         </button>
       )}
     </div>
   )
 }
 
-/** The wolf's "I know the word!" — available all game long; a wrong pick puts the wolf out. */
-function WolfGuess({ state }: { state: FlockState }) {
-  const { secret, out } = useMine(state)
+/** A caught wolf types the word; everyone else waits. */
+function GuessPhase({ state }: { state: FlockState }) {
+  const { myId, me } = useMine(state)
   const guess = useFlockStore((s) => s.guess)
-  const [open, setOpen] = useState(false)
-  const [picked, setPicked] = useState<string | null>(null)
-  const live = ['secret', 'clues', 'decide', 'vote'].includes(state.phase)
-  if (!live || out || secret?.role !== 'wolf' || !secret.guessOptions) return null
+  const [text, setText] = useState('')
+  const caught = state.guessers.map((id) => playerById(state, id)).filter((p): p is NonNullable<typeof p> => !!p)
+  const typing = !!myId && state.guessers.includes(myId) && !me?.done
+  const names = caught.map((p) => p.name).join(' & ')
   return (
-    <>
-      <button className="fl-wolf-fab" onClick={() => setOpen(true)}>
-        🐺 I know the word!
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div className="fl-sheet-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)}>
-            <motion.div className="fl-sheet" initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} transition={spring.snappy} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
-              <GuessSheet secret={secret} category={state.category} picked={picked} onPick={setPicked} />
-              <div className="fl-sheet-actions">
-                <button className="btn-secondary" onClick={() => setOpen(false)}>
-                  Not yet
-                </button>
-                <button
-                  className="btn-play"
-                  disabled={!picked}
-                  onClick={() => {
-                    if (!picked) return
-                    guess(picked)
-                    setOpen(false)
-                  }}
-                >
-                  {picked ? `IT’S ${picked.toUpperCase()}!` : 'PICK A WORD'}
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <div className="fl-center">
+      <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
+        <div className="fl-caught-row">
+          {caught.map((p) => (
+            <Token key={p.id} player={p} size={caught.length > 1 ? 84 : 110} badge="🐺" />
+          ))}
+        </div>
+        <strong>
+          {names} {caught.length > 1 ? 'were wolves!' : 'was a wolf!'}
+        </strong>
+      </motion.div>
+      {typing ? (
+        <div className="fl-clue-input">
+          <div className="fl-your-turn">🐺 Caught! Type the word to win anyway</div>
+          <p className="fl-hint-light">{state.category && CATEGORY_LABEL[state.category]} — small typos are fine.</p>
+          <div className="fl-input-row">
+            <input
+              className="profile-name-input"
+              autoFocus
+              maxLength={FLOCK_GUESS_MAX}
+              placeholder="The secret word…"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && text.trim() && guess(text)}
+            />
+            <button className="btn-play fl-send" disabled={!text.trim()} onClick={() => guess(text)}>
+              ➤
+            </button>
+          </div>
+        </div>
+      ) : (
+        <p className="fl-wait">{me?.done ? 'Guess sent — fingers crossed…' : `${caught.length > 1 ? 'The wolves get' : 'The wolf gets'} one last chance: typing the word…`}</p>
+      )}
+      <Timer size={70} />
+    </div>
   )
 }
 
-function GuessSheet({ secret, category, picked, onPick }: { secret: FlockSecret; category: FlockState['category']; picked: string | null; onPick: (w: string) => void }) {
+/** A close guess: the sheep decide whether it counts (a tie counts). */
+function JudgePhase({ state }: { state: FlockState }) {
+  const { myId, secret, out } = useMine(state)
+  const judge = useFlockStore((s) => s.judge)
+  const j = state.judge
+  if (!j) return null
+  const wolf = playerById(state, j.wolfId)
+  const guess = j.guess ?? secret?.judgeGuess
+  const mine = myId && j.yes.includes(myId) ? 'yes' : myId && j.no.includes(myId) ? 'no' : null
+  const canJudge = secret?.role === 'sheep' && !out
   return (
-    <>
-      <div className="fl-phase-title left">
-        <span>{category && CATEGORY_LABEL[category]}</span>
-        <strong>Name the word</strong>
+    <div className="fl-center">
+      <div className="fl-phase-title">
+        <span>Close call</span>
+        <strong>Does it count?</strong>
       </div>
-      <p className="fl-hint-light">Right: you win at once. Wrong: you are out.</p>
-      <div className="fl-guess-grid">
-        {secret.guessOptions!.map((w, i) => (
-          <motion.button
-            key={w}
-            className={`fl-guess ${picked === w ? 'picked' : ''}`}
-            onClick={() => onPick(w)}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring.bouncy, delay: i * STAGGER }}
-          >
-            {w}
-          </motion.button>
-        ))}
+      <div className="fl-judge-card">
+        {wolf && <Token player={wolf} size={56} badge="🐺" />}
+        <span>{wolf?.name ?? 'The wolf'} typed</span>
+        <strong>{guess ? `“${guess}”` : '…'}</strong>
+        {canJudge && secret.word && (
+          <small>
+            The word is <b>{secret.word}</b>
+          </small>
+        )}
       </div>
-    </>
+      {canJudge ? (
+        <div className="fl-decide">
+          <button className={`fl-decide-btn more ${mine === 'yes' ? 'picked' : ''}`} onClick={() => judge(true)}>
+            👍 Counts <small>{j.yes.length}</small>
+          </button>
+          <button className={`fl-decide-btn vote ${mine === 'no' ? 'picked' : ''}`} onClick={() => judge(false)}>
+            👎 Doesn’t <small>{j.no.length}</small>
+          </button>
+        </div>
+      ) : (
+        <p className="fl-wait">The flock is deciding whether the guess counts… 👍 {j.yes.length} · 👎 {j.no.length}</p>
+      )}
+      <p className="fl-hint-light">Be fair! A tie counts for the wolf.</p>
+      <Timer size={46} />
+    </div>
   )
 }
 

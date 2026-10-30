@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
-import { FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, type FlockResult, type FlockState } from '@sixtysix/shared'
+import { FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, type FlockGuess, type FlockResult, type FlockState } from '@sixtysix/shared'
 import { fireCannons, fireConfetti, spring } from '../../motion'
 import { Token } from './parts'
 import { playerById } from '../../flock/util'
@@ -11,16 +11,16 @@ export function Rules() {
       <li>Everyone secretly gets the same Bible word — a person, place, story or object. One player is the <b>wolf</b> 🐺 and only sees the category. With {FLOCK_TWO_WOLVES_FROM}+ players there are <b>two wolves</b>, who don’t know each other.</li>
       <li>In turn (random order), each player gives a <b>short clue</b> (up to 3 words). Sheep: prove you know the word without giving it away. Wolf: bluff! A wolf who has to go first gets a hint.</li>
       <li>After every lap the flock decides: <b>vote now</b> or <b>one more lap</b>. After lap {FLOCK_MAX_LAPS} the vote is final.</li>
-      <li>The most-voted player is out. A wolf? <b>The flock wins.</b> A sheep? <b>The wolf wins.</b> A tie: nobody leaves (on the final vote, the wolf escapes).</li>
-      <li>At any moment the wolf may <b>name the word</b> from a list. Right: the wolf wins. Wrong: the wolf is out.</li>
+      <li>The most-voted player is out (with two wolves hiding, everyone has two votes and the two most-voted are out). A sheep out? <b>The wolf wins.</b> A tie: nobody leaves (on the final vote, the wolf escapes).</li>
+      <li>A caught wolf gets one last chance: <b>type the word</b>. Right: the wolf wins. Wrong: <b>the flock wins.</b> Small typos and other names count; for a close call, the flock decides.</li>
     </ol>
   )
 }
 
 /** Votes grouped by target. */
-function VoteTable({ state, votes, wolfIds, large }: { state: FlockState; votes: Record<string, string>; wolfIds: string[]; large: boolean }) {
+function VoteTable({ state, votes, wolfIds, large }: { state: FlockState; votes: Record<string, string[]>; wolfIds: string[]; large: boolean }) {
   const tally = new Map<string, string[]>()
-  for (const [voter, target] of Object.entries(votes)) tally.set(target, [...(tally.get(target) ?? []), voter])
+  for (const [voter, targets] of Object.entries(votes)) for (const target of targets) tally.set(target, [...(tally.get(target) ?? []), voter])
   if (tally.size === 0) return null
   return (
     <motion.div className="fl-votes" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}>
@@ -53,25 +53,25 @@ function VoteTable({ state, votes, wolfIds, large }: { state: FlockState; votes:
 
 function verdictLine(state: FlockState, r: FlockResult): string {
   const two = r.wolfIds.length > 1
-  const out = playerById(state, r.outId)
-  const guesser = playerById(state, r.guesserId)
+  const outNames = r.outIds.map((id) => playerById(state, id)?.name ?? 'Someone').join(' & ')
+  const won = r.guesses.find((g) => g.verdict === 'match' || g.verdict === 'accepted')
   switch (r.reason) {
     case 'caught':
-      return two ? 'Both wolves are out!' : `${out?.name ?? 'The wolf'} was the wolf!`
+      return two ? 'Both wolves were caught!' : `${outNames} was the wolf!`
     case 'wrongVote':
-      return `${out?.name ?? 'They'} was a sheep!`
+      return `${outNames} ${r.outIds.length > 1 ? 'were voted out — not all wolves!' : 'was a sheep!'}`
     case 'guessed':
-      return `${guesser?.name ?? 'The wolf'} named the word!`
-    case 'wrongGuess':
-      return `${guesser?.name ?? 'The wolf'} guessed “${r.guess}” — wrong!`
+      return `Caught — but ${playerById(state, won?.wolfId)?.name ?? 'the wolf'} knew the word!`
     case 'escaped':
-      return r.outId ? 'The wolves now outnumber the sheep.' : `The final vote tied — the ${two ? 'wolves' : 'wolf'} slipped away.`
+      return r.outIds.length ? 'The wolves now outnumber the sheep.' : `The final vote tied — the ${two ? 'wolves' : 'wolf'} slipped away.`
     case 'fled':
       return 'The wolf ran off!'
     case 'abandoned':
       return 'Too few players left to finish.'
   }
 }
+
+const VERDICT_MARK: Record<FlockGuess['verdict'], string> = { match: '✔', accepted: '✔ the flock agreed', rejected: '✘ the flock said no', wrong: '✘' }
 
 /** End of a game: who won, the word, the wolves and the deciding vote. */
 export function GameReveal({ state, large = false }: { state: FlockState; large?: boolean }) {
@@ -106,11 +106,13 @@ export function GameReveal({ state, large = false }: { state: FlockState; large?
           <div>
             <span className="fl-reveal-label">{two ? 'A wolf' : 'The wolf'}</span>
             <strong>{wolf?.name ?? 'Left the game'}</strong>
-            {r.guess && wolf && wolf.id === r.guesserId && (
-              <small>
-                Guessed “{r.guess}” {r.reason === 'guessed' ? '✔' : '✘'}
-              </small>
-            )}
+            {r.guesses
+              .filter((g) => g.wolfId === wolf?.id)
+              .map((g, j) => (
+                <small key={j}>
+                  Typed “{g.guess}” {VERDICT_MARK[g.verdict]}
+                </small>
+              ))}
           </div>
         </motion.div>
       ))}
@@ -119,28 +121,23 @@ export function GameReveal({ state, large = false }: { state: FlockState; large?
   )
 }
 
-/** Phase 'out': the game goes on after a tie, a wolf voted out (another still hiding) or a wrong guess. */
+/** Phase 'out': a tie, or one of two wolves caught (their guess failed) — the game goes on. */
 export function OutReveal({ state, large = false }: { state: FlockState; large?: boolean }) {
   const o = state.lastOut
   if (!o) return null
-  const p = playerById(state, o.playerId)
+  const caught = o.playerIds.map((id) => playerById(state, id)).filter((p): p is NonNullable<typeof p> => !!p)
   const left = state.wolvesLeft
-  const line =
-    o.reason === 'tie'
-      ? 'The vote tied — nobody leaves the flock.'
-      : o.reason === 'wrongGuess'
-        ? `${p?.name ?? 'A wolf'} guessed “${o.guess}” — wrong! That wolf is out.`
-        : `${p?.name ?? 'They'} was a wolf!`
+  const line = o.reason === 'tie' ? 'The vote tied — nobody leaves the flock.' : `${caught.map((p) => p.name).join(' & ')} was a wolf — and didn’t know the word!`
   return (
     <div className={`fl-reveal ${large ? 'large' : ''}`}>
       <motion.div className="fl-caught" initial={{ scale: 0.4, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={spring.bouncy}>
-        {p ? <Token player={p} size={large ? 140 : 110} badge={o.wasWolf ? '🐺' : undefined} /> : <span className="fl-out-tie">⚖️</span>}
+        {caught.length ? caught.map((p) => <Token key={p.id} player={p} size={large ? 140 : 110} badge="🐺" />) : <span className="fl-out-tie">⚖️</span>}
         <strong>{line}</strong>
       </motion.div>
       <p className="fl-wait">
         {left === 1 ? 'One wolf is still hiding.' : left > 1 ? `${left} wolves are still hiding.` : ''} The game goes on…
       </p>
-      <VoteTable state={state} votes={o.votes} wolfIds={o.wasWolf && o.playerId ? [o.playerId] : []} large={large} />
+      <VoteTable state={state} votes={o.votes} wolfIds={o.playerIds} large={large} />
     </div>
   )
 }

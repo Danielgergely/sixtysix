@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FlockCategory, FlockClue, FlockOut, FlockPhase, FlockResult, FlockState } from '@sixtysix/shared'
+import type { FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState } from '@sixtysix/shared'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 
 /**
@@ -16,6 +16,8 @@ export interface FlockWord {
   ref: string
   /** Shown to a wolf who has to give the first clue: associated, never the word. */
   wolfHint: string
+  /** Other names that count as the word when a caught wolf types it (and that sheep may not say). */
+  aliases?: string[]
 }
 
 export const WORDS: Record<FlockCategory, FlockWord[]> = JSON.parse(
@@ -60,10 +62,23 @@ export interface FRoom {
   /** 'secret': who has looked; 'decide': choice per player; 'vote': who has voted. */
   done: Set<string>
   decide: Map<string, boolean>
-  /** voter secret → target public id */
-  votes: Map<string, string>
+  /** voter secret → target public ids (one per vote) */
+  votes: Map<string, string[]>
   finalVote: boolean
-  guessOptions: string[]
+  /** Votes each player casts this vote (wolves still hiding when it began). */
+  votesEach: number
+  /** Phase 'guess' / 'judge': the wolves just caught (secrets). */
+  caught: string[]
+  /** Phase 'guess': typed guesses (wolf secret → text). */
+  typed: Map<string, string>
+  /** Close guesses waiting for the flock's judgement (wolf secrets), first = now. */
+  judgeQueue: string[]
+  /** Phase 'judge': sheep secret → counts? */
+  judgeVotes: Map<string, boolean>
+  /** Every caught wolf's guess this game. */
+  guessLog: FlockGuess[]
+  /** The vote that caught the wolves now guessing (for the result). */
+  lastVotes: Record<string, string[]>
   lastOut: FlockOut | null
   result: FlockResult | null
   usedWords: Set<string>
@@ -110,7 +125,13 @@ export function createFlockRoom(): FRoom {
     decide: new Map(),
     votes: new Map(),
     finalVote: false,
-    guessOptions: [],
+    votesEach: 1,
+    caught: [],
+    typed: new Map(),
+    judgeQueue: [],
+    judgeVotes: new Map(),
+    guessLog: [],
+    lastVotes: {},
     lastOut: null,
     result: null,
     usedWords: new Set(),
@@ -143,6 +164,17 @@ export const touch = (room: FRoom): void => {
 }
 
 export const newPlayerId = (): string => randomUUID()
+
+function judgeView(room: FRoom, wolf: string, ids: (s: Iterable<string>) => string[]): FlockState['judge'] {
+  // While another wolf hides, the guess (a near-miss of the word) goes only to the sheep.
+  const hiding = room.wolves.some((s) => !room.out.has(s) && room.players.has(s))
+  return {
+    wolfId: room.players.get(wolf)?.id ?? '',
+    guess: hiding ? null : (room.typed.get(wolf) ?? ''),
+    yes: ids([...room.judgeVotes].filter(([, v]) => v).map(([s]) => s)),
+    no: ids([...room.judgeVotes].filter(([, v]) => !v).map(([s]) => s)),
+  }
+}
 
 export function toFlockState(room: FRoom): FlockState {
   const turnSecret =
@@ -177,6 +209,9 @@ export function toFlockState(room: FRoom): FlockState {
         ? { vote: ids([...room.decide].filter(([, v]) => v).map(([s]) => s)), more: ids([...room.decide].filter(([, v]) => !v).map(([s]) => s)) }
         : null,
     finalVote: room.finalVote,
+    votesEach: room.votesEach,
+    guessers: room.phase === 'guess' ? ids(room.caught) : [],
+    judge: room.phase === 'judge' && room.judgeQueue[0] ? judgeView(room, room.judgeQueue[0], ids) : null,
     endsInMs: room.phaseEndsAt ? Math.max(0, room.phaseEndsAt - Date.now()) : 0,
     phaseMs: room.phaseMs,
     lastOut: room.phase === 'out' ? room.lastOut : null,

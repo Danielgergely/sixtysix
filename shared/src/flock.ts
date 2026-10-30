@@ -3,12 +3,14 @@
  *
  * One game = one secret Bible word. Every player is a sheep who sees it,
  * except the wolf (two wolves from FLOCK_TWO_WOLVES_FROM players, who don't
- * know each other) who only sees the category and a list of candidates.
+ * know each other) who only sees the category.
  * Players give one short clue each per lap; after every full lap the flock
- * decides: vote now, or another lap. The game ends when
- *  - the flock votes out the last wolf (sheep win),
+ * decides: vote now, or another lap. Each player has one vote per wolf still
+ * hiding. The game ends when
  *  - the flock votes out a sheep (wolves win),
- *  - a wolf names the word (wolves win; a wrong guess puts that wolf out),
+ *  - the flock votes out the last wolf and no caught wolf can type the word
+ *    (sheep win; a typed guess that is only close goes to the flock's judgement),
+ *  - a caught wolf types the word (wolves win),
  *  - or the last lap's vote ties (the wolves escape).
  *
  * The server is authoritative. Public state (FlockState) never contains the
@@ -21,8 +23,10 @@ export type FlockPhase =
   | 'secret' // everyone looks at their card
   | 'clues' // one clue per player per lap, in turn order
   | 'decide' // after a full lap: vote now, or another lap?
-  | 'vote' // everyone points at a suspect
-  | 'out' // someone left the game (wolf voted out with another still hiding, a tie, a wrong guess)
+  | 'vote' // everyone points at a suspect (one vote per wolf still hiding)
+  | 'guess' // the caught wolf types the word
+  | 'judge' // the flock decides whether a close guess counts
+  | 'out' // a tie, or one of two wolves caught: the game goes on
   | 'over' // the game is decided
 
 export const FLOCK_MIN_PLAYERS = 3
@@ -33,18 +37,17 @@ export const FLOCK_MAX_LAPS = 4
 /** Games dealt to this many players or more have two wolves. */
 export const FLOCK_TWO_WOLVES_FROM = 7
 export const flockWolfCount = (players: number): number => (players >= FLOCK_TWO_WOLVES_FROM ? 2 : 1)
-/** Candidates a wolf picks the word from (the word among them). */
-export const FLOCK_GUESS_OPTIONS = 8
+/** Longest typed guess. */
+export const FLOCK_GUESS_MAX = 40
 
 export const FLOCK_CATEGORIES = ['person', 'place', 'story', 'thing'] as const
 export type FlockCategory = (typeof FLOCK_CATEGORIES)[number]
 
 export type FlockSide = 'sheep' | 'wolves'
 export type FlockEndReason =
-  | 'caught' // the last wolf was voted out
+  | 'caught' // the last wolf was voted out and didn't name the word
   | 'wrongVote' // the flock voted out a sheep
-  | 'guessed' // a wolf named the word
-  | 'wrongGuess' // the last wolf guessed wrong
+  | 'guessed' // a caught wolf named the word
   | 'escaped' // the last lap's vote tied, or the wolves outnumber the sheep
   | 'fled' // the last wolf left the game
   | 'abandoned' // too few players left
@@ -59,9 +62,9 @@ export interface FlockPlayer {
   connected: boolean
   /** Dealt into the current game (late joiners watch until the next one). */
   playing: boolean
-  /** Voted out or guessed wrong: watches the rest of this game. */
+  /** Voted out: watches the rest of this game. */
   out: boolean
-  /** Phase 'secret': has looked at the card. 'decide' / 'vote': has chosen. */
+  /** Phase 'secret': has looked at the card. 'decide' / 'vote' / 'guess' / 'judge': has chosen. */
   done: boolean
 }
 
@@ -75,15 +78,18 @@ export interface FlockClue {
 
 /** Phase 'out': what just happened. The game goes on. */
 export interface FlockOut {
-  /** Who is out (null = the vote tied, nobody leaves). */
-  playerId: string | null
-  /** Revealed for whoever is out: everyone learns whether they were a wolf. */
-  wasWolf: boolean
-  reason: 'vote' | 'tie' | 'wrongGuess'
-  /** reason 'wrongGuess': the word the wolf named. */
-  guess: string | null
-  /** The vote that led here: voterId → targetId (public ids). */
-  votes: Record<string, string>
+  /** Wolves just voted out (empty = the vote tied, nobody leaves). */
+  playerIds: string[]
+  reason: 'tie' | 'caught'
+  /** The vote that led here: voterId → targetIds (public ids). */
+  votes: Record<string, string[]>
+}
+
+export interface FlockGuess {
+  wolfId: string
+  guess: string
+  /** match = the word (typos and other names count); accepted / rejected = judged by the flock. */
+  verdict: 'match' | 'accepted' | 'rejected' | 'wrong'
 }
 
 export interface FlockResult {
@@ -95,13 +101,12 @@ export interface FlockResult {
   word: string
   hint: string
   ref: string
-  /** The wolf who guessed, and what (reason 'guessed' / 'wrongGuess'). */
-  guesserId: string | null
-  guess: string | null
-  /** The player voted out last (reason 'caught' / 'wrongVote'). */
-  outId: string | null
-  /** The deciding vote, if any: voterId → targetId. */
-  votes: Record<string, string>
+  /** Players voted out by the deciding vote. */
+  outIds: string[]
+  /** The caught wolves' guesses, in order. */
+  guesses: FlockGuess[]
+  /** The deciding vote, if any: voterId → targetIds. */
+  votes: Record<string, string[]>
 }
 
 /** Safe to broadcast to everyone in the room (and to the board). */
@@ -128,6 +133,16 @@ export interface FlockState {
   decide: { vote: string[]; more: string[] } | null
   /** Phase 'vote' was forced (last lap): a tie lets the wolves escape. */
   finalVote: boolean
+  /** Phase 'vote': how many different players each voter names (one per wolf still hiding). */
+  votesEach: number
+  /** Phase 'guess': the caught wolves typing the word (public ids). */
+  guessers: string[]
+  /**
+   * Phase 'judge': a caught wolf's guess was close; sheep vote whether it counts
+   * (a tie counts). `guess` is null while another wolf still hides (then only the
+   * sheep see it, in their card); the word itself is never public here.
+   */
+  judge: { wolfId: string; guess: string | null; yes: string[]; no: string[] } | null
   /** Time left in the current phase from receipt; 0 = no timer. */
   endsInMs: number
   phaseMs: number
@@ -147,8 +162,8 @@ export interface FlockSecret {
   word?: string
   hint?: string
   ref?: string
-  /** Wolf only: the candidates to name the word from, at any time. */
-  guessOptions?: string[]
+  /** Sheep only, phase 'judge': the guess to judge (always visible to the flock). */
+  judgeGuess?: string
   /**
    * Wolf only, when they give the first clue (no clues to go on yet): a word
    * associated with the secret word, e.g. "Sea" for Jonah.
@@ -170,9 +185,12 @@ export interface FlockClientToServerEvents {
   'flock:clue': (payload: { text: string }, cb: Ack<object>) => void
   /** Phase 'decide': true = vote now, false = another lap. */
   'flock:decide': (payload: { vote: boolean }) => void
-  'flock:vote': (payload: { targetId: string }) => void
-  /** Wolf, any time during the game: name the word. Wrong = out. */
+  /** One distinct target per vote (FlockState.votesEach). */
+  'flock:vote': (payload: { targetIds: string[] }) => void
+  /** A caught wolf, phase 'guess': type the word. */
   'flock:guess': (payload: { word: string }) => void
+  /** A sheep, phase 'judge': does the close guess count? */
+  'flock:judge': (payload: { ok: boolean }) => void
   /** Leader: over → lobby for the next game. */
   'flock:again': () => void
 }
