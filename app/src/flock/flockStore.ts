@@ -4,6 +4,7 @@ import type { FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents,
 import { useGameStore } from '../game/store'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
+import { payFlock } from '../game/boardRewards'
 
 /**
  * Wolf in the Flock client (docs/board-games.md). Its own socket and store so
@@ -89,6 +90,7 @@ function getSocket(): FlockSocket {
   socket.on('flock:state', (state) => {
     const prev = getState().state
     setState({ state, endsAt: state.endsInMs ? Date.now() + state.endsInMs : 0 })
+    if (state.phase === 'final' && getState().role === 'player') payFlock(state, getState().myId)
     if (prev && prev.phase !== state.phase) {
       if (state.phase === 'secret') playSfx('flip')
       if (state.phase === 'vote') playSfx('go')

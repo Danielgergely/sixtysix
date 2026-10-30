@@ -9,6 +9,8 @@ import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } fr
 import { CATEGORY_LABEL, playerById, useJoinOrigin } from '../../flock/util'
 import { FlockBoard } from './FlockBoard'
 import { Podium, RoundReveal, Rules } from './reveal'
+import { RewardChip } from '../shell/RewardChip'
+import { flockRewardFor } from '../../game/boardRewards'
 import '../../theme/flock.css'
 
 /** Wolf in the Flock — one screen; the server's phase picks the view. */
@@ -498,6 +500,7 @@ function FinalPhase({ state }: { state: FlockState }) {
         <span>Game over</span>
         <strong>{winner ? `${winner.name} wins!` : 'Well played!'}</strong>
       </div>
+      <RewardChip reward={flockRewardFor(state, store.myId)} />
       <Podium state={state} />
       <Scoreboard state={state} />
       <p className="fl-verse">“I am the good shepherd. I know my own, and I’m known by my own.” <em>John 10:14</em></p>

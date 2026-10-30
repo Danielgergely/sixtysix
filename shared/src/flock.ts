@@ -81,6 +81,8 @@ export interface FlockState {
   phase: FlockPhase
   players: FlockPlayer[]
   leaderId: string | null
+  /** Game number in this room (1-based once started; "Play again" adds one). */
+  game: number
   round: number
   totalRounds: number
   clueLaps: number
@@ -110,6 +112,11 @@ export interface FlockSecret {
   ref?: string
   /** Wolf only, during 'guess'. */
   guessOptions?: string[]
+  /**
+   * Wolf only, when the wolf gives the round's first clue (no clues to go on yet):
+   * where the word is found, e.g. "Genesis" or "the New Testament".
+   */
+  wolfHint?: string
 }
 
 type Ack<T> = (res: ({ ok: true } & T) | { ok: false; error: string }) => void

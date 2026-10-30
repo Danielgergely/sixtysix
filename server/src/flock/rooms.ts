@@ -38,6 +38,8 @@ export interface FRoom {
   leaderSecret: string | null
   totalRounds: number
   clueLaps: number
+  /** Games started in this room (rewards are paid once per game). */
+  game: number
   round: number
   category: FlockCategory | null
   word: FlockWord | null
@@ -87,6 +89,7 @@ export function createFlockRoom(): FRoom {
     leaderSecret: null,
     totalRounds: 5,
     clueLaps: 2,
+    game: 0,
     round: 0,
     category: null,
     word: null,
@@ -147,6 +150,7 @@ export function toFlockState(room: FRoom): FlockState {
       done: room.done.has(secret),
     })),
     leaderId: pub(room.leaderSecret),
+    game: room.game,
     round: room.round,
     totalRounds: room.totalRounds,
     clueLaps: room.clueLaps,

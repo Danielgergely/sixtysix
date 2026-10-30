@@ -73,6 +73,7 @@ function secretFor(room: FRoom, secret: string): FlockSecret | null {
       role: 'wolf',
       category: room.category,
       guessOptions: room.phase === 'guess' ? room.guessOptions : undefined,
+      wolfHint: room.turnOrder[0] === secret && room.word ? wolfHint(room.word.word, room.word.ref) : undefined,
     }
   }
   return { round: room.round, role: 'sheep', category: room.category, word: room.word?.word, hint: room.word?.hint, ref: room.word?.ref }
@@ -108,6 +109,7 @@ const connectedSecrets = (room: FRoom) => [...room.players].filter(([, p]) => p.
 
 function startGame(io: FlockIO, room: FRoom): void {
   for (const p of room.players.values()) p.score = 0
+  room.game++
   room.round = 0
   room.result = null
   startRound(io, room)
@@ -133,9 +135,8 @@ function startRound(io: FlockIO, room: FRoom): void {
   room.usedWords.add(room.word.word)
 
   room.dealt = new Set(everyone)
+  // Anyone may open, the wolf included; an opening wolf gets a hint on the card (wolfHint).
   room.turnOrder = shuffle([...everyone])
-  // The wolf never opens: the first clue would give them nothing to go on.
-  if (room.turnOrder.length > 1 && room.turnOrder[0] === room.wolfSecret) room.turnOrder.push(room.turnOrder.shift()!)
   room.turnIdx = 0
   room.clues = []
   room.done = new Set()
@@ -279,6 +280,22 @@ function endGame(io: FlockIO, room: FRoom): void {
   setTimer(io, room, 0, () => {})
   broadcast(io, room)
   sendAllSecrets(io, room)
+}
+
+// ── the opening wolf's hint ─────────────────────────────────────────────
+
+const NEW_TESTAMENT = new Set(['Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans', 'Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 'Thessalonians', 'Timothy', 'Titus', 'Philemon', 'Hebrews', 'James', 'Peter', 'Jude', 'Revelation'])
+
+/**
+ * Where the word is found: its book(s) ("Joshua / Judges"), or the testament when
+ * a book name would give the word away (Jonah is in "Jonah 1–2").
+ */
+export function wolfHint(word: string, ref: string): string {
+  // "1 Kings 3; 6": a bare chapter after the semicolon belongs to the book before it.
+  const books = [...new Set(ref.split(';').map((r) => r.trim().replace(/\s+\d[\d:–\-, ]*$/, '')).filter((b) => /[a-z]/i.test(b)))]
+  if (books.length && !books.some((b) => revealsWord(b, word))) return books.join(' / ')
+  const nt = books.some((b) => NEW_TESTAMENT.has(b.replace(/^\d\s+/, '')))
+  return nt ? 'the New Testament' : 'the Old Testament'
 }
 
 // ── clue validation ─────────────────────────────────────────────────────

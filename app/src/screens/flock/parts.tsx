@@ -58,6 +58,7 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
             {wolf ? (
               <>
                 <span className="fl-card-word wolf">???</span>
+                {secret.wolfHint && <span className="fl-card-wolfhint">You speak first. Hint: it’s in {secret.wolfHint}</span>}
                 {big && <span className="fl-card-hint">You don’t know the word. Listen to the clues, blend in, and don’t get caught!</span>}
               </>
             ) : (

@@ -11,6 +11,7 @@ import type {
 import { useGameStore } from '../game/store'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
+import { paySpies } from '../game/boardRewards'
 
 /**
  * Twelve Spies client (docs/board-games.md). Its own socket and store so it
@@ -104,6 +105,7 @@ function getSocket(): SpiesSocket {
   socket.on('spies:state', (state) => {
     const prev = getState().state
     setState({ state, ...timing(state) })
+    if (state.phase === 'over' && getState().role === 'player') paySpies(state, getState().myId)
     if (!prev) return
     if (prev.phase !== state.phase && state.phase === 'over') playSfx('podium')
     else if (prev.turn !== state.turn && state.turn) playSfx('go')

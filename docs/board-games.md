@@ -24,11 +24,12 @@
 ## Rules (as implemented)
 
 1. **Setup.** 3–12 players, each on a phone. A shared board (laptop / projector) is optional. The leader picks 3, 5 or 8 rounds and one or two clues per player.
-2. **Cards.** Each round the server picks a word from `server/src/flock/words.json` (≈100 curated people, places, stories and objects with a hint and reference). Every player sees the word, except **the wolf**, who only sees the category. Everyone is the wolf once before anyone is the wolf twice; the wolf never gives the first clue.
+2. **Cards.** Each round the server picks a word from `server/src/flock/words.json` (≈100 curated people, places, stories and objects with a hint and reference). Every player sees the word, except **the wolf**, who only sees the category. The wolf is random each round (never the same player twice in a row). Anyone may give the first clue; a wolf who opens gets a hint on the card: the book the word is in (or just the testament when the book's name would give it away).
 3. **Clues.** In turn order, each player types a short clue (≤ 3 words, 24 characters, 40 s). Sheep may not say the word or a key part of it (checked by the server). Missed turns are skipped.
 4. **Vote.** Everyone votes for one other player (60 s).
 5. **Scoring.** Each sheep who voted for the wolf: **+1**. If the wolf is not the single most-voted player (a tie counts as escaping): wolf **+3**. If caught, the wolf picks the word from six options in the category: **+2** if right.
 6. **End.** After the last round the podium shows; the leader can **Play again** (back to the lobby, scores reset).
+7. **Rewards.** Playing a game to the end pays coins and XP once (`flockReward` in `shared/src/coins.ts`): 3 coins per point plus 30 / 20 / 10 for the top three (10 for everyone else), and 1,500 XP plus 300 per point. Twelve Spies pays 40 coins + 3,000 XP for a win and 15 coins + 1,500 XP for a loss; an abandoned game pays nothing. Leaving early forfeits the reward.
 
 Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are skipped while they are away. If the wolf leaves, the round is called off; if fewer than 3 players remain, the game ends. The leader role passes to the next connected player.
 

@@ -42,3 +42,24 @@ export function coinsForPlacement(rank: number, mode: CoinMode): number {
 /** David vs Goliath / Rebuild the Wall: shared result instead of a placement. */
 export const TEAM_WIN_COINS = 40
 export const TEAM_LOSS_COINS = 15
+
+/**
+ * Board games: paid once, when a game is played to the end (leaving forfeits it,
+ * as in the arena). Rated like a quiz game of the same length (~10–15 minutes).
+ */
+export const BOARD_REWARDS = {
+  /** Wolf in the Flock: by points and final rank (ties share the better rank). */
+  flock: { coinsPerPoint: 3, placement: [30, 20, 10], finish: 10, xpFinish: 1500, xpPerPoint: 300 },
+  /** Twelve Spies: by result. In co-op the players win or lose together. */
+  spies: { winCoins: TEAM_WIN_COINS, lossCoins: TEAM_LOSS_COINS, winXp: 3000, lossXp: 1500 },
+} as const
+
+export function flockReward(score: number, rank: number): { coins: number; xp: number } {
+  const r = BOARD_REWARDS.flock
+  return { coins: score * r.coinsPerPoint + (r.placement[rank] ?? r.finish), xp: r.xpFinish + score * r.xpPerPoint }
+}
+
+export function spiesReward(won: boolean): { coins: number; xp: number } {
+  const r = BOARD_REWARDS.spies
+  return won ? { coins: r.winCoins, xp: r.winXp } : { coins: r.lossCoins, xp: r.lossXp }
+}

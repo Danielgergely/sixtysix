@@ -20,6 +20,8 @@ import { TRIBE, otherTeam, playerById, statusLine, tribeName, useAfter, useJoinO
 import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
 import { SpiesBoard } from './SpiesBoard'
 import { Verdict } from './verdict'
+import { RewardChip } from '../shell/RewardChip'
+import { spiesRewardFor } from '../../game/boardRewards'
 import '../../theme/spies.css'
 
 /** Twelve Spies — one screen; the server's phase picks the view. */
@@ -418,6 +420,7 @@ function OverActions({ state }: { state: SpiesState }) {
   const leader = isLeader(store)
   return (
     <div className="ts-over-actions">
+      <RewardChip reward={spiesRewardFor(state, store.myId)} />
       {leader ? (
         <button className="btn-play ts-wide-btn" onClick={store.again}>
           PLAY AGAIN

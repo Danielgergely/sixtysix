@@ -532,6 +532,13 @@
 .empire-purse.score{ font-size: 16px; }
 .empire-coins { display: flex; align-items: center; gap: 6px; font: 900 22px/1 'Cinzel', serif; color: #ffe08a; }
 .cr-coins { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; color: #ffe08a; }
+/* Board games' end screens (screens/shell/RewardChip.tsx). */
+.reward-chip {
+  align-self: center; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px;
+  background: linear-gradient(#5a3a16, #3b240c); border: 2px solid #d4a64a; color: #ffe08a; font: 800 15px 'Cinzel', serif;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 0.35);
+}
+.reward-chip-sep { opacity: 0.6; }
 .glory-mark { color: #ffd34d; font-size: 18px; padding-left: 6px; }
 
 /* ══ Home ═════════════════════════════════════════════════════════════ */
