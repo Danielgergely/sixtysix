@@ -46,19 +46,34 @@ function cache(account: Account | null): void {
   }
 }
 
+/**
+ * POST (or GET without a body) to /api/account/<path>. Errors: 'offline' (no answer), 'signed-out'
+ * (the session is gone), or the server's English message (shown with tServer).
+ */
 async function api(path: string, body?: unknown): Promise<AccountResponse> {
   const token = getToken()
+  let res: Response
   try {
-    const res = await fetch(`/api/account/${path}`, {
+    res = await fetch(`/api/account/${path}`, {
       method: body === undefined ? 'GET' : 'POST',
       headers: { ...(body !== undefined && { 'content-type': 'application/json' }), ...(token && { authorization: `Bearer ${token}` }) },
       body: body === undefined ? undefined : JSON.stringify(body),
     })
-    if (res.status === 401) return { ok: false, error: 'signed-out' }
-    return (await res.json()) as AccountResponse
   } catch {
     return { ok: false, error: 'offline' }
   }
+  const json = (await res.json().catch(() => null)) as AccountResponse | null
+  // A 401 is a lost session, except a refused Google/Apple token ("Google sign-in failed").
+  if (res.status === 401 && (!json || json.ok || json.error === 'Signed out')) return { ok: false, error: 'signed-out' }
+  return json ?? { ok: false, error: t('account.errors.generic') }
+}
+
+/** The message to show for a failed reply: client errors translated here, server ones left for tServer. */
+function errorText(res: AccountResponse): string {
+  if (res.ok) return t('account.errors.generic')
+  if (res.error === 'offline') return t('account.errors.offline')
+  if (res.error === 'signed-out') return t('account.errors.signInFailed')
+  return res.error || t('account.errors.generic')
 }
 
 /** The device's guest progress, as sign-up profile or as a merge grant. */
@@ -80,6 +95,18 @@ interface AccountStore {
   /** `name` = the first name Apple shares on the first sign-in only. */
   appleSignIn: (idToken: string, name: string) => Promise<boolean>
   logout: () => Promise<void>
+  /** Clear the form error (the player is typing again). */
+  clearError: () => void
+  // Account settings (screens/AccountSettingsScreen.tsx). Each resolves to an error to show, or null when done.
+  changePassword: (current: string, password: string) => Promise<string | null>
+  changeUsername: (username: string) => Promise<string | null>
+  linkGoogle: (credential: string) => Promise<string | null>
+  linkApple: (idToken: string) => Promise<string | null>
+  unlink: (provider: 'google' | 'apple') => Promise<string | null>
+  /** Sign out on every device (this one too). */
+  logoutEverywhere: () => Promise<string | null>
+  /** Delete the account for good; this device becomes a fresh guest. */
+  deleteAccount: (confirm: string, password: string) => Promise<string | null>
   /** Send queued rewards (and name/avatar), then adopt the server totals. */
   sync: () => Promise<void>
   /** Take an account the server just sent (skill tree, plot perks). */
@@ -127,14 +154,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
   /** After a successful sign-in reply: store the session, merge guest progress if asked, adopt the account. */
   async function signedIn(res: AccountResponse, mergeGuest: boolean): Promise<boolean> {
     if (!res.ok || !res.token) {
-      const error = res.ok
-        ? t('account.errors.generic')
-        : res.error === 'offline'
-          ? t('account.errors.offline')
-          : res.error === 'signed-out'
-            ? t('account.errors.signInFailed')
-            : res.error
-      set({ busy: false, error })
+      set({ busy: false, error: errorText(res) })
       return false
     }
     setToken(res.token)
@@ -149,6 +169,27 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     await get().sync()
     set({ busy: false })
     return true
+  }
+
+  /** This device becomes a fresh guest (after a sign-out); the progress stays safe in the account. */
+  const resetToGuest = () => {
+    signedOut()
+    const { player } = useGameStore.getState()
+    useGameStore.getState().adoptProgress({ name: player.name, avatar: player.avatar, coins: 0, xp: 0, stats: EMPTY_STATS })
+  }
+
+  /** A settings call: adopt the account it returns; a lost session signs this device out. */
+  async function settingsCall(path: string, body: unknown): Promise<string | null> {
+    const res = await api(path, body)
+    if (res.ok) {
+      if (res.account) adopt(res.account)
+      return null
+    }
+    if (res.error === 'signed-out') {
+      resetToGuest()
+      return 'Signed out' // shown with tServer
+    }
+    return errorText(res)
   }
 
   setOnQueued(() => void get().sync())
@@ -186,7 +227,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       const res = await api('signup', { username, password, profile: guestProgress() })
       set({ busy: false })
       if (!res.ok || !res.token) {
-        set({ error: res.ok ? t('account.errors.generic') : res.error === 'offline' ? t('account.errors.offline') : res.error })
+        set({ error: errorText(res) })
         return false
       }
       setToken(res.token)
@@ -216,10 +257,32 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     logout: async () => {
       await get().sync() // deliver pending rewards first
       await api('logout', {})
-      signedOut()
-      // A fresh guest: the progress stays safe in the account.
-      const { player } = useGameStore.getState()
-      useGameStore.getState().adoptProgress({ name: player.name, avatar: player.avatar, coins: 0, xp: 0, stats: EMPTY_STATS })
+      resetToGuest()
+    },
+
+    clearError: () => {
+      if (get().error) set({ error: '' })
+    },
+
+    changePassword: (current, password) => settingsCall('password', { current, password }),
+    changeUsername: (username) => settingsCall('username', { username }),
+    linkGoogle: (credential) => settingsCall('google/link', { credential }),
+    linkApple: (idToken) => settingsCall('apple/link', { idToken }),
+    unlink: (provider) => settingsCall('unlink', { provider }),
+
+    logoutEverywhere: async () => {
+      await get().sync() // deliver pending rewards first
+      const res = await api('logout-all', {})
+      if (!res.ok && res.error !== 'signed-out') return errorText(res)
+      resetToGuest()
+      return null
+    },
+
+    deleteAccount: async (confirm, password) => {
+      const res = await api('delete', { confirm, password })
+      if (!res.ok) return errorText(res)
+      resetToGuest()
+      return null
     },
   }
 })

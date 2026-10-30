@@ -8,6 +8,7 @@ import { Server } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents } from '@sixtysix/shared'
 import { registerArenaHandlers } from './arena.js'
 import { registerAccountRoutes, registerPublicRoutes } from './accounts.js'
+import { registerAccountSettingsRoutes } from './accountSettings.js'
 import { GOOGLE_CLIENT_ID, registerGoogleRoutes } from './google.js'
 import { APPLE_REDIRECT_URI, APPLE_SERVICES_ID, registerAppleRoutes } from './apple.js'
 import { registerPlotRoutes } from './plot.js'
@@ -28,6 +29,7 @@ const app = Fastify({ logger: false })
 app.get('/healthz', () => ({ ok: true, rooms: roomCount() }))
 
 registerAccountRoutes(app)
+registerAccountSettingsRoutes(app)
 registerPublicRoutes(app)
 registerGoogleRoutes(app)
 registerAppleRoutes(app)

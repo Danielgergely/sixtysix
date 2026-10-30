@@ -1,7 +1,9 @@
-import { useState } from 'react'
-import { MIN_PASSWORD, USERNAME_RE } from '@sixtysix/shared'
+import { useRef, useState } from 'react'
+import { MIN_PASSWORD, normalizeUsername, usernameProblem } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
 import { SocialSignIn } from '../account/SocialSignIn'
+import { PasswordField } from '../account/PasswordField'
+import { passwordIssue, usernameIssue } from '../account/validate'
 import { useGameStore, type Screen } from '../game/store'
 import { openSkillTree } from '../skills/nav'
 import { tServer, useT } from '../i18n'
@@ -15,19 +17,51 @@ const UNLOCKS: Array<{ id: 'skills' | 'home' | 'cloud'; icon: string; open?: Scr
 
 /** Optional account: sign in / create, or who you are signed in as. */
 export function AccountPanel() {
-  const { account, busy, error, signup, login, logout } = useAccountStore()
+  const { account, busy, error, signup, login, logout, clearError } = useAccountStore()
   const goTo = useGameStore((s) => s.goTo)
   const t = useT()
   const [mode, setMode] = useState<'login' | 'signup'>('signup')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const valid = USERNAME_RE.test(username.trim()) && password.length >= MIN_PASSWORD
+  /** Show every problem once they tried to submit, or left the field. */
+  const [tried, setTried] = useState(false)
+  const [left, setLeft] = useState({ username: false, password: false })
+  const userRef = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+
+  // Signing up checks the rules here first (same as the server); signing in only needs both filled in.
+  const userIssue = mode === 'signup' ? usernameIssue(username) : username.trim() ? null : t('account.problems.usernameEmpty')
+  const passIssue = mode === 'signup' ? passwordIssue(password) : password ? null : t('account.problems.passwordEmpty')
+  // Characters that can never work show at once; "too short" waits until they leave the field.
+  const typingShort = !!username && ['short'].includes(usernameProblem(username) ?? '')
+  const showUser = userIssue && (tried || left.username || (mode === 'signup' && !!username.trim() && !typingShort))
+  const showPass = passIssue && (tried || (left.password && !!password))
+
+  const edit = (f: (v: string) => void) => (v: string) => {
+    f(v)
+    clearError()
+  }
 
   const submit = async () => {
-    if (!valid || busy) return
-    const ok = mode === 'signup' ? await signup(username.trim(), password) : await login(username.trim(), password)
-    if (ok) setPassword('')
+    if (busy) return
+    setTried(true)
+    if (userIssue || passIssue) {
+      const field = userIssue ? userRef.current : formRef.current?.querySelector<HTMLInputElement>('.pw-field input')
+      field?.focus()
+      return
+    }
+    const name = normalizeUsername(username)
+    const ok = mode === 'signup' ? await signup(name, password) : await login(name, password)
+    if (ok) {
+      setPassword('')
+      setTried(false)
+    }
+  }
+
+  const switchMode = (m: 'login' | 'signup') => {
+    setMode(m)
+    setTried(false)
+    clearError()
   }
 
   return (
@@ -65,67 +99,84 @@ export function AccountPanel() {
           </li>
         ))}
       </ul>
+      {account && (
+        <button className="setting-row account-manage" onClick={() => goTo('account')}>
+          {t('account.manage')}
+        </button>
+      )}
       {!account && (
         <form
+          ref={formRef}
           className="account-form"
+          noValidate
           onSubmit={(e) => {
             e.preventDefault()
             void submit()
           }}
         >
           <div className="seg-row">
-            <button type="button" className={`seg-btn ${mode === 'signup' ? 'selected' : ''}`} onClick={() => setMode('signup')}>
+            <button type="button" className={`seg-btn ${mode === 'signup' ? 'selected' : ''}`} onClick={() => switchMode('signup')}>
               {t('account.create')}
             </button>
-            <button type="button" className={`seg-btn ${mode === 'login' ? 'selected' : ''}`} onClick={() => setMode('login')}>
+            <button type="button" className={`seg-btn ${mode === 'login' ? 'selected' : ''}`} onClick={() => switchMode('login')}>
               {t('account.signIn')}
             </button>
           </div>
           <input
+            ref={userRef}
             className="profile-name-input"
+            id="account-username"
+            name="username"
             placeholder={t('account.username')}
+            aria-label={t('account.username')}
             autoComplete="username"
             autoCapitalize="off"
+            autoCorrect="off"
             spellCheck={false}
-            maxLength={20}
+            aria-invalid={showUser ? true : undefined}
+            aria-describedby="account-username-note"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => edit(setUsername)(e.target.value)}
+            onBlur={() => setLeft((l) => ({ ...l, username: true }))}
           />
-          <div className="pw-field">
-            <input
-              className="profile-name-input"
-              type={showPassword ? 'text' : 'password'}
+          {showUser ? (
+            <div id="account-username-note" className="account-problem" role="alert">
+              {userIssue}
+            </div>
+          ) : (
+            mode === 'signup' && (
+              <div id="account-username-note" className="account-rule">
+                {t('account.usernameRules')}
+              </div>
+            )
+          )}
+          <div onBlur={() => setLeft((l) => ({ ...l, password: true }))}>
+            <PasswordField
+              id="account-password"
+              name={mode === 'signup' ? 'new-password' : 'password'}
+              value={password}
+              onChange={edit(setPassword)}
               placeholder={mode === 'signup' ? t('account.passwordNew', { n: MIN_PASSWORD }) : t('account.password')}
               autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-              autoCapitalize="off"
-              spellCheck={false}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              invalid={!!showPass}
+              describedBy={showPass ? 'account-password-note' : undefined}
             />
-            <button
-              type="button"
-              className="pw-eye"
-              onClick={() => setShowPassword((v) => !v)}
-              aria-label={showPassword ? t('account.hidePassword') : t('account.showPassword')}
-              title={showPassword ? t('account.hidePassword') : t('account.showPassword')}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
-                <circle cx="12" cy="12" r="3" />
-                {showPassword && <path d="M4 4l16 16" />}
-              </svg>
-            </button>
           </div>
-          {error && <div className="arena-error">{tServer(error)}</div>}
-          <button className="btn-play account-submit" type="submit" disabled={!valid || busy}>
+          {showPass && (
+            <div id="account-password-note" className="account-problem" role="alert">
+              {passIssue}
+            </div>
+          )}
+          {error && (
+            <div className="arena-error" role="alert">
+              {tServer(error)}
+            </div>
+          )}
+          <button className="btn-play account-submit" type="submit" disabled={busy} aria-busy={busy}>
             {busy ? '…' : mode === 'signup' ? t('account.create') : t('account.signIn')}
           </button>
           <SocialSignIn />
-          <p className="arena-hint">
-            {mode === 'signup'
-              ? t('account.hintSignup')
-              : t('account.hintLogin')}
-          </p>
+          <p className="arena-hint">{mode === 'signup' ? t('account.hintSignup') : t('account.hintLogin')}</p>
         </form>
       )}
     </div>

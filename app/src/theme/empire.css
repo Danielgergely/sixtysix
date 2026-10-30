@@ -941,6 +941,26 @@
   display: grid; place-items: center; background: none; border: 0; color: #6b4120; cursor: pointer;
 }
 .pw-eye svg{ width: 22px; height: 22px; }
+/* Account forms: why something can't be accepted (never a silently disabled button), the rules, success. */
+.account-problem{ background: #fbe3dc; border: 2px solid #b3262b; color: #7a1414; border-radius: 8px; padding: 6px 10px; font: 600 13px/1.35 Georgia, serif; }
+.account-rule{ color: #6b4120; font: italic 12px/1.35 Georgia, serif; margin-top: -2px; }
+.account-ok{ background: #e3f1d6; border: 2px solid #4f7a2a; color: #29470f; border-radius: 8px; padding: 6px 10px; font: 700 13px/1.35 Georgia, serif; }
+.emp .profile-name-input[aria-invalid='true']{ border-color: #b3262b; }
+.account-manage{ width: 100%; text-align: left; padding: 8px 2px 0; }
+.account-settings-section{ margin-bottom: 12px; }
+.emp .account-settings-heading{ font-size: 1.15rem; overflow-wrap: anywhere; }
+.account-settings-section h3{ margin: 0 0 6px; }
+.account-settings-section .profile-name-input{ font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; text-transform: none; letter-spacing: 0; }
+.account-logins{ list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 6px; }
+.account-logins li{ display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 4px 8px; border: 2px solid #c9a24a; border-radius: 8px; background: rgb(255 255 255 / 0.35); font: 700 14px/1.2 'Cinzel', serif; color: #3b2412; }
+.account-logins small{ font: italic 12px/1.2 Georgia, serif; color: #6b4120; text-align: right; }
+.account-small{ width: auto; margin: 0; padding: 7px 12px; font-size: 13px; }
+.account-wide{ width: 100%; margin: 0; }
+.emp .account-danger{ background: #7a1414; border-color: #1d0f06; color: #fff; }
+.account-confirm{ display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; font: 700 13px/1.3 Georgia, serif; color: #3b2412; }
+.account-confirm span{ flex: 1 1 100%; }
+.account-link{ display: grid; justify-items: center; gap: 6px; margin-bottom: 8px; }
+.visually-hidden{ position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .eh-hand .eh-card{ width: min(112px, 25.5vw); }
 .eh-hand-slot{ margin: 0 -9px; }
 /* Usernames and passwords are case-sensitive: show exactly what was typed. */

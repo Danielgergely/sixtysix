@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useAccountStore } from './accountStore'
+import { useServerInfo, type ServerInfo } from './serverInfo'
 import { useLocale, useT, type Locale } from '../i18n'
 
 /**
@@ -7,17 +8,6 @@ import { useLocale, useT, type Locale } from '../i18n'
  * server has it configured (/api/server-info: GOOGLE_CLIENT_ID,
  * APPLE_SERVICES_ID); setup steps in docs/deploy.md.
  */
-
-interface ServerInfo {
-  googleClientId?: string | null
-  apple?: { clientId: string; redirectUri: string } | null
-}
-
-let infoPromise: Promise<ServerInfo> | null = null
-const fetchInfo = () =>
-  (infoPromise ??= fetch('/api/server-info')
-    .then((r) => r.json() as Promise<ServerInfo>)
-    .catch(() => ({})))
 
 const scripts = new Map<string, Promise<boolean>>()
 function loadScript(src: string): Promise<boolean> {
@@ -37,23 +27,25 @@ function loadScript(src: string): Promise<boolean> {
 }
 
 export function SocialSignIn() {
-  const [info, setInfo] = useState<ServerInfo | null>(null)
-  useEffect(() => {
-    let live = true
-    void fetchInfo().then((i) => live && setInfo(i))
-    return () => {
-      live = false
-    }
-  }, [])
+  const info = useServerInfo()
+  const googleSignIn = useAccountStore((s) => s.googleSignIn)
+  const appleSignIn = useAccountStore((s) => s.appleSignIn)
   const t = useT()
   if (!info?.googleClientId && !info?.apple) return null
   return (
     <div className="social-signin">
       <div className="social-or">{t('account.or')}</div>
-      {info.apple && <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} />}
-      {info.googleClientId && <GoogleButton clientId={info.googleClientId} />}
+      {info.apple && <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} onToken={(token, name) => void appleSignIn(token, name)} />}
+      {info.googleClientId && <GoogleButton clientId={info.googleClientId} onCredential={(c) => void googleSignIn(c)} />}
     </div>
   )
+}
+
+/** Google's or Apple's own button, for linking it to the signed-in account (Account settings). */
+export function LinkButton({ provider, info, onToken }: { provider: 'google' | 'apple'; info: ServerInfo; onToken: (token: string) => void }) {
+  if (provider === 'google' && info.googleClientId) return <GoogleButton clientId={info.googleClientId} onCredential={onToken} />
+  if (provider === 'apple' && info.apple) return <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} onToken={(token) => onToken(token)} />
+  return null
 }
 
 // ── Google ─────────────────────────────────────────────────────────────
@@ -68,21 +60,25 @@ interface Gsi {
   }
 }
 
-function GoogleButton({ clientId }: { clientId: string }) {
+function GoogleButton({ clientId, onCredential }: { clientId: string; onCredential: (credential: string) => void }) {
   const ref = useRef<HTMLDivElement>(null)
-  const googleSignIn = useAccountStore((s) => s.googleSignIn)
+  // Google keeps the first callback it was given: always call the latest one.
+  const cb = useRef(onCredential)
+  useEffect(() => {
+    cb.current = onCredential
+  })
   useEffect(() => {
     let live = true
     void loadScript('https://accounts.google.com/gsi/client').then((ok) => {
       const gsi = (window as unknown as { google?: Gsi }).google
       if (!ok || !gsi || !live || !ref.current) return
-      gsi.accounts.id.initialize({ client_id: clientId, callback: (r) => void googleSignIn(r.credential) })
+      gsi.accounts.id.initialize({ client_id: clientId, callback: (r) => cb.current(r.credential) })
       gsi.accounts.id.renderButton(ref.current, { theme: 'outline', size: 'large', shape: 'pill', text: 'continue_with', width: 280, locale: useLocale.getState().locale })
     })
     return () => {
       live = false
     }
-  }, [clientId, googleSignIn])
+  }, [clientId])
   return <div ref={ref} className="google-btn" />
 }
 
@@ -99,8 +95,7 @@ interface AppleAuth {
 const APPLE_LANG: Record<Locale, string> = { en: 'en_US', de: 'de_DE', hu: 'hu_HU' }
 const appleJs = (locale: Locale) => `https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/${APPLE_LANG[locale]}/appleid.auth.js`
 
-function AppleButton({ clientId, redirectUri }: { clientId: string; redirectUri: string }) {
-  const appleSignIn = useAccountStore((s) => s.appleSignIn)
+function AppleButton({ clientId, redirectUri, onToken }: { clientId: string; redirectUri: string; onToken: (idToken: string, firstName: string) => void }) {
   const [ready, setReady] = useState(false)
   const t = useT()
   // The script's language is fixed when it first loads; a later switch keeps it.
@@ -123,7 +118,7 @@ function AppleButton({ clientId, redirectUri }: { clientId: string; redirectUri:
     try {
       const res = await apple.auth.signIn()
       // Apple tells us the name only on the very first sign-in.
-      await appleSignIn(res.authorization.id_token, res.user?.name?.firstName ?? '')
+      onToken(res.authorization.id_token, res.user?.name?.firstName ?? '')
     } catch {
       // closed the popup
     }
