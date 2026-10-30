@@ -1,0 +1,902 @@
+[
+  {
+    "id": "q_b223_001",
+    "reference": "Romans 1:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul's letter to the Romans is addressed to God's beloved in which city?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Rome",
+        "Ephesus",
+        "Jerusalem"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_002",
+    "reference": "Romans 1:3",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 1 says God's Son was born of the offspring of whom, according to the flesh?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Moses",
+        "Aaron",
+        "David"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_003",
+    "reference": "Romans 1:14",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he is a debtor both to Greeks and to whom?"
+    },
+    "answers": {
+      "en": [
+        "Romans",
+        "Priests",
+        "Foreigners",
+        "Scythians"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_004",
+    "reference": "Romans 1:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The Good News is God's power for salvation 'for the Jew first, and also for the' who?"
+    },
+    "answers": {
+      "en": [
+        "Greek",
+        "Roman",
+        "Egyptian",
+        "Samaritan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_005",
+    "reference": "Romans 1:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul quotes: 'But the righteous shall live by ___.'"
+    },
+    "answers": {
+      "en": [
+        "Works",
+        "Bread",
+        "Faith",
+        "The law"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_006",
+    "reference": "Romans 1:23",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "People traded God's glory for images of man, birds, four-footed animals and what?"
+    },
+    "answers": {
+      "en": [
+        "Fish",
+        "Creeping things",
+        "Stars",
+        "Trees"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_007",
+    "reference": "Romans 2:29",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says true circumcision is that of what, in the spirit?"
+    },
+    "answers": {
+      "en": [
+        "The heart",
+        "The ear",
+        "The lips",
+        "The hand"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_008",
+    "reference": "Romans 3:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "According to Romans 3, the Jews were first of all entrusted with what?"
+    },
+    "answers": {
+      "en": [
+        "The keys of heaven",
+        "The gold of the temple",
+        "The crown of David",
+        "The oracles of God"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_009",
+    "reference": "Romans 3:10",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'There is no one righteous; no, not ___.'"
+    },
+    "answers": {
+      "en": [
+        "Many",
+        "Few",
+        "One",
+        "Two"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_010",
+    "reference": "Romans 3:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul quotes the Psalms: 'Their throat is an open ___.'"
+    },
+    "answers": {
+      "en": [
+        "Door",
+        "Well",
+        "Window",
+        "Tomb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_011",
+    "reference": "Romans 3:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul quotes: 'Their feet are swift to shed ___.'"
+    },
+    "answers": {
+      "en": [
+        "Blood",
+        "Tears",
+        "Sweat",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_012",
+    "reference": "Romans 4:3",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 4 says Abraham believed God, and it was counted to him as what?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Righteousness",
+        "Strength",
+        "Wealth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_013",
+    "reference": "Romans 4:6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Besides Abraham, whom does Romans 4 quote about the blessedness of forgiveness?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Isaiah",
+        "Elijah",
+        "David"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_014",
+    "reference": "Romans 4:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 4 quotes God's promise: 'I have made you a father of many ___.'"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Nations",
+        "Tribes",
+        "Cities"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_015",
+    "reference": "Romans 4:19",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Abraham didn't weaken in faith, though he was about how old?"
+    },
+    "answers": {
+      "en": [
+        "A hundred years",
+        "Seventy-five years",
+        "Ninety years",
+        "A hundred and twenty years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_016",
+    "reference": "Romans 5:4",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In Romans 5, perseverance produces what?"
+    },
+    "answers": {
+      "en": [
+        "Wealth",
+        "Wisdom",
+        "Proven character",
+        "Pride"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_017",
+    "reference": "Romans 5:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 5 says death reigned from Adam until whom?"
+    },
+    "answers": {
+      "en": [
+        "Noah",
+        "Abraham",
+        "David",
+        "Moses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_018",
+    "reference": "Romans 7:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he wouldn't have known coveting unless the law had said what?"
+    },
+    "answers": {
+      "en": [
+        "You shall not steal",
+        "You shall not kill",
+        "You shall not covet",
+        "You shall not lie"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_019",
+    "reference": "Romans 7:24",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul cries out: 'What a ___ man I am! Who will deliver me?'"
+    },
+    "answers": {
+      "en": [
+        "Blessed",
+        "Wretched",
+        "Foolish",
+        "Proud"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_020",
+    "reference": "Romans 8:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "By the Spirit of adoption, what do believers cry out?"
+    },
+    "answers": {
+      "en": [
+        "Abba! Father!",
+        "Hosanna!",
+        "Holy, holy, holy!",
+        "Glory to God!"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_021",
+    "reference": "Romans 8:22",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the whole creation groans and travails in what together until now?"
+    },
+    "answers": {
+      "en": [
+        "Silence",
+        "Darkness",
+        "Pain",
+        "Joy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_022",
+    "reference": "Romans 8:31",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'If God is for us, who can be ___ us?'"
+    },
+    "answers": {
+      "en": [
+        "Before",
+        "Beside",
+        "Above",
+        "Against"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_023",
+    "reference": "Romans 8:35",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Paul's list in Romans 8:35, of things that can't separate us from Christ's love?"
+    },
+    "answers": {
+      "en": [
+        "Pride",
+        "Famine",
+        "Envy",
+        "Laziness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_024",
+    "reference": "Romans 8:39",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 8 says nothing in all creation can separate us from what?"
+    },
+    "answers": {
+      "en": [
+        "The love of God",
+        "The law of Moses",
+        "The land of promise",
+        "The temple"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_025",
+    "reference": "Romans 9:13",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 9 quotes Scripture: 'Jacob I loved, but ___ I hated.'"
+    },
+    "answers": {
+      "en": [
+        "Laban",
+        "Ishmael",
+        "Esau",
+        "Cain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_026",
+    "reference": "Romans 9:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 9 says Scripture told which ruler, 'For this very purpose I caused you to be raised up'?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh",
+        "Nebuchadnezzar",
+        "Cyrus",
+        "Herod"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_027",
+    "reference": "Romans 9:21",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks: doesn't the potter have a right over what?"
+    },
+    "answers": {
+      "en": [
+        "The wheel",
+        "The clay",
+        "The fire",
+        "The water"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_028",
+    "reference": "Romans 9:27",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Isaiah said that though Israel be as the sand of the sea, who will be saved?"
+    },
+    "answers": {
+      "en": [
+        "The firstborn",
+        "The priests",
+        "The elders",
+        "The remnant"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_029",
+    "reference": "Romans 9:29",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Unless the Lord had left a seed, we would have become like Sodom and which city?"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Babylon",
+        "Gomorrah",
+        "Tyre"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_030",
+    "reference": "Romans 10:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'How beautiful are the ___ of those who preach the Good News of peace.'"
+    },
+    "answers": {
+      "en": [
+        "Hands",
+        "Voices",
+        "Faces",
+        "Feet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_031",
+    "reference": "Romans 10:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "According to Romans 10, faith comes by what?"
+    },
+    "answers": {
+      "en": [
+        "Seeing",
+        "Hearing",
+        "Working",
+        "Waiting"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_032",
+    "reference": "Romans 11:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In Romans 11, Paul says he is an Israelite of which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Benjamin",
+        "Judah",
+        "Levi",
+        "Dan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_033",
+    "reference": "Romans 11:3",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In Romans 11, which prophet complained, 'I am left alone, and they seek my life'?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "Elisha",
+        "Jeremiah",
+        "Jonah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_034",
+    "reference": "Romans 11:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul pictures the Gentiles as branches of which wild tree, grafted in?"
+    },
+    "answers": {
+      "en": [
+        "A wild fig",
+        "A wild vine",
+        "A wild cedar",
+        "A wild olive"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_035",
+    "reference": "Romans 11:26",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 11 quotes: 'There will come out of ___ the Deliverer.'"
+    },
+    "answers": {
+      "en": [
+        "Bethlehem",
+        "Zion",
+        "Egypt",
+        "Sinai"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_036",
+    "reference": "Romans 12:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Paul's list of gifts in Romans 12?"
+    },
+    "answers": {
+      "en": [
+        "Singing",
+        "Building",
+        "Exhorting",
+        "Fasting"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_037",
+    "reference": "Romans 12:15",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Rejoice with those who rejoice. ___ with those who weep.'"
+    },
+    "answers": {
+      "en": [
+        "Pray",
+        "Weep",
+        "Sit",
+        "Sing"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_038",
+    "reference": "Romans 12:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Feeding a hungry enemy heaps coals of fire on his what?"
+    },
+    "answers": {
+      "en": [
+        "Hands",
+        "House",
+        "Head",
+        "Feet"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_039",
+    "reference": "Romans 13:12",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 13: 'Let's throw off the works of darkness, and let's put on the armor of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "God",
+        "Faith",
+        "Gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_040",
+    "reference": "Romans 14:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In Romans 14, the one who is weak in faith eats only what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Fish",
+        "Fruit",
+        "Vegetables"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_041",
+    "reference": "Romans 15:19",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he had fully preached the Good News from Jerusalem as far as where?"
+    },
+    "answers": {
+      "en": [
+        "Spain",
+        "Arabia",
+        "Illyricum",
+        "Egypt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_042",
+    "reference": "Romans 15:26",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which two regions made a contribution for the poor saints in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Galatia and Asia",
+        "Macedonia and Achaia",
+        "Syria and Cilicia",
+        "Crete and Cyprus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_043",
+    "reference": "Romans 16:5",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Where did the assembly that Paul greets with Prisca and Aquila meet?"
+    },
+    "answers": {
+      "en": [
+        "In a synagogue",
+        "By a river",
+        "In a school",
+        "In their house"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_044",
+    "reference": "Romans 16:7",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which pair does Paul call 'my relatives and my fellow prisoners'?"
+    },
+    "answers": {
+      "en": [
+        "Andronicus and Junia",
+        "Prisca and Aquila",
+        "Tryphaena and Tryphosa",
+        "Philologus and Julia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_045",
+    "reference": "Romans 16:12",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which two women does Paul greet as those 'who labor in the Lord'?"
+    },
+    "answers": {
+      "en": [
+        "Euodia and Syntyche",
+        "Lois and Eunice",
+        "Mary and Martha",
+        "Tryphaena and Tryphosa"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b223_046",
+    "reference": "Romans 16:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul greets whom, 'the chosen in the Lord, and his mother and mine'?"
+    },
+    "answers": {
+      "en": [
+        "Hermes",
+        "Rufus",
+        "Urbanus",
+        "Apelles"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b223_047",
+    "reference": "Romans 16:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Romans 16 says the God of peace will quickly crush whom under your feet?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh",
+        "Goliath",
+        "Satan",
+        "Herod"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b223_048",
+    "reference": "Romans 16:21",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who is the first person named as sending greetings in Romans 16:21, Paul's fellow worker?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Titus",
+        "Luke",
+        "Silas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_049",
+    "reference": "Romans 16:23",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which man does Romans 16 call host to Paul and to the whole assembly?"
+    },
+    "answers": {
+      "en": [
+        "Gaius",
+        "Erastus",
+        "Quartus",
+        "Tertius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b223_050",
+    "reference": "Romans 16:23",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Who sends greetings as 'the brother' at the end of Romans 16:23?"
+    },
+    "answers": {
+      "en": [
+        "Gaius",
+        "Erastus",
+        "Quartus",
+        "Tertius"
+      ]
+    },
+    "correctIndex": 2
+  }
+]
