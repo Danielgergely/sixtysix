@@ -45,13 +45,13 @@ export const TEAM_LOSS_COINS = 15
 
 /**
  * Board games: paid once, when a game is played to the end (leaving forfeits it,
- * as in the arena). Rated like a quiz game of the same length.
+ * as in the arena). Rated like a quiz game of the same length; winning pays 4× losing.
  */
 export const BOARD_REWARDS = {
   /** Wolf in the Flock: one word, a few minutes; by side (sheep or wolves). */
-  flock: { winCoins: 20, lossCoins: 8, winXp: 1200, lossXp: 600 },
+  flock: { winCoins: 20, lossCoins: 5, winXp: 1200, lossXp: 300 },
   /** Twelve Spies: by result. In co-op the players win or lose together. */
-  spies: { winCoins: TEAM_WIN_COINS, lossCoins: TEAM_LOSS_COINS, winXp: 3000, lossXp: 1500 },
+  spies: { winCoins: 40, lossCoins: 10, winXp: 3000, lossXp: 750 },
 } as const
 
 export function flockReward(won: boolean): { coins: number; xp: number } {

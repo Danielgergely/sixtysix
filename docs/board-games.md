@@ -35,7 +35,7 @@ One game = one secret word, a few minutes long; the leader starts a new word str
    - a tie → nobody leaves and a new lap starts; on the final vote a tie lets **the wolves escape**.
 6. **The wolf's guess.** At any time during the game a wolf may tap "I know the word!" and pick from their candidates. Right → **the wolves win**. Wrong → that wolf is out (the flock wins if it was the last one).
 7. **End.** The result shows the winner, the word, the wolves and the deciding vote. Players keep a count of wins in the room.
-8. **Rewards.** Every player dealt into a finished game gets coins and XP once (`flockReward` in `shared/src/coins.ts`): 20 coins + 1,200 XP for the winning side, 8 coins + 600 XP for the losers. Twelve Spies pays 40 coins + 3,000 XP for a win and 15 coins + 1,500 XP for a loss. Abandoned games pay nothing; leaving early forfeits the reward.
+8. **Rewards.** Every player dealt into a finished game gets coins and XP once (`flockReward` in `shared/src/coins.ts`): 20 coins + 1,200 XP for the winning side, 5 coins + 300 XP for the losers. Twelve Spies pays 40 coins + 3,000 XP for a win and 10 coins + 750 XP for a loss (winning always pays 4× losing). Abandoned games pay nothing; leaving early forfeits the reward.
 
 Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are silent and they don't count for the decision or the vote while away. Players who join mid-game watch and are dealt into the next one. If the last wolf leaves, the flock wins; if fewer than 3 players are still in, the game is abandoned. The leader role passes to the next connected player.
 
