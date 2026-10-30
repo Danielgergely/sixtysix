@@ -110,18 +110,18 @@ function FlockMenu() {
         <motion.div className="fl-hero" {...popIn}>
           <span className="fl-hero-icons">🐑🐑🐺🐑</span>
           <p>Everyone gets a secret Bible word — except the wolf. Give clues in turn and find the wolf before it finds out the word!</p>
-          <small>3–20 players in one room · ~5 min a game</small>
+          <small>~5 min a game · together in one room, or from anywhere online</small>
         </motion.div>
 
         <div className="arena-section fl-mode">
           <div className="profile-label">📱 Pass one phone around</div>
-          <p className="fl-mode-text">No internet needed: each player peeks at their card on this phone, then you talk it out.</p>
+          <p className="fl-mode-text">3–20 players in one room. No internet needed: each player peeks at their card on this phone, then you talk it out.</p>
           <button className="btn-play" onClick={() => goTo('flockLocal')}>
             PLAY ON THIS PHONE
           </button>
         </div>
 
-        <div className="fl-mode-divider">or everyone on their own phone</div>
+        <div className="fl-mode-divider">or everyone on their own phone · 3–12 players, in the room or far apart</div>
 
         {last && !prefillCode && (
           <button
