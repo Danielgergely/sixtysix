@@ -16,7 +16,8 @@ import { useGameStore } from '../../game/store'
 import { isLeader, lastSpiesCode, useSpiesStore } from '../../spies/spiesStore'
 import { Avatar } from '../../avatars/Avatar'
 import { popIn, shake, spring } from '../../motion'
-import { TRIBE, otherTeam, playerById, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
+import { TRIBE, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
+import { t as tr, tServer, useLocale, useT } from '../../i18n'
 import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
 import { SpiesBoard } from './SpiesBoard'
 import { Verdict } from './verdict'
@@ -61,16 +62,17 @@ function SpiesTopBar({ state }: { state: SpiesState }) {
   const leave = useSpiesStore((s) => s.leave)
   const [confirm, setConfirm] = useState(false)
   const { me, spymaster } = useMe(state)
+  const t = useT()
   const inGame = state.phase === 'clue' || state.phase === 'guess'
   return (
     <header className="screen-topbar ts-topbar">
-      <button className="icon-btn" onClick={() => (inGame && !confirm ? setConfirm(true) : leave())} title="Leave game">
+      <button className="icon-btn" onClick={() => (inGame && !confirm ? setConfirm(true) : leave())} title={t('spies.common.leaveGame')}>
         {confirm ? '✓' : '✕'}
       </button>
-      <h2 className="topbar-heading">{confirm ? 'Leave? Tap ✓' : 'Twelve Spies'}</h2>
+      <h2 className="topbar-heading">{confirm ? t('spies.common.leaveConfirm') : t('spies.title')}</h2>
       {me && state.phase !== 'lobby' ? (
         <span className={`ts-role-chip ${me.team}`}>
-          {TRIBE[me.team].emblem} {spymaster ? TRIBE[me.team].chief : 'Agent'}
+          {TRIBE[me.team].emblem} {spymaster ? chiefName(me.team) : t('spies.agent')}
         </span>
       ) : (
         <span className="topbar-spacer" />
@@ -93,21 +95,22 @@ function SpiesMenu() {
   const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
   const named = name.trim().length > 0
   const save = () => updateProfile({ name: name.trim(), avatar })
+  const t = useT()
 
   return (
     <div className="screen ts emp">
       <header className="screen-topbar">
-        <button className="icon-btn" onClick={() => goTo('boardGames')} title="Back">
+        <button className="icon-btn" onClick={() => goTo('boardGames')} title={t('spies.common.back')}>
           ←
         </button>
-        <h2 className="topbar-heading">Twelve Spies</h2>
+        <h2 className="topbar-heading">{t('spies.title')}</h2>
         <span className="topbar-spacer" />
       </header>
       <div className="ts-body ts-menu">
         <motion.div className="ts-hero" {...popIn}>
           <span className="ts-hero-icons">🦁🍇🐂</span>
-          <p>Two tribes, one secret map. Your spy master gives one-word clues — find your tribe’s words before the other tribe does, and never wake Goliath!</p>
-          <small>4–12 players (co-op from 2) · phones + optional big screen · ~20 min</small>
+          <p>{t('spies.menu.intro')}</p>
+          <small>{t('spies.menu.meta')}</small>
         </motion.div>
 
         {last && !prefillCode && (
@@ -119,13 +122,13 @@ function SpiesMenu() {
               join(last)
             }}
           >
-            ↩ BACK TO GAME {last}
+            {t('spies.menu.rejoin', { code: last })}
           </button>
         )}
 
         <div className="arena-section">
-          <div className="profile-label">You</div>
-          <input className="profile-name-input" placeholder="Your nickname" maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
+          <div className="profile-label">{t('spies.menu.you')}</div>
+          <input className="profile-name-input" placeholder={t('spies.menu.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
           <div className="avatar-grid arena-avatar-grid">
             {CHARACTERS.map((c) => (
               <button key={c} className={`avatar-option ${avatar === c ? 'selected' : ''}`} onClick={() => setAvatar(c)} title={c}>
@@ -138,10 +141,10 @@ function SpiesMenu() {
         </div>
 
         <div className="arena-section">
-          <div className="profile-label">Join a camp</div>
+          <div className="profile-label">{t('spies.menu.joinTitle')}</div>
           <input
             className="profile-name-input code-input"
-            placeholder="GAME CODE"
+            placeholder={t('spies.menu.codePlaceholder')}
             maxLength={6}
             autoCapitalize="characters"
             autoCorrect="off"
@@ -157,10 +160,10 @@ function SpiesMenu() {
               join(code)
             }}
           >
-            JOIN
+            {t('spies.menu.join')}
           </button>
           <button className="ts-link" disabled={busy || code.length < 4} onClick={() => watch(code)}>
-            📺 Show the board on this screen instead
+            {t('spies.menu.watch')}
           </button>
         </div>
 
@@ -172,10 +175,10 @@ function SpiesMenu() {
             create()
           }}
         >
-          🍇 NEW GAME
+          {t('spies.menu.create')}
         </button>
-        {!named && <p className="ts-hint">Pick a nickname first.</p>}
-        {error && <div className="arena-error">{error}</div>}
+        {!named && <p className="ts-hint">{t('spies.menu.needName')}</p>}
+        {error && <div className="arena-error">{tServer(error)}</div>}
       </div>
     </div>
   )
@@ -183,11 +186,13 @@ function SpiesMenu() {
 
 // ── lobby ──────────────────────────────────────────────────────────────
 
+/** Called during render of the Lobby (which uses `useT`), so it follows the language. */
 function startProblem(state: SpiesState): string | null {
   const live = state.players.filter((p) => p.connected)
-  if (state.mode === 'coop') return live.length >= SPIES_MIN_COOP ? null : `WAITING FOR ${SPIES_MIN_COOP - live.length} MORE`
-  if (live.length < SPIES_MIN_VERSUS) return `WAITING FOR ${SPIES_MIN_VERSUS - live.length} MORE`
-  for (const t of ['judah', 'ephraim'] as SpiesTeam[]) if (live.filter((p) => p.team === t).length < 2) return `${TRIBE[t].name.toUpperCase()} NEEDS 2`
+  if (state.mode === 'coop') return live.length >= SPIES_MIN_COOP ? null : tr('spies.lobby.waitingFor', { n: SPIES_MIN_COOP - live.length })
+  if (live.length < SPIES_MIN_VERSUS) return tr('spies.lobby.waitingFor', { n: SPIES_MIN_VERSUS - live.length })
+  for (const team of ['judah', 'ephraim'] as SpiesTeam[])
+    if (live.filter((p) => p.team === team).length < 2) return tr('spies.lobby.tribeNeeds', { tribe: tribeName(state, team).toUpperCase() })
   return null
 }
 
@@ -199,17 +204,17 @@ function Lobby({ state }: { state: SpiesState }) {
   const joinUrl = `${origin}/spies/${state.code}`
   const problem = startProblem(state)
   const [rules, setRules] = useState(false)
+  const t = useT()
+  const locale = useLocale((s) => s.locale)
   const coop = state.mode === 'coop'
   return (
     <div className="ts-lobby">
       <div className="host-code-card ts-code-card">
-        <div className="host-code-label">Game code</div>
+        <div className="host-code-label">{t('spies.lobby.gameCode')}</div>
         <div className="arena-code">{state.code}</div>
         <QrCode url={joinUrl} />
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
-        <div className="ts-board-hint">
-          📺 Big screen? Open <b>{origin.replace(/^https?:\/\//, '')}/spies/{state.code}/board</b>
-        </div>
+        <div className="ts-board-hint">{rich(t('spies.lobby.boardHint', { url: `${origin.replace(/^https?:\/\//, '')}/spies/${state.code}/board` }))}</div>
       </div>
 
       <div className={`ts-tribes ${coop ? 'coop' : ''}`}>
@@ -220,45 +225,45 @@ function Lobby({ state }: { state: SpiesState }) {
         <div className="ts-lobby-actions">
           {!coop && (
             <button className={`ts-team-btn ${otherTeam(me.team)}`} onClick={() => store.team(otherTeam(me.team))}>
-              {TRIBE[otherTeam(me.team)].emblem} Join {TRIBE[otherTeam(me.team)].name}
+              {TRIBE[otherTeam(me.team)].emblem} {t('spies.lobby.joinTribe', { tribe: tribeName(state, otherTeam(me.team)) })}
             </button>
           )}
           {spymaster ? (
-            <span className="ts-you-sm">👁 You are {TRIBE[me.team].chief}, the spy master</span>
+            <span className="ts-you-sm">{t('spies.lobby.youAre', { chief: chiefName(me.team) })}</span>
           ) : (
             <button className="ts-team-btn sm" onClick={store.volunteer}>
-              👁 Be the spy master
+              {t('spies.lobby.beSpymaster')}
             </button>
           )}
         </div>
       )}
 
       <div className="arena-section ts-settings">
-        <div className="profile-label">Mode</div>
+        <div className="profile-label">{t('spies.lobby.mode')}</div>
         <div className="seg-row">
           <button className={`seg-btn ${!coop ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings('versus', state.turnSeconds)}>
-            Two tribes (4+)
+            {t('spies.lobby.versus')}
           </button>
           <button className={`seg-btn ${coop ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings('coop', state.turnSeconds)}>
-            Co-op (2+)
+            {t('spies.lobby.coop')}
           </button>
         </div>
-        <div className="profile-label">Turn timer</div>
+        <div className="profile-label">{t('spies.lobby.timer')}</div>
         <div className="seg-row">
-          {SPIES_TIMER_OPTIONS.map((t) => (
-            <button key={t} className={`seg-btn ${state.turnSeconds === t ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings(state.mode, t)}>
-              {t === 0 ? 'Off' : t < 120 ? `${t} s` : `${t / 60} min`}
+          {SPIES_TIMER_OPTIONS.map((sec) => (
+            <button key={sec} className={`seg-btn ${state.turnSeconds === sec ? 'selected' : ''}`} disabled={!leader} onClick={() => store.settings(state.mode, sec)}>
+              {sec === 0 ? t('spies.lobby.off') : sec < 120 ? t('spies.lobby.seconds', { n: sec }) : t('spies.lobby.minutes', { n: (sec / 60).toLocaleString(locale) })}
             </button>
           ))}
         </div>
         <div className="ts-row">
           {leader && !coop && (
             <button className="ts-link dark" onClick={store.shuffle}>
-              🎲 Shuffle tribes
+              {t('spies.lobby.shuffle')}
             </button>
           )}
           <button className="ts-link dark" onClick={() => setRules((r) => !r)}>
-            {rules ? 'Hide the rules' : '📜 How to play'}
+            {rules ? t('spies.common.hideRules') : t('spies.common.showRules')}
           </button>
         </div>
         {rules && <Rules />}
@@ -266,10 +271,10 @@ function Lobby({ state }: { state: SpiesState }) {
 
       {leader ? (
         <button className={`btn-play ts-wide-btn ${problem ? '' : 'btn-ready'}`} disabled={!!problem} onClick={store.start}>
-          {problem ?? 'START'}
+          {problem ?? t('spies.lobby.start')}
         </button>
       ) : (
-        <p className="ts-hint">👑 {playerById(state, state.leaderId)?.name ?? 'The leader'} starts the game.</p>
+        <p className="ts-hint">{t('spies.common.leaderStarts', { name: playerById(state, state.leaderId)?.name ?? t('spies.common.theLeader') })}</p>
       )}
     </div>
   )
@@ -281,6 +286,7 @@ function GameView({ state }: { state: SpiesState }) {
   const store = useSpiesStore()
   const { me, spymaster } = useMe(state)
   const [log, setLog] = useState(false)
+  const t = useT()
   const key = store.key && store.key.game === state.game ? store.key.colours : null
   const over = state.phase === 'over'
   const myTurn = !!me && state.turn === me.team
@@ -305,7 +311,7 @@ function GameView({ state }: { state: SpiesState }) {
       {!over && !canPick && !(spymaster && myTurn && state.phase === 'clue') && <WaitNote state={state} spymaster={spymaster} myTurn={myTurn} />}
       {over && <OverActions state={state} />}
       <button className="ts-link" onClick={() => setLog((l) => !l)}>
-        {log ? 'Hide the clue log' : `📜 Clue log (${state.history.filter((h) => h.word).length})`}
+        {log ? t('spies.game.hideLog') : t('spies.game.clueLog', { n: state.history.filter((h) => h.word).length })}
       </button>
       {log && (
         <div className="ts-log-panel">
@@ -317,11 +323,12 @@ function GameView({ state }: { state: SpiesState }) {
 }
 
 function WaitNote({ state, spymaster, myTurn }: { state: SpiesState; spymaster: boolean; myTurn: boolean }) {
+  const t = useT()
   let text: string
-  if (spymaster && myTurn) text = 'Your agents are searching. Keep a straight face! 🤐'
-  else if (spymaster) text = 'You see the key: gold 🦁 Judah, blue 🐂 Ephraim, sand 🏜️ wilderness, red ⚔️ Goliath.'
-  else if (myTurn) text = 'Your spy master is thinking of a clue…'
-  else text = `${state.turn ? tribeName(state, state.turn) : 'The other tribe'} is playing — wait for your turn.`
+  if (spymaster && myTurn) text = t('spies.game.smWaiting')
+  else if (spymaster) text = t('spies.game.keyLegend')
+  else if (myTurn) text = t('spies.game.smThinking')
+  else text = t('spies.game.otherPlaying', { tribe: state.turn ? tribeName(state, state.turn) : t('spies.game.otherTribe') })
   return <p className="ts-wait">{text}</p>
 }
 
@@ -331,6 +338,7 @@ function ClueComposer({ state }: { state: SpiesState }) {
   const [num, setNum] = useState(0)
   const [err, setErr] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
+  const t = useT()
   const left = state.turn ? state.remaining[state.turn] : SPIES_MAX_NUMBER
   const submit = async () => {
     if (!word.trim() || !num || sending) return
@@ -345,12 +353,12 @@ function ClueComposer({ state }: { state: SpiesState }) {
   }
   return (
     <motion.div className="ts-composer" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.bouncy}>
-      <div className="ts-composer-title">👁 Your clue: one word + how many cards</div>
+      <div className="ts-composer-title">{t('spies.composer.title')}</div>
       <motion.div className="ts-input-row" animate={err ? shake : undefined} key={err ?? 'ok'}>
         <input
           className="profile-name-input"
           maxLength={SPIES_CLUE_MAX}
-          placeholder="One word"
+          placeholder={t('spies.composer.placeholder')}
           autoCapitalize="words"
           autoCorrect="off"
           spellCheck={false}
@@ -369,9 +377,9 @@ function ClueComposer({ state }: { state: SpiesState }) {
           </button>
         ))}
       </div>
-      {err && <div className="arena-error">{err}</div>}
+      {err && <div className="arena-error">{tServer(err)}</div>}
       <button className="btn-play ts-wide-btn" disabled={!word.trim() || !num || sending} onClick={() => void submit()}>
-        {word.trim() && num ? `SEND “${word.trim().toUpperCase()} ${num}”` : 'WORD + NUMBER'}
+        {word.trim() && num ? t('spies.composer.send', { word: word.trim().toUpperCase(), n: num }) : t('spies.composer.wordNumber')}
       </button>
     </motion.div>
   )
@@ -383,32 +391,37 @@ function AgentBar({ state }: { state: SpiesState }) {
   const mine = !!prop && prop.proposerId === store.myId
   const backed = !!prop && !!store.myId && prop.backers.includes(store.myId)
   const canForce = useAfter(mine ? store.forceAt : 0)
+  const t = useT()
   const made = state.clue ? state.clue.number + 1 - state.guessesLeft : 0
-  const label = prop ? (prop.pick === SPIES_PASS ? 'End the turn' : `“${state.cards[prop.pick]?.word}”`) : null
+  const label = prop ? (prop.pick === SPIES_PASS ? t('spies.agents.endTurn') : t('spies.status.quoted', { word: state.cards[prop.pick]?.word ?? '' })) : ''
   return (
     <div className="ts-agentbar">
-      {!prop && <p className="ts-hint">Tap a card to propose it. Your tribe agrees by tapping it too.</p>}
+      {!prop && <p className="ts-hint">{t('spies.agents.tapHint')}</p>}
       {prop && (
         <div className="ts-prop-line">
           <span>
-            {mine ? 'You propose' : `${playerById(state, prop.proposerId)?.name} proposes`} <b>{label}</b> · {prop.backers.length}/{prop.needed} agree
+            {rich(
+              mine
+                ? t('spies.agents.youPropose', { what: label, backers: prop.backers.length, needed: prop.needed })
+                : t('spies.agents.proposes', { name: playerById(state, prop.proposerId)?.name ?? '', what: label, backers: prop.backers.length, needed: prop.needed }),
+            )}
           </span>
           {mine ? (
             <button className="btn-play ts-small-btn" disabled={!canForce} onClick={store.confirm}>
-              {canForce ? 'REVEAL ✓' : 'WAIT…'}
+              {canForce ? t('spies.agents.reveal') : t('spies.agents.wait')}
             </button>
           ) : backed ? (
-            <span className="ts-agreed">✓ agreed</span>
+            <span className="ts-agreed">{t('spies.agents.agreed')}</span>
           ) : (
             <button className="btn-play ts-small-btn" onClick={() => store.pick(prop.pick)}>
-              AGREE
+              {t('spies.agents.agree')}
             </button>
           )}
         </div>
       )}
       {made > 0 && prop?.pick !== SPIES_PASS && (
         <button className="btn-secondary ts-pass" onClick={() => store.pick(SPIES_PASS)}>
-          ✋ End our turn
+          {t('spies.agents.endOurTurn')}
         </button>
       )}
     </div>
@@ -418,18 +431,19 @@ function AgentBar({ state }: { state: SpiesState }) {
 function OverActions({ state }: { state: SpiesState }) {
   const store = useSpiesStore()
   const leader = isLeader(store)
+  const t = useT()
   return (
     <div className="ts-over-actions">
       <RewardChip reward={spiesRewardFor(state, store.myId)} />
       {leader ? (
         <button className="btn-play ts-wide-btn" onClick={store.again}>
-          PLAY AGAIN
+          {t('spies.over.playAgain')}
         </button>
       ) : (
-        <p className="ts-wait">👑 {playerById(state, state.leaderId)?.name} can start another game.</p>
+        <p className="ts-wait">{t('spies.common.leaderAgain', { name: playerById(state, state.leaderId)?.name ?? '' })}</p>
       )}
       <button className="btn-secondary" onClick={store.leave}>
-        Leave
+        {t('spies.common.leave')}
       </button>
     </div>
   )

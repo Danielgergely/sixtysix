@@ -2,7 +2,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import type { SpiesState } from '@sixtysix/shared'
 import { useSpiesStore } from '../../spies/spiesStore'
 import { spring } from '../../motion'
-import { playerById, statusLine, useJoinOrigin } from '../../spies/util'
+import { playerById, rich, statusLine, useJoinOrigin } from '../../spies/util'
+import { useT } from '../../i18n'
 import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
 import { Verdict } from './verdict'
 
@@ -13,18 +14,17 @@ import { Verdict } from './verdict'
 export function SpiesBoard() {
   const state = useSpiesStore((s) => s.state)
   const leave = useSpiesStore((s) => s.leave)
+  const t = useT()
   if (!state) return null
   return (
     <div className="screen ts ts-board emp">
       <header className="tsb-top">
-        <button className="icon-btn" onClick={leave} title="Close board">
+        <button className="icon-btn" onClick={leave} title={t('spies.board.close')}>
           ✕
         </button>
-        <h1>🍇 Twelve Spies</h1>
-        <span className="tsb-pill">
-          Code <b>{state.code}</b>
-        </span>
-        {state.game > 0 && state.phase !== 'lobby' && <span className="tsb-pill">Game {state.game}</span>}
+        <h1>{t('spies.boardTitle')}</h1>
+        <span className="tsb-pill">{rich(t('spies.board.code', { code: state.code }))}</span>
+        {state.game > 0 && state.phase !== 'lobby' && <span className="tsb-pill">{t('spies.board.game', { n: state.game })}</span>}
       </header>
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -44,10 +44,11 @@ export function SpiesBoard() {
 function BoardLobby({ state }: { state: SpiesState }) {
   const origin = useJoinOrigin()
   const joinUrl = `${origin}/spies/${state.code}`
+  const t = useT()
   return (
     <div className="tsb-lobby">
       <div className="arena-section tsb-join">
-        <div className="profile-label">Scan to join</div>
+        <div className="profile-label">{t('spies.board.scan')}</div>
         <QrCode url={joinUrl} className="big" />
         <div className="arena-code">{state.code}</div>
         <div className="host-join-url">{joinUrl.replace(/^https?:\/\//, '')}</div>
@@ -58,7 +59,7 @@ function BoardLobby({ state }: { state: SpiesState }) {
           {state.mode === 'versus' && <TribeList state={state} team="ephraim" large />}
         </div>
         <div className="arena-section">
-          <div className="profile-label">How to play</div>
+          <div className="profile-label">{t('spies.common.howToPlay')}</div>
           <Rules />
         </div>
       </div>
@@ -68,6 +69,7 @@ function BoardLobby({ state }: { state: SpiesState }) {
 
 function BoardGame({ state }: { state: SpiesState }) {
   const over = state.phase === 'over'
+  const t = useT()
   return (
     <div className="tsb-split">
       <div className="tsb-stage">
@@ -92,10 +94,10 @@ function BoardGame({ state }: { state: SpiesState }) {
           {state.mode === 'versus' && <TribeList state={state} team="ephraim" large />}
         </div>
         <div className="arena-section tsb-log">
-          <div className="profile-label">Clue log</div>
+          <div className="profile-label">{t('spies.board.clueLog')}</div>
           <History state={state} large />
         </div>
-        {over && <p className="ts-wait">Waiting for 👑 {playerById(state, state.leaderId)?.name} to start another game…</p>}
+        {over && <p className="ts-wait">{t('spies.board.waitingNew', { name: playerById(state, state.leaderId)?.name ?? '' })}</p>}
       </div>
     </div>
   )

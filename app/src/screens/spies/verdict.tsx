@@ -3,10 +3,12 @@ import { motion } from 'motion/react'
 import type { SpiesState, SpiesTeam } from '@sixtysix/shared'
 import { fireCannons, fireConfetti, spring } from '../../motion'
 import { TRIBE, tribeName } from '../../spies/util'
+import { useT } from '../../i18n'
 
 /** End-of-game banner: who won, and how. */
 export function Verdict({ state, myTeam, large = false }: { state: SpiesState; myTeam?: SpiesTeam; large?: boolean }) {
   const r = state.result
+  const t = useT()
   const fired = useRef(false)
   const won = !!r?.winner && (myTeam === undefined || myTeam === r.winner) && !(state.mode === 'coop' && r.winner === 'ephraim')
   useEffect(() => {
@@ -20,22 +22,22 @@ export function Verdict({ state, myTeam, large = false }: { state: SpiesState; m
   let title: string
   let sub: string
   if (r.reason === 'abandoned') {
-    title = 'The mission was called off'
-    sub = 'Too few spies left to carry on.'
+    title = t('spies.verdict.calledOff')
+    sub = t('spies.verdict.tooFew')
   } else if (coop) {
-    title = r.winner === 'judah' ? 'The land is yours!' : 'The Canaanites held the land'
+    title = r.winner === 'judah' ? t('spies.verdict.landYours') : t('spies.verdict.canaanitesHeld')
     sub =
       r.reason === 'goliath'
-        ? 'You stumbled onto Goliath ⚔️'
+        ? t('spies.verdict.goliathCoop')
         : r.reason === 'rival'
-          ? 'They claimed all their cities first.'
-          : 'Judah found every word. “We are well able to overcome it.” (Numbers 13:30)'
+          ? t('spies.verdict.rivalCities')
+          : t('spies.verdict.allFound')
   } else {
-    title = `${TRIBE[r.winner!].emblem} ${tribeName(state, r.winner!)} wins!`
+    title = `${TRIBE[r.winner!].emblem} ${t('spies.verdict.wins', { tribe: tribeName(state, r.winner!) })}`
     sub =
       r.reason === 'goliath'
-        ? `${r.loser ? tribeName(state, r.loser) : 'A tribe'} woke Goliath ⚔️`
-        : `${tribeName(state, r.winner!)} found all its words.`
+        ? t('spies.verdict.wokeGoliath', { tribe: r.loser ? tribeName(state, r.loser) : t('spies.verdict.aTribe') })
+        : t('spies.verdict.foundAll', { tribe: tribeName(state, r.winner!) })
   }
   return (
     <motion.div
