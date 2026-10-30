@@ -269,4 +269,31 @@
 .fl-input-row input{ background: #f3e2bb !important; }
 .fl-phase-title.left strong{ font-size: 20px; }
 .fl-votes-head{ display: flex; justify-content: space-between; padding: 0 8px; font: 700 10px 'Cinzel', serif; letter-spacing: 0.18em; text-transform: uppercase; color: #e9c98a; }
+.fl-mode{ text-align: center; }
+.fl-mode-text{ margin: 0 0 8px; font: 600 13px/1.35 Georgia, serif; color: #6b4120; }
+.fl-mode-divider{ text-align: center; font: italic 700 13px 'Cinzel', serif; color: #e9c98a; text-shadow: 0 2px 3px #000; }
 .fl-rejoin{ margin: 0; font-size: 1.1rem; }
+
+/* ── one phone (screens/flock/local) ──────────────────────────────────── */
+.fll-players{ display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.fll-player{ display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 10px; background: rgb(255 255 255 / 0.45); color: #3b2412; font: 700 15px 'Cinzel', serif; }
+.fll-player-n{ width: 22px; text-align: center; color: #8e3b1e; font-size: 13px; }
+.fll-player-name{ flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fll-mini{ width: 30px; height: 30px; border-radius: 8px; border: 1px solid #b88a3a; background: #f3e2bb; color: #3b2412; font-weight: 900; cursor: pointer; }
+.fll-mini:disabled{ opacity: 0.3; cursor: default; }
+.fll-suggested{ font-size: 10px; opacity: 0.75; }
+.fll-wrap{ flex-wrap: wrap; }
+.fll-wrap .seg-btn{ flex: 1 1 40%; }
+.fll-tally, .fll-tally-line{ display: flex; justify-content: center; align-items: center; gap: 12px; font: 900 16px 'Cinzel', serif; color: #ffe7a3; text-shadow: 0 2px 3px #000; }
+.fll-tally-line{ color: #3b2412; text-shadow: none; margin: 0; }
+.fll-card{ touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.fll-card.sheep.open{ background: radial-gradient(circle at 50% 30%, #fff6da, #f3e2bb 60%, #dcc08a); }
+.fll-play{ gap: 14px; }
+.fll-rules{ width: 100%; margin: 0; padding-left: 2.2em; text-align: left; }
+.fll-hold{ position: relative; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.fll-hold-fill{ position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; background: rgb(255 255 255 / 0.35); }
+.fll-hold.held .fll-hold-fill{ transform: scaleX(1); transition: transform var(--fll-hold-ms, 1200ms) linear; }
+.fll-hold-label{ position: relative; }
+.fll-wolf{ justify-content: center; }
+.fll-wolf-icon{ font-size: 40px; }
+.fll-record{ text-align: center; }

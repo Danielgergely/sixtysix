@@ -31,6 +31,7 @@ const MarketScreen = lazy(() => import('./screens/home/MarketScreen').then((m) =
 const VisitScreen = lazy(() => import('./screens/VisitScreen').then((m) => ({ default: m.VisitScreen })))
 const SkillTreeScreen = lazy(() => import('./screens/SkillTreeScreen').then((m) => ({ default: m.SkillTreeScreen })))
 const FlockScreen = lazy(() => import('./screens/flock/FlockScreen').then((m) => ({ default: m.FlockScreen })))
+const LocalFlockScreen = lazy(() => import('./screens/flock/local/LocalFlockScreen').then((m) => ({ default: m.LocalFlockScreen })))
 const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
 
 const SCREENS: Record<Screen, React.ComponentType> = {
@@ -55,6 +56,7 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   visit: VisitScreen,
   skills: SkillTreeScreen,
   flock: FlockScreen,
+  flockLocal: LocalFlockScreen,
   spies: SpiesScreen,
 }
 

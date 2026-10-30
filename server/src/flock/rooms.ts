@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState } from '@sixtysix/shared'
+import type { FlockCategory, FlockClue, FlockGuess, FlockOut, FlockPhase, FlockResult, FlockState, FlockWord, FlockWordList } from '@sixtysix/shared'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 
 /**
@@ -10,18 +10,9 @@ import { FLOCK_CATEGORIES } from '@sixtysix/shared'
  * separate from the arena's (rooms.ts) so the two games never interact.
  */
 
-export interface FlockWord {
-  word: string
-  hint: string
-  ref: string
-  /** Shown to a wolf who has to give the first clue: associated, never the word. */
-  wolfHint: string
-  /** Other names that count as the word when a caught wolf types it (and that sheep may not say). */
-  aliases?: string[]
-}
-
-export const WORDS: Record<FlockCategory, FlockWord[]> = JSON.parse(
-  readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'words.json'), 'utf8'),
+// Shared with the app's one-phone mode.
+export const WORDS: FlockWordList = JSON.parse(
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'shared', 'src', 'flockWords.json'), 'utf8'),
 )
 for (const c of FLOCK_CATEGORIES) {
   if (!WORDS[c]?.length) throw new Error(`[flock] no words for ${c}`)

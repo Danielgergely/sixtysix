@@ -26,7 +26,7 @@
 One game = one secret word, a few minutes long; the leader starts a new word straight from the result screen.
 
 1. **Setup.** 3–12 players, each on a phone. A shared board (laptop / projector) is optional. No settings.
-2. **Cards.** The server picks a word from `server/src/flock/words.json` (≈260 curated people, places, stories and objects, each with a hint, a reference, a `wolfHint` and `aliases`). Every player sees the word, except **the wolf**, who sees only the category. From 7 players (`FLOCK_TWO_WOLVES_FROM`) there are **two wolves**, who don't know each other; everyone knows how many there are. Wolves are random each game, avoiding last game's wolves when enough others are left.
+2. **Cards.** The server picks a word from `shared/src/flockWords.json` (≈260 curated people, places, stories and objects, each with a hint, a reference, a `wolfHint` and `aliases`). Every player sees the word, except **the wolf**, who sees only the category. From 7 players (`FLOCK_TWO_WOLVES_FROM`) there are **two wolves**, who don't know each other; everyone knows how many there are. Wolves are random each game, avoiding last game's wolves when enough others are left.
 3. **Clues.** In a random order (fixed for the game), each player types a short clue (≤ 3 words, 24 characters, 40 s). Sheep may not say the word or a key part of it, nor a whole alias ("King David" blocks that phrase, not "king"; checked by the server). Missed turns are silent. A wolf who opens gets the word's `wolfHint` on the card: one associated word written by hand (Jonah → "Sea", Manger → "Animals") that points the right way without naming it.
 4. **Decide.** After every full lap, everyone still in chooses **Vote now** or **One more lap** (20 s). A majority of the players still in starts the vote; a tie or the timer without a vote majority means another lap. After lap 4 (`FLOCK_MAX_LAPS`) the vote is final, with no choice.
 5. **The wolf's guess.** At any time until a vote starts (card phase, clues, deciding, after an "out"), a wolf may type a guess of the word and change it as often as they like; their phone shows it. When a vote starts it is **locked**. It only matters if that wolf is caught.
@@ -38,6 +38,15 @@ One game = one secret word, a few minutes long; the leader starts a new word str
 8. **Rewards.** Every player dealt into a finished game gets coins and XP once (`flockReward` in `shared/src/coins.ts`): 20 coins + 1,200 XP for the winning side, 5 coins + 300 XP for the losers (including a wolf caught earlier whose guess failed, even if the other wolf wins). Twelve Spies pays 40 coins + 3,000 XP for a win and 10 coins + 750 XP for a loss (winning always pays 4× losing). Abandoned games pay nothing; leaving early forfeits the reward.
 
 Robustness: a dropped player keeps their seat and card (rejoin with the same device id, or via "Back to game" after a reload); their clue turns are silent and they don't count for the decision or the vote while away. Players who join mid-game watch and are dealt into the next one. If the last wolf leaves, the flock wins; if fewer than 3 players are still in, the game is abandoned. The leader role passes to the next connected player.
+
+### One phone, passed around (`flockLocal` screen)
+
+The Splash-style way to play: no server, no internet and no word checking, because everyone is in one room and talks. Code: `app/src/flock/local/localStore.ts` (zustand; the setup is saved in `sixtysix.flockLocal.v1`) and `app/src/screens/flock/local/LocalFlockScreen.tsx`; it uses the same word list as the online game (`shared/src/flockWords.json`, loaded lazily). No rewards: one phone could otherwise "play" for 20 people.
+
+1. **Setup:** player names in passing order (3–20; add, remove, move), wolves 1–3 (suggested: 1 for 3–6 players, 2 for 7–12, 3 from 13; never half the group or more), categories, the wolf hint on/off, a talking timer (none / 3 / 5 min).
+2. **Pass & peek:** "Pass the phone to Anna" → the card shows only while it is held (sheep: the word; wolf: the category, the hint if on, and how many wolves there are) → "Done — pass to Ben".
+3. **Talk:** the phone names a random first speaker and shows the short rules (and the timer). Voting and the wolf's last guess happen out loud.
+4. **Reveal:** hold the button for a moment (so it can't be tapped by accident) → the wolves and the word with its hint and verse. "Who won this round?" (flock / wolves) adds to a tally kept until "Clear". **New word** deals again; last round's wolves sit out when there are enough others.
 
 ## Second game: **Twelve Spies** (Bible Codenames)
 

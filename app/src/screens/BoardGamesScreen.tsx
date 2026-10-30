@@ -25,9 +25,9 @@ export function BoardGamesScreen() {
           <span>🐑</span>
         </span>
         <span className="bg-feature-text">
-          <span className="bg-feature-tag">New · 3–12 players · 15 min</span>
+          <span className="bg-feature-tag">New · 3–20 players · ~5 min · one phone or one each</span>
           <strong>Wolf in the Flock</strong>
-          <small>Everyone gets a secret Bible word — except the wolf. Give clues, bluff, and vote out the wolf before it escapes!</small>
+          <small>Everyone gets a secret Bible word — except the wolf. Give clues, bluff, and catch the wolf before it guesses the word!</small>
           <span className="bg-feature-play">▶ Play</span>
         </span>
       </motion.button>

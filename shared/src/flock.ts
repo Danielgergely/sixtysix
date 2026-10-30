@@ -44,6 +44,18 @@ export const FLOCK_GUESS_MAX = 40
 export const FLOCK_CATEGORIES = ['person', 'place', 'story', 'thing'] as const
 export type FlockCategory = (typeof FLOCK_CATEGORIES)[number]
 
+/** An entry of the word list (shared/src/flockWords.json, used by the server and the one-phone mode). */
+export interface FlockWord {
+  word: string
+  hint: string
+  ref: string
+  /** Shown to a wolf who has to give the first clue: associated, never the word. */
+  wolfHint: string
+  /** Other names that count as the word when a caught wolf types it (and that sheep may not say). */
+  aliases?: string[]
+}
+export type FlockWordList = Record<FlockCategory, FlockWord[]>
+
 export type FlockSide = 'sheep' | 'wolves'
 export type FlockEndReason =
   | 'caught' // the last wolf was voted out and didn't name the word

@@ -9,8 +9,8 @@ interface Props {
   stroke?: number
   /** Seconds left at which the ring turns red and the number pulses. */
   urgentAt?: number
-  /** 'int' for 3-2-1 countdowns, 'tenths' for answer timers. */
-  format?: 'int' | 'tenths'
+  /** 'int' for 3-2-1 countdowns, 'tenths' for answer timers, 'clock' (m:ss) for minutes. */
+  format?: 'int' | 'tenths' | 'clock'
   className?: string
 }
 
@@ -42,7 +42,8 @@ export function CountdownRing({
       circleRef.current?.setAttribute('stroke-dashoffset', String(circumference * (1 - fraction)))
       const secs = remaining / 1000
       // State only changes when the visible text does — a few times a second.
-      setLabel(format === 'int' ? String(Math.ceil(secs)) : secs.toFixed(1))
+      const whole = Math.ceil(secs)
+      setLabel(format === 'int' ? String(whole) : format === 'clock' ? `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}` : secs.toFixed(1))
       setUrgent(secs > 0 && secs < urgentAt)
       if (remaining > 0) frame = requestAnimationFrame(tick)
     }

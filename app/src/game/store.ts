@@ -47,6 +47,7 @@ export type Screen =
   | 'visit'
   | 'skills'
   | 'flock'
+  | 'flockLocal'
   | 'spies'
 
 /** Screens with the bottom tab bar (and the shared top bar). */
