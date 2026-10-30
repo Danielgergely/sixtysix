@@ -36,6 +36,8 @@ export default {
     answered: '{done} / {total} geantwortet',
     rightly: 'Richtig beantwortet',
     wasAnswer: 'war richtig',
+    soundOn: 'Ton an',
+    soundOff: 'Ton aus',
   },
   result: {
     victorious: 'Siegreich',

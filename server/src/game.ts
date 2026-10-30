@@ -121,6 +121,39 @@ export function sendCurrentPhase(
   }
 }
 
+/**
+ * "Play again": same room and code, back to the lobby. Everyone still connected
+ * stays in (scores reset); the host may change the options before starting.
+ */
+export function backToLobby(io: IO, room: Room): void {
+  clearTimeout(room.timer)
+  for (const [secret, p] of room.players) {
+    if (!p.connected) {
+      room.players.delete(secret)
+      continue
+    }
+    p.score = 0
+    p.streak = 0
+    p.lastGain = 0
+    p.coins = 0
+    p.answer = undefined
+    p.team = undefined
+  }
+  room.phase = 'lobby'
+  room.game++
+  room.config.questionCount = room.requestedCount
+  room.questions = []
+  room.questionIndex = 0
+  room.lastEntries = []
+  room.lastReveal = undefined
+  room.prevRanks = new Map()
+  room.goliath = undefined
+  room.teams = undefined
+  touch(room)
+  broadcastState(io, room)
+  console.log(`[game] ${room.code} back to the lobby for game ${room.game}`)
+}
+
 /** Everyone left mid-game: stop the timers and close on the podium. */
 export function endIfEmpty(io: IO, room: Room): void {
   if (room.phase === 'lobby' || room.phase === 'podium') return

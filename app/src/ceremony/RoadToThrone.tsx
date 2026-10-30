@@ -114,9 +114,11 @@ interface Props {
   wide: boolean
   /** First-to-N race (Bible Blitz): the leader's height is score / goal. */
   goal?: number
+  /** A standings panel sits below the road (arena phones): it shows your rank, so drop the "#rank" pill. */
+  compact?: boolean
 }
 
-export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
+export function RoadToThrone({ entries, played, total, wide, goal, compact }: Props) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const g = wide ? GEOMETRY.wide : GEOMETRY.phone
@@ -192,7 +194,7 @@ export function RoadToThrone({ entries, played, total, wide, goal }: Props) {
         <small>{goal ? t('ceremony.road.firstTo', { n: goal.toLocaleString(locale) }) : t('ceremony.road.after', { played, total })}</small>
       </motion.div>
 
-      {!wide && you && you.rankAfter > SHOWN && (
+      {!wide && !compact && you && you.rankAfter > SHOWN && (
         <div className="tr-you-card" style={{ '--c': color(you).hex } as React.CSSProperties}>
           #{you.rankAfter} · {you.name} · {you.after.toLocaleString(locale)}
         </div>

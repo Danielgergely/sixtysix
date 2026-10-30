@@ -36,6 +36,8 @@ export default {
     answered: '{done} / {total} válaszolt',
     rightly: 'Helyes válasz',
     wasAnswer: 'volt a helyes',
+    soundOn: 'Hang be',
+    soundOff: 'Hang ki',
   },
   result: {
     victorious: 'Győzelem',

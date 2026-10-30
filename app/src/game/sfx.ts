@@ -2,6 +2,9 @@
 
 export type SfxName =
   | 'tick'
+  | 'clock' // soft tick each second while the answer window is open
+  | 'clockTock' // its alternate beat
+  | 'clockUrgent' // faster, brighter tick in the last 5 s
   | 'go'
   | 'click' // generic UI button
   | 'flip' // new question card flips in
@@ -57,6 +60,15 @@ export function playSfx(name: SfxName) {
   switch (name) {
     case 'tick':
       beep(660, 90)
+      break
+    case 'clock':
+      beep(1250, 28, 0, 'sine', 0.018)
+      break
+    case 'clockTock':
+      beep(950, 28, 0, 'sine', 0.016)
+      break
+    case 'clockUrgent':
+      beep(1550, 45, 0, 'triangle', 0.04)
       break
     case 'go':
       beep(880, 220, 0, 'square')

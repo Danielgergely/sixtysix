@@ -110,6 +110,7 @@ export function ArenaGameScreen() {
   const podium = useArenaStore((s) => s.podium)
   const skip = useArenaStore((s) => s.skip)
   const leaveArena = useArenaStore((s) => s.leaveArena)
+  const playAgain = useArenaStore((s) => s.playAgain)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
   const reveal = useArenaStore((s) => s.reveal)
@@ -124,9 +125,19 @@ export function ArenaGameScreen() {
   // reveal (so tiles animate in place); leaderboard and podium are new scenes.
   let scene: { key: string; node: React.ReactNode } | null = null
   const myTeam = room.players.find((p) => p.id === myPlayerId)?.team
-  const endButton = <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
+  // The host may start the next game in this room: same code, everyone stays in.
+  const endButton = (
+    <>
+      {isHost && (
+        <button className="cr-again" onClick={playAgain}>
+          {t('arena.game.playAgain')}
+        </button>
+      )}
+      <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
+    </>
+  )
   if (phase === 'podium' && podium) {
-    let node = <Podium entries={podium} isPlayer={isPlayer} isHost={isHost} onLeave={leaveArena} />
+    let node = <Podium entries={podium} isPlayer={isPlayer} actions={endButton} />
     if (room.goliath) {
       node = <GoliathFinale goliath={room.goliath} entries={podium} wide={!isPlayer} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
     } else if (room.teams) {

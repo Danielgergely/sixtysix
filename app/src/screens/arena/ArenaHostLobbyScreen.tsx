@@ -4,9 +4,39 @@ import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
 import { AnimatedNumber, spring } from '../../motion'
-import { RotateHint } from './RotateHint'
 import { useT } from '../../i18n'
 import { rich } from './rich'
+import { RoomOptions } from './RoomOptions'
+import type { RoomConfig } from '@sixtysix/shared'
+
+/** Host only: change the options in the lobby (also before "Play again" starts the next game). */
+function OptionsSheet({ initial, onClose }: { initial: RoomConfig; onClose: () => void }) {
+  const t = useT()
+  const setOptions = useArenaStore((s) => s.setOptions)
+  const [config, setConfig] = useState<RoomConfig>(initial)
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card options-sheet emp" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-title">{t('arena.hostLobby.options')}</div>
+        <div className="arena-section options-sheet-body">
+          <RoomOptions value={config} onChange={setConfig} />
+        </div>
+        <button
+          className="btn-play"
+          onClick={() => {
+            setOptions(config)
+            onClose()
+          }}
+        >
+          {t('arena.hostLobby.apply')}
+        </button>
+        <button className="btn-secondary" onClick={onClose}>
+          {t('arena.hostLobby.cancel')}
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export function ArenaHostLobbyScreen() {
   const t = useT()
@@ -16,6 +46,7 @@ export function ArenaHostLobbyScreen() {
   const startGame = useArenaStore((s) => s.startGame)
   const [qrSvg, setQrSvg] = useState('')
   const [joinOrigin, setJoinOrigin] = useState(window.location.origin)
+  const [editing, setEditing] = useState(false)
 
   // A localhost QR is unscannable by phones — ask the server for its LAN URL.
   useEffect(() => {
@@ -55,12 +86,11 @@ export function ArenaHostLobbyScreen() {
 
   return (
     <div className="screen host-lobby-screen emp">
-      <RotateHint />
       <header className="screen-topbar">
         <button className="icon-btn" onClick={leaveArena} title={isHost ? t('arena.hostLobby.close') : t('arena.hostLobby.stopWatching')}>
           ✕
         </button>
-        <h2 className="topbar-heading">{t('arena.hostLobby.title')}</h2>
+        <h2 className="topbar-heading">{room.game > 1 ? t('arena.hostLobby.titleNext', { n: room.game }) : t('arena.hostLobby.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
@@ -78,6 +108,11 @@ export function ArenaHostLobbyScreen() {
           </span>
           <span className="chip">{room.config.roomType === 'remote' ? t('arena.remote') : t('arena.inPerson')}</span>
         </div>
+        {isHost && (
+          <button className="btn-secondary host-options-btn" onClick={() => setEditing(true)}>
+            ⚙️ {t('arena.hostLobby.changeOptions')}
+          </button>
+        )}
       </div>
 
       <div className="host-players">
@@ -132,6 +167,7 @@ export function ArenaHostLobbyScreen() {
           <p className="arena-hint">{t('arena.hostLobby.watching')}</p>
         )}
       </div>
+      {editing && <OptionsSheet initial={room.config} onClose={() => setEditing(false)} />}
     </div>
   )
 }

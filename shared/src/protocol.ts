@@ -84,6 +84,8 @@ export interface RoomState {
   hostConnected: boolean
   questionIndex: number
   questionTotal: number
+  /** Which game in this room (1, 2, … — "Play again" keeps the code and starts the next). */
+  game: number
   goliath?: GoliathState
   teams?: TeamState[]
 }
@@ -171,6 +173,10 @@ export interface ClientToServerEvents {
   /** Acknowledged so the client can disconnect only after the server heard it. */
   'room:leave': (cb: (ok: boolean) => void) => void
   'host:start': () => void
+  /** Lobby only: change the options before (re)starting. Validated like room:create. */
+  'host:options': (config: Partial<RoomConfig>) => void
+  /** Podium only: back to the lobby with the same code; players stay, scores reset. */
+  'host:rematch': () => void
   /** Host advances the game: resolves the question / skips the leaderboard wait. */
   'host:skip': (from: ArenaPhase) => void
   'player:answer': (payload: { index: number }) => void

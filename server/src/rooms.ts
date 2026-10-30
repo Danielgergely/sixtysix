@@ -37,6 +37,10 @@ export interface Room {
   /** Pending room-close timer while the host is disconnected. */
   hostGraceTimer?: ReturnType<typeof setTimeout>
   lastActivity: number
+  /** 1 for the first game; "Play again" increments it. */
+  game: number
+  /** Question count the host asked for (config.questionCount becomes the number drawn). */
+  requestedCount: number
   /** Mode state (see modes.ts); undefined in classic games. */
   goliath?: GoliathState
   teams?: TeamState[]
@@ -74,6 +78,8 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     prevRanks: new Map(),
     lastEntries: [],
     lastActivity: Date.now(),
+    game: 1,
+    requestedCount: config.questionCount,
   }
   rooms.set(room.code, room)
   return room
@@ -157,6 +163,7 @@ export function toPublicState(room: Room): RoomState {
     hostConnected: room.hostSocketId !== null,
     questionIndex: room.questionIndex,
     questionTotal: room.config.questionCount,
+    game: room.game,
     goliath: room.goliath,
     teams: room.teams,
   }
