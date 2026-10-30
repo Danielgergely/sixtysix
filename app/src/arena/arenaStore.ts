@@ -50,6 +50,10 @@ interface ArenaStore {
 
   hostGame: (config: RoomConfig) => void
   startGame: () => void
+  /** Host, lobby only: change the room options. */
+  setOptions: (config: Partial<RoomConfig>) => void
+  /** Host, at the podium: back to the lobby with the same code ("Play again"). */
+  playAgain: () => void
   skip: () => void
   joinGame: (code: string) => void
   watchGame: (code: string) => void
@@ -63,8 +67,9 @@ interface ArenaStore {
 
 let socket: ArenaSocket | null = null
 /**
- * Rooms whose coins this device already collected. The podium is re-sent after a
- * reload, so this is saved; room codes get reused, so entries expire after 6 h.
+ * Games whose coins this device already collected, keyed `CODE#game` ("Play again"
+ * keeps the code). The podium is re-sent after a reload, so this is saved; room
+ * codes get reused, so entries expire after 6 h.
  */
 const PAID_KEY = 'sixtysix.arenaPaid.v1'
 const PAID_TTL_MS = 6 * 3600_000
@@ -166,11 +171,17 @@ function getSocket(): ArenaSocket {
   })
 
   socket.on('room:state', (room) => {
-    setState({ room })
-    // Server moved past the lobby → everyone lands on the game screen.
+    const prev = getState().room
+    // "Play again": a new game in the same room starts from a clean slate.
+    const newGame = prev !== null && prev.code === room.code && prev.game !== room.game
+    setState(newGame ? { ...FRESH_GAME, room } : { room })
     const screen = useGameStore.getState().screen
     if (room.phase !== 'lobby' && (screen === 'arenaHostLobby' || screen === 'arenaPlayerLobby')) {
+      // Server moved past the lobby → everyone lands on the game screen.
       useGameStore.getState().goTo('arenaGame')
+    } else if (room.phase === 'lobby' && screen === 'arenaGame') {
+      // Back in the lobby for the next game (same code, everyone still in).
+      useGameStore.getState().goTo(getState().role === 'player' ? 'arenaPlayerLobby' : 'arenaHostLobby')
     }
   })
 
@@ -223,8 +234,9 @@ function getSocket(): ArenaSocket {
     const rank = entries.findIndex((e) => e.playerId === myPlayerId)
     if (role === 'player' && room && rank >= 0) {
       const total = entries[rank].coins // includes the finishing bonus (server-side, by mode)
-      if (!coinsPaid.has(room.code)) {
-        coinsPaid.add(room.code)
+      const key = `${room.code}#${room.game ?? 1}`
+      if (!coinsPaid.has(key)) {
+        coinsPaid.add(key)
         // XP = points scored, as in Bible Blitz; the game counts in the profile stats.
         const { tally } = getState()
         useGameStore.getState().addCoins(total, entries[rank].score, {
@@ -280,6 +292,14 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   startGame: () => {
     getSocket().emit('host:start')
+  },
+
+  setOptions: (config) => {
+    getSocket().emit('host:options', config)
+  },
+
+  playAgain: () => {
+    getSocket().emit('host:rematch')
   },
 
   skip: () => {

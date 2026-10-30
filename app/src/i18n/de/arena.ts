@@ -27,6 +27,10 @@ export default {
     title: 'Du bist dabei!',
     game: 'Spiel {code}',
     waiting: '{n} in der Lobby – warte, bis der Spielleiter startet …',
+    waitingNext: 'Warte, bis der Spielleiter das nächste Spiel startet …',
+    alone: 'Noch niemand sonst da',
+    with_one: 'Mit dir: {count} Spieler',
+    with_other: 'Mit dir: {count} Spieler',
   },
   hostLobby: {
     close: 'Spiel schließen',
@@ -42,9 +46,15 @@ export default {
     waitingOne: 'Warte auf mindestens einen Spieler …',
     teamsDrawn: 'Die Teams werden beim Start gelost.',
     watching: '👀 Du schaust zu – der Spielleiter startet das Spiel.',
+    options: 'Spieloptionen',
+    apply: 'Speichern',
+    cancel: 'Abbrechen',
+    changeOptions: 'Optionen ändern',
+    titleNext: 'Spiel {n} – Lobby',
   },
   rotate: {
     title: 'Dreh dein Gerät quer',
+    continue: 'Hochkant weiter',
     text: 'Das Großbild ist im Querformat – dreh dein Gerät oder öffne es auf einem Laptop, Tablet oder Fernseher, den alle sehen.',
   },
   game: {
@@ -60,6 +70,16 @@ export default {
     stay: 'Bleiben',
     next: 'Weiter ▸',
     skip: 'Weiter ▸',
+    playAgain: '▶ Nochmal spielen',
+  },
+  /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
+  standing: {
+    place: '{place} von {total}',
+    behind: '{pts} Pkt. hinter {name}',
+    ahead: '{pts} Pkt. vor {name}',
+    tied: 'Gleichauf mit {name}',
+    leader: 'Vorne: {name} · {pts}',
+    pts: 'Pkt.',
   },
   errors: {
     enterCode: 'Gib den Spielcode ein',

@@ -1,18 +1,17 @@
+import type { ReactNode } from 'react'
 import type { LeaderboardEntry } from '@sixtysix/shared'
 import { useArenaStore } from '../../../arena/arenaStore'
 import { Crowning } from '../../../ceremony/Crowning'
-import { useT } from '../../../i18n'
 
 interface Props {
   entries: LeaderboardEntry[]
   isPlayer: boolean
-  isHost: boolean
-  onLeave: () => void
+  /** End-game buttons (Play again / End game / Leave). */
+  actions: ReactNode
 }
 
-/** End of an arena game → The Crowning; stays until the host ends it (or a player leaves). */
-export function Podium({ entries, isPlayer, isHost, onLeave }: Props) {
-  const t = useT()
+/** End of an arena game → The Crowning; stays until the host plays again or ends it (or a player leaves). */
+export function Podium({ entries, isPlayer, actions }: Props) {
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const me = isPlayer ? myPlayerId : null
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
@@ -21,7 +20,7 @@ export function Podium({ entries, isPlayer, isHost, onLeave }: Props) {
       entries={entries.map((e) => ({ id: e.playerId, name: e.name, avatar: e.avatar, score: e.score, you: e.playerId === me }))}
       wide={!isPlayer}
       coins={isPlayer ? coinsEarned : undefined}
-      actions={<button onClick={onLeave}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>}
+      actions={actions}
     />
   )
 }

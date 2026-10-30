@@ -27,6 +27,10 @@ export default {
     title: 'Bent vagy!',
     game: 'Játék: {code}',
     waiting: '{n} fő a váróban – várjuk, hogy a játékvezető elindítsa…',
+    waitingNext: 'Várjuk, hogy a játékvezető elindítsa a következő játékot…',
+    alone: 'Még senki más nincs itt',
+    with_one: 'Veled együtt: {count} játékos',
+    with_other: 'Veled együtt: {count} játékos',
   },
   hostLobby: {
     close: 'Játék bezárása',
@@ -42,9 +46,15 @@ export default {
     waitingOne: 'Várunk legalább egy játékosra…',
     teamsDrawn: 'A csapatokat a játék indulásakor sorsoljuk.',
     watching: '👀 Nézőként vagy itt – a játékvezető indítja a játékot.',
+    options: 'Játékbeállítások',
+    apply: 'Mentés',
+    cancel: 'Mégse',
+    changeOptions: 'Beállítások módosítása',
+    titleNext: '{n}. játék – váró',
   },
   rotate: {
     title: 'Fordítsd el a készüléket',
+    continue: 'Folytatás állítva',
     text: 'A kivetítő fekvő nézet – fordítsd fekvő helyzetbe, vagy nyisd meg egy laptopon, tableten vagy tévén, amit mindenki lát.',
   },
   game: {
@@ -60,6 +70,16 @@ export default {
     stay: 'Maradok',
     next: 'Tovább ▸',
     skip: 'Tovább ▸',
+    playAgain: '▶ Újra játszunk',
+  },
+  /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
+  standing: {
+    place: '{place} hely / {total}',
+    behind: '{pts} ponttal {name} mögött',
+    ahead: '{pts} ponttal {name} előtt',
+    tied: 'Fej fej mellett: {name}',
+    leader: 'Élen: {name} · {pts}',
+    pts: 'pont',
   },
   errors: {
     enterCode: 'Írd be a játékkódot',

@@ -28,6 +28,10 @@ export default {
     title: 'You’re in!',
     game: 'Game {code}',
     waiting: '{n} in the lobby — waiting for the host to start…',
+    waitingNext: 'Waiting for the host to start the next game…',
+    alone: 'No one else here yet',
+    with_one: 'With you: {count} player',
+    with_other: 'With you: {count} players',
   },
   hostLobby: {
     close: 'Close game',
@@ -43,9 +47,15 @@ export default {
     waitingOne: 'Waiting for at least one player…',
     teamsDrawn: 'Teams are drawn when the game starts.',
     watching: '👀 Watching — the host starts the game.',
+    options: 'Game options',
+    apply: 'Save',
+    cancel: 'Cancel',
+    changeOptions: 'Change options',
+    titleNext: 'Game {n} — Lobby',
   },
   rotate: {
     title: 'Turn your device sideways',
+    continue: 'Continue upright',
     text: 'The host board is a landscape view — rotate to landscape, or open it on a laptop, tablet, or TV that everyone can see.',
   },
   game: {
@@ -61,6 +71,16 @@ export default {
     stay: 'Stay',
     next: 'Next ▸',
     skip: 'Skip ▸',
+    playAgain: '▶ Play again',
+  },
+  /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
+  standing: {
+    place: '{place} of {total}',
+    behind: '{pts} pts behind {name}',
+    ahead: '{pts} pts ahead of {name}',
+    tied: 'Level with {name}',
+    leader: 'Leader: {name} · {pts}',
+    pts: 'pts',
   },
   errors: {
     enterCode: 'Enter the game code',

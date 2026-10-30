@@ -39,6 +39,8 @@ export default {
     answered: '{done} / {total} answered',
     rightly: 'Rightly answered',
     wasAnswer: 'was the answer',
+    soundOn: 'Sound on',
+    soundOff: 'Sound off',
   },
   /** The player's medallion after each reveal. */
   result: {

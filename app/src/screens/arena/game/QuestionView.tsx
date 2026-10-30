@@ -11,6 +11,20 @@ import { quoteVerse } from '../../../questions/quoteVerse'
 import { PlayerResult } from './PlayerResult'
 import { useLocale, useT } from '../../../i18n'
 import { rich } from '../rich'
+import { useGameStore } from '../../../game/store'
+import { useClockTicks } from '../../../game/useClockTicks'
+
+/** Sound on/off right on the question screen; the same setting as in Profile. */
+function SoundToggle() {
+  const t = useT()
+  const muted = useGameStore((s) => s.muted)
+  const toggleMute = useGameStore((s) => s.toggleMute)
+  return (
+    <button className="eh-sound" onClick={toggleMute} title={muted ? t('quiz.question.soundOn') : t('quiz.question.soundOff')} aria-pressed={!muted}>
+      {muted ? '🔇' : '🔊'}
+    </button>
+  )
+}
 
 /** Fan angle per card in the player's hand. */
 const FAN = [-9, -3, 3, 9]
@@ -111,6 +125,8 @@ export function QuestionView(props: QuestionViewProps) {
   const [scope, animate] = useAnimate()
   const remaining = useRemaining(endsAt, phase === 'question')
   const revealed = phase === 'reveal' && reveal !== null
+  // The clock ticks while you can still answer (boards: until the window closes).
+  useClockTicks(endsAt, phase === 'question' && (!isPlayer || myAnswer === null))
 
   // The verdict medallion takes over a moment after the card flips.
   const [verdictFor, setVerdictFor] = useState<number | null>(null)
@@ -162,6 +178,7 @@ export function QuestionView(props: QuestionViewProps) {
               <AnimatedNumber value={props.coins} duration={0.5} />
             </div>
           )}
+          <SoundToggle />
         </div>
 
         <div className="empire-scroll">

@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { ARENA_MODES, CATEGORIES, type ArenaMode, type Category, type DifficultyPreset, type RoomType } from '@sixtysix/shared'
+import type { RoomConfig } from '@sixtysix/shared'
 import { tServer, useT } from '../../i18n'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { CHARACTERS, type CharacterId } from '@sixtysix/shared'
-
-const QUESTION_COUNTS = [5, 10, 15, 20]
-const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
+import { RoomOptions } from './RoomOptions'
 
 export function ArenaMenuScreen() {
   const t = useT()
@@ -22,14 +20,7 @@ export function ArenaMenuScreen() {
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
   const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
-  const [mode, setMode] = useState<ArenaMode>('classic')
-  const [questionCount, setQuestionCount] = useState(10)
-  const [roomType, setRoomType] = useState<RoomType>('in-person')
-  const [difficulty, setDifficulty] = useState<DifficultyPreset>('mixed')
-  // Empty = every category (the default), so no chip selected reads as "all".
-  const [categories, setCategories] = useState<Category[]>([])
-  const toggleCategory = (c: Category) =>
-    setCategories((cs) => (cs.includes(c) ? cs.filter((x) => x !== c) : [...cs, c]))
+  const [config, setConfig] = useState<RoomConfig>({ questionCount: 10, roomType: 'in-person', difficulty: 'mixed', categories: [], mode: 'classic' })
 
   const canJoin = !busy && code.length >= 4 && name.trim().length > 0
 
@@ -97,71 +88,11 @@ export function ArenaMenuScreen() {
 
         <div className="arena-section">
           <div className="profile-label">{t('arena.menu.host')}</div>
-          <div className="mode-picker">
-            {ARENA_MODES.map((m) => (
-              <button key={m} className={`seg-btn mode-btn ${mode === m ? 'selected' : ''}`} onClick={() => setMode(m)}>
-                {t(`arena.modes.${m}.label`)}
-              </button>
-            ))}
-          </div>
-          <p className="arena-hint mode-desc">{t(`arena.modes.${mode}.desc`)}</p>
-          <div className="seg-row">
-            {QUESTION_COUNTS.map((n) => (
-              <button
-                key={n}
-                className={`seg-btn ${questionCount === n ? 'selected' : ''}`}
-                onClick={() => setQuestionCount(n)}
-              >
-                {t('arena.menu.questions', { n })}
-              </button>
-            ))}
-          </div>
-          <div className="seg-row">
-            {DIFFICULTIES.map((d) => (
-              <button
-                key={d}
-                className={`seg-btn ${difficulty === d ? 'selected' : ''}`}
-                onClick={() => setDifficulty(d)}
-              >
-                {t(`arena.difficulty.${d}`)}
-              </button>
-            ))}
-          </div>
-          <div className="category-chips">
-            <button
-              className={`seg-btn ${categories.length === 0 ? 'selected' : ''}`}
-              onClick={() => setCategories([])}
-            >
-              {t('arena.allBooks')}
-            </button>
-            {CATEGORIES.map((c) => (
-              <button
-                key={c}
-                className={`seg-btn ${categories.includes(c) ? 'selected' : ''}`}
-                onClick={() => toggleCategory(c)}
-              >
-                {t(`quiz.categories.${c}`)}
-              </button>
-            ))}
-          </div>
-          <div className="seg-row">
-            <button
-              className={`seg-btn ${roomType === 'in-person' ? 'selected' : ''}`}
-              onClick={() => setRoomType('in-person')}
-            >
-              {t('arena.inPerson')}
-            </button>
-            <button
-              className={`seg-btn ${roomType === 'remote' ? 'selected' : ''}`}
-              onClick={() => setRoomType('remote')}
-            >
-              {t('arena.remote')}
-            </button>
-          </div>
+          <RoomOptions value={config} onChange={setConfig} />
           <button
             className="btn-secondary host-btn"
             disabled={busy}
-            onClick={() => hostGame({ questionCount, roomType, difficulty, categories, mode })}
+            onClick={() => hostGame(config)}
           >
             {t('arena.menu.create')}
           </button>
