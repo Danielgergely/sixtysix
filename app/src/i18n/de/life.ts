@@ -1,0 +1,142 @@
+/** Menschen und Tiere auf dem Hof und in der Stadt (world/life): was sie beim Antippen sagen. */
+export default {
+  name: {
+    man: 'Wanderer',
+    woman: 'Wasserträgerin',
+    woodcutter: 'Holzfäller',
+    merchant: 'Händler',
+    boy: 'Junge',
+    elder: 'Ältester',
+    mason: 'Steinmetz',
+    shepherd: 'Hirte',
+    picker: 'Olivenpflückerin',
+    dog: 'Hund',
+    cat: 'Katze',
+    goat: 'Ziege',
+    sheep: 'Schaf',
+    hen: 'Huhn',
+    donkey: 'Esel',
+    carpenter: 'Zimmermann',
+    brickmaker: 'Ziegelmacher',
+    watchman: 'Wächter',
+    camel: 'Kamel',
+  },
+
+  say: {
+    man: {
+      l1: 'Schalom! Friede sei mit diesem Haus.',
+      l2: 'Ich gehe hinauf zum Tempel. Kommst du mit?',
+      l3: 'Wie schön und lieblich ist’s, wenn Brüder einträchtig beieinander wohnen! (Ps 133)',
+      l4: 'Der Weg von Jericho ist weit – aber Jerusalem lohnt sich.',
+    },
+    woman: {
+      l1: 'Der Brunnen ist heute tief!',
+      l2: 'Wer von diesem Wasser trinkt, den wird wieder dürsten … (Joh 4)',
+      l3: 'Vorsicht – der Krug ist randvoll!',
+      l4: 'Rebekka hat zehn Kamele getränkt. Ich bleibe bei einem Krug, danke.',
+    },
+    woodcutter: {
+      l1: 'Hack, hack! Holz für den Winter.',
+      l2: 'Sogar Salomo brauchte für den Tempel jede Menge Holz.',
+      l3: 'Achtung, Füße weg – hier kommen Stämme!',
+      l4: 'Eine scharfe Axt und ein gutes Lied machen die Arbeit leicht.',
+    },
+    merchant: {
+      l1: 'Feinste Wolle aus Damaskus! Na ja … fast.',
+      l2: 'Nur ehrliche Waagen – der Herr liebt rechtes Gewicht! (Spr 11,1)',
+      l3: 'Feigen, Datteln, Granatäpfel! Wer kauft?',
+      l4: 'Mein Esel trägt die Hälfte, ich die andere.',
+    },
+    boy: {
+      l1: 'Fang mich doch!',
+      l2: 'Ich bin David und du bist Goliat! Zack!',
+      l3: 'Gibt’s bald Essen?',
+      l4: 'Ich hab ein Lamm gesehen, so groß wie eine Kuh! … Fast.',
+    },
+    elder: {
+      l1: 'Zu meiner Zeit baute man mit Lehm und Geduld.',
+      l2: 'Graue Haare sind eine Krone der Ehre. (Spr 16,31)',
+      l3: 'Setz dich, Kind. Ich erzähl dir von Nehemia.',
+      l4: 'Wenn der Herr nicht das Haus baut, arbeiten umsonst, die daran bauen. (Ps 127)',
+    },
+    mason: {
+      l1: 'Zweimal messen, einmal schlagen!',
+      l2: 'Dieser Stein ist für die Ecke. Ein sehr wichtiger Stein.',
+      l3: 'Schwer? Nein, nein … nur ein bisschen.',
+      l4: 'Der Stein, den die Bauleute verworfen haben … den nehm ich! (Ps 118)',
+    },
+    shepherd: {
+      l1: 'Der Herr ist mein Hirte – ich bin nur der Gehilfe.',
+      l2: 'Neunundneunzig … schon wieder fehlt eins!',
+      l3: 'Das Lämmchen will nicht laufen, also reitet es.',
+      l4: 'Die Schafe kennen meine Stimme. Meistens.',
+    },
+    picker: {
+      l1: 'Oliven für die Presse, Öl für die Lampen!',
+      l2: 'Die Zweige sanft schlagen – lass etwas für die Armen übrig. (5. Mose 24,20)',
+      l3: 'Eine gute Ernte dieses Jahr, Gott sei Dank!',
+      l4: 'Mein Korb ist schwerer, als er aussieht.',
+    },
+    carpenter: {
+      l1: 'Überall Späne – ein guter Arbeitstag!',
+      l2: 'Ein Zimmermann aus Nazareth? Noch nie gehört … noch nicht.',
+      l3: 'Glatt wie Seide, dieses Brett.',
+      l4: 'Gibst du mir mal den Meißel?',
+    },
+    brickmaker: {
+      l1: 'Lehm, Stroh, eine Form – den Rest macht die Sonne.',
+      l2: 'Wenigstens nimmt mir keiner das Stroh weg. (2. Mose 5)',
+      l3: 'Ein Ziegel, zwei Ziegel … noch tausend!',
+      l4: 'Tritt nicht auf die nassen!',
+    },
+    watchman: {
+      l1: 'Alles ruhig auf der Mauer.',
+      l2: 'Wächter, ist die Nacht bald hin? – Der Morgen kommt! (Jes 21,11)',
+      l3: 'Ich sehe bis zum Ölberg.',
+      l4: 'Halt! Ach – du bist’s. Weitergehen.',
+    },
+    dog: {
+      l1: 'Wuff! 🐕',
+      l2: 'Wedelt mit dem Schwanz und schnuppert an deiner Hand.',
+      l3: 'Wuff wuff! (Er hätte gern ein Bröckchen vom Tisch.)',
+    },
+    cat: {
+      l1: 'Mrrrau. 🐈',
+      l2: 'Schnurrt und streicht dir um die Beine.',
+      l3: 'Starrt dich an und putzt sich dann die Pfote.',
+    },
+    goat: {
+      l1: 'Mäh-äh-äh! 🐐',
+      l2: 'Versucht, deinen Ärmel zu fressen.',
+      l3: 'Meckert und hüpft davon.',
+    },
+    sheep: {
+      l1: 'Bäh! 🐑',
+      l2: 'Schaut kauend auf und grast weiter.',
+      l3: 'Bä-äh! Es kennt die Stimme seines Hirten, nicht deine.',
+    },
+    hen: {
+      l1: 'Gack gack gack! 🐔',
+      l2: 'Flattert beleidigt davon.',
+      l3: 'Gluck! Sammelt ihre Küken unter ihre Flügel. (Mt 23,37)',
+    },
+    donkey: {
+      l1: 'I-aah! 🫏',
+      l2: 'Zuckt mit den langen Ohren.',
+      l3: 'Bileams Eselin konnte reden. Dieser hier sagt nur I-aah.',
+    },
+    camel: {
+      l1: 'Brummelt und kaut.',
+      l2: 'Schaut von ganz weit oben auf dich herab. 🐪',
+      l3: 'Eher geht ein Kamel durch ein Nadelöhr … es versucht es gar nicht erst.',
+    },
+  },
+
+  gift: {
+    woodcutter: 'Hier, ein Scheit für dein Feuer! +{n} {icon}',
+    shepherd: 'Frische Wolle von der Herde – für dich! +{n} {icon}',
+    mason: 'Ein guter Stein für deine Mauern! +{n} {icon}',
+    picker: 'Ein Krüglein Öl, frisch aus der Presse! +{n} {icon}',
+    later: 'Gerade nichts für dich – komm später wieder!',
+  },
+}

@@ -7,7 +7,7 @@ import type {
   ServerToClientEvents,
 } from '@sixtysix/shared'
 import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
-import { applyModeRound, endsEarly, finalBonus, setupMode } from './modes.js'
+import { applyModeRound, endsEarly, finalBonus, formTeams, queueTeamVotes, setupMode, teamVotesFor } from './modes.js'
 import { pickQuestions, verseFor, versesFor } from './bank.js'
 import { toPublicState, touch, type Room } from './rooms.js'
 
@@ -118,7 +118,41 @@ export function sendCurrentPhase(
   if (room.phase === 'question') {
     const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
     socket.emit('game:answerCount', ids.length, ids)
+    const me = secret ? room.players.get(secret) : undefined
+    if (me?.team !== undefined && room.teams) socket.emit('game:teamVotes', teamVotesFor(room, me))
   }
+}
+
+/**
+ * "Play again": same room and code, back to the lobby. Everyone still connected
+ * stays in (scores reset); the host may change the options before starting.
+ */
+export function backToLobby(io: IO, room: Room): void {
+  clearTimeout(room.timer)
+  for (const [secret, p] of room.players) {
+    if (!p.connected) {
+      room.players.delete(secret)
+      continue
+    }
+    p.score = 0
+    p.streak = 0
+    p.lastGain = 0
+    p.coins = 0
+    p.answer = undefined
+  }
+  room.phase = 'lobby'
+  room.game++
+  room.config.questionCount = room.requestedCount
+  room.questions = []
+  room.questionIndex = 0
+  room.lastEntries = []
+  room.lastReveal = undefined
+  room.prevRanks = new Map()
+  room.goliath = undefined
+  formTeams(room) // the same teams play again (the host may shuffle)
+  touch(room)
+  broadcastState(io, room)
+  console.log(`[game] ${room.code} back to the lobby for game ${room.game}`)
 }
 
 /** Everyone left mid-game: stop the timers and close on the podium. */
@@ -156,6 +190,7 @@ export function handleAnswer(io: IO, room: Room, playerId: string, index: unknow
   touch(room)
 
   emitAnswered(io, room)
+  queueTeamVotes(io, room, player.team)
   resolveIfAllAnswered(io, room)
 }
 

@@ -40,6 +40,7 @@ export default {
     finishedVerse: '„Und die Mauer ward fertig … in zweiundfünfzig Tagen.“ – Nehemia 6,15',
     won: 'Dein Team hat gewonnen!',
     wellBuilt: 'Gut gebaut – deine Mauer steht auch.',
+    noStones: 'Diesmal kein einziger Stein – im nächsten Spiel wächst die Mauer!',
     gates: { sheep: 'Schaftor', fish: 'Fischtor', valley: 'Taltor', fountain: 'Brunnentor' },
   },
 }

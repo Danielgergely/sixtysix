@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { AnimatedNumber, fireCannons } from '../motion'
 import { playSfx } from '../game/sfx'
-import { PaintedCoin, PaintedPortrait } from '../art/PaintedPortrait'
-import { characterOrDefault } from '../art/characters'
+import { parseLook } from '@sixtysix/shared'
+import { LookPortrait, PaintedCoin, PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
-import { BODY_ART, type Pose } from '../art/bodyArt'
+import { BUST_ANCHORS } from '../looks/bustArt'
 import { useLocale, useT } from '../i18n'
 import { rich } from '../screens/arena/rich'
+import { usePortraitBoard } from '../screens/arena/usePortraitBoard'
 import { nameTag } from './names'
 
 export interface CrownEntry {
@@ -46,6 +47,15 @@ const STAGE = {
 
 type CharState = 'hidden' | 'arrive' | 'crowned' | 'placed'
 
+/**
+ * Each crowned player is their framed portrait on a stone pedestal (with
+ * everything they wear). The figure box is FIGURE_ASPECT wide/high; the
+ * portrait fills its width PORTRAIT_TOP (× width) below the top, leaving room
+ * for the crown, and the pedestal takes the rest.
+ */
+const FIGURE_ASPECT = 0.62
+const PORTRAIT_TOP = 0.2
+
 interface Props {
   /** Final standings, best first. */
   entries: CrownEntry[]
@@ -66,7 +76,10 @@ interface Props {
 export function Crowning({ entries, wide, actions, coins }: Props) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
-  const st = wide ? STAGE.wide : STAGE.phone
+  // A board on an upright phone ("Continue upright") keeps its ranking but uses the portrait stage.
+  const upright = usePortraitBoard()
+  const landscape = wide && !upright
+  const st = landscape ? STAGE.wide : STAGE.phone
   const top3 = useMemo(() => entries.slice(0, 3), [entries])
   const script = useMemo(() => buildScript(top3.length), [top3.length])
   const youRank = entries.findIndex((r) => r.you) + 1
@@ -104,7 +117,7 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
   const glowing = current?.ev === 'crown'
 
   return (
-    <motion.div className={`cr ${wide ? 'wide' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div className={`cr ${landscape ? 'wide' : ''} ${wide ? 'board' : ''}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="cr-stage" style={{ aspectRatio: st.aspect, backgroundImage: `url(${st.img})` }}>
         {/* Glory of the throne: always present, flares on every crowning. */}
         <motion.div
@@ -121,9 +134,13 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
           const state = stateOf(rank)
           if (state === 'hidden') return null
           const spot = state === 'placed' || (rank === 1 && champion) ? st.place[rank] : st.spot
-          const pose: Pose = state === 'arrive' ? 'stand' : 'cheer'
-          const avatar = characterOrDefault(r.avatar)
-          const art = BODY_ART[avatar][pose]
+          const crowned = state !== 'arrive'
+          const look = parseLook(r.avatar)
+          // The crown takes the head slot: a worn headband or wreath steps aside for it.
+          const shown = crowned ? { ...look, head: undefined } : look
+          const head = BUST_ANCHORS[look.base].head
+          // Head anchor (in % of the square bust) → % of the figure box.
+          const crownAt = { x: head.x, y: ((PORTRAIT_TOP + head.y / 100) * FIGURE_ASPECT) * 100, w: head.w * 0.95 }
           return (
             <motion.div
               key={r.id}
@@ -133,25 +150,22 @@ export function Crowning({ entries, wide, actions, coins }: Props) {
               animate={{ left: `${spot.x}%`, top: `${spot.y}%`, height: `${spot.h}%`, opacity: 1, filter: 'brightness(1)' }}
               transition={{ duration: state === 'arrive' ? 0.55 : 0.45, ease: [0.3, 0, 0.2, 1] }}
             >
-              <div className="cr-figure" style={{ aspectRatio: art.aspect }}>
-                <AnimatePresence initial={false}>
-                  <motion.img
-                    key={pose}
-                    src={`/art/body-${avatar}-${pose}.webp`}
-                    alt=""
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, y: pose === 'cheer' ? [0, -10, 0] : 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    draggable={false}
-                  />
-                </AnimatePresence>
-                {state !== 'arrive' && (
+              <div className="cr-figure" style={{ aspectRatio: FIGURE_ASPECT }}>
+                <div className={`cr-pedestal ${TIER[rank]}`} style={{ top: `${(PORTRAIT_TOP + 0.92) * FIGURE_ASPECT * 100}%` }} />
+                <motion.div
+                  className="cr-portrait-wrap"
+                  style={{ top: `${PORTRAIT_TOP * FIGURE_ASPECT * 100}%` }}
+                  animate={{ y: crowned ? ['0%', '-6%', '0%'] : '0%' }}
+                  transition={{ duration: 0.5, delay: crowned ? 0.7 : 0 }}
+                >
+                  <LookPortrait look={shown} className={`cr-portrait ${TIER[rank]}`} />
+                </motion.div>
+                {crowned && (
                   <motion.img
                     className="cr-crown"
                     src={`/art/crown-${TIER[rank]}.webp`}
                     alt=""
-                    style={{ left: `${art.head.x}%`, top: `${art.head.y}%`, width: `${art.head.w}%` }}
+                    style={{ left: `${crownAt.x}%`, top: `${crownAt.y}%`, width: `${crownAt.w}%` }}
                     // Rises out of the glory below, arcs up and settles on the head.
                     initial={{ y: '420%', scale: 0.4, opacity: 0, rotate: -20 }}
                     animate={{ y: ['420%', '-160%', '0%'], scale: [0.4, 1.3, 1], opacity: [0, 1, 1], rotate: [-20, 10, 0] }}

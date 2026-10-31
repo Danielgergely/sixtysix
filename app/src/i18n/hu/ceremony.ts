@@ -40,6 +40,7 @@ export default {
     finishedVerse: '„És elkészült a kőfal… ötvenkét nap alatt.” – Neh 6,15',
     won: 'A csapatod nyert!',
     wellBuilt: 'Szép munka – a te falad is áll.',
+    noStones: 'Ezúttal egy kő sem került a helyére – a következő játékban felépül a fal!',
     gates: { sheep: 'Juhkapu', fish: 'Halkapu', valley: 'Völgykapu', fountain: 'Forráskapu' },
   },
 }

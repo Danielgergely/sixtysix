@@ -1,5 +1,5 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
-import { USERNAME_RE, hasRole, type StaffRole } from '@sixtysix/shared'
+import { USERNAME_RE, hasRole, normalizeUsername, usernameKey, type StaffRole } from '@sixtysix/shared'
 import { db, isAdminName, roleOf, userFromRequest, type UserRow } from './accounts.js'
 
 /**
@@ -54,11 +54,11 @@ export function registerRoleRoutes(app: FastifyInstance): void {
   /** Admins: { username, action: 'add' | 'remove' } grants or revokes the reviewer role. */
   staffRoute(app, 'post', '/api/admin/reviewers', 'admin', (row, req, reply) => {
     const body = (req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {}) as Record<string, unknown>
-    const username = typeof body.username === 'string' ? body.username.trim() : ''
+    const username = typeof body.username === 'string' ? normalizeUsername(body.username) : ''
     if ((body.action !== 'add' && body.action !== 'remove') || !USERNAME_RE.test(username)) {
       return reply.code(400).send({ ok: false, error: 'Bad request' })
     }
-    const target = db.prepare('SELECT id, username FROM users WHERE username = ?').get(username) as { id: number; username: string } | undefined
+    const target = db.prepare('SELECT id, username FROM users WHERE username_key = ?').get(usernameKey(username)) as { id: number; username: string } | undefined
     if (!target) return reply.code(404).send({ ok: false, error: 'No such player' })
     if (isAdminName(target.username)) return reply.code(400).send({ ok: false, error: 'Admins are set on the server' })
     db.prepare('UPDATE users SET role = ? WHERE id = ?').run(body.action === 'add' ? 'reviewer' : null, target.id)

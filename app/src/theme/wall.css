@@ -1,0 +1,121 @@
+/* ---------- Rebuild the Wall: your team on the phone (screens/arena/game/Team.tsx) ---------- */
+.tm-pennant{
+  display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px;
+  background: var(--c); border: 2px solid #ffe08a; box-shadow: 0 2px 6px rgb(0 0 0 / 0.45);
+  color: #fff; font: 900 13px/1.2 'Cinzel', serif; text-shadow: 0 1px 2px #000; white-space: nowrap;
+}
+.tm-pennant.small{ padding: 2px 8px; font-size: 11px; border-width: 1.5px; }
+
+/* Lobby card */
+.tm-card{
+  width: 100%; max-width: 340px; margin-top: 10px; padding: 10px 12px 12px; border-radius: 12px;
+  background: rgb(29 15 6 / 0.82); border: 2px solid var(--c); box-shadow: 0 0 0 1px #1d0f06, 0 6px 16px rgb(0 0 0 / 0.45);
+  color: #ffe7a3; text-align: center;
+}
+.tm-card-head{ font: 800 14px/1.4 'Cinzel', serif; }
+.tm-card-empty{ margin-top: 6px; font: italic 600 13px/1.3 Georgia, serif; color: #e9c98a; }
+.tm-card-mates{ margin-top: 8px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 10px; }
+.tm-mate{ width: 58px; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.tm-mate.gone{ opacity: 0.45; }
+.tm-mate-pic{ width: 44px; height: 44px; }
+.tm-mate-name{ max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 700 11px/1.1 'Cinzel', serif; }
+.tm-more{ font: 800 12px/1 'Cinzel', serif; color: #e9c98a; }
+
+/* Host lobby: one column per gate */
+.tm-host-teams{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; width: 100%; }
+.tm-host-team{ display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px; border-radius: 12px; border: 2px solid var(--c); background: rgb(29 15 6 / 0.35); }
+.tm-host-team .player-chip-grid{ justify-content: center; }
+.tm-shuffle{ margin-top: 8px; }
+
+/* Question screen: your team, lit as they answer */
+.tm-strip{
+  position: relative; z-index: 3; align-self: center; margin-top: 8px; display: flex; align-items: center; gap: 8px; max-width: 96%;
+  padding: 3px 10px 3px 4px; border-radius: 999px; background: rgb(29 15 6 / 0.8); border: 2px solid var(--c);
+}
+.tm-strip-faces{ display: flex; align-items: center; }
+.tm-strip-faces .eh-who-face:first-child{ margin-left: 0; }
+.tm-strip-all{ color: #e9c98a; font: 700 11px/1 'Cinzel', serif; white-space: nowrap; }
+
+/* Team voice on a card in the hand */
+.tm-voice{
+  position: absolute; z-index: 3; top: -12px; left: 50%; translate: -50% 0; display: flex; align-items: center; gap: 4px;
+  padding: 2px 6px; border-radius: 999px; background: #1d0f06; border: 1.5px solid #ffe08a; box-shadow: 0 2px 5px rgb(0 0 0 / 0.6);
+  pointer-events: none;
+}
+.tm-voice-bar{ position: relative; width: 26px; height: 5px; border-radius: 3px; background: rgb(255 231 163 / 0.2); overflow: hidden; }
+.tm-voice-fill{ position: absolute; left: 0; top: 0; bottom: 0; background: #ffe08a; border-radius: 3px; }
+.tm-voice-pct{ font: 900 11px/1 'Cinzel', serif; color: #ffe08a; font-variant-numeric: tabular-nums; }
+
+/* Team voice after you answered: four little columns where the hand was */
+.tm-voice-row{ position: absolute; left: 0; right: 0; bottom: 34px; display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
+.tm-voice-row-title{ padding: 3px 10px; border-radius: 999px; background: rgb(29 15 6 / 0.8); color: #ffe7a3; font: 800 12px/1.2 'Cinzel', serif; }
+.tm-voice-row-bars{ display: flex; gap: 10px; padding: 8px 12px 6px; border-radius: 12px; background: rgb(29 15 6 / 0.72); border: 1px solid #c9a24a; }
+.tm-voice-col{ display: flex; flex-direction: column; align-items: center; gap: 3px; width: 40px; }
+.tm-voice-col-track{ position: relative; width: 22px; height: 64px; border-radius: 6px; background: rgb(255 231 163 / 0.12); overflow: hidden; }
+.tm-voice-col-fill{ position: absolute; left: 0; right: 0; bottom: 0; border-radius: 6px 6px 0 0; }
+.tm-voice-col-pct{ font: 900 12px/1 'Cinzel', serif; color: #ffe08a; font-variant-numeric: tabular-nums; }
+.tm-voice-col-num{ font: 800 10px/1 'Cinzel', serif; color: #e9c98a; }
+.tm-voice-col.mine .tm-voice-col-track{ box-shadow: 0 0 0 2px #ffe08a; }
+
+/* Between questions: your team's round */
+.tm-round{
+  flex: none; position: relative; z-index: 13;
+  padding: 10px 14px calc(env(safe-area-inset-bottom) + 12px);
+  background: linear-gradient(#2a160b, #1d0b06); border-top: 3px solid var(--c);
+  box-shadow: 0 -8px 18px rgb(0 0 0 / 0.5); color: #ffe7a3; font-family: 'Cinzel', serif;
+}
+.tm-round-head{ display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tm-round-label{ font: 800 12px/1 'Cinzel', serif; color: #e9c98a; text-transform: uppercase; letter-spacing: 0.06em; }
+.tm-round-list{ list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+.tm-round-row{ display: flex; align-items: center; gap: 8px; padding: 3px 8px; border-radius: 8px; font: 700 13px/1 'Cinzel', serif; background: rgb(255 231 163 / 0.06); }
+.tm-round-row.you{ background: linear-gradient(90deg, rgb(255 224 138 / 0.35), rgb(255 224 138 / 0.08)); box-shadow: inset 0 0 0 1px #ffe08a; }
+.tm-round-gain{ color: #7dff8a; font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
+.tm-round-gain.zero{ color: #b39a77; }
+.tm-round-more{ padding: 2px 8px; font: 700 12px/1 'Cinzel', serif; color: #e9c98a; }
+.tm-walls{ margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+.tm-wall-row{ display: flex; align-items: center; gap: 8px; font: 700 12px/1 'Cinzel', serif; }
+.tm-wall-name{ width: 36%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tm-wall-row.mine .tm-wall-name{ color: #ffe08a; }
+.tm-wall-bar{ position: relative; flex: 1; height: 9px; border-radius: 5px; background: rgb(255 231 163 / 0.12); overflow: hidden; }
+.tm-wall-fill{ position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--c); }
+.tm-wall-row.mine .tm-wall-bar{ box-shadow: 0 0 0 1.5px #ffe08a; }
+.tm-wall-avg{ min-width: 5.6em; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- Rebuild the Wall: the stone-by-stone scene (ceremony/wall/) ---------- */
+.wl::after{
+  /* Darken the foreground so the stones and plates stand out from the painting. */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(rgb(0 0 0 / 0) 55%, rgb(20 10 4 / 0.55));
+}
+.wl3{ position: absolute; inset: 0; z-index: 2; }
+.wl3-canvas{ position: absolute; inset: 0; width: 100%; height: 100%; }
+.wl3-plate{
+  position: absolute; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 4px 4px 5px; border-radius: 8px; box-sizing: border-box;
+  background: rgb(29 15 6 / 0.85); border-top: 3px solid var(--c); box-shadow: 0 4px 10px rgb(0 0 0 / 0.5);
+  color: #ffe7a3; text-align: center;
+}
+.wl3-plate.mine{ box-shadow: 0 0 0 2px #ffe08a, 0 4px 10px rgb(0 0 0 / 0.5); }
+.wl3-plate.lead .wl3-name{ color: #ffe08a; }
+.wl3-name, .wl3-stones, .wl3-size{ max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wl3-name{ font: 900 12px/1.15 'Cinzel', serif; color: #fff; }
+.wl3:not(.wide) .wl3-name{ white-space: normal; overflow-wrap: break-word; hyphens: manual; font-size: 11px; }
+.wl3-stones{ font: 800 11px/1.15 'Cinzel', serif; }
+.wl3-size{ font: 700 9px/1.15 'Cinzel', serif; color: #e9c98a; }
+.wl3-faces{ display: flex; align-items: center; justify-content: center; margin: 2px 0; }
+.wl3-face{ width: 30px; height: 30px; margin-left: -5px; }
+.wl3-face:first-child{ margin-left: 0; }
+.wl3-more{ margin-left: 4px; font: 800 12px/1 'Cinzel', serif; color: #e9c98a; }
+.wl3-gain{
+  position: absolute; z-index: 4; translate: -50% -100%; pointer-events: none;
+  font: 900 24px/1 'Cinzel Decorative', serif; color: #ffe08a; -webkit-text-stroke: 1.5px #3a2410; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6);
+}
+.wl3.wide .wl3-plate{ padding: 6px 8px 8px; gap: 3px; border-top-width: 4px; }
+.wl3.wide .wl3-name{ font-size: clamp(16px, 1.7vw, 26px); }
+.wl3.wide .wl3-stones{ font-size: clamp(13px, 1.3vw, 20px); }
+.wl3.wide .wl3-size{ font-size: clamp(11px, 1vw, 15px); }
+.wl3.wide .wl3-face{ width: clamp(28px, 2.6vw, 42px); height: clamp(28px, 2.6vw, 42px); }
+.wl3.wide .wl3-gain{ font-size: clamp(30px, 3.4vw, 52px); }
+/* The finale's verdict covers the middle; the walls stay readable around it. */
+.wl.finale .wl-verdict{ z-index: 6; }
+.wl.finale .gl-actions{ z-index: 7; }

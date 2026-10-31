@@ -823,12 +823,15 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     broadcast(io, s.room)
   })
 
-  on('flock:again', () => {
+  // Play again in the same room: back to the lobby (everyone stays seated; the
+  // leader can change bots there), or with `now` straight into a new word.
+  on('flock:again', (raw) => {
     const s = leaderSeat()
     if (!s || s.room.phase !== 'over') return
     const { room } = s
-    if (connectedSecrets(room).length >= FLOCK_MIN_PLAYERS) return startGame(io, room)
-    // Too few for another game: back to the lobby to wait for players.
+    const now = (raw as { now?: unknown } | undefined)?.now === true
+    if (now && connectedSecrets(room).length >= FLOCK_MIN_PLAYERS) return startGame(io, room)
+    // Players who left (or are offline) give up their seat.
     for (const [secret, p] of room.players) if (!p.connected) room.players.delete(secret)
     room.phase = 'lobby'
     room.category = null

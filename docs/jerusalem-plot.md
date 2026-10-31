@@ -25,8 +25,20 @@ pages show real levels. Painted art: a few stages per building.
   fit the painting; after that, numbers wrap). The next six lots read "Free
   land" (guests: "Create an account to get a plot"). Tapping your lot opens My
   Home; anyone else's opens a read-only view of their plot.
-- A few townsfolk walk the streets (CSS, hidden for reduced motion and when
-  zoomed far out). The old residents grid is still there behind "☰ List".
+- Townsfolk walk the city's roads (painted two-frame walk cycles, more people
+  for more and more active families): from house to house, to the landmarks and
+  out of the gates; dogs, cats, sheep at the Sheep Gate, hens at the market,
+  goats on the terraces. They sort by their feet with the houses (hidden behind
+  a house, in front of the next), stand still for reduced motion, hide when
+  zoomed far out, and answer a tap with a speech bubble (a Bible-flavoured line
+  in the player's language). The old residents grid is still behind "☰ List".
+- The homestead has its own people and animals, who come with the buildings
+  and walk the yard's paths (`world/PlotLife.tsx`). Four of them carry
+  something: the woodcutter (1 wood, workshop), the shepherd (1 wool, fold),
+  the mason (1 stone, kiln) and the olive picker (1 oil, grove). On your own
+  plot a sign over their head shows a gift is waiting; a tap hands it over
+  (`POST /api/plot/gift`, rules in `shared/src/life.ts`: each carrier once
+  every 3 h, at most 6 gifts per UTC day).
 - My Home is a scene: the nine building sprites stand on a painted yard, ringed
   by hedge, fence or stone wall by wall level; drag and zoom a little, tap a
   building for its sheet. Ribbons, timers and the header stay as before.

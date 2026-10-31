@@ -1,4 +1,5 @@
-export const QUESTION_TIME_MS = 10_000
+/** Answer window (both modes). 20 s: families read aloud and think together. */
+export const QUESTION_TIME_MS = 20_000
 /** Question shown alone with a 3-2-1 before answers appear (both modes). */
 export const READING_MS = 3000
 /** Beat after the last answer before the reveal (both modes). */

@@ -1,12 +1,93 @@
-import { characterOrDefault } from './characters'
+import { useId } from 'react'
+import { LOOK_ITEMS, parseLook, type ItemId, type Look } from '@sixtysix/shared'
+import { BUST_ANCHORS, ITEM_FIT, bustSrc } from '../looks/bustArt'
 
-/** AI-painted character portrait (art-pipeline → public/art), circle-cropped. */
-export function PaintedPortrait({ id, size, className = '' }: { id: string; size?: number; className?: string }) {
-  const c = characterOrDefault(id)
+/**
+ * A player's portrait: the AI-painted bust (art-pipeline → public/art) in a
+ * circle, with what they wear (shared/src/looks.ts). `id` is a look string;
+ * a plain character id ("david") still works. Head items may rise above the
+ * circle; the neck item, backdrop and frame stay inside it.
+ */
+export function PaintedPortrait({ id, size, className = '', bare = false }: { id: string; size?: number; className?: string; bare?: boolean }) {
+  const look = parseLook(id)
+  return <LookPortrait look={look} size={size} className={className} bare={bare} />
+}
+
+export function LookPortrait({ look, size, className = '', bare = false, lazy = false }: { look: Look; size?: number; className?: string; bare?: boolean; lazy?: boolean }) {
+  const anchor = BUST_ANCHORS[look.base]
+  const backdrop = look.backdrop ?? 'crimson'
+  const frame = look.frame ?? 'gilt'
+  const loading = lazy ? 'lazy' : undefined
   return (
-    <span className={`painted-portrait ${className}`} style={size ? { width: size, height: size } : undefined}>
-      <img src={`/art/char-${c}.webp`} alt={c} draggable={false} />
+    <span className={`painted-portrait ${frame !== 'gilt' && !bare ? 'pp-framed' : ''} ${className}`} style={size ? { width: size, height: size } : undefined}>
+      <span className={`pp-disc pp-bd-${backdrop}`}>
+        <img className="pp-bust" src={bustSrc(look)} alt={look.base} draggable={false} loading={loading} />
+        {!bare && look.neck && <ItemImg id={look.neck} at={anchor.neck} />}
+      </span>
+      {!bare && frame !== 'gilt' && <FrameRing frame={frame} />}
+      {!bare && look.head && <ItemImg id={look.head} at={anchor.head} />}
     </span>
+  )
+}
+
+function ItemImg({ id, at }: { id: ItemId; at: { x: number; y: number; w: number } }) {
+  const fit = ITEM_FIT[id] ?? { k: 1, dy: 0 }
+  const w = at.w * fit.k
+  return (
+    <img
+      className={`pp-item pp-${LOOK_ITEMS[id].slot}`}
+      src={`/art/item-${id}.webp`}
+      alt=""
+      draggable={false}
+      style={{ left: `${at.x - w / 2}%`, top: `${at.y + fit.dy * at.w}%`, width: `${w}%` }}
+    />
+  )
+}
+
+/** Metal per frame: light, mid, dark. */
+const FRAME_METAL: Record<string, [string, string, string]> = {
+  wood: ['#c98e55', '#8a5528', '#4a2a10'],
+  bronze: ['#f0b98a', '#b8733a', '#5e3010'],
+  'silver-frame': ['#ffffff', '#b9bec8', '#5d6470'],
+  'gold-frame': ['#fff1b8', '#e3b754', '#7a5212'],
+  jewel: ['#fff1b8', '#e3b754', '#7a5212'],
+}
+const GEMS = ['#e0283c', '#2f7de0', '#2fbf6a', '#e0283c', '#2f7de0', '#2fbf6a', '#e0283c', '#2f7de0']
+
+/** The frame ring, drawn in SVG so it scales from a 24 px chip to the crowning pedestal. */
+function FrameRing({ frame }: { frame: string }) {
+  const uid = useId().replace(/:/g, '')
+  const [light, mid, dark] = FRAME_METAL[frame] ?? FRAME_METAL['gold-frame']
+  const wood = frame === 'wood'
+  return (
+    <svg className="pp-frame" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id={`m${uid}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={light} />
+          <stop offset="0.45" stopColor={mid} />
+          <stop offset="0.7" stopColor={light} />
+          <stop offset="1" stopColor={dark} />
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#1d0f06" strokeWidth="9" />
+      <circle cx="50" cy="50" r="46" fill="none" stroke={`url(#m${uid})`} strokeWidth="6.5" />
+      {wood ? (
+        <circle cx="50" cy="50" r="46" fill="none" stroke={dark} strokeOpacity="0.45" strokeWidth="1" strokeDasharray="7 4 2 5" />
+      ) : (
+        <circle cx="50" cy="50" r="44" fill="none" stroke={light} strokeOpacity="0.7" strokeWidth="0.8" />
+      )}
+      {frame === 'jewel' &&
+        GEMS.map((c, i) => {
+          const a = (i / GEMS.length) * Math.PI * 2 - Math.PI / 2
+          return (
+            <g key={i}>
+              <circle cx={50 + 46 * Math.cos(a)} cy={50 + 46 * Math.sin(a)} r="4.6" fill="#1d0f06" />
+              <circle cx={50 + 46 * Math.cos(a)} cy={50 + 46 * Math.sin(a)} r="3.4" fill={c} />
+              <circle cx={50 + 46 * Math.cos(a) - 1} cy={50 + 46 * Math.sin(a) - 1.2} r="1.1" fill="#fff" fillOpacity="0.8" />
+            </g>
+          )
+        })}
+    </svg>
   )
 }
 

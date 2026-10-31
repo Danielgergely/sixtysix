@@ -43,6 +43,7 @@ export default {
     finishedVerse: '“So the wall was finished … in fifty-two days.” — Nehemiah 6:15',
     won: 'Your team won!',
     wellBuilt: 'Well built — your wall stands too.',
+    noStones: 'Not a stone laid this time — next game the wall goes up!',
     /** Team names; the server sends the English one ("Sheep Gate"). */
     gates: { sheep: 'Sheep Gate', fish: 'Fish Gate', valley: 'Valley Gate', fountain: 'Fountain Gate' },
   },

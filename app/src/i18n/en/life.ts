@@ -1,0 +1,142 @@
+/** People and animals of the homestead and the city (world/life): what they say when tapped. */
+export default {
+  name: {
+    man: 'Traveller',
+    woman: 'Water carrier',
+    woodcutter: 'Woodcutter',
+    merchant: 'Merchant',
+    boy: 'Boy',
+    elder: 'Elder',
+    mason: 'Mason',
+    shepherd: 'Shepherd',
+    picker: 'Olive picker',
+    dog: 'Dog',
+    cat: 'Cat',
+    goat: 'Goat',
+    sheep: 'Sheep',
+    hen: 'Hen',
+    donkey: 'Donkey',
+    carpenter: 'Carpenter',
+    brickmaker: 'Brick-maker',
+    watchman: 'Watchman',
+    camel: 'Camel',
+  },
+
+  say: {
+    man: {
+      l1: 'Shalom! Peace be on this house.',
+      l2: 'I’m going up to the Temple. Coming along?',
+      l3: 'How good and pleasant when brothers live together in unity! (Ps 133)',
+      l4: 'The road from Jericho is long — but Jerusalem is worth it.',
+    },
+    woman: {
+      l1: 'The well is deep today!',
+      l2: 'Whoever drinks this water will be thirsty again… (Jn 4)',
+      l3: 'Careful — this jar is full to the brim!',
+      l4: 'Rebekah watered ten camels. I’ll stick to one jar, thank you.',
+    },
+    woodcutter: {
+      l1: 'Chop, chop! Wood for the winter.',
+      l2: 'Even Solomon needed a lot of logs for the Temple.',
+      l3: 'Mind your feet — logs coming through!',
+      l4: 'A strong axe and a good song make light work.',
+    },
+    merchant: {
+      l1: 'Finest wool from Damascus! Well… nearly.',
+      l2: 'Honest scales only — the Lord loves a just weight! (Prov 11:1)',
+      l3: 'Figs, dates, pomegranates! Who’s buying?',
+      l4: 'My donkey carries half; I carry the other half.',
+    },
+    boy: {
+      l1: 'Catch me if you can!',
+      l2: 'I’m David and you’re Goliath! Pow!',
+      l3: 'Is it time to eat yet?',
+      l4: 'I saw a lamb as big as a cow! …Almost.',
+    },
+    elder: {
+      l1: 'In my day we built with mud and patience.',
+      l2: 'Gray hair is a crown of splendour. (Prov 16:31)',
+      l3: 'Sit a while, child. Let me tell you about Nehemiah.',
+      l4: 'Unless the Lord builds the house, the builders labour in vain. (Ps 127)',
+    },
+    mason: {
+      l1: 'Measure twice, cut once!',
+      l2: 'This stone is for the corner. A very important stone.',
+      l3: 'Heavy? No, no… just a little.',
+      l4: 'The stone the builders rejected… I’ll take it! (Ps 118)',
+    },
+    shepherd: {
+      l1: 'The Lord is my shepherd — I am only the helper.',
+      l2: 'Ninety-nine… one is missing again!',
+      l3: 'This little lamb won’t walk, so it rides.',
+      l4: 'Sheep know my voice. Mostly.',
+    },
+    picker: {
+      l1: 'Olives for the press, oil for the lamps!',
+      l2: 'Beat the branches gently — leave some for the poor. (Deut 24:20)',
+      l3: 'A good harvest this year, praise God!',
+      l4: 'My basket is heavier than it looks.',
+    },
+    carpenter: {
+      l1: 'Shavings everywhere — a good day’s work!',
+      l2: 'A carpenter from Nazareth? Never heard of him… yet.',
+      l3: 'Smooth as silk, this plank.',
+      l4: 'Hand me that chisel, would you?',
+    },
+    brickmaker: {
+      l1: 'Mud, straw, a mould — and the sun does the rest.',
+      l2: 'At least nobody takes away my straw. (Ex 5)',
+      l3: 'One brick, two bricks… a thousand to go!',
+      l4: 'Don’t step on the wet ones!',
+    },
+    watchman: {
+      l1: 'All quiet on the wall.',
+      l2: 'Watchman, what of the night? — Morning is coming! (Is 21:11)',
+      l3: 'I can see all the way to the Mount of Olives.',
+      l4: 'Halt! Oh — it’s you. Carry on.',
+    },
+    dog: {
+      l1: 'Woof! 🐕',
+      l2: 'Wags its tail and sniffs your hand.',
+      l3: 'Woof woof! (It wants a crumb from the table.)',
+    },
+    cat: {
+      l1: 'Mrrrow. 🐈',
+      l2: 'Purrs and rubs against your leg.',
+      l3: 'Stares at you, then washes a paw.',
+    },
+    goat: {
+      l1: 'Meh-eh-eh! 🐐',
+      l2: 'Tries to eat your sleeve.',
+      l3: 'Bleats and hops away.',
+    },
+    sheep: {
+      l1: 'Baa! 🐑',
+      l2: 'Looks up, chewing, and goes back to grazing.',
+      l3: 'Baa-aa! It knows its shepherd’s voice, not yours.',
+    },
+    hen: {
+      l1: 'Bok bok bok! 🐔',
+      l2: 'Flaps off in a huff.',
+      l3: 'Cluck! Gathers her chicks under her wings. (Mt 23:37)',
+    },
+    donkey: {
+      l1: 'Hee-haw! 🫏',
+      l2: 'Twitches its long ears at you.',
+      l3: 'Balaam’s donkey talked. This one only hee-haws.',
+    },
+    camel: {
+      l1: 'Grumbles and chews.',
+      l2: 'Looks down at you from very high up. 🐪',
+      l3: 'Easier for a camel to go through the eye of a needle… it isn’t trying.',
+    },
+  },
+
+  gift: {
+    woodcutter: 'Here, a log for your fire! +{n} {icon}',
+    shepherd: 'Fresh wool from the flock — for you! +{n} {icon}',
+    mason: 'One good stone for your walls! +{n} {icon}',
+    picker: 'A little jar of oil, fresh from the press! +{n} {icon}',
+    later: 'Nothing for you right now — come back later!',
+  },
+}

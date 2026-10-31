@@ -1,9 +1,9 @@
 import type { Server, Socket } from 'socket.io'
-import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, ServerToClientEvents } from '@sixtysix/shared'
+import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, RoomConfig, ServerToClientEvents } from '@sixtysix/shared'
 import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
-import { broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
-import { assignLateJoiner } from './modes.js'
+import { backToLobby, broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
+import { assignLateJoiner, formTeams } from './modes.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
@@ -14,6 +14,25 @@ const HOST_GRACE_MS = 90_000 // host may reconnect within this window
 const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 const PHASES: ArenaPhase[] = ['lobby', 'reading', 'question', 'reveal', 'leaderboard', 'podium']
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
+/** Room options from a client (create or lobby change); anything malformed falls back to the defaults. */
+function cleanConfig(raw: unknown, base?: RoomConfig): RoomConfig {
+  const cfg = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>
+  const has = (k: string) => base === undefined || k in cfg
+  return {
+    questionCount: has('questionCount')
+      ? Math.min(30, Math.max(3, Math.round(Number(cfg.questionCount)) || 10))
+      : base!.questionCount,
+    roomType: has('roomType') ? (cfg.roomType === 'remote' ? 'remote' : 'in-person') : base!.roomType,
+    categories: has('categories')
+      ? Array.isArray(cfg.categories)
+        ? CATEGORIES.filter((c) => (cfg.categories as unknown[]).includes(c))
+        : []
+      : base!.categories,
+    difficulty: has('difficulty') ? (DIFFICULTIES.find((d) => d === cfg.difficulty) ?? 'mixed') : base!.difficulty,
+    mode: has('mode') ? (ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic') : base!.mode,
+  }
+}
+
 /** Clients may omit the ack or send garbage — never call a non-function. */
 const ackOf = (cb: unknown): Ack => (typeof cb === 'function' ? (cb as Ack) : () => {})
 
@@ -38,18 +57,7 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     // One room per connection: a double tap on "Host" (or a second create) must
     // not leave this socket steering an orphaned first room.
     handleDeparture(io, socket, true)
-    const cfg = payload.config ?? {}
-    const room = createRoom(
-      {
-        questionCount: Math.min(30, Math.max(3, Math.round(Number(cfg.questionCount)) || 10)),
-        roomType: cfg.roomType === 'remote' ? 'remote' : 'in-person',
-        categories: Array.isArray(cfg.categories) ? CATEGORIES.filter((c) => (cfg.categories as unknown[]).includes(c)) : [],
-        difficulty: DIFFICULTIES.find((d) => d === cfg.difficulty) ?? 'mixed',
-        mode: ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic',
-      },
-      payload.hostId,
-      socket.id,
-    )
+    const room = createRoom(cleanConfig(payload.config), payload.hostId, socket.id)
     void socket.join(room.code)
     ack({ ok: true, state: toPublicState(room) })
     console.log(`[arena] room ${room.code} created (${room.config.roomType})`)
@@ -108,6 +116,30 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     startGame(io, room)
   })
 
+  on('host:options', (raw) => {
+    const room = hostedRoom(socket)
+    if (!room || room.phase !== 'lobby') return
+    room.config = cleanConfig(raw, { ...room.config, questionCount: room.requestedCount })
+    room.requestedCount = room.config.questionCount
+    formTeams(room) // wall: teams appear in the lobby; other modes clear them
+    touch(room)
+    broadcastState(io, room)
+  })
+
+  on('host:shuffleTeams', () => {
+    const room = hostedRoom(socket)
+    if (!room || room.phase !== 'lobby' || room.config.mode !== 'wall') return
+    formTeams(room, true)
+    touch(room)
+    broadcastState(io, room)
+  })
+
+  on('host:rematch', () => {
+    const room = hostedRoom(socket)
+    if (!room || room.phase !== 'podium') return
+    backToLobby(io, room)
+  })
+
   // The client says which phase it means to skip, so a double tap can't skip
   // the reveal that the first tap just opened.
   on('host:skip', (from) => {
@@ -160,6 +192,7 @@ function handleDeparture(io: IO, socket: ArenaSocket, explicit: boolean): void {
     if (p.socketId === socket.id) {
       if (room.phase === 'lobby' || explicit) {
         room.players.delete(secret) // lobby leavers and explicit leavers are gone
+        if (room.phase === 'lobby') formTeams(room)
       } else {
         p.connected = false // mid-game drop: keep score for reconnection
       }

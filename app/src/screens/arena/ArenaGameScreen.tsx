@@ -6,11 +6,13 @@ import { Leaderboard } from './game/Leaderboard'
 import { Podium } from './game/Podium'
 import { QuestionView } from './game/QuestionView'
 import { RotateHint } from './RotateHint'
+import { usePortraitBoard } from './usePortraitBoard'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
-import { TEAM_COLORS, gateName } from './modes'
+import { TEAM_COLORS, gateName, myTeamOf, teamVoice } from './modes'
 import { useLocale, useT } from '../../i18n'
 import { FlagButton } from '../../flags/FlagSheet'
+import { TeamStrip } from './game/Team'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -58,6 +60,7 @@ function ArenaQuestion() {
   const answer = useArenaStore((s) => s.answer)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const answeredIds = useArenaStore((s) => s.answeredIds)
+  const teamVotes = useArenaStore((s) => s.teamVotes)
   const locale = useLocale((s) => s.locale)
   if (!room || !question) return null
   // Each phone shows its own language; the board shows the host's (it runs on the host's device).
@@ -68,6 +71,8 @@ function ArenaQuestion() {
   const isPlayer = role === 'player'
   const me = isPlayer ? room.players.find((p) => p.id === myPlayerId) : undefined
   const team = me?.team !== undefined ? room.teams?.[me.team] : undefined
+  const mine = isPlayer ? myTeamOf(room, myPlayerId) : null
+  const connected = room.players.filter((p) => p.connected || answeredIds.includes(p.id))
   return (
     <QuestionView
       index={question.index}
@@ -88,8 +93,21 @@ function ArenaQuestion() {
         .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
       playerCount={room.players.length}
       onAnswer={answer}
+      teamStrip={
+        mine ? (
+          <TeamStrip
+            team={mine.team}
+            mates={mine.mates}
+            you={me}
+            answeredIds={answeredIds}
+            allDone={answerCount}
+            allTotal={connected.length}
+          />
+        ) : undefined
+      }
+      teamVoice={mine && phase === 'question' ? teamVoice(teamVotes) : null}
       badge={
-        team ? (
+        team && (!mine || phase === 'reveal') ? (
           <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
             🧱 {gateName(t, team.name)}
           </span>
@@ -110,32 +128,46 @@ export function ArenaGameScreen() {
   const podium = useArenaStore((s) => s.podium)
   const skip = useArenaStore((s) => s.skip)
   const leaveArena = useArenaStore((s) => s.leaveArena)
+  const playAgain = useArenaStore((s) => s.playAgain)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
   const reveal = useArenaStore((s) => s.reveal)
   const locale = useLocale((s) => s.locale)
+  const upright = usePortraitBoard()
   if (!room) return null
 
   const phase = room.phase
   const isPlayer = role === 'player'
+  // Goliath and the Wall: a board kept upright on a phone uses the phone scenes.
+  const landscape = !isPlayer && !upright
   const isHost = role === 'host'
 
   // One key per "scene": a question keeps its key through reading → question →
   // reveal (so tiles animate in place); leaderboard and podium are new scenes.
   let scene: { key: string; node: React.ReactNode } | null = null
   const myTeam = room.players.find((p) => p.id === myPlayerId)?.team
-  const endButton = <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
+  // The host may start the next game in this room: same code, everyone stays in.
+  const endButton = (
+    <>
+      {isHost && (
+        <button className="cr-again" onClick={playAgain}>
+          {t('arena.game.playAgain')}
+        </button>
+      )}
+      <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
+    </>
+  )
   if (phase === 'podium' && podium) {
-    let node = <Podium entries={podium} isPlayer={isPlayer} isHost={isHost} onLeave={leaveArena} />
+    let node = <Podium entries={podium} isPlayer={isPlayer} actions={endButton} />
     if (room.goliath) {
-      node = <GoliathFinale goliath={room.goliath} entries={podium} wide={!isPlayer} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
+      node = <GoliathFinale goliath={room.goliath} entries={podium} wide={landscape} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
     } else if (room.teams) {
       node = (
         <WallFinale
           teams={room.teams}
           players={room.players}
           questionTotal={room.questionTotal}
-          wide={!isPlayer}
+          wide={landscape}
           myTeam={isPlayer ? myTeam : undefined}
           coins={isPlayer ? coinsEarned : undefined}
           actions={endButton}
@@ -145,8 +177,20 @@ export function ArenaGameScreen() {
     scene = { key: 'podium', node }
   } else if (phase === 'leaderboard' && leaderboard) {
     let node = <Leaderboard entries={leaderboard} isPlayer={isPlayer} />
-    if (room.goliath) node = <GoliathRound goliath={room.goliath} entries={leaderboard} wide={!isPlayer} />
-    else if (room.teams) node = <WallRound teams={room.teams} questionTotal={room.questionTotal} wide={!isPlayer} myTeam={isPlayer ? myTeam : undefined} />
+    if (room.goliath) node = <GoliathRound goliath={room.goliath} entries={leaderboard} wide={landscape} />
+    else if (room.teams)
+      node = (
+        <WallRound
+          teams={room.teams}
+          questionTotal={room.questionTotal}
+          wide={landscape}
+          myTeam={isPlayer ? myTeam : undefined}
+          players={room.players}
+          room={room}
+          entries={leaderboard}
+          myPlayerId={myPlayerId}
+        />
+      )
     scene = { key: `lb-${room.questionIndex}`, node }
   } else if (question) {
     scene = { key: `q-${question.index}`, node: <ArenaQuestion /> }

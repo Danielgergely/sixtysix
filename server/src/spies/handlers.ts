@@ -666,7 +666,11 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     resolvePick(io, s.room, prop.pick)
   })
 
-  on('spies:again', () => {
+  // Play again in the same room: back to the lobby (everyone stays seated, spy
+  // masters rotate; tribes and settings can change there), or with `now`
+  // straight into the next game when the teams still work.
+  on('spies:again', (raw) => {
+    const now = (raw as { now?: unknown } | undefined)?.now === true
     const s = seat()
     if (!s || s.room.phase !== 'over' || s.room.leaderSecret !== s.secret) return
     const { room } = s
@@ -686,6 +690,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     ensureLeader(room)
     ensureSpymasters(room)
     setTimer(io, room, 0, () => {})
+    if (now && !startCheck(room)) return startGame(io, room)
     broadcast(io, room)
     sendAllKeys(io, room)
   })

@@ -13,6 +13,7 @@ import {
   waterSupply,
   waterUsed,
   type BuildingId,
+  type Material,
   type PlotState,
 } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
@@ -160,6 +161,7 @@ function NextStep({ plot }: { plot: PlotState }) {
 function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Record<BuildingId, number> | null }) {
   const select = usePlotStore((s) => s.select)
   const markSeen = usePlotStore((s) => s.markSeen)
+  const gift = usePlotStore((s) => s.gift)
   return (
     <PlotScene
       levels={plot.levels}
@@ -169,6 +171,12 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
       onSelect={(spot) => {
         if (spot !== 'courtyard') markSeen(spot)
         select(spot)
+      }}
+      onGift={async (figure) => {
+        const res = await gift(figure)
+        if ('error' in res) return res.error ? tServer(res.error) : tNow('life.gift.later')
+        const [m, n] = Object.entries(res.got)[0] as [Material, number]
+        return tNow(`life.gift.${figure}`, { n, icon: MATERIAL_INFO[m].icon })
       }}
     />
   )

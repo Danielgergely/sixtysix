@@ -3,8 +3,9 @@
 
 /* ── layout ──────────────────────────────────────────────────────────── */
 .fl{ overflow: hidden; }
-.fl .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; }
-.fl .topbar-heading{ font-size: 1.15rem; }
+.fl .screen-topbar{ padding: 0.8rem 12px 0.4rem; gap: 6px; grid-template-columns: 42px 1fr minmax(42px, auto); }
+.fl .topbar-heading{ font-size: 1.15rem; min-width: 0; }
+@media (max-width: 400px){ .fl .topbar-heading{ font-size: 0.95rem; } }
 .fl-body{ flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 4px 14px 18px; display: flex; flex-direction: column; }
 .fl-phase{ flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .fl-col{ flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
@@ -38,11 +39,9 @@
 /* ── menu & lobby ────────────────────────────────────────────────────── */
 .fl-menu{ gap: 12px; }
 .fl-menu .arena-section{ display: flex; flex-direction: column; gap: 8px; }
-.fl-menu .join-btn{ margin: 0; padding: 0.7rem; font-size: 1.1rem; }
-.fl-create{ margin: 0; font-size: 1.3rem; }
 .fl-hero{ text-align: center; padding: 6px 4px 2px; }
-.fl-hero-icons{ display: block; font-size: 42px; letter-spacing: 4px; filter: drop-shadow(0 4px 4px rgb(0 0 0 / 0.6)); }
-.fl-hero p{ margin-top: 6px; font: 700 15px/1.35 'Cinzel', serif; color: #ffe7a3; text-shadow: 0 2px 3px #000; }
+.fl-hero-icons{ display: block; font-size: 34px; letter-spacing: 4px; filter: drop-shadow(0 4px 4px rgb(0 0 0 / 0.6)); }
+.fl-hero p{ margin-top: 4px; font: 700 14px/1.3 'Cinzel', serif; color: #ffe7a3; text-shadow: 0 2px 3px #000; }
 .fl-hero small{ display: block; margin-top: 4px; font: italic 600 12px Georgia, serif; color: #e9c98a; }
 .fl-lobby{ display: flex; flex-direction: column; gap: 12px; }
 .fl-code-card{ display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
@@ -278,12 +277,10 @@
 .fl-input-row input{ background: #f3e2bb !important; }
 .fl-phase-title.left strong{ font-size: 20px; }
 .fl-votes-head{ display: flex; justify-content: space-between; padding: 0 8px; font: 700 10px 'Cinzel', serif; letter-spacing: 0.18em; text-transform: uppercase; color: #e9c98a; }
-.fl-mode{ text-align: center; }
-.fl-mode-text{ margin: 0 0 8px; font: 600 13px/1.35 Georgia, serif; color: #6b4120; }
-.fl-mode-divider{ text-align: center; font: italic 700 13px 'Cinzel', serif; color: #e9c98a; text-shadow: 0 2px 3px #000; }
-.fl-rejoin{ margin: 0; font-size: 1.1rem; }
 
 /* ── one phone (screens/flock/local) ──────────────────────────────────── */
+.fll-setup{ display: flex; flex-direction: column; gap: 12px; }
+.fll-setup .arena-section{ display: flex; flex-direction: column; gap: 8px; }
 .fll-players{ display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
 .fll-player{ display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 10px; background: rgb(255 255 255 / 0.45); color: #3b2412; font: 700 15px 'Cinzel', serif; }
 .fll-player-n{ width: 22px; text-align: center; color: #8e3b1e; font-size: 13px; }

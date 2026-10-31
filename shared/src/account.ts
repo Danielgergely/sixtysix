@@ -16,6 +16,10 @@ export interface AccountStats {
   bestScore: number
   currentStreak: number
   bestStreak: number
+  /** Open Arena games won (1st place); unlocks the gold circlet (shared/src/looks.ts). Counted from 2026-10. */
+  arenaWins: number
+  /** Longest run of Daily Scroll days; unlocks the jewelled frame. Counted from 2026-10. */
+  bestDailyStreak: number
 }
 
 export interface AccountProfile {
@@ -26,6 +30,8 @@ export interface AccountProfile {
   stats: AccountStats
   /** Skill tree (shared/skills.ts). Owned by the server: learned only through /api/skills. */
   skills?: SkillState
+  /** Look items owned (shared/src/looks.ts). Owned by the server: bought or earned through /api/looks only. */
+  wardrobe?: string[]
   /** Bumped by the server on every save, so the app can ignore stale replies. */
   rev?: number
   /** Guest progress already brought in (sign-up + sign-in merges), capped once per account. */
@@ -38,6 +44,8 @@ export interface Account {
   profile: AccountProfile
   /** Staff role: 'admin' (ADMIN_USERNAMES on the server) or 'reviewer' (granted by an admin); absent for everyone else. */
   role?: StaffRole
+  /** Ways to sign in (Profile → Account settings). */
+  logins?: AccountLogins
 }
 
 /**
@@ -50,8 +58,8 @@ export const hasRole = (role: StaffRole | null | undefined, need: StaffRole): bo
   role === 'admin' || (need === 'reviewer' && role === 'reviewer')
 
 /** Counters in a grant's `stats` are added; best* take the max; currentStreak is set. */
-export const STAT_COUNTERS = ['gamesPlayed', 'firstPlace', 'secondPlace', 'thirdPlace', 'questionsAnswered', 'questionsCorrect'] as const
-export const STAT_MAXES = ['bestScore', 'bestStreak'] as const
+export const STAT_COUNTERS = ['gamesPlayed', 'firstPlace', 'secondPlace', 'thirdPlace', 'questionsAnswered', 'questionsCorrect', 'arenaWins'] as const
+export const STAT_MAXES = ['bestScore', 'bestStreak', 'bestDailyStreak'] as const
 
 /**
  * One reward (a finished race, an arena podium, a practice answer…). Sent at
@@ -66,7 +74,54 @@ export interface Grant {
   source?: 'merge'
 }
 
-export const USERNAME_RE = /^[A-Za-z0-9_.-]{3,20}$/
+/**
+ * Usernames: 3–20 letters (any alphabet: ö, ő, ß…), digits, . _ -, and single
+ * spaces between words ("Dávid Ős"). Always NFC-normalised and trimmed first
+ * (normalizeUsername); unique ignoring case (usernameKey). Put one in a URL with
+ * encodeURIComponent.
+ */
+export const USERNAME_MIN = 3
+export const USERNAME_MAX = 20
+export const USERNAME_RE = /^(?=.{3,20}$)[\p{L}\p{M}\p{N}_.-]+(?: [\p{L}\p{M}\p{N}_.-]+)*$/u
 export const MIN_PASSWORD = 8
+export const MAX_PASSWORD = 200
+
+/** NFC (one code point for "ő", however the keyboard typed it) and trimmed. */
+export const normalizeUsername = (s: string): string => s.normalize('NFC').trim()
+/** What makes two usernames the same: NFC, lower case in every alphabet ("ŐS" = "ős"). */
+export const usernameKey = (s: string): string => normalizeUsername(s).toLowerCase()
+/** Passwords are compared NFC-normalised, so the same typed password always matches (never trimmed). */
+export const normalizePassword = (s: string): string => s.normalize('NFC')
+
+export type UsernameProblem = 'short' | 'long' | 'spaces' | 'chars'
+/** Why a (normalised) username is refused, or null when it's fine. The app shows the reason; the server checks the same. */
+export function usernameProblem(username: string): UsernameProblem | null {
+  const u = normalizeUsername(username)
+  const len = [...u].length
+  if (len < USERNAME_MIN) return 'short'
+  if (len > USERNAME_MAX) return 'long'
+  if (USERNAME_RE.test(u)) return null
+  return /\s/u.test(u) && USERNAME_RE.test(u.replace(/\s+/gu, '_')) ? 'spaces' : 'chars'
+}
+
+/** The characters a username can't have (e.g. "@" from an email address), each once. */
+export const badUsernameChars = (username: string): string[] => [
+  ...new Set([...normalizeUsername(username)].filter((c) => !/[\p{L}\p{M}\p{N}_. -]/u.test(c))),
+]
+
+export type PasswordProblem = 'short' | 'long'
+export function passwordProblem(password: string): PasswordProblem | null {
+  const len = [...normalizePassword(password)].length
+  if (len < MIN_PASSWORD) return 'short'
+  if (len > MAX_PASSWORD) return 'long'
+  return null
+}
+
+/** How an account can sign in. `password` null: unknown (an older account with Google/Apple linked, from before this was recorded). */
+export interface AccountLogins {
+  password: boolean | null
+  google: boolean
+  apple: boolean
+}
 
 export type AccountResponse = { ok: true; token?: string; account: Account } | { ok: false; error: string }

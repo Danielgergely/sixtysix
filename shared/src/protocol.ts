@@ -30,9 +30,7 @@ export interface RoomConfig {
 
 export const MAX_ARENA_PLAYERS = 100
 
-/** Playable characters; any other avatar value is replaced by the first. */
-export const CHARACTERS = ['david', 'moses', 'esther', 'ruth'] as const
-export type CharacterId = (typeof CHARACTERS)[number]
+// Playable characters (CHARACTERS) and the look string carried in every `avatar` field: shared/src/looks.ts.
 
 export type ArenaPhase =
   | 'lobby'
@@ -64,7 +62,11 @@ export interface GoliathState {
   fallen: boolean
 }
 
-/** Rebuild the Wall: one team per gate of Nehemiah 3. */
+/**
+ * Rebuild the Wall: one team per gate of Nehemiah 3. Teams form in the lobby
+ * as players join (balanced, join order) and stay for "Play again"; the host
+ * may shuffle them before the start.
+ */
 export interface TeamState {
   id: number
   name: string
@@ -84,6 +86,8 @@ export interface RoomState {
   hostConnected: boolean
   questionIndex: number
   questionTotal: number
+  /** Which game in this room (1, 2, … — "Play again" keeps the code and starts the next). */
+  game: number
   goliath?: GoliathState
   teams?: TeamState[]
 }
@@ -111,6 +115,19 @@ export interface RevealPayload {
   /** Count of players who picked each answer. */
   distribution: [number, number, number, number]
   answeredCount: number
+}
+
+/**
+ * Wall mode, "team voice": how the player's OWN teammates have answered so far
+ * this question (the receiver's own answer left out). Sent only to that team's
+ * members (never another team's picks, never the correct answer), ~4/s at most.
+ */
+export interface TeamVotes {
+  questionIndex: number
+  /** Teammates' picks per answer. */
+  counts: [number, number, number, number]
+  /** Teammates who have answered (= sum of counts). */
+  answered: number
 }
 
 export interface LeaderboardEntry {
@@ -171,6 +188,12 @@ export interface ClientToServerEvents {
   /** Acknowledged so the client can disconnect only after the server heard it. */
   'room:leave': (cb: (ok: boolean) => void) => void
   'host:start': () => void
+  /** Lobby only: change the options before (re)starting. Validated like room:create. */
+  'host:options': (config: Partial<RoomConfig>) => void
+  /** Lobby only, wall mode: deal the players into new teams at random. */
+  'host:shuffleTeams': () => void
+  /** Podium only: back to the lobby with the same code; players stay, scores reset. */
+  'host:rematch': () => void
   /** Host advances the game: resolves the question / skips the leaderboard wait. */
   'host:skip': (from: ArenaPhase) => void
   'player:answer': (payload: { index: number }) => void
@@ -184,6 +207,8 @@ export interface ServerToClientEvents {
   'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
   /** Public ids of the players who have answered the current question (count = length). */
   'game:answerCount': (count: number, answeredIds: string[]) => void
+  /** Wall mode: your team's answers so far (to that team's members only). */
+  'game:teamVotes': (votes: TeamVotes) => void
   'game:reveal': (payload: RevealPayload) => void
   'game:leaderboard': (entries: LeaderboardEntry[]) => void
   'game:podium': (entries: LeaderboardEntry[]) => void

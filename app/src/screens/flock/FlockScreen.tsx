@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MAX_PLAYERS, FLOCK_MIN_PLAYERS, FLOCK_REWARD_HUMANS, CHARACTERS, type CharacterId, type FlockState } from '@sixtysix/shared'
+import { FLOCK_CLUE_MAX, FLOCK_GUESS_MAX, FLOCK_MAX_LAPS, FLOCK_MAX_PLAYERS, FLOCK_MIN_PLAYERS, FLOCK_REWARD_HUMANS, type FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
+import { OnlineEntry } from '../shell/OnlineEntry'
+import { SetupView } from './local/LocalFlockScreen'
 import { STAGGER, popIn, shake, spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
 import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
@@ -86,18 +88,32 @@ function FlockTopBar({ state }: { state: FlockState }) {
 
 // ── menu (no room yet) ─────────────────────────────────────────────────
 
+/** Online (each on their own phone) or one phone passed around: remembered per device. */
+type FlockMode = 'online' | 'local'
+const MODE_KEY = 'sixtysix.flockMode.v1'
+function savedMode(): FlockMode {
+  try {
+    return localStorage.getItem(MODE_KEY) === 'local' ? 'local' : 'online'
+  } catch {
+    return 'online'
+  }
+}
+
 function FlockMenu() {
   const goTo = useGameStore((s) => s.goTo)
-  const player = useGameStore((s) => s.player)
-  const updateProfile = useGameStore((s) => s.updateProfile)
   const { create, join, watch, error, busy, prefillCode } = useFlockStore()
-  const [code, setCode] = useState(prefillCode)
   // A reload drops the in-memory game; the device id still owns the seat.
   const [last] = useState(lastFlockCode)
-  const [name, setName] = useState(player.name === 'You' ? '' : player.name)
-  const [avatar, setAvatar] = useState<CharacterId>(player.avatar)
-  const named = name.trim().length > 0
-  const save = () => updateProfile({ name: name.trim(), avatar })
+  // A /flock/CODE link is always an online game.
+  const [mode, setMode] = useState<FlockMode>(() => (prefillCode ? 'online' : savedMode()))
+  const pick = (m: FlockMode) => {
+    setMode(m)
+    try {
+      localStorage.setItem(MODE_KEY, m)
+    } catch {
+      // storage unavailable — the toggle just starts on online next time
+    }
+  }
   const t = useT()
 
   return (
@@ -113,85 +129,33 @@ function FlockMenu() {
         <motion.div className="fl-hero" {...popIn}>
           <span className="fl-hero-icons">🐑🐑🐺🐑</span>
           <p>{t('flock.menu.intro')}</p>
-          <small>{t('flock.menu.meta')}</small>
         </motion.div>
 
-        <div className="arena-section fl-mode">
-          <div className="profile-label">{t('flock.menu.localTitle')}</div>
-          <p className="fl-mode-text">{t('flock.menu.localText')}</p>
-          <button className="btn-play" onClick={() => goTo('flockLocal')}>
-            {t('flock.menu.localPlay')}
-          </button>
+        <div className="be-modes" role="tablist" aria-label={t('flock.menu.modeLabel')}>
+          {(['online', 'local'] as const).map((m) => (
+            <button key={m} role="tab" aria-selected={mode === m} className={`be-mode ${mode === m ? 'selected' : ''}`} onClick={() => pick(m)}>
+              <span className="be-mode-icon">{m === 'online' ? '🌐' : '📱'}</span>
+              <strong>{m === 'online' ? t('flock.menu.modeOnline') : t('flock.menu.modeLocal')}</strong>
+              <small>{m === 'online' ? t('flock.menu.modeOnlineSub') : t('flock.menu.modeLocalSub')}</small>
+            </button>
+          ))}
         </div>
 
-        <div className="fl-mode-divider">{t('flock.menu.divider')}</div>
-
-        {last && !prefillCode && (
-          <button
-            className="btn-play fl-rejoin"
-            disabled={busy || !named}
-            onClick={() => {
-              save()
-              join(last)
-            }}
-          >
-            {t('flock.menu.rejoin', { code: last })}
-          </button>
-        )}
-
-        <div className="arena-section">
-          <div className="profile-label">{t('flock.menu.you')}</div>
-          <input className="profile-name-input" placeholder={t('flock.menu.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
-          <div className="avatar-grid arena-avatar-grid">
-            {CHARACTERS.map((c) => (
-              <button key={c} className={`avatar-option ${avatar === c ? 'selected' : ''}`} onClick={() => setAvatar(c)} title={c}>
-                <span className="avatar-option-pic">
-                  <Avatar id={c} />
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="arena-section">
-          <div className="profile-label">{t('flock.menu.joinTitle')}</div>
-          <input
-            className="profile-name-input code-input"
-            placeholder={t('flock.menu.codePlaceholder')}
-            maxLength={6}
-            autoCapitalize="characters"
-            autoCorrect="off"
-            spellCheck={false}
-            value={code}
-            onChange={(e) => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
+        {mode === 'online' ? (
+          <OnlineEntry
+            create={create}
+            join={join}
+            watch={watch}
+            busy={busy}
+            error={error}
+            prefillCode={prefillCode}
+            last={last}
+            createLabel={t('flock.menu.create')}
+            joinTitle={t('flock.menu.joinTitle')}
           />
-          <button
-            className="btn-play join-btn"
-            disabled={busy || !named || code.length < 4}
-            onClick={() => {
-              save()
-              join(code)
-            }}
-          >
-            {t('flock.menu.join')}
-          </button>
-          <button className="fl-link" disabled={busy || code.length < 4} onClick={() => watch(code)}>
-            {t('flock.menu.watch')}
-          </button>
-        </div>
-
-        <button
-          className="btn-play fl-create"
-          disabled={busy || !named}
-          onClick={() => {
-            save()
-            create()
-          }}
-        >
-          {t('flock.menu.create')}
-        </button>
-        {!named && <p className="fl-hint-light">{t('flock.menu.needName')}</p>}
-        {error && <div className="arena-error">{tServer(error)}</div>}
+        ) : (
+          <SetupView onStarted={() => goTo('flockLocal')} />
+        )}
       </div>
     </div>
   )
@@ -665,9 +629,17 @@ function OverPhase({ state }: { state: FlockState }) {
         {t('flock.over.verse')} <em>{t('flock.over.verseRef')}</em>
       </p>
       {leader ? (
-        <button className="btn-play fl-cta" onClick={store.again}>
-          {online >= FLOCK_MIN_PLAYERS ? t('flock.over.newWord') : t('flock.over.toLobby')}
-        </button>
+        <div className="be-again">
+          <button className="btn-play fl-cta" onClick={() => store.again()}>
+            {t('flock.over.playAgain')}
+          </button>
+          <p className="be-again-note">{t('flock.over.againNote', { code: state.code })}</p>
+          {online >= FLOCK_MIN_PLAYERS && (
+            <button className="btn-secondary" onClick={() => store.again(true)}>
+              {t('flock.over.startNow')}
+            </button>
+          )}
+        </div>
       ) : (
         <p className="fl-wait">{t('flock.common.leaderAgain', { name: playerById(state, state.leaderId)?.name ?? '' })}</p>
       )}

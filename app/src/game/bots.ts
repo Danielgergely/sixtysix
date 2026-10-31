@@ -1,5 +1,6 @@
 import type { Difficulty } from '../questions/types'
-import type { BotPersona, CharacterId, Racer } from './types'
+import { parseLook } from '@sixtysix/shared'
+import type { BotPersona, Racer } from './types'
 import { QUESTION_TIME_MS } from './scoring'
 import { t } from '../i18n'
 
@@ -13,21 +14,23 @@ import { t } from '../i18n'
 export function personaForLevel(level: number): BotPersona {
   const acc = (difficulty: Difficulty) =>
     Math.min(0.97, Math.max(0.15, 0.5 + level * 0.05 - (difficulty - 1) * 0.12))
-  // Typical windows: high-level 2–4s, mid 3–5s, low 5–8s.
-  const window = level >= 7 ? { min: 2000, max: 4000 } : level >= 4 ? { min: 3000, max: 5000 } : { min: 5000, max: 8000 }
+  // Typical windows (of a 20 s answer time): high-level 2.5–5 s, mid 4–7.5 s, low 7–12 s.
+  // People take longer with more time on the clock, so bots do too.
+  const window = level >= 7 ? { min: 2500, max: 5000 } : level >= 4 ? { min: 4000, max: 7500 } : { min: 7000, max: 12000 }
   return {
     accuracyByDifficulty: { 1: acc(1), 2: acc(2), 3: acc(3), 4: acc(4), 5: acc(5) },
     answerTimeMs: window,
   }
 }
 
-const BOT_ROSTER: Array<{ name: string; avatar: CharacterId }> = [
-  { name: 'Miriam', avatar: 'esther' },
-  { name: 'Caleb', avatar: 'david' },
-  { name: 'Tabitha', avatar: 'ruth' },
-  { name: 'Eli', avatar: 'moses' },
-  { name: 'Phoebe', avatar: 'esther' },
-  { name: 'Silas', avatar: 'david' },
+/** Bots wear looks too (shared/src/looks.ts: base.tone.head.neck.frame.backdrop). */
+const BOT_ROSTER: Array<{ name: string; avatar: string }> = [
+  { name: 'Miriam', avatar: 'rebekah.light.flowers' },
+  { name: 'Caleb', avatar: 'gideon.dark.band-red' },
+  { name: 'Tabitha', avatar: 'lydia.olive..beads..sand' },
+  { name: 'Eli', avatar: 'noah.light' },
+  { name: 'Phoebe', avatar: 'priscilla.dark..shells' },
+  { name: 'Silas', avatar: 'paul.olive..cord..sky' },
 ]
 
 export interface BotRacer extends Racer {
@@ -36,9 +39,11 @@ export interface BotRacer extends Racer {
 }
 
 /** Pick `count` distinct bots, avoiding the player's avatar where possible. */
-export function pickBots(count: number, avoidAvatar?: CharacterId): BotRacer[] {
+export function pickBots(count: number, avoidAvatar?: string): BotRacer[] {
+  const avoid = avoidAvatar && parseLook(avoidAvatar).base
+  const same = (avatar: string) => Number(parseLook(avatar).base === avoid)
   const pool = [...BOT_ROSTER].sort(() => Math.random() - 0.5)
-  pool.sort((a, b) => Number(a.avatar === avoidAvatar) - Number(b.avatar === avoidAvatar))
+  pool.sort((a, b) => same(a.avatar) - same(b.avatar))
   return pool.slice(0, count).map((bot, i) => {
     const level = 1 + Math.floor(Math.random() * 9)
     return {
@@ -68,7 +73,7 @@ export function sampleBotAnswer(
   let ms = min + Math.random() * (max - min) // typical window for this level band
   ms += (difficulty - 1) * 350 // harder questions take everyone a bit longer
   ms += (Math.random() - 0.5) * 1200 // general jitter
-  if (Math.random() < 0.12) ms += 1500 + Math.random() * 2500 // occasional hesitation
+  if (Math.random() < 0.12) ms += 2000 + Math.random() * 4000 // occasional hesitation
   else if (Math.random() < 0.08) ms -= 800 // occasional snap answer
   // Clamp inside the question window so every bot clicks before the timer expires.
   ms = Math.max(900, Math.min(QUESTION_TIME_MS - 400, ms))

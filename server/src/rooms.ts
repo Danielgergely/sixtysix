@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
-import { CHARACTERS, MAX_ARENA_PLAYERS } from '@sixtysix/shared'
+import { MAX_ARENA_PLAYERS, cleanLook } from '@sixtysix/shared'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
 export interface RoomPlayer extends ArenaPlayer {
@@ -37,9 +37,16 @@ export interface Room {
   /** Pending room-close timer while the host is disconnected. */
   hostGraceTimer?: ReturnType<typeof setTimeout>
   lastActivity: number
+  /** 1 for the first game; "Play again" increments it. */
+  game: number
+  /** Question count the host asked for (config.questionCount becomes the number drawn). */
+  requestedCount: number
   /** Mode state (see modes.ts); undefined in classic games. */
   goliath?: GoliathState
   teams?: TeamState[]
+  /** Wall mode: teams whose team voice changed, and the throttle timer (modes.ts). */
+  teamVotesDirty: Set<number>
+  teamVotesTimer?: ReturnType<typeof setTimeout>
 }
 
 const rooms = new Map<string, Room>()
@@ -74,6 +81,9 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     prevRanks: new Map(),
     lastEntries: [],
     lastActivity: Date.now(),
+    game: 1,
+    requestedCount: config.questionCount,
+    teamVotesDirty: new Set(),
   }
   rooms.set(room.code, room)
   return room
@@ -88,6 +98,7 @@ export function deleteRoom(code: string): void {
   if (room) {
     clearTimeout(room.timer)
     clearTimeout(room.hostGraceTimer)
+    clearTimeout(room.teamVotesTimer)
   }
   rooms.delete(code)
 }
@@ -103,8 +114,8 @@ export function cleanName(name: unknown): string {
   return Array.from(cleaned).slice(0, 14).join('') || 'Player'
 }
 
-export const cleanAvatar = (avatar: unknown): string =>
-  CHARACTERS.includes(avatar as (typeof CHARACTERS)[number]) ? (avatar as string) : CHARACTERS[0]
+/** A look string (shared/src/looks.ts): old character ids stay valid, unknown parts become the default. Worn items are trusted here (family game). */
+export const cleanAvatar = (avatar: unknown): string => cleanLook(avatar)
 
 /** Add a new player, or rebind an existing one (reconnection). */
 export function addOrRebindPlayer(
@@ -157,6 +168,7 @@ export function toPublicState(room: Room): RoomState {
     hostConnected: room.hostSocketId !== null,
     questionIndex: room.questionIndex,
     questionTotal: room.config.questionCount,
+    game: room.game,
     goliath: room.goliath,
     teams: room.teams,
   }

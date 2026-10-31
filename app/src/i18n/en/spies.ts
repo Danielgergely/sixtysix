@@ -14,7 +14,7 @@ export default {
     you: ' (you)',
     theLeader: 'The leader',
     leaderStarts: '👑 {name} starts the game.',
-    leaderAgain: '👑 {name} can start another game.',
+    leaderAgain: '👑 {name} can start another game — stay here, you keep your seat.',
     howToPlay: 'How to play',
     showRules: '📜 How to play',
     hideRules: 'Hide the rules',
@@ -35,15 +35,9 @@ export default {
   menu: {
     intro: 'Two tribes, one secret map. Your spy master gives one-word clues — find your tribe’s words before the other tribe does, and never wake Goliath!',
     meta: '4–12 players (co-op from 2) · phones + optional big screen · ~20 min',
-    rejoin: '↩ BACK TO GAME {code}',
-    you: 'You',
-    nickname: 'Your nickname',
+    online: '🌐 Everyone on their own phone, online — in the same room or far apart',
     joinTitle: 'Join a camp',
-    codePlaceholder: 'GAME CODE',
-    join: 'JOIN',
-    watch: '📺 Show the board on this screen instead',
     create: '🍇 NEW GAME',
-    needName: 'Pick a nickname first.',
   },
   lobby: {
     gameCode: 'Game code',
@@ -89,7 +83,11 @@ export default {
     agree: 'AGREE',
     endOurTurn: '✋ End our turn',
   },
-  over: { playAgain: 'PLAY AGAIN' },
+  over: {
+    playAgain: '↻ PLAY AGAIN',
+    startNow: '▶ Start the next game right away',
+    againNote: 'Same code ({code}), everyone stays seated and the spy masters rotate. In the lobby you can change tribes, mode or timer before starting.',
+  },
   verdict: {
     calledOff: 'The mission was called off',
     tooFew: 'Too few spies left to carry on.',

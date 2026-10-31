@@ -37,7 +37,9 @@ export interface Landmark {
 }
 
 export const LANDMARKS: Landmark[] = [
-  { id: 'temple', name: 'The Temple', art: '/art/land-temple.webp', x: TEMPLE.x, y: pct(53), size: pct(24) },
+  // Its paved base centred on the painted platform's top (≈ 53.5 %, 40 %); the sprite's foot point sits ~5 % below that.
+  // TEMPLE above stays the anchor the lots are numbered from (users.lot is stored: never reorder LOTS).
+  { id: 'temple', name: 'The Temple', art: '/art/land-temple.webp', x: pct(54), y: pct(45), size: pct(26) },
   { id: 'market', name: 'Market', art: '/art/land-market.webp', x: pct(21), y: pct(47), size: pct(12) },
   { id: 'governor', name: 'Governor’s house', art: '/art/land-governor.webp', x: pct(81), y: pct(50), size: pct(10) },
   { id: 'gate', name: 'Sheep Gate', art: '/art/land-gate.webp', x: pct(78), y: pct(23), size: pct(10) },

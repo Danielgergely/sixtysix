@@ -786,3 +786,16 @@ button:disabled{ cursor: default; }
 .arena-game-shell .arena-skip{ z-index: 40; }
 /* Coins earned this race, beside the score. */
 
+
+/*
+ * One-line names cut with an ellipsis clip at their padding box, and with a
+ * tight line-height that shaves the accent off capitals (É, Ö, Ü → E, O, U).
+ * Give the glyphs room above and below without changing the layout.
+ */
+.st-name, .tr-board-name, .lb-name, .hm-name span, .tb-name span, .lbx-name strong, .jr-plot strong, .hp-spot-name,
+.fl-ribbon-item small, .fl-clue-name, .fl-score-name, .fl-step strong, .fll-player-name,
+.cm-hits strong, .cm-found-text strong, .cm-label, .cs-name,
+.ts-member-name, .ts-score-name, .ts-clue-word {
+  padding-block: 0.22em;
+  margin-block: -0.22em;
+}

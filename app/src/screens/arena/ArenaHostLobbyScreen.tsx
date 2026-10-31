@@ -4,9 +4,41 @@ import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
 import { AnimatedNumber, spring } from '../../motion'
-import { RotateHint } from './RotateHint'
 import { useT } from '../../i18n'
 import { rich } from './rich'
+import { RoomOptions } from './RoomOptions'
+import type { ArenaPlayer, RoomConfig } from '@sixtysix/shared'
+import { TeamPennant } from './game/Team'
+import { teamColor } from './modes'
+
+/** Host only: change the options in the lobby (also before "Play again" starts the next game). */
+function OptionsSheet({ initial, onClose }: { initial: RoomConfig; onClose: () => void }) {
+  const t = useT()
+  const setOptions = useArenaStore((s) => s.setOptions)
+  const [config, setConfig] = useState<RoomConfig>(initial)
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card options-sheet emp" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-title">{t('arena.hostLobby.options')}</div>
+        <div className="arena-section options-sheet-body">
+          <RoomOptions value={config} onChange={setConfig} />
+        </div>
+        <button
+          className="btn-play"
+          onClick={() => {
+            setOptions(config)
+            onClose()
+          }}
+        >
+          {t('arena.hostLobby.apply')}
+        </button>
+        <button className="btn-secondary" onClick={onClose}>
+          {t('arena.hostLobby.cancel')}
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export function ArenaHostLobbyScreen() {
   const t = useT()
@@ -14,8 +46,10 @@ export function ArenaHostLobbyScreen() {
   const room = useArenaStore((s) => s.room)
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const startGame = useArenaStore((s) => s.startGame)
+  const shuffleTeams = useArenaStore((s) => s.shuffleTeams)
   const [qrSvg, setQrSvg] = useState('')
   const [joinOrigin, setJoinOrigin] = useState(window.location.origin)
+  const [editing, setEditing] = useState(false)
 
   // A localhost QR is unscannable by phones — ask the server for its LAN URL.
   useEffect(() => {
@@ -49,18 +83,33 @@ export function ArenaHostLobbyScreen() {
   }, [playerCount])
 
   if (!room) return null
+  const chip = (p: ArenaPlayer) => (
+    <motion.div
+      key={p.id}
+      layout
+      className={`player-chip ${p.connected ? '' : 'player-gone'}`}
+      initial={{ opacity: 0, scale: 0.3, y: -40 }}
+      animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
+      transition={spring.bouncy}
+    >
+      <span className="player-chip-avatar">
+        <Avatar id={p.avatar} />
+      </span>
+      <span className="player-chip-name">{p.name}</span>
+    </motion.div>
+  )
   const isHost = role === 'host'
   const minPlayers = room.config.mode === 'wall' ? 2 : 1
   const cats = room.config.categories ?? []
 
   return (
     <div className="screen host-lobby-screen emp">
-      <RotateHint />
       <header className="screen-topbar">
         <button className="icon-btn" onClick={leaveArena} title={isHost ? t('arena.hostLobby.close') : t('arena.hostLobby.stopWatching')}>
           ✕
         </button>
-        <h2 className="topbar-heading">{t('arena.hostLobby.title')}</h2>
+        <h2 className="topbar-heading">{room.game > 1 ? t('arena.hostLobby.titleNext', { n: room.game }) : t('arena.hostLobby.title')}</h2>
         <span className="topbar-spacer" />
       </header>
 
@@ -78,6 +127,11 @@ export function ArenaHostLobbyScreen() {
           </span>
           <span className="chip">{room.config.roomType === 'remote' ? t('arena.remote') : t('arena.inPerson')}</span>
         </div>
+        {isHost && (
+          <button className="btn-secondary host-options-btn" onClick={() => setEditing(true)}>
+            ⚙️ {t('arena.hostLobby.changeOptions')}
+          </button>
+        )}
       </div>
 
       <div className="host-players">
@@ -90,27 +144,24 @@ export function ArenaHostLobbyScreen() {
             })
           )}
         </div>
-        <div className="player-chip-grid">
-          <AnimatePresence initial={false}>
-            {room.players.map((p) => (
-              <motion.div
-                key={p.id}
-                layout
-                className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-                initial={{ opacity: 0, scale: 0.3, y: -40 }}
-                animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
-                transition={spring.bouncy}
-              >
-                <span className="player-chip-avatar">
-                  <Avatar id={p.avatar} />
-                </span>
-                <span className="player-chip-name">{p.name}</span>
-              </motion.div>
+        {room.teams && room.players.length > 0 ? (
+          // Rebuild the Wall: the teams as they stand (they form as people join).
+          <div className="tm-host-teams">
+            {room.teams.map((team) => (
+              <div key={team.id} className="tm-host-team" style={{ '--c': teamColor(team.id) } as React.CSSProperties}>
+                <TeamPennant team={team} />
+                <div className="player-chip-grid">
+                  <AnimatePresence initial={false}>{room.players.filter((p) => p.team === team.id).map(chip)}</AnimatePresence>
+                </div>
+              </div>
             ))}
-          </AnimatePresence>
-          {room.players.length === 0 && <div className="slot-spinner" />}
-        </div>
+          </div>
+        ) : (
+          <div className="player-chip-grid">
+            <AnimatePresence initial={false}>{room.players.map(chip)}</AnimatePresence>
+            {room.players.length === 0 && <div className="slot-spinner" />}
+          </div>
+        )}
       </div>
 
       <div className="host-actions">
@@ -126,12 +177,20 @@ export function ArenaHostLobbyScreen() {
             {room.players.length < minPlayers && (
               <p className="arena-hint">{minPlayers > 1 ? t('arena.hostLobby.wallNeeds') : t('arena.hostLobby.waitingOne')}</p>
             )}
-            {room.config.mode === 'wall' && room.players.length >= minPlayers && <p className="arena-hint">{t('arena.hostLobby.teamsDrawn')}</p>}
+            {room.config.mode === 'wall' && room.players.length >= minPlayers && (
+              <>
+                <button className="btn-secondary tm-shuffle" onClick={shuffleTeams}>
+                  {t('arena.hostLobby.shuffle')}
+                </button>
+                <p className="arena-hint">{t('arena.hostLobby.teamsDrawn')}</p>
+              </>
+            )}
           </>
         ) : (
           <p className="arena-hint">{t('arena.hostLobby.watching')}</p>
         )}
       </div>
+      {editing && <OptionsSheet initial={room.config} onClose={() => setEditing(false)} />}
     </div>
   )
 }

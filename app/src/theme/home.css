@@ -205,6 +205,8 @@
 /* Jerusalem tab: home card is a button now, with the Market beside it */
 .jr-home-row{ display: flex; gap: 8px; align-items: stretch; margin: 6px 0 10px; }
 .jr-home-row .jr-home{ margin: 0; }
+/* Only inside the row; on the player page it must not grow to fill the screen. */
+.pl .jr-home-btn{ flex: none; }
 .jr-home-btn{ flex: 1; text-align: left; color: inherit; border-color: #ffe08a; box-shadow: 0 0 14px rgb(255 214 100 / 0.3); }
 .jr-market{
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 74px; border-radius: 12px;

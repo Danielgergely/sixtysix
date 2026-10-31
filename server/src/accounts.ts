@@ -4,16 +4,21 @@ import { join } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 import type { FastifyInstance, FastifyRequest } from 'fastify'
 import {
-  CHARACTERS,
   DAY_MS,
   IDLE_DAYS,
+  MAX_PASSWORD,
   MIN_PASSWORD,
   STAT_COUNTERS,
   STAT_MAXES,
-  USERNAME_RE,
   EMPTY_SKILLS,
+  normalizePassword,
+  normalizeUsername,
+  usernameKey,
+  usernameProblem,
   cleanSkills,
   coinBonus,
+  settleWardrobe,
+  wearableLook,
   xpBonus,
   type Account,
   type AccountProfile,
@@ -22,7 +27,7 @@ import {
   type StaffRole,
 } from '@sixtysix/shared'
 import { LOTS } from '@sixtysix/shared/cityLayout'
-import { cleanAvatar, cleanName } from './rooms.js'
+import { cleanName } from './rooms.js'
 import { publicLevels } from './plot.js'
 
 /**
@@ -99,6 +104,24 @@ const userColumns = new Set((db.prepare('PRAGMA table_info(users)').all() as { n
 for (const col of ['lot', 'last_active', 'last_move_at']) if (!userColumns.has(col)) db.exec(`ALTER TABLE users ADD COLUMN ${col} INTEGER`)
 // v5: staff roles granted in the app ('reviewer'; server/src/roles.ts).
 if (!userColumns.has('role')) db.exec('ALTER TABLE users ADD COLUMN role TEXT')
+// v6: account settings. google_sub / apple_sub used to be added by google.ts / apple.ts (same columns, so
+// existing databases are unchanged). username_key = NFC lower case in every alphabet (COLLATE NOCASE folds
+// ASCII only): unique, so "Ős" and "ős" are one name. pass_set: 1 = the player chose a password, 0 = a
+// Google/Apple account whose hash matches nothing, NULL = not known (an older account with a link).
+for (const col of ['google_sub', 'apple_sub', 'username_key']) if (!userColumns.has(col)) db.exec(`ALTER TABLE users ADD COLUMN ${col} TEXT`)
+if (!userColumns.has('pass_set')) {
+  db.exec('ALTER TABLE users ADD COLUMN pass_set INTEGER')
+  // Before Google/Apple existed every account had a password; one with neither linked still has only that.
+  db.exec('UPDATE users SET pass_set = 1 WHERE google_sub IS NULL AND apple_sub IS NULL')
+}
+db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_google_sub ON users(google_sub)')
+db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_apple_sub ON users(apple_sub)')
+{
+  const missing = db.prepare('SELECT id, username FROM users WHERE username_key IS NULL').all() as { id: number; username: string }[]
+  const setKey = db.prepare('UPDATE users SET username_key = ? WHERE id = ?')
+  for (const r of missing) setKey.run(usernameKey(r.username), r.id)
+}
+db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_username_key ON users(username_key)')
 db.exec('UPDATE users SET last_active = MAX(created_at, COALESCE((SELECT MAX(at) FROM grants WHERE grants.user_id = users.id), 0)) WHERE last_active IS NULL')
 db.exec('CREATE UNIQUE INDEX IF NOT EXISTS users_lot ON users(lot)')
 /**
@@ -149,6 +172,16 @@ export interface UserRow {
   profile: string
   /** 'reviewer' when an admin granted it (server/src/roles.ts); admins come from ADMIN_USERNAMES. */
   role?: string | null
+  google_sub?: string | null
+  apple_sub?: string | null
+  username_key?: string | null
+  /** 1 = has a password, 0 = Google/Apple only, null = not known (see the v6 migration). */
+  pass_set?: number | null
+}
+
+/** The account with this username, any case and however its letters were composed. */
+export function userByName(username: string): UserRow | undefined {
+  return db.prepare('SELECT * FROM users WHERE username_key = ?').get(usernameKey(username)) as UserRow | undefined
 }
 
 const EMPTY_STATS: AccountStats = {
@@ -161,6 +194,8 @@ const EMPTY_STATS: AccountStats = {
   bestScore: 0,
   currentStreak: 0,
   bestStreak: 0,
+  arenaWins: 0,
+  bestDailyStreak: 0,
 }
 
 // Sanity caps: one grant is one game or answer, never more than this.
@@ -179,15 +214,27 @@ const MAX_GRANTS_PER_SYNC = 200
 
 // ── passwords & tokens ────────────────────────────────────────────────
 
+/** Hashes the NFC form, so "ő" typed either way is the same password. */
 export function hashPassword(password: string): string {
   const salt = randomBytes(16)
-  return `scrypt$${salt.toString('hex')}$${scryptSync(password, salt, 32).toString('hex')}`
+  return `scrypt$${salt.toString('hex')}$${scryptSync(normalizePassword(password), salt, 32).toString('hex')}`
 }
 
-function checkPassword(password: string, stored: string): boolean {
+function matches(password: string, stored: string): boolean {
   const [, saltHex, hashHex] = stored.split('$')
+  if (!saltHex || !hashHex) return false
   const hash = Buffer.from(hashHex, 'hex')
   return timingSafeEqual(hash, scryptSync(password, Buffer.from(saltHex, 'hex'), hash.length))
+}
+
+/**
+ * NFC first. Hashes made before passwords were normalised used the raw string, so that is tried too,
+ * and the decomposed form (a password first typed where "ő" came as o + ˝). Only non-ASCII passwords
+ * ever need more than one try.
+ */
+export function checkPassword(password: string, stored: string): boolean {
+  const tries = [...new Set([normalizePassword(password), password, password.normalize('NFD')])]
+  return tries.some((p) => matches(p, stored))
 }
 
 const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
@@ -223,7 +270,7 @@ export function cleanProfile(raw: unknown): AccountProfile {
   const p = (raw ?? {}) as Record<string, unknown>
   return {
     name: cleanName(p.name),
-    avatar: cleanAvatar(p.avatar),
+    avatar: wearableLook(p.avatar, []), // a new account owns no items yet
     coins: int(p.coins, SIGNUP_MAX_COINS),
     xp: int(p.xp, SIGNUP_MAX_XP),
     stats: cleanStats(p.stats),
@@ -246,10 +293,10 @@ function applyGrant(profile: AccountProfile, g: Grant, coins: number, xp: number
 const ADMINS = new Set(
   (process.env.ADMIN_USERNAMES ?? '')
     .split(',')
-    .map((s) => s.trim().toLowerCase())
+    .map((s) => usernameKey(s))
     .filter(Boolean),
 )
-export const isAdminName = (username: string): boolean => ADMINS.has(username.toLowerCase())
+export const isAdminName = (username: string): boolean => ADMINS.has(usernameKey(username))
 
 /** The account's staff role: admin from the env, reviewer from users.role (server/src/roles.ts). */
 export function roleOf(row: Pick<UserRow, 'username' | 'role'> | undefined): StaffRole | null {
@@ -262,7 +309,12 @@ export function toAccount(row: UserRow): Account {
   const profile = JSON.parse(row.profile) as AccountProfile
   profile.stats = { ...EMPTY_STATS, ...profile.stats }
   profile.skills = cleanSkills(profile.skills)
-  return { username: row.username, createdAt: row.created_at, profile, ...(roleOf(row) && { role: roleOf(row)! }) }
+  const logins = {
+    password: row.pass_set === undefined || row.pass_set === null ? (row.google_sub || row.apple_sub ? null : true) : row.pass_set === 1,
+    google: !!row.google_sub,
+    apple: !!row.apple_sub,
+  }
+  return { username: row.username, createdAt: row.created_at, profile, logins, ...(roleOf(row) && { role: roleOf(row)! }) }
 }
 
 export function saveProfile(id: number, profile: AccountProfile): void {
@@ -298,22 +350,51 @@ export function tooMany(ip: string, record = true): boolean {
   return recent.length > 10
 }
 
+// ── validation messages (English; the app translates them with tServer) ──
+
+export function usernameError(username: string): string | null {
+  switch (usernameProblem(username)) {
+    case 'short':
+      return 'Username: at least 3 characters'
+    case 'long':
+      return 'Username: at most 20 characters'
+    case 'spaces':
+      return 'Username: only single spaces between words'
+    case 'chars':
+      return 'Username: letters, numbers, spaces and . _ - only'
+    default:
+      return null
+  }
+}
+
+export function passwordError(password: string): string | null {
+  const len = [...normalizePassword(password)].length
+  if (len < MIN_PASSWORD) return `Password: at least ${MIN_PASSWORD} characters`
+  if (len > MAX_PASSWORD) return `Password: at most ${MAX_PASSWORD} characters`
+  return null
+}
+
 // ── routes ────────────────────────────────────────────────────────────
 
 export function registerAccountRoutes(app: FastifyInstance): void {
   app.post('/api/account/signup', (req, reply) => {
     if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown; profile?: unknown }
-    const username = typeof body.username === 'string' ? body.username.trim() : ''
+    const username = typeof body.username === 'string' ? normalizeUsername(body.username) : ''
     const password = typeof body.password === 'string' ? body.password : ''
-    if (!USERNAME_RE.test(username)) return { ok: false, error: 'Username: 3–20 letters, numbers, . _ or -' }
-    if (password.length < MIN_PASSWORD || password.length > 200) return { ok: false, error: `Password: at least ${MIN_PASSWORD} characters` }
-    if (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) return { ok: false, error: 'That username is taken' }
+    const refused = usernameError(username) ?? passwordError(password)
+    if (refused) return { ok: false, error: refused }
+    if (userByName(username)) return { ok: false, error: 'That username is taken' }
     const profile = cleanProfile(body.profile)
     profile.merged = { coins: profile.coins, xp: profile.xp }
-    const { lastInsertRowid } = db
-      .prepare('INSERT INTO users (username, pass_hash, created_at, profile) VALUES (?, ?, ?, ?)')
-      .run(username, hashPassword(password), Date.now(), JSON.stringify(profile))
+    let lastInsertRowid: number | bigint
+    try {
+      ;({ lastInsertRowid } = db
+        .prepare('INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile) VALUES (?, ?, ?, 1, ?, ?)')
+        .run(username, usernameKey(username), hashPassword(password), Date.now(), JSON.stringify(profile)))
+    } catch {
+      return { ok: false, error: 'That username is taken' } // a parallel sign-up won the race
+    }
     markActive(Number(lastInsertRowid))
     const row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
     console.log(`[account] signup ${username}`)
@@ -324,7 +405,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     // Only wrong passwords count, so a family signing in behind one router isn't locked out.
     if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown }
-    const row = typeof body.username === 'string' ? (db.prepare('SELECT * FROM users WHERE username = ?').get(body.username.trim()) as UserRow | undefined) : undefined
+    const row = typeof body.username === 'string' ? userByName(body.username) : undefined
     if (!row || typeof body.password !== 'string' || !checkPassword(body.password, row.pass_hash)) {
       tooMany(clientIp(req))
       return { ok: false, error: 'Wrong username or password' }
@@ -391,7 +472,9 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     }
     if (applied) markActive(row.id) // a game played tends the home
     if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
-    if (CHARACTERS.includes(body.avatar as (typeof CHARACTERS)[number])) account.profile.avatar = body.avatar as string
+    // Rare look items earned by now join the wardrobe; only owned items can be worn (shared/src/looks.ts).
+    const wardrobe = settleWardrobe(account.profile)
+    if (body.avatar !== undefined) account.profile.avatar = wearableLook(body.avatar, wardrobe)
     saveProfile(row.id, account.profile)
     return { ok: true, account, bonus }
   })
@@ -448,7 +531,7 @@ export function registerPublicRoutes(app: FastifyInstance): void {
 
   app.get('/api/players/:username', (req, reply) => {
     const { username } = req.params as { username: string }
-    const row = db.prepare('SELECT id, username, profile, created_at FROM users WHERE username = ?').get(username) as
+    const row = db.prepare('SELECT id, username, profile, created_at FROM users WHERE username_key = ?').get(usernameKey(username)) as
       | (PublicRow & { id: number })
       | undefined
     if (!row) return reply.code(404).send({ ok: false, error: 'No such player' })

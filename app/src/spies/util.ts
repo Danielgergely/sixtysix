@@ -54,7 +54,35 @@ export function useAfter(at: number): boolean {
 
 /** Font size that keeps a word on one line of a card `width` px wide (Cinzel runs wide). */
 export function wordSize(word: string, base: number, width: number): number {
-  return Math.min(base, width / (word.length * 0.74))
+  return Math.min(base, width / (word.length * 0.8))
+}
+
+/**
+ * A long word on a small card ("Wilderness", "Gethsemane", German compounds):
+ * on one line it would shrink below ~10px, so it gets two hyphenated lines at a
+ * readable size instead. Returns null when one line is fine (or there is no
+ * good place to break it).
+ */
+export function wrappedWordSize(word: string, base: number, width: number): number | null {
+  if (word.length < 8 || /\s/.test(word) || wordSize(word, base, width) >= base * 0.8 || !softHyphens(word).includes('\u00ad')) return null
+  return Math.min(base, width / (Math.ceil(word.length * 0.6) * 0.8))
+}
+
+const VOWEL = /[aeiouyäöüáéíóőúűAEIOUYÄÖÜÁÉÍÓŐÚŰ]/
+/**
+ * Soft hyphens at vowel–consonant–vowel joints ("Methu­selah", "Schleu­der",
+ * "Cove­nant"), at least three letters from either end: break points for names
+ * the browser's hyphenation dictionary doesn't know.
+ */
+export function softHyphens(word: string): string {
+  let out = ''
+  for (let i = 0; i < word.length; i++) {
+    out += word[i]
+    const next = word[i + 1]
+    const after = word[i + 2]
+    if (i >= 2 && i <= word.length - 4 && VOWEL.test(word[i]) && next && !VOWEL.test(next) && /\p{L}/u.test(next) && after && VOWEL.test(after)) out += '\u00ad'
+  }
+  return out
 }
 
 /** Turn status line shared by phones and the board. */

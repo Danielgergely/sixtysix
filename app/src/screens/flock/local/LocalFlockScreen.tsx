@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 import { useGameStore } from '../../../game/store'
-import { CountdownRing, fireCannons, fireConfetti, popIn, spring } from '../../../motion'
+import { CountdownRing, fireCannons, fireConfetti, spring } from '../../../motion'
 import { categoryLabel } from '../../../flock/util'
 import { tServer, useT } from '../../../i18n'
 import {
@@ -15,9 +15,17 @@ import {
 } from '../../../flock/local/localStore'
 import '../../../theme/flock.css'
 
-/** Wolf in the Flock on one phone: setup → pass & peek → talk → reveal. */
+/**
+ * Wolf in the Flock on one phone: pass & peek → talk → reveal. The setup lives
+ * on the game's entry screen (FlockMenu, "One phone" tab), so going back to it
+ * returns there.
+ */
 export function LocalFlockScreen() {
   const phase = useLocalFlock((s) => s.phase)
+  const goTo = useGameStore((s) => s.goTo)
+  useEffect(() => {
+    if (phase === 'setup') goTo('flock')
+  }, [phase, goTo])
   return (
     <div className="screen fl emp">
       <LocalTopBar />
@@ -30,7 +38,6 @@ export function LocalFlockScreen() {
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >
-            {phase === 'setup' && <SetupView />}
             {phase === 'deal' && <DealView />}
             {phase === 'play' && <PlayView />}
             {phase === 'reveal' && <RevealView />}
@@ -42,7 +49,6 @@ export function LocalFlockScreen() {
 }
 
 function LocalTopBar() {
-  const goTo = useGameStore((s) => s.goTo)
   const { phase, toSetup } = useLocalFlock()
   const [confirm, setConfirm] = useState(false)
   const t = useT()
@@ -50,12 +56,11 @@ function LocalTopBar() {
   const back = () => {
     if (inGame && !confirm) return setConfirm(true)
     setConfirm(false)
-    if (phase === 'setup') goTo('flock')
-    else toSetup()
+    toSetup() // → the entry screen (see LocalFlockScreen)
   }
   return (
     <header className="screen-topbar fl-topbar">
-      <button className="icon-btn" onClick={back} title={phase === 'setup' ? t('flockLocal.topbar.back') : t('flockLocal.topbar.backToSetup')}>
+      <button className="icon-btn" onClick={back} title={t('flockLocal.topbar.backToSetup')}>
         {confirm ? '✓' : '←'}
       </button>
       <h2 className="topbar-heading">{confirm ? t('flockLocal.topbar.endConfirm') : t('flock.title')}</h2>
@@ -66,7 +71,8 @@ function LocalTopBar() {
 
 // ── setup ──────────────────────────────────────────────────────────────
 
-function SetupView() {
+/** Players and options; shown on the entry screen. `onStarted` runs once the cards are dealt. */
+export function SetupView({ onStarted }: { onStarted?: () => void }) {
   const { setup, updateSetup, start, error, tally, clearTally } = useLocalFlock()
   const [name, setName] = useState('')
   const t = useT()
@@ -86,13 +92,13 @@ function SetupView() {
   const toggleCat = (c: (typeof FLOCK_CATEGORIES)[number]) =>
     updateSetup({ categories: setup.categories.includes(c) ? setup.categories.filter((x) => x !== c) : [...setup.categories, c] })
   const most = maxWolves(n)
+  const begin = async () => {
+    await start()
+    if (useLocalFlock.getState().phase !== 'setup') onStarted?.()
+  }
   return (
-    <div className="fl-col fl-scroll fll-setup">
-      <motion.div className="fl-hero" {...popIn}>
-        <span className="fl-hero-icons">📱🐑🐺</span>
-        <p>{t('flockLocal.setup.tagline')}</p>
-        <small>{t('flockLocal.setup.sub')}</small>
-      </motion.div>
+    <div className="fll-setup">
+      <p className="be-mode-note">{t('flockLocal.setup.sub')}</p>
 
       <div className="arena-section">
         <div className="profile-label">{t('flockLocal.setup.players', { n, max: LOCAL_MAX_PLAYERS })}</div>
@@ -184,7 +190,7 @@ function SetupView() {
         </div>
       )}
 
-      <button className="btn-play fl-cta" disabled={n < LOCAL_MIN_PLAYERS || setup.categories.length === 0} onClick={() => void start()}>
+      <button className="btn-play fl-cta" disabled={n < LOCAL_MIN_PLAYERS || setup.categories.length === 0} onClick={() => void begin()}>
         {n < LOCAL_MIN_PLAYERS ? t('flockLocal.setup.addMore', { count: LOCAL_MIN_PLAYERS - n }) : t('flockLocal.setup.start')}
       </button>
       {error && <div className="arena-error">{tServer(error)}</div>}

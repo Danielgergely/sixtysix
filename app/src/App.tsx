@@ -24,6 +24,7 @@ import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 import { FlagSheetHost } from './flags/FlagSheet'
+import { LookPickerHost } from './looks/LookPicker'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
 const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
@@ -33,6 +34,7 @@ const VisitScreen = lazy(() => import('./screens/VisitScreen').then((m) => ({ de
 const SkillTreeScreen = lazy(() => import('./screens/SkillTreeScreen').then((m) => ({ default: m.SkillTreeScreen })))
 const FlockScreen = lazy(() => import('./screens/flock/FlockScreen').then((m) => ({ default: m.FlockScreen })))
 const LocalFlockScreen = lazy(() => import('./screens/flock/local/LocalFlockScreen').then((m) => ({ default: m.LocalFlockScreen })))
+const AccountSettingsScreen = lazy(() => import('./screens/AccountSettingsScreen').then((m) => ({ default: m.AccountSettingsScreen })))
 const ReviewScreen = lazy(() => import('./screens/review/ReviewScreen').then((m) => ({ default: m.ReviewScreen })))
 const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
 
@@ -61,6 +63,7 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   flockLocal: LocalFlockScreen,
   spies: SpiesScreen,
   review: ReviewScreen,
+  account: AccountSettingsScreen,
 }
 
 export default function App() {
@@ -102,6 +105,7 @@ export default function App() {
         {tabbed && <TabBar />}
       </div>
       <FlagSheetHost />
+      <LookPickerHost />
       <ConfettiLayer />
     </MotionConfig>
   )

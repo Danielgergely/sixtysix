@@ -11,6 +11,22 @@ import { quoteVerse } from '../../../questions/quoteVerse'
 import { PlayerResult } from './PlayerResult'
 import { useLocale, useT } from '../../../i18n'
 import { rich } from '../rich'
+import { useGameStore } from '../../../game/store'
+import { useClockTicks } from '../../../game/useClockTicks'
+import { usePortraitBoard } from '../usePortraitBoard'
+import { VoiceBadge, VoiceRow } from './Team'
+
+/** Sound on/off right on the question screen; the same setting as in Profile. */
+function SoundToggle() {
+  const t = useT()
+  const muted = useGameStore((s) => s.muted)
+  const toggleMute = useGameStore((s) => s.toggleMute)
+  return (
+    <button className="eh-sound" onClick={toggleMute} title={muted ? t('quiz.question.soundOn') : t('quiz.question.soundOff')} aria-pressed={!muted}>
+      {muted ? '🔇' : '🔊'}
+    </button>
+  )
+}
 
 /** Fan angle per card in the player's hand. */
 const FAN = [-9, -3, 3, 9]
@@ -55,6 +71,11 @@ export interface QuestionViewProps {
   answerCount?: number
   playerCount?: number
   onAnswer?: (index: number) => void
+  // ── Rebuild the Wall (arena players only) ──
+  /** Your team with who has answered; replaces the room-wide strip. */
+  teamStrip?: ReactNode
+  /** Team voice: % of your answered teammates on each card (null until one has answered). */
+  teamVoice?: { pct: number[]; n: number } | null
   // ── Scholar gifts (Bible Blitz only; the arena never passes these) ──
   /** Gift buttons, shown above the hand while you can still answer. */
   giftBar?: ReactNode
@@ -71,7 +92,9 @@ export interface QuestionViewProps {
 /** Faces in the room: lit with a ✓ once answered, so you can see who's still thinking. */
 function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewProps['answered']>; wide: boolean }) {
   const t = useT()
-  const max = wide ? 16 : 8
+  // A board kept upright on a phone has a phone's width: show as many faces as a phone does.
+  const upright = usePortraitBoard()
+  const max = wide && !upright ? 16 : 8
   // Answered first so the "+N" overflow hides the ones still thinking least.
   const shown = [...players].sort((a, b) => Number(b.done) - Number(a.done)).slice(0, max)
   const done = players.filter((p) => p.done).length
@@ -111,6 +134,8 @@ export function QuestionView(props: QuestionViewProps) {
   const [scope, animate] = useAnimate()
   const remaining = useRemaining(endsAt, phase === 'question')
   const revealed = phase === 'reveal' && reveal !== null
+  // The clock ticks while you can still answer (boards: until the window closes).
+  useClockTicks(endsAt, phase === 'question' && (!isPlayer || myAnswer === null))
 
   // The verdict medallion takes over a moment after the card flips.
   const [verdictFor, setVerdictFor] = useState<number | null>(null)
@@ -162,6 +187,7 @@ export function QuestionView(props: QuestionViewProps) {
               <AnimatedNumber value={props.coins} duration={0.5} />
             </div>
           )}
+          <SoundToggle />
         </div>
 
         <div className="empire-scroll">
@@ -203,7 +229,8 @@ export function QuestionView(props: QuestionViewProps) {
             }}
           />
         </div>
-        {phase === 'question' && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
+        {phase !== 'reveal' && props.teamStrip}
+        {phase === 'question' && !props.teamStrip && props.answered && props.answered.length > 1 && <AnsweredStrip players={props.answered} wide={!isPlayer} />}
         {!isPlayer && phase === 'question' && !props.answered && props.answerCount !== undefined && (
           <div className="eh-count">
             ✓ {rich(t('quiz.question.answered', { total: props.playerCount ?? 0 }), { done: <AnimatedNumber value={props.answerCount} duration={0.3} /> })}
@@ -249,8 +276,11 @@ export function QuestionView(props: QuestionViewProps) {
         </div>
 
         {isPlayer ? (
-          <div className="eh-hand">
+          <div className={`eh-hand ${phase === 'reading' ? 'reading' : ''}`}>
             {(handOpen || phase === 'reading') && props.giftBar}
+            {phase === 'question' && myAnswer !== null && props.teamVoice && (
+              <VoiceRow pct={props.teamVoice.pct} n={props.teamVoice.n} myAnswer={myAnswer} />
+            )}
             {answers.map((answer, i) => {
               if (myAnswer === i) return null
               // A card taken out by a gift sinks away ("into the sea").
@@ -270,6 +300,7 @@ export function QuestionView(props: QuestionViewProps) {
                   onClick={() => onAnswer?.(i)}
                 >
                   <AnswerCard index={i} text={answer} />
+                  {open && props.teamVoice && <VoiceBadge pct={props.teamVoice.pct[i]} />}
                   {open && voters.length > 0 && (
                     <span className="gift-votes">
                       {voters.map((v) => (

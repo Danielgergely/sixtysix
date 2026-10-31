@@ -4,7 +4,7 @@ import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring } from '../../motion'
 import { useSpiesStore } from '../../spies/spiesStore'
-import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, wordSize } from '../../spies/util'
+import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wordSize, wrappedWordSize } from '../../spies/util'
 import { useLocale, useT } from '../../i18n'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
@@ -102,9 +102,7 @@ export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
               ) : (
                 <motion.span key="back" className="ts-card-face" exit={{ rotateY: -90, transition: { duration: 0.15 } }}>
                   {keyed === 'goliath' && <span className="ts-card-mark">⚔️</span>}
-                  <span className="ts-card-word" style={{ fontSize: wordSize(cardWord(c, locale), large ? 24 : 13, large ? 140 : 60) }}>
-                    {cardWord(c, locale)}
-                  </span>
+                  <CardWord word={cardWord(c, locale)} large={large} />
                 </motion.span>
               )}
             </AnimatePresence>
@@ -213,5 +211,17 @@ export function Rules() {
       <li>{rich(t('spies.rules.r5'))}</li>
       <li>{rich(t('spies.rules.r6'))}</li>
     </ol>
+  )
+}
+
+/** A face-down card's word: one line, or two hyphenated lines when one would be too small to read. */
+function CardWord({ word, large }: { word: string; large: boolean }) {
+  const base = large ? 24 : 13
+  const width = large ? 140 : 60
+  const wrapped = wrappedWordSize(word, base, width)
+  return (
+    <span className={`ts-card-word ${wrapped ? 'wrap' : ''}`} style={{ fontSize: wrapped ?? wordSize(word, base, width) }}>
+      {wrapped ? softHyphens(word) : word}
+    </span>
   )
 }

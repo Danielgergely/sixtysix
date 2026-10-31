@@ -3,8 +3,9 @@ import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { IDLE_DAYS, levelDef } from '@sixtysix/shared'
+import { IDLE_DAYS } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
+import { houseName } from './home/plotText'
 import { useLocale, useT } from '../i18n'
 
 const pct = (part: number, total: number, locale: string) =>
@@ -61,7 +62,7 @@ export function PlayerScreen() {
               <strong>{player.lot ? t('player.homeLot', { lot: player.lot }) : t('player.homeCamping')}</strong>
               <small>
                 {[
-                  t('player.house', { name: levelDef('house', player.house)?.name ?? t('player.tent'), n: player.house }),
+                  t('player.house', { name: player.house >= 1 ? houseName(player.house) : t('player.tent'), n: player.house }),
                   player.idleDays >= IDLE_DAYS.weeds && t('player.away', { count: player.idleDays }),
                   t('player.visit'),
                 ]
