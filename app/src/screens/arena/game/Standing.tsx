@@ -48,31 +48,31 @@ export function Standing({ entries, myPlayerId }: { entries: LeaderboardEntry[];
   const rows = compactRows(sorted, meIndex)
   return (
     <motion.div
-      className="st"
+      className="stand"
       initial={{ y: 120, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 220, damping: 22, delay: 0.3 }}
     >
-      <div className="st-head">
-        <span className="st-place">
+      <div className="stand-head">
+        <span className="stand-place">
           {t('arena.standing.place', { place: ordinal(me.rank, locale), total: sorted.length })}
-          {me.delta > 0 && <span className="st-up">▲{me.delta}</span>}
-          {me.delta < 0 && <span className="st-down">▼{-me.delta}</span>}
+          {me.delta > 0 && <span className="stand-up">▲{me.delta}</span>}
+          {me.delta < 0 && <span className="stand-down">▼{-me.delta}</span>}
         </span>
-        <span className="st-score">
+        <span className="stand-score">
           <AnimatedNumber value={me.score} from={me.score - me.gain} delay={0.5} duration={1.6} /> <small>{t('arena.standing.pts')}</small>
         </span>
       </div>
-      {gap && <div className="st-gap">{gap}</div>}
-      {showLeader && <div className="st-gap st-leader">{t('arena.standing.leader', { name: leader.name, pts: pts(leader.score) })}</div>}
+      {gap && <div className="stand-gap">{gap}</div>}
+      {showLeader && <div className="stand-gap st-leader">{t('arena.standing.leader', { name: leader.name, pts: pts(leader.score) })}</div>}
       {sorted.length > 1 && (
-        <ol className="st-list">
+        <ol className="stand-list">
           {rows.map((e, i) => (
-            <li key={e.playerId} className={`st-row ${e.playerId === myPlayerId ? 'you' : ''} ${i > 0 && rows[i - 1].rank < e.rank - 1 ? 'gap' : ''}`}>
-              <span className="st-rank">{e.rank}</span>
-              <PaintedPortrait id={e.avatar} className="st-portrait" />
-              <span className="st-name">{e.name}</span>
-              <span className="st-pts">{pts(e.score)}</span>
+            <li key={e.playerId} className={`stand-row ${e.playerId === myPlayerId ? 'you' : ''} ${i > 0 && rows[i - 1].rank < e.rank - 1 ? 'gap' : ''}`}>
+              <span className="stand-rank">{e.rank}</span>
+              <PaintedPortrait id={e.avatar} className="stand-portrait" />
+              <span className="stand-name">{e.name}</span>
+              <span className="stand-pts">{pts(e.score)}</span>
             </li>
           ))}
         </ol>
