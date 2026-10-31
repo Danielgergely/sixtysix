@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import type { FlockBotLevel, FlockCategory, FlockWord, GameLocale } from '@sixtysix/shared'
-import { CHARACTERS } from '@sixtysix/shared'
+import { CHARACTERS, SKIN_TONES } from '@sixtysix/shared'
 import { huStem, tokens } from './match.js'
 import { LISTS, localeOf, newPlayerId, roomLocales, type FPlayer, type FRoom } from './rooms.js'
 
@@ -56,10 +56,11 @@ const LEVELS: Record<FlockBotLevel, Level> = {
   normal: { recall: 0.4, guessMargin: 2.25, noise: 0.3, voteLater: 0.8, voteSure: 0.85, blend: true, vague: true },
 }
 
-const NAMES = [
-  'Boaz', 'Naomi', 'Caleb', 'Hannah', 'Gideon', 'Lydia', 'Silas', 'Martha', 'Deborah', 'Barnabas', 'Priscilla', 'Josiah',
-  'Miriam', 'Tobias', 'Abigail', 'Elkanah', 'Phoebe', 'Jethro', 'Rhoda', 'Asher', 'Dorcas', 'Micah', 'Keturah', 'Philemon',
-]
+/**
+ * Each bot is one of the painted characters, so its portrait is the person its
+ * name says (a bot called Hannah looks like Hannah), in a random skin tone.
+ */
+const NAMES: Array<{ name: string; avatar: (typeof CHARACTERS)[number] }> = CHARACTERS.map((c) => ({ name: c[0].toUpperCase() + c.slice(1), avatar: c }))
 
 /** Last-resort clues: vague words that fit most entries of the category. */
 const GENERIC: Record<GameLocale, Record<FlockCategory, string[]>> = {
@@ -172,12 +173,14 @@ function mindOf(room: FRoom, p: FPlayer): Mind {
 /** A new bot seat with a Bible name nobody in the room uses. */
 export function addBot(room: FRoom): FPlayer {
   const taken = new Set([...room.players.values()].map((p) => p.name.toLowerCase()))
-  const free = NAMES.filter((n) => !taken.has(n.toLowerCase()))
-  const name = free.length ? free[Math.floor(Math.random() * free.length)] : `Bot ${room.players.size + 1}`
+  const free = NAMES.filter((n) => !taken.has(n.name.toLowerCase()))
+  const pick = free.length ? free[Math.floor(Math.random() * free.length)] : null
+  const name = pick?.name ?? `Bot ${room.players.size + 1}`
+  const base = pick?.avatar ?? CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)]
   const p: FPlayer = {
     id: newPlayerId(),
     name,
-    avatar: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)],
+    avatar: `${base}.${SKIN_TONES[Math.floor(Math.random() * SKIN_TONES.length)]}`,
     wins: 0,
     connected: true,
     socketId: null,
