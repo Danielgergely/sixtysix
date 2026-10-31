@@ -13,6 +13,7 @@ import { useLocale, useT } from '../../../i18n'
 import { rich } from '../rich'
 import { useGameStore } from '../../../game/store'
 import { useClockTicks } from '../../../game/useClockTicks'
+import { usePortraitBoard } from '../usePortraitBoard'
 import { VoiceBadge, VoiceRow } from './Team'
 
 /** Sound on/off right on the question screen; the same setting as in Profile. */
@@ -91,7 +92,9 @@ export interface QuestionViewProps {
 /** Faces in the room: lit with a ✓ once answered, so you can see who's still thinking. */
 function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewProps['answered']>; wide: boolean }) {
   const t = useT()
-  const max = wide ? 16 : 8
+  // A board kept upright on a phone has a phone's width: show as many faces as a phone does.
+  const upright = usePortraitBoard()
+  const max = wide && !upright ? 16 : 8
   // Answered first so the "+N" overflow hides the ones still thinking least.
   const shown = [...players].sort((a, b) => Number(b.done) - Number(a.done)).slice(0, max)
   const done = players.filter((p) => p.done).length
@@ -273,7 +276,7 @@ export function QuestionView(props: QuestionViewProps) {
         </div>
 
         {isPlayer ? (
-          <div className="eh-hand">
+          <div className={`eh-hand ${phase === 'reading' ? 'reading' : ''}`}>
             {(handOpen || phase === 'reading') && props.giftBar}
             {phase === 'question' && myAnswer !== null && props.teamVoice && (
               <VoiceRow pct={props.teamVoice.pct} n={props.teamVoice.n} myAnswer={myAnswer} />

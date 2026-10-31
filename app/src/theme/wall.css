@@ -99,7 +99,7 @@
 .wl3-plate.lead .wl3-name{ color: #ffe08a; }
 .wl3-name, .wl3-stones, .wl3-size{ max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wl3-name{ font: 900 12px/1.15 'Cinzel', serif; color: #fff; }
-.wl3:not(.wide) .wl3-name{ white-space: normal; overflow-wrap: anywhere; font-size: 11px; }
+.wl3:not(.wide) .wl3-name{ white-space: normal; overflow-wrap: break-word; hyphens: manual; font-size: 11px; }
 .wl3-stones{ font: 800 11px/1.15 'Cinzel', serif; }
 .wl3-size{ font: 700 9px/1.15 'Cinzel', serif; color: #e9c98a; }
 .wl3-faces{ display: flex; align-items: center; justify-content: center; margin: 2px 0; }

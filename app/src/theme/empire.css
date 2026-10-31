@@ -211,9 +211,11 @@
 .eh-played{ position: relative; height: min(246px, 94%); aspect-ratio: 170 / 246; perspective: 900px; }
 .eh-flip{ position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
 .eh-played .eh-card{ position: absolute; inset: 0; width: auto; height: auto; backface-visibility: hidden; }
-.eh-played .eh-card-text{ font-size: 20px; }
-.eh-played .eh-crest{ width: 66px; height: 76px; }
-.eh-played .eh-crest span{ font-size: 30px; }
+/* The played card shrinks when space is short (team voice bars below it): crest and text scale with its width. */
+.eh-played{ container-type: inline-size; }
+.eh-played .eh-card-text{ font-size: min(20px, 12cqi); }
+.eh-played .eh-crest{ width: min(66px, 39cqi); height: min(76px, 45cqi); }
+.eh-played .eh-crest span{ font-size: min(30px, 18cqi); }
 .eh-card.back{ transform: rotateY(180deg); justify-content: center; gap: 10px; }
 .eh-card.back.gold{ background: linear-gradient(160deg, #fff1b8, #e9b23a 55%, #a8700a); border-color: #fff4c8; box-shadow: 0 0 0 2px #1d0f06, 0 0 40px rgb(255 214 100 / 0.85); }
 .eh-card.back.iron{ background-color: #6a6a74; color: #f1f1f4; border-color: #9a9aa6; }

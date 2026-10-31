@@ -82,7 +82,7 @@ export function WallFinale({ players, coins, actions, ...props }: Props & { play
         <motion.div className="wl-verdict" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 15 }}>
           <strong>{winners.length > 1 ? t('ceremony.wall.tie') : t('ceremony.wall.rebuilt', { gate: gateName(t, winners[0]?.name ?? '') })}</strong>
           <small>{t('ceremony.wall.finishedVerse')}</small>
-          {props.myTeam !== undefined && <span className={`wl-you ${youWon ? 'won' : ''}`}>{youWon ? t('ceremony.wall.won') : t('ceremony.wall.wellBuilt')}</span>}
+          {props.myTeam !== undefined && <span className={`wl-you ${youWon ? 'won' : ''}`}>{youWon ? t('ceremony.wall.won') : (props.teams.find((team) => team.id === props.myTeam)?.stones ?? 0) > 0 ? t('ceremony.wall.wellBuilt') : t('ceremony.wall.noStones')}</span>}
           {coins !== undefined && (
             <span className="gl-coins">
               <PaintedCoin size={20} /> +{coins}

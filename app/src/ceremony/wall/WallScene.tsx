@@ -126,7 +126,7 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
                 className={`wl3-plate ${myTeam === team.id ? 'mine' : ''} ${p.leading && crowned ? 'lead' : ''}`}
                 style={{ left: (s.x0 + s.x1) / 2 - Math.min(s.x1 - s.x0, wide ? 340 : 999) / 2, width: Math.min(s.x1 - s.x0, wide ? 340 : 999), top: layout.groundY + Math.max(6, layout.courseH * 0.35), '--c': TEAM_COLORS[team.id % TEAM_COLORS.length] } as React.CSSProperties}
               >
-                <span className="wl3-name">
+                <span className="wl3-name" style={wide ? undefined : { fontSize: nameSize(gateName(t, team.name), Math.min(s.x1 - s.x0, 999) - 10) }}>
                   {p.leading && crowned && '👑 '}
                   {gateName(t, team.name)}
                 </span>
@@ -145,7 +145,8 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
                 )}
                 <span className="wl3-size">
                   {t('ceremony.wall.builders', { count: team.members })}
-                  {myTeam === team.id && ` · ${t('ceremony.wall.yourTeam')}`}
+                  {/* Four narrow plates on a phone: the gold ring marks your team, no room for the words. */}
+                  {myTeam === team.id && (wide || teams.length <= 2) && ` · ${t('ceremony.wall.yourTeam')}`}
                 </span>
               </div>
             </div>
@@ -153,4 +154,10 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
         })}
     </div>
   )
+}
+
+/** Phone plates: a gate name's longest word must fit the plate ("Forráskapu", "Brunnentor"), 8–11 px. */
+function nameSize(name: string, width: number): number {
+  const longest = Math.max(1, ...name.split(/\s+/).map((w) => w.length))
+  return Math.max(8, Math.min(11, width / (longest * 0.78)))
 }
