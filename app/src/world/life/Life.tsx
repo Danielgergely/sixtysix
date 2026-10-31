@@ -77,6 +77,8 @@ interface Sim {
   /** Its own pace (×), so walkers with the same errands drift apart. */
   pace: number
   el?: HTMLDivElement | null
+  /** Invisible tap target in the layer above every sprite and tag (see .lf-hit). */
+  hit?: HTMLButtonElement | null
   /** What was last written to the DOM. */
   shown: string
 }
@@ -207,12 +209,19 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
       const key = hidden ? 'off' : `${s.x.toFixed(1)},${s.y.toFixed(1)},${s.state},${s.left}`
       if (key === s.shown) return
       s.shown = key
+      const hit = s.hit
       if (hidden) {
         el.style.display = 'none'
+        if (hit) hit.style.display = 'none'
         return
       }
       el.style.display = ''
       el.style.transform = `translate3d(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px, 0)`
+      if (hit) {
+        hit.style.display = ''
+        hit.style.transform = el.style.transform
+        hit.dataset.s = s.state
+      }
       el.style.zIndex = String(z(s.y))
       el.dataset.s = s.state
       el.dataset.dir = s.left ? 'l' : 'r'
@@ -257,6 +266,17 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
     }
     raf = requestAnimationFrame(frame)
     return () => cancelAnimationFrame(raf)
+  }, [])
+
+  const registerHit = useCallback((id: string) => (hit: HTMLButtonElement | null) => {
+    const s = sims.current.get(id)
+    if (!s) return
+    s.hit = hit
+    s.shown = ''
+    if (hit) {
+      hit.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)`
+      hit.dataset.s = s.state
+    }
   }, [])
 
   const register = useCallback((id: string) => (el: HTMLDivElement | null) => {
@@ -317,7 +337,7 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
             className={`lf ${fig.still ? 'still' : ''} ${fig.animal ? 'animal' : ''} ${fig.idle ? 'has-idle' : ''}`}
             style={{ '--w': `${w}px`, '--h': `${a.h}px`, '--step': fig.animal ? '0.17s' : '0.26s' } as React.CSSProperties}
           >
-            <button className="lf-body" onClick={() => void tap(a)} tabIndex={-1} aria-label={t(`life.name.${a.fig}`)}>
+            <button className="lf-body" onClick={() => void tap(a)} tabIndex={-1} aria-hidden="true">
               {fig.still ? (
                 <img className="lf-pic" src={fig.art} alt="" draggable={false} />
               ) : (
@@ -331,6 +351,23 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
           </div>
         )
       })}
+      {/* Tap targets: at least ~40 screen px, above every building and name tag, so a figure always wins the tap. */}
+      <div className="lf-hits" style={{ zIndex: bubbleZ - 1 }}>
+        {actors.map((a) => {
+          const w = a.h * FIGURES[a.fig].aspect
+          return (
+            <button
+              key={a.id}
+              ref={registerHit(a.id)}
+              className="lf-hit"
+              style={{ '--w': `${w}px`, '--h': `${a.h}px` } as React.CSSProperties}
+              onClick={() => void tap(a)}
+              tabIndex={-1}
+              aria-label={t(`life.name.${a.fig}`)}
+            />
+          )
+        })}
+      </div>
       {bubble && (
         <div key={bubble.key} ref={bubbleEl} className="lf-bubble-anchor" style={{ zIndex: bubbleZ }}>
           <div className="lf-bubble">{bubble.text}</div>

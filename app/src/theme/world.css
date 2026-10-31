@@ -104,6 +104,9 @@
   background: linear-gradient(rgb(70 30 12 / 0.95), rgb(29 15 6 / 0.95)); border-color: #e3b754; letter-spacing: 0.02em;
 }
 .cm-land.temple .cm-name{ font-size: max(15px, calc(16px * var(--inv, 1))); top: -60px; }
+/* Whole city on screen: smaller landmark names, so they stay over their buildings instead of past the edge. */
+.cm.lod-far .cm-name.land{ font-size: calc(9.5px * var(--inv, 1)); padding: 0.2em 0.7em; }
+.cm.lod-far .cm-land.temple .cm-name{ font-size: calc(11px * var(--inv, 1)); }
 .cm-name.free{ padding: 0.18em 0.7em; background: rgb(243 226 187 / 0.9); border-color: #8a5a2a; color: #5a3412; }
 .cm-lot.me .cm-house{ filter: drop-shadow(0 0 6px #ffe08a) drop-shadow(0 0 14px rgb(255 214 100 / 0.8)); }
 .cm-lot.me .cm-name{ z-index: 9100; background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-weight: 900; }
@@ -243,6 +246,20 @@
   pointer-events: auto; cursor: pointer; transform-origin: 50% 100%; -webkit-tap-highlight-color: transparent;
 }
 .lf[data-dir='l'] .lf-body{ scale: -1 1; }
+/* The sprite itself takes no taps; .lf-hit (one layer above all sprites and tags) does, at least ~40 screen px. */
+.lf .lf-body{ pointer-events: none; }
+.lf-hits{ position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+.lf-hit{
+  position: absolute; left: 0; top: 0; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
+  -webkit-tap-highlight-color: transparent; will-change: transform;
+}
+.lf-hit::before{
+  content: ''; position: absolute; left: 0; bottom: 0; translate: -50% 0;
+  width: max(var(--w), calc(40px * var(--inv, 1))); height: max(var(--h), calc(40px * var(--inv, 1)));
+}
+.lf-hit[data-s='inside']{ pointer-events: none; }
+.lf-hit[data-s='inside']::before{ display: none; }
+.cm.lod-far .lf-hits{ display: none; }
 .lf[data-s='inside']{ opacity: 0; transition: opacity 0.4s; }
 .lf[data-s='inside'] .lf-body{ pointer-events: none; }
 .lf{ transition: opacity 0.4s; }
