@@ -1,0 +1,740 @@
+[
+  {
+    "id": "q_b229_001",
+    "reference": "1 Peter 1:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these regions is named in the greeting of 1 Peter?"
+    },
+    "answers": {
+      "en": [
+        "Macedonia",
+        "Cappadocia",
+        "Achaia",
+        "Judea"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_002",
+    "reference": "1 Peter 1:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter says the proof of your faith is more precious than what, tested by fire?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Bronze",
+        "Gold",
+        "Pearls"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_003",
+    "reference": "1 Peter 1:19",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter says we were redeemed with Christ's precious blood, as of what kind of lamb?"
+    },
+    "answers": {
+      "en": [
+        "A faultless and pure lamb",
+        "A firstborn lamb",
+        "A year-old lamb",
+        "A lost lamb"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_004",
+    "reference": "1 Peter 2:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Like newborn babies, believers should long for the pure what of the Word?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Water",
+        "Honey",
+        "Milk"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_005",
+    "reference": "1 Peter 2:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter 2: 'You also, as living ___, are built up as a spiritual house.'"
+    },
+    "answers": {
+      "en": [
+        "Trees",
+        "Branches",
+        "Lamps",
+        "Stones"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_006",
+    "reference": "1 Peter 2:24",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'By whose ___ you were healed.'"
+    },
+    "answers": {
+      "en": [
+        "Hands",
+        "Stripes",
+        "Words",
+        "Tears"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_007",
+    "reference": "1 Peter 2:25",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter 2 says you were going astray like what?"
+    },
+    "answers": {
+      "en": [
+        "Goats",
+        "Children",
+        "Sheep",
+        "Birds"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_008",
+    "reference": "1 Peter 3:4",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter 3 praises the incorruptible adornment of a gentle and what spirit?"
+    },
+    "answers": {
+      "en": [
+        "Quiet",
+        "Joyful",
+        "Strong",
+        "Humble"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_009",
+    "reference": "1 Peter 3:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Always be ready to give an answer to anyone who asks about the what that is in you?"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Peace",
+        "Truth",
+        "Hope"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_010",
+    "reference": "1 Peter 4:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Peter says to be hospitable to one another without what?"
+    },
+    "answers": {
+      "en": [
+        "Payment",
+        "Grumbling",
+        "Fear",
+        "Delay"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_011",
+    "reference": "1 Peter 4:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Peter tells readers not to be astonished at what kind of trial?"
+    },
+    "answers": {
+      "en": [
+        "The fiery trial",
+        "The long trial",
+        "The hidden trial",
+        "The bitter trial"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_012",
+    "reference": "1 Peter 5:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter 5 tells elders to shepherd what?"
+    },
+    "answers": {
+      "en": [
+        "The young men",
+        "The widows",
+        "The flock of God",
+        "The nations"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_013",
+    "reference": "1 Peter 5:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "When the chief Shepherd is revealed, which crown will faithful elders receive?"
+    },
+    "answers": {
+      "en": [
+        "The crown of glory",
+        "The crown of life",
+        "The crown of gold",
+        "The crown of thorns"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_014",
+    "reference": "1 Peter 5:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "1 Peter 5 sends greetings from 'she who is in' which place?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Nineveh",
+        "Babylon",
+        "Joppa"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_015",
+    "reference": "2 Peter 1:1",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "How does the writer of 2 Peter name himself at the start?"
+    },
+    "answers": {
+      "en": [
+        "John Mark",
+        "James",
+        "Cephas the elder",
+        "Simon Peter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_016",
+    "reference": "2 Peter 1:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Peter calls his coming death the putting off of his what?"
+    },
+    "answers": {
+      "en": [
+        "Cloak",
+        "Tent",
+        "Crown",
+        "Chains"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_017",
+    "reference": "2 Peter 1:18",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Peter heard God's voice from heaven when he was with Jesus on the holy what?"
+    },
+    "answers": {
+      "en": [
+        "Mountain",
+        "Sea",
+        "Road",
+        "Temple"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_018",
+    "reference": "2 Peter 1:21",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "2 Peter says holy men of God spoke, being moved by whom?"
+    },
+    "answers": {
+      "en": [
+        "The angels",
+        "The kings",
+        "The elders",
+        "The Holy Spirit"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_019",
+    "reference": "2 Peter 2:5",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "2 Peter calls Noah a preacher of what?"
+    },
+    "answers": {
+      "en": [
+        "Repentance",
+        "Righteousness",
+        "Judgment",
+        "Peace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_020",
+    "reference": "2 Peter 2:15",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "False teachers followed the way of Balaam, the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Zippor",
+        "Kish",
+        "Beor",
+        "Nun"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_021",
+    "reference": "2 Peter 3:6",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "2 Peter says the world that then was perished, being overflowed with what?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Water",
+        "Sand",
+        "Locusts"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_022",
+    "reference": "2 Peter 3:13",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "2 Peter says we look for new heavens and a new earth in which what dwells?"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Joy",
+        "Righteousness",
+        "Light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_023",
+    "reference": "2 Peter 3:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Which 'beloved brother' does Peter say wrote some things hard to understand?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "John",
+        "Apollos",
+        "Paul"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_024",
+    "reference": "1 John 1:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "1 John says the Word of life was heard, seen with our eyes, and touched with our what?"
+    },
+    "answers": {
+      "en": [
+        "Hands",
+        "Lips",
+        "Hearts",
+        "Feet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_025",
+    "reference": "1 John 2:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "1 John 2 says if anyone sins, we have a what with the Father, Jesus Christ?"
+    },
+    "answers": {
+      "en": [
+        "Counselor",
+        "Brother",
+        "Witness",
+        "Guardian"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_026",
+    "reference": "1 John 2:18",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "1 John 2 says it is the final hour, since many what have arisen?"
+    },
+    "answers": {
+      "en": [
+        "Prophets",
+        "Kings",
+        "Antichrists",
+        "Wars"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_027",
+    "reference": "1 John 2:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "John writes to the young men because they have overcome whom?"
+    },
+    "answers": {
+      "en": [
+        "The world's kings",
+        "Their fathers",
+        "The false prophets",
+        "The evil one"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_028",
+    "reference": "1 John 3:1",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "1 John 3: see how great a love the Father has given us, that we should be called what?"
+    },
+    "answers": {
+      "en": [
+        "Kings and priests",
+        "Children of God",
+        "Friends of angels",
+        "Servants of light"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_029",
+    "reference": "1 John 3:12",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "1 John warns: don't be like whom, who was of the evil one and killed his brother?"
+    },
+    "answers": {
+      "en": [
+        "Cain",
+        "Esau",
+        "Absalom",
+        "Joab"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_030",
+    "reference": "1 John 4:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 John 4 says whoever says 'I love God' but hates his brother is what?"
+    },
+    "answers": {
+      "en": [
+        "A fool",
+        "A thief",
+        "A liar",
+        "A child"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_031",
+    "reference": "1 John 5:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "1 John 5 names three that agree as one: the Spirit, the water, and what?"
+    },
+    "answers": {
+      "en": [
+        "The fire",
+        "The blood",
+        "The word",
+        "The bread"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_032",
+    "reference": "1 John 5:21",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "1 John ends: 'Little children, keep yourselves from ___.'"
+    },
+    "answers": {
+      "en": [
+        "Lies",
+        "Fear",
+        "Riches",
+        "Idols"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_033",
+    "reference": "2 John 1:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In 2 John, the elder prefers not to write with paper and ink, but to speak how?"
+    },
+    "answers": {
+      "en": [
+        "Through a messenger",
+        "In a dream",
+        "Face to face",
+        "In the assembly"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_034",
+    "reference": "2 John 1:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "At the end of 2 John, who send greetings to the chosen lady?"
+    },
+    "answers": {
+      "en": [
+        "The children of her chosen sister",
+        "The elders of Ephesus",
+        "Gaius and Demetrius",
+        "The saints in Rome"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_035",
+    "reference": "3 John 1:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In 3 John, the elder prays that Gaius may prosper in all things and be what?"
+    },
+    "answers": {
+      "en": [
+        "Rich",
+        "Healthy",
+        "Famous",
+        "Wise"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_036",
+    "reference": "Jude 1:3",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jude urges his readers to contend earnestly for what?"
+    },
+    "answers": {
+      "en": [
+        "The temple",
+        "The land",
+        "The law",
+        "The faith"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_037",
+    "reference": "Jude 1:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Jude names which two cities as an example, suffering the punishment of eternal fire?"
+    },
+    "answers": {
+      "en": [
+        "Tyre and Sidon",
+        "Babylon and Nineveh",
+        "Jericho and Ai",
+        "Sodom and Gomorrah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b229_038",
+    "reference": "Jude 1:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jude says the ungodly went the way of Cain and ran into the error of whom?"
+    },
+    "answers": {
+      "en": [
+        "Balak",
+        "Balaam",
+        "Jezebel",
+        "Ahab"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b229_039",
+    "reference": "Jude 1:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jude calls the ungodly clouds without what, carried along by winds?"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "Thunder",
+        "Water",
+        "Color"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b229_040",
+    "reference": "Jude 1:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jude calls the ungodly 'wandering' what?"
+    },
+    "answers": {
+      "en": [
+        "Stars",
+        "Sheep",
+        "Clouds",
+        "Rivers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b229_041",
+    "reference": "Jude 1:24",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Jude praises him who is able to keep you from what?"
+    },
+    "answers": {
+      "en": [
+        "Hunger",
+        "Sickness",
+        "Poverty",
+        "Stumbling"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

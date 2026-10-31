@@ -1,0 +1,866 @@
+[
+  {
+    "id": "q_b183_001",
+    "reference": "Jeremiah 26:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Jeremiah 26, the elders recall which prophet from the days of Hezekiah?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah son of Amoz",
+        "Micah the Morashtite",
+        "Hosea son of Beeri",
+        "Amos of Tekoa"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_002",
+    "reference": "Jeremiah 26:20",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which prophet fled to Egypt but was brought back and killed by King Jehoiakim?"
+    },
+    "answers": {
+      "en": [
+        "Hananiah",
+        "Uriah",
+        "Shemaiah",
+        "Zephaniah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_003",
+    "reference": "Jeremiah 27:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "What did God tell Jeremiah to make and put on his neck?"
+    },
+    "answers": {
+      "en": [
+        "A millstone",
+        "Bonds and bars",
+        "A golden chain",
+        "A rope of sackcloth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_004",
+    "reference": "Jeremiah 28:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "From which town was the prophet Hananiah son of Azzur?"
+    },
+    "answers": {
+      "en": [
+        "Anathoth",
+        "Gibeon",
+        "Tekoa",
+        "Ramah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_005",
+    "reference": "Jeremiah 28:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Within how many years did Hananiah say the temple vessels would come back?"
+    },
+    "answers": {
+      "en": [
+        "Two full years",
+        "Seven years",
+        "Ten years",
+        "Seventy years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_006",
+    "reference": "Jeremiah 28:13",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 28: in place of the broken wooden bars, God would make bars of what?"
+    },
+    "answers": {
+      "en": [
+        "Iron",
+        "Bronze",
+        "Stone",
+        "Gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_007",
+    "reference": "Jeremiah 29:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In his letter to the exiles, what did Jeremiah tell them to build?"
+    },
+    "answers": {
+      "en": [
+        "Houses",
+        "Altars",
+        "Ships",
+        "Walls"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_008",
+    "reference": "Jeremiah 29:10",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 29: after how many years for Babylon would God bring the exiles back?"
+    },
+    "answers": {
+      "en": [
+        "Seventy",
+        "Forty",
+        "Ten",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_009",
+    "reference": "Jeremiah 29:13",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 29: you will find God when you search for him with all your what?"
+    },
+    "answers": {
+      "en": [
+        "Heart",
+        "Strength",
+        "Wealth",
+        "Might"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_010",
+    "reference": "Jeremiah 30:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 30: God told Jeremiah to write all his words in what?"
+    },
+    "answers": {
+      "en": [
+        "A book",
+        "Stone tablets",
+        "The temple wall",
+        "Clay bricks"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_011",
+    "reference": "Jeremiah 31:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 31: with what kind of love has God loved his people?"
+    },
+    "answers": {
+      "en": [
+        "An everlasting love",
+        "A jealous love",
+        "A first love",
+        "A brother's love"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_012",
+    "reference": "Jeremiah 31:15",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 31: who is heard in Ramah weeping for her children?"
+    },
+    "answers": {
+      "en": [
+        "Rachel",
+        "Leah",
+        "Sarah",
+        "Hannah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_013",
+    "reference": "Jeremiah 31:29",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 31: the fathers ate what, and the children's teeth are set on edge?"
+    },
+    "answers": {
+      "en": [
+        "Sour grapes",
+        "Bitter herbs",
+        "Green figs",
+        "Wild honey"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_014",
+    "reference": "Jeremiah 31:33",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 31: in the new covenant, where will God write his law?"
+    },
+    "answers": {
+      "en": [
+        "On stone tablets",
+        "On the doorposts",
+        "On a scroll",
+        "In their heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_015",
+    "reference": "Jeremiah 32:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Where was Jeremiah shut up when Babylon's army besieged Jerusalem in Jeremiah 32?"
+    },
+    "answers": {
+      "en": [
+        "The house of Baruch",
+        "A cistern at Mizpah",
+        "The gate of Benjamin",
+        "The court of the guard"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_016",
+    "reference": "Jeremiah 32:14",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In what were the deeds of Jeremiah's field to be kept for many days?"
+    },
+    "answers": {
+      "en": [
+        "A cedar chest",
+        "A leather bag",
+        "A golden box",
+        "An earthen vessel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_017",
+    "reference": "Jeremiah 32:17",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 32: 'There is nothing too ___ for you.'"
+    },
+    "answers": {
+      "en": [
+        "Great",
+        "Far",
+        "Deep",
+        "Hard"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_018",
+    "reference": "Jeremiah 33:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 33: 'Call to me, and I will' do what?"
+    },
+    "answers": {
+      "en": [
+        "Test you",
+        "Judge you",
+        "Send you",
+        "Answer you"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_019",
+    "reference": "Jeremiah 34:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 34: what did the leaders cut in two and pass between to make a covenant?"
+    },
+    "answers": {
+      "en": [
+        "A ram",
+        "A lamb",
+        "A calf",
+        "A goat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_020",
+    "reference": "Jeremiah 35:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who commanded the Rechabites never to drink wine?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Hobab",
+        "Jethro",
+        "Jonadab"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_021",
+    "reference": "Jeremiah 35:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 35: the Rechabites were commanded to live all their days in what?"
+    },
+    "answers": {
+      "en": [
+        "Caves",
+        "Towers",
+        "Cedar houses",
+        "Tents"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_022",
+    "reference": "Jeremiah 36:22",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In which month did King Jehoiakim sit in his winter house when the scroll was read?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The fourth month",
+        "The twelfth month",
+        "The ninth month"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_023",
+    "reference": "Jeremiah 36:26",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "When Jehoiakim ordered Baruch and Jeremiah seized, who hid them?"
+    },
+    "answers": {
+      "en": [
+        "Ebedmelech",
+        "The Rechabites",
+        "Yahweh",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_024",
+    "reference": "Jeremiah 36:32",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "After the king burned the scroll, what did Jeremiah do?"
+    },
+    "answers": {
+      "en": [
+        "Fled to Egypt",
+        "Hid in a cave",
+        "Took another scroll",
+        "Went to Babylon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_025",
+    "reference": "Jeremiah 37:13",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which captain arrested Jeremiah at the gate of Benjamin?"
+    },
+    "answers": {
+      "en": [
+        "Pashhur",
+        "Jehucal",
+        "Irijah",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_026",
+    "reference": "Jeremiah 37:15",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In whose house was Jeremiah imprisoned in Jeremiah 37?"
+    },
+    "answers": {
+      "en": [
+        "Baruch the scribe",
+        "Shaphan the scribe",
+        "Jonathan the scribe",
+        "Elishama the scribe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_027",
+    "reference": "Jeremiah 37:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 37: what was Jeremiah given daily in the court of the guard?"
+    },
+    "answers": {
+      "en": [
+        "A bowl of lentils",
+        "A cake of figs",
+        "A loaf of bread",
+        "A jar of oil"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_028",
+    "reference": "Jeremiah 38:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What was in the cistern where Jeremiah sank?"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Mire",
+        "Snakes",
+        "Bones"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_029",
+    "reference": "Jeremiah 38:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "How many men did the king tell Ebedmelech to take to lift Jeremiah out?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Thirty",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_030",
+    "reference": "Jeremiah 39:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of Zedekiah's reign was a breach made in Jerusalem's wall?"
+    },
+    "answers": {
+      "en": [
+        "The sixth",
+        "The second",
+        "The eleventh",
+        "The seventh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_031",
+    "reference": "Jeremiah 39:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Where did the king of Babylon kill Zedekiah's sons before his eyes?"
+    },
+    "answers": {
+      "en": [
+        "Lachish",
+        "Mizpah",
+        "Riblah",
+        "Carchemish"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b183_032",
+    "reference": "Jeremiah 39:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who was the captain of the guard who carried the people captive to Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Rabshakeh",
+        "Nebuzaradan",
+        "Ashpenaz",
+        "Arioch"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_033",
+    "reference": "Jeremiah 39:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Why was Ebedmelech's life spared when Jerusalem fell?"
+    },
+    "answers": {
+      "en": [
+        "He paid a ransom",
+        "He put his trust in God",
+        "He fled to Egypt",
+        "He served the Chaldeans"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_034",
+    "reference": "Jeremiah 40:13-14",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who warned Gedaliah that Ishmael was sent to kill him?"
+    },
+    "answers": {
+      "en": [
+        "Baruch son of Neriah",
+        "Johanan son of Kareah",
+        "Seraiah son of Neriah",
+        "Jaazaniah son of Shaphan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_035",
+    "reference": "Jeremiah 40:14",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of the Ammonites sent Ishmael to kill Gedaliah?"
+    },
+    "answers": {
+      "en": [
+        "Nahash",
+        "Baalis",
+        "Hanun",
+        "Agag"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_036",
+    "reference": "Jeremiah 41:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ishmael threw the bodies into a pit made by which king?"
+    },
+    "answers": {
+      "en": [
+        "Hezekiah",
+        "Asa",
+        "Solomon",
+        "Uzziah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_037",
+    "reference": "Jeremiah 42:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "After how many days did God's answer come to Jeremiah for the remnant?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Seven",
+        "Three",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_038",
+    "reference": "Jeremiah 43:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In Tahpanhes, where did Jeremiah hide great stones?"
+    },
+    "answers": {
+      "en": [
+        "In the brick work",
+        "Under the altar",
+        "In the river",
+        "In a cave"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_039",
+    "reference": "Jeremiah 45:4-5",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "To whom did God say, 'Do you seek great things for yourself? Don't seek them'?"
+    },
+    "answers": {
+      "en": [
+        "Baruch",
+        "Ebedmelech",
+        "Seraiah",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_040",
+    "reference": "Jeremiah 46:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Where was the army of Pharaoh Necoh defeated by Nebuchadnezzar, by the Euphrates?"
+    },
+    "answers": {
+      "en": [
+        "Megiddo",
+        "Carchemish",
+        "Riblah",
+        "Migdol"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b183_041",
+    "reference": "Jeremiah 48:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 48: which nation has 'settled on his lees', never poured from vessel to vessel?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Edom",
+        "Ammon",
+        "Egypt"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_042",
+    "reference": "Jeremiah 49:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 49: 'Is wisdom no more in Teman?' is said about which nation?"
+    },
+    "answers": {
+      "en": [
+        "Edom",
+        "Moab",
+        "Ammon",
+        "Kedar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_043",
+    "reference": "Jeremiah 49:35",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 49: whose bow, the chief of their might, will God break?"
+    },
+    "answers": {
+      "en": [
+        "Elam",
+        "Kedar",
+        "Hazor",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_044",
+    "reference": "Jeremiah 50:2",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 50: Bel is disappointed, and which god is dismayed?"
+    },
+    "answers": {
+      "en": [
+        "Merodach",
+        "Dagon",
+        "Chemosh",
+        "Molech"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_045",
+    "reference": "Jeremiah 51:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 51: Babylon has been a golden what in Yahweh's hand?"
+    },
+    "answers": {
+      "en": [
+        "Cup",
+        "Crown",
+        "Scepter",
+        "Ring"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b183_046",
+    "reference": "Jeremiah 52:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How many years did Zedekiah reign in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Twenty",
+        "Eleven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_047",
+    "reference": "Jeremiah 52:21",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "How high was each bronze pillar of the temple, according to Jeremiah 52?"
+    },
+    "answers": {
+      "en": [
+        "Ten cubits",
+        "Thirty cubits",
+        "Forty cubits",
+        "Eighteen cubits"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b183_048",
+    "reference": "Jeremiah 52:33",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "After his release, where did Jehoiachin eat bread for the rest of his life?"
+    },
+    "answers": {
+      "en": [
+        "In the prison",
+        "In Jerusalem",
+        "In Egypt",
+        "Before the king of Babylon"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

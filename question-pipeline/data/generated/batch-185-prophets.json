@@ -1,0 +1,650 @@
+[
+  {
+    "id": "q_b185_001",
+    "reference": "Ezekiel 26:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 26: Tyre will become a place in the sea for spreading what?"
+    },
+    "answers": {
+      "en": [
+        "Sails",
+        "Grain",
+        "Flags",
+        "Nets"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_002",
+    "reference": "Ezekiel 26:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 26: which king would God bring against Tyre from the north?"
+    },
+    "answers": {
+      "en": [
+        "Sennacherib",
+        "Cyrus",
+        "Pharaoh Necoh",
+        "Nebuchadnezzar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_003",
+    "reference": "Ezekiel 27:6",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 27: Tyre's oars were made from which trees of Bashan?"
+    },
+    "answers": {
+      "en": [
+        "Palms",
+        "Sycamores",
+        "Oaks",
+        "Willows"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_004",
+    "reference": "Ezekiel 28:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 28: which ruler said in his heart, 'I am a god'?"
+    },
+    "answers": {
+      "en": [
+        "The prince of Sidon",
+        "The king of Egypt",
+        "The prince of Tyre",
+        "The king of Babylon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_005",
+    "reference": "Ezekiel 28:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 28: the prince of Tyre was wiser than whom?"
+    },
+    "answers": {
+      "en": [
+        "Solomon",
+        "Joseph",
+        "Daniel",
+        "Job"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_006",
+    "reference": "Ezekiel 28:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 28: the king of Tyre had been in which garden of God?"
+    },
+    "answers": {
+      "en": [
+        "Gethsemane",
+        "Sharon",
+        "Eden",
+        "Carmel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_007",
+    "reference": "Ezekiel 29:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 29: Pharaoh is called the great what, lying in the midst of his rivers?"
+    },
+    "answers": {
+      "en": [
+        "Lion",
+        "Eagle",
+        "Monster",
+        "Bull"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_008",
+    "reference": "Ezekiel 29:12",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 29: for how many years would Egypt's cities be desolate?"
+    },
+    "answers": {
+      "en": [
+        "Seventy",
+        "Forty",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_009",
+    "reference": "Ezekiel 29:20",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did God give Nebuchadnezzar as wages for his army's labor against Tyre?"
+    },
+    "answers": {
+      "en": [
+        "The land of Edom",
+        "The land of Egypt",
+        "Tyre's treasure",
+        "The land of Moab"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_010",
+    "reference": "Ezekiel 30:21",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 30: what of Pharaoh's did God break?"
+    },
+    "answers": {
+      "en": [
+        "His crown",
+        "His sword",
+        "His arm",
+        "His chariot"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_011",
+    "reference": "Ezekiel 31:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 31: Assyria is compared to which tree in Lebanon?"
+    },
+    "answers": {
+      "en": [
+        "An oak",
+        "A palm",
+        "A cedar",
+        "A fig tree"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_012",
+    "reference": "Ezekiel 33:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 33: 'Turn, turn from your evil ways; for why will you' do what?"
+    },
+    "answers": {
+      "en": [
+        "Weep",
+        "Die",
+        "Wander",
+        "Fall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_013",
+    "reference": "Ezekiel 33:32",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 33: to the people, Ezekiel was like a very lovely what?"
+    },
+    "answers": {
+      "en": [
+        "Dream",
+        "Song",
+        "Story",
+        "Feast"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_014",
+    "reference": "Ezekiel 34:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 34: woe to the shepherds of Israel who feed whom?"
+    },
+    "answers": {
+      "en": [
+        "The wolves",
+        "Themselves",
+        "The strangers",
+        "The kings"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_015",
+    "reference": "Ezekiel 34:16",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 34: what does God say he will seek?"
+    },
+    "answers": {
+      "en": [
+        "The fattest",
+        "The lost",
+        "The swiftest",
+        "The firstborn"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_016",
+    "reference": "Ezekiel 34:23",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 34: whom will God set up as the one shepherd over his flock?"
+    },
+    "answers": {
+      "en": [
+        "My servant Moses",
+        "My servant David",
+        "My servant Solomon",
+        "My servant Joseph"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_017",
+    "reference": "Ezekiel 35:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 35 is a prophecy against which mountain?"
+    },
+    "answers": {
+      "en": [
+        "Mount Seir",
+        "Mount Carmel",
+        "Mount Gerizim",
+        "Mount Hermon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_018",
+    "reference": "Ezekiel 36:25",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 36: what will God sprinkle on his people to make them clean?"
+    },
+    "answers": {
+      "en": [
+        "Clean water",
+        "Blood",
+        "Oil",
+        "Ashes"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_019",
+    "reference": "Ezekiel 37:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "When asked, 'Can these bones live?', what did Ezekiel answer?"
+    },
+    "answers": {
+      "en": [
+        "Lord Yahweh, you know",
+        "Yes, Lord",
+        "No, Lord",
+        "Only if you speak"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_020",
+    "reference": "Ezekiel 37:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 37: from where was the breath called to come?"
+    },
+    "answers": {
+      "en": [
+        "The heavens",
+        "The four winds",
+        "The sea",
+        "The temple"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b185_021",
+    "reference": "Ezekiel 37:22",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 37: how many kings will the reunited nation have?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Twelve",
+        "Three"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_022",
+    "reference": "Ezekiel 38:2",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 38: Gog is prince of Rosh, Meshech, and which other land?"
+    },
+    "answers": {
+      "en": [
+        "Tubal",
+        "Javan",
+        "Cush",
+        "Lud"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_023",
+    "reference": "Ezekiel 39:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 39: for how many years will Israel burn the enemy's weapons as fuel?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Twelve",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_024",
+    "reference": "Ezekiel 40:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of the captivity did Ezekiel's great temple vision come?"
+    },
+    "answers": {
+      "en": [
+        "The twenty-fifth",
+        "The tenth",
+        "The fifteenth",
+        "The thirtieth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_025",
+    "reference": "Ezekiel 41:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 41: what was carved on the temple walls between the cherubim?"
+    },
+    "answers": {
+      "en": [
+        "Palm trees",
+        "Lions",
+        "Pomegranates",
+        "Lilies"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b185_026",
+    "reference": "Ezekiel 41:19",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 41: the carved cherubim had the face of a man and of what?"
+    },
+    "answers": {
+      "en": [
+        "An eagle",
+        "An ox",
+        "A calf",
+        "A young lion"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_027",
+    "reference": "Ezekiel 43:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 43: from which direction did God's glory come back to the house?"
+    },
+    "answers": {
+      "en": [
+        "The west",
+        "The north",
+        "The south",
+        "The east"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_028",
+    "reference": "Ezekiel 44:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 44: why must the outer east gate stay shut?"
+    },
+    "answers": {
+      "en": [
+        "A king is buried under it",
+        "It faces Babylon",
+        "Its doors are broken",
+        "Yahweh has entered by it"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_029",
+    "reference": "Ezekiel 44:17",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 44: what may the priests not wear when serving in the inner court?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Leather",
+        "Sackcloth",
+        "Wool"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_030",
+    "reference": "Ezekiel 46:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 46: on which day was the inner court's east gate to be opened?"
+    },
+    "answers": {
+      "en": [
+        "Every third day",
+        "The first day of harvest",
+        "The Day of Atonement",
+        "The Sabbath"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_031",
+    "reference": "Ezekiel 47:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 47: from where did the water come out of the house?"
+    },
+    "answers": {
+      "en": [
+        "From the altar's top",
+        "From the north gate",
+        "From the roof",
+        "Under the threshold"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_032",
+    "reference": "Ezekiel 47:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 47: after the first thousand cubits, how deep was the water?"
+    },
+    "answers": {
+      "en": [
+        "To the waist",
+        "To the chest",
+        "To the neck",
+        "To the ankles"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_033",
+    "reference": "Ezekiel 47:11",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 47: what will the miry places and marshes be given up to?"
+    },
+    "answers": {
+      "en": [
+        "Reeds",
+        "Birds",
+        "Thorns",
+        "Salt"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_034",
+    "reference": "Ezekiel 47:13",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 47: which tribe receives two portions of the land?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Levi",
+        "Benjamin",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b185_035",
+    "reference": "Ezekiel 48:31",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 48: how many gates will the city have on each side?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Two",
+        "Three",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b185_036",
+    "reference": "Ezekiel 48:35",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 48: how many reeds around is the city?"
+    },
+    "answers": {
+      "en": [
+        "12,000",
+        "7,000",
+        "18,000",
+        "40,000"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

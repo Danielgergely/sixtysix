@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "q_b187_001",
+    "reference": "Jonah 1:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "During the storm, what did the sailors throw into the sea to lighten the ship?"
+    },
+    "answers": {
+      "en": [
+        "The cargo",
+        "The oars",
+        "The sails",
+        "The anchor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_002",
+    "reference": "Jonah 1:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "When the storm came, to whom did each sailor cry out?"
+    },
+    "answers": {
+      "en": [
+        "His god",
+        "The captain",
+        "The king of Tarshish",
+        "The sea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_003",
+    "reference": "Jonah 1:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Who woke Jonah and told him to call on his God?"
+    },
+    "answers": {
+      "en": [
+        "The ship master",
+        "The king of Nineveh",
+        "An angel",
+        "A fisherman"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_004",
+    "reference": "Jonah 1:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jonah said he feared Yahweh, who made the sea and what?"
+    },
+    "answers": {
+      "en": [
+        "The dry land",
+        "The stars",
+        "The mountains",
+        "The great fish"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_005",
+    "reference": "Jonah 1:12",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did Jonah tell the sailors to do so that the sea would calm down?"
+    },
+    "answers": {
+      "en": [
+        "Throw him into the sea",
+        "Row back to Joppa",
+        "Pray all night",
+        "Cast lots again"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_006",
+    "reference": "Jonah 1:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Before throwing Jonah overboard, what did the sailors try to do?"
+    },
+    "answers": {
+      "en": [
+        "Fix the sails",
+        "Hide below deck",
+        "Signal another ship",
+        "Row hard back to land"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_007",
+    "reference": "Jonah 2:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Jonah's prayer, what was wrapped around his head?"
+    },
+    "answers": {
+      "en": [
+        "Ropes",
+        "A fishing net",
+        "A cloth",
+        "Weeds"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_008",
+    "reference": "Jonah 2:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jonah's prayer ends: 'Salvation belongs to' whom?"
+    },
+    "answers": {
+      "en": [
+        "The prophets",
+        "Israel",
+        "The sailors",
+        "Yahweh"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_009",
+    "reference": "Jonah 3:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "When Yahweh's word came again to Jonah, which time was it?"
+    },
+    "answers": {
+      "en": [
+        "The third time",
+        "The seventh time",
+        "The tenth time",
+        "The second time"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_010",
+    "reference": "Jonah 3:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Besides people, who did the king of Nineveh order not to eat or drink?"
+    },
+    "answers": {
+      "en": [
+        "Only the soldiers",
+        "Only the children",
+        "Only the foreigners",
+        "Herd and flock"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_011",
+    "reference": "Jonah 3:10",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "What did God do when he saw Nineveh turn from its evil way?"
+    },
+    "answers": {
+      "en": [
+        "Destroyed it anyway",
+        "Sent a flood",
+        "Sent Jonah home",
+        "Relented of the disaster"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_012",
+    "reference": "Jonah 4:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Why did Jonah say he had fled toward Tarshish at first?"
+    },
+    "answers": {
+      "en": [
+        "He feared Nineveh's king",
+        "He wanted to trade",
+        "He feared the sailors",
+        "He knew God was gracious and merciful"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_013",
+    "reference": "Jonah 4:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "After Nineveh was spared, what did Jonah ask God to do?"
+    },
+    "answers": {
+      "en": [
+        "Send him home",
+        "Give him a house",
+        "Make him a king",
+        "Take his life"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_014",
+    "reference": "Jonah 4:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Where did Jonah sit to see what would happen to Nineveh?"
+    },
+    "answers": {
+      "en": [
+        "On the city wall",
+        "At the king's gate",
+        "West of the city",
+        "East of the city"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_015",
+    "reference": "Jonah 4:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Besides the people, what else in Nineveh did God care about (Jonah 4:11)?"
+    },
+    "answers": {
+      "en": [
+        "The great walls",
+        "The temples",
+        "Much livestock",
+        "The gardens"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_016",
+    "reference": "Hosea 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea prophesied in the days of which king of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Ahab son of Omri",
+        "Jehu son of Nimshi",
+        "Jeroboam son of Joash",
+        "Pekah son of Remaliah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_017",
+    "reference": "Hosea 1:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Gomer, Hosea's wife, was the daughter of whom?"
+    },
+    "answers": {
+      "en": [
+        "Beeri",
+        "Amittai",
+        "Diblaim",
+        "Pethuel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_018",
+    "reference": "Hosea 2:15",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 2: which valley will become a door of hope?"
+    },
+    "answers": {
+      "en": [
+        "The valley of Elah",
+        "The valley of Hinnom",
+        "The valley of Achor",
+        "The valley of Sorek"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_019",
+    "reference": "Hosea 2:16",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 2: Israel will call God 'my husband' and no longer what?"
+    },
+    "answers": {
+      "en": [
+        "My judge",
+        "My father",
+        "My master",
+        "My king"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_020",
+    "reference": "Hosea 3:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 3: the people turn to other gods and love cakes of what?"
+    },
+    "answers": {
+      "en": [
+        "Figs",
+        "Honey",
+        "Raisins",
+        "Barley"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_021",
+    "reference": "Hosea 4:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 4: God's people are destroyed for lack of what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Courage",
+        "Knowledge",
+        "Silver"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_022",
+    "reference": "Hosea 4:16",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 4: Israel has behaved stubbornly, like a stubborn what?"
+    },
+    "answers": {
+      "en": [
+        "Mule",
+        "Wild donkey",
+        "Heifer",
+        "Goat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_023",
+    "reference": "Hosea 5:13",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 5: when Ephraim saw his sickness, to which king did he send?"
+    },
+    "answers": {
+      "en": [
+        "King Rezin",
+        "King Hiram",
+        "King Jareb",
+        "King Og"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_024",
+    "reference": "Hosea 6:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 6: Ephraim's love is like a morning cloud and like what?"
+    },
+    "answers": {
+      "en": [
+        "Smoke",
+        "The dew",
+        "A flower",
+        "A shadow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_025",
+    "reference": "Hosea 6:6",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 6: God desires what, and not sacrifice?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Mercy",
+        "Songs",
+        "Fasting"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_026",
+    "reference": "Hosea 7:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 7: Ephraim is a pancake that is not what?"
+    },
+    "answers": {
+      "en": [
+        "Baked through",
+        "Turned over",
+        "Salted",
+        "Broken"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_027",
+    "reference": "Hosea 7:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 7: Ephraim is like an easily deceived what, without understanding?"
+    },
+    "answers": {
+      "en": [
+        "Sheep",
+        "Dove",
+        "Calf",
+        "Sparrow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_028",
+    "reference": "Hosea 8:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 8: which idol of Samaria does God throw out?"
+    },
+    "answers": {
+      "en": [
+        "The Asherah",
+        "The calf",
+        "The bronze serpent",
+        "Dagon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_029",
+    "reference": "Hosea 10:12",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 10: sow in righteousness and reap according to what?"
+    },
+    "answers": {
+      "en": [
+        "Kindness",
+        "Justice",
+        "Strength",
+        "Wisdom"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_030",
+    "reference": "Hosea 11:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 11: God says he taught Ephraim to do what?"
+    },
+    "answers": {
+      "en": [
+        "Sing",
+        "Walk",
+        "Fight",
+        "Plow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_031",
+    "reference": "Hosea 11:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 11: God drew his people with cords of a man and ties of what?"
+    },
+    "answers": {
+      "en": [
+        "Iron",
+        "Love",
+        "Silver",
+        "Law"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_032",
+    "reference": "Hosea 12:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 12: who took his brother by the heel in the womb?"
+    },
+    "answers": {
+      "en": [
+        "Esau",
+        "Jacob",
+        "Isaac",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_033",
+    "reference": "Hosea 12:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 12: at which place did Jacob find God?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Shechem",
+        "Hebron",
+        "Beersheba"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_034",
+    "reference": "Hosea 13:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 13: 'Death, where are your' what?"
+    },
+    "answers": {
+      "en": [
+        "Plagues",
+        "Chains",
+        "Arrows",
+        "Gates"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_035",
+    "reference": "Hosea 14:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 14: Israel will blossom like what?"
+    },
+    "answers": {
+      "en": [
+        "The lily",
+        "The rose",
+        "The almond tree",
+        "The vine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_036",
+    "reference": "Joel 1:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 1: the invading nation's teeth are the teeth of what?"
+    },
+    "answers": {
+      "en": [
+        "A lion",
+        "A wolf",
+        "A bear",
+        "A leopard"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_037",
+    "reference": "Joel 1:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 1: what should be sanctified, with a solemn assembly called?"
+    },
+    "answers": {
+      "en": [
+        "A fast",
+        "A feast",
+        "A Sabbath year",
+        "A new altar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_038",
+    "reference": "Joel 2:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: where should the trumpet be blown?"
+    },
+    "answers": {
+      "en": [
+        "In Bethel",
+        "In Samaria",
+        "In Gilead",
+        "In Zion"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_039",
+    "reference": "Joel 2:13",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: what should you tear, and not your garments?"
+    },
+    "answers": {
+      "en": [
+        "Your scroll",
+        "Your tent",
+        "Your idols",
+        "Your heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_040",
+    "reference": "Joel 2:20",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: which army will God remove far away?"
+    },
+    "answers": {
+      "en": [
+        "The northern army",
+        "The southern army",
+        "The eastern army",
+        "The western army"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_041",
+    "reference": "Joel 2:25",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: God will restore the years eaten by what?"
+    },
+    "answers": {
+      "en": [
+        "The locusts",
+        "The fire",
+        "The sword",
+        "The drought"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_042",
+    "reference": "Joel 2:28",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: what will your young men see?"
+    },
+    "answers": {
+      "en": [
+        "Angels",
+        "Signs",
+        "Fire",
+        "Visions"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_043",
+    "reference": "Joel 2:31",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: the sun will be turned into what?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Ashes",
+        "Gold",
+        "Darkness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_044",
+    "reference": "Joel 2:32",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 2: who will be saved?"
+    },
+    "answers": {
+      "en": [
+        "Only the priests",
+        "Only the elders",
+        "Only the firstborn",
+        "Whoever calls on Yahweh's name"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_045",
+    "reference": "Joel 3:6",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 3: to whom were the children of Judah and Jerusalem sold?"
+    },
+    "answers": {
+      "en": [
+        "The Egyptians",
+        "The Edomites",
+        "The Persians",
+        "The sons of the Greeks"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_046",
+    "reference": "Joel 3:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 3: 'Put in the sickle; for the' what is ripe?"
+    },
+    "answers": {
+      "en": [
+        "Vineyard",
+        "Fig tree",
+        "Olive",
+        "Harvest"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_047",
+    "reference": "Joel 3:14",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 3: multitudes, multitudes in the valley of what?"
+    },
+    "answers": {
+      "en": [
+        "Achor",
+        "Salt",
+        "Decision",
+        "Elah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_048",
+    "reference": "Joel 3:18",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Joel 3: in that day the hills will flow with what?"
+    },
+    "answers": {
+      "en": [
+        "Honey",
+        "Oil",
+        "Milk",
+        "Gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_049",
+    "reference": "Amos 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos's words came how many years before the earthquake?"
+    },
+    "answers": {
+      "en": [
+        "Seven years",
+        "Ten years",
+        "Two years",
+        "Forty years"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_050",
+    "reference": "Amos 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos saw his words in the days of which king of Judah?"
+    },
+    "answers": {
+      "en": [
+        "Hezekiah",
+        "Josiah",
+        "Ahaz",
+        "Uzziah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_051",
+    "reference": "Amos 1:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 1: from where will Yahweh roar?"
+    },
+    "answers": {
+      "en": [
+        "From Sinai",
+        "From Bethel",
+        "From Zion",
+        "From Hermon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_052",
+    "reference": "Amos 1:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 1: 'For three transgressions of Damascus, yes, for' how many?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Seven",
+        "Four",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_053",
+    "reference": "Amos 2:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 2: Israel sold the needy for a pair of what?"
+    },
+    "answers": {
+      "en": [
+        "Doves",
+        "Coins",
+        "Shoes",
+        "Goats"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_054",
+    "reference": "Amos 3:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 3: 'Do two walk together, unless they have' done what?"
+    },
+    "answers": {
+      "en": [
+        "Eaten",
+        "Rested",
+        "Agreed",
+        "Prayed"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_055",
+    "reference": "Amos 3:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 3: God does nothing without revealing his secret to whom?"
+    },
+    "answers": {
+      "en": [
+        "The kings",
+        "The priests",
+        "His servants the prophets",
+        "The elders"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b187_056",
+    "reference": "Amos 3:12",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 3: what does the shepherd rescue from the lion's mouth?"
+    },
+    "answers": {
+      "en": [
+        "A whole lamb",
+        "Two legs or a piece of an ear",
+        "Only the wool",
+        "A bell and a rope"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_057",
+    "reference": "Amos 4:12",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 4: 'Prepare to meet your' whom, Israel?"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "God",
+        "Enemy",
+        "Judge"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_058",
+    "reference": "Amos 5:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 5: God made the Pleiades and which other constellation?"
+    },
+    "answers": {
+      "en": [
+        "The Lion",
+        "Orion",
+        "The Serpent",
+        "The Archer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_059",
+    "reference": "Amos 5:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 5: the man who fled from a lion was met by what?"
+    },
+    "answers": {
+      "en": [
+        "A wolf",
+        "A bear",
+        "A leopard",
+        "A boar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_060",
+    "reference": "Amos 5:21",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 5: what does God say he hates and despises?"
+    },
+    "answers": {
+      "en": [
+        "Your fields",
+        "Your feasts",
+        "Your children",
+        "Your cities"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_061",
+    "reference": "Amos 6:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 6: woe to those who are at ease where?"
+    },
+    "answers": {
+      "en": [
+        "In Egypt",
+        "In Zion",
+        "In Bethel",
+        "In Gilead"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_062",
+    "reference": "Amos 6:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 6: the idle rich invent instruments of music like whom?"
+    },
+    "answers": {
+      "en": [
+        "Solomon",
+        "David",
+        "Jubal",
+        "Asaph"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_063",
+    "reference": "Amos 7:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Amos's second vision in chapter 7, what did God call for to judge?"
+    },
+    "answers": {
+      "en": [
+        "Flood",
+        "Fire",
+        "Hail",
+        "Famine"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_064",
+    "reference": "Amos 7:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Where did Amaziah tell Amos to flee and eat his bread?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "The land of Judah",
+        "Damascus",
+        "Tyre"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b187_065",
+    "reference": "Amos 7:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amaziah told Amos not to prophesy any more at which place, the king's sanctuary?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Dan",
+        "Gilgal",
+        "Samaria"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_066",
+    "reference": "Amos 8:5",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 8: the cheating merchants made which measure small?"
+    },
+    "answers": {
+      "en": [
+        "The ephah",
+        "The cubit",
+        "The loaf",
+        "The talent"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_067",
+    "reference": "Amos 8:9",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 8: when will God cause the sun to go down?"
+    },
+    "answers": {
+      "en": [
+        "At noon",
+        "At dawn",
+        "At midnight",
+        "At harvest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_068",
+    "reference": "Amos 9:7",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 9: from where did God bring up the Philistines?"
+    },
+    "answers": {
+      "en": [
+        "Caphtor",
+        "Tarshish",
+        "Ophir",
+        "Sheba"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_069",
+    "reference": "Amos 9:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 9: what fallen thing will God raise up?"
+    },
+    "answers": {
+      "en": [
+        "The tent of David",
+        "The tower of Babel",
+        "The walls of Jericho",
+        "The house of Saul"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_070",
+    "reference": "Amos 9:13",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 9: in the coming days, who will overtake the reaper?"
+    },
+    "answers": {
+      "en": [
+        "The plowman",
+        "The shepherd",
+        "The fisherman",
+        "The merchant"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_071",
+    "reference": "Obadiah 1:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah: though Edom sets its nest among what, God will bring it down?"
+    },
+    "answers": {
+      "en": [
+        "The stars",
+        "The clouds",
+        "The cedars",
+        "The mountains"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_072",
+    "reference": "Obadiah 1:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah: 'Your mighty men will be dismayed,' is said to which place of Edom?"
+    },
+    "answers": {
+      "en": [
+        "Teman",
+        "Bozrah",
+        "Sela",
+        "Dedan"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_073",
+    "reference": "Obadiah 1:15",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah: 'As you have done, it will be' what?"
+    },
+    "answers": {
+      "en": [
+        "Done to you",
+        "Forgotten",
+        "Forgiven",
+        "Written down"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b187_074",
+    "reference": "Obadiah 1:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah: before Jacob's fire, the house of Esau will be like what?"
+    },
+    "answers": {
+      "en": [
+        "Grass",
+        "Wax",
+        "Water",
+        "Stubble"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b187_075",
+    "reference": "Obadiah 1:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah ends: saviors will go up on Mount Zion to judge which mountains?"
+    },
+    "answers": {
+      "en": [
+        "The mountains of Moab",
+        "The mountains of Gilead",
+        "The mountains of Lebanon",
+        "The mountains of Esau"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

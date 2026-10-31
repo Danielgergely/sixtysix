@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "q_b220_001",
+    "reference": "Acts 1:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "To whom is the book of Acts addressed?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Titus",
+        "Theophilus",
+        "Felix"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_002",
+    "reference": "Acts 1:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Over how many days did the risen Jesus appear to the apostles?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "Fifty",
+        "Forty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_003",
+    "reference": "Acts 1:4",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which city did Jesus tell the apostles not to leave while they waited for the promise?"
+    },
+    "answers": {
+      "en": [
+        "Bethany",
+        "Jerusalem",
+        "Capernaum",
+        "Nazareth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_004",
+    "reference": "Acts 1:5",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "John baptized in water, but the apostles would be baptized in what?"
+    },
+    "answers": {
+      "en": [
+        "The Holy Spirit",
+        "Fire alone",
+        "The Jordan",
+        "Oil"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_005",
+    "reference": "Acts 1:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who stood by the apostles as they watched Jesus go up into heaven?"
+    },
+    "answers": {
+      "en": [
+        "Two men in white clothing",
+        "Moses and Elijah",
+        "Three angels with trumpets",
+        "The twelve elders"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_006",
+    "reference": "Acts 1:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "From which mountain did the apostles return to Jerusalem after the ascension?"
+    },
+    "answers": {
+      "en": [
+        "Sinai",
+        "Carmel",
+        "Hermon",
+        "Olivet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_007",
+    "reference": "Acts 1:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which Simon is listed among the apostles in the upper room in Acts 1?"
+    },
+    "answers": {
+      "en": [
+        "Simon the tanner",
+        "Simon the Zealot",
+        "Simon the sorcerer",
+        "Simon of Cyrene"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_008",
+    "reference": "Acts 1:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "About how many believers were gathered when Peter stood up to replace Judas?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "500",
+        "120",
+        "300"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_009",
+    "reference": "Acts 1:19",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the field connected with Judas called in the language of Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Golgotha",
+        "Gabbatha",
+        "Bethesda",
+        "Akeldama"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_010",
+    "reference": "Acts 2:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "At Pentecost, a sound came from heaven like what?"
+    },
+    "answers": {
+      "en": [
+        "Rolling thunder",
+        "A rushing mighty wind",
+        "A trumpet blast",
+        "A roaring lion"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_011",
+    "reference": "Acts 2:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which of these peoples is named among those who heard the apostles at Pentecost?"
+    },
+    "answers": {
+      "en": [
+        "Spartans",
+        "Gauls",
+        "Parthians",
+        "Scythians"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_012",
+    "reference": "Acts 2:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did some mockers say about the apostles at Pentecost?"
+    },
+    "answers": {
+      "en": [
+        "They are filled with new wine",
+        "They are out of their minds",
+        "They are possessed by demons",
+        "They are only Galileans"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_013",
+    "reference": "Acts 2:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Peter said the believers weren't drunk, since it was only which hour of the day?"
+    },
+    "answers": {
+      "en": [
+        "The third hour",
+        "The sixth hour",
+        "The ninth hour",
+        "The twelfth hour"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_014",
+    "reference": "Acts 2:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which prophet did Peter quote in his sermon on the day of Pentecost?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Amos",
+        "Joel",
+        "Micah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_015",
+    "reference": "Acts 2:29",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Peter said whose tomb was still with them 'to this day'?"
+    },
+    "answers": {
+      "en": [
+        "Abraham's",
+        "Moses'",
+        "Solomon's",
+        "David's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_016",
+    "reference": "Acts 2:42",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The first believers continued in the apostles' teaching, fellowship, prayer and what?"
+    },
+    "answers": {
+      "en": [
+        "Fasting",
+        "The breaking of bread",
+        "Singing psalms",
+        "Washing feet"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_017",
+    "reference": "Acts 2:44",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "All who believed were together and had all things how?"
+    },
+    "answers": {
+      "en": [
+        "In secret",
+        "In storehouses",
+        "In the temple",
+        "In common"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_018",
+    "reference": "Acts 3:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Peter and John went up to the temple at which hour of prayer?"
+    },
+    "answers": {
+      "en": [
+        "The third hour",
+        "The ninth hour",
+        "The sixth hour",
+        "The first hour"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_019",
+    "reference": "Acts 3:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Peter tell the lame man at the temple gate he did not have?"
+    },
+    "answers": {
+      "en": [
+        "Bread or water",
+        "A staff or bag",
+        "Silver or gold",
+        "Oil or wine"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_020",
+    "reference": "Acts 3:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did the people run together to Peter and John after the lame man was healed?"
+    },
+    "answers": {
+      "en": [
+        "Solomon's porch",
+        "The Sheep Gate",
+        "The upper room",
+        "The Court of Women"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_021",
+    "reference": "Acts 3:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Peter quoted which leader who said God would raise up 'a prophet like me'?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "Samuel",
+        "Moses",
+        "David"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_022",
+    "reference": "Acts 4:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After Peter's speech in Acts 4, the number of believing men came to about how many?"
+    },
+    "answers": {
+      "en": [
+        "Three thousand",
+        "Five thousand",
+        "One thousand",
+        "Ten thousand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_023",
+    "reference": "Acts 4:6",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Annas, Caiaphas, John and which other man questioned Peter and John?"
+    },
+    "answers": {
+      "en": [
+        "Gamaliel",
+        "Nicodemus",
+        "Jairus",
+        "Alexander"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_024",
+    "reference": "Acts 4:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The council marveled at Peter and John's boldness, since they were what kind of men?"
+    },
+    "answers": {
+      "en": [
+        "Unlearned and ignorant",
+        "Rich and powerful",
+        "Priests and Levites",
+        "Old and gray-haired"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_025",
+    "reference": "Acts 4:31",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After the believers prayed in Acts 4, what happened to the place where they met?"
+    },
+    "answers": {
+      "en": [
+        "It caught fire",
+        "It was shaken",
+        "It grew dark",
+        "It filled with smoke"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_026",
+    "reference": "Acts 4:37",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Barnabas sell, laying the money at the apostles' feet?"
+    },
+    "answers": {
+      "en": [
+        "A house",
+        "A vineyard",
+        "A ship",
+        "A field"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_027",
+    "reference": "Acts 5:5",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What happened to Ananias when Peter exposed his lie?"
+    },
+    "answers": {
+      "en": [
+        "He went blind",
+        "He became a leper",
+        "He fell down and died",
+        "He ran away"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_028",
+    "reference": "Acts 5:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Sick people were laid in the streets so that what of Peter's might fall on them?"
+    },
+    "answers": {
+      "en": [
+        "His shadow",
+        "His cloak",
+        "His staff",
+        "His tears"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_029",
+    "reference": "Acts 5:19",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who opened the prison doors for the apostles at night in Acts 5?"
+    },
+    "answers": {
+      "en": [
+        "Gamaliel",
+        "A jailer",
+        "An angel of the Lord",
+        "Nicodemus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_030",
+    "reference": "Acts 5:34",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which Pharisee, a teacher of the law, advised the council to leave the apostles alone?"
+    },
+    "answers": {
+      "en": [
+        "Gamaliel",
+        "Nicodemus",
+        "Annas",
+        "Caiaphas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_031",
+    "reference": "Acts 5:36",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Gamaliel mentioned which man who claimed to be somebody and had about 400 followers?"
+    },
+    "answers": {
+      "en": [
+        "Barabbas",
+        "Theudas",
+        "Simon",
+        "Elymas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_032",
+    "reference": "Acts 5:40",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Before releasing the apostles in Acts 5, what did the council do to them?"
+    },
+    "answers": {
+      "en": [
+        "Shaved their heads",
+        "Branded them",
+        "Fined them",
+        "Beat them"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_033",
+    "reference": "Acts 6:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In Acts 6, whose widows were being neglected in the daily service?"
+    },
+    "answers": {
+      "en": [
+        "The Hebrews'",
+        "The Samaritans'",
+        "The Hellenists'",
+        "The Romans'"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_034",
+    "reference": "Acts 6:3",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many men were chosen to serve tables in Acts 6?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Three",
+        "Seventy",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_035",
+    "reference": "Acts 6:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which of the seven chosen men was a proselyte of Antioch?"
+    },
+    "answers": {
+      "en": [
+        "Nicolaus",
+        "Philip",
+        "Prochorus",
+        "Timon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_036",
+    "reference": "Acts 6:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When the council looked at Stephen, his face looked like what?"
+    },
+    "answers": {
+      "en": [
+        "The face of a lion",
+        "The face of an angel",
+        "The sun at noon",
+        "A burning lamp"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_037",
+    "reference": "Acts 7:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Stephen said God appeared to Abraham while he was in which land, before Haran?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Mesopotamia",
+        "Canaan",
+        "Assyria"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_038",
+    "reference": "Acts 7:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Stephen said Moses was instructed in all the wisdom of which people?"
+    },
+    "answers": {
+      "en": [
+        "The Babylonians",
+        "The Greeks",
+        "The Midianites",
+        "The Egyptians"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_039",
+    "reference": "Acts 7:23",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "According to Stephen, how old was Moses when he went to visit his brothers?"
+    },
+    "answers": {
+      "en": [
+        "Twenty",
+        "Thirty",
+        "Forty",
+        "Eighty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_040",
+    "reference": "Acts 7:29",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "According to Stephen, Moses fled and lived as a stranger in which land?"
+    },
+    "answers": {
+      "en": [
+        "Midian",
+        "Moab",
+        "Edom",
+        "Goshen"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_041",
+    "reference": "Acts 7:43",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Stephen said Israel took up the tabernacle of Moloch and the star of which god?"
+    },
+    "answers": {
+      "en": [
+        "Baal",
+        "Rephan",
+        "Dagon",
+        "Chemosh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_042",
+    "reference": "Acts 7:56",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Stephen saw the Son of Man doing what at the right hand of God?"
+    },
+    "answers": {
+      "en": [
+        "Sitting",
+        "Kneeling",
+        "Writing",
+        "Standing"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_043",
+    "reference": "Acts 8:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When the believers were scattered after Stephen's death, who stayed in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The seven",
+        "The Pharisees",
+        "The apostles",
+        "The Samaritans"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_044",
+    "reference": "Acts 8:5",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Philip went down to a city of which region and proclaimed Christ there?"
+    },
+    "answers": {
+      "en": [
+        "Samaria",
+        "Galilee",
+        "Idumea",
+        "Decapolis"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_045",
+    "reference": "Acts 8:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Before believing, how had Simon amazed the people of Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Healing",
+        "Sorcery",
+        "Preaching",
+        "Prophecy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_046",
+    "reference": "Acts 8:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which two apostles were sent to the new believers in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Peter and John",
+        "James and John",
+        "Andrew and Philip",
+        "Thomas and Matthew"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_047",
+    "reference": "Acts 8:26",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "On the road from Jerusalem to which city did Philip meet the Ethiopian?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Jericho",
+        "Hebron",
+        "Gaza"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_048",
+    "reference": "Acts 8:27",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the name of the queen whose treasurer met Philip?"
+    },
+    "answers": {
+      "en": [
+        "Sheba",
+        "Jezebel",
+        "Candace",
+        "Vashti"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_049",
+    "reference": "Acts 8:28",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which prophet was the Ethiopian reading in his chariot?"
+    },
+    "answers": {
+      "en": [
+        "Jeremiah",
+        "Daniel",
+        "Ezekiel",
+        "Isaiah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_050",
+    "reference": "Acts 8:32",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In the passage the Ethiopian read, he was led like what to the slaughter?"
+    },
+    "answers": {
+      "en": [
+        "A sheep",
+        "An ox",
+        "A goat",
+        "A dove"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_051",
+    "reference": "Acts 8:36",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the Ethiopian see by the road that made him ask to be baptized?"
+    },
+    "answers": {
+      "en": [
+        "An altar",
+        "Water",
+        "A synagogue",
+        "A tent"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_052",
+    "reference": "Acts 9:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Saul wanted to bring bound to Jerusalem anyone he found who was of what?"
+    },
+    "answers": {
+      "en": [
+        "The Zealots",
+        "The Light",
+        "The Way",
+        "The Essenes"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_053",
+    "reference": "Acts 9:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many days was Saul without sight, neither eating nor drinking?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Forty",
+        "Two"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_054",
+    "reference": "Acts 9:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which disciple in Damascus was sent to lay hands on Saul?"
+    },
+    "answers": {
+      "en": [
+        "Barnabas",
+        "Silas",
+        "Ananias",
+        "Philip"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_055",
+    "reference": "Acts 9:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On which street in Damascus was Saul staying, in the house of Judas?"
+    },
+    "answers": {
+      "en": [
+        "Beautiful",
+        "Broad",
+        "King's Highway",
+        "Straight"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_056",
+    "reference": "Acts 9:27",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who took Saul and brought him to the apostles in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Barnabas",
+        "Ananias",
+        "Stephen",
+        "John Mark"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_057",
+    "reference": "Acts 9:30",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "From Caesarea, the brothers sent Saul off to which city?"
+    },
+    "answers": {
+      "en": [
+        "Antioch",
+        "Damascus",
+        "Tarsus",
+        "Rome"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b220_058",
+    "reference": "Acts 9:32",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In which town did Peter heal Aeneas?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Lystra",
+        "Caesarea",
+        "Lydda"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b220_059",
+    "reference": "Acts 9:36",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In which town did Tabitha (Dorcas) live?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Lydda",
+        "Caesarea",
+        "Tyre"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b220_060",
+    "reference": "Acts 9:39",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the weeping widows show Peter that Dorcas had made?"
+    },
+    "answers": {
+      "en": [
+        "Baskets and mats",
+        "Coats and garments",
+        "Bread and cakes",
+        "Tents and sails"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b220_061",
+    "reference": "Acts 9:43",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "With whom did Peter stay many days in Joppa?"
+    },
+    "answers": {
+      "en": [
+        "Simon, a tanner",
+        "Simon the Zealot",
+        "Cornelius",
+        "Aeneas"
+      ]
+    },
+    "correctIndex": 0
+  }
+]
