@@ -1,0 +1,776 @@
+[
+  {
+    "id": "q_b224_001",
+    "reference": "1 Corinthians 1:2",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "1 Corinthians is written to the assembly of God in which city?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Ephesus",
+        "Philippi",
+        "Rome"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_002",
+    "reference": "1 Corinthians 1:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul thanks God he baptized none of the Corinthians except Crispus and whom?"
+    },
+    "answers": {
+      "en": [
+        "Titus",
+        "Sosthenes",
+        "Gaius",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_003",
+    "reference": "1 Corinthians 1:16",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Besides Crispus and Gaius, Paul also baptized the household of whom?"
+    },
+    "answers": {
+      "en": [
+        "Chloe",
+        "Lydia",
+        "Cornelius",
+        "Stephanas"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_004",
+    "reference": "1 Corinthians 1:22",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Jews ask for signs, while Greeks seek after what?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Wisdom",
+        "Power",
+        "Peace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_005",
+    "reference": "1 Corinthians 2:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul decided to know nothing among the Corinthians except Jesus Christ and him what?"
+    },
+    "answers": {
+      "en": [
+        "Crucified",
+        "Glorified",
+        "Enthroned",
+        "Born"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_006",
+    "reference": "1 Corinthians 2:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Things no eye saw and no ear heard — God prepared them for whom?"
+    },
+    "answers": {
+      "en": [
+        "The angels",
+        "Those who love him",
+        "The wise",
+        "The prophets"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_007",
+    "reference": "1 Corinthians 3:2",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he fed the Corinthians with milk, not with what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Honey",
+        "Meat",
+        "Wine"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_008",
+    "reference": "1 Corinthians 3:10",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "As a wise master builder, what did Paul say he laid?"
+    },
+    "answers": {
+      "en": [
+        "A cornerstone",
+        "A roof",
+        "A wall",
+        "A foundation"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_009",
+    "reference": "1 Corinthians 3:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Paul's list of things someone might build on the foundation?"
+    },
+    "answers": {
+      "en": [
+        "Marble",
+        "Stubble",
+        "Brick",
+        "Iron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_010",
+    "reference": "1 Corinthians 3:13",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What will test what sort of work each man's work is?"
+    },
+    "answers": {
+      "en": [
+        "The water",
+        "The wind",
+        "The fire",
+        "The law"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_011",
+    "reference": "1 Corinthians 4:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul send to Corinth, calling him 'my beloved and faithful child in the Lord'?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Titus",
+        "Apollos",
+        "Silas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_012",
+    "reference": "1 Corinthians 5:6",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks: don't you know that a little what leavens the whole lump?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Oil",
+        "Water",
+        "Yeast"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_013",
+    "reference": "1 Corinthians 5:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes that Christ, 'our ___,' has been sacrificed in our place."
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "Priest",
+        "Shepherd",
+        "Temple"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_014",
+    "reference": "1 Corinthians 6:3",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks: 'Don't you know that we will judge ___?'"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Prophets",
+        "Demons",
+        "Angels"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_015",
+    "reference": "1 Corinthians 6:19",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "In 1 Corinthians 6, your body is called a temple of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Father's house",
+        "The Holy Spirit",
+        "The angels",
+        "The law"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_016",
+    "reference": "1 Corinthians 8:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Knowledge puffs up, but love ___.'"
+    },
+    "answers": {
+      "en": [
+        "Lasts forever",
+        "Is patient",
+        "Builds up",
+        "Gives freely"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_017",
+    "reference": "1 Corinthians 9:22",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'I have become all things to all ___.'"
+    },
+    "answers": {
+      "en": [
+        "Nations",
+        "Churches",
+        "Saints",
+        "Men"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_018",
+    "reference": "1 Corinthians 9:24",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In a race all run, but how many receive the prize, according to Paul?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "One",
+        "All",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_019",
+    "reference": "1 Corinthians 9:25",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Athletes run for a corruptible crown, but believers for what kind?"
+    },
+    "answers": {
+      "en": [
+        "An incorruptible one",
+        "A golden one",
+        "A royal one",
+        "A crown of thorns"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_020",
+    "reference": "1 Corinthians 9:26",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he fights, 'not as beating the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Drum",
+        "Ground",
+        "Air",
+        "Wind"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_021",
+    "reference": "1 Corinthians 10:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the fathers were all baptized into whom, in the cloud and in the sea?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Joshua",
+        "Moses",
+        "Abraham"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_022",
+    "reference": "1 Corinthians 10:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the spiritual rock that followed Israel was whom?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Christ",
+        "An angel",
+        "Elijah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_023",
+    "reference": "1 Corinthians 10:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says some Israelites who tested the Lord perished by what?"
+    },
+    "answers": {
+      "en": [
+        "The serpents",
+        "The sword",
+        "The flood",
+        "Hunger"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_024",
+    "reference": "1 Corinthians 11:23",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the Lord Jesus took bread on the night in which he was what?"
+    },
+    "answers": {
+      "en": [
+        "Born",
+        "Baptized",
+        "Transfigured",
+        "Betrayed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_025",
+    "reference": "1 Corinthians 11:25",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes that the cup is the new covenant in what?"
+    },
+    "answers": {
+      "en": [
+        "My name",
+        "My word",
+        "My body",
+        "My blood"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_026",
+    "reference": "1 Corinthians 12:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which gift is listed among the Spirit's gifts in 1 Corinthians 12?"
+    },
+    "answers": {
+      "en": [
+        "Discerning of spirits",
+        "Hospitality",
+        "Singing",
+        "Building"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_027",
+    "reference": "1 Corinthians 12:15",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In Paul's picture of the body, which part says, 'Because I'm not the hand, I'm not part of the body'?"
+    },
+    "answers": {
+      "en": [
+        "The ear",
+        "The foot",
+        "The eye",
+        "The head"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_028",
+    "reference": "1 Corinthians 13:2",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says if he had all faith so as to remove what, but no love, he is nothing?"
+    },
+    "answers": {
+      "en": [
+        "Kingdoms",
+        "Stones",
+        "Mountains",
+        "Seas"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_029",
+    "reference": "1 Corinthians 13:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Love never ___.'"
+    },
+    "answers": {
+      "en": [
+        "Rests",
+        "Sleeps",
+        "Boasts",
+        "Fails"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_030",
+    "reference": "1 Corinthians 14:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks: if what gives an uncertain sound, who will prepare for war?"
+    },
+    "answers": {
+      "en": [
+        "The drum",
+        "The bell",
+        "The trumpet",
+        "The cymbal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_031",
+    "reference": "1 Corinthians 14:19",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul would rather speak how many words with understanding than ten thousand in another language?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Five",
+        "Three",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_032",
+    "reference": "1 Corinthians 14:33",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Corinthians 14 says God is not a God of confusion, but of what?"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Silence",
+        "Glory",
+        "Power"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_033",
+    "reference": "1 Corinthians 15:5",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In 1 Corinthians 15, the risen Christ appeared first to whom, then to the twelve?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "Paul",
+        "Thomas",
+        "Cephas"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_034",
+    "reference": "1 Corinthians 15:7",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "After the five hundred brothers, to whom did the risen Christ appear?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "Cephas",
+        "Stephen",
+        "Barnabas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_035",
+    "reference": "1 Corinthians 15:8",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Christ appeared to him last of all, as to a child born when?"
+    },
+    "answers": {
+      "en": [
+        "In the night",
+        "At the wrong time",
+        "In a manger",
+        "In the wilderness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_036",
+    "reference": "1 Corinthians 15:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls himself the least of the what?"
+    },
+    "answers": {
+      "en": [
+        "Prophets",
+        "Brothers",
+        "Apostles",
+        "Teachers"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_037",
+    "reference": "1 Corinthians 15:22",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'As in ___ all die, so also in Christ all will be made alive.'"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Abraham",
+        "Adam",
+        "Noah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b224_038",
+    "reference": "1 Corinthians 16:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "On which day did Paul tell the Corinthians to set money aside for the collection?"
+    },
+    "answers": {
+      "en": [
+        "The first day of the week",
+        "The Sabbath",
+        "The day of Pentecost",
+        "The new moon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_039",
+    "reference": "1 Corinthians 16:15",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls the house of Stephanas the first fruits of which region?"
+    },
+    "answers": {
+      "en": [
+        "Asia",
+        "Achaia",
+        "Macedonia",
+        "Galatia"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_040",
+    "reference": "1 Corinthians 16:19",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which couple greeted the Corinthians together with the assembly in their house?"
+    },
+    "answers": {
+      "en": [
+        "Andronicus and Junia",
+        "Ananias and Sapphira",
+        "Philemon and Apphia",
+        "Aquila and Priscilla"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b224_041",
+    "reference": "1 Corinthians 11:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Be imitators of me, even as I also am of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Christ",
+        "Peter",
+        "Abraham"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b224_042",
+    "reference": "1 Corinthians 15:45",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the first man, Adam, became a living soul. What did the last Adam become?"
+    },
+    "answers": {
+      "en": [
+        "A life-giving spirit",
+        "A living stone",
+        "A great king",
+        "A new creature"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b224_043",
+    "reference": "1 Corinthians 15:41",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says there is one glory of the sun, another of the moon, and another of what?"
+    },
+    "answers": {
+      "en": [
+        "The sea",
+        "The angels",
+        "The earth",
+        "The stars"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

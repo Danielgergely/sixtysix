@@ -1,0 +1,830 @@
+[
+  {
+    "id": "q_b182_001",
+    "reference": "Jeremiah 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah came from the priests of which town in Benjamin?"
+    },
+    "answers": {
+      "en": [
+        "Anathoth",
+        "Bethel",
+        "Shiloh",
+        "Nob"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_002",
+    "reference": "Jeremiah 1:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of King Josiah's reign did Yahweh's word first come to Jeremiah?"
+    },
+    "answers": {
+      "en": [
+        "The thirteenth year",
+        "The eighteenth year",
+        "The fifth year",
+        "The twentieth year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_003",
+    "reference": "Jeremiah 1:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "When Yahweh put his words in Jeremiah's mouth, what did he touch?"
+    },
+    "answers": {
+      "en": [
+        "His mouth",
+        "His eyes",
+        "His ears",
+        "His head"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_004",
+    "reference": "Jeremiah 1:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Jeremiah's second vision, what did he see tipping away from the north?"
+    },
+    "answers": {
+      "en": [
+        "A boiling cauldron",
+        "A broken jar",
+        "A burning lamp",
+        "A full basket"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_005",
+    "reference": "Jeremiah 1:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "God made Jeremiah a fortified city, bronze walls and an iron what?"
+    },
+    "answers": {
+      "en": [
+        "Pillar",
+        "Gate",
+        "Tower",
+        "Shield"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_006",
+    "reference": "Jeremiah 2:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 2: having forsaken the spring of living waters, the people dug broken what?"
+    },
+    "answers": {
+      "en": [
+        "Jars",
+        "Pots",
+        "Ditches",
+        "Cisterns"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_007",
+    "reference": "Jeremiah 2:21",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 2: God had planted Israel as a noble what?"
+    },
+    "answers": {
+      "en": [
+        "Olive tree",
+        "Cedar",
+        "Fig tree",
+        "Vine"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_008",
+    "reference": "Jeremiah 2:32",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 2: can a virgin forget her ornaments, or a bride her what?"
+    },
+    "answers": {
+      "en": [
+        "Veil",
+        "Ring",
+        "Bridegroom",
+        "Attire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_009",
+    "reference": "Jeremiah 3:15",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 3: God will give his people shepherds according to his what?"
+    },
+    "answers": {
+      "en": [
+        "Law",
+        "Word",
+        "Covenant",
+        "Heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_010",
+    "reference": "Jeremiah 4:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 4: break up your fallow ground and don't sow among what?"
+    },
+    "answers": {
+      "en": [
+        "Stones",
+        "Weeds",
+        "Rocks",
+        "Thorns"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_011",
+    "reference": "Jeremiah 5:22",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 5: what has God placed as the boundary of the sea?"
+    },
+    "answers": {
+      "en": [
+        "The rocks",
+        "The mountains",
+        "The cliffs",
+        "The sand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_012",
+    "reference": "Jeremiah 6:16",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 6: which paths should you ask for, where the good way is?"
+    },
+    "answers": {
+      "en": [
+        "The new paths",
+        "The narrow paths",
+        "The high paths",
+        "The old paths"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_013",
+    "reference": "Jeremiah 7:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 7: which words, repeated three times, were 'lying words'?"
+    },
+    "answers": {
+      "en": [
+        "Holy, holy, holy",
+        "The ark of the covenant",
+        "The God of our fathers",
+        "Yahweh's temple"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_014",
+    "reference": "Jeremiah 7:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 7: has God's house become a den of what?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Foxes",
+        "Snakes",
+        "Robbers"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_015",
+    "reference": "Jeremiah 7:12",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 7: which place, where God's name once dwelt, should the people go and see?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Gilgal",
+        "Shiloh",
+        "Hebron"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_016",
+    "reference": "Jeremiah 7:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 7: for whom did the women knead dough to make cakes?"
+    },
+    "answers": {
+      "en": [
+        "The king of Babylon",
+        "The god of Ekron",
+        "The queen of the sky",
+        "The lord of the harvest"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_017",
+    "reference": "Jeremiah 7:31",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 7: in which valley were the high places of Topheth?"
+    },
+    "answers": {
+      "en": [
+        "The valley of Achor",
+        "The valley of Elah",
+        "The valley of the son of Hinnom",
+        "The valley of Sorek"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_018",
+    "reference": "Jeremiah 8:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 8: which bird in the sky knows her appointed times?"
+    },
+    "answers": {
+      "en": [
+        "The eagle",
+        "The raven",
+        "The stork",
+        "The sparrow"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_019",
+    "reference": "Jeremiah 8:22",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 8: 'Is there no balm in' where?"
+    },
+    "answers": {
+      "en": [
+        "Bashan",
+        "Sharon",
+        "Gilead",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_020",
+    "reference": "Jeremiah 9:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 9: the prophet wished his eyes were a spring of what?"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "Joy",
+        "Tears",
+        "Wine"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_021",
+    "reference": "Jeremiah 10:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 10: the gold for the idols is brought from where?"
+    },
+    "answers": {
+      "en": [
+        "Ophir",
+        "Sheba",
+        "Uphaz",
+        "Havilah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_022",
+    "reference": "Jeremiah 11:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 11: the prophet says he was like what, led to the slaughter?"
+    },
+    "answers": {
+      "en": [
+        "A young ox",
+        "A wild goat",
+        "A gentle lamb",
+        "A dove"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_023",
+    "reference": "Jeremiah 11:21",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "The men of which town told Jeremiah not to prophesy, or they would kill him?"
+    },
+    "answers": {
+      "en": [
+        "Bethlehem",
+        "Tekoa",
+        "Anathoth",
+        "Ramah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b182_024",
+    "reference": "Jeremiah 12:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 12: if the footmen tire you, how can you contend with what?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Horses",
+        "Giants",
+        "Chariots"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_025",
+    "reference": "Jeremiah 13:23",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 13: can the leopard change his what?"
+    },
+    "answers": {
+      "en": [
+        "Claws",
+        "Spots",
+        "Teeth",
+        "Stripes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_026",
+    "reference": "Jeremiah 15:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 15: even if Moses and whom stood before God, he would not turn to this people?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Samuel",
+        "Elijah",
+        "David"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_027",
+    "reference": "Jeremiah 15:16",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 15: what did Jeremiah do with God's words when they were found?"
+    },
+    "answers": {
+      "en": [
+        "Buried them",
+        "Ate them",
+        "Burned them",
+        "Sold them"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_028",
+    "reference": "Jeremiah 16:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did God tell Jeremiah not to do, in Jeremiah 16?"
+    },
+    "answers": {
+      "en": [
+        "Build a house",
+        "Take a wife",
+        "Plant a vineyard",
+        "Leave Jerusalem"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_029",
+    "reference": "Jeremiah 16:16",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 16: after sending for many fishermen, whom will God send for?"
+    },
+    "answers": {
+      "en": [
+        "Many hunters",
+        "Many shepherds",
+        "Many reapers",
+        "Many builders"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_030",
+    "reference": "Jeremiah 17:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Judah's sin is written with a pen of iron and with the point of what?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A diamond",
+        "A thorn",
+        "A nail"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_031",
+    "reference": "Jeremiah 17:9",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 17: what is deceitful above all things?"
+    },
+    "answers": {
+      "en": [
+        "The tongue",
+        "The heart",
+        "The eye",
+        "The mind"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_032",
+    "reference": "Jeremiah 17:21",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 17: what should not be carried through Jerusalem's gates on the Sabbath?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A burden",
+        "A lamp",
+        "An idol"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b182_033",
+    "reference": "Jeremiah 18:4",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "When the clay vessel was marred in the potter's hand, what did he do?"
+    },
+    "answers": {
+      "en": [
+        "Made it again another vessel",
+        "Threw it away",
+        "Sold it cheaply",
+        "Broke it to pieces"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_034",
+    "reference": "Jeremiah 19:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Jeremiah break before the elders, in Jeremiah 19?"
+    },
+    "answers": {
+      "en": [
+        "A potter's earthen bottle",
+        "A wooden yoke",
+        "A clay tablet",
+        "A shepherd's staff"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_035",
+    "reference": "Jeremiah 20:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "What new name did Jeremiah give Pashhur, who put him in the stocks?"
+    },
+    "answers": {
+      "en": [
+        "Magormissabib",
+        "Ichabod",
+        "Lo-Ammi",
+        "Jerubbaal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_036",
+    "reference": "Jeremiah 20:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 20: God's word was like a burning fire shut up in his what?"
+    },
+    "answers": {
+      "en": [
+        "Bones",
+        "Mouth",
+        "Hands",
+        "House"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_037",
+    "reference": "Jeremiah 21:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Which king sent Pashhur and Zephaniah to Jeremiah to ask about Nebuchadnezzar?"
+    },
+    "answers": {
+      "en": [
+        "Zedekiah",
+        "Jehoiakim",
+        "Josiah",
+        "Manasseh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_038",
+    "reference": "Jeremiah 21:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 21: God set before the people the way of life and the way of what?"
+    },
+    "answers": {
+      "en": [
+        "Sorrow",
+        "Exile",
+        "Darkness",
+        "Death"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_039",
+    "reference": "Jeremiah 22:11",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 22: Shallum, who reigned instead of his father, was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Jehoiakim",
+        "Hezekiah",
+        "Amon",
+        "Josiah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_040",
+    "reference": "Jeremiah 22:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 22: the king will be buried with the burial of what?"
+    },
+    "answers": {
+      "en": [
+        "A donkey",
+        "A dog",
+        "A beggar",
+        "A stranger"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_041",
+    "reference": "Jeremiah 23:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 23: God will raise to David a righteous what?"
+    },
+    "answers": {
+      "en": [
+        "Branch",
+        "Priest",
+        "Judge",
+        "Shepherd"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b182_042",
+    "reference": "Jeremiah 23:6",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 23: by which name will the righteous Branch be called?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh will provide",
+        "Yahweh is peace",
+        "Yahweh my banner",
+        "Yahweh our righteousness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_043",
+    "reference": "Jeremiah 23:29",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 23: God's word is like a hammer that breaks what in pieces?"
+    },
+    "answers": {
+      "en": [
+        "The wall",
+        "The iron",
+        "The idol",
+        "The rock"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_044",
+    "reference": "Jeremiah 25:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Jehoiakim's fourth year was the first year of which king of Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Cyrus",
+        "Darius",
+        "Sennacherib",
+        "Nebuchadnezzar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_045",
+    "reference": "Jeremiah 25:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 25: for how many years would the nations serve the king of Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Twelve",
+        "Fifty",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b182_046",
+    "reference": "Jeremiah 25:15",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah 25: the nations must drink a cup of the wine of what?"
+    },
+    "answers": {
+      "en": [
+        "Blessing",
+        "Joy",
+        "Peace",
+        "Wrath"
+      ]
+    },
+    "correctIndex": 3
+  }
+]

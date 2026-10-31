@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "q_b142_001",
+    "reference": "2 Kings 1:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After falling through a lattice, King Ahaziah sent to ask which god of Ekron?"
+    },
+    "answers": {
+      "en": [
+        "Dagon",
+        "Chemosh",
+        "Baal Zebub",
+        "Molech"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_002",
+    "reference": "2 Kings 1:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How was the man who met Ahaziah's messengers described?"
+    },
+    "answers": {
+      "en": [
+        "A hairy man with a leather belt",
+        "A tall man with a golden staff",
+        "A young man in white clothes",
+        "An old man riding a donkey"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_003",
+    "reference": "2 Kings 1:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What came down from heaven on the captains of fifty sent to seize Elijah?"
+    },
+    "answers": {
+      "en": [
+        "Hail",
+        "Rain",
+        "Stones",
+        "Fire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_004",
+    "reference": "2 Kings 1:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the third captain of fifty do when he came to Elijah?"
+    },
+    "answers": {
+      "en": [
+        "Drew his sword",
+        "Fell on his knees and begged him",
+        "Shot an arrow at him",
+        "Ran away in fear"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_005",
+    "reference": "2 Kings 1:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "King Ahaziah of Israel died without a son. Who reigned in his place?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Jehoram",
+        "Joash",
+        "Omri"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_006",
+    "reference": "2 Kings 2:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "From which town did Elijah set out with Elisha before he was taken up?"
+    },
+    "answers": {
+      "en": [
+        "Dothan",
+        "Shiloh",
+        "Hebron",
+        "Gilgal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_007",
+    "reference": "2 Kings 2:11",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What separated Elijah and Elisha just before Elijah went up?"
+    },
+    "answers": {
+      "en": [
+        "A chariot of fire",
+        "A river of water",
+        "A pillar of cloud",
+        "A band of angels"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_008",
+    "reference": "2 Kings 2:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha cry out as he saw Elijah taken up?"
+    },
+    "answers": {
+      "en": [
+        "My lord, my king!",
+        "Take me with you!",
+        "My father, my father!",
+        "Do not leave me!"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_009",
+    "reference": "2 Kings 2:13",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha pick up that had fallen from Elijah?"
+    },
+    "answers": {
+      "en": [
+        "Elijah's staff",
+        "Elijah's sandals",
+        "Elijah's belt",
+        "Elijah's mantle"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_010",
+    "reference": "2 Kings 2:17",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many men searched for Elijah for three days?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Fifty",
+        "One hundred"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_011",
+    "reference": "2 Kings 2:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha throw into Jericho's spring to heal the water?"
+    },
+    "answers": {
+      "en": [
+        "Flour",
+        "Salt",
+        "A stick",
+        "Oil"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_012",
+    "reference": "2 Kings 2:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the youths call Elisha on the road to Bethel?"
+    },
+    "answers": {
+      "en": [
+        "Baldy",
+        "Old man",
+        "Stranger",
+        "Beggar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_013",
+    "reference": "2 Kings 3:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Mesha king of Moab bred which animals?"
+    },
+    "answers": {
+      "en": [
+        "Horses",
+        "Camels",
+        "Sheep",
+        "Goats"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_014",
+    "reference": "2 Kings 3:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Elisha was known as the one who poured water on whose hands?"
+    },
+    "answers": {
+      "en": [
+        "Elijah's",
+        "Ahab's",
+        "Naaman's",
+        "Samuel's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_015",
+    "reference": "2 Kings 3:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha ask for before he prophesied to the three kings?"
+    },
+    "answers": {
+      "en": [
+        "A sacrifice",
+        "A scroll",
+        "A cup of water",
+        "A minstrel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_016",
+    "reference": "2 Kings 3:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Why did the water look red as blood to the Moabites?"
+    },
+    "answers": {
+      "en": [
+        "It was mixed with clay",
+        "The sun shone on it",
+        "Soldiers had dyed it",
+        "It flowed over red rocks"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_017",
+    "reference": "2 Kings 4:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "A prophet's widow feared a creditor would take whom as slaves?"
+    },
+    "answers": {
+      "en": [
+        "Her husband's brothers",
+        "Her two children",
+        "Her parents",
+        "Her servants"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_018",
+    "reference": "2 Kings 4:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When did the widow's oil stop flowing?"
+    },
+    "answers": {
+      "en": [
+        "After seven days",
+        "At sunset",
+        "When the creditor came",
+        "When there were no more containers"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_019",
+    "reference": "2 Kings 4:7",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha tell the widow to do with the oil?"
+    },
+    "answers": {
+      "en": [
+        "Sell it and pay her debt",
+        "Pour it on the altar",
+        "Give it to the poor",
+        "Anoint her sons with it"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_020",
+    "reference": "2 Kings 4:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the Shunammite woman want to make for Elisha in her house?"
+    },
+    "answers": {
+      "en": [
+        "A garden",
+        "A stable",
+        "A little room on the wall",
+        "A watchtower"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_021",
+    "reference": "2 Kings 4:12",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What was the name of Elisha's servant?"
+    },
+    "answers": {
+      "en": [
+        "Naaman",
+        "Obadiah",
+        "Micaiah",
+        "Gehazi"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_022",
+    "reference": "2 Kings 4:16",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha promise the woman of Shunem?"
+    },
+    "answers": {
+      "en": [
+        "A field",
+        "A husband",
+        "A son",
+        "Great riches"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_023",
+    "reference": "2 Kings 4:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the Shunammite's son cry to his father in the field?"
+    },
+    "answers": {
+      "en": [
+        "My foot! My foot!",
+        "My head! My head!",
+        "I am thirsty!",
+        "Mother, help me!"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_024",
+    "reference": "2 Kings 4:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which mountain did the Shunammite woman ride to find Elisha?"
+    },
+    "answers": {
+      "en": [
+        "Mount Carmel",
+        "Mount Horeb",
+        "Mount Hermon",
+        "Mount Tabor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_025",
+    "reference": "2 Kings 4:29",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha send Gehazi to lay on the dead boy's face?"
+    },
+    "answers": {
+      "en": [
+        "His mantle",
+        "A cloth",
+        "His staff",
+        "Some oil"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_026",
+    "reference": "2 Kings 4:40",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the sons of the prophets cry out about the stew?"
+    },
+    "answers": {
+      "en": [
+        "There is death in the pot!",
+        "The pot is empty!",
+        "The stew is burned!",
+        "There is a snake in the pot!"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_027",
+    "reference": "2 Kings 4:41",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha throw into the stew to make it harmless?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Oil",
+        "Honey",
+        "Meal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_028",
+    "reference": "2 Kings 4:42",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many barley loaves did Elisha use to feed a hundred men?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Twenty",
+        "Twelve",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_029",
+    "reference": "2 Kings 5:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What disease did Naaman, the Syrian army captain, have?"
+    },
+    "answers": {
+      "en": [
+        "Blindness",
+        "Leprosy",
+        "Fever",
+        "A withered hand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_030",
+    "reference": "2 Kings 5:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who told Naaman's wife about the prophet in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "A Syrian soldier",
+        "A traveling merchant",
+        "A priest from Damascus",
+        "A little maiden from Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_031",
+    "reference": "2 Kings 5:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many times did Elisha tell Naaman to wash in the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Twelve",
+        "Once"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_032",
+    "reference": "2 Kings 5:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which two rivers of Damascus did Naaman say were better than Israel's waters?"
+    },
+    "answers": {
+      "en": [
+        "Tigris and Euphrates",
+        "Jabbok and Arnon",
+        "Abanah and Pharpar",
+        "Kishon and Kidron"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_033",
+    "reference": "2 Kings 5:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After Naaman washed, his flesh became like the flesh of what?"
+    },
+    "answers": {
+      "en": [
+        "A young man",
+        "A newborn lamb",
+        "An angel",
+        "A little child"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_034",
+    "reference": "2 Kings 5:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Naaman ask to take home with him from Israel?"
+    },
+    "answers": {
+      "en": [
+        "Water from the Jordan",
+        "Stones for an altar",
+        "Two mules' load of earth",
+        "A scroll of the law"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_035",
+    "reference": "2 Kings 5:23",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many talents of silver did Naaman give Gehazi?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Ten",
+        "Five"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_036",
+    "reference": "2 Kings 6:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha throw into the water to make the iron ax head float?"
+    },
+    "answers": {
+      "en": [
+        "A stick",
+        "Salt",
+        "Meal",
+        "A stone"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_037",
+    "reference": "2 Kings 6:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In which city was Elisha when the Syrian army surrounded it?"
+    },
+    "answers": {
+      "en": [
+        "Samaria",
+        "Bethel",
+        "Dothan",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_038",
+    "reference": "2 Kings 6:17",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "When his eyes were opened, what did Elisha's servant see on the mountain?"
+    },
+    "answers": {
+      "en": [
+        "Horses and chariots of fire",
+        "A great flood",
+        "Lions and bears",
+        "A cloud of locusts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_039",
+    "reference": "2 Kings 6:18",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "At Elisha's prayer, what did Yahweh strike the Syrian army with?"
+    },
+    "answers": {
+      "en": [
+        "Plague",
+        "Leprosy",
+        "Deep sleep",
+        "Blindness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_040",
+    "reference": "2 Kings 6:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha tell the king of Israel to do with the captured Syrians?"
+    },
+    "answers": {
+      "en": [
+        "Kill them all",
+        "Set bread and water before them",
+        "Sell them as slaves",
+        "Keep them in prison"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_041",
+    "reference": "2 Kings 6:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which king of Syria besieged Samaria and caused a great famine?"
+    },
+    "answers": {
+      "en": [
+        "Hazael",
+        "Ben Hadad",
+        "Rezin",
+        "Naaman"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_042",
+    "reference": "2 Kings 6:25",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "During the siege of Samaria, a donkey's head sold for how many pieces of silver?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Thirty",
+        "Fifty",
+        "Eighty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_043",
+    "reference": "2 Kings 7:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Elisha said that by tomorrow a measure of fine flour would sell for what?"
+    },
+    "answers": {
+      "en": [
+        "A shekel",
+        "A talent",
+        "Ten shekels",
+        "Fifty shekels"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_044",
+    "reference": "2 Kings 7:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who found that the Syrian camp had been abandoned?"
+    },
+    "answers": {
+      "en": [
+        "Two spies",
+        "Elisha's servant",
+        "Four leprous men",
+        "The king's captain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_045",
+    "reference": "2 Kings 7:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the Lord make the Syrians hear, so that they fled?"
+    },
+    "answers": {
+      "en": [
+        "Thunder and an earthquake",
+        "The voice of Elisha",
+        "The roar of lions",
+        "The noise of chariots and horses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_046",
+    "reference": "2 Kings 7:17",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What happened to the captain who doubted Elisha's word about the flour?"
+    },
+    "answers": {
+      "en": [
+        "He was struck blind",
+        "He became a leper",
+        "He was trampled in the gate",
+        "He fled to Syria"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_047",
+    "reference": "2 Kings 8:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For how many years did the Shunammite woman live in the land of the Philistines?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_048",
+    "reference": "2 Kings 8:9",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many camels' loads of gifts did Hazael bring to Elisha?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Ten",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_049",
+    "reference": "2 Kings 8:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How did Hazael kill King Ben Hadad?"
+    },
+    "answers": {
+      "en": [
+        "A sword in his bed",
+        "Poison in his wine",
+        "A wet cloth spread over his face",
+        "A fall from the wall"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_050",
+    "reference": "2 Kings 8:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which nation revolted from Judah in Jehoram's days and made its own king?"
+    },
+    "answers": {
+      "en": [
+        "Edom",
+        "Moab",
+        "Ammon",
+        "Philistia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_051",
+    "reference": "2 Kings 9:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Whom did Elisha send to anoint Jehu as king?"
+    },
+    "answers": {
+      "en": [
+        "Gehazi",
+        "Elijah",
+        "A priest from Bethel",
+        "One of the sons of the prophets"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_052",
+    "reference": "2 Kings 9:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Jehu's fellow officers spread under him on the stairs?"
+    },
+    "answers": {
+      "en": [
+        "Palm branches",
+        "Each man his garment",
+        "Flowers",
+        "Carpets"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_053",
+    "reference": "2 Kings 9:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Jehu kill King Joram?"
+    },
+    "answers": {
+      "en": [
+        "He threw a spear",
+        "He shot him with an arrow",
+        "He struck him with a sword",
+        "He pushed him from a wall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_054",
+    "reference": "2 Kings 9:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Into whose field was King Joram's body thrown?"
+    },
+    "answers": {
+      "en": [
+        "Obadiah's",
+        "Shemer's",
+        "Hiel's",
+        "Naboth the Jezreelite's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_055",
+    "reference": "2 Kings 9:30",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Jezebel do when she heard that Jehu had come to Jezreel?"
+    },
+    "answers": {
+      "en": [
+        "Painted her eyes",
+        "Hid in the temple",
+        "Fled to Sidon",
+        "Sent her army"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_056",
+    "reference": "2 Kings 9:35",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was left of Jezebel when they went to bury her?"
+    },
+    "answers": {
+      "en": [
+        "Only her crown",
+        "Her robe and sandals",
+        "Her skull, feet and palms",
+        "Nothing at all"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_057",
+    "reference": "2 Kings 10:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many sons did Ahab have in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Forty",
+        "Seven",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b142_058",
+    "reference": "2 Kings 10:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Whom did Jehu take up into his chariot to see his zeal for Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Elisha",
+        "Bidkar",
+        "Jehonadab",
+        "Jehoshaphat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b142_059",
+    "reference": "2 Kings 10:29",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which sin of Jeroboam did Jehu not turn away from?"
+    },
+    "answers": {
+      "en": [
+        "The worship of Baal",
+        "The golden calves in Bethel and Dan",
+        "Burning children to Molech",
+        "The altar of Damascus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b142_060",
+    "reference": "2 Kings 10:30",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To which generation would Jehu's sons sit on Israel's throne?"
+    },
+    "answers": {
+      "en": [
+        "Fourth",
+        "Seventh",
+        "Third",
+        "Tenth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b142_061",
+    "reference": "2 Kings 10:36",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many years did Jehu reign over Israel in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Twelve",
+        "Twenty-eight",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

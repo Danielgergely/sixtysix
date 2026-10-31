@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "q_b188_001",
+    "reference": "Micah 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah prophesied in the days of Jotham, Ahaz, and which king of Judah?"
+    },
+    "answers": {
+      "en": [
+        "Uzziah",
+        "Hezekiah",
+        "Josiah",
+        "Manasseh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_002",
+    "reference": "Micah 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah's vision concerned Jerusalem and which other city?"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Samaria",
+        "Babylon",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_003",
+    "reference": "Micah 1:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 1: the prophet says he will howl like which animals?"
+    },
+    "answers": {
+      "en": [
+        "The wolves",
+        "The jackals",
+        "The lions",
+        "The dogs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_004",
+    "reference": "Micah 3:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 3: Zion will be plowed like what?"
+    },
+    "answers": {
+      "en": [
+        "A road",
+        "A field",
+        "A vineyard",
+        "A threshing floor"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_005",
+    "reference": "Micah 4:10",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 4: to which city will the daughter of Zion go, and there be rescued?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Nineveh",
+        "Egypt",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_006",
+    "reference": "Micah 5:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 5: what other name is joined to Bethlehem?"
+    },
+    "answers": {
+      "en": [
+        "Ephrathah",
+        "Ramah",
+        "Zion",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_007",
+    "reference": "Micah 6:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 6: God sent Moses, Aaron, and whom before Israel?"
+    },
+    "answers": {
+      "en": [
+        "Miriam",
+        "Joshua",
+        "Caleb",
+        "Hur"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_008",
+    "reference": "Micah 6:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 6: remember what Balak devised and what which son of Beor answered?"
+    },
+    "answers": {
+      "en": [
+        "Balaam",
+        "Bildad",
+        "Zimri",
+        "Korah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_009",
+    "reference": "Micah 7:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 7: a man's enemies are the men of his own what?"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "City",
+        "Tribe",
+        "Army"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_010",
+    "reference": "Micah 7:8",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 7: when I sit in darkness, Yahweh will be what to me?"
+    },
+    "answers": {
+      "en": [
+        "A light",
+        "A shield",
+        "A shelter",
+        "A voice"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_011",
+    "reference": "Micah 7:18",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 7: God doesn't keep his anger forever, because he delights in what?"
+    },
+    "answers": {
+      "en": [
+        "Loving kindness",
+        "Sacrifices",
+        "Victory",
+        "Songs"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_012",
+    "reference": "Nahum 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What is Nahum called in the first verse of his book?"
+    },
+    "answers": {
+      "en": [
+        "The Elkoshite",
+        "The Tishbite",
+        "The Gileadite",
+        "The Tekoite"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_013",
+    "reference": "Nahum 1:3",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 1: the clouds are the dust of God's what?"
+    },
+    "answers": {
+      "en": [
+        "Feet",
+        "Chariot",
+        "Hands",
+        "Throne"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_014",
+    "reference": "Nahum 1:15",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 1: on the mountains are the feet of him who brings what?"
+    },
+    "answers": {
+      "en": [
+        "Rain",
+        "A sword",
+        "A crown",
+        "Good news"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_015",
+    "reference": "Nahum 2:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 2: the chariots raging in the streets look like what?"
+    },
+    "answers": {
+      "en": [
+        "Eagles",
+        "Stars",
+        "Waves",
+        "Torches"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_016",
+    "reference": "Nahum 3:18",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 3: 'Your shepherds slumber,' says the prophet to whom?"
+    },
+    "answers": {
+      "en": [
+        "The king of Babylon",
+        "The king of Egypt",
+        "The king of Edom",
+        "The king of Assyria"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_017",
+    "reference": "Nahum 3:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 3: what will all who hear of Nineveh's fall do?"
+    },
+    "answers": {
+      "en": [
+        "Weep aloud",
+        "Tear their clothes",
+        "Hide in caves",
+        "Clap their hands"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_018",
+    "reference": "Habakkuk 1:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 1: what does the prophet first ask Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Who will go for us?",
+        "Why did you call me?",
+        "Where is your temple?",
+        "How long will I cry?"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_019",
+    "reference": "Habakkuk 1:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 1: the Chaldeans' horses are swifter than what?"
+    },
+    "answers": {
+      "en": [
+        "Deer",
+        "Gazelles",
+        "Leopards",
+        "Lions"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_020",
+    "reference": "Habakkuk 2:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 2: where did the prophet set himself to see what God would say?"
+    },
+    "answers": {
+      "en": [
+        "In the temple",
+        "By the river",
+        "On the housetop",
+        "On the ramparts"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_021",
+    "reference": "Habakkuk 2:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 2: what will cry out of the wall?"
+    },
+    "answers": {
+      "en": [
+        "The gate",
+        "The watchman",
+        "The nail",
+        "The stone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_022",
+    "reference": "Habakkuk 3:11",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 3: what stood still in the sky?"
+    },
+    "answers": {
+      "en": [
+        "The clouds",
+        "The stars",
+        "The birds",
+        "The sun and moon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_023",
+    "reference": "Habakkuk 3:18",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 3: though the fig tree doesn't flourish, what will the prophet do?"
+    },
+    "answers": {
+      "en": [
+        "Leave the land",
+        "Curse the day",
+        "Rejoice in Yahweh",
+        "Sell his field"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_024",
+    "reference": "Zephaniah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of Judah is named as Zephaniah's ancestor in his first verse?"
+    },
+    "answers": {
+      "en": [
+        "Uzziah",
+        "Jotham",
+        "Hezekiah",
+        "Ahaz"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_025",
+    "reference": "Zephaniah 1:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 1: God will search Jerusalem with what?"
+    },
+    "answers": {
+      "en": [
+        "Soldiers",
+        "Dogs",
+        "Lamps",
+        "Fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_026",
+    "reference": "Zephaniah 1:14",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 1: what is near, and hurries greatly?"
+    },
+    "answers": {
+      "en": [
+        "The king of Babylon",
+        "The harvest",
+        "The great day of Yahweh",
+        "The flood"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_027",
+    "reference": "Zephaniah 2:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 2: which city will be forsaken, with Ashkelon a desolation?"
+    },
+    "answers": {
+      "en": [
+        "Tyre",
+        "Joppa",
+        "Gaza",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_028",
+    "reference": "Zephaniah 2:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 2: which city will become a desolation, dry like the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Nineveh",
+        "Tyre",
+        "Sidon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_029",
+    "reference": "Zephaniah 3:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 3: what of the peoples will God purify?"
+    },
+    "answers": {
+      "en": [
+        "Their hearts",
+        "Their lips",
+        "Their hands",
+        "Their eyes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_030",
+    "reference": "Zephaniah 3:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 3: who is told to sing and shout for joy?"
+    },
+    "answers": {
+      "en": [
+        "The daughter of Babylon",
+        "The daughter of Tyre",
+        "The daughter of Zion",
+        "The daughter of Egypt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_031",
+    "reference": "Zephaniah 3:19",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah 3: whom will God save and gather?"
+    },
+    "answers": {
+      "en": [
+        "Only the strong",
+        "Only the rich",
+        "Those who are lame",
+        "Only the priests"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_032",
+    "reference": "Haggai 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai's first message came in which year of King Darius?"
+    },
+    "answers": {
+      "en": [
+        "The first year",
+        "The second year",
+        "The seventh year",
+        "The twentieth year"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_033",
+    "reference": "Haggai 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Who was the high priest when Haggai prophesied?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah son of Shallum",
+        "Joshua son of Jehozadak",
+        "Ezra son of Seraiah",
+        "Eliashib son of Joiakim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_034",
+    "reference": "Haggai 1:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai 1: the people lived in what kind of houses while God's house lay waste?"
+    },
+    "answers": {
+      "en": [
+        "Stone houses",
+        "Paneled houses",
+        "Tents",
+        "Houses of ivory"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_035",
+    "reference": "Haggai 1:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai 1: what does Yahweh tell the people to consider?"
+    },
+    "answers": {
+      "en": [
+        "Your wealth",
+        "Your ways",
+        "Your enemies",
+        "The stars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_036",
+    "reference": "Haggai 1:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai 1: what did God call for on the land and the mountains?"
+    },
+    "answers": {
+      "en": [
+        "A flood",
+        "A drought",
+        "Locusts",
+        "An earthquake"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_037",
+    "reference": "Haggai 2:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai 2: in a little while, what will God do to the heavens and the earth?"
+    },
+    "answers": {
+      "en": [
+        "Shake them",
+        "Burn them",
+        "Fold them up",
+        "Measure them"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_038",
+    "reference": "Haggai 2:8",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Haggai 2: 'The silver is mine, and the' what is mine?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Land",
+        "Bronze",
+        "Cattle"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_039",
+    "reference": "Zechariah 1:3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 1: 'Return to me, and I will' do what?"
+    },
+    "answers": {
+      "en": [
+        "Return to you",
+        "Forget you",
+        "Judge you",
+        "Send you away"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_040",
+    "reference": "Zechariah 1:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What color was the horse of the man among the myrtle trees?"
+    },
+    "answers": {
+      "en": [
+        "Black",
+        "Red",
+        "Gray",
+        "Golden"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_041",
+    "reference": "Zechariah 2:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 2: Jerusalem will be inhabited like villages without what?"
+    },
+    "answers": {
+      "en": [
+        "Walls",
+        "Kings",
+        "Water",
+        "Trees"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_042",
+    "reference": "Zechariah 2:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 2: God will be to Jerusalem a wall of what?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Stone",
+        "Gold",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_043",
+    "reference": "Zechariah 2:8",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 2: whoever touches God's people touches the apple of what?"
+    },
+    "answers": {
+      "en": [
+        "His eye",
+        "His hand",
+        "His heart",
+        "His crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_044",
+    "reference": "Zechariah 3:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 3: Joshua is called a burning stick plucked out of what?"
+    },
+    "answers": {
+      "en": [
+        "The fire",
+        "The river",
+        "The pit",
+        "The sea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_045",
+    "reference": "Zechariah 3:5",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 3: what was set on Joshua's head?"
+    },
+    "answers": {
+      "en": [
+        "A clean turban",
+        "A wreath of olive",
+        "A helmet",
+        "A veil"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_046",
+    "reference": "Zechariah 3:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 3: how many eyes were on the stone set before Joshua?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Two",
+        "Twelve",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_047",
+    "reference": "Zechariah 4:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 4: 'Who are you, great mountain? Before Zerubbabel you are' what?"
+    },
+    "answers": {
+      "en": [
+        "A valley",
+        "A heap",
+        "A river",
+        "A plain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_048",
+    "reference": "Zechariah 4:9",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 4: whose hands laid the temple's foundation and will finish it?"
+    },
+    "answers": {
+      "en": [
+        "Joshua's",
+        "Ezra's",
+        "Nehemiah's",
+        "Zerubbabel's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_049",
+    "reference": "Zechariah 4:10",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 4: 'Who has despised the day of' what?"
+    },
+    "answers": {
+      "en": [
+        "Great battles",
+        "Harvest",
+        "Rest",
+        "Small things"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_050",
+    "reference": "Zechariah 5:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How long was the flying scroll in Zechariah 5?"
+    },
+    "answers": {
+      "en": [
+        "Seven cubits",
+        "Forty cubits",
+        "Three cubits",
+        "Twenty cubits"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_051",
+    "reference": "Zechariah 5:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 5: to which land was the ephah basket carried?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Edom",
+        "Moab",
+        "Shinar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_052",
+    "reference": "Zechariah 6:2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 6: what color were the horses of the first chariot?"
+    },
+    "answers": {
+      "en": [
+        "Black",
+        "White",
+        "Dappled",
+        "Red"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_053",
+    "reference": "Zechariah 6:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 6: on whose head were the crowns of silver and gold set?"
+    },
+    "answers": {
+      "en": [
+        "Zerubbabel the governor",
+        "Haggai the prophet",
+        "Iddo the seer",
+        "Joshua the high priest"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_054",
+    "reference": "Zechariah 6:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 6: what is the name of the man who will build Yahweh's temple?"
+    },
+    "answers": {
+      "en": [
+        "The Shepherd",
+        "The Stone",
+        "The Watchman",
+        "The Branch"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b188_055",
+    "reference": "Zechariah 8:5",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 8: the streets of Jerusalem will be full of whom, playing?"
+    },
+    "answers": {
+      "en": [
+        "Musicians",
+        "Soldiers",
+        "Boys and girls",
+        "Merchants"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_056",
+    "reference": "Zechariah 8:23",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 8: how many men from the nations will take hold of a Jew's robe?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "Ten",
+        "Three"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_057",
+    "reference": "Zechariah 11:7",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 11: what did the shepherd name his two staffs?"
+    },
+    "answers": {
+      "en": [
+        "Peace and Truth",
+        "Grace and Glory",
+        "Favor and Union",
+        "Light and Life"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_058",
+    "reference": "Zechariah 12:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 12: they will look to the one whom they have done what to?"
+    },
+    "answers": {
+      "en": [
+        "Crowned",
+        "Forgotten",
+        "Pierced",
+        "Sold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_059",
+    "reference": "Zechariah 13:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 13: what will be opened for sin and for uncleanness?"
+    },
+    "answers": {
+      "en": [
+        "A gate",
+        "A book",
+        "A spring",
+        "A window"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_060",
+    "reference": "Zechariah 13:7",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 13: 'Strike the shepherd, and the' what will be scattered?"
+    },
+    "answers": {
+      "en": [
+        "Stones",
+        "Wolves",
+        "Sheep",
+        "Kings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_061",
+    "reference": "Zechariah 14:8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 14: what will go out from Jerusalem, half east and half west?"
+    },
+    "answers": {
+      "en": [
+        "Armies",
+        "Messengers",
+        "Living waters",
+        "Rays of light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_062",
+    "reference": "Zechariah 14:9",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 14: Yahweh will be King over what?"
+    },
+    "answers": {
+      "en": [
+        "Only Judah",
+        "Only Jerusalem",
+        "All the earth",
+        "The angels"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_063",
+    "reference": "Zechariah 14:16",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 14: which feast will the nations go up yearly to keep?"
+    },
+    "answers": {
+      "en": [
+        "The Passover",
+        "The feast of weeks",
+        "The feast of tents",
+        "The new moon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b188_064",
+    "reference": "Zechariah 14:20",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah 14: what will be written on the bells of the horses?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh is King",
+        "Holy to Yahweh",
+        "Peace to Zion",
+        "Glory to God"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_065",
+    "reference": "Malachi 1:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 1: a son honors his father, and a servant honors whom?"
+    },
+    "answers": {
+      "en": [
+        "His king",
+        "His master",
+        "His brother",
+        "His priest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_066",
+    "reference": "Malachi 1:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 1: from sunrise to sunset, what is great among the nations?"
+    },
+    "answers": {
+      "en": [
+        "Israel's army",
+        "God's name",
+        "The temple",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_067",
+    "reference": "Malachi 2:7",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 2: what should the priest's lips keep?"
+    },
+    "answers": {
+      "en": [
+        "Silence",
+        "Knowledge",
+        "Gold",
+        "Songs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_068",
+    "reference": "Malachi 2:10",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 2: 'Don't we all have one' what?"
+    },
+    "answers": {
+      "en": [
+        "Brother",
+        "Father",
+        "Temple",
+        "Language"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_069",
+    "reference": "Malachi 2:17",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 2: with what have the people wearied Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Their words",
+        "Their sacrifices",
+        "Their silence",
+        "Their songs"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_070",
+    "reference": "Malachi 3:2",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 3: he is like a refiner's fire and like what?"
+    },
+    "answers": {
+      "en": [
+        "A potter's wheel",
+        "Launderer's soap",
+        "A shepherd's staff",
+        "Fresh rain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_071",
+    "reference": "Malachi 3:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 3: whom will the refiner purify like gold and silver?"
+    },
+    "answers": {
+      "en": [
+        "The sons of Judah",
+        "The sons of Levi",
+        "The sons of Zadok",
+        "The sons of Esau"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_072",
+    "reference": "Malachi 3:10",
+    "difficulty": 1,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 3: God will open the windows of what to pour out a blessing?"
+    },
+    "answers": {
+      "en": [
+        "The temple",
+        "Heaven",
+        "The palace",
+        "The earth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b188_073",
+    "reference": "Malachi 3:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 3: whom will God rebuke for the people's sake?"
+    },
+    "answers": {
+      "en": [
+        "The devourer",
+        "The proud",
+        "The priests",
+        "The kings"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_074",
+    "reference": "Malachi 4:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 4: the coming day burns like what?"
+    },
+    "answers": {
+      "en": [
+        "A furnace",
+        "A torch",
+        "A forest",
+        "The sun"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_075",
+    "reference": "Malachi 4:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 4: those who fear God will go out and leap like what?"
+    },
+    "answers": {
+      "en": [
+        "Calves of the stall",
+        "Young deer",
+        "Lambs in spring",
+        "Goats on the hills"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b188_076",
+    "reference": "Malachi 4:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 4: where did God command Moses the law for all Israel?"
+    },
+    "answers": {
+      "en": [
+        "Horeb",
+        "Carmel",
+        "Zion",
+        "Nebo"
+      ]
+    },
+    "correctIndex": 0
+  }
+]

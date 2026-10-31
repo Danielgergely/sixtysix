@@ -1,0 +1,794 @@
+[
+  {
+    "id": "q_b145_001",
+    "reference": "2 Chronicles 1:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "According to 2 Chronicles, what did Solomon ask God to give him?"
+    },
+    "answers": {
+      "en": [
+        "Riches and honor",
+        "Long life",
+        "Wisdom and knowledge",
+        "Victory over his enemies"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_002",
+    "reference": "2 Chronicles 2:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In 2 Chronicles, what is the name of the king of Tyre who helped Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Huram",
+        "Hadad",
+        "Hazael",
+        "Hiel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_003",
+    "reference": "2 Chronicles 2:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "According to 2 Chronicles, the skilled craftsman's mother was from which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Levi",
+        "Asher",
+        "Dan"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_004",
+    "reference": "2 Chronicles 3:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "On which mountain did Solomon build Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "Mount Carmel",
+        "Mount Moriah",
+        "Mount Sinai",
+        "Mount of Olives"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_005",
+    "reference": "2 Chronicles 3:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Solomon built the temple at the threshing floor of whom?"
+    },
+    "answers": {
+      "en": [
+        "Boaz of Bethlehem",
+        "Ornan the Jebusite",
+        "Obed-Edom",
+        "Abinadab"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_006",
+    "reference": "2 Chronicles 3:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many pomegranates did Solomon put on the chains of the pillars?"
+    },
+    "answers": {
+      "en": [
+        "Two hundred",
+        "Twelve",
+        "Four hundred",
+        "One hundred"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_007",
+    "reference": "2 Chronicles 4:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Where were the temple's bronze objects cast in clay ground?"
+    },
+    "answers": {
+      "en": [
+        "The plain of the Jordan",
+        "The valley of Hinnom",
+        "Mount Lebanon",
+        "The coast of Joppa"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_008",
+    "reference": "2 Chronicles 5:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many priests blew trumpets at the dedication of the temple?"
+    },
+    "answers": {
+      "en": [
+        "12",
+        "70",
+        "120",
+        "24"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_009",
+    "reference": "2 Chronicles 5:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "When the singers praised, \"for his loving kindness endures forever,\" what filled the house?"
+    },
+    "answers": {
+      "en": [
+        "Smoke",
+        "Fire",
+        "Bright light",
+        "A cloud"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_010",
+    "reference": "2 Chronicles 6:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Solomon stand and kneel on while praying in the temple court?"
+    },
+    "answers": {
+      "en": [
+        "A golden throne",
+        "The altar steps",
+        "A bronze scaffold",
+        "A stone pillar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_011",
+    "reference": "2 Chronicles 7:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Israel do when they saw the fire and glory come down on the house?"
+    },
+    "answers": {
+      "en": [
+        "Ran out of the city",
+        "Bowed with faces to the ground",
+        "Blew their trumpets",
+        "Tore their clothes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_012",
+    "reference": "2 Chronicles 7:14",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "God said if his people humble themselves, pray and turn, he will forgive and heal what?"
+    },
+    "answers": {
+      "en": [
+        "Their land",
+        "Their king",
+        "Their cattle",
+        "Their temple"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_013",
+    "reference": "2 Chronicles 8:18",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many talents of gold did Huram's and Solomon's servants bring from Ophir?"
+    },
+    "answers": {
+      "en": [
+        "666",
+        "120",
+        "450",
+        "1,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_014",
+    "reference": "2 Chronicles 9:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the queen of Sheba give Solomon, such as had never been given before?"
+    },
+    "answers": {
+      "en": [
+        "Spices",
+        "Horses",
+        "Ivory",
+        "Peacocks"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_015",
+    "reference": "2 Chronicles 9:11",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Solomon made harps and stringed instruments from what kind of trees?"
+    },
+    "answers": {
+      "en": [
+        "Cedar trees",
+        "Olive trees",
+        "Fir trees",
+        "Algum trees"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_016",
+    "reference": "2 Chronicles 10:14",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whose counsel did Rehoboam follow when he answered the people harshly?"
+    },
+    "answers": {
+      "en": [
+        "The old men's",
+        "The young men's",
+        "The prophets'",
+        "The priests'"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_017",
+    "reference": "2 Chronicles 11:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Jeroboam appointed priests for the high places, for the calves, and for what?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Male goats",
+        "Serpents",
+        "Bulls"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_018",
+    "reference": "2 Chronicles 11:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which of his wives did Rehoboam love above all the others?"
+    },
+    "answers": {
+      "en": [
+        "Naamah",
+        "Mahalath",
+        "Abihail",
+        "Maacah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_019",
+    "reference": "2 Chronicles 11:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many sons did Rehoboam have?"
+    },
+    "answers": {
+      "en": [
+        "Twenty-eight",
+        "Sixty",
+        "Eighteen",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_020",
+    "reference": "2 Chronicles 12:3",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many horsemen came with Shishak against Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "12,000",
+        "6,000",
+        "60,000",
+        "100,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_021",
+    "reference": "2 Chronicles 13:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Abijah's army had 400,000 men. How many did Jeroboam bring against him?"
+    },
+    "answers": {
+      "en": [
+        "500,000",
+        "1,000,000",
+        "300,000",
+        "800,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_022",
+    "reference": "2 Chronicles 13:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On which mountain did Abijah stand to speak to Jeroboam and Israel?"
+    },
+    "answers": {
+      "en": [
+        "Mount Gilboa",
+        "Mount Ebal",
+        "Mount Zemaraim",
+        "Mount Gerizim"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_023",
+    "reference": "2 Chronicles 13:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Abijah said God gave the kingdom to David by a covenant of what?"
+    },
+    "answers": {
+      "en": [
+        "Blood",
+        "Salt",
+        "Fire",
+        "Oil"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_024",
+    "reference": "2 Chronicles 13:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What trick did Jeroboam use in the battle against Abijah?"
+    },
+    "answers": {
+      "en": [
+        "An ambush behind them",
+        "A false peace offer",
+        "A night attack",
+        "Poisoned wells"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_025",
+    "reference": "2 Chronicles 13:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the men of Judah do just before God struck Jeroboam's army?"
+    },
+    "answers": {
+      "en": [
+        "Ran away",
+        "Laid down their weapons",
+        "Gave a shout",
+        "Lit fires"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_026",
+    "reference": "2 Chronicles 13:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What happened to Jeroboam in the days of Abijah?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh struck him and he died",
+        "He was taken to Assyria",
+        "He made peace with Judah",
+        "He was killed by a lion"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_027",
+    "reference": "2 Chronicles 14:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which Ethiopian came against Asa with a million troops?"
+    },
+    "answers": {
+      "en": [
+        "Shishak",
+        "So",
+        "Tirhakah",
+        "Zerah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_028",
+    "reference": "2 Chronicles 14:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "In which valley did Asa set the battle in array against Zerah?"
+    },
+    "answers": {
+      "en": [
+        "Elah",
+        "Zephathah",
+        "Rephaim",
+        "Achor"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_029",
+    "reference": "2 Chronicles 15:1",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On whom did the Spirit of God come to speak to King Asa?"
+    },
+    "answers": {
+      "en": [
+        "Hanani the seer",
+        "Azariah the son of Oded",
+        "Jehu the son of Hanani",
+        "Iddo the seer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_030",
+    "reference": "2 Chronicles 16:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which seer rebuked Asa for relying on the king of Syria?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Gad",
+        "Nathan",
+        "Hanani"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_031",
+    "reference": "2 Chronicles 16:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Hanani said, \"The eyes of Yahweh run back and forth throughout\" what?"
+    },
+    "answers": {
+      "en": [
+        "The whole earth",
+        "The holy city",
+        "The temple courts",
+        "The land of Judah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_032",
+    "reference": "2 Chronicles 16:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Asa do to the seer who rebuked him?"
+    },
+    "answers": {
+      "en": [
+        "Killed him",
+        "Gave him gifts",
+        "Put him in prison",
+        "Sent him to Egypt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_033",
+    "reference": "2 Chronicles 16:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "King Asa was laid in a bed filled with sweet odors and what?"
+    },
+    "answers": {
+      "en": [
+        "Flowers",
+        "Myrrh leaves",
+        "Gold dust",
+        "Spices"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_034",
+    "reference": "2 Chronicles 17:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why did Jehoshaphat send his princes, Levites and priests to the cities of Judah?"
+    },
+    "answers": {
+      "en": [
+        "To collect taxes",
+        "To count the people",
+        "To teach",
+        "To build altars"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_035",
+    "reference": "2 Chronicles 17:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did some of the Philistines bring to King Jehoshaphat?"
+    },
+    "answers": {
+      "en": [
+        "Their idols of Dagon",
+        "Presents and silver for tribute",
+        "Iron chariots",
+        "Grain and wine"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_036",
+    "reference": "2 Chronicles 19:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who asked King Jehoshaphat, \"Should you help the wicked?\""
+    },
+    "answers": {
+      "en": [
+        "Jehu the son of Hanani",
+        "Micaiah",
+        "Elijah",
+        "Jahaziel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_037",
+    "reference": "2 Chronicles 20:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Hazazon Tamar, where the great multitude camped, is also called what?"
+    },
+    "answers": {
+      "en": [
+        "Beersheba",
+        "Gilgal",
+        "En Gedi",
+        "Engannim"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b145_038",
+    "reference": "2 Chronicles 20:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Jehoshaphat proclaim throughout Judah when the great army came?"
+    },
+    "answers": {
+      "en": [
+        "A fast",
+        "A feast",
+        "A census",
+        "A jubilee"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_039",
+    "reference": "2 Chronicles 20:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On which Levite did the Spirit of Yahweh come in the assembly?"
+    },
+    "answers": {
+      "en": [
+        "Zechariah",
+        "Asaph",
+        "Eliezer",
+        "Jahaziel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_040",
+    "reference": "2 Chronicles 20:15",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "\"Don't be afraid... for the battle is not yours, but\" whose?"
+    },
+    "answers": {
+      "en": [
+        "The king's",
+        "God's",
+        "The Levites'",
+        "Israel's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_041",
+    "reference": "2 Chronicles 20:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Whom did Jehoshaphat send out in front of the army?"
+    },
+    "answers": {
+      "en": [
+        "The priests with the ark",
+        "Singers praising Yahweh",
+        "Archers on horses",
+        "Chariots of iron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b145_042",
+    "reference": "2 Chronicles 20:23",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who did the armies of Ammon and Moab turn against first?"
+    },
+    "answers": {
+      "en": [
+        "The men of Judah",
+        "Their own kings",
+        "The Philistines",
+        "The people of Mount Seir"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b145_043",
+    "reference": "2 Chronicles 20:25",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many days did it take Judah to gather the plunder?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "One",
+        "Seven",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b145_044",
+    "reference": "2 Chronicles 20:37",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which prophet said Yahweh had broken Jehoshaphat's ships?"
+    },
+    "answers": {
+      "en": [
+        "Jahaziel",
+        "Hanani",
+        "Eliezer",
+        "Micaiah"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

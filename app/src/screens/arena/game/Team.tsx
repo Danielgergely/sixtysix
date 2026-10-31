@@ -173,10 +173,10 @@ export function TeamRound({
       <ol className="tm-round-list">
         {members.slice(0, max).map(({ p, e }) => (
           <li key={p.id} className={`tm-round-row ${p.id === myPlayerId ? 'you' : ''}`}>
-            <PaintedPortrait id={p.avatar} className="st-portrait" />
-            <span className="st-name">{p.id === myPlayerId ? t('arena.team.you', { name: p.name }) : p.name}</span>
+            <PaintedPortrait id={p.avatar} className="stand-portrait" />
+            <span className="stand-name">{p.id === myPlayerId ? t('arena.team.you', { name: p.name }) : p.name}</span>
             <span className={`tm-round-gain ${e?.gain ? '' : 'zero'}`}>+{pts(e?.gain ?? 0)}</span>
-            <span className="st-pts">{pts(p.score)}</span>
+            <span className="stand-pts">{pts(p.score)}</span>
           </li>
         ))}
         {members.length > max && <li className="tm-round-more">{t('arena.team.more', { n: members.length - max })}</li>}

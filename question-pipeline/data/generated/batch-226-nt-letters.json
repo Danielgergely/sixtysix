@@ -1,0 +1,866 @@
+[
+  {
+    "id": "q_b226_001",
+    "reference": "Ephesians 1:1",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "The letter to the Ephesians is written to the saints in which city?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Colossae",
+        "Ephesus",
+        "Philippi"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_002",
+    "reference": "Ephesians 1:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians says believers were sealed with the Holy Spirit of what?"
+    },
+    "answers": {
+      "en": [
+        "Promise",
+        "Truth",
+        "Power",
+        "Glory"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_003",
+    "reference": "Ephesians 2:10",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'For we are his ___, created in Christ Jesus for good works.'"
+    },
+    "answers": {
+      "en": [
+        "Children",
+        "Workmanship",
+        "Servants",
+        "Treasure"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_004",
+    "reference": "Ephesians 2:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 2 says Christ broke down the middle what of partition?"
+    },
+    "answers": {
+      "en": [
+        "Veil",
+        "Gate",
+        "Door",
+        "Wall"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_005",
+    "reference": "Ephesians 3:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls himself 'the very least of all' whom?"
+    },
+    "answers": {
+      "en": [
+        "Saints",
+        "Apostles",
+        "Sinners",
+        "Prophets"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_006",
+    "reference": "Ephesians 4:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 4: 'There is one body, and one ___.'"
+    },
+    "answers": {
+      "en": [
+        "Temple",
+        "Nation",
+        "Spirit",
+        "Law"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_007",
+    "reference": "Ephesians 4:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "When he ascended on high, what did he give to men, says Ephesians 4?"
+    },
+    "answers": {
+      "en": [
+        "Laws",
+        "Gifts",
+        "Crowns",
+        "Lands"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_008",
+    "reference": "Ephesians 4:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Ephesians 4's list of those Christ gave to the church?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Judges",
+        "Scribes",
+        "Evangelists"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_009",
+    "reference": "Ephesians 4:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 4 warns against being carried about by every what of doctrine?"
+    },
+    "answers": {
+      "en": [
+        "Wind",
+        "Stone",
+        "Book",
+        "Song"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_010",
+    "reference": "Ephesians 4:30",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Don't ___ the Holy Spirit of God, in whom you were sealed.'"
+    },
+    "answers": {
+      "en": [
+        "Forget",
+        "Hide",
+        "Test",
+        "Grieve"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_011",
+    "reference": "Ephesians 5:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes: 'You were once darkness, but are now ___ in the Lord.'"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Light",
+        "Holy",
+        "Free"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_012",
+    "reference": "Ephesians 5:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 5 quotes: 'Awake, you who ___, and arise from the dead.'"
+    },
+    "answers": {
+      "en": [
+        "Mourn",
+        "Wander",
+        "Sleep",
+        "Fear"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_013",
+    "reference": "Ephesians 5:16",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 5 urges 'redeeming the ___, because the days are evil.'"
+    },
+    "answers": {
+      "en": [
+        "Lost",
+        "Land",
+        "Time",
+        "Poor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_014",
+    "reference": "Ephesians 5:19",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 5 says to speak to one another in psalms, hymns and what?"
+    },
+    "answers": {
+      "en": [
+        "Prophecies",
+        "Spiritual songs",
+        "Parables",
+        "Proverbs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_015",
+    "reference": "Ephesians 6:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says 'Honor your father and mother' is the first commandment with what?"
+    },
+    "answers": {
+      "en": [
+        "A curse",
+        "A sign",
+        "A reward",
+        "A promise"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_016",
+    "reference": "Ephesians 6:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Ephesians 6 tells fathers not to provoke their children to what?"
+    },
+    "answers": {
+      "en": [
+        "Wrath",
+        "Tears",
+        "Fear",
+        "Laughter"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_017",
+    "reference": "Ephesians 6:15",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, the feet are fitted with the preparation of the Good News of what?"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Joy",
+        "Hope",
+        "Truth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_018",
+    "reference": "Ephesians 6:20",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In Ephesians 6, Paul calls himself an ambassador in what?"
+    },
+    "answers": {
+      "en": [
+        "Rags",
+        "Exile",
+        "Tears",
+        "Chains"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_019",
+    "reference": "Philippians 1:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Who is named with Paul at the start of the letter to the Philippians?"
+    },
+    "answers": {
+      "en": [
+        "Silas",
+        "Titus",
+        "Timothy",
+        "Luke"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_020",
+    "reference": "Philippians 1:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul's bonds in Christ became known to the whole what?"
+    },
+    "answers": {
+      "en": [
+        "Senate",
+        "Palace guard",
+        "Synagogue",
+        "Temple"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_021",
+    "reference": "Philippians 2:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Philippians 2 says Christ emptied himself, taking the form of a what?"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "Angel",
+        "Priest",
+        "Servant"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_022",
+    "reference": "Philippians 2:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Christ became obedient to death, even the death of the what?"
+    },
+    "answers": {
+      "en": [
+        "Sword",
+        "Cross",
+        "Lions",
+        "Fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_023",
+    "reference": "Philippians 2:15",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Philippians 2 says believers are seen as what in the world?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Shepherds",
+        "Lights",
+        "Kings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_024",
+    "reference": "Philippians 2:27",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which helper of Paul was sick nearly to death, but God had mercy on him?"
+    },
+    "answers": {
+      "en": [
+        "Epaphroditus",
+        "Timothy",
+        "Clement",
+        "Onesimus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_025",
+    "reference": "Philippians 3:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul warns the Philippians: 'Beware of the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Wolves",
+        "Dogs",
+        "Lions",
+        "Serpents"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_026",
+    "reference": "Philippians 3:5",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "According to Philippians, on which day was Paul circumcised?"
+    },
+    "answers": {
+      "en": [
+        "The first day",
+        "The seventh day",
+        "The eighth day",
+        "The fortieth day"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_027",
+    "reference": "Philippians 3:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul counts all things as what, that he may gain Christ?"
+    },
+    "answers": {
+      "en": [
+        "Refuse",
+        "Treasure",
+        "Dust",
+        "Ashes"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_028",
+    "reference": "Philippians 3:14",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul: 'I press on toward the goal for the ___ of the high calling of God.'"
+    },
+    "answers": {
+      "en": [
+        "Crown",
+        "Kingdom",
+        "City",
+        "Prize"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_029",
+    "reference": "Philippians 3:20",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Philippians 3 says our citizenship is where?"
+    },
+    "answers": {
+      "en": [
+        "In heaven",
+        "In Rome",
+        "In Jerusalem",
+        "In Philippi"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_030",
+    "reference": "Philippians 4:4",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Rejoice in the Lord always! Again I will say, ___!'"
+    },
+    "answers": {
+      "en": [
+        "Amen",
+        "Rejoice",
+        "Pray",
+        "Praise"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_031",
+    "reference": "Philippians 4:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "What will guard your hearts and thoughts, according to Philippians 4?"
+    },
+    "answers": {
+      "en": [
+        "The angels",
+        "The law",
+        "Your works",
+        "The peace of God"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_032",
+    "reference": "Philippians 4:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is in Paul's list in Philippians 4:8 of things to think about?"
+    },
+    "answers": {
+      "en": [
+        "Whatever is rich",
+        "Whatever is powerful",
+        "Whatever is lovely",
+        "Whatever is famous"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_033",
+    "reference": "Philippians 4:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he has learned the secret both to be filled and to be what?"
+    },
+    "answers": {
+      "en": [
+        "Famous",
+        "Hungry",
+        "Rich",
+        "Silent"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_034",
+    "reference": "Philippians 4:18",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls the gifts from Philippi, brought by Epaphroditus, a sweet-smelling what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Flower",
+        "Spice",
+        "Fragrance"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_035",
+    "reference": "Colossians 1:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians is written to the saints in which city?"
+    },
+    "answers": {
+      "en": [
+        "Laodicea",
+        "Hierapolis",
+        "Colossae",
+        "Philippi"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_036",
+    "reference": "Colossians 1:7",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "From whom did the Colossians learn the Good News, according to Colossians 1?"
+    },
+    "answers": {
+      "en": [
+        "Epaphras",
+        "Tychicus",
+        "Timothy",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_037",
+    "reference": "Colossians 1:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians 1 calls the Son the image of the ___ God."
+    },
+    "answers": {
+      "en": [
+        "Living",
+        "Hidden",
+        "Invisible",
+        "Eternal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_038",
+    "reference": "Colossians 2:14",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians 2 says the handwriting against us was taken out of the way, nailed to what?"
+    },
+    "answers": {
+      "en": [
+        "The cross",
+        "A door",
+        "The temple wall",
+        "A tree in Eden"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_039",
+    "reference": "Colossians 3:2",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians 3: 'Set your mind on the things that are ___, not on the things on the earth.'"
+    },
+    "answers": {
+      "en": [
+        "Hidden",
+        "Above",
+        "Ahead",
+        "Good"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_040",
+    "reference": "Colossians 3:11",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which people is named in Colossians 3:11, right after 'barbarian'?"
+    },
+    "answers": {
+      "en": [
+        "Egyptian",
+        "Persian",
+        "Roman",
+        "Scythian"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_041",
+    "reference": "Colossians 3:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians 3 says to walk in love, which is the bond of what?"
+    },
+    "answers": {
+      "en": [
+        "Perfection",
+        "Friendship",
+        "Marriage",
+        "Wealth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_042",
+    "reference": "Colossians 4:6",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Colossians 4: let your speech always be with grace, seasoned with what?"
+    },
+    "answers": {
+      "en": [
+        "Honey",
+        "Salt",
+        "Oil",
+        "Spice"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_043",
+    "reference": "Colossians 4:7",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Who would make all Paul's affairs known to the Colossians?"
+    },
+    "answers": {
+      "en": [
+        "Demas",
+        "Mark",
+        "Tychicus",
+        "Justus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b226_044",
+    "reference": "Colossians 4:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who came with Tychicus to Colossae, 'one of you'?"
+    },
+    "answers": {
+      "en": [
+        "Epaphras",
+        "Archippus",
+        "Demas",
+        "Onesimus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_045",
+    "reference": "Colossians 4:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who sends greetings in Colossians 4 as Paul's fellow prisoner?"
+    },
+    "answers": {
+      "en": [
+        "Luke",
+        "Demas",
+        "Justus",
+        "Aristarchus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b226_046",
+    "reference": "Colossians 4:11",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In Colossians 4, 'Jesus who is called' by which name sends greetings?"
+    },
+    "answers": {
+      "en": [
+        "Justus",
+        "Barsabbas",
+        "Niger",
+        "Didymus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b226_047",
+    "reference": "Colossians 4:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Epaphras had great zeal for the believers in Colossae, Laodicea and which city?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Hierapolis",
+        "Smyrna",
+        "Thyatira"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b226_048",
+    "reference": "Colossians 4:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who sends greetings together with Luke, the beloved physician?"
+    },
+    "answers": {
+      "en": [
+        "Mark",
+        "Titus",
+        "Demas",
+        "Crescens"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

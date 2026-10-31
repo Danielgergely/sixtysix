@@ -1104,7 +1104,7 @@
       "id": "item-band-red",
       "aspect": "1:1",
       "transparent": true,
-      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a simple red woven cloth headband with a small knot and two short ribbon tails at the right side, seen straight from the front at eye level exactly as it would sit on a head, so only its FRONT HALF is visible as a wide gentle arc (the back part is hidden, as if behind an invisible head; no ring, no ellipse, no inside visible). Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
+      "prompt": "Game cosmetic item for a character portrait, shown ALONE with no head, face or person: a simple red woven cloth headband as it looks when worn, seen straight from the front: ONE single curved strip of cloth shaped like a wide shallow smile (a downward-bowed arc), about 8 times wider than it is tall, its two ends getting slightly narrower where the band turns away behind the head at the far left and far right. A small knot with two short ribbon tails hanging down at the right end. It is NOT a ring, NOT an ellipse, NOT a loop: there is no back part, no upper rim, no hole and no inside surface visible anywhere; empty background above and below the single strip. A thin embroidered border along both edges of the strip. Centred, filling about 85% of the image width. Painted in the same rich painterly game style with clean dark outlines. Only the item."
     },
     {
       "id": "item-flowers",
@@ -1198,7 +1198,7 @@
       "aspect": "1:1",
       "transparent": true,
       "refs": [
-        "out/par/out/raw/item-band-red-2.png"
+        "out/raw/item-band-red-2.png"
       ],
       "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed deep royal blue instead of red. Only the item."
     },
@@ -1207,7 +1207,7 @@
       "aspect": "1:1",
       "transparent": true,
       "refs": [
-        "out/par/out/raw/item-band-red-2.png"
+        "out/raw/item-band-red-2.png"
       ],
       "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed emerald green instead of red. Only the item."
     },
@@ -1216,7 +1216,7 @@
       "aspect": "1:1",
       "transparent": true,
       "refs": [
-        "out/par/out/raw/item-band-red-2.png"
+        "out/raw/item-band-red-2.png"
       ],
       "prompt": "Recreate the attached headband EXACTLY (same shape, angle, size, position in the frame, knot and ribbon tails, same painting style) but dyed royal purple instead of red. Only the item."
     },

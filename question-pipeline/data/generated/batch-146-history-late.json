@@ -1,0 +1,866 @@
+[
+  {
+    "id": "q_b146_001",
+    "reference": "2 Chronicles 21:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "From whom did King Jehoram of Judah receive a letter of judgment?"
+    },
+    "answers": {
+      "en": [
+        "Elisha",
+        "Isaiah",
+        "Elijah the prophet",
+        "Jeremiah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_002",
+    "reference": "2 Chronicles 21:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which son of Jehoram was the only one left after the Arabians raided?"
+    },
+    "answers": {
+      "en": [
+        "Jehoahaz",
+        "Joash",
+        "Amaziah",
+        "Jotham"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_003",
+    "reference": "2 Chronicles 21:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Jehoram depart, according to 2 Chronicles?"
+    },
+    "answers": {
+      "en": [
+        "In great honor",
+        "In a chariot of fire",
+        "Mourned by all Judah",
+        "Without being desired"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_004",
+    "reference": "2 Chronicles 22:11",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who stole baby Joash away and hid him from Athaliah, according to 2 Chronicles?"
+    },
+    "answers": {
+      "en": [
+        "Jerushah",
+        "Jehoshabeath",
+        "Maacah",
+        "Hephzibah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_005",
+    "reference": "2 Chronicles 24:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Jehoiada when he died?"
+    },
+    "answers": {
+      "en": [
+        "120",
+        "130",
+        "100",
+        "175"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_006",
+    "reference": "2 Chronicles 24:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where was Jehoiada the priest buried?"
+    },
+    "answers": {
+      "en": [
+        "In Bethel",
+        "In the tomb of Aaron",
+        "In Anathoth",
+        "Among the kings in the city of David"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_007",
+    "reference": "2 Chronicles 24:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "As Zechariah died, what did he say?"
+    },
+    "answers": {
+      "en": [
+        "May Yahweh look at it, and repay it",
+        "Father, forgive them",
+        "I see heaven opened",
+        "Remember me, O God"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_008",
+    "reference": "2 Chronicles 24:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How large was the Syrian army that defeated Joash's very great army?"
+    },
+    "answers": {
+      "en": [
+        "A million men",
+        "Thirty-two kings",
+        "A small company of men",
+        "Five hundred chariots"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_009",
+    "reference": "2 Chronicles 25:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many talents did Amaziah pay to hire 100,000 soldiers from Israel?"
+    },
+    "answers": {
+      "en": [
+        "One thousand",
+        "Ten",
+        "Fifty",
+        "One hundred"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_010",
+    "reference": "2 Chronicles 25:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The man of God told Amaziah, \"Yahweh is able to give you\" what?"
+    },
+    "answers": {
+      "en": [
+        "A new army",
+        "A crown of gold",
+        "Much more than this",
+        "Peace with Edom"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_011",
+    "reference": "2 Chronicles 25:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Amaziah bring back and worship after defeating Edom?"
+    },
+    "answers": {
+      "en": [
+        "The ark of Edom",
+        "The gods of Seir",
+        "A golden calf",
+        "The bronze serpent"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_012",
+    "reference": "2 Chronicles 25:27",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To which city did Amaziah flee before he was killed?"
+    },
+    "answers": {
+      "en": [
+        "Lachish",
+        "Hebron",
+        "Gath",
+        "Libnah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_013",
+    "reference": "2 Chronicles 26:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How old was Uzziah when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Eight",
+        "Twelve",
+        "Sixteen",
+        "Twenty-five"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_014",
+    "reference": "2 Chronicles 26:5",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Uzziah sought God in the days of which man, who understood visions of God?"
+    },
+    "answers": {
+      "en": [
+        "Zechariah",
+        "Isaiah",
+        "Azariah",
+        "Oded"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_015",
+    "reference": "2 Chronicles 26:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Uzziah love, as 2 Chronicles says?"
+    },
+    "answers": {
+      "en": [
+        "Hunting",
+        "Music",
+        "Ships",
+        "Farming"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_016",
+    "reference": "2 Chronicles 26:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Uzziah set on Jerusalem's towers to shoot arrows and great stones?"
+    },
+    "answers": {
+      "en": [
+        "Catapult wagons",
+        "Engines",
+        "Giant bows",
+        "Iron chariots"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_017",
+    "reference": "2 Chronicles 26:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many priests went in with Azariah to stop Uzziah burning incense?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Eighty",
+        "Seven",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_018",
+    "reference": "2 Chronicles 26:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did Uzziah live after he became a leper?"
+    },
+    "answers": {
+      "en": [
+        "In the temple",
+        "Outside Jerusalem's walls",
+        "In Bethlehem",
+        "In a separate house"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_019",
+    "reference": "2 Chronicles 27:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did the Ammonites give Jotham each year after he defeated them?"
+    },
+    "answers": {
+      "en": [
+        "Silver, wheat and barley",
+        "Gold and horses",
+        "Cedar wood",
+        "Their king's crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_020",
+    "reference": "2 Chronicles 28:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How old was Ahaz when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Sixteen",
+        "Twelve",
+        "Twenty",
+        "Twenty-five"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_021",
+    "reference": "2 Chronicles 28:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which prophet told Israel's army to send back the captives from Judah?"
+    },
+    "answers": {
+      "en": [
+        "Hanani",
+        "Micaiah",
+        "Shemaiah",
+        "Oded"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_022",
+    "reference": "2 Chronicles 28:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the men of Israel do for the naked captives from Judah?"
+    },
+    "answers": {
+      "en": [
+        "Sold them as slaves",
+        "Made them build walls",
+        "Clothed them and gave them food",
+        "Sent them to Assyria"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_023",
+    "reference": "2 Chronicles 28:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which city, the city of palm trees, were the captives brought back?"
+    },
+    "answers": {
+      "en": [
+        "Jerusalem",
+        "Jericho",
+        "Hebron",
+        "Samaria"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_024",
+    "reference": "2 Chronicles 29:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Hezekiah do in the first month of his first year?"
+    },
+    "answers": {
+      "en": [
+        "Opened the doors of Yahweh's house",
+        "Built a new palace",
+        "Went to war with Assyria",
+        "Made a golden calf"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_025",
+    "reference": "2 Chronicles 29:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On which day of the first month did they finish cleansing Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "The seventh",
+        "The tenth",
+        "The sixteenth",
+        "The thirtieth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_026",
+    "reference": "2 Chronicles 29:34",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who helped the priests skin the burnt offerings because the priests were too few?"
+    },
+    "answers": {
+      "en": [
+        "The Levites",
+        "The princes",
+        "The singers",
+        "The king's guards"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_027",
+    "reference": "2 Chronicles 30:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which month did Hezekiah's people keep the Passover?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The seventh month",
+        "The twelfth month",
+        "The second month"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_028",
+    "reference": "2 Chronicles 30:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did many in Ephraim and Manasseh treat Hezekiah's couriers?"
+    },
+    "answers": {
+      "en": [
+        "They welcomed them with a feast",
+        "They ridiculed and mocked them",
+        "They killed them",
+        "They followed them at once"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_029",
+    "reference": "2 Chronicles 30:23",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After the Passover week, what did the assembly decide to do?"
+    },
+    "answers": {
+      "en": [
+        "Go home at once",
+        "Keep another seven days",
+        "Fast for three days",
+        "March against Assyria"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_030",
+    "reference": "2 Chronicles 31:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did the people lay up their tithes in Hezekiah's day?"
+    },
+    "answers": {
+      "en": [
+        "In jars",
+        "In sacks",
+        "In the treasury chests",
+        "In heaps"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_031",
+    "reference": "2 Chronicles 32:8",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Hezekiah said of the king of Assyria, \"With him is an arm of\" what?"
+    },
+    "answers": {
+      "en": [
+        "Flesh",
+        "Iron",
+        "Bronze",
+        "Stone"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_032",
+    "reference": "2 Chronicles 32:21",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whom did Yahweh send to cut off the mighty men in the Assyrian camp?"
+    },
+    "answers": {
+      "en": [
+        "A plague of frogs",
+        "Hailstones",
+        "An angel",
+        "The army of Egypt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_033",
+    "reference": "2 Chronicles 32:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What went wrong with Hezekiah after Yahweh healed him?"
+    },
+    "answers": {
+      "en": [
+        "He forgot to pray",
+        "He married foreign wives",
+        "He sold the temple gold",
+        "His heart was lifted up"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_034",
+    "reference": "2 Chronicles 32:30",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which spring did Hezekiah stop and bring down to the west side of the city?"
+    },
+    "answers": {
+      "en": [
+        "En Rogel",
+        "Siloam",
+        "Gihon",
+        "Marah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_035",
+    "reference": "2 Chronicles 32:33",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where was Hezekiah buried?"
+    },
+    "answers": {
+      "en": [
+        "In his garden",
+        "The ascent of the tombs of David's sons",
+        "On the Mount of Olives",
+        "In Hebron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_036",
+    "reference": "2 Chronicles 33:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Around which hill did Manasseh build an outer wall after he returned?"
+    },
+    "answers": {
+      "en": [
+        "Ophel",
+        "Moriah",
+        "Zion",
+        "Olivet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_037",
+    "reference": "2 Chronicles 33:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After Manasseh returned from Babylon, what did he take out of Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "The ark of the covenant",
+        "The golden lampstand",
+        "The foreign gods and the idol",
+        "The bronze altar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_038",
+    "reference": "2 Chronicles 34:3",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which year of his reign did young Josiah begin to seek the God of David?"
+    },
+    "answers": {
+      "en": [
+        "The eighth year",
+        "The first year",
+        "The twelfth year",
+        "The eighteenth year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_039",
+    "reference": "2 Chronicles 34:22",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "In which part of Jerusalem did Huldah the prophetess live?"
+    },
+    "answers": {
+      "en": [
+        "The upper city",
+        "The fish gate",
+        "The king's garden",
+        "The second quarter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_040",
+    "reference": "2 Chronicles 35:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many lambs and young goats did Josiah give the people for the Passover?"
+    },
+    "answers": {
+      "en": [
+        "3,000",
+        "30,000",
+        "7,000",
+        "12,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_041",
+    "reference": "2 Chronicles 35:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "2 Chronicles says no Passover like Josiah's had been kept since the days of whom?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Samuel the prophet",
+        "Solomon",
+        "Hezekiah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_042",
+    "reference": "2 Chronicles 35:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who told Josiah, \"God has commanded me to make haste\"?"
+    },
+    "answers": {
+      "en": [
+        "Nebuchadnezzar",
+        "Sennacherib",
+        "Cyrus",
+        "Neco king of Egypt"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_043",
+    "reference": "2 Chronicles 35:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After Josiah was wounded, in what was he carried to Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "His second chariot",
+        "A litter",
+        "A boat",
+        "A cart pulled by oxen"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b146_044",
+    "reference": "2 Chronicles 35:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophet lamented for Josiah?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Ezekiel",
+        "Jeremiah",
+        "Habakkuk"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_045",
+    "reference": "2 Chronicles 36:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Zedekiah rebelled against Nebuchadnezzar, who had made him swear by whom?"
+    },
+    "answers": {
+      "en": [
+        "Baal",
+        "The king of Egypt",
+        "His own life",
+        "God"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b146_046",
+    "reference": "2 Chronicles 36:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did the people treat God's messengers before Jerusalem fell?"
+    },
+    "answers": {
+      "en": [
+        "They obeyed them",
+        "They paid them",
+        "They mocked them",
+        "They made them kings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b146_047",
+    "reference": "2 Chronicles 36:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many years did the land keep Sabbath while it lay desolate?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Seventy",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b146_048",
+    "reference": "2 Chronicles 36:22",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which king of Persia made a proclamation to build Yahweh's house in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Cyrus",
+        "Darius",
+        "Artaxerxes",
+        "Ahasuerus"
+      ]
+    },
+    "correctIndex": 0
+  }
+]

@@ -1,0 +1,1226 @@
+[
+  {
+    "id": "q_b143_001",
+    "reference": "2 Kings 11:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who destroyed all the royal offspring when her son Ahaziah died?"
+    },
+    "answers": {
+      "en": [
+        "Jezebel",
+        "Maacah",
+        "Athaliah",
+        "Jehosheba"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_002",
+    "reference": "2 Kings 11:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "For how many years was young Joash hidden in Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "Six",
+        "Seven",
+        "Three",
+        "Ten"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_003",
+    "reference": "2 Kings 11:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which priest brought out young Joash and made him king?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah",
+        "Zadok",
+        "Uriah",
+        "Jehoiada"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_004",
+    "reference": "2 Kings 11:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the people shout when Joash was crowned?"
+    },
+    "answers": {
+      "en": [
+        "Hosanna!",
+        "Long live the king!",
+        "Down with Athaliah!",
+        "Glory to Yahweh!"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_005",
+    "reference": "2 Kings 11:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Athaliah cry out when she saw the new king?"
+    },
+    "answers": {
+      "en": [
+        "Help me! Help me!",
+        "Treason! Treason!",
+        "Seize him!",
+        "He is not the king!"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_006",
+    "reference": "2 Kings 11:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How old was Jehoash (Joash) when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Eight",
+        "Twelve",
+        "Sixteen",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_007",
+    "reference": "2 Kings 12:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Jehoiada the priest use to collect money for repairing the temple?"
+    },
+    "answers": {
+      "en": [
+        "A chest with a hole in its lid",
+        "A golden bowl",
+        "A clay jar",
+        "A leather bag"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_008",
+    "reference": "2 Kings 12:18",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "King Joash sent the temple's holy things to which king of Syria?"
+    },
+    "answers": {
+      "en": [
+        "Ben Hadad",
+        "Rezin",
+        "Hazael",
+        "Naaman"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_009",
+    "reference": "2 Kings 12:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How did King Joash of Judah die?"
+    },
+    "answers": {
+      "en": [
+        "He fell in battle",
+        "He died of old age",
+        "He fell through a lattice",
+        "His servants killed him"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_010",
+    "reference": "2 Kings 13:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which king of Israel wept over Elisha as he lay dying?"
+    },
+    "answers": {
+      "en": [
+        "Jehu",
+        "Ahab",
+        "Joash",
+        "Jeroboam"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_011",
+    "reference": "2 Kings 13:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Elisha called the arrow shot from the window Yahweh's arrow of what?"
+    },
+    "answers": {
+      "en": [
+        "Judgment",
+        "Victory",
+        "Peace",
+        "Fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_012",
+    "reference": "2 Kings 13:18",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many times did King Joash strike the ground with the arrows?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Five",
+        "Seven",
+        "Six"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_013",
+    "reference": "2 Kings 14:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Why didn't Amaziah kill the children of his father's murderers?"
+    },
+    "answers": {
+      "en": [
+        "They fled to Egypt",
+        "Their mother begged for them",
+        "The law of Moses forbade it",
+        "A prophet stopped him"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_014",
+    "reference": "2 Kings 14:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which valley did Amaziah kill ten thousand Edomites?"
+    },
+    "answers": {
+      "en": [
+        "The Valley of Salt",
+        "The Valley of Elah",
+        "The Kidron Valley",
+        "The Valley of Jezreel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_015",
+    "reference": "2 Kings 14:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In Jehoash's parable, what did the thistle ask of the cedar?"
+    },
+    "answers": {
+      "en": [
+        "His branches for shade",
+        "His roots for water",
+        "His seeds for planting",
+        "His daughter as wife for his son"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_016",
+    "reference": "2 Kings 14:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many cubits of Jerusalem's wall did Jehoash of Israel break down?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Four hundred",
+        "One hundred",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_017",
+    "reference": "2 Kings 14:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophet, the son of Amittai, spoke in the days of Jeroboam II?"
+    },
+    "answers": {
+      "en": [
+        "Amos",
+        "Jonah",
+        "Hosea",
+        "Joel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_018",
+    "reference": "2 Kings 15:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which king of Judah was a leper until the day of his death?"
+    },
+    "answers": {
+      "en": [
+        "Jotham",
+        "Amaziah",
+        "Ahaz",
+        "Azariah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_019",
+    "reference": "2 Kings 15:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who conspired against Zechariah king of Israel and killed him?"
+    },
+    "answers": {
+      "en": [
+        "Shallum",
+        "Menahem",
+        "Pekah",
+        "Hoshea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_020",
+    "reference": "2 Kings 15:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How long did Shallum reign in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Seven days",
+        "Two years",
+        "One month",
+        "Ten years"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_021",
+    "reference": "2 Kings 15:19",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which king of Assyria did Menahem pay a thousand talents of silver?"
+    },
+    "answers": {
+      "en": [
+        "Sennacherib",
+        "Esar Haddon",
+        "Shalmaneser",
+        "Pul"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_022",
+    "reference": "2 Kings 15:29",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which king of Assyria took Galilee and the land of Naphtali in Pekah's days?"
+    },
+    "answers": {
+      "en": [
+        "Sennacherib",
+        "Shalmaneser",
+        "Tiglath Pileser",
+        "Esar Haddon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_023",
+    "reference": "2 Kings 15:30",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who conspired against Pekah and killed him?"
+    },
+    "answers": {
+      "en": [
+        "Menahem",
+        "Hoshea",
+        "Shallum",
+        "Rezin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_024",
+    "reference": "2 Kings 16:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which king of Judah made his son pass through the fire?"
+    },
+    "answers": {
+      "en": [
+        "Ahaz",
+        "Hezekiah",
+        "Jotham",
+        "Uzziah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_025",
+    "reference": "2 Kings 16:10",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Ahaz copied the pattern of an altar he saw in which city?"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Babylon",
+        "Damascus",
+        "Samaria"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_026",
+    "reference": "2 Kings 16:11",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which priest built the altar after the pattern Ahaz sent him?"
+    },
+    "answers": {
+      "en": [
+        "Urijah",
+        "Hilkiah",
+        "Jehoiada",
+        "Zadok"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_027",
+    "reference": "2 Kings 17:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "King Hoshea sent messengers to which king of Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Shishak",
+        "Necoh",
+        "Hophra",
+        "So"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_028",
+    "reference": "2 Kings 17:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which empire carried the people of Israel away captive from Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Assyria",
+        "Egypt",
+        "Persia"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_029",
+    "reference": "2 Kings 17:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did the king of Assyria settle people from Babylon and Cuthah?"
+    },
+    "answers": {
+      "en": [
+        "In Jerusalem",
+        "In the cities of Samaria",
+        "In Damascus",
+        "In Nineveh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_030",
+    "reference": "2 Kings 17:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Yahweh send among the new settlers in Samaria?"
+    },
+    "answers": {
+      "en": [
+        "Bears",
+        "Locusts",
+        "Snakes",
+        "Lions"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_031",
+    "reference": "2 Kings 18:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Hezekiah when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Twenty-five",
+        "Eight",
+        "Sixteen",
+        "Thirty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_032",
+    "reference": "2 Kings 18:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which king of Assyria attacked Judah's fortified cities in Hezekiah's fourteenth year?"
+    },
+    "answers": {
+      "en": [
+        "Shalmaneser",
+        "Tiglath Pileser",
+        "Sennacherib",
+        "Esar Haddon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_033",
+    "reference": "2 Kings 18:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Rabshakeh said Egypt was like a staff made of what?"
+    },
+    "answers": {
+      "en": [
+        "A dry stick",
+        "A golden rod",
+        "A broken spear",
+        "A bruised reed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_034",
+    "reference": "2 Kings 18:31",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Rabshakeh promised each man would eat from his own vine and from his own what?"
+    },
+    "answers": {
+      "en": [
+        "Olive tree",
+        "Field",
+        "Fig tree",
+        "Flock"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_035",
+    "reference": "2 Kings 18:28",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which Assyrian officer called out to Jerusalem's people in the Jews' language?"
+    },
+    "answers": {
+      "en": [
+        "Sennacherib",
+        "Rabshakeh",
+        "Hazael",
+        "Nebuzaradan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_036",
+    "reference": "2 Kings 19:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "To which prophet did Hezekiah send his officials, dressed in sackcloth?"
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "Jeremiah",
+        "Elisha",
+        "Nahum"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_037",
+    "reference": "2 Kings 19:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Hezekiah do with Sennacherib's threatening letter?"
+    },
+    "answers": {
+      "en": [
+        "Burned it in the fire",
+        "Sent it back torn",
+        "Spread it before Yahweh",
+        "Hid it from the people"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_038",
+    "reference": "2 Kings 19:37",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In the house of which god was Sennacherib killed by his sons?"
+    },
+    "answers": {
+      "en": [
+        "Nisroch",
+        "Dagon",
+        "Marduk",
+        "Baal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_039",
+    "reference": "2 Kings 19:37",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which son reigned in Sennacherib's place?"
+    },
+    "answers": {
+      "en": [
+        "Shalmaneser",
+        "Tiglath Pileser",
+        "Merodach",
+        "Esar Haddon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_040",
+    "reference": "2 Kings 20:1",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which king was sick to the point of death and was told to set his house in order?"
+    },
+    "answers": {
+      "en": [
+        "Josiah",
+        "Hezekiah",
+        "Ahaz",
+        "Manasseh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_041",
+    "reference": "2 Kings 20:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many years did Yahweh add to Hezekiah's life?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Fifteen",
+        "Seven",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_042",
+    "reference": "2 Kings 20:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Isaiah have laid on Hezekiah's boil?"
+    },
+    "answers": {
+      "en": [
+        "Oil and wine",
+        "Salt",
+        "Honey",
+        "A cake of figs"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_043",
+    "reference": "2 Kings 20:12",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which king of Babylon sent letters and a gift when Hezekiah was sick?"
+    },
+    "answers": {
+      "en": [
+        "Berodach Baladan",
+        "Nebuchadnezzar",
+        "Evilmerodach",
+        "Belshazzar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_044",
+    "reference": "2 Kings 20:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Hezekiah make to bring water into the city?"
+    },
+    "answers": {
+      "en": [
+        "A dam on the Jordan",
+        "A canal from the sea",
+        "A pool and a conduit",
+        "A well in the temple"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_045",
+    "reference": "2 Kings 21:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How old was Manasseh when he began to reign?"
+    },
+    "answers": {
+      "en": [
+        "Eight",
+        "Seven",
+        "Sixteen",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_046",
+    "reference": "2 Kings 21:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Yahweh said he would wipe Jerusalem as a man wipes what?"
+    },
+    "answers": {
+      "en": [
+        "A table",
+        "A sword",
+        "A dish",
+        "A window"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_047",
+    "reference": "2 Kings 21:19",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many years did King Amon reign in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Two",
+        "Seven",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_048",
+    "reference": "2 Kings 21:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who killed King Amon's murderers and made Josiah king?"
+    },
+    "answers": {
+      "en": [
+        "The people of the land",
+        "The priests",
+        "The army of Egypt",
+        "The prophets"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_049",
+    "reference": "2 Kings 22:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which scribe read the book of the law to King Josiah?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah",
+        "Baruch",
+        "Shaphan",
+        "Ezra"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_050",
+    "reference": "2 Kings 22:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Josiah do when he heard the words of the book of the law?"
+    },
+    "answers": {
+      "en": [
+        "Tore his clothes",
+        "Ordered a feast",
+        "Sent it to Egypt",
+        "Hid it away"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_051",
+    "reference": "2 Kings 22:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophetess did Josiah's officials go to ask about the book?"
+    },
+    "answers": {
+      "en": [
+        "Deborah",
+        "Miriam",
+        "Noadiah",
+        "Huldah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_052",
+    "reference": "2 Kings 23:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Josiah defiled Topheth so no one would make a child pass through the fire for which god?"
+    },
+    "answers": {
+      "en": [
+        "Chemosh",
+        "Molech",
+        "Dagon",
+        "Asherah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_053",
+    "reference": "2 Kings 23:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "At which town's altar did Josiah burn bones, as the man of God had foretold?"
+    },
+    "answers": {
+      "en": [
+        "Dan",
+        "Bethel",
+        "Gilgal",
+        "Shiloh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_054",
+    "reference": "2 Kings 23:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which feast did Josiah keep like no other since the days of the judges?"
+    },
+    "answers": {
+      "en": [
+        "The Feast of Tents",
+        "Purim",
+        "The Feast of Weeks",
+        "The Passover"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_055",
+    "reference": "2 Kings 23:29",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which Pharaoh killed King Josiah at Megiddo?"
+    },
+    "answers": {
+      "en": [
+        "Necoh",
+        "Shishak",
+        "So",
+        "Hophra"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_056",
+    "reference": "2 Kings 23:31",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How long did Jehoahaz reign in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Seven days",
+        "Three years",
+        "Three months",
+        "Eleven years"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_057",
+    "reference": "2 Kings 23:34",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Pharaoh Necoh changed Eliakim's name to what?"
+    },
+    "answers": {
+      "en": [
+        "Jehoiachin",
+        "Zedekiah",
+        "Jehoahaz",
+        "Jehoiakim"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_058",
+    "reference": "2 Kings 24:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For how many years did Jehoiakim serve Nebuchadnezzar before he rebelled?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Ten",
+        "Three",
+        "One"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_059",
+    "reference": "2 Kings 24:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which king of Judah went out and surrendered to the king of Babylon with his mother?"
+    },
+    "answers": {
+      "en": [
+        "Zedekiah",
+        "Jehoiachin",
+        "Josiah",
+        "Jehoahaz"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_060",
+    "reference": "2 Kings 24:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom did Nebuchadnezzar leave behind when he carried away Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The poorest people of the land",
+        "The priests and Levites",
+        "The princes and nobles",
+        "The craftsmen and smiths"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_061",
+    "reference": "2 Kings 24:15",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "To which city was King Jehoiachin carried away captive?"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Damascus",
+        "Babylon",
+        "Memphis"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b143_062",
+    "reference": "2 Kings 24:17",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The king of Babylon changed Mattaniah's name to what?"
+    },
+    "answers": {
+      "en": [
+        "Zedekiah",
+        "Jehoiakim",
+        "Jehoiachin",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_063",
+    "reference": "2 Kings 25:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "When the city wall was broken, when did the men of war flee?"
+    },
+    "answers": {
+      "en": [
+        "At noon",
+        "At dawn",
+        "On the Sabbath",
+        "By night"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_064",
+    "reference": "2 Kings 25:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did the Chaldean army overtake King Zedekiah?"
+    },
+    "answers": {
+      "en": [
+        "At Bethel",
+        "In the plains of Jericho",
+        "At Gibeon",
+        "At Lachish"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_065",
+    "reference": "2 Kings 25:6",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "To which town was Zedekiah brought before the king of Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Carchemish",
+        "Riblah",
+        "Nineveh",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b143_066",
+    "reference": "2 Kings 25:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom did Nebuchadnezzar make governor over the people left in Judah?"
+    },
+    "answers": {
+      "en": [
+        "Zedekiah",
+        "Ishmael",
+        "Jeremiah",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b143_067",
+    "reference": "2 Kings 25:25",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who killed Gedaliah at Mizpah?"
+    },
+    "answers": {
+      "en": [
+        "Ishmael",
+        "Johanan",
+        "Baalis",
+        "Jaazaniah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b143_068",
+    "reference": "2 Kings 25:27",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which year of his captivity was Jehoiachin let out of prison?"
+    },
+    "answers": {
+      "en": [
+        "The twelfth year",
+        "The seventieth year",
+        "The thirty-seventh year",
+        "The fortieth year"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

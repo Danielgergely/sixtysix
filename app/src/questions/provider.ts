@@ -3,10 +3,27 @@ import { loadExclusions } from '../flags/flagStore'
 
 /**
  * bank.json is generated + verified by question-pipeline/ — do not edit by
- * hand. It's ~0.5 MB, so it loads as its own chunk on first use instead of
- * weighing down app start-up.
+ * hand. The app loads bank.<locale>.json instead: the same questions with
+ * only that language and English (several MB for all three), each its own
+ * chunk loaded on first use instead of weighing down app start-up.
  */
-export const loadBank = () => import('./bank.json').then((m) => m.default as Question[])
+const BANK_FILES: Record<Locale, () => Promise<Question[]>> = {
+  en: () => import('./bank.en.json').then((m) => m.default as Question[]),
+  de: () => import('./bank.de.json').then((m) => m.default as Question[]),
+  hu: () => import('./bank.hu.json').then((m) => m.default as Question[]),
+}
+const bankCache = new Map<Locale, Promise<Question[]>>()
+export function loadBank(locale: Locale): Promise<Question[]> {
+  let p = bankCache.get(locale)
+  if (!p) {
+    p = BANK_FILES[locale]().catch((err) => {
+      bankCache.delete(locale)
+      throw err
+    })
+    bankCache.set(locale, p)
+  }
+  return p
+}
 
 /**
  * Cited verse per question id in one language — each its own lazy chunk.
@@ -50,21 +67,15 @@ export interface QuestionProvider {
 }
 
 export class BundledBankProvider implements QuestionProvider {
-  private bank: Promise<Question[]> | null = null
-  private readonly load: () => Promise<Question[]>
+  private readonly load: (locale: Locale) => Promise<Question[]>
 
-  constructor(load: () => Promise<Question[]>) {
+  constructor(load: (locale: Locale) => Promise<Question[]>) {
     this.load = load
   }
 
-  async getQuestions({ count, difficulty }: GetQuestionsOptions): Promise<Question[]> {
-    // Memoise the promise; drop it on failure so a later call can retry.
-    this.bank ??= this.load().catch((err) => {
-      this.bank = null
-      throw err
-    })
+  async getQuestions({ count, locale, difficulty }: GetQuestionsOptions): Promise<Question[]> {
     // Flagged questions (open or confirmed on the server, or flagged on this device) are out of play.
-    const [bank, excluded] = await Promise.all([this.bank, loadExclusions()])
+    const [bank, excluded] = await Promise.all([this.load(locale), loadExclusions()])
     const pool = bank.filter((q) => !excluded.has(q.id) && (!difficulty || q.difficulty === difficulty))
     // Fisher–Yates shuffle, then take the first `count`.
     for (let i = pool.length - 1; i > 0; i--) {

@@ -1,0 +1,1280 @@
+[
+  {
+    "id": "q_b221_001",
+    "reference": "Acts 10:4",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "The angel told Cornelius his prayers and gifts had gone up as a what before God?"
+    },
+    "answers": {
+      "en": [
+        "Sacrifice",
+        "Crown",
+        "Tower",
+        "Memorial"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_002",
+    "reference": "Acts 10:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At about what time of day did Peter go up on the housetop to pray?"
+    },
+    "answers": {
+      "en": [
+        "About noon",
+        "At dawn",
+        "At sunset",
+        "At midnight"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_003",
+    "reference": "Acts 10:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Peter become just before he fell into a trance on the housetop?"
+    },
+    "answers": {
+      "en": [
+        "Sleepy",
+        "Afraid",
+        "Hungry",
+        "Thirsty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_004",
+    "reference": "Acts 10:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In Peter's vision, what did the voice tell him to do with the animals?"
+    },
+    "answers": {
+      "en": [
+        "Set them free",
+        "Kill and eat",
+        "Count them",
+        "Bury them"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_005",
+    "reference": "Acts 10:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many times was the vision of the sheet shown to Peter?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Three",
+        "Four"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_006",
+    "reference": "Acts 10:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The Spirit told Peter that how many men were looking for him?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Twelve",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_007",
+    "reference": "Acts 10:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "When Cornelius fell at his feet, Peter told him to stand up, since he too was what?"
+    },
+    "answers": {
+      "en": [
+        "A sinner",
+        "A man",
+        "A servant",
+        "A Jew"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_008",
+    "reference": "Acts 10:46",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did the believers know the Holy Spirit had come on Cornelius's household?"
+    },
+    "answers": {
+      "en": [
+        "They spoke in other languages",
+        "They saw tongues of fire",
+        "The house shook",
+        "They heard a trumpet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_009",
+    "reference": "Acts 11:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Believers scattered after Stephen traveled as far as Phoenicia, Cyprus and which city?"
+    },
+    "answers": {
+      "en": [
+        "Antioch",
+        "Rome",
+        "Athens",
+        "Ephesus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_010",
+    "reference": "Acts 11:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whom did the church in Jerusalem send to Antioch when many believed there?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Barnabas",
+        "Philip",
+        "Silas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_011",
+    "reference": "Acts 11:25",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Barnabas went to which city to look for Saul?"
+    },
+    "answers": {
+      "en": [
+        "Damascus",
+        "Joppa",
+        "Lystra",
+        "Tarsus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_012",
+    "reference": "Acts 11:26",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How long did Barnabas and Saul teach the church in Antioch together?"
+    },
+    "answers": {
+      "en": [
+        "Three months",
+        "Seven years",
+        "A whole year",
+        "Forty days"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_013",
+    "reference": "Acts 11:28",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Agabus foretold a great famine that came in the days of which Caesar?"
+    },
+    "answers": {
+      "en": [
+        "Claudius",
+        "Nero",
+        "Augustus",
+        "Tiberius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_014",
+    "reference": "Acts 12:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Herod handed Peter over to how many squads of four soldiers?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Four",
+        "Three",
+        "Six"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_015",
+    "reference": "Acts 12:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The night before Herod's plan, Peter slept bound with how many chains?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Three",
+        "Two",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_016",
+    "reference": "Acts 12:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which gate leading into the city opened by itself for Peter and the angel?"
+    },
+    "answers": {
+      "en": [
+        "The golden gate",
+        "The bronze gate",
+        "The wooden gate",
+        "The iron gate"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_017",
+    "reference": "Acts 12:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After his escape, Peter went to the house of Mary, the mother of whom?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "Rhoda",
+        "Barnabas",
+        "John Mark"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_018",
+    "reference": "Acts 12:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When Rhoda said Peter was at the gate, what did the others first tell her?"
+    },
+    "answers": {
+      "en": [
+        "You are crazy",
+        "You are dreaming",
+        "You saw a ghost",
+        "You are lying"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_019",
+    "reference": "Acts 12:20",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "The people of Tyre and Sidon won over which personal aide of King Herod?"
+    },
+    "answers": {
+      "en": [
+        "Erastus",
+        "Blastus",
+        "Manaen",
+        "Lysias"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_020",
+    "reference": "Acts 13:1",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which teacher at Antioch was the foster brother of Herod the tetrarch?"
+    },
+    "answers": {
+      "en": [
+        "Lucius",
+        "Simeon",
+        "Manaen",
+        "Agabus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_021",
+    "reference": "Acts 13:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "While the church at Antioch served the Lord and did what, the Spirit called Barnabas and Saul?"
+    },
+    "answers": {
+      "en": [
+        "Feasted",
+        "Sang",
+        "Traveled",
+        "Fasted"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_022",
+    "reference": "Acts 13:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "From which port did Barnabas and Saul sail to Cyprus?"
+    },
+    "answers": {
+      "en": [
+        "Seleucia",
+        "Joppa",
+        "Troas",
+        "Caesarea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_023",
+    "reference": "Acts 13:9",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "In Acts 13, Saul is said to be also called by which name?"
+    },
+    "answers": {
+      "en": [
+        "Silas",
+        "Justus",
+        "Paul",
+        "Niger"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_024",
+    "reference": "Acts 13:11",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What happened to Elymas the sorcerer when Paul rebuked him?"
+    },
+    "answers": {
+      "en": [
+        "He became mute",
+        "He became blind",
+        "He fell dead",
+        "He became a leper"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_025",
+    "reference": "Acts 13:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "At which city did John Mark leave Paul and return to Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Perga",
+        "Paphos",
+        "Iconium",
+        "Derbe"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_026",
+    "reference": "Acts 13:21",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Paul said God gave Israel Saul, son of Kish, for how many years?"
+    },
+    "answers": {
+      "en": [
+        "Twenty",
+        "Seven",
+        "Twelve",
+        "Forty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_027",
+    "reference": "Acts 13:22",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "In Acts 13, whom did God call 'a man after my heart'?"
+    },
+    "answers": {
+      "en": [
+        "Saul",
+        "Samuel",
+        "David",
+        "Moses"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_028",
+    "reference": "Acts 13:46",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "When the Jews at Pisidian Antioch rejected the word, Paul and Barnabas turned to whom?"
+    },
+    "answers": {
+      "en": [
+        "The priests",
+        "The Gentiles",
+        "The Samaritans",
+        "The soldiers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_029",
+    "reference": "Acts 13:51",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Leaving Pisidian Antioch, Paul and Barnabas shook off the dust of their feet and went where?"
+    },
+    "answers": {
+      "en": [
+        "Lystra",
+        "Perga",
+        "Iconium",
+        "Derbe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_030",
+    "reference": "Acts 14:6",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Lystra and Derbe were cities of which region?"
+    },
+    "answers": {
+      "en": [
+        "Lycaonia",
+        "Pamphylia",
+        "Cilicia",
+        "Mysia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_031",
+    "reference": "Acts 14:8",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The man Paul healed at Lystra, crippled from birth, had never done what?"
+    },
+    "answers": {
+      "en": [
+        "Spoken",
+        "Walked",
+        "Seen",
+        "Heard"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_032",
+    "reference": "Acts 14:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "The priest of Jupiter at Lystra brought oxen and what to the gates?"
+    },
+    "answers": {
+      "en": [
+        "Incense",
+        "Gold",
+        "Lamps",
+        "Garlands"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_033",
+    "reference": "Acts 14:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Barnabas and Paul do when they heard the crowd wanted to sacrifice to them?"
+    },
+    "answers": {
+      "en": [
+        "Hid in a house",
+        "Tore their clothes",
+        "Fled the city",
+        "Fell asleep"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_034",
+    "reference": "Acts 14:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Paul and Barnabas appoint for the believers in every assembly?"
+    },
+    "answers": {
+      "en": [
+        "Judges",
+        "Kings",
+        "Scribes",
+        "Elders"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_035",
+    "reference": "Acts 15:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Men from Judea taught that believers couldn't be saved unless they were what?"
+    },
+    "answers": {
+      "en": [
+        "Baptized twice",
+        "Born Jews",
+        "Circumcised",
+        "Priests"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_036",
+    "reference": "Acts 15:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who spoke last and gave his judgment at the meeting in Jerusalem in Acts 15?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "Peter",
+        "Paul",
+        "John"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_037",
+    "reference": "Acts 15:20",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Gentile believers were told to abstain from idols, sexual immorality, blood and what?"
+    },
+    "answers": {
+      "en": [
+        "What is strangled",
+        "Pork",
+        "Wine",
+        "Leaven"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_038",
+    "reference": "Acts 15:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which two men were sent with Paul and Barnabas to Antioch with the letter?"
+    },
+    "answers": {
+      "en": [
+        "Timothy and Titus",
+        "Mark and Luke",
+        "Peter and John",
+        "Judas and Silas"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_039",
+    "reference": "Acts 15:37",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Paul and Barnabas disagreed sharply over taking whom along?"
+    },
+    "answers": {
+      "en": [
+        "Silas",
+        "Timothy",
+        "John Mark",
+        "Luke"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_040",
+    "reference": "Acts 15:40",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whom did Paul choose as his companion after parting from Barnabas?"
+    },
+    "answers": {
+      "en": [
+        "Mark",
+        "Silas",
+        "Luke",
+        "Titus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_041",
+    "reference": "Acts 16:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "The Holy Spirit forbade Paul to speak the word in which province?"
+    },
+    "answers": {
+      "en": [
+        "Asia",
+        "Macedonia",
+        "Galatia",
+        "Achaia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_042",
+    "reference": "Acts 16:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Paul tried to go into which region, but the Spirit didn't allow it?"
+    },
+    "answers": {
+      "en": [
+        "Phrygia",
+        "Pontus",
+        "Cilicia",
+        "Bithynia"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_043",
+    "reference": "Acts 16:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which city was a Roman colony and a foremost city of its district of Macedonia?"
+    },
+    "answers": {
+      "en": [
+        "Thessalonica",
+        "Corinth",
+        "Philippi",
+        "Athens"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_044",
+    "reference": "Acts 16:13",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did Paul find women gathered for prayer at Philippi?"
+    },
+    "answers": {
+      "en": [
+        "In the synagogue",
+        "By a riverside",
+        "In the marketplace",
+        "On a hill"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_045",
+    "reference": "Acts 16:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "The slave girl at Philippi brought her masters much gain by doing what?"
+    },
+    "answers": {
+      "en": [
+        "Fortune telling",
+        "Singing",
+        "Weaving",
+        "Dancing"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_046",
+    "reference": "Acts 16:24",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did the jailer secure the feet of Paul and Silas?"
+    },
+    "answers": {
+      "en": [
+        "In iron boots",
+        "In a pit",
+        "In the stocks",
+        "In chains of gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_047",
+    "reference": "Acts 16:26",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What shook the prison and opened all its doors at midnight?"
+    },
+    "answers": {
+      "en": [
+        "A strong wind",
+        "A great earthquake",
+        "A flood",
+        "A fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_048",
+    "reference": "Acts 16:37",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Paul point out after he and Silas had been beaten in public at Philippi?"
+    },
+    "answers": {
+      "en": [
+        "They were priests",
+        "They were Greeks",
+        "They were Pharisees",
+        "They were Romans"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_049",
+    "reference": "Acts 17:2",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "For how many Sabbath days did Paul reason in the synagogue at Thessalonica?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Three",
+        "Four"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_050",
+    "reference": "Acts 17:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whose house did the mob attack in Thessalonica, looking for Paul and Silas?"
+    },
+    "answers": {
+      "en": [
+        "Lydia's",
+        "Jason's",
+        "Crispus's",
+        "Gaius's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_051",
+    "reference": "Acts 17:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "The mob said the men who had done what to the world had come to Thessalonica?"
+    },
+    "answers": {
+      "en": [
+        "Turned it upside down",
+        "Set it on fire",
+        "Bought it with gold",
+        "Filled it with idols"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_052",
+    "reference": "Acts 17:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What provoked Paul's spirit as he waited in Athens?"
+    },
+    "answers": {
+      "en": [
+        "The people were starving",
+        "The temple was in ruins",
+        "The rulers were cruel",
+        "The city was full of idols"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_053",
+    "reference": "Acts 17:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which philosophers met Paul in Athens together with the Stoics?"
+    },
+    "answers": {
+      "en": [
+        "Sophists",
+        "Cynics",
+        "Epicureans",
+        "Platonists"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_054",
+    "reference": "Acts 17:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which place in Athens was Paul brought to explain his new teaching?"
+    },
+    "answers": {
+      "en": [
+        "The theater",
+        "The Areopagus",
+        "The palace",
+        "The harbor"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_055",
+    "reference": "Acts 17:28",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Paul quoted the Athenians' own poets: 'For we are also his ___.'"
+    },
+    "answers": {
+      "en": [
+        "Servants",
+        "Children of light",
+        "Sheep",
+        "Offspring"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_056",
+    "reference": "Acts 17:34",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which woman in Athens believed, along with Dionysius the Areopagite?"
+    },
+    "answers": {
+      "en": [
+        "Damaris",
+        "Lydia",
+        "Priscilla",
+        "Phoebe"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_057",
+    "reference": "Acts 18:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did Paul go after leaving Athens?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Philippi",
+        "Corinth",
+        "Rome"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_058",
+    "reference": "Acts 18:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Aquila and Priscilla had left Italy because which emperor ordered all Jews out of Rome?"
+    },
+    "answers": {
+      "en": [
+        "Nero",
+        "Claudius",
+        "Augustus",
+        "Tiberius"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_059",
+    "reference": "Acts 18:8",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which ruler of the synagogue at Corinth believed with all his house?"
+    },
+    "answers": {
+      "en": [
+        "Crispus",
+        "Sosthenes",
+        "Jairus",
+        "Gaius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_060",
+    "reference": "Acts 18:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How long did Paul stay in Corinth teaching the word of God?"
+    },
+    "answers": {
+      "en": [
+        "Three years",
+        "Two years",
+        "Three months",
+        "A year and six months"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_061",
+    "reference": "Acts 18:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which ruler of the synagogue was beaten in front of Gallio's judgment seat?"
+    },
+    "answers": {
+      "en": [
+        "Crispus",
+        "Sosthenes",
+        "Jason",
+        "Alexander"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_062",
+    "reference": "Acts 18:18",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Where did Paul shave his head because of a vow?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Troas",
+        "Miletus",
+        "Cenchreae"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_063",
+    "reference": "Acts 18:26",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who explained the way of God more accurately to Apollos?"
+    },
+    "answers": {
+      "en": [
+        "Priscilla and Aquila",
+        "Paul and Silas",
+        "Peter and John",
+        "Timothy and Titus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_064",
+    "reference": "Acts 19:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "About how many disciples at Ephesus received the Holy Spirit when Paul laid hands on them?"
+    },
+    "answers": {
+      "en": [
+        "About seventy",
+        "About forty",
+        "About twelve",
+        "About three"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_065",
+    "reference": "Acts 19:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In whose school did Paul reason daily at Ephesus?"
+    },
+    "answers": {
+      "en": [
+        "Gamaliel",
+        "Tyrannus",
+        "Sceva",
+        "Demetrius"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b221_066",
+    "reference": "Acts 19:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Paul taught at Ephesus for how long, so that all who lived in Asia heard the word?"
+    },
+    "answers": {
+      "en": [
+        "Two years",
+        "Six months",
+        "Ten years",
+        "Forty days"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_067",
+    "reference": "Acts 19:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was carried from Paul's body to the sick so that they were healed?"
+    },
+    "answers": {
+      "en": [
+        "Bread and wine",
+        "Cups of water",
+        "Handkerchiefs or aprons",
+        "Bottles of oil"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b221_068",
+    "reference": "Acts 19:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did the sons of Sceva flee from the house of the man with the evil spirit?"
+    },
+    "answers": {
+      "en": [
+        "Blind and mute",
+        "Bound in chains",
+        "Laughing loudly",
+        "Naked and wounded"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_069",
+    "reference": "Acts 19:29",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which two Macedonians did the Ephesian mob drag into the theater?"
+    },
+    "answers": {
+      "en": [
+        "Gaius and Aristarchus",
+        "Timothy and Erastus",
+        "Titus and Luke",
+        "Jason and Sopater"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b221_070",
+    "reference": "Acts 19:34",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the crowd in Ephesus shout for about two hours?"
+    },
+    "answers": {
+      "en": [
+        "Long live Caesar",
+        "Away with this man",
+        "Crucify him",
+        "Great is Artemis of the Ephesians"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b221_071",
+    "reference": "Acts 19:35",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who finally quieted the crowd in the theater at Ephesus?"
+    },
+    "answers": {
+      "en": [
+        "The proconsul",
+        "Alexander",
+        "The town clerk",
+        "Demetrius"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

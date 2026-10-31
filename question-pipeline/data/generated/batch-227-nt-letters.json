@@ -1,0 +1,830 @@
+[
+  {
+    "id": "q_b227_001",
+    "reference": "1 Thessalonians 1:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Who is named with Paul and Timothy at the start of 1 Thessalonians?"
+    },
+    "answers": {
+      "en": [
+        "Titus",
+        "Luke",
+        "Silvanus",
+        "Barnabas"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_002",
+    "reference": "1 Thessalonians 1:3",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul remembers their work of faith, labor of love and patience of what?"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Hope",
+        "Truth",
+        "Prayer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_003",
+    "reference": "1 Thessalonians 1:9",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The Thessalonians turned to God from what, to serve the living God?"
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "War",
+        "The sea",
+        "Idols"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_004",
+    "reference": "1 Thessalonians 2:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he was gentle among them like a nursing mother cherishing her own what?"
+    },
+    "answers": {
+      "en": [
+        "Children",
+        "Lambs",
+        "Garden",
+        "Home"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_005",
+    "reference": "1 Thessalonians 2:18",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul wanted to come to the Thessalonians again, but who hindered him?"
+    },
+    "answers": {
+      "en": [
+        "The Romans",
+        "Felix",
+        "Satan",
+        "A storm"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_006",
+    "reference": "1 Thessalonians 4:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul tells the Thessalonians to lead a quiet life and work with what?"
+    },
+    "answers": {
+      "en": [
+        "Your neighbor's tools",
+        "Silver and gold",
+        "Many servants",
+        "Your own hands"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_007",
+    "reference": "1 Thessalonians 4:16",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "When the Lord descends from heaven, who will rise first?"
+    },
+    "answers": {
+      "en": [
+        "The prophets",
+        "The dead in Christ",
+        "The angels",
+        "The apostles"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_008",
+    "reference": "1 Thessalonians 5:2",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "1 Thessalonians says the day of the Lord comes like a thief in the what?"
+    },
+    "answers": {
+      "en": [
+        "Night",
+        "Crowd",
+        "Desert",
+        "Storm"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_009",
+    "reference": "1 Thessalonians 5:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In 1 Thessalonians 5, the breastplate is made of faith and what?"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Hope",
+        "Truth",
+        "Peace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_010",
+    "reference": "1 Thessalonians 5:19",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete the short command: 'Don't ___ the Spirit.'"
+    },
+    "answers": {
+      "en": [
+        "Test",
+        "Fear",
+        "Quench",
+        "Forget"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_011",
+    "reference": "2 Thessalonians 1:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which two men are named with Paul at the start of 2 Thessalonians?"
+    },
+    "answers": {
+      "en": [
+        "Titus and Luke",
+        "Silvanus and Timothy",
+        "Barnabas and Mark",
+        "Apollos and Sosthenes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_012",
+    "reference": "2 Thessalonians 1:7",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The Lord Jesus will be revealed from heaven with his mighty angels in what?"
+    },
+    "answers": {
+      "en": [
+        "A dark cloud",
+        "A great flood",
+        "A rushing wind",
+        "Flaming fire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_013",
+    "reference": "2 Thessalonians 2:3",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "2 Thessalonians says the departure comes first and the man of ___ is revealed."
+    },
+    "answers": {
+      "en": [
+        "Sin",
+        "Peace",
+        "War",
+        "Faith"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_014",
+    "reference": "2 Thessalonians 3:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he didn't eat anyone's bread without paying, but worked when?"
+    },
+    "answers": {
+      "en": [
+        "Only on Sabbaths",
+        "In the winter",
+        "Night and day",
+        "In the evenings"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_015",
+    "reference": "2 Thessalonians 3:17",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says his greeting written with his own hand is the what in every letter?"
+    },
+    "answers": {
+      "en": [
+        "Seal",
+        "Sign",
+        "Rule",
+        "Crown"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_016",
+    "reference": "1 Timothy 1:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he was once a blasphemer, a persecutor, and what?"
+    },
+    "answers": {
+      "en": [
+        "A thief",
+        "A tax collector",
+        "A sorcerer",
+        "Insolent"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_017",
+    "reference": "1 Timothy 1:15",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Christ came to save sinners, 'of whom I am ___,' writes Paul."
+    },
+    "answers": {
+      "en": [
+        "The last",
+        "Chief",
+        "One",
+        "Free"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_018",
+    "reference": "1 Timothy 2:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Timothy 2 says there is one God and one what between God and men?"
+    },
+    "answers": {
+      "en": [
+        "Mediator",
+        "Temple",
+        "Law",
+        "Priesthood"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_019",
+    "reference": "1 Timothy 3:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "An overseer must be hospitable and good at doing what?"
+    },
+    "answers": {
+      "en": [
+        "Building",
+        "Singing",
+        "Teaching",
+        "Fighting"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_020",
+    "reference": "1 Timothy 4:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Bodily exercise has some value, but what has value in all things?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Riches",
+        "Fasting",
+        "Godliness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_021",
+    "reference": "1 Timothy 5:18",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'The laborer is worthy of his ___.'"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Rest",
+        "Reward",
+        "Wages"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_022",
+    "reference": "1 Timothy 6:6",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Godliness with ___ is great gain.'"
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Wisdom",
+        "Contentment",
+        "Prayer"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_023",
+    "reference": "1 Timothy 6:13",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "1 Timothy says Christ Jesus testified the good confession before whom?"
+    },
+    "answers": {
+      "en": [
+        "Pontius Pilate",
+        "Herod",
+        "Caiaphas",
+        "Caesar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_024",
+    "reference": "2 Timothy 1:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "God didn't give us a spirit of fear, but of power, love and what?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Self-control",
+        "Courage",
+        "Joy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_025",
+    "reference": "2 Timothy 2:3",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul tells Timothy to endure hardship as a good what of Christ Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Farmer",
+        "Soldier",
+        "Shepherd",
+        "Athlete"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_026",
+    "reference": "2 Timothy 3:15",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Since when had Timothy known the holy Scriptures?"
+    },
+    "answers": {
+      "en": [
+        "From infancy",
+        "Since his baptism",
+        "Since he met Paul",
+        "Since he was twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_027",
+    "reference": "2 Timothy 3:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Timothy 3:16, every Scripture is what?"
+    },
+    "answers": {
+      "en": [
+        "Hard to understand",
+        "Hidden",
+        "Written by Moses",
+        "God-breathed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_028",
+    "reference": "2 Timothy 4:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Which crown does Paul say is stored up for him?"
+    },
+    "answers": {
+      "en": [
+        "The crown of thorns",
+        "The crown of David",
+        "The crown of righteousness",
+        "The crown of gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_029",
+    "reference": "2 Timothy 4:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asked Timothy to bring which man, 'useful to me for service'?"
+    },
+    "answers": {
+      "en": [
+        "Mark",
+        "Demas",
+        "Titus",
+        "Crescens"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_030",
+    "reference": "2 Timothy 4:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul say he had sent to Ephesus, in 2 Timothy 4?"
+    },
+    "answers": {
+      "en": [
+        "Trophimus",
+        "Erastus",
+        "Carpus",
+        "Tychicus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_031",
+    "reference": "2 Timothy 4:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Besides his cloak, Paul asked for the books and especially what?"
+    },
+    "answers": {
+      "en": [
+        "The scrolls of Isaiah",
+        "The parchments",
+        "His tools",
+        "His sandals"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_032",
+    "reference": "2 Timothy 4:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says the Lord stood by him and he was delivered out of the mouth of what?"
+    },
+    "answers": {
+      "en": [
+        "The bear",
+        "The wolf",
+        "The lion",
+        "The dragon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_033",
+    "reference": "2 Timothy 4:20",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Timothy 4, which man remained at Corinth?"
+    },
+    "answers": {
+      "en": [
+        "Trophimus",
+        "Tychicus",
+        "Erastus",
+        "Crescens"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_034",
+    "reference": "Titus 3:5",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Titus 3 says God saved us through the washing of what?"
+    },
+    "answers": {
+      "en": [
+        "Regeneration",
+        "The Jordan",
+        "Tears",
+        "The law"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_035",
+    "reference": "Titus 3:12",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul planned to send Artemas or whom to Titus?"
+    },
+    "answers": {
+      "en": [
+        "Zenas",
+        "Tychicus",
+        "Apollos",
+        "Timothy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_036",
+    "reference": "Titus 3:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Titus was to send Zenas the lawyer and whom on their journey?"
+    },
+    "answers": {
+      "en": [
+        "Artemas",
+        "Luke",
+        "Silas",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_037",
+    "reference": "Philemon 1:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who is called 'our fellow soldier' in the greeting of Philemon?"
+    },
+    "answers": {
+      "en": [
+        "Epaphras",
+        "Demas",
+        "Onesimus",
+        "Archippus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_038",
+    "reference": "Philemon 1:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Onesimus was once useless to Philemon, but now is what?"
+    },
+    "answers": {
+      "en": [
+        "Rich",
+        "Useful",
+        "Free",
+        "Famous"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_039",
+    "reference": "Philemon 1:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul asks Philemon to receive Onesimus no longer as a slave, but as a beloved what?"
+    },
+    "answers": {
+      "en": [
+        "Brother",
+        "Son",
+        "Guest",
+        "Master"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_040",
+    "reference": "Philemon 1:22",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "What did Paul ask Philemon to prepare for him?"
+    },
+    "answers": {
+      "en": [
+        "A feast",
+        "A ship",
+        "A guest room",
+        "A letter"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_041",
+    "reference": "Philemon 1:19",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul writes, 'I, Paul, write this with my own ___: I will repay it.'"
+    },
+    "answers": {
+      "en": [
+        "Pen",
+        "Seal",
+        "Hand",
+        "Blood"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b227_042",
+    "reference": "Philemon 1:24",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which of these is named among Paul's fellow workers at the end of Philemon?"
+    },
+    "answers": {
+      "en": [
+        "Luke",
+        "Timothy",
+        "Silas",
+        "Titus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b227_043",
+    "reference": "Titus 1:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls Titus 'my true child' according to a common what?"
+    },
+    "answers": {
+      "en": [
+        "Home",
+        "Faith",
+        "Language",
+        "Trade"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b227_044",
+    "reference": "Titus 2:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Titus 2 says older men should be temperate, sensible, and sound in faith, love and what?"
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Strength",
+        "Speech",
+        "Patience"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_045",
+    "reference": "1 Timothy 1:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul calls Timothy his true child in what?"
+    },
+    "answers": {
+      "en": [
+        "Business",
+        "Prison",
+        "Spirit",
+        "Faith"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b227_046",
+    "reference": "2 Timothy 1:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says he was appointed a preacher, an apostle, and a teacher of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Jews",
+        "Kings",
+        "The Gentiles",
+        "Children"
+      ]
+    },
+    "correctIndex": 2
+  }
+]

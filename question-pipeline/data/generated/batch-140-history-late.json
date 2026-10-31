@@ -1,0 +1,1388 @@
+[
+  {
+    "id": "q_b140_001",
+    "reference": "1 Kings 1:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which young woman was found to care for King David in his old age?"
+    },
+    "answers": {
+      "en": [
+        "Abigail",
+        "Michal",
+        "Abishag",
+        "Tamar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_002",
+    "reference": "1 Kings 1:5",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which son of David exalted himself, saying, \"I will be king\"?"
+    },
+    "answers": {
+      "en": [
+        "Adonijah",
+        "Absalom",
+        "Amnon",
+        "Solomon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_003",
+    "reference": "1 Kings 1:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which commander of David's army sided with Adonijah?"
+    },
+    "answers": {
+      "en": [
+        "Benaiah",
+        "Abner",
+        "Amasa",
+        "Joab"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_004",
+    "reference": "1 Kings 1:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which priest supported Adonijah's bid for the throne?"
+    },
+    "answers": {
+      "en": [
+        "Zadok",
+        "Abiathar",
+        "Hilkiah",
+        "Eli"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_005",
+    "reference": "1 Kings 1:9",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "By which stone did Adonijah sacrifice sheep and cattle?"
+    },
+    "answers": {
+      "en": [
+        "Ebenezer",
+        "Zoheleth",
+        "Bohan",
+        "Ezel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_006",
+    "reference": "1 Kings 1:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which prophet warned Bathsheba that Adonijah had made himself king?"
+    },
+    "answers": {
+      "en": [
+        "Gad",
+        "Ahijah",
+        "Elijah",
+        "Nathan"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_007",
+    "reference": "1 Kings 1:33",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "To which spring was Solomon brought down to be anointed king?"
+    },
+    "answers": {
+      "en": [
+        "Gihon",
+        "Siloam",
+        "En Rogel",
+        "Kidron"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_008",
+    "reference": "1 Kings 1:39",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did the people shout when Solomon was anointed?"
+    },
+    "answers": {
+      "en": [
+        "Hosanna to the son of David!",
+        "Glory to the God of Israel!",
+        "Long live King Solomon!",
+        "Solomon is the chosen one!"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_009",
+    "reference": "1 Kings 1:50",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Adonijah take hold of when he was afraid of Solomon?"
+    },
+    "answers": {
+      "en": [
+        "The poles of the ark",
+        "The king's robe",
+        "The doorposts of the gate",
+        "The horns of the altar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_010",
+    "reference": "1 Kings 2:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Where was King David buried?"
+    },
+    "answers": {
+      "en": [
+        "In Bethlehem",
+        "In Hebron",
+        "In the city of David",
+        "On Mount Moriah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_011",
+    "reference": "1 Kings 2:11",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many years did David reign over Israel?"
+    },
+    "answers": {
+      "en": [
+        "Thirty",
+        "Forty",
+        "Twenty",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_012",
+    "reference": "1 Kings 2:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "For how many years did David reign in Hebron?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_013",
+    "reference": "1 Kings 2:17",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Whom did Adonijah ask Bathsheba to request for him as his wife?"
+    },
+    "answers": {
+      "en": [
+        "Abigail",
+        "Michal",
+        "Abishag",
+        "Maacah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_014",
+    "reference": "1 Kings 2:25",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Whom did Solomon send to strike down Adonijah?"
+    },
+    "answers": {
+      "en": [
+        "Benaiah",
+        "Joab",
+        "Zadok",
+        "Shimei"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_015",
+    "reference": "1 Kings 2:26",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To which town was Abiathar the priest sent away?"
+    },
+    "answers": {
+      "en": [
+        "Shiloh",
+        "Nob",
+        "Gibeon",
+        "Anathoth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_016",
+    "reference": "1 Kings 2:28",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did Joab flee when he heard what Solomon had done?"
+    },
+    "answers": {
+      "en": [
+        "Hebron",
+        "The Tent of Yahweh",
+        "The cave of Adullam",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_017",
+    "reference": "1 Kings 2:37",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Shimei was told he would die if he crossed which brook?"
+    },
+    "answers": {
+      "en": [
+        "Cherith",
+        "Kidron",
+        "Jabbok",
+        "Arnon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_018",
+    "reference": "1 Kings 2:39",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Two of Shimei's servants ran away to which king of Gath?"
+    },
+    "answers": {
+      "en": [
+        "Abimelech",
+        "Hiram",
+        "Hadad",
+        "Achish"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_019",
+    "reference": "1 Kings 3:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Solomon made an alliance with which king by marrying his daughter?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh king of Egypt",
+        "Hiram king of Tyre",
+        "The king of Sheba",
+        "Ben Hadad of Syria"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_020",
+    "reference": "1 Kings 3:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did Solomon offer a thousand burnt offerings?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Shiloh",
+        "Gibeon",
+        "Hebron"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_021",
+    "reference": "1 Kings 3:5",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How did Yahweh appear to Solomon at Gibeon?"
+    },
+    "answers": {
+      "en": [
+        "In a burning bush",
+        "In a whirlwind",
+        "In a pillar of cloud",
+        "In a dream"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_022",
+    "reference": "1 Kings 3:13",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did God also give Solomon, though he had not asked for it?"
+    },
+    "answers": {
+      "en": [
+        "Victory over Egypt",
+        "Many sons",
+        "Riches and honor",
+        "A palace of gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_023",
+    "reference": "1 Kings 3:16",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Who came to King Solomon arguing over a baby?"
+    },
+    "answers": {
+      "en": [
+        "Two shepherds",
+        "Two women",
+        "Two priests",
+        "Two brothers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_024",
+    "reference": "1 Kings 3:19",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did the other woman's baby die in the night?"
+    },
+    "answers": {
+      "en": [
+        "She lay on it",
+        "It fell ill",
+        "It was dropped",
+        "It was stolen"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_025",
+    "reference": "1 Kings 3:28",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After the judgment about the baby, what did Israel see was in Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Great strength",
+        "A proud heart",
+        "The wisdom of God",
+        "The spirit of David"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_026",
+    "reference": "1 Kings 4:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many officers provided food for Solomon's household, each for one month?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_027",
+    "reference": "1 Kings 4:26",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many stalls of horses did Solomon have for his chariots?"
+    },
+    "answers": {
+      "en": [
+        "7,000",
+        "12,000",
+        "400",
+        "40,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_028",
+    "reference": "1 Kings 4:31",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Solomon was wiser than Heman, Calcol, Darda and which Ezrahite?"
+    },
+    "answers": {
+      "en": [
+        "Asaph",
+        "Ethan",
+        "Jeduthun",
+        "Korah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_029",
+    "reference": "1 Kings 4:32",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many proverbs did Solomon speak?"
+    },
+    "answers": {
+      "en": [
+        "1,005",
+        "3,000",
+        "300",
+        "10,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_030",
+    "reference": "1 Kings 4:32",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many songs did Solomon write?"
+    },
+    "answers": {
+      "en": [
+        "3,000",
+        "150",
+        "500",
+        "1,005"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_031",
+    "reference": "1 Kings 4:33",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Solomon spoke of plants, from the cedar of Lebanon to which plant on the wall?"
+    },
+    "answers": {
+      "en": [
+        "Hyssop",
+        "Mustard",
+        "Thistle",
+        "Mint"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_032",
+    "reference": "1 Kings 5:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which king of Tyre had always loved David and sent servants to Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Ben Hadad",
+        "Toi",
+        "Hiram",
+        "Achish"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_033",
+    "reference": "1 Kings 5:6",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What trees did Solomon ask Hiram to cut for him from Lebanon?"
+    },
+    "answers": {
+      "en": [
+        "Oaks",
+        "Olive trees",
+        "Palm trees",
+        "Cedars"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_034",
+    "reference": "1 Kings 5:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How did Hiram's men bring the timber by sea?"
+    },
+    "answers": {
+      "en": [
+        "On camels",
+        "In wagons",
+        "In rafts",
+        "Carried on their backs"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_035",
+    "reference": "1 Kings 5:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many men were in Solomon's forced labor levy out of all Israel?"
+    },
+    "answers": {
+      "en": [
+        "10,000",
+        "30,000",
+        "70,000",
+        "3,300"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_036",
+    "reference": "1 Kings 5:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who was over the men in Solomon's forced labor?"
+    },
+    "answers": {
+      "en": [
+        "Adoniram",
+        "Benaiah",
+        "Zabud",
+        "Jehoshaphat"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_037",
+    "reference": "1 Kings 5:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many men did Solomon have who carried burdens?"
+    },
+    "answers": {
+      "en": [
+        "80,000",
+        "30,000",
+        "70,000",
+        "3,300"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_038",
+    "reference": "1 Kings 6:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many cubits long was the house Solomon built for Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Sixty",
+        "Forty",
+        "Twenty",
+        "One hundred"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_039",
+    "reference": "1 Kings 6:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why was no hammer heard in the temple while it was being built?"
+    },
+    "answers": {
+      "en": [
+        "It was built only of wood",
+        "It was built at night",
+        "Hammers were forbidden by law",
+        "The stone was prepared at the quarry"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_040",
+    "reference": "1 Kings 6:22",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What did Solomon overlay the whole inside of the temple with?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Gold",
+        "Bronze",
+        "Ivory"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_041",
+    "reference": "1 Kings 6:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What two figures of olive wood, ten cubits high, stood in the inner sanctuary?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Cherubim",
+        "Oxen",
+        "Eagles"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_042",
+    "reference": "1 Kings 6:38",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many years did it take Solomon to build the temple?"
+    },
+    "answers": {
+      "en": [
+        "Thirteen",
+        "Three",
+        "Twenty",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_043",
+    "reference": "1 Kings 7:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the name of one of Solomon's great buildings?"
+    },
+    "answers": {
+      "en": [
+        "The House of the Forest of Lebanon",
+        "The House of Cedars",
+        "The Tower of David",
+        "The House of Ivory"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_044",
+    "reference": "1 Kings 7:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Hiram the bronze worker was the son of a widow of which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Simeon",
+        "Naphtali",
+        "Asher"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_045",
+    "reference": "1 Kings 7:23",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was the huge cast bronze basin in Solomon's temple called?"
+    },
+    "answers": {
+      "en": [
+        "The great well",
+        "The pool of Solomon",
+        "The laver of Moses",
+        "The molten sea"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_046",
+    "reference": "1 Kings 7:25",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "The great bronze sea stood on how many oxen?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Seven",
+        "Twelve",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_047",
+    "reference": "1 Kings 7:38",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many smaller bronze basins did Hiram make for the temple?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Ten",
+        "Seven",
+        "Four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_048",
+    "reference": "1 Kings 8:9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What was inside the ark when it was brought into the temple?"
+    },
+    "answers": {
+      "en": [
+        "Only the two stone tablets",
+        "Aaron's rod and the tablets",
+        "A jar of manna",
+        "Moses' staff"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_049",
+    "reference": "1 Kings 8:10",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "What filled Yahweh's house so the priests could not stand to minister?"
+    },
+    "answers": {
+      "en": [
+        "Smoke",
+        "Fire",
+        "The cloud",
+        "Water"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_050",
+    "reference": "1 Kings 8:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "At the dedication, toward where did Solomon spread out his hands?"
+    },
+    "answers": {
+      "en": [
+        "Heaven",
+        "The ark",
+        "The east",
+        "The sea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_051",
+    "reference": "1 Kings 8:27",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Solomon prayed: heaven can't contain you, how much less what?"
+    },
+    "answers": {
+      "en": [
+        "The city of David",
+        "The tabernacle",
+        "The land of Israel",
+        "This house that I have built"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_052",
+    "reference": "1 Kings 8:63",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many sheep did Solomon sacrifice at the dedication of the temple?"
+    },
+    "answers": {
+      "en": [
+        "22,000",
+        "120,000",
+        "12,000",
+        "70,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_053",
+    "reference": "1 Kings 8:65",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For how many days in total did Solomon keep the dedication feast?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Fourteen",
+        "Eight",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_054",
+    "reference": "1 Kings 9:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many cities in Galilee did Solomon give to Hiram?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Ten",
+        "Forty",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_055",
+    "reference": "1 Kings 9:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "What did Hiram call the cities Solomon gave him, since they didn't please him?"
+    },
+    "answers": {
+      "en": [
+        "The land of Cabul",
+        "The land of Goshen",
+        "The land of Tob",
+        "The land of Nod"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_056",
+    "reference": "1 Kings 9:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which city did Pharaoh capture and give to his daughter, Solomon's wife?"
+    },
+    "answers": {
+      "en": [
+        "Megiddo",
+        "Hazor",
+        "Gezer",
+        "Lachish"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_057",
+    "reference": "1 Kings 9:26",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did Solomon build a fleet of ships?"
+    },
+    "answers": {
+      "en": [
+        "Joppa",
+        "Tyre",
+        "Tarshish",
+        "Ezion Geber"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_058",
+    "reference": "1 Kings 9:28",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To which land did Solomon's ships sail to fetch gold?"
+    },
+    "answers": {
+      "en": [
+        "Tarshish",
+        "Sheba",
+        "Ophir",
+        "Havilah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_059",
+    "reference": "1 Kings 10:2",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Besides spices and precious stones, what did the queen of Sheba bring in great amounts?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Gold",
+        "Ivory",
+        "Horses"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_060",
+    "reference": "1 Kings 10:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the queen of Sheba say about the report she had heard of Solomon?"
+    },
+    "answers": {
+      "en": [
+        "The half was not told me",
+        "It was all made up",
+        "It was exactly right",
+        "I came too late to see it"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_061",
+    "reference": "1 Kings 10:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many talents of gold came to Solomon in one year?"
+    },
+    "answers": {
+      "en": [
+        "120",
+        "420",
+        "666",
+        "1,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_062",
+    "reference": "1 Kings 10:18",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Solomon's great throne was made of what, overlaid with gold?"
+    },
+    "answers": {
+      "en": [
+        "Ivory",
+        "Cedar",
+        "Bronze",
+        "Marble"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_063",
+    "reference": "1 Kings 10:19",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many steps led up to Solomon's throne?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "Three",
+        "Six"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_064",
+    "reference": "1 Kings 10:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many lions stood on the steps of Solomon's throne?"
+    },
+    "answers": {
+      "en": [
+        "Six",
+        "Twelve",
+        "Ten",
+        "Fourteen"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_065",
+    "reference": "1 Kings 10:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which metal was counted as nothing in the days of Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Silver",
+        "Bronze",
+        "Iron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_066",
+    "reference": "1 Kings 10:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Besides gold and ivory, what did the ships of Tarshish bring?"
+    },
+    "answers": {
+      "en": [
+        "Lions and bears",
+        "Camels and horses",
+        "Goats and oxen",
+        "Apes and peacocks"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_067",
+    "reference": "1 Kings 10:28",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where were Solomon's horses brought from?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Assyria",
+        "Sheba",
+        "Tyre"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_068",
+    "reference": "1 Kings 11:3",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many concubines did Solomon have?"
+    },
+    "answers": {
+      "en": [
+        "Seven hundred",
+        "One thousand",
+        "Three hundred",
+        "Sixty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_069",
+    "reference": "1 Kings 11:4",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "When Solomon was old, what did his wives do?"
+    },
+    "answers": {
+      "en": [
+        "Persuaded him to go to war",
+        "Hid his treasures",
+        "Built him a new palace",
+        "Turned his heart after other gods"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_070",
+    "reference": "1 Kings 11:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "For which god of Moab did Solomon build a high place?"
+    },
+    "answers": {
+      "en": [
+        "Dagon",
+        "Baal",
+        "Chemosh",
+        "Marduk"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_071",
+    "reference": "1 Kings 11:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which Edomite did Yahweh raise up as an adversary to Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Rezon",
+        "Hadad",
+        "Jeroboam",
+        "Hiram"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_072",
+    "reference": "1 Kings 11:23",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which son of Eliada became Solomon's adversary and reigned in Damascus?"
+    },
+    "answers": {
+      "en": [
+        "Rezon",
+        "Hadad",
+        "Hazael",
+        "Ben Hadad"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_073",
+    "reference": "1 Kings 11:29",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophet from Shiloh met Jeroboam on the way out of Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Nathan",
+        "Shemaiah",
+        "Ahijah",
+        "Elijah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b140_074",
+    "reference": "1 Kings 11:30",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Into how many pieces did Ahijah tear his new garment?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Ten",
+        "Two",
+        "Seven"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b140_075",
+    "reference": "1 Kings 11:31",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many pieces of the garment did Ahijah tell Jeroboam to take?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Two",
+        "One",
+        "Ten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b140_076",
+    "reference": "1 Kings 11:40",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Where did Jeroboam flee to escape from Solomon?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Egypt",
+        "Tyre",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b140_077",
+    "reference": "1 Kings 11:42",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "How many years did Solomon reign in Jerusalem over all Israel?"
+    },
+    "answers": {
+      "en": [
+        "Thirty",
+        "Forty",
+        "Fifty",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 1
+  }
+]
