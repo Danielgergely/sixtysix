@@ -1,0 +1,63 @@
+/* Mission map (app/src/mission/MissionMapView.tsx): parchment, ink and muted water. */
+.mm{ position: relative; width: 100%; height: 100%; overflow: hidden; background: #2b1f12; --mm-k: 0.6; }
+.mm .mm-pz{ position: absolute; inset: 0; }
+.mm-fit{ display: flex; align-items: center; justify-content: center; --mm-k: 0.85; }
+.mm-fit .mm-svg{ display: block; max-width: 100%; max-height: 100%; }
+.mm-svg{ display: block; font-family: 'Cinzel', Georgia, serif; -webkit-tap-highlight-color: transparent; }
+.mm-svg.pinning{ cursor: crosshair; }
+
+/* land */
+.mm-outside{ fill: #8a6b43; opacity: 0.42; }
+.mm-hatch-line{ stroke: #5b4128; stroke-width: 1; opacity: 0.35; }
+.mm-owned{ opacity: 0.5; mix-blend-mode: multiply; transition: fill 0.4s ease; }
+.mm-relief{ fill: none; stroke: #7a5732; stroke-width: 1.5; stroke-linecap: round; opacity: 0.42; }
+
+/* water */
+.mm-waterline path{ fill: none; stroke: #e9f0e6; stroke-linejoin: round; }
+.mm-coast{ fill: none; stroke: #2f3f45; stroke-width: 1.6; stroke-linejoin: round; }
+.mm-lake{ fill: #87a7ae; stroke: #2f3f45; stroke-width: 1.3; stroke-linejoin: round; }
+.mm-river{ fill: none; stroke: #4e7d8e; stroke-linecap: round; stroke-linejoin: round; }
+
+/* regions */
+.mm-region{ fill: transparent; stroke: #3b2412; stroke-width: 1.5; stroke-linejoin: round; }
+.mm-region.tappable{ cursor: pointer; }
+.mm-region.tappable:hover{ fill: rgb(255 240 200 / 0.18); }
+.mm-hl{ fill: none; stroke-linejoin: round; }
+.mm-hl.selectable{ fill: rgb(255 226 140 / 0.22); stroke: #f6d36b; stroke-width: 4; stroke-dasharray: 10 6; animation: mm-march 1.1s linear infinite; }
+.mm-hl.attacking{ fill: rgb(196 40 24 / 0.16); stroke: #c42818; stroke-width: 5; filter: drop-shadow(0 0 6px rgb(196 40 24 / 0.8)); }
+.mm-hl.defending{ fill: rgb(255 255 255 / 0.12); stroke: #fff3d1; stroke-width: 5; filter: drop-shadow(0 0 6px rgb(40 70 160 / 0.9)); }
+@keyframes mm-march{ to{ stroke-dashoffset: -16; } }
+
+/* names of seas and lands */
+.mm-geo{ text-anchor: middle; dominant-baseline: middle; font-style: italic; letter-spacing: 0.12em; pointer-events: none; font-family: Georgia, serif; }
+.mm-geo.sea{ font-size: 26px; fill: #e7eee7; opacity: 0.85; letter-spacing: 0.3em; }
+.mm-geo.water{ font-size: 11px; fill: #e7eee7; }
+.mm-geo.river{ font-size: 10px; fill: #2f5868; }
+.mm-geo.land{ font-size: 15px; fill: #4a321b; opacity: 0.75; letter-spacing: 0.3em; text-transform: uppercase; }
+
+/* region labels: grow on screen as the map shrinks (--inv = 1 / zoom), never below map size */
+.mm-lbl{ transform: scale(max(1, calc(var(--inv, 1) * var(--mm-k)))); }
+.mm-name{
+  text-anchor: middle; font-size: 13px; font-weight: 700; fill: #2c1a0b;
+  paint-order: stroke; stroke: #f6e8c4; stroke-width: 3.2px; stroke-linejoin: round;
+}
+.mm-chip rect{ fill: #f6e8c4; stroke: #3b2412; stroke-width: 1; }
+.mm-chip text{ text-anchor: middle; font-size: 9px; font-weight: 700; fill: #3b2412; font-family: Georgia, serif; }
+.mm-chip.city rect{ fill: #efd9a6; }
+.mm-chip.holy rect{ fill: #f3d36f; stroke: #7a4d06; }
+.mm-walls use{ fill: #5d4630; stroke: #2a1a0c; stroke-width: 0.8; }
+.mm-walls use.broken{ fill: rgb(93 70 48 / 0.12); stroke-dasharray: 2 1.5; }
+.mm-walls.site use{ fill: none; stroke: #4a321b; stroke-width: 1; opacity: 0.75; }
+
+/* pins */
+.mm-pin-s{ transform: scale(max(0.8, calc(var(--inv, 1) * var(--mm-k) * 1.1))); }
+.mm-pin{ stroke: #2a1a0c; stroke-width: 1.2; }
+.mm-pin-label{ text-anchor: middle; font-size: 12px; font-weight: 700; fill: #2c1a0b; paint-order: stroke; stroke: #fff8e6; stroke-width: 3px; }
+.mm-pin-line{ stroke-width: 2; stroke-dasharray: 5 4; opacity: 0.85; vector-effect: non-scaling-stroke; }
+.mm-truth{ fill: #fff3b0; stroke: #7a4d06; stroke-width: 1.5; }
+.mm-truth-ring{ fill: rgb(255 230 120 / 0.25); stroke: #ffd75a; stroke-width: 2; animation: mm-glow 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes mm-glow{ 50%{ transform: scale(1.35); opacity: 0.55; } }
+
+@media (prefers-reduced-motion: reduce){
+  .mm-hl.selectable, .mm-truth-ring{ animation: none; }
+}
