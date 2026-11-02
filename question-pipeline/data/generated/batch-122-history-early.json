@@ -1,70 +1,1226 @@
 [
-  {"id":"q_b122_001","reference":"Judges 1:2","difficulty":2,"category":"history","text":{"en":"After Joshua's death, which tribe did God send up first against the Canaanites?"},"answers":{"en":["Ephraim","Judah","Benjamin","Levi"]},"correctIndex":1},
-  {"id":"q_b122_002","reference":"Judges 1:7","difficulty":4,"category":"history","text":{"en":"Adoni-Bezek said how many maimed kings had gathered scraps under his table?"},"answers":{"en":["70","12","30","7"]},"correctIndex":0},
-  {"id":"q_b122_003","reference":"Judges 1:13","difficulty":3,"category":"history","text":{"en":"Othniel was the younger brother of which man?"},"answers":{"en":["Joshua","Ehud","Barak","Caleb"]},"correctIndex":3},
-  {"id":"q_b122_004","reference":"Judges 1:16","difficulty":5,"category":"history","text":{"en":"The Kenites went up with Judah from which city?"},"answers":{"en":["The city of salt","The city of refuge","The city of palm trees","The city of David"]},"correctIndex":2},
-  {"id":"q_b122_005","reference":"Judges 1:19","difficulty":3,"category":"history","text":{"en":"Why could Judah not drive out the people of the valley?"},"answers":{"en":["They were giants","They had chariots of iron","They had high walls","They had many archers"]},"correctIndex":1},
-  {"id":"q_b122_006","reference":"Judges 1:23","difficulty":3,"category":"history","text":{"en":"What was Bethel called before?"},"answers":{"en":["Luz","Ai","Salem","Shiloh"]},"correctIndex":0},
-  {"id":"q_b122_007","reference":"Judges 1:24","difficulty":4,"category":"history","text":{"en":"Who showed the house of Joseph the way into Bethel?"},"answers":{"en":["A shepherd boy","The king's daughter","A Levite","A man coming out of the city"]},"correctIndex":3},
-  {"id":"q_b122_008","reference":"Judges 2:1","difficulty":4,"category":"history","text":{"en":"From Gilgal, where did the angel of Yahweh go up to rebuke Israel?"},"answers":{"en":["Bethel","Shiloh","Bochim","Mizpah"]},"correctIndex":2},
-  {"id":"q_b122_009","reference":"Judges 2:4","difficulty":3,"category":"history","text":{"en":"What did the people do when the angel rebuked them at Bochim?"},"answers":{"en":["They danced","They wept","They fled","They laughed"]},"correctIndex":1},
-  {"id":"q_b122_010","reference":"Judges 2:13","difficulty":3,"category":"history","text":{"en":"Which gods did Israel serve after abandoning Yahweh?"},"answers":{"en":["Dagon and Molech","Chemosh and Milcom","Marduk and Nebo","Baal and the Ashtaroth"]},"correctIndex":3},
-  {"id":"q_b122_011","reference":"Judges 2:16","difficulty":1,"category":"history","text":{"en":"Whom did Yahweh raise up to save Israel from its plunderers?"},"answers":{"en":["Judges","Kings","Generals","Priests"]},"correctIndex":0},
-  {"id":"q_b122_012","reference":"Judges 3:8","difficulty":5,"category":"history","text":{"en":"Which king of Mesopotamia oppressed Israel for eight years?"},"answers":{"en":["Eglon","Cushan Rishathaim","Jabin","Zebah"]},"correctIndex":1},
-  {"id":"q_b122_013","reference":"Judges 3:10","difficulty":3,"category":"history","text":{"en":"Which judge saved Israel from Cushan Rishathaim?"},"answers":{"en":["Ehud","Shamgar","Othniel","Gideon"]},"correctIndex":2},
-  {"id":"q_b122_014","reference":"Judges 3:11","difficulty":4,"category":"history","text":{"en":"After Othniel's victory, the land had rest for how many years?"},"answers":{"en":["80","20","8","40"]},"correctIndex":3},
-  {"id":"q_b122_015","reference":"Judges 3:14","difficulty":4,"category":"history","text":{"en":"How long did Israel serve Eglon king of Moab?"},"answers":{"en":["18 years","8 years","40 years","20 years"]},"correctIndex":0},
-  {"id":"q_b122_016","reference":"Judges 3:15","difficulty":2,"category":"history","text":{"en":"What was special about the judge Ehud?"},"answers":{"en":["He was blind","He was left-handed","He was a giant","He was very old"]},"correctIndex":1},
-  {"id":"q_b122_017","reference":"Judges 3:16","difficulty":3,"category":"history","text":{"en":"Where did Ehud hide his two-edged sword?"},"answers":{"en":["On his left thigh","Under his arm","On his right thigh","Behind his back"]},"correctIndex":2},
-  {"id":"q_b122_018","reference":"Judges 3:17","difficulty":2,"category":"history","text":{"en":"How is King Eglon of Moab described?"},"answers":{"en":["A very tall man","A very old man","A very young man","A very fat man"]},"correctIndex":3},
-  {"id":"q_b122_019","reference":"Judges 3:20","difficulty":4,"category":"history","text":{"en":"Where was Eglon sitting alone when Ehud came to him?"},"answers":{"en":["In the cool upper room","In his throne hall","In the city gate","In his garden"]},"correctIndex":0},
-  {"id":"q_b122_020","reference":"Judges 3:15","difficulty":4,"category":"history","text":{"en":"Ehud son of Gera was a man of which tribe?"},"answers":{"en":["A Benjamite","A Levite","A Danite","An Ephraimite"]},"correctIndex":0},
-  {"id":"q_b122_021","reference":"Judges 3:30","difficulty":3,"category":"history","text":{"en":"After Ehud defeated Moab, the land had rest for how many years?"},"answers":{"en":["40","18","20","80"]},"correctIndex":3},
-  {"id":"q_b122_022","reference":"Judges 3:31","difficulty":5,"category":"history","text":{"en":"Shamgar, who saved Israel with an ox goad, was the son of whom?"},"answers":{"en":["Gera","Kenaz","Anath","Joash"]},"correctIndex":2},
-  {"id":"q_b122_023","reference":"Judges 4:2","difficulty":2,"category":"history","text":{"en":"Who was the captain of Jabin's army?"},"answers":{"en":["Barak","Sisera","Abimelech","Zebul"]},"correctIndex":1},
-  {"id":"q_b122_024","reference":"Judges 4:3","difficulty":4,"category":"history","text":{"en":"How many chariots of iron did Jabin have?"},"answers":{"en":["900","600","300","1,000"]},"correctIndex":0},
-  {"id":"q_b122_025","reference":"Judges 4:5","difficulty":3,"category":"history","text":{"en":"Under which kind of tree did Deborah sit to judge Israel?"},"answers":{"en":["An oak","A fig tree","A cedar","A palm tree"]},"correctIndex":3},
-  {"id":"q_b122_026","reference":"Judges 4:4","difficulty":5,"category":"history","text":{"en":"Deborah was the wife of whom?"},"answers":{"en":["Lamech","Abinoam","Lappidoth","Heber"]},"correctIndex":2},
-  {"id":"q_b122_027","reference":"Judges 4:6","difficulty":4,"category":"history","text":{"en":"Barak was the son of whom?"},"answers":{"en":["Joash","Abinoam","Gera","Kenaz"]},"correctIndex":1},
-  {"id":"q_b122_028","reference":"Judges 4:8","difficulty":2,"category":"history","text":{"en":"Barak would only go to battle if who went with him?"},"answers":{"en":["Deborah","Jael","Gideon","Samuel"]},"correctIndex":0},
-  {"id":"q_b122_029","reference":"Judges 4:9","difficulty":2,"category":"history","text":{"en":"Deborah said Yahweh would sell Sisera into the hand of whom?"},"answers":{"en":["A child","A priest","A king","A woman"]},"correctIndex":3},
-  {"id":"q_b122_030","reference":"Judges 4:7","difficulty":3,"category":"history","text":{"en":"To which river did God draw Sisera's army?"},"answers":{"en":["The Jordan","The Kishon","The Jabbok","The Arnon"]},"correctIndex":1},
-  {"id":"q_b122_031","reference":"Judges 4:15","difficulty":3,"category":"history","text":{"en":"How did Sisera flee from the battle?"},"answers":{"en":["In his chariot","On a horse","On his feet","By boat"]},"correctIndex":2},
-  {"id":"q_b122_032","reference":"Judges 4:18","difficulty":3,"category":"history","text":{"en":"With what did Jael cover Sisera in her tent?"},"answers":{"en":["A cloak","A sheepskin","A tent curtain","A rug"]},"correctIndex":3},
-  {"id":"q_b122_033","reference":"Judges 4:19","difficulty":2,"category":"history","text":{"en":"Sisera asked Jael for water. What did she give him?"},"answers":{"en":["Milk","Wine","Honey","Beer"]},"correctIndex":0},
-  {"id":"q_b122_034","reference":"Judges 4:11","difficulty":4,"category":"history","text":{"en":"Jael's husband Heber belonged to which people?"},"answers":{"en":["The Hittites","The Kenites","The Midianites","The Moabites"]},"correctIndex":1},
-  {"id":"q_b122_035","reference":"Judges 5:1","difficulty":2,"category":"history","text":{"en":"Who sang with Barak after the victory over Sisera?"},"answers":{"en":["Miriam","Hannah","Deborah","Jael"]},"correctIndex":2},
-  {"id":"q_b122_036","reference":"Judges 5:7","difficulty":3,"category":"history","text":{"en":"In her song, Deborah says she arose as a mother in what?"},"answers":{"en":["Ephraim","Judah","Zion","Israel"]},"correctIndex":3},
-  {"id":"q_b122_037","reference":"Judges 5:20","difficulty":3,"category":"history","text":{"en":"According to Deborah's song, what fought against Sisera from the sky?"},"answers":{"en":["The stars","The angels","The winds","The clouds"]},"correctIndex":0},
-  {"id":"q_b122_038","reference":"Judges 5:23","difficulty":5,"category":"history","text":{"en":"Which town did the angel of Yahweh curse for not coming to help?"},"answers":{"en":["Bochim","Meroz","Ophrah","Kedesh"]},"correctIndex":1},
-  {"id":"q_b122_039","reference":"Judges 5:28","difficulty":3,"category":"history","text":{"en":"Who looked through the lattice, wondering why Sisera's chariot was late?"},"answers":{"en":["His wife","His daughter","His mother","His servant"]},"correctIndex":2},
-  {"id":"q_b122_040","reference":"Judges 6:1","difficulty":3,"category":"history","text":{"en":"Into whose hand did Yahweh give Israel for seven years before Gideon?"},"answers":{"en":["Moab","Ammon","Midian","The Philistines"]},"correctIndex":2},
-  {"id":"q_b122_041","reference":"Judges 6:5","difficulty":2,"category":"history","text":{"en":"The Midianite raiders came in as many as what?"},"answers":{"en":["Ants","Locusts","Frogs","Sparrows"]},"correctIndex":1},
-  {"id":"q_b122_042","reference":"Judges 6:11","difficulty":4,"category":"history","text":{"en":"In which town was the oak where the angel sat to meet Gideon?"},"answers":{"en":["Ophrah","Shiloh","Shechem","Gilgal"]},"correctIndex":0},
-  {"id":"q_b122_043","reference":"Judges 6:12","difficulty":2,"category":"history","text":{"en":"What did the angel of Yahweh call Gideon?"},"answers":{"en":["Faithful servant","Son of the prophets","Beloved of Israel","Mighty man of valor"]},"correctIndex":3},
-  {"id":"q_b122_044","reference":"Judges 6:21","difficulty":2,"category":"history","text":{"en":"What consumed Gideon's offering when the angel touched it with his staff?"},"answers":{"en":["Lightning from heaven","A swarm of bees","Fire from the rock","A great wind"]},"correctIndex":2},
-  {"id":"q_b122_045","reference":"Judges 6:24","difficulty":3,"category":"history","text":{"en":"What did Gideon name the altar he built at Ophrah?"},"answers":{"en":["Yahweh Will Provide","Yahweh is Peace","Yahweh Is My Banner","Ebenezer"]},"correctIndex":1},
-  {"id":"q_b122_046","reference":"Judges 6:25","difficulty":2,"category":"history","text":{"en":"Whose altar did God tell Gideon to tear down?"},"answers":{"en":["Baal's","Dagon's","Molech's","Chemosh's"]},"correctIndex":0},
-  {"id":"q_b122_047","reference":"Judges 6:27","difficulty":4,"category":"history","text":{"en":"Why did Gideon tear down the altar at night?"},"answers":{"en":["To surprise the Midianites","The angel told him to","To hide from the priests","He feared his family and the city"]},"correctIndex":3},
-  {"id":"q_b122_048","reference":"Judges 6:32","difficulty":3,"category":"history","text":{"en":"What name was Gideon given after he broke down Baal's altar?"},"answers":{"en":["Ichabod","Ben-Oni","Jerub-Baal","Mara"]},"correctIndex":2},
-  {"id":"q_b122_049","reference":"Judges 6:38","difficulty":4,"category":"history","text":{"en":"How much water did Gideon wring out of the fleece?"},"answers":{"en":["A cup full","A bowl full","A jar full","A bucket full"]},"correctIndex":1},
-  {"id":"q_b122_050","reference":"Judges 6:40","difficulty":2,"category":"history","text":{"en":"In Gideon's second test with the fleece, what stayed dry?"},"answers":{"en":["Only the ground","The fleece and the ground","The altar","Only the fleece"]},"correctIndex":3},
-  {"id":"q_b122_051","reference":"Judges 7:1","difficulty":5,"category":"history","text":{"en":"Beside which spring did Gideon's army camp?"},"answers":{"en":["Harod","Gihon","En Gedi","Marah"]},"correctIndex":0},
-  {"id":"q_b122_052","reference":"Judges 7:3","difficulty":4,"category":"history","text":{"en":"How many fearful men went home when Gideon let them leave?"},"answers":{"en":["2,000","22,000","32,000","12,000"]},"correctIndex":1},
-  {"id":"q_b122_053","reference":"Judges 7:6","difficulty":2,"category":"history","text":{"en":"How did the 300 chosen men drink?"},"answers":{"en":["They knelt down","They used cups","They lapped like a dog","They drank from helmets"]},"correctIndex":2},
-  {"id":"q_b122_054","reference":"Judges 7:10","difficulty":5,"category":"history","text":{"en":"Which servant went down with Gideon to the Midianite camp at night?"},"answers":{"en":["Jether","Gaal","Joash","Purah"]},"correctIndex":3},
-  {"id":"q_b122_055","reference":"Judges 7:13","difficulty":3,"category":"history","text":{"en":"In the Midianite's dream, what tumbled into the camp and flattened a tent?"},"answers":{"en":["A cake of barley bread","A great stone","A wild ram","A chariot of fire"]},"correctIndex":0},
-  {"id":"q_b122_056","reference":"Judges 7:16","difficulty":2,"category":"history","text":{"en":"What did Gideon's men carry inside their empty pitchers?"},"answers":{"en":["Swords","Torches","Stones","Coins"]},"correctIndex":1},
-  {"id":"q_b122_057","reference":"Judges 7:22","difficulty":4,"category":"history","text":{"en":"What did Yahweh do when the 300 trumpets sounded?"},"answers":{"en":["Sent a great earthquake","Opened the earth","Set each man's sword against his fellow","Sent fire from heaven"]},"correctIndex":2},
-  {"id":"q_b122_058","reference":"Judges 7:25","difficulty":3,"category":"history","text":{"en":"Which two princes of Midian did the men of Ephraim capture?"},"answers":{"en":["Zebah and Zalmunna","Sihon and Og","Hophni and Phinehas","Oreb and Zeeb"]},"correctIndex":3},
-  {"id":"q_b122_059","reference":"Judges 8:16","difficulty":4,"category":"history","text":{"en":"Which town's elders did Gideon \"teach\" with thorns and briers?"},"answers":{"en":["Succoth","Ophrah","Gilgal","Bethel"]},"correctIndex":0},
-  {"id":"q_b122_060","reference":"Judges 8:17","difficulty":4,"category":"history","text":{"en":"Whose tower did Gideon break down?"},"answers":{"en":["Penuel's","Babel's","Thebez's","Jericho's"]},"correctIndex":0},
-  {"id":"q_b122_061","reference":"Judges 8:20","difficulty":5,"category":"history","text":{"en":"Which son of Gideon was too afraid to kill Zebah and Zalmunna?"},"answers":{"en":["Jotham","Abimelech","Purah","Jether"]},"correctIndex":3},
-  {"id":"q_b122_062","reference":"Judges 8:21","difficulty":5,"category":"history","text":{"en":"What did Gideon take from the necks of the Midianite kings' camels?"},"answers":{"en":["Bells","Tassels","Crescents","Silver collars"]},"correctIndex":2},
-  {"id":"q_b122_063","reference":"Judges 8:23","difficulty":2,"category":"history","text":{"en":"When Israel asked Gideon to rule them, who did he say would rule?"},"answers":{"en":["His son","Yahweh","His brothers","The elders"]},"correctIndex":1},
-  {"id":"q_b122_064","reference":"Judges 8:24","difficulty":3,"category":"history","text":{"en":"What did Gideon ask each man to give from the plunder?"},"answers":{"en":["Earrings","Swords","Camels","Robes"]},"correctIndex":0},
-  {"id":"q_b122_065","reference":"Judges 8:27","difficulty":2,"category":"history","text":{"en":"What did Gideon make from the gold, which became a snare?"},"answers":{"en":["A golden calf","A crown","A lampstand","An ephod"]},"correctIndex":3},
-  {"id":"q_b122_066","reference":"Judges 8:30","difficulty":3,"category":"history","text":{"en":"How many sons did Gideon have?"},"answers":{"en":["30","12","70","40"]},"correctIndex":2},
-  {"id":"q_b122_067","reference":"Judges 8:31","difficulty":3,"category":"history","text":{"en":"Which son of Gideon was born to his concubine in Shechem?"},"answers":{"en":["Jether","Abimelech","Jotham","Gaal"]},"correctIndex":1},
-  {"id":"q_b122_068","reference":"Judges 8:33","difficulty":5,"category":"history","text":{"en":"After Gideon died, Israel made which Baal their god?"},"answers":{"en":["Baal Berith","Baal Peor","Baal Zebub","Baal Hazor"]},"correctIndex":0}
+  {
+    "id": "q_b122_001",
+    "reference": "Judges 1:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After Joshua's death, which tribe did God send up first against the Canaanites?"
+    },
+    "answers": {
+      "en": [
+        "Ephraim",
+        "Judah",
+        "Benjamin",
+        "Levi"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_002",
+    "reference": "Judges 1:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Adoni-Bezek said how many maimed kings had gathered scraps under his table?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "12",
+        "30",
+        "7"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_003",
+    "reference": "Judges 1:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Othniel was the younger brother of which man?"
+    },
+    "answers": {
+      "en": [
+        "Joshua",
+        "Ehud",
+        "Barak",
+        "Caleb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_004",
+    "reference": "Judges 1:16",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "The Kenites went up with Judah from which city?"
+    },
+    "answers": {
+      "en": [
+        "The city of salt",
+        "The city of refuge",
+        "The city of palm trees",
+        "The city of David"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_005",
+    "reference": "Judges 1:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why could Judah not drive out the people of the valley?"
+    },
+    "answers": {
+      "en": [
+        "They were giants",
+        "They had chariots of iron",
+        "They had high walls",
+        "They had many archers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_006",
+    "reference": "Judges 1:23",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was Bethel called before?"
+    },
+    "answers": {
+      "en": [
+        "Luz",
+        "Ai",
+        "Salem",
+        "Shiloh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_007",
+    "reference": "Judges 1:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who showed the house of Joseph the way into Bethel?"
+    },
+    "answers": {
+      "en": [
+        "A shepherd boy",
+        "The king's daughter",
+        "A Levite",
+        "A man coming out of the city"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_008",
+    "reference": "Judges 2:1",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "From Gilgal, where did the angel of Yahweh go up to rebuke Israel?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Shiloh",
+        "Bochim",
+        "Mizpah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_009",
+    "reference": "Judges 2:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the people do when the angel rebuked them at Bochim?"
+    },
+    "answers": {
+      "en": [
+        "They danced",
+        "They wept",
+        "They fled",
+        "They laughed"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_010",
+    "reference": "Judges 2:13",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which gods did Israel serve after abandoning Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Dagon and Molech",
+        "Chemosh and Milcom",
+        "Marduk and Nebo",
+        "Baal and the Ashtaroth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_011",
+    "reference": "Judges 2:16",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Whom did Yahweh raise up to save Israel from its plunderers?"
+    },
+    "answers": {
+      "en": [
+        "Judges",
+        "Kings",
+        "Generals",
+        "Priests"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_012",
+    "reference": "Judges 3:8",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which king of Mesopotamia oppressed Israel for eight years?"
+    },
+    "answers": {
+      "en": [
+        "Eglon",
+        "Cushan Rishathaim",
+        "Jabin",
+        "Zebah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_013",
+    "reference": "Judges 3:10",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which judge saved Israel from Cushan Rishathaim?"
+    },
+    "answers": {
+      "en": [
+        "Ehud",
+        "Shamgar",
+        "Othniel",
+        "Gideon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_014",
+    "reference": "Judges 3:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "After Othniel's victory, the land had rest for how many years?"
+    },
+    "answers": {
+      "en": [
+        "80",
+        "20",
+        "8",
+        "40"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_015",
+    "reference": "Judges 3:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How long did Israel serve Eglon king of Moab?"
+    },
+    "answers": {
+      "en": [
+        "18 years",
+        "8 years",
+        "40 years",
+        "20 years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_016",
+    "reference": "Judges 3:15",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was special about the judge Ehud?"
+    },
+    "answers": {
+      "en": [
+        "He was blind",
+        "He was left-handed",
+        "He was a giant",
+        "He was very old"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_017",
+    "reference": "Judges 3:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did Ehud hide his two-edged sword?"
+    },
+    "answers": {
+      "en": [
+        "On his left thigh",
+        "Under his arm",
+        "On his right thigh",
+        "Behind his back"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_018",
+    "reference": "Judges 3:17",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How is King Eglon of Moab described?"
+    },
+    "answers": {
+      "en": [
+        "A very tall man",
+        "A very old man",
+        "A very young man",
+        "A very fat man"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_019",
+    "reference": "Judges 3:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where was Eglon sitting alone when Ehud came to him?"
+    },
+    "answers": {
+      "en": [
+        "In the cool upper room",
+        "In his throne hall",
+        "In the city gate",
+        "In his garden"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_020",
+    "reference": "Judges 3:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Ehud son of Gera was a man of which tribe?"
+    },
+    "answers": {
+      "en": [
+        "A Benjamite",
+        "A Levite",
+        "A Danite",
+        "An Ephraimite"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_021",
+    "reference": "Judges 3:30",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "After Ehud defeated Moab, the land had rest for how many years?"
+    },
+    "answers": {
+      "en": [
+        "40",
+        "18",
+        "20",
+        "80"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_022",
+    "reference": "Judges 3:31",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Shamgar, who saved Israel with an ox goad, was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Gera",
+        "Kenaz",
+        "Anath",
+        "Joash"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_023",
+    "reference": "Judges 4:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who was the captain of Jabin's army?"
+    },
+    "answers": {
+      "en": [
+        "Barak",
+        "Sisera",
+        "Abimelech",
+        "Zebul"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_024",
+    "reference": "Judges 4:3",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many chariots of iron did Jabin have?"
+    },
+    "answers": {
+      "en": [
+        "900",
+        "600",
+        "300",
+        "1,000"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_025",
+    "reference": "Judges 4:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Under which kind of tree did Deborah sit to judge Israel?"
+    },
+    "answers": {
+      "en": [
+        "An oak",
+        "A fig tree",
+        "A cedar",
+        "A palm tree"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_026",
+    "reference": "Judges 4:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Deborah was the wife of whom?"
+    },
+    "answers": {
+      "en": [
+        "Lamech",
+        "Abinoam",
+        "Lappidoth",
+        "Heber"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_027",
+    "reference": "Judges 4:6",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Barak was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Joash",
+        "Abinoam",
+        "Gera",
+        "Kenaz"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_028",
+    "reference": "Judges 4:8",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Barak would only go to battle if who went with him?"
+    },
+    "answers": {
+      "en": [
+        "Deborah",
+        "Jael",
+        "Gideon",
+        "Samuel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_029",
+    "reference": "Judges 4:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Deborah said Yahweh would sell Sisera into the hand of whom?"
+    },
+    "answers": {
+      "en": [
+        "A child",
+        "A priest",
+        "A king",
+        "A woman"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_030",
+    "reference": "Judges 4:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "To which river did God draw Sisera's army?"
+    },
+    "answers": {
+      "en": [
+        "The Jordan",
+        "The Kishon",
+        "The Jabbok",
+        "The Arnon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_031",
+    "reference": "Judges 4:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How did Sisera flee from the battle?"
+    },
+    "answers": {
+      "en": [
+        "In his chariot",
+        "On a horse",
+        "On his feet",
+        "By boat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_032",
+    "reference": "Judges 4:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "With what did Jael cover Sisera in her tent?"
+    },
+    "answers": {
+      "en": [
+        "Straw",
+        "A sheepskin",
+        "A tent curtain",
+        "A rug"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_033",
+    "reference": "Judges 4:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Sisera asked Jael for water. What did she give him?"
+    },
+    "answers": {
+      "en": [
+        "Milk",
+        "Wine",
+        "Honey",
+        "Beer"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_034",
+    "reference": "Judges 4:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Jael's husband Heber belonged to which people?"
+    },
+    "answers": {
+      "en": [
+        "The Hittites",
+        "The Kenites",
+        "The Midianites",
+        "The Moabites"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_035",
+    "reference": "Judges 5:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who sang with Barak after the victory over Sisera?"
+    },
+    "answers": {
+      "en": [
+        "Miriam",
+        "Hannah",
+        "Deborah",
+        "Jael"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_036",
+    "reference": "Judges 5:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "In her song, Deborah says she arose as a mother in what?"
+    },
+    "answers": {
+      "en": [
+        "Ephraim",
+        "Judah",
+        "Zion",
+        "Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_037",
+    "reference": "Judges 5:20",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "According to Deborah's song, what fought against Sisera from the sky?"
+    },
+    "answers": {
+      "en": [
+        "The stars",
+        "The angels",
+        "The winds",
+        "The clouds"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_038",
+    "reference": "Judges 5:23",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which town did the angel of Yahweh curse for not coming to help?"
+    },
+    "answers": {
+      "en": [
+        "Bochim",
+        "Meroz",
+        "Ophrah",
+        "Kedesh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_039",
+    "reference": "Judges 5:28",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who looked through the lattice, wondering why Sisera's chariot was late?"
+    },
+    "answers": {
+      "en": [
+        "His wife",
+        "His daughter",
+        "His mother",
+        "His servant"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_040",
+    "reference": "Judges 6:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Into whose hand did Yahweh give Israel for seven years before Gideon?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Ammon",
+        "Midian",
+        "The Philistines"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_041",
+    "reference": "Judges 6:5",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The Midianite raiders came in as many as what?"
+    },
+    "answers": {
+      "en": [
+        "Ants",
+        "Locusts",
+        "Frogs",
+        "Sparrows"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_042",
+    "reference": "Judges 6:11",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "In which town was the oak where the angel sat to meet Gideon?"
+    },
+    "answers": {
+      "en": [
+        "Ophrah",
+        "Shiloh",
+        "Shechem",
+        "Gilgal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_043",
+    "reference": "Judges 6:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the angel of Yahweh call Gideon?"
+    },
+    "answers": {
+      "en": [
+        "Faithful servant",
+        "Son of the prophets",
+        "Beloved of Israel",
+        "Mighty man of valor"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_044",
+    "reference": "Judges 6:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What consumed Gideon's offering when the angel touched it with his staff?"
+    },
+    "answers": {
+      "en": [
+        "Lightning from heaven",
+        "A swarm of bees",
+        "Fire from the rock",
+        "A great wind"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_045",
+    "reference": "Judges 6:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Gideon name the altar he built at Ophrah?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh Will Provide",
+        "Yahweh is Peace",
+        "Yahweh Is My Banner",
+        "Ebenezer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_046",
+    "reference": "Judges 6:25",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Whose altar did God tell Gideon to tear down?"
+    },
+    "answers": {
+      "en": [
+        "Baal's",
+        "Dagon's",
+        "Molech's",
+        "Chemosh's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_047",
+    "reference": "Judges 6:27",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Why did Gideon tear down the altar at night?"
+    },
+    "answers": {
+      "en": [
+        "To surprise the Midianites",
+        "The angel told him to",
+        "To hide from the priests",
+        "He feared his family and the city"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_048",
+    "reference": "Judges 6:32",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What name was Gideon given after he broke down Baal's altar?"
+    },
+    "answers": {
+      "en": [
+        "Ichabod",
+        "Ben-Oni",
+        "Jerub-Baal",
+        "Mara"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_049",
+    "reference": "Judges 6:38",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How much water did Gideon wring out of the fleece?"
+    },
+    "answers": {
+      "en": [
+        "A cup full",
+        "A bowl full",
+        "A jar full",
+        "A bucket full"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_050",
+    "reference": "Judges 6:40",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In Gideon's second test with the fleece, what stayed dry?"
+    },
+    "answers": {
+      "en": [
+        "Only the ground",
+        "The fleece and the ground",
+        "The altar",
+        "Only the fleece"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_051",
+    "reference": "Judges 7:1",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Beside which spring did Gideon's army camp?"
+    },
+    "answers": {
+      "en": [
+        "Harod",
+        "Gihon",
+        "En Gedi",
+        "Marah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_052",
+    "reference": "Judges 7:3",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many fearful men went home when Gideon let them leave?"
+    },
+    "answers": {
+      "en": [
+        "2,000",
+        "22,000",
+        "32,000",
+        "12,000"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_053",
+    "reference": "Judges 7:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did the 300 chosen men drink?"
+    },
+    "answers": {
+      "en": [
+        "They knelt down",
+        "They used cups",
+        "They lapped like a dog",
+        "They drank from helmets"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_054",
+    "reference": "Judges 7:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which servant went down with Gideon to the Midianite camp at night?"
+    },
+    "answers": {
+      "en": [
+        "Jether",
+        "Gaal",
+        "Joash",
+        "Purah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_055",
+    "reference": "Judges 7:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In the Midianite's dream, what tumbled into the camp and flattened a tent?"
+    },
+    "answers": {
+      "en": [
+        "A cake of barley bread",
+        "A great stone",
+        "A wild ram",
+        "A chariot of fire"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_056",
+    "reference": "Judges 7:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Gideon's men carry inside their empty pitchers?"
+    },
+    "answers": {
+      "en": [
+        "Swords",
+        "Torches",
+        "Stones",
+        "Coins"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_057",
+    "reference": "Judges 7:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Yahweh do when the 300 trumpets sounded?"
+    },
+    "answers": {
+      "en": [
+        "Sent a great earthquake",
+        "Opened the earth",
+        "Set each man's sword against his fellow",
+        "Sent fire from heaven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_058",
+    "reference": "Judges 7:25",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which two princes of Midian did the men of Ephraim capture?"
+    },
+    "answers": {
+      "en": [
+        "Zebah and Zalmunna",
+        "Sihon and Og",
+        "Hophni and Phinehas",
+        "Oreb and Zeeb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_059",
+    "reference": "Judges 8:16",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which town's elders did Gideon \"teach\" with thorns and briers?"
+    },
+    "answers": {
+      "en": [
+        "Succoth",
+        "Ophrah",
+        "Gilgal",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_060",
+    "reference": "Judges 8:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Whose tower did Gideon break down?"
+    },
+    "answers": {
+      "en": [
+        "Penuel's",
+        "Babel's",
+        "Thebez's",
+        "Jericho's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_061",
+    "reference": "Judges 8:20",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which son of Gideon was too afraid to kill Zebah and Zalmunna?"
+    },
+    "answers": {
+      "en": [
+        "Jotham",
+        "Abimelech",
+        "Purah",
+        "Jether"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_062",
+    "reference": "Judges 8:21",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "What did Gideon take from the necks of the Midianite kings' camels?"
+    },
+    "answers": {
+      "en": [
+        "Bells",
+        "Tassels",
+        "Crescents",
+        "Silver collars"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_063",
+    "reference": "Judges 8:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "When Israel asked Gideon to rule them, who did he say would rule?"
+    },
+    "answers": {
+      "en": [
+        "His son",
+        "Yahweh",
+        "His brothers",
+        "The elders"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_064",
+    "reference": "Judges 8:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Gideon ask each man to give from the plunder?"
+    },
+    "answers": {
+      "en": [
+        "Earrings",
+        "Swords",
+        "Camels",
+        "Robes"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b122_065",
+    "reference": "Judges 8:27",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Gideon make from the gold, which became a snare?"
+    },
+    "answers": {
+      "en": [
+        "A golden calf",
+        "A crown",
+        "A lampstand",
+        "An ephod"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b122_066",
+    "reference": "Judges 8:30",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many sons did Gideon have?"
+    },
+    "answers": {
+      "en": [
+        "30",
+        "12",
+        "70",
+        "40"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b122_067",
+    "reference": "Judges 8:31",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which son of Gideon was born to his concubine in Shechem?"
+    },
+    "answers": {
+      "en": [
+        "Jether",
+        "Abimelech",
+        "Jotham",
+        "Gaal"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b122_068",
+    "reference": "Judges 8:33",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "After Gideon died, Israel made which Baal their god?"
+    },
+    "answers": {
+      "en": [
+        "Baal Berith",
+        "Baal Peor",
+        "Baal Zebub",
+        "Baal Hazor"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

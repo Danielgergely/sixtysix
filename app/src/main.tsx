@@ -12,9 +12,11 @@ import { useGameStore } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
 import { useFlockStore } from './flock/flockStore'
 import { useSpiesStore } from './spies/spiesStore'
+import { useMissionStore } from './mission/missionStore'
 import { playSfx } from './game/sfx'
 import { useAccountStore } from './account/accountStore'
 import { initFlags } from './flags/flagStore'
+import { silenceTutorials } from './tutorial/store'
 
 // One delegated listener gives every button a click sound. Answer buttons
 // are excluded — they have their own (louder) submit sound.
@@ -38,6 +40,7 @@ if (joinMatch) {
 // /board/CODE — read-only spectator dashboard (second screen, co-leader, …).
 const boardMatch = /^\/board\/([A-Za-z0-9]{4,8})$/.exec(window.location.pathname)
 if (boardMatch) {
+  silenceTutorials() // a shared screen never gets tutorial popups
   useArenaStore.getState().watchGame(boardMatch[1])
   window.history.replaceState(null, '', '/')
 }
@@ -45,8 +48,10 @@ if (boardMatch) {
 // Wolf in the Flock: /flock/CODE (QR join) and /flock/CODE/board (shared screen).
 const flockMatch = /^\/flock\/([A-Za-z0-9]{4,8})(\/board)?\/?$/.exec(window.location.pathname)
 if (flockMatch) {
-  if (flockMatch[2]) useFlockStore.getState().watch(flockMatch[1])
-  else useFlockStore.getState().setPrefillCode(flockMatch[1])
+  if (flockMatch[2]) {
+    silenceTutorials()
+    useFlockStore.getState().watch(flockMatch[1])
+  } else useFlockStore.getState().setPrefillCode(flockMatch[1])
   useGameStore.getState().goTo('flock')
   window.history.replaceState(null, '', '/')
 }
@@ -54,14 +59,27 @@ if (flockMatch) {
 // Twelve Spies: /spies/CODE (QR join) and /spies/CODE/board (shared screen).
 const spiesMatch = /^\/spies\/([A-Za-z0-9]{4,8})(\/board)?\/?$/.exec(window.location.pathname)
 if (spiesMatch) {
-  if (spiesMatch[2]) useSpiesStore.getState().watch(spiesMatch[1])
-  else useSpiesStore.getState().setPrefillCode(spiesMatch[1])
+  if (spiesMatch[2]) {
+    silenceTutorials()
+    useSpiesStore.getState().watch(spiesMatch[1])
+  } else useSpiesStore.getState().setPrefillCode(spiesMatch[1])
   useGameStore.getState().goTo('spies')
   window.history.replaceState(null, '', '/')
 }
 
+// Mission: /mission/CODE (QR join) and /mission/CODE/board (shared screen).
+const missionMatch = /^\/mission\/([A-Za-z0-9]{4,8})(\/board)?\/?$/.exec(window.location.pathname)
+if (missionMatch) {
+  if (missionMatch[2]) {
+    silenceTutorials()
+    useMissionStore.getState().watch(missionMatch[1])
+  } else useMissionStore.getState().setPrefillCode(missionMatch[1])
+  useGameStore.getState().goTo('mission')
+  window.history.replaceState(null, '', '/')
+}
+
 // Reloaded mid-game (no deep link): back into the arena room this device was in.
-if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch) useArenaStore.getState().resume()
+if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch && !missionMatch) useArenaStore.getState().resume()
 
 // Signed in: deliver rewards earned offline and pick up the account's totals.
 void useAccountStore.getState().init()

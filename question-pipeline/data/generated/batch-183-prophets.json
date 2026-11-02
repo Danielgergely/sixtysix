@@ -2,7 +2,7 @@
   {
     "id": "q_b183_001",
     "reference": "Jeremiah 26:18",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "In Jeremiah 26, the elders recall which prophet from the days of Hezekiah?"
@@ -38,7 +38,7 @@
   {
     "id": "q_b183_003",
     "reference": "Jeremiah 27:2",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "prophets",
     "text": {
       "en": "What did God tell Jeremiah to make and put on his neck?"
@@ -74,7 +74,7 @@
   {
     "id": "q_b183_005",
     "reference": "Jeremiah 28:3",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Within how many years did Hananiah say the temple vessels would come back?"
@@ -110,7 +110,7 @@
   {
     "id": "q_b183_007",
     "reference": "Jeremiah 29:5",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "prophets",
     "text": {
       "en": "In his letter to the exiles, what did Jeremiah tell them to build?"
@@ -200,7 +200,7 @@
   {
     "id": "q_b183_012",
     "reference": "Jeremiah 31:15",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "prophets",
     "text": {
       "en": "Jeremiah 31: who is heard in Ramah weeping for her children?"
@@ -218,7 +218,7 @@
   {
     "id": "q_b183_013",
     "reference": "Jeremiah 31:29",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "prophets",
     "text": {
       "en": "Jeremiah 31: the fathers ate what, and the children's teeth are set on edge?"
@@ -326,7 +326,7 @@
   {
     "id": "q_b183_019",
     "reference": "Jeremiah 34:18",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Jeremiah 34: what did the leaders cut in two and pass between to make a covenant?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b183_020",
     "reference": "Jeremiah 35:6",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Who commanded the Rechabites never to drink wine?"
@@ -362,7 +362,7 @@
   {
     "id": "q_b183_021",
     "reference": "Jeremiah 35:7",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "prophets",
     "text": {
       "en": "Jeremiah 35: the Rechabites were commanded to live all their days in what?"
@@ -506,14 +506,14 @@
   {
     "id": "q_b183_029",
     "reference": "Jeremiah 38:10",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "How many men did the king tell Ebedmelech to take to lift Jeremiah out?"
     },
     "answers": {
       "en": [
-        "Three",
+        "Five",
         "Thirty",
         "Ten",
         "Twelve"
@@ -524,7 +524,7 @@
   {
     "id": "q_b183_030",
     "reference": "Jeremiah 39:2",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "In which year of Zedekiah's reign was a breach made in Jerusalem's wall?"
@@ -542,7 +542,7 @@
   {
     "id": "q_b183_031",
     "reference": "Jeremiah 39:6",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Where did the king of Babylon kill Zedekiah's sons before his eyes?"
@@ -578,7 +578,7 @@
   {
     "id": "q_b183_033",
     "reference": "Jeremiah 39:18",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "prophets",
     "text": {
       "en": "Why was Ebedmelech's life spared when Jerusalem fell?"
@@ -596,7 +596,7 @@
   {
     "id": "q_b183_034",
     "reference": "Jeremiah 40:13-14",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Who warned Gedaliah that Ishmael was sent to kill him?"
@@ -650,7 +650,7 @@
   {
     "id": "q_b183_037",
     "reference": "Jeremiah 42:7",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "After how many days did God's answer come to Jeremiah for the remnant?"
@@ -704,7 +704,7 @@
   {
     "id": "q_b183_040",
     "reference": "Jeremiah 46:2",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Where was the army of Pharaoh Necoh defeated by Nebuchadnezzar, by the Euphrates?"
@@ -722,7 +722,7 @@
   {
     "id": "q_b183_041",
     "reference": "Jeremiah 48:11",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "Jeremiah 48: which nation has 'settled on his lees', never poured from vessel to vessel?"
@@ -812,7 +812,7 @@
   {
     "id": "q_b183_046",
     "reference": "Jeremiah 52:1",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "prophets",
     "text": {
       "en": "How many years did Zedekiah reign in Jerusalem?"

@@ -1,8 +1,7 @@
-import { ARENA_MODES, CATEGORIES, type Category, type RoomConfig } from '@sixtysix/shared'
+import { ARENA_MODES, CATEGORIES, DIFFICULTY_PRESETS, type Category, type RoomConfig } from '@sixtysix/shared'
 import { useT } from '../../i18n'
 
 const QUESTION_COUNTS = [5, 10, 15, 20]
-const DIFFICULTIES = ['easy', 'mixed', 'hard'] as const
 
 /** The host's game options (mode, length, difficulty, books, room type): new game and lobby. */
 export function RoomOptions({ value, onChange }: { value: RoomConfig; onChange: (next: RoomConfig) => void }) {
@@ -31,13 +30,19 @@ export function RoomOptions({ value, onChange }: { value: RoomConfig; onChange: 
           </button>
         ))}
       </div>
-      <div className="seg-row">
-        {DIFFICULTIES.map((d) => (
+      <div className="seg-row levels">
+        {DIFFICULTY_PRESETS.map((d) => (
           <button key={d} className={`seg-btn ${(value.difficulty ?? 'mixed') === d ? 'selected' : ''}`} onClick={() => set({ difficulty: d })}>
             {t(`arena.difficulty.${d}`)}
           </button>
         ))}
       </div>
+      {(value.difficulty ?? 'mixed') === 'mixed' && (
+        <label className="opt-check">
+          <input type="checkbox" checked={value.withImpossible === true} onChange={(e) => set({ withImpossible: e.target.checked })} />
+          <span>{t('arena.withImpossible')}</span>
+        </label>
+      )}
       <div className="category-chips">
         <button className={`seg-btn ${categories.length === 0 ? 'selected' : ''}`} onClick={() => set({ categories: [] })}>
           {t('arena.allBooks')}

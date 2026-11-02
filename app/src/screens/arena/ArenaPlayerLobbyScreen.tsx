@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, spring } from '../../motion'
 import { useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
 import { rich } from './rich'
 import { TeamCard } from './game/Team'
 import { myTeamOf } from './modes'
@@ -27,7 +28,7 @@ export function ArenaPlayerLobbyScreen() {
           ✕
         </button>
         <h2 className="topbar-heading">{t('arena.playerLobby.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="arena" />
       </header>
 
       <div className="player-lobby-body">
@@ -56,6 +57,11 @@ export function ArenaPlayerLobbyScreen() {
         <div className="chip">{t('arena.playerLobby.game', { code: room.code })}</div>
         <div className="chip chip-mode">{t(`arena.modes.${room.config.mode ?? 'classic'}.label`)}</div>
         <p className="arena-hint player-mode-desc">{t(`arena.modes.${room.config.mode ?? 'classic'}.desc`)}</p>
+        {/* Joining players get the rules in one line, never a popup. */}
+        <p className="tut-lobby-line">
+          {t('tutorial.arenaLobby.line')}
+          {room.config.mode === 'wall' && <> {t('tutorial.arenaLobby.wall')}</>}
+        </p>
         {mine && <TeamCard team={mine.team} mates={mine.mates} />}
 
         <div className="player-lobby-wait">

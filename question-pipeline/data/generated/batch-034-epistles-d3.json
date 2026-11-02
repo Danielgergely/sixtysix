@@ -1,42 +1,722 @@
 [
-  {"id":"q_b34_001","reference":"1 Corinthians 1:12","difficulty":3,"category":"epistles","text":{"en":"Corinthians said 'I follow Paul,' 'I follow Apollos,' 'I follow Christ,' and 'I follow' whom?"},"answers":{"en":["Barnabas","Silas","Cephas","Timothy"]},"correctIndex":2},
-  {"id":"q_b34_002","reference":"1 Corinthians 3:6","difficulty":3,"category":"epistles","text":{"en":"Paul wrote, 'I planted.' Who did he say watered?"},"answers":{"en":["Apollos","Timothy","Silas","Peter"]},"correctIndex":0},
-  {"id":"q_b34_003","reference":"1 Corinthians 15:6","difficulty":3,"category":"epistles","text":{"en":"The risen Christ appeared at once to over how many brothers?"},"answers":{"en":["Seventy","One hundred twenty","Three thousand","Five hundred"]},"correctIndex":3},
-  {"id":"q_b34_004","reference":"2 Corinthians 11:32-33","difficulty":3,"category":"epistles","text":{"en":"How did Paul escape the governor at Damascus?"},"answers":{"en":["Hidden in a cart","Let down in a basket","Disguised as a soldier","On a ship at night"]},"correctIndex":1},
-  {"id":"q_b34_005","reference":"Galatians 2:11","difficulty":3,"category":"epistles","text":{"en":"Whom did Paul resist to his face when he came to Antioch?"},"answers":{"en":["James","John","Peter","Apollos"]},"correctIndex":2},
-  {"id":"q_b34_006","reference":"Ephesians 6:21","difficulty":3,"category":"epistles","text":{"en":"Whom did Paul send to make his affairs known to the Ephesians?"},"answers":{"en":["Tychicus","Timothy","Titus","Silas"]},"correctIndex":0},
-  {"id":"q_b34_007","reference":"Philippians 2:25","difficulty":3,"category":"epistles","text":{"en":"Whom did Paul send back to the Philippians, calling him 'fellow worker, fellow soldier'?"},"answers":{"en":["Tychicus","Onesimus","Titus","Epaphroditus"]},"correctIndex":3},
-  {"id":"q_b34_008","reference":"Philippians 3:5","difficulty":3,"category":"epistles","text":{"en":"From which tribe of Israel was Paul?"},"answers":{"en":["Judah","Benjamin","Levi","Ephraim"]},"correctIndex":1},
-  {"id":"q_b34_009","reference":"Philippians 3:5","difficulty":3,"category":"epistles","text":{"en":"Concerning the law, Paul said he had been what?"},"answers":{"en":["A Sadducee","A priest","A Pharisee","A Zealot"]},"correctIndex":2},
-  {"id":"q_b34_010","reference":"1 Timothy 1:3","difficulty":3,"category":"epistles","text":{"en":"In which city did Paul urge Timothy to stay while Paul went into Macedonia?"},"answers":{"en":["Ephesus","Corinth","Lystra","Antioch"]},"correctIndex":0},
-  {"id":"q_b34_011","reference":"1 Timothy 5:23","difficulty":3,"category":"epistles","text":{"en":"Why did Paul tell Timothy to use a little wine?"},"answers":{"en":["For the Lord's Supper","To welcome guests","To celebrate the Passover feast","For his stomach's sake"]},"correctIndex":3},
-  {"id":"q_b34_012","reference":"2 Timothy 4:11","difficulty":3,"category":"epistles","text":{"en":"In 2 Timothy 4, who did Paul say was the only one with him?"},"answers":{"en":["Demas","Luke","Titus","Silas"]},"correctIndex":1},
-  {"id":"q_b34_013","reference":"Hebrews 7:1","difficulty":3,"category":"epistles","text":{"en":"Melchizedek, priest of God Most High, was king of which place?"},"answers":{"en":["Sodom","Hebron","Salem","Bethel"]},"correctIndex":2},
-  {"id":"q_b34_014","reference":"Hebrews 7:2","difficulty":3,"category":"epistles","text":{"en":"What portion of all did Abraham give to Melchizedek?"},"answers":{"en":["A tenth","A fifth","Half","A third"]},"correctIndex":0},
-  {"id":"q_b34_015","reference":"Hebrews 9:4","difficulty":3,"category":"epistles","text":{"en":"According to Hebrews, which of these was in the ark of the covenant?"},"answers":{"en":["The bronze serpent","Goliath's sword","The high priest's ephod","Aaron's rod that budded"]},"correctIndex":3},
-  {"id":"q_b34_016","reference":"Hebrews 11:20","difficulty":3,"category":"epistles","text":{"en":"By faith, Isaac blessed Jacob and whom concerning things to come?"},"answers":{"en":["Joseph","Esau","Ishmael","Laban"]},"correctIndex":1},
-  {"id":"q_b34_017","reference":"Hebrews 11:32","difficulty":3,"category":"epistles","text":{"en":"Which judge is named in the Hebrews 11 list with Gideon, Barak and Samson?"},"answers":{"en":["Ehud","Othniel","Jephthah","Deborah"]},"correctIndex":2},
-  {"id":"q_b34_018","reference":"Hebrews 11:24","difficulty":3,"category":"epistles","text":{"en":"By faith, Moses refused to be called the son of whom?"},"answers":{"en":["Pharaoh's daughter","Jethro","Potiphar","Pharaoh's wife"]},"correctIndex":0},
-  {"id":"q_b34_019","reference":"Hebrews 12:16","difficulty":3,"category":"epistles","text":{"en":"According to Hebrews, Esau sold his birthright for what?"},"answers":{"en":["A field","Thirty pieces of silver","A flock of goats","One meal"]},"correctIndex":3},
-  {"id":"q_b34_020","reference":"James 3:4","difficulty":3,"category":"epistles","text":{"en":"James says great ships driven by fierce winds are guided by a very small what?"},"answers":{"en":["Sail","Rudder","Anchor","Oar"]},"correctIndex":1},
-  {"id":"q_b34_021","reference":"James 5:11","difficulty":3,"category":"epistles","text":{"en":"Complete: 'You have heard of the patience of ___.'"},"answers":{"en":["Abraham","Moses","Job","Joseph"]},"correctIndex":2},
-  {"id":"q_b34_022","reference":"James 5:17","difficulty":3,"category":"epistles","text":{"en":"When Elijah prayed, how long did it not rain on the earth, according to James?"},"answers":{"en":["Three years and six months","Forty days and forty nights","Seven years","One year"]},"correctIndex":0},
-  {"id":"q_b34_023","reference":"1 Peter 3:6","difficulty":3,"category":"epistles","text":{"en":"Peter says Sarah obeyed Abraham, calling him what?"},"answers":{"en":["Prophet","Friend","Teacher","Lord"]},"correctIndex":3},
-  {"id":"q_b34_024","reference":"1 Peter 3:20","difficulty":3,"category":"epistles","text":{"en":"How many souls were saved through water in Noah's ship, according to 1 Peter?"},"answers":{"en":["Seven","Eight","Twelve","Four"]},"correctIndex":1},
-  {"id":"q_b34_025","reference":"2 Peter 2:6-7","difficulty":3,"category":"epistles","text":{"en":"Which 'righteous' man does 2 Peter say was delivered from the lustful life of the wicked?"},"answers":{"en":["Abraham","Isaac","Lot","Job"]},"correctIndex":2},
-  {"id":"q_b34_026","reference":"2 Peter 2:16","difficulty":3,"category":"epistles","text":{"en":"What spoke with a man's voice and stopped the madness of the prophet Balaam?"},"answers":{"en":["A mute donkey","A raven","A serpent in the road","An ox"]},"correctIndex":0},
-  {"id":"q_b34_027","reference":"2 Peter 2:22","difficulty":3,"category":"epistles","text":{"en":"Complete the proverb in 2 Peter: 'The dog turns to his own ___ again.'"},"answers":{"en":["Master","Bone","Kennel","Vomit"]},"correctIndex":3},
-  {"id":"q_b34_028","reference":"Revelation 1:12","difficulty":3,"category":"epistles","text":{"en":"When John turned to see the voice speaking to him, what did he see?"},"answers":{"en":["Twelve gates of pearl","Seven golden lamp stands","Four horsemen","A throne encircled by a rainbow"]},"correctIndex":1},
-  {"id":"q_b34_029","reference":"Revelation 1:16","difficulty":3,"category":"epistles","text":{"en":"In John's vision, what proceeded out of the mouth of the Son of Man?"},"answers":{"en":["Fire and smoke","A trumpet blast","A sharp two-edged sword","A great river of living water"]},"correctIndex":2},
-  {"id":"q_b34_030","reference":"Revelation 2:4","difficulty":3,"category":"epistles","text":{"en":"What did Jesus hold against the church in Ephesus?"},"answers":{"en":["It left its first love","It was lukewarm","It tolerated Jezebel","It had a name but was dead"]},"correctIndex":0},
-  {"id":"q_b34_031","reference":"Revelation 5:1","difficulty":3,"category":"epistles","text":{"en":"The book in the right hand of him who sat on the throne was sealed with how many seals?"},"answers":{"en":["Four","Twelve","Three","Seven"]},"correctIndex":3},
-  {"id":"q_b34_032","reference":"Revelation 8:1","difficulty":3,"category":"epistles","text":{"en":"When the seventh seal was opened, there was silence in heaven for about how long?"},"answers":{"en":["An hour","Half an hour","Three days","Seven days"]},"correctIndex":1},
-  {"id":"q_b34_033","reference":"Revelation 12:3","difficulty":3,"category":"epistles","text":{"en":"How many heads did the great red dragon of Revelation 12 have?"},"answers":{"en":["Three","Four","Seven","Twelve"]},"correctIndex":2},
-  {"id":"q_b34_034","reference":"Revelation 12:7","difficulty":3,"category":"epistles","text":{"en":"In Revelation 12, who with his angels made war on the dragon?"},"answers":{"en":["Michael","Gabriel","Moses","Elijah"]},"correctIndex":0},
-  {"id":"q_b34_035","reference":"Revelation 17:5","difficulty":3,"category":"epistles","text":{"en":"The name on the woman's forehead read: 'MYSTERY, ___ THE GREAT.'"},"answers":{"en":["Egypt","Sodom","Nineveh","Babylon"]},"correctIndex":3},
-  {"id":"q_b34_036","reference":"Revelation 19:11","difficulty":3,"category":"epistles","text":{"en":"In Revelation 19, the rider on the white horse is called what?"},"answers":{"en":["Holy and Just","Faithful and True","Mighty and Strong","Wise and Good"]},"correctIndex":1},
-  {"id":"q_b34_037","reference":"Revelation 21:22","difficulty":3,"category":"epistles","text":{"en":"John saw no temple in the New Jerusalem. What did he say is its temple?"},"answers":{"en":["The twelve apostles","The river of life","The Lord God and the Lamb","The seven Spirits of God"]},"correctIndex":2},
-  {"id":"q_b34_038","reference":"Revelation 21:23","difficulty":3,"category":"epistles","text":{"en":"According to Revelation 21, what is the lamp of the New Jerusalem?"},"answers":{"en":["The Lamb","The morning star","The seven spirits","The sun"]},"correctIndex":0},
-  {"id":"q_b34_039","reference":"2 Corinthians 11:14","difficulty":3,"category":"epistles","text":{"en":"Paul says Satan masquerades as an angel of what?"},"answers":{"en":["Peace","Mercy","Truth","Light"]},"correctIndex":3},
-  {"id":"q_b34_040","reference":"2 Corinthians 4:7","difficulty":3,"category":"epistles","text":{"en":"Paul says we have this treasure in what kind of vessels?"},"answers":{"en":["Golden vessels","Clay vessels","Bronze vessels","Silver vessels"]},"correctIndex":1}
+  {
+    "id": "q_b34_001",
+    "reference": "1 Corinthians 1:12",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Corinthians said 'I follow Paul,' 'I follow Apollos,' 'I follow Christ,' and 'I follow' whom?"
+    },
+    "answers": {
+      "en": [
+        "Barnabas",
+        "Silas",
+        "Cephas",
+        "Timothy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_002",
+    "reference": "1 Corinthians 3:6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul wrote, 'I planted.' Who did he say watered?"
+    },
+    "answers": {
+      "en": [
+        "Apollos",
+        "Timothy",
+        "Silas",
+        "Peter"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_003",
+    "reference": "1 Corinthians 15:6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The risen Christ appeared at once to over how many brothers?"
+    },
+    "answers": {
+      "en": [
+        "Seventy",
+        "One hundred twenty",
+        "Three thousand",
+        "Five hundred"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_004",
+    "reference": "2 Corinthians 11:32-33",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "How did Paul escape the governor at Damascus?"
+    },
+    "answers": {
+      "en": [
+        "Hidden in a cart",
+        "Let down in a basket",
+        "Disguised as a soldier",
+        "On a ship at night"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_005",
+    "reference": "Galatians 2:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul resist to his face when he came to Antioch?"
+    },
+    "answers": {
+      "en": [
+        "James",
+        "John",
+        "Peter",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_006",
+    "reference": "Ephesians 6:21",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul send to make his affairs known to the Ephesians?"
+    },
+    "answers": {
+      "en": [
+        "Tychicus",
+        "Timothy",
+        "Titus",
+        "Silas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_007",
+    "reference": "Philippians 2:25",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul send back to the Philippians, calling him 'fellow worker, fellow soldier'?"
+    },
+    "answers": {
+      "en": [
+        "Tychicus",
+        "Onesimus",
+        "Titus",
+        "Epaphroditus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_008",
+    "reference": "Philippians 3:5",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "From which tribe of Israel was Paul?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Benjamin",
+        "Levi",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_009",
+    "reference": "Philippians 3:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Concerning the law, Paul said he had been what?"
+    },
+    "answers": {
+      "en": [
+        "A Sadducee",
+        "A priest",
+        "A Pharisee",
+        "A Zealot"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_010",
+    "reference": "1 Timothy 1:3",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In which city did Paul urge Timothy to stay while Paul went into Macedonia?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Corinth",
+        "Lystra",
+        "Antioch"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_011",
+    "reference": "1 Timothy 5:23",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Why did Paul tell Timothy to use a little wine?"
+    },
+    "answers": {
+      "en": [
+        "For the Lord's Supper",
+        "To welcome guests",
+        "To celebrate the Passover feast",
+        "For his stomach's sake"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_012",
+    "reference": "2 Timothy 4:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In 2 Timothy 4, who did Paul say was the only one with him?"
+    },
+    "answers": {
+      "en": [
+        "Demas",
+        "Luke",
+        "Titus",
+        "Silas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_013",
+    "reference": "Hebrews 7:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Melchizedek, priest of God Most High, was king of which place?"
+    },
+    "answers": {
+      "en": [
+        "Sodom",
+        "Hebron",
+        "Salem",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_014",
+    "reference": "Hebrews 7:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What portion of all did Abraham give to Melchizedek?"
+    },
+    "answers": {
+      "en": [
+        "A tenth",
+        "A fifth",
+        "Half",
+        "A third"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_015",
+    "reference": "Hebrews 9:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "According to Hebrews, which of these was in the ark of the covenant?"
+    },
+    "answers": {
+      "en": [
+        "The bronze serpent",
+        "Goliath's sword",
+        "The high priest's ephod",
+        "Aaron's rod that budded"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_016",
+    "reference": "Hebrews 11:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, Isaac blessed Jacob and whom concerning things to come?"
+    },
+    "answers": {
+      "en": [
+        "Joseph",
+        "Esau",
+        "Ishmael",
+        "Laban"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_017",
+    "reference": "Hebrews 11:32",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which judge is named in the Hebrews 11 list with Gideon, Barak and Samson?"
+    },
+    "answers": {
+      "en": [
+        "Ehud",
+        "Othniel",
+        "Jephthah",
+        "Deborah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_018",
+    "reference": "Hebrews 11:24",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, Moses refused to be called the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh's daughter",
+        "Jethro",
+        "Potiphar",
+        "Pharaoh's wife"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_019",
+    "reference": "Hebrews 12:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "According to Hebrews, Esau sold his birthright for what?"
+    },
+    "answers": {
+      "en": [
+        "A field",
+        "Thirty pieces of silver",
+        "A flock of goats",
+        "One meal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_020",
+    "reference": "James 3:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "James says great ships driven by fierce winds are guided by a very small what?"
+    },
+    "answers": {
+      "en": [
+        "Sail",
+        "Rudder",
+        "Anchor",
+        "Oar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_021",
+    "reference": "James 5:11",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'You have heard of the patience of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Moses",
+        "Job",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_022",
+    "reference": "James 5:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "When Elijah prayed, how long did it not rain on the earth, according to James?"
+    },
+    "answers": {
+      "en": [
+        "Three years and six months",
+        "Forty days and forty nights",
+        "Seven years",
+        "One year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_023",
+    "reference": "1 Peter 3:6",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Peter says Sarah obeyed Abraham, calling him what?"
+    },
+    "answers": {
+      "en": [
+        "Prophet",
+        "Friend",
+        "Teacher",
+        "Lord"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_024",
+    "reference": "1 Peter 3:20",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "How many souls were saved through water in Noah's ship, according to 1 Peter?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Eight",
+        "Twelve",
+        "Four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_025",
+    "reference": "2 Peter 2:6-7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Which 'righteous' man does 2 Peter say was delivered from the lustful life of the wicked?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Isaac",
+        "Lot",
+        "Job"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_026",
+    "reference": "2 Peter 2:16",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "What spoke with a man's voice and stopped the madness of the prophet Balaam?"
+    },
+    "answers": {
+      "en": [
+        "A mute donkey",
+        "A raven",
+        "A serpent in the road",
+        "An ox"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_027",
+    "reference": "2 Peter 2:22",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete the proverb in 2 Peter: 'The dog turns to his own ___ again.'"
+    },
+    "answers": {
+      "en": [
+        "Master",
+        "Bone",
+        "Kennel",
+        "Vomit"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_028",
+    "reference": "Revelation 1:12",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "When John turned to see the voice speaking to him, what did he see?"
+    },
+    "answers": {
+      "en": [
+        "Twelve gates of pearl",
+        "Seven golden lamp stands",
+        "Four horsemen",
+        "A throne encircled by a rainbow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_029",
+    "reference": "Revelation 1:16",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In John's vision, what proceeded out of the mouth of the Son of Man?"
+    },
+    "answers": {
+      "en": [
+        "Fire and smoke",
+        "A trumpet blast",
+        "A sharp two-edged sword",
+        "A great river of living water"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_030",
+    "reference": "Revelation 2:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What did Jesus hold against the church in Ephesus?"
+    },
+    "answers": {
+      "en": [
+        "It left its first love",
+        "It was lukewarm",
+        "It tolerated Jezebel",
+        "It had a name but was dead"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_031",
+    "reference": "Revelation 5:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The book in the right hand of him who sat on the throne was sealed with how many seals?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Twelve",
+        "Three",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_032",
+    "reference": "Revelation 8:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "When the seventh seal was opened, there was silence in heaven for about how long?"
+    },
+    "answers": {
+      "en": [
+        "An hour",
+        "Half an hour",
+        "Three days",
+        "Seven days"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_033",
+    "reference": "Revelation 12:3",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "How many heads did the great red dragon of Revelation 12 have?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Four",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_034",
+    "reference": "Revelation 12:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In Revelation 12, who with his angels made war on the dragon?"
+    },
+    "answers": {
+      "en": [
+        "Michael",
+        "Gabriel",
+        "Moses",
+        "Elijah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_035",
+    "reference": "Revelation 17:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The name on the woman's forehead read: 'MYSTERY, ___ THE GREAT.'"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Sodom",
+        "Nineveh",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_036",
+    "reference": "Revelation 19:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In Revelation 19, the rider on the white horse is called what?"
+    },
+    "answers": {
+      "en": [
+        "Holy and Just",
+        "Faithful and True",
+        "Mighty and Strong",
+        "Wise and Good"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b34_037",
+    "reference": "Revelation 21:22",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "John saw no temple in the New Jerusalem. What did he say is its temple?"
+    },
+    "answers": {
+      "en": [
+        "The twelve apostles",
+        "The river of life",
+        "The Lord God and the Lamb",
+        "The seven Spirits of God"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b34_038",
+    "reference": "Revelation 21:23",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "According to Revelation 21, what is the lamp of the New Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The Lamb",
+        "The morning star",
+        "The seven spirits",
+        "The sun"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b34_039",
+    "reference": "2 Corinthians 11:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Satan masquerades as an angel of what?"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Mercy",
+        "Truth",
+        "Light"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b34_040",
+    "reference": "2 Corinthians 4:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says we have this treasure in what kind of vessels?"
+    },
+    "answers": {
+      "en": [
+        "Golden vessels",
+        "Clay vessels",
+        "Bronze vessels",
+        "Silver vessels"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

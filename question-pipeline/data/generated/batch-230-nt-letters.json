@@ -20,7 +20,7 @@
   {
     "id": "q_b230_002",
     "reference": "Revelation 1:14",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "In John's vision, the eyes of the Son of Man were like what?"
@@ -74,7 +74,7 @@
   {
     "id": "q_b230_005",
     "reference": "Revelation 1:20",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "The seven stars in Christ's right hand are the what of the seven assemblies?"
@@ -92,7 +92,7 @@
   {
     "id": "q_b230_006",
     "reference": "Revelation 2:8",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "epistles",
     "text": {
       "en": "To which church did Christ write as 'the first and the last, who was dead, and has come to life'?"
@@ -110,7 +110,7 @@
   {
     "id": "q_b230_007",
     "reference": "Revelation 2:10",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "epistles",
     "text": {
       "en": "The church in Smyrna was told it would have oppression for how many days?"
@@ -128,7 +128,7 @@
   {
     "id": "q_b230_008",
     "reference": "Revelation 2:12",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "epistles",
     "text": {
       "en": "To which church does Christ speak as 'he who has the sharp two-edged sword'?"
@@ -164,7 +164,7 @@
   {
     "id": "q_b230_010",
     "reference": "Revelation 3:5",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "Revelation 3 says he who overcomes will be arrayed in what color garments?"
@@ -182,7 +182,7 @@
   {
     "id": "q_b230_011",
     "reference": "Revelation 3:7",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "epistles",
     "text": {
       "en": "To which church does Christ speak as the one who has the key of David?"
@@ -254,7 +254,7 @@
   {
     "id": "q_b230_015",
     "reference": "Revelation 4:7",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "The first living creature around the throne was like what?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b230_020",
     "reference": "Revelation 8:7",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "epistles",
     "text": {
       "en": "At the first trumpet, what mixed with blood was thrown to the earth?"
@@ -362,7 +362,7 @@
   {
     "id": "q_b230_021",
     "reference": "Revelation 9:3",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "What came out of the smoke of the abyss at the fifth trumpet?"
@@ -524,7 +524,7 @@
   {
     "id": "q_b230_030",
     "reference": "Revelation 13:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "The beast coming up out of the sea had how many horns?"
@@ -542,7 +542,7 @@
   {
     "id": "q_b230_031",
     "reference": "Revelation 13:2",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "The beast out of the sea was like which animal, with feet like a bear's?"
@@ -578,7 +578,7 @@
   {
     "id": "q_b230_033",
     "reference": "Revelation 14:8",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "What did the second angel in Revelation 14 announce had fallen?"
@@ -668,7 +668,7 @@
   {
     "id": "q_b230_038",
     "reference": "Revelation 16:12",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "When the sixth bowl was poured out, which great river dried up?"
@@ -686,7 +686,7 @@
   {
     "id": "q_b230_039",
     "reference": "Revelation 16:13",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "Three unclean spirits came from the dragon's mouth looking like what?"
@@ -704,14 +704,14 @@
   {
     "id": "q_b230_040",
     "reference": "Revelation 16:16",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "epistles",
     "text": {
       "en": "The kings were gathered to the place called in Hebrew what?"
     },
     "answers": {
       "en": [
-        "Megiddo",
+        "Armageddon (Megiddo)",
         "Gilgal",
         "Bethel",
         "Shiloh"
@@ -776,7 +776,7 @@
   {
     "id": "q_b230_044",
     "reference": "Revelation 19:1",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "What did the great multitude in heaven shout in Revelation 19?"
@@ -794,7 +794,7 @@
   {
     "id": "q_b230_045",
     "reference": "Revelation 19:7",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "Revelation 19 says what has come, for which his wife has made herself ready?"
@@ -902,7 +902,7 @@
   {
     "id": "q_b230_051",
     "reference": "Revelation 21:2",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "The New Jerusalem came down out of heaven prepared like what?"
@@ -938,7 +938,7 @@
   {
     "id": "q_b230_053",
     "reference": "Revelation 21:18",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "The New Jerusalem was pure gold, like pure what?"
@@ -992,7 +992,7 @@
   {
     "id": "q_b230_056",
     "reference": "Revelation 22:2",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "epistles",
     "text": {
       "en": "How many kinds of fruit does the tree of life bear?"
@@ -1010,7 +1010,7 @@
   {
     "id": "q_b230_057",
     "reference": "Revelation 22:20",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "epistles",
     "text": {
       "en": "Near the end of Revelation, Jesus says: 'Yes, I come ___.'"

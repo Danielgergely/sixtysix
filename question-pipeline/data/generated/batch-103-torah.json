@@ -1,78 +1,1370 @@
 [
-  {"id":"q_b103_001","reference":"Exodus 1:8","difficulty":2,"category":"torah","text":{"en":"What was true of the new king who arose over Egypt?"},"answers":{"en":["He didn't know Joseph","He was Joseph's son","He feared Moses","He was a Hebrew"]},"correctIndex":0},
-  {"id":"q_b103_002","reference":"Exodus 1:17","difficulty":2,"category":"torah","text":{"en":"Why did the Hebrew midwives save the baby boys alive?"},"answers":{"en":["Pharaoh changed his mind","They were paid","They feared God","Moses asked them"]},"correctIndex":2},
-  {"id":"q_b103_003","reference":"Exodus 2:1","difficulty":2,"category":"torah","text":{"en":"From which tribe's house were both of Moses' parents?"},"answers":{"en":["Judah","Levi","Reuben","Benjamin"]},"correctIndex":1},
-  {"id":"q_b103_004","reference":"Exodus 2:2","difficulty":2,"category":"torah","text":{"en":"For how long did Moses' mother hide him after he was born?"},"answers":{"en":["Three weeks","One year","Seven days","Three months"]},"correctIndex":3},
-  {"id":"q_b103_005","reference":"Exodus 2:3","difficulty":2,"category":"torah","text":{"en":"What did Moses' mother coat the papyrus basket with?"},"answers":{"en":["Clay and straw","Tar and pitch","Wax and oil","Gold and silver"]},"correctIndex":1},
-  {"id":"q_b103_006","reference":"Exodus 2:4","difficulty":1,"category":"torah","text":{"en":"Who stood far off to see what would happen to baby Moses?"},"answers":{"en":["His sister","His brother","His father","Pharaoh's maid"]},"correctIndex":0},
-  {"id":"q_b103_007","reference":"Exodus 2:8","difficulty":1,"category":"torah","text":{"en":"Whom did Moses' sister call to nurse the baby for Pharaoh's daughter?"},"answers":{"en":["An Egyptian nurse","Her grandmother","Shiphrah the midwife","The child's own mother"]},"correctIndex":3},
-  {"id":"q_b103_008","reference":"Exodus 2:12","difficulty":2,"category":"torah","text":{"en":"Where did Moses hide the Egyptian he had killed?"},"answers":{"en":["In the river","In a cave","In the sand","Under a pile of bricks"]},"correctIndex":2},
-  {"id":"q_b103_009","reference":"Exodus 2:17","difficulty":2,"category":"torah","text":{"en":"What did Moses do for the seven daughters at the well in Midian?"},"answers":{"en":["Married the eldest","Bought their sheep","Helped them and watered their flock","Dug them a new well"]},"correctIndex":2},
-  {"id":"q_b103_010","reference":"Exodus 3:1","difficulty":2,"category":"torah","text":{"en":"Moses came to Horeb while keeping whose flock?"},"answers":{"en":["Jethro's","Pharaoh's","Aaron's","His own"]},"correctIndex":0},
-  {"id":"q_b103_011","reference":"Exodus 3:2","difficulty":1,"category":"torah","text":{"en":"What was strange about the burning bush Moses saw?"},"answers":{"en":["It was made of gold","It sang","It grew in water","It was not consumed"]},"correctIndex":3},
-  {"id":"q_b103_012","reference":"Exodus 3:8","difficulty":1,"category":"torah","text":{"en":"God promised a good land flowing with what?"},"answers":{"en":["Wine and oil","Milk and honey","Gold and silver","Rivers and springs"]},"correctIndex":1},
-  {"id":"q_b103_013","reference":"Exodus 3:18","difficulty":4,"category":"torah","text":{"en":"How far into the wilderness were Moses and the elders to ask Pharaoh to let them go?"},"answers":{"en":["Seven days' journey","Forty days' journey","One day's journey","Three days' journey"]},"correctIndex":3},
-  {"id":"q_b103_014","reference":"Exodus 4:2","difficulty":1,"category":"torah","text":{"en":"When God asked Moses, \"What is that in your hand?\", what did he answer?"},"answers":{"en":["A rod","A sword","A scroll","A lamp"]},"correctIndex":0},
-  {"id":"q_b103_015","reference":"Exodus 4:3","difficulty":1,"category":"torah","text":{"en":"What did Moses' rod become when he threw it on the ground?"},"answers":{"en":["A tree","A snake","A crocodile","Ashes"]},"correctIndex":1},
-  {"id":"q_b103_016","reference":"Exodus 4:4","difficulty":2,"category":"torah","text":{"en":"How did God tell Moses to pick up the snake?"},"answers":{"en":["By the head","With a cloth","By the tail","With his staff"]},"correctIndex":2},
-  {"id":"q_b103_017","reference":"Exodus 4:6","difficulty":1,"category":"torah","text":{"en":"What happened to Moses' hand when he put it inside his cloak?"},"answers":{"en":["It turned to gold","It began to glow","It became withered","It became leprous, white as snow"]},"correctIndex":3},
-  {"id":"q_b103_018","reference":"Exodus 4:9","difficulty":3,"category":"torah","text":{"en":"What was to happen to river water poured on dry land, as the third sign?"},"answers":{"en":["It would become wine","It would catch fire","It would become blood","It would turn to dust"]},"correctIndex":2},
-  {"id":"q_b103_019","reference":"Exodus 4:16","difficulty":2,"category":"torah","text":{"en":"God said Aaron would be what for Moses to the people?"},"answers":{"en":["His servant","His spokesman","His general","His judge"]},"correctIndex":1},
-  {"id":"q_b103_020","reference":"Exodus 4:20","difficulty":3,"category":"torah","text":{"en":"On what did Moses set his wife and sons to return to Egypt?"},"answers":{"en":["A donkey","A camel","A chariot","A horse"]},"correctIndex":0},
-  {"id":"q_b103_021","reference":"Exodus 4:27","difficulty":4,"category":"torah","text":{"en":"Where did Aaron meet Moses and kiss him?"},"answers":{"en":["On God's mountain","At the Nile","In Midian's city","At Pharaoh's palace"]},"correctIndex":0},
-  {"id":"q_b103_022","reference":"Exodus 5:1","difficulty":1,"category":"torah","text":{"en":"Complete what Moses and Aaron told Pharaoh: \"Let my people ___.\""},"answers":{"en":["rest","go","eat","sing"]},"correctIndex":1},
-  {"id":"q_b103_023","reference":"Exodus 5:2","difficulty":1,"category":"torah","text":{"en":"Who said, \"Who is Yahweh, that I should listen to his voice?\""},"answers":{"en":["Balak","Korah","Pharaoh","Jethro"]},"correctIndex":2},
-  {"id":"q_b103_024","reference":"Exodus 6:3","difficulty":4,"category":"torah","text":{"en":"By what name did God say he appeared to Abraham, Isaac and Jacob?"},"answers":{"en":["Most High","Lord of Hosts","I AM","God Almighty"]},"correctIndex":3},
-  {"id":"q_b103_025","reference":"Exodus 6:16","difficulty":5,"category":"torah","text":{"en":"How many years did Levi live?"},"answers":{"en":["110","120","137","147"]},"correctIndex":2},
-  {"id":"q_b103_026","reference":"Exodus 6:20","difficulty":4,"category":"torah","text":{"en":"Who was the father of Moses and Aaron?"},"answers":{"en":["Kohath","Levi","Hur","Amram"]},"correctIndex":3},
-  {"id":"q_b103_027","reference":"Exodus 6:23","difficulty":5,"category":"torah","text":{"en":"Who was Aaron's wife?"},"answers":{"en":["Elisheba","Zipporah","Miriam","Jochebed"]},"correctIndex":0},
-  {"id":"q_b103_028","reference":"Exodus 6:23","difficulty":4,"category":"torah","text":{"en":"Aaron's sons by Elisheba were Nadab, Abihu, Eleazar and who?"},"answers":{"en":["Gershom","Ithamar","Eliezer","Phinehas"]},"correctIndex":1},
-  {"id":"q_b103_029","reference":"Exodus 7:1","difficulty":3,"category":"torah","text":{"en":"God said Moses would be as God to Pharaoh. What would Aaron be?"},"answers":{"en":["His priest","His prophet","His king","His shield"]},"correctIndex":1},
-  {"id":"q_b103_030","reference":"Exodus 7:7","difficulty":2,"category":"torah","text":{"en":"How old was Moses when he and Aaron spoke to Pharaoh?"},"answers":{"en":["40","83","120","80"]},"correctIndex":3},
-  {"id":"q_b103_031","reference":"Exodus 7:7","difficulty":4,"category":"torah","text":{"en":"Moses was 80 when he stood before Pharaoh. What age was his brother Aaron?"},"answers":{"en":["83","80","77","90"]},"correctIndex":0},
-  {"id":"q_b103_032","reference":"Exodus 7:12","difficulty":1,"category":"torah","text":{"en":"What did Aaron's rod do to the magicians' rods?"},"answers":{"en":["Broke them","Burned them","Swallowed them up","Bowed to them"]},"correctIndex":2},
-  {"id":"q_b103_033","reference":"Exodus 7:25","difficulty":4,"category":"torah","text":{"en":"How many days passed after Yahweh struck the river before the next plague was announced?"},"answers":{"en":["Seven","Three","Ten","Forty"]},"correctIndex":0},
-  {"id":"q_b103_034","reference":"Exodus 8:17","difficulty":1,"category":"torah","text":{"en":"When Aaron struck the dust of the earth, what did it become?"},"answers":{"en":["Frogs","Flies","Lice","Locusts"]},"correctIndex":2},
-  {"id":"q_b103_035","reference":"Exodus 8:19","difficulty":3,"category":"torah","text":{"en":"What did the magicians tell Pharaoh after the plague of lice?"},"answers":{"en":["\"We can do the same\"","\"This is the finger of God\"","\"Let the people go\"","\"Moses is a magician\""]},"correctIndex":1},
-  {"id":"q_b103_036","reference":"Exodus 8:22","difficulty":3,"category":"torah","text":{"en":"Which land did God set apart so that no swarms of flies would be there?"},"answers":{"en":["Midian","Canaan","Rameses","Goshen"]},"correctIndex":3},
-  {"id":"q_b103_037","reference":"Exodus 9:3","difficulty":3,"category":"torah","text":{"en":"On what did the plague of \"very grievous pestilence\" fall?"},"answers":{"en":["The Nile's fish","The livestock in the field","Egypt's crops","Pharaoh's palace"]},"correctIndex":1},
-  {"id":"q_b103_038","reference":"Exodus 9:10","difficulty":1,"category":"torah","text":{"en":"Which plague came when Moses sprinkled ashes of the furnace toward the sky?"},"answers":{"en":["Boils","Hail","Darkness","Lice"]},"correctIndex":0},
-  {"id":"q_b103_039","reference":"Exodus 9:24","difficulty":2,"category":"torah","text":{"en":"What was mixed with the severe hail that fell on Egypt?"},"answers":{"en":["Blood","Frogs","Sand","Lightning"]},"correctIndex":3},
-  {"id":"q_b103_040","reference":"Exodus 9:32","difficulty":5,"category":"torah","text":{"en":"Which crops were NOT struck by the hail, because they had not grown up?"},"answers":{"en":["Flax and barley","Grapes and figs","Wheat and spelt","Olives and dates"]},"correctIndex":2},
-  {"id":"q_b103_041","reference":"Exodus 10:4","difficulty":1,"category":"torah","text":{"en":"Which plague did Moses warn would come \"tomorrow\" if Pharaoh refused again?"},"answers":{"en":["Frogs","Boils","Locusts","Blood"]},"correctIndex":2},
-  {"id":"q_b103_042","reference":"Exodus 10:13","difficulty":2,"category":"torah","text":{"en":"Which wind brought the locusts into Egypt?"},"answers":{"en":["An east wind","A west wind","A north wind","A south wind"]},"correctIndex":0},
-  {"id":"q_b103_043","reference":"Exodus 10:19","difficulty":3,"category":"torah","text":{"en":"Into which sea did a strong west wind drive the locusts?"},"answers":{"en":["The Great Sea","The Salt Sea","The Sea of Galilee","The Red Sea"]},"correctIndex":3},
-  {"id":"q_b103_044","reference":"Exodus 10:23","difficulty":2,"category":"torah","text":{"en":"During the three days of thick darkness, what did the children of Israel have?"},"answers":{"en":["Manna","Light in their dwellings","A pillar of cloud","Lamps of gold"]},"correctIndex":1},
-  {"id":"q_b103_045","reference":"Exodus 11:7","difficulty":3,"category":"torah","text":{"en":"God said that against Israel not even a what would bark or move its tongue?"},"answers":{"en":["Donkey","Lion","Fox","Dog"]},"correctIndex":3},
-  {"id":"q_b103_046","reference":"Exodus 12:2","difficulty":3,"category":"torah","text":{"en":"God said the month of the Passover would be what to Israel?"},"answers":{"en":["The first month of the year","The holiest month","The month of harvest","The last month of the year"]},"correctIndex":0},
-  {"id":"q_b103_047","reference":"Exodus 12:3","difficulty":4,"category":"torah","text":{"en":"On which day of the month did each household take a Passover lamb?"},"answers":{"en":["The first","The tenth","The seventh","The fourteenth"]},"correctIndex":1},
-  {"id":"q_b103_048","reference":"Exodus 12:5","difficulty":3,"category":"torah","text":{"en":"How old was the Passover lamb to be?"},"answers":{"en":["Eight days old","Three years old","A year old","A month old"]},"correctIndex":2},
-  {"id":"q_b103_049","reference":"Exodus 12:6","difficulty":4,"category":"torah","text":{"en":"On which day of the month was the Passover lamb killed at evening?"},"answers":{"en":["The tenth","The first","The fifteenth","The fourteenth"]},"correctIndex":3},
-  {"id":"q_b103_050","reference":"Exodus 12:8","difficulty":2,"category":"torah","text":{"en":"With the roasted lamb and unleavened bread, what else was eaten at Passover?"},"answers":{"en":["Honey","Olives","Bitter herbs","Lentils"]},"correctIndex":2},
-  {"id":"q_b103_051","reference":"Exodus 12:11","difficulty":2,"category":"torah","text":{"en":"How were the Israelites to eat the first Passover?"},"answers":{"en":["Lying down at ease","In haste, dressed to travel","In silence at dawn","Standing in the river"]},"correctIndex":1},
-  {"id":"q_b103_052","reference":"Exodus 12:15","difficulty":1,"category":"torah","text":{"en":"For how many days were Israelites to eat unleavened bread?"},"answers":{"en":["Seven","Three","Ten","Forty"]},"correctIndex":0},
-  {"id":"q_b103_053","reference":"Exodus 12:40","difficulty":3,"category":"torah","text":{"en":"How long did the children of Israel live in Egypt?"},"answers":{"en":["430 years","400 years","210 years","40 years"]},"correctIndex":0},
-  {"id":"q_b103_054","reference":"Exodus 13:17","difficulty":4,"category":"torah","text":{"en":"Through which people's land, though near, did God NOT lead Israel, lest they see war?"},"answers":{"en":["The Edomites'","The Philistines'","The Moabites'","The Amorites'"]},"correctIndex":1},
-  {"id":"q_b103_055","reference":"Exodus 14:25","difficulty":3,"category":"torah","text":{"en":"What did God take off the Egyptians' chariots in the sea?"},"answers":{"en":["Their horses","Their banners","Their wheels","Their spears"]},"correctIndex":2},
-  {"id":"q_b103_056","reference":"Exodus 15:1","difficulty":1,"category":"torah","text":{"en":"Complete the song of Moses: \"The horse and his rider he has thrown into ___.\""},"answers":{"en":["the pit","the fire","the desert","the sea"]},"correctIndex":3},
-  {"id":"q_b103_057","reference":"Exodus 15:25","difficulty":2,"category":"torah","text":{"en":"What did Moses throw into the bitter water of Marah to make it sweet?"},"answers":{"en":["Salt","His rod","A tree","Honey"]},"correctIndex":2},
-  {"id":"q_b103_058","reference":"Exodus 16:1","difficulty":3,"category":"torah","text":{"en":"Which wilderness, between Elim and Sinai, did Israel reach after Elim?"},"answers":{"en":["Zin","Paran","Shur","Sin"]},"correctIndex":3},
-  {"id":"q_b103_059","reference":"Exodus 16:16","difficulty":3,"category":"torah","text":{"en":"How much manna was each person to gather a day?"},"answers":{"en":["An omer","An ephah","A homer","A handful"]},"correctIndex":0},
-  {"id":"q_b103_060","reference":"Exodus 16:20","difficulty":2,"category":"torah","text":{"en":"What happened to manna kept until the next morning against Moses' word?"},"answers":{"en":["It turned to stone","It bred worms","It vanished","It turned to gold"]},"correctIndex":1},
-  {"id":"q_b103_061","reference":"Exodus 16:22","difficulty":2,"category":"torah","text":{"en":"On the sixth day, how much manna did Israel gather?"},"answers":{"en":["Half as much","Twice as much","None at all","Seven times as much"]},"correctIndex":1},
-  {"id":"q_b103_062","reference":"Exodus 16:31","difficulty":2,"category":"torah","text":{"en":"What did manna taste like?"},"answers":{"en":["Bread and salt","Figs and dates","Olive oil","Wafers with honey"]},"correctIndex":3},
-  {"id":"q_b103_063","reference":"Exodus 16:31","difficulty":4,"category":"torah","text":{"en":"Manna was white and looked like what kind of seed?"},"answers":{"en":["Coriander seed","Mustard seed","Barley seed","Sesame seed"]},"correctIndex":0},
-  {"id":"q_b103_064","reference":"Exodus 16:33","difficulty":4,"category":"torah","text":{"en":"What did Aaron put an omer of manna in, to keep before Yahweh?"},"answers":{"en":["A basket","A box of acacia","A pot","A leather bag"]},"correctIndex":2},
-  {"id":"q_b103_065","reference":"Exodus 16:36","difficulty":5,"category":"torah","text":{"en":"An omer is what part of an ephah?"},"answers":{"en":["A tenth","A half","A third","A seventh"]},"correctIndex":0},
-  {"id":"q_b103_066","reference":"Exodus 17:1","difficulty":4,"category":"torah","text":{"en":"At which camp was there no water for the people to drink?"},"answers":{"en":["Elim","Succoth","Rephidim","Etham"]},"correctIndex":2},
-  {"id":"q_b103_067","reference":"Exodus 17:9","difficulty":1,"category":"torah","text":{"en":"Whom did Moses send to choose men and fight Amalek?"},"answers":{"en":["Aaron","Joshua","Caleb","Hur"]},"correctIndex":1},
-  {"id":"q_b103_068","reference":"Exodus 17:12","difficulty":2,"category":"torah","text":{"en":"When Moses' hands grew heavy, what did Aaron and Hur put under him?"},"answers":{"en":["A chair","A saddle","A tent peg","A stone"]},"correctIndex":3},
-  {"id":"q_b103_069","reference":"Exodus 18:21","difficulty":3,"category":"torah","text":{"en":"Jethro advised Moses to appoint rulers of thousands, hundreds, fifties and what?"},"answers":{"en":["Twelves","Tens","Sevens","Twenties"]},"correctIndex":1},
-  {"id":"q_b103_070","reference":"Exodus 19:4","difficulty":2,"category":"torah","text":{"en":"God said he bore Israel out of Egypt on what?"},"answers":{"en":["Eagles' wings","A pillar of cloud","His shoulders","A chariot of fire"]},"correctIndex":0},
-  {"id":"q_b103_071","reference":"Exodus 19:6","difficulty":3,"category":"torah","text":{"en":"God said Israel would be to him a kingdom of what?"},"answers":{"en":["Kings","Prophets","Shepherds","Priests"]},"correctIndex":3},
-  {"id":"q_b103_072","reference":"Exodus 19:16","difficulty":3,"category":"torah","text":{"en":"On the third day at Sinai, which sound made all the people in the camp tremble?"},"answers":{"en":["A roaring lion","A great earthquake","An exceedingly loud trumpet","Singing angels"]},"correctIndex":2},
-  {"id":"q_b103_073","reference":"Exodus 20:4","difficulty":1,"category":"torah","text":{"en":"Complete the commandment: \"You shall not make for yourselves an ___.\""},"answers":{"en":["altar","oath","idol","army"]},"correctIndex":2},
-  {"id":"q_b103_074","reference":"Exodus 20:7","difficulty":1,"category":"torah","text":{"en":"Complete the commandment: \"You shall not take the name of Yahweh your God in ___.\""},"answers":{"en":["vain","anger","secret","jest"]},"correctIndex":0},
-  {"id":"q_b103_075","reference":"Exodus 20:11","difficulty":1,"category":"torah","text":{"en":"According to the commandment, in how many days did Yahweh make heaven and earth?"},"answers":{"en":["Seven","Three","Forty","Six"]},"correctIndex":3},
-  {"id":"q_b103_076","reference":"Exodus 20:25","difficulty":5,"category":"torah","text":{"en":"If Israel built God an altar of stone, what kind of stones must they not use?"},"answers":{"en":["River stones","Cut stones","Stones from Egypt","Small stones"]},"correctIndex":1}
+  {
+    "id": "q_b103_001",
+    "reference": "Exodus 1:8",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What was true of the new king who arose over Egypt?"
+    },
+    "answers": {
+      "en": [
+        "He didn't know Joseph",
+        "He was Joseph's son",
+        "He feared Moses",
+        "He was a Hebrew"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_002",
+    "reference": "Exodus 1:17",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Why did the Hebrew midwives save the baby boys alive?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh changed his mind",
+        "They were paid",
+        "They feared God",
+        "Moses asked them"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_003",
+    "reference": "Exodus 2:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "From which tribe's house were both of Moses' parents?"
+    },
+    "answers": {
+      "en": [
+        "Judah",
+        "Levi",
+        "Reuben",
+        "Benjamin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_004",
+    "reference": "Exodus 2:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "For how long did Moses' mother hide him after he was born?"
+    },
+    "answers": {
+      "en": [
+        "Three weeks",
+        "One year",
+        "Seven days",
+        "Three months"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_005",
+    "reference": "Exodus 2:3",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses' mother coat the papyrus basket with?"
+    },
+    "answers": {
+      "en": [
+        "Clay and straw",
+        "Tar and pitch",
+        "Wax and oil",
+        "Gold and silver"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_006",
+    "reference": "Exodus 2:4",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who stood far off to see what would happen to baby Moses?"
+    },
+    "answers": {
+      "en": [
+        "His sister",
+        "His brother",
+        "His father",
+        "Pharaoh's maid"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_007",
+    "reference": "Exodus 2:8",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Whom did Moses' sister call to nurse the baby for Pharaoh's daughter?"
+    },
+    "answers": {
+      "en": [
+        "An Egyptian nurse",
+        "Her grandmother",
+        "Shiphrah the midwife",
+        "The child's own mother"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_008",
+    "reference": "Exodus 2:12",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where did Moses hide the Egyptian he had killed?"
+    },
+    "answers": {
+      "en": [
+        "In the river",
+        "In a cave",
+        "In the sand",
+        "Under a pile of bricks"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_009",
+    "reference": "Exodus 2:17",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses do for the seven daughters at the well in Midian?"
+    },
+    "answers": {
+      "en": [
+        "Married the eldest",
+        "Bought their sheep",
+        "Helped them and watered their flock",
+        "Dug them a new well"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_010",
+    "reference": "Exodus 3:1",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Moses came to Horeb while keeping whose flock?"
+    },
+    "answers": {
+      "en": [
+        "Jethro's",
+        "Pharaoh's",
+        "Aaron's",
+        "His own"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_011",
+    "reference": "Exodus 3:2",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What was strange about the burning bush Moses saw?"
+    },
+    "answers": {
+      "en": [
+        "It was made of gold",
+        "It sang",
+        "It grew in water",
+        "It was not consumed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_012",
+    "reference": "Exodus 3:8",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "God promised a good land flowing with what?"
+    },
+    "answers": {
+      "en": [
+        "Wine and oil",
+        "Milk and honey",
+        "Gold and silver",
+        "Rivers and springs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_013",
+    "reference": "Exodus 3:18",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How far into the wilderness were Moses and the elders to ask Pharaoh to let them go?"
+    },
+    "answers": {
+      "en": [
+        "Seven days' journey",
+        "Forty days' journey",
+        "One day's journey",
+        "Three days' journey"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_014",
+    "reference": "Exodus 4:2",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "When God asked Moses, \"What is that in your hand?\", what did he answer?"
+    },
+    "answers": {
+      "en": [
+        "A rod",
+        "A sword",
+        "A scroll",
+        "A lamp"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_015",
+    "reference": "Exodus 4:3",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses' rod become when he threw it on the ground?"
+    },
+    "answers": {
+      "en": [
+        "A tree",
+        "A snake",
+        "A crocodile",
+        "Ashes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_016",
+    "reference": "Exodus 4:4",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How did God tell Moses to pick up the snake?"
+    },
+    "answers": {
+      "en": [
+        "By the head",
+        "With a cloth",
+        "By the tail",
+        "With his staff"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_017",
+    "reference": "Exodus 4:6",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What happened to Moses' hand when he put it inside his cloak?"
+    },
+    "answers": {
+      "en": [
+        "It turned to gold",
+        "It began to glow",
+        "It became withered",
+        "It became leprous, white as snow"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_018",
+    "reference": "Exodus 4:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was to happen to river water poured on dry land, as the third sign?"
+    },
+    "answers": {
+      "en": [
+        "It would become wine",
+        "It would catch fire",
+        "It would become blood",
+        "It would turn to dust"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_019",
+    "reference": "Exodus 4:16",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "God said Aaron would be what for Moses to the people?"
+    },
+    "answers": {
+      "en": [
+        "His servant",
+        "His spokesman",
+        "His general",
+        "His judge"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_020",
+    "reference": "Exodus 4:20",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "On what did Moses set his wife and sons to return to Egypt?"
+    },
+    "answers": {
+      "en": [
+        "A donkey",
+        "A camel",
+        "A chariot",
+        "A horse"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_021",
+    "reference": "Exodus 4:27",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Where did Aaron meet Moses and kiss him?"
+    },
+    "answers": {
+      "en": [
+        "On God's mountain",
+        "At the Nile",
+        "In Midian's city",
+        "At Pharaoh's palace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_022",
+    "reference": "Exodus 5:1",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete what Moses and Aaron told Pharaoh: \"Let my people ___.\""
+    },
+    "answers": {
+      "en": [
+        "rest",
+        "go",
+        "eat",
+        "sing"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_023",
+    "reference": "Exodus 5:2",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who said, \"Who is Yahweh, that I should listen to his voice?\""
+    },
+    "answers": {
+      "en": [
+        "Balak",
+        "Korah",
+        "Pharaoh",
+        "Jethro"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_024",
+    "reference": "Exodus 6:3",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "By what name did God say he appeared to Abraham, Isaac and Jacob?"
+    },
+    "answers": {
+      "en": [
+        "Most High",
+        "Lord of Hosts",
+        "I AM",
+        "God Almighty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_025",
+    "reference": "Exodus 6:16",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Levi live?"
+    },
+    "answers": {
+      "en": [
+        "110",
+        "120",
+        "137",
+        "147"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_026",
+    "reference": "Exodus 6:20",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Who was the father of Moses and Aaron?"
+    },
+    "answers": {
+      "en": [
+        "Kohath",
+        "Levi",
+        "Hur",
+        "Amram"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_027",
+    "reference": "Exodus 6:23",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Who was Aaron's wife?"
+    },
+    "answers": {
+      "en": [
+        "Elisheba",
+        "Zipporah",
+        "Miriam",
+        "Jochebed"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_028",
+    "reference": "Exodus 6:23",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Aaron's sons by Elisheba were Nadab, Abihu, Eleazar and who?"
+    },
+    "answers": {
+      "en": [
+        "Gershom",
+        "Ithamar",
+        "Eliezer",
+        "Phinehas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_029",
+    "reference": "Exodus 7:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "God said Moses would be as God to Pharaoh. What would Aaron be?"
+    },
+    "answers": {
+      "en": [
+        "His priest",
+        "His prophet",
+        "His king",
+        "His shield"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_030",
+    "reference": "Exodus 7:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How old was Moses when he and Aaron spoke to Pharaoh?"
+    },
+    "answers": {
+      "en": [
+        "40",
+        "83",
+        "120",
+        "80"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_031",
+    "reference": "Exodus 7:7",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Moses was 80 when he stood before Pharaoh. What age was his brother Aaron?"
+    },
+    "answers": {
+      "en": [
+        "83",
+        "80",
+        "77",
+        "90"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_032",
+    "reference": "Exodus 7:12",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did Aaron's rod do to the magicians' rods?"
+    },
+    "answers": {
+      "en": [
+        "Broke them",
+        "Burned them",
+        "Swallowed them up",
+        "Bowed to them"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_033",
+    "reference": "Exodus 7:25",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many days passed after Yahweh struck the river before the next plague was announced?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_034",
+    "reference": "Exodus 8:17",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "When Aaron struck the dust of the earth, what did it become?"
+    },
+    "answers": {
+      "en": [
+        "Frogs",
+        "Flies",
+        "Lice",
+        "Locusts"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_035",
+    "reference": "Exodus 8:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did the magicians tell Pharaoh after the plague of lice?"
+    },
+    "answers": {
+      "en": [
+        "\"We can do the same\"",
+        "\"This is the finger of God\"",
+        "\"Let the people go\"",
+        "\"Moses is a magician\""
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_036",
+    "reference": "Exodus 8:22",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which land did God set apart so that no swarms of flies would be there?"
+    },
+    "answers": {
+      "en": [
+        "Midian",
+        "Canaan",
+        "Rameses",
+        "Goshen"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_037",
+    "reference": "Exodus 9:3",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "On what did the plague of \"very grievous pestilence\" fall?"
+    },
+    "answers": {
+      "en": [
+        "The Nile's fish",
+        "The livestock in the field",
+        "Egypt's crops",
+        "Pharaoh's palace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_038",
+    "reference": "Exodus 9:10",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which plague came when Moses sprinkled ashes of the furnace toward the sky?"
+    },
+    "answers": {
+      "en": [
+        "Boils",
+        "Hail",
+        "Darkness",
+        "Lice"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_039",
+    "reference": "Exodus 9:24",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was mixed with the severe hail that fell on Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Blood",
+        "Frogs",
+        "Sand",
+        "Lightning"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_040",
+    "reference": "Exodus 9:32",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which crops were NOT struck by the hail, because they had not grown up?"
+    },
+    "answers": {
+      "en": [
+        "Flax and barley",
+        "Grapes and figs",
+        "Wheat and spelt",
+        "Olives and dates"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_041",
+    "reference": "Exodus 10:4",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which plague did Moses warn would come \"tomorrow\" if Pharaoh refused again?"
+    },
+    "answers": {
+      "en": [
+        "Frogs",
+        "Boils",
+        "Locusts",
+        "Blood"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_042",
+    "reference": "Exodus 10:13",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which wind brought the locusts into Egypt?"
+    },
+    "answers": {
+      "en": [
+        "An east wind",
+        "A west wind",
+        "A north wind",
+        "A south wind"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_043",
+    "reference": "Exodus 10:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Into which sea did a strong west wind drive the locusts?"
+    },
+    "answers": {
+      "en": [
+        "The Great Sea",
+        "The Salt Sea",
+        "The Sea of Galilee",
+        "The Red Sea"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_044",
+    "reference": "Exodus 10:23",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "During the three days of thick darkness, what did the children of Israel have?"
+    },
+    "answers": {
+      "en": [
+        "Manna",
+        "Light in their dwellings",
+        "A pillar of cloud",
+        "Lamps of gold"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_045",
+    "reference": "Exodus 11:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "God said that against Israel not even a what would bark or move its tongue?"
+    },
+    "answers": {
+      "en": [
+        "Donkey",
+        "Lion",
+        "Fox",
+        "Dog"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_046",
+    "reference": "Exodus 12:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "God said the month of the Passover would be what to Israel?"
+    },
+    "answers": {
+      "en": [
+        "The first month of the year",
+        "The holiest month",
+        "The month of harvest",
+        "The last month of the year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_047",
+    "reference": "Exodus 12:3",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which day of the month did each household take a Passover lamb?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The tenth",
+        "The seventh",
+        "The fourteenth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_048",
+    "reference": "Exodus 12:5",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How old was the Passover lamb to be?"
+    },
+    "answers": {
+      "en": [
+        "Eight days old",
+        "Three years old",
+        "A year old",
+        "A month old"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_049",
+    "reference": "Exodus 12:6",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which day of the month was the Passover lamb killed at evening?"
+    },
+    "answers": {
+      "en": [
+        "The tenth",
+        "The first",
+        "The fifteenth",
+        "The fourteenth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_050",
+    "reference": "Exodus 12:8",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "With the roasted lamb and unleavened bread, what else was eaten at Passover?"
+    },
+    "answers": {
+      "en": [
+        "Honey",
+        "Olives",
+        "Bitter herbs",
+        "Lentils"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_051",
+    "reference": "Exodus 12:11",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "How were the Israelites to eat the first Passover?"
+    },
+    "answers": {
+      "en": [
+        "Lying down at ease",
+        "In haste, dressed to travel",
+        "In silence at dawn",
+        "Standing in the river"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_052",
+    "reference": "Exodus 12:15",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "For how many days were Israelites to eat unleavened bread?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_053",
+    "reference": "Exodus 12:40",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How long did the children of Israel live in Egypt?"
+    },
+    "answers": {
+      "en": [
+        "430 years",
+        "400 years",
+        "210 years",
+        "40 years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_054",
+    "reference": "Exodus 13:17",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Through which people's land, though near, did God NOT lead Israel, lest they see war?"
+    },
+    "answers": {
+      "en": [
+        "The Edomites'",
+        "The Philistines'",
+        "The Moabites'",
+        "The Amorites'"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_055",
+    "reference": "Exodus 14:25",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did God take off the Egyptians' chariots in the sea?"
+    },
+    "answers": {
+      "en": [
+        "Their horses",
+        "Their banners",
+        "Their wheels",
+        "Their spears"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_056",
+    "reference": "Exodus 15:1",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Complete the song of Moses: \"The horse and his rider he has thrown into ___.\""
+    },
+    "answers": {
+      "en": [
+        "the pit",
+        "the fire",
+        "the desert",
+        "the sea"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_057",
+    "reference": "Exodus 15:25",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses throw into the bitter water of Marah to make it sweet?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "His rod",
+        "A tree",
+        "Honey"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_058",
+    "reference": "Exodus 16:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which wilderness, between Elim and Sinai, did Israel reach after Elim?"
+    },
+    "answers": {
+      "en": [
+        "Zin",
+        "Paran",
+        "Shur",
+        "Sin"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_059",
+    "reference": "Exodus 16:16",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How much manna was each person to gather a day?"
+    },
+    "answers": {
+      "en": [
+        "An omer",
+        "An ephah",
+        "A homer",
+        "A handful"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_060",
+    "reference": "Exodus 16:20",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What happened to manna kept until the next morning against Moses' word?"
+    },
+    "answers": {
+      "en": [
+        "It turned to stone",
+        "It bred worms",
+        "It vanished",
+        "It turned to gold"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_061",
+    "reference": "Exodus 16:22",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "On the sixth day, how much manna did Israel gather?"
+    },
+    "answers": {
+      "en": [
+        "Half as much",
+        "Twice as much",
+        "None at all",
+        "Seven times as much"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_062",
+    "reference": "Exodus 16:31",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did manna taste like?"
+    },
+    "answers": {
+      "en": [
+        "Bread and salt",
+        "Figs and dates",
+        "Olive oil",
+        "Wafers with honey"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_063",
+    "reference": "Exodus 16:31",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Manna was white and looked like what kind of seed?"
+    },
+    "answers": {
+      "en": [
+        "Coriander seed",
+        "Mustard seed",
+        "Barley seed",
+        "Sesame seed"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_064",
+    "reference": "Exodus 16:33",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did Aaron put an omer of manna in, to keep before Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "A basket",
+        "A box of acacia",
+        "A pot",
+        "A leather bag"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_065",
+    "reference": "Exodus 16:36",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "An omer is what part of an ephah?"
+    },
+    "answers": {
+      "en": [
+        "A tenth",
+        "A half",
+        "A third",
+        "A seventh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_066",
+    "reference": "Exodus 17:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "At which camp was there no water for the people to drink?"
+    },
+    "answers": {
+      "en": [
+        "Elim",
+        "Succoth",
+        "Rephidim",
+        "Etham"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_067",
+    "reference": "Exodus 17:9",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Whom did Moses send to choose men and fight Amalek?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Joshua",
+        "Caleb",
+        "Hur"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_068",
+    "reference": "Exodus 17:12",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "When Moses' hands grew heavy, what did Aaron and Hur put under him?"
+    },
+    "answers": {
+      "en": [
+        "A chair",
+        "A saddle",
+        "A tent peg",
+        "A stone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_069",
+    "reference": "Exodus 18:21",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Jethro advised Moses to appoint rulers of thousands, hundreds, fifties and what?"
+    },
+    "answers": {
+      "en": [
+        "Twelves",
+        "Tens",
+        "Sevens",
+        "Twenties"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b103_070",
+    "reference": "Exodus 19:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "God said he bore Israel out of Egypt on what?"
+    },
+    "answers": {
+      "en": [
+        "Eagles' wings",
+        "A pillar of cloud",
+        "His shoulders",
+        "A chariot of fire"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_071",
+    "reference": "Exodus 19:6",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "God said Israel would be to him a kingdom of what?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Prophets",
+        "Shepherds",
+        "Priests"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_072",
+    "reference": "Exodus 19:16",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "On the third day at Sinai, which sound made all the people in the camp tremble?"
+    },
+    "answers": {
+      "en": [
+        "A roaring lion",
+        "A great earthquake",
+        "An exceedingly loud trumpet",
+        "Singing angels"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_073",
+    "reference": "Exodus 20:4",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete the commandment: \"You shall not make for yourselves an ___.\""
+    },
+    "answers": {
+      "en": [
+        "altar",
+        "oath",
+        "idol",
+        "army"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b103_074",
+    "reference": "Exodus 20:7",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete the commandment: \"You shall not take the name of Yahweh your God in ___.\""
+    },
+    "answers": {
+      "en": [
+        "vain",
+        "anger",
+        "secret",
+        "jest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b103_075",
+    "reference": "Exodus 20:11",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "According to the commandment, in how many days did Yahweh make heaven and earth?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Forty",
+        "Six"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b103_076",
+    "reference": "Exodus 20:25",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "If Israel built God an altar of stone, what kind of stones must they not use?"
+    },
+    "answers": {
+      "en": [
+        "River stones",
+        "Cut stones",
+        "Stones from Egypt",
+        "Small stones"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

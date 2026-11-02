@@ -1,4 +1,4 @@
-import { flockReward, spiesReward, type FlockState, type SpiesState } from '@sixtysix/shared'
+import { flockReward, missionReward, spiesReward, type FlockState, type MissionState, type SpiesState } from '@sixtysix/shared'
 import { useGameStore } from './store'
 
 /**
@@ -85,4 +85,41 @@ export function payFlock(state: FlockState, myId: string | null): void {
 export function paySpies(state: SpiesState, myId: string | null): void {
   const r = spiesRewardFor(state, myId)
   if (r) payOnce(`spies:${state.code}:${state.game}`, r)
+}
+
+const MISSION_PLAYED_KEY = 'sixtysix.missionPlayed.v1'
+const missionGame = (state: MissionState) => `${state.code}:${state.game}`
+
+/** Remember the running Mission game this device sat in (joining one that is already over pays nothing). */
+export function markMissionPlayed(state: MissionState): void {
+  if (state.phase === 'lobby' || state.phase === 'over') return
+  try {
+    localStorage.setItem(MISSION_PLAYED_KEY, missionGame(state))
+  } catch {
+    // storage unavailable — the reward check below lets it through
+  }
+}
+
+function playedMission(state: MissionState): boolean {
+  try {
+    return localStorage.getItem(MISSION_PLAYED_KEY) === missionGame(state)
+  } catch {
+    return true
+  }
+}
+
+export type MissionRewardBreakdown = ReturnType<typeof missionReward> & { right: number; tiesWon: number; place: number }
+
+/** My reward for a finished Mission game, with its parts (right answers, tie-breakers, place). */
+export function missionRewardFor(state: MissionState, myId: string | null): MissionRewardBreakdown | null {
+  const r = state.phase === 'over' ? state.result : null
+  const me = state.seats.find((s) => s.id === myId)
+  if (!r?.rewarded || !me || !playedMission(state)) return null
+  const place = r.places[me.seat] ?? state.seats.length
+  return { ...missionReward({ right: me.right, tiesWon: me.tiesWon, place, blitz: state.options.map === 'blitz' }), right: me.right, tiesWon: me.tiesWon, place }
+}
+
+export function payMission(state: MissionState, myId: string | null): void {
+  const r = missionRewardFor(state, myId)
+  if (r) payOnce(`mission:${state.code}:${state.game}`, { coins: r.coins, xp: r.xp })
 }

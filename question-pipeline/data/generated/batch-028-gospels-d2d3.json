@@ -1,42 +1,722 @@
 [
-  {"id":"q_b28_001","reference":"Matthew 25:2","difficulty":2,"category":"gospels","text":{"en":"In the parable of the ten virgins, how many were wise?"},"answers":{"en":["Seven","Three","Four","Five"]},"correctIndex":3},
-  {"id":"q_b28_002","reference":"Luke 2:1","difficulty":2,"category":"gospels","text":{"en":"Which Caesar issued the decree for the enrollment at the time of Jesus' birth?"},"answers":{"en":["Caesar Augustus","Tiberius Caesar","Nero","Claudius"]},"correctIndex":0},
-  {"id":"q_b28_003","reference":"Mark 1:30","difficulty":2,"category":"gospels","text":{"en":"In Mark, who lay sick with a fever in Simon's house?"},"answers":{"en":["Simon's servant","Simon's wife's mother","Simon's daughter","Andrew's wife"]},"correctIndex":1},
-  {"id":"q_b28_004","reference":"Luke 8:43","difficulty":2,"category":"gospels","text":{"en":"How long had the woman who touched the fringe of Jesus' cloak had a flow of blood?"},"answers":{"en":["Twelve years","Thirty-eight years","Eighteen years","Seven years"]},"correctIndex":0},
-  {"id":"q_b28_005","reference":"John 2:1","difficulty":2,"category":"gospels","text":{"en":"In which town was the wedding where Jesus turned water into wine?"},"answers":{"en":["Cana","Nain","Bethany","Capernaum"]},"correctIndex":0},
-  {"id":"q_b28_006","reference":"John 3:3","difficulty":2,"category":"gospels","text":{"en":"Jesus told Nicodemus that unless one is born ___, he can't see the Kingdom of God."},"answers":{"en":["of Abraham","anew","in Jerusalem","of a priest"]},"correctIndex":1},
-  {"id":"q_b28_007","reference":"Matthew 27:24","difficulty":2,"category":"gospels","text":{"en":"What did Pilate do before the crowd while saying, \"I am innocent of the blood\"?"},"answers":{"en":["Sat on the ground","Tore his robe","Washed his hands","Broke his staff"]},"correctIndex":2},
-  {"id":"q_b28_008","reference":"Luke 15:23","difficulty":2,"category":"gospels","text":{"en":"What did the father have killed to celebrate the prodigal son's return?"},"answers":{"en":["A young goat","The fattened calf","An ox","A lamb"]},"correctIndex":1},
-  {"id":"q_b28_009","reference":"Mark 12:16","difficulty":2,"category":"gospels","text":{"en":"Whose image and inscription were on the coin brought to Jesus?"},"answers":{"en":["Abraham's","Caesar's","Pilate's","Herod's"]},"correctIndex":1},
-  {"id":"q_b28_010","reference":"Matthew 27:51","difficulty":2,"category":"gospels","text":{"en":"What was torn in two from top to bottom when Jesus died?"},"answers":{"en":["The scroll of the law","The high priest's garment","The veil of the temple","Pilate's robe"]},"correctIndex":2},
-  {"id":"q_b28_011","reference":"John 19:34","difficulty":2,"category":"gospels","text":{"en":"With what did a soldier pierce Jesus' side?"},"answers":{"en":["A spear","An arrow","A sword","A nail"]},"correctIndex":0},
-  {"id":"q_b28_012","reference":"Luke 23:46","difficulty":2,"category":"gospels","text":{"en":"In Luke, Jesus cried: \"Father, into your hands I commit my ___!\""},"answers":{"en":["spirit","body","life","soul"]},"correctIndex":0},
-  {"id":"q_b28_013","reference":"Matthew 6:24","difficulty":2,"category":"gospels","text":{"en":"Complete: \"You can't serve both God and ___.\""},"answers":{"en":["Mammon","the world","men","Caesar"]},"correctIndex":0},
-  {"id":"q_b28_014","reference":"Luke 5:37","difficulty":2,"category":"gospels","text":{"en":"Jesus said no one puts new wine into what?"},"answers":{"en":["Stone water pots","Clay jars","Old wine skins","Golden cups"]},"correctIndex":2},
-  {"id":"q_b28_015","reference":"Matthew 22:37","difficulty":2,"category":"gospels","text":{"en":"In Matthew: \"Love the Lord your God with all your heart, with all your soul, and with all your ___.\""},"answers":{"en":["words","mind","deeds","spirit"]},"correctIndex":1},
-  {"id":"q_b28_016","reference":"Matthew 14:10","difficulty":2,"category":"gospels","text":{"en":"How did Herod the tetrarch have John the Baptist killed?"},"answers":{"en":["Beheaded in prison","Crucified","Thrown from a cliff","Stoned outside the city"]},"correctIndex":0},
-  {"id":"q_b28_017","reference":"Mark 1:6","difficulty":2,"category":"gospels","text":{"en":"What was John the Baptist's clothing made of?"},"answers":{"en":["Camel's hair","Goat skins","Fine linen","Sheep's wool"]},"correctIndex":0},
-  {"id":"q_b28_018","reference":"Luke 1:13","difficulty":2,"category":"gospels","text":{"en":"What name did the angel tell Zacharias to give his son?"},"answers":{"en":["Jesus","Elijah","Zacharias","John"]},"correctIndex":3},
-  {"id":"q_b28_019","reference":"Matthew 28:2","difficulty":2,"category":"gospels","text":{"en":"In Matthew, who rolled away the stone from Jesus' tomb?"},"answers":{"en":["The Roman guards","Mary Magdalene","An angel of the Lord","Joseph of Arimathea"]},"correctIndex":2},
-  {"id":"q_b28_020","reference":"Luke 24:13","difficulty":2,"category":"gospels","text":{"en":"To which village were two disciples walking when the risen Jesus joined them?"},"answers":{"en":["Jericho","Emmaus","Nain","Bethany"]},"correctIndex":1},
-  {"id":"q_b28_021","reference":"Luke 15:8","difficulty":2,"category":"gospels","text":{"en":"In the parable of the lost coin, how many drachma coins did the woman have?"},"answers":{"en":["Twelve","One hundred","Ten","Seven"]},"correctIndex":2},
-  {"id":"q_b28_022","reference":"Luke 16:20","difficulty":2,"category":"gospels","text":{"en":"What was the name of the beggar laid at the rich man's gate?"},"answers":{"en":["Malchus","Simon","Bartimaeus","Lazarus"]},"correctIndex":3},
-  {"id":"q_b28_023","reference":"Matthew 5:13","difficulty":2,"category":"gospels","text":{"en":"Jesus told his followers: \"You are the ___ of the earth.\""},"answers":{"en":["rock","hope","salt","seed"]},"correctIndex":2},
-  {"id":"q_b28_024","reference":"Mark 10:25","difficulty":2,"category":"gospels","text":{"en":"What did Jesus say is easier than for a rich man to enter the Kingdom of God?"},"answers":{"en":["A camel through a needle's eye","A rope through a ring","A mountain moving into the sea","An ox through a doorway"]},"correctIndex":0},
-  {"id":"q_b28_025","reference":"Mark 14:22","difficulty":2,"category":"gospels","text":{"en":"At the last supper Jesus said of the bread: \"Take, eat. This is my ___.\""},"answers":{"en":["bread","body","covenant","life"]},"correctIndex":1},
-  {"id":"q_b28_026","reference":"John 20:1","difficulty":2,"category":"gospels","text":{"en":"In John, who went to the tomb early on the first day of the week, while it was still dark?"},"answers":{"en":["Peter","Mary Magdalene","Joanna","Martha"]},"correctIndex":1},
-  {"id":"q_b28_027","reference":"Matthew 1:23","difficulty":2,"category":"gospels","text":{"en":"According to Matthew, what does the name \"Immanuel\" mean?"},"answers":{"en":["God with us","Son of David","Prince of peace","The Lord saves"]},"correctIndex":0},
-  {"id":"q_b28_028","reference":"Matthew 4:4","difficulty":2,"category":"gospels","text":{"en":"Jesus answered the tempter: \"Man shall not live by ___ alone.\""},"answers":{"en":["wine","works","water","bread"]},"correctIndex":3},
-  {"id":"q_b28_029","reference":"Matthew 16:16","difficulty":2,"category":"gospels","text":{"en":"Who said to Jesus, \"You are the Christ, the Son of the living God\"?"},"answers":{"en":["Thomas","Andrew","John","Simon Peter"]},"correctIndex":3},
-  {"id":"q_b28_030","reference":"Matthew 17:1","difficulty":2,"category":"gospels","text":{"en":"Which three disciples did Jesus take up the high mountain where he was transfigured?"},"answers":{"en":["Peter, Andrew, and John","Peter, Thomas, and Philip","James, John, and Andrew","Peter, James, and John"]},"correctIndex":3},
-  {"id":"q_b28_031","reference":"John 12:13","difficulty":2,"category":"gospels","text":{"en":"In John, branches of which tree did the crowd take to meet Jesus coming to Jerusalem?"},"answers":{"en":["Fig","Palm","Cedar","Olive"]},"correctIndex":1},
-  {"id":"q_b28_032","reference":"Mark 14:37","difficulty":2,"category":"gospels","text":{"en":"What were Peter and the others doing when Jesus came back from praying in Gethsemane?"},"answers":{"en":["Fishing","Singing hymns","Eating","Sleeping"]},"correctIndex":3},
-  {"id":"q_b28_033","reference":"Mark 15:17","difficulty":3,"category":"gospels","text":{"en":"In Mark, what color did the soldiers clothe Jesus with when they mocked him?"},"answers":{"en":["Black","Blue","Brown","Purple"]},"correctIndex":3},
-  {"id":"q_b28_034","reference":"John 6:9","difficulty":3,"category":"gospels","text":{"en":"In John, what kind of loaves did the boy have at the feeding of the five thousand?"},"answers":{"en":["Wheat","Millet","Barley","Spelt"]},"correctIndex":2},
-  {"id":"q_b28_035","reference":"John 6:8-9","difficulty":3,"category":"gospels","text":{"en":"Which disciple pointed out the boy who had five loaves and two fish?"},"answers":{"en":["Thomas","Philip","Andrew","Matthew"]},"correctIndex":2},
-  {"id":"q_b28_036","reference":"Mark 15:39","difficulty":3,"category":"gospels","text":{"en":"In Mark, who said at the cross, \"Truly this man was the Son of God!\"?"},"answers":{"en":["One of the criminals","Joseph of Arimathea","Pilate's wife","The centurion"]},"correctIndex":3},
-  {"id":"q_b28_037","reference":"Mark 4:38","difficulty":3,"category":"gospels","text":{"en":"In Mark, where was Jesus asleep when the storm arose?"},"answers":{"en":["In the bow of the boat","Below deck on a mat","On the beach","On the cushion in the stern"]},"correctIndex":3},
-  {"id":"q_b28_038","reference":"Luke 7:11-12","difficulty":3,"category":"gospels","text":{"en":"In which city did Jesus raise a widow's only son from the dead?"},"answers":{"en":["Jericho","Bethany","Nain","Cana"]},"correctIndex":2},
-  {"id":"q_b28_039","reference":"John 9:7","difficulty":3,"category":"gospels","text":{"en":"In which pool did Jesus tell the man born blind to wash?"},"answers":{"en":["Heshbon","Gibeon","Siloam","Bethesda"]},"correctIndex":2},
-  {"id":"q_b28_040","reference":"Luke 23:6-7","difficulty":3,"category":"gospels","text":{"en":"On learning Jesus was a Galilean, to whom did Pilate send him?"},"answers":{"en":["Caiaphas","Herod","Caesar","Annas"]},"correctIndex":1}
+  {
+    "id": "q_b28_001",
+    "reference": "Matthew 25:2",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the ten virgins, how many were wise?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Four",
+        "Five"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_002",
+    "reference": "Luke 2:1",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Which Caesar issued the decree for the enrollment at the time of Jesus' birth?"
+    },
+    "answers": {
+      "en": [
+        "Caesar Augustus",
+        "Tiberius Caesar",
+        "Nero",
+        "Claudius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_003",
+    "reference": "Mark 1:30",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, who lay sick with a fever in Simon's house?"
+    },
+    "answers": {
+      "en": [
+        "Simon's servant",
+        "Simon's wife's mother",
+        "Simon's daughter",
+        "Andrew's wife"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_004",
+    "reference": "Luke 8:43",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "How long had the woman who touched the fringe of Jesus' cloak had a flow of blood?"
+    },
+    "answers": {
+      "en": [
+        "Twelve years",
+        "Thirty-eight years",
+        "Eighteen years",
+        "Seven years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_005",
+    "reference": "John 2:1",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In which town was the wedding where Jesus turned water into wine?"
+    },
+    "answers": {
+      "en": [
+        "Cana",
+        "Nain",
+        "Bethany",
+        "Capernaum"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_006",
+    "reference": "John 3:3",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told Nicodemus that unless one is born ___, he can't see the Kingdom of God."
+    },
+    "answers": {
+      "en": [
+        "of Abraham",
+        "anew",
+        "in Jerusalem",
+        "of a priest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_007",
+    "reference": "Matthew 27:24",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "What did Pilate do before the crowd while saying, \"I am innocent of the blood\"?"
+    },
+    "answers": {
+      "en": [
+        "Sat on the ground",
+        "Tore his robe",
+        "Washed his hands",
+        "Broke his staff"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_008",
+    "reference": "Luke 15:23",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What did the father have killed to celebrate the prodigal son's return?"
+    },
+    "answers": {
+      "en": [
+        "A young goat",
+        "The fattened calf",
+        "An ox",
+        "A lamb"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_009",
+    "reference": "Mark 12:16",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Whose image and inscription were on the coin brought to Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Abraham's",
+        "Caesar's",
+        "Pilate's",
+        "Herod's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_010",
+    "reference": "Matthew 27:51",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What was torn in two from top to bottom when Jesus died?"
+    },
+    "answers": {
+      "en": [
+        "The scroll of the law",
+        "The high priest's garment",
+        "The veil of the temple",
+        "Pilate's robe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_011",
+    "reference": "John 19:34",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "With what did a soldier pierce Jesus' side?"
+    },
+    "answers": {
+      "en": [
+        "A spear",
+        "An arrow",
+        "A sword",
+        "A nail"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_012",
+    "reference": "Luke 23:46",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Luke, Jesus cried: \"Father, into your hands I commit my ___!\""
+    },
+    "answers": {
+      "en": [
+        "spirit",
+        "body",
+        "life",
+        "soul"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_013",
+    "reference": "Matthew 6:24",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Complete: \"You can't serve both God and ___.\""
+    },
+    "answers": {
+      "en": [
+        "Mammon",
+        "the world",
+        "men",
+        "Caesar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_014",
+    "reference": "Luke 5:37",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said no one puts new wine into what?"
+    },
+    "answers": {
+      "en": [
+        "Stone water pots",
+        "Clay jars",
+        "Old wine skins",
+        "Golden cups"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_015",
+    "reference": "Matthew 22:37",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew: \"Love the Lord your God with all your heart, with all your soul, and with all your ___.\""
+    },
+    "answers": {
+      "en": [
+        "words",
+        "mind",
+        "deeds",
+        "spirit"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_016",
+    "reference": "Matthew 14:10",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "How did Herod the tetrarch have John the Baptist killed?"
+    },
+    "answers": {
+      "en": [
+        "Beheaded in prison",
+        "Crucified",
+        "Thrown from a cliff",
+        "Stoned outside the city"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_017",
+    "reference": "Mark 1:6",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What was John the Baptist's clothing made of?"
+    },
+    "answers": {
+      "en": [
+        "Camel's hair",
+        "Goat skins",
+        "Fine linen",
+        "Sheep's wool"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_018",
+    "reference": "Luke 1:13",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What name did the angel tell Zacharias to give his son?"
+    },
+    "answers": {
+      "en": [
+        "Jesus",
+        "Elijah",
+        "Zacharias",
+        "John"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_019",
+    "reference": "Matthew 28:2",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew, who rolled away the stone from Jesus' tomb?"
+    },
+    "answers": {
+      "en": [
+        "The Roman guards",
+        "Mary Magdalene",
+        "An angel of the Lord",
+        "Joseph of Arimathea"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_020",
+    "reference": "Luke 24:13",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "To which village were two disciples walking when the risen Jesus joined them?"
+    },
+    "answers": {
+      "en": [
+        "Jericho",
+        "Emmaus",
+        "Nain",
+        "Bethany"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_021",
+    "reference": "Luke 15:8",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the lost coin, how many drachma coins did the woman have?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "One hundred",
+        "Ten",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_022",
+    "reference": "Luke 16:20",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What was the name of the beggar laid at the rich man's gate?"
+    },
+    "answers": {
+      "en": [
+        "Malchus",
+        "Simon",
+        "Bartimaeus",
+        "Lazarus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_023",
+    "reference": "Matthew 5:13",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told his followers: \"You are the ___ of the earth.\""
+    },
+    "answers": {
+      "en": [
+        "rock",
+        "hope",
+        "salt",
+        "seed"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_024",
+    "reference": "Mark 10:25",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus say is easier than for a rich man to enter the Kingdom of God?"
+    },
+    "answers": {
+      "en": [
+        "A camel through a needle's eye",
+        "A rope through a ring",
+        "A mountain moving into the sea",
+        "An ox through a doorway"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_025",
+    "reference": "Mark 14:22",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "At the last supper Jesus said of the bread: \"Take, eat. This is my ___.\""
+    },
+    "answers": {
+      "en": [
+        "bread",
+        "body",
+        "covenant",
+        "life"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_026",
+    "reference": "John 20:1",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In John, who went to the tomb early on the first day of the week, while it was still dark?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Mary Magdalene",
+        "Joanna",
+        "Martha"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_027",
+    "reference": "Matthew 1:23",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "According to Matthew, what does the name \"Immanuel\" mean?"
+    },
+    "answers": {
+      "en": [
+        "God with us",
+        "Son of David",
+        "Prince of peace",
+        "The Lord saves"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b28_028",
+    "reference": "Matthew 4:4",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus answered the tempter: \"Man shall not live by ___ alone.\""
+    },
+    "answers": {
+      "en": [
+        "wine",
+        "works",
+        "water",
+        "bread"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_029",
+    "reference": "Matthew 16:16",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Who said to Jesus, \"You are the Christ, the Son of the living God\"?"
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "Andrew",
+        "John",
+        "Simon Peter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_030",
+    "reference": "Matthew 17:1",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Which three disciples did Jesus take up the high mountain where he was transfigured?"
+    },
+    "answers": {
+      "en": [
+        "Peter, Andrew, and John",
+        "Peter, Thomas, and Philip",
+        "James, John, and Andrew",
+        "Peter, James, and John"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_031",
+    "reference": "John 12:13",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In John, branches of which tree did the crowd take to meet Jesus coming to Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Fig",
+        "Palm",
+        "Cedar",
+        "Olive"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b28_032",
+    "reference": "Mark 14:37",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What were Peter and the others doing when Jesus came back from praying in Gethsemane?"
+    },
+    "answers": {
+      "en": [
+        "Fishing",
+        "Singing hymns",
+        "Eating",
+        "Sleeping"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_033",
+    "reference": "Mark 15:17",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, what color did the soldiers clothe Jesus with when they mocked him?"
+    },
+    "answers": {
+      "en": [
+        "Black",
+        "Blue",
+        "Brown",
+        "Purple"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_034",
+    "reference": "John 6:9",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In John, what kind of loaves did the boy have at the feeding of the five thousand?"
+    },
+    "answers": {
+      "en": [
+        "Wheat",
+        "Millet",
+        "Barley",
+        "Spelt"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_035",
+    "reference": "John 6:8-9",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple pointed out the boy who had five loaves and two fish?"
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "Philip",
+        "Andrew",
+        "Matthew"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_036",
+    "reference": "Mark 15:39",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, who said at the cross, \"Truly this man was the Son of God!\"?"
+    },
+    "answers": {
+      "en": [
+        "One of the criminals",
+        "Joseph of Arimathea",
+        "Pilate's wife",
+        "The centurion"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_037",
+    "reference": "Mark 4:38",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, where was Jesus asleep when the storm arose?"
+    },
+    "answers": {
+      "en": [
+        "In the bow of the boat",
+        "Below deck on a mat",
+        "On the beach",
+        "On the cushion in the stern"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b28_038",
+    "reference": "Luke 7:11-12",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In which city did Jesus raise a widow's only son from the dead?"
+    },
+    "answers": {
+      "en": [
+        "Jericho",
+        "Bethany",
+        "Nain",
+        "Cana"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_039",
+    "reference": "John 9:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In which pool did Jesus tell the man born blind to wash?"
+    },
+    "answers": {
+      "en": [
+        "Heshbon",
+        "Gibeon",
+        "Siloam",
+        "Bethesda"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b28_040",
+    "reference": "Luke 23:6-7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "On learning Jesus was a Galilean, to whom did Pilate send him?"
+    },
+    "answers": {
+      "en": [
+        "Caiaphas",
+        "Herod",
+        "Caesar",
+        "Annas"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

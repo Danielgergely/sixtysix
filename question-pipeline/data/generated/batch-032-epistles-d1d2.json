@@ -1,42 +1,722 @@
 [
-  {"id":"q_b32_001","reference":"Galatians 5:23","difficulty":1,"category":"epistles","text":{"en":"The list of the fruit of the Spirit ends with which quality?"},"answers":{"en":["Patience","Joy","Self-control","Peace"]},"correctIndex":2},
-  {"id":"q_b32_002","reference":"Ephesians 6:16","difficulty":1,"category":"epistles","text":{"en":"In the armor of God, what quenches all the fiery darts of the evil one?"},"answers":{"en":["The shield of faith","The helmet of salvation","The belt of truth","The breastplate of righteousness"]},"correctIndex":0},
-  {"id":"q_b32_003","reference":"Ephesians 6:17","difficulty":1,"category":"epistles","text":{"en":"In the armor of God, the helmet is the helmet of what?"},"answers":{"en":["Truth","Peace","Hope","Salvation"]},"correctIndex":3},
-  {"id":"q_b32_004","reference":"Revelation 3:20","difficulty":1,"category":"epistles","text":{"en":"Complete Jesus' words: 'Behold, I stand at the door and ___.'"},"answers":{"en":["Wait","Knock","Call","Watch"]},"correctIndex":1},
-  {"id":"q_b32_005","reference":"1 Corinthians 15:55","difficulty":1,"category":"epistles","text":{"en":"Complete: 'Death, where is your ___? Hades, where is your victory?'"},"answers":{"en":["Crown","Shadow","Sting","Power"]},"correctIndex":2},
-  {"id":"q_b32_006","reference":"Romans 3:23","difficulty":1,"category":"epistles","text":{"en":"Complete: 'For all have ___, and fall short of the glory of God.'"},"answers":{"en":["Sinned","Stumbled","Wandered","Doubted"]},"correctIndex":0},
-  {"id":"q_b32_007","reference":"Philippians 1:21","difficulty":1,"category":"epistles","text":{"en":"Complete Paul's words: 'For to me to live is Christ, and to die is ___.'"},"answers":{"en":["Loss","Rest","Peace","Gain"]},"correctIndex":3},
-  {"id":"q_b32_008","reference":"1 Peter 5:8","difficulty":1,"category":"epistles","text":{"en":"Peter says the devil walks around like a roaring what?"},"answers":{"en":["Bear","Lion","Wolf","Dragon"]},"correctIndex":1},
-  {"id":"q_b32_009","reference":"Hebrews 11:7","difficulty":1,"category":"epistles","text":{"en":"Who, by faith, prepared a ship for the saving of his house?"},"answers":{"en":["Abraham","Moses","Noah","Enoch"]},"correctIndex":2},
-  {"id":"q_b32_010","reference":"Hebrews 11:30","difficulty":1,"category":"epistles","text":{"en":"By faith, the walls of which city fell after being encircled for seven days?"},"answers":{"en":["Jericho","Ai","Jerusalem","Babylon"]},"correctIndex":0},
-  {"id":"q_b32_011","reference":"Hebrews 11:4","difficulty":1,"category":"epistles","text":{"en":"Who offered God a more excellent sacrifice than Cain?"},"answers":{"en":["Seth","Noah","Enoch","Abel"]},"correctIndex":3},
-  {"id":"q_b32_012","reference":"Hebrews 11:17","difficulty":1,"category":"epistles","text":{"en":"By faith, being tested, Abraham offered up which son?"},"answers":{"en":["Ishmael","Isaac","Jacob","Esau"]},"correctIndex":1},
-  {"id":"q_b32_013","reference":"Romans 12:21","difficulty":1,"category":"epistles","text":{"en":"Complete: 'Don't be overcome by evil, but overcome evil with ___.'"},"answers":{"en":["Love","Prayer","Good","Patience"]},"correctIndex":2},
-  {"id":"q_b32_014","reference":"2 Corinthians 9:7","difficulty":1,"category":"epistles","text":{"en":"According to Paul, God loves what kind of giver?"},"answers":{"en":["A cheerful giver","A generous giver","A secret giver","A faithful giver"]},"correctIndex":0},
-  {"id":"q_b32_015","reference":"Revelation 8:2","difficulty":1,"category":"epistles","text":{"en":"How many trumpets were given to the angels who stand before God?"},"answers":{"en":["Four","Twelve","Three","Seven"]},"correctIndex":3},
-  {"id":"q_b32_016","reference":"Colossians 4:14","difficulty":1,"category":"epistles","text":{"en":"Who does Paul call 'the beloved physician'?"},"answers":{"en":["Mark","Luke","Silas","Titus"]},"correctIndex":1},
-  {"id":"q_b32_017","reference":"James 1:5","difficulty":1,"category":"epistles","text":{"en":"James: if any of you lacks what, let him ask of God, who gives liberally?"},"answers":{"en":["Faith","Strength","Wisdom","Courage"]},"correctIndex":2},
-  {"id":"q_b32_018","reference":"1 John 4:19","difficulty":1,"category":"epistles","text":{"en":"Complete: 'We love him, because he first ___ us.'"},"answers":{"en":["Loved","Chose","Called","Saved"]},"correctIndex":0},
-  {"id":"q_b32_019","reference":"2 Corinthians 5:17","difficulty":1,"category":"epistles","text":{"en":"Complete: 'If anyone is in Christ, he is a new ___.'"},"answers":{"en":["Man","Heart","Spirit","Creation"]},"correctIndex":3},
-  {"id":"q_b32_020","reference":"Galatians 6:7","difficulty":1,"category":"epistles","text":{"en":"Complete: 'Whatever a man sows, that he will also ___.'"},"answers":{"en":["Gather","Reap","Eat","Lose"]},"correctIndex":1},
-  {"id":"q_b32_021","reference":"Revelation 21:4","difficulty":1,"category":"epistles","text":{"en":"In the new creation, God will wipe away every what from their eyes?"},"answers":{"en":["Veil","Scale","Tear","Shadow"]},"correctIndex":2},
-  {"id":"q_b32_022","reference":"Revelation 21:21","difficulty":2,"category":"epistles","text":{"en":"In the New Jerusalem, each of the twelve gates was made of what?"},"answers":{"en":["One pearl","Pure gold","Jasper","Sapphire"]},"correctIndex":0},
-  {"id":"q_b32_023","reference":"Revelation 19:16","difficulty":2,"category":"epistles","text":{"en":"What name is written on the garment and thigh of the rider on the white horse?"},"answers":{"en":["The Lion of Judah","The Son of David","The Prince of Peace","King of Kings, and Lord of Lords"]},"correctIndex":3},
-  {"id":"q_b32_024","reference":"2 Timothy 4:7","difficulty":2,"category":"epistles","text":{"en":"Complete: 'I have fought the good fight. I have finished the ___. I have kept the faith.'"},"answers":{"en":["Race","Course","Work","Battle"]},"correctIndex":1},
-  {"id":"q_b32_025","reference":"Hebrews 11:5","difficulty":2,"category":"epistles","text":{"en":"Who, by faith, was taken away so that he wouldn't see death?"},"answers":{"en":["Abel","Noah","Enoch","Isaac"]},"correctIndex":2},
-  {"id":"q_b32_026","reference":"Hebrews 11:31","difficulty":2,"category":"epistles","text":{"en":"Which woman, by faith, did not perish because she had received the spies in peace?"},"answers":{"en":["Rahab","Ruth","Deborah","Miriam"]},"correctIndex":0},
-  {"id":"q_b32_027","reference":"Hebrews 11:23","difficulty":2,"category":"epistles","text":{"en":"According to Hebrews, how long was baby Moses hidden by his parents?"},"answers":{"en":["Seven days","Forty days","One year","Three months"]},"correctIndex":3},
-  {"id":"q_b32_028","reference":"1 Corinthians 3:16","difficulty":2,"category":"epistles","text":{"en":"Complete: 'Don't you know that you are a ___ of God, and that God's Spirit lives in you?'"},"answers":{"en":["Child","Temple","Vessel","House"]},"correctIndex":1},
-  {"id":"q_b32_029","reference":"Revelation 6:8","difficulty":2,"category":"epistles","text":{"en":"In Revelation, what was the name of the rider on the pale horse?"},"answers":{"en":["War","Famine","Death","Destruction"]},"correctIndex":2},
-  {"id":"q_b32_030","reference":"Revelation 6:4","difficulty":2,"category":"epistles","text":{"en":"What color was the horse whose rider was given power to take peace from the earth?"},"answers":{"en":["Red","White","Black","Pale"]},"correctIndex":0},
-  {"id":"q_b32_031","reference":"Revelation 7:4","difficulty":2,"category":"epistles","text":{"en":"How many were sealed out of every tribe of the children of Israel?"},"answers":{"en":["Twelve thousand","Seven thousand","Twenty-four thousand","One hundred forty-four thousand"]},"correctIndex":3},
-  {"id":"q_b32_032","reference":"Revelation 20:2","difficulty":2,"category":"epistles","text":{"en":"For how long was the dragon, the old serpent, bound?"},"answers":{"en":["Seven years","A thousand years","Forty years","Three and a half years"]},"correctIndex":1},
-  {"id":"q_b32_033","reference":"Revelation 5:5","difficulty":2,"category":"epistles","text":{"en":"In Revelation 5, the Lion who has overcome is of which tribe?"},"answers":{"en":["Levi","Benjamin","Judah","Ephraim"]},"correctIndex":2},
-  {"id":"q_b32_034","reference":"Titus 1:5","difficulty":2,"category":"epistles","text":{"en":"On which island did Paul leave Titus to appoint elders in every city?"},"answers":{"en":["Crete","Cyprus","Patmos","Malta"]},"correctIndex":0},
-  {"id":"q_b32_035","reference":"Ephesians 4:26","difficulty":2,"category":"epistles","text":{"en":"Complete: 'Be angry, and don't sin.' Don't let the sun go down on your ___."},"answers":{"en":["Sorrow","Debts","Pride","Wrath"]},"correctIndex":3},
-  {"id":"q_b32_036","reference":"Hebrews 4:12","difficulty":2,"category":"epistles","text":{"en":"Hebrews says the word of God is sharper than any what?"},"answers":{"en":["Arrow","Two-edged sword","Spear","Razor"]},"correctIndex":1},
-  {"id":"q_b32_037","reference":"Jude 1:1","difficulty":2,"category":"epistles","text":{"en":"The writer of the letter of Jude calls himself the brother of whom?"},"answers":{"en":["Peter","John","James","Andrew"]},"correctIndex":2},
-  {"id":"q_b32_038","reference":"1 Corinthians 13:1","difficulty":2,"category":"epistles","text":{"en":"Without love, Paul says he has become sounding brass, or a clanging what?"},"answers":{"en":["Cymbal","Bell","Gong","Trumpet"]},"correctIndex":0},
-  {"id":"q_b32_039","reference":"Hebrews 11:11","difficulty":2,"category":"epistles","text":{"en":"Which woman, by faith, received power to conceive when she was past age?"},"answers":{"en":["Rachel","Hannah","Elizabeth","Sarah"]},"correctIndex":3},
-  {"id":"q_b32_040","reference":"Philippians 4:6","difficulty":2,"category":"epistles","text":{"en":"Complete: 'In nothing be ___, but in everything, by prayer... let your requests be made known.'"},"answers":{"en":["Proud","Anxious","Idle","Silent"]},"correctIndex":1}
+  {
+    "id": "q_b32_001",
+    "reference": "Galatians 5:23",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The list of the fruit of the Spirit ends with which quality?"
+    },
+    "answers": {
+      "en": [
+        "Patience",
+        "Joy",
+        "Self-control",
+        "Peace"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_002",
+    "reference": "Ephesians 6:16",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, what quenches all the fiery darts of the evil one?"
+    },
+    "answers": {
+      "en": [
+        "The shield of faith",
+        "The helmet of salvation",
+        "The belt of truth",
+        "The breastplate of righteousness"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_003",
+    "reference": "Ephesians 6:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, the helmet is the helmet of what?"
+    },
+    "answers": {
+      "en": [
+        "Truth",
+        "Peace",
+        "Hope",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_004",
+    "reference": "Revelation 3:20",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete Jesus' words: 'Behold, I stand at the door and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Wait",
+        "Knock",
+        "Call",
+        "Watch"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_005",
+    "reference": "1 Corinthians 15:55",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Death, where is your ___? Hades, where is your victory?'"
+    },
+    "answers": {
+      "en": [
+        "Crown",
+        "Shadow",
+        "Sting",
+        "Power"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_006",
+    "reference": "Romans 3:23",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'For all have ___, and fall short of the glory of God.'"
+    },
+    "answers": {
+      "en": [
+        "Sinned",
+        "Stumbled",
+        "Wandered",
+        "Doubted"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_007",
+    "reference": "Philippians 1:21",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete Paul's words: 'For to me to live is Christ, and to die is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Loss",
+        "Rest",
+        "Peace",
+        "Gain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_008",
+    "reference": "1 Peter 5:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Peter says the devil walks around like a roaring what?"
+    },
+    "answers": {
+      "en": [
+        "Bear",
+        "Lion",
+        "Wolf",
+        "Dragon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_009",
+    "reference": "Hebrews 11:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Who, by faith, prepared a ship for the saving of his house?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Moses",
+        "Noah",
+        "Enoch"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_010",
+    "reference": "Hebrews 11:30",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, the walls of which city fell after being encircled for seven days?"
+    },
+    "answers": {
+      "en": [
+        "Jericho",
+        "Ai",
+        "Jerusalem",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_011",
+    "reference": "Hebrews 11:4",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Who offered God a more excellent sacrifice than Cain?"
+    },
+    "answers": {
+      "en": [
+        "Seth",
+        "Noah",
+        "Enoch",
+        "Abel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_012",
+    "reference": "Hebrews 11:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, being tested, Abraham offered up which son?"
+    },
+    "answers": {
+      "en": [
+        "Ishmael",
+        "Isaac",
+        "Jacob",
+        "Esau"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_013",
+    "reference": "Romans 12:21",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Don't be overcome by evil, but overcome evil with ___.'"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Prayer",
+        "Good",
+        "Patience"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_014",
+    "reference": "2 Corinthians 9:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "According to Paul, God loves what kind of giver?"
+    },
+    "answers": {
+      "en": [
+        "A cheerful giver",
+        "A generous giver",
+        "A secret giver",
+        "A faithful giver"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_015",
+    "reference": "Revelation 8:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "How many trumpets were given to the angels who stand before God?"
+    },
+    "answers": {
+      "en": [
+        "Four",
+        "Twelve",
+        "Three",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_016",
+    "reference": "Colossians 4:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Who does Paul call 'the beloved physician'?"
+    },
+    "answers": {
+      "en": [
+        "Mark",
+        "Luke",
+        "Silas",
+        "Titus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_017",
+    "reference": "James 1:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "James: if any of you lacks what, let him ask of God, who gives liberally?"
+    },
+    "answers": {
+      "en": [
+        "Faith",
+        "Strength",
+        "Wisdom",
+        "Courage"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_018",
+    "reference": "1 John 4:19",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'We love him, because he first ___ us.'"
+    },
+    "answers": {
+      "en": [
+        "Loved",
+        "Chose",
+        "Called",
+        "Saved"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_019",
+    "reference": "2 Corinthians 5:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'If anyone is in Christ, he is a new ___.'"
+    },
+    "answers": {
+      "en": [
+        "Man",
+        "Heart",
+        "Spirit",
+        "Creation"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_020",
+    "reference": "Galatians 6:7",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Whatever a man sows, that he will also ___.'"
+    },
+    "answers": {
+      "en": [
+        "Gather",
+        "Reap",
+        "Eat",
+        "Lose"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_021",
+    "reference": "Revelation 21:4",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "In the new creation, God will wipe away every what from their eyes?"
+    },
+    "answers": {
+      "en": [
+        "Veil",
+        "Scale",
+        "Tear",
+        "Shadow"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_022",
+    "reference": "Revelation 21:21",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In the New Jerusalem, each of the twelve gates was made of what?"
+    },
+    "answers": {
+      "en": [
+        "One pearl",
+        "Pure gold",
+        "Jasper",
+        "Sapphire"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_023",
+    "reference": "Revelation 19:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What name is written on the garment and thigh of the rider on the white horse?"
+    },
+    "answers": {
+      "en": [
+        "The Lion of Judah",
+        "The Son of David",
+        "The Prince of Peace",
+        "King of Kings, and Lord of Lords"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_024",
+    "reference": "2 Timothy 4:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'I have fought the good fight. I have finished the ___. I have kept the faith.'"
+    },
+    "answers": {
+      "en": [
+        "Mission",
+        "Course",
+        "Work",
+        "Battle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_025",
+    "reference": "Hebrews 11:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Who, by faith, was taken away so that he wouldn't see death?"
+    },
+    "answers": {
+      "en": [
+        "Abel",
+        "Noah",
+        "Enoch",
+        "Isaac"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_026",
+    "reference": "Hebrews 11:31",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Which woman, by faith, did not perish because she had received the spies in peace?"
+    },
+    "answers": {
+      "en": [
+        "Rahab",
+        "Ruth",
+        "Deborah",
+        "Miriam"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_027",
+    "reference": "Hebrews 11:23",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "According to Hebrews, how long was baby Moses hidden by his parents?"
+    },
+    "answers": {
+      "en": [
+        "Seven days",
+        "Forty days",
+        "One year",
+        "Three months"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_028",
+    "reference": "1 Corinthians 3:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Don't you know that you are a ___ of God, and that God's Spirit lives in you?'"
+    },
+    "answers": {
+      "en": [
+        "Child",
+        "Temple",
+        "Vessel",
+        "House"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_029",
+    "reference": "Revelation 6:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In Revelation, what was the name of the rider on the pale horse?"
+    },
+    "answers": {
+      "en": [
+        "War",
+        "Famine",
+        "Death",
+        "Destruction"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_030",
+    "reference": "Revelation 6:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What color was the horse whose rider was given power to take peace from the earth?"
+    },
+    "answers": {
+      "en": [
+        "Red",
+        "White",
+        "Black",
+        "Pale"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_031",
+    "reference": "Revelation 7:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "How many were sealed out of every tribe of the children of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Twelve thousand",
+        "Seven thousand",
+        "Twenty-four thousand",
+        "One hundred forty-four thousand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_032",
+    "reference": "Revelation 20:2",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "For how long was the dragon, the old serpent, bound?"
+    },
+    "answers": {
+      "en": [
+        "Seven years",
+        "A thousand years",
+        "Forty years",
+        "Three and a half years"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_033",
+    "reference": "Revelation 5:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In Revelation 5, the Lion who has overcome is of which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Benjamin",
+        "Judah",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_034",
+    "reference": "Titus 1:5",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "On which island did Paul leave Titus to appoint elders in every city?"
+    },
+    "answers": {
+      "en": [
+        "Crete",
+        "Cyprus",
+        "Patmos",
+        "Malta"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_035",
+    "reference": "Ephesians 4:26",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Be angry, and don't sin.' Don't let the sun go down on your ___."
+    },
+    "answers": {
+      "en": [
+        "Sorrow",
+        "Debts",
+        "Pride",
+        "Wrath"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_036",
+    "reference": "Hebrews 4:12",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Hebrews says the word of God is sharper than any what?"
+    },
+    "answers": {
+      "en": [
+        "Arrow",
+        "Two-edged sword",
+        "Spear",
+        "Razor"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b32_037",
+    "reference": "Jude 1:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "The writer of the letter of Jude calls himself the brother of whom?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "John",
+        "James",
+        "Andrew"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b32_038",
+    "reference": "1 Corinthians 13:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Without love, Paul says he has become sounding brass, or a clanging what?"
+    },
+    "answers": {
+      "en": [
+        "Cymbal",
+        "Bell",
+        "Gong",
+        "Trumpet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b32_039",
+    "reference": "Hebrews 11:11",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Which woman, by faith, received power to conceive when she was past age?"
+    },
+    "answers": {
+      "en": [
+        "Rachel",
+        "Hannah",
+        "Elizabeth",
+        "Sarah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b32_040",
+    "reference": "Philippians 4:6",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'In nothing be ___, but in everything, by prayer... let your requests be made known.'"
+    },
+    "answers": {
+      "en": [
+        "Proud",
+        "Anxious",
+        "Idle",
+        "Silent"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

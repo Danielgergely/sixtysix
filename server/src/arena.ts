@@ -1,5 +1,5 @@
 import type { Server, Socket } from 'socket.io'
-import type { ArenaPhase, ClientToServerEvents, DifficultyPreset, RoomConfig, ServerToClientEvents } from '@sixtysix/shared'
+import { DIFFICULTY_PRESETS, type ArenaPhase, type ClientToServerEvents, type RoomConfig, type ServerToClientEvents } from '@sixtysix/shared'
 import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
 import { backToLobby, broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
@@ -11,7 +11,6 @@ type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
 type Ack = (res: any) => void
 
 const HOST_GRACE_MS = 90_000 // host may reconnect within this window
-const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 const PHASES: ArenaPhase[] = ['lobby', 'reading', 'question', 'reveal', 'leaderboard', 'podium']
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 /** Room options from a client (create or lobby change); anything malformed falls back to the defaults. */
@@ -28,8 +27,9 @@ function cleanConfig(raw: unknown, base?: RoomConfig): RoomConfig {
         ? CATEGORIES.filter((c) => (cfg.categories as unknown[]).includes(c))
         : []
       : base!.categories,
-    difficulty: has('difficulty') ? (DIFFICULTIES.find((d) => d === cfg.difficulty) ?? 'mixed') : base!.difficulty,
+    difficulty: has('difficulty') ? (DIFFICULTY_PRESETS.find((d) => d === cfg.difficulty) ?? 'mixed') : base!.difficulty,
     mode: has('mode') ? (ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic') : base!.mode,
+    withImpossible: has('withImpossible') ? cfg.withImpossible === true : base!.withImpossible,
   }
 }
 

@@ -1,79 +1,1388 @@
 [
-  {"id":"q_b101_001","reference":"Genesis 21:8","difficulty":2,"category":"torah","text":{"en":"Abraham made a great feast on the day Isaac was what?"},"answers":{"en":["Circumcised","Named","Weaned","Born"]},"correctIndex":2},
-  {"id":"q_b101_002","reference":"Genesis 21:14","difficulty":3,"category":"torah","text":{"en":"In which wilderness did Hagar wander after Abraham sent her away?"},"answers":{"en":["Paran","Sinai","Shur","Beersheba"]},"correctIndex":3},
-  {"id":"q_b101_003","reference":"Genesis 21:19","difficulty":2,"category":"torah","text":{"en":"When the water ran out, what did God open Hagar's eyes to see?"},"answers":{"en":["A well of water","A ram","An angel","A palm tree"]},"correctIndex":0},
-  {"id":"q_b101_004","reference":"Genesis 21:20","difficulty":2,"category":"torah","text":{"en":"What did Ishmael become as he grew up in the wilderness?"},"answers":{"en":["A shepherd","An archer","A hunter of lions","A king"]},"correctIndex":1},
-  {"id":"q_b101_005","reference":"Genesis 21:21","difficulty":4,"category":"torah","text":{"en":"In which wilderness did Ishmael live?"},"answers":{"en":["Zin","Paran","Sinai","Shur"]},"correctIndex":1},
-  {"id":"q_b101_006","reference":"Genesis 21:33","difficulty":4,"category":"torah","text":{"en":"What kind of tree did Abraham plant in Beersheba?"},"answers":{"en":["An oak","A fig tree","A cedar","A tamarisk"]},"correctIndex":3},
-  {"id":"q_b101_007","reference":"Genesis 22:3","difficulty":2,"category":"torah","text":{"en":"How many young men did Abraham take along with Isaac on the way to the mountain?"},"answers":{"en":["Two","Three","Seven","Ten"]},"correctIndex":0},
-  {"id":"q_b101_008","reference":"Genesis 22:4","difficulty":2,"category":"torah","text":{"en":"On which day of the journey did Abraham see the place far off?"},"answers":{"en":["The first","The seventh","The third","The fortieth"]},"correctIndex":2},
-  {"id":"q_b101_009","reference":"Genesis 22:6","difficulty":2,"category":"torah","text":{"en":"What did Abraham lay on Isaac to carry up the mountain?"},"answers":{"en":["The wood for the offering","The knife","The fire","A lamb"]},"correctIndex":0},
-  {"id":"q_b101_010","reference":"Genesis 22:13","difficulty":1,"category":"torah","text":{"en":"How was the ram caught in the thicket?"},"answers":{"en":["By its leg","By its wool","By its horns","In a net"]},"correctIndex":2},
-  {"id":"q_b101_011","reference":"Genesis 22:14","difficulty":1,"category":"torah","text":{"en":"What did Abraham name the place where God provided the ram?"},"answers":{"en":["Yahweh Is My Banner","Yahweh Will Provide","God Sees Me","House of God"]},"correctIndex":1},
-  {"id":"q_b101_012","reference":"Genesis 22:23","difficulty":3,"category":"torah","text":{"en":"Who was the father of Rebekah?"},"answers":{"en":["Laban","Nahor","Terah","Bethuel"]},"correctIndex":3},
-  {"id":"q_b101_013","reference":"Genesis 23:1","difficulty":3,"category":"torah","text":{"en":"How many years did Sarah live?"},"answers":{"en":["100","127","90","175"]},"correctIndex":1},
-  {"id":"q_b101_014","reference":"Genesis 23:10","difficulty":4,"category":"torah","text":{"en":"From which Hittite did Abraham buy the field with the cave of Machpelah?"},"answers":{"en":["Ephron","Hamor","Mamre","Abimelech"]},"correctIndex":0},
-  {"id":"q_b101_015","reference":"Genesis 23:16","difficulty":4,"category":"torah","text":{"en":"How much silver did Abraham weigh out for the burial field?"},"answers":{"en":["30 shekels","100 shekels","1,000 shekels","400 shekels"]},"correctIndex":3},
-  {"id":"q_b101_016","reference":"Genesis 24:2","difficulty":3,"category":"torah","text":{"en":"Where did Abraham ask his servant to put his hand to swear an oath?"},"answers":{"en":["On his head","On the altar","Under his thigh","On a stone"]},"correctIndex":2},
-  {"id":"q_b101_017","reference":"Genesis 24:10","difficulty":3,"category":"torah","text":{"en":"How many of his master's camels did Abraham's servant take on his journey?"},"answers":{"en":["Two","Seven","Ten","Twelve"]},"correctIndex":2},
-  {"id":"q_b101_018","reference":"Genesis 24:19","difficulty":2,"category":"torah","text":{"en":"After giving the servant a drink, what did Rebekah offer to do?"},"answers":{"en":["Water his camels","Wash his feet","Cook him a meal","Lead him home"]},"correctIndex":0},
-  {"id":"q_b101_019","reference":"Genesis 24:22","difficulty":3,"category":"torah","text":{"en":"Besides two gold bracelets, what did the servant give Rebekah at the well?"},"answers":{"en":["A silver cup","A veil","A necklace","A golden ring"]},"correctIndex":3},
-  {"id":"q_b101_020","reference":"Genesis 24:63","difficulty":3,"category":"torah","text":{"en":"What was Isaac doing in the field in the evening when Rebekah's camels came?"},"answers":{"en":["He went out to plow","He went out to meditate","He went out to hunt","He went out to dig a well"]},"correctIndex":1},
-  {"id":"q_b101_021","reference":"Genesis 25:7","difficulty":3,"category":"torah","text":{"en":"How many years did Abraham live?"},"answers":{"en":["127","180","137","175"]},"correctIndex":3},
-  {"id":"q_b101_022","reference":"Genesis 25:9","difficulty":3,"category":"torah","text":{"en":"Which two sons buried Abraham in the cave of Machpelah?"},"answers":{"en":["Isaac and Ishmael","Isaac and Jacob","Jacob and Esau","Ishmael and Midian"]},"correctIndex":0},
-  {"id":"q_b101_023","reference":"Genesis 25:17","difficulty":5,"category":"torah","text":{"en":"How many years did Ishmael live?"},"answers":{"en":["127","137","175","110"]},"correctIndex":1},
-  {"id":"q_b101_024","reference":"Genesis 25:20","difficulty":4,"category":"torah","text":{"en":"How old was Isaac when he took Rebekah as his wife?"},"answers":{"en":["30","25","40","60"]},"correctIndex":2},
-  {"id":"q_b101_025","reference":"Genesis 25:23","difficulty":2,"category":"torah","text":{"en":"What did Yahweh tell Rebekah was in her womb?"},"answers":{"en":["A great prophet","A king of Egypt","Twelve tribes","Two nations"]},"correctIndex":3},
-  {"id":"q_b101_026","reference":"Genesis 25:25","difficulty":1,"category":"torah","text":{"en":"What color was Esau all over when he was born?"},"answers":{"en":["White","Brown","Red","Pale"]},"correctIndex":2},
-  {"id":"q_b101_027","reference":"Genesis 25:26","difficulty":4,"category":"torah","text":{"en":"How old was Isaac when Esau and Jacob were born?"},"answers":{"en":["40","60","100","75"]},"correctIndex":1},
-  {"id":"q_b101_028","reference":"Genesis 25:27","difficulty":2,"category":"torah","text":{"en":"Esau was a skillful hunter. How is Jacob described?"},"answers":{"en":["A quiet man, living in tents","A mighty warrior","A farmer of the field","A wise judge"]},"correctIndex":0},
-  {"id":"q_b101_029","reference":"Genesis 25:28","difficulty":1,"category":"torah","text":{"en":"Which of the twins did Rebekah love?"},"answers":{"en":["Jacob","Esau","Both equally","Neither"]},"correctIndex":0},
-  {"id":"q_b101_030","reference":"Genesis 25:30","difficulty":2,"category":"torah","text":{"en":"Because of the red stew, what other name was Esau called?"},"answers":{"en":["Seir","Edom","Israel","Moab"]},"correctIndex":1},
-  {"id":"q_b101_031","reference":"Genesis 26:1","difficulty":3,"category":"torah","text":{"en":"During a famine, Isaac went to Abimelech, king of the Philistines, in which town?"},"answers":{"en":["Gaza","Hebron","Gerar","Beersheba"]},"correctIndex":2},
-  {"id":"q_b101_032","reference":"Genesis 26:7","difficulty":2,"category":"torah","text":{"en":"Whom did Isaac tell the men of Gerar was his sister?"},"answers":{"en":["Sarah","Leah","Deborah","Rebekah"]},"correctIndex":3},
-  {"id":"q_b101_033","reference":"Genesis 26:12","difficulty":3,"category":"torah","text":{"en":"In the year Isaac sowed in Gerar, how much did he reap?"},"answers":{"en":["Ten times what he planted","Twice what he planted","A hundred times what he planted","Nothing at all"]},"correctIndex":2},
-  {"id":"q_b101_034","reference":"Genesis 26:20","difficulty":4,"category":"torah","text":{"en":"What did Isaac name the first well the herdsmen of Gerar argued over?"},"answers":{"en":["Sitnah","Rehoboth","Shibah","Esek"]},"correctIndex":3},
-  {"id":"q_b101_035","reference":"Genesis 26:21","difficulty":5,"category":"torah","text":{"en":"What did Isaac name the second well that was argued over?"},"answers":{"en":["Sitnah","Esek","Rehoboth","Shibah"]},"correctIndex":0},
-  {"id":"q_b101_036","reference":"Genesis 26:33","difficulty":5,"category":"torah","text":{"en":"Isaac called a well Shibah. What is that city's name \"to this day\"?"},"answers":{"en":["Bethel","Beersheba","Gerar","Hebron"]},"correctIndex":1},
-  {"id":"q_b101_037","reference":"Genesis 27:9","difficulty":3,"category":"torah","text":{"en":"What did Rebekah tell Jacob to fetch so she could cook Isaac's favorite food?"},"answers":{"en":["A lamb","Two young goats","A calf","Two doves"]},"correctIndex":1},
-  {"id":"q_b101_038","reference":"Genesis 27:15","difficulty":2,"category":"torah","text":{"en":"Whose good clothes did Rebekah put on Jacob?"},"answers":{"en":["Isaac's","Laban's","Abraham's","Esau's"]},"correctIndex":3},
-  {"id":"q_b101_039","reference":"Genesis 27:22","difficulty":2,"category":"torah","text":{"en":"Complete Isaac's words: \"The voice is ___'s voice, but the hands are the hands of Esau.\""},"answers":{"en":["Jacob","Laban","Ishmael","Reuben"]},"correctIndex":0},
-  {"id":"q_b101_040","reference":"Genesis 27:43","difficulty":2,"category":"torah","text":{"en":"To whom did Rebekah tell Jacob to flee, to escape Esau's anger?"},"answers":{"en":["Abimelech","Ishmael","Laban, her brother","Nahor"]},"correctIndex":2},
-  {"id":"q_b101_041","reference":"Genesis 28:2","difficulty":4,"category":"torah","text":{"en":"To which region did Isaac send Jacob to find a wife?"},"answers":{"en":["Paddan Aram","Canaan","Egypt","Moab"]},"correctIndex":0},
-  {"id":"q_b101_042","reference":"Genesis 28:9","difficulty":5,"category":"torah","text":{"en":"Which daughter of Ishmael did Esau take as a wife?"},"answers":{"en":["Basemath","Judith","Mahalath","Adah"]},"correctIndex":2},
-  {"id":"q_b101_043","reference":"Genesis 28:11","difficulty":1,"category":"torah","text":{"en":"What did Jacob put under his head to sleep on his way to Haran?"},"answers":{"en":["His coat","A stone","A saddle","A bundle of wool"]},"correctIndex":1},
-  {"id":"q_b101_044","reference":"Genesis 28:18","difficulty":2,"category":"torah","text":{"en":"What did Jacob pour on the stone he set up as a pillar at Bethel?"},"answers":{"en":["Wine","Water","Blood","Oil"]},"correctIndex":3},
-  {"id":"q_b101_045","reference":"Genesis 28:22","difficulty":3,"category":"torah","text":{"en":"At Bethel, what part of all God gave him did Jacob vow to give back?"},"answers":{"en":["Half","A tenth","A third","The firstborn"]},"correctIndex":1},
-  {"id":"q_b101_046","reference":"Genesis 29:9","difficulty":1,"category":"torah","text":{"en":"Who came to the well with her father's sheep, for she kept them?"},"answers":{"en":["Rachel","Leah","Rebekah","Zipporah"]},"correctIndex":0},
-  {"id":"q_b101_047","reference":"Genesis 29:11","difficulty":2,"category":"torah","text":{"en":"What did Jacob do after he kissed Rachel at the well?"},"answers":{"en":["Sang a song","Ran away","Built an altar","Wept aloud"]},"correctIndex":3},
-  {"id":"q_b101_048","reference":"Genesis 29:17","difficulty":3,"category":"torah","text":{"en":"Rachel was beautiful. What does the Bible say about Leah?"},"answers":{"en":["She was tall","She was a shepherdess","Her eyes were weak","She was older than Laban"]},"correctIndex":2},
-  {"id":"q_b101_049","reference":"Genesis 29:29","difficulty":3,"category":"torah","text":{"en":"Which handmaid did Laban give to Rachel?"},"answers":{"en":["Zilpah","Hagar","Bilhah","Deborah"]},"correctIndex":2},
-  {"id":"q_b101_050","reference":"Genesis 29:32","difficulty":2,"category":"torah","text":{"en":"Who was Leah's firstborn son?"},"answers":{"en":["Reuben","Judah","Simeon","Levi"]},"correctIndex":0},
-  {"id":"q_b101_051","reference":"Genesis 29:35","difficulty":3,"category":"torah","text":{"en":"Which son did Leah name, saying, \"This time will I praise Yahweh\"?"},"answers":{"en":["Levi","Simeon","Issachar","Judah"]},"correctIndex":3},
-  {"id":"q_b101_052","reference":"Genesis 30:6","difficulty":4,"category":"torah","text":{"en":"Which son of Bilhah did Rachel name, saying, \"God has judged me\"?"},"answers":{"en":["Naphtali","Dan","Gad","Asher"]},"correctIndex":1},
-  {"id":"q_b101_053","reference":"Genesis 30:8","difficulty":4,"category":"torah","text":{"en":"Which son did Rachel name after \"mighty wrestlings\" with her sister?"},"answers":{"en":["Dan","Joseph","Benjamin","Naphtali"]},"correctIndex":3},
-  {"id":"q_b101_054","reference":"Genesis 30:11","difficulty":4,"category":"torah","text":{"en":"Which son of Zilpah did Leah name, saying, \"How fortunate!\"?"},"answers":{"en":["Gad","Asher","Dan","Zebulun"]},"correctIndex":0},
-  {"id":"q_b101_055","reference":"Genesis 30:14","difficulty":3,"category":"torah","text":{"en":"What did Reuben find in the field during the wheat harvest?"},"answers":{"en":["Honey","Mandrakes","A lamb","Wild figs"]},"correctIndex":1},
-  {"id":"q_b101_056","reference":"Genesis 30:21","difficulty":3,"category":"torah","text":{"en":"What was the name of Leah's daughter?"},"answers":{"en":["Tamar","Milcah","Dinah","Basemath"]},"correctIndex":2},
-  {"id":"q_b101_057","reference":"Genesis 30:24","difficulty":2,"category":"torah","text":{"en":"Which son did Rachel name, saying, \"May Yahweh add another son to me\"?"},"answers":{"en":["Benjamin","Dan","Naphtali","Joseph"]},"correctIndex":3},
-  {"id":"q_b101_058","reference":"Genesis 30:32","difficulty":3,"category":"torah","text":{"en":"Which animals did Jacob ask Laban for as his wages?"},"answers":{"en":["The pure white ones","The firstborn ones","The speckled and spotted ones","The largest ones"]},"correctIndex":2},
-  {"id":"q_b101_059","reference":"Genesis 30:37","difficulty":5,"category":"torah","text":{"en":"Rods of poplar, almond and which other tree did Jacob peel?"},"answers":{"en":["Oak","Plane tree","Willow","Cedar"]},"correctIndex":1},
-  {"id":"q_b101_060","reference":"Genesis 31:7","difficulty":3,"category":"torah","text":{"en":"How many times did Jacob say Laban had changed his wages?"},"answers":{"en":["Ten","Seven","Three","Twenty"]},"correctIndex":0},
-  {"id":"q_b101_061","reference":"Genesis 31:34","difficulty":3,"category":"torah","text":{"en":"Where did Rachel hide her father's teraphim when Laban searched the tent?"},"answers":{"en":["In the camel's saddle","Under a rock","In a well","In a jar of flour"]},"correctIndex":0},
-  {"id":"q_b101_062","reference":"Genesis 31:41","difficulty":3,"category":"torah","text":{"en":"How many years in all did Jacob serve in Laban's house?"},"answers":{"en":["Fourteen","Twenty","Seven","Forty"]},"correctIndex":1},
-  {"id":"q_b101_063","reference":"Genesis 32:2","difficulty":4,"category":"torah","text":{"en":"Jacob met God's angels and said, \"This is God's army.\" What did he name the place?"},"answers":{"en":["Peniel","Bethel","Mahanaim","Succoth"]},"correctIndex":2},
-  {"id":"q_b101_064","reference":"Genesis 32:6","difficulty":3,"category":"torah","text":{"en":"How many men were coming with Esau to meet Jacob?"},"answers":{"en":["Forty","One hundred","Seventy","Four hundred"]},"correctIndex":3},
-  {"id":"q_b101_065","reference":"Genesis 32:22","difficulty":4,"category":"torah","text":{"en":"Jacob crossed the ford of which river the night he wrestled?"},"answers":{"en":["Jordan","Arnon","Jabbok","Kishon"]},"correctIndex":2},
-  {"id":"q_b101_066","reference":"Genesis 32:25","difficulty":3,"category":"torah","text":{"en":"Where did the man touch Jacob as they wrestled?"},"answers":{"en":["His shoulder","His eyes","His heel","The hollow of his thigh"]},"correctIndex":3},
-  {"id":"q_b101_067","reference":"Genesis 32:26","difficulty":1,"category":"torah","text":{"en":"Complete Jacob's words: \"I won't let you go, unless you ___ me.\""},"answers":{"en":["bless","forgive","free","answer"]},"correctIndex":0},
-  {"id":"q_b101_068","reference":"Genesis 33:4","difficulty":2,"category":"torah","text":{"en":"What did Esau do when he met Jacob again?"},"answers":{"en":["Struck him","Ran, embraced and kissed him","Turned away","Demanded the birthright"]},"correctIndex":1},
-  {"id":"q_b101_069","reference":"Genesis 33:17","difficulty":4,"category":"torah","text":{"en":"Where did Jacob build a house and shelters for his livestock?"},"answers":{"en":["Shechem","Succoth","Bethel","Mahanaim"]},"correctIndex":1},
-  {"id":"q_b101_070","reference":"Genesis 33:20","difficulty":5,"category":"torah","text":{"en":"What did Jacob call the altar he built near Shechem?"},"answers":{"en":["El Bethel","Yahweh Nissi","Galeed","El Elohe Israel"]},"correctIndex":3},
-  {"id":"q_b101_071","reference":"Genesis 35:4","difficulty":3,"category":"torah","text":{"en":"Where did Jacob hide the foreign gods and earrings his household gave him?"},"answers":{"en":["Under the oak by Shechem","In a cave","In the river","Under the altar"]},"correctIndex":0},
-  {"id":"q_b101_072","reference":"Genesis 35:18","difficulty":4,"category":"torah","text":{"en":"As she was dying, what name did Rachel give her son, before Jacob renamed him?"},"answers":{"en":["Ben Ammi","Benaiah","Benoni","Beor"]},"correctIndex":2},
-  {"id":"q_b101_073","reference":"Genesis 35:28","difficulty":4,"category":"torah","text":{"en":"How many years did Isaac live?"},"answers":{"en":["180","175","147","137"]},"correctIndex":0},
-  {"id":"q_b101_074","reference":"Genesis 35:29","difficulty":2,"category":"torah","text":{"en":"Which two sons buried Isaac?"},"answers":{"en":["Jacob and Joseph","Esau and Ishmael","Esau and Jacob","Reuben and Judah"]},"correctIndex":2},
-  {"id":"q_b101_075","reference":"Genesis 36:8","difficulty":3,"category":"torah","text":{"en":"In which hill country did Esau live?"},"answers":{"en":["Gilead","Seir","Ephraim","Bashan"]},"correctIndex":1},
-  {"id":"q_b101_076","reference":"Genesis 36:12","difficulty":5,"category":"torah","text":{"en":"Timna bore which son to Eliphaz, Esau's son?"},"answers":{"en":["Teman","Kenaz","Korah","Amalek"]},"correctIndex":3},
-  {"id":"q_b101_077","reference":"Genesis 36:24","difficulty":5,"category":"torah","text":{"en":"What did Anah find in the wilderness while feeding his father's donkeys?"},"answers":{"en":["A lost flock","Hot springs","A golden idol","A cave"]},"correctIndex":1}
+  {
+    "id": "q_b101_001",
+    "reference": "Genesis 21:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Abraham made a great feast on the day Isaac was what?"
+    },
+    "answers": {
+      "en": [
+        "Circumcised",
+        "Named",
+        "Weaned",
+        "Born"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_002",
+    "reference": "Genesis 21:14",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In which wilderness did Hagar wander after Abraham sent her away?"
+    },
+    "answers": {
+      "en": [
+        "Paran",
+        "Sinai",
+        "Shur",
+        "Beersheba"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_003",
+    "reference": "Genesis 21:19",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "When the water ran out, what did God open Hagar's eyes to see?"
+    },
+    "answers": {
+      "en": [
+        "A well of water",
+        "A ram",
+        "An angel",
+        "A palm tree"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_004",
+    "reference": "Genesis 21:20",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Ishmael become as he grew up in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "A shepherd",
+        "An archer",
+        "A hunter of lions",
+        "A king"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_005",
+    "reference": "Genesis 21:21",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "In which wilderness did Ishmael live?"
+    },
+    "answers": {
+      "en": [
+        "Zin",
+        "Paran",
+        "Sinai",
+        "Shur"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_006",
+    "reference": "Genesis 21:33",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What kind of tree did Abraham plant in Beersheba?"
+    },
+    "answers": {
+      "en": [
+        "An oak",
+        "A fig tree",
+        "A cedar",
+        "A tamarisk"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_007",
+    "reference": "Genesis 22:3",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many young men did Abraham take along with Isaac on the way to the mountain?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Seven",
+        "Ten"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_008",
+    "reference": "Genesis 22:4",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "On which day of the journey did Abraham see the place far off?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The seventh",
+        "The third",
+        "The fortieth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_009",
+    "reference": "Genesis 22:6",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Abraham lay on Isaac to carry up the mountain?"
+    },
+    "answers": {
+      "en": [
+        "The wood for the offering",
+        "The knife",
+        "The fire",
+        "A lamb"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_010",
+    "reference": "Genesis 22:13",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "How was the ram caught in the thicket?"
+    },
+    "answers": {
+      "en": [
+        "By its leg",
+        "By its wool",
+        "By its horns",
+        "In a net"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_011",
+    "reference": "Genesis 22:14",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Abraham name the place where God provided the ram?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh Is My Banner",
+        "Yahweh Will Provide",
+        "God Sees Me",
+        "House of God"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_012",
+    "reference": "Genesis 22:23",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Who was the father of Rebekah?"
+    },
+    "answers": {
+      "en": [
+        "Laban",
+        "Nahor",
+        "Terah",
+        "Bethuel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_013",
+    "reference": "Genesis 23:1",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Sarah live?"
+    },
+    "answers": {
+      "en": [
+        "100",
+        "127",
+        "90",
+        "175"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_014",
+    "reference": "Genesis 23:10",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "From which Hittite did Abraham buy the field with the cave of Machpelah?"
+    },
+    "answers": {
+      "en": [
+        "Ephron",
+        "Hamor",
+        "Mamre",
+        "Abimelech"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_015",
+    "reference": "Genesis 23:16",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How much silver did Abraham weigh out for the burial field?"
+    },
+    "answers": {
+      "en": [
+        "30 shekels",
+        "100 shekels",
+        "1,000 shekels",
+        "400 shekels"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_016",
+    "reference": "Genesis 24:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Where did Abraham ask his servant to put his hand to swear an oath?"
+    },
+    "answers": {
+      "en": [
+        "On his head",
+        "On the altar",
+        "Under his thigh",
+        "On a stone"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_017",
+    "reference": "Genesis 24:10",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many of his master's camels did Abraham's servant take on his journey?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_018",
+    "reference": "Genesis 24:19",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "After giving the servant a drink, what did Rebekah offer to do?"
+    },
+    "answers": {
+      "en": [
+        "Water his camels",
+        "Wash his feet",
+        "Cook him a meal",
+        "Lead him home"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_019",
+    "reference": "Genesis 24:22",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Besides two gold bracelets, what did the servant give Rebekah at the well?"
+    },
+    "answers": {
+      "en": [
+        "A silver cup",
+        "A veil",
+        "A necklace",
+        "A golden ring"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_020",
+    "reference": "Genesis 24:63",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was Isaac doing in the field in the evening when Rebekah's camels came?"
+    },
+    "answers": {
+      "en": [
+        "He went out to plow",
+        "He went out to meditate",
+        "He went out to hunt",
+        "He went out to dig a well"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_021",
+    "reference": "Genesis 25:7",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Abraham live?"
+    },
+    "answers": {
+      "en": [
+        "127",
+        "180",
+        "137",
+        "175"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_022",
+    "reference": "Genesis 25:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which two sons buried Abraham in the cave of Machpelah?"
+    },
+    "answers": {
+      "en": [
+        "Isaac and Ishmael",
+        "Isaac and Jacob",
+        "Jacob and Esau",
+        "Ishmael and Midian"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_023",
+    "reference": "Genesis 25:17",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Ishmael live?"
+    },
+    "answers": {
+      "en": [
+        "127",
+        "137",
+        "175",
+        "110"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_024",
+    "reference": "Genesis 25:20",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How old was Isaac when he took Rebekah as his wife?"
+    },
+    "answers": {
+      "en": [
+        "30",
+        "25",
+        "40",
+        "60"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_025",
+    "reference": "Genesis 25:23",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Yahweh tell Rebekah was in her womb?"
+    },
+    "answers": {
+      "en": [
+        "A great prophet",
+        "A king of Egypt",
+        "Twelve tribes",
+        "Two nations"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_026",
+    "reference": "Genesis 25:25",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What color was Esau all over when he was born?"
+    },
+    "answers": {
+      "en": [
+        "White",
+        "Brown",
+        "Red",
+        "Pale"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_027",
+    "reference": "Genesis 25:26",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How old was Isaac when Esau and Jacob were born?"
+    },
+    "answers": {
+      "en": [
+        "40",
+        "60",
+        "100",
+        "75"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_028",
+    "reference": "Genesis 25:27",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Esau was a skillful hunter. How is Jacob described?"
+    },
+    "answers": {
+      "en": [
+        "A quiet man, living in tents",
+        "A mighty warrior",
+        "A farmer of the field",
+        "A wise judge"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_029",
+    "reference": "Genesis 25:28",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which of the twins did Rebekah love?"
+    },
+    "answers": {
+      "en": [
+        "Jacob",
+        "Esau",
+        "Both equally",
+        "Neither"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_030",
+    "reference": "Genesis 25:30",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Because of the red stew, what other name was Esau called?"
+    },
+    "answers": {
+      "en": [
+        "Seir",
+        "Edom",
+        "Israel",
+        "Moab"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_031",
+    "reference": "Genesis 26:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "During a famine, Isaac went to Abimelech, king of the Philistines, in which town?"
+    },
+    "answers": {
+      "en": [
+        "Gaza",
+        "Hebron",
+        "Gerar",
+        "Beersheba"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_032",
+    "reference": "Genesis 26:7",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Whom did Isaac tell the men of Gerar was his sister?"
+    },
+    "answers": {
+      "en": [
+        "Sarah",
+        "Leah",
+        "Deborah",
+        "Rebekah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_033",
+    "reference": "Genesis 26:12",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "In the year Isaac sowed in Gerar, how much did he reap?"
+    },
+    "answers": {
+      "en": [
+        "Ten times what he planted",
+        "Twice what he planted",
+        "A hundred times what he planted",
+        "Nothing at all"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_034",
+    "reference": "Genesis 26:20",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What did Isaac name the first well the herdsmen of Gerar argued over?"
+    },
+    "answers": {
+      "en": [
+        "Sitnah",
+        "Rehoboth",
+        "Shibah",
+        "Esek"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_035",
+    "reference": "Genesis 26:21",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What did Isaac name the second well that was argued over?"
+    },
+    "answers": {
+      "en": [
+        "Sitnah",
+        "Esek",
+        "Rehoboth",
+        "Shibah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_036",
+    "reference": "Genesis 26:33",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Isaac called a well Shibah. What is that city's name \"to this day\"?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Beersheba",
+        "Gerar",
+        "Hebron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_037",
+    "reference": "Genesis 27:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Rebekah tell Jacob to fetch so she could cook Isaac's favorite food?"
+    },
+    "answers": {
+      "en": [
+        "A lamb",
+        "Two young goats",
+        "A calf",
+        "Two doves"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_038",
+    "reference": "Genesis 27:15",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Whose good clothes did Rebekah put on Jacob?"
+    },
+    "answers": {
+      "en": [
+        "Isaac's",
+        "Laban's",
+        "Abraham's",
+        "Esau's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_039",
+    "reference": "Genesis 27:22",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete Isaac's words: \"The voice is ___'s voice, but the hands are the hands of Esau.\""
+    },
+    "answers": {
+      "en": [
+        "Jacob",
+        "Laban",
+        "Ishmael",
+        "Reuben"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_040",
+    "reference": "Genesis 27:43",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "To whom did Rebekah tell Jacob to flee, to escape Esau's anger?"
+    },
+    "answers": {
+      "en": [
+        "Abimelech",
+        "Ishmael",
+        "Laban, her brother",
+        "Nahor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_041",
+    "reference": "Genesis 28:2",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "To which region did Isaac send Jacob to find a wife?"
+    },
+    "answers": {
+      "en": [
+        "Paddan Aram",
+        "Canaan",
+        "Egypt",
+        "Moab"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_042",
+    "reference": "Genesis 28:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which daughter of Ishmael did Esau take as a wife?"
+    },
+    "answers": {
+      "en": [
+        "Basemath",
+        "Judith",
+        "Mahalath",
+        "Adah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_043",
+    "reference": "Genesis 28:11",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did Jacob put under his head to sleep on his way to Haran?"
+    },
+    "answers": {
+      "en": [
+        "His coat",
+        "A stone",
+        "A saddle",
+        "A bundle of wool"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_044",
+    "reference": "Genesis 28:18",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Jacob pour on the stone he set up as a pillar at Bethel?"
+    },
+    "answers": {
+      "en": [
+        "Wine",
+        "Water",
+        "Blood",
+        "Oil"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_045",
+    "reference": "Genesis 28:22",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "At Bethel, what part of all God gave him did Jacob vow to give back?"
+    },
+    "answers": {
+      "en": [
+        "Half",
+        "A tenth",
+        "A third",
+        "The firstborn"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_046",
+    "reference": "Genesis 29:9",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who came to the well with her father's sheep, for she kept them?"
+    },
+    "answers": {
+      "en": [
+        "Rachel",
+        "Leah",
+        "Rebekah",
+        "Zipporah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_047",
+    "reference": "Genesis 29:11",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Jacob do after he kissed Rachel at the well?"
+    },
+    "answers": {
+      "en": [
+        "Sang a song",
+        "Ran away",
+        "Built an altar",
+        "Wept aloud"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_048",
+    "reference": "Genesis 29:17",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Rachel was beautiful. What does the Bible say about Leah?"
+    },
+    "answers": {
+      "en": [
+        "She was tall",
+        "She was a shepherdess",
+        "Her eyes were weak",
+        "She was older than Laban"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_049",
+    "reference": "Genesis 29:29",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which handmaid did Laban give to Rachel?"
+    },
+    "answers": {
+      "en": [
+        "Zilpah",
+        "Hagar",
+        "Bilhah",
+        "Deborah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_050",
+    "reference": "Genesis 29:32",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Who was Leah's firstborn son?"
+    },
+    "answers": {
+      "en": [
+        "Reuben",
+        "Judah",
+        "Simeon",
+        "Levi"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_051",
+    "reference": "Genesis 29:35",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which son did Leah name, saying, \"This time will I praise Yahweh\"?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Simeon",
+        "Issachar",
+        "Judah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_052",
+    "reference": "Genesis 30:6",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which son of Bilhah did Rachel name, saying, \"God has judged me\"?"
+    },
+    "answers": {
+      "en": [
+        "Naphtali",
+        "Dan",
+        "Gad",
+        "Asher"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_053",
+    "reference": "Genesis 30:8",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which son did Rachel name after \"mighty wrestlings\" with her sister?"
+    },
+    "answers": {
+      "en": [
+        "Dan",
+        "Joseph",
+        "Benjamin",
+        "Naphtali"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_054",
+    "reference": "Genesis 30:11",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which son of Zilpah did Leah name, saying, \"How fortunate!\"?"
+    },
+    "answers": {
+      "en": [
+        "Gad",
+        "Asher",
+        "Dan",
+        "Zebulun"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_055",
+    "reference": "Genesis 30:14",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did Reuben find in the field during the wheat harvest?"
+    },
+    "answers": {
+      "en": [
+        "Honey",
+        "Mandrakes",
+        "A lamb",
+        "Wild figs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_056",
+    "reference": "Genesis 30:21",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was the name of Leah's daughter?"
+    },
+    "answers": {
+      "en": [
+        "Tamar",
+        "Milcah",
+        "Dinah",
+        "Basemath"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_057",
+    "reference": "Genesis 30:24",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which son did Rachel name, saying, \"May Yahweh add another son to me\"?"
+    },
+    "answers": {
+      "en": [
+        "Benjamin",
+        "Dan",
+        "Naphtali",
+        "Joseph"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_058",
+    "reference": "Genesis 30:32",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which animals did Jacob ask Laban for as his wages?"
+    },
+    "answers": {
+      "en": [
+        "The pure white ones",
+        "The firstborn ones",
+        "The speckled and spotted ones",
+        "The largest ones"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_059",
+    "reference": "Genesis 30:37",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Rods of poplar, almond and which other tree did Jacob peel?"
+    },
+    "answers": {
+      "en": [
+        "Oak",
+        "Plane tree",
+        "Willow",
+        "Cedar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_060",
+    "reference": "Genesis 31:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many times did Jacob say Laban had changed his wages?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Seven",
+        "Three",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_061",
+    "reference": "Genesis 31:34",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Where did Rachel hide her father's teraphim when Laban searched the tent?"
+    },
+    "answers": {
+      "en": [
+        "In the camel's saddle",
+        "Under a rock",
+        "In a well",
+        "In a jar of flour"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_062",
+    "reference": "Genesis 31:41",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many years in all did Jacob serve in Laban's house?"
+    },
+    "answers": {
+      "en": [
+        "Fourteen",
+        "Twenty",
+        "Seven",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_063",
+    "reference": "Genesis 32:2",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Jacob met God's angels and said, \"This is God's army.\" What did he name the place?"
+    },
+    "answers": {
+      "en": [
+        "Peniel",
+        "Bethel",
+        "Mahanaim",
+        "Succoth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_064",
+    "reference": "Genesis 32:6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many men were coming with Esau to meet Jacob?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "One hundred",
+        "Seventy",
+        "Four hundred"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_065",
+    "reference": "Genesis 32:22",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Jacob crossed the ford of which river the night he wrestled?"
+    },
+    "answers": {
+      "en": [
+        "Jordan",
+        "Arnon",
+        "Jabbok",
+        "Kishon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_066",
+    "reference": "Genesis 32:25",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where did the man touch Jacob as they wrestled?"
+    },
+    "answers": {
+      "en": [
+        "His shoulder",
+        "His eyes",
+        "His heel",
+        "The hollow of his thigh"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_067",
+    "reference": "Genesis 32:26",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete Jacob's words: \"I won't let you go, unless you ___ me.\""
+    },
+    "answers": {
+      "en": [
+        "bless",
+        "forgive",
+        "free",
+        "answer"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_068",
+    "reference": "Genesis 33:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Esau do when he met Jacob again?"
+    },
+    "answers": {
+      "en": [
+        "Struck him",
+        "Ran, embraced and kissed him",
+        "Turned away",
+        "Demanded the birthright"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_069",
+    "reference": "Genesis 33:17",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Where did Jacob build a house and shelters for his livestock?"
+    },
+    "answers": {
+      "en": [
+        "Shechem",
+        "Succoth",
+        "Bethel",
+        "Mahanaim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_070",
+    "reference": "Genesis 33:20",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What did Jacob call the altar he built near Shechem?"
+    },
+    "answers": {
+      "en": [
+        "El Bethel",
+        "Yahweh Nissi",
+        "Galeed",
+        "El Elohe Israel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_071",
+    "reference": "Genesis 35:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Where did Jacob hide the foreign gods and earrings his household gave him?"
+    },
+    "answers": {
+      "en": [
+        "Under the oak by Shechem",
+        "In a cave",
+        "In the river",
+        "Under the altar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_072",
+    "reference": "Genesis 35:18",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "As she was dying, what name did Rachel give her son, before Jacob renamed him?"
+    },
+    "answers": {
+      "en": [
+        "Ben Ammi",
+        "Benaiah",
+        "Benoni",
+        "Beor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_073",
+    "reference": "Genesis 35:28",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Isaac live?"
+    },
+    "answers": {
+      "en": [
+        "180",
+        "175",
+        "147",
+        "137"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b101_074",
+    "reference": "Genesis 35:29",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which two sons buried Isaac?"
+    },
+    "answers": {
+      "en": [
+        "Jacob and Joseph",
+        "Esau and Ishmael",
+        "Esau and Jacob",
+        "Reuben and Judah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b101_075",
+    "reference": "Genesis 36:8",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In which hill country did Esau live?"
+    },
+    "answers": {
+      "en": [
+        "Gilead",
+        "Seir",
+        "Ephraim",
+        "Bashan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b101_076",
+    "reference": "Genesis 36:12",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Timna bore which son to Eliphaz, Esau's son?"
+    },
+    "answers": {
+      "en": [
+        "Teman",
+        "Kenaz",
+        "Korah",
+        "Amalek"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b101_077",
+    "reference": "Genesis 36:24",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What did Anah find in the wilderness while feeding his father's donkeys?"
+    },
+    "answers": {
+      "en": [
+        "A lost flock",
+        "Hot springs",
+        "A golden idol",
+        "A cave"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

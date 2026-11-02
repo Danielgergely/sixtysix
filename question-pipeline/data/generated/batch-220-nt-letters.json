@@ -2,7 +2,7 @@
   {
     "id": "q_b220_001",
     "reference": "Acts 1:1",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "To whom is the book of Acts addressed?"
@@ -20,7 +20,7 @@
   {
     "id": "q_b220_002",
     "reference": "Acts 1:3",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Over how many days did the risen Jesus appear to the apostles?"
@@ -74,7 +74,7 @@
   {
     "id": "q_b220_005",
     "reference": "Acts 1:10",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Who stood by the apostles as they watched Jesus go up into heaven?"
@@ -92,7 +92,7 @@
   {
     "id": "q_b220_006",
     "reference": "Acts 1:12",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "From which mountain did the apostles return to Jerusalem after the ascension?"
@@ -128,7 +128,7 @@
   {
     "id": "q_b220_008",
     "reference": "Acts 1:15",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "About how many believers were gathered when Peter stood up to replace Judas?"
@@ -200,7 +200,7 @@
   {
     "id": "q_b220_012",
     "reference": "Acts 2:13",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What did some mockers say about the apostles at Pentecost?"
@@ -218,7 +218,7 @@
   {
     "id": "q_b220_013",
     "reference": "Acts 2:15",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Peter said the believers weren't drunk, since it was only which hour of the day?"
@@ -236,7 +236,7 @@
   {
     "id": "q_b220_014",
     "reference": "Acts 2:16",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which prophet did Peter quote in his sermon on the day of Pentecost?"
@@ -272,7 +272,7 @@
   {
     "id": "q_b220_016",
     "reference": "Acts 2:42",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "The first believers continued in the apostles' teaching, fellowship, prayer and what?"
@@ -308,7 +308,7 @@
   {
     "id": "q_b220_018",
     "reference": "Acts 3:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Peter and John went up to the temple at which hour of prayer?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b220_020",
     "reference": "Acts 3:11",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Where did the people run together to Peter and John after the lame man was healed?"
@@ -362,7 +362,7 @@
   {
     "id": "q_b220_021",
     "reference": "Acts 3:22",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Peter quoted which leader who said God would raise up 'a prophet like me'?"
@@ -380,7 +380,7 @@
   {
     "id": "q_b220_022",
     "reference": "Acts 4:4",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "After Peter's speech in Acts 4, the number of believing men came to about how many?"
@@ -434,7 +434,7 @@
   {
     "id": "q_b220_025",
     "reference": "Acts 4:31",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "After the believers prayed in Acts 4, what happened to the place where they met?"
@@ -452,7 +452,7 @@
   {
     "id": "q_b220_026",
     "reference": "Acts 4:37",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did Barnabas sell, laying the money at the apostles' feet?"
@@ -488,7 +488,7 @@
   {
     "id": "q_b220_028",
     "reference": "Acts 5:15",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Sick people were laid in the streets so that what of Peter's might fall on them?"
@@ -506,7 +506,7 @@
   {
     "id": "q_b220_029",
     "reference": "Acts 5:19",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Who opened the prison doors for the apostles at night in Acts 5?"
@@ -524,7 +524,7 @@
   {
     "id": "q_b220_030",
     "reference": "Acts 5:34",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which Pharisee, a teacher of the law, advised the council to leave the apostles alone?"
@@ -560,7 +560,7 @@
   {
     "id": "q_b220_032",
     "reference": "Acts 5:40",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Before releasing the apostles in Acts 5, what did the council do to them?"
@@ -578,7 +578,7 @@
   {
     "id": "q_b220_033",
     "reference": "Acts 6:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "In Acts 6, whose widows were being neglected in the daily service?"
@@ -596,7 +596,7 @@
   {
     "id": "q_b220_034",
     "reference": "Acts 6:3",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "How many men were chosen to serve tables in Acts 6?"
@@ -614,7 +614,7 @@
   {
     "id": "q_b220_035",
     "reference": "Acts 6:5",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Which of the seven chosen men was a proselyte of Antioch?"
@@ -632,7 +632,7 @@
   {
     "id": "q_b220_036",
     "reference": "Acts 6:15",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "When the council looked at Stephen, his face looked like what?"
@@ -740,7 +740,7 @@
   {
     "id": "q_b220_042",
     "reference": "Acts 7:56",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Stephen saw the Son of Man doing what at the right hand of God?"
@@ -758,7 +758,7 @@
   {
     "id": "q_b220_043",
     "reference": "Acts 8:1",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "When the believers were scattered after Stephen's death, who stayed in Jerusalem?"
@@ -812,7 +812,7 @@
   {
     "id": "q_b220_046",
     "reference": "Acts 8:14",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which two apostles were sent to the new believers in Samaria?"
@@ -830,7 +830,7 @@
   {
     "id": "q_b220_047",
     "reference": "Acts 8:26",
-    "difficulty": 2,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "On the road from Jerusalem to which city did Philip meet the Ethiopian?"
@@ -866,7 +866,7 @@
   {
     "id": "q_b220_049",
     "reference": "Acts 8:28",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Which prophet was the Ethiopian reading in his chariot?"
@@ -920,7 +920,7 @@
   {
     "id": "q_b220_052",
     "reference": "Acts 9:2",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Saul wanted to bring bound to Jerusalem anyone he found who was of what?"
@@ -938,7 +938,7 @@
   {
     "id": "q_b220_053",
     "reference": "Acts 9:9",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "How many days was Saul without sight, neither eating nor drinking?"
@@ -956,7 +956,7 @@
   {
     "id": "q_b220_054",
     "reference": "Acts 9:10",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Which disciple in Damascus was sent to lay hands on Saul?"
@@ -992,7 +992,7 @@
   {
     "id": "q_b220_056",
     "reference": "Acts 9:27",
-    "difficulty": 1,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Who took Saul and brought him to the apostles in Jerusalem?"
@@ -1028,7 +1028,7 @@
   {
     "id": "q_b220_058",
     "reference": "Acts 9:32",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "In which town did Peter heal Aeneas?"
@@ -1046,7 +1046,7 @@
   {
     "id": "q_b220_059",
     "reference": "Acts 9:36",
-    "difficulty": 2,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "In which town did Tabitha (Dorcas) live?"
@@ -1064,7 +1064,7 @@
   {
     "id": "q_b220_060",
     "reference": "Acts 9:39",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What did the weeping widows show Peter that Dorcas had made?"
@@ -1082,7 +1082,7 @@
   {
     "id": "q_b220_061",
     "reference": "Acts 9:43",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "With whom did Peter stay many days in Joppa?"

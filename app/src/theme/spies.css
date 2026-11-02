@@ -145,8 +145,10 @@
 .ts-card.live{ cursor: pointer; }
 .ts-card.live:active{ transform: scale(0.95); }
 .ts-card-face{ display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 100%; height: 100%; min-width: 0; }
-.ts-card-word{ font: 800 13px/1.05 'Cinzel', serif; letter-spacing: -0.01em; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: clip; }
-.ts-card-word.small{ font-size: 8px; opacity: 0.9; }
+.ts-card-face{ container-type: inline-size; }
+/* --base px, shrunk so the word (--em wide, measured in parts.tsx) fits the card face's width. */
+.ts-card-word{ font: 800 13px/1.05 'Cinzel', serif; font-size: min(var(--base, 13px), calc(100cqi / var(--em, 5))); letter-spacing: -0.01em; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.ts-card-word.small{ opacity: 0.9; }
 .ts-card-word.wrap{ white-space: normal; hyphens: manual; text-align: center; line-height: 1.1; }
 .ts-card-icon{ font-size: 22px; line-height: 1; filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.4)); }
 .ts-card-mark{ position: absolute; top: 2px; right: 3px; font-size: 10px; }

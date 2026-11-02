@@ -1,47 +1,812 @@
 [
-  {"id":"q_b31_001","reference":"Luke 24:42","difficulty":4,"category":"gospels","text":{"en":"In Luke 24, what did the disciples give the risen Jesus to eat?"},"answers":{"en":["Barley cakes and milk","Broiled fish and honeycomb","Bread and wine","Figs and dates"]},"correctIndex":1},
-  {"id":"q_b31_002","reference":"Luke 24:50","difficulty":4,"category":"gospels","text":{"en":"In Luke 24, as far as which place did Jesus lead the disciples before blessing them?"},"answers":{"en":["Bethany","Capernaum","Jericho","Emmaus"]},"correctIndex":0},
-  {"id":"q_b31_003","reference":"John 1:44","difficulty":4,"category":"gospels","text":{"en":"According to John, which town was Philip from?"},"answers":{"en":["Bethsaida","Cana","Nazareth","Capernaum"]},"correctIndex":0},
-  {"id":"q_b31_004","reference":"John 5:5","difficulty":4,"category":"gospels","text":{"en":"How long had the man at the pool of Bethesda been sick?"},"answers":{"en":["Twelve years","Forty years","Eighteen years","Thirty-eight years"]},"correctIndex":3},
-  {"id":"q_b31_005","reference":"John 6:1","difficulty":4,"category":"gospels","text":{"en":"John says the sea of Galilee is also called the Sea of what?"},"answers":{"en":["Tiberias","Jazer","Tyre","Merom"]},"correctIndex":0},
-  {"id":"q_b31_006","reference":"John 6:7","difficulty":4,"category":"gospels","text":{"en":"Philip said how many denarii worth of bread would not be enough for the crowd?"},"answers":{"en":["One hundred","Three hundred","Two hundred","Fifty"]},"correctIndex":2},
-  {"id":"q_b31_007","reference":"John 7:2-3","difficulty":4,"category":"gospels","text":{"en":"Which feast was at hand when Jesus' brothers urged him to go into Judea?"},"answers":{"en":["Passover","The Feast of the Dedication","The Feast of Booths","Pentecost"]},"correctIndex":2},
-  {"id":"q_b31_008","reference":"John 10:22-23","difficulty":4,"category":"gospels","text":{"en":"During which feast, in winter, was Jesus walking in Solomon's porch?"},"answers":{"en":["Pentecost","The Feast of Booths","The Feast of the Dedication","Passover"]},"correctIndex":2},
-  {"id":"q_b31_009","reference":"John 11:16","difficulty":4,"category":"gospels","text":{"en":"Which disciple was called Didymus?"},"answers":{"en":["Nathanael","Philip","Matthew","Thomas"]},"correctIndex":3},
-  {"id":"q_b31_010","reference":"John 12:21","difficulty":4,"category":"gospels","text":{"en":"The Greeks who said, \"Sir, we want to see Jesus,\" came first to which disciple?"},"answers":{"en":["John","Thomas","Peter","Philip"]},"correctIndex":3},
-  {"id":"q_b31_011","reference":"John 14:5","difficulty":4,"category":"gospels","text":{"en":"Which disciple asked Jesus, \"How can we know the way?\""},"answers":{"en":["Thomas","Philip","Judas","Peter"]},"correctIndex":0},
-  {"id":"q_b31_012","reference":"John 14:8","difficulty":4,"category":"gospels","text":{"en":"Who said, \"Lord, show us the Father, and that will be enough for us\"?"},"answers":{"en":["Andrew","Philip","Peter","Thomas"]},"correctIndex":1},
-  {"id":"q_b31_013","reference":"Mark 15:21","difficulty":5,"category":"gospels","text":{"en":"In Mark, Simon of Cyrene is called the father of Alexander and whom?"},"answers":{"en":["Barnabas","Rufus","Joses","Silas"]},"correctIndex":1},
-  {"id":"q_b31_014","reference":"Mark 6:3","difficulty":5,"category":"gospels","text":{"en":"In Mark 6, the people of his hometown name James, Judah, Simon and who as Jesus' brothers?"},"answers":{"en":["Joses","Levi","Philip","Nathanael"]},"correctIndex":0},
-  {"id":"q_b31_015","reference":"Mark 7:11","difficulty":5,"category":"gospels","text":{"en":"Which word, meaning \"given to God\", did Jesus say people used to avoid helping parents?"},"answers":{"en":["Ephphatha","Corban","Hosanna","Talitha"]},"correctIndex":1},
-  {"id":"q_b31_016","reference":"Mark 11:16","difficulty":5,"category":"gospels","text":{"en":"In Mark, when cleansing the temple, Jesus would not allow anyone to carry what through it?"},"answers":{"en":["A torch","A sword","A lamb","A container"]},"correctIndex":3},
-  {"id":"q_b31_017","reference":"Mark 3:17","difficulty":5,"category":"gospels","text":{"en":"What name, meaning \"Sons of Thunder\", did Jesus give James and John?"},"answers":{"en":["Didymus","Boanerges","Cephas","Iscariot"]},"correctIndex":1},
-  {"id":"q_b31_018","reference":"Mark 16:1","difficulty":5,"category":"gospels","text":{"en":"In Mark, who bought spices with Mary Magdalene and Mary the mother of James?"},"answers":{"en":["Martha","Susanna","Salome","Elizabeth"]},"correctIndex":2},
-  {"id":"q_b31_019","reference":"Mark 14:51-52","difficulty":5,"category":"gospels","text":{"en":"In Mark, what did the young man who fled naked at Jesus' arrest leave behind?"},"answers":{"en":["His sandals","A lamp","A linen cloth","A sword"]},"correctIndex":2},
-  {"id":"q_b31_020","reference":"Luke 1:5","difficulty":5,"category":"gospels","text":{"en":"To which priestly division did Zacharias belong?"},"answers":{"en":["Eleazar","Jedaiah","Zadok","Abijah"]},"correctIndex":3},
-  {"id":"q_b31_021","reference":"Luke 1:24","difficulty":5,"category":"gospels","text":{"en":"After Elizabeth conceived, for how many months did she hide herself?"},"answers":{"en":["Five","Nine","Three","Six"]},"correctIndex":0},
-  {"id":"q_b31_022","reference":"Luke 2:2","difficulty":5,"category":"gospels","text":{"en":"Who was governor of Syria at the time of the first enrollment in Luke 2?"},"answers":{"en":["Quirinius","Felix","Pontius Pilate","Festus"]},"correctIndex":0},
-  {"id":"q_b31_023","reference":"Luke 2:36","difficulty":5,"category":"gospels","text":{"en":"From which tribe was the prophetess Anna?"},"answers":{"en":["Levi","Asher","Benjamin","Judah"]},"correctIndex":1},
-  {"id":"q_b31_024","reference":"Luke 2:37","difficulty":5,"category":"gospels","text":{"en":"According to Luke, the prophetess Anna had been a widow for about how many years?"},"answers":{"en":["Eighty-four","Ninety","Seventy","Sixty"]},"correctIndex":0},
-  {"id":"q_b31_025","reference":"Luke 3:1","difficulty":5,"category":"gospels","text":{"en":"In which year of the reign of Tiberius Caesar did the word of God come to John?"},"answers":{"en":["The third","The twelfth","The fifteenth","The twentieth"]},"correctIndex":2},
-  {"id":"q_b31_026","reference":"Luke 8:3","difficulty":5,"category":"gospels","text":{"en":"Joanna, who served Jesus from her possessions, was the wife of Chuzas, steward of whom?"},"answers":{"en":["Pilate","Caiaphas","Caesar","Herod"]},"correctIndex":3},
-  {"id":"q_b31_027","reference":"Luke 12:6","difficulty":5,"category":"gospels","text":{"en":"Jesus said five sparrows are sold for how many assaria coins?"},"answers":{"en":["Two","Three","Five","One"]},"correctIndex":0},
-  {"id":"q_b31_028","reference":"Luke 14:2","difficulty":5,"category":"gospels","text":{"en":"At a Pharisee ruler's house on a Sabbath, Jesus healed a man who had what?"},"answers":{"en":["Leprosy","A fever","Palsy","Dropsy"]},"correctIndex":3},
-  {"id":"q_b31_029","reference":"Luke 16:28","difficulty":5,"category":"gospels","text":{"en":"In Hades, the rich man said he had how many brothers?"},"answers":{"en":["Three","Seven","Ten","Five"]},"correctIndex":3},
-  {"id":"q_b31_030","reference":"Luke 16:6","difficulty":5,"category":"gospels","text":{"en":"The shrewd manager told the man owing a hundred batos of oil to write what amount?"},"answers":{"en":["Ninety","Seventy","Fifty","Twenty"]},"correctIndex":2},
-  {"id":"q_b31_031","reference":"Luke 19:16-17","difficulty":5,"category":"gospels","text":{"en":"In the parable of the minas, the servant whose mina made ten more got authority over how many cities?"},"answers":{"en":["Two","Ten","Seven","Twelve"]},"correctIndex":1},
-  {"id":"q_b31_032","reference":"Luke 14:19","difficulty":5,"category":"gospels","text":{"en":"In the great supper parable, one guest excused himself to try out how many yoke of oxen?"},"answers":{"en":["Two","Ten","Seven","Five"]},"correctIndex":3},
-  {"id":"q_b31_033","reference":"Luke 7:41","difficulty":5,"category":"gospels","text":{"en":"In Jesus' parable to Simon, one debtor owed five hundred denarii. How much did the other owe?"},"answers":{"en":["Five","One hundred","Ten","Fifty"]},"correctIndex":3},
-  {"id":"q_b31_034","reference":"John 1:28","difficulty":5,"category":"gospels","text":{"en":"According to John 1, where was John baptizing when he testified about Jesus?"},"answers":{"en":["Gilgal","Bethsaida","Jericho","Bethany beyond the Jordan"]},"correctIndex":3},
-  {"id":"q_b31_035","reference":"John 2:20","difficulty":5,"category":"gospels","text":{"en":"The Jews told Jesus the temple had taken how many years to build?"},"answers":{"en":["Forty-six","Forty","Fifty-two","Thirty"]},"correctIndex":0},
-  {"id":"q_b31_036","reference":"John 3:23","difficulty":5,"category":"gospels","text":{"en":"Where was John baptizing \"because there was much water there\"?"},"answers":{"en":["Enon near Salim","Sychar","Cana of Galilee","Jericho"]},"correctIndex":0},
-  {"id":"q_b31_037","reference":"John 4:5-6","difficulty":5,"category":"gospels","text":{"en":"Near which city of Samaria was Jacob's well, where Jesus met a woman?"},"answers":{"en":["Bethel","Dothan","Sychar","Shiloh"]},"correctIndex":2},
-  {"id":"q_b31_038","reference":"John 4:52","difficulty":5,"category":"gospels","text":{"en":"At what hour did the fever leave the nobleman's son in Capernaum?"},"answers":{"en":["The ninth hour","The third hour","The seventh hour","The sixth hour"]},"correctIndex":2},
-  {"id":"q_b31_039","reference":"John 11:54","difficulty":5,"category":"gospels","text":{"en":"After the plot against him, Jesus withdrew to a city near the wilderness called what?"},"answers":{"en":["Jericho","Ephraim","Bethel","Emmaus"]},"correctIndex":1},
-  {"id":"q_b31_040","reference":"John 19:13","difficulty":5,"category":"gospels","text":{"en":"What was the Hebrew name of \"The Pavement\", where Pilate sat on the judgment seat?"},"answers":{"en":["Gennesaret","Gabbatha","Gethsemane","Golgotha"]},"correctIndex":1},
-  {"id":"q_b31_041","reference":"John 19:25","difficulty":5,"category":"gospels","text":{"en":"Besides Jesus' mother and Mary Magdalene, which Mary stood by the cross in John?"},"answers":{"en":["Mary the mother of John Mark","Mary of Bethany","Mary the wife of Clopas","Mary the wife of Zebedee"]},"correctIndex":2},
-  {"id":"q_b31_042","reference":"John 21:8","difficulty":5,"category":"gospels","text":{"en":"About how far from land were the disciples dragging the net full of fish in John 21?"},"answers":{"en":["Five hundred cubits","Two hundred cubits","One hundred cubits","Fifty cubits"]},"correctIndex":1},
-  {"id":"q_b31_043","reference":"Matthew 2:22","difficulty":5,"category":"gospels","text":{"en":"Who reigned over Judea in place of his father Herod, so that Joseph was afraid to go there?"},"answers":{"en":["Agrippa","Archelaus","Philip","Antipas"]},"correctIndex":1},
-  {"id":"q_b31_044","reference":"Matthew 18:24","difficulty":5,"category":"gospels","text":{"en":"In the parable of the unforgiving servant, how much did the first servant owe the king?"},"answers":{"en":["Fifty talents","Ten talents","Ten thousand talents","One thousand talents"]},"correctIndex":2},
-  {"id":"q_b31_045","reference":"Luke 13:7","difficulty":5,"category":"gospels","text":{"en":"In the parable of the barren fig tree, for how many years had the owner sought fruit?"},"answers":{"en":["Three","Ten","Two","Seven"]},"correctIndex":0}
+  {
+    "id": "q_b31_001",
+    "reference": "Luke 24:42",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Luke 24, what did the disciples give the risen Jesus to eat?"
+    },
+    "answers": {
+      "en": [
+        "Barley cakes and milk",
+        "Broiled fish and honeycomb",
+        "Bread and wine",
+        "Figs and dates"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_002",
+    "reference": "Luke 24:50",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Luke 24, as far as which place did Jesus lead the disciples before blessing them?"
+    },
+    "answers": {
+      "en": [
+        "Bethany",
+        "Capernaum",
+        "Jericho",
+        "Emmaus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_003",
+    "reference": "John 1:44",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "According to John, which town was Philip from?"
+    },
+    "answers": {
+      "en": [
+        "Bethsaida",
+        "Cana",
+        "Nazareth",
+        "Capernaum"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_004",
+    "reference": "John 5:5",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "How long had the man at the pool of Bethesda been sick?"
+    },
+    "answers": {
+      "en": [
+        "Twelve years",
+        "Forty years",
+        "Eighteen years",
+        "Thirty-eight years"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_005",
+    "reference": "John 6:1",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "John says the sea of Galilee is also called the Sea of what?"
+    },
+    "answers": {
+      "en": [
+        "Tiberias",
+        "Jazer",
+        "Tyre",
+        "Merom"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_006",
+    "reference": "John 6:7",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Philip said how many denarii worth of bread would not be enough for the crowd?"
+    },
+    "answers": {
+      "en": [
+        "One hundred",
+        "Three hundred",
+        "Two hundred",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_007",
+    "reference": "John 7:2-3",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Which feast was at hand when Jesus' brothers urged him to go into Judea?"
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "The Feast of the Dedication",
+        "The Feast of Booths",
+        "Pentecost"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_008",
+    "reference": "John 10:22-23",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "During which feast, in winter, was Jesus walking in Solomon's porch?"
+    },
+    "answers": {
+      "en": [
+        "Pentecost",
+        "The Feast of Booths",
+        "The Feast of the Dedication",
+        "Passover"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_009",
+    "reference": "John 11:16",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple was called Didymus?"
+    },
+    "answers": {
+      "en": [
+        "Nathanael",
+        "Philip",
+        "Matthew",
+        "Thomas"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_010",
+    "reference": "John 12:21",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The Greeks who said, \"Sir, we want to see Jesus,\" came first to which disciple?"
+    },
+    "answers": {
+      "en": [
+        "John",
+        "Thomas",
+        "Peter",
+        "Philip"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_011",
+    "reference": "John 14:5",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Which disciple asked Jesus, \"How can we know the way?\""
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "Philip",
+        "Judas",
+        "Peter"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_012",
+    "reference": "John 14:8",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Who said, \"Lord, show us the Father, and that will be enough for us\"?"
+    },
+    "answers": {
+      "en": [
+        "Andrew",
+        "Philip",
+        "Peter",
+        "Thomas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_013",
+    "reference": "Mark 15:21",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, Simon of Cyrene is called the father of Alexander and whom?"
+    },
+    "answers": {
+      "en": [
+        "Barnabas",
+        "Rufus",
+        "Joses",
+        "Silas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_014",
+    "reference": "Mark 6:3",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark 6, the people of his hometown name James, Judah, Simon and who as Jesus' brothers?"
+    },
+    "answers": {
+      "en": [
+        "Joses",
+        "Levi",
+        "Philip",
+        "Nathanael"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_015",
+    "reference": "Mark 7:11",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Which word, meaning \"given to God\", did Jesus say people used to avoid helping parents?"
+    },
+    "answers": {
+      "en": [
+        "Ephphatha",
+        "Corban",
+        "Hosanna",
+        "Talitha"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_016",
+    "reference": "Mark 11:16",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, when cleansing the temple, Jesus would not allow anyone to carry what through it?"
+    },
+    "answers": {
+      "en": [
+        "A torch",
+        "A sword",
+        "A lamb",
+        "A container"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_017",
+    "reference": "Mark 3:17",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What name, meaning \"Sons of Thunder\", did Jesus give James and John?"
+    },
+    "answers": {
+      "en": [
+        "Didymus",
+        "Boanerges",
+        "Cephas",
+        "Iscariot"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_018",
+    "reference": "Mark 16:1",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, who bought spices with Mary Magdalene and Mary the mother of James?"
+    },
+    "answers": {
+      "en": [
+        "Martha",
+        "Susanna",
+        "Salome",
+        "Elizabeth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_019",
+    "reference": "Mark 14:51-52",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Mark, what did the young man who fled naked at Jesus' arrest leave behind?"
+    },
+    "answers": {
+      "en": [
+        "His sandals",
+        "A lamp",
+        "A linen cloth",
+        "A sword"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_020",
+    "reference": "Luke 1:5",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "To which priestly division did Zacharias belong?"
+    },
+    "answers": {
+      "en": [
+        "Eleazar",
+        "Jedaiah",
+        "Zadok",
+        "Abijah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_021",
+    "reference": "Luke 1:24",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "After Elizabeth conceived, for how many months did she hide herself?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Nine",
+        "Three",
+        "Six"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_022",
+    "reference": "Luke 2:2",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Who was governor of Syria at the time of the first enrollment in Luke 2?"
+    },
+    "answers": {
+      "en": [
+        "Quirinius",
+        "Felix",
+        "Pontius Pilate",
+        "Festus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_023",
+    "reference": "Luke 2:36",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "From which tribe was the prophetess Anna?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Asher",
+        "Benjamin",
+        "Judah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_024",
+    "reference": "Luke 2:37",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "According to Luke, the prophetess Anna had been a widow for about how many years?"
+    },
+    "answers": {
+      "en": [
+        "Eighty-four",
+        "Ninety",
+        "Seventy",
+        "Sixty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_025",
+    "reference": "Luke 3:1",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In which year of the reign of Tiberius Caesar did the word of God come to John?"
+    },
+    "answers": {
+      "en": [
+        "The third",
+        "The twelfth",
+        "The fifteenth",
+        "The twentieth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_026",
+    "reference": "Luke 8:3",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Joanna, who served Jesus from her possessions, was the wife of Chuzas, steward of whom?"
+    },
+    "answers": {
+      "en": [
+        "Pilate",
+        "Caiaphas",
+        "Caesar",
+        "Herod"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_027",
+    "reference": "Luke 12:6",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said five sparrows are sold for how many assaria coins?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Five",
+        "One"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_028",
+    "reference": "Luke 14:2",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "At a Pharisee ruler's house on a Sabbath, Jesus healed a man who had what?"
+    },
+    "answers": {
+      "en": [
+        "Leprosy",
+        "A fever",
+        "Palsy",
+        "Dropsy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_029",
+    "reference": "Luke 16:28",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Hades, the rich man said he had how many brothers?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Five"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_030",
+    "reference": "Luke 16:6",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "The shrewd manager told the man owing a hundred batos of oil to write what amount?"
+    },
+    "answers": {
+      "en": [
+        "Ninety",
+        "Seventy",
+        "Fifty",
+        "Twenty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_031",
+    "reference": "Luke 19:16-17",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the minas, the servant whose mina made ten more got authority over how many cities?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Ten",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_032",
+    "reference": "Luke 14:19",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In the great supper parable, one guest excused himself to try out how many yoke of oxen?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Ten",
+        "Seven",
+        "Five"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_033",
+    "reference": "Luke 7:41",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Jesus' parable to Simon, one debtor owed five hundred denarii. How much did the other owe?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "One hundred",
+        "Ten",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_034",
+    "reference": "John 1:28",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "According to John 1, where was John baptizing when he testified about Jesus?"
+    },
+    "answers": {
+      "en": [
+        "Gilgal",
+        "Bethsaida",
+        "Jericho",
+        "Bethany beyond the Jordan"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b31_035",
+    "reference": "John 2:20",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "The Jews told Jesus the temple had taken how many years to build?"
+    },
+    "answers": {
+      "en": [
+        "Forty-six",
+        "Forty",
+        "Fifty-two",
+        "Thirty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_036",
+    "reference": "John 3:23",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Where was John baptizing \"because there was much water there\"?"
+    },
+    "answers": {
+      "en": [
+        "Enon near Salim",
+        "Sychar",
+        "Cana of Galilee",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b31_037",
+    "reference": "John 4:5-6",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Near which city of Samaria was Jacob's well, where Jesus met a woman?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Dothan",
+        "Sychar",
+        "Shiloh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_038",
+    "reference": "John 4:52",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "At what hour did the fever leave the nobleman's son in Capernaum?"
+    },
+    "answers": {
+      "en": [
+        "The ninth hour",
+        "The third hour",
+        "The seventh hour",
+        "The sixth hour"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_039",
+    "reference": "John 11:54",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "After the plot against him, Jesus withdrew to a city near the wilderness called what?"
+    },
+    "answers": {
+      "en": [
+        "Jericho",
+        "Ephraim",
+        "Bethel",
+        "Emmaus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_040",
+    "reference": "John 19:13",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "What was the Hebrew name of \"The Pavement\", where Pilate sat on the judgment seat?"
+    },
+    "answers": {
+      "en": [
+        "Gennesaret",
+        "Gabbatha",
+        "Gethsemane",
+        "Golgotha"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_041",
+    "reference": "John 19:25",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Besides Jesus' mother and Mary Magdalene, which Mary stood by the cross in John?"
+    },
+    "answers": {
+      "en": [
+        "Mary the mother of John Mark",
+        "Mary of Bethany",
+        "Mary the wife of Clopas",
+        "Mary the wife of Zebedee"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_042",
+    "reference": "John 21:8",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "About how far from land were the disciples dragging the net full of fish in John 21?"
+    },
+    "answers": {
+      "en": [
+        "Five hundred cubits",
+        "Two hundred cubits",
+        "One hundred cubits",
+        "Fifty cubits"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_043",
+    "reference": "Matthew 2:22",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Who reigned over Judea in place of his father Herod, so that Joseph was afraid to go there?"
+    },
+    "answers": {
+      "en": [
+        "Agrippa",
+        "Archelaus",
+        "Philip",
+        "Antipas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b31_044",
+    "reference": "Matthew 18:24",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the unforgiving servant, how much did the first servant owe the king?"
+    },
+    "answers": {
+      "en": [
+        "Fifty talents",
+        "Ten talents",
+        "Ten thousand talents",
+        "One thousand talents"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b31_045",
+    "reference": "Luke 13:7",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the barren fig tree, for how many years had the owner sought fruit?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Ten",
+        "Two",
+        "Seven"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

@@ -20,11 +20,13 @@ import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { useFlockStore } from './flock/flockStore'
 import { useSpiesStore } from './spies/spiesStore'
+import { useMissionStore } from './mission/missionStore'
 import { TopBar } from './screens/shell/TopBar'
 import { TabBar } from './screens/shell/TabBar'
 import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 import { FlagSheetHost } from './flags/FlagSheet'
 import { LookPickerHost } from './looks/LookPicker'
+import { TutorialHost } from './tutorial/TutorialHost'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
 const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
@@ -37,6 +39,7 @@ const LocalFlockScreen = lazy(() => import('./screens/flock/local/LocalFlockScre
 const AccountSettingsScreen = lazy(() => import('./screens/AccountSettingsScreen').then((m) => ({ default: m.AccountSettingsScreen })))
 const ReviewScreen = lazy(() => import('./screens/review/ReviewScreen').then((m) => ({ default: m.ReviewScreen })))
 const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
+const MissionScreen = lazy(() => import('./screens/mission/MissionScreen').then((m) => ({ default: m.MissionScreen })))
 
 const SCREENS: Record<Screen, React.ComponentType> = {
   menu: MainMenuScreen,
@@ -62,6 +65,7 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   flock: FlockScreen,
   flockLocal: LocalFlockScreen,
   spies: SpiesScreen,
+  mission: MissionScreen,
   review: ReviewScreen,
   account: AccountSettingsScreen,
 }
@@ -71,6 +75,7 @@ export default function App() {
   const arenaRole = useArenaStore((s) => s.role)
   const flockRole = useFlockStore((s) => s.role)
   const spiesRole = useSpiesStore((s) => s.role)
+  const missionRole = useMissionStore((s) => s.role)
   const Active = SCREENS[screen]
   // Top-level areas get the shared header + bottom tabs; games stay full-screen.
   const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
@@ -80,7 +85,8 @@ export default function App() {
     (screen === 'arenaGame' && arenaRole !== 'player') ||
     screen === 'skills' ||
     (screen === 'flock' && flockRole === 'board') ||
-    (screen === 'spies' && spiesRole === 'board')
+    (screen === 'spies' && spiesRole === 'board') ||
+    (screen === 'mission' && missionRole === 'board')
   return (
     // reducedMotion="user": transforms are dropped for people who asked the OS
     // for less motion; opacity fades remain so state changes stay legible.
@@ -106,6 +112,7 @@ export default function App() {
       </div>
       <FlagSheetHost />
       <LookPickerHost />
+      <TutorialHost />
       <ConfettiLayer />
     </MotionConfig>
   )

@@ -1,59 +1,1028 @@
 [
-  {"id":"q_b121_001","reference":"Joshua 11:1","difficulty":3,"category":"history","text":{"en":"Which king of Hazor gathered the northern kings against Joshua?"},"answers":{"en":["Jobab","Sisera","Jabin","Og"]},"correctIndex":2},
-  {"id":"q_b121_002","reference":"Joshua 11:4","difficulty":3,"category":"history","text":{"en":"The northern armies were as many as what?"},"answers":{"en":["The stars of the sky","The sand on the seashore","The leaves of the forest","The locusts of Egypt"]},"correctIndex":1},
-  {"id":"q_b121_003","reference":"Joshua 11:5","difficulty":5,"category":"history","text":{"en":"At which waters did the northern kings camp to fight Israel?"},"answers":{"en":["Meribah","Merom","Marah","Kishon"]},"correctIndex":1},
-  {"id":"q_b121_004","reference":"Joshua 11:6","difficulty":4,"category":"history","text":{"en":"What was Joshua told to do to the northern kings' horses?"},"answers":{"en":["Keep them","Sell them","Hamstring them","Set them free"]},"correctIndex":2},
-  {"id":"q_b121_005","reference":"Joshua 11:13","difficulty":4,"category":"history","text":{"en":"Which was the only city standing on its mound that Joshua burned?"},"answers":{"en":["Megiddo","Gibeon","Lachish","Hazor"]},"correctIndex":3},
-  {"id":"q_b121_006","reference":"Joshua 11:19","difficulty":3,"category":"history","text":{"en":"Which people alone made peace with Israel?"},"answers":{"en":["The Hivites of Gibeon","The Jebusites of Jerusalem","The Amorites of Hebron","The Canaanites of Hazor"]},"correctIndex":0},
-  {"id":"q_b121_007","reference":"Joshua 11:22","difficulty":4,"category":"history","text":{"en":"In which cities did some of the Anakim remain?"},"answers":{"en":["Hebron, Debir and Anab","Gaza, Gath and Ashdod","Jericho, Ai and Bethel","Ekron, Lachish and Arad"]},"correctIndex":1},
-  {"id":"q_b121_008","reference":"Joshua 11:23","difficulty":2,"category":"history","text":{"en":"After Joshua took the whole land, the land had rest from what?"},"answers":{"en":["Famine","Plague","War","Drought"]},"correctIndex":2},
-  {"id":"q_b121_009","reference":"Joshua 12:24","difficulty":5,"category":"history","text":{"en":"How many kings west of the Jordan did Joshua and Israel strike?"},"answers":{"en":["12","24","40","31"]},"correctIndex":3},
-  {"id":"q_b121_010","reference":"Joshua 13:14","difficulty":2,"category":"history","text":{"en":"Which tribe received no land as its inheritance?"},"answers":{"en":["Levi","Judah","Dan","Asher"]},"correctIndex":0},
-  {"id":"q_b121_011","reference":"Joshua 13:22","difficulty":3,"category":"history","text":{"en":"Which soothsayer, the son of Beor, did Israel kill with the sword?"},"answers":{"en":["Balak","Balaam","Sihon","Zur"]},"correctIndex":1},
-  {"id":"q_b121_012","reference":"Joshua 13:30","difficulty":5,"category":"history","text":{"en":"How many cities were \"the towns of Jair\" in Bashan?"},"answers":{"en":["12","30","60","48"]},"correctIndex":2},
-  {"id":"q_b121_013","reference":"Joshua 14:1","difficulty":4,"category":"history","text":{"en":"Which priest helped Joshua distribute the land?"},"answers":{"en":["Eleazar","Phinehas","Eli","Aaron"]},"correctIndex":0},
-  {"id":"q_b121_014","reference":"Joshua 14:7","difficulty":4,"category":"history","text":{"en":"How old was Caleb when Moses sent him to spy out the land?"},"answers":{"en":["30","25","50","40"]},"correctIndex":3},
-  {"id":"q_b121_015","reference":"Joshua 14:10","difficulty":3,"category":"history","text":{"en":"How old was Caleb when he asked Joshua for the hill country?"},"answers":{"en":["70","100","85","120"]},"correctIndex":2},
-  {"id":"q_b121_016","reference":"Joshua 14:11","difficulty":3,"category":"history","text":{"en":"At 85, Caleb said he was as strong as he was when?"},"answers":{"en":["When he left Egypt","When Moses sent him","When he was a boy","When Jericho fell"]},"correctIndex":1},
-  {"id":"q_b121_017","reference":"Joshua 14:6","difficulty":5,"category":"history","text":{"en":"Caleb son of Jephunneh is called what?"},"answers":{"en":["The Kenizzite","The Kenite","The Hittite","The Gibeonite"]},"correctIndex":0},
-  {"id":"q_b121_018","reference":"Joshua 14:15","difficulty":3,"category":"history","text":{"en":"What was Hebron called before?"},"answers":{"en":["Kiriath Sepher","Kiriath Jearim","Luz","Kiriath Arba"]},"correctIndex":3},
-  {"id":"q_b121_019","reference":"Joshua 15:14","difficulty":5,"category":"history","text":{"en":"Sheshai, Ahiman and Talmai, driven out by Caleb, were sons of whom?"},"answers":{"en":["Og","Sihon","Anak","Jabin"]},"correctIndex":2},
-  {"id":"q_b121_020","reference":"Joshua 15:19","difficulty":3,"category":"history","text":{"en":"What did Achsah ask her father Caleb to give her?"},"answers":{"en":["A flock of sheep","Springs of water","A vineyard","A house in Hebron"]},"correctIndex":1},
-  {"id":"q_b121_021","reference":"Joshua 15:63","difficulty":3,"category":"history","text":{"en":"Which people could Judah not drive out of Jerusalem?"},"answers":{"en":["The Jebusites","The Philistines","The Amalekites","The Hittites"]},"correctIndex":0},
-  {"id":"q_b121_022","reference":"Joshua 16:10","difficulty":5,"category":"history","text":{"en":"From which city did Ephraim not drive out the Canaanites?"},"answers":{"en":["Hazor","Jericho","Gilgal","Gezer"]},"correctIndex":3},
-  {"id":"q_b121_023","reference":"Joshua 17:3","difficulty":4,"category":"history","text":{"en":"Which of these was a daughter of Zelophehad?"},"answers":{"en":["Achsah","Dinah","Miriam","Tirzah"]},"correctIndex":3},
-  {"id":"q_b121_024","reference":"Joshua 17:16","difficulty":3,"category":"history","text":{"en":"What did the Canaanites of the valley have that worried Joseph's tribes?"},"answers":{"en":["Chariots of iron","Many camels","Bronze shields","High towers"]},"correctIndex":0},
-  {"id":"q_b121_025","reference":"Joshua 18:1","difficulty":2,"category":"history","text":{"en":"Where did Israel set up the Tent of Meeting once the land was subdued?"},"answers":{"en":["Gilgal","Shiloh","Shechem","Bethel"]},"correctIndex":1},
-  {"id":"q_b121_026","reference":"Joshua 18:2","difficulty":4,"category":"history","text":{"en":"How many tribes still had no inheritance when Israel met at Shiloh?"},"answers":{"en":["Five","Nine","Seven","Two"]},"correctIndex":2},
-  {"id":"q_b121_027","reference":"Joshua 18:4","difficulty":5,"category":"history","text":{"en":"How many men from each tribe did Joshua send to survey the land?"},"answers":{"en":["Two","Seven","Twelve","Three"]},"correctIndex":3},
-  {"id":"q_b121_028","reference":"Joshua 18:10","difficulty":3,"category":"history","text":{"en":"How did Joshua divide the land at Shiloh?"},"answers":{"en":["By casting lots","By the tribes' votes","By the elders' choice","By order of birth"]},"correctIndex":0},
-  {"id":"q_b121_029","reference":"Joshua 19:1","difficulty":4,"category":"history","text":{"en":"Which tribe's inheritance lay inside Judah's land?"},"answers":{"en":["Benjamin","Simeon","Dan","Levi"]},"correctIndex":1},
-  {"id":"q_b121_030","reference":"Joshua 19:47","difficulty":4,"category":"history","text":{"en":"The tribe of Dan took Leshem and renamed it what?"},"answers":{"en":["Bethel","Zorah","Dan","Shiloh"]},"correctIndex":2},
-  {"id":"q_b121_031","reference":"Joshua 19:50","difficulty":4,"category":"history","text":{"en":"Which city did Israel give Joshua as his inheritance?"},"answers":{"en":["Shechem","Hebron","Gilgal","Timnathserah"]},"correctIndex":3},
-  {"id":"q_b121_032","reference":"Joshua 20:3","difficulty":2,"category":"history","text":{"en":"A city of refuge was for someone who had killed a person how?"},"answers":{"en":["Accidentally","In battle","In revenge","On purpose"]},"correctIndex":0},
-  {"id":"q_b121_033","reference":"Joshua 20:6","difficulty":4,"category":"history","text":{"en":"Until whose death did a manslayer stay in the city of refuge?"},"answers":{"en":["The king's","The avenger's","The high priest's","The judge's"]},"correctIndex":2},
-  {"id":"q_b121_034","reference":"Joshua 20:7","difficulty":4,"category":"history","text":{"en":"Which city of refuge was in the hill country of Naphtali?"},"answers":{"en":["Shechem","Kedesh","Hebron","Bezer"]},"correctIndex":1},
-  {"id":"q_b121_035","reference":"Joshua 20:8","difficulty":5,"category":"history","text":{"en":"Golan, a city of refuge, was in which region?"},"answers":{"en":["Bashan","Gilead","Galilee","Moab"]},"correctIndex":0},
-  {"id":"q_b121_036","reference":"Joshua 21:41","difficulty":5,"category":"history","text":{"en":"How many cities did the Levites receive in all?"},"answers":{"en":["12","35","60","48"]},"correctIndex":3},
-  {"id":"q_b121_037","reference":"Joshua 21:44","difficulty":3,"category":"history","text":{"en":"As he had sworn, what did Yahweh give Israel all around?"},"answers":{"en":["Kings","Gold","Rest","Rain"]},"correctIndex":2},
-  {"id":"q_b121_038","reference":"Joshua 22:10","difficulty":2,"category":"history","text":{"en":"What did Reuben, Gad and half Manasseh build by the Jordan, alarming Israel?"},"answers":{"en":["A tower","An altar","A city","A palace"]},"correctIndex":1},
-  {"id":"q_b121_039","reference":"Joshua 22:13","difficulty":4,"category":"history","text":{"en":"Who led the delegation sent to the eastern tribes about their altar?"},"answers":{"en":["Phinehas","Eleazar","Caleb","Othniel"]},"correctIndex":0},
-  {"id":"q_b121_040","reference":"Joshua 22:14","difficulty":5,"category":"history","text":{"en":"How many princes went with Phinehas to the eastern tribes?"},"answers":{"en":["Twelve","Seven","Three","Ten"]},"correctIndex":3},
-  {"id":"q_b121_041","reference":"Joshua 22:34","difficulty":5,"category":"history","text":{"en":"What did Reuben and Gad name their altar by the Jordan?"},"answers":{"en":["The Stone of Help","Yahweh Is Peace","A Witness Between Us","The Altar of Peace"]},"correctIndex":2},
-  {"id":"q_b121_042","reference":"Joshua 23:10","difficulty":2,"category":"history","text":{"en":"Joshua said one man of Israel would chase how many?"},"answers":{"en":["A hundred","A thousand","Ten","Fifty"]},"correctIndex":1},
-  {"id":"q_b121_043","reference":"Joshua 23:13","difficulty":5,"category":"history","text":{"en":"Joshua warned that the remaining nations would be thorns in what?"},"answers":{"en":["Your eyes","Your feet","Your hands","Your hearts"]},"correctIndex":0},
-  {"id":"q_b121_044","reference":"Joshua 24:1","difficulty":3,"category":"history","text":{"en":"Where did Joshua gather all the tribes for his farewell covenant?"},"answers":{"en":["Shiloh","Gilgal","Bethel","Shechem"]},"correctIndex":3},
-  {"id":"q_b121_045","reference":"Joshua 24:2","difficulty":4,"category":"history","text":{"en":"Who was Abraham's father, who served other gods beyond the River?"},"answers":{"en":["Nahor","Lot","Terah","Haran"]},"correctIndex":2},
-  {"id":"q_b121_046","reference":"Joshua 24:12","difficulty":5,"category":"history","text":{"en":"What did God send ahead of Israel to drive out the two Amorite kings?"},"answers":{"en":["Hailstones","The hornet","A plague","Fire"]},"correctIndex":1},
-  {"id":"q_b121_047","reference":"Joshua 24:22","difficulty":3,"category":"history","text":{"en":"After choosing to serve Yahweh, the people said they were what?"},"answers":{"en":["Witnesses","Priests","Judges","Strangers"]},"correctIndex":0},
-  {"id":"q_b121_048","reference":"Joshua 24:19","difficulty":3,"category":"history","text":{"en":"Joshua said Yahweh is a holy God and also what kind of God?"},"answers":{"en":["A distant God","A silent God","A weary God","A jealous God"]},"correctIndex":3},
-  {"id":"q_b121_049","reference":"Joshua 24:26","difficulty":4,"category":"history","text":{"en":"What did Joshua set up under the oak at Shechem as a witness?"},"answers":{"en":["An altar of earth","A bronze pillar","A great stone","A tall pole"]},"correctIndex":2},
-  {"id":"q_b121_050","reference":"Joshua 24:29","difficulty":2,"category":"history","text":{"en":"How old was Joshua when he died?"},"answers":{"en":["One hundred and twenty","One hundred and ten","Ninety","Eighty-five"]},"correctIndex":1},
-  {"id":"q_b121_051","reference":"Joshua 24:30","difficulty":5,"category":"history","text":{"en":"Joshua was buried north of which mountain?"},"answers":{"en":["Gaash","Ebal","Nebo","Tabor"]},"correctIndex":0},
-  {"id":"q_b121_052","reference":"Joshua 24:32","difficulty":4,"category":"history","text":{"en":"For how many pieces of money had Jacob bought the ground at Shechem?"},"answers":{"en":["Thirty","Fifty","Four hundred","A hundred"]},"correctIndex":3},
-  {"id":"q_b121_053","reference":"Joshua 24:33","difficulty":5,"category":"history","text":{"en":"Which son of Aaron died and was buried in the hill of Phinehas?"},"answers":{"en":["Ithamar","Eleazar","Nadab","Abihu"]},"correctIndex":1},
-  {"id":"q_b121_054","reference":"Joshua 2:1","difficulty":1,"category":"history","text":{"en":"How many spies did Joshua send into Jericho?"},"answers":{"en":["Twelve","Three","Two","Seven"]},"correctIndex":2},
-  {"id":"q_b121_055","reference":"Joshua 6:25","difficulty":1,"category":"history","text":{"en":"Which woman of Jericho was saved alive with her family?"},"answers":{"en":["Deborah","Jael","Naomi","Rahab"]},"correctIndex":3},
-  {"id":"q_b121_056","reference":"Joshua 1:2","difficulty":1,"category":"history","text":{"en":"Which river did God tell Joshua to cross after Moses died?"},"answers":{"en":["The Jordan","The Nile","The Euphrates","The Kishon"]},"correctIndex":0},
-  {"id":"q_b121_057","reference":"Joshua 6:24","difficulty":2,"category":"history","text":{"en":"Where did the silver and gold of Jericho go?"},"answers":{"en":["Into Joshua's tent","Into the treasury of Yahweh's house","To the two spies","Into the Jordan"]},"correctIndex":1}
+  {
+    "id": "q_b121_001",
+    "reference": "Joshua 11:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which king of Hazor gathered the northern kings against Joshua?"
+    },
+    "answers": {
+      "en": [
+        "Jobab",
+        "Sisera",
+        "Jabin",
+        "Og"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_002",
+    "reference": "Joshua 11:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The northern armies were as many as what?"
+    },
+    "answers": {
+      "en": [
+        "The stars of the sky",
+        "The sand on the seashore",
+        "The leaves of the forest",
+        "The locusts of Egypt"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_003",
+    "reference": "Joshua 11:5",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "At which waters did the northern kings camp to fight Israel?"
+    },
+    "answers": {
+      "en": [
+        "Meribah",
+        "Merom",
+        "Marah",
+        "Kishon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_004",
+    "reference": "Joshua 11:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was Joshua told to do to the northern kings' horses?"
+    },
+    "answers": {
+      "en": [
+        "Keep them",
+        "Sell them",
+        "Hamstring them",
+        "Set them free"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_005",
+    "reference": "Joshua 11:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which was the only city standing on its mound that Joshua burned?"
+    },
+    "answers": {
+      "en": [
+        "Megiddo",
+        "Gibeon",
+        "Lachish",
+        "Hazor"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_006",
+    "reference": "Joshua 11:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which people alone made peace with Israel?"
+    },
+    "answers": {
+      "en": [
+        "The Hivites of Gibeon",
+        "The Jebusites of Jerusalem",
+        "The Amorites of Hebron",
+        "The Canaanites of Hazor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_007",
+    "reference": "Joshua 11:22",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which cities did some of the Anakim remain?"
+    },
+    "answers": {
+      "en": [
+        "Hebron, Debir and Anab",
+        "Gaza, Gath and Ashdod",
+        "Jericho, Ai and Bethel",
+        "Ekron, Lachish and Arad"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_008",
+    "reference": "Joshua 11:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After Joshua took the whole land, the land had rest from what?"
+    },
+    "answers": {
+      "en": [
+        "Famine",
+        "Plague",
+        "War",
+        "Drought"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_009",
+    "reference": "Joshua 12:24",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many kings west of the Jordan did Joshua and Israel strike?"
+    },
+    "answers": {
+      "en": [
+        "12",
+        "24",
+        "40",
+        "31"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_010",
+    "reference": "Joshua 13:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which tribe received no land as its inheritance?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Judah",
+        "Dan",
+        "Asher"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_011",
+    "reference": "Joshua 13:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which soothsayer, the son of Beor, did Israel kill with the sword?"
+    },
+    "answers": {
+      "en": [
+        "Balak",
+        "Balaam",
+        "Sihon",
+        "Zur"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_012",
+    "reference": "Joshua 13:30",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many cities were \"the towns of Jair\" in Bashan?"
+    },
+    "answers": {
+      "en": [
+        "12",
+        "30",
+        "60",
+        "48"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_013",
+    "reference": "Joshua 14:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which priest helped Joshua distribute the land?"
+    },
+    "answers": {
+      "en": [
+        "Eleazar",
+        "Phinehas",
+        "Eli",
+        "Aaron"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_014",
+    "reference": "Joshua 14:7",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Caleb when Moses sent him to spy out the land?"
+    },
+    "answers": {
+      "en": [
+        "30",
+        "25",
+        "50",
+        "40"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_015",
+    "reference": "Joshua 14:10",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Caleb when he asked Joshua for the hill country?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "100",
+        "85",
+        "120"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_016",
+    "reference": "Joshua 14:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "At 85, Caleb said he was as strong as he was when?"
+    },
+    "answers": {
+      "en": [
+        "When he left Egypt",
+        "When Moses sent him",
+        "When he was a boy",
+        "When Jericho fell"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_017",
+    "reference": "Joshua 14:6",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Caleb son of Jephunneh is called what?"
+    },
+    "answers": {
+      "en": [
+        "The Kenizzite",
+        "The Kenite",
+        "The Hittite",
+        "The Gibeonite"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_018",
+    "reference": "Joshua 14:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was Hebron called before?"
+    },
+    "answers": {
+      "en": [
+        "Kiriath Sepher",
+        "Kiriath Jearim",
+        "Luz",
+        "Kiriath Arba"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_019",
+    "reference": "Joshua 15:14",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Sheshai, Ahiman and Talmai, driven out by Caleb, were sons of whom?"
+    },
+    "answers": {
+      "en": [
+        "Og",
+        "Sihon",
+        "Anak",
+        "Jabin"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_020",
+    "reference": "Joshua 15:19",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Achsah ask her father Caleb to give her?"
+    },
+    "answers": {
+      "en": [
+        "A flock of sheep",
+        "Springs of water",
+        "A vineyard",
+        "A house in Hebron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_021",
+    "reference": "Joshua 15:63",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which people could Judah not drive out of Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The Jebusites",
+        "The Philistines",
+        "The Amalekites",
+        "The Hittites"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_022",
+    "reference": "Joshua 16:10",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "From which city did Ephraim not drive out the Canaanites?"
+    },
+    "answers": {
+      "en": [
+        "Hazor",
+        "Jericho",
+        "Gilgal",
+        "Gezer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_023",
+    "reference": "Joshua 17:3",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which of these was a daughter of Zelophehad?"
+    },
+    "answers": {
+      "en": [
+        "Achsah",
+        "Dinah",
+        "Miriam",
+        "Tirzah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_024",
+    "reference": "Joshua 17:16",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did the Canaanites of the valley have that worried Joseph's tribes?"
+    },
+    "answers": {
+      "en": [
+        "Chariots of iron",
+        "Many camels",
+        "Bronze shields",
+        "High towers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_025",
+    "reference": "Joshua 18:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did Israel set up the Tent of Meeting once the land was subdued?"
+    },
+    "answers": {
+      "en": [
+        "Gilgal",
+        "Shiloh",
+        "Shechem",
+        "Bethel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_026",
+    "reference": "Joshua 18:2",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many tribes still had no inheritance when Israel met at Shiloh?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Nine",
+        "Seven",
+        "Two"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_027",
+    "reference": "Joshua 18:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many men from each tribe did Joshua send to survey the land?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Twelve",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_028",
+    "reference": "Joshua 18:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did Joshua divide the land at Shiloh?"
+    },
+    "answers": {
+      "en": [
+        "By casting lots",
+        "By the tribes' votes",
+        "By the elders' choice",
+        "By order of birth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_029",
+    "reference": "Joshua 19:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which tribe's inheritance lay inside Judah's land?"
+    },
+    "answers": {
+      "en": [
+        "Benjamin",
+        "Simeon",
+        "Dan",
+        "Levi"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_030",
+    "reference": "Joshua 19:47",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "The tribe of Dan took Leshem and renamed it what?"
+    },
+    "answers": {
+      "en": [
+        "Bethel",
+        "Zorah",
+        "Dan",
+        "Shiloh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_031",
+    "reference": "Joshua 19:50",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which city did Israel give Joshua as his inheritance?"
+    },
+    "answers": {
+      "en": [
+        "Shechem",
+        "Hebron",
+        "Gilgal",
+        "Timnathserah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_032",
+    "reference": "Joshua 20:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "A city of refuge was for someone who had killed a person how?"
+    },
+    "answers": {
+      "en": [
+        "Accidentally",
+        "In battle",
+        "In revenge",
+        "On purpose"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_033",
+    "reference": "Joshua 20:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Until whose death did a manslayer stay in the city of refuge?"
+    },
+    "answers": {
+      "en": [
+        "The king's",
+        "The avenger's",
+        "The high priest's",
+        "The judge's"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_034",
+    "reference": "Joshua 20:7",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which city of refuge was in the hill country of Naphtali?"
+    },
+    "answers": {
+      "en": [
+        "Shechem",
+        "Kedesh",
+        "Hebron",
+        "Bezer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_035",
+    "reference": "Joshua 20:8",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Golan, a city of refuge, was in which region?"
+    },
+    "answers": {
+      "en": [
+        "Bashan",
+        "Gilead",
+        "Galilee",
+        "Moab"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_036",
+    "reference": "Joshua 21:41",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many cities did the Levites receive in all?"
+    },
+    "answers": {
+      "en": [
+        "12",
+        "35",
+        "60",
+        "48"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_037",
+    "reference": "Joshua 21:44",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "As he had sworn, what did Yahweh give Israel all around?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Gold",
+        "Rest",
+        "Rain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_038",
+    "reference": "Joshua 22:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Reuben, Gad and half Manasseh build by the Jordan, alarming Israel?"
+    },
+    "answers": {
+      "en": [
+        "A tower",
+        "An altar",
+        "A city",
+        "A palace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_039",
+    "reference": "Joshua 22:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Who led the delegation sent to the eastern tribes about their altar?"
+    },
+    "answers": {
+      "en": [
+        "Phinehas",
+        "Eleazar",
+        "Caleb",
+        "Othniel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_040",
+    "reference": "Joshua 22:14",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many princes went with Phinehas to the eastern tribes?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Three",
+        "Ten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_041",
+    "reference": "Joshua 22:34",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Reuben and Gad name their altar by the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "The Stone of Help",
+        "Yahweh Is Peace",
+        "A Witness Between Us",
+        "The Altar of Peace"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_042",
+    "reference": "Joshua 23:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Joshua said one man of Israel would chase how many?"
+    },
+    "answers": {
+      "en": [
+        "A hundred",
+        "A thousand",
+        "Ten",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_043",
+    "reference": "Joshua 23:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Joshua warned that the remaining nations would be thorns in what?"
+    },
+    "answers": {
+      "en": [
+        "Your eyes",
+        "Your feet",
+        "Your hands",
+        "Your hearts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_044",
+    "reference": "Joshua 24:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did Joshua gather all the tribes for his farewell covenant?"
+    },
+    "answers": {
+      "en": [
+        "Shiloh",
+        "Gilgal",
+        "Bethel",
+        "Shechem"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_045",
+    "reference": "Joshua 24:2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Who was Abraham's father, who served other gods beyond the River?"
+    },
+    "answers": {
+      "en": [
+        "Nahor",
+        "Lot",
+        "Terah",
+        "Haran"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_046",
+    "reference": "Joshua 24:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did God send ahead of Israel to drive out the two Amorite kings?"
+    },
+    "answers": {
+      "en": [
+        "Hailstones",
+        "The hornet",
+        "A plague",
+        "Fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_047",
+    "reference": "Joshua 24:22",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "After choosing to serve Yahweh, the people said they were what?"
+    },
+    "answers": {
+      "en": [
+        "Witnesses",
+        "Priests",
+        "Judges",
+        "Strangers"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_048",
+    "reference": "Joshua 24:19",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Joshua said Yahweh is a holy God and also what kind of God?"
+    },
+    "answers": {
+      "en": [
+        "A distant God",
+        "A silent God",
+        "A weary God",
+        "A jealous God"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_049",
+    "reference": "Joshua 24:26",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Joshua set up under the oak at Shechem as a witness?"
+    },
+    "answers": {
+      "en": [
+        "An altar of earth",
+        "A bronze pillar",
+        "A great stone",
+        "A tall pole"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_050",
+    "reference": "Joshua 24:29",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How old was Joshua when he died?"
+    },
+    "answers": {
+      "en": [
+        "One hundred and twenty",
+        "One hundred and ten",
+        "Ninety",
+        "Eighty-five"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_051",
+    "reference": "Joshua 24:30",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Joshua was buried north of which mountain?"
+    },
+    "answers": {
+      "en": [
+        "Gaash",
+        "Ebal",
+        "Nebo",
+        "Tabor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_052",
+    "reference": "Joshua 24:32",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "For how many pieces of money had Jacob bought the ground at Shechem?"
+    },
+    "answers": {
+      "en": [
+        "Thirty",
+        "Fifty",
+        "Four hundred",
+        "A hundred"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_053",
+    "reference": "Joshua 24:33",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Which son of Aaron died and was buried in the hill of Phinehas?"
+    },
+    "answers": {
+      "en": [
+        "Ithamar",
+        "Eleazar",
+        "Nadab",
+        "Abihu"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b121_054",
+    "reference": "Joshua 2:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many spies did Joshua send into Jericho?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Three",
+        "Two",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b121_055",
+    "reference": "Joshua 6:25",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which woman of Jericho was saved alive with her family?"
+    },
+    "answers": {
+      "en": [
+        "Deborah",
+        "Jael",
+        "Naomi",
+        "Rahab"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b121_056",
+    "reference": "Joshua 1:2",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which river did God tell Joshua to cross after Moses died?"
+    },
+    "answers": {
+      "en": [
+        "The Jordan",
+        "The Nile",
+        "The Euphrates",
+        "The Kishon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b121_057",
+    "reference": "Joshua 6:24",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did the silver and gold of Jericho go?"
+    },
+    "answers": {
+      "en": [
+        "Into Joshua's tent",
+        "Into the treasury of Yahweh's house",
+        "To the two spies",
+        "Into the Jordan"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

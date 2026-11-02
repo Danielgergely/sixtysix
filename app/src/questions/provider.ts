@@ -76,7 +76,8 @@ export class BundledBankProvider implements QuestionProvider {
   async getQuestions({ count, locale, difficulty }: GetQuestionsOptions): Promise<Question[]> {
     // Flagged questions (open or confirmed on the server, or flagged on this device) are out of play.
     const [bank, excluded] = await Promise.all([this.load(locale), loadExclusions()])
-    const pool = bank.filter((q) => !excluded.has(q.id) && (!difficulty || q.difficulty === difficulty))
+    // Without a level: everything but the impossible ones (Bible Blitz is a family race).
+    const pool = bank.filter((q) => !excluded.has(q.id) && (difficulty ? q.difficulty === difficulty : q.difficulty <= 4))
     // Fisher–Yates shuffle, then take the first `count`.
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))

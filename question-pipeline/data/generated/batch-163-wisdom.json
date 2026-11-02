@@ -1,64 +1,1118 @@
 [
-  {"id":"q_b163_001","reference":"Proverbs 1:10","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 1: 'My son, if sinners entice you, don't ___.'"},"answers":{"en":["Answer","Look","Run","Consent"]},"correctIndex":3},
-  {"id":"q_b163_002","reference":"Proverbs 1:20","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 1: where does Wisdom call aloud?"},"answers":{"en":["In the temple","In the desert","In the street","In a cave"]},"correctIndex":2},
-  {"id":"q_b163_003","reference":"Proverbs 2:4","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 2: seek understanding as you would seek what?"},"answers":{"en":["Bread","Silver","Water","Rest"]},"correctIndex":1},
-  {"id":"q_b163_004","reference":"Proverbs 2:6","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 2: 'For Yahweh gives ___. Out of his mouth comes knowledge and understanding.'"},"answers":{"en":["Wisdom","Riches","Rain","Land"]},"correctIndex":0},
-  {"id":"q_b163_005","reference":"Proverbs 3:3","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 3: 'Don't let kindness and truth forsake you. Bind them around your ___.'"},"answers":{"en":["Neck","Arm","Head","Waist"]},"correctIndex":0},
-  {"id":"q_b163_006","reference":"Proverbs 3:9","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 3: honor Yahweh with your substance and with the ___ of all your increase."},"answers":{"en":["Tenth part","Leftovers","Seeds","First fruits"]},"correctIndex":3},
-  {"id":"q_b163_007","reference":"Proverbs 3:10","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 3: if you honor Yahweh, your vats will overflow with what?"},"answers":{"en":["Oil","Milk","New wine","Honey"]},"correctIndex":2},
-  {"id":"q_b163_008","reference":"Proverbs 3:15","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 3: wisdom is more precious than what?"},"answers":{"en":["Pearls","Rubies","Diamonds","Sapphires"]},"correctIndex":1},
-  {"id":"q_b163_009","reference":"Proverbs 3:18","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 3: wisdom is a ___ of life to those who lay hold of her."},"answers":{"en":["Well","Tree","Lamp","River"]},"correctIndex":1},
-  {"id":"q_b163_010","reference":"Proverbs 4:18","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 4: the path of the righteous is like what?"},"answers":{"en":["The dawning light","A rushing river","A narrow bridge","A green valley"]},"correctIndex":0},
-  {"id":"q_b163_011","reference":"Proverbs 5:15","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 5: 'Drink water out of your own ___.'"},"answers":{"en":["River","Cup","Jar","Cistern"]},"correctIndex":3},
-  {"id":"q_b163_012","reference":"Proverbs 6:5","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 6: free yourself like a gazelle from the hunter, and like a ___ from the snare."},"answers":{"en":["Deer","Rabbit","Bird","Fox"]},"correctIndex":2},
-  {"id":"q_b163_013","reference":"Proverbs 6:8","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 6: when does the ant gather her food?"},"answers":{"en":["In winter","At night","In the harvest","In spring"]},"correctIndex":2},
-  {"id":"q_b163_014","reference":"Proverbs 6:9","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 6: 'How long will you sleep, ___?'"},"answers":{"en":["My son","Sluggard","Watchman","Shepherd"]},"correctIndex":1},
-  {"id":"q_b163_015","reference":"Proverbs 6:17","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 6: Yahweh hates haughty eyes and a lying what?"},"answers":{"en":["Tongue","Pen","Scale","Song"]},"correctIndex":0},
-  {"id":"q_b163_016","reference":"Proverbs 6:27","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 6: 'Can a man scoop ___ into his lap, and his clothes not be burned?'"},"answers":{"en":["Water","Sand","Ashes","Fire"]},"correctIndex":3},
-  {"id":"q_b163_017","reference":"Proverbs 7:3","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 7: 'Bind them on your fingers. Write them on the tablet of your ___.'"},"answers":{"en":["Mind","Wall","Door","Heart"]},"correctIndex":3},
-  {"id":"q_b163_018","reference":"Proverbs 8:22","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 8: Wisdom says, 'Yahweh possessed me in the ___ of his work.'"},"answers":{"en":["Middle","End","Beginning","Seventh day"]},"correctIndex":2},
-  {"id":"q_b163_019","reference":"Proverbs 9:17","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 9: 'Stolen water is ___.'"},"answers":{"en":["Bitter","Sweet","Cold","Pure"]},"correctIndex":1},
-  {"id":"q_b163_020","reference":"Proverbs 10:4","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 10: what does the hand of the diligent bring?"},"answers":{"en":["Wealth","Trouble","Fame","Pain"]},"correctIndex":0},
-  {"id":"q_b163_021","reference":"Proverbs 10:12","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 10: 'Hatred stirs up strife, but love covers all ___.'"},"answers":{"en":["Wrongs","Debts","Tears","Doubts"]},"correctIndex":0},
-  {"id":"q_b163_022","reference":"Proverbs 10:19","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 10: in the multitude of ___ there is no lack of disobedience."},"answers":{"en":["Riches","Friends","Years","Words"]},"correctIndex":3},
-  {"id":"q_b163_023","reference":"Proverbs 10:7","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 10: the memory of the righteous is blessed, but the name of the wicked will do what?"},"answers":{"en":["Shine","Fly away","Rot","Be sung"]},"correctIndex":2},
-  {"id":"q_b163_024","reference":"Proverbs 10:26","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 10: like vinegar to the teeth and smoke to the eyes, so is whom to those who send him?"},"answers":{"en":["The fool","The sluggard","The liar","The thief"]},"correctIndex":1},
-  {"id":"q_b163_025","reference":"Proverbs 11:1","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 11: a false ___ is an abomination to Yahweh."},"answers":{"en":["Ruler","Balance","Lamp","Basket"]},"correctIndex":1},
-  {"id":"q_b163_026","reference":"Proverbs 11:14","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 11: in the multitude of counselors there is what?"},"answers":{"en":["Victory","Confusion","Delay","Danger"]},"correctIndex":0},
-  {"id":"q_b163_027","reference":"Proverbs 11:25","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 11: he who waters shall be ___ also himself."},"answers":{"en":["Thanked","Paid","Crowned","Watered"]},"correctIndex":3},
-  {"id":"q_b163_028","reference":"Proverbs 11:29","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 11: he who troubles his own house shall inherit the ___."},"answers":{"en":["Land","Dust","Wind","Fire"]},"correctIndex":2},
-  {"id":"q_b163_029","reference":"Proverbs 12:10","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 12: a righteous man respects the life of his what?"},"answers":{"en":["Servant","Enemy","Animal","King"]},"correctIndex":2},
-  {"id":"q_b163_030","reference":"Proverbs 12:19","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 12: truth's lips will be established how long?"},"answers":{"en":["For a day","Forever","For a year","Until evening"]},"correctIndex":1},
-  {"id":"q_b163_031","reference":"Proverbs 12:25","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 12: anxiety weighs the heart down, but what makes it glad?"},"answers":{"en":["A kind word","A full table","A long rest","A rich gift"]},"correctIndex":0},
-  {"id":"q_b163_032","reference":"Proverbs 13:12","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 13: 'Hope deferred makes the ___ sick.'"},"answers":{"en":["Body","Eyes","Feet","Heart"]},"correctIndex":3},
-  {"id":"q_b163_033","reference":"Proverbs 13:20","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 13: one who walks with wise men grows wise, but a companion of whom suffers harm?"},"answers":{"en":["Kings","Strangers","Soldiers","Fools"]},"correctIndex":3},
-  {"id":"q_b163_034","reference":"Proverbs 14:1","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 14: every wise woman builds her ___."},"answers":{"en":["Name","Garden","House","Wall"]},"correctIndex":2},
-  {"id":"q_b163_035","reference":"Proverbs 14:4","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 14: 'Where no ___ are, the crib is clean.'"},"answers":{"en":["Sheep","Oxen","Children","Horses"]},"correctIndex":1},
-  {"id":"q_b163_036","reference":"Proverbs 14:30","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 14: 'The life of the body is a heart at peace, but envy rots the ___.'"},"answers":{"en":["Bones","Teeth","Eyes","Hands"]},"correctIndex":0},
-  {"id":"q_b163_037","reference":"Proverbs 14:34","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 14: 'Righteousness exalts a ___.'"},"answers":{"en":["Nation","King","City","Family"]},"correctIndex":0},
-  {"id":"q_b163_038","reference":"Proverbs 15:3","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 15: Yahweh's ___ are everywhere, keeping watch on the evil and the good."},"answers":{"en":["Angels","Hands","Ears","Eyes"]},"correctIndex":3},
-  {"id":"q_b163_039","reference":"Proverbs 15:13","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 15: a glad heart makes a cheerful ___."},"answers":{"en":["Home","Voice","Face","Step"]},"correctIndex":2},
-  {"id":"q_b163_040","reference":"Proverbs 15:16","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 15: better is little with the fear of Yahweh than great treasure with what?"},"answers":{"en":["Pride","Trouble","Sickness","Fools"]},"correctIndex":1},
-  {"id":"q_b163_041","reference":"Proverbs 15:19","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 15: the way of the sluggard is like a ___."},"answers":{"en":["Muddy ditch","Thorn patch","Dark cave","Broken bridge"]},"correctIndex":1},
-  {"id":"q_b163_042","reference":"Proverbs 15:22","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 15: plans fail for lack of what?"},"answers":{"en":["Counsel","Money","Time","Strength"]},"correctIndex":0},
-  {"id":"q_b163_043","reference":"Proverbs 1:5","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 1: 'A wise man will hear, and increase in ___.'"},"answers":{"en":["Riches","Years","Strength","Learning"]},"correctIndex":3},
-  {"id":"q_b163_044","reference":"Proverbs 1:9","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 1: your parents' teaching will be a garland for your head and chains around your what?"},"answers":{"en":["Hands","Feet","Neck","Waist"]},"correctIndex":2},
-  {"id":"q_b163_045","reference":"Proverbs 2:21","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 2: who will dwell in the land?"},"answers":{"en":["The proud","The swift","The upright","The strong"]},"correctIndex":2},
-  {"id":"q_b163_046","reference":"Proverbs 3:11","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 3: 'My son, don't despise Yahweh's ___.'"},"answers":{"en":["Temple","Discipline","Prophets","Feasts"]},"correctIndex":1},
-  {"id":"q_b163_047","reference":"Proverbs 3:24","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 3: 'When you lie down, your ___ will be sweet.'"},"answers":{"en":["Sleep","Bread","Dreams","Rest"]},"correctIndex":0},
-  {"id":"q_b163_048","reference":"Proverbs 4:1","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 4: 'Listen, sons, to a ___ instruction.'"},"answers":{"en":["King's","Teacher's","Mother's","Father's"]},"correctIndex":3},
-  {"id":"q_b163_049","reference":"Proverbs 4:26","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 4: 'Make the path of your ___ level.'"},"answers":{"en":["Life","Heart","Children","Feet"]},"correctIndex":3},
-  {"id":"q_b163_050","reference":"Proverbs 5:21","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 5: the ways of man are before whose eyes?"},"answers":{"en":["The king's","The elders'","Yahweh's","His wife's"]},"correctIndex":2},
-  {"id":"q_b163_051","reference":"Proverbs 6:20","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 6: 'My son, keep your father's commandment, and don't forsake your mother's ___.'"},"answers":{"en":["House","Teaching","Blessing","Bread"]},"correctIndex":1},
-  {"id":"q_b163_052","reference":"Proverbs 6:23","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 6: 'For the commandment is a ___, and the law is light.'"},"answers":{"en":["Lamp","Shield","Sword","Crown"]},"correctIndex":0},
-  {"id":"q_b163_053","reference":"Proverbs 8:17","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 8: Wisdom says, 'Those who seek me ___ find me.'"},"answers":{"en":["Diligently","Rarely","Never","Only at night"]},"correctIndex":0},
-  {"id":"q_b163_054","reference":"Proverbs 9:8","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 9: 'Reprove a wise man, and he will ___ you.'"},"answers":{"en":["Hate","Fear","Pay","Love"]},"correctIndex":3},
-  {"id":"q_b163_055","reference":"Proverbs 10:5","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 10: he who gathers in which season is a wise son?"},"answers":{"en":["Winter","Spring","Summer","The rainy season"]},"correctIndex":2},
-  {"id":"q_b163_056","reference":"Proverbs 11:24","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 11: there is one who scatters, and increases ___."},"answers":{"en":["Nothing","Yet more","His debts","His sorrow"]},"correctIndex":1},
-  {"id":"q_b163_057","reference":"Proverbs 12:15","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 12: 'The way of a fool is right in his own ___.'"},"answers":{"en":["House","Eyes","Book","Ears"]},"correctIndex":1},
-  {"id":"q_b163_058","reference":"Proverbs 13:3","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 13: he who guards his ___ guards his soul."},"answers":{"en":["Mouth","Gate","Money","Flock"]},"correctIndex":0},
-  {"id":"q_b163_059","reference":"Proverbs 13:4","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 13: the soul of the sluggard desires, and has ___."},"answers":{"en":["Much","Plenty","Gold","Nothing"]},"correctIndex":3},
-  {"id":"q_b163_060","reference":"Proverbs 14:23","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 14: 'In all hard work there is ___.'"},"answers":{"en":["Pain","Rest","Profit","Joy"]},"correctIndex":2},
-  {"id":"q_b163_061","reference":"Proverbs 15:4","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 15: a gentle tongue is what?"},"answers":{"en":["A sharp sword","A golden bowl","A tree of life","A lamp at night"]},"correctIndex":2},
-  {"id":"q_b163_062","reference":"Proverbs 15:33","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 15: 'Before honor is ___.'"},"answers":{"en":["Courage","Humility","Riches","Victory"]},"correctIndex":1}
+  {
+    "id": "q_b163_001",
+    "reference": "Proverbs 1:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 1: 'My son, if sinners entice you, don't ___.'"
+    },
+    "answers": {
+      "en": [
+        "Answer",
+        "Look",
+        "Run",
+        "Consent"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_002",
+    "reference": "Proverbs 1:20",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 1: where does Wisdom call aloud?"
+    },
+    "answers": {
+      "en": [
+        "In the temple",
+        "In the desert",
+        "In the street",
+        "In a cave"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_003",
+    "reference": "Proverbs 2:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 2: seek understanding as you would seek what?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Silver",
+        "Water",
+        "Rest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_004",
+    "reference": "Proverbs 2:6",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 2: 'For Yahweh gives ___. Out of his mouth comes knowledge and understanding.'"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Riches",
+        "Rain",
+        "Land"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_005",
+    "reference": "Proverbs 3:3",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: 'Don't let kindness and truth forsake you. Bind them around your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Neck",
+        "Arm",
+        "Head",
+        "Waist"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_006",
+    "reference": "Proverbs 3:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: honor Yahweh with your substance and with the ___ of all your increase."
+    },
+    "answers": {
+      "en": [
+        "Tenth part",
+        "Leftovers",
+        "Seeds",
+        "First fruits"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_007",
+    "reference": "Proverbs 3:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: if you honor Yahweh, your vats will overflow with what?"
+    },
+    "answers": {
+      "en": [
+        "Oil",
+        "Milk",
+        "New wine",
+        "Honey"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_008",
+    "reference": "Proverbs 3:15",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: wisdom is more precious than what?"
+    },
+    "answers": {
+      "en": [
+        "Pearls",
+        "Rubies",
+        "Diamonds",
+        "Sapphires"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_009",
+    "reference": "Proverbs 3:18",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: wisdom is a ___ of life to those who lay hold of her."
+    },
+    "answers": {
+      "en": [
+        "Well",
+        "Tree",
+        "Lamp",
+        "River"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_010",
+    "reference": "Proverbs 4:18",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 4: the path of the righteous is like what?"
+    },
+    "answers": {
+      "en": [
+        "The dawning light",
+        "A rushing river",
+        "A narrow bridge",
+        "A green valley"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_011",
+    "reference": "Proverbs 5:15",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 5: 'Drink water out of your own ___.'"
+    },
+    "answers": {
+      "en": [
+        "River",
+        "Cup",
+        "Jar",
+        "Cistern"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_012",
+    "reference": "Proverbs 6:5",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: free yourself like a gazelle from the hunter, and like a ___ from the snare."
+    },
+    "answers": {
+      "en": [
+        "Deer",
+        "Rabbit",
+        "Bird",
+        "Fox"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_013",
+    "reference": "Proverbs 6:8",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: when does the ant gather her food?"
+    },
+    "answers": {
+      "en": [
+        "In winter",
+        "At night",
+        "In the harvest",
+        "In spring"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_014",
+    "reference": "Proverbs 6:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: 'How long will you sleep, ___?'"
+    },
+    "answers": {
+      "en": [
+        "My son",
+        "Sluggard",
+        "Watchman",
+        "Shepherd"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_015",
+    "reference": "Proverbs 6:17",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: Yahweh hates haughty eyes and a lying what?"
+    },
+    "answers": {
+      "en": [
+        "Tongue",
+        "Pen",
+        "Scale",
+        "Song"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_016",
+    "reference": "Proverbs 6:27",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: 'Can a man scoop ___ into his lap, and his clothes not be burned?'"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Sand",
+        "Ashes",
+        "Fire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_017",
+    "reference": "Proverbs 7:3",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 7: 'Bind them on your fingers. Write them on the tablet of your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Mind",
+        "Wall",
+        "Door",
+        "Heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_018",
+    "reference": "Proverbs 8:22",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 8: Wisdom says, 'Yahweh possessed me in the ___ of his work.'"
+    },
+    "answers": {
+      "en": [
+        "Middle",
+        "End",
+        "Beginning",
+        "Seventh day"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_019",
+    "reference": "Proverbs 9:17",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 9: 'Stolen water is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Bitter",
+        "Sweet",
+        "Cold",
+        "Pure"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_020",
+    "reference": "Proverbs 10:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: what does the hand of the diligent bring?"
+    },
+    "answers": {
+      "en": [
+        "Wealth",
+        "Trouble",
+        "Fame",
+        "Pain"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_021",
+    "reference": "Proverbs 10:12",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: 'Hatred stirs up strife, but love covers all ___.'"
+    },
+    "answers": {
+      "en": [
+        "Wrongs",
+        "Debts",
+        "Tears",
+        "Doubts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_022",
+    "reference": "Proverbs 10:19",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: in the multitude of ___ there is no lack of disobedience."
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Friends",
+        "Years",
+        "Words"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_023",
+    "reference": "Proverbs 10:7",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: the memory of the righteous is blessed, but the name of the wicked will do what?"
+    },
+    "answers": {
+      "en": [
+        "Shine",
+        "Fly away",
+        "Rot",
+        "Be sung"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_024",
+    "reference": "Proverbs 10:26",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: like vinegar to the teeth and smoke to the eyes, so is whom to those who send him?"
+    },
+    "answers": {
+      "en": [
+        "The fool",
+        "The sluggard",
+        "The liar",
+        "The thief"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_025",
+    "reference": "Proverbs 11:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 11: a false ___ is an abomination to Yahweh."
+    },
+    "answers": {
+      "en": [
+        "Ruler",
+        "Balance",
+        "Lamp",
+        "Basket"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_026",
+    "reference": "Proverbs 11:14",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 11: in the multitude of counselors there is what?"
+    },
+    "answers": {
+      "en": [
+        "Victory",
+        "Confusion",
+        "Delay",
+        "Danger"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_027",
+    "reference": "Proverbs 11:25",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 11: he who waters shall be ___ also himself."
+    },
+    "answers": {
+      "en": [
+        "Thanked",
+        "Paid",
+        "Crowned",
+        "Watered"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_028",
+    "reference": "Proverbs 11:29",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 11: he who troubles his own house shall inherit the ___."
+    },
+    "answers": {
+      "en": [
+        "Land",
+        "Dust",
+        "Wind",
+        "Fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_029",
+    "reference": "Proverbs 12:10",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 12: a righteous man respects the life of his what?"
+    },
+    "answers": {
+      "en": [
+        "Servant",
+        "Enemy",
+        "Animal",
+        "King"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_030",
+    "reference": "Proverbs 12:19",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 12: truth's lips will be established how long?"
+    },
+    "answers": {
+      "en": [
+        "For a day",
+        "Forever",
+        "For a year",
+        "Until evening"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_031",
+    "reference": "Proverbs 12:25",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 12: anxiety weighs the heart down, but what makes it glad?"
+    },
+    "answers": {
+      "en": [
+        "A kind word",
+        "A full table",
+        "A long rest",
+        "A rich gift"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_032",
+    "reference": "Proverbs 13:12",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 13: 'Hope deferred makes the ___ sick.'"
+    },
+    "answers": {
+      "en": [
+        "Body",
+        "Eyes",
+        "Feet",
+        "Heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_033",
+    "reference": "Proverbs 13:20",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 13: one who walks with wise men grows wise, but a companion of whom suffers harm?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Strangers",
+        "Soldiers",
+        "Fools"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_034",
+    "reference": "Proverbs 14:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 14: every wise woman builds her ___."
+    },
+    "answers": {
+      "en": [
+        "Name",
+        "Garden",
+        "House",
+        "Wall"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_035",
+    "reference": "Proverbs 14:4",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 14: 'Where no ___ are, the crib is clean.'"
+    },
+    "answers": {
+      "en": [
+        "Sheep",
+        "Oxen",
+        "Children",
+        "Horses"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_036",
+    "reference": "Proverbs 14:30",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 14: 'The life of the body is a heart at peace, but envy rots the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Bones",
+        "Teeth",
+        "Eyes",
+        "Hands"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_037",
+    "reference": "Proverbs 14:34",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 14: 'Righteousness exalts a ___.'"
+    },
+    "answers": {
+      "en": [
+        "Nation",
+        "King",
+        "City",
+        "Family"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_038",
+    "reference": "Proverbs 15:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: Yahweh's ___ are everywhere, keeping watch on the evil and the good."
+    },
+    "answers": {
+      "en": [
+        "Angels",
+        "Hands",
+        "Ears",
+        "Eyes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_039",
+    "reference": "Proverbs 15:13",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: a glad heart makes a cheerful ___."
+    },
+    "answers": {
+      "en": [
+        "Home",
+        "Voice",
+        "Face",
+        "Step"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_040",
+    "reference": "Proverbs 15:16",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: better is little with the fear of Yahweh than great treasure with what?"
+    },
+    "answers": {
+      "en": [
+        "Pride",
+        "Trouble",
+        "Sickness",
+        "Fools"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_041",
+    "reference": "Proverbs 15:19",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: the way of the sluggard is like a ___."
+    },
+    "answers": {
+      "en": [
+        "Muddy ditch",
+        "Thorn patch",
+        "Dark cave",
+        "Broken bridge"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_042",
+    "reference": "Proverbs 15:22",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: plans fail for lack of what?"
+    },
+    "answers": {
+      "en": [
+        "Counsel",
+        "Money",
+        "Time",
+        "Strength"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_043",
+    "reference": "Proverbs 1:5",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 1: 'A wise man will hear, and increase in ___.'"
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Years",
+        "Strength",
+        "Learning"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_044",
+    "reference": "Proverbs 1:9",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 1: your parents' teaching will be a garland for your head and chains around your what?"
+    },
+    "answers": {
+      "en": [
+        "Hands",
+        "Feet",
+        "Neck",
+        "Waist"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_045",
+    "reference": "Proverbs 2:21",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 2: who will dwell in the land?"
+    },
+    "answers": {
+      "en": [
+        "The proud",
+        "The swift",
+        "The upright",
+        "The strong"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_046",
+    "reference": "Proverbs 3:11",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: 'My son, don't despise Yahweh's ___.'"
+    },
+    "answers": {
+      "en": [
+        "Temple",
+        "Discipline",
+        "Prophets",
+        "Feasts"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_047",
+    "reference": "Proverbs 3:24",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 3: 'When you lie down, your ___ will be sweet.'"
+    },
+    "answers": {
+      "en": [
+        "Sleep",
+        "Bread",
+        "Dreams",
+        "Rest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_048",
+    "reference": "Proverbs 4:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 4: 'Listen, sons, to a ___ instruction.'"
+    },
+    "answers": {
+      "en": [
+        "King's",
+        "Teacher's",
+        "Mother's",
+        "Father's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_049",
+    "reference": "Proverbs 4:26",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 4: 'Make the path of your ___ level.'"
+    },
+    "answers": {
+      "en": [
+        "Life",
+        "Heart",
+        "Children",
+        "Feet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_050",
+    "reference": "Proverbs 5:21",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 5: the ways of man are before whose eyes?"
+    },
+    "answers": {
+      "en": [
+        "The king's",
+        "The elders'",
+        "Yahweh's",
+        "His wife's"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_051",
+    "reference": "Proverbs 6:20",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: 'My son, keep your father's commandment, and don't forsake your mother's ___.'"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "Teaching",
+        "Blessing",
+        "Bread"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_052",
+    "reference": "Proverbs 6:23",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 6: 'For the commandment is a ___, and the law is light.'"
+    },
+    "answers": {
+      "en": [
+        "Lamp",
+        "Shield",
+        "Sword",
+        "Crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_053",
+    "reference": "Proverbs 8:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 8: Wisdom says, 'Those who seek me ___ find me.'"
+    },
+    "answers": {
+      "en": [
+        "Diligently",
+        "Rarely",
+        "Never",
+        "Only at night"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_054",
+    "reference": "Proverbs 9:8",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 9: 'Reprove a wise man, and he will ___ you.'"
+    },
+    "answers": {
+      "en": [
+        "Hate",
+        "Fear",
+        "Pay",
+        "Love"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_055",
+    "reference": "Proverbs 10:5",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 10: he who gathers in which season is a wise son?"
+    },
+    "answers": {
+      "en": [
+        "Winter",
+        "Spring",
+        "Summer",
+        "The rainy season"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_056",
+    "reference": "Proverbs 11:24",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 11: there is one who scatters, and increases ___."
+    },
+    "answers": {
+      "en": [
+        "Nothing",
+        "Yet more",
+        "His debts",
+        "His sorrow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_057",
+    "reference": "Proverbs 12:15",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 12: 'The way of a fool is right in his own ___.'"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "Eyes",
+        "Book",
+        "Ears"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b163_058",
+    "reference": "Proverbs 13:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 13: he who guards his ___ guards his soul."
+    },
+    "answers": {
+      "en": [
+        "Mouth",
+        "Gate",
+        "Money",
+        "Flock"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b163_059",
+    "reference": "Proverbs 13:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 13: the soul of the sluggard desires, and has ___."
+    },
+    "answers": {
+      "en": [
+        "Much",
+        "Plenty",
+        "Gold",
+        "Nothing"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b163_060",
+    "reference": "Proverbs 14:23",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 14: 'In all hard work there is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Pain",
+        "Rest",
+        "Profit",
+        "Joy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_061",
+    "reference": "Proverbs 15:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: a gentle tongue is what?"
+    },
+    "answers": {
+      "en": [
+        "A sharp sword",
+        "A golden bowl",
+        "A tree of life",
+        "A lamp at night"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b163_062",
+    "reference": "Proverbs 15:33",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 15: 'Before honor is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Courage",
+        "Humility",
+        "Riches",
+        "Victory"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

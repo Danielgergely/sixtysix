@@ -2,6 +2,7 @@ import { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, u
 import { animate, motion, useMotionValue, type AnimationPlaybackControls } from 'motion/react'
 import { spring } from '../motion'
 import { DraggedContext } from './dragged'
+import { PZ_REVEAL } from '../tutorial/anchor'
 
 /**
  * A pannable, zoomable window onto a painted world (the city map, a plot).
@@ -178,6 +179,35 @@ export function PanZoom({ worldW, worldH, maxZoom, initialZoom, initialCenter, w
       cancelAnimationFrame(raf)
     }
   }, [onView, x, y, s, vp.w, vp.h])
+
+  // A tutorial tour asks to show an element of the world (tutorial/anchor.ts): pan it to the middle.
+  useEffect(() => {
+    const el = box.current
+    if (!el) return
+    const onReveal = (e: Event) => {
+      const target = e.target as HTMLElement
+      const r = el.getBoundingClientRect()
+      let t = target.getBoundingClientRect()
+      // Zero-size anchors (a lot) are positioned around by their children.
+      if (!t.width && target.firstElementChild) t = target.firstElementChild.getBoundingClientRect()
+      const a = toWorld(t.left - r.left, t.top - r.top)
+      const b = toWorld(t.right - r.left, t.bottom - r.top)
+      const [cx, cy] = [(a.wx + b.wx) / 2, (a.wy + b.wy) / 2]
+      // Zoom out until the whole element fits once panned (near the world's edge the pan stops short).
+      let z = s.get()
+      for (let i = 0; i < 12 && z > zr.current.min; i++) {
+        const { bx, by } = bounds(z)
+        const x0 = clamp(vp.w / 2 - cx * z, bx.min, bx.max)
+        const y0 = clamp(vp.h / 2 - cy * z, by.min, by.max)
+        const fits = a.wx * z + x0 >= 0 && b.wx * z + x0 <= vp.w && a.wy * z + y0 >= 0 && b.wy * z + y0 <= vp.h
+        if (fits) break
+        z = Math.max(zr.current.min, z * 0.88)
+      }
+      flyTo(cx, cy, z)
+    }
+    el.addEventListener(PZ_REVEAL, onReveal)
+    return () => el.removeEventListener(PZ_REVEAL, onReveal)
+  }, [toWorld, flyTo, bounds, vp.w, vp.h, s])
 
   // Wheel / trackpad zoom around the cursor (non-passive so the page doesn't scroll).
   useEffect(() => {

@@ -274,8 +274,8 @@
     "answers": [
       "Laban",
       "Jitro",
-      "Hobab",
-      "Reguël"
+      "Betuël",
+      "Nahor"
     ]
   },
   "q_b01_032": {
@@ -858,8 +858,8 @@
     "text": "Der Wert einer tüchtigen Frau übersteigt bei Weitem was?",
     "answers": [
       "Gold",
+      "Elfenbein",
       "Perlen",
-      "Korallen",
       "Silber"
     ]
   },
@@ -867,7 +867,7 @@
     "text": "„Stolz geht dem ___ voraus und Hochmut dem Fall.“",
     "answers": [
       "Spott",
-      "Ruin",
+      "Streit",
       "Verderben",
       "Gericht"
     ]
@@ -956,7 +956,7 @@
   "q_b03_027": {
     "text": "Wie nennt sich der Verfasser des Buches Prediger selbst?",
     "answers": [
-      "Der Lehrer Israels",
+      "Der Schreiber Israels",
       "Der Prediger",
       "Der Weise",
       "Der Knecht"
@@ -1037,10 +1037,10 @@
   "q_b03_036": {
     "text": "„Anmut ist trügerisch, und Schönheit ist ___.“",
     "answers": [
-      "flüchtig",
-      "nichtig",
+      "eine Krone",
+      "vergänglich",
       "ein Fallstrick",
-      "vergänglich"
+      "ein Schatz"
     ]
   },
   "q_b03_037": {
@@ -2484,7 +2484,7 @@
     ]
   },
   "q_b07_037": {
-    "text": "Wie oft schlug Mose bei Meriba mit seinem Stab an den Felsen?",
+    "text": "Wie oft schlug Mose bei Meriba in Kadesch mit seinem Stab an den Felsen?",
     "answers": [
       "Zweimal",
       "Einmal",
@@ -3180,7 +3180,7 @@
     "text": "Wie hieß Josua, bevor Mose ihm einen neuen Namen gab?",
     "answers": [
       "Hobab",
-      "Hosea",
+      "Hur",
       "Hezron",
       "Hoschea"
     ]
@@ -5987,10 +5987,10 @@
   "q_b17_018": {
     "text": "Was ist der Name des HERRN laut den Sprüchen?",
     "answers": [
-      "Eine feste Burg",
+      "Ein tiefer Brunnen",
       "Ein fester Fels",
       "Ein starker Schild",
-      "Ein starker Turm"
+      "Eine feste Burg"
     ]
   },
   "q_b17_019": {
@@ -6690,7 +6690,7 @@
     "text": "„Lass dir die Worte meines Mundes gefallen und das ___ meines Herzens.“",
     "answers": [
       "Denken",
-      "Sinnen",
+      "Gespräch",
       "Sehnen",
       "Trachten"
     ]
@@ -7643,10 +7643,10 @@
   "q_b21_039": {
     "text": "Sprüche 30 nennt vier, die stattlich einherschreiten: den Löwen, den Ziegenbock, den König und …?",
     "answers": [
-      "das Pferd",
+      "das Kamel",
       "den Adler",
       "den Hirsch",
-      "den Windhund"
+      "das Ross"
     ]
   },
   "q_b21_040": {
@@ -12125,7 +12125,7 @@
   "q_b33_032": {
     "text": "Ergänze: „Hier ist nicht Jude noch ___ … denn ihr seid allesamt einer in Christus Jesus.“",
     "answers": [
-      "Heide",
+      "Ägypter",
       "Grieche",
       "Römer",
       "Samariter"
@@ -17662,7 +17662,7 @@
     "answers": [
       "Donner",
       "Fischer",
-      "Petrus",
+      "Fels (Petrus)",
       "Geliebter"
     ]
   },
@@ -18632,7 +18632,7 @@
   "q_b205_036": {
     "text": "Wer trug bei Johannes das Kreuz hinaus zur Schädelstätte?",
     "answers": [
-      "Simon von Kyrene",
+      "Josef von Arimathäa",
       "Jesus selbst",
       "Die Soldaten",
       "Johannes"
@@ -19154,19 +19154,19 @@
   "q_b120_035": {
     "text": "Wie viel Silber nahm Achan und versteckte es in seinem Zelt?",
     "answers": [
-      "100 Lot",
-      "400 Lot",
-      "30 Lot",
-      "200 Lot"
+      "100 Schekel",
+      "400 Schekel",
+      "30 Schekel",
+      "200 Schekel"
     ]
   },
   "q_b120_036": {
     "text": "Wie schwer war Achans Goldbarren?",
     "answers": [
-      "20 Lot",
-      "10 Lot",
-      "50 Lot",
-      "100 Lot"
+      "20 Schekel",
+      "10 Schekel",
+      "50 Schekel",
+      "100 Schekel"
     ]
   },
   "q_b120_037": {
@@ -20144,7 +20144,7 @@
   "q_b122_032": {
     "text": "Womit deckte Jaël Sisera in ihrem Zelt zu?",
     "answers": [
-      "Mit einem Mantel",
+      "Mit Stroh",
       "Mit einem Schaffell",
       "Mit einem Zeltvorhang",
       "Mit einer Decke"
@@ -20596,7 +20596,7 @@
     "answers": [
       "Kemosch",
       "Dagon",
-      "Moloch",
+      "Aschera",
       "Baal"
     ]
   },
@@ -20741,7 +20741,7 @@
       "Mächtig",
       "Uralt",
       "Herrlich",
-      "Wundersam"
+      "Wunderbar"
     ]
   },
   "q_b123_031": {
@@ -22172,7 +22172,7 @@
       "Groß und stark",
       "Blass und dünn",
       "Bärtig und alt",
-      "Rötlich und schön"
+      "Bräunlich und schön"
     ]
   },
   "q_b126_029": {
@@ -22239,7 +22239,7 @@
     ]
   },
   "q_b126_036": {
-    "text": "Wie viele Söhne hatte Isai?",
+    "text": "Wie viele Söhne hatte Isai laut 1. Samuel 17?",
     "answers": [
       "Sieben",
       "Zehn",
@@ -23474,10 +23474,10 @@
   "q_b129_005": {
     "text": "Wie viel wog das Haar von Absaloms jährlichem Haarschnitt?",
     "answers": [
-      "200 Lot",
-      "50 Lot",
-      "1000 Lot",
-      "20 Lot"
+      "200 Schekel",
+      "50 Schekel",
+      "1000 Schekel",
+      "20 Schekel"
     ]
   },
   "q_b129_006": {
@@ -23862,7 +23862,7 @@
     "text": "In seinen letzten Worten wird David der liebliche … Israels genannt.",
     "answers": [
       "Hirte",
-      "Sänger",
+      "Psalmdichter",
       "Krieger",
       "Fürst"
     ]
@@ -24858,12 +24858,12 @@
     ]
   },
   "q_b141_021": {
-    "text": "Durch Schilde aus was ersetzte Rehabeam die goldenen Schilde?",
+    "text": "Woraus ließ Rehabeam die Schilde machen, die die goldenen ersetzten?",
     "answers": [
-      "Silber",
-      "Holz",
-      "Eisen",
-      "Kupfer"
+      "Aus Silber",
+      "Aus Holz",
+      "Aus Eisen",
+      "Aus Bronze"
     ]
   },
   "q_b141_022": {
@@ -26094,7 +26094,7 @@
     "text": "In welchem Tal erschlug Amazja zehntausend Edomiter?",
     "answers": [
       "Im Salztal",
-      "Im Terebinthental",
+      "Im Tal Ela",
       "Im Kidrontal",
       "In der Ebene Jesreel"
     ]
@@ -26306,24 +26306,6 @@
       "Er verbarg ihn vor dem Volk"
     ]
   },
-  "q_b143_038": {
-    "text": "Im Haus welches Gottes wurde Sanherib von seinen Söhnen erschlagen?",
-    "answers": [
-      "Nisroch",
-      "Dagon",
-      "Marduk",
-      "Baal"
-    ]
-  },
-  "q_b143_039": {
-    "text": "Welcher Sohn wurde König an Sanheribs Stelle?",
-    "answers": [
-      "Salmanassar",
-      "Tiglat-Pileser",
-      "Merodach",
-      "Asarhaddon"
-    ]
-  },
   "q_b143_040": {
     "text": "Welcher König war todkrank und sollte sein Haus bestellen?",
     "answers": [
@@ -26340,24 +26322,6 @@
       "Fünfzehn",
       "Sieben",
       "Zwanzig"
-    ]
-  },
-  "q_b143_042": {
-    "text": "Was ließ Jesaja auf Hiskias Geschwür legen?",
-    "answers": [
-      "Öl und Wein",
-      "Salz",
-      "Honig",
-      "Ein Feigenpflaster"
-    ]
-  },
-  "q_b143_043": {
-    "text": "Welcher König von Babylon schickte Briefe und ein Geschenk, als Hiskia krank war?",
-    "answers": [
-      "Merodach-Baladan",
-      "Nebukadnezzar",
-      "Ewil-Merodach",
-      "Belsazar"
     ]
   },
   "q_b143_044": {
@@ -26793,7 +26757,7 @@
     ]
   },
   "q_b144_025": {
-    "text": "Welches Geräusch in den Bakabäumen war Davids Zeichen zum Angriff auf die Philister?",
+    "text": "Welches Geräusch in den Baumwipfeln war Davids Zeichen zum Angriff auf die Philister?",
     "answers": [
       "Ein Trompetenstoß",
       "Ein brausender Wind",
@@ -27182,7 +27146,7 @@
   "q_b145_014": {
     "text": "Was gab die Königin von Saba Salomo, wie man es nie zuvor gegeben hatte?",
     "answers": [
-      "Balsam",
+      "Gewürze",
       "Pferde",
       "Elfenbein",
       "Pfauen"
@@ -27210,7 +27174,7 @@
     "text": "Jerobeam setzte Priester ein für die Höhen, die Kälber und für was?",
     "answers": [
       "Für Löwen",
-      "Für Feldgeister in Bocksgestalt",
+      "Für Böcke",
       "Für Schlangen",
       "Für Stiere"
     ]
@@ -27597,7 +27561,7 @@
     "text": "Was stellte Usija auf Jerusalems Türme, um Pfeile und große Steine zu schießen?",
     "answers": [
       "Schleuderwagen",
-      "Kunstvolle Geschütze",
+      "Kunstvolle Maschinen",
       "Riesenbogen",
       "Eiserne Wagen"
     ]
@@ -27733,7 +27697,7 @@
     "answers": [
       "Fleisch",
       "Eisen",
-      "Erz",
+      "Bronze",
       "Stein"
     ]
   },
@@ -28211,7 +28175,7 @@
       "Die Söhne Levis",
       "Die Sänger",
       "Die Ältesten",
-      "Die Tempelsklaven"
+      "Die Tempeldiener"
     ]
   },
   "q_b147_037": {
@@ -28292,7 +28256,7 @@
       "Es war zu heiß",
       "Der Feind war nah",
       "Es war Sabbat",
-      "Es war Regenzeit"
+      "Es regnete stark"
     ]
   },
   "q_b148_001": {
@@ -28470,7 +28434,7 @@
     "text": "Wer baute zwischen dem Obergemach an der Ecke und dem Schaftor?",
     "answers": [
       "Die Sänger",
-      "Die Tempelsklaven",
+      "Die Tempeldiener",
       "Die Goldschmiede und die Händler",
       "Die Männer von Jericho"
     ]
@@ -28557,7 +28521,7 @@
     ]
   },
   "q_b148_030": {
-    "text": "Nehemia schüttelte seinen Gewandbausch aus: So schüttle Gott jeden aus, der was nicht hält?",
+    "text": "Nehemia schüttelte den Bausch seines Gewandes aus: So schüttle Gott jeden aus, der was nicht hält?",
     "answers": [
       "Den Sabbat",
       "Den Erlass des Königs",
@@ -30802,7 +30766,7 @@
     "answers": [
       "Der goldene Adler",
       "Der Morgenstern",
-      "Die Dioskuren",
+      "Die Zwillinge",
       "Der große Fisch"
     ]
   },
@@ -30928,7 +30892,7 @@
     "answers": [
       "Der Römer",
       "Der Priester",
-      "Der Nichtgriechen",
+      "Der Barbaren",
       "Der Skythen"
     ]
   },
@@ -31837,7 +31801,7 @@
     "answers": [
       "Gerichts",
       "Heils",
-      "Ruhetags",
+      "Zorns",
       "Ruhms"
     ]
   },
@@ -33183,11 +33147,11 @@
     ]
   },
   "q_b228_020": {
-    "text": "Laut Hebräer 11 bekannten die Glaubenden, dass sie … und Fremdlinge auf Erden sind.",
+    "text": "Laut Hebräer 11 bekannten die Glaubenden, dass sie Fremdlinge und … auf Erden sind.",
     "answers": [
       "Könige",
       "Knechte",
-      "Gäste",
+      "Pilgrime",
       "Gefangene"
     ]
   },
@@ -33403,7 +33367,7 @@
     "answers": [
       "Blume",
       "Schatten",
-      "Rauch",
+      "Dampf",
       "Traum"
     ]
   },
@@ -33842,7 +33806,7 @@
   "q_b230_004": {
     "text": "Der auferstandene Christus hat laut Offenbarung 1 die Schlüssel des Todes und wessen?",
     "answers": [
-      "Des Hades",
+      "Des Totenreichs",
       "Des Himmels",
       "Davids",
       "Des Tempels"
@@ -34218,12 +34182,12 @@
     ]
   },
   "q_b230_046": {
-    "text": "In Offenbarung 19 ist das feine Leinen die gerechten … der Heiligen.",
+    "text": "In Offenbarung 19 ist die feine Leinwand die … der Heiligen.",
     "answers": [
       "Gebete",
       "Lieder",
       "Tränen",
-      "Taten"
+      "Gerechtigkeit"
     ]
   },
   "q_b230_047": {
@@ -34499,7 +34463,7 @@
   "q_b180_020": {
     "text": "Jesaja 8: Für die Bewohner Jerusalems wird Gott zum Fallstrick und wozu?",
     "answers": [
-      "Zum Netz",
+      "Zum Schild",
       "Zur Schlinge",
       "Zur Grube",
       "Zur Mauer"
@@ -36065,7 +36029,7 @@
   "q_b183_029": {
     "text": "Wie viele Männer sollte Ebed-Melech mitnehmen, um Jeremia herauszuholen?",
     "answers": [
-      "Drei",
+      "Fünf",
       "Dreißig",
       "Zehn",
       "Zwölf"
@@ -39114,7 +39078,7 @@
     ]
   },
   "q_b100_010": {
-    "text": "Was gab es im Land Hawila außer Gold und Bedolachharz?",
+    "text": "Was gab es im Land Hawila außer Gold und Bedolach?",
     "answers": [
       "Onyxstein",
       "Rubine",
@@ -39998,10 +39962,10 @@
   "q_b101_015": {
     "text": "Wie viel Silber wog Abraham für das Grabfeld ab?",
     "answers": [
-      "30 Lot",
-      "100 Lot",
-      "1000 Lot",
-      "400 Lot"
+      "30 Schekel",
+      "100 Schekel",
+      "1000 Schekel",
+      "400 Schekel"
     ]
   },
   "q_b101_016": {
@@ -40775,7 +40739,7 @@
       "„Es lebe der König!“",
       "„Hosianna!“",
       "„Platz für den Pharao!“",
-      "„Auf die Knie!“"
+      "„Beugt eure Knie!“"
     ]
   },
   "q_b102_025": {
@@ -41645,9 +41609,9 @@
   "q_b103_059": {
     "text": "Wie viel Manna sollte jeder pro Kopf am Tag sammeln?",
     "answers": [
-      "Einen Krug voll",
-      "Ein Scheffel",
-      "Ein Homer",
+      "Einen Gomer",
+      "Ein Epha",
+      "Einen Homer",
       "Eine Handvoll"
     ]
   },
@@ -41688,7 +41652,7 @@
     ]
   },
   "q_b103_064": {
-    "text": "Worin sollte Aaron einen Krug voll Manna vor dem HERRN aufbewahren?",
+    "text": "Worin sollte Aaron einen Gomer voll Manna vor dem HERRN aufbewahren?",
     "answers": [
       "In einem Korb",
       "In einer Akazienholzkiste",
@@ -41697,7 +41661,7 @@
     ]
   },
   "q_b103_065": {
-    "text": "Welcher Teil eines Scheffels (Epha) ist ein Krug (Gomer)?",
+    "text": "Welcher Teil eines Epha ist ein Gomer?",
     "answers": [
       "Ein Zehntel",
       "Die Hälfte",
@@ -42066,7 +42030,7 @@
     ]
   },
   "q_b104_030": {
-    "text": "Wie viele Lot flüssige Myrrhe gehörten in das heilige Salböl?",
+    "text": "Wie viele Schekel flüssige Myrrhe gehörten in das heilige Salböl?",
     "answers": [
       "250",
       "100",
@@ -42869,10 +42833,10 @@
   "q_b105_069": {
     "text": "Wie hoch war bei einem Gelübde der Schätzwert einer Frau von zwanzig bis sechzig Jahren?",
     "answers": [
-      "50 Lot Silber",
-      "20 Lot Silber",
-      "10 Lot Silber",
-      "30 Lot Silber"
+      "50 Schekel Silber",
+      "20 Schekel Silber",
+      "10 Schekel Silber",
+      "30 Schekel Silber"
     ]
   },
   "q_b105_070": {
@@ -47133,12 +47097,12 @@
     ]
   },
   "q_b164_014": {
-    "text": "Sprüche 20: Wegen welcher Jahreszeit will der Faule nicht pflügen?",
+    "text": "Sprüche 20: In welcher Jahreszeit will der Faule nicht pflügen?",
     "answers": [
-      "Wegen des Sommers",
-      "Wegen der Ernte",
-      "Wegen des Winters",
-      "Wegen des Frühlings"
+      "Im Sommer",
+      "In der Erntezeit",
+      "Im Herbst",
+      "Im Frühling"
     ]
   },
   "q_b164_015": {
@@ -49529,7 +49493,7 @@
   "q_b168_022": {
     "text": "Sprüche 30: „Alle Worte Gottes sind ___.“",
     "answers": [
-      "Durchläutert",
+      "Geläutert",
       "Verborgen",
       "Uralt",
       "Kurz"

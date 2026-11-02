@@ -11,6 +11,8 @@ import { artFor } from './home/homeUtil'
 import { houseName } from './home/plotText'
 import { CityMap } from '../world/CityMap'
 import { CitySheet, type CitySheetKind, type LotPick } from '../world/CitySheet'
+import { useIntro } from '../tutorial/useIntro'
+import { InfoButton } from '../tutorial/InfoButton'
 
 /**
  * The city: a painted map of Jerusalem to drag around. Landmarks (Temple,
@@ -41,6 +43,8 @@ export function JerusalemScreen() {
     }
   }, [reload])
 
+  // The spotlight tour, once the map and its lots are drawn.
+  useIntro('city', !list && !!residents)
   const me = account?.username ?? null
   const openResident = (r: Resident) => (r.username === me ? goTo('home') : visitPlot(r.username))
   const toggle = (
@@ -68,7 +72,12 @@ export function JerusalemScreen() {
                 setLot({ n, resident: r })
                 setSheet('lot')
               }}
-              extra={toggle}
+              extra={
+                <>
+                  {toggle}
+                  <InfoButton id="city" variant="plain" className="cm-chip" />
+                </>
+              }
             />
           ) : (
             <p className="tab-note cm-loading">{t('city.screen.loading')}</p>

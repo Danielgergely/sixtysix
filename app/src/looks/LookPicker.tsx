@@ -22,6 +22,7 @@ import { LookPortrait, PaintedCoin, PaintedPortrait } from '../art/PaintedPortra
 import { characterName } from '../art/characters'
 import { duration, spring } from '../motion'
 import { tServer, useLocale, useT } from '../i18n'
+import { useIntro } from '../tutorial/useIntro'
 import { buyItem, ownedItems, unlockProgress, useLookStore, type PickerTab } from './lookStore'
 
 /** Your portrait + "Change": opens the picker. Used in Profile and where games are joined. */
@@ -68,6 +69,7 @@ const SLOT_ICON: Record<LookSlot, string> = { head: '👑', neck: '📿', frame:
 
 function LookPicker({ onClose }: { onClose: () => void }) {
   const t = useT()
+  useIntro('looks')
   const locale = useLocale((s) => s.locale)
   const avatar = useGameStore((s) => s.player.avatar)
   const coins = useGameStore((s) => s.player.coins)

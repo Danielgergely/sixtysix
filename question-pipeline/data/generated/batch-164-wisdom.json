@@ -1,78 +1,1370 @@
 [
-  {"id":"q_b164_001","reference":"Proverbs 16:3","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 16: 'Commit your ___ to Yahweh, and your plans shall succeed.'"},"answers":{"en":["Deeds","Money","Children","Fears"]},"correctIndex":0},
-  {"id":"q_b164_002","reference":"Proverbs 16:24","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 16: pleasant words are like what, sweet to the soul?"},"answers":{"en":["A song","A fountain","A garden","A honeycomb"]},"correctIndex":3},
-  {"id":"q_b164_003","reference":"Proverbs 16:32","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 16: one who is slow to anger is better than whom?"},"answers":{"en":["The king","The rich","The mighty","The wise"]},"correctIndex":2},
-  {"id":"q_b164_004","reference":"Proverbs 16:33","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 16: what is cast into the lap, though every decision is from Yahweh?"},"answers":{"en":["The net","The lot","The seed","The coin"]},"correctIndex":1},
-  {"id":"q_b164_005","reference":"Proverbs 17:1","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 17: a dry morsel with quietness is better than a house full of what with strife?"},"answers":{"en":["Gold","Feasting","Children","Music"]},"correctIndex":1},
-  {"id":"q_b164_006","reference":"Proverbs 17:12","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 17: better to meet which animal robbed of her cubs than a fool in his folly?"},"answers":{"en":["A bear","A lioness","A wolf","A leopard"]},"correctIndex":0},
-  {"id":"q_b164_007","reference":"Proverbs 17:28","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 17: even a fool, when he keeps silent, is counted as what?"},"answers":{"en":["Kind","Brave","Rich","Wise"]},"correctIndex":3},
-  {"id":"q_b164_008","reference":"Proverbs 18:13","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 18: he who answers before he ___, that is folly and shame to him."},"answers":{"en":["Thinks","Prays","Hears","Waits"]},"correctIndex":2},
-  {"id":"q_b164_009","reference":"Proverbs 18:21","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 18: death and life are in the power of the ___."},"answers":{"en":["Hand","King","Tongue","Sword"]},"correctIndex":2},
-  {"id":"q_b164_010","reference":"Proverbs 18:22","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 18: whoever finds a wife finds what?"},"answers":{"en":["Great riches","A good thing","Much trouble","A long life"]},"correctIndex":1},
-  {"id":"q_b164_011","reference":"Proverbs 19:17","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 19: he who has pity on the poor lends to whom?"},"answers":{"en":["Yahweh","The king","His neighbor","The priest"]},"correctIndex":0},
-  {"id":"q_b164_012","reference":"Proverbs 19:13","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 19: a wife's quarrels are like what?"},"answers":{"en":["A roaring lion","A broken jar","A thorn in the foot","A continual dripping"]},"correctIndex":3},
-  {"id":"q_b164_013","reference":"Proverbs 19:24","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 19: the sluggard buries his hand in the ___ and won't even bring it to his mouth."},"answers":{"en":["Sand","Pocket","Bread","Dish"]},"correctIndex":3},
-  {"id":"q_b164_014","reference":"Proverbs 20:4","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 20: because of what season will the sluggard not plow?"},"answers":{"en":["Summer","Harvest","Winter","Spring"]},"correctIndex":2},
-  {"id":"q_b164_015","reference":"Proverbs 20:11","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 20: even a ___ makes himself known by his doings."},"answers":{"en":["Fool","Child","King","Stranger"]},"correctIndex":1},
-  {"id":"q_b164_016","reference":"Proverbs 20:13","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 20: 'Don't love ___, lest you come to poverty.'"},"answers":{"en":["Sleep","Wine","Money","Feasting"]},"correctIndex":0},
-  {"id":"q_b164_017","reference":"Proverbs 20:29","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 20: what is the glory of young men?"},"answers":{"en":["Their strength","Their beauty","Their wisdom","Their riches"]},"correctIndex":0},
-  {"id":"q_b164_018","reference":"Proverbs 21:1","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 21: the king's heart is in Yahweh's hand like what?"},"answers":{"en":["Clay","A bird","A seed","The watercourses"]},"correctIndex":3},
-  {"id":"q_b164_019","reference":"Proverbs 21:19","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 21: it is better to dwell where than with a contentious and fretful woman?"},"answers":{"en":["In a lions' den","In a dark cave","In a desert land","On a lonely island"]},"correctIndex":2},
-  {"id":"q_b164_020","reference":"Proverbs 21:31","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 21: what is prepared for the day of battle, though victory is with Yahweh?"},"answers":{"en":["The chariot","The horse","The sword","The shield"]},"correctIndex":1},
-  {"id":"q_b164_021","reference":"Proverbs 22:7","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 22: the borrower is servant to whom?"},"answers":{"en":["The king","The lender","The judge","The priest"]},"correctIndex":1},
-  {"id":"q_b164_022","reference":"Proverbs 22:13","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 22: the sluggard says, 'There is a ___ outside!'"},"answers":{"en":["Lion","Bear","Thief","Storm"]},"correctIndex":0},
-  {"id":"q_b164_023","reference":"Proverbs 22:28","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 22: 'Don't move the ancient ___ which your fathers have set up.'"},"answers":{"en":["Altar","Pillar","Well","Boundary stone"]},"correctIndex":3},
-  {"id":"q_b164_024","reference":"Proverbs 22:29","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 22: a man skillful in his work will serve whom?"},"answers":{"en":["Fools","Merchants","Kings","Priests"]},"correctIndex":2},
-  {"id":"q_b164_025","reference":"Proverbs 23:5","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 23: riches sprout wings and fly away like what?"},"answers":{"en":["A dove","A sparrow","An eagle","A locust"]},"correctIndex":2},
-  {"id":"q_b164_026","reference":"Proverbs 23:32","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 23: in the end, wine bites like a ___."},"answers":{"en":["Dog","Snake","Lion","Wolf"]},"correctIndex":1},
-  {"id":"q_b164_027","reference":"Proverbs 24:16","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 24: a righteous man falls how many times and rises up again?"},"answers":{"en":["Seven","Three","Ten","Twelve"]},"correctIndex":0},
-  {"id":"q_b164_028","reference":"Proverbs 24:17","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 24: 'Don't rejoice when your ___ falls.'"},"answers":{"en":["Friend","Brother","King","Enemy"]},"correctIndex":3},
-  {"id":"q_b164_029","reference":"Proverbs 24:31","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 24: the sluggard's field was all grown over with what?"},"answers":{"en":["Barley","Grapevines","Flowers","Thorns"]},"correctIndex":3},
-  {"id":"q_b164_030","reference":"Proverbs 25:14","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 25: one who boasts of gifts he doesn't give is like clouds and wind without what?"},"answers":{"en":["Thunder","Light","Rain","Snow"]},"correctIndex":2},
-  {"id":"q_b164_031","reference":"Proverbs 25:16","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 25: 'Have you found ___? Eat as much as is sufficient for you.'"},"answers":{"en":["Bread","Honey","Wine","Figs"]},"correctIndex":1},
-  {"id":"q_b164_032","reference":"Proverbs 25:25","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 25: like cold water to a thirsty soul, so is what?"},"answers":{"en":["Good news from a far country","A kind word at night","Rain on dry fields","A friend at the door"]},"correctIndex":0},
-  {"id":"q_b164_033","reference":"Proverbs 25:28","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 25: a man without self-control is like a city that is broken down and without what?"},"answers":{"en":["Walls","A king","Water","Bread"]},"correctIndex":0},
-  {"id":"q_b164_034","reference":"Proverbs 26:3","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 26: a whip is for the horse, a bridle for the donkey, and a rod for what?"},"answers":{"en":["The back of thieves","The back of servants","The back of oxen","The back of fools"]},"correctIndex":3},
-  {"id":"q_b164_035","reference":"Proverbs 26:14","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 26: as a door turns on its hinges, so does whom on his bed?"},"answers":{"en":["The fool","The sick man","The sluggard","The old man"]},"correctIndex":2},
-  {"id":"q_b164_036","reference":"Proverbs 26:17","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 26: meddling in someone else's quarrel is like grabbing which animal by the ears?"},"answers":{"en":["A donkey","A dog","A goat","A lion"]},"correctIndex":1},
-  {"id":"q_b164_037","reference":"Proverbs 26:20","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 26: for lack of wood a fire goes out; without a ___, a quarrel dies down."},"answers":{"en":["Fool","Gossip","Witness","Judge"]},"correctIndex":1},
-  {"id":"q_b164_038","reference":"Proverbs 26:27","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 26: whoever digs a pit shall do what?"},"answers":{"en":["Fall into it","Find treasure in it","Be praised by all","Plant a vineyard"]},"correctIndex":0},
-  {"id":"q_b164_039","reference":"Proverbs 27:2","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 27: 'Let another man praise you, and not your own ___.'"},"answers":{"en":["Father","Brother","Servant","Mouth"]},"correctIndex":3},
-  {"id":"q_b164_040","reference":"Proverbs 27:19","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 27: as water reflects a face, so what reflects the man?"},"answers":{"en":["A man's eyes","A man's words","A man's heart","A man's house"]},"correctIndex":2},
-  {"id":"q_b164_041","reference":"Proverbs 27:23","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 27: 'Know well the state of your ___.'"},"answers":{"en":["Fields","Friends","Flocks","Gold"]},"correctIndex":2},
-  {"id":"q_b164_042","reference":"Proverbs 28:1","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 28: the righteous are as bold as a ___."},"answers":{"en":["Bear","Lion","Eagle","Bull"]},"correctIndex":1},
-  {"id":"q_b164_043","reference":"Proverbs 28:13","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 28: he who conceals his sins doesn't ___."},"answers":{"en":["Prosper","Sleep","Rest","Laugh"]},"correctIndex":0},
-  {"id":"q_b164_044","reference":"Proverbs 29:18","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 29: where there is no ___, the people cast off restraint."},"answers":{"en":["King","Bread","Army","Revelation"]},"correctIndex":3},
-  {"id":"q_b164_045","reference":"Proverbs 29:25","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 29: the fear of man proves to be what?"},"answers":{"en":["A wall","A shield","A burden","A snare"]},"correctIndex":3},
-  {"id":"q_b164_046","reference":"Proverbs 30:7","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 30: how many things did Agur ask of God before he died?"},"answers":{"en":["Three","Seven","Two","One"]},"correctIndex":2},
-  {"id":"q_b164_047","reference":"Proverbs 30:8","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 30: Agur asked God to give him neither poverty nor ___."},"answers":{"en":["Sickness","Riches","Fame","War"]},"correctIndex":1},
-  {"id":"q_b164_048","reference":"Proverbs 30:19","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 30: Agur wonders at the way of a serpent on a ___."},"answers":{"en":["Rock","Tree","Path","Wall"]},"correctIndex":0},
-  {"id":"q_b164_049","reference":"Proverbs 30:25","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 30: the ants are not a strong people, yet they provide their food when?"},"answers":{"en":["In the summer","In the winter","At night","In spring"]},"correctIndex":0},
-  {"id":"q_b164_050","reference":"Proverbs 30:26","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 30: which feeble creatures make their houses in the rocks?"},"answers":{"en":["The ants","The lizards","The locusts","The conies"]},"correctIndex":3},
-  {"id":"q_b164_051","reference":"Proverbs 30:33","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 30: what does the churning of milk produce?"},"answers":{"en":["Cheese","Cream","Butter","Honey"]},"correctIndex":2},
-  {"id":"q_b164_052","reference":"Proverbs 30:17","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 30: the eye that mocks at a father will be picked out by which birds?"},"answers":{"en":["The owls of the desert","The ravens of the valley","The doves of the hills","The storks of the field"]},"correctIndex":1},
-  {"id":"q_b164_053","reference":"Proverbs 31:4","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 31: it is not for kings to drink what?"},"answers":{"en":["Water","Wine","Milk","Oil"]},"correctIndex":1},
-  {"id":"q_b164_054","reference":"Proverbs 31:13","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 31: the worthy woman seeks wool and what, and works eagerly with her hands?"},"answers":{"en":["Flax","Silk","Cotton","Leather"]},"correctIndex":0},
-  {"id":"q_b164_055","reference":"Proverbs 31:15","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 31: the worthy woman rises while it is yet what?"},"answers":{"en":["Noon","Evening","Winter","Night"]},"correctIndex":3},
-  {"id":"q_b164_056","reference":"Proverbs 31:16","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 31: with the fruit of her hands, what does the worthy woman plant?"},"answers":{"en":["An orchard","A garden","A vineyard","An olive grove"]},"correctIndex":2},
-  {"id":"q_b164_057","reference":"Proverbs 31:18","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 31: what of the worthy woman's doesn't go out by night?"},"answers":{"en":["Her bread","Her song","Her lamp","Her smile"]},"correctIndex":2},
-  {"id":"q_b164_058","reference":"Proverbs 31:21","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 31: she is not afraid of the snow, for her household is clothed in what?"},"answers":{"en":["White","Scarlet","Black","Green"]},"correctIndex":1},
-  {"id":"q_b164_059","reference":"Proverbs 31:23","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 31: where is the worthy woman's husband respected?"},"answers":{"en":["In the gates","In the temple","In the market","In the palace"]},"correctIndex":0},
-  {"id":"q_b164_060","reference":"Proverbs 31:26","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 31: 'She opens her mouth with ___.'"},"answers":{"en":["Song","Laughter","Prayer","Wisdom"]},"correctIndex":3},
-  {"id":"q_b164_061","reference":"Proverbs 16:2","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 16: all the ways of a man are clean in his own eyes, but Yahweh weighs what?"},"answers":{"en":["The silver","The words","The years","The motives"]},"correctIndex":3},
-  {"id":"q_b164_062","reference":"Proverbs 16:16","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 16: how much better is it to get wisdom than what?"},"answers":{"en":["Land","Horses","Gold","Fame"]},"correctIndex":2},
-  {"id":"q_b164_063","reference":"Proverbs 17:6","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 17: what are the crown of old men?"},"answers":{"en":["Gold rings","Children's children","Great riches","Many years"]},"correctIndex":1},
-  {"id":"q_b164_064","reference":"Proverbs 18:15","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 18: the ___ of the wise seeks knowledge."},"answers":{"en":["Ear","Eye","Hand","Foot"]},"correctIndex":0},
-  {"id":"q_b164_065","reference":"Proverbs 19:21","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 19: there are many plans in a man's heart, but whose counsel will prevail?"},"answers":{"en":["Yahweh's","The king's","The elders'","His father's"]},"correctIndex":0},
-  {"id":"q_b164_066","reference":"Proverbs 20:12","difficulty":1,"category":"wisdom","text":{"en":"Proverbs 20: Yahweh made both the hearing ear and the seeing what?"},"answers":{"en":["Heart","Mind","Hand","Eye"]},"correctIndex":3},
-  {"id":"q_b164_067","reference":"Proverbs 20:17","difficulty":5,"category":"wisdom","text":{"en":"Proverbs 20: bread gained by deceit is sweet, but afterward the mouth is filled with what?"},"answers":{"en":["Ashes","Sand","Gravel","Thorns"]},"correctIndex":2},
-  {"id":"q_b164_068","reference":"Proverbs 21:23","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 21: whoever guards his mouth and his ___ keeps his soul from troubles."},"answers":{"en":["Heart","Tongue","Eyes","Feet"]},"correctIndex":1},
-  {"id":"q_b164_069","reference":"Proverbs 22:9","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 22: he who has a generous eye will be blessed, for he shares his ___ with the poor."},"answers":{"en":["Land","Food","House","Clothes"]},"correctIndex":1},
-  {"id":"q_b164_070","reference":"Proverbs 23:22","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 23: 'Don't despise your mother when she is ___.'"},"answers":{"en":["Old","Sick","Poor","Angry"]},"correctIndex":0},
-  {"id":"q_b164_071","reference":"Proverbs 24:13","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 24: 'My son, eat honey, for it is good, and the droppings of the ___, which are sweet to your taste.'"},"answers":{"en":["Fig tree","Palm tree","Grapevine","Honeycomb"]},"correctIndex":3},
-  {"id":"q_b164_072","reference":"Proverbs 25:15","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 25: 'A soft tongue breaks the ___.'"},"answers":{"en":["Wall","Rock","Bone","Sword"]},"correctIndex":2},
-  {"id":"q_b164_073","reference":"Proverbs 27:10","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 27: better is a neighbor who is near than a brother who is what?"},"answers":{"en":["Poor","Angry","Distant","Young"]},"correctIndex":2},
-  {"id":"q_b164_074","reference":"Proverbs 28:6","difficulty":4,"category":"wisdom","text":{"en":"Proverbs 28: better is the poor who walks in integrity than one who is what?"},"answers":{"en":["Wise in his own eyes","Perverse, though rich","Strong in battle","Quick to anger"]},"correctIndex":1},
-  {"id":"q_b164_075","reference":"Proverbs 29:11","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 29: a fool vents all of his ___."},"answers":{"en":["Anger","Riches","Secrets","Sorrow"]},"correctIndex":0},
-  {"id":"q_b164_076","reference":"Proverbs 31:25","difficulty":3,"category":"wisdom","text":{"en":"Proverbs 31: the worthy woman is clothed with strength and what?"},"answers":{"en":["Silk","Gold","Fear","Dignity"]},"correctIndex":3}
+  {
+    "id": "q_b164_001",
+    "reference": "Proverbs 16:3",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: 'Commit your ___ to Yahweh, and your plans shall succeed.'"
+    },
+    "answers": {
+      "en": [
+        "Deeds",
+        "Money",
+        "Children",
+        "Fears"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_002",
+    "reference": "Proverbs 16:24",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: pleasant words are like what, sweet to the soul?"
+    },
+    "answers": {
+      "en": [
+        "A song",
+        "A fountain",
+        "A garden",
+        "A honeycomb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_003",
+    "reference": "Proverbs 16:32",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: one who is slow to anger is better than whom?"
+    },
+    "answers": {
+      "en": [
+        "The king",
+        "The rich",
+        "The mighty",
+        "The wise"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_004",
+    "reference": "Proverbs 16:33",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: what is cast into the lap, though every decision is from Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "The net",
+        "The lot",
+        "The seed",
+        "The coin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_005",
+    "reference": "Proverbs 17:1",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 17: a dry morsel with quietness is better than a house full of what with strife?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Feasting",
+        "Children",
+        "Music"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_006",
+    "reference": "Proverbs 17:12",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 17: better to meet which animal robbed of her cubs than a fool in his folly?"
+    },
+    "answers": {
+      "en": [
+        "A bear",
+        "A lioness",
+        "A wolf",
+        "A leopard"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_007",
+    "reference": "Proverbs 17:28",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 17: even a fool, when he keeps silent, is counted as what?"
+    },
+    "answers": {
+      "en": [
+        "Kind",
+        "Brave",
+        "Rich",
+        "Wise"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_008",
+    "reference": "Proverbs 18:13",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 18: he who answers before he ___, that is folly and shame to him."
+    },
+    "answers": {
+      "en": [
+        "Thinks",
+        "Prays",
+        "Hears",
+        "Waits"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_009",
+    "reference": "Proverbs 18:21",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 18: death and life are in the power of the ___."
+    },
+    "answers": {
+      "en": [
+        "Hand",
+        "King",
+        "Tongue",
+        "Sword"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_010",
+    "reference": "Proverbs 18:22",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 18: whoever finds a wife finds what?"
+    },
+    "answers": {
+      "en": [
+        "Great riches",
+        "A good thing",
+        "Much trouble",
+        "A long life"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_011",
+    "reference": "Proverbs 19:17",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 19: he who has pity on the poor lends to whom?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh",
+        "The king",
+        "His neighbor",
+        "The priest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_012",
+    "reference": "Proverbs 19:13",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 19: a wife's quarrels are like what?"
+    },
+    "answers": {
+      "en": [
+        "A roaring lion",
+        "A broken jar",
+        "A thorn in the foot",
+        "A continual dripping"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_013",
+    "reference": "Proverbs 19:24",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 19: the sluggard buries his hand in the ___ and won't even bring it to his mouth."
+    },
+    "answers": {
+      "en": [
+        "Sand",
+        "Pocket",
+        "Bread",
+        "Dish"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_014",
+    "reference": "Proverbs 20:4",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: because of what season will the sluggard not plow?"
+    },
+    "answers": {
+      "en": [
+        "Summer",
+        "Harvest",
+        "Winter",
+        "Spring"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_015",
+    "reference": "Proverbs 20:11",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: even a ___ makes himself known by his doings."
+    },
+    "answers": {
+      "en": [
+        "Fool",
+        "Child",
+        "King",
+        "Stranger"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_016",
+    "reference": "Proverbs 20:13",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: 'Don't love ___, lest you come to poverty.'"
+    },
+    "answers": {
+      "en": [
+        "Sleep",
+        "Wine",
+        "Money",
+        "Feasting"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_017",
+    "reference": "Proverbs 20:29",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: what is the glory of young men?"
+    },
+    "answers": {
+      "en": [
+        "Their strength",
+        "Their beauty",
+        "Their wisdom",
+        "Their riches"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_018",
+    "reference": "Proverbs 21:1",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 21: the king's heart is in Yahweh's hand like what?"
+    },
+    "answers": {
+      "en": [
+        "Clay",
+        "A bird",
+        "A seed",
+        "The watercourses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_019",
+    "reference": "Proverbs 21:19",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 21: it is better to dwell where than with a contentious and fretful woman?"
+    },
+    "answers": {
+      "en": [
+        "In a lions' den",
+        "In a dark cave",
+        "In a desert land",
+        "On a lonely island"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_020",
+    "reference": "Proverbs 21:31",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 21: what is prepared for the day of battle, though victory is with Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "The chariot",
+        "The horse",
+        "The sword",
+        "The shield"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_021",
+    "reference": "Proverbs 22:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 22: the borrower is servant to whom?"
+    },
+    "answers": {
+      "en": [
+        "The king",
+        "The lender",
+        "The judge",
+        "The priest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_022",
+    "reference": "Proverbs 22:13",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 22: the sluggard says, 'There is a ___ outside!'"
+    },
+    "answers": {
+      "en": [
+        "Lion",
+        "Bear",
+        "Thief",
+        "Storm"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_023",
+    "reference": "Proverbs 22:28",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 22: 'Don't move the ancient ___ which your fathers have set up.'"
+    },
+    "answers": {
+      "en": [
+        "Altar",
+        "Pillar",
+        "Well",
+        "Boundary stone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_024",
+    "reference": "Proverbs 22:29",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 22: a man skillful in his work will serve whom?"
+    },
+    "answers": {
+      "en": [
+        "Fools",
+        "Merchants",
+        "Kings",
+        "Priests"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_025",
+    "reference": "Proverbs 23:5",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 23: riches sprout wings and fly away like what?"
+    },
+    "answers": {
+      "en": [
+        "A dove",
+        "A sparrow",
+        "An eagle",
+        "A locust"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_026",
+    "reference": "Proverbs 23:32",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 23: in the end, wine bites like a ___."
+    },
+    "answers": {
+      "en": [
+        "Dog",
+        "Snake",
+        "Lion",
+        "Wolf"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_027",
+    "reference": "Proverbs 24:16",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 24: a righteous man falls how many times and rises up again?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_028",
+    "reference": "Proverbs 24:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 24: 'Don't rejoice when your ___ falls.'"
+    },
+    "answers": {
+      "en": [
+        "Friend",
+        "Brother",
+        "King",
+        "Enemy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_029",
+    "reference": "Proverbs 24:31",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 24: the sluggard's field was all grown over with what?"
+    },
+    "answers": {
+      "en": [
+        "Barley",
+        "Grapevines",
+        "Flowers",
+        "Thorns"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_030",
+    "reference": "Proverbs 25:14",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 25: one who boasts of gifts he doesn't give is like clouds and wind without what?"
+    },
+    "answers": {
+      "en": [
+        "Thunder",
+        "Light",
+        "Rain",
+        "Snow"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_031",
+    "reference": "Proverbs 25:16",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 25: 'Have you found ___? Eat as much as is sufficient for you.'"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Honey",
+        "Wine",
+        "Figs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_032",
+    "reference": "Proverbs 25:25",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 25: like cold water to a thirsty soul, so is what?"
+    },
+    "answers": {
+      "en": [
+        "Good news from a far country",
+        "A kind word at night",
+        "Rain on dry fields",
+        "A friend at the door"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_033",
+    "reference": "Proverbs 25:28",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 25: a man without self-control is like a city that is broken down and without what?"
+    },
+    "answers": {
+      "en": [
+        "Walls",
+        "A king",
+        "Water",
+        "Bread"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_034",
+    "reference": "Proverbs 26:3",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 26: a whip is for the horse, a bridle for the donkey, and a rod for what?"
+    },
+    "answers": {
+      "en": [
+        "The back of thieves",
+        "The back of servants",
+        "The back of oxen",
+        "The back of fools"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_035",
+    "reference": "Proverbs 26:14",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 26: as a door turns on its hinges, so does whom on his bed?"
+    },
+    "answers": {
+      "en": [
+        "The fool",
+        "The sick man",
+        "The sluggard",
+        "The old man"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_036",
+    "reference": "Proverbs 26:17",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 26: meddling in someone else's quarrel is like grabbing which animal by the ears?"
+    },
+    "answers": {
+      "en": [
+        "A donkey",
+        "A dog",
+        "A goat",
+        "A lion"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_037",
+    "reference": "Proverbs 26:20",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 26: for lack of wood a fire goes out; without a ___, a quarrel dies down."
+    },
+    "answers": {
+      "en": [
+        "Fool",
+        "Gossip",
+        "Witness",
+        "Judge"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_038",
+    "reference": "Proverbs 26:27",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 26: whoever digs a pit shall do what?"
+    },
+    "answers": {
+      "en": [
+        "Fall into it",
+        "Find treasure in it",
+        "Be praised by all",
+        "Plant a vineyard"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_039",
+    "reference": "Proverbs 27:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 27: 'Let another man praise you, and not your own ___.'"
+    },
+    "answers": {
+      "en": [
+        "Father",
+        "Brother",
+        "Servant",
+        "Mouth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_040",
+    "reference": "Proverbs 27:19",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 27: as water reflects a face, so what reflects the man?"
+    },
+    "answers": {
+      "en": [
+        "A man's eyes",
+        "A man's words",
+        "A man's heart",
+        "A man's house"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_041",
+    "reference": "Proverbs 27:23",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 27: 'Know well the state of your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Fields",
+        "Friends",
+        "Flocks",
+        "Gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_042",
+    "reference": "Proverbs 28:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 28: the righteous are as bold as a ___."
+    },
+    "answers": {
+      "en": [
+        "Bear",
+        "Lion",
+        "Eagle",
+        "Bull"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_043",
+    "reference": "Proverbs 28:13",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 28: he who conceals his sins doesn't ___."
+    },
+    "answers": {
+      "en": [
+        "Prosper",
+        "Sleep",
+        "Rest",
+        "Laugh"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_044",
+    "reference": "Proverbs 29:18",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 29: where there is no ___, the people cast off restraint."
+    },
+    "answers": {
+      "en": [
+        "King",
+        "Bread",
+        "Army",
+        "Revelation"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_045",
+    "reference": "Proverbs 29:25",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 29: the fear of man proves to be what?"
+    },
+    "answers": {
+      "en": [
+        "A wall",
+        "A shield",
+        "A burden",
+        "A snare"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_046",
+    "reference": "Proverbs 30:7",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: how many things did Agur ask of God before he died?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Two",
+        "One"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_047",
+    "reference": "Proverbs 30:8",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: Agur asked God to give him neither poverty nor ___."
+    },
+    "answers": {
+      "en": [
+        "Sickness",
+        "Riches",
+        "Fame",
+        "War"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_048",
+    "reference": "Proverbs 30:19",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: Agur wonders at the way of a serpent on a ___."
+    },
+    "answers": {
+      "en": [
+        "Rock",
+        "Tree",
+        "Path",
+        "Wall"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_049",
+    "reference": "Proverbs 30:25",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: the ants are not a strong people, yet they provide their food when?"
+    },
+    "answers": {
+      "en": [
+        "In the summer",
+        "In the winter",
+        "At night",
+        "In spring"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_050",
+    "reference": "Proverbs 30:26",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: which feeble creatures make their houses in the rocks?"
+    },
+    "answers": {
+      "en": [
+        "The ants",
+        "The lizards",
+        "The locusts",
+        "The conies"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_051",
+    "reference": "Proverbs 30:33",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: what does the churning of milk produce?"
+    },
+    "answers": {
+      "en": [
+        "Cheese",
+        "Cream",
+        "Butter",
+        "Honey"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_052",
+    "reference": "Proverbs 30:17",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 30: the eye that mocks at a father will be picked out by which birds?"
+    },
+    "answers": {
+      "en": [
+        "The owls of the desert",
+        "The ravens of the valley",
+        "The doves of the hills",
+        "The storks of the field"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_053",
+    "reference": "Proverbs 31:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: it is not for kings to drink what?"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Wine",
+        "Milk",
+        "Oil"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_054",
+    "reference": "Proverbs 31:13",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: the worthy woman seeks wool and what, and works eagerly with her hands?"
+    },
+    "answers": {
+      "en": [
+        "Flax",
+        "Silk",
+        "Cotton",
+        "Leather"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_055",
+    "reference": "Proverbs 31:15",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: the worthy woman rises while it is yet what?"
+    },
+    "answers": {
+      "en": [
+        "Noon",
+        "Evening",
+        "Winter",
+        "Night"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_056",
+    "reference": "Proverbs 31:16",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: with the fruit of her hands, what does the worthy woman plant?"
+    },
+    "answers": {
+      "en": [
+        "An orchard",
+        "A garden",
+        "A vineyard",
+        "An olive grove"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_057",
+    "reference": "Proverbs 31:18",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: what of the worthy woman's doesn't go out by night?"
+    },
+    "answers": {
+      "en": [
+        "Her bread",
+        "Her song",
+        "Her lamp",
+        "Her smile"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_058",
+    "reference": "Proverbs 31:21",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: she is not afraid of the snow, for her household is clothed in what?"
+    },
+    "answers": {
+      "en": [
+        "White",
+        "Scarlet",
+        "Black",
+        "Green"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_059",
+    "reference": "Proverbs 31:23",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: where is the worthy woman's husband respected?"
+    },
+    "answers": {
+      "en": [
+        "In the gates",
+        "In the temple",
+        "In the market",
+        "In the palace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_060",
+    "reference": "Proverbs 31:26",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: 'She opens her mouth with ___.'"
+    },
+    "answers": {
+      "en": [
+        "Song",
+        "Laughter",
+        "Prayer",
+        "Wisdom"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_061",
+    "reference": "Proverbs 16:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: all the ways of a man are clean in his own eyes, but Yahweh weighs what?"
+    },
+    "answers": {
+      "en": [
+        "The silver",
+        "The words",
+        "The years",
+        "The motives"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_062",
+    "reference": "Proverbs 16:16",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 16: how much better is it to get wisdom than what?"
+    },
+    "answers": {
+      "en": [
+        "Land",
+        "Horses",
+        "Gold",
+        "Fame"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_063",
+    "reference": "Proverbs 17:6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 17: what are the crown of old men?"
+    },
+    "answers": {
+      "en": [
+        "Gold rings",
+        "Children's children",
+        "Great riches",
+        "Many years"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_064",
+    "reference": "Proverbs 18:15",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 18: the ___ of the wise seeks knowledge."
+    },
+    "answers": {
+      "en": [
+        "Ear",
+        "Eye",
+        "Hand",
+        "Foot"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_065",
+    "reference": "Proverbs 19:21",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 19: there are many plans in a man's heart, but whose counsel will prevail?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh's",
+        "The king's",
+        "The elders'",
+        "His father's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_066",
+    "reference": "Proverbs 20:12",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: Yahweh made both the hearing ear and the seeing what?"
+    },
+    "answers": {
+      "en": [
+        "Heart",
+        "Mind",
+        "Hand",
+        "Eye"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_067",
+    "reference": "Proverbs 20:17",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 20: bread gained by deceit is sweet, but afterward the mouth is filled with what?"
+    },
+    "answers": {
+      "en": [
+        "Ashes",
+        "Sand",
+        "Gravel",
+        "Thorns"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_068",
+    "reference": "Proverbs 21:23",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 21: whoever guards his mouth and his ___ keeps his soul from troubles."
+    },
+    "answers": {
+      "en": [
+        "Heart",
+        "Tongue",
+        "Eyes",
+        "Feet"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_069",
+    "reference": "Proverbs 22:9",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 22: he who has a generous eye will be blessed, for he shares his ___ with the poor."
+    },
+    "answers": {
+      "en": [
+        "Land",
+        "Food",
+        "House",
+        "Clothes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_070",
+    "reference": "Proverbs 23:22",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 23: 'Don't despise your mother when she is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Old",
+        "Sick",
+        "Poor",
+        "Angry"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_071",
+    "reference": "Proverbs 24:13",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 24: 'My son, eat honey, for it is good, and the droppings of the ___, which are sweet to your taste.'"
+    },
+    "answers": {
+      "en": [
+        "Fig tree",
+        "Palm tree",
+        "Grapevine",
+        "Honeycomb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b164_072",
+    "reference": "Proverbs 25:15",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 25: 'A soft tongue breaks the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Wall",
+        "Rock",
+        "Bone",
+        "Sword"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_073",
+    "reference": "Proverbs 27:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 27: better is a neighbor who is near than a brother who is what?"
+    },
+    "answers": {
+      "en": [
+        "Poor",
+        "Angry",
+        "Distant",
+        "Young"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b164_074",
+    "reference": "Proverbs 28:6",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 28: better is the poor who walks in integrity than one who is what?"
+    },
+    "answers": {
+      "en": [
+        "Wise in his own eyes",
+        "Perverse, though rich",
+        "Strong in battle",
+        "Quick to anger"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b164_075",
+    "reference": "Proverbs 29:11",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 29: a fool vents all of his ___."
+    },
+    "answers": {
+      "en": [
+        "Anger",
+        "Riches",
+        "Secrets",
+        "Sorrow"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b164_076",
+    "reference": "Proverbs 31:25",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 31: the worthy woman is clothed with strength and what?"
+    },
+    "answers": {
+      "en": [
+        "Silk",
+        "Gold",
+        "Fear",
+        "Dignity"
+      ]
+    },
+    "correctIndex": 3
+  }
 ]

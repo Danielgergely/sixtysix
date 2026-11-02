@@ -4,7 +4,7 @@ import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring } from '../../motion'
 import { useSpiesStore } from '../../spies/spiesStore'
-import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wordSize, wrappedWordSize } from '../../spies/util'
+import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wrappedWordSize } from '../../spies/util'
 import { useLocale, useT } from '../../i18n'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
@@ -95,7 +95,7 @@ export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
               {shown ? (
                 <motion.span key="face" className="ts-card-face" initial={{ rotateY: 90 }} animate={{ rotateY: 0 }} transition={spring.bouncy}>
                   <span className="ts-card-icon">{iconFor(state, shown)}</span>
-                  <span className="ts-card-word small" style={{ fontSize: wordSize(cardWord(c, locale), large ? 17 : 9, large ? 140 : 58) }}>
+                  <span className="ts-card-word small" style={fitStyle(large ? 17 : 9, cardWord(c, locale))}>
                     {cardWord(c, locale)}
                   </span>
                 </motion.span>
@@ -214,13 +214,39 @@ export function Rules() {
   )
 }
 
+/**
+ * A card word's size: `base` px, or smaller so the word fits the card's real width
+ * (.ts-card-face is a size container, see spies.css), so "Hannah" never clips to "HANNA".
+ * A hyphenated word (soft hyphens) only needs its longest piece plus the hyphen to fit.
+ */
+function fitStyle(base: number, word: string): React.CSSProperties {
+  const pieces = word.split('\u00ad')
+  const em = pieces.length > 1 ? Math.max(...pieces.map((p) => wordEm(p + '-'))) : wordEm(word)
+  return { '--base': `${base}px`, '--em': em.toFixed(3) } as React.CSSProperties
+}
+
+/** The word's width in em in the card font (measured once per word; ~0.8em a letter before the font loads). */
+const ems = new Map<string, number>()
+let ctx: CanvasRenderingContext2D | null | undefined
+function wordEm(word: string): number {
+  const hit = ems.get(word)
+  if (hit) return hit
+  if (ctx === undefined) ctx = typeof document !== 'undefined' ? document.createElement('canvas').getContext('2d') : null
+  const loaded = typeof document !== 'undefined' && document.fonts?.check('800 16px Cinzel')
+  if (!ctx || !loaded) return Math.max(1, word.length) * 0.8
+  ctx.font = "800 100px 'Cinzel', serif"
+  const em = Math.max(0.5, ctx.measureText(word).width / 100) * 1.04
+  ems.set(word, em)
+  return em
+}
+
 /** A face-down card's word: one line, or two hyphenated lines when one would be too small to read. */
 function CardWord({ word, large }: { word: string; large: boolean }) {
   const base = large ? 24 : 13
   const width = large ? 140 : 60
   const wrapped = wrappedWordSize(word, base, width)
   return (
-    <span className={`ts-card-word ${wrapped ? 'wrap' : ''}`} style={{ fontSize: wrapped ?? wordSize(word, base, width) }}>
+    <span className={`ts-card-word ${wrapped ? 'wrap' : ''}`} style={fitStyle(base, wrapped ? softHyphens(word) : word)}>
       {wrapped ? softHyphens(word) : word}
     </span>
   )

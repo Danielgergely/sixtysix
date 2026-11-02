@@ -8,6 +8,11 @@ export default {
     name: 'Wolf in the Flock',
     desc: 'Everyone gets a secret Bible word — except the wolf. Give clues, bluff, and catch the wolf before it guesses the word!',
   },
+  mission: {
+    tag: 'New · 2–3 players · 15–25 min',
+    name: 'Mission',
+    desc: 'Judah, Israel and Aram: claim the land region by region, win duels with Bible questions and besiege the capitals!',
+  },
   spies: {
     tag: 'New · 2–12 players · 20 min',
     name: 'Twelve Spies',

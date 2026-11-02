@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { RoomConfig } from '@sixtysix/shared'
 import { tServer, useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
 import { useGameStore } from '../../game/store'
 import { useArenaStore } from '../../arena/arenaStore'
 import { LookButton } from '../../looks/LookPicker'
@@ -36,7 +37,7 @@ export function ArenaMenuScreen() {
           ←
         </button>
         <h2 className="topbar-heading">{t('arena.menu.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="arena" />
       </header>
 
       <div className="arena-menu-body">

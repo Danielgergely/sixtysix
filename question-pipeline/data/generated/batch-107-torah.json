@@ -1,45 +1,776 @@
 [
-  {"id":"q_b107_001","reference":"Numbers 15:38","difficulty":3,"category":"torah","text":{"en":"What did Israelites put on the fringes at the borders of their garments?"},"answers":{"en":["A golden bell","A red thread","A silver ring","A cord of blue"]},"correctIndex":3},
-  {"id":"q_b107_002","reference":"Numbers 16:2","difficulty":4,"category":"torah","text":{"en":"How many princes of the congregation rose up with Korah against Moses?"},"answers":{"en":["70","12","250","400"]},"correctIndex":2},
-  {"id":"q_b107_003","reference":"Numbers 16:31","difficulty":2,"category":"torah","text":{"en":"What happened as Moses finished speaking to Korah's company?"},"answers":{"en":["Fire fell from heaven","The ground split apart","A great flood came","Lightning struck the tent"]},"correctIndex":1},
-  {"id":"q_b107_004","reference":"Numbers 16:35","difficulty":3,"category":"torah","text":{"en":"What happened to the 250 men offering incense?"},"answers":{"en":["Fire from Yahweh devoured them","The earth swallowed them","They fled to Egypt","They became leprous"]},"correctIndex":0},
-  {"id":"q_b107_005","reference":"Numbers 16:38","difficulty":5,"category":"torah","text":{"en":"What were the censers of the 250 rebels made into?"},"answers":{"en":["Plates covering the altar","Trumpets","Bells","A bronze serpent"]},"correctIndex":0},
-  {"id":"q_b107_006","reference":"Numbers 16:48","difficulty":3,"category":"torah","text":{"en":"Where did Aaron stand with his censer until the plague stopped?"},"answers":{"en":["On the altar","Between the dead and the living","At the camp gate","On a hill"]},"correctIndex":1},
-  {"id":"q_b107_007","reference":"Numbers 16:49","difficulty":5,"category":"torah","text":{"en":"How many died in the plague after Korah's rebellion, besides those who died with Korah?"},"answers":{"en":["Twenty-four thousand","Three thousand","Fourteen thousand seven hundred","Two hundred fifty"]},"correctIndex":2},
-  {"id":"q_b107_008","reference":"Numbers 17:3","difficulty":3,"category":"torah","text":{"en":"On which tribe's rod was Aaron's name written?"},"answers":{"en":["Judah's","Ephraim's","Reuben's","Levi's"]},"correctIndex":3},
-  {"id":"q_b107_009","reference":"Numbers 18:21","difficulty":3,"category":"torah","text":{"en":"What did God give the Levites as their inheritance for their service?"},"answers":{"en":["A large territory","The spoils of war","All the tithe in Israel","The king's land"]},"correctIndex":2},
-  {"id":"q_b107_010","reference":"Numbers 19:2","difficulty":2,"category":"torah","text":{"en":"What kind of animal, never yoked, was used for the water of cleansing?"},"answers":{"en":["A white ram","A black goat","A young donkey","A red heifer"]},"correctIndex":3},
-  {"id":"q_b107_011","reference":"Numbers 20:8","difficulty":1,"category":"torah","text":{"en":"At Meribah, what did God tell Moses to do so the rock would give water?"},"answers":{"en":["Speak to the rock","Strike the rock","Pour oil on it","Dig beside it"]},"correctIndex":0},
-  {"id":"q_b107_012","reference":"Numbers 20:12","difficulty":2,"category":"torah","text":{"en":"Because they did not believe God at Meribah, what would Moses and Aaron not do?"},"answers":{"en":["Offer sacrifices again","Bring the people into the land","See the sea again","Speak to Pharaoh"]},"correctIndex":1},
-  {"id":"q_b107_013","reference":"Numbers 20:21","difficulty":2,"category":"torah","text":{"en":"Which nation refused to let Israel pass through its border?"},"answers":{"en":["Moab","Edom","Midian","Ammon"]},"correctIndex":1},
-  {"id":"q_b107_014","reference":"Numbers 20:26","difficulty":3,"category":"torah","text":{"en":"Before Aaron died, on whom were his priestly garments put?"},"answers":{"en":["Moses","Joshua","Phinehas","Eleazar his son"]},"correctIndex":3},
-  {"id":"q_b107_015","reference":"Numbers 21:6","difficulty":1,"category":"torah","text":{"en":"What did Yahweh send among the people when they spoke against God and Moses?"},"answers":{"en":["Fiery serpents","Locusts","Lions","Hornets"]},"correctIndex":0},
-  {"id":"q_b107_016","reference":"Numbers 21:17","difficulty":4,"category":"torah","text":{"en":"At Beer, what did Israel sing?"},"answers":{"en":["\"The horse and his rider\"","\"Holy, holy, holy\"","\"Spring up, well!\"","\"Arise, shine!\""]},"correctIndex":2},
-  {"id":"q_b107_017","reference":"Numbers 21:33","difficulty":3,"category":"torah","text":{"en":"Which king of Bashan came out to fight Israel at Edrei?"},"answers":{"en":["Og","Sihon","Balak","Arad"]},"correctIndex":0},
-  {"id":"q_b107_018","reference":"Numbers 22:5","difficulty":5,"category":"torah","text":{"en":"Balaam the son of Beor lived at which place by the River?"},"answers":{"en":["Haran","Ur","Pethor","Damascus"]},"correctIndex":2},
-  {"id":"q_b107_019","reference":"Numbers 22:12","difficulty":2,"category":"torah","text":{"en":"Why did God tell Balaam not to curse Israel?"},"answers":{"en":["They were too strong","They were blessed","Balak was lying","It was the Sabbath"]},"correctIndex":1},
-  {"id":"q_b107_020","reference":"Numbers 22:29","difficulty":2,"category":"torah","text":{"en":"What did Balaam wish he had in his hand when his donkey spoke?"},"answers":{"en":["A rod","A stone","A whip","A sword"]},"correctIndex":3},
-  {"id":"q_b107_021","reference":"Numbers 22:32","difficulty":2,"category":"torah","text":{"en":"How many times had Balaam struck his donkey?"},"answers":{"en":["Two","Three","Seven","Once"]},"correctIndex":1},
-  {"id":"q_b107_022","reference":"Numbers 23:19","difficulty":2,"category":"torah","text":{"en":"Complete Balaam's words: \"God is not a man, that he should ___.\""},"answers":{"en":["lie","sleep","grow old","forget"]},"correctIndex":0},
-  {"id":"q_b107_023","reference":"Numbers 24:10","difficulty":3,"category":"torah","text":{"en":"How many times did Balaam bless Israel instead of cursing them, angering Balak?"},"answers":{"en":["Two","Seven","Four","Three"]},"correctIndex":3},
-  {"id":"q_b107_024","reference":"Numbers 24:17","difficulty":2,"category":"torah","text":{"en":"Complete Balaam's prophecy: \"A ___ will come out of Jacob.\""},"answers":{"en":["lion","king","star","light"]},"correctIndex":2},
-  {"id":"q_b107_025","reference":"Numbers 25:9","difficulty":4,"category":"torah","text":{"en":"How many died in the plague at Peor?"},"answers":{"en":["14,700","3,000","24,000","70,000"]},"correctIndex":2},
-  {"id":"q_b107_026","reference":"Numbers 26:51","difficulty":5,"category":"torah","text":{"en":"How many men were numbered in the second census on the plains of Moab?"},"answers":{"en":["601,730","603,550","600,000","22,000"]},"correctIndex":0},
-  {"id":"q_b107_027","reference":"Numbers 26:59","difficulty":2,"category":"torah","text":{"en":"Who was the sister of Aaron and Moses?"},"answers":{"en":["Elisheba","Zipporah","Jochebed","Miriam"]},"correctIndex":3},
-  {"id":"q_b107_028","reference":"Numbers 26:65","difficulty":1,"category":"torah","text":{"en":"At the second census, which two men were the only ones left from the first count?"},"answers":{"en":["Moses and Aaron","Caleb and Joshua","Eleazar and Ithamar","Korah and Dathan"]},"correctIndex":1},
-  {"id":"q_b107_029","reference":"Numbers 27:1","difficulty":4,"category":"torah","text":{"en":"Mahlah, Noah, Hoglah, Milcah and Tirzah were the daughters of whom?"},"answers":{"en":["Caleb","Jair","Gilead","Zelophehad"]},"correctIndex":3},
-  {"id":"q_b107_030","reference":"Numbers 27:1","difficulty":5,"category":"torah","text":{"en":"Zelophehad's daughters were Mahlah, Noah, Hoglah, Milcah and who?"},"answers":{"en":["Tirzah","Miriam","Dinah","Tamar"]},"correctIndex":0},
-  {"id":"q_b107_031","reference":"Numbers 27:18","difficulty":1,"category":"torah","text":{"en":"Whom did God tell Moses to lay his hand on, \"a man in whom is the Spirit\"?"},"answers":{"en":["Caleb","Joshua","Eleazar","Phinehas"]},"correctIndex":1},
-  {"id":"q_b107_032","reference":"Numbers 28:9","difficulty":5,"category":"torah","text":{"en":"How many male lambs were offered on the Sabbath day?"},"answers":{"en":["One","Seven","Two","Twelve"]},"correctIndex":2},
-  {"id":"q_b107_033","reference":"Numbers 30:2","difficulty":3,"category":"torah","text":{"en":"When a man makes a vow to Yahweh, what must he not do?"},"answers":{"en":["Tell anyone","Eat bread","Leave the camp","Break his word"]},"correctIndex":3},
-  {"id":"q_b107_034","reference":"Numbers 31:6","difficulty":4,"category":"torah","text":{"en":"How many men from every tribe did Moses send to war against Midian?"},"answers":{"en":["One hundred","Twelve","One thousand","Ten thousand"]},"correctIndex":2},
-  {"id":"q_b107_035","reference":"Numbers 31:6","difficulty":4,"category":"torah","text":{"en":"Which priest went with the army against Midian, with the holy vessels and trumpets?"},"answers":{"en":["Eleazar","Phinehas","Aaron","Ithamar"]},"correctIndex":1},
-  {"id":"q_b107_036","reference":"Numbers 31:16","difficulty":4,"category":"torah","text":{"en":"Through whose counsel did the Midianite women lead Israel to sin at Peor?"},"answers":{"en":["Balaam's","Balak's","Korah's","Zimri's"]},"correctIndex":0},
-  {"id":"q_b107_037","reference":"Numbers 32:33","difficulty":3,"category":"torah","text":{"en":"Which tribes received the kingdoms of Sihon and Og east of the Jordan?"},"answers":{"en":["Gad, Reuben and half of Manasseh","Judah and Benjamin","Dan and Naphtali","Levi and Simeon"]},"correctIndex":0},
-  {"id":"q_b107_038","reference":"Numbers 33:2","difficulty":4,"category":"torah","text":{"en":"At Yahweh's command, what did Moses write down?"},"answers":{"en":["The names of all the people","Israel's journeys stage by stage","A song about Pharaoh","A letter to Edom"]},"correctIndex":1},
-  {"id":"q_b107_039","reference":"Numbers 33:38","difficulty":5,"category":"torah","text":{"en":"In which year after leaving Egypt did Aaron die on Mount Hor?"},"answers":{"en":["The thirtieth","The twentieth","The fortieth","The second"]},"correctIndex":2},
-  {"id":"q_b107_040","reference":"Numbers 35:11","difficulty":3,"category":"torah","text":{"en":"Who could flee to a city of refuge?"},"answers":{"en":["A runaway slave","Any thief","A foreign king","One who killed someone unwittingly"]},"correctIndex":3},
-  {"id":"q_b107_041","reference":"Numbers 35:25","difficulty":4,"category":"torah","text":{"en":"Until whose death did a manslayer stay in his city of refuge?"},"answers":{"en":["The king's","His victim's father's","The high priest's","Moses'"]},"correctIndex":2},
-  {"id":"q_b107_042","reference":"Numbers 35:30","difficulty":3,"category":"torah","text":{"en":"Could a murderer be put to death on the word of one witness?"},"answers":{"en":["Yes, if he was a priest","Yes, always","Only on the Sabbath","No, there had to be more than one"]},"correctIndex":3},
-  {"id":"q_b107_043","reference":"Numbers 36:6","difficulty":4,"category":"torah","text":{"en":"Whom were Zelophehad's daughters allowed to marry?"},"answers":{"en":["Men of their father's tribe","Only Levites","Anyone from Egypt","Only princes"]},"correctIndex":0}
+  {
+    "id": "q_b107_001",
+    "reference": "Numbers 15:38",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did Israelites put on the fringes at the borders of their garments?"
+    },
+    "answers": {
+      "en": [
+        "A golden bell",
+        "A red thread",
+        "A silver ring",
+        "A cord of blue"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_002",
+    "reference": "Numbers 16:2",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many princes of the congregation rose up with Korah against Moses?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "12",
+        "250",
+        "400"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_003",
+    "reference": "Numbers 16:31",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What happened as Moses finished speaking to Korah's company?"
+    },
+    "answers": {
+      "en": [
+        "Fire fell from heaven",
+        "The ground split apart",
+        "A great flood came",
+        "Lightning struck the tent"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_004",
+    "reference": "Numbers 16:35",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What happened to the 250 men offering incense?"
+    },
+    "answers": {
+      "en": [
+        "Fire from Yahweh devoured them",
+        "The earth swallowed them",
+        "They fled to Egypt",
+        "They became leprous"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_005",
+    "reference": "Numbers 16:38",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What were the censers of the 250 rebels made into?"
+    },
+    "answers": {
+      "en": [
+        "Plates covering the altar",
+        "Trumpets",
+        "Bells",
+        "A bronze serpent"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_006",
+    "reference": "Numbers 16:48",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Where did Aaron stand with his censer until the plague stopped?"
+    },
+    "answers": {
+      "en": [
+        "On the altar",
+        "Between the dead and the living",
+        "At the camp gate",
+        "On a hill"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_007",
+    "reference": "Numbers 16:49",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many died in the plague after Korah's rebellion, besides those who died with Korah?"
+    },
+    "answers": {
+      "en": [
+        "Twenty-four thousand",
+        "Three thousand",
+        "Fourteen thousand seven hundred",
+        "Two hundred fifty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_008",
+    "reference": "Numbers 17:3",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "On which tribe's rod was Aaron's name written?"
+    },
+    "answers": {
+      "en": [
+        "Judah's",
+        "Ephraim's",
+        "Reuben's",
+        "Levi's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_009",
+    "reference": "Numbers 18:21",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did God give the Levites as their inheritance for their service?"
+    },
+    "answers": {
+      "en": [
+        "A large territory",
+        "The spoils of war",
+        "All the tithe in Israel",
+        "The king's land"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_010",
+    "reference": "Numbers 19:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What kind of animal, never yoked, was used for the water of cleansing?"
+    },
+    "answers": {
+      "en": [
+        "A white ram",
+        "A black goat",
+        "A young donkey",
+        "A red heifer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_011",
+    "reference": "Numbers 20:8",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "At Meribah, what did God tell Moses to do so the rock would give water?"
+    },
+    "answers": {
+      "en": [
+        "Speak to the rock",
+        "Strike the rock",
+        "Pour oil on it",
+        "Dig beside it"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_012",
+    "reference": "Numbers 20:12",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Because they did not believe God at Meribah, what would Moses and Aaron not do?"
+    },
+    "answers": {
+      "en": [
+        "Offer sacrifices again",
+        "Bring the people into the land",
+        "See the sea again",
+        "Speak to Pharaoh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_013",
+    "reference": "Numbers 20:21",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which nation refused to let Israel pass through its border?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Edom",
+        "Midian",
+        "Ammon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_014",
+    "reference": "Numbers 20:26",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Before Aaron died, on whom were his priestly garments put?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Joshua",
+        "Phinehas",
+        "Eleazar his son"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_015",
+    "reference": "Numbers 21:6",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did Yahweh send among the people when they spoke against God and Moses?"
+    },
+    "answers": {
+      "en": [
+        "Fiery serpents",
+        "Locusts",
+        "Lions",
+        "Hornets"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_016",
+    "reference": "Numbers 21:17",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "At Beer, what did Israel sing?"
+    },
+    "answers": {
+      "en": [
+        "\"The horse and his rider\"",
+        "\"Holy, holy, holy\"",
+        "\"Spring up, well!\"",
+        "\"Arise, shine!\""
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_017",
+    "reference": "Numbers 21:33",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which king of Bashan came out to fight Israel at Edrei?"
+    },
+    "answers": {
+      "en": [
+        "Og",
+        "Sihon",
+        "Balak",
+        "Arad"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_018",
+    "reference": "Numbers 22:5",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Balaam the son of Beor lived at which place by the River?"
+    },
+    "answers": {
+      "en": [
+        "Haran",
+        "Ur",
+        "Pethor",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_019",
+    "reference": "Numbers 22:12",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Why did God tell Balaam not to curse Israel?"
+    },
+    "answers": {
+      "en": [
+        "They were too strong",
+        "They were blessed",
+        "Balak was lying",
+        "It was the Sabbath"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_020",
+    "reference": "Numbers 22:29",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Balaam wish he had in his hand when his donkey spoke?"
+    },
+    "answers": {
+      "en": [
+        "A rod",
+        "A stone",
+        "A whip",
+        "A sword"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_021",
+    "reference": "Numbers 22:32",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many times had Balaam struck his donkey?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Seven",
+        "Once"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_022",
+    "reference": "Numbers 23:19",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Complete Balaam's words: \"God is not a man, that he should ___.\""
+    },
+    "answers": {
+      "en": [
+        "lie",
+        "sleep",
+        "grow old",
+        "forget"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_023",
+    "reference": "Numbers 24:10",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many times did Balaam bless Israel instead of cursing them, angering Balak?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Four",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_024",
+    "reference": "Numbers 24:17",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Complete Balaam's prophecy: \"A ___ will come out of Jacob.\""
+    },
+    "answers": {
+      "en": [
+        "lion",
+        "king",
+        "star",
+        "light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_025",
+    "reference": "Numbers 25:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many died in the plague at Peor?"
+    },
+    "answers": {
+      "en": [
+        "14,700",
+        "3,000",
+        "24,000",
+        "70,000"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_026",
+    "reference": "Numbers 26:51",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many men were numbered in the second census on the plains of Moab?"
+    },
+    "answers": {
+      "en": [
+        "601,730",
+        "603,550",
+        "600,000",
+        "22,000"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_027",
+    "reference": "Numbers 26:59",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Who was the sister of Aaron and Moses?"
+    },
+    "answers": {
+      "en": [
+        "Elisheba",
+        "Zipporah",
+        "Jochebed",
+        "Miriam"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_028",
+    "reference": "Numbers 26:65",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "At the second census, which two men were the only ones left from the first count?"
+    },
+    "answers": {
+      "en": [
+        "Moses and Aaron",
+        "Caleb and Joshua",
+        "Eleazar and Ithamar",
+        "Korah and Dathan"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_029",
+    "reference": "Numbers 27:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Mahlah, Noah, Hoglah, Milcah and Tirzah were the daughters of whom?"
+    },
+    "answers": {
+      "en": [
+        "Caleb",
+        "Jair",
+        "Gilead",
+        "Zelophehad"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_030",
+    "reference": "Numbers 27:1",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Zelophehad's daughters were Mahlah, Noah, Hoglah, Milcah and who?"
+    },
+    "answers": {
+      "en": [
+        "Tirzah",
+        "Miriam",
+        "Dinah",
+        "Tamar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_031",
+    "reference": "Numbers 27:18",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Whom did God tell Moses to lay his hand on, \"a man in whom is the Spirit\"?"
+    },
+    "answers": {
+      "en": [
+        "Caleb",
+        "Joshua",
+        "Eleazar",
+        "Phinehas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_032",
+    "reference": "Numbers 28:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many male lambs were offered on the Sabbath day?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Seven",
+        "Two",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_033",
+    "reference": "Numbers 30:2",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "When a man makes a vow to Yahweh, what must he not do?"
+    },
+    "answers": {
+      "en": [
+        "Tell anyone",
+        "Eat bread",
+        "Leave the camp",
+        "Break his word"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_034",
+    "reference": "Numbers 31:6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many men from every tribe did Moses send to war against Midian?"
+    },
+    "answers": {
+      "en": [
+        "One hundred",
+        "Twelve",
+        "One thousand",
+        "Ten thousand"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_035",
+    "reference": "Numbers 31:6",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which priest went with the army against Midian, with the holy vessels and trumpets?"
+    },
+    "answers": {
+      "en": [
+        "Eleazar",
+        "Phinehas",
+        "Aaron",
+        "Ithamar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_036",
+    "reference": "Numbers 31:16",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Through whose counsel did the Midianite women lead Israel to sin at Peor?"
+    },
+    "answers": {
+      "en": [
+        "Balaam's",
+        "Balak's",
+        "Korah's",
+        "Zimri's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_037",
+    "reference": "Numbers 32:33",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which tribes received the kingdoms of Sihon and Og east of the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Gad, Reuben and half of Manasseh",
+        "Judah and Benjamin",
+        "Dan and Naphtali",
+        "Levi and Simeon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b107_038",
+    "reference": "Numbers 33:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "At Yahweh's command, what did Moses write down?"
+    },
+    "answers": {
+      "en": [
+        "The names of all the people",
+        "Israel's journeys stage by stage",
+        "A song about Pharaoh",
+        "A letter to Edom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b107_039",
+    "reference": "Numbers 33:38",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In which year after leaving Egypt did Aaron die on Mount Hor?"
+    },
+    "answers": {
+      "en": [
+        "The thirtieth",
+        "The twentieth",
+        "The fortieth",
+        "The second"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_040",
+    "reference": "Numbers 35:11",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who could flee to a city of refuge?"
+    },
+    "answers": {
+      "en": [
+        "A runaway slave",
+        "Any thief",
+        "A foreign king",
+        "One who killed someone unwittingly"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_041",
+    "reference": "Numbers 35:25",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Until whose death did a manslayer stay in his city of refuge?"
+    },
+    "answers": {
+      "en": [
+        "The king's",
+        "His victim's father's",
+        "The high priest's",
+        "Moses'"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b107_042",
+    "reference": "Numbers 35:30",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Could a murderer be put to death on the word of one witness?"
+    },
+    "answers": {
+      "en": [
+        "Yes, if he was a priest",
+        "Yes, always",
+        "Only on the Sabbath",
+        "No, there had to be more than one"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b107_043",
+    "reference": "Numbers 36:6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Whom were Zelophehad's daughters allowed to marry?"
+    },
+    "answers": {
+      "en": [
+        "Men of their father's tribe",
+        "Only Levites",
+        "Anyone from Egypt",
+        "Only princes"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

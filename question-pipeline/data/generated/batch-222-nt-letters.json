@@ -20,7 +20,7 @@
   {
     "id": "q_b222_002",
     "reference": "Acts 20:7",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "On which day did the disciples at Troas gather to break bread?"
@@ -38,7 +38,7 @@
   {
     "id": "q_b222_003",
     "reference": "Acts 20:17",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "From which port did Paul call the elders of Ephesus to come to him?"
@@ -92,7 +92,7 @@
   {
     "id": "q_b222_006",
     "reference": "Acts 20:38",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What saddened the Ephesian elders most as Paul left them?"
@@ -200,7 +200,7 @@
   {
     "id": "q_b222_012",
     "reference": "Acts 21:38",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "The commander asked if Paul was which man, who led 4,000 Assassins into the wilderness?"
@@ -254,7 +254,7 @@
   {
     "id": "q_b222_015",
     "reference": "Acts 22:25",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Tied up for whipping, Paul asked if it was lawful to scourge whom, uncondemned?"
@@ -272,7 +272,7 @@
   {
     "id": "q_b222_016",
     "reference": "Acts 22:28",
-    "difficulty": 5,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How had the commander obtained his Roman citizenship?"
@@ -308,7 +308,7 @@
   {
     "id": "q_b222_018",
     "reference": "Acts 23:3",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did Paul call the high priest who ordered him struck?"
@@ -326,7 +326,7 @@
   {
     "id": "q_b222_019",
     "reference": "Acts 23:8",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which group says there is no resurrection, nor angel, nor spirit?"
@@ -380,7 +380,7 @@
   {
     "id": "q_b222_022",
     "reference": "Acts 23:24",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "To which governor was Paul sent at Caesarea?"
@@ -452,7 +452,7 @@
   {
     "id": "q_b222_026",
     "reference": "Acts 24:24",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "What was the name of Felix's Jewish wife?"
@@ -506,7 +506,7 @@
   {
     "id": "q_b222_029",
     "reference": "Acts 25:11",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Standing before Festus, Paul said, 'I appeal to ___!'"
@@ -524,7 +524,7 @@
   {
     "id": "q_b222_030",
     "reference": "Acts 25:13",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Who came with King Agrippa to greet Festus at Caesarea?"
@@ -650,7 +650,7 @@
   {
     "id": "q_b222_037",
     "reference": "Acts 27:23",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Who stood by Paul in the night during the storm, saying 'Don't be afraid'?"
@@ -686,7 +686,7 @@
   {
     "id": "q_b222_039",
     "reference": "Acts 27:32",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did the soldiers cut so the sailors couldn't escape?"
@@ -776,7 +776,7 @@
   {
     "id": "q_b222_044",
     "reference": "Acts 28:4",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What did the natives of Malta first think Paul was when the viper hung from his hand?"
@@ -794,7 +794,7 @@
   {
     "id": "q_b222_045",
     "reference": "Acts 28:6",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "When Paul didn't swell up or fall down dead, what did the natives say he was?"
@@ -848,7 +848,7 @@
   {
     "id": "q_b222_048",
     "reference": "Acts 28:11",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How long did Paul's company stay on Malta before setting sail?"
@@ -902,7 +902,7 @@
   {
     "id": "q_b222_051",
     "reference": "Acts 28:30",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How long did Paul live in his own rented house in Rome?"
@@ -920,7 +920,7 @@
   {
     "id": "q_b222_052",
     "reference": "Acts 20:9",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "From which story of the building did Eutychus fall?"
@@ -956,7 +956,7 @@
   {
     "id": "q_b222_054",
     "reference": "Acts 22:3",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "In which city did Paul say he was born?"
@@ -974,7 +974,7 @@
   {
     "id": "q_b222_055",
     "reference": "Acts 26:1",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which king told Paul, 'You may speak for yourself'?"
@@ -1028,7 +1028,7 @@
   {
     "id": "q_b222_058",
     "reference": "Acts 28:16",
-    "difficulty": 5,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "In Rome, Paul was allowed to stay by himself with whom guarding him?"

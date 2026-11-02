@@ -10,6 +10,8 @@ import { STAGGER, popIn, shake, spring } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
 import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
 import { tServer, useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
 import { FlockBoard } from './FlockBoard'
 import { GameReveal, OutReveal, Rules } from './reveal'
 import { RewardChip } from '../shell/RewardChip'
@@ -81,7 +83,7 @@ function FlockTopBar({ state }: { state: FlockState }) {
         {confirm ? '✓' : '✕'}
       </button>
       <h2 className="topbar-heading">{confirm ? t('flock.common.leaveConfirm') : t('flock.title')}</h2>
-      {inGame ? <span className="fl-round-chip">{t('flock.common.lap', { lap: state.lap })}</span> : <span className="topbar-spacer" />}
+      {inGame ? <span className="fl-round-chip">{t('flock.common.lap', { lap: state.lap })}</span> : <InfoButton id="flock" />}
     </header>
   )
 }
@@ -115,6 +117,7 @@ function FlockMenu() {
     }
   }
   const t = useT()
+  useIntro('flock')
 
   return (
     <div className="screen fl emp">
@@ -123,7 +126,7 @@ function FlockMenu() {
           ←
         </button>
         <h2 className="topbar-heading">{t('flock.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="flock" />
       </header>
       <div className="fl-body fl-menu">
         <motion.div className="fl-hero" {...popIn}>

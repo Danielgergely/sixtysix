@@ -36,6 +36,8 @@ export interface AccountProfile {
   rev?: number
   /** Guest progress already brought in (sign-up + sign-in merges), capped once per account. */
   merged?: { coins: number; xp: number }
+  /** Tutorial intros and hints already seen (app/src/tutorial/), so a new device doesn't repeat them. */
+  tutorials?: string[]
 }
 
 export interface Account {

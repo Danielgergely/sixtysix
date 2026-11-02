@@ -265,9 +265,18 @@ function cleanStats(raw: unknown): AccountStats {
   return Object.fromEntries(Object.keys(EMPTY_STATS).map((k) => [k, int(s[k], 1e9)])) as unknown as AccountStats
 }
 
+/** Tutorial ids seen (app/src/tutorial/): short ids like "intro.blitz" or "hint.mission.siege", at most MAX_TUTORIALS. */
+const MAX_TUTORIALS = 120
+const TUTORIAL_ID = /^[a-z][a-zA-Z0-9.:-]{0,47}$/
+export function cleanTutorials(raw: unknown): string[] | null {
+  if (!Array.isArray(raw)) return null
+  return [...new Set(raw.filter((s): s is string => typeof s === 'string' && TUTORIAL_ID.test(s)))].slice(0, MAX_TUTORIALS)
+}
+
 /** Starting profile from the device's guest progress (sign-up). */
 export function cleanProfile(raw: unknown): AccountProfile {
   const p = (raw ?? {}) as Record<string, unknown>
+  const tutorials = cleanTutorials(p.tutorials)
   return {
     name: cleanName(p.name),
     avatar: wearableLook(p.avatar, []), // a new account owns no items yet
@@ -275,6 +284,7 @@ export function cleanProfile(raw: unknown): AccountProfile {
     xp: int(p.xp, SIGNUP_MAX_XP),
     stats: cleanStats(p.stats),
     skills: { ...EMPTY_SKILLS }, // the tree is learned on the server only, never uploaded
+    ...(tutorials?.length && { tutorials }),
   }
 }
 
@@ -430,7 +440,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
   app.post('/api/account/sync', (req, reply) => {
     const row = userFromRequest(req)
     if (!row) return reply.code(401).send({ ok: false, error: 'Signed out' })
-    const body = (req.body ?? {}) as { grants?: unknown; name?: unknown; avatar?: unknown }
+    const body = (req.body ?? {}) as { grants?: unknown; name?: unknown; avatar?: unknown; tutorials?: unknown; tutorialsReset?: unknown }
     const account = toAccount(row)
     const grants = (Array.isArray(body.grants) ? body.grants : []).slice(0, MAX_GRANTS_PER_SYNC) as Grant[]
     const seen = db.prepare('INSERT OR IGNORE INTO grants (id, user_id, at, xp, coins) VALUES (?, ?, ?, ?, ?)')
@@ -475,6 +485,13 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     // Rare look items earned by now join the wardrobe; only owned items can be worn (shared/src/looks.ts).
     const wardrobe = settleWardrobe(account.profile)
     if (body.avatar !== undefined) account.profile.avatar = wearableLook(body.avatar, wardrobe)
+    // Tutorials seen: added to the account's list; "Show tips again" (tutorialsReset) replaces it.
+    const tutorials = cleanTutorials(body.tutorials)
+    if (tutorials) {
+      const merged = body.tutorialsReset === true ? tutorials : cleanTutorials([...(account.profile.tutorials ?? []), ...tutorials])!
+      if (merged.length) account.profile.tutorials = merged
+      else delete account.profile.tutorials
+    }
     saveProfile(row.id, account.profile)
     return { ok: true, account, bonus }
   })

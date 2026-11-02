@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { Category, DifficultyPreset, Locale, Question, VerseText } from '@sixtysix/shared'
+import { difficultyRange, type Category, type DifficultyPreset, type Locale, type Question, type VerseText } from '@sixtysix/shared'
 
 // Same compiled bank the app bundles — question-pipeline/ is the single source.
 const bankPath = join(
@@ -47,15 +47,11 @@ export function versesFor(id: string): Partial<Record<Locale, VerseText>> {
 /** A question's reference written the way `locale` does ("1. Mose 2,22"). */
 export const referenceIn = (q: Question, locale: Locale): string => LOCAL_VERSES[locale]?.[q.id]?.ref ?? q.reference
 
-const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = {
-  easy: [1, 2],
-  mixed: [1, 5],
-  hard: [3, 5],
-}
-
 export interface PickOptions {
   categories?: Category[]
   difficulty?: DifficultyPreset
+  /** Mixed only: include level 5. */
+  withImpossible?: boolean
   /** Ids to avoid (recently played by this host); used only while enough remain. */
   exclude?: Set<string>
 }
@@ -70,7 +66,7 @@ function shuffle<T>(xs: T[]): T[] {
 
 /** Random draw within the filters, sorted easy → hard (same ramp as Bible Blitz). */
 export function pickQuestions(count: number, opts: PickOptions = {}): Question[] {
-  const [min, max] = DIFFICULTY_RANGE[opts.difficulty ?? 'mixed']
+  const [min, max] = difficultyRange(opts.difficulty, opts.withImpossible)
   const cats = opts.categories?.length ? new Set(opts.categories) : null
   const eligible = BANK.filter(
     (q) => q.difficulty >= min && q.difficulty <= max && (!cats || cats.has(q.category)) && !outOfPlay.has(q.id),

@@ -1,19 +1,21 @@
 import { motion } from 'motion/react'
-import { CATEGORIES, type Category, type DifficultyPreset } from '@sixtysix/shared'
+import { CATEGORIES, DIFFICULTY_PRESETS, type Category } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { usePracticeStore } from '../../practice/practiceStore'
 import { PARCHMENT } from '../../art/textures'
 import { spring } from '../../motion'
 import { useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
 import { excludedNow, useFlagStore } from '../../flags/flagStore'
 
-const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 
 /** Practice entry: pick books and difficulty, or replay your saved mistakes. */
 export function PracticeSetupScreen() {
   const t = useT()
+  useIntro('practice')
   const goTo = useGameStore((s) => s.goTo)
-  const { categories, difficulty, missed, loading, setCategories, setDifficulty, start } = usePracticeStore()
+  const { categories, difficulty, withImpossible, missed, loading, setCategories, setDifficulty, setWithImpossible, start } = usePracticeStore()
   // Flagged questions are out of play, so they don't count as mistakes to review.
   useFlagStore((s) => s.serverExcluded.length + s.mine.length)
   const out = excludedNow()
@@ -28,7 +30,7 @@ export function PracticeSetupScreen() {
           ←
         </button>
         <h2>{t('practice.title')}</h2>
-        <span className="pr-top-spacer" />
+        <InfoButton id="practice" variant="plain" className="pr-back" />
       </header>
 
       <motion.div className="pr-sheet" style={{ backgroundImage: PARCHMENT }} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.gentle}>
@@ -47,13 +49,19 @@ export function PracticeSetupScreen() {
         </div>
 
         <div className="pr-label">{t('practice.difficulty')}</div>
-        <div className="pr-chips three">
-          {DIFFICULTIES.map((d) => (
+        <div className="pr-chips levels">
+          {DIFFICULTY_PRESETS.map((d) => (
             <button key={d} className={`pr-chip ${difficulty === d ? 'on' : ''}`} onClick={() => setDifficulty(d)}>
               {t(`practice.levels.${d}`)}
             </button>
           ))}
         </div>
+        {difficulty === 'mixed' && (
+          <label className="opt-check">
+            <input type="checkbox" checked={withImpossible} onChange={(e) => setWithImpossible(e.target.checked)} />
+            <span>{t('practice.withImpossible')}</span>
+          </label>
+        )}
 
         <button className="pr-go" disabled={loading} onClick={() => void start()}>
           {loading ? t('practice.loading') : t('practice.begin')}

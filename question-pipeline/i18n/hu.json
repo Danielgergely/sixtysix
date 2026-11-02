@@ -274,8 +274,8 @@
     "answers": [
       "Lábán",
       "Jetró",
-      "Hóbáb",
-      "Reúél"
+      "Betúél",
+      "Náhór"
     ]
   },
   "q_b01_032": {
@@ -767,7 +767,7 @@
   "q_b03_006": {
     "text": "„Bízzál az ÚRban teljes ___!”",
     "answers": [
-      "Elmédből",
+      "Tudásodból",
       "Erődből",
       "Lelkedből",
       "Szívedből"
@@ -858,8 +858,8 @@
     "text": "Minél sokkal értékesebb a derék asszony?",
     "answers": [
       "Az aranynál",
-      "A gyöngyöknél",
-      "A rubinoknál",
+      "Az elefántcsontnál",
+      "Az igazgyöngyöknél",
       "Az ezüstnél"
     ]
   },
@@ -867,8 +867,8 @@
     "text": "„A ___ előtt kevélység jár, a bukás előtt gőg.”",
     "answers": [
       "Szégyen",
+      "Bánat",
       "Romlás",
-      "Pusztulás",
       "Ítélet"
     ]
   },
@@ -956,7 +956,7 @@
   "q_b03_027": {
     "text": "Minek nevezi magát a Prédikátor könyvének szerzője?",
     "answers": [
-      "Izráel tanítója",
+      "Izráel írnoka",
       "Prédikátor",
       "A Bölcs",
       "A Szolga"
@@ -1037,10 +1037,10 @@
   "q_b03_036": {
     "text": "„Csalóka a báj, és ___ a szépség.”",
     "answers": [
-      "Tünékeny",
+      "Korona",
       "Hiábavaló",
       "Csapda",
-      "Múló"
+      "Kincs"
     ]
   },
   "q_b03_037": {
@@ -2484,7 +2484,7 @@
     ]
   },
   "q_b07_037": {
-    "text": "Hányszor ütött rá Mózes a botjával a sziklára Meribánál?",
+    "text": "Hányszor ütött rá Mózes a botjával a sziklára a kádési Meribánál?",
     "answers": [
       "Kétszer",
       "Egyszer",
@@ -3180,7 +3180,7 @@
     "text": "Mi volt Józsué neve, mielőtt Mózes átnevezte?",
     "answers": [
       "Hóbáb",
-      "Hóseás",
+      "Húr",
       "Hecrón",
       "Hósea"
     ]
@@ -6689,8 +6689,8 @@
   "q_b19_014": {
     "text": "„Legyenek kedvesek előtted szám szavai és szívem ___!”",
     "answers": [
+      "Indulatai",
       "Gondolatai",
-      "Elmélkedése",
       "Vágyai",
       "Szándékai"
     ]
@@ -7643,10 +7643,10 @@
   "q_b21_039": {
     "text": "A Példabeszédek 30 négy méltóságteljes járású lényt sorol fel: az oroszlánt, a bakkecskét, a királyt és…?",
     "answers": [
-      "A lovat",
+      "A tevét",
       "A sast",
       "A szarvasbikát",
-      "Az agarat"
+      "A lovat"
     ]
   },
   "q_b21_040": {
@@ -12125,7 +12125,7 @@
   "q_b33_032": {
     "text": "Egészítsd ki: „Nincs többé zsidó, sem ___… mert ti mindnyájan egy vagytok Krisztus Jézusban.”",
     "answers": [
-      "Pogány",
+      "Egyiptomi",
       "Görög",
       "Római",
       "Samáriai"
@@ -13889,7 +13889,7 @@
   "q_b200_036": {
     "text": "Nem múlik el a törvényből egy ióta vagy egy mi sem?",
     "answers": [
-      "Vesszőcske",
+      "Pontocska",
       "Szó",
       "Tekercs",
       "Lap"
@@ -15773,7 +15773,7 @@
       "A samaritánusokéra",
       "A filiszteusokéra",
       "Az idumeaiakéra",
-      "A gadarénusokéra"
+      "A gadaraiakéra"
     ]
   },
   "q_b202_021": {
@@ -17163,7 +17163,7 @@
     ]
   },
   "q_b203_087": {
-    "text": "Mit írjon a sáfár szerint az, aki száz véka búzával tartozott?",
+    "text": "Mit írjon a sáfár szerint az, aki száz mérő búzával tartozott?",
     "answers": [
       "Nyolcvanat",
       "Ötvenet",
@@ -17662,7 +17662,7 @@
     "answers": [
       "Mennydörgést",
       "Halászt",
-      "Pétert",
+      "Kősziklát (Pétert)",
       "Szeretettet"
     ]
   },
@@ -18632,7 +18632,7 @@
   "q_b205_036": {
     "text": "Jánosnál ki vitte ki a keresztet a Koponya-helyre?",
     "answers": [
-      "Cirénei Simon",
+      "Arimátiai József",
       "Maga Jézus",
       "A katonák",
       "János"
@@ -19714,7 +19714,7 @@
     "answers": [
       "A segítség köve",
       "Az ÚR a béke",
-      "Tanú köztünk",
+      "Bizonyság közöttünk",
       "A béke oltára"
     ]
   },
@@ -20144,7 +20144,7 @@
   "q_b122_032": {
     "text": "Mivel takarta be Jáél Siserát a sátrában?",
     "answers": [
-      "Köpennyel",
+      "Szalmával",
       "Juhbőrrel",
       "Sátorfüggönnyel",
       "Takaróval"
@@ -20596,7 +20596,7 @@
     "answers": [
       "Kemóst",
       "Dágónt",
-      "Moloket",
+      "Asérát",
       "Baalt"
     ]
   },
@@ -22172,7 +22172,7 @@
       "Magas és erős",
       "Sápadt és sovány",
       "Szakállas és öreg",
-      "Vörös hajú és szép"
+      "Pirospozsgás és szép"
     ]
   },
   "q_b126_029": {
@@ -22239,7 +22239,7 @@
     ]
   },
   "q_b126_036": {
-    "text": "Hány fia volt Isainak?",
+    "text": "Az 1Sámuel 17 szerint hány fia volt Isainak?",
     "answers": [
       "Hét",
       "Tíz",
@@ -26064,12 +26064,12 @@
     ]
   },
   "q_b143_011": {
-    "text": "Elizeus minek nevezte az ablakon kilőtt nyilat: az ÚR nyila, a… mié?",
+    "text": "Minek nevezte Elizeus az ablakon kilőtt nyilat? „Az ÚR … nyila.”",
     "answers": [
-      "Az ítéleté",
-      "A győzelemé",
-      "A békéé",
-      "A tűzé"
+      "Ítéletének",
+      "Győzelmének",
+      "Békéjének",
+      "Tüzének"
     ]
   },
   "q_b143_012": {
@@ -26226,7 +26226,7 @@
     ]
   },
   "q_b143_029": {
-    "text": "Hová telepítette Asszíria királya a Babilonból és Kútból hozott népet?",
+    "text": "Hová telepítette Asszíria királya a Babilonból és Kútából hozott népet?",
     "answers": [
       "Jeruzsálembe",
       "Samária városaiba",
@@ -26306,24 +26306,6 @@
       "Eltitkolta a nép elől"
     ]
   },
-  "q_b143_038": {
-    "text": "Melyik isten templomában ölték meg Szanhéribet a fiai?",
-    "answers": [
-      "Niszrókéban",
-      "Dágónéban",
-      "Mardukéban",
-      "Baaléban"
-    ]
-  },
-  "q_b143_039": {
-    "text": "Melyik fia lett a király Szanhérib helyett?",
-    "answers": [
-      "Salmanasszár",
-      "Tiglat-Pileszer",
-      "Meródak",
-      "Észar-Haddón"
-    ]
-  },
   "q_b143_040": {
     "text": "Melyik király betegedett halálosan, és kapta az üzenetet, hogy rendezze el a házát?",
     "answers": [
@@ -26340,24 +26322,6 @@
       "15",
       "7",
       "20"
-    ]
-  },
-  "q_b143_042": {
-    "text": "Mit tetetett Ézsaiás Ezékiás fekélyére?",
-    "answers": [
-      "Olajat és bort",
-      "Sót",
-      "Mézet",
-      "Fügepogácsát"
-    ]
-  },
-  "q_b143_043": {
-    "text": "Babilon melyik királya küldött levelet és ajándékot, amikor Ezékiás beteg volt?",
-    "answers": [
-      "Beródak-Baladán",
-      "Nabukodonozor",
-      "Evil-Meródak",
-      "Bélsaccar"
     ]
   },
   "q_b143_044": {
@@ -27729,12 +27693,12 @@
     ]
   },
   "q_b146_031": {
-    "text": "Ezékiás Asszíria királyáról ezt mondta: „Vele csak testi…” mi van?",
+    "text": "Ezékiás szerint mire támaszkodik Asszíria királya?",
     "answers": [
-      "Kar",
-      "Vas",
-      "Bronz",
-      "Kő"
+      "Csak testi erőre",
+      "Vasra",
+      "Bronzra",
+      "Kőre"
     ]
   },
   "q_b146_032": {
@@ -27806,7 +27770,7 @@
       "A felső városban",
       "A Hal-kapunál",
       "A király kertjében",
-      "Az újvárosban"
+      "A második városrészben"
     ]
   },
   "q_b146_040": {
@@ -29907,7 +29871,7 @@
     ]
   },
   "q_b221_019": {
-    "text": "Heródes király melyik személyes szolgáját nyerték meg Tírusz és Szidón lakói?",
+    "text": "Heródes király melyik kamarását nyerték meg Tírusz és Szidón lakói?",
     "answers": [
       "Erasztoszt",
       "Blasztoszt",
@@ -30123,7 +30087,7 @@
     ]
   },
   "q_b221_043": {
-    "text": "Melyik város volt római colonia és Makedónia azon kerületének első városa?",
+    "text": "Melyik város volt Makedónia azon részének első (római) gyarmatvárosa?",
     "answers": [
       "Thesszalonika",
       "Korinthus",
@@ -30802,7 +30766,7 @@
     "answers": [
       "Aranysas",
       "Hajnalcsillag",
-      "Dioszkuroszok (Ikrek)",
+      "Kásztor és Pollux (Ikrek)",
       "Nagy Hal"
     ]
   },
@@ -30829,7 +30793,7 @@
     "answers": [
       "Hét Kútig",
       "Ikerkapuig",
-      "Három Fogadóig",
+      "Tres Tabernaeig (Három Fogadóig)",
       "Ó-hídig"
     ]
   },
@@ -31045,7 +31009,7 @@
     "answers": [
       "Gazdagságot",
       "Bölcsességet",
-      "Kipróbáltságot",
+      "Próbatételt",
       "Büszkeséget"
     ]
   },
@@ -31466,7 +31430,7 @@
   "q_b224_013": {
     "text": "Pál azt írja, hogy a mi ___, a Krisztus, megáldoztatott.",
     "answers": [
-      "páskabárányunk",
+      "húsvéti bárányunk",
       "papunk",
       "pásztorunk",
       "templomunk"
@@ -31613,7 +31577,7 @@
       "nyugszik",
       "alszik",
       "kérkedik",
-      "múlik"
+      "fogy"
     ]
   },
   "q_b224_030": {
@@ -31665,7 +31629,7 @@
     "text": "Pál szerint Krisztus legutoljára neki is megjelent, mintegy milyen gyermeknek?",
     "answers": [
       "Éjjel születettnek",
-      "Idő előtt születettnek",
+      "Idétlennek (idő előtt születettnek)",
       "Jászolban születettnek",
       "Pusztában születettnek"
     ]
@@ -32368,7 +32332,7 @@
     "answers": [
       "Sónak",
       "Pásztoroknak",
-      "Világosságoknak",
+      "Csillagoknak",
       "Királyoknak"
     ]
   },
@@ -32706,12 +32670,12 @@
     ]
   },
   "q_b227_013": {
-    "text": "A 2Thesszalonika 2 szerint előbb jön a hitehagyás, és megjelenik minek az embere?",
+    "text": "A 2Thesszalonika 2 szerint előbb jön a hitehagyás, és ki jelenik meg?",
     "answers": [
-      "A bűn",
-      "A béke",
-      "A háború",
-      "A hit"
+      "A törvénytipró",
+      "A béke fejedelme",
+      "A hamis próféta",
+      "A hitetlen király"
     ]
   },
   "q_b227_014": {
@@ -32738,7 +32702,7 @@
       "Tolvaj",
       "Vámszedő",
       "Varázsló",
-      "Erőszakoskodó"
+      "Erőszakos"
     ]
   },
   "q_b227_017": {
@@ -32782,7 +32746,7 @@
     "answers": [
       "Kenyerére",
       "Pihenésére",
-      "Jutalmára",
+      "Dicséretére",
       "Bérére"
     ]
   },
@@ -32990,7 +32954,7 @@
       "A gazdagságban",
       "Az erőben",
       "A beszédben",
-      "A türelemben"
+      "Az állhatatosságban"
     ]
   },
   "q_b227_045": {
@@ -33187,7 +33151,7 @@
     "answers": [
       "Királyok",
       "Szolgák",
-      "Jövevények",
+      "Vándorok",
       "Foglyok"
     ]
   },
@@ -34166,7 +34130,7 @@
   "q_b230_040": {
     "text": "Hová gyűjtötték össze a királyokat – mi a hely héber neve?",
     "answers": [
-      "Armageddón",
+      "Harmagedón",
       "Gilgál",
       "Bétel",
       "Siló"
@@ -34223,7 +34187,7 @@
       "Imádságai",
       "Énekei",
       "Könnyei",
-      "Tettei"
+      "Cselekedetei"
     ]
   },
   "q_b230_047": {
@@ -35631,10 +35595,10 @@
     ]
   },
   "q_b182_027": {
-    "text": "Jeremiás 15: mit tett Jeremiás Isten igéivel, amikor rájuk talált?",
+    "text": "Jeremiás 15: mit tett Jeremiás Isten szavaival?",
     "answers": [
       "Elásta őket",
-      "Megette őket",
+      "Élvezte őket",
       "Elégette őket",
       "Eladta őket"
     ]
@@ -36065,7 +36029,7 @@
   "q_b183_029": {
     "text": "Hány embert vigyen magával Ebed-Melek, hogy kihúzzák Jeremiást?",
     "answers": [
-      "Hármat",
+      "Ötöt",
       "Harmincat",
       "Tízet",
       "Tizenkettőt"
@@ -44505,10 +44469,10 @@
     ]
   },
   "q_b160_004": {
-    "text": "2. zsoltár: „Miért ___ a népek, és miért gondolnak hiábavalóságot a nemzetek?”",
+    "text": "2. zsoltár: „Miért ___ a pogányok, és gondolnak hiábavalóságot a népek?”",
     "answers": [
       "Énekelnek",
-      "Zúgolódnak",
+      "Dühösködnek",
       "Alszanak",
       "Gyülekeznek"
     ]
@@ -47408,7 +47372,7 @@
       "Király",
       "Kenyér",
       "Sereg",
-      "Kijelentés"
+      "Mennyei látás"
     ]
   },
   "q_b164_045": {
@@ -48890,7 +48854,7 @@
   "q_b167_019": {
     "text": "Énekek éneke 5: „Én aludtam, de ___ ébren volt.”",
     "answers": [
-      "Lelkem",
+      "Fülem",
       "Szívem",
       "Elmém",
       "Szemem"

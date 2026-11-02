@@ -13,7 +13,7 @@ export function Top({ title, onBack, onMarket }: { title: string; onBack: () => 
       </button>
       <h2 className="topbar-heading">{title}</h2>
       {onMarket ? (
-        <button className="icon-btn" onClick={onMarket} title={t('home.market')}>
+        <button className="icon-btn" onClick={onMarket} title={t('home.market')} data-tour="home-market">
           ⚖️
         </button>
       ) : (
