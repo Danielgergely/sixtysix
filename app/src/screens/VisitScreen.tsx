@@ -5,7 +5,7 @@ import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { useT } from '../i18n'
-import { PlotScene } from '../world/PlotScene'
+import { PlotView } from '../world/PlotView'
 import { Top } from './home/parts'
 import { houseName } from './home/plotText'
 
@@ -56,7 +56,7 @@ export function VisitScreen() {
             </span>
             <span className="vs-go">{t('city.visit.profile')}</span>
           </button>
-          <PlotScene levels={levels} />
+          <PlotView levels={levels} />
           <p className="tab-note">{player.levels ? t('city.visit.drag') : t('city.visit.tent')}</p>
         </>
       )}

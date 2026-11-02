@@ -26,6 +26,9 @@ import { surfaceAt, ux, uz } from './space'
  * each: two draw calls for everybody. They walk the road graph (life/sim.ts),
  * turn to face the way they go as seen from the camera, and are hidden when
  * the camera is far away. Taps are tested on screen (City3D asks `pick`).
+ * My Home (PlotScene3D) uses the same component with its own space (FolkSpace):
+ * the yard's px → units, its ground, no exits, everyone always drawn, and the
+ * carriers' gift signs (bridge.badges) placed over their heads.
  */
 
 /** World px of a figure's height → units: a person stands ~2.2 units, a house ~3.5. */
@@ -33,6 +36,23 @@ const FIG_SCALE = 0.075
 /** Beyond this camera distance nobody is drawn (or simulated on screen). */
 export const FIG_DIST = 150
 const MAX = 64
+
+/** How a scene's walkers (positions in world px) map into 3D. */
+export interface FolkSpace {
+  x: (px: number) => number
+  z: (py: number) => number
+  /** Ground height where they walk (units). */
+  ground: (x: number, z: number) => number
+  /** Units per px of a figure's height. */
+  scale: number
+  /** Beyond this camera distance nobody is drawn. */
+  maxDist: number
+  exits: string[]
+  /** The speech bubble stays this far (px) below the top of the view (clear of the scene's own bar). */
+  bubbleTop: number
+}
+
+const CITY_SPACE: FolkSpace = { x: ux, z: uz, ground: surfaceAt, scale: FIG_SCALE, maxDist: FIG_DIST, exits: EXITS, bubbleTop: 150 }
 
 type Sim3 = Sim & { hy: number; vis: boolean; sx: number; sy: number; sh: number; sw: number }
 
@@ -152,9 +172,10 @@ interface Props {
   roads: Graph
   bridge: Bridge
   still: boolean
+  space?: FolkSpace
 }
 
-export function Townsfolk3D({ actors, roads, bridge, still }: Props) {
+export function Townsfolk3D({ actors, roads, bridge, still, space = CITY_SPACE }: Props) {
   const [atlas, setAtlas] = useState<Atlas | null>(null)
   const figs = useMemo(() => [...new Set(actors.map((a) => a.fig))].sort(), [actors])
   const figKey = figs.join(',')
@@ -167,14 +188,14 @@ export function Townsfolk3D({ actors, roads, bridge, still }: Props) {
       live = false
     }
   }, [figKey])
-  return atlas ? <Figures atlas={atlas} actors={actors} roads={roads} bridge={bridge} still={still} /> : null
+  return atlas ? <Figures atlas={atlas} actors={actors} roads={roads} bridge={bridge} still={still} space={space} /> : null
 }
 
-function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas }) {
+function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas: Atlas; space: FolkSpace }) {
   const sims = useRef(new Map<string, Sim3>())
-  syncSims(sims.current, actors, (a) => ({ ...newSim(a), hy: surfaceAt(ux(a.at.x), uz(a.at.y)), vis: false, sx: 0, sy: 0, sh: 0, sw: 0 }))
-  const world = useRef({ graph: roads, exits: EXITS as string[] })
-  world.current = { graph: roads, exits: EXITS }
+  syncSims(sims.current, actors, (a) => ({ ...newSim(a), hy: space.ground(space.x(a.at.x), space.z(a.at.y)), vis: false, sx: 0, sy: 0, sh: 0, sw: 0 }))
+  const world = useRef({ graph: roads, exits: space.exits })
+  world.current = { graph: roads, exits: space.exits }
   const invalidate = useThree((s) => s.invalidate)
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
@@ -210,6 +231,9 @@ function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas
     const shadowMat = new ShaderMaterial({ uniforms: { uMap: { value: blobTexture() } }, vertexShader: SHADOW_VERT, fragmentShader: SHADOW_FRAG, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 })
     return { geo, mat, shadowGeo, shadowMat, attrs: { aPos, aSize, aRect, aFlip, sPos, sSize } }
   }, [atlas])
+
+  // The atlas has arrived: draw them (the canvas renders on demand).
+  useEffect(() => invalidate(), [geo, invalidate])
 
   useEffect(
     () => () => {
@@ -249,7 +273,7 @@ function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas
     const dt = Math.min(0.1, delta)
     clock.current += dt
     const dist = bridge.controls?.distance ?? 0
-    const show = dist < FIG_DIST
+    const show = dist < space.maxDist
     camera.matrixWorld.extractBasis(right, up, tmp)
     mat.uniforms.uRight.value.copy(right)
     // Upright-ish: lean back with the camera, so figures read at full height from above.
@@ -260,9 +284,9 @@ function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas
     let n = 0
     for (const s of sims.current.values()) {
       if (!still) stepSim(s, dt, world.current)
-      const x = ux(s.x)
-      const z = uz(s.y)
-      const ground = surfaceAt(x, z)
+      const x = space.x(s.x)
+      const z = space.z(s.y)
+      const ground = space.ground(x, z)
       s.hy += (ground - s.hy) * Math.min(1, dt * 8)
       s.vis = false
       if (!show || s.state === 'inside' || n >= MAX) continue
@@ -272,7 +296,7 @@ function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas
       const walking = s.state === 'walk' || s.state === 'run'
       const step = fig.animal ? 0.17 : 0.26
       const useIdle = !walking && r.idle
-      const hgt = s.a.h * FIG_SCALE * (useIdle ? 0.95 : 1)
+      const hgt = s.a.h * space.scale * (useIdle ? 0.95 : 1)
       const wid = hgt * (useIdle ? r.idleAspect! : r.aspect)
       const frame = walking && !still ? Math.floor(clock.current / (s.state === 'run' ? step / 2 : step)) % 2 : 1
       const rect = useIdle ? r.idle! : r.walk[frame]
@@ -308,9 +332,17 @@ function Figures({ atlas, actors, roads, bridge, still }: Props & { atlas: Atlas
         b.el.style.display = ''
         // Kept inside the view, clear of the search bar (the tail may then point a little off).
         const bx = Math.min(size.width - 110, Math.max(110, s.sx))
-        const by = Math.max(150, s.sy - s.sh - 6)
+        const by = Math.max(space.bubbleTop, s.sy - s.sh - 6)
         b.el.style.transform = `translate3d(${bx.toFixed(1)}px, ${by.toFixed(1)}px, 0)`
       } else b.el.style.display = 'none'
+    }
+    // Gift signs over the carriers' heads.
+    for (const [id, el] of bridge.badges) {
+      const s = sims.current.get(id)
+      if (s?.vis) {
+        el.style.display = ''
+        el.style.transform = `translate3d(${s.sx.toFixed(1)}px, ${(s.sy - s.sh - 4).toFixed(1)}px, 0)`
+      } else if (el.style.display !== 'none') el.style.display = 'none'
     }
     // Keep the frames coming while anyone moves on screen.
     if (show && !still) invalidate()

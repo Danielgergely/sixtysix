@@ -3,7 +3,6 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { CameraControls } from '@react-three/drei'
 import {
   AdditiveBlending,
-  Box3,
   BoxGeometry,
   BufferAttribute,
   Color,
@@ -31,7 +30,10 @@ import { LOTS } from '../cityLayout'
 import { townsfolk, type Home } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
+import { configureRig } from './rig'
+import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
+import { HOUSE_YARD } from './models'
 import { C } from './palette'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
 import { groundTexture, terrainGeometry } from './terrain'
@@ -97,6 +99,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const trees = useMemo(() => placeTrees(city.landmarks), [city])
   const treeGeo = useMemo(() => ({ olive: oliveGeometry(), cypress: cypressGeometry() }), [])
   const houseGeo = useMemo(() => houseGeometries(), [])
+  // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
+  const fenceGeo = useMemo(() => lotFenceGeometries(), [])
   const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry() }), [])
   const signMat = useMemo(() => new MeshLambertMaterial({ map: signTexture(forSale) }), [forSale])
   const signFace = useMemo(() => {
@@ -132,6 +136,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   }, [residents])
 
   const houseMeshes = useRef<(InstancedMesh | null)[]>([])
+  const fenceMeshes = useRef<(InstancedMesh | null)[]>([])
   const freeMesh = useRef<InstancedMesh>(null)
   const weedMesh = useRef<InstancedMesh>(null)
   const postMesh = useRef<InstancedMesh>(null)
@@ -140,6 +145,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   const layout = useMemo(() => {
     const perLevel: { n: number; m: Matrix4; c: Color }[][] = houseGeo.map(() => [])
+    const perWall: Matrix4[][] = fenceGeo.map(() => [])
     const free: Matrix4[] = []
     const weeds: { m: Matrix4; c: Color }[] = []
     const signs: Matrix4[] = []
@@ -165,6 +171,13 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const fade = stage >= 2 ? [0.8, 0.78, 0.72] : stage === 1 ? [0.92, 0.91, 0.86] : [1, 1, 1]
       const tint = new Color(k * tr * fade[0], k * tg * fade[1], k * tb * fade[2])
       perLevel[level].push({ n, m: o.matrix.clone(), c: tint })
+      const wall = Math.min(fenceGeo.length, r.wall ?? 0)
+      if (wall > 0) {
+        const k = HOUSE_YARD[level] / 7
+        o.scale.set(k, 1, k)
+        o.updateMatrix()
+        perWall[wall - 1].push(o.matrix.clone())
+      }
       // Weeds: a few tufts at 20 days, a yard full at 40.
       const tufts = stage === 0 ? 0 : stage === 1 ? 5 : 12
       for (let t = 0; t < tufts; t++) {
@@ -183,8 +196,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
         signs.push(new Matrix4().makeTranslation(sx, heightAt(sx, sz), sz))
       }
     })
-    return { perLevel, free, weeds, signs }
-  }, [byLot, houseGeo, me])
+    return { perLevel, perWall, free, weeds, signs }
+  }, [byLot, houseGeo, fenceGeo, me])
 
   // Write the instances.
   useLayoutEffect(() => {
@@ -209,6 +222,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
       mesh.computeBoundingSphere()
     }
+    layout.perWall.forEach((ms, i) => set(fenceMeshes.current[i], ms))
     set(freeMesh.current, layout.free)
     set(
       weedMesh.current,
@@ -327,27 +341,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     if (!c) return
     bridge.controls = c
     bridge.invalidate = invalidate
-    const A = (c.constructor as unknown as { ACTION: Record<string, number> }).ACTION
-    // Phones: one finger pans the map, two pinch (zoom) and drag/twist (turn and tilt). Mouse: left turns, right pans, wheel zooms.
-    c.mouseButtons.left = A.ROTATE as never
-    c.mouseButtons.right = A.TRUCK as never
-    c.mouseButtons.middle = A.DOLLY as never
-    c.mouseButtons.wheel = A.DOLLY as never
-    // TRUCK slides along the ground (camera-controls 3), like dragging a map.
-    c.touches.one = A.TOUCH_TRUCK as never
-    c.touches.two = A.TOUCH_DOLLY_ROTATE as never
-    c.touches.three = A.TOUCH_TRUCK as never
-    c.minDistance = MIN_DIST
-    c.maxDistance = MAX_DIST
-    c.minPolarAngle = 0.12
-    c.maxPolarAngle = 1.18
-    c.dollyToCursor = true
-    c.smoothTime = 0.45
-    c.draggingSmoothTime = 0.1
-    c.azimuthRotateSpeed = 0.8
-    c.polarRotateSpeed = 0.8
-    c.dollySpeed = 0.8
-    c.setBoundary(new Box3(new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)))
+    configureRig(c, { minDist: MIN_DIST, maxDist: MAX_DIST, minPolar: 0.12, maxPolar: 1.18, boundary: [new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)] })
     const [x, z] = start
     const y = surfaceAt(x, z)
     c.setLookAt(x, y + START_DIST * Math.cos(START_POLAR), z + START_DIST * Math.sin(START_POLAR), x, y, z, false)
@@ -463,6 +457,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
             houseMeshes.current[i] = m
           }}
           args={[g as BufferGeometry, statics.plainMat, Math.max(1, LOTS.length)]}
+          count={0}
+          castShadow
+          receiveShadow
+        />
+      ))}
+      {fenceGeo.map((g, i) => (
+        <instancedMesh
+          key={`f${i}`}
+          ref={(m) => {
+            fenceMeshes.current[i] = m
+          }}
+          args={[g, statics.plainMat, Math.max(1, LOTS.length)]}
           count={0}
           castShadow
           receiveShadow

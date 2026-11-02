@@ -35,7 +35,7 @@ const PLACES: Record<Spot, { x: number; y: number; w: number }> = {
   wall: { x: 50, y: 95, w: 17 },
 }
 
-interface Props {
+export interface PlotSceneProps {
   levels: Record<BuildingId, number>
   /** Your own plot: builds, waiting production. Absent when visiting. */
   plot?: PlotState
@@ -47,7 +47,7 @@ interface Props {
   className?: string
 }
 
-export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className }: Props) {
+export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className }: PlotSceneProps) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
   const t = useT()
   return (
@@ -89,7 +89,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, class
   )
 }
 
-function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Spot; index: number } & Omit<Props, 'className' | 'onGift'> & { now: number }) {
+function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Spot; index: number } & Omit<PlotSceneProps, 'className' | 'onGift'> & { now: number }) {
   const wasDragged = useWasDragged()
   const t = useT()
   const place = PLACES[spot]
@@ -144,7 +144,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
 }
 
 /** A spot's name tag, placed just under its sprite (the sprite's foot is 86% down its height, ~0.9 × its width). */
-function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<Props, 'levels' | 'plot' | 'onSelect'>) {
+function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<PlotSceneProps, 'levels' | 'plot' | 'onSelect'>) {
   const wasDragged = useWasDragged()
   const t = useT()
   const place = PLACES[spot]
