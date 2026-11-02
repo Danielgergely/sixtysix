@@ -1,39 +1,668 @@
 [
-  {"id":"q_b108_001","reference":"Deuteronomy 1:28","difficulty":3,"category":"torah","text":{"en":"The fearful spies said Canaan's cities were great and fortified up to where?"},"answers":{"en":["The clouds","The sky","The mountains","The stars"]},"correctIndex":1},
-  {"id":"q_b108_002","reference":"Deuteronomy 1:28","difficulty":4,"category":"torah","text":{"en":"Whose sons did the fearful spies say they had seen in the land?"},"answers":{"en":["The Anakim","The Philistines","The Egyptians","The Midianites"]},"correctIndex":0},
-  {"id":"q_b108_003","reference":"Deuteronomy 2:5","difficulty":3,"category":"torah","text":{"en":"Why was Israel not to fight the descendants of Esau?"},"answers":{"en":["They were too strong","They were allies of Egypt","They had paid tribute","God had given Mount Seir to Esau"]},"correctIndex":3},
-  {"id":"q_b108_004","reference":"Deuteronomy 2:7","difficulty":2,"category":"torah","text":{"en":"During forty years in the wilderness, what did Moses say Israel had lacked?"},"answers":{"en":["Water","Bread","Nothing","Shoes"]},"correctIndex":2},
-  {"id":"q_b108_005","reference":"Deuteronomy 2:14","difficulty":5,"category":"torah","text":{"en":"How many years passed from Kadesh Barnea until Israel crossed the brook Zered?"},"answers":{"en":["Forty","Twelve","Thirty-eight","Seven"]},"correctIndex":2},
-  {"id":"q_b108_006","reference":"Deuteronomy 2:20","difficulty":5,"category":"torah","text":{"en":"What did the Ammonites call the Rephaim who once lived in their land?"},"answers":{"en":["Zamzummim","Emim","Anakim","Horites"]},"correctIndex":0},
-  {"id":"q_b108_007","reference":"Deuteronomy 2:24","difficulty":4,"category":"torah","text":{"en":"Sihon the Amorite was king of which city?"},"answers":{"en":["Bashan","Jericho","Dibon","Heshbon"]},"correctIndex":3},
-  {"id":"q_b108_008","reference":"Deuteronomy 3:11","difficulty":5,"category":"torah","text":{"en":"How long was the iron bedstead of Og, king of Bashan?"},"answers":{"en":["Four cubits","Nine cubits","Twelve cubits","Six cubits"]},"correctIndex":1},
-  {"id":"q_b108_009","reference":"Deuteronomy 3:27","difficulty":4,"category":"torah","text":{"en":"To the top of which mountain did God tell Moses to go up and look at the land?"},"answers":{"en":["Hermon","Sinai","Gerizim","Pisgah"]},"correctIndex":3},
-  {"id":"q_b108_010","reference":"Deuteronomy 4:2","difficulty":3,"category":"torah","text":{"en":"What were Israelites told not to do to God's word?"},"answers":{"en":["Add to it or take away from it","Write it down","Teach it to children","Read it aloud"]},"correctIndex":0},
-  {"id":"q_b108_011","reference":"Deuteronomy 4:24","difficulty":2,"category":"torah","text":{"en":"Complete: \"Yahweh your God is a devouring ___, a jealous God.\""},"answers":{"en":["lion","fire","storm","sword"]},"correctIndex":1},
-  {"id":"q_b108_012","reference":"Deuteronomy 4:41","difficulty":4,"category":"torah","text":{"en":"How many cities of refuge did Moses set apart east of the Jordan?"},"answers":{"en":["Six","Two","Three","Twelve"]},"correctIndex":2},
-  {"id":"q_b108_013","reference":"Deuteronomy 4:43","difficulty":5,"category":"torah","text":{"en":"Which city of refuge was set apart in the wilderness for the Reubenites?"},"answers":{"en":["Golan","Ramoth","Hebron","Bezer"]},"correctIndex":3},
-  {"id":"q_b108_014","reference":"Deuteronomy 4:43","difficulty":5,"category":"torah","text":{"en":"Ramoth in Gilead was set apart as a city of refuge for which tribe?"},"answers":{"en":["Reuben","Manasseh","Gad","Judah"]},"correctIndex":2},
-  {"id":"q_b108_015","reference":"Deuteronomy 5:15","difficulty":4,"category":"torah","text":{"en":"In Deuteronomy 5, Israel kept the Sabbath remembering they had been what in Egypt?"},"answers":{"en":["Kings","Servants","Shepherds","Merchants"]},"correctIndex":1},
-  {"id":"q_b108_016","reference":"Deuteronomy 6:7","difficulty":1,"category":"torah","text":{"en":"To whom were Israelites to teach God's words diligently?"},"answers":{"en":["Their children","Their kings","Their enemies","The Egyptians"]},"correctIndex":0},
-  {"id":"q_b108_017","reference":"Deuteronomy 6:8","difficulty":3,"category":"torah","text":{"en":"Where were God's words to be bound \"for a sign\"?"},"answers":{"en":["On your hand","On your foot","On your belt","On your staff"]},"correctIndex":0},
-  {"id":"q_b108_018","reference":"Deuteronomy 6:16","difficulty":3,"category":"torah","text":{"en":"Israel must not test Yahweh as they tested him where?"},"answers":{"en":["Marah","Massah","Elim","Taberah"]},"correctIndex":1},
-  {"id":"q_b108_019","reference":"Deuteronomy 7:7","difficulty":3,"category":"torah","text":{"en":"Moses said God did not choose Israel for being many. Israel was what?"},"answers":{"en":["The strongest nation","The oldest nation","The fewest of all peoples","The richest people"]},"correctIndex":2},
-  {"id":"q_b108_020","reference":"Deuteronomy 7:9","difficulty":2,"category":"torah","text":{"en":"God keeps covenant with those who love him to how many generations?"},"answers":{"en":["Ten","Forty","Seventy","A thousand"]},"correctIndex":3},
-  {"id":"q_b108_021","reference":"Deuteronomy 8:4","difficulty":3,"category":"torah","text":{"en":"Besides their clothing not growing old, what else did not happen to Israel for forty years?"},"answers":{"en":["Their hair didn't grow","Their tents didn't tear","Their feet didn't swell","Their water didn't run out"]},"correctIndex":2},
-  {"id":"q_b108_022","reference":"Deuteronomy 8:9","difficulty":4,"category":"torah","text":{"en":"In the promised land, what could be dug out of the hills?"},"answers":{"en":["Gold","Salt","Silver","Copper"]},"correctIndex":3},
-  {"id":"q_b108_023","reference":"Deuteronomy 8:15","difficulty":3,"category":"torah","text":{"en":"Besides fiery serpents, what dangerous creatures were in the great wilderness?"},"answers":{"en":["Scorpions","Bears","Wolves","Crocodiles"]},"correctIndex":0},
-  {"id":"q_b108_024","reference":"Deuteronomy 8:18","difficulty":3,"category":"torah","text":{"en":"Moses said to remember God, for he gives you power to get what?"},"answers":{"en":["Wisdom","Wealth","Victory","Children"]},"correctIndex":1},
-  {"id":"q_b108_025","reference":"Deuteronomy 10:5","difficulty":1,"category":"torah","text":{"en":"Where did Moses put the second set of stone tablets?"},"answers":{"en":["Under a tree","In the ark","On the altar","In a cave"]},"correctIndex":1},
-  {"id":"q_b108_026","reference":"Deuteronomy 10:6","difficulty":5,"category":"torah","text":{"en":"According to Deuteronomy 10, at which place did Aaron die and was buried?"},"answers":{"en":["Kadesh","Mount Nebo","Hazeroth","Moserah"]},"correctIndex":3},
-  {"id":"q_b108_027","reference":"Deuteronomy 10:16","difficulty":3,"category":"torah","text":{"en":"Moses told Israel to circumcise the foreskin of what, and be no more stiff-necked?"},"answers":{"en":["Your heart","Your ears","Your eyes","Your lips"]},"correctIndex":0},
-  {"id":"q_b108_028","reference":"Deuteronomy 11:10","difficulty":5,"category":"torah","text":{"en":"How was seed watered in Egypt, unlike in the promised land?"},"answers":{"en":["By rain","By angels","With your foot","With wine"]},"correctIndex":2},
-  {"id":"q_b108_029","reference":"Deuteronomy 11:14","difficulty":4,"category":"torah","text":{"en":"God promised the rain of the land in its season: the former rain and what?"},"answers":{"en":["The latter rain","The winter snow","The morning dew","The river flood"]},"correctIndex":0},
-  {"id":"q_b108_030","reference":"Deuteronomy 11:29","difficulty":3,"category":"torah","text":{"en":"On which mountain was the curse to be set when Israel entered the land?"},"answers":{"en":["Mount Gerizim","Mount Sinai","Mount Ebal","Mount Carmel"]},"correctIndex":2},
-  {"id":"q_b108_031","reference":"Deuteronomy 14:29","difficulty":4,"category":"torah","text":{"en":"Who could eat the tithe stored up every third year?"},"answers":{"en":["Only the priests","Levite, foreigner, fatherless, widow","Only the king","The soldiers"]},"correctIndex":1},
-  {"id":"q_b108_032","reference":"Deuteronomy 15:1","difficulty":3,"category":"torah","text":{"en":"At the end of every seven years, what were the Israelites to do?"},"answers":{"en":["Count the people","Build a new altar","Move the camp","Cancel debts"]},"correctIndex":3},
-  {"id":"q_b108_033","reference":"Deuteronomy 15:11","difficulty":2,"category":"torah","text":{"en":"Moses said who \"will never cease out of the land\"?"},"answers":{"en":["The prophets","The poor","The enemies","The kings"]},"correctIndex":1},
-  {"id":"q_b108_034","reference":"Deuteronomy 15:13","difficulty":4,"category":"torah","text":{"en":"When a Hebrew servant was set free, how must you not let him go?"},"answers":{"en":["Empty","At night","Barefoot","Alone"]},"correctIndex":0},
-  {"id":"q_b108_035","reference":"Deuteronomy 16:1","difficulty":4,"category":"torah","text":{"en":"In which month did God bring Israel out of Egypt by night?"},"answers":{"en":["Adar","Ziv","Elul","Abib"]},"correctIndex":3},
-  {"id":"q_b108_036","reference":"Deuteronomy 16:3","difficulty":4,"category":"torah","text":{"en":"What does Deuteronomy call the unleavened bread of Passover?"},"answers":{"en":["The bread of heaven","The bread of life","The bread of affliction","The bread of peace"]},"correctIndex":2},
-  {"id":"q_b108_037","reference":"Deuteronomy 16:9","difficulty":4,"category":"torah","text":{"en":"How many weeks were counted from the start of the grain harvest to the feast of weeks?"},"answers":{"en":["Three","Ten","Seven","Twelve"]},"correctIndex":2}
+  {
+    "id": "q_b108_001",
+    "reference": "Deuteronomy 1:28",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "The fearful spies said Canaan's cities were great and fortified up to where?"
+    },
+    "answers": {
+      "en": [
+        "The clouds",
+        "The sky",
+        "The mountains",
+        "The stars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_002",
+    "reference": "Deuteronomy 1:28",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Whose sons did the fearful spies say they had seen in the land?"
+    },
+    "answers": {
+      "en": [
+        "The Anakim",
+        "The Philistines",
+        "The Egyptians",
+        "The Midianites"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_003",
+    "reference": "Deuteronomy 2:5",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Why was Israel not to fight the descendants of Esau?"
+    },
+    "answers": {
+      "en": [
+        "They were too strong",
+        "They were allies of Egypt",
+        "They had paid tribute",
+        "God had given Mount Seir to Esau"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_004",
+    "reference": "Deuteronomy 2:7",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "During forty years in the wilderness, what did Moses say Israel had lacked?"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Bread",
+        "Nothing",
+        "Shoes"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_005",
+    "reference": "Deuteronomy 2:14",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years passed from Kadesh Barnea until Israel crossed the brook Zered?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Twelve",
+        "Thirty-eight",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_006",
+    "reference": "Deuteronomy 2:20",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What did the Ammonites call the Rephaim who once lived in their land?"
+    },
+    "answers": {
+      "en": [
+        "Zamzummim",
+        "Emim",
+        "Anakim",
+        "Horites"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_007",
+    "reference": "Deuteronomy 2:24",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Sihon the Amorite was king of which city?"
+    },
+    "answers": {
+      "en": [
+        "Bashan",
+        "Jericho",
+        "Dibon",
+        "Heshbon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_008",
+    "reference": "Deuteronomy 3:11",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How long was the iron bedstead of Og, king of Bashan?"
+    },
+    "answers": {
+      "en": [
+        "Four cubits",
+        "Nine cubits",
+        "Twelve cubits",
+        "Six cubits"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_009",
+    "reference": "Deuteronomy 3:27",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "To the top of which mountain did God tell Moses to go up and look at the land?"
+    },
+    "answers": {
+      "en": [
+        "Hermon",
+        "Sinai",
+        "Gerizim",
+        "Pisgah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_010",
+    "reference": "Deuteronomy 4:2",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What were Israelites told not to do to God's word?"
+    },
+    "answers": {
+      "en": [
+        "Add to it or take away from it",
+        "Write it down",
+        "Teach it to children",
+        "Read it aloud"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_011",
+    "reference": "Deuteronomy 4:24",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Complete: \"Yahweh your God is a devouring ___, a jealous God.\""
+    },
+    "answers": {
+      "en": [
+        "lion",
+        "fire",
+        "storm",
+        "sword"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_012",
+    "reference": "Deuteronomy 4:41",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many cities of refuge did Moses set apart east of the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Six",
+        "Two",
+        "Three",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_013",
+    "reference": "Deuteronomy 4:43",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which city of refuge was set apart in the wilderness for the Reubenites?"
+    },
+    "answers": {
+      "en": [
+        "Golan",
+        "Ramoth",
+        "Hebron",
+        "Bezer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_014",
+    "reference": "Deuteronomy 4:43",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Ramoth in Gilead was set apart as a city of refuge for which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Reuben",
+        "Manasseh",
+        "Gad",
+        "Judah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_015",
+    "reference": "Deuteronomy 5:15",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "In Deuteronomy 5, Israel kept the Sabbath remembering they had been what in Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Servants",
+        "Shepherds",
+        "Merchants"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_016",
+    "reference": "Deuteronomy 6:7",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "To whom were Israelites to teach God's words diligently?"
+    },
+    "answers": {
+      "en": [
+        "Their children",
+        "Their kings",
+        "Their enemies",
+        "The Egyptians"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_017",
+    "reference": "Deuteronomy 6:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Where were God's words to be bound \"for a sign\"?"
+    },
+    "answers": {
+      "en": [
+        "On your hand",
+        "On your foot",
+        "On your belt",
+        "On your staff"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_018",
+    "reference": "Deuteronomy 6:16",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Israel must not test Yahweh as they tested him where?"
+    },
+    "answers": {
+      "en": [
+        "Marah",
+        "Massah",
+        "Elim",
+        "Taberah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_019",
+    "reference": "Deuteronomy 7:7",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Moses said God did not choose Israel for being many. Israel was what?"
+    },
+    "answers": {
+      "en": [
+        "The strongest nation",
+        "The oldest nation",
+        "The fewest of all peoples",
+        "The richest people"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_020",
+    "reference": "Deuteronomy 7:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "God keeps covenant with those who love him to how many generations?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Forty",
+        "Seventy",
+        "A thousand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_021",
+    "reference": "Deuteronomy 8:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Besides their clothing not growing old, what else did not happen to Israel for forty years?"
+    },
+    "answers": {
+      "en": [
+        "Their hair didn't grow",
+        "Their tents didn't tear",
+        "Their feet didn't swell",
+        "Their water didn't run out"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_022",
+    "reference": "Deuteronomy 8:9",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In the promised land, what could be dug out of the hills?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Salt",
+        "Silver",
+        "Copper"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_023",
+    "reference": "Deuteronomy 8:15",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Besides fiery serpents, what dangerous creatures were in the great wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Scorpions",
+        "Bears",
+        "Wolves",
+        "Crocodiles"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_024",
+    "reference": "Deuteronomy 8:18",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Moses said to remember God, for he gives you power to get what?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Wealth",
+        "Victory",
+        "Children"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_025",
+    "reference": "Deuteronomy 10:5",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where did Moses put the second set of stone tablets?"
+    },
+    "answers": {
+      "en": [
+        "Under a tree",
+        "In the ark",
+        "On the altar",
+        "In a cave"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_026",
+    "reference": "Deuteronomy 10:6",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "According to Deuteronomy 10, at which place did Aaron die and was buried?"
+    },
+    "answers": {
+      "en": [
+        "Kadesh",
+        "Mount Nebo",
+        "Hazeroth",
+        "Moserah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_027",
+    "reference": "Deuteronomy 10:16",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Moses told Israel to circumcise the foreskin of what, and be no more stiff-necked?"
+    },
+    "answers": {
+      "en": [
+        "Your heart",
+        "Your ears",
+        "Your eyes",
+        "Your lips"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_028",
+    "reference": "Deuteronomy 11:10",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How was seed watered in Egypt, unlike in the promised land?"
+    },
+    "answers": {
+      "en": [
+        "By rain",
+        "By angels",
+        "With your foot",
+        "With wine"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_029",
+    "reference": "Deuteronomy 11:14",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "God promised the rain of the land in its season: the former rain and what?"
+    },
+    "answers": {
+      "en": [
+        "The latter rain",
+        "The winter snow",
+        "The morning dew",
+        "The river flood"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_030",
+    "reference": "Deuteronomy 11:29",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "On which mountain was the curse to be set when Israel entered the land?"
+    },
+    "answers": {
+      "en": [
+        "Mount Gerizim",
+        "Mount Sinai",
+        "Mount Ebal",
+        "Mount Carmel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_031",
+    "reference": "Deuteronomy 14:29",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Who could eat the tithe stored up every third year?"
+    },
+    "answers": {
+      "en": [
+        "Only the priests",
+        "Levite, foreigner, fatherless, widow",
+        "Only the king",
+        "The soldiers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_032",
+    "reference": "Deuteronomy 15:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "At the end of every seven years, what were the Israelites to do?"
+    },
+    "answers": {
+      "en": [
+        "Count the people",
+        "Build a new altar",
+        "Move the camp",
+        "Cancel debts"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_033",
+    "reference": "Deuteronomy 15:11",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Moses said who \"will never cease out of the land\"?"
+    },
+    "answers": {
+      "en": [
+        "The prophets",
+        "The poor",
+        "The enemies",
+        "The kings"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b108_034",
+    "reference": "Deuteronomy 15:13",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "When a Hebrew servant was set free, how must you not let him go?"
+    },
+    "answers": {
+      "en": [
+        "Empty",
+        "At night",
+        "Barefoot",
+        "Alone"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b108_035",
+    "reference": "Deuteronomy 16:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In which month did God bring Israel out of Egypt by night?"
+    },
+    "answers": {
+      "en": [
+        "Adar",
+        "Ziv",
+        "Elul",
+        "Abib"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b108_036",
+    "reference": "Deuteronomy 16:3",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What does Deuteronomy call the unleavened bread of Passover?"
+    },
+    "answers": {
+      "en": [
+        "The bread of heaven",
+        "The bread of life",
+        "The bread of affliction",
+        "The bread of peace"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b108_037",
+    "reference": "Deuteronomy 16:9",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many weeks were counted from the start of the grain harvest to the feast of weeks?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Ten",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  }
 ]

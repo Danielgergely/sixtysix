@@ -1,122 +1,722 @@
 [
-  { "id": "q_b06_001", "reference": "Romans 6:23", "difficulty": 1, "category": "epistles",
-    "text": { "en": "'The wages of sin is ___, but the free gift of God is eternal life.'" },
-    "answers": { "en": ["Sorrow", "Death", "Judgment", "Darkness"] }, "correctIndex": 1 },
-  { "id": "q_b06_002", "reference": "1 Corinthians 13:13", "difficulty": 1, "category": "epistles",
-    "text": { "en": "Faith, hope, and love — which is the greatest?" },
-    "answers": { "en": ["Faith", "Hope", "Love", "They are equal"] }, "correctIndex": 2 },
-  { "id": "q_b06_003", "reference": "Philippians 4:13", "difficulty": 1, "category": "epistles",
-    "text": { "en": "'I can do all things through ___ who strengthens me.'" },
-    "answers": { "en": ["Christ", "Faith", "Prayer", "Grace"] }, "correctIndex": 0 },
-  { "id": "q_b06_004", "reference": "Galatians 5:22", "difficulty": 1, "category": "epistles",
-    "text": { "en": "The fruit of the Spirit begins with which quality?" },
-    "answers": { "en": ["Joy", "Peace", "Love", "Patience"] }, "correctIndex": 2 },
-  { "id": "q_b06_005", "reference": "Ephesians 2:8", "difficulty": 1, "category": "epistles",
-    "text": { "en": "'For by grace you have been saved through ___.'" },
-    "answers": { "en": ["Works", "Faith", "Baptism", "The law"] }, "correctIndex": 1 },
-  { "id": "q_b06_006", "reference": "Ephesians 6:17", "difficulty": 1, "category": "epistles",
-    "text": { "en": "In the armor of God, what is the sword of the Spirit?" },
-    "answers": { "en": ["Prayer", "Faith", "The word of God", "Salvation"] }, "correctIndex": 2 },
-  { "id": "q_b06_007", "reference": "1 John 4:8", "difficulty": 1, "category": "epistles",
-    "text": { "en": "'He who doesn't love doesn't know God, for God is ___.'" },
-    "answers": { "en": ["Light", "Love", "Spirit", "Truth"] }, "correctIndex": 1 },
-  { "id": "q_b06_008", "reference": "Revelation 13:18", "difficulty": 1, "category": "epistles",
-    "text": { "en": "What is the number of the beast in Revelation?" },
-    "answers": { "en": ["444", "616", "666", "777"] }, "correctIndex": 2 },
-  { "id": "q_b06_009", "reference": "Revelation 1:4", "difficulty": 1, "category": "epistles",
-    "text": { "en": "John wrote Revelation to how many assemblies in Asia?" },
-    "answers": { "en": ["Three", "Seven", "Ten", "Twelve"] }, "correctIndex": 1 },
-  { "id": "q_b06_010", "reference": "1 Corinthians 13:4", "difficulty": 1, "category": "epistles",
-    "text": { "en": "'Love is patient and is ___.'" },
-    "answers": { "en": ["Kind", "Gentle", "Pure", "True"] }, "correctIndex": 0 },
-  { "id": "q_b06_011", "reference": "Romans 1:1", "difficulty": 2, "category": "epistles",
-    "text": { "en": "Who wrote the letter to the Romans?" },
-    "answers": { "en": ["Peter", "Paul", "John", "James"] }, "correctIndex": 1 },
-  { "id": "q_b06_012", "reference": "James 2:26", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'Faith apart from works is ___.'" },
-    "answers": { "en": ["Weak", "Dead", "Empty", "Blind"] }, "correctIndex": 1 },
-  { "id": "q_b06_013", "reference": "1 Timothy 6:10", "difficulty": 2, "category": "epistles",
-    "text": { "en": "What is 'a root of all kinds of evil'?" },
-    "answers": { "en": ["Pride", "Envy", "The love of money", "Anger"] }, "correctIndex": 2 },
-  { "id": "q_b06_014", "reference": "2 Timothy 1:5", "difficulty": 2, "category": "epistles",
-    "text": { "en": "What were the names of Timothy's believing mother and grandmother?" },
-    "answers": { "en": ["Eunice and Lois", "Mary and Anna", "Priscilla and Phoebe", "Lydia and Joanna"] }, "correctIndex": 0 },
-  { "id": "q_b06_015", "reference": "Philemon 1:10", "difficulty": 2, "category": "epistles",
-    "text": { "en": "What was the name of the runaway slave Paul wrote to Philemon about?" },
-    "answers": { "en": ["Tychicus", "Epaphras", "Onesimus", "Archippus"] }, "correctIndex": 2 },
-  { "id": "q_b06_016", "reference": "James 1:22", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'Be ___ of the word, and not only hearers.'" },
-    "answers": { "en": ["Students", "Doers", "Keepers", "Lovers"] }, "correctIndex": 1 },
-  { "id": "q_b06_017", "reference": "Revelation 21:1", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'I saw a new heaven and a new ___.'" },
-    "answers": { "en": ["Earth", "Jerusalem", "Temple", "Creation"] }, "correctIndex": 0 },
-  { "id": "q_b06_018", "reference": "Hebrews 13:8", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'Jesus Christ is the same yesterday, today, and ___.'" },
-    "answers": { "en": ["Always", "Forever", "Tomorrow", "Evermore"] }, "correctIndex": 1 },
-  { "id": "q_b06_019", "reference": "Hebrews 12:1", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'We are surrounded by so great a cloud of ___.'" },
-    "answers": { "en": ["Angels", "Saints", "Witnesses", "Glory"] }, "correctIndex": 2 },
-  { "id": "q_b06_020", "reference": "Revelation 1:9", "difficulty": 2, "category": "epistles",
-    "text": { "en": "On which island was John when he received the Revelation?" },
-    "answers": { "en": ["Crete", "Cyprus", "Patmos", "Malta"] }, "correctIndex": 2 },
-  { "id": "q_b06_021", "reference": "1 Thessalonians 5:17", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'Pray without ___.'" },
-    "answers": { "en": ["Doubting", "Ceasing", "Fear", "Words"] }, "correctIndex": 1 },
-  { "id": "q_b06_022", "reference": "James 4:7", "difficulty": 2, "category": "epistles",
-    "text": { "en": "'Resist the devil, and he will ___ from you.'" },
-    "answers": { "en": ["Hide", "Flee", "Turn", "Fall"] }, "correctIndex": 1 },
-  { "id": "q_b06_023", "reference": "Hebrews 11:1", "difficulty": 3, "category": "epistles",
-    "text": { "en": "'Faith is assurance of things hoped for, ___ of things not seen.'" },
-    "answers": { "en": ["Proof", "Hope", "Sight", "Promise"] }, "correctIndex": 0 },
-  { "id": "q_b06_024", "reference": "Hebrews 7:17", "difficulty": 3, "category": "epistles",
-    "text": { "en": "'You are a priest forever, according to the order of ___.'" },
-    "answers": { "en": ["Aaron", "Levi", "Melchizedek", "Zadok"] }, "correctIndex": 2 },
-  { "id": "q_b06_025", "reference": "Revelation 4:4", "difficulty": 3, "category": "epistles",
-    "text": { "en": "How many elders sit on thrones around God's throne in Revelation?" },
-    "answers": { "en": ["Twelve", "Twenty-four", "Seventy", "One hundred forty-four"] }, "correctIndex": 1 },
-  { "id": "q_b06_026", "reference": "2 Corinthians 12:7", "difficulty": 3, "category": "epistles",
-    "text": { "en": "What did Paul say was given him to keep him from exalting himself?" },
-    "answers": { "en": ["A thorn in the flesh", "A heavy burden", "A weak voice", "Chains"] }, "correctIndex": 0 },
-  { "id": "q_b06_027", "reference": "2 Corinthians 5:8", "difficulty": 3, "category": "epistles",
-    "text": { "en": "Paul: 'willing rather to be absent from the body and to be at home with ___.'" },
-    "answers": { "en": ["The saints", "The Lord", "The Father", "The angels"] }, "correctIndex": 1 },
-  { "id": "q_b06_028", "reference": "Ephesians 6:14", "difficulty": 3, "category": "epistles",
-    "text": { "en": "In the armor of God, what is the breastplate?" },
-    "answers": { "en": ["Faith", "Truth", "Righteousness", "Salvation"] }, "correctIndex": 2 },
-  { "id": "q_b06_029", "reference": "Philippians 2:12", "difficulty": 3, "category": "epistles",
-    "text": { "en": "'Work out your own salvation with fear and ___.'" },
-    "answers": { "en": ["Joy", "Trembling", "Hope", "Diligence"] }, "correctIndex": 1 },
-  { "id": "q_b06_030", "reference": "Revelation 22:13", "difficulty": 3, "category": "epistles",
-    "text": { "en": "'I am the Alpha and the ___, the First and the Last.'" },
-    "answers": { "en": ["Omega", "Origin", "End", "Beta"] }, "correctIndex": 0 },
-  { "id": "q_b06_031", "reference": "Romans 16:16", "difficulty": 3, "category": "epistles",
-    "text": { "en": "'Greet one another with a holy ___.'" },
-    "answers": { "en": ["Embrace", "Kiss", "Blessing", "Hand"] }, "correctIndex": 1 },
-  { "id": "q_b06_032", "reference": "James 3:5-6", "difficulty": 3, "category": "epistles",
-    "text": { "en": "James compares the tongue to a small ___ that sets a great forest ablaze." },
-    "answers": { "en": ["Spark", "Fire", "Coal", "Torch"] }, "correctIndex": 1 },
-  { "id": "q_b06_033", "reference": "Revelation 3:16", "difficulty": 4, "category": "epistles",
-    "text": { "en": "Which church did Jesus rebuke for being lukewarm?" },
-    "answers": { "en": ["Ephesus", "Sardis", "Laodicea", "Smyrna"] }, "correctIndex": 2 },
-  { "id": "q_b06_034", "reference": "2 Timothy 4:10", "difficulty": 4, "category": "epistles",
-    "text": { "en": "Who deserted Paul, 'having loved this present world'?" },
-    "answers": { "en": ["Demas", "Titus", "Crescens", "Tychicus"] }, "correctIndex": 0 },
-  { "id": "q_b06_035", "reference": "Philippians 4:2", "difficulty": 4, "category": "epistles",
-    "text": { "en": "Paul urged Euodia and ___ to agree in the Lord." },
-    "answers": { "en": ["Syntyche", "Phoebe", "Junia", "Apphia"] }, "correctIndex": 0 },
-  { "id": "q_b06_036", "reference": "Jude 1:9", "difficulty": 4, "category": "epistles",
-    "text": { "en": "Which archangel disputed with the devil about the body of Moses?" },
-    "answers": { "en": ["Gabriel", "Michael", "Raphael", "Uriel"] }, "correctIndex": 1 },
-  { "id": "q_b06_037", "reference": "Romans 5:20", "difficulty": 4, "category": "epistles",
-    "text": { "en": "'Where sin abounded, ___ abounded more exceedingly.'" },
-    "answers": { "en": ["Mercy", "Grace", "Love", "Faith"] }, "correctIndex": 1 },
-  { "id": "q_b06_038", "reference": "2 Timothy 4:20", "difficulty": 5, "category": "epistles",
-    "text": { "en": "Whom did Paul leave sick at Miletus?" },
-    "answers": { "en": ["Erastus", "Trophimus", "Carpus", "Eubulus"] }, "correctIndex": 1 },
-  { "id": "q_b06_039", "reference": "3 John 1:1", "difficulty": 5, "category": "epistles",
-    "text": { "en": "To whom is the letter of 3 John addressed?" },
-    "answers": { "en": ["Gaius", "Diotrephes", "Demetrius", "Theophilus"] }, "correctIndex": 0 },
-  { "id": "q_b06_040", "reference": "2 Timothy 4:14", "difficulty": 5, "category": "epistles",
-    "text": { "en": "'Alexander, the ___, did much evil to me,' wrote Paul." },
-    "answers": { "en": ["Coppersmith", "Tentmaker", "Silversmith", "Tax collector"] }, "correctIndex": 0 }
+  {
+    "id": "q_b06_001",
+    "reference": "Romans 6:23",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'The wages of sin is ___, but the free gift of God is eternal life.'"
+    },
+    "answers": {
+      "en": [
+        "Sorrow",
+        "Death",
+        "Judgment",
+        "Darkness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_002",
+    "reference": "1 Corinthians 13:13",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Faith, hope, and love — which is the greatest?"
+    },
+    "answers": {
+      "en": [
+        "Faith",
+        "Hope",
+        "Love",
+        "They are equal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_003",
+    "reference": "Philippians 4:13",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'I can do all things through ___ who strengthens me.'"
+    },
+    "answers": {
+      "en": [
+        "Christ",
+        "Faith",
+        "Prayer",
+        "Grace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_004",
+    "reference": "Galatians 5:22",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "The fruit of the Spirit begins with which quality?"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Peace",
+        "Love",
+        "Patience"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_005",
+    "reference": "Ephesians 2:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'For by grace you have been saved through ___.'"
+    },
+    "answers": {
+      "en": [
+        "Works",
+        "Faith",
+        "Baptism",
+        "The law"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_006",
+    "reference": "Ephesians 6:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, what is the sword of the Spirit?"
+    },
+    "answers": {
+      "en": [
+        "Prayer",
+        "Faith",
+        "The word of God",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_007",
+    "reference": "1 John 4:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'He who doesn't love doesn't know God, for God is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Light",
+        "Love",
+        "Spirit",
+        "Truth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_008",
+    "reference": "Revelation 13:18",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What is the number of the beast in Revelation?"
+    },
+    "answers": {
+      "en": [
+        "444",
+        "616",
+        "666",
+        "777"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_009",
+    "reference": "Revelation 1:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "John wrote Revelation to how many assemblies in Asia?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_010",
+    "reference": "1 Corinthians 13:4",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Love is patient and is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Kind",
+        "Gentle",
+        "Pure",
+        "True"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_011",
+    "reference": "Romans 1:1",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Who wrote the letter to the Romans?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Paul",
+        "John",
+        "James"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_012",
+    "reference": "James 2:26",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Faith apart from works is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Weak",
+        "Dead",
+        "Empty",
+        "Blind"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_013",
+    "reference": "1 Timothy 6:10",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What is 'a root of all kinds of evil'?"
+    },
+    "answers": {
+      "en": [
+        "Pride",
+        "Envy",
+        "The love of money",
+        "Anger"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_014",
+    "reference": "2 Timothy 1:5",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What were the names of Timothy's believing mother and grandmother?"
+    },
+    "answers": {
+      "en": [
+        "Eunice and Lois",
+        "Mary and Anna",
+        "Priscilla and Phoebe",
+        "Lydia and Joanna"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_015",
+    "reference": "Philemon 1:10",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "What was the name of the runaway slave Paul wrote to Philemon about?"
+    },
+    "answers": {
+      "en": [
+        "Tychicus",
+        "Epaphras",
+        "Onesimus",
+        "Archippus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_016",
+    "reference": "James 1:22",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Be ___ of the word, and not only hearers.'"
+    },
+    "answers": {
+      "en": [
+        "Students",
+        "Doers",
+        "Keepers",
+        "Lovers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_017",
+    "reference": "Revelation 21:1",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'I saw a new heaven and a new ___.'"
+    },
+    "answers": {
+      "en": [
+        "Earth",
+        "Jerusalem",
+        "Temple",
+        "Creation"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_018",
+    "reference": "Hebrews 13:8",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'Jesus Christ is the same yesterday, today, and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Always",
+        "Forever",
+        "Tomorrow",
+        "Evermore"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_019",
+    "reference": "Hebrews 12:1",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'We are surrounded by so great a cloud of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Angels",
+        "Saints",
+        "Witnesses",
+        "Glory"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_020",
+    "reference": "Revelation 1:9",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "On which island was John when he received the Revelation?"
+    },
+    "answers": {
+      "en": [
+        "Crete",
+        "Cyprus",
+        "Patmos",
+        "Malta"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_021",
+    "reference": "1 Thessalonians 5:17",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'Pray without ___.'"
+    },
+    "answers": {
+      "en": [
+        "Doubting",
+        "Ceasing",
+        "Fear",
+        "Words"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_022",
+    "reference": "James 4:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Resist the devil, and he will ___ from you.'"
+    },
+    "answers": {
+      "en": [
+        "Hide",
+        "Flee",
+        "Turn",
+        "Fall"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_023",
+    "reference": "Hebrews 11:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'Faith is assurance of things hoped for, ___ of things not seen.'"
+    },
+    "answers": {
+      "en": [
+        "Proof",
+        "Hope",
+        "Sight",
+        "Promise"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_024",
+    "reference": "Hebrews 7:17",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "'You are a priest forever, according to the order of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Levi",
+        "Melchizedek",
+        "Zadok"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_025",
+    "reference": "Revelation 4:4",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "How many elders sit on thrones around God's throne in Revelation?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Twenty-four",
+        "Seventy",
+        "One hundred forty-four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_026",
+    "reference": "2 Corinthians 12:7",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "What did Paul say was given him to keep him from exalting himself?"
+    },
+    "answers": {
+      "en": [
+        "A thorn in the flesh",
+        "A heavy burden",
+        "A weak voice",
+        "Chains"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_027",
+    "reference": "2 Corinthians 5:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Paul: 'willing rather to be absent from the body and to be at home with ___.'"
+    },
+    "answers": {
+      "en": [
+        "The saints",
+        "The Lord",
+        "The Father",
+        "The angels"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_028",
+    "reference": "Ephesians 6:14",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "In the armor of God, what is the breastplate?"
+    },
+    "answers": {
+      "en": [
+        "Faith",
+        "Truth",
+        "Righteousness",
+        "Salvation"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_029",
+    "reference": "Philippians 2:12",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Work out your own salvation with fear and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Trembling",
+        "Hope",
+        "Diligence"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_030",
+    "reference": "Revelation 22:13",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "'I am the Alpha and the ___, the First and the Last.'"
+    },
+    "answers": {
+      "en": [
+        "Omega",
+        "Origin",
+        "End",
+        "Beta"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_031",
+    "reference": "Romans 16:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Greet one another with a holy ___.'"
+    },
+    "answers": {
+      "en": [
+        "Embrace",
+        "Kiss",
+        "Blessing",
+        "Hand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_032",
+    "reference": "James 3:5-6",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "James compares the tongue to a small ___ that sets a great forest ablaze."
+    },
+    "answers": {
+      "en": [
+        "Spark",
+        "Fire",
+        "Coal",
+        "Torch"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_033",
+    "reference": "Revelation 3:16",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which church did Jesus rebuke for being lukewarm?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Sardis",
+        "Laodicea",
+        "Smyrna"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b06_034",
+    "reference": "2 Timothy 4:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Who deserted Paul, 'having loved this present world'?"
+    },
+    "answers": {
+      "en": [
+        "Demas",
+        "Titus",
+        "Crescens",
+        "Tychicus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_035",
+    "reference": "Philippians 4:2",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul urged Euodia and ___ to agree in the Lord."
+    },
+    "answers": {
+      "en": [
+        "Syntyche",
+        "Phoebe",
+        "Junia",
+        "Apphia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_036",
+    "reference": "Jude 1:9",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Which archangel disputed with the devil about the body of Moses?"
+    },
+    "answers": {
+      "en": [
+        "Gabriel",
+        "Michael",
+        "Raphael",
+        "Uriel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_037",
+    "reference": "Romans 5:20",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "'Where sin abounded, ___ abounded more exceedingly.'"
+    },
+    "answers": {
+      "en": [
+        "Mercy",
+        "Grace",
+        "Love",
+        "Faith"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_038",
+    "reference": "2 Timothy 4:20",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Whom did Paul leave sick at Miletus?"
+    },
+    "answers": {
+      "en": [
+        "Erastus",
+        "Trophimus",
+        "Carpus",
+        "Eubulus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b06_039",
+    "reference": "3 John 1:1",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "To whom is the letter of 3 John addressed?"
+    },
+    "answers": {
+      "en": [
+        "Gaius",
+        "Diotrephes",
+        "Demetrius",
+        "Theophilus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b06_040",
+    "reference": "2 Timothy 4:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "'Alexander, the ___, did much evil to me,' wrote Paul."
+    },
+    "answers": {
+      "en": [
+        "Coppersmith",
+        "Tentmaker",
+        "Silversmith",
+        "Tax collector"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

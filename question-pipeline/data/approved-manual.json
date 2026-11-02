@@ -87,7 +87,7 @@
     "file": "batch-003-wisdom.json",
     "id": "q_b03_033",
     "reference": "Job 2:9",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "wisdom",
     "text": {
       "en": "What did Job's wife tell him to do?"
@@ -108,7 +108,7 @@
     "file": "batch-004-prophets.json",
     "id": "q_b04_024",
     "reference": "Amos 1:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "prophets",
     "text": {
       "en": "What was Amos's occupation in Tekoa?"
@@ -129,7 +129,7 @@
     "file": "batch-022-prophets-d1d2.json",
     "id": "q_b22_017",
     "reference": "Isaiah 6:8",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "prophets",
     "text": {
       "en": "Which prophet answered the Lord, 'Here I am. Send me!'?"
@@ -148,7 +148,7 @@
     "file": "batch-022-prophets-d1d2.json",
     "id": "q_b22_022",
     "reference": "Jeremiah 1:5",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "prophets",
     "text": {
       "en": "To which prophet did God say, 'Before I formed you in the belly, I knew you'?"
@@ -162,5 +162,23 @@
       ]
     },
     "correctIndex": 1
+  },
+  {
+    "id": "q_b201_039",
+    "reference": "Matthew 21:1",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "From which village by the Mount of Olives did Jesus send two disciples for the donkey?"
+    },
+    "answers": {
+      "en": [
+        "Bethany",
+        "Emmaus",
+        "Bethphage",
+        "Bethlehem"
+      ]
+    },
+    "correctIndex": 2
   }
 ]

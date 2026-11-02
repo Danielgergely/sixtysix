@@ -146,7 +146,7 @@
   {
     "id": "q_seed_009",
     "reference": "Ruth 1:22",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "history",
     "text": {
       "en": "Who was Ruth’s mother-in-law?"
@@ -182,7 +182,7 @@
   {
     "id": "q_seed_011",
     "reference": "Matthew 14:29",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "gospels",
     "text": {
       "en": "Which disciple walked on water toward Jesus?"
@@ -290,7 +290,7 @@
   {
     "id": "q_seed_017",
     "reference": "Genesis 41:25",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "torah",
     "text": {
       "en": "Who interpreted Pharaoh’s dreams about the famine?"
@@ -308,7 +308,7 @@
   {
     "id": "q_seed_018",
     "reference": "Exodus 19:20",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "torah",
     "text": {
       "en": "On which mountain did Moses receive the Ten Commandments?"
@@ -326,7 +326,7 @@
   {
     "id": "q_seed_019",
     "reference": "Luke 19:4",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "gospels",
     "text": {
       "en": "Who climbed a sycamore tree to see Jesus?"
@@ -344,7 +344,7 @@
   {
     "id": "q_seed_020",
     "reference": "Daniel 3:25",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "prophets",
     "text": {
       "en": "How many men did Nebuchadnezzar see walking in the fiery furnace?"

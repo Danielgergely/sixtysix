@@ -1,42 +1,722 @@
 [
-  {"id":"q_b18_001","reference":"Job 38:4","difficulty":2,"category":"wisdom","text":{"en":"God asked Job: 'Where were you when I laid the foundations of the ___?'"},"answers":{"en":["Temple","Heavens","Sea","Earth"]},"correctIndex":3},
-  {"id":"q_b18_002","reference":"Job 1:12","difficulty":2,"category":"wisdom","text":{"en":"To whom did Yahweh say of Job, \"All that he has is in your power\"?"},"answers":{"en":["Eliphaz","Satan","Elihu","The Sabeans"]},"correctIndex":1},
-  {"id":"q_b18_003","reference":"Job 2:7","difficulty":2,"category":"wisdom","text":{"en":"With what did Satan strike Job from the sole of his foot to his head?"},"answers":{"en":["Blindness","A burning fever","Painful sores","Broken bones"]},"correctIndex":2},
-  {"id":"q_b18_004","reference":"Job 1:19","difficulty":2,"category":"wisdom","text":{"en":"What struck the house where Job's children were feasting, so that it fell?"},"answers":{"en":["A great wind","An earthquake","Fire from the sky","A flood"]},"correctIndex":0},
-  {"id":"q_b18_005","reference":"Job 42:6","difficulty":2,"category":"wisdom","text":{"en":"At the end of the book, Job said he repents in dust and ___."},"answers":{"en":["Sackcloth","Ashes","Tears","Silence"]},"correctIndex":1},
-  {"id":"q_b18_006","reference":"Psalms 1:1","difficulty":2,"category":"wisdom","text":{"en":"Psalm 1: the blessed man does not sit in the seat of whom?"},"answers":{"en":["Scoffers","Judges","Kings","Elders"]},"correctIndex":0},
-  {"id":"q_b18_007","reference":"Psalms 90:4","difficulty":2,"category":"wisdom","text":{"en":"Psalm 90: a thousand years in God's sight are just like what?"},"answers":{"en":["A breath of wind","A single hour","A drop in the sea","Yesterday when it is past"]},"correctIndex":3},
-  {"id":"q_b18_008","reference":"Psalms 90:10","difficulty":2,"category":"wisdom","text":{"en":"Psalm 90 says the days of our years are how many?"},"answers":{"en":["Forty","Fifty","Seventy","One hundred"]},"correctIndex":2},
-  {"id":"q_b18_009","reference":"Psalms 91:4","difficulty":2,"category":"wisdom","text":{"en":"Psalm 91: 'He will cover you with his ___. Under his wings you will take refuge.'"},"answers":{"en":["Cloak","Feathers","Hand","Mantle"]},"correctIndex":1},
-  {"id":"q_b18_010","reference":"Psalms 91:11","difficulty":2,"category":"wisdom","text":{"en":"In Psalm 91, whom will God put in charge of you, to guard you in all your ways?"},"answers":{"en":["His priests","His prophets","His angels","The kings of the earth"]},"correctIndex":2},
-  {"id":"q_b18_011","reference":"Psalms 118:22","difficulty":2,"category":"wisdom","text":{"en":"The stone which the builders rejected has become what?"},"answers":{"en":["The head of the corner","The altar of the temple","The foundation of the city","The king's throne"]},"correctIndex":0},
-  {"id":"q_b18_012","reference":"Psalms 121:4","difficulty":2,"category":"wisdom","text":{"en":"He who keeps Israel will neither slumber nor ___."},"answers":{"en":["Rest","Faint","Tire","Sleep"]},"correctIndex":3},
-  {"id":"q_b18_013","reference":"Psalms 122:1","difficulty":2,"category":"wisdom","text":{"en":"Psalm 122: 'I was glad when they said to me, Let's go to…'?"},"answers":{"en":["Yahweh's house","The river Jordan","Mount Sinai","The king's palace"]},"correctIndex":0},
-  {"id":"q_b18_014","reference":"Psalms 126:5","difficulty":2,"category":"wisdom","text":{"en":"'Those who sow in tears will reap in ___.'"},"answers":{"en":["Peace","Plenty","Joy","Song"]},"correctIndex":2},
-  {"id":"q_b18_015","reference":"Psalms 127:3","difficulty":2,"category":"wisdom","text":{"en":"Psalm 127: 'Behold, children are a ___ of Yahweh.'"},"answers":{"en":["Treasure","Crown","Blessing","Heritage"]},"correctIndex":3},
-  {"id":"q_b18_016","reference":"Psalms 137:1","difficulty":2,"category":"wisdom","text":{"en":"By the rivers of Babylon, the exiles wept when they remembered which place?"},"answers":{"en":["Egypt","Zion","Bethel","Hebron"]},"correctIndex":1},
-  {"id":"q_b18_017","reference":"Psalms 40:3","difficulty":2,"category":"wisdom","text":{"en":"Psalm 40: what did God put in the psalmist's mouth?"},"answers":{"en":["A new song","A sharp sword","Burning coals","Honey"]},"correctIndex":0},
-  {"id":"q_b18_018","reference":"Psalms 51:7","difficulty":2,"category":"wisdom","text":{"en":"Psalm 51: 'Wash me, and I will be whiter than ___.'"},"answers":{"en":["Wool","Milk","Snow","Linen"]},"correctIndex":2},
-  {"id":"q_b18_019","reference":"Psalms 55:6","difficulty":2,"category":"wisdom","text":{"en":"Psalm 55: 'Oh that I had wings like a ___! Then I would fly away, and be at rest.'"},"answers":{"en":["Eagle","Dove","Sparrow","Swallow"]},"correctIndex":1},
-  {"id":"q_b18_020","reference":"Psalms 19:10","difficulty":2,"category":"wisdom","text":{"en":"Psalm 19 says God's ordinances are sweeter than what?"},"answers":{"en":["Wine","Milk","Figs","Honey"]},"correctIndex":3},
-  {"id":"q_b18_021","reference":"Psalms 30:5","difficulty":2,"category":"wisdom","text":{"en":"'Weeping may stay for the night, but joy comes in the ___.'"},"answers":{"en":["Spring","Harvest","Morning","Evening"]},"correctIndex":2},
-  {"id":"q_b18_022","reference":"Proverbs 1:8","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 1: 'My son, listen to your father's instruction, and don't forsake your mother's…'?"},"answers":{"en":["Love","Teaching","House","Blessing"]},"correctIndex":1},
-  {"id":"q_b18_023","reference":"Proverbs 6:10","difficulty":2,"category":"wisdom","text":{"en":"'A little sleep, a little ___, a little folding of the hands to sleep.'"},"answers":{"en":["Rest","Food","Wine","Slumber"]},"correctIndex":3},
-  {"id":"q_b18_024","reference":"Proverbs 16:31","difficulty":2,"category":"wisdom","text":{"en":"According to Proverbs 16, gray hair is a crown of what?"},"answers":{"en":["Glory","Wisdom","Honor","Years"]},"correctIndex":0},
-  {"id":"q_b18_025","reference":"Proverbs 20:1","difficulty":2,"category":"wisdom","text":{"en":"'Wine is a ___, and beer is a brawler.'"},"answers":{"en":["Thief","Mocker","Liar","Snare"]},"correctIndex":1},
-  {"id":"q_b18_026","reference":"Proverbs 25:22","difficulty":2,"category":"wisdom","text":{"en":"By feeding a hungry enemy, Proverbs says you heap what on his head?"},"answers":{"en":["Dust and ashes","Shame and scorn","Oil of gladness","Coals of fire"]},"correctIndex":3},
-  {"id":"q_b18_027","reference":"Proverbs 27:1","difficulty":2,"category":"wisdom","text":{"en":"Proverbs 27: 'Don't boast about ___; for you don't know what a day may bring.'"},"answers":{"en":["Tomorrow","Yesterday","Your wealth","Your strength"]},"correctIndex":0},
-  {"id":"q_b18_028","reference":"Proverbs 11:22","difficulty":2,"category":"wisdom","text":{"en":"A beautiful woman who lacks discretion is like a gold ring in what?"},"answers":{"en":["A dog's mouth","A camel's nose","A pig's snout","A donkey's ear"]},"correctIndex":2},
-  {"id":"q_b18_029","reference":"Proverbs 31:28","difficulty":2,"category":"wisdom","text":{"en":"What do the worthy woman's children rise up and call her?"},"answers":{"en":["Wise","Beautiful","Mother of many","Blessed"]},"correctIndex":3},
-  {"id":"q_b18_030","reference":"Ecclesiastes 3:8","difficulty":2,"category":"wisdom","text":{"en":"'A time to love, and a time to hate; a time for war, and a time for ___.'"},"answers":{"en":["Rest","Peace","Mercy","Healing"]},"correctIndex":1},
-  {"id":"q_b18_031","reference":"Ecclesiastes 3:7","difficulty":2,"category":"wisdom","text":{"en":"'A time to keep silence, and a time to ___.'"},"answers":{"en":["Sing","Shout","Speak","Listen"]},"correctIndex":2},
-  {"id":"q_b18_032","reference":"Ecclesiastes 9:4","difficulty":2,"category":"wisdom","text":{"en":"According to Ecclesiastes, a living dog is better than a dead what?"},"answers":{"en":["Lion","King","Bear","Horse"]},"correctIndex":0},
-  {"id":"q_b18_033","reference":"Song of Songs 2:4","difficulty":2,"category":"wisdom","text":{"en":"Song of Songs: 'His banner over me is ___.'"},"answers":{"en":["Peace","Joy","Grace","Love"]},"correctIndex":3},
-  {"id":"q_b18_034","reference":"Song of Songs 2:15","difficulty":2,"category":"wisdom","text":{"en":"In Song of Songs, what should be caught because they plunder the vineyards?"},"answers":{"en":["The wild boars","The locusts","The little foxes","The jackals"]},"correctIndex":2},
-  {"id":"q_b18_035","reference":"Song of Songs 8:7","difficulty":2,"category":"wisdom","text":{"en":"According to Song of Songs, what can many waters not quench?"},"answers":{"en":["Love","Fire","Thirst","Hope"]},"correctIndex":0},
-  {"id":"q_b18_036","reference":"Ecclesiastes 12:13","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes ends: 'Fear God, and keep his ___; for this is the whole duty of man.'"},"answers":{"en":["Sabbaths","Commandments","Feasts","Covenant"]},"correctIndex":1},
-  {"id":"q_b18_037","reference":"Job 1:8","difficulty":2,"category":"wisdom","text":{"en":"Yahweh said there was no one like Job in the earth. How did he describe him?"},"answers":{"en":["Rich and powerful","Blameless and upright","Young and strong","Wise and learned"]},"correctIndex":1},
-  {"id":"q_b18_038","reference":"Psalms 24:7","difficulty":2,"category":"wisdom","text":{"en":"Psalm 24: 'Lift up your heads, you gates!… and the King of ___ will come in.'"},"answers":{"en":["Israel","Peace","Heaven","Glory"]},"correctIndex":3},
-  {"id":"q_b18_039","reference":"Psalms 22:18","difficulty":3,"category":"wisdom","text":{"en":"Psalm 22: 'They divide my garments among them. They cast lots for my ___.'"},"answers":{"en":["Clothing","Bread","Sandals","Inheritance"]},"correctIndex":0},
-  {"id":"q_b18_040","reference":"Job 41:1","difficulty":3,"category":"wisdom","text":{"en":"Which creature did God ask Job if he could draw out with a fish hook?"},"answers":{"en":["Behemoth","The ostrich","Leviathan","The wild ox"]},"correctIndex":2}
+  {
+    "id": "q_b18_001",
+    "reference": "Job 38:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "God asked Job: 'Where were you when I laid the foundations of the ___?'"
+    },
+    "answers": {
+      "en": [
+        "Temple",
+        "Heavens",
+        "Sea",
+        "Earth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_002",
+    "reference": "Job 1:12",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "To whom did Yahweh say of Job, \"All that he has is in your power\"?"
+    },
+    "answers": {
+      "en": [
+        "Eliphaz",
+        "Satan",
+        "Elihu",
+        "The Sabeans"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_003",
+    "reference": "Job 2:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "With what did Satan strike Job from the sole of his foot to his head?"
+    },
+    "answers": {
+      "en": [
+        "Blindness",
+        "A burning fever",
+        "Painful sores",
+        "Broken bones"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_004",
+    "reference": "Job 1:19",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What struck the house where Job's children were feasting, so that it fell?"
+    },
+    "answers": {
+      "en": [
+        "A great wind",
+        "An earthquake",
+        "Fire from the sky",
+        "A flood"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_005",
+    "reference": "Job 42:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "At the end of the book, Job said he repents in dust and ___."
+    },
+    "answers": {
+      "en": [
+        "Sackcloth",
+        "Ashes",
+        "Tears",
+        "Silence"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_006",
+    "reference": "Psalms 1:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 1: the blessed man does not sit in the seat of whom?"
+    },
+    "answers": {
+      "en": [
+        "Scoffers",
+        "Judges",
+        "Kings",
+        "Elders"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_007",
+    "reference": "Psalms 90:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 90: a thousand years in God's sight are just like what?"
+    },
+    "answers": {
+      "en": [
+        "A breath of wind",
+        "A single hour",
+        "A drop in the sea",
+        "Yesterday when it is past"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_008",
+    "reference": "Psalms 90:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 90 says the days of our years are how many?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Fifty",
+        "Seventy",
+        "One hundred"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_009",
+    "reference": "Psalms 91:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 91: 'He will cover you with his ___. Under his wings you will take refuge.'"
+    },
+    "answers": {
+      "en": [
+        "Cloak",
+        "Feathers",
+        "Hand",
+        "Mantle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_010",
+    "reference": "Psalms 91:11",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "In Psalm 91, whom will God put in charge of you, to guard you in all your ways?"
+    },
+    "answers": {
+      "en": [
+        "His priests",
+        "His prophets",
+        "His angels",
+        "The kings of the earth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_011",
+    "reference": "Psalms 118:22",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "The stone which the builders rejected has become what?"
+    },
+    "answers": {
+      "en": [
+        "The head of the corner",
+        "The altar of the temple",
+        "The foundation of the city",
+        "The king's throne"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_012",
+    "reference": "Psalms 121:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "He who keeps Israel will neither slumber nor ___."
+    },
+    "answers": {
+      "en": [
+        "Rest",
+        "Faint",
+        "Tire",
+        "Sleep"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_013",
+    "reference": "Psalms 122:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 122: 'I was glad when they said to me, Let's go to…'?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh's house",
+        "The river Jordan",
+        "Mount Sinai",
+        "The king's palace"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_014",
+    "reference": "Psalms 126:5",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Those who sow in tears will reap in ___.'"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Plenty",
+        "Joy",
+        "Song"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_015",
+    "reference": "Psalms 127:3",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 127: 'Behold, children are a ___ of Yahweh.'"
+    },
+    "answers": {
+      "en": [
+        "Treasure",
+        "Crown",
+        "Blessing",
+        "Heritage"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_016",
+    "reference": "Psalms 137:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "By the rivers of Babylon, the exiles wept when they remembered which place?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Zion",
+        "Bethel",
+        "Hebron"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_017",
+    "reference": "Psalms 40:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 40: what did God put in the psalmist's mouth?"
+    },
+    "answers": {
+      "en": [
+        "A new song",
+        "A sharp sword",
+        "Burning coals",
+        "Honey"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_018",
+    "reference": "Psalms 51:7",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 51: 'Wash me, and I will be whiter than ___.'"
+    },
+    "answers": {
+      "en": [
+        "Wool",
+        "Milk",
+        "Snow",
+        "Linen"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_019",
+    "reference": "Psalms 55:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 55: 'Oh that I had wings like a ___! Then I would fly away, and be at rest.'"
+    },
+    "answers": {
+      "en": [
+        "Eagle",
+        "Dove",
+        "Sparrow",
+        "Swallow"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_020",
+    "reference": "Psalms 19:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 19 says God's ordinances are sweeter than what?"
+    },
+    "answers": {
+      "en": [
+        "Wine",
+        "Milk",
+        "Figs",
+        "Honey"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_021",
+    "reference": "Psalms 30:5",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Weeping may stay for the night, but joy comes in the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Spring",
+        "Harvest",
+        "Morning",
+        "Evening"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_022",
+    "reference": "Proverbs 1:8",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 1: 'My son, listen to your father's instruction, and don't forsake your mother's…'?"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Teaching",
+        "House",
+        "Blessing"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_023",
+    "reference": "Proverbs 6:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'A little sleep, a little ___, a little folding of the hands to sleep.'"
+    },
+    "answers": {
+      "en": [
+        "Rest",
+        "Food",
+        "Wine",
+        "Slumber"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_024",
+    "reference": "Proverbs 16:31",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Proverbs 16, gray hair is a crown of what?"
+    },
+    "answers": {
+      "en": [
+        "Glory",
+        "Wisdom",
+        "Honor",
+        "Years"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_025",
+    "reference": "Proverbs 20:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'Wine is a ___, and beer is a brawler.'"
+    },
+    "answers": {
+      "en": [
+        "Thief",
+        "Mocker",
+        "Liar",
+        "Snare"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_026",
+    "reference": "Proverbs 25:22",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "By feeding a hungry enemy, Proverbs says you heap what on his head?"
+    },
+    "answers": {
+      "en": [
+        "Dust and ashes",
+        "Shame and scorn",
+        "Oil of gladness",
+        "Coals of fire"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_027",
+    "reference": "Proverbs 27:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs 27: 'Don't boast about ___; for you don't know what a day may bring.'"
+    },
+    "answers": {
+      "en": [
+        "Tomorrow",
+        "Yesterday",
+        "Your wealth",
+        "Your strength"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_028",
+    "reference": "Proverbs 11:22",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "A beautiful woman who lacks discretion is like a gold ring in what?"
+    },
+    "answers": {
+      "en": [
+        "A dog's mouth",
+        "A camel's nose",
+        "A pig's snout",
+        "A donkey's ear"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_029",
+    "reference": "Proverbs 31:28",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "What do the worthy woman's children rise up and call her?"
+    },
+    "answers": {
+      "en": [
+        "Wise",
+        "Beautiful",
+        "Mother of many",
+        "Blessed"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_030",
+    "reference": "Ecclesiastes 3:8",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to love, and a time to hate; a time for war, and a time for ___.'"
+    },
+    "answers": {
+      "en": [
+        "Rest",
+        "Peace",
+        "Mercy",
+        "Healing"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_031",
+    "reference": "Ecclesiastes 3:7",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to keep silence, and a time to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Sing",
+        "Shout",
+        "Speak",
+        "Listen"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_032",
+    "reference": "Ecclesiastes 9:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Ecclesiastes, a living dog is better than a dead what?"
+    },
+    "answers": {
+      "en": [
+        "Lion",
+        "King",
+        "Bear",
+        "Horse"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_033",
+    "reference": "Song of Songs 2:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Song of Songs: 'His banner over me is ___.'"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Joy",
+        "Grace",
+        "Love"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_034",
+    "reference": "Song of Songs 2:15",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "In Song of Songs, what should be caught because they plunder the vineyards?"
+    },
+    "answers": {
+      "en": [
+        "The wild boars",
+        "The locusts",
+        "The little foxes",
+        "The jackals"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b18_035",
+    "reference": "Song of Songs 8:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Song of Songs, what can many waters not quench?"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Fire",
+        "Thirst",
+        "Hope"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_036",
+    "reference": "Ecclesiastes 12:13",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes ends: 'Fear God, and keep his ___; for this is the whole duty of man.'"
+    },
+    "answers": {
+      "en": [
+        "Sabbaths",
+        "Commandments",
+        "Feasts",
+        "Covenant"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_037",
+    "reference": "Job 1:8",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Yahweh said there was no one like Job in the earth. How did he describe him?"
+    },
+    "answers": {
+      "en": [
+        "Rich and powerful",
+        "Blameless and upright",
+        "Young and strong",
+        "Wise and learned"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b18_038",
+    "reference": "Psalms 24:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 24: 'Lift up your heads, you gates!… and the King of ___ will come in.'"
+    },
+    "answers": {
+      "en": [
+        "Israel",
+        "Peace",
+        "Heaven",
+        "Glory"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b18_039",
+    "reference": "Psalms 22:18",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 22: 'They divide my garments among them. They cast lots for my ___.'"
+    },
+    "answers": {
+      "en": [
+        "Clothing",
+        "Bread",
+        "Sandals",
+        "Inheritance"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b18_040",
+    "reference": "Job 41:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Which creature did God ask Job if he could draw out with a fish hook?"
+    },
+    "answers": {
+      "en": [
+        "Behemoth",
+        "The ostrich",
+        "Leviathan",
+        "The wild ox"
+      ]
+    },
+    "correctIndex": 2
+  }
 ]

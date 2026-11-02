@@ -1,52 +1,902 @@
 [
-  {"id":"q_b104_001","reference":"Exodus 21:2","difficulty":2,"category":"torah","text":{"en":"A Hebrew servant served six years. What happened in the seventh?"},"answers":{"en":["He went out free","He became a priest","He paid a ransom","He was sold again"]},"correctIndex":0},
-  {"id":"q_b104_002","reference":"Exodus 21:6","difficulty":3,"category":"torah","text":{"en":"If a servant chose to stay for ever, what did his master bore through with an awl?"},"answers":{"en":["His hand","His ear","His sandal","His cloak"]},"correctIndex":1},
-  {"id":"q_b104_003","reference":"Exodus 21:24","difficulty":1,"category":"torah","text":{"en":"Complete the law: \"Eye for eye, ___ for ___.\""},"answers":{"en":["hand, hand","life, life","tooth, tooth","ear, ear"]},"correctIndex":2},
-  {"id":"q_b104_004","reference":"Exodus 22:1","difficulty":4,"category":"torah","text":{"en":"A thief who killed or sold a stolen ox had to pay back how many oxen?"},"answers":{"en":["Two","Four","Seven","Five"]},"correctIndex":3},
-  {"id":"q_b104_005","reference":"Exodus 22:22","difficulty":2,"category":"torah","text":{"en":"Which people did the law say must never be taken advantage of?"},"answers":{"en":["Kings and priests","Merchants","Widows and fatherless children","Soldiers"]},"correctIndex":2},
-  {"id":"q_b104_006","reference":"Exodus 22:26","difficulty":3,"category":"torah","text":{"en":"A neighbor's garment taken as a pledge had to be returned when?"},"answers":{"en":["After seven days","At the next feast","In the year of jubilee","Before the sun goes down"]},"correctIndex":3},
-  {"id":"q_b104_007","reference":"Exodus 23:4","difficulty":2,"category":"torah","text":{"en":"What must you do if you meet your enemy's ox or donkey going astray?"},"answers":{"en":["Bring it back to him","Keep it","Sell it","Leave it alone"]},"correctIndex":0},
-  {"id":"q_b104_008","reference":"Exodus 23:8","difficulty":2,"category":"torah","text":{"en":"The law says a bribe does what to those who have sight?"},"answers":{"en":["Makes them rich","Blinds them","Makes them wise","Silences them"]},"correctIndex":1},
-  {"id":"q_b104_009","reference":"Exodus 23:19","difficulty":2,"category":"torah","text":{"en":"What were the Israelites told not to boil a young goat in?"},"answers":{"en":["Oil","Its mother's milk","Wine","Salt water"]},"correctIndex":1},
-  {"id":"q_b104_010","reference":"Exodus 23:28","difficulty":3,"category":"torah","text":{"en":"What did God say he would send ahead to drive out the Hivite, Canaanite and Hittite?"},"answers":{"en":["The locust","A plague","A flood","The hornet"]},"correctIndex":3},
-  {"id":"q_b104_011","reference":"Exodus 24:4","difficulty":2,"category":"torah","text":{"en":"Below Mount Sinai, Moses set up twelve pillars for what?"},"answers":{"en":["The twelve tribes of Israel","The twelve months","Twelve spies","Twelve judges"]},"correctIndex":0},
-  {"id":"q_b104_012","reference":"Exodus 24:9","difficulty":3,"category":"torah","text":{"en":"How many elders of Israel went up the mountain with Moses, Aaron, Nadab and Abihu?"},"answers":{"en":["Twelve","Forty","Seventy","Seven"]},"correctIndex":2},
-  {"id":"q_b104_013","reference":"Exodus 24:10","difficulty":4,"category":"torah","text":{"en":"What was like a paved work under the feet of the God of Israel?"},"answers":{"en":["Sapphire stone","Gold","Crystal","Marble"]},"correctIndex":0},
-  {"id":"q_b104_014","reference":"Exodus 24:14","difficulty":4,"category":"torah","text":{"en":"Which two did Moses leave with the elders to settle disputes while he was on the mountain?"},"answers":{"en":["Joshua and Caleb","Nadab and Abihu","Aaron and Hur","Eleazar and Ithamar"]},"correctIndex":2},
-  {"id":"q_b104_015","reference":"Exodus 25:17","difficulty":2,"category":"torah","text":{"en":"What was the mercy seat on the ark made of?"},"answers":{"en":["Acacia wood","Pure gold","Silver","Brass"]},"correctIndex":1},
-  {"id":"q_b104_016","reference":"Exodus 25:18","difficulty":2,"category":"torah","text":{"en":"What two figures of hammered gold stood at the ends of the mercy seat?"},"answers":{"en":["Lions","Eagles","Bulls","Cherubim"]},"correctIndex":3},
-  {"id":"q_b104_017","reference":"Exodus 25:32","difficulty":3,"category":"torah","text":{"en":"How many branches went out of the sides of the tabernacle lampstand?"},"answers":{"en":["Seven","Six","Four","Twelve"]},"correctIndex":1},
-  {"id":"q_b104_018","reference":"Exodus 25:37","difficulty":2,"category":"torah","text":{"en":"How many lamps did the tabernacle lampstand have?"},"answers":{"en":["Seven","Six","Twelve","Three"]},"correctIndex":0},
-  {"id":"q_b104_019","reference":"Exodus 26:7","difficulty":4,"category":"torah","text":{"en":"The tabernacle's covering curtains were made of what?"},"answers":{"en":["Camels' hair","Silk","Papyrus","Goats' hair"]},"correctIndex":3},
-  {"id":"q_b104_020","reference":"Exodus 26:14","difficulty":5,"category":"torah","text":{"en":"With what color were the rams' skins dyed for the tent's covering?"},"answers":{"en":["Blue","Purple","Red","Black"]},"correctIndex":2},
-  {"id":"q_b104_021","reference":"Exodus 26:33","difficulty":3,"category":"torah","text":{"en":"The veil separated the holy place from what?"},"answers":{"en":["The outer court","The altar","The most holy place","The camp"]},"correctIndex":2},
-  {"id":"q_b104_022","reference":"Exodus 27:2","difficulty":3,"category":"torah","text":{"en":"What was on the four corners of the bronze altar?"},"answers":{"en":["Horns","Bells","Lamps","Rings of gold"]},"correctIndex":0},
-  {"id":"q_b104_023","reference":"Exodus 27:20","difficulty":3,"category":"torah","text":{"en":"What was brought to keep a lamp burning continually in the tabernacle?"},"answers":{"en":["Animal fat","Honey wax","Cedar oil","Pure olive oil"]},"correctIndex":3},
-  {"id":"q_b104_024","reference":"Exodus 28:9","difficulty":4,"category":"torah","text":{"en":"On which two stones were the names of the children of Israel engraved for Aaron's shoulders?"},"answers":{"en":["Ruby","Onyx","Jasper","Diamond"]},"correctIndex":1},
-  {"id":"q_b104_025","reference":"Exodus 28:21","difficulty":2,"category":"torah","text":{"en":"How many stones were set in the high priest's breastplate?"},"answers":{"en":["Ten","Seven","Four","Twelve"]},"correctIndex":3},
-  {"id":"q_b104_026","reference":"Exodus 28:30","difficulty":3,"category":"torah","text":{"en":"What was put in the breastplate of judgment, on Aaron's heart?"},"answers":{"en":["The Urim and the Thummim","The two tablets","A jar of manna","A golden bell"]},"correctIndex":0},
-  {"id":"q_b104_027","reference":"Exodus 28:34","difficulty":3,"category":"torah","text":{"en":"What alternated with golden bells around the hem of the high priest's robe?"},"answers":{"en":["Almonds","Pomegranates","Stars","Grapes"]},"correctIndex":1},
-  {"id":"q_b104_028","reference":"Exodus 28:36","difficulty":3,"category":"torah","text":{"en":"What was engraved on the plate of pure gold for Aaron's turban?"},"answers":{"en":["The Lord is one","King of Israel","Holy to Yahweh","Priest forever"]},"correctIndex":2},
-  {"id":"q_b104_029","reference":"Exodus 30:1","difficulty":3,"category":"torah","text":{"en":"The altar to burn incense on was made of what wood?"},"answers":{"en":["Cedar","Olive","Cypress","Acacia"]},"correctIndex":3},
-  {"id":"q_b104_030","reference":"Exodus 30:23","difficulty":5,"category":"torah","text":{"en":"How many shekels of liquid myrrh went into the holy anointing oil?"},"answers":{"en":["250","100","500","50"]},"correctIndex":2},
-  {"id":"q_b104_031","reference":"Exodus 30:34","difficulty":5,"category":"torah","text":{"en":"Which of these was an ingredient of the holy incense?"},"answers":{"en":["Cinnamon","Galbanum","Cassia","Hyssop"]},"correctIndex":1},
-  {"id":"q_b104_032","reference":"Exodus 31:2","difficulty":5,"category":"torah","text":{"en":"Bezalel, called by God to build the tabernacle, was the son of whom?"},"answers":{"en":["Uri","Hur","Ahisamach","Amminadab"]},"correctIndex":0},
-  {"id":"q_b104_033","reference":"Exodus 31:18","difficulty":1,"category":"torah","text":{"en":"With what were the two stone tablets written?"},"answers":{"en":["God's finger","A golden pen","Fire","Moses' rod"]},"correctIndex":0},
-  {"id":"q_b104_034","reference":"Exodus 32:1","difficulty":2,"category":"torah","text":{"en":"When Moses delayed on the mountain, what did the people ask Aaron to make?"},"answers":{"en":["A new tent","Gods to go before them","A road home","Bread for the journey"]},"correctIndex":1},
-  {"id":"q_b104_035","reference":"Exodus 32:2","difficulty":1,"category":"torah","text":{"en":"What did Aaron tell the people to bring him for the golden calf?"},"answers":{"en":["Silver coins","Bronze tools","Golden earrings","Gold crowns"]},"correctIndex":2},
-  {"id":"q_b104_036","reference":"Exodus 32:24","difficulty":2,"category":"torah","text":{"en":"What excuse did Aaron give Moses about the golden calf?"},"answers":{"en":["Pharaoh sent it","Joshua made it","It fell from the sky","Gold went in the fire, out came a calf"]},"correctIndex":3},
-  {"id":"q_b104_037","reference":"Exodus 32:26","difficulty":3,"category":"torah","text":{"en":"When Moses cried, \"Whoever is on Yahweh's side, come to me!\", who gathered to him?"},"answers":{"en":["The sons of Judah","The seventy elders","The sons of Levi","The women"]},"correctIndex":2},
-  {"id":"q_b104_038","reference":"Exodus 32:32","difficulty":4,"category":"torah","text":{"en":"If God would not forgive Israel's sin, what did Moses ask God to do to him?"},"answers":{"en":["Take his life","Send him back to Egypt","Make him blind","Blot him out of his book"]},"correctIndex":3},
-  {"id":"q_b104_039","reference":"Exodus 33:7","difficulty":3,"category":"torah","text":{"en":"What did Moses call the tent he pitched outside the camp?"},"answers":{"en":["The Tent of Meeting","The House of God","The Tent of Witness","The Holy Tent"]},"correctIndex":0},
-  {"id":"q_b104_040","reference":"Exodus 33:20","difficulty":2,"category":"torah","text":{"en":"Why did God say Moses could not see his face?"},"answers":{"en":["Moses was not holy enough","No man may see him and live","It was too dark","It was not yet time"]},"correctIndex":1},
-  {"id":"q_b104_041","reference":"Exodus 33:22","difficulty":2,"category":"torah","text":{"en":"Where did God put Moses while his glory passed by?"},"answers":{"en":["Inside the ark","In a cleft of the rock","Under a tree","Behind the veil"]},"correctIndex":1},
-  {"id":"q_b104_042","reference":"Exodus 34:1","difficulty":1,"category":"torah","text":{"en":"What did God tell Moses to chisel after he broke the first tablets?"},"answers":{"en":["A golden altar","A stone pillar","Twelve stones","Two new stone tablets"]},"correctIndex":3},
-  {"id":"q_b104_043","reference":"Exodus 34:28","difficulty":2,"category":"torah","text":{"en":"During his forty days with Yahweh, what did Moses neither eat nor drink?"},"answers":{"en":["Bread and water","Wine and meat","Milk and honey","Manna and quail"]},"correctIndex":0},
-  {"id":"q_b104_044","reference":"Exodus 34:33","difficulty":2,"category":"torah","text":{"en":"What did Moses put on his face after speaking with the people?"},"answers":{"en":["Ashes","Oil","A veil","A crown"]},"correctIndex":2},
-  {"id":"q_b104_045","reference":"Exodus 35:25","difficulty":4,"category":"torah","text":{"en":"What did the wise-hearted women do with their hands for the tabernacle?"},"answers":{"en":["Spun yarn and fine linen","Baked bread","Carved wood","Melted gold"]},"correctIndex":0},
-  {"id":"q_b104_046","reference":"Exodus 36:6","difficulty":3,"category":"torah","text":{"en":"Why did Moses tell the people to stop bringing offerings for the sanctuary?"},"answers":{"en":["Aaron was ill","The gold ran out","They had brought more than enough","Pharaoh was coming"]},"correctIndex":2},
-  {"id":"q_b104_047","reference":"Exodus 37:1","difficulty":4,"category":"torah","text":{"en":"How long was the ark that Bezalel made?"},"answers":{"en":["Five cubits","Two and a half cubits","Ten cubits","One cubit"]},"correctIndex":1},
-  {"id":"q_b104_048","reference":"Exodus 40:34","difficulty":2,"category":"torah","text":{"en":"When the tabernacle was finished, what covered the Tent of Meeting?"},"answers":{"en":["A rainbow","Thick smoke","A great light","The cloud"]},"correctIndex":3},
-  {"id":"q_b104_049","reference":"Exodus 40:35","difficulty":2,"category":"torah","text":{"en":"Why was Moses not able to enter the Tent of Meeting when it was finished?"},"answers":{"en":["Its door was locked","Yahweh's glory filled it","Aaron was inside","It was still dark"]},"correctIndex":1},
-  {"id":"q_b104_050","reference":"Exodus 40:38","difficulty":2,"category":"torah","text":{"en":"What was in the cloud over the tabernacle by night?"},"answers":{"en":["Fire","Stars","Angels","Rain"]},"correctIndex":0}
+  {
+    "id": "q_b104_001",
+    "reference": "Exodus 21:2",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "A Hebrew servant served six years. What happened in the seventh?"
+    },
+    "answers": {
+      "en": [
+        "He went out free",
+        "He became a priest",
+        "He paid a ransom",
+        "He was sold again"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_002",
+    "reference": "Exodus 21:6",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "If a servant chose to stay for ever, what did his master bore through with an awl?"
+    },
+    "answers": {
+      "en": [
+        "His hand",
+        "His ear",
+        "His sandal",
+        "His cloak"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_003",
+    "reference": "Exodus 21:24",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete the law: \"Eye for eye, ___ for ___.\""
+    },
+    "answers": {
+      "en": [
+        "hand, hand",
+        "life, life",
+        "tooth, tooth",
+        "ear, ear"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_004",
+    "reference": "Exodus 22:1",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "A thief who killed or sold a stolen ox had to pay back how many oxen?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Four",
+        "Seven",
+        "Five"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_005",
+    "reference": "Exodus 22:22",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Which people did the law say must never be taken advantage of?"
+    },
+    "answers": {
+      "en": [
+        "Kings and priests",
+        "Merchants",
+        "Widows and fatherless children",
+        "Soldiers"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_006",
+    "reference": "Exodus 22:26",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "A neighbor's garment taken as a pledge had to be returned when?"
+    },
+    "answers": {
+      "en": [
+        "After seven days",
+        "At the next feast",
+        "In the year of jubilee",
+        "Before the sun goes down"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_007",
+    "reference": "Exodus 23:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What must you do if you meet your enemy's ox or donkey going astray?"
+    },
+    "answers": {
+      "en": [
+        "Bring it back to him",
+        "Keep it",
+        "Sell it",
+        "Leave it alone"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_008",
+    "reference": "Exodus 23:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "The law says a bribe does what to those who have sight?"
+    },
+    "answers": {
+      "en": [
+        "Makes them rich",
+        "Blinds them",
+        "Makes them wise",
+        "Silences them"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_009",
+    "reference": "Exodus 23:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What were the Israelites told not to boil a young goat in?"
+    },
+    "answers": {
+      "en": [
+        "Oil",
+        "Its mother's milk",
+        "Wine",
+        "Salt water"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_010",
+    "reference": "Exodus 23:28",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did God say he would send ahead to drive out the Hivite, Canaanite and Hittite?"
+    },
+    "answers": {
+      "en": [
+        "The locust",
+        "A plague",
+        "A flood",
+        "The hornet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_011",
+    "reference": "Exodus 24:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Below Mount Sinai, Moses set up twelve pillars for what?"
+    },
+    "answers": {
+      "en": [
+        "The twelve tribes of Israel",
+        "The twelve months",
+        "Twelve spies",
+        "Twelve judges"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_012",
+    "reference": "Exodus 24:9",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many elders of Israel went up the mountain with Moses, Aaron, Nadab and Abihu?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Forty",
+        "Seventy",
+        "Seven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_013",
+    "reference": "Exodus 24:10",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was like a paved work under the feet of the God of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Sapphire stone",
+        "Gold",
+        "Crystal",
+        "Marble"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_014",
+    "reference": "Exodus 24:14",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which two did Moses leave with the elders to settle disputes while he was on the mountain?"
+    },
+    "answers": {
+      "en": [
+        "Joshua and Caleb",
+        "Nadab and Abihu",
+        "Aaron and Hur",
+        "Eleazar and Ithamar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_015",
+    "reference": "Exodus 25:17",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was the mercy seat on the ark made of?"
+    },
+    "answers": {
+      "en": [
+        "Acacia wood",
+        "Pure gold",
+        "Silver",
+        "Brass"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_016",
+    "reference": "Exodus 25:18",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What two figures of hammered gold stood at the ends of the mercy seat?"
+    },
+    "answers": {
+      "en": [
+        "Lions",
+        "Eagles",
+        "Bulls",
+        "Cherubim"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_017",
+    "reference": "Exodus 25:32",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many branches went out of the sides of the tabernacle lampstand?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Six",
+        "Four",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_018",
+    "reference": "Exodus 25:37",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "How many lamps did the tabernacle lampstand have?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Six",
+        "Twelve",
+        "Three"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_019",
+    "reference": "Exodus 26:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "The tabernacle's covering curtains were made of what?"
+    },
+    "answers": {
+      "en": [
+        "Camels' hair",
+        "Silk",
+        "Papyrus",
+        "Goats' hair"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_020",
+    "reference": "Exodus 26:14",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "With what color were the rams' skins dyed for the tent's covering?"
+    },
+    "answers": {
+      "en": [
+        "Blue",
+        "Purple",
+        "Red",
+        "Black"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_021",
+    "reference": "Exodus 26:33",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "The veil separated the holy place from what?"
+    },
+    "answers": {
+      "en": [
+        "The outer court",
+        "The altar",
+        "The most holy place",
+        "The camp"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_022",
+    "reference": "Exodus 27:2",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was on the four corners of the bronze altar?"
+    },
+    "answers": {
+      "en": [
+        "Horns",
+        "Bells",
+        "Lamps",
+        "Rings of gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_023",
+    "reference": "Exodus 27:20",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What was brought to keep a lamp burning continually in the tabernacle?"
+    },
+    "answers": {
+      "en": [
+        "Animal fat",
+        "Honey wax",
+        "Cedar oil",
+        "Pure olive oil"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_024",
+    "reference": "Exodus 28:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which two stones were the names of the children of Israel engraved for Aaron's shoulders?"
+    },
+    "answers": {
+      "en": [
+        "Ruby",
+        "Onyx",
+        "Jasper",
+        "Diamond"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_025",
+    "reference": "Exodus 28:21",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "How many stones were set in the high priest's breastplate?"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Seven",
+        "Four",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_026",
+    "reference": "Exodus 28:30",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was put in the breastplate of judgment, on Aaron's heart?"
+    },
+    "answers": {
+      "en": [
+        "The Urim and the Thummim",
+        "The two tablets",
+        "A jar of manna",
+        "A golden bell"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_027",
+    "reference": "Exodus 28:34",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What alternated with golden bells around the hem of the high priest's robe?"
+    },
+    "answers": {
+      "en": [
+        "Almonds",
+        "Pomegranates",
+        "Stars",
+        "Grapes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_028",
+    "reference": "Exodus 28:36",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What was engraved on the plate of pure gold for Aaron's turban?"
+    },
+    "answers": {
+      "en": [
+        "The Lord is one",
+        "King of Israel",
+        "Holy to Yahweh",
+        "Priest forever"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_029",
+    "reference": "Exodus 30:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "The altar to burn incense on was made of what wood?"
+    },
+    "answers": {
+      "en": [
+        "Cedar",
+        "Olive",
+        "Cypress",
+        "Acacia"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_030",
+    "reference": "Exodus 30:23",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many shekels of liquid myrrh went into the holy anointing oil?"
+    },
+    "answers": {
+      "en": [
+        "250",
+        "100",
+        "500",
+        "50"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_031",
+    "reference": "Exodus 30:34",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which of these was an ingredient of the holy incense?"
+    },
+    "answers": {
+      "en": [
+        "Cinnamon",
+        "Galbanum",
+        "Cassia",
+        "Hyssop"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_032",
+    "reference": "Exodus 31:2",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Bezalel, called by God to build the tabernacle, was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Uri",
+        "Hur",
+        "Ahisamach",
+        "Amminadab"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_033",
+    "reference": "Exodus 31:18",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "With what were the two stone tablets written?"
+    },
+    "answers": {
+      "en": [
+        "God's finger",
+        "A golden pen",
+        "Fire",
+        "Moses' rod"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_034",
+    "reference": "Exodus 32:1",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "When Moses delayed on the mountain, what did the people ask Aaron to make?"
+    },
+    "answers": {
+      "en": [
+        "A new tent",
+        "Gods to go before them",
+        "A road home",
+        "Bread for the journey"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_035",
+    "reference": "Exodus 32:2",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Aaron tell the people to bring him for the golden calf?"
+    },
+    "answers": {
+      "en": [
+        "Silver coins",
+        "Bronze tools",
+        "Golden earrings",
+        "Gold crowns"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_036",
+    "reference": "Exodus 32:24",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What excuse did Aaron give Moses about the golden calf?"
+    },
+    "answers": {
+      "en": [
+        "Pharaoh sent it",
+        "Joshua made it",
+        "It fell from the sky",
+        "Gold went in the fire, out came a calf"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_037",
+    "reference": "Exodus 32:26",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "When Moses cried, \"Whoever is on Yahweh's side, come to me!\", who gathered to him?"
+    },
+    "answers": {
+      "en": [
+        "The sons of Judah",
+        "The seventy elders",
+        "The sons of Levi",
+        "The women"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_038",
+    "reference": "Exodus 32:32",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "If God would not forgive Israel's sin, what did Moses ask God to do to him?"
+    },
+    "answers": {
+      "en": [
+        "Take his life",
+        "Send him back to Egypt",
+        "Make him blind",
+        "Blot him out of his book"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_039",
+    "reference": "Exodus 33:7",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses call the tent he pitched outside the camp?"
+    },
+    "answers": {
+      "en": [
+        "The Tent of Meeting",
+        "The House of God",
+        "The Tent of Witness",
+        "The Holy Tent"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_040",
+    "reference": "Exodus 33:20",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Why did God say Moses could not see his face?"
+    },
+    "answers": {
+      "en": [
+        "Moses was not holy enough",
+        "No man may see him and live",
+        "It was too dark",
+        "It was not yet time"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_041",
+    "reference": "Exodus 33:22",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where did God put Moses while his glory passed by?"
+    },
+    "answers": {
+      "en": [
+        "Inside the ark",
+        "In a cleft of the rock",
+        "Under a tree",
+        "Behind the veil"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_042",
+    "reference": "Exodus 34:1",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did God tell Moses to chisel after he broke the first tablets?"
+    },
+    "answers": {
+      "en": [
+        "A golden altar",
+        "A stone pillar",
+        "Twelve stones",
+        "Two new stone tablets"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_043",
+    "reference": "Exodus 34:28",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "During his forty days with Yahweh, what did Moses neither eat nor drink?"
+    },
+    "answers": {
+      "en": [
+        "Bread and water",
+        "Wine and meat",
+        "Milk and honey",
+        "Manna and quail"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_044",
+    "reference": "Exodus 34:33",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses put on his face after speaking with the people?"
+    },
+    "answers": {
+      "en": [
+        "Ashes",
+        "Oil",
+        "A veil",
+        "A crown"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_045",
+    "reference": "Exodus 35:25",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did the wise-hearted women do with their hands for the tabernacle?"
+    },
+    "answers": {
+      "en": [
+        "Spun yarn and fine linen",
+        "Baked bread",
+        "Carved wood",
+        "Melted gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b104_046",
+    "reference": "Exodus 36:6",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Why did Moses tell the people to stop bringing offerings for the sanctuary?"
+    },
+    "answers": {
+      "en": [
+        "Aaron was ill",
+        "The gold ran out",
+        "They had brought more than enough",
+        "Pharaoh was coming"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b104_047",
+    "reference": "Exodus 37:1",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How long was the ark that Bezalel made?"
+    },
+    "answers": {
+      "en": [
+        "Five cubits",
+        "Two and a half cubits",
+        "Ten cubits",
+        "One cubit"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_048",
+    "reference": "Exodus 40:34",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "When the tabernacle was finished, what covered the Tent of Meeting?"
+    },
+    "answers": {
+      "en": [
+        "A rainbow",
+        "Thick smoke",
+        "A great light",
+        "The cloud"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b104_049",
+    "reference": "Exodus 40:35",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Why was Moses not able to enter the Tent of Meeting when it was finished?"
+    },
+    "answers": {
+      "en": [
+        "Its door was locked",
+        "Yahweh's glory filled it",
+        "Aaron was inside",
+        "It was still dark"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b104_050",
+    "reference": "Exodus 40:38",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What was in the cloud over the tabernacle by night?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Stars",
+        "Angels",
+        "Rain"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

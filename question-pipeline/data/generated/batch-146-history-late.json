@@ -2,7 +2,7 @@
   {
     "id": "q_b146_001",
     "reference": "2 Chronicles 21:12",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "From whom did King Jehoram of Judah receive a letter of judgment?"
@@ -38,7 +38,7 @@
   {
     "id": "q_b146_003",
     "reference": "2 Chronicles 21:20",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How did Jehoram depart, according to 2 Chronicles?"
@@ -74,7 +74,7 @@
   {
     "id": "q_b146_005",
     "reference": "2 Chronicles 24:15",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How old was Jehoiada when he died?"
@@ -146,7 +146,7 @@
   {
     "id": "q_b146_009",
     "reference": "2 Chronicles 25:6",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How many talents did Amaziah pay to hire 100,000 soldiers from Israel?"
@@ -200,7 +200,7 @@
   {
     "id": "q_b146_012",
     "reference": "2 Chronicles 25:27",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "To which city did Amaziah flee before he was killed?"
@@ -218,7 +218,7 @@
   {
     "id": "q_b146_013",
     "reference": "2 Chronicles 26:3",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How old was Uzziah when he began to reign?"
@@ -254,7 +254,7 @@
   {
     "id": "q_b146_015",
     "reference": "2 Chronicles 26:10",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did Uzziah love, as 2 Chronicles says?"
@@ -308,7 +308,7 @@
   {
     "id": "q_b146_018",
     "reference": "2 Chronicles 26:21",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Where did Uzziah live after he became a leper?"
@@ -326,7 +326,7 @@
   {
     "id": "q_b146_019",
     "reference": "2 Chronicles 27:5",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "What did the Ammonites give Jotham each year after he defeated them?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b146_020",
     "reference": "2 Chronicles 28:1",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How old was Ahaz when he began to reign?"
@@ -362,7 +362,7 @@
   {
     "id": "q_b146_021",
     "reference": "2 Chronicles 28:9",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Which prophet told Israel's army to send back the captives from Judah?"
@@ -380,7 +380,7 @@
   {
     "id": "q_b146_022",
     "reference": "2 Chronicles 28:15",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What did the men of Israel do for the naked captives from Judah?"
@@ -416,7 +416,7 @@
   {
     "id": "q_b146_024",
     "reference": "2 Chronicles 29:3",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did Hezekiah do in the first month of his first year?"
@@ -470,7 +470,7 @@
   {
     "id": "q_b146_027",
     "reference": "2 Chronicles 30:2",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "In which month did Hezekiah's people keep the Passover?"
@@ -506,7 +506,7 @@
   {
     "id": "q_b146_029",
     "reference": "2 Chronicles 30:23",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "After the Passover week, what did the assembly decide to do?"
@@ -524,7 +524,7 @@
   {
     "id": "q_b146_030",
     "reference": "2 Chronicles 31:6",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How did the people lay up their tithes in Hezekiah's day?"
@@ -542,7 +542,7 @@
   {
     "id": "q_b146_031",
     "reference": "2 Chronicles 32:8",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Hezekiah said of the king of Assyria, \"With him is an arm of\" what?"
@@ -560,7 +560,7 @@
   {
     "id": "q_b146_032",
     "reference": "2 Chronicles 32:21",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Whom did Yahweh send to cut off the mighty men in the Assyrian camp?"
@@ -596,7 +596,7 @@
   {
     "id": "q_b146_034",
     "reference": "2 Chronicles 32:30",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Which spring did Hezekiah stop and bring down to the west side of the city?"
@@ -614,7 +614,7 @@
   {
     "id": "q_b146_035",
     "reference": "2 Chronicles 32:33",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Where was Hezekiah buried?"
@@ -668,7 +668,7 @@
   {
     "id": "q_b146_038",
     "reference": "2 Chronicles 34:3",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "In which year of his reign did young Josiah begin to seek the God of David?"
@@ -722,7 +722,7 @@
   {
     "id": "q_b146_041",
     "reference": "2 Chronicles 35:18",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "2 Chronicles says no Passover like Josiah's had been kept since the days of whom?"
@@ -758,7 +758,7 @@
   {
     "id": "q_b146_043",
     "reference": "2 Chronicles 35:24",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "After Josiah was wounded, in what was he carried to Jerusalem?"
@@ -776,7 +776,7 @@
   {
     "id": "q_b146_044",
     "reference": "2 Chronicles 35:25",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Which prophet lamented for Josiah?"
@@ -848,7 +848,7 @@
   {
     "id": "q_b146_048",
     "reference": "2 Chronicles 36:22",
-    "difficulty": 1,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Which king of Persia made a proclamation to build Yahweh's house in Jerusalem?"

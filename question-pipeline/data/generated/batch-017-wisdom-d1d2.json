@@ -1,44 +1,758 @@
 [
-  {"id":"q_b17_001","reference":"Psalms 23:2","difficulty":1,"category":"wisdom","text":{"en":"In Psalm 23, where does the LORD make the psalmist lie down?"},"answers":{"en":["Beside the sea","Under a fig tree","On a high mountain","In green pastures"]},"correctIndex":3},
-  {"id":"q_b17_002","reference":"Psalms 23:2","difficulty":1,"category":"wisdom","text":{"en":"In Psalm 23, beside what does the LORD lead the psalmist?"},"answers":{"en":["Still waters","Rushing rivers","Deep wells","Mighty seas"]},"correctIndex":0},
-  {"id":"q_b17_003","reference":"Psalms 23:4","difficulty":1,"category":"wisdom","text":{"en":"In Psalm 23, what two things \"comfort me\"?"},"answers":{"en":["Your sword and your shield","Your rod and your staff","Your bread and your wine","Your lamp and your light"]},"correctIndex":1},
-  {"id":"q_b17_004","reference":"Psalms 23:4","difficulty":1,"category":"wisdom","text":{"en":"Psalm 23: through which valley does the psalmist walk, fearing no evil?"},"answers":{"en":["The valley of decision","The valley of dry bones","The valley of the shadow of death","The valley of Achor"]},"correctIndex":2},
-  {"id":"q_b17_005","reference":"Psalms 46:10","difficulty":1,"category":"wisdom","text":{"en":"'Be still, and know that I am ___.'"},"answers":{"en":["King","God","Holy","Near"]},"correctIndex":1},
-  {"id":"q_b17_006","reference":"Psalms 118:24","difficulty":1,"category":"wisdom","text":{"en":"'This is the day that Yahweh has ___. We will rejoice and be glad in it!'"},"answers":{"en":["Given","Blessed","Chosen","Made"]},"correctIndex":3},
-  {"id":"q_b17_007","reference":"Psalms 121:1","difficulty":1,"category":"wisdom","text":{"en":"In Psalm 121, to what does the psalmist lift up his eyes?"},"answers":{"en":["The heavens","The temple","The hills","The sea"]},"correctIndex":2},
-  {"id":"q_b17_008","reference":"Psalms 150:6","difficulty":1,"category":"wisdom","text":{"en":"The last verse of Psalms calls on what to praise the LORD?"},"answers":{"en":["Everything that has breath","All the angels of heaven","Every king of the earth","All the trees of the field"]},"correctIndex":0},
-  {"id":"q_b17_009","reference":"Ecclesiastes 1:9","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes says there is no new thing under the ___."},"answers":{"en":["Heavens","Sun","Moon","Stars"]},"correctIndex":1},
-  {"id":"q_b17_010","reference":"Ecclesiastes 3:2","difficulty":1,"category":"wisdom","text":{"en":"'A time to be born, and a time to ___.'"},"answers":{"en":["Die","Live","Grow","Rest"]},"correctIndex":0},
-  {"id":"q_b17_011","reference":"Song of Songs 1:1","difficulty":1,"category":"wisdom","text":{"en":"The Song of Songs is said to be whose song?"},"answers":{"en":["David","Hezekiah","Lemuel","Solomon"]},"correctIndex":3},
-  {"id":"q_b17_012","reference":"Psalms 22:1","difficulty":1,"category":"wisdom","text":{"en":"'My God, my God, why have you ___ me?'"},"answers":{"en":["Forgotten","Rejected","Forsaken","Troubled"]},"correctIndex":2},
-  {"id":"q_b17_013","reference":"Psalms 42:1","difficulty":1,"category":"wisdom","text":{"en":"Psalm 42: which animal pants for the water brooks, as the soul pants after God?"},"answers":{"en":["The lamb","The lion","The deer","The dove"]},"correctIndex":2},
-  {"id":"q_b17_014","reference":"Psalms 27:1","difficulty":1,"category":"wisdom","text":{"en":"'Yahweh is my light and my ___. Whom shall I fear?'"},"answers":{"en":["Song","Salvation","Shield","Fortress"]},"correctIndex":1},
-  {"id":"q_b17_015","reference":"Psalms 14:1","difficulty":1,"category":"wisdom","text":{"en":"Who has said in his heart, \"There is no God\"?"},"answers":{"en":["The fool","The scoffer","The sluggard","The king of Babylon"]},"correctIndex":0},
-  {"id":"q_b17_016","reference":"Psalms 100:3","difficulty":1,"category":"wisdom","text":{"en":"'We are his people, and the sheep of his ___.'"},"answers":{"en":["Flock","Fold","Field","Pasture"]},"correctIndex":3},
-  {"id":"q_b17_017","reference":"Proverbs 17:17","difficulty":1,"category":"wisdom","text":{"en":"'A friend loves at all ___; and a brother is born for adversity.'"},"answers":{"en":["Costs","Hours","Times","Seasons"]},"correctIndex":2},
-  {"id":"q_b17_018","reference":"Proverbs 18:10","difficulty":1,"category":"wisdom","text":{"en":"According to Proverbs, Yahweh's name is a strong what?"},"answers":{"en":["Fortress","Rock","Shield","Tower"]},"correctIndex":3},
-  {"id":"q_b17_019","reference":"Proverbs 3:6","difficulty":1,"category":"wisdom","text":{"en":"If you acknowledge the LORD in all your ways, what will he do to your paths?"},"answers":{"en":["Make them straight","Make them wide","Make them short","Make them smooth"]},"correctIndex":0},
-  {"id":"q_b17_020","reference":"Proverbs 22:1","difficulty":1,"category":"wisdom","text":{"en":"A good name is more desirable than what, according to Proverbs 22?"},"answers":{"en":["A long life","Great riches","Many friends","A royal crown"]},"correctIndex":1},
-  {"id":"q_b17_021","reference":"Psalms 139:14","difficulty":1,"category":"wisdom","text":{"en":"'I will give thanks to you, for I am fearfully and ___ made.'"},"answers":{"en":["Carefully","Perfectly","Wonderfully","Lovingly"]},"correctIndex":2},
-  {"id":"q_b17_022","reference":"Psalms 103:12","difficulty":1,"category":"wisdom","text":{"en":"Psalm 103: our transgressions are removed as far as the east is from what?"},"answers":{"en":["The north","The south","The sea","The west"]},"correctIndex":3},
-  {"id":"q_b17_023","reference":"Psalms 23:5","difficulty":1,"category":"wisdom","text":{"en":"Psalm 23: 'You anoint my head with ___.'"},"answers":{"en":["Water","Oil","Honey","Wine"]},"correctIndex":1},
-  {"id":"q_b17_024","reference":"Psalms 23:6","difficulty":1,"category":"wisdom","text":{"en":"At the end of Psalm 23, where will the psalmist dwell forever?"},"answers":{"en":["In Yahweh's house","In the promised land","In the city of David","In the tents of Jacob"]},"correctIndex":0},
-  {"id":"q_b17_025","reference":"Ecclesiastes 12:1","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 12: whom should you remember in the days of your youth?"},"answers":{"en":["Your father","Your teacher","Your king","Your Creator"]},"correctIndex":3},
-  {"id":"q_b17_026","reference":"Job 1:21","difficulty":1,"category":"wisdom","text":{"en":"Job said: 'Yahweh gave, and Yahweh has ___. Blessed be Yahweh's name.'"},"answers":{"en":["Taken away","Given more","Forgotten me","Judged me"]},"correctIndex":0},
-  {"id":"q_b17_027","reference":"Psalms 136:1","difficulty":1,"category":"wisdom","text":{"en":"Psalm 136 repeats that the LORD's loving kindness endures how long?"},"answers":{"en":["For a season","Forever","For a thousand years","Until evening"]},"correctIndex":1},
-  {"id":"q_b17_028","reference":"Proverbs 13:24","difficulty":1,"category":"wisdom","text":{"en":"Proverbs says one who spares what hates his son?"},"answers":{"en":["The bread","His words","The rod","His time"]},"correctIndex":2},
-  {"id":"q_b17_029","reference":"Psalms 119:11","difficulty":1,"category":"wisdom","text":{"en":"Where did the psalmist hide God's word, that he might not sin?"},"answers":{"en":["In his heart","In his mind","In his house","In a scroll"]},"correctIndex":0},
-  {"id":"q_b17_030","reference":"Ecclesiastes 3:4","difficulty":1,"category":"wisdom","text":{"en":"'A time to weep, and a time to ___.'"},"answers":{"en":["Sing","Pray","Sleep","Laugh"]},"correctIndex":3},
-  {"id":"q_b17_031","reference":"Job 1:1","difficulty":2,"category":"wisdom","text":{"en":"In which land did Job live?"},"answers":{"en":["Ur","Ophir","Uz","Teman"]},"correctIndex":2},
-  {"id":"q_b17_032","reference":"Job 3:1","difficulty":2,"category":"wisdom","text":{"en":"After his friends' long silence, what did Job curse?"},"answers":{"en":["His three friends","The day of his birth","His wealth","The land of Uz"]},"correctIndex":1},
-  {"id":"q_b17_033","reference":"Job 19:25","difficulty":2,"category":"wisdom","text":{"en":"Job declared: 'I know that my ___ lives.'"},"answers":{"en":["Defender","Savior","Shepherd","Redeemer"]},"correctIndex":3},
-  {"id":"q_b17_034","reference":"Job 2:13","difficulty":2,"category":"wisdom","text":{"en":"How many days and nights did Job's friends sit with him without speaking?"},"answers":{"en":["Three","Seven","Forty","Ten"]},"correctIndex":1},
-  {"id":"q_b17_035","reference":"Job 2:9","difficulty":2,"category":"wisdom","text":{"en":"Who told Job, \"Renounce God, and die\"?"},"answers":{"en":["Eliphaz","Satan","His wife","His eldest son"]},"correctIndex":2},
-  {"id":"q_b17_036","reference":"Psalms 37:4","difficulty":2,"category":"wisdom","text":{"en":"If you delight yourself in Yahweh, what will he give you?"},"answers":{"en":["The desires of your heart","A long life","Great riches","Victory over enemies"]},"correctIndex":0},
-  {"id":"q_b17_037","reference":"Psalms 34:8","difficulty":2,"category":"wisdom","text":{"en":"'Oh taste and ___ that Yahweh is good.'"},"answers":{"en":["See","Know","Hear","Believe"]},"correctIndex":0},
-  {"id":"q_b17_038","reference":"Proverbs 17:22","difficulty":2,"category":"wisdom","text":{"en":"According to Proverbs, a cheerful heart makes good what?"},"answers":{"en":["Friends","Medicine","Music","Bread"]},"correctIndex":1},
-  {"id":"q_b17_039","reference":"Proverbs 18:24","difficulty":2,"category":"wisdom","text":{"en":"There is a friend who sticks closer than whom?"},"answers":{"en":["A wife","A father","A brother","A shadow"]},"correctIndex":2},
-  {"id":"q_b17_040","reference":"Ecclesiastes 4:9","difficulty":2,"category":"wisdom","text":{"en":"According to Ecclesiastes 4, how many are better than one?"},"answers":{"en":["Three","Seven","Ten","Two"]},"correctIndex":3},
-  {"id":"q_b17_041","reference":"Ecclesiastes 11:1","difficulty":2,"category":"wisdom","text":{"en":"'Cast your bread on the ___; for you shall find it after many days.'"},"answers":{"en":["Waters","Fields","Winds","Hills"]},"correctIndex":0},
-  {"id":"q_b17_042","reference":"Psalms 133:1","difficulty":2,"category":"wisdom","text":{"en":"Psalm 133: how good and pleasant it is for brothers to live together in what?"},"answers":{"en":["Peace","Unity","Plenty","Joy"]},"correctIndex":1}
+  {
+    "id": "q_b17_001",
+    "reference": "Psalms 23:2",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "In Psalm 23, where does the LORD make the psalmist lie down?"
+    },
+    "answers": {
+      "en": [
+        "Beside the sea",
+        "Under a fig tree",
+        "On a high mountain",
+        "In green pastures"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_002",
+    "reference": "Psalms 23:2",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "In Psalm 23, beside what does the LORD lead the psalmist?"
+    },
+    "answers": {
+      "en": [
+        "Still waters",
+        "Rushing rivers",
+        "Deep wells",
+        "Mighty seas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_003",
+    "reference": "Psalms 23:4",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "In Psalm 23, what two things \"comfort me\"?"
+    },
+    "answers": {
+      "en": [
+        "Your sword and your shield",
+        "Your rod and your staff",
+        "Your bread and your wine",
+        "Your lamp and your light"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_004",
+    "reference": "Psalms 23:4",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 23: through which valley does the psalmist walk, fearing no evil?"
+    },
+    "answers": {
+      "en": [
+        "The valley of decision",
+        "The valley of dry bones",
+        "The valley of the shadow of death",
+        "The valley of Achor"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_005",
+    "reference": "Psalms 46:10",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Be still, and know that I am ___.'"
+    },
+    "answers": {
+      "en": [
+        "King",
+        "God",
+        "Holy",
+        "Near"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_006",
+    "reference": "Psalms 118:24",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'This is the day that Yahweh has ___. We will rejoice and be glad in it!'"
+    },
+    "answers": {
+      "en": [
+        "Given",
+        "Blessed",
+        "Chosen",
+        "Made"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_007",
+    "reference": "Psalms 121:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "In Psalm 121, to what does the psalmist lift up his eyes?"
+    },
+    "answers": {
+      "en": [
+        "The heavens",
+        "The temple",
+        "The hills",
+        "The sea"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_008",
+    "reference": "Psalms 150:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "The last verse of Psalms calls on what to praise the LORD?"
+    },
+    "answers": {
+      "en": [
+        "Everything that has breath",
+        "All the angels of heaven",
+        "Every king of the earth",
+        "All the trees of the field"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_009",
+    "reference": "Ecclesiastes 1:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes says there is no new thing under the ___."
+    },
+    "answers": {
+      "en": [
+        "Heavens",
+        "Sun",
+        "Moon",
+        "Stars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_010",
+    "reference": "Ecclesiastes 3:2",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to be born, and a time to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Die",
+        "Live",
+        "Grow",
+        "Rest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_011",
+    "reference": "Song of Songs 1:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "The Song of Songs is said to be whose song?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Hezekiah",
+        "Lemuel",
+        "Solomon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_012",
+    "reference": "Psalms 22:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'My God, my God, why have you ___ me?'"
+    },
+    "answers": {
+      "en": [
+        "Forgotten",
+        "Rejected",
+        "Forsaken",
+        "Troubled"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_013",
+    "reference": "Psalms 42:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 42: which animal pants for the water brooks, as the soul pants after God?"
+    },
+    "answers": {
+      "en": [
+        "The lamb",
+        "The lion",
+        "The deer",
+        "The dove"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_014",
+    "reference": "Psalms 27:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Yahweh is my light and my ___. Whom shall I fear?'"
+    },
+    "answers": {
+      "en": [
+        "Song",
+        "Salvation",
+        "Shield",
+        "Fortress"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_015",
+    "reference": "Psalms 14:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Who has said in his heart, \"There is no God\"?"
+    },
+    "answers": {
+      "en": [
+        "The fool",
+        "The scoffer",
+        "The sluggard",
+        "The king of Babylon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_016",
+    "reference": "Psalms 100:3",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'We are his people, and the sheep of his ___.'"
+    },
+    "answers": {
+      "en": [
+        "Flock",
+        "Fold",
+        "Field",
+        "Pasture"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_017",
+    "reference": "Proverbs 17:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'A friend loves at all ___; and a brother is born for adversity.'"
+    },
+    "answers": {
+      "en": [
+        "Costs",
+        "Hours",
+        "Times",
+        "Seasons"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_018",
+    "reference": "Proverbs 18:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Proverbs, Yahweh's name is a strong what?"
+    },
+    "answers": {
+      "en": [
+        "Fortress",
+        "Rock",
+        "Shield",
+        "Tower"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_019",
+    "reference": "Proverbs 3:6",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "If you acknowledge the LORD in all your ways, what will he do to your paths?"
+    },
+    "answers": {
+      "en": [
+        "Make them straight",
+        "Make them wide",
+        "Make them short",
+        "Make them smooth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_020",
+    "reference": "Proverbs 22:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "A good name is more desirable than what, according to Proverbs 22?"
+    },
+    "answers": {
+      "en": [
+        "A long life",
+        "Great riches",
+        "Many friends",
+        "A royal crown"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_021",
+    "reference": "Psalms 139:14",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'I will give thanks to you, for I am fearfully and ___ made.'"
+    },
+    "answers": {
+      "en": [
+        "Carefully",
+        "Perfectly",
+        "Wonderfully",
+        "Lovingly"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_022",
+    "reference": "Psalms 103:12",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 103: our transgressions are removed as far as the east is from what?"
+    },
+    "answers": {
+      "en": [
+        "The north",
+        "The south",
+        "The sea",
+        "The west"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_023",
+    "reference": "Psalms 23:5",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 23: 'You anoint my head with ___.'"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Oil",
+        "Honey",
+        "Wine"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_024",
+    "reference": "Psalms 23:6",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "At the end of Psalm 23, where will the psalmist dwell forever?"
+    },
+    "answers": {
+      "en": [
+        "In Yahweh's house",
+        "In the promised land",
+        "In the city of David",
+        "In the tents of Jacob"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_025",
+    "reference": "Ecclesiastes 12:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 12: whom should you remember in the days of your youth?"
+    },
+    "answers": {
+      "en": [
+        "Your father",
+        "Your teacher",
+        "Your king",
+        "Your Creator"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_026",
+    "reference": "Job 1:21",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Job said: 'Yahweh gave, and Yahweh has ___. Blessed be Yahweh's name.'"
+    },
+    "answers": {
+      "en": [
+        "Taken away",
+        "Given more",
+        "Forgotten me",
+        "Judged me"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_027",
+    "reference": "Psalms 136:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 136 repeats that the LORD's loving kindness endures how long?"
+    },
+    "answers": {
+      "en": [
+        "For a season",
+        "Forever",
+        "For a thousand years",
+        "Until evening"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_028",
+    "reference": "Proverbs 13:24",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Proverbs says one who spares what hates his son?"
+    },
+    "answers": {
+      "en": [
+        "The bread",
+        "His words",
+        "The rod",
+        "His time"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_029",
+    "reference": "Psalms 119:11",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Where did the psalmist hide God's word, that he might not sin?"
+    },
+    "answers": {
+      "en": [
+        "In his heart",
+        "In his mind",
+        "In his house",
+        "In a scroll"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_030",
+    "reference": "Ecclesiastes 3:4",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to weep, and a time to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Sing",
+        "Pray",
+        "Sleep",
+        "Laugh"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_031",
+    "reference": "Job 1:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "In which land did Job live?"
+    },
+    "answers": {
+      "en": [
+        "Ur",
+        "Ophir",
+        "Uz",
+        "Teman"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_032",
+    "reference": "Job 3:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "After his friends' long silence, what did Job curse?"
+    },
+    "answers": {
+      "en": [
+        "His three friends",
+        "The day of his birth",
+        "His wealth",
+        "The land of Uz"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_033",
+    "reference": "Job 19:25",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Job declared: 'I know that my ___ lives.'"
+    },
+    "answers": {
+      "en": [
+        "Defender",
+        "Savior",
+        "Shepherd",
+        "Redeemer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_034",
+    "reference": "Job 2:13",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "How many days and nights did Job's friends sit with him without speaking?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Forty",
+        "Ten"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_035",
+    "reference": "Job 2:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Who told Job, \"Renounce God, and die\"?"
+    },
+    "answers": {
+      "en": [
+        "Eliphaz",
+        "Satan",
+        "His wife",
+        "His eldest son"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_036",
+    "reference": "Psalms 37:4",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "If you delight yourself in Yahweh, what will he give you?"
+    },
+    "answers": {
+      "en": [
+        "The desires of your heart",
+        "A long life",
+        "Great riches",
+        "Victory over enemies"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_037",
+    "reference": "Psalms 34:8",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Oh taste and ___ that Yahweh is good.'"
+    },
+    "answers": {
+      "en": [
+        "See",
+        "Know",
+        "Hear",
+        "Believe"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_038",
+    "reference": "Proverbs 17:22",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Proverbs, a cheerful heart makes good what?"
+    },
+    "answers": {
+      "en": [
+        "Friends",
+        "Medicine",
+        "Music",
+        "Bread"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b17_039",
+    "reference": "Proverbs 18:24",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "There is a friend who sticks closer than whom?"
+    },
+    "answers": {
+      "en": [
+        "A wife",
+        "A father",
+        "A brother",
+        "A shadow"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b17_040",
+    "reference": "Ecclesiastes 4:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "According to Ecclesiastes 4, how many are better than one?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Two"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b17_041",
+    "reference": "Ecclesiastes 11:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Cast your bread on the ___; for you shall find it after many days.'"
+    },
+    "answers": {
+      "en": [
+        "Waters",
+        "Fields",
+        "Winds",
+        "Hills"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b17_042",
+    "reference": "Psalms 133:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 133: how good and pleasant it is for brothers to live together in what?"
+    },
+    "answers": {
+      "en": [
+        "Peace",
+        "Unity",
+        "Plenty",
+        "Joy"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

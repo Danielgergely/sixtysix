@@ -1,59 +1,1028 @@
 [
-  {"id":"q_b120_001","reference":"Joshua 1:1","difficulty":2,"category":"history","text":{"en":"Joshua was the son of whom?"},"answers":{"en":["Nun","Jephunneh","Amram","Eleazar"]},"correctIndex":0},
-  {"id":"q_b120_002","reference":"Joshua 1:4","difficulty":3,"category":"history","text":{"en":"Which river is called \"the great river\" in God's charge to Joshua?"},"answers":{"en":["The Nile","The Euphrates","The Tigris","The Kishon"]},"correctIndex":1},
-  {"id":"q_b120_003","reference":"Joshua 1:8","difficulty":2,"category":"history","text":{"en":"What was Joshua to meditate on day and night?"},"answers":{"en":["The stars of heaven","The words of the elders","The book of the law","The songs of Miriam"]},"correctIndex":2},
-  {"id":"q_b120_004","reference":"Joshua 1:9","difficulty":1,"category":"history","text":{"en":"Complete God's command to Joshua: \"Be strong and…\""},"answers":{"en":["Patient","Wise","Silent","Courageous"]},"correctIndex":3},
-  {"id":"q_b120_005","reference":"Joshua 1:11","difficulty":3,"category":"history","text":{"en":"Within how many days were the people told they would cross the Jordan?"},"answers":{"en":["Three","Seven","Ten","Forty"]},"correctIndex":0},
-  {"id":"q_b120_006","reference":"Joshua 1:12","difficulty":4,"category":"history","text":{"en":"Which tribes had to cross armed, though their land was east of the Jordan?"},"answers":{"en":["Judah, Simeon and Levi","Reuben, Gad and half Manasseh","Dan, Naphtali and Asher","Ephraim, Benjamin and Issachar"]},"correctIndex":1},
-  {"id":"q_b120_007","reference":"Joshua 2:1","difficulty":3,"category":"history","text":{"en":"From which place did Joshua secretly send the two spies?"},"answers":{"en":["Gilgal","Bethel","Shittim","Kadesh"]},"correctIndex":2},
-  {"id":"q_b120_008","reference":"Joshua 2:6","difficulty":2,"category":"history","text":{"en":"Under what did Rahab hide the spies on her roof?"},"answers":{"en":["Sheaves of wheat","Palm branches","Sheepskins","Stalks of flax"]},"correctIndex":3},
-  {"id":"q_b120_009","reference":"Joshua 2:15","difficulty":2,"category":"history","text":{"en":"How did Rahab help the spies escape from Jericho?"},"answers":{"en":["By a cord through her window","Through a tunnel under the wall","Out of the gate at night","Hidden in a cart of grain"]},"correctIndex":0},
-  {"id":"q_b120_010","reference":"Joshua 2:16","difficulty":3,"category":"history","text":{"en":"How many days did Rahab tell the spies to hide in the mountain?"},"answers":{"en":["Seven","Two","Three","Ten"]},"correctIndex":2},
-  {"id":"q_b120_011","reference":"Joshua 2:10","difficulty":4,"category":"history","text":{"en":"Rahab had heard what Israel did to which two Amorite kings?"},"answers":{"en":["Jabin and Sisera","Sihon and Og","Eglon and Agag","Zebah and Zalmunna"]},"correctIndex":1},
-  {"id":"q_b120_012","reference":"Joshua 3:4","difficulty":4,"category":"history","text":{"en":"About how far behind the ark were the people to stay?"},"answers":{"en":["2,000 cubits","500 cubits","1,000 cubits","3,000 cubits"]},"correctIndex":0},
-  {"id":"q_b120_013","reference":"Joshua 3:16","difficulty":5,"category":"history","text":{"en":"Near which city did the Jordan's waters rise up in one heap?"},"answers":{"en":["Gilgal","Shittim","Bethel","Adam"]},"correctIndex":3},
-  {"id":"q_b120_014","reference":"Joshua 3:17","difficulty":1,"category":"history","text":{"en":"On what did the priests stand in the middle of the Jordan?"},"answers":{"en":["Large stones","Wooden planks","Dry ground","Wet sand"]},"correctIndex":2},
-  {"id":"q_b120_015","reference":"Joshua 4:9","difficulty":3,"category":"history","text":{"en":"Besides at Gilgal, where did Joshua set up twelve stones?"},"answers":{"en":["On Mount Ebal","In the middle of the Jordan","At Shittim","At the gate of Jericho"]},"correctIndex":1},
-  {"id":"q_b120_016","reference":"Joshua 4:13","difficulty":4,"category":"history","text":{"en":"About how many armed men of the eastern tribes crossed to fight?"},"answers":{"en":["40,000","12,000","70,000","100,000"]},"correctIndex":0},
-  {"id":"q_b120_017","reference":"Joshua 4:19","difficulty":2,"category":"history","text":{"en":"Where did Israel first camp after crossing the Jordan?"},"answers":{"en":["Shiloh","Bethel","Shechem","Gilgal"]},"correctIndex":3},
-  {"id":"q_b120_018","reference":"Joshua 4:19","difficulty":5,"category":"history","text":{"en":"On which day of the first month did Israel come up out of the Jordan?"},"answers":{"en":["The first","The fourteenth","The tenth","The seventh"]},"correctIndex":2},
-  {"id":"q_b120_019","reference":"Joshua 5:2","difficulty":3,"category":"history","text":{"en":"What kind of knives did Joshua make to circumcise Israel again?"},"answers":{"en":["Bronze knives","Flint knives","Iron knives","Silver knives"]},"correctIndex":1},
-  {"id":"q_b120_020","reference":"Joshua 5:9","difficulty":4,"category":"history","text":{"en":"At Gilgal, God said he had rolled away what from Israel?"},"answers":{"en":["The waters of the Jordan","The reproach of Egypt","The sins of their fathers","The walls of Jericho"]},"correctIndex":1},
-  {"id":"q_b120_021","reference":"Joshua 5:10","difficulty":2,"category":"history","text":{"en":"Which feast did Israel keep at Gilgal on the plains of Jericho?"},"answers":{"en":["The Feast of Tents","The Feast of Weeks","The Passover","The Day of Atonement"]},"correctIndex":2},
-  {"id":"q_b120_022","reference":"Joshua 5:12","difficulty":2,"category":"history","text":{"en":"What stopped the day after Israel ate the produce of Canaan?"},"answers":{"en":["The quail","The pillar of cloud","The water from the rock","The manna"]},"correctIndex":3},
-  {"id":"q_b120_023","reference":"Joshua 5:14","difficulty":3,"category":"history","text":{"en":"The man with the drawn sword near Jericho was commander of what?"},"answers":{"en":["Yahweh's army","Jericho's guard","The Philistine host","The king's chariots"]},"correctIndex":0},
-  {"id":"q_b120_024","reference":"Joshua 5:15","difficulty":2,"category":"history","text":{"en":"What did the commander of Yahweh's army tell Joshua to take off?"},"answers":{"en":["His armor","His shoes","His cloak","His helmet"]},"correctIndex":1},
-  {"id":"q_b120_025","reference":"Joshua 6:3","difficulty":1,"category":"history","text":{"en":"For how many days did Israel march around Jericho once a day?"},"answers":{"en":["Three","Five","Six","Ten"]},"correctIndex":2},
-  {"id":"q_b120_026","reference":"Joshua 6:4","difficulty":2,"category":"history","text":{"en":"What were the seven trumpets at Jericho made of?"},"answers":{"en":["Silver","Bronze","Gold","Rams' horns"]},"correctIndex":3},
-  {"id":"q_b120_027","reference":"Joshua 6:6","difficulty":1,"category":"history","text":{"en":"What did the priests carry around Jericho behind the trumpets?"},"answers":{"en":["The ark of the covenant","The stone tablets","The bronze altar","The golden lampstand"]},"correctIndex":0},
-  {"id":"q_b120_028","reference":"Joshua 6:10","difficulty":2,"category":"history","text":{"en":"What did Joshua forbid the people to do until his signal at Jericho?"},"answers":{"en":["Eat","Shout","Sleep","Run"]},"correctIndex":1},
-  {"id":"q_b120_029","reference":"Joshua 6:16","difficulty":2,"category":"history","text":{"en":"On the seventh day, at which lap did Joshua cry \"Shout!\"?"},"answers":{"en":["The first","The third","The seventh","The sixth"]},"correctIndex":2},
-  {"id":"q_b120_030","reference":"Joshua 6:23","difficulty":2,"category":"history","text":{"en":"Whom did the spies bring out of Jericho with Rahab?"},"answers":{"en":["Her father, mother and brothers","Only her servants","The king of Jericho","The elders of the city"]},"correctIndex":0},
-  {"id":"q_b120_031","reference":"Joshua 6:26","difficulty":3,"category":"history","text":{"en":"Joshua laid a curse on anyone who would rebuild which city?"},"answers":{"en":["Ai","Hazor","Gibeon","Jericho"]},"correctIndex":3},
-  {"id":"q_b120_032","reference":"Joshua 7:1","difficulty":3,"category":"history","text":{"en":"Achan belonged to which tribe?"},"answers":{"en":["Benjamin","Reuben","Judah","Dan"]},"correctIndex":2},
-  {"id":"q_b120_033","reference":"Joshua 7:5","difficulty":4,"category":"history","text":{"en":"About how many Israelites did the men of Ai kill in the first attack?"},"answers":{"en":["300","36","12","70"]},"correctIndex":1},
-  {"id":"q_b120_034","reference":"Joshua 7:6","difficulty":3,"category":"history","text":{"en":"What did Joshua and the elders put on their heads after the defeat at Ai?"},"answers":{"en":["Dust","Oil","Ashes","Sackcloth"]},"correctIndex":0},
-  {"id":"q_b120_035","reference":"Joshua 7:21","difficulty":4,"category":"history","text":{"en":"How much silver did Achan take and hide in his tent?"},"answers":{"en":["100 shekels","400 shekels","30 shekels","200 shekels"]},"correctIndex":3},
-  {"id":"q_b120_036","reference":"Joshua 7:21","difficulty":5,"category":"history","text":{"en":"How much did Achan's wedge of gold weigh?"},"answers":{"en":["20 shekels","10 shekels","50 shekels","100 shekels"]},"correctIndex":2},
-  {"id":"q_b120_037","reference":"Joshua 7:26","difficulty":3,"category":"history","text":{"en":"In which valley was Achan stoned?"},"answers":{"en":["Elah","Achor","Aijalon","Hinnom"]},"correctIndex":1},
-  {"id":"q_b120_038","reference":"Joshua 8:18","difficulty":3,"category":"history","text":{"en":"What did Joshua stretch out toward Ai as the signal for the ambush?"},"answers":{"en":["A javelin","A banner","A torch","A trumpet"]},"correctIndex":0},
-  {"id":"q_b120_039","reference":"Joshua 8:25","difficulty":5,"category":"history","text":{"en":"How many people of Ai fell on the day the city was taken?"},"answers":{"en":["3,000","7,000","1,000","12,000"]},"correctIndex":3},
-  {"id":"q_b120_040","reference":"Joshua 8:29","difficulty":4,"category":"history","text":{"en":"What was raised over the body of the king of Ai at the city gate?"},"answers":{"en":["A wooden pole","An altar","A stone pillar","A great heap of stones"]},"correctIndex":3},
-  {"id":"q_b120_041","reference":"Joshua 8:30","difficulty":3,"category":"history","text":{"en":"On which mountain did Joshua build an altar after taking Ai?"},"answers":{"en":["Mount Ebal","Mount Carmel","Mount Hermon","Mount Tabor"]},"correctIndex":0},
-  {"id":"q_b120_042","reference":"Joshua 8:31","difficulty":5,"category":"history","text":{"en":"What was the altar on Mount Ebal made of?"},"answers":{"en":["Bronze","Uncut stones","Cedar wood","Baked bricks"]},"correctIndex":1},
-  {"id":"q_b120_043","reference":"Joshua 8:32","difficulty":4,"category":"history","text":{"en":"What did Joshua write on the stones at Mount Ebal?"},"answers":{"en":["The names of the twelve tribes","The list of defeated kings","A copy of the law of Moses","The story of the Exodus"]},"correctIndex":2},
-  {"id":"q_b120_044","reference":"Joshua 9:6","difficulty":3,"category":"history","text":{"en":"At which camp did the Gibeonites come to Joshua?"},"answers":{"en":["Shiloh","Shechem","Jericho","Gilgal"]},"correctIndex":3},
-  {"id":"q_b120_045","reference":"Joshua 9:14","difficulty":4,"category":"history","text":{"en":"What did Israel fail to do before the covenant with the Gibeonites?"},"answers":{"en":["Ask counsel from Yahweh","Count their soldiers","Send spies to Gibeon","Offer a sacrifice"]},"correctIndex":0},
-  {"id":"q_b120_046","reference":"Joshua 9:16","difficulty":4,"category":"history","text":{"en":"After how many days did Israel learn the Gibeonites were neighbors?"},"answers":{"en":["Seven","Three","Ten","Thirty"]},"correctIndex":1},
-  {"id":"q_b120_047","reference":"Joshua 9:17","difficulty":5,"category":"history","text":{"en":"Which of these was one of the Gibeonites' cities?"},"answers":{"en":["Lachish","Jarmuth","Kiriath Jearim","Debir"]},"correctIndex":2},
-  {"id":"q_b120_048","reference":"Joshua 9:21","difficulty":3,"category":"history","text":{"en":"What work were the Gibeonites given in Israel?"},"answers":{"en":["Shepherds and herdsmen","Brick makers and builders","Gatekeepers and singers","Wood cutters and water drawers"]},"correctIndex":3},
-  {"id":"q_b120_049","reference":"Joshua 10:1","difficulty":4,"category":"history","text":{"en":"Who was king of Jerusalem when Joshua took Ai?"},"answers":{"en":["Adoni-Zedek","Adoni-Bezek","Jabin","Agag"]},"correctIndex":0},
-  {"id":"q_b120_050","reference":"Joshua 10:5","difficulty":2,"category":"history","text":{"en":"How many Amorite kings joined to attack Gibeon?"},"answers":{"en":["Three","Seven","Five","Twelve"]},"correctIndex":2},
-  {"id":"q_b120_051","reference":"Joshua 10:11","difficulty":2,"category":"history","text":{"en":"What did Yahweh hurl from the sky on the fleeing Amorites?"},"answers":{"en":["Fire","Hailstones","Locusts","Lightning"]},"correctIndex":1},
-  {"id":"q_b120_052","reference":"Joshua 10:12","difficulty":3,"category":"history","text":{"en":"In which valley did Joshua tell the moon to stop?"},"answers":{"en":["Aijalon","Achor","Elah","Jezreel"]},"correctIndex":0},
-  {"id":"q_b120_053","reference":"Joshua 10:13","difficulty":4,"category":"history","text":{"en":"In which book is the sun standing still also written?"},"answers":{"en":["The book of the kings","The book of Nathan","The book of the wars","The book of Jashar"]},"correctIndex":3},
-  {"id":"q_b120_054","reference":"Joshua 10:16","difficulty":3,"category":"history","text":{"en":"Where did the five Amorite kings hide?"},"answers":{"en":["In a tower in Jerusalem","In the forest of Hereth","In the cave at Makkedah","In a well at Gibeon"]},"correctIndex":2},
-  {"id":"q_b120_055","reference":"Joshua 10:24","difficulty":3,"category":"history","text":{"en":"What did Israel's captains put on the necks of the five kings?"},"answers":{"en":["Yokes","Their feet","Chains","Ropes"]},"correctIndex":1},
-  {"id":"q_b120_056","reference":"Joshua 10:26","difficulty":2,"category":"history","text":{"en":"On how many trees did Joshua hang the five kings?"},"answers":{"en":["Five","One","Seven","Two"]},"correctIndex":0},
-  {"id":"q_b120_057","reference":"Joshua 10:33","difficulty":5,"category":"history","text":{"en":"Which king of Gezer came to help Lachish and was struck down?"},"answers":{"en":["Hoham","Piram","Japhia","Horam"]},"correctIndex":3}
+  {
+    "id": "q_b120_001",
+    "reference": "Joshua 1:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Joshua was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Nun",
+        "Jephunneh",
+        "Amram",
+        "Eleazar"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_002",
+    "reference": "Joshua 1:4",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which river is called \"the great river\" in God's charge to Joshua?"
+    },
+    "answers": {
+      "en": [
+        "The Nile",
+        "The Euphrates",
+        "The Tigris",
+        "The Kishon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_003",
+    "reference": "Joshua 1:8",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What was Joshua to meditate on day and night?"
+    },
+    "answers": {
+      "en": [
+        "The stars of heaven",
+        "The words of the elders",
+        "The book of the law",
+        "The songs of Miriam"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_004",
+    "reference": "Joshua 1:9",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Complete God's command to Joshua: \"Be strong and…\""
+    },
+    "answers": {
+      "en": [
+        "Patient",
+        "Wise",
+        "Silent",
+        "Courageous"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_005",
+    "reference": "Joshua 1:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Within how many days were the people told they would cross the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Forty"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_006",
+    "reference": "Joshua 1:12",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which tribes had to cross armed, though their land was east of the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Judah, Simeon and Levi",
+        "Reuben, Gad and half Manasseh",
+        "Dan, Naphtali and Asher",
+        "Ephraim, Benjamin and Issachar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_007",
+    "reference": "Joshua 2:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "From which place did Joshua secretly send the two spies?"
+    },
+    "answers": {
+      "en": [
+        "Gilgal",
+        "Bethel",
+        "Shittim",
+        "Kadesh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_008",
+    "reference": "Joshua 2:6",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Under what did Rahab hide the spies on her roof?"
+    },
+    "answers": {
+      "en": [
+        "Sheaves of wheat",
+        "Palm branches",
+        "Sheepskins",
+        "Stalks of flax"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_009",
+    "reference": "Joshua 2:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How did Rahab help the spies escape from Jericho?"
+    },
+    "answers": {
+      "en": [
+        "By a cord through her window",
+        "Through a tunnel under the wall",
+        "Out of the gate at night",
+        "Hidden in a cart of grain"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_010",
+    "reference": "Joshua 2:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many days did Rahab tell the spies to hide in the mountain?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Two",
+        "Three",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_011",
+    "reference": "Joshua 2:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Rahab had heard what Israel did to which two Amorite kings?"
+    },
+    "answers": {
+      "en": [
+        "Jabin and Sisera",
+        "Sihon and Og",
+        "Eglon and Agag",
+        "Zebah and Zalmunna"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_012",
+    "reference": "Joshua 3:4",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "About how far behind the ark were the people to stay?"
+    },
+    "answers": {
+      "en": [
+        "2,000 cubits",
+        "500 cubits",
+        "1,000 cubits",
+        "3,000 cubits"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_013",
+    "reference": "Joshua 3:16",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Near which city did the Jordan's waters rise up in one heap?"
+    },
+    "answers": {
+      "en": [
+        "Gilgal",
+        "Shittim",
+        "Bethel",
+        "Adam"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_014",
+    "reference": "Joshua 3:17",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "On what did the priests stand in the middle of the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Large stones",
+        "Wooden planks",
+        "Dry ground",
+        "Wet sand"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_015",
+    "reference": "Joshua 4:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Besides at Gilgal, where did Joshua set up twelve stones?"
+    },
+    "answers": {
+      "en": [
+        "On Mount Ebal",
+        "In the middle of the Jordan",
+        "At Shittim",
+        "At the gate of Jericho"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_016",
+    "reference": "Joshua 4:13",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "About how many armed men of the eastern tribes crossed to fight?"
+    },
+    "answers": {
+      "en": [
+        "40,000",
+        "12,000",
+        "70,000",
+        "100,000"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_017",
+    "reference": "Joshua 4:19",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where did Israel first camp after crossing the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "Shiloh",
+        "Bethel",
+        "Shechem",
+        "Gilgal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_018",
+    "reference": "Joshua 4:19",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "On which day of the first month did Israel come up out of the Jordan?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The fourteenth",
+        "The tenth",
+        "The seventh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_019",
+    "reference": "Joshua 5:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What kind of knives did Joshua make to circumcise Israel again?"
+    },
+    "answers": {
+      "en": [
+        "Bronze knives",
+        "Flint knives",
+        "Iron knives",
+        "Silver knives"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_020",
+    "reference": "Joshua 5:9",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At Gilgal, God said he had rolled away what from Israel?"
+    },
+    "answers": {
+      "en": [
+        "The waters of the Jordan",
+        "The reproach of Egypt",
+        "The sins of their fathers",
+        "The walls of Jericho"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_021",
+    "reference": "Joshua 5:10",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which feast did Israel keep at Gilgal on the plains of Jericho?"
+    },
+    "answers": {
+      "en": [
+        "The Feast of Tents",
+        "The Feast of Weeks",
+        "The Passover",
+        "The Day of Atonement"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_022",
+    "reference": "Joshua 5:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What stopped the day after Israel ate the produce of Canaan?"
+    },
+    "answers": {
+      "en": [
+        "The quail",
+        "The pillar of cloud",
+        "The water from the rock",
+        "The manna"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_023",
+    "reference": "Joshua 5:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "The man with the drawn sword near Jericho was commander of what?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh's army",
+        "Jericho's guard",
+        "The Philistine host",
+        "The king's chariots"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_024",
+    "reference": "Joshua 5:15",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the commander of Yahweh's army tell Joshua to take off?"
+    },
+    "answers": {
+      "en": [
+        "His armor",
+        "His shoes",
+        "His cloak",
+        "His helmet"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_025",
+    "reference": "Joshua 6:3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "For how many days did Israel march around Jericho once a day?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Five",
+        "Six",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_026",
+    "reference": "Joshua 6:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What were the seven trumpets at Jericho made of?"
+    },
+    "answers": {
+      "en": [
+        "Silver",
+        "Bronze",
+        "Gold",
+        "Rams' horns"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_027",
+    "reference": "Joshua 6:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did the priests carry around Jericho behind the trumpets?"
+    },
+    "answers": {
+      "en": [
+        "The ark of the covenant",
+        "The stone tablets",
+        "The bronze altar",
+        "The golden lampstand"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_028",
+    "reference": "Joshua 6:10",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Joshua forbid the people to do until his signal at Jericho?"
+    },
+    "answers": {
+      "en": [
+        "Eat",
+        "Shout",
+        "Sleep",
+        "Run"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_029",
+    "reference": "Joshua 6:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "On the seventh day, at which lap did Joshua cry \"Shout!\"?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The third",
+        "The seventh",
+        "The sixth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_030",
+    "reference": "Joshua 6:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Whom did the spies bring out of Jericho with Rahab?"
+    },
+    "answers": {
+      "en": [
+        "Her father, mother and brothers",
+        "Only her servants",
+        "The king of Jericho",
+        "The elders of the city"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_031",
+    "reference": "Joshua 6:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Joshua laid a curse on anyone who would rebuild which city?"
+    },
+    "answers": {
+      "en": [
+        "Ai",
+        "Hazor",
+        "Gibeon",
+        "Jericho"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_032",
+    "reference": "Joshua 7:1",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Achan belonged to which tribe?"
+    },
+    "answers": {
+      "en": [
+        "Benjamin",
+        "Reuben",
+        "Judah",
+        "Dan"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_033",
+    "reference": "Joshua 7:5",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "About how many Israelites did the men of Ai kill in the first attack?"
+    },
+    "answers": {
+      "en": [
+        "300",
+        "36",
+        "12",
+        "70"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_034",
+    "reference": "Joshua 7:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Joshua and the elders put on their heads after the defeat at Ai?"
+    },
+    "answers": {
+      "en": [
+        "Dust",
+        "Oil",
+        "Ashes",
+        "Sackcloth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_035",
+    "reference": "Joshua 7:21",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How much silver did Achan take and hide in his tent?"
+    },
+    "answers": {
+      "en": [
+        "100 shekels",
+        "400 shekels",
+        "30 shekels",
+        "200 shekels"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_036",
+    "reference": "Joshua 7:21",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How much did Achan's wedge of gold weigh?"
+    },
+    "answers": {
+      "en": [
+        "20 shekels",
+        "10 shekels",
+        "50 shekels",
+        "100 shekels"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_037",
+    "reference": "Joshua 7:26",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which valley was Achan stoned?"
+    },
+    "answers": {
+      "en": [
+        "Elah",
+        "Achor",
+        "Aijalon",
+        "Hinnom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_038",
+    "reference": "Joshua 8:18",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Joshua stretch out toward Ai as the signal for the ambush?"
+    },
+    "answers": {
+      "en": [
+        "A javelin",
+        "A banner",
+        "A torch",
+        "A trumpet"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_039",
+    "reference": "Joshua 8:25",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "How many people of Ai fell on the day the city was taken?"
+    },
+    "answers": {
+      "en": [
+        "3,000",
+        "7,000",
+        "1,000",
+        "12,000"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_040",
+    "reference": "Joshua 8:29",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was raised over the body of the king of Ai at the city gate?"
+    },
+    "answers": {
+      "en": [
+        "A wooden pole",
+        "An altar",
+        "A stone pillar",
+        "A great heap of stones"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_041",
+    "reference": "Joshua 8:30",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "On which mountain did Joshua build an altar after taking Ai?"
+    },
+    "answers": {
+      "en": [
+        "Mount Ebal",
+        "Mount Carmel",
+        "Mount Hermon",
+        "Mount Tabor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_042",
+    "reference": "Joshua 8:31",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the altar on Mount Ebal made of?"
+    },
+    "answers": {
+      "en": [
+        "Bronze",
+        "Uncut stones",
+        "Cedar wood",
+        "Baked bricks"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_043",
+    "reference": "Joshua 8:32",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Joshua write on the stones at Mount Ebal?"
+    },
+    "answers": {
+      "en": [
+        "The names of the twelve tribes",
+        "The list of defeated kings",
+        "A copy of the law of Moses",
+        "The story of the Exodus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_044",
+    "reference": "Joshua 9:6",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At which camp did the Gibeonites come to Joshua?"
+    },
+    "answers": {
+      "en": [
+        "Shiloh",
+        "Shechem",
+        "Jericho",
+        "Gilgal"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_045",
+    "reference": "Joshua 9:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Israel fail to do before the covenant with the Gibeonites?"
+    },
+    "answers": {
+      "en": [
+        "Ask counsel from Yahweh",
+        "Count their soldiers",
+        "Send spies to Gibeon",
+        "Offer a sacrifice"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_046",
+    "reference": "Joshua 9:16",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "After how many days did Israel learn the Gibeonites were neighbors?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Ten",
+        "Thirty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_047",
+    "reference": "Joshua 9:17",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which of these was one of the Gibeonites' cities?"
+    },
+    "answers": {
+      "en": [
+        "Lachish",
+        "Jarmuth",
+        "Kiriath Jearim",
+        "Debir"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_048",
+    "reference": "Joshua 9:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What work were the Gibeonites given in Israel?"
+    },
+    "answers": {
+      "en": [
+        "Shepherds and herdsmen",
+        "Brick makers and builders",
+        "Gatekeepers and singers",
+        "Wood cutters and water drawers"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_049",
+    "reference": "Joshua 10:1",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Who was king of Jerusalem when Joshua took Ai?"
+    },
+    "answers": {
+      "en": [
+        "Adoni-Zedek",
+        "Adoni-Bezek",
+        "Jabin",
+        "Agag"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_050",
+    "reference": "Joshua 10:5",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many Amorite kings joined to attack Gibeon?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Five",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_051",
+    "reference": "Joshua 10:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Yahweh hurl from the sky on the fleeing Amorites?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Hailstones",
+        "Locusts",
+        "Lightning"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_052",
+    "reference": "Joshua 10:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which valley did Joshua tell the moon to stop?"
+    },
+    "answers": {
+      "en": [
+        "Aijalon",
+        "Achor",
+        "Elah",
+        "Jezreel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_053",
+    "reference": "Joshua 10:13",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In which book is the sun standing still also written?"
+    },
+    "answers": {
+      "en": [
+        "The book of the kings",
+        "The book of Nathan",
+        "The book of the wars",
+        "The book of Jashar"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b120_054",
+    "reference": "Joshua 10:16",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "Where did the five Amorite kings hide?"
+    },
+    "answers": {
+      "en": [
+        "In a tower in Jerusalem",
+        "In the forest of Hereth",
+        "In the cave at Makkedah",
+        "In a well at Gibeon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b120_055",
+    "reference": "Joshua 10:24",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What did Israel's captains put on the necks of the five kings?"
+    },
+    "answers": {
+      "en": [
+        "Yokes",
+        "Their feet",
+        "Chains",
+        "Ropes"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b120_056",
+    "reference": "Joshua 10:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On how many trees did Joshua hang the five kings?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "One",
+        "Seven",
+        "Two"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b120_057",
+    "reference": "Joshua 10:33",
+    "difficulty": 5,
+    "category": "history",
+    "text": {
+      "en": "Which king of Gezer came to help Lachish and was struck down?"
+    },
+    "answers": {
+      "en": [
+        "Hoham",
+        "Piram",
+        "Japhia",
+        "Horam"
+      ]
+    },
+    "correctIndex": 3
+  }
 ]

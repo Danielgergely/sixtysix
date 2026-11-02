@@ -1,56 +1,974 @@
 [
-  {"id":"q_b166_001","reference":"Ecclesiastes 1:1","difficulty":1,"category":"wisdom","text":{"en":"The Preacher, son of David, was king in which city?"},"answers":{"en":["Hebron","Samaria","Jerusalem","Babylon"]},"correctIndex":2},
-  {"id":"q_b166_002","reference":"Ecclesiastes 1:4","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 1: one generation goes and another comes, but what remains forever?"},"answers":{"en":["The sky","The earth","The sea","The king"]},"correctIndex":1},
-  {"id":"q_b166_003","reference":"Ecclesiastes 1:6","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 1: the wind goes toward the south, and turns around to the ___."},"answers":{"en":["North","East","West","Sea"]},"correctIndex":0},
-  {"id":"q_b166_004","reference":"Ecclesiastes 1:8","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 1: the eye is not satisfied with seeing, nor the ear filled with ___."},"answers":{"en":["Music","Words","Sound","Hearing"]},"correctIndex":3},
-  {"id":"q_b166_005","reference":"Ecclesiastes 1:14","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 1: all the works done under the sun are vanity and a chasing after what?"},"answers":{"en":["Shadows","Gold","Dreams","Wind"]},"correctIndex":3},
-  {"id":"q_b166_006","reference":"Ecclesiastes 1:18","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 1: he who increases knowledge increases ___."},"answers":{"en":["Joy","Riches","Sorrow","Pride"]},"correctIndex":2},
-  {"id":"q_b166_007","reference":"Ecclesiastes 2:4","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 2: the Preacher built himself houses and planted what?"},"answers":{"en":["Forests","Vineyards","Wheat fields","Olive groves"]},"correctIndex":1},
-  {"id":"q_b166_008","reference":"Ecclesiastes 2:6","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 2: why did the Preacher make himself pools of water?"},"answers":{"en":["To water a forest","To raise fish","To bathe in","To store for war"]},"correctIndex":0},
-  {"id":"q_b166_009","reference":"Ecclesiastes 2:8","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 2: besides silver and gold, the Preacher got himself male and female what?"},"answers":{"en":["Singers","Dancers","Soldiers","Scribes"]},"correctIndex":0},
-  {"id":"q_b166_010","reference":"Ecclesiastes 2:14","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 2: 'The wise man's eyes are in his ___, but the fool walks in darkness.'"},"answers":{"en":["Heart","Hands","Book","Head"]},"correctIndex":3},
-  {"id":"q_b166_011","reference":"Ecclesiastes 3:3","difficulty":2,"category":"wisdom","text":{"en":"'A time to kill, and a time to ___.'"},"answers":{"en":["Live","Rest","Heal","Sleep"]},"correctIndex":2},
-  {"id":"q_b166_012","reference":"Ecclesiastes 3:5","difficulty":2,"category":"wisdom","text":{"en":"'A time to cast away stones, and a time to ___ stones together.'"},"answers":{"en":["Throw","Gather","Break","Count"]},"correctIndex":1},
-  {"id":"q_b166_013","reference":"Ecclesiastes 3:6","difficulty":3,"category":"wisdom","text":{"en":"'A time to keep, and a time to ___.'"},"answers":{"en":["Give","Cast away","Sell","Share"]},"correctIndex":1},
-  {"id":"q_b166_014","reference":"Ecclesiastes 3:20","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 3: all are from the dust, and all turn to ___ again."},"answers":{"en":["Dust","Ashes","Clay","Water"]},"correctIndex":0},
-  {"id":"q_b166_015","reference":"Ecclesiastes 4:6","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 4: better is a handful with ___ than two handfuls with labor."},"answers":{"en":["Joy","Friends","Bread","Quietness"]},"correctIndex":3},
-  {"id":"q_b166_016","reference":"Ecclesiastes 4:13","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 4: better is a poor and wise youth than an old and foolish ___."},"answers":{"en":["Priest","Judge","King","Father"]},"correctIndex":2},
-  {"id":"q_b166_017","reference":"Ecclesiastes 5:5","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 5: it is better not to vow, than to vow and not ___."},"answers":{"en":["Pray","Sing","Pay","Fast"]},"correctIndex":2},
-  {"id":"q_b166_018","reference":"Ecclesiastes 5:12","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 5: whose sleep is sweet, whether he eats little or much?"},"answers":{"en":["A rich man's","A laboring man's","A young child's","A king's"]},"correctIndex":1},
-  {"id":"q_b166_019","reference":"Ecclesiastes 5:15","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 5: as he came from his mother's womb, how shall he go again?"},"answers":{"en":["Naked","Rich","Alone","Old"]},"correctIndex":0},
-  {"id":"q_b166_020","reference":"Ecclesiastes 7:2","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 7: it is better to go to the house of ___ than to the house of feasting."},"answers":{"en":["Prayer","Learning","Friends","Mourning"]},"correctIndex":3},
-  {"id":"q_b166_021","reference":"Ecclesiastes 7:6","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 7: the laughter of the fool is like the crackling of ___ under a pot."},"answers":{"en":["Sticks","Leaves","Straw","Thorns"]},"correctIndex":3},
-  {"id":"q_b166_022","reference":"Ecclesiastes 7:8","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 7: 'Better is the ___ of a thing than its beginning.'"},"answers":{"en":["Middle","Plan","End","Name"]},"correctIndex":2},
-  {"id":"q_b166_023","reference":"Ecclesiastes 7:9","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 7: anger rests in the bosom of whom?"},"answers":{"en":["Kings","Fools","Soldiers","Old men"]},"correctIndex":1},
-  {"id":"q_b166_024","reference":"Ecclesiastes 7:20","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 7: there is not a righteous man on earth who does good and doesn't ___."},"answers":{"en":["Sin","Rest","Pray","Die"]},"correctIndex":0},
-  {"id":"q_b166_025","reference":"Ecclesiastes 7:28","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 7: the Preacher found one upright man among how many?"},"answers":{"en":["A thousand","A hundred","Ten","Seven"]},"correctIndex":0},
-  {"id":"q_b166_026","reference":"Ecclesiastes 8:1","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 8: a man's wisdom makes his ___ shine."},"answers":{"en":["Eyes","Name","House","Face"]},"correctIndex":3},
-  {"id":"q_b166_027","reference":"Ecclesiastes 9:7","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 9: 'Eat your bread with joy, and drink your ___ with a merry heart.'"},"answers":{"en":["Water","Milk","Wine","Oil"]},"correctIndex":2},
-  {"id":"q_b166_028","reference":"Ecclesiastes 9:8","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 9: 'Let your garments be always ___.'"},"answers":{"en":["Purple","White","New","Long"]},"correctIndex":1},
-  {"id":"q_b166_029","reference":"Ecclesiastes 9:10","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 9: 'Whatever your hand finds to do, do it with your ___.'"},"answers":{"en":["Friends","Might","Voice","Money"]},"correctIndex":1},
-  {"id":"q_b166_030","reference":"Ecclesiastes 9:15","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 9: who delivered the little city by his wisdom?"},"answers":{"en":["A poor wise man","A young king","A rich merchant","A great general"]},"correctIndex":0},
-  {"id":"q_b166_031","reference":"Ecclesiastes 9:16","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 9: 'Wisdom is better than ___.'"},"answers":{"en":["Gold","Riches","Fame","Strength"]},"correctIndex":3},
-  {"id":"q_b166_032","reference":"Ecclesiastes 10:8","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 10: whoever breaks through a wall may be bitten by a ___."},"answers":{"en":["Dog","Scorpion","Snake","Rat"]},"correctIndex":2},
-  {"id":"q_b166_033","reference":"Ecclesiastes 10:18","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 10: by ___ the roof sinks in."},"answers":{"en":["Rain","Fire","Slothfulness","War"]},"correctIndex":2},
-  {"id":"q_b166_034","reference":"Ecclesiastes 10:19","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 10: '___ is the answer for all things.'"},"answers":{"en":["Wisdom","Money","Bread","Time"]},"correctIndex":1},
-  {"id":"q_b166_035","reference":"Ecclesiastes 10:20","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 10: don't curse the king, for what may carry your voice?"},"answers":{"en":["A bird of the sky","The wind","A servant","A cloud"]},"correctIndex":0},
-  {"id":"q_b166_036","reference":"Ecclesiastes 11:2","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 11: 'Give a portion to seven, yes, even to ___.'"},"answers":{"en":["Ten","Twelve","Six","Eight"]},"correctIndex":3},
-  {"id":"q_b166_037","reference":"Ecclesiastes 11:3","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 11: if the clouds are full of what, they empty themselves on the earth?"},"answers":{"en":["Hail","Snow","Dust","Rain"]},"correctIndex":3},
-  {"id":"q_b166_038","reference":"Ecclesiastes 11:4","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 11: 'He who observes the ___ won't sow.'"},"answers":{"en":["Sun","Moon","Wind","Stars"]},"correctIndex":2},
-  {"id":"q_b166_039","reference":"Ecclesiastes 11:7","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 11: 'The light is sweet, and it is pleasant for the eyes to see the ___.'"},"answers":{"en":["Sea","Sun","Stars","Dawn"]},"correctIndex":1},
-  {"id":"q_b166_040","reference":"Ecclesiastes 11:9","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 11: 'Rejoice, young man, in your ___.'"},"answers":{"en":["Youth","Strength","Riches","Wisdom"]},"correctIndex":0},
-  {"id":"q_b166_041","reference":"Ecclesiastes 12:7","difficulty":2,"category":"wisdom","text":{"en":"Ecclesiastes 12: the dust returns to the earth, and the spirit returns to whom?"},"answers":{"en":["God who gave it","The sky","The fathers","The grave"]},"correctIndex":0},
-  {"id":"q_b166_042","reference":"Ecclesiastes 12:9","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 12: the Preacher pondered, sought out, and set in order many what?"},"answers":{"en":["Songs","Laws","Prayers","Proverbs"]},"correctIndex":3},
-  {"id":"q_b166_043","reference":"Ecclesiastes 12:11","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 12: the words of the wise are like ___."},"answers":{"en":["Swords","Lamps","Goads","Seeds"]},"correctIndex":2},
-  {"id":"q_b166_044","reference":"Ecclesiastes 5:3","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 5: 'A dream comes with a multitude of ___.'"},"answers":{"en":["Stars","Cares","Years","Songs"]},"correctIndex":1},
-  {"id":"q_b166_045","reference":"Ecclesiastes 2:16","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 2: how does the wise man die?"},"answers":{"en":["In great honor","Just like the fool","Before his time","Without pain"]},"correctIndex":1},
-  {"id":"q_b166_046","reference":"Ecclesiastes 2:26","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 2: to the man who pleases him, God gives wisdom, knowledge, and what?"},"answers":{"en":["Joy","Gold","Land","Sons"]},"correctIndex":0},
-  {"id":"q_b166_047","reference":"Ecclesiastes 4:4","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 4: all labor and achievement is the ___ of a man's neighbor."},"answers":{"en":["Joy","Pride","Help","Envy"]},"correctIndex":3},
-  {"id":"q_b166_048","reference":"Ecclesiastes 5:1","difficulty":3,"category":"wisdom","text":{"en":"Ecclesiastes 5: 'Guard your steps when you go to God's ___.'"},"answers":{"en":["Mountain","Altar","House","Feast"]},"correctIndex":2},
-  {"id":"q_b166_049","reference":"Ecclesiastes 6:7","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 6: all the labor of man is for his ___."},"answers":{"en":["Children","King","Mouth","Name"]},"correctIndex":2},
-  {"id":"q_b166_050","reference":"Ecclesiastes 7:5","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 7: it is better to hear the rebuke of the wise than to hear what?"},"answers":{"en":["The praise of kings","The song of fools","The noise of the city","The words of the rich"]},"correctIndex":1},
-  {"id":"q_b166_051","reference":"Ecclesiastes 8:15","difficulty":4,"category":"wisdom","text":{"en":"Ecclesiastes 8: the Preacher commended what, because a man has nothing better under the sun?"},"answers":{"en":["Mirth","Wisdom","Work","Silence"]},"correctIndex":0},
-  {"id":"q_b166_052","reference":"Ecclesiastes 10:1","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 10: a little folly outweighs wisdom and ___."},"answers":{"en":["Riches","Strength","Age","Honor"]},"correctIndex":3},
-  {"id":"q_b166_053","reference":"Ecclesiastes 10:4","difficulty":5,"category":"wisdom","text":{"en":"Ecclesiastes 10: 'If the spirit of the ruler rises up against you, don't leave your ___.'"},"answers":{"en":["House","Sword","Friends","Place"]},"correctIndex":3},
-  {"id":"q_b166_054","reference":"Ecclesiastes 1:3","difficulty":1,"category":"wisdom","text":{"en":"Ecclesiastes 1: 'What does man gain from all his labor in which he labors under the ___?'"},"answers":{"en":["Sky","Law","Sun","Heavens"]},"correctIndex":2}
+  {
+    "id": "q_b166_001",
+    "reference": "Ecclesiastes 1:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "The Preacher, son of David, was king in which city?"
+    },
+    "answers": {
+      "en": [
+        "Hebron",
+        "Samaria",
+        "Jerusalem",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_002",
+    "reference": "Ecclesiastes 1:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: one generation goes and another comes, but what remains forever?"
+    },
+    "answers": {
+      "en": [
+        "The sky",
+        "The earth",
+        "The sea",
+        "The king"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_003",
+    "reference": "Ecclesiastes 1:6",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: the wind goes toward the south, and turns around to the ___."
+    },
+    "answers": {
+      "en": [
+        "North",
+        "East",
+        "West",
+        "Sea"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_004",
+    "reference": "Ecclesiastes 1:8",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: the eye is not satisfied with seeing, nor the ear filled with ___."
+    },
+    "answers": {
+      "en": [
+        "Music",
+        "Words",
+        "Sound",
+        "Hearing"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_005",
+    "reference": "Ecclesiastes 1:14",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: all the works done under the sun are vanity and a chasing after what?"
+    },
+    "answers": {
+      "en": [
+        "Shadows",
+        "Gold",
+        "Dreams",
+        "Wind"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_006",
+    "reference": "Ecclesiastes 1:18",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: he who increases knowledge increases ___."
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Riches",
+        "Sorrow",
+        "Pride"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_007",
+    "reference": "Ecclesiastes 2:4",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: the Preacher built himself houses and planted what?"
+    },
+    "answers": {
+      "en": [
+        "Forests",
+        "Vineyards",
+        "Wheat fields",
+        "Olive groves"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_008",
+    "reference": "Ecclesiastes 2:6",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: why did the Preacher make himself pools of water?"
+    },
+    "answers": {
+      "en": [
+        "To water a forest",
+        "To raise fish",
+        "To bathe in",
+        "To store for war"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_009",
+    "reference": "Ecclesiastes 2:8",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: besides silver and gold, the Preacher got himself male and female what?"
+    },
+    "answers": {
+      "en": [
+        "Singers",
+        "Dancers",
+        "Soldiers",
+        "Scribes"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_010",
+    "reference": "Ecclesiastes 2:14",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: 'The wise man's eyes are in his ___, but the fool walks in darkness.'"
+    },
+    "answers": {
+      "en": [
+        "Heart",
+        "Hands",
+        "Book",
+        "Head"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_011",
+    "reference": "Ecclesiastes 3:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to kill, and a time to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Live",
+        "Rest",
+        "Heal",
+        "Sleep"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_012",
+    "reference": "Ecclesiastes 3:5",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to cast away stones, and a time to ___ stones together.'"
+    },
+    "answers": {
+      "en": [
+        "Throw",
+        "Gather",
+        "Break",
+        "Count"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_013",
+    "reference": "Ecclesiastes 3:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'A time to keep, and a time to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Give",
+        "Cast away",
+        "Sell",
+        "Share"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_014",
+    "reference": "Ecclesiastes 3:20",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 3: all are from the dust, and all turn to ___ again."
+    },
+    "answers": {
+      "en": [
+        "Dust",
+        "Ashes",
+        "Clay",
+        "Water"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_015",
+    "reference": "Ecclesiastes 4:6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 4: better is a handful with ___ than two handfuls with labor."
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Friends",
+        "Bread",
+        "Quietness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_016",
+    "reference": "Ecclesiastes 4:13",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 4: better is a poor and wise youth than an old and foolish ___."
+    },
+    "answers": {
+      "en": [
+        "Priest",
+        "Judge",
+        "King",
+        "Father"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_017",
+    "reference": "Ecclesiastes 5:5",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 5: it is better not to vow, than to vow and not ___."
+    },
+    "answers": {
+      "en": [
+        "Pray",
+        "Sing",
+        "Pay",
+        "Fast"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_018",
+    "reference": "Ecclesiastes 5:12",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 5: whose sleep is sweet, whether he eats little or much?"
+    },
+    "answers": {
+      "en": [
+        "A rich man's",
+        "A laboring man's",
+        "A young child's",
+        "A king's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_019",
+    "reference": "Ecclesiastes 5:15",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 5: as he came from his mother's womb, how shall he go again?"
+    },
+    "answers": {
+      "en": [
+        "Naked",
+        "Rich",
+        "Alone",
+        "Old"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_020",
+    "reference": "Ecclesiastes 7:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: it is better to go to the house of ___ than to the house of feasting."
+    },
+    "answers": {
+      "en": [
+        "Prayer",
+        "Learning",
+        "Friends",
+        "Mourning"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_021",
+    "reference": "Ecclesiastes 7:6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: the laughter of the fool is like the crackling of ___ under a pot."
+    },
+    "answers": {
+      "en": [
+        "Sticks",
+        "Leaves",
+        "Straw",
+        "Thorns"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_022",
+    "reference": "Ecclesiastes 7:8",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: 'Better is the ___ of a thing than its beginning.'"
+    },
+    "answers": {
+      "en": [
+        "Middle",
+        "Plan",
+        "End",
+        "Name"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_023",
+    "reference": "Ecclesiastes 7:9",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: anger rests in the bosom of whom?"
+    },
+    "answers": {
+      "en": [
+        "Kings",
+        "Fools",
+        "Soldiers",
+        "Old men"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_024",
+    "reference": "Ecclesiastes 7:20",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: there is not a righteous man on earth who does good and doesn't ___."
+    },
+    "answers": {
+      "en": [
+        "Sin",
+        "Rest",
+        "Pray",
+        "Die"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_025",
+    "reference": "Ecclesiastes 7:28",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: the Preacher found one upright man among how many?"
+    },
+    "answers": {
+      "en": [
+        "A thousand",
+        "A hundred",
+        "Ten",
+        "Seven"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_026",
+    "reference": "Ecclesiastes 8:1",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 8: a man's wisdom makes his ___ shine."
+    },
+    "answers": {
+      "en": [
+        "Eyes",
+        "Name",
+        "House",
+        "Face"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_027",
+    "reference": "Ecclesiastes 9:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 9: 'Eat your bread with joy, and drink your ___ with a merry heart.'"
+    },
+    "answers": {
+      "en": [
+        "Water",
+        "Milk",
+        "Wine",
+        "Oil"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_028",
+    "reference": "Ecclesiastes 9:8",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 9: 'Let your garments be always ___.'"
+    },
+    "answers": {
+      "en": [
+        "Purple",
+        "White",
+        "New",
+        "Long"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_029",
+    "reference": "Ecclesiastes 9:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 9: 'Whatever your hand finds to do, do it with your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Friends",
+        "Might",
+        "Voice",
+        "Money"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_030",
+    "reference": "Ecclesiastes 9:15",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 9: who delivered the little city by his wisdom?"
+    },
+    "answers": {
+      "en": [
+        "A poor wise man",
+        "A young king",
+        "A rich merchant",
+        "A great general"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_031",
+    "reference": "Ecclesiastes 9:16",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 9: 'Wisdom is better than ___.'"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Riches",
+        "Fame",
+        "Strength"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_032",
+    "reference": "Ecclesiastes 10:8",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: whoever breaks through a wall may be bitten by a ___."
+    },
+    "answers": {
+      "en": [
+        "Dog",
+        "Scorpion",
+        "Snake",
+        "Rat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_033",
+    "reference": "Ecclesiastes 10:18",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: by ___ the roof sinks in."
+    },
+    "answers": {
+      "en": [
+        "Rain",
+        "Fire",
+        "Slothfulness",
+        "War"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_034",
+    "reference": "Ecclesiastes 10:19",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: '___ is the answer for all things.'"
+    },
+    "answers": {
+      "en": [
+        "Wisdom",
+        "Money",
+        "Bread",
+        "Time"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_035",
+    "reference": "Ecclesiastes 10:20",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: don't curse the king, for what may carry your voice?"
+    },
+    "answers": {
+      "en": [
+        "A bird of the sky",
+        "The wind",
+        "A servant",
+        "A cloud"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_036",
+    "reference": "Ecclesiastes 11:2",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 11: 'Give a portion to seven, yes, even to ___.'"
+    },
+    "answers": {
+      "en": [
+        "Ten",
+        "Twelve",
+        "Six",
+        "Eight"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_037",
+    "reference": "Ecclesiastes 11:3",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 11: if the clouds are full of what, they empty themselves on the earth?"
+    },
+    "answers": {
+      "en": [
+        "Hail",
+        "Snow",
+        "Dust",
+        "Rain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_038",
+    "reference": "Ecclesiastes 11:4",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 11: 'He who observes the ___ won't sow.'"
+    },
+    "answers": {
+      "en": [
+        "Sun",
+        "Moon",
+        "Wind",
+        "Stars"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_039",
+    "reference": "Ecclesiastes 11:7",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 11: 'The light is sweet, and it is pleasant for the eyes to see the ___.'"
+    },
+    "answers": {
+      "en": [
+        "Sea",
+        "Sun",
+        "Stars",
+        "Dawn"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_040",
+    "reference": "Ecclesiastes 11:9",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 11: 'Rejoice, young man, in your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Youth",
+        "Strength",
+        "Riches",
+        "Wisdom"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_041",
+    "reference": "Ecclesiastes 12:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 12: the dust returns to the earth, and the spirit returns to whom?"
+    },
+    "answers": {
+      "en": [
+        "God who gave it",
+        "The sky",
+        "The fathers",
+        "The grave"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_042",
+    "reference": "Ecclesiastes 12:9",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 12: the Preacher pondered, sought out, and set in order many what?"
+    },
+    "answers": {
+      "en": [
+        "Songs",
+        "Laws",
+        "Prayers",
+        "Proverbs"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_043",
+    "reference": "Ecclesiastes 12:11",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 12: the words of the wise are like ___."
+    },
+    "answers": {
+      "en": [
+        "Swords",
+        "Lamps",
+        "Goads",
+        "Seeds"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_044",
+    "reference": "Ecclesiastes 5:3",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 5: 'A dream comes with a multitude of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Stars",
+        "Cares",
+        "Years",
+        "Songs"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_045",
+    "reference": "Ecclesiastes 2:16",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: how does the wise man die?"
+    },
+    "answers": {
+      "en": [
+        "In great honor",
+        "Just like the fool",
+        "Before his time",
+        "Without pain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_046",
+    "reference": "Ecclesiastes 2:26",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 2: to the man who pleases him, God gives wisdom, knowledge, and what?"
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Gold",
+        "Land",
+        "Sons"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_047",
+    "reference": "Ecclesiastes 4:4",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 4: all labor and achievement is the ___ of a man's neighbor."
+    },
+    "answers": {
+      "en": [
+        "Joy",
+        "Pride",
+        "Help",
+        "Envy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_048",
+    "reference": "Ecclesiastes 5:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 5: 'Guard your steps when you go to God's ___.'"
+    },
+    "answers": {
+      "en": [
+        "Mountain",
+        "Altar",
+        "House",
+        "Feast"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_049",
+    "reference": "Ecclesiastes 6:7",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 6: all the labor of man is for his ___."
+    },
+    "answers": {
+      "en": [
+        "Children",
+        "King",
+        "Mouth",
+        "Name"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b166_050",
+    "reference": "Ecclesiastes 7:5",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 7: it is better to hear the rebuke of the wise than to hear what?"
+    },
+    "answers": {
+      "en": [
+        "The praise of kings",
+        "The song of fools",
+        "The noise of the city",
+        "The words of the rich"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b166_051",
+    "reference": "Ecclesiastes 8:15",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 8: the Preacher commended what, because a man has nothing better under the sun?"
+    },
+    "answers": {
+      "en": [
+        "Mirth",
+        "Wisdom",
+        "Work",
+        "Silence"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b166_052",
+    "reference": "Ecclesiastes 10:1",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: a little folly outweighs wisdom and ___."
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Strength",
+        "Age",
+        "Honor"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_053",
+    "reference": "Ecclesiastes 10:4",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 10: 'If the spirit of the ruler rises up against you, don't leave your ___.'"
+    },
+    "answers": {
+      "en": [
+        "House",
+        "Sword",
+        "Friends",
+        "Place"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b166_054",
+    "reference": "Ecclesiastes 1:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Ecclesiastes 1: 'What does man gain from all his labor in which he labors under the ___?'"
+    },
+    "answers": {
+      "en": [
+        "Sky",
+        "Law",
+        "Sun",
+        "Heavens"
+      ]
+    },
+    "correctIndex": 2
+  }
 ]

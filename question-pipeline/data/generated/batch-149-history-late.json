@@ -20,7 +20,7 @@
   {
     "id": "q_b149_002",
     "reference": "Esther 1:5",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "For how many days was the king's feast for all the people in Shushan?"
@@ -38,7 +38,7 @@
   {
     "id": "q_b149_003",
     "reference": "Esther 1:9",
-    "difficulty": 1,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Who made a feast for the women while the king feasted?"
@@ -56,7 +56,7 @@
   {
     "id": "q_b149_004",
     "reference": "Esther 1:12",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "What did Queen Vashti do when the king called for her?"
@@ -74,7 +74,7 @@
   {
     "id": "q_b149_005",
     "reference": "Esther 1:16",
-    "difficulty": 3,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Which prince advised the king about what to do with Vashti?"
@@ -110,7 +110,7 @@
   {
     "id": "q_b149_007",
     "reference": "Esther 2:3",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Into whose custody were the young women gathered at Susa?"
@@ -128,7 +128,7 @@
   {
     "id": "q_b149_008",
     "reference": "Esther 2:5",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Mordecai, the son of Jair, belonged to which tribe?"
@@ -182,7 +182,7 @@
   {
     "id": "q_b149_011",
     "reference": "Esther 2:12",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How long was each young woman's purification before she went to the king?"
@@ -236,7 +236,7 @@
   {
     "id": "q_b149_014",
     "reference": "Esther 3:1",
-    "difficulty": 2,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Haman was the son of Hammedatha, and called what?"
@@ -272,7 +272,7 @@
   {
     "id": "q_b149_016",
     "reference": "Esther 3:7",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What was cast before Haman to choose the day?"
@@ -290,7 +290,7 @@
   {
     "id": "q_b149_017",
     "reference": "Esther 3:9",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How many talents of silver did Haman offer to pay into the king's treasuries?"
@@ -308,7 +308,7 @@
   {
     "id": "q_b149_018",
     "reference": "Esther 3:10",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What did the king give Haman from his hand?"
@@ -326,7 +326,7 @@
   {
     "id": "q_b149_019",
     "reference": "Esther 3:15",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "After the decree went out, what did the king and Haman do?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b149_020",
     "reference": "Esther 4:1",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "What did Mordecai put on when he learned of the decree?"
@@ -362,7 +362,7 @@
   {
     "id": "q_b149_021",
     "reference": "Esther 4:5",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Which eunuch did Esther send to find out why Mordecai was mourning?"
@@ -416,7 +416,7 @@
   {
     "id": "q_b149_024",
     "reference": "Esther 5:3",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "The king promised Esther her request, even up to how much of the kingdom?"
@@ -434,7 +434,7 @@
   {
     "id": "q_b149_025",
     "reference": "Esther 5:4",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Whom did Esther invite with the king to her banquet?"
@@ -470,7 +470,7 @@
   {
     "id": "q_b149_027",
     "reference": "Esther 6:1",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "What happened to King Ahasuerus on the night before Esther's second banquet?"
@@ -488,7 +488,7 @@
   {
     "id": "q_b149_028",
     "reference": "Esther 6:3",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "What honor had Mordecai received for saving the king's life?"
@@ -506,7 +506,7 @@
   {
     "id": "q_b149_029",
     "reference": "Esther 6:6",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Haman thought, \"Who would the king delight to honor more than\" whom?"
@@ -524,7 +524,7 @@
   {
     "id": "q_b149_030",
     "reference": "Esther 6:8",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Haman suggested the honored man ride the king's what?"
@@ -560,7 +560,7 @@
   {
     "id": "q_b149_032",
     "reference": "Esther 7:4",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Esther told the king that she and her people had been what?"
@@ -596,7 +596,7 @@
   {
     "id": "q_b149_034",
     "reference": "Esther 7:7",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Where did the king go in his anger during the banquet?"
@@ -614,7 +614,7 @@
   {
     "id": "q_b149_035",
     "reference": "Esther 8:2",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "To whom did the king give the ring he took back from Haman?"
@@ -632,7 +632,7 @@
   {
     "id": "q_b149_036",
     "reference": "Esther 8:9",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "In which month were the letters written to save the Jews?"
@@ -650,7 +650,7 @@
   {
     "id": "q_b149_037",
     "reference": "Esther 8:15",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What colors were Mordecai's royal clothes when he left the king?"
@@ -668,7 +668,7 @@
   {
     "id": "q_b149_038",
     "reference": "Esther 9:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "On which day of the month Adar were the Jews to be destroyed, but ruled their enemies instead?"
@@ -686,7 +686,7 @@
   {
     "id": "q_b149_039",
     "reference": "Esther 9:10",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "What did the Jews in Susa not lay their hands on?"
@@ -704,7 +704,7 @@
   {
     "id": "q_b149_040",
     "reference": "Esther 9:22",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "At Purim, what were the Jews to send to one another?"
@@ -722,7 +722,7 @@
   {
     "id": "q_b149_041",
     "reference": "Esther 10:3",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Who was next to King Ahasuerus at the end of the book of Esther?"

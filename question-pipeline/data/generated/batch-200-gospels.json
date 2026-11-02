@@ -1,123 +1,2180 @@
 [
-  {"id":"q_b200_001","reference":"Matthew 1:1","difficulty":2,"category":"gospels","text":{"en":"Matthew's genealogy calls Jesus Christ the son of David and the son of whom?"},"answers":{"en":["Moses","Abraham","Noah","Isaac"]},"correctIndex":1},
-  {"id":"q_b200_002","reference":"Matthew 1:5","difficulty":4,"category":"gospels","text":{"en":"In Matthew's genealogy, who was the mother of Boaz?"},"answers":{"en":["Ruth","Tamar","Rahab","Leah"]},"correctIndex":2},
-  {"id":"q_b200_003","reference":"Matthew 1:5","difficulty":3,"category":"gospels","text":{"en":"In Matthew's genealogy, Boaz became the father of Obed by whom?"},"answers":{"en":["Ruth","Rahab","Naomi","Bathsheba"]},"correctIndex":0},
-  {"id":"q_b200_004","reference":"Matthew 1:17","difficulty":5,"category":"gospels","text":{"en":"Matthew counts how many generations from the exile to Babylon to the Christ?"},"answers":{"en":["Twelve","Seven","Forty","Fourteen"]},"correctIndex":3},
-  {"id":"q_b200_005","reference":"Matthew 1:19","difficulty":3,"category":"gospels","text":{"en":"Not wanting to shame Mary, what did Joseph first intend to do?"},"answers":{"en":["Send her to Elizabeth","Take her to the temple","Leave for Egypt alone","Put her away secretly"]},"correctIndex":3},
-  {"id":"q_b200_006","reference":"Matthew 1:20","difficulty":2,"category":"gospels","text":{"en":"How did the angel of the Lord speak to Joseph about taking Mary as his wife?"},"answers":{"en":["In a dream","In the temple","On a mountain","At a well"]},"correctIndex":0},
-  {"id":"q_b200_007","reference":"Matthew 1:21","difficulty":2,"category":"gospels","text":{"en":"Why was the baby to be named Jesus, according to the angel in Matthew?"},"answers":{"en":["He will rule over Jacob forever","He will be called a Nazarene","He will save his people from their sins","He will rebuild God's temple"]},"correctIndex":2},
-  {"id":"q_b200_008","reference":"Matthew 2:1","difficulty":2,"category":"gospels","text":{"en":"From which direction did the wise men come to Jerusalem?"},"answers":{"en":["The west","The east","The north","The south"]},"correctIndex":1},
-  {"id":"q_b200_009","reference":"Matthew 2:7","difficulty":4,"category":"gospels","text":{"en":"What did Herod secretly find out exactly from the wise men?"},"answers":{"en":["Which road they took","When the star appeared","What gifts they brought","Where they were from"]},"correctIndex":1},
-  {"id":"q_b200_010","reference":"Matthew 2:10","difficulty":2,"category":"gospels","text":{"en":"How did the wise men react when they saw the star again?"},"answers":{"en":["They were afraid","They wept","They turned back","They rejoiced greatly"]},"correctIndex":3},
-  {"id":"q_b200_011","reference":"Matthew 2:12","difficulty":2,"category":"gospels","text":{"en":"Why did the wise men go home by another way?"},"answers":{"en":["They were warned in a dream","Herod's soldiers chased them","The star led them away","The road was flooded"]},"correctIndex":0},
-  {"id":"q_b200_012","reference":"Matthew 2:15","difficulty":4,"category":"gospels","text":{"en":"Matthew says the stay in Egypt fulfilled the words: \"Out of Egypt I called my ___.\""},"answers":{"en":["people","servant","son","firstborn"]},"correctIndex":2},
-  {"id":"q_b200_013","reference":"Matthew 2:18","difficulty":4,"category":"gospels","text":{"en":"In Matthew 2, who is \"weeping for her children\" in Jeremiah's words?"},"answers":{"en":["Leah","Rachel","Sarah","Hannah"]},"correctIndex":1},
-  {"id":"q_b200_014","reference":"Matthew 2:23","difficulty":1,"category":"gospels","text":{"en":"In which city did Joseph's family settle after returning from Egypt?"},"answers":{"en":["Capernaum","Bethlehem","Jerusalem","Nazareth"]},"correctIndex":3},
-  {"id":"q_b200_015","reference":"Matthew 2:23","difficulty":4,"category":"gospels","text":{"en":"Matthew says the prophets foretold that Jesus would be called a what?"},"answers":{"en":["Galilean","Nazirite","Nazarene","Bethlehemite"]},"correctIndex":2},
-  {"id":"q_b200_016","reference":"Matthew 3:2","difficulty":2,"category":"gospels","text":{"en":"John the Baptist preached: \"Repent, for the Kingdom of Heaven is ___!\""},"answers":{"en":["at hand","far away","in Jerusalem","hidden"]},"correctIndex":0},
-  {"id":"q_b200_017","reference":"Matthew 3:4","difficulty":1,"category":"gospels","text":{"en":"What did John the Baptist eat in the wilderness?"},"answers":{"en":["Locusts and wild honey","Bread and fish","Figs and olives","Manna and quail"]},"correctIndex":0},
-  {"id":"q_b200_018","reference":"Matthew 3:4","difficulty":3,"category":"gospels","text":{"en":"What kind of belt did John the Baptist wear around his waist?"},"answers":{"en":["A golden belt","A linen belt","A rope belt","A leather belt"]},"correctIndex":3},
-  {"id":"q_b200_019","reference":"Matthew 3:7","difficulty":3,"category":"gospels","text":{"en":"What did John call the Pharisees and Sadducees coming to his baptism?"},"answers":{"en":["Whitewashed tombs","Offspring of vipers","Blind guides","Foxes of the field"]},"correctIndex":1},
-  {"id":"q_b200_020","reference":"Matthew 3:9","difficulty":4,"category":"gospels","text":{"en":"John said God could raise up children to Abraham from what?"},"answers":{"en":["The dust","The sand","These stones","These trees"]},"correctIndex":2},
-  {"id":"q_b200_021","reference":"Matthew 3:12","difficulty":4,"category":"gospels","text":{"en":"John said the one coming after him would burn up the chaff with what?"},"answers":{"en":["Unquenchable fire","Fire from the altar","The sun's heat","Burning coals"]},"correctIndex":0},
-  {"id":"q_b200_022","reference":"Matthew 3:17","difficulty":1,"category":"gospels","text":{"en":"At Jesus' baptism, a voice from heaven said, \"This is my beloved ___.\""},"answers":{"en":["servant","Son","prophet","King"]},"correctIndex":1},
-  {"id":"q_b200_023","reference":"Matthew 4:5","difficulty":3,"category":"gospels","text":{"en":"Where did the devil set Jesus in the holy city?"},"answers":{"en":["On the city wall","On Herod's palace roof","On the pinnacle of the temple","On the Mount of Olives"]},"correctIndex":2},
-  {"id":"q_b200_024","reference":"Matthew 4:8","difficulty":3,"category":"gospels","text":{"en":"From where did the devil show Jesus all the kingdoms of the world?"},"answers":{"en":["The roof of the temple","A tower in Jerusalem","The edge of the desert","An exceedingly high mountain"]},"correctIndex":3},
-  {"id":"q_b200_025","reference":"Matthew 4:10","difficulty":2,"category":"gospels","text":{"en":"In Matthew 4, what did Jesus say to the devil before quoting \"worship the Lord your God\"?"},"answers":{"en":["Get behind me, Satan!","Peace! Be still!","Depart, you cursed one!","You are the father of lies!"]},"correctIndex":0},
-  {"id":"q_b200_026","reference":"Matthew 4:11","difficulty":2,"category":"gospels","text":{"en":"Who came and served Jesus after the devil left him in the wilderness?"},"answers":{"en":["His disciples","John the Baptist","Angels","Shepherds"]},"correctIndex":2},
-  {"id":"q_b200_027","reference":"Matthew 4:19","difficulty":1,"category":"gospels","text":{"en":"Jesus told Peter and Andrew: \"Come after me, and I will make you fishers for ___.\""},"answers":{"en":["fish","souls","nations","men"]},"correctIndex":3},
-  {"id":"q_b200_028","reference":"Matthew 4:21","difficulty":3,"category":"gospels","text":{"en":"What were James and John doing in the boat with Zebedee when Jesus called them?"},"answers":{"en":["Counting fish","Mending their nets","Sleeping","Rowing to shore"]},"correctIndex":1},
-  {"id":"q_b200_029","reference":"Matthew 4:24","difficulty":5,"category":"gospels","text":{"en":"In Matthew 4, through which whole land did the report about Jesus go out?"},"answers":{"en":["Egypt","Samaria","Syria","Idumea"]},"correctIndex":2},
-  {"id":"q_b200_030","reference":"Matthew 5:1","difficulty":1,"category":"gospels","text":{"en":"Where did Jesus go up to teach when he saw the crowds in Matthew 5?"},"answers":{"en":["Onto the mountain","Into a boat","Into the temple","Into a synagogue"]},"correctIndex":0},
-  {"id":"q_b200_031","reference":"Matthew 5:5","difficulty":1,"category":"gospels","text":{"en":"\"Blessed are the gentle, for they shall inherit ___.\""},"answers":{"en":["the kingdom","the city","riches","the earth"]},"correctIndex":3},
-  {"id":"q_b200_032","reference":"Matthew 5:8","difficulty":2,"category":"gospels","text":{"en":"\"Blessed are the pure in heart, for they shall ___.\""},"answers":{"en":["be comforted","see God","be filled","obtain mercy"]},"correctIndex":1},
-  {"id":"q_b200_033","reference":"Matthew 5:9","difficulty":2,"category":"gospels","text":{"en":"In the Beatitudes, what will the peacemakers be called?"},"answers":{"en":["Friends of God","Lights of the world","Children of God","Heirs of the earth"]},"correctIndex":2},
-  {"id":"q_b200_034","reference":"Matthew 5:14","difficulty":1,"category":"gospels","text":{"en":"Jesus told his followers: \"You are the light of the ___.\""},"answers":{"en":["temple","nations","night","world"]},"correctIndex":3},
-  {"id":"q_b200_035","reference":"Matthew 5:15","difficulty":3,"category":"gospels","text":{"en":"Jesus said people don't light a lamp and put it under what?"},"answers":{"en":["A cloak","A measuring basket","A jar","A stone"]},"correctIndex":1},
-  {"id":"q_b200_036","reference":"Matthew 5:18","difficulty":5,"category":"gospels","text":{"en":"Not even the smallest letter or one tiny what will pass away from the law?"},"answers":{"en":["Pen stroke","Word","Scroll","Page"]},"correctIndex":0},
-  {"id":"q_b200_037","reference":"Matthew 5:24","difficulty":3,"category":"gospels","text":{"en":"If your brother has something against you, where should you leave your gift first?"},"answers":{"en":["Before the altar","At the city gate","With the priest","In your house"]},"correctIndex":0},
-  {"id":"q_b200_038","reference":"Matthew 5:36","difficulty":4,"category":"gospels","text":{"en":"Jesus said not to swear by your head, since you can't make one hair what?"},"answers":{"en":["Grow or fall","Long or short","Straight or curly","White or black"]},"correctIndex":3},
-  {"id":"q_b200_039","reference":"Matthew 5:39","difficulty":1,"category":"gospels","text":{"en":"Jesus said if someone strikes you on the right cheek, what should you do?"},"answers":{"en":["Strike him back","Turn the other cheek too","Run away","Call the judge"]},"correctIndex":1},
-  {"id":"q_b200_040","reference":"Matthew 5:41","difficulty":2,"category":"gospels","text":{"en":"Whoever compels you to go one mile, Jesus said, go with him how many miles?"},"answers":{"en":["Three","Seven","Two","Ten"]},"correctIndex":2},
-  {"id":"q_b200_041","reference":"Matthew 5:44","difficulty":1,"category":"gospels","text":{"en":"Jesus said: \"Love your ___, and pray for those who persecute you.\""},"answers":{"en":["neighbors","parents","enemies","leaders"]},"correctIndex":2},
-  {"id":"q_b200_042","reference":"Matthew 5:45","difficulty":2,"category":"gospels","text":{"en":"God makes his sun rise on the evil and the good, and sends what on the just and unjust?"},"answers":{"en":["Snow","Wind","Dew","Rain"]},"correctIndex":3},
-  {"id":"q_b200_043","reference":"Matthew 6:3","difficulty":2,"category":"gospels","text":{"en":"When giving to the needy, Jesus said, your left hand shouldn't know what which hand does?"},"answers":{"en":["Your neighbor","Your right hand","Your mouth","The priest"]},"correctIndex":1},
-  {"id":"q_b200_044","reference":"Matthew 6:6","difficulty":3,"category":"gospels","text":{"en":"Where did Jesus say to go to pray, with the door shut?"},"answers":{"en":["Your inner room","The temple court","The rooftop","The synagogue"]},"correctIndex":0},
-  {"id":"q_b200_045","reference":"Matthew 6:11","difficulty":1,"category":"gospels","text":{"en":"In the Lord's Prayer: \"Give us today our daily ___.\""},"answers":{"en":["bread","water","manna","strength"]},"correctIndex":0},
-  {"id":"q_b200_046","reference":"Matthew 6:17","difficulty":4,"category":"gospels","text":{"en":"What did Jesus tell people to do when they fast?"},"answers":{"en":["Wear sackcloth and ashes","Stay at home all day","Anoint your head, wash your face","Tell the priest"]},"correctIndex":2},
-  {"id":"q_b200_047","reference":"Matthew 6:19","difficulty":2,"category":"gospels","text":{"en":"Jesus said treasures on earth are destroyed by moth and what?"},"answers":{"en":["Fire","Mold","Mice","Rust"]},"correctIndex":3},
-  {"id":"q_b200_048","reference":"Matthew 6:22","difficulty":3,"category":"gospels","text":{"en":"Jesus said, \"The lamp of the body is the ___.\""},"answers":{"en":["heart","eye","mouth","hand"]},"correctIndex":1},
-  {"id":"q_b200_049","reference":"Matthew 6:26","difficulty":2,"category":"gospels","text":{"en":"Jesus pointed to which creatures that don't sow, reap or gather into barns?"},"answers":{"en":["The sheep of the field","The fish of the sea","The lilies of the field","The birds of the sky"]},"correctIndex":3},
-  {"id":"q_b200_050","reference":"Matthew 6:28","difficulty":2,"category":"gospels","text":{"en":"Which flowers of the field \"don't toil, neither do they spin\"?"},"answers":{"en":["The lilies","The roses","The tulips","The olive blossoms"]},"correctIndex":0},
-  {"id":"q_b200_051","reference":"Matthew 6:29","difficulty":2,"category":"gospels","text":{"en":"Jesus said even which king in all his glory was not dressed like a lily?"},"answers":{"en":["David","Herod","Solomon","Saul"]},"correctIndex":2},
-  {"id":"q_b200_052","reference":"Matthew 6:33","difficulty":2,"category":"gospels","text":{"en":"\"Seek first God's Kingdom and his ___, and all these things will be given to you.\""},"answers":{"en":["temple","righteousness","glory","wisdom"]},"correctIndex":1},
-  {"id":"q_b200_053","reference":"Matthew 7:3","difficulty":2,"category":"gospels","text":{"en":"Jesus asked why you see the speck in your brother's eye but not what in your own?"},"answers":{"en":["The splinter","The stone","The beam","The thorn"]},"correctIndex":2},
-  {"id":"q_b200_054","reference":"Matthew 7:6","difficulty":1,"category":"gospels","text":{"en":"Jesus said, don't throw your pearls before whom?"},"answers":{"en":["The dogs","The pigs","The birds","The goats"]},"correctIndex":1},
-  {"id":"q_b200_055","reference":"Matthew 7:9","difficulty":2,"category":"gospels","text":{"en":"Jesus asked who, if his son asks for bread, will give him a what?"},"answers":{"en":["Bone","Scorpion","Stick","Stone"]},"correctIndex":3},
-  {"id":"q_b200_056","reference":"Matthew 7:13","difficulty":1,"category":"gospels","text":{"en":"Through which gate did Jesus tell people to enter?"},"answers":{"en":["The narrow gate","The golden gate","The wide gate","The sheep gate"]},"correctIndex":0},
-  {"id":"q_b200_057","reference":"Matthew 7:15","difficulty":2,"category":"gospels","text":{"en":"False prophets come in sheep's clothing, but inwardly they are what?"},"answers":{"en":["Hungry lions","Sly foxes","Ravening wolves","Poisonous snakes"]},"correctIndex":2},
-  {"id":"q_b200_058","reference":"Matthew 7:16","difficulty":3,"category":"gospels","text":{"en":"Do people gather grapes from thorns, or figs from what?"},"answers":{"en":["Weeds","Rocks","Brambles in the sea","Thistles"]},"correctIndex":3},
-  {"id":"q_b200_059","reference":"Matthew 7:26","difficulty":1,"category":"gospels","text":{"en":"In Jesus' parable, on what did the foolish man build his house?"},"answers":{"en":["Sand","Rock","A hill","Clay"]},"correctIndex":0},
-  {"id":"q_b200_060","reference":"Matthew 7:29","difficulty":3,"category":"gospels","text":{"en":"The crowds were astonished, for Jesus taught them as one having what?"},"answers":{"en":["Riches","Authority","A scroll","Many disciples"]},"correctIndex":1},
-  {"id":"q_b200_061","reference":"Matthew 8:3","difficulty":3,"category":"gospels","text":{"en":"In Matthew 8, what did Jesus do as he said to the leper, \"I want to. Be made clean\"?"},"answers":{"en":["Spat on the ground","Touched him","Washed his feet","Breathed on him"]},"correctIndex":1},
-  {"id":"q_b200_062","reference":"Matthew 8:4","difficulty":4,"category":"gospels","text":{"en":"What did Jesus tell the cleansed leper in Matthew 8 to offer?"},"answers":{"en":["The gift that Moses commanded","A tenth of his goods","A lamb at the Passover","Thanks in the synagogue"]},"correctIndex":0},
-  {"id":"q_b200_063","reference":"Matthew 8:5-6","difficulty":2,"category":"gospels","text":{"en":"In Capernaum, a centurion asked Jesus to heal whom?"},"answers":{"en":["His son","His wife","His mother","His servant"]},"correctIndex":3},
-  {"id":"q_b200_064","reference":"Matthew 8:8","difficulty":2,"category":"gospels","text":{"en":"The centurion said Jesus need only do what for his servant to be healed?"},"answers":{"en":["Touch his bed","Send a disciple","Say the word","Pray at the temple"]},"correctIndex":2},
-  {"id":"q_b200_065","reference":"Matthew 8:20","difficulty":2,"category":"gospels","text":{"en":"Foxes have holes and birds have nests, but the Son of Man has nowhere to lay his what?"},"answers":{"en":["Feet","Staff","Bag","Head"]},"correctIndex":3},
-  {"id":"q_b200_066","reference":"Matthew 8:26","difficulty":2,"category":"gospels","text":{"en":"Before calming the storm in Matthew 8, what did Jesus call the disciples?"},"answers":{"en":["Sons of thunder","Children of light","You of little faith","Slow of heart"]},"correctIndex":2},
-  {"id":"q_b200_067","reference":"Matthew 8:28","difficulty":4,"category":"gospels","text":{"en":"In Matthew, how many demon-possessed people came out of the tombs to meet Jesus?"},"answers":{"en":["One","Two","Three","Seven"]},"correctIndex":1},
-  {"id":"q_b200_068","reference":"Matthew 8:34","difficulty":3,"category":"gospels","text":{"en":"After the pigs drowned, what did the people of the city beg Jesus to do?"},"answers":{"en":["Depart from their borders","Heal their sick","Stay with them","Pay for the pigs"]},"correctIndex":0},
-  {"id":"q_b200_069","reference":"Matthew 9:2","difficulty":3,"category":"gospels","text":{"en":"In Matthew 9, what did Jesus first say to the paralyzed man lying on a bed?"},"answers":{"en":["Go and sin no more","Wash in the pool","Show yourself to the priest","Your sins are forgiven you"]},"correctIndex":3},
-  {"id":"q_b200_070","reference":"Matthew 9:12","difficulty":2,"category":"gospels","text":{"en":"Jesus said those who are healthy have no need for whom?"},"answers":{"en":["A physician","A priest","A teacher","A shepherd"]},"correctIndex":0},
-  {"id":"q_b200_071","reference":"Matthew 9:15","difficulty":4,"category":"gospels","text":{"en":"Jesus said his disciples would fast when what happened?"},"answers":{"en":["The temple falls","The harvest is ruined","The bridegroom is taken away","John is put in prison"]},"correctIndex":2},
-  {"id":"q_b200_072","reference":"Matthew 9:18","difficulty":4,"category":"gospels","text":{"en":"In Matthew 9, what did the ruler tell Jesus about his daughter?"},"answers":{"en":["She is blind","She has just died","She has a fever","She cannot walk"]},"correctIndex":1},
-  {"id":"q_b200_073","reference":"Matthew 9:23","difficulty":4,"category":"gospels","text":{"en":"In the ruler's house, whom did Jesus see with the noisy crowd?"},"answers":{"en":["Soldiers","Priests","Flute players","Tax collectors"]},"correctIndex":2},
-  {"id":"q_b200_074","reference":"Matthew 9:27","difficulty":3,"category":"gospels","text":{"en":"In Matthew 9, how many blind men followed Jesus crying, \"Have mercy on us, son of David!\"?"},"answers":{"en":["One","Three","Ten","Two"]},"correctIndex":3},
-  {"id":"q_b200_075","reference":"Matthew 9:32","difficulty":4,"category":"gospels","text":{"en":"The demon-possessed man brought to Jesus in Matthew 9:32 was what?"},"answers":{"en":["Blind","Mute","Lame","A leper"]},"correctIndex":1},
-  {"id":"q_b200_076","reference":"Matthew 9:37","difficulty":2,"category":"gospels","text":{"en":"\"The harvest indeed is plentiful, but the ___ are few.\""},"answers":{"en":["laborers","barns","seeds","days"]},"correctIndex":0},
-  {"id":"q_b200_077","reference":"Matthew 10:2","difficulty":2,"category":"gospels","text":{"en":"In Matthew's list of the twelve apostles, who is named first?"},"answers":{"en":["Simon, called Peter","John","Andrew","Matthew"]},"correctIndex":0},
-  {"id":"q_b200_078","reference":"Matthew 10:3","difficulty":3,"category":"gospels","text":{"en":"In Matthew's list of the twelve, which apostle is called \"the tax collector\"?"},"answers":{"en":["Thomas","Matthew","Philip","Bartholomew"]},"correctIndex":1},
-  {"id":"q_b200_079","reference":"Matthew 10:3","difficulty":5,"category":"gospels","text":{"en":"In Matthew 10, Lebbaeus was also called what?"},"answers":{"en":["Didymus","Barsabbas","Thaddaeus","Justus"]},"correctIndex":2},
-  {"id":"q_b200_080","reference":"Matthew 10:5","difficulty":4,"category":"gospels","text":{"en":"Jesus first sent the twelve not to the Gentiles, nor into any city of whom?"},"answers":{"en":["The Romans","The Greeks","The Edomites","The Samaritans"]},"correctIndex":3},
-  {"id":"q_b200_081","reference":"Matthew 10:9","difficulty":5,"category":"gospels","text":{"en":"Jesus told the twelve not to take gold, silver or what in their money belts?"},"answers":{"en":["Bread","Iron","Jewels","Brass"]},"correctIndex":3},
-  {"id":"q_b200_082","reference":"Matthew 10:14","difficulty":2,"category":"gospels","text":{"en":"Leaving a town that wouldn't receive them, what were the twelve to shake off?"},"answers":{"en":["Their cloaks","The ashes from their heads","The dust from their feet","Their sandals"]},"correctIndex":2},
-  {"id":"q_b200_083","reference":"Matthew 10:16","difficulty":2,"category":"gospels","text":{"en":"Jesus told the twelve to be wise as serpents and harmless as what?"},"answers":{"en":["Lambs","Doves","Children","Sparrows"]},"correctIndex":1},
-  {"id":"q_b200_084","reference":"Matthew 10:29","difficulty":4,"category":"gospels","text":{"en":"In Matthew 10, two sparrows are sold for what?"},"answers":{"en":["An assarion coin","A denarius","A talent","A shekel"]},"correctIndex":0},
-  {"id":"q_b200_085","reference":"Matthew 10:30","difficulty":2,"category":"gospels","text":{"en":"Jesus said even what on your head are all numbered?"},"answers":{"en":["The days","The hairs","The thoughts","The scars"]},"correctIndex":1},
-  {"id":"q_b200_086","reference":"Matthew 10:42","difficulty":3,"category":"gospels","text":{"en":"Whoever gives a little one just a cup of what will not lose his reward?"},"answers":{"en":["Wine","Milk","Warm broth","Cold water"]},"correctIndex":3},
-  {"id":"q_b200_087","reference":"Matthew 11:2-3","difficulty":3,"category":"gospels","text":{"en":"John sent his disciples from prison to ask Jesus what?"},"answers":{"en":["Where he would stay","When he would visit","If he was the one who comes","Why he ate with sinners"]},"correctIndex":2},
-  {"id":"q_b200_088","reference":"Matthew 11:7","difficulty":3,"category":"gospels","text":{"en":"Jesus asked the crowds if they went out to see a reed shaken by what?"},"answers":{"en":["The wind","A storm at sea","The river","An earthquake"]},"correctIndex":0},
-  {"id":"q_b200_089","reference":"Matthew 11:14","difficulty":3,"category":"gospels","text":{"en":"Jesus said John the Baptist is which prophet who was to come?"},"answers":{"en":["Elisha","Isaiah","Elijah","Moses"]},"correctIndex":2},
-  {"id":"q_b200_090","reference":"Matthew 11:19","difficulty":3,"category":"gospels","text":{"en":"Critics called Jesus a glutton, a drunkard and a friend of whom?"},"answers":{"en":["Romans and soldiers","Tax collectors and sinners","Pharisees and scribes","Thieves and robbers"]},"correctIndex":1},
-  {"id":"q_b200_091","reference":"Matthew 11:21","difficulty":4,"category":"gospels","text":{"en":"Jesus said \"Woe to you\" to Bethsaida and which other town?"},"answers":{"en":["Chorazin","Nain","Cana","Emmaus"]},"correctIndex":0},
-  {"id":"q_b200_092","reference":"Matthew 11:21","difficulty":4,"category":"gospels","text":{"en":"Jesus said Tyre and Sidon would long ago have repented in sackcloth and what?"},"answers":{"en":["Tears","Fasting","Silence","Ashes"]},"correctIndex":3},
-  {"id":"q_b200_093","reference":"Matthew 11:28","difficulty":1,"category":"gospels","text":{"en":"\"Come to me, all you who labor and are heavily burdened, and I will give you ___.\""},"answers":{"en":["rest","bread","riches","a crown"]},"correctIndex":0},
-  {"id":"q_b200_094","reference":"Matthew 11:30","difficulty":2,"category":"gospels","text":{"en":"Jesus said, \"My yoke is easy, and my burden is ___.\""},"answers":{"en":["small","sweet","short","light"]},"correctIndex":3},
-  {"id":"q_b200_095","reference":"Matthew 12:1","difficulty":3,"category":"gospels","text":{"en":"What did Jesus' hungry disciples pluck and eat on the Sabbath?"},"answers":{"en":["Figs","Grapes","Heads of grain","Olives"]},"correctIndex":2},
-  {"id":"q_b200_096","reference":"Matthew 12:10","difficulty":2,"category":"gospels","text":{"en":"The man Jesus healed in the synagogue on the Sabbath in Matthew 12 had what?"},"answers":{"en":["A fever","A withered hand","Leprosy","A demon"]},"correctIndex":1},
-  {"id":"q_b200_097","reference":"Matthew 12:11","difficulty":3,"category":"gospels","text":{"en":"Jesus asked who wouldn't lift out his what if it fell into a pit on the Sabbath?"},"answers":{"en":["Donkey","Ox","Child","Sheep"]},"correctIndex":3},
-  {"id":"q_b200_098","reference":"Matthew 12:24","difficulty":2,"category":"gospels","text":{"en":"The Pharisees said Jesus cast out demons by whom, the prince of the demons?"},"answers":{"en":["Belial","Legion","Beelzebul","Baal"]},"correctIndex":2},
-  {"id":"q_b200_099","reference":"Matthew 12:40","difficulty":1,"category":"gospels","text":{"en":"Jesus said Jonah was three days and nights in the belly of what?"},"answers":{"en":["A ship","The whale","A cave","A lion"]},"correctIndex":1},
-  {"id":"q_b200_100","reference":"Matthew 12:41","difficulty":2,"category":"gospels","text":{"en":"Jesus said the people of which city repented at the preaching of Jonah?"},"answers":{"en":["Nineveh","Babylon","Tyre","Sodom"]},"correctIndex":0},
-  {"id":"q_b200_101","reference":"Matthew 12:42","difficulty":4,"category":"gospels","text":{"en":"Who \"came from the ends of the earth to hear the wisdom of Solomon\"?"},"answers":{"en":["The king of Tyre","The wise men from the east","The queen of the south","Pharaoh's daughter"]},"correctIndex":2},
-  {"id":"q_b200_102","reference":"Matthew 12:50","difficulty":3,"category":"gospels","text":{"en":"Jesus said whoever does his Father's will is his brother, sister and who?"},"answers":{"en":["Mother","Father","Friend","Servant"]},"correctIndex":0},
-  {"id":"q_b200_103","reference":"Matthew 13:2","difficulty":2,"category":"gospels","text":{"en":"In Matthew 13, from where did Jesus teach the crowd standing on the beach?"},"answers":{"en":["A mountain","A house roof","A tree","A boat"]},"correctIndex":3},
-  {"id":"q_b200_104","reference":"Matthew 13:4","difficulty":1,"category":"gospels","text":{"en":"In the parable of the sower, what ate the seeds that fell by the roadside?"},"answers":{"en":["Goats","Birds","Mice","Locusts"]},"correctIndex":1},
-  {"id":"q_b200_105","reference":"Matthew 13:7","difficulty":1,"category":"gospels","text":{"en":"In the parable of the sower, what choked some of the seeds?"},"answers":{"en":["Thorns","Stones","Weeds of the sea","Frost"]},"correctIndex":0},
-  {"id":"q_b200_106","reference":"Matthew 13:8","difficulty":3,"category":"gospels","text":{"en":"In Matthew's parable, good soil yielded some how many times, some sixty, some thirty?"},"answers":{"en":["Seventy","Forty","One hundred","Fifty"]},"correctIndex":2},
-  {"id":"q_b200_107","reference":"Matthew 13:25","difficulty":3,"category":"gospels","text":{"en":"In Jesus' parable, what did the enemy sow among the wheat while people slept?"},"answers":{"en":["Thorns","Darnel weeds","Mustard seed","Barley"]},"correctIndex":1},
-  {"id":"q_b200_108","reference":"Matthew 13:33","difficulty":4,"category":"gospels","text":{"en":"The Kingdom of Heaven is like yeast a woman hid in how many measures of meal?"},"answers":{"en":["Two","Seven","Ten","Three"]},"correctIndex":3},
-  {"id":"q_b200_109","reference":"Matthew 13:44","difficulty":2,"category":"gospels","text":{"en":"Jesus said the Kingdom of Heaven is like a treasure hidden where?"},"answers":{"en":["In a cave","In the temple","In the field","Under a house"]},"correctIndex":2},
-  {"id":"q_b200_110","reference":"Matthew 13:45-46","difficulty":2,"category":"gospels","text":{"en":"The merchant seeking fine pearls sold all he had to buy what?"},"answers":{"en":["One pearl of great price","A field of gold","A ship of spices","A royal crown"]},"correctIndex":0},
-  {"id":"q_b200_111","reference":"Matthew 13:47","difficulty":3,"category":"gospels","text":{"en":"The Kingdom of Heaven is also like what, cast into the sea?"},"answers":{"en":["An anchor","A fishhook","A boat","A dragnet"]},"correctIndex":3},
-  {"id":"q_b200_112","reference":"Matthew 13:57","difficulty":3,"category":"gospels","text":{"en":"\"A prophet is not without honor, except in his own country, and in his own ___.\""},"answers":{"en":["temple","house","tribe","city gate"]},"correctIndex":1},
-  {"id":"q_b200_113","reference":"Matthew 13:58","difficulty":3,"category":"gospels","text":{"en":"Why did Jesus not do many mighty works in his hometown?"},"answers":{"en":["Because it was the Sabbath","Because Herod was near","Because of their unbelief","Because he was tired"]},"correctIndex":2},
-  {"id":"q_b200_114","reference":"Matthew 14:6","difficulty":3,"category":"gospels","text":{"en":"At whose birthday celebration did the daughter of Herodias dance?"},"answers":{"en":["Herod's","Pilate's","Caesar's","Philip's"]},"correctIndex":0},
-  {"id":"q_b200_115","reference":"Matthew 14:11","difficulty":3,"category":"gospels","text":{"en":"On what was John the Baptist's head brought to the girl?"},"answers":{"en":["A shield","A spear","A cushion","A platter"]},"correctIndex":3},
-  {"id":"q_b200_116","reference":"Matthew 14:12","difficulty":3,"category":"gospels","text":{"en":"After burying John the Baptist, whom did his disciples go and tell?"},"answers":{"en":["Herodias","Jesus","The high priest","Their families"]},"correctIndex":1},
-  {"id":"q_b200_117","reference":"Matthew 14:20","difficulty":1,"category":"gospels","text":{"en":"How many baskets of broken pieces were left after the five thousand ate?"},"answers":{"en":["Twelve","Seven","Five","Three"]},"correctIndex":0},
-  {"id":"q_b200_118","reference":"Matthew 14:25","difficulty":4,"category":"gospels","text":{"en":"In which watch of the night did Jesus come to the disciples, walking on the sea?"},"answers":{"en":["The first","The second","The fourth","The third"]},"correctIndex":2},
-  {"id":"q_b200_119","reference":"Matthew 14:26","difficulty":1,"category":"gospels","text":{"en":"When the disciples saw Jesus walking on the sea, what did they think he was?"},"answers":{"en":["An angel","Elijah","A fisherman","A ghost"]},"correctIndex":3},
-  {"id":"q_b200_120","reference":"Matthew 14:30","difficulty":3,"category":"gospels","text":{"en":"Why did Peter begin to sink when walking on the water?"},"answers":{"en":["His cloak was too heavy","He saw that the wind was strong","He looked back at the boat","A wave knocked him down"]},"correctIndex":1},
-  {"id":"q_b200_121","reference":"Matthew 14:34","difficulty":5,"category":"gospels","text":{"en":"In Matthew 14, after crossing the sea, into which land did Jesus and the disciples come?"},"answers":{"en":["Decapolis","Samaria","Phoenicia","Gennesaret"]},"correctIndex":3}
+  {
+    "id": "q_b200_001",
+    "reference": "Matthew 1:1",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Matthew's genealogy calls Jesus Christ the son of David and the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Abraham",
+        "Noah",
+        "Isaac"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_002",
+    "reference": "Matthew 1:5",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew's genealogy, who was the mother of Boaz?"
+    },
+    "answers": {
+      "en": [
+        "Ruth",
+        "Tamar",
+        "Rahab",
+        "Leah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_003",
+    "reference": "Matthew 1:5",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew's genealogy, Boaz became the father of Obed by whom?"
+    },
+    "answers": {
+      "en": [
+        "Ruth",
+        "Rahab",
+        "Naomi",
+        "Bathsheba"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_004",
+    "reference": "Matthew 1:17",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Matthew counts how many generations from the exile to Babylon to the Christ?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Forty",
+        "Fourteen"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_005",
+    "reference": "Matthew 1:19",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Not wanting to shame Mary, what did Joseph first intend to do?"
+    },
+    "answers": {
+      "en": [
+        "Send her to Elizabeth",
+        "Take her to the temple",
+        "Leave for Egypt alone",
+        "Put her away secretly"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_006",
+    "reference": "Matthew 1:20",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "How did the angel of the Lord speak to Joseph about taking Mary as his wife?"
+    },
+    "answers": {
+      "en": [
+        "In a dream",
+        "In the temple",
+        "On a mountain",
+        "At a well"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_007",
+    "reference": "Matthew 1:21",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Why was the baby to be named Jesus, according to the angel in Matthew?"
+    },
+    "answers": {
+      "en": [
+        "He will rule over Jacob forever",
+        "He will be called a Nazarene",
+        "He will save his people from their sins",
+        "He will rebuild God's temple"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_008",
+    "reference": "Matthew 2:1",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "From which direction did the wise men come to Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The west",
+        "The east",
+        "The north",
+        "The south"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_009",
+    "reference": "Matthew 2:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did Herod secretly find out exactly from the wise men?"
+    },
+    "answers": {
+      "en": [
+        "Which road they took",
+        "When the star appeared",
+        "What gifts they brought",
+        "Where they were from"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_010",
+    "reference": "Matthew 2:10",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "How did the wise men react when they saw the star again?"
+    },
+    "answers": {
+      "en": [
+        "They were afraid",
+        "They wept",
+        "They turned back",
+        "They rejoiced greatly"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_011",
+    "reference": "Matthew 2:12",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Why did the wise men go home by another way?"
+    },
+    "answers": {
+      "en": [
+        "They were warned in a dream",
+        "Herod's soldiers chased them",
+        "The star led them away",
+        "The road was flooded"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_012",
+    "reference": "Matthew 2:15",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Matthew says the stay in Egypt fulfilled the words: \"Out of Egypt I called my ___.\""
+    },
+    "answers": {
+      "en": [
+        "people",
+        "servant",
+        "son",
+        "firstborn"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_013",
+    "reference": "Matthew 2:18",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 2, who is \"weeping for her children\" in Jeremiah's words?"
+    },
+    "answers": {
+      "en": [
+        "Leah",
+        "Rachel",
+        "Sarah",
+        "Hannah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_014",
+    "reference": "Matthew 2:23",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In which city did Joseph's family settle after returning from Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Capernaum",
+        "Bethlehem",
+        "Jerusalem",
+        "Nazareth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_015",
+    "reference": "Matthew 2:23",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Matthew says the prophets foretold that Jesus would be called a what?"
+    },
+    "answers": {
+      "en": [
+        "Galilean",
+        "Nazirite",
+        "Nazarene",
+        "Bethlehemite"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_016",
+    "reference": "Matthew 3:2",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "John the Baptist preached: \"Repent, for the Kingdom of Heaven is ___!\""
+    },
+    "answers": {
+      "en": [
+        "at hand",
+        "far away",
+        "in Jerusalem",
+        "hidden"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_017",
+    "reference": "Matthew 3:4",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "What did John the Baptist eat in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Locusts and wild honey",
+        "Bread and fish",
+        "Figs and olives",
+        "Manna and quail"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_018",
+    "reference": "Matthew 3:4",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What kind of belt did John the Baptist wear around his waist?"
+    },
+    "answers": {
+      "en": [
+        "A golden belt",
+        "A linen belt",
+        "A rope belt",
+        "A leather belt"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_019",
+    "reference": "Matthew 3:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did John call the Pharisees and Sadducees coming to his baptism?"
+    },
+    "answers": {
+      "en": [
+        "Whitewashed tombs",
+        "Offspring of vipers",
+        "Blind guides",
+        "Foxes of the field"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_020",
+    "reference": "Matthew 3:9",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "John said God could raise up children to Abraham from what?"
+    },
+    "answers": {
+      "en": [
+        "The dust",
+        "The sand",
+        "These stones",
+        "These trees"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_021",
+    "reference": "Matthew 3:12",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "John said the one coming after him would burn up the chaff with what?"
+    },
+    "answers": {
+      "en": [
+        "Unquenchable fire",
+        "Fire from the altar",
+        "The sun's heat",
+        "Burning coals"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_022",
+    "reference": "Matthew 3:17",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "At Jesus' baptism, a voice from heaven said, \"This is my beloved ___.\""
+    },
+    "answers": {
+      "en": [
+        "servant",
+        "Son",
+        "prophet",
+        "King"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_023",
+    "reference": "Matthew 4:5",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Where did the devil set Jesus in the holy city?"
+    },
+    "answers": {
+      "en": [
+        "On the city wall",
+        "On Herod's palace roof",
+        "On the pinnacle of the temple",
+        "On the Mount of Olives"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_024",
+    "reference": "Matthew 4:8",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "From where did the devil show Jesus all the kingdoms of the world?"
+    },
+    "answers": {
+      "en": [
+        "The roof of the temple",
+        "A tower in Jerusalem",
+        "The edge of the desert",
+        "An exceedingly high mountain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_025",
+    "reference": "Matthew 4:10",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 4, what did Jesus say to the devil before quoting \"worship the Lord your God\"?"
+    },
+    "answers": {
+      "en": [
+        "Get behind me, Satan!",
+        "Peace! Be still!",
+        "Depart, you cursed one!",
+        "You are the father of lies!"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_026",
+    "reference": "Matthew 4:11",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Who came and served Jesus after the devil left him in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "His disciples",
+        "John the Baptist",
+        "Angels",
+        "Shepherds"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_027",
+    "reference": "Matthew 4:19",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told Peter and Andrew: \"Come after me, and I will make you fishers for ___.\""
+    },
+    "answers": {
+      "en": [
+        "fish",
+        "souls",
+        "nations",
+        "men"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_028",
+    "reference": "Matthew 4:21",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What were James and John doing in the boat with Zebedee when Jesus called them?"
+    },
+    "answers": {
+      "en": [
+        "Counting fish",
+        "Mending their nets",
+        "Sleeping",
+        "Rowing to shore"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_029",
+    "reference": "Matthew 4:24",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 4, through which whole land did the report about Jesus go out?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Samaria",
+        "Syria",
+        "Idumea"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_030",
+    "reference": "Matthew 5:1",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Where did Jesus go up to teach when he saw the crowds in Matthew 5?"
+    },
+    "answers": {
+      "en": [
+        "Onto the mountain",
+        "Into a boat",
+        "Into the temple",
+        "Into a synagogue"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_031",
+    "reference": "Matthew 5:5",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"Blessed are the gentle, for they shall inherit ___.\""
+    },
+    "answers": {
+      "en": [
+        "the kingdom",
+        "the city",
+        "riches",
+        "the earth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_032",
+    "reference": "Matthew 5:8",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"Blessed are the pure in heart, for they shall ___.\""
+    },
+    "answers": {
+      "en": [
+        "be comforted",
+        "see God",
+        "be filled",
+        "obtain mercy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_033",
+    "reference": "Matthew 5:9",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In the Beatitudes, what will the peacemakers be called?"
+    },
+    "answers": {
+      "en": [
+        "Friends of God",
+        "Lights of the world",
+        "Children of God",
+        "Heirs of the earth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_034",
+    "reference": "Matthew 5:14",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told his followers: \"You are the light of the ___.\""
+    },
+    "answers": {
+      "en": [
+        "temple",
+        "nations",
+        "night",
+        "world"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_035",
+    "reference": "Matthew 5:15",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said people don't light a lamp and put it under what?"
+    },
+    "answers": {
+      "en": [
+        "A cloak",
+        "A measuring basket",
+        "A jar",
+        "A stone"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_036",
+    "reference": "Matthew 5:18",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Not even the smallest letter or one tiny what will pass away from the law?"
+    },
+    "answers": {
+      "en": [
+        "Pen stroke",
+        "Word",
+        "Scroll",
+        "Page"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_037",
+    "reference": "Matthew 5:24",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "If your brother has something against you, where should you leave your gift first?"
+    },
+    "answers": {
+      "en": [
+        "Before the altar",
+        "At the city gate",
+        "With the priest",
+        "In your house"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_038",
+    "reference": "Matthew 5:36",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said not to swear by your head, since you can't make one hair what?"
+    },
+    "answers": {
+      "en": [
+        "Grow or fall",
+        "Long or short",
+        "Straight or curly",
+        "White or black"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_039",
+    "reference": "Matthew 5:39",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said if someone strikes you on the right cheek, what should you do?"
+    },
+    "answers": {
+      "en": [
+        "Strike him back",
+        "Turn the other cheek too",
+        "Run away",
+        "Call the judge"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_040",
+    "reference": "Matthew 5:41",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Whoever compels you to go one mile, Jesus said, go with him how many miles?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Two",
+        "Ten"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_041",
+    "reference": "Matthew 5:44",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said: \"Love your ___, and pray for those who persecute you.\""
+    },
+    "answers": {
+      "en": [
+        "neighbors",
+        "parents",
+        "enemies",
+        "leaders"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_042",
+    "reference": "Matthew 5:45",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "God makes his sun rise on the evil and the good, and sends what on the just and unjust?"
+    },
+    "answers": {
+      "en": [
+        "Snow",
+        "Wind",
+        "Dew",
+        "Rain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_043",
+    "reference": "Matthew 6:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "When giving to the needy, Jesus said, your left hand shouldn't know what which hand does?"
+    },
+    "answers": {
+      "en": [
+        "Your neighbor",
+        "Your right hand",
+        "Your mouth",
+        "The priest"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_044",
+    "reference": "Matthew 6:6",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Where did Jesus say to go to pray, with the door shut?"
+    },
+    "answers": {
+      "en": [
+        "Your inner room",
+        "The temple court",
+        "The rooftop",
+        "The synagogue"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_045",
+    "reference": "Matthew 6:11",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In the Lord's Prayer: \"Give us today our daily ___.\""
+    },
+    "answers": {
+      "en": [
+        "bread",
+        "water",
+        "manna",
+        "strength"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_046",
+    "reference": "Matthew 6:17",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus tell people to do when they fast?"
+    },
+    "answers": {
+      "en": [
+        "Wear sackcloth and ashes",
+        "Stay at home all day",
+        "Anoint your head, wash your face",
+        "Tell the priest"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_047",
+    "reference": "Matthew 6:19",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said treasures on earth are destroyed by moth and what?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Mold",
+        "Mice",
+        "Rust"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_048",
+    "reference": "Matthew 6:22",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"The lamp of the body is the ___.\""
+    },
+    "answers": {
+      "en": [
+        "heart",
+        "eye",
+        "mouth",
+        "hand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_049",
+    "reference": "Matthew 6:26",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus pointed to which creatures that don't sow, reap or gather into barns?"
+    },
+    "answers": {
+      "en": [
+        "The sheep of the field",
+        "The fish of the sea",
+        "The lilies of the field",
+        "The birds of the sky"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_050",
+    "reference": "Matthew 6:28",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Which flowers of the field \"don't toil, neither do they spin\"?"
+    },
+    "answers": {
+      "en": [
+        "The lilies",
+        "The roses",
+        "The tulips",
+        "The olive blossoms"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_051",
+    "reference": "Matthew 6:29",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said even which king in all his glory was not dressed like a lily?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Herod",
+        "Solomon",
+        "Saul"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_052",
+    "reference": "Matthew 6:33",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"Seek first God's Kingdom and his ___, and all these things will be given to you.\""
+    },
+    "answers": {
+      "en": [
+        "temple",
+        "righteousness",
+        "glory",
+        "wisdom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_053",
+    "reference": "Matthew 7:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus asked why you see the speck in your brother's eye but not what in your own?"
+    },
+    "answers": {
+      "en": [
+        "The splinter",
+        "The stone",
+        "The beam",
+        "The thorn"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_054",
+    "reference": "Matthew 7:6",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, don't throw your pearls before whom?"
+    },
+    "answers": {
+      "en": [
+        "The dogs",
+        "The pigs",
+        "The birds",
+        "The goats"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_055",
+    "reference": "Matthew 7:9",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus asked who, if his son asks for bread, will give him a what?"
+    },
+    "answers": {
+      "en": [
+        "Bone",
+        "Scorpion",
+        "Stick",
+        "Stone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_056",
+    "reference": "Matthew 7:13",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Through which gate did Jesus tell people to enter?"
+    },
+    "answers": {
+      "en": [
+        "The narrow gate",
+        "The golden gate",
+        "The wide gate",
+        "The sheep gate"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_057",
+    "reference": "Matthew 7:15",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "False prophets come in sheep's clothing, but inwardly they are what?"
+    },
+    "answers": {
+      "en": [
+        "Hungry lions",
+        "Sly foxes",
+        "Ravening wolves",
+        "Poisonous snakes"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_058",
+    "reference": "Matthew 7:16",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Do people gather grapes from thorns, or figs from what?"
+    },
+    "answers": {
+      "en": [
+        "Weeds",
+        "Rocks",
+        "Brambles in the sea",
+        "Thistles"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_059",
+    "reference": "Matthew 7:26",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In Jesus' parable, on what did the foolish man build his house?"
+    },
+    "answers": {
+      "en": [
+        "Sand",
+        "Rock",
+        "A hill",
+        "Clay"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_060",
+    "reference": "Matthew 7:29",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "The crowds were astonished, for Jesus taught them as one having what?"
+    },
+    "answers": {
+      "en": [
+        "Riches",
+        "Authority",
+        "A scroll",
+        "Many disciples"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_061",
+    "reference": "Matthew 8:3",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 8, what did Jesus do as he said to the leper, \"I want to. Be made clean\"?"
+    },
+    "answers": {
+      "en": [
+        "Spat on the ground",
+        "Touched him",
+        "Washed his feet",
+        "Breathed on him"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_062",
+    "reference": "Matthew 8:4",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus tell the cleansed leper in Matthew 8 to offer?"
+    },
+    "answers": {
+      "en": [
+        "The gift that Moses commanded",
+        "A tenth of his goods",
+        "A lamb at the Passover",
+        "Thanks in the synagogue"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_063",
+    "reference": "Matthew 8:5-6",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Capernaum, a centurion asked Jesus to heal whom?"
+    },
+    "answers": {
+      "en": [
+        "His son",
+        "His wife",
+        "His mother",
+        "His servant"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_064",
+    "reference": "Matthew 8:8",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The centurion said Jesus need only do what for his servant to be healed?"
+    },
+    "answers": {
+      "en": [
+        "Touch his bed",
+        "Send a disciple",
+        "Say the word",
+        "Pray at the temple"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_065",
+    "reference": "Matthew 8:20",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Foxes have holes and birds have nests, but the Son of Man has nowhere to lay his what?"
+    },
+    "answers": {
+      "en": [
+        "Feet",
+        "Staff",
+        "Bag",
+        "Head"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_066",
+    "reference": "Matthew 8:26",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Before calming the storm in Matthew 8, what did Jesus call the disciples?"
+    },
+    "answers": {
+      "en": [
+        "Sons of thunder",
+        "Children of light",
+        "You of little faith",
+        "Slow of heart"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_067",
+    "reference": "Matthew 8:28",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew, how many demon-possessed people came out of the tombs to meet Jesus?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Three",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_068",
+    "reference": "Matthew 8:34",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "After the pigs drowned, what did the people of the city beg Jesus to do?"
+    },
+    "answers": {
+      "en": [
+        "Depart from their borders",
+        "Heal their sick",
+        "Stay with them",
+        "Pay for the pigs"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_069",
+    "reference": "Matthew 9:2",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 9, what did Jesus first say to the paralyzed man lying on a bed?"
+    },
+    "answers": {
+      "en": [
+        "Go and sin no more",
+        "Wash in the pool",
+        "Show yourself to the priest",
+        "Your sins are forgiven you"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_070",
+    "reference": "Matthew 9:12",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said those who are healthy have no need for whom?"
+    },
+    "answers": {
+      "en": [
+        "A physician",
+        "A priest",
+        "A teacher",
+        "A shepherd"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_071",
+    "reference": "Matthew 9:15",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said his disciples would fast when what happened?"
+    },
+    "answers": {
+      "en": [
+        "The temple falls",
+        "The harvest is ruined",
+        "The bridegroom is taken away",
+        "John is put in prison"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_072",
+    "reference": "Matthew 9:18",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 9, what did the ruler tell Jesus about his daughter?"
+    },
+    "answers": {
+      "en": [
+        "She is blind",
+        "She has just died",
+        "She has a fever",
+        "She cannot walk"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_073",
+    "reference": "Matthew 9:23",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In the ruler's house, whom did Jesus see with the noisy crowd?"
+    },
+    "answers": {
+      "en": [
+        "Soldiers",
+        "Priests",
+        "Flute players",
+        "Tax collectors"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_074",
+    "reference": "Matthew 9:27",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 9, how many blind men followed Jesus crying, \"Have mercy on us, son of David!\"?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Three",
+        "Ten",
+        "Two"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_075",
+    "reference": "Matthew 9:32",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The demon-possessed man brought to Jesus in Matthew 9:32 was what?"
+    },
+    "answers": {
+      "en": [
+        "Blind",
+        "Mute",
+        "Lame",
+        "A leper"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_076",
+    "reference": "Matthew 9:37",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"The harvest indeed is plentiful, but the ___ are few.\""
+    },
+    "answers": {
+      "en": [
+        "laborers",
+        "barns",
+        "seeds",
+        "days"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_077",
+    "reference": "Matthew 10:2",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew's list of the twelve apostles, who is named first?"
+    },
+    "answers": {
+      "en": [
+        "Simon, called Peter",
+        "John",
+        "Andrew",
+        "Matthew"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_078",
+    "reference": "Matthew 10:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew's list of the twelve, which apostle is called \"the tax collector\"?"
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "Matthew",
+        "Philip",
+        "Bartholomew"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_079",
+    "reference": "Matthew 10:3",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 10, Lebbaeus was also called what?"
+    },
+    "answers": {
+      "en": [
+        "Didymus",
+        "Barsabbas",
+        "Thaddaeus",
+        "Justus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_080",
+    "reference": "Matthew 10:5",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus first sent the twelve not to the Gentiles, nor into any city of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Romans",
+        "The Greeks",
+        "The Edomites",
+        "The Samaritans"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_081",
+    "reference": "Matthew 10:9",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told the twelve not to take gold, silver or what in their money belts?"
+    },
+    "answers": {
+      "en": [
+        "Bread",
+        "Iron",
+        "Jewels",
+        "Brass"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_082",
+    "reference": "Matthew 10:14",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Leaving a town that wouldn't receive them, what were the twelve to shake off?"
+    },
+    "answers": {
+      "en": [
+        "Their cloaks",
+        "The ashes from their heads",
+        "The dust from their feet",
+        "Their sandals"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_083",
+    "reference": "Matthew 10:16",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told the twelve to be wise as serpents and harmless as what?"
+    },
+    "answers": {
+      "en": [
+        "Lambs",
+        "Doves",
+        "Children",
+        "Sparrows"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_084",
+    "reference": "Matthew 10:29",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 10, two sparrows are sold for what?"
+    },
+    "answers": {
+      "en": [
+        "An assarion coin",
+        "A denarius",
+        "A talent",
+        "A shekel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_085",
+    "reference": "Matthew 10:30",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said even what on your head are all numbered?"
+    },
+    "answers": {
+      "en": [
+        "The days",
+        "The hairs",
+        "The thoughts",
+        "The scars"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_086",
+    "reference": "Matthew 10:42",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Whoever gives a little one just a cup of what will not lose his reward?"
+    },
+    "answers": {
+      "en": [
+        "Wine",
+        "Milk",
+        "Warm broth",
+        "Cold water"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_087",
+    "reference": "Matthew 11:2-3",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "John sent his disciples from prison to ask Jesus what?"
+    },
+    "answers": {
+      "en": [
+        "Where he would stay",
+        "When he would visit",
+        "If he was the one who comes",
+        "Why he ate with sinners"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_088",
+    "reference": "Matthew 11:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus asked the crowds if they went out to see a reed shaken by what?"
+    },
+    "answers": {
+      "en": [
+        "The wind",
+        "A storm at sea",
+        "The river",
+        "An earthquake"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_089",
+    "reference": "Matthew 11:14",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said John the Baptist is which prophet who was to come?"
+    },
+    "answers": {
+      "en": [
+        "Elisha",
+        "Isaiah",
+        "Elijah",
+        "Moses"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_090",
+    "reference": "Matthew 11:19",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Critics called Jesus a glutton, a drunkard and a friend of whom?"
+    },
+    "answers": {
+      "en": [
+        "Romans and soldiers",
+        "Tax collectors and sinners",
+        "Pharisees and scribes",
+        "Thieves and robbers"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_091",
+    "reference": "Matthew 11:21",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said \"Woe to you\" to Bethsaida and which other town?"
+    },
+    "answers": {
+      "en": [
+        "Chorazin",
+        "Nain",
+        "Cana",
+        "Emmaus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_092",
+    "reference": "Matthew 11:21",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said Tyre and Sidon would long ago have repented in sackcloth and what?"
+    },
+    "answers": {
+      "en": [
+        "Tears",
+        "Fasting",
+        "Silence",
+        "Ashes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_093",
+    "reference": "Matthew 11:28",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "\"Come to me, all you who labor and are heavily burdened, and I will give you ___.\""
+    },
+    "answers": {
+      "en": [
+        "rest",
+        "bread",
+        "riches",
+        "a crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_094",
+    "reference": "Matthew 11:30",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"My yoke is easy, and my burden is ___.\""
+    },
+    "answers": {
+      "en": [
+        "small",
+        "sweet",
+        "short",
+        "light"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_095",
+    "reference": "Matthew 12:1",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus' hungry disciples pluck and eat on the Sabbath?"
+    },
+    "answers": {
+      "en": [
+        "Figs",
+        "Grapes",
+        "Heads of grain",
+        "Olives"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_096",
+    "reference": "Matthew 12:10",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "The man Jesus healed in the synagogue on the Sabbath in Matthew 12 had what?"
+    },
+    "answers": {
+      "en": [
+        "A fever",
+        "A withered hand",
+        "Leprosy",
+        "A demon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_097",
+    "reference": "Matthew 12:11",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus asked who wouldn't lift out his what if it fell into a pit on the Sabbath?"
+    },
+    "answers": {
+      "en": [
+        "Donkey",
+        "Ox",
+        "Child",
+        "Sheep"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_098",
+    "reference": "Matthew 12:24",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "The Pharisees said Jesus cast out demons by whom, the prince of the demons?"
+    },
+    "answers": {
+      "en": [
+        "Belial",
+        "Legion",
+        "Beelzebul",
+        "Baal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_099",
+    "reference": "Matthew 12:40",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said Jonah was three days and nights in the belly of what?"
+    },
+    "answers": {
+      "en": [
+        "A ship",
+        "The whale",
+        "A cave",
+        "A lion"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_100",
+    "reference": "Matthew 12:41",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said the people of which city repented at the preaching of Jonah?"
+    },
+    "answers": {
+      "en": [
+        "Nineveh",
+        "Babylon",
+        "Tyre",
+        "Sodom"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_101",
+    "reference": "Matthew 12:42",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Who \"came from the ends of the earth to hear the wisdom of Solomon\"?"
+    },
+    "answers": {
+      "en": [
+        "The king of Tyre",
+        "The wise men from the east",
+        "The queen of the south",
+        "Pharaoh's daughter"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_102",
+    "reference": "Matthew 12:50",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said whoever does his Father's will is his brother, sister and who?"
+    },
+    "answers": {
+      "en": [
+        "Mother",
+        "Father",
+        "Friend",
+        "Servant"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_103",
+    "reference": "Matthew 13:2",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 13, from where did Jesus teach the crowd standing on the beach?"
+    },
+    "answers": {
+      "en": [
+        "A mountain",
+        "A house roof",
+        "A tree",
+        "A boat"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_104",
+    "reference": "Matthew 13:4",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the sower, what ate the seeds that fell by the roadside?"
+    },
+    "answers": {
+      "en": [
+        "Goats",
+        "Birds",
+        "Mice",
+        "Locusts"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_105",
+    "reference": "Matthew 13:7",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In the parable of the sower, what choked some of the seeds?"
+    },
+    "answers": {
+      "en": [
+        "Thorns",
+        "Stones",
+        "Weeds of the sea",
+        "Frost"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_106",
+    "reference": "Matthew 13:8",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew's parable, good soil yielded some how many times, some sixty, some thirty?"
+    },
+    "answers": {
+      "en": [
+        "Seventy",
+        "Forty",
+        "One hundred",
+        "Fifty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_107",
+    "reference": "Matthew 13:25",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In Jesus' parable, what did the enemy sow among the wheat while people slept?"
+    },
+    "answers": {
+      "en": [
+        "Thorns",
+        "Darnel weeds",
+        "Mustard seed",
+        "Barley"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_108",
+    "reference": "Matthew 13:33",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The Kingdom of Heaven is like yeast a woman hid in how many measures of meal?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Seven",
+        "Ten",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_109",
+    "reference": "Matthew 13:44",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said the Kingdom of Heaven is like a treasure hidden where?"
+    },
+    "answers": {
+      "en": [
+        "In a cave",
+        "In the temple",
+        "In the field",
+        "Under a house"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_110",
+    "reference": "Matthew 13:45-46",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The merchant seeking fine pearls sold all he had to buy what?"
+    },
+    "answers": {
+      "en": [
+        "One pearl of great price",
+        "A field of gold",
+        "A ship of spices",
+        "A royal crown"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_111",
+    "reference": "Matthew 13:47",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "The Kingdom of Heaven is also like what, cast into the sea?"
+    },
+    "answers": {
+      "en": [
+        "An anchor",
+        "A fishhook",
+        "A boat",
+        "A dragnet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_112",
+    "reference": "Matthew 13:57",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "\"A prophet is not without honor, except in his own country, and in his own ___.\""
+    },
+    "answers": {
+      "en": [
+        "temple",
+        "house",
+        "tribe",
+        "city gate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_113",
+    "reference": "Matthew 13:58",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Why did Jesus not do many mighty works in his hometown?"
+    },
+    "answers": {
+      "en": [
+        "Because it was the Sabbath",
+        "Because Herod was near",
+        "Because of their unbelief",
+        "Because he was tired"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_114",
+    "reference": "Matthew 14:6",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "At whose birthday celebration did the daughter of Herodias dance?"
+    },
+    "answers": {
+      "en": [
+        "Herod's",
+        "Pilate's",
+        "Caesar's",
+        "Philip's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_115",
+    "reference": "Matthew 14:11",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "On what was John the Baptist's head brought to the girl?"
+    },
+    "answers": {
+      "en": [
+        "A shield",
+        "A spear",
+        "A cushion",
+        "A platter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_116",
+    "reference": "Matthew 14:12",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "After burying John the Baptist, whom did his disciples go and tell?"
+    },
+    "answers": {
+      "en": [
+        "Herodias",
+        "Jesus",
+        "The high priest",
+        "Their families"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_117",
+    "reference": "Matthew 14:20",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "How many baskets of broken pieces were left after the five thousand ate?"
+    },
+    "answers": {
+      "en": [
+        "Twelve",
+        "Seven",
+        "Five",
+        "Three"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b200_118",
+    "reference": "Matthew 14:25",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In which watch of the night did Jesus come to the disciples, walking on the sea?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The second",
+        "The fourth",
+        "The third"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b200_119",
+    "reference": "Matthew 14:26",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "When the disciples saw Jesus walking on the sea, what did they think he was?"
+    },
+    "answers": {
+      "en": [
+        "An angel",
+        "Elijah",
+        "A fisherman",
+        "A ghost"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b200_120",
+    "reference": "Matthew 14:30",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Why did Peter begin to sink when walking on the water?"
+    },
+    "answers": {
+      "en": [
+        "His cloak was too heavy",
+        "He saw that the wind was strong",
+        "He looked back at the boat",
+        "A wave knocked him down"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b200_121",
+    "reference": "Matthew 14:34",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In Matthew 14, after crossing the sea, into which land did Jesus and the disciples come?"
+    },
+    "answers": {
+      "en": [
+        "Decapolis",
+        "Samaria",
+        "Phoenicia",
+        "Gennesaret"
+      ]
+    },
+    "correctIndex": 3
+  }
 ]

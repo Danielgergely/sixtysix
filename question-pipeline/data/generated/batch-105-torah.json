@@ -1,72 +1,1262 @@
 [
-  {"id":"q_b105_001","reference":"Leviticus 1:4","difficulty":2,"category":"torah","text":{"en":"Where did the one bringing a burnt offering lay his hand?"},"answers":{"en":["On the altar","On the priest's shoulder","On the animal's head","On the ark"]},"correctIndex":2},
-  {"id":"q_b105_002","reference":"Leviticus 1:9","difficulty":3,"category":"torah","text":{"en":"Before a burnt offering was burned, what was washed with water?"},"answers":{"en":["Its innards and legs","Its head","Its skin","Its horns"]},"correctIndex":0},
-  {"id":"q_b105_003","reference":"Leviticus 1:14","difficulty":3,"category":"torah","text":{"en":"Which birds could be brought as a burnt offering?"},"answers":{"en":["Sparrows or swallows","Quails or partridges","Ravens or eagles","Turtledoves or young pigeons"]},"correctIndex":3},
-  {"id":"q_b105_004","reference":"Leviticus 2:1","difficulty":3,"category":"torah","text":{"en":"A meal offering was fine flour with oil poured on it and what put on it?"},"answers":{"en":["Honey","Frankincense","Salt and yeast","Myrrh"]},"correctIndex":1},
-  {"id":"q_b105_005","reference":"Leviticus 2:11","difficulty":4,"category":"torah","text":{"en":"Besides yeast, what was never to be burned in an offering to Yahweh?"},"answers":{"en":["Salt","Oil","Frankincense","Honey"]},"correctIndex":3},
-  {"id":"q_b105_006","reference":"Leviticus 3:17","difficulty":3,"category":"torah","text":{"en":"Which two things were Israelites never to eat, as a perpetual statute?"},"answers":{"en":["Fat and blood","Bread and salt","Fish and birds","Figs and honey"]},"correctIndex":0},
-  {"id":"q_b105_007","reference":"Leviticus 4:3","difficulty":4,"category":"torah","text":{"en":"What did the anointed priest offer if he sinned and brought guilt on the people?"},"answers":{"en":["Two doves","A young bull","A lamb","A goat"]},"correctIndex":1},
-  {"id":"q_b105_008","reference":"Leviticus 5:7","difficulty":3,"category":"torah","text":{"en":"If someone couldn't afford a lamb for a trespass offering, what could he bring?"},"answers":{"en":["A handful of grain","A jar of oil","Two turtledoves or two young pigeons","A silver coin"]},"correctIndex":2},
-  {"id":"q_b105_009","reference":"Leviticus 5:11","difficulty":5,"category":"torah","text":{"en":"If someone couldn't even afford two birds, what could he bring as a sin offering?"},"answers":{"en":["A jar of wine","A lock of hair","A day's work","A tenth of an ephah of fine flour"]},"correctIndex":3},
-  {"id":"q_b105_010","reference":"Leviticus 6:5","difficulty":4,"category":"torah","text":{"en":"When restoring what he had wrongly taken, how much extra did the guilty person add?"},"answers":{"en":["A tenth part","Double","A fifth part","Half"]},"correctIndex":2},
-  {"id":"q_b105_011","reference":"Leviticus 6:12","difficulty":3,"category":"torah","text":{"en":"To keep the altar fire from going out, what did the priest burn on it every morning?"},"answers":{"en":["Oil","Wood","Incense","Straw"]},"correctIndex":1},
-  {"id":"q_b105_012","reference":"Leviticus 7:15","difficulty":5,"category":"torah","text":{"en":"When was the meat of a thanksgiving peace offering to be eaten?"},"answers":{"en":["On the day of the offering","Within three days","On the next Sabbath","After seven days"]},"correctIndex":0},
-  {"id":"q_b105_013","reference":"Leviticus 8:12","difficulty":2,"category":"torah","text":{"en":"What did Moses pour on Aaron's head to sanctify him?"},"answers":{"en":["Anointing oil","Water","Blood","Wine"]},"correctIndex":0},
-  {"id":"q_b105_014","reference":"Leviticus 8:33","difficulty":4,"category":"torah","text":{"en":"For how many days were Aaron and his sons to stay at the tent door for their consecration?"},"answers":{"en":["Three","Seven","Forty","Twelve"]},"correctIndex":1},
-  {"id":"q_b105_015","reference":"Leviticus 9:24","difficulty":3,"category":"torah","text":{"en":"What consumed the first burnt offering on the altar after Aaron's ordination?"},"answers":{"en":["Lightning from a storm","A torch Moses lit","Fire from before Yahweh","The sun's heat"]},"correctIndex":2},
-  {"id":"q_b105_016","reference":"Leviticus 9:24","difficulty":2,"category":"torah","text":{"en":"When the fire from Yahweh consumed the offering, what did the people do?"},"answers":{"en":["Ran away","Laughed","Sang a new song","Shouted and fell on their faces"]},"correctIndex":3},
-  {"id":"q_b105_017","reference":"Leviticus 10:4","difficulty":5,"category":"torah","text":{"en":"Which two men carried Nadab and Abihu out of the camp?"},"answers":{"en":["Eleazar and Ithamar","Joshua and Caleb","Mishael and Elzaphan","Aaron and Hur"]},"correctIndex":2},
-  {"id":"q_b105_018","reference":"Leviticus 10:9","difficulty":2,"category":"torah","text":{"en":"What were priests forbidden to drink before going into the Tent of Meeting?"},"answers":{"en":["Milk","Water from the river","Anything at all","Wine or strong drink"]},"correctIndex":3},
-  {"id":"q_b105_019","reference":"Leviticus 10:16","difficulty":5,"category":"torah","text":{"en":"Moses was angry with Eleazar and Ithamar because the sin offering goat had been what?"},"answers":{"en":["Burned","Eaten","Lost","Sold"]},"correctIndex":0},
-  {"id":"q_b105_020","reference":"Leviticus 11:6","difficulty":3,"category":"torah","text":{"en":"Why was the hare unclean for Israel?"},"answers":{"en":["It doesn't chew the cud","It doesn't part the hoof","It lives underground","It eats insects"]},"correctIndex":1},
-  {"id":"q_b105_021","reference":"Leviticus 11:9","difficulty":2,"category":"torah","text":{"en":"Which water creatures could Israel eat?"},"answers":{"en":["All fish","Those with fins and scales","Only river fish","Shellfish"]},"correctIndex":1},
-  {"id":"q_b105_022","reference":"Leviticus 11:19","difficulty":4,"category":"torah","text":{"en":"Which of these was on the list of unclean flying creatures?"},"answers":{"en":["The turtledove","The quail","The young pigeon","The bat"]},"correctIndex":3},
-  {"id":"q_b105_023","reference":"Leviticus 11:29-30","difficulty":5,"category":"torah","text":{"en":"Which of these creeping things was listed as unclean?"},"answers":{"en":["The chameleon","The locust","The grasshopper","The cricket"]},"correctIndex":0},
-  {"id":"q_b105_024","reference":"Leviticus 11:44","difficulty":1,"category":"torah","text":{"en":"Complete: \"Be holy; for I am ___.\""},"answers":{"en":["good","near","holy","one"]},"correctIndex":2},
-  {"id":"q_b105_025","reference":"Leviticus 12:3","difficulty":1,"category":"torah","text":{"en":"On which day after birth was a baby boy to be circumcised?"},"answers":{"en":["The eighth","The seventh","The third","The fortieth"]},"correctIndex":0},
-  {"id":"q_b105_026","reference":"Leviticus 12:8","difficulty":3,"category":"torah","text":{"en":"If a new mother couldn't afford a lamb, what could she offer?"},"answers":{"en":["A young goat","A handful of flour","Two turtledoves or two young pigeons","Nothing at all"]},"correctIndex":2},
-  {"id":"q_b105_027","reference":"Leviticus 13:2","difficulty":2,"category":"torah","text":{"en":"To whom was a person with a possible leprosy spot to be brought?"},"answers":{"en":["Moses","Aaron the priest or his sons","The elders","A physician"]},"correctIndex":1},
-  {"id":"q_b105_028","reference":"Leviticus 13:4","difficulty":4,"category":"torah","text":{"en":"For how many days did the priest first isolate a person with a white spot?"},"answers":{"en":["Three","Forty","Fourteen","Seven"]},"correctIndex":3},
-  {"id":"q_b105_029","reference":"Leviticus 13:46","difficulty":2,"category":"torah","text":{"en":"Where was a person with leprosy to live while the plague was in him?"},"answers":{"en":["At the tent door","Alone, outside the camp","In the priest's house","By the river"]},"correctIndex":1},
-  {"id":"q_b105_030","reference":"Leviticus 14:4","difficulty":4,"category":"torah","text":{"en":"For cleansing a leper, two living birds were taken with cedar wood, scarlet and what?"},"answers":{"en":["Hyssop","Olive branches","Myrrh","Salt"]},"correctIndex":0},
-  {"id":"q_b105_031","reference":"Leviticus 14:7","difficulty":3,"category":"torah","text":{"en":"In the leper's cleansing, what happened to the living bird?"},"answers":{"en":["It was burned","It was kept by the priest","It was eaten","It was let go into the open field"]},"correctIndex":3},
-  {"id":"q_b105_032","reference":"Leviticus 14:34","difficulty":4,"category":"torah","text":{"en":"Besides people and garments, what else could have a spreading mildew in the law?"},"answers":{"en":["A well","A tree","A house","An altar"]},"correctIndex":2},
-  {"id":"q_b105_033","reference":"Leviticus 16:4","difficulty":4,"category":"torah","text":{"en":"What were the holy garments Aaron wore on the Day of Atonement made of?"},"answers":{"en":["Wool","Gold thread","Linen","Purple silk"]},"correctIndex":2},
-  {"id":"q_b105_034","reference":"Leviticus 16:10","difficulty":3,"category":"torah","text":{"en":"On the Day of Atonement, what was done with the goat chosen by lot as the scapegoat?"},"answers":{"en":["Sent away into the wilderness","Burned on the altar","Given to the priests","Set free in the camp"]},"correctIndex":0},
-  {"id":"q_b105_035","reference":"Leviticus 16:13","difficulty":4,"category":"torah","text":{"en":"On the Day of Atonement, what was to cover the mercy seat so Aaron would not die?"},"answers":{"en":["A linen cloth","The wings of cherubim","Smoke from the altar","The cloud of incense"]},"correctIndex":3},
-  {"id":"q_b105_036","reference":"Leviticus 16:14","difficulty":4,"category":"torah","text":{"en":"How many times did Aaron sprinkle the bull's blood before the mercy seat?"},"answers":{"en":["Three","Seven","Twelve","Once"]},"correctIndex":1},
-  {"id":"q_b105_037","reference":"Leviticus 16:21","difficulty":3,"category":"torah","text":{"en":"What did Aaron do with both hands on the live goat's head?"},"answers":{"en":["Anointed it with oil","Tied a scarlet cord","Cut its hair","Confessed Israel's sins over it"]},"correctIndex":3},
-  {"id":"q_b105_038","reference":"Leviticus 17:11","difficulty":2,"category":"torah","text":{"en":"According to Leviticus, where is the life of the flesh?"},"answers":{"en":["In the blood","In the heart","In the breath","In the bones"]},"correctIndex":0},
-  {"id":"q_b105_039","reference":"Leviticus 19:10","difficulty":3,"category":"torah","text":{"en":"For whom were fallen grapes in the vineyard to be left?"},"answers":{"en":["The priests","The poor and the foreigner","The birds","The king"]},"correctIndex":1},
-  {"id":"q_b105_040","reference":"Leviticus 19:11","difficulty":1,"category":"torah","text":{"en":"Which of these commands is in Leviticus 19?"},"answers":{"en":["You shall not sing","You shall not travel","You shall not steal","You shall not build"]},"correctIndex":2},
-  {"id":"q_b105_041","reference":"Leviticus 19:13","difficulty":4,"category":"torah","text":{"en":"The wages of a hired servant must not stay with you until when?"},"answers":{"en":["The Sabbath","The new moon","The end of the year","The morning"]},"correctIndex":3},
-  {"id":"q_b105_042","reference":"Leviticus 19:14","difficulty":1,"category":"torah","text":{"en":"Before whom must you not put a stumbling block?"},"answers":{"en":["The king","The priest","The blind","Your enemy"]},"correctIndex":2},
-  {"id":"q_b105_043","reference":"Leviticus 19:19","difficulty":3,"category":"torah","text":{"en":"What must a field not be sown with, according to Leviticus 19?"},"answers":{"en":["Barley","Two kinds of seed","Seed from Egypt","Seed in the seventh month"]},"correctIndex":1},
-  {"id":"q_b105_044","reference":"Leviticus 19:32","difficulty":3,"category":"torah","text":{"en":"Before whom were Israelites told to \"rise up\"?"},"answers":{"en":["The gray head","The priest","A stranger","A child"]},"correctIndex":0},
-  {"id":"q_b105_045","reference":"Leviticus 19:34","difficulty":2,"category":"torah","text":{"en":"Complete the law about the foreigner living among you: \"You shall love him as ___.\""},"answers":{"en":["yourself","a servant","a guest","a brother"]},"correctIndex":0},
-  {"id":"q_b105_046","reference":"Leviticus 19:36","difficulty":4,"category":"torah","text":{"en":"What kind of balances and weights did the law require?"},"answers":{"en":["Golden","Just","Large","Royal"]},"correctIndex":1},
-  {"id":"q_b105_047","reference":"Leviticus 21:10","difficulty":5,"category":"torah","text":{"en":"What was the high priest forbidden to do with his clothes when mourning?"},"answers":{"en":["Wash them","Wear them","Tear them","Dye them"]},"correctIndex":2},
-  {"id":"q_b105_048","reference":"Leviticus 21:17","difficulty":4,"category":"torah","text":{"en":"Which of Aaron's descendants could not approach to offer the bread of God?"},"answers":{"en":["The youngest son","Any who were married","Any born in Egypt","One with a defect"]},"correctIndex":3},
-  {"id":"q_b105_049","reference":"Leviticus 22:28","difficulty":3,"category":"torah","text":{"en":"What must not be killed in one day along with a cow or ewe?"},"answers":{"en":["Another cow","A goat","Its young","A dove"]},"correctIndex":2},
-  {"id":"q_b105_050","reference":"Leviticus 23:5","difficulty":3,"category":"torah","text":{"en":"On which day of the first month in the evening is Yahweh's Passover?"},"answers":{"en":["The tenth","The first","The twentieth","The fourteenth"]},"correctIndex":3},
-  {"id":"q_b105_051","reference":"Leviticus 23:6","difficulty":4,"category":"torah","text":{"en":"On which day of the first month did the feast of unleavened bread begin?"},"answers":{"en":["The fifteenth","The fourteenth","The tenth","The first"]},"correctIndex":0},
-  {"id":"q_b105_052","reference":"Leviticus 23:10","difficulty":3,"category":"torah","text":{"en":"What were Israelites to bring to the priest from their first harvest in the land?"},"answers":{"en":["A basket of figs","A sheaf of the first fruits","A lamb","A jar of wine"]},"correctIndex":1},
-  {"id":"q_b105_053","reference":"Leviticus 23:24","difficulty":4,"category":"torah","text":{"en":"The first day of the seventh month was a memorial of what?"},"answers":{"en":["Lighting of lamps","Blowing of trumpets","Planting seeds","Crossing the sea"]},"correctIndex":1},
-  {"id":"q_b105_054","reference":"Leviticus 23:40","difficulty":4,"category":"torah","text":{"en":"At the feast of booths, Israel took fruit, palm branches, thick boughs and what?"},"answers":{"en":["Olive leaves","Grape vines","Cedar cones","Willows of the brook"]},"correctIndex":3},
-  {"id":"q_b105_055","reference":"Leviticus 23:42","difficulty":2,"category":"torah","text":{"en":"Where were native-born Israelites to live for seven days during the feast of booths?"},"answers":{"en":["In booths","In the temple","In caves","Under the stars"]},"correctIndex":0},
-  {"id":"q_b105_056","reference":"Leviticus 24:7","difficulty":4,"category":"torah","text":{"en":"What was put on each row of the twelve cakes before Yahweh?"},"answers":{"en":["Salt","Honey","Pure frankincense","Oil"]},"correctIndex":2},
-  {"id":"q_b105_057","reference":"Leviticus 24:8","difficulty":4,"category":"torah","text":{"en":"How often was the bread set in order before Yahweh?"},"answers":{"en":["Every Sabbath day","Every morning","Every new moon","Once a year"]},"correctIndex":0},
-  {"id":"q_b105_058","reference":"Leviticus 24:14","difficulty":3,"category":"torah","text":{"en":"Where was the man who cursed the Name taken to be stoned?"},"answers":{"en":["To the tent door","To the river","Out of the camp","To Mount Sinai"]},"correctIndex":2},
-  {"id":"q_b105_059","reference":"Leviticus 25:9","difficulty":4,"category":"torah","text":{"en":"On which day was the trumpet sounded to begin the jubilee year?"},"answers":{"en":["Passover","The Day of Atonement","The first day of the year","Pentecost"]},"correctIndex":1},
-  {"id":"q_b105_060","reference":"Leviticus 25:10","difficulty":2,"category":"torah","text":{"en":"Complete: \"Proclaim ___ throughout the land to all its inhabitants.\""},"answers":{"en":["peace","joy","the law","liberty"]},"correctIndex":3},
-  {"id":"q_b105_061","reference":"Leviticus 25:11","difficulty":3,"category":"torah","text":{"en":"In the jubilee year, what were the Israelites not to do?"},"answers":{"en":["Eat bread","Sow or reap","Light fires","Travel"]},"correctIndex":1},
-  {"id":"q_b105_062","reference":"Leviticus 25:23","difficulty":4,"category":"torah","text":{"en":"Why could land in Israel not be sold in perpetuity?"},"answers":{"en":["\"The land is mine,\" says God","The king owned it","It was too poor","It belonged to the Levites"]},"correctIndex":0},
-  {"id":"q_b105_063","reference":"Leviticus 25:29","difficulty":5,"category":"torah","text":{"en":"Within how long could a man redeem a house he sold in a walled city?"},"answers":{"en":["Seven years","Until the jubilee","Forty days","A full year"]},"correctIndex":3},
-  {"id":"q_b105_064","reference":"Leviticus 25:37","difficulty":3,"category":"torah","text":{"en":"What must you not charge a poor brother when lending him money?"},"answers":{"en":["A pledge","A witness","Interest","A tithe"]},"correctIndex":2},
-  {"id":"q_b105_065","reference":"Leviticus 26:12","difficulty":2,"category":"torah","text":{"en":"Complete God's promise: \"I will walk among you, and will be your God, and you will be my ___.\""},"answers":{"en":["servants","children","people","priests"]},"correctIndex":2},
-  {"id":"q_b105_066","reference":"Leviticus 26:13","difficulty":4,"category":"torah","text":{"en":"God said he broke the bars of Israel's yoke and made them go how?"},"answers":{"en":["Upright","Quickly","Barefoot","In silence"]},"correctIndex":0},
-  {"id":"q_b105_067","reference":"Leviticus 26:26","difficulty":5,"category":"torah","text":{"en":"In the warning of famine, how many women would bake bread in one oven?"},"answers":{"en":["Seven","Three","Twelve","Ten"]},"correctIndex":3},
-  {"id":"q_b105_068","reference":"Leviticus 26:36","difficulty":5,"category":"torah","text":{"en":"In Leviticus 26's warning, the sound of what would put the scattered people to flight?"},"answers":{"en":["A trumpet","A driven leaf","A lion","Thunder"]},"correctIndex":1},
-  {"id":"q_b105_069","reference":"Leviticus 27:4","difficulty":4,"category":"torah","text":{"en":"In vows, what was the valuation of a woman aged twenty to sixty?"},"answers":{"en":["Fifty shekels","Twenty shekels","Ten shekels","Thirty shekels"]},"correctIndex":3},
-  {"id":"q_b105_070","reference":"Leviticus 27:30","difficulty":3,"category":"torah","text":{"en":"According to Leviticus, whose is the tithe of the land's seed and fruit?"},"answers":{"en":["Yahweh's","The king's","The farmer's","The poor's"]},"correctIndex":0}
+  {
+    "id": "q_b105_001",
+    "reference": "Leviticus 1:4",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Where did the one bringing a burnt offering lay his hand?"
+    },
+    "answers": {
+      "en": [
+        "On the altar",
+        "On the priest's shoulder",
+        "On the animal's head",
+        "On the ark"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_002",
+    "reference": "Leviticus 1:9",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Before a burnt offering was burned, what was washed with water?"
+    },
+    "answers": {
+      "en": [
+        "Its innards and legs",
+        "Its head",
+        "Its skin",
+        "Its horns"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_003",
+    "reference": "Leviticus 1:14",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which birds could be brought as a burnt offering?"
+    },
+    "answers": {
+      "en": [
+        "Sparrows or swallows",
+        "Quails or partridges",
+        "Ravens or eagles",
+        "Turtledoves or young pigeons"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_004",
+    "reference": "Leviticus 2:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "A meal offering was fine flour with oil poured on it and what put on it?"
+    },
+    "answers": {
+      "en": [
+        "Honey",
+        "Frankincense",
+        "Salt and yeast",
+        "Myrrh"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_005",
+    "reference": "Leviticus 2:11",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Besides yeast, what was never to be burned in an offering to Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Oil",
+        "Frankincense",
+        "Honey"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_006",
+    "reference": "Leviticus 3:17",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which two things were Israelites never to eat, as a perpetual statute?"
+    },
+    "answers": {
+      "en": [
+        "Fat and blood",
+        "Bread and salt",
+        "Fish and birds",
+        "Figs and honey"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_007",
+    "reference": "Leviticus 4:3",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did the anointed priest offer if he sinned and brought guilt on the people?"
+    },
+    "answers": {
+      "en": [
+        "Two doves",
+        "A young bull",
+        "A lamb",
+        "A goat"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_008",
+    "reference": "Leviticus 5:7",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "If someone couldn't afford a lamb for a trespass offering, what could he bring?"
+    },
+    "answers": {
+      "en": [
+        "A handful of grain",
+        "A jar of oil",
+        "Two turtledoves or two young pigeons",
+        "A silver coin"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_009",
+    "reference": "Leviticus 5:11",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "If someone couldn't even afford two birds, what could he bring as a sin offering?"
+    },
+    "answers": {
+      "en": [
+        "A jar of wine",
+        "A lock of hair",
+        "A day's work",
+        "A tenth of an ephah of fine flour"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_010",
+    "reference": "Leviticus 6:5",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "When restoring what he had wrongly taken, how much extra did the guilty person add?"
+    },
+    "answers": {
+      "en": [
+        "A tenth part",
+        "Double",
+        "A fifth part",
+        "Half"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_011",
+    "reference": "Leviticus 6:12",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "To keep the altar fire from going out, what did the priest burn on it every morning?"
+    },
+    "answers": {
+      "en": [
+        "Oil",
+        "Wood",
+        "Incense",
+        "Straw"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_012",
+    "reference": "Leviticus 7:15",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "When was the meat of a thanksgiving peace offering to be eaten?"
+    },
+    "answers": {
+      "en": [
+        "On the day of the offering",
+        "Within three days",
+        "On the next Sabbath",
+        "After seven days"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_013",
+    "reference": "Leviticus 8:12",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "What did Moses pour on Aaron's head to sanctify him?"
+    },
+    "answers": {
+      "en": [
+        "Anointing oil",
+        "Water",
+        "Blood",
+        "Wine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_014",
+    "reference": "Leviticus 8:33",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "For how many days were Aaron and his sons to stay at the tent door for their consecration?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Forty",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_015",
+    "reference": "Leviticus 9:24",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What consumed the first burnt offering on the altar after Aaron's ordination?"
+    },
+    "answers": {
+      "en": [
+        "Lightning from a storm",
+        "A torch Moses lit",
+        "Fire from before Yahweh",
+        "The sun's heat"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_016",
+    "reference": "Leviticus 9:24",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "When the fire from Yahweh consumed the offering, what did the people do?"
+    },
+    "answers": {
+      "en": [
+        "Ran away",
+        "Laughed",
+        "Sang a new song",
+        "Shouted and fell on their faces"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_017",
+    "reference": "Leviticus 10:4",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which two men carried Nadab and Abihu out of the camp?"
+    },
+    "answers": {
+      "en": [
+        "Eleazar and Ithamar",
+        "Joshua and Caleb",
+        "Mishael and Elzaphan",
+        "Aaron and Hur"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_018",
+    "reference": "Leviticus 10:9",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What were priests forbidden to drink before going into the Tent of Meeting?"
+    },
+    "answers": {
+      "en": [
+        "Milk",
+        "Water from the river",
+        "Anything at all",
+        "Wine or strong drink"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_019",
+    "reference": "Leviticus 10:16",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Moses was angry with Eleazar and Ithamar because the sin offering goat had been what?"
+    },
+    "answers": {
+      "en": [
+        "Burned",
+        "Eaten",
+        "Lost",
+        "Sold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_020",
+    "reference": "Leviticus 11:6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Why was the hare unclean for Israel?"
+    },
+    "answers": {
+      "en": [
+        "It doesn't chew the cud",
+        "It doesn't part the hoof",
+        "It lives underground",
+        "It eats insects"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_021",
+    "reference": "Leviticus 11:9",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which water creatures could Israel eat?"
+    },
+    "answers": {
+      "en": [
+        "All fish",
+        "Those with fins and scales",
+        "Only river fish",
+        "Shellfish"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_022",
+    "reference": "Leviticus 11:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which of these was on the list of unclean flying creatures?"
+    },
+    "answers": {
+      "en": [
+        "The turtledove",
+        "The quail",
+        "The young pigeon",
+        "The bat"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_023",
+    "reference": "Leviticus 11:29-30",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which of these creeping things was listed as unclean?"
+    },
+    "answers": {
+      "en": [
+        "The chameleon",
+        "The locust",
+        "The grasshopper",
+        "The cricket"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_024",
+    "reference": "Leviticus 11:44",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete: \"Be holy; for I am ___.\""
+    },
+    "answers": {
+      "en": [
+        "good",
+        "near",
+        "holy",
+        "one"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_025",
+    "reference": "Leviticus 12:3",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "On which day after birth was a baby boy to be circumcised?"
+    },
+    "answers": {
+      "en": [
+        "The eighth",
+        "The seventh",
+        "The third",
+        "The fortieth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_026",
+    "reference": "Leviticus 12:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "If a new mother couldn't afford a lamb, what could she offer?"
+    },
+    "answers": {
+      "en": [
+        "A young goat",
+        "A handful of flour",
+        "Two turtledoves or two young pigeons",
+        "Nothing at all"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_027",
+    "reference": "Leviticus 13:2",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "To whom was a person with a possible leprosy spot to be brought?"
+    },
+    "answers": {
+      "en": [
+        "Moses",
+        "Aaron the priest or his sons",
+        "The elders",
+        "A physician"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_028",
+    "reference": "Leviticus 13:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "For how many days did the priest first isolate a person with a white spot?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Forty",
+        "Fourteen",
+        "Seven"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_029",
+    "reference": "Leviticus 13:46",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where was a person with leprosy to live while the plague was in him?"
+    },
+    "answers": {
+      "en": [
+        "At the tent door",
+        "Alone, outside the camp",
+        "In the priest's house",
+        "By the river"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_030",
+    "reference": "Leviticus 14:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "For cleansing a leper, two living birds were taken with cedar wood, scarlet and what?"
+    },
+    "answers": {
+      "en": [
+        "Hyssop",
+        "Olive branches",
+        "Myrrh",
+        "Salt"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_031",
+    "reference": "Leviticus 14:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In the leper's cleansing, what happened to the living bird?"
+    },
+    "answers": {
+      "en": [
+        "It was burned",
+        "It was kept by the priest",
+        "It was eaten",
+        "It was let go into the open field"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_032",
+    "reference": "Leviticus 14:34",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Besides people and garments, what else could have a spreading mildew in the law?"
+    },
+    "answers": {
+      "en": [
+        "A well",
+        "A tree",
+        "A house",
+        "An altar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_033",
+    "reference": "Leviticus 16:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What were the holy garments Aaron wore on the Day of Atonement made of?"
+    },
+    "answers": {
+      "en": [
+        "Wool",
+        "Gold thread",
+        "Linen",
+        "Purple silk"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_034",
+    "reference": "Leviticus 16:10",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "On the Day of Atonement, what was done with the goat chosen by lot as the scapegoat?"
+    },
+    "answers": {
+      "en": [
+        "Sent away into the wilderness",
+        "Burned on the altar",
+        "Given to the priests",
+        "Set free in the camp"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_035",
+    "reference": "Leviticus 16:13",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "On the Day of Atonement, what was to cover the mercy seat so Aaron would not die?"
+    },
+    "answers": {
+      "en": [
+        "A linen cloth",
+        "The wings of cherubim",
+        "Smoke from the altar",
+        "The cloud of incense"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_036",
+    "reference": "Leviticus 16:14",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many times did Aaron sprinkle the bull's blood before the mercy seat?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Twelve",
+        "Once"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_037",
+    "reference": "Leviticus 16:21",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Aaron do with both hands on the live goat's head?"
+    },
+    "answers": {
+      "en": [
+        "Anointed it with oil",
+        "Tied a scarlet cord",
+        "Cut its hair",
+        "Confessed Israel's sins over it"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_038",
+    "reference": "Leviticus 17:11",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "According to Leviticus, where is the life of the flesh?"
+    },
+    "answers": {
+      "en": [
+        "In the blood",
+        "In the heart",
+        "In the breath",
+        "In the bones"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_039",
+    "reference": "Leviticus 19:10",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "For whom were fallen grapes in the vineyard to be left?"
+    },
+    "answers": {
+      "en": [
+        "The priests",
+        "The poor and the foreigner",
+        "The birds",
+        "The king"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_040",
+    "reference": "Leviticus 19:11",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Which of these commands is in Leviticus 19?"
+    },
+    "answers": {
+      "en": [
+        "You shall not sing",
+        "You shall not travel",
+        "You shall not steal",
+        "You shall not build"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_041",
+    "reference": "Leviticus 19:13",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "The wages of a hired servant must not stay with you until when?"
+    },
+    "answers": {
+      "en": [
+        "The Sabbath",
+        "The new moon",
+        "The end of the year",
+        "The morning"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_042",
+    "reference": "Leviticus 19:14",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Before whom must you not put a stumbling block?"
+    },
+    "answers": {
+      "en": [
+        "The king",
+        "The priest",
+        "The blind",
+        "Your enemy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_043",
+    "reference": "Leviticus 19:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What must a field not be sown with, according to Leviticus 19?"
+    },
+    "answers": {
+      "en": [
+        "Barley",
+        "Two kinds of seed",
+        "Seed from Egypt",
+        "Seed in the seventh month"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_044",
+    "reference": "Leviticus 19:32",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Before whom were Israelites told to \"rise up\"?"
+    },
+    "answers": {
+      "en": [
+        "The gray head",
+        "The priest",
+        "A stranger",
+        "A child"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_045",
+    "reference": "Leviticus 19:34",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Complete the law about the foreigner living among you: \"You shall love him as ___.\""
+    },
+    "answers": {
+      "en": [
+        "yourself",
+        "a servant",
+        "a guest",
+        "a brother"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_046",
+    "reference": "Leviticus 19:36",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What kind of balances and weights did the law require?"
+    },
+    "answers": {
+      "en": [
+        "Golden",
+        "Just",
+        "Large",
+        "Royal"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_047",
+    "reference": "Leviticus 21:10",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "What was the high priest forbidden to do with his clothes when mourning?"
+    },
+    "answers": {
+      "en": [
+        "Wash them",
+        "Wear them",
+        "Tear them",
+        "Dye them"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_048",
+    "reference": "Leviticus 21:17",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which of Aaron's descendants could not approach to offer the bread of God?"
+    },
+    "answers": {
+      "en": [
+        "The youngest son",
+        "Any who were married",
+        "Any born in Egypt",
+        "One with a defect"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_049",
+    "reference": "Leviticus 22:28",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What must not be killed in one day along with a cow or ewe?"
+    },
+    "answers": {
+      "en": [
+        "Another cow",
+        "A goat",
+        "Its young",
+        "A dove"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_050",
+    "reference": "Leviticus 23:5",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which day of the first month in the evening is Yahweh's Passover?"
+    },
+    "answers": {
+      "en": [
+        "The tenth",
+        "The first",
+        "The twentieth",
+        "The fourteenth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_051",
+    "reference": "Leviticus 23:6",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which day of the first month did the feast of unleavened bread begin?"
+    },
+    "answers": {
+      "en": [
+        "The fifteenth",
+        "The fourteenth",
+        "The tenth",
+        "The first"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_052",
+    "reference": "Leviticus 23:10",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What were Israelites to bring to the priest from their first harvest in the land?"
+    },
+    "answers": {
+      "en": [
+        "A basket of figs",
+        "A sheaf of the first fruits",
+        "A lamb",
+        "A jar of wine"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_053",
+    "reference": "Leviticus 23:24",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "The first day of the seventh month was a memorial of what?"
+    },
+    "answers": {
+      "en": [
+        "Lighting of lamps",
+        "Blowing of trumpets",
+        "Planting seeds",
+        "Crossing the sea"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_054",
+    "reference": "Leviticus 23:40",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "At the feast of booths, Israel took fruit, palm branches, thick boughs and what?"
+    },
+    "answers": {
+      "en": [
+        "Olive leaves",
+        "Grape vines",
+        "Cedar cones",
+        "Willows of the brook"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_055",
+    "reference": "Leviticus 23:42",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Where were native-born Israelites to live for seven days during the feast of booths?"
+    },
+    "answers": {
+      "en": [
+        "In booths",
+        "In the temple",
+        "In caves",
+        "Under the stars"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_056",
+    "reference": "Leviticus 24:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was put on each row of the twelve cakes before Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Salt",
+        "Honey",
+        "Pure frankincense",
+        "Oil"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_057",
+    "reference": "Leviticus 24:8",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How often was the bread set in order before Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Every Sabbath day",
+        "Every morning",
+        "Every new moon",
+        "Once a year"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_058",
+    "reference": "Leviticus 24:14",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Where was the man who cursed the Name taken to be stoned?"
+    },
+    "answers": {
+      "en": [
+        "To the tent door",
+        "To the river",
+        "Out of the camp",
+        "To Mount Sinai"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_059",
+    "reference": "Leviticus 25:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "On which day was the trumpet sounded to begin the jubilee year?"
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "The Day of Atonement",
+        "The first day of the year",
+        "Pentecost"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_060",
+    "reference": "Leviticus 25:10",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Complete: \"Proclaim ___ throughout the land to all its inhabitants.\""
+    },
+    "answers": {
+      "en": [
+        "peace",
+        "joy",
+        "the law",
+        "liberty"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_061",
+    "reference": "Leviticus 25:11",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "In the jubilee year, what were the Israelites not to do?"
+    },
+    "answers": {
+      "en": [
+        "Eat bread",
+        "Sow or reap",
+        "Light fires",
+        "Travel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_062",
+    "reference": "Leviticus 25:23",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Why could land in Israel not be sold in perpetuity?"
+    },
+    "answers": {
+      "en": [
+        "\"The land is mine,\" says God",
+        "The king owned it",
+        "It was too poor",
+        "It belonged to the Levites"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_063",
+    "reference": "Leviticus 25:29",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Within how long could a man redeem a house he sold in a walled city?"
+    },
+    "answers": {
+      "en": [
+        "Seven years",
+        "Until the jubilee",
+        "Forty days",
+        "A full year"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_064",
+    "reference": "Leviticus 25:37",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "What must you not charge a poor brother when lending him money?"
+    },
+    "answers": {
+      "en": [
+        "A pledge",
+        "A witness",
+        "Interest",
+        "A tithe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_065",
+    "reference": "Leviticus 26:12",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "Complete God's promise: \"I will walk among you, and will be your God, and you will be my ___.\""
+    },
+    "answers": {
+      "en": [
+        "servants",
+        "children",
+        "people",
+        "priests"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b105_066",
+    "reference": "Leviticus 26:13",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "God said he broke the bars of Israel's yoke and made them go how?"
+    },
+    "answers": {
+      "en": [
+        "Upright",
+        "Quickly",
+        "Barefoot",
+        "In silence"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b105_067",
+    "reference": "Leviticus 26:26",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "In the warning of famine, how many women would bake bread in one oven?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Three",
+        "Twelve",
+        "Ten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_068",
+    "reference": "Leviticus 26:36",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "In Leviticus 26's warning, the sound of what would put the scattered people to flight?"
+    },
+    "answers": {
+      "en": [
+        "A trumpet",
+        "A driven leaf",
+        "A lion",
+        "Thunder"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b105_069",
+    "reference": "Leviticus 27:4",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "In vows, what was the valuation of a woman aged twenty to sixty?"
+    },
+    "answers": {
+      "en": [
+        "Fifty shekels",
+        "Twenty shekels",
+        "Ten shekels",
+        "Thirty shekels"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b105_070",
+    "reference": "Leviticus 27:30",
+    "difficulty": 1,
+    "category": "torah",
+    "text": {
+      "en": "According to Leviticus, whose is the tithe of the land's seed and fruit?"
+    },
+    "answers": {
+      "en": [
+        "Yahweh's",
+        "The king's",
+        "The farmer's",
+        "The poor's"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

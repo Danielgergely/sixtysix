@@ -1,131 +1,776 @@
 [
-  { "id": "q_b26_001", "reference": "Zechariah 11:13", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In Zechariah 11, to whom were the thirty pieces of silver thrown, in Yahweh's house?" },
-    "answers": { "en": ["The potter", "The priest", "The poor", "The governor"] }, "correctIndex": 0 },
-  { "id": "q_b26_002", "reference": "Zechariah 2:1", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In Zechariah 2, what did the man the prophet saw hold in his hand?" },
-    "answers": { "en": ["A sword", "A measuring line", "A lamp", "A trumpet"] }, "correctIndex": 1 },
-  { "id": "q_b26_003", "reference": "Zechariah 3:3-4", "difficulty": 4, "category": "prophets",
-    "text": { "en": "What was taken off Joshua the high priest in Zechariah's vision?" },
-    "answers": { "en": ["His crown", "His sandals", "Filthy garments", "Chains"] }, "correctIndex": 2 },
-  { "id": "q_b26_004", "reference": "Zechariah 4:3", "difficulty": 4, "category": "prophets",
-    "text": { "en": "What stood on either side of the golden lamp stand in Zechariah 4?" },
-    "answers": { "en": ["Two cherubim", "Two pillars", "Two angels", "Two olive trees"] }, "correctIndex": 3 },
-  { "id": "q_b26_005", "reference": "Malachi 1:8", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In Malachi 1, God rebukes the priests for offering the lame, the sick, and the ___ for sacrifice." },
-    "answers": { "en": ["Blind", "Stolen", "Wild", "Unclean"] }, "correctIndex": 0 },
-  { "id": "q_b26_006", "reference": "Haggai 2:9", "difficulty": 4, "category": "prophets",
-    "text": { "en": "What did Haggai say about the glory of the rebuilt temple?" },
-    "answers": { "en": ["It would last forever", "Its latter glory would be greater than the former", "It would equal Solomon's", "It would fill the earth"] }, "correctIndex": 1 },
-  { "id": "q_b26_007", "reference": "Amos 7:1", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In the first of Amos' visions in chapter 7, what did the Lord form?" },
-    "answers": { "en": ["A plumb line", "A basket of fruit", "Locusts", "A fire"] }, "correctIndex": 2 },
-  { "id": "q_b26_008", "reference": "Obadiah 1:10", "difficulty": 4, "category": "prophets",
-    "text": { "en": "Obadiah condemns Edom for violence done to which 'brother'?" },
-    "answers": { "en": ["Moab", "Ammon", "Ishmael", "Jacob"] }, "correctIndex": 3 },
-  { "id": "q_b26_009", "reference": "Micah 6:7", "difficulty": 4, "category": "prophets",
-    "text": { "en": "Micah 6 asks: will Yahweh be pleased with thousands of what?" },
-    "answers": { "en": ["Rams", "Doves", "Gold coins", "Bulls"] }, "correctIndex": 0 },
-  { "id": "q_b26_010", "reference": "Ezekiel 47:12", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In Ezekiel 47, what are the leaves of the trees by the river for?" },
-    "answers": { "en": ["Shade", "Healing", "Clothing", "Food for cattle"] }, "correctIndex": 1 },
-  { "id": "q_b26_011", "reference": "Ezekiel 12:5", "difficulty": 4, "category": "prophets",
-    "text": { "en": "As a sign of exile, how was Ezekiel told to carry his belongings out?" },
-    "answers": { "en": ["Over the rooftops", "Through the city gate", "Through a hole dug in the wall", "Down a rope"] }, "correctIndex": 2 },
-  { "id": "q_b26_012", "reference": "Ezekiel 9:4", "difficulty": 4, "category": "prophets",
-    "text": { "en": "In Ezekiel 9, where was a mark set on those who sighed over Jerusalem's abominations?" },
-    "answers": { "en": ["Their hands", "Their doorposts", "Their garments", "Their foreheads"] }, "correctIndex": 3 },
-  { "id": "q_b26_013", "reference": "Lamentations 4:3", "difficulty": 4, "category": "prophets",
-    "text": { "en": "Lamentations 4 says the daughter of my people has become cruel, like which birds?" },
-    "answers": { "en": ["Ostriches", "Ravens", "Vultures", "Owls"] }, "correctIndex": 0 },
-  { "id": "q_b26_014", "reference": "Ezekiel 1:3", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Ezekiel the priest was the son of whom?" },
-    "answers": { "en": ["Hilkiah", "Buzi", "Amoz", "Iddo"] }, "correctIndex": 1 },
-  { "id": "q_b26_015", "reference": "Ezekiel 4:4-5", "difficulty": 5, "category": "prophets",
-    "text": { "en": "How many days was Ezekiel to lie on his left side for the iniquity of Israel?" },
-    "answers": { "en": ["Forty", "Seventy", "Three hundred ninety", "One hundred fifty"] }, "correctIndex": 2 },
-  { "id": "q_b26_016", "reference": "Ezekiel 4:9", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Ezekiel's bread was made of wheat, barley, beans, lentils, spelt, and what?" },
-    "answers": { "en": ["Oats", "Rye", "Rice", "Millet"] }, "correctIndex": 3 },
-  { "id": "q_b26_017", "reference": "Ezekiel 8:14", "difficulty": 5, "category": "prophets",
-    "text": { "en": "At the north gate of Yahweh's house, Ezekiel saw women weeping for whom?" },
-    "answers": { "en": ["Tammuz", "Baal", "Molech", "Dagon"] }, "correctIndex": 0 },
-  { "id": "q_b26_018", "reference": "Ezekiel 11:13", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Who died while Ezekiel was prophesying against the leaders in his vision?" },
-    "answers": { "en": ["Jaazaniah son of Azzur", "Pelatiah son of Benaiah", "Hananiah son of Azzur", "Shemaiah the Nehelamite"] }, "correctIndex": 1 },
-  { "id": "q_b26_019", "reference": "Ezekiel 40:5", "difficulty": 5, "category": "prophets",
-    "text": { "en": "How long was the measuring reed in the man's hand in Ezekiel's temple vision?" },
-    "answers": { "en": ["Three cubits", "Ten cubits", "Six cubits", "Twelve cubits"] }, "correctIndex": 2 },
-  { "id": "q_b26_020", "reference": "Ezekiel 47:10", "difficulty": 5, "category": "prophets",
-    "text": { "en": "From En Gedi to which place will fishermen spread their nets in Ezekiel 47?" },
-    "answers": { "en": ["Jericho", "Beersheba", "Zoar", "En Eglaim"] }, "correctIndex": 3 },
-  { "id": "q_b26_021", "reference": "Ezekiel 3:15", "difficulty": 5, "category": "prophets",
-    "text": { "en": "At which place by the river Chebar did Ezekiel sit overwhelmed for seven days?" },
-    "answers": { "en": ["Tel Aviv", "Ahava", "Carchemish", "Haran"] }, "correctIndex": 0 },
-  { "id": "q_b26_022", "reference": "Hosea 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Hosea was the son of whom?" },
-    "answers": { "en": ["Amoz", "Beeri", "Pethuel", "Cushi"] }, "correctIndex": 1 },
-  { "id": "q_b26_023", "reference": "Joel 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Joel was the son of whom?" },
-    "answers": { "en": ["Amittai", "Berechiah", "Pethuel", "Buzi"] }, "correctIndex": 2 },
-  { "id": "q_b26_024", "reference": "Micah 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "What is Micah called in the first verse of his book?" },
-    "answers": { "en": ["The Tishbite", "The Elkoshite", "The Anathothite", "The Morashtite"] }, "correctIndex": 3 },
-  { "id": "q_b26_025", "reference": "Zephaniah 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Zephaniah was the son of whom?" },
-    "answers": { "en": ["Cushi", "Iddo", "Buzi", "Beeri"] }, "correctIndex": 0 },
-  { "id": "q_b26_026", "reference": "Zechariah 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Zechariah was the son of Berechiah and grandson of whom?" },
-    "answers": { "en": ["Shealtiel", "Iddo", "Jehozadak", "Gedaliah"] }, "correctIndex": 1 },
-  { "id": "q_b26_027", "reference": "Zechariah 1:8", "difficulty": 5, "category": "prophets",
-    "text": { "en": "In Zechariah's first night vision, the man on a red horse stood among which trees?" },
-    "answers": { "en": ["Olive trees", "Cedars", "Myrtle trees", "Palm trees"] }, "correctIndex": 2 },
-  { "id": "q_b26_028", "reference": "Zechariah 5:7-8", "difficulty": 5, "category": "prophets",
-    "text": { "en": "What was the woman sitting in the ephah basket called in Zechariah 5?" },
-    "answers": { "en": ["Folly", "Babylon", "Jezebel", "Wickedness"] }, "correctIndex": 3 },
-  { "id": "q_b26_029", "reference": "Zechariah 5:9", "difficulty": 5, "category": "prophets",
-    "text": { "en": "The two women who lifted the ephah basket had wings like those of which bird?" },
-    "answers": { "en": ["A stork", "An eagle", "A dove", "A raven"] }, "correctIndex": 0 },
-  { "id": "q_b26_030", "reference": "Zechariah 6:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "In Zechariah 6, four chariots came out from between two mountains of what?" },
-    "answers": { "en": ["Gold", "Brass", "Iron", "Fire"] }, "correctIndex": 1 },
-  { "id": "q_b26_031", "reference": "Isaiah 39:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Which king of Babylon sent letters and a present to the recovered Hezekiah?" },
-    "answers": { "en": ["Nebuchadnezzar", "Evilmerodach", "Merodach Baladan", "Belshazzar"] }, "correctIndex": 2 },
-  { "id": "q_b26_032", "reference": "Isaiah 22:15", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Which treasurer 'over the house' did Isaiah rebuke in Isaiah 22?" },
-    "answers": { "en": ["Joah", "Eliakim", "Hilkiah", "Shebna"] }, "correctIndex": 3 },
-  { "id": "q_b26_033", "reference": "Isaiah 22:20-22", "difficulty": 5, "category": "prophets",
-    "text": { "en": "On whose shoulder would God lay the key of the house of David, in Isaiah 22?" },
-    "answers": { "en": ["Eliakim son of Hilkiah", "Shebna the treasurer", "Joah son of Asaph", "Uriah the priest"] }, "correctIndex": 0 },
-  { "id": "q_b26_034", "reference": "Isaiah 7:3", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Which son went with Isaiah to meet King Ahaz at the upper pool?" },
-    "answers": { "en": ["Maher Shalal Hash Baz", "Shearjashub", "Immanuel", "Jezreel"] }, "correctIndex": 1 },
-  { "id": "q_b26_035", "reference": "Isaiah 37:38", "difficulty": 5, "category": "prophets",
-    "text": { "en": "In which god's house was Sennacherib killed by his sons?" },
-    "answers": { "en": ["Dagon", "Marduk", "Nisroch", "Baal"] }, "correctIndex": 2 },
-  { "id": "q_b26_036", "reference": "Jeremiah 1:1", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Jeremiah was the son of whom, of the priests in Anathoth?" },
-    "answers": { "en": ["Amoz", "Buzi", "Neriah", "Hilkiah"] }, "correctIndex": 3 },
-  { "id": "q_b26_037", "reference": "Jeremiah 26:24", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Whose hand was with Jeremiah so he was not handed to the people to be killed?" },
-    "answers": { "en": ["Ahikam son of Shaphan", "Gedaliah son of Ahikam", "Baruch son of Neriah", "Ebedmelech the Ethiopian"] }, "correctIndex": 0 },
-  { "id": "q_b26_038", "reference": "Jeremiah 28:17", "difficulty": 5, "category": "prophets",
-    "text": { "en": "In which month of the same year did the false prophet Hananiah die?" },
-    "answers": { "en": ["The first month", "The seventh month", "The fifth month", "The twelfth month"] }, "correctIndex": 1 },
-  { "id": "q_b26_039", "reference": "Jeremiah 51:59", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Which chief quartermaster did Jeremiah charge with his message against Babylon?" },
-    "answers": { "en": ["Baruch", "Jehudi", "Seraiah", "Gemariah"] }, "correctIndex": 2 },
-  { "id": "q_b26_040", "reference": "Jeremiah 52:31", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Which king of Babylon released Jehoiachin from prison?" },
-    "answers": { "en": ["Nebuchadnezzar", "Belshazzar", "Merodach Baladan", "Evilmerodach"] }, "correctIndex": 3 },
-  { "id": "q_b26_041", "reference": "Nahum 3:8", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Nahum asks Nineveh: 'Are you better than ___, who was situated among the rivers?'" },
-    "answers": { "en": ["No-Amon", "Tyre", "Sidon", "Babylon"] }, "correctIndex": 0 },
-  { "id": "q_b26_042", "reference": "Amos 6:4", "difficulty": 5, "category": "prophets",
-    "text": { "en": "Amos 6 condemns those who lie on beds made of what?" },
-    "answers": { "en": ["Cedar", "Ivory", "Gold", "Silk"] }, "correctIndex": 1 },
-  { "id": "q_b26_043", "reference": "Ezekiel 33:21", "difficulty": 5, "category": "prophets",
-    "text": { "en": "In which year of the captivity did a fugitive tell Ezekiel that Jerusalem was struck?" },
-    "answers": { "en": ["Fifth", "Seventh", "Twelfth", "Thirtieth"] }, "correctIndex": 2 }
+  {
+    "id": "q_b26_001",
+    "reference": "Zechariah 11:13",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Zechariah 11, to whom were the thirty pieces of silver thrown, in Yahweh's house?"
+    },
+    "answers": {
+      "en": [
+        "The potter",
+        "The priest",
+        "The poor",
+        "The governor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_002",
+    "reference": "Zechariah 2:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Zechariah 2, what did the man the prophet saw hold in his hand?"
+    },
+    "answers": {
+      "en": [
+        "A sword",
+        "A measuring line",
+        "A lamp",
+        "A trumpet"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_003",
+    "reference": "Zechariah 3:3-4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What was taken off Joshua the high priest in Zechariah's vision?"
+    },
+    "answers": {
+      "en": [
+        "His crown",
+        "His sandals",
+        "Filthy garments",
+        "Chains"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_004",
+    "reference": "Zechariah 4:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What stood on either side of the golden lamp stand in Zechariah 4?"
+    },
+    "answers": {
+      "en": [
+        "Two cherubim",
+        "Two pillars",
+        "Two angels",
+        "Two olive trees"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_005",
+    "reference": "Malachi 1:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Malachi 1, God rebukes the priests for offering the lame, the sick, and the ___ for sacrifice."
+    },
+    "answers": {
+      "en": [
+        "Blind",
+        "Stolen",
+        "Wild",
+        "Unclean"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_006",
+    "reference": "Haggai 2:9",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Haggai say about the glory of the rebuilt temple?"
+    },
+    "answers": {
+      "en": [
+        "It would last forever",
+        "Its latter glory would be greater than the former",
+        "It would equal Solomon's",
+        "It would fill the earth"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_007",
+    "reference": "Amos 7:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In the first of Amos' visions in chapter 7, what did the Lord form?"
+    },
+    "answers": {
+      "en": [
+        "A plumb line",
+        "A basket of fruit",
+        "Locusts",
+        "A fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_008",
+    "reference": "Obadiah 1:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Obadiah condemns Edom for violence done to which 'brother'?"
+    },
+    "answers": {
+      "en": [
+        "Moab",
+        "Ammon",
+        "Ishmael",
+        "Jacob"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_009",
+    "reference": "Micah 6:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Micah 6 asks: will Yahweh be pleased with thousands of what?"
+    },
+    "answers": {
+      "en": [
+        "Rams",
+        "Doves",
+        "Gold coins",
+        "Bulls"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_010",
+    "reference": "Ezekiel 47:12",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Ezekiel 47, what are the leaves of the trees by the river for?"
+    },
+    "answers": {
+      "en": [
+        "Shade",
+        "Healing",
+        "Clothing",
+        "Food for cattle"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_011",
+    "reference": "Ezekiel 12:5",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "As a sign of exile, how was Ezekiel told to carry his belongings out?"
+    },
+    "answers": {
+      "en": [
+        "Over the rooftops",
+        "Through the city gate",
+        "Through a hole dug in the wall",
+        "Down a rope"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_012",
+    "reference": "Ezekiel 9:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "In Ezekiel 9, where was a mark set on those who sighed over Jerusalem's abominations?"
+    },
+    "answers": {
+      "en": [
+        "Their hands",
+        "Their doorposts",
+        "Their garments",
+        "Their foreheads"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_013",
+    "reference": "Lamentations 4:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Lamentations 4 says the daughter of my people has become cruel, like which birds?"
+    },
+    "answers": {
+      "en": [
+        "Ostriches",
+        "Ravens",
+        "Vultures",
+        "Owls"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_014",
+    "reference": "Ezekiel 1:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel the priest was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah",
+        "Buzi",
+        "Amoz",
+        "Iddo"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_015",
+    "reference": "Ezekiel 4:4-5",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "How many days was Ezekiel to lie on his left side for the iniquity of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Seventy",
+        "Three hundred ninety",
+        "One hundred fifty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_016",
+    "reference": "Ezekiel 4:9",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel's bread was made of wheat, barley, beans, lentils, spelt, and what?"
+    },
+    "answers": {
+      "en": [
+        "Oats",
+        "Rye",
+        "Rice",
+        "Millet"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_017",
+    "reference": "Ezekiel 8:14",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "At the north gate of Yahweh's house, Ezekiel saw women weeping for whom?"
+    },
+    "answers": {
+      "en": [
+        "Tammuz",
+        "Baal",
+        "Molech",
+        "Dagon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_018",
+    "reference": "Ezekiel 11:13",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Who died while Ezekiel was prophesying against the leaders in his vision?"
+    },
+    "answers": {
+      "en": [
+        "Jaazaniah son of Azzur",
+        "Pelatiah son of Benaiah",
+        "Hananiah son of Azzur",
+        "Shemaiah the Nehelamite"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_019",
+    "reference": "Ezekiel 40:5",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "How long was the measuring reed in the man's hand in Ezekiel's temple vision?"
+    },
+    "answers": {
+      "en": [
+        "Three cubits",
+        "Ten cubits",
+        "Six cubits",
+        "Twelve cubits"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_020",
+    "reference": "Ezekiel 47:10",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "From En Gedi to which place will fishermen spread their nets in Ezekiel 47?"
+    },
+    "answers": {
+      "en": [
+        "Jericho",
+        "Beersheba",
+        "Zoar",
+        "En Eglaim"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_021",
+    "reference": "Ezekiel 3:15",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "At which place by the river Chebar did Ezekiel sit overwhelmed for seven days?"
+    },
+    "answers": {
+      "en": [
+        "Tel Aviv",
+        "Ahava",
+        "Carchemish",
+        "Haran"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_022",
+    "reference": "Hosea 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Amoz",
+        "Beeri",
+        "Pethuel",
+        "Cushi"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_023",
+    "reference": "Joel 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Joel was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Amittai",
+        "Berechiah",
+        "Pethuel",
+        "Buzi"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_024",
+    "reference": "Micah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "What is Micah called in the first verse of his book?"
+    },
+    "answers": {
+      "en": [
+        "The Tishbite",
+        "The Elkoshite",
+        "The Anathothite",
+        "The Morashtite"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_025",
+    "reference": "Zephaniah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Zephaniah was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Cushi",
+        "Iddo",
+        "Buzi",
+        "Beeri"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_026",
+    "reference": "Zechariah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Zechariah was the son of Berechiah and grandson of whom?"
+    },
+    "answers": {
+      "en": [
+        "Shealtiel",
+        "Iddo",
+        "Jehozadak",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_027",
+    "reference": "Zechariah 1:8",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In Zechariah's first night vision, the man on a red horse stood among which trees?"
+    },
+    "answers": {
+      "en": [
+        "Olive trees",
+        "Cedars",
+        "Myrtle trees",
+        "Palm trees"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_028",
+    "reference": "Zechariah 5:7-8",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "What was the woman sitting in the ephah basket called in Zechariah 5?"
+    },
+    "answers": {
+      "en": [
+        "Folly",
+        "Babylon",
+        "Jezebel",
+        "Wickedness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_029",
+    "reference": "Zechariah 5:9",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "The two women who lifted the ephah basket had wings like those of which bird?"
+    },
+    "answers": {
+      "en": [
+        "A stork",
+        "An eagle",
+        "A dove",
+        "A raven"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_030",
+    "reference": "Zechariah 6:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In Zechariah 6, four chariots came out from between two mountains of what?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Brass",
+        "Iron",
+        "Fire"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_031",
+    "reference": "Isaiah 39:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of Babylon sent letters and a present to the recovered Hezekiah?"
+    },
+    "answers": {
+      "en": [
+        "Nebuchadnezzar",
+        "Evilmerodach",
+        "Merodach Baladan",
+        "Belshazzar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_032",
+    "reference": "Isaiah 22:15",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which treasurer 'over the house' did Isaiah rebuke in Isaiah 22?"
+    },
+    "answers": {
+      "en": [
+        "Joah",
+        "Eliakim",
+        "Hilkiah",
+        "Shebna"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_033",
+    "reference": "Isaiah 22:20-22",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "On whose shoulder would God lay the key of the house of David, in Isaiah 22?"
+    },
+    "answers": {
+      "en": [
+        "Eliakim son of Hilkiah",
+        "Shebna the treasurer",
+        "Joah son of Asaph",
+        "Uriah the priest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_034",
+    "reference": "Isaiah 7:3",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which son went with Isaiah to meet King Ahaz at the upper pool?"
+    },
+    "answers": {
+      "en": [
+        "Maher Shalal Hash Baz",
+        "Shearjashub",
+        "Immanuel",
+        "Jezreel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_035",
+    "reference": "Isaiah 37:38",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In which god's house was Sennacherib killed by his sons?"
+    },
+    "answers": {
+      "en": [
+        "Dagon",
+        "Marduk",
+        "Nisroch",
+        "Baal"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_036",
+    "reference": "Jeremiah 1:1",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Jeremiah was the son of whom, of the priests in Anathoth?"
+    },
+    "answers": {
+      "en": [
+        "Amoz",
+        "Buzi",
+        "Neriah",
+        "Hilkiah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_037",
+    "reference": "Jeremiah 26:24",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Whose hand was with Jeremiah so he was not handed to the people to be killed?"
+    },
+    "answers": {
+      "en": [
+        "Ahikam son of Shaphan",
+        "Gedaliah son of Ahikam",
+        "Baruch son of Neriah",
+        "Ebedmelech the Ethiopian"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_038",
+    "reference": "Jeremiah 28:17",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In which month of the same year did the false prophet Hananiah die?"
+    },
+    "answers": {
+      "en": [
+        "The first month",
+        "The seventh month",
+        "The fifth month",
+        "The twelfth month"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_039",
+    "reference": "Jeremiah 51:59",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which chief quartermaster did Jeremiah charge with his message against Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Baruch",
+        "Jehudi",
+        "Seraiah",
+        "Gemariah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b26_040",
+    "reference": "Jeremiah 52:31",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Which king of Babylon released Jehoiachin from prison?"
+    },
+    "answers": {
+      "en": [
+        "Nebuchadnezzar",
+        "Belshazzar",
+        "Merodach Baladan",
+        "Evilmerodach"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b26_041",
+    "reference": "Nahum 3:8",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum asks Nineveh: 'Are you better than ___, who was situated among the rivers?'"
+    },
+    "answers": {
+      "en": [
+        "No-Amon",
+        "Tyre",
+        "Sidon",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b26_042",
+    "reference": "Amos 6:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos 6 condemns those who lie on beds made of what?"
+    },
+    "answers": {
+      "en": [
+        "Cedar",
+        "Ivory",
+        "Gold",
+        "Silk"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b26_043",
+    "reference": "Ezekiel 33:21",
+    "difficulty": 5,
+    "category": "prophets",
+    "text": {
+      "en": "In which year of the captivity did a fugitive tell Ezekiel that Jerusalem was struck?"
+    },
+    "answers": {
+      "en": [
+        "Fifth",
+        "Seventh",
+        "Twelfth",
+        "Thirtieth"
+      ]
+    },
+    "correctIndex": 2
+  }
 ]

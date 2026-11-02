@@ -1,42 +1,722 @@
 [
-  {"id":"q_b13_001","reference":"Joshua 3:15-16","difficulty":2,"category":"history","text":{"en":"Which river's waters stood up in a heap when the priests carrying the ark stepped in?"},"answers":{"en":["The Euphrates","The Nile","The Kishon","The Jordan"]},"correctIndex":3},
-  {"id":"q_b13_002","reference":"Judges 4:21","difficulty":2,"category":"history","text":{"en":"What did Jael drive into Sisera's temples while he slept?"},"answers":{"en":["A dagger","A tent peg","An ox goad","A spear"]},"correctIndex":1},
-  {"id":"q_b13_003","reference":"Ruth 2:2-3","difficulty":2,"category":"history","text":{"en":"What did Ruth do in the field of Boaz?"},"answers":{"en":["Gleaned grain","Kept sheep","Drew water","Planted vines"]},"correctIndex":0},
-  {"id":"q_b13_004","reference":"1 Samuel 15:22","difficulty":2,"category":"history","text":{"en":"Samuel told Saul that to obey is better than what?"},"answers":{"en":["Prayer","Fasting","Sacrifice","Gold"]},"correctIndex":2},
-  {"id":"q_b13_005","reference":"1 Samuel 24:4","difficulty":2,"category":"history","text":{"en":"What did David secretly cut off while Saul was in the cave?"},"answers":{"en":["The skirt of Saul's robe","A lock of Saul's hair","Saul's spear strap","Saul's sandal"]},"correctIndex":0},
-  {"id":"q_b13_006","reference":"2 Samuel 5:7","difficulty":2,"category":"history","text":{"en":"Which stronghold did David take, later called the city of David?"},"answers":{"en":["Hebron","Gibeah","Megiddo","Zion"]},"correctIndex":3},
-  {"id":"q_b13_007","reference":"2 Samuel 6:14","difficulty":2,"category":"history","text":{"en":"What did David do before Yahweh with all his might, wearing a linen ephod?"},"answers":{"en":["Wept","Danced","Fasted","Sang a lament"]},"correctIndex":1},
-  {"id":"q_b13_008","reference":"1 Kings 11:43","difficulty":2,"category":"history","text":{"en":"Which son of Solomon reigned after him?"},"answers":{"en":["Jeroboam","Absalom","Rehoboam","Abijah"]},"correctIndex":2},
-  {"id":"q_b13_009","reference":"1 Kings 12:28","difficulty":2,"category":"history","text":{"en":"How many calves of gold did King Jeroboam make for Israel to worship?"},"answers":{"en":["One","Two","Three","Seven"]},"correctIndex":1},
-  {"id":"q_b13_010","reference":"1 Kings 18:21","difficulty":2,"category":"history","text":{"en":"Who asked the people, 'How long will you waver between the two sides?'"},"answers":{"en":["Elisha","Obadiah","Micaiah","Elijah"]},"correctIndex":3},
-  {"id":"q_b13_011","reference":"1 Kings 19:12","difficulty":2,"category":"history","text":{"en":"After the wind, earthquake and fire, what came to Elijah?"},"answers":{"en":["A great flood","A burning bush","A still small voice","A chariot of fire"]},"correctIndex":2},
-  {"id":"q_b13_012","reference":"1 Kings 21:1-2","difficulty":2,"category":"history","text":{"en":"Whose vineyard near the palace did King Ahab want for a garden of herbs?"},"answers":{"en":["Naboth's","Obadiah's","Jehu's","Micaiah's"]},"correctIndex":0},
-  {"id":"q_b13_013","reference":"2 Kings 4:32-35","difficulty":2,"category":"history","text":{"en":"Which prophet stretched himself on a dead boy, who then sneezed seven times?"},"answers":{"en":["Elijah","Elisha","Isaiah","Gehazi"]},"correctIndex":1},
-  {"id":"q_b13_014","reference":"2 Kings 5:1","difficulty":2,"category":"history","text":{"en":"Naaman was captain of the army of which king?"},"answers":{"en":["The king of Egypt","The king of Moab","The king of Assyria","The king of Syria"]},"correctIndex":3},
-  {"id":"q_b13_015","reference":"2 Kings 6:5-6","difficulty":2,"category":"history","text":{"en":"What did Elisha make float after it fell into the water?"},"answers":{"en":["A clay jar","A bronze shield","An iron ax head","A millstone"]},"correctIndex":2},
-  {"id":"q_b13_016","reference":"2 Kings 25:8-9","difficulty":2,"category":"history","text":{"en":"Which king of Babylon's captain burned Yahweh's house in Jerusalem?"},"answers":{"en":["Nebuchadnezzar","Cyrus","Sennacherib","Darius"]},"correctIndex":0},
-  {"id":"q_b13_017","reference":"Ezra 7:6","difficulty":2,"category":"history","text":{"en":"Ezra was a skilled what in the law of Moses?"},"answers":{"en":["Scribe","Priest's servant","Judge","Singer"]},"correctIndex":0},
-  {"id":"q_b13_018","reference":"Nehemiah 1:11","difficulty":2,"category":"history","text":{"en":"What was Nehemiah's position with the Persian king?"},"answers":{"en":["Baker","Governor of Babylon","Captain of the guard","Cup bearer"]},"correctIndex":3},
-  {"id":"q_b13_019","reference":"Esther 4:16","difficulty":2,"category":"history","text":{"en":"How many days did Esther ask the Jews in Shushan to fast for her?"},"answers":{"en":["Seven","Forty","Three","One"]},"correctIndex":2},
-  {"id":"q_b13_020","reference":"Acts 1:8","difficulty":2,"category":"history","text":{"en":"Jesus said his followers would be witnesses in Jerusalem, Judea, Samaria and where?"},"answers":{"en":["Rome","The uttermost parts of the earth","Egypt","Antioch"]},"correctIndex":1},
-  {"id":"q_b13_021","reference":"Acts 2:41","difficulty":2,"category":"history","text":{"en":"About how many people were added on the day of Peter's Pentecost sermon?"},"answers":{"en":["Five hundred","Three thousand","Five thousand","One hundred twenty"]},"correctIndex":1},
-  {"id":"q_b13_022","reference":"Acts 5:1","difficulty":2,"category":"history","text":{"en":"Who was the wife of Ananias, who sold a possession and lied about it?"},"answers":{"en":["Priscilla","Dorcas","Lydia","Sapphira"]},"correctIndex":3},
-  {"id":"q_b13_023","reference":"Acts 7:58","difficulty":2,"category":"history","text":{"en":"At the feet of which young man did the witnesses lay their garments when Stephen was stoned?"},"answers":{"en":["Saul","Mark","Timothy","Silas"]},"correctIndex":0},
-  {"id":"q_b13_024","reference":"Acts 9:11","difficulty":2,"category":"history","text":{"en":"Saul, who was praying in Damascus, was a man of which city?"},"answers":{"en":["Antioch","Ephesus","Tarsus","Corinth"]},"correctIndex":2},
-  {"id":"q_b13_025","reference":"Acts 9:36","difficulty":2,"category":"history","text":{"en":"Tabitha, whom Peter raised, was also called what?"},"answers":{"en":["Rhoda","Dorcas","Lydia","Mary"]},"correctIndex":1},
-  {"id":"q_b13_026","reference":"Acts 10:1","difficulty":2,"category":"history","text":{"en":"Cornelius of Caesarea was a what of the Italian Regiment?"},"answers":{"en":["Tribune","Tax collector","Scribe","Centurion"]},"correctIndex":3},
-  {"id":"q_b13_027","reference":"Acts 11:26","difficulty":2,"category":"history","text":{"en":"Where were the disciples first called Christians?"},"answers":{"en":["Jerusalem","Rome","Antioch","Damascus"]},"correctIndex":2},
-  {"id":"q_b13_028","reference":"Acts 16:14","difficulty":2,"category":"history","text":{"en":"Lydia of Thyatira was a seller of what?"},"answers":{"en":["Purple","Spices","Fine linen","Pottery"]},"correctIndex":0},
-  {"id":"q_b13_029","reference":"Acts 17:23","difficulty":2,"category":"history","text":{"en":"In Athens, what inscription did Paul find on an altar?"},"answers":{"en":["TO THE GOD OF ISRAEL","TO ZEUS THE FATHER","TO THE GODS OF ROME","TO AN UNKNOWN GOD"]},"correctIndex":3},
-  {"id":"q_b13_030","reference":"Acts 18:2-3","difficulty":2,"category":"history","text":{"en":"What trade did Paul share with Aquila and Priscilla?"},"answers":{"en":["Fishing","Tent making","Carpentry","Weaving linen"]},"correctIndex":1},
-  {"id":"q_b13_031","reference":"Acts 20:9","difficulty":2,"category":"history","text":{"en":"Which young man fell asleep in a window during Paul's long talk and fell from the third story?"},"answers":{"en":["Eutychus","Tychicus","Trophimus","Erastus"]},"correctIndex":0},
-  {"id":"q_b13_032","reference":"Acts 28:1","difficulty":2,"category":"history","text":{"en":"On which island did Paul and the others land after their shipwreck?"},"answers":{"en":["Crete","Cyprus","Malta","Sicily"]},"correctIndex":2},
-  {"id":"q_b13_033","reference":"Judges 13:2","difficulty":3,"category":"history","text":{"en":"What was the name of Samson's father, a man of Zorah?"},"answers":{"en":["Gera","Joash","Manoah","Elkanah"]},"correctIndex":2},
-  {"id":"q_b13_034","reference":"1 Kings 18:44","difficulty":3,"category":"history","text":{"en":"Elijah's servant saw a small cloud rising from the sea. What was it like?"},"answers":{"en":["A dove","A man's hand","A chariot","A mountain"]},"correctIndex":1},
-  {"id":"q_b13_035","reference":"2 Kings 20:11","difficulty":3,"category":"history","text":{"en":"How many steps did the shadow go backward on the dial of Ahaz as a sign for Hezekiah?"},"answers":{"en":["Five","Seven","Fifteen","Ten"]},"correctIndex":3},
-  {"id":"q_b13_036","reference":"2 Chronicles 7:1","difficulty":3,"category":"history","text":{"en":"According to 2 Chronicles, what came down from heaven when Solomon finished praying?"},"answers":{"en":["Fire","Manna","Hail","A dove"]},"correctIndex":0},
-  {"id":"q_b13_037","reference":"Nehemiah 6:15","difficulty":3,"category":"history","text":{"en":"In how many days was Jerusalem's wall finished under Nehemiah?"},"answers":{"en":["Forty","Seventy","One hundred twenty","Fifty-two"]},"correctIndex":3},
-  {"id":"q_b13_038","reference":"Esther 2:7","difficulty":3,"category":"history","text":{"en":"What was Esther's other name?"},"answers":{"en":["Hadassah","Hagar","Huldah","Hannah"]},"correctIndex":0},
-  {"id":"q_b13_039","reference":"Acts 4:36","difficulty":3,"category":"history","text":{"en":"Which name, meaning 'Son of Encouragement', did the apostles give Joses of Cyprus?"},"answers":{"en":["Barsabbas","Barnabas","Bartholomew","Silas"]},"correctIndex":1},
-  {"id":"q_b13_040","reference":"Acts 14:12","difficulty":3,"category":"history","text":{"en":"At Lystra, what did the crowd call Barnabas, while calling Paul 'Mercury'?"},"answers":{"en":["Apollo","Mars","Jupiter","Neptune"]},"correctIndex":2}
+  {
+    "id": "q_b13_001",
+    "reference": "Joshua 3:15-16",
+    "difficulty": 1,
+    "category": "history",
+    "text": {
+      "en": "Which river's waters stood up in a heap when the priests carrying the ark stepped in?"
+    },
+    "answers": {
+      "en": [
+        "The Euphrates",
+        "The Nile",
+        "The Kishon",
+        "The Jordan"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_002",
+    "reference": "Judges 4:21",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What did Jael drive into Sisera's temples while he slept?"
+    },
+    "answers": {
+      "en": [
+        "A dagger",
+        "A tent peg",
+        "An ox goad",
+        "A spear"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_003",
+    "reference": "Ruth 2:2-3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Ruth do in the field of Boaz?"
+    },
+    "answers": {
+      "en": [
+        "Gleaned grain",
+        "Kept sheep",
+        "Drew water",
+        "Planted vines"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_004",
+    "reference": "1 Samuel 15:22",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Samuel told Saul that to obey is better than what?"
+    },
+    "answers": {
+      "en": [
+        "Prayer",
+        "Fasting",
+        "Sacrifice",
+        "Gold"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_005",
+    "reference": "1 Samuel 24:4",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did David secretly cut off while Saul was in the cave?"
+    },
+    "answers": {
+      "en": [
+        "The skirt of Saul's robe",
+        "A lock of Saul's hair",
+        "Saul's spear strap",
+        "Saul's sandal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_006",
+    "reference": "2 Samuel 5:7",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which stronghold did David take, later called the city of David?"
+    },
+    "answers": {
+      "en": [
+        "Hebron",
+        "Gibeah",
+        "Megiddo",
+        "Zion"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_007",
+    "reference": "2 Samuel 6:14",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did David do before Yahweh with all his might, wearing a linen ephod?"
+    },
+    "answers": {
+      "en": [
+        "Wept",
+        "Danced",
+        "Fasted",
+        "Sang a lament"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_008",
+    "reference": "1 Kings 11:43",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which son of Solomon reigned after him?"
+    },
+    "answers": {
+      "en": [
+        "Jeroboam",
+        "Absalom",
+        "Rehoboam",
+        "Abijah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_009",
+    "reference": "1 Kings 12:28",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "How many calves of gold did King Jeroboam make for Israel to worship?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Three",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_010",
+    "reference": "1 Kings 18:21",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who asked the people, 'How long will you waver between the two sides?'"
+    },
+    "answers": {
+      "en": [
+        "Elisha",
+        "Obadiah",
+        "Micaiah",
+        "Elijah"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_011",
+    "reference": "1 Kings 19:12",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "After the wind, earthquake and fire, what came to Elijah?"
+    },
+    "answers": {
+      "en": [
+        "A great flood",
+        "A burning bush",
+        "A still small voice",
+        "A chariot of fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_012",
+    "reference": "1 Kings 21:1-2",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Whose vineyard near the palace did King Ahab want for a garden of herbs?"
+    },
+    "answers": {
+      "en": [
+        "Naboth's",
+        "Obadiah's",
+        "Jehu's",
+        "Micaiah's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_013",
+    "reference": "2 Kings 4:32-35",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which prophet stretched himself on a dead boy, who then sneezed seven times?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "Elisha",
+        "Isaiah",
+        "Gehazi"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_014",
+    "reference": "2 Kings 5:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Naaman was captain of the army of which king?"
+    },
+    "answers": {
+      "en": [
+        "The king of Egypt",
+        "The king of Moab",
+        "The king of Assyria",
+        "The king of Syria"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_015",
+    "reference": "2 Kings 6:5-6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What did Elisha make float after it fell into the water?"
+    },
+    "answers": {
+      "en": [
+        "A clay jar",
+        "A bronze shield",
+        "An iron ax head",
+        "A millstone"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_016",
+    "reference": "2 Kings 25:8-9",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which king of Babylon's captain burned Yahweh's house in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Nebuchadnezzar",
+        "Cyrus",
+        "Sennacherib",
+        "Darius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_017",
+    "reference": "Ezra 7:6",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Ezra was a skilled what in the law of Moses?"
+    },
+    "answers": {
+      "en": [
+        "Scribe",
+        "Priest's servant",
+        "Judge",
+        "Singer"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_018",
+    "reference": "Nehemiah 1:11",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What was Nehemiah's position with the Persian king?"
+    },
+    "answers": {
+      "en": [
+        "Baker",
+        "Governor of Babylon",
+        "Captain of the guard",
+        "Cup bearer"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_019",
+    "reference": "Esther 4:16",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "How many days did Esther ask the Jews in Shushan to fast for her?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Three",
+        "One"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_020",
+    "reference": "Acts 1:8",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Jesus said his followers would be witnesses in Jerusalem, Judea, Samaria and where?"
+    },
+    "answers": {
+      "en": [
+        "Rome",
+        "The uttermost parts of the earth",
+        "Egypt",
+        "Antioch"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_021",
+    "reference": "Acts 2:41",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "About how many people were added on the day of Peter's Pentecost sermon?"
+    },
+    "answers": {
+      "en": [
+        "Five hundred",
+        "Three thousand",
+        "Five thousand",
+        "One hundred twenty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_022",
+    "reference": "Acts 5:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Who was the wife of Ananias, who sold a possession and lied about it?"
+    },
+    "answers": {
+      "en": [
+        "Priscilla",
+        "Dorcas",
+        "Lydia",
+        "Sapphira"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_023",
+    "reference": "Acts 7:58",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "At the feet of which young man did the witnesses lay their garments when Stephen was stoned?"
+    },
+    "answers": {
+      "en": [
+        "Saul",
+        "Mark",
+        "Timothy",
+        "Silas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_024",
+    "reference": "Acts 9:11",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Saul, who was praying in Damascus, was a man of which city?"
+    },
+    "answers": {
+      "en": [
+        "Antioch",
+        "Ephesus",
+        "Tarsus",
+        "Corinth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_025",
+    "reference": "Acts 9:36",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Tabitha, whom Peter raised, was also called what?"
+    },
+    "answers": {
+      "en": [
+        "Rhoda",
+        "Dorcas",
+        "Lydia",
+        "Mary"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_026",
+    "reference": "Acts 10:1",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Cornelius of Caesarea was a what of the Italian Regiment?"
+    },
+    "answers": {
+      "en": [
+        "Tribune",
+        "Tax collector",
+        "Scribe",
+        "Centurion"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_027",
+    "reference": "Acts 11:26",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Where were the disciples first called Christians?"
+    },
+    "answers": {
+      "en": [
+        "Jerusalem",
+        "Rome",
+        "Antioch",
+        "Damascus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_028",
+    "reference": "Acts 16:14",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Lydia of Thyatira was a seller of what?"
+    },
+    "answers": {
+      "en": [
+        "Purple",
+        "Spices",
+        "Fine linen",
+        "Pottery"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_029",
+    "reference": "Acts 17:23",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "In Athens, what inscription did Paul find on an altar?"
+    },
+    "answers": {
+      "en": [
+        "TO THE GOD OF ISRAEL",
+        "TO ZEUS THE FATHER",
+        "TO THE GODS OF ROME",
+        "TO AN UNKNOWN GOD"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_030",
+    "reference": "Acts 18:2-3",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "What trade did Paul share with Aquila and Priscilla?"
+    },
+    "answers": {
+      "en": [
+        "Fishing",
+        "Tent making",
+        "Carpentry",
+        "Weaving linen"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_031",
+    "reference": "Acts 20:9",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Which young man fell asleep in a window during Paul's long talk and fell from the third story?"
+    },
+    "answers": {
+      "en": [
+        "Eutychus",
+        "Tychicus",
+        "Trophimus",
+        "Erastus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_032",
+    "reference": "Acts 28:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "On which island did Paul and the others land after their shipwreck?"
+    },
+    "answers": {
+      "en": [
+        "Crete",
+        "Cyprus",
+        "Malta",
+        "Sicily"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_033",
+    "reference": "Judges 13:2",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "What was the name of Samson's father, a man of Zorah?"
+    },
+    "answers": {
+      "en": [
+        "Gera",
+        "Joash",
+        "Manoah",
+        "Elkanah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b13_034",
+    "reference": "1 Kings 18:44",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "Elijah's servant saw a small cloud rising from the sea. What was it like?"
+    },
+    "answers": {
+      "en": [
+        "A dove",
+        "A man's hand",
+        "A chariot",
+        "A mountain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_035",
+    "reference": "2 Kings 20:11",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "How many steps did the shadow go backward on the dial of Ahaz as a sign for Hezekiah?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Seven",
+        "Fifteen",
+        "Ten"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_036",
+    "reference": "2 Chronicles 7:1",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "According to 2 Chronicles, what came down from heaven when Solomon finished praying?"
+    },
+    "answers": {
+      "en": [
+        "Fire",
+        "Manna",
+        "Hail",
+        "A dove"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_037",
+    "reference": "Nehemiah 6:15",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "In how many days was Jerusalem's wall finished under Nehemiah?"
+    },
+    "answers": {
+      "en": [
+        "Forty",
+        "Seventy",
+        "One hundred twenty",
+        "Fifty-two"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b13_038",
+    "reference": "Esther 2:7",
+    "difficulty": 3,
+    "category": "history",
+    "text": {
+      "en": "What was Esther's other name?"
+    },
+    "answers": {
+      "en": [
+        "Hadassah",
+        "Hagar",
+        "Huldah",
+        "Hannah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b13_039",
+    "reference": "Acts 4:36",
+    "difficulty": 2,
+    "category": "history",
+    "text": {
+      "en": "Which name, meaning 'Son of Encouragement', did the apostles give Joses of Cyprus?"
+    },
+    "answers": {
+      "en": [
+        "Barsabbas",
+        "Barnabas",
+        "Bartholomew",
+        "Silas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b13_040",
+    "reference": "Acts 14:12",
+    "difficulty": 4,
+    "category": "history",
+    "text": {
+      "en": "At Lystra, what did the crowd call Barnabas, while calling Paul 'Mercury'?"
+    },
+    "answers": {
+      "en": [
+        "Apollo",
+        "Mars",
+        "Jupiter",
+        "Neptune"
+      ]
+    },
+    "correctIndex": 2
+  }
 ]

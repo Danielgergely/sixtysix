@@ -1,122 +1,722 @@
 [
-  { "id": "q_b10_001", "reference": "Genesis 41:46", "difficulty": 3, "category": "torah",
-    "text": { "en": "How old was Joseph when he stood before Pharaoh king of Egypt?" },
-    "answers": { "en": ["Seventeen", "Thirty", "Twenty-five", "Forty"] }, "correctIndex": 1 },
-  { "id": "q_b10_002", "reference": "Exodus 13:19", "difficulty": 3, "category": "torah",
-    "text": { "en": "Whose bones did Moses take with him out of Egypt?" },
-    "answers": { "en": ["Jacob's", "Abraham's", "Joseph's", "Levi's"] }, "correctIndex": 2 },
-  { "id": "q_b10_003", "reference": "Genesis 48:14", "difficulty": 3, "category": "torah",
-    "text": { "en": "On whose head did Israel lay his right hand, though he was the younger?" },
-    "answers": { "en": ["Ephraim's", "Manasseh's", "Benjamin's", "Joseph's"] }, "correctIndex": 0 },
-  { "id": "q_b10_004", "reference": "Numbers 12:3", "difficulty": 3, "category": "torah",
-    "text": { "en": "Who was \"very humble, above all the men who were on the surface of the earth\"?" },
-    "answers": { "en": ["Aaron", "Joshua", "Caleb", "Moses"] }, "correctIndex": 3 },
-  { "id": "q_b10_005", "reference": "Deuteronomy 22:10", "difficulty": 3, "category": "torah",
-    "text": { "en": "Which two animals were Israelites forbidden to plow with together?" },
-    "answers": { "en": ["A horse and a mule", "An ox and a donkey", "A camel and an ox", "A donkey and a horse"] }, "correctIndex": 1 },
-  { "id": "q_b10_006", "reference": "Leviticus 25:4", "difficulty": 3, "category": "torah",
-    "text": { "en": "In which year was the land to have a Sabbath of solemn rest, unsown and unpruned?" },
-    "answers": { "en": ["The third", "The fifth", "The seventh", "The tenth"] }, "correctIndex": 2 },
-  { "id": "q_b10_007", "reference": "Genesis 4:22", "difficulty": 4, "category": "torah",
-    "text": { "en": "Who was the forger of every cutting instrument of brass and iron?" },
-    "answers": { "en": ["Jubal", "Jabal", "Irad", "Tubal Cain"] }, "correctIndex": 3 },
-  { "id": "q_b10_008", "reference": "Genesis 41:45", "difficulty": 4, "category": "torah",
-    "text": { "en": "Which woman did Pharaoh give to Joseph as a wife?" },
-    "answers": { "en": ["Asenath", "Tamar", "Zuleika", "Basemath"] }, "correctIndex": 0 },
-  { "id": "q_b10_009", "reference": "Genesis 47:9", "difficulty": 4, "category": "torah",
-    "text": { "en": "How many years did Jacob tell Pharaoh his pilgrimage had lasted?" },
-    "answers": { "en": ["One hundred ten", "One hundred thirty", "One hundred forty-seven", "Ninety"] }, "correctIndex": 1 },
-  { "id": "q_b10_010", "reference": "Genesis 26:22", "difficulty": 4, "category": "torah",
-    "text": { "en": "Which well did Isaac name, saying, \"Yahweh has made room for us\"?" },
-    "answers": { "en": ["Esek", "Sitnah", "Rehoboth", "Shibah"] }, "correctIndex": 2 },
-  { "id": "q_b10_011", "reference": "Genesis 31:19", "difficulty": 4, "category": "torah",
-    "text": { "en": "What did Rachel steal from her father Laban?" },
-    "answers": { "en": ["His silver cup", "His signet ring", "His best robe", "His teraphim"] }, "correctIndex": 3 },
-  { "id": "q_b10_012", "reference": "Genesis 35:8", "difficulty": 4, "category": "torah",
-    "text": { "en": "Deborah, buried under an oak below Bethel, had been whose nurse?" },
-    "answers": { "en": ["Rebekah's", "Sarah's", "Rachel's", "Leah's"] }, "correctIndex": 0 },
-  { "id": "q_b10_013", "reference": "Genesis 38:3-6", "difficulty": 4, "category": "torah",
-    "text": { "en": "Who was Judah's firstborn son?" },
-    "answers": { "en": ["Onan", "Er", "Shelah", "Perez"] }, "correctIndex": 1 },
-  { "id": "q_b10_014", "reference": "Genesis 45:22", "difficulty": 4, "category": "torah",
-    "text": { "en": "How many pieces of silver did Joseph give Benjamin, with five changes of clothing?" },
-    "answers": { "en": ["Thirty", "Fifty", "Three hundred", "One thousand"] }, "correctIndex": 2 },
-  { "id": "q_b10_015", "reference": "Genesis 50:3", "difficulty": 4, "category": "torah",
-    "text": { "en": "For how many days did the Egyptians weep for Jacob?" },
-    "answers": { "en": ["Seven", "Thirty", "Forty", "Seventy"] }, "correctIndex": 3 },
-  { "id": "q_b10_016", "reference": "Exodus 31:6", "difficulty": 4, "category": "torah",
-    "text": { "en": "Which craftsman of the tribe of Dan was appointed to work with Bezalel?" },
-    "answers": { "en": ["Oholiab", "Ahisamach", "Hur", "Uri"] }, "correctIndex": 0 },
-  { "id": "q_b10_017", "reference": "Exodus 31:2", "difficulty": 4, "category": "torah",
-    "text": { "en": "From which tribe was Bezalel, called by name to build the tabernacle's works?" },
-    "answers": { "en": ["Levi", "Judah", "Dan", "Ephraim"] }, "correctIndex": 1 },
-  { "id": "q_b10_018", "reference": "Exodus 2:18", "difficulty": 4, "category": "torah",
-    "text": { "en": "By what name is the father of the seven Midianite daughters first called in Exodus?" },
-    "answers": { "en": ["Hobab", "Jethro", "Reuel", "Balak"] }, "correctIndex": 2 },
-  { "id": "q_b10_019", "reference": "Exodus 4:25", "difficulty": 4, "category": "torah",
-    "text": { "en": "What did Zipporah use to circumcise her son?" },
-    "answers": { "en": ["A knife of bronze", "A sword", "A sharp reed", "A flint"] }, "correctIndex": 3 },
-  { "id": "q_b10_020", "reference": "Exodus 17:7", "difficulty": 4, "category": "torah",
-    "text": { "en": "What names did Moses give the place where Israel quarreled and tested Yahweh for water?" },
-    "answers": { "en": ["Massah and Meribah", "Marah and Elim", "Taberah and Kibroth", "Esek and Sitnah"] }, "correctIndex": 0 },
-  { "id": "q_b10_021", "reference": "Exodus 38:8", "difficulty": 4, "category": "torah",
-    "text": { "en": "The tabernacle's brass basin was made from what?" },
-    "answers": { "en": ["Egyptian shields", "The mirrors of the ministering women", "Melted idols", "Spoils from Amalek"] }, "correctIndex": 1 },
-  { "id": "q_b10_022", "reference": "Exodus 19:1", "difficulty": 4, "category": "torah",
-    "text": { "en": "In which month after leaving Egypt did Israel reach the wilderness of Sinai?" },
-    "answers": { "en": ["The first", "The second", "The third", "The seventh"] }, "correctIndex": 2 },
-  { "id": "q_b10_023", "reference": "Exodus 32:28", "difficulty": 4, "category": "torah",
-    "text": { "en": "About how many men fell when the sons of Levi acted after the golden calf?" },
-    "answers": { "en": ["Three hundred", "Twelve thousand", "Twenty-four thousand", "Three thousand"] }, "correctIndex": 3 },
-  { "id": "q_b10_024", "reference": "Exodus 12:37", "difficulty": 4, "category": "torah",
-    "text": { "en": "About how many men on foot traveled from Rameses to Succoth, besides children?" },
-    "answers": { "en": ["Six hundred thousand", "Seventy thousand", "One million", "Three hundred thousand"] }, "correctIndex": 0 },
-  { "id": "q_b10_025", "reference": "Leviticus 8:23", "difficulty": 4, "category": "torah",
-    "text": { "en": "Moses put blood on Aaron's right ear, right thumb, and where else?" },
-    "answers": { "en": ["His forehead", "The great toe of his right foot", "His left hand", "His breastplate"] }, "correctIndex": 1 },
-  { "id": "q_b10_026", "reference": "Leviticus 14:4", "difficulty": 4, "category": "torah",
-    "text": { "en": "How many living clean birds were taken for a leper being cleansed?" },
-    "answers": { "en": ["One", "Seven", "Two", "Four"] }, "correctIndex": 2 },
-  { "id": "q_b10_027", "reference": "Leviticus 27:32", "difficulty": 4, "category": "torah",
-    "text": { "en": "Of the animals passing under the rod, which was holy to Yahweh?" },
-    "answers": { "en": ["The first", "The seventh", "The twelfth", "The tenth"] }, "correctIndex": 3 },
-  { "id": "q_b10_028", "reference": "Leviticus 11:22", "difficulty": 4, "category": "torah",
-    "text": { "en": "Which of these creatures did the law allow Israelites to eat?" },
-    "answers": { "en": ["The locust", "The bat", "The mouse", "The eagle"] }, "correctIndex": 0 },
-  { "id": "q_b10_029", "reference": "Numbers 11:26", "difficulty": 4, "category": "torah",
-    "text": { "en": "Eldad and which other man prophesied in the camp instead of at the Tent?" },
-    "answers": { "en": ["Hur", "Medad", "Nun", "Elidad"] }, "correctIndex": 1 },
-  { "id": "q_b10_030", "reference": "Numbers 15:32", "difficulty": 4, "category": "torah",
-    "text": { "en": "What was a man found doing on the Sabbath day in the wilderness?" },
-    "answers": { "en": ["Gathering manna", "Plowing a field", "Gathering sticks", "Building a fire"] }, "correctIndex": 2 },
-  { "id": "q_b10_031", "reference": "Numbers 16:1", "difficulty": 4, "category": "torah",
-    "text": { "en": "Which son of Eliab joined Korah along with his brother Dathan?" },
-    "answers": { "en": ["Zimri", "Achan", "Nadab", "Abiram"] }, "correctIndex": 3 },
-  { "id": "q_b10_032", "reference": "Numbers 20:17", "difficulty": 4, "category": "torah",
-    "text": { "en": "Along which road did Israel ask to pass through Edom?" },
-    "answers": { "en": ["The king's highway", "The way of the sea", "The road to Shur", "The way of the Philistines"] }, "correctIndex": 0 },
-  { "id": "q_b10_033", "reference": "Numbers 21:21", "difficulty": 4, "category": "torah",
-    "text": { "en": "Israel sent messengers asking passage from Sihon, king of which people?" },
-    "answers": { "en": ["The Moabites", "The Amorites", "The Edomites", "The Hittites"] }, "correctIndex": 1 },
-  { "id": "q_b10_034", "reference": "Numbers 23:1", "difficulty": 4, "category": "torah",
-    "text": { "en": "How many altars did Balaam tell Balak to build for him?" },
-    "answers": { "en": ["Three", "Twelve", "Seven", "Four"] }, "correctIndex": 2 },
-  { "id": "q_b10_035", "reference": "Numbers 31:8", "difficulty": 4, "category": "torah",
-    "text": { "en": "How was Balaam the son of Beor killed?" },
-    "answers": { "en": ["By his donkey", "By fire from heaven", "By stoning", "With the sword"] }, "correctIndex": 3 },
-  { "id": "q_b10_036", "reference": "Deuteronomy 17:16", "difficulty": 4, "category": "torah",
-    "text": { "en": "According to Deuteronomy, what was a king of Israel not to multiply for himself?" },
-    "answers": { "en": ["Horses", "Chariots of iron", "Servants", "Cattle"] }, "correctIndex": 0 },
-  { "id": "q_b10_037", "reference": "Deuteronomy 22:8", "difficulty": 4, "category": "torah",
-    "text": { "en": "What had to be built around the roof of a new house?" },
-    "answers": { "en": ["A tower", "A railing", "A garden", "An altar"] }, "correctIndex": 1 },
-  { "id": "q_b10_038", "reference": "Deuteronomy 27:12", "difficulty": 4, "category": "torah",
-    "text": { "en": "On which mountain were six tribes to stand to bless the people?" },
-    "answers": { "en": ["Mount Ebal", "Mount Hor", "Mount Gerizim", "Mount Nebo"] }, "correctIndex": 2 },
-  { "id": "q_b10_039", "reference": "Deuteronomy 31:10-11", "difficulty": 4, "category": "torah",
-    "text": { "en": "How often was the law to be read before all Israel at the feast of tents?" },
-    "answers": { "en": ["Every year", "Every three years", "Every fifty years", "Every seven years"] }, "correctIndex": 3 },
-  { "id": "q_b10_040", "reference": "Deuteronomy 16:16", "difficulty": 4, "category": "torah",
-    "text": { "en": "How many times a year were all Israel's males to appear before Yahweh?" },
-    "answers": { "en": ["Three", "Once", "Seven", "Twelve"] }, "correctIndex": 0 }
+  {
+    "id": "q_b10_001",
+    "reference": "Genesis 41:46",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How old was Joseph when he stood before Pharaoh king of Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Seventeen",
+        "Thirty",
+        "Twenty-five",
+        "Forty"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_002",
+    "reference": "Exodus 13:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Whose bones did Moses take with him out of Egypt?"
+    },
+    "answers": {
+      "en": [
+        "Jacob's",
+        "Abraham's",
+        "Joseph's",
+        "Levi's"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_003",
+    "reference": "Genesis 48:14",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "On whose head did Israel lay his right hand, though he was the younger?"
+    },
+    "answers": {
+      "en": [
+        "Ephraim's",
+        "Manasseh's",
+        "Benjamin's",
+        "Joseph's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_004",
+    "reference": "Numbers 12:3",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Who was \"very humble, above all the men who were on the surface of the earth\"?"
+    },
+    "answers": {
+      "en": [
+        "Aaron",
+        "Joshua",
+        "Caleb",
+        "Moses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_005",
+    "reference": "Deuteronomy 22:10",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Which two animals were Israelites forbidden to plow with together?"
+    },
+    "answers": {
+      "en": [
+        "A horse and a mule",
+        "An ox and a donkey",
+        "A camel and an ox",
+        "A donkey and a horse"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_006",
+    "reference": "Leviticus 25:4",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "In which year was the land to have a Sabbath of solemn rest, unsown and unpruned?"
+    },
+    "answers": {
+      "en": [
+        "The third",
+        "The fifth",
+        "The seventh",
+        "The tenth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_007",
+    "reference": "Genesis 4:22",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Who was the forger of every cutting instrument of brass and iron?"
+    },
+    "answers": {
+      "en": [
+        "Jubal",
+        "Jabal",
+        "Irad",
+        "Tubal Cain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_008",
+    "reference": "Genesis 41:45",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which woman did Pharaoh give to Joseph as a wife?"
+    },
+    "answers": {
+      "en": [
+        "Asenath",
+        "Tamar",
+        "Zuleika",
+        "Basemath"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_009",
+    "reference": "Genesis 47:9",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many years did Jacob tell Pharaoh his pilgrimage had lasted?"
+    },
+    "answers": {
+      "en": [
+        "One hundred ten",
+        "One hundred thirty",
+        "One hundred forty-seven",
+        "Ninety"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_010",
+    "reference": "Genesis 26:22",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Which well did Isaac name, saying, \"Yahweh has made room for us\"?"
+    },
+    "answers": {
+      "en": [
+        "Esek",
+        "Sitnah",
+        "Rehoboth",
+        "Shibah"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_011",
+    "reference": "Genesis 31:19",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What did Rachel steal from her father Laban?"
+    },
+    "answers": {
+      "en": [
+        "His silver cup",
+        "His signet ring",
+        "His best robe",
+        "His teraphim"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_012",
+    "reference": "Genesis 35:8",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "Deborah, buried under an oak below Bethel, had been whose nurse?"
+    },
+    "answers": {
+      "en": [
+        "Rebekah's",
+        "Sarah's",
+        "Rachel's",
+        "Leah's"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_013",
+    "reference": "Genesis 38:3-6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Who was Judah's firstborn son?"
+    },
+    "answers": {
+      "en": [
+        "Onan",
+        "Er",
+        "Shelah",
+        "Perez"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_014",
+    "reference": "Genesis 45:22",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "How many pieces of silver did Joseph give Benjamin, with five changes of clothing?"
+    },
+    "answers": {
+      "en": [
+        "Thirty",
+        "Fifty",
+        "Three hundred",
+        "One thousand"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_015",
+    "reference": "Genesis 50:3",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "For how many days did the Egyptians weep for Jacob?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Thirty",
+        "Forty",
+        "Seventy"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_016",
+    "reference": "Exodus 31:6",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which craftsman of the tribe of Dan was appointed to work with Bezalel?"
+    },
+    "answers": {
+      "en": [
+        "Oholiab",
+        "Ahisamach",
+        "Hur",
+        "Uri"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_017",
+    "reference": "Exodus 31:2",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "From which tribe was Bezalel, called by name to build the tabernacle's works?"
+    },
+    "answers": {
+      "en": [
+        "Levi",
+        "Judah",
+        "Dan",
+        "Ephraim"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_018",
+    "reference": "Exodus 2:18",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "By what name is the father of the seven Midianite daughters first called in Exodus?"
+    },
+    "answers": {
+      "en": [
+        "Hobab",
+        "Jethro",
+        "Reuel",
+        "Balak"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_019",
+    "reference": "Exodus 4:25",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What did Zipporah use to circumcise her son?"
+    },
+    "answers": {
+      "en": [
+        "A knife of bronze",
+        "A sword",
+        "A sharp reed",
+        "A flint"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_020",
+    "reference": "Exodus 17:7",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What names did Moses give the place where Israel quarreled and tested Yahweh for water?"
+    },
+    "answers": {
+      "en": [
+        "Massah and Meribah",
+        "Marah and Elim",
+        "Taberah and Kibroth",
+        "Esek and Sitnah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_021",
+    "reference": "Exodus 38:8",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "The tabernacle's brass basin was made from what?"
+    },
+    "answers": {
+      "en": [
+        "Egyptian shields",
+        "The mirrors of the ministering women",
+        "Melted idols",
+        "Spoils from Amalek"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_022",
+    "reference": "Exodus 19:1",
+    "difficulty": 5,
+    "category": "torah",
+    "text": {
+      "en": "In which month after leaving Egypt did Israel reach the wilderness of Sinai?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The second",
+        "The third",
+        "The seventh"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_023",
+    "reference": "Exodus 32:28",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "About how many men fell when the sons of Levi acted after the golden calf?"
+    },
+    "answers": {
+      "en": [
+        "Three hundred",
+        "Twelve thousand",
+        "Twenty-four thousand",
+        "Three thousand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_024",
+    "reference": "Exodus 12:37",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "About how many men on foot traveled from Rameses to Succoth, besides children?"
+    },
+    "answers": {
+      "en": [
+        "Six hundred thousand",
+        "Seventy thousand",
+        "One million",
+        "Three hundred thousand"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_025",
+    "reference": "Leviticus 8:23",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Moses put blood on Aaron's right ear, right thumb, and where else?"
+    },
+    "answers": {
+      "en": [
+        "His forehead",
+        "The great toe of his right foot",
+        "His left hand",
+        "His breastplate"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_026",
+    "reference": "Leviticus 14:4",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many living clean birds were taken for a leper being cleansed?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Seven",
+        "Two",
+        "Four"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_027",
+    "reference": "Leviticus 27:32",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Of the animals passing under the rod, which was holy to Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "The first",
+        "The seventh",
+        "The twelfth",
+        "The tenth"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_028",
+    "reference": "Leviticus 11:22",
+    "difficulty": 2,
+    "category": "torah",
+    "text": {
+      "en": "Which of these creatures did the law allow Israelites to eat?"
+    },
+    "answers": {
+      "en": [
+        "The locust",
+        "The bat",
+        "The mouse",
+        "The eagle"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_029",
+    "reference": "Numbers 11:26",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "Eldad and which other man prophesied in the camp instead of at the Tent?"
+    },
+    "answers": {
+      "en": [
+        "Hur",
+        "Medad",
+        "Nun",
+        "Elidad"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_030",
+    "reference": "Numbers 15:32",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "What was a man found doing on the Sabbath day in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Gathering manna",
+        "Plowing a field",
+        "Gathering sticks",
+        "Building a fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_031",
+    "reference": "Numbers 16:1",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Which son of Eliab joined Korah along with his brother Dathan?"
+    },
+    "answers": {
+      "en": [
+        "Zimri",
+        "Achan",
+        "Nadab",
+        "Abiram"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_032",
+    "reference": "Numbers 20:17",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Along which road did Israel ask to pass through Edom?"
+    },
+    "answers": {
+      "en": [
+        "The king's highway",
+        "The way of the sea",
+        "The road to Shur",
+        "The way of the Philistines"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_033",
+    "reference": "Numbers 21:21",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "Israel sent messengers asking passage from Sihon, king of which people?"
+    },
+    "answers": {
+      "en": [
+        "The Moabites",
+        "The Amorites",
+        "The Edomites",
+        "The Hittites"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_034",
+    "reference": "Numbers 23:1",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "How many altars did Balaam tell Balak to build for him?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Twelve",
+        "Seven",
+        "Four"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_035",
+    "reference": "Numbers 31:8",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How was Balaam the son of Beor killed?"
+    },
+    "answers": {
+      "en": [
+        "By his donkey",
+        "By fire from heaven",
+        "By stoning",
+        "With the sword"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_036",
+    "reference": "Deuteronomy 17:16",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "According to Deuteronomy, what was a king of Israel not to multiply for himself?"
+    },
+    "answers": {
+      "en": [
+        "Horses",
+        "Chariots of iron",
+        "Servants",
+        "Cattle"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b10_037",
+    "reference": "Deuteronomy 22:8",
+    "difficulty": 3,
+    "category": "torah",
+    "text": {
+      "en": "What had to be built around the roof of a new house?"
+    },
+    "answers": {
+      "en": [
+        "A tower",
+        "A railing",
+        "A garden",
+        "An altar"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b10_038",
+    "reference": "Deuteronomy 27:12",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "On which mountain were six tribes to stand to bless the people?"
+    },
+    "answers": {
+      "en": [
+        "Mount Ebal",
+        "Mount Hor",
+        "Mount Gerizim",
+        "Mount Nebo"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b10_039",
+    "reference": "Deuteronomy 31:10-11",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How often was the law to be read before all Israel at the feast of tents?"
+    },
+    "answers": {
+      "en": [
+        "Every year",
+        "Every three years",
+        "Every fifty years",
+        "Every seven years"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b10_040",
+    "reference": "Deuteronomy 16:16",
+    "difficulty": 4,
+    "category": "torah",
+    "text": {
+      "en": "How many times a year were all Israel's males to appear before Yahweh?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Once",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

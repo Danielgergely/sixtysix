@@ -1,52 +1,902 @@
 [
-  {"id":"q_b36_001","reference":"Jude 1:11","difficulty":4,"category":"epistles","text":{"en":"Jude says the ungodly 'perished in' whose rebellion?"},"answers":{"en":["Absalom's","Sheba's","Korah's","Jeroboam's"]},"correctIndex":2},
-  {"id":"q_b36_002","reference":"Jude 1:14","difficulty":4,"category":"epistles","text":{"en":"Jude describes the prophet Enoch as which generation from Adam?"},"answers":{"en":["The seventh","The third","The tenth","The fifth"]},"correctIndex":0},
-  {"id":"q_b36_003","reference":"Revelation 2:6","difficulty":4,"category":"epistles","text":{"en":"The church in Ephesus was praised for hating the works of whom?"},"answers":{"en":["The Pharisees","The Sadducees","The Herodians","The Nicolaitans"]},"correctIndex":3},
-  {"id":"q_b36_004","reference":"Revelation 2:17","difficulty":4,"category":"epistles","text":{"en":"To him who overcomes: hidden manna and a white what, with a new name written on it?"},"answers":{"en":["Scroll","Stone","Crown","Horse"]},"correctIndex":1},
-  {"id":"q_b36_005","reference":"Revelation 2:20","difficulty":4,"category":"epistles","text":{"en":"The church in Thyatira tolerated which woman who called herself a prophetess?"},"answers":{"en":["Athaliah","Delilah","Jezebel","Herodias"]},"correctIndex":2},
-  {"id":"q_b36_006","reference":"Revelation 3:1","difficulty":4,"category":"epistles","text":{"en":"Which church had 'a reputation of being alive' but was dead?"},"answers":{"en":["Sardis","Smyrna","Philadelphia","Pergamum"]},"correctIndex":0},
-  {"id":"q_b36_007","reference":"Revelation 5:6","difficulty":4,"category":"epistles","text":{"en":"The Lamb standing as though slain had seven horns and seven what?"},"answers":{"en":["Crowns","Stars","Wings","Eyes"]},"correctIndex":3},
-  {"id":"q_b36_008","reference":"Revelation 8:11","difficulty":4,"category":"epistles","text":{"en":"What was the name of the star that made a third of the waters bitter?"},"answers":{"en":["Abaddon","Wormwood","Apollyon","Hemlock"]},"correctIndex":1},
-  {"id":"q_b36_009","reference":"Revelation 9:11","difficulty":4,"category":"epistles","text":{"en":"What is the Hebrew name of the angel of the abyss, king over the locusts?"},"answers":{"en":["Beelzebul","Belial","Abaddon","Molech"]},"correctIndex":2},
-  {"id":"q_b36_010","reference":"Revelation 9:14","difficulty":4,"category":"epistles","text":{"en":"At which great river were four angels bound, to be freed at the sixth trumpet?"},"answers":{"en":["The Euphrates","The brook Kidron","The Nile","The Tigris"]},"correctIndex":0},
-  {"id":"q_b36_011","reference":"Revelation 13:11","difficulty":4,"category":"epistles","text":{"en":"The beast coming up out of the earth had two horns like a what?"},"answers":{"en":["Ram","Goat","Bull","Lamb"]},"correctIndex":3},
-  {"id":"q_b36_012","reference":"Revelation 17:9","difficulty":4,"category":"epistles","text":{"en":"According to Revelation 17:9, the beast's seven heads are seven what?"},"answers":{"en":["Rivers","Mountains","Cities","Churches"]},"correctIndex":1},
-  {"id":"q_b36_013","reference":"Revelation 19:13","difficulty":4,"category":"epistles","text":{"en":"The rider on the white horse, clothed in a garment sprinkled with blood, is called what?"},"answers":{"en":["The Son of Man","The Lion of Judah","The Word of God","The Morning Star"]},"correctIndex":2},
-  {"id":"q_b36_014","reference":"Revelation 20:8","difficulty":4,"category":"epistles","text":{"en":"After the thousand years, Satan deceives the nations called by which names?"},"answers":{"en":["Gog and Magog","Edom and Moab","Tyre and Sidon","Sodom and Gomorrah"]},"correctIndex":0},
-  {"id":"q_b36_015","reference":"Revelation 22:8","difficulty":4,"category":"epistles","text":{"en":"In Revelation 22, John fell down to worship before the feet of whom?"},"answers":{"en":["The Lamb","The elders","The prophets","The angel"]},"correctIndex":3},
-  {"id":"q_b36_016","reference":"Romans 15:24","difficulty":4,"category":"epistles","text":{"en":"Paul hoped to visit the Romans on his journey to which land?"},"answers":{"en":["Gaul","Spain","Egypt","Britain"]},"correctIndex":1},
-  {"id":"q_b36_017","reference":"Romans 11:4","difficulty":4,"category":"epistles","text":{"en":"How many men had God reserved who had not bowed the knee to Baal?"},"answers":{"en":["Seven hundred","Twelve thousand","Seven thousand","Four hundred"]},"correctIndex":2},
-  {"id":"q_b36_018","reference":"1 Corinthians 15:32","difficulty":4,"category":"epistles","text":{"en":"In which city did Paul say he 'fought with animals'?"},"answers":{"en":["Ephesus","Corinth","Rome","Lystra"]},"correctIndex":0},
-  {"id":"q_b36_019","reference":"Philippians 4:16","difficulty":4,"category":"epistles","text":{"en":"In which city did the Philippians send help to Paul 'once and again'?"},"answers":{"en":["Corinth","Athens","Berea","Thessalonica"]},"correctIndex":3},
-  {"id":"q_b36_020","reference":"1 Thessalonians 2:2","difficulty":4,"category":"epistles","text":{"en":"Before coming to Thessalonica, where had Paul been shamefully treated?"},"answers":{"en":["Athens","Philippi","Corinth","Lystra"]},"correctIndex":1},
-  {"id":"q_b36_021","reference":"Romans 16:22","difficulty":5,"category":"epistles","text":{"en":"Who wrote down the letter to the Romans and added his own greeting?"},"answers":{"en":["Quartus","Erastus","Tertius","Sosthenes"]},"correctIndex":2},
-  {"id":"q_b36_022","reference":"Romans 16:23","difficulty":5,"category":"epistles","text":{"en":"In Romans 16, what position did Erastus hold?"},"answers":{"en":["Treasurer of the city","Ruler of the synagogue","City clerk","Captain of the guard"]},"correctIndex":0},
-  {"id":"q_b36_023","reference":"1 Corinthians 1:1","difficulty":5,"category":"epistles","text":{"en":"Which brother is named with Paul as co-sender at the opening of 1 Corinthians?"},"answers":{"en":["Silvanus","Apollos","Titus","Sosthenes"]},"correctIndex":3},
-  {"id":"q_b36_024","reference":"1 Corinthians 16:17","difficulty":5,"category":"epistles","text":{"en":"Paul rejoiced at the coming of Stephanas, Fortunatus, and whom?"},"answers":{"en":["Aristarchus","Achaicus","Archippus","Artemas"]},"correctIndex":1},
-  {"id":"q_b36_025","reference":"2 Corinthians 2:12-13","difficulty":5,"category":"epistles","text":{"en":"At Troas, Paul had no relief for his spirit because he didn't find whom?"},"answers":{"en":["Timothy","Silas","Titus","Apollos"]},"correctIndex":2},
-  {"id":"q_b36_026","reference":"2 Corinthians 11:32","difficulty":5,"category":"epistles","text":{"en":"The governor of Damascus who tried to arrest Paul served under which king?"},"answers":{"en":["Aretas","Agrippa","Herod","Antiochus"]},"correctIndex":0},
-  {"id":"q_b36_027","reference":"Galatians 1:18","difficulty":5,"category":"epistles","text":{"en":"How many days did Paul stay with Peter on his first visit to Jerusalem?"},"answers":{"en":["Seven","Forty","Thirty","Fifteen"]},"correctIndex":3},
-  {"id":"q_b36_028","reference":"Galatians 4:25","difficulty":5,"category":"epistles","text":{"en":"Paul says Hagar is Mount Sinai in which land?"},"answers":{"en":["Egypt","Arabia","Edom","Midian"]},"correctIndex":1},
-  {"id":"q_b36_029","reference":"Philippians 4:3","difficulty":5,"category":"epistles","text":{"en":"Which fellow worker does Paul name with the women who labored with him in the Good News?"},"answers":{"en":["Linus","Crescens","Clement","Lucius"]},"correctIndex":2},
-  {"id":"q_b36_030","reference":"Colossians 4:15","difficulty":5,"category":"epistles","text":{"en":"Greeted with the brothers in Laodicea, who had an assembly in his house?"},"answers":{"en":["Nymphas","Carpus","Zenas","Demetrius"]},"correctIndex":0},
-  {"id":"q_b36_031","reference":"Colossians 4:17","difficulty":5,"category":"epistles","text":{"en":"Who was told, 'Take heed to the ministry which you have received in the Lord'?"},"answers":{"en":["Aristarchus","Epaphras","Justus","Archippus"]},"correctIndex":3},
-  {"id":"q_b36_032","reference":"1 Timothy 1:20","difficulty":5,"category":"epistles","text":{"en":"Hymenaeus and whom did Paul deliver to Satan, 'that they might be taught not to blaspheme'?"},"answers":{"en":["Diotrephes","Alexander","Demas","Crescens"]},"correctIndex":1},
-  {"id":"q_b36_033","reference":"2 Timothy 1:15","difficulty":5,"category":"epistles","text":{"en":"Of all in Asia who turned away from Paul, Phygelus and whom are named?"},"answers":{"en":["Eubulus","Carpus","Hermogenes","Pudens"]},"correctIndex":2},
-  {"id":"q_b36_034","reference":"2 Timothy 2:17","difficulty":5,"category":"epistles","text":{"en":"Whose words, along with Hymenaeus's, does Paul say 'consume like gangrene'?"},"answers":{"en":["Philetus","Eubulus","Zenas","Tychicus"]},"correctIndex":0},
-  {"id":"q_b36_035","reference":"2 Timothy 3:8","difficulty":5,"category":"epistles","text":{"en":"Jannes and Jambres opposed whom, according to 2 Timothy?"},"answers":{"en":["Elijah","David","Daniel","Moses"]},"correctIndex":3},
-  {"id":"q_b36_036","reference":"2 Timothy 4:10","difficulty":5,"category":"epistles","text":{"en":"According to 2 Timothy 4, where did Titus go?"},"answers":{"en":["Cyprus","Dalmatia","Macedonia","Achaia"]},"correctIndex":1},
-  {"id":"q_b36_037","reference":"2 Timothy 4:10","difficulty":5,"category":"epistles","text":{"en":"According to 2 Timothy 4, where did Crescens go?"},"answers":{"en":["Spain","Cilicia","Galatia","Bithynia"]},"correctIndex":2},
-  {"id":"q_b36_038","reference":"2 Timothy 4:21","difficulty":5,"category":"epistles","text":{"en":"Eubulus, Pudens, Linus, and which woman sent greetings at the end of 2 Timothy?"},"answers":{"en":["Claudia","Chloe","Lydia","Junia"]},"correctIndex":0},
-  {"id":"q_b36_039","reference":"Titus 3:12","difficulty":5,"category":"epistles","text":{"en":"Where had Paul decided to spend the winter, according to his letter to Titus?"},"answers":{"en":["Troas","Miletus","Corinth","Nicopolis"]},"correctIndex":3},
-  {"id":"q_b36_040","reference":"Titus 3:13","difficulty":5,"category":"epistles","text":{"en":"In Titus 3, Zenas is identified by what occupation?"},"answers":{"en":["Physician","Lawyer","Tentmaker","Treasurer"]},"correctIndex":1},
-  {"id":"q_b36_041","reference":"Philemon 1:2","difficulty":5,"category":"epistles","text":{"en":"Which beloved woman is greeted at the opening of the letter to Philemon?"},"answers":{"en":["Phoebe","Chloe","Apphia","Claudia"]},"correctIndex":2},
-  {"id":"q_b36_042","reference":"Philemon 1:23","difficulty":5,"category":"epistles","text":{"en":"Whom does Paul call 'my fellow prisoner in Christ Jesus' in Philemon?"},"answers":{"en":["Epaphras","Tychicus","Luke","Demas"]},"correctIndex":0},
-  {"id":"q_b36_043","reference":"3 John 1:12","difficulty":5,"category":"epistles","text":{"en":"In 3 John, who 'has the testimony of all, and of the truth itself'?"},"answers":{"en":["Diotrephes","Didymus","Demas","Demetrius"]},"correctIndex":3},
-  {"id":"q_b36_044","reference":"Revelation 2:13","difficulty":5,"category":"epistles","text":{"en":"Which faithful witness was killed in Pergamum, 'where Satan dwells'?"},"answers":{"en":["Stephen","Antipas","Ananias","Nicolas"]},"correctIndex":1},
-  {"id":"q_b36_045","reference":"Revelation 2:14","difficulty":5,"category":"epistles","text":{"en":"Balaam taught whom to throw a stumbling block before the children of Israel?"},"answers":{"en":["Ahab","Pharaoh","Balak","Og"]},"correctIndex":2},
-  {"id":"q_b36_046","reference":"Revelation 3:14","difficulty":5,"category":"epistles","text":{"en":"To Laodicea, Christ calls himself 'The ___, the Faithful and True Witness.'"},"answers":{"en":["Amen","Alpha","Light","Branch"]},"correctIndex":0},
-  {"id":"q_b36_047","reference":"Revelation 3:18","difficulty":5,"category":"epistles","text":{"en":"Laodicea was counseled to buy gold, white garments, and what to anoint its eyes?"},"answers":{"en":["Olive oil","Myrrh","Spikenard","Eye salve"]},"correctIndex":3},
-  {"id":"q_b36_048","reference":"Revelation 6:6","difficulty":5,"category":"epistles","text":{"en":"At the third seal a voice says a choenix of wheat sells for what?"},"answers":{"en":["A shekel","A denarius","A talent","A drachma"]},"correctIndex":1},
-  {"id":"q_b36_049","reference":"Revelation 9:16","difficulty":5,"category":"epistles","text":{"en":"How many were the armies of the horsemen after the sixth trumpet?"},"answers":{"en":["One hundred million","Ten million","Two hundred million","Twelve thousand"]},"correctIndex":2},
-  {"id":"q_b36_050","reference":"1 Corinthians 10:8","difficulty":5,"category":"epistles","text":{"en":"Paul says that when Israel committed sexual immorality, how many fell in one day?"},"answers":{"en":["Twenty-three thousand","Forty thousand","Three thousand","Fourteen thousand seven hundred"]},"correctIndex":0}
+  {
+    "id": "q_b36_001",
+    "reference": "Jude 1:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jude says the ungodly 'perished in' whose rebellion?"
+    },
+    "answers": {
+      "en": [
+        "Absalom's",
+        "Sheba's",
+        "Korah's",
+        "Jeroboam's"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_002",
+    "reference": "Jude 1:14",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Jude describes the prophet Enoch as which generation from Adam?"
+    },
+    "answers": {
+      "en": [
+        "The seventh",
+        "The third",
+        "The tenth",
+        "The fifth"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_003",
+    "reference": "Revelation 2:6",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "The church in Ephesus was praised for hating the works of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Pharisees",
+        "The Sadducees",
+        "The Herodians",
+        "The Nicolaitans"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_004",
+    "reference": "Revelation 2:17",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "To him who overcomes: hidden manna and a white what, with a new name written on it?"
+    },
+    "answers": {
+      "en": [
+        "Scroll",
+        "Stone",
+        "Crown",
+        "Horse"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_005",
+    "reference": "Revelation 2:20",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The church in Thyatira tolerated which woman who called herself a prophetess?"
+    },
+    "answers": {
+      "en": [
+        "Athaliah",
+        "Delilah",
+        "Jezebel",
+        "Herodias"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_006",
+    "reference": "Revelation 3:1",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which church had 'a reputation of being alive' but was dead?"
+    },
+    "answers": {
+      "en": [
+        "Sardis",
+        "Smyrna",
+        "Philadelphia",
+        "Pergamum"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_007",
+    "reference": "Revelation 5:6",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "The Lamb standing as though slain had seven horns and seven what?"
+    },
+    "answers": {
+      "en": [
+        "Crowns",
+        "Stars",
+        "Wings",
+        "Eyes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_008",
+    "reference": "Revelation 8:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "What was the name of the star that made a third of the waters bitter?"
+    },
+    "answers": {
+      "en": [
+        "Abaddon",
+        "Wormwood",
+        "Apollyon",
+        "Hemlock"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_009",
+    "reference": "Revelation 9:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "What is the Hebrew name of the angel of the abyss, king over the locusts?"
+    },
+    "answers": {
+      "en": [
+        "Beelzebul",
+        "Belial",
+        "Abaddon",
+        "Molech"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_010",
+    "reference": "Revelation 9:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "At which great river were four angels bound, to be freed at the sixth trumpet?"
+    },
+    "answers": {
+      "en": [
+        "The Euphrates",
+        "The brook Kidron",
+        "The Nile",
+        "The Tigris"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_011",
+    "reference": "Revelation 13:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "The beast coming up out of the earth had two horns like a what?"
+    },
+    "answers": {
+      "en": [
+        "Ram",
+        "Goat",
+        "Bull",
+        "Lamb"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_012",
+    "reference": "Revelation 17:9",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "According to Revelation 17:9, the beast's seven heads are seven what?"
+    },
+    "answers": {
+      "en": [
+        "Rivers",
+        "Mountains",
+        "Cities",
+        "Churches"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_013",
+    "reference": "Revelation 19:13",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The rider on the white horse, clothed in a garment sprinkled with blood, is called what?"
+    },
+    "answers": {
+      "en": [
+        "The Son of Man",
+        "The Lion of Judah",
+        "The Word of God",
+        "The Morning Star"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_014",
+    "reference": "Revelation 20:8",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "After the thousand years, Satan deceives the nations called by which names?"
+    },
+    "answers": {
+      "en": [
+        "Gog and Magog",
+        "Edom and Moab",
+        "Tyre and Sidon",
+        "Sodom and Gomorrah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_015",
+    "reference": "Revelation 22:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In Revelation 22, John fell down to worship before the feet of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Lamb",
+        "The elders",
+        "The prophets",
+        "The angel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_016",
+    "reference": "Romans 15:24",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul hoped to visit the Romans on his journey to which land?"
+    },
+    "answers": {
+      "en": [
+        "Gaul",
+        "Spain",
+        "Egypt",
+        "Britain"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_017",
+    "reference": "Romans 11:4",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "How many men had God reserved who had not bowed the knee to Baal?"
+    },
+    "answers": {
+      "en": [
+        "Seven hundred",
+        "Twelve thousand",
+        "Seven thousand",
+        "Four hundred"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_018",
+    "reference": "1 Corinthians 15:32",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In which city did Paul say he 'fought with animals'?"
+    },
+    "answers": {
+      "en": [
+        "Ephesus",
+        "Corinth",
+        "Rome",
+        "Lystra"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_019",
+    "reference": "Philippians 4:16",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In which city did the Philippians send help to Paul 'once and again'?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Athens",
+        "Berea",
+        "Thessalonica"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_020",
+    "reference": "1 Thessalonians 2:2",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Before coming to Thessalonica, where had Paul been shamefully treated?"
+    },
+    "answers": {
+      "en": [
+        "Athens",
+        "Philippi",
+        "Corinth",
+        "Lystra"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_021",
+    "reference": "Romans 16:22",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Who wrote down the letter to the Romans and added his own greeting?"
+    },
+    "answers": {
+      "en": [
+        "Quartus",
+        "Erastus",
+        "Tertius",
+        "Sosthenes"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_022",
+    "reference": "Romans 16:23",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In Romans 16, what position did Erastus hold?"
+    },
+    "answers": {
+      "en": [
+        "Treasurer of the city",
+        "Ruler of the synagogue",
+        "City clerk",
+        "Captain of the guard"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_023",
+    "reference": "1 Corinthians 1:1",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which brother is named with Paul as co-sender at the opening of 1 Corinthians?"
+    },
+    "answers": {
+      "en": [
+        "Silvanus",
+        "Apollos",
+        "Titus",
+        "Sosthenes"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_024",
+    "reference": "1 Corinthians 16:17",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul rejoiced at the coming of Stephanas, Fortunatus, and whom?"
+    },
+    "answers": {
+      "en": [
+        "Aristarchus",
+        "Achaicus",
+        "Archippus",
+        "Artemas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_025",
+    "reference": "2 Corinthians 2:12-13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "At Troas, Paul had no relief for his spirit because he didn't find whom?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Silas",
+        "Titus",
+        "Apollos"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_026",
+    "reference": "2 Corinthians 11:32",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "The governor of Damascus who tried to arrest Paul served under which king?"
+    },
+    "answers": {
+      "en": [
+        "Aretas",
+        "Agrippa",
+        "Herod",
+        "Antiochus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_027",
+    "reference": "Galatians 1:18",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "How many days did Paul stay with Peter on his first visit to Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Forty",
+        "Thirty",
+        "Fifteen"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_028",
+    "reference": "Galatians 4:25",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says Hagar is Mount Sinai in which land?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Arabia",
+        "Edom",
+        "Midian"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_029",
+    "reference": "Philippians 4:3",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which fellow worker does Paul name with the women who labored with him in the Good News?"
+    },
+    "answers": {
+      "en": [
+        "Linus",
+        "Crescens",
+        "Clement",
+        "Lucius"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_030",
+    "reference": "Colossians 4:15",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Greeted with the brothers in Laodicea, who had an assembly in his house?"
+    },
+    "answers": {
+      "en": [
+        "Nymphas",
+        "Carpus",
+        "Zenas",
+        "Demetrius"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_031",
+    "reference": "Colossians 4:17",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Who was told, 'Take heed to the ministry which you have received in the Lord'?"
+    },
+    "answers": {
+      "en": [
+        "Aristarchus",
+        "Epaphras",
+        "Justus",
+        "Archippus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_032",
+    "reference": "1 Timothy 1:20",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Hymenaeus and whom did Paul deliver to Satan, 'that they might be taught not to blaspheme'?"
+    },
+    "answers": {
+      "en": [
+        "Diotrephes",
+        "Alexander",
+        "Demas",
+        "Crescens"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_033",
+    "reference": "2 Timothy 1:15",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Of all in Asia who turned away from Paul, Phygelus and whom are named?"
+    },
+    "answers": {
+      "en": [
+        "Eubulus",
+        "Carpus",
+        "Hermogenes",
+        "Pudens"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_034",
+    "reference": "2 Timothy 2:17",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Whose words, along with Hymenaeus's, does Paul say 'consume like gangrene'?"
+    },
+    "answers": {
+      "en": [
+        "Philetus",
+        "Eubulus",
+        "Zenas",
+        "Tychicus"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_035",
+    "reference": "2 Timothy 3:8",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Jannes and Jambres opposed whom, according to 2 Timothy?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "David",
+        "Daniel",
+        "Moses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_036",
+    "reference": "2 Timothy 4:10",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Timothy 4, where did Titus go?"
+    },
+    "answers": {
+      "en": [
+        "Cyprus",
+        "Dalmatia",
+        "Macedonia",
+        "Achaia"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_037",
+    "reference": "2 Timothy 4:10",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Timothy 4, where did Crescens go?"
+    },
+    "answers": {
+      "en": [
+        "Spain",
+        "Cilicia",
+        "Galatia",
+        "Bithynia"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_038",
+    "reference": "2 Timothy 4:21",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Eubulus, Pudens, Linus, and which woman sent greetings at the end of 2 Timothy?"
+    },
+    "answers": {
+      "en": [
+        "Claudia",
+        "Chloe",
+        "Lydia",
+        "Junia"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_039",
+    "reference": "Titus 3:12",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Where had Paul decided to spend the winter, according to his letter to Titus?"
+    },
+    "answers": {
+      "en": [
+        "Troas",
+        "Miletus",
+        "Corinth",
+        "Nicopolis"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_040",
+    "reference": "Titus 3:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In Titus 3, Zenas is identified by what occupation?"
+    },
+    "answers": {
+      "en": [
+        "Physician",
+        "Lawyer",
+        "Tentmaker",
+        "Treasurer"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_041",
+    "reference": "Philemon 1:2",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which beloved woman is greeted at the opening of the letter to Philemon?"
+    },
+    "answers": {
+      "en": [
+        "Phoebe",
+        "Chloe",
+        "Apphia",
+        "Claudia"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_042",
+    "reference": "Philemon 1:23",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Whom does Paul call 'my fellow prisoner in Christ Jesus' in Philemon?"
+    },
+    "answers": {
+      "en": [
+        "Epaphras",
+        "Tychicus",
+        "Luke",
+        "Demas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_043",
+    "reference": "3 John 1:12",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In 3 John, who 'has the testimony of all, and of the truth itself'?"
+    },
+    "answers": {
+      "en": [
+        "Diotrephes",
+        "Didymus",
+        "Demas",
+        "Demetrius"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_044",
+    "reference": "Revelation 2:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Which faithful witness was killed in Pergamum, 'where Satan dwells'?"
+    },
+    "answers": {
+      "en": [
+        "Stephen",
+        "Antipas",
+        "Ananias",
+        "Nicolas"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_045",
+    "reference": "Revelation 2:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Balaam taught whom to throw a stumbling block before the children of Israel?"
+    },
+    "answers": {
+      "en": [
+        "Ahab",
+        "Pharaoh",
+        "Balak",
+        "Og"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_046",
+    "reference": "Revelation 3:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "To Laodicea, Christ calls himself 'The ___, the Faithful and True Witness.'"
+    },
+    "answers": {
+      "en": [
+        "Amen",
+        "Alpha",
+        "Light",
+        "Branch"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b36_047",
+    "reference": "Revelation 3:18",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Laodicea was counseled to buy gold, white garments, and what to anoint its eyes?"
+    },
+    "answers": {
+      "en": [
+        "Olive oil",
+        "Myrrh",
+        "Spikenard",
+        "Eye salve"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b36_048",
+    "reference": "Revelation 6:6",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "At the third seal a voice says a choenix of wheat sells for what?"
+    },
+    "answers": {
+      "en": [
+        "A shekel",
+        "A denarius",
+        "A talent",
+        "A drachma"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b36_049",
+    "reference": "Revelation 9:16",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "How many were the armies of the horsemen after the sixth trumpet?"
+    },
+    "answers": {
+      "en": [
+        "One hundred million",
+        "Ten million",
+        "Two hundred million",
+        "Twelve thousand"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b36_050",
+    "reference": "1 Corinthians 10:8",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul says that when Israel committed sexual immorality, how many fell in one day?"
+    },
+    "answers": {
+      "en": [
+        "Twenty-three thousand",
+        "Forty thousand",
+        "Three thousand",
+        "Fourteen thousand seven hundred"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

@@ -92,7 +92,7 @@
   {
     "id": "q_b144_006",
     "reference": "1 Chronicles 5:1",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "Reuben's birthright was given to the sons of whom?"
@@ -110,7 +110,7 @@
   {
     "id": "q_b144_007",
     "reference": "1 Chronicles 5:20",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "Why were Reuben, Gad and half Manasseh helped against the Hagrites?"
@@ -164,7 +164,7 @@
   {
     "id": "q_b144_010",
     "reference": "1 Chronicles 10:14",
-    "difficulty": 2,
+    "difficulty": 1,
     "category": "history",
     "text": {
       "en": "After Saul died, to whom did Yahweh turn the kingdom?"
@@ -182,7 +182,7 @@
   {
     "id": "q_b144_011",
     "reference": "1 Chronicles 11:3",
-    "difficulty": 2,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "In which town did all the elders of Israel anoint David king?"
@@ -218,7 +218,7 @@
   {
     "id": "q_b144_013",
     "reference": "1 Chronicles 11:6",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "David promised that whoever first struck the Jebusites would be chief. Who went up first?"
@@ -254,7 +254,7 @@
   {
     "id": "q_b144_015",
     "reference": "1 Chronicles 11:23",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How tall was the Egyptian whom Benaiah killed?"
@@ -290,7 +290,7 @@
   {
     "id": "q_b144_017",
     "reference": "1 Chronicles 12:8",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "The Gadites who joined David had faces like the faces of what?"
@@ -344,7 +344,7 @@
   {
     "id": "q_b144_020",
     "reference": "1 Chronicles 12:39",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "How many days did the warriors stay with David at Hebron, eating and drinking?"
@@ -416,7 +416,7 @@
   {
     "id": "q_b144_024",
     "reference": "1 Chronicles 13:14",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "For how long did the ark stay in the house of Obed-Edom?"
@@ -470,7 +470,7 @@
   {
     "id": "q_b144_027",
     "reference": "1 Chronicles 15:15",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "How did the Levites carry the ark the second time?"
@@ -506,7 +506,7 @@
   {
     "id": "q_b144_029",
     "reference": "1 Chronicles 15:29",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Who looked out of a window and despised David as he danced before the ark?"
@@ -560,7 +560,7 @@
   {
     "id": "q_b144_032",
     "reference": "1 Chronicles 20:5",
-    "difficulty": 4,
+    "difficulty": 3,
     "category": "history",
     "text": {
       "en": "According to 1 Chronicles, Elhanan killed Lahmi, the brother of whom?"
@@ -596,7 +596,7 @@
   {
     "id": "q_b144_034",
     "reference": "1 Chronicles 21:12",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "One of David's three choices was famine for how long?"
@@ -614,7 +614,7 @@
   {
     "id": "q_b144_035",
     "reference": "1 Chronicles 21:14",
-    "difficulty": 2,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "How many men of Israel fell in the pestilence after David's census?"
@@ -668,7 +668,7 @@
   {
     "id": "q_b144_038",
     "reference": "1 Chronicles 21:26",
-    "difficulty": 3,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "How did Yahweh answer David on the altar at Ornan's threshing floor?"
@@ -704,7 +704,7 @@
   {
     "id": "q_b144_040",
     "reference": "1 Chronicles 22:8",
-    "difficulty": 1,
+    "difficulty": 2,
     "category": "history",
     "text": {
       "en": "Why was David not allowed to build the house for Yahweh's name?"
@@ -758,7 +758,7 @@
   {
     "id": "q_b144_043",
     "reference": "1 Chronicles 23:3",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "Levites were counted from what age upward when David numbered them?"
@@ -920,7 +920,7 @@
   {
     "id": "q_b144_052",
     "reference": "1 Chronicles 29:22",
-    "difficulty": 4,
+    "difficulty": 5,
     "category": "history",
     "text": {
       "en": "At the great feast before Yahweh, Solomon was made king for which time?"
@@ -938,7 +938,7 @@
   {
     "id": "q_b144_053",
     "reference": "1 Chronicles 29:27",
-    "difficulty": 3,
+    "difficulty": 4,
     "category": "history",
     "text": {
       "en": "For how many years did David reign in Jerusalem?"

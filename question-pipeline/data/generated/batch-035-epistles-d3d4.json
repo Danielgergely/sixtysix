@@ -1,44 +1,758 @@
 [
-  {"id":"q_b35_001","reference":"James 3:3","difficulty":3,"category":"epistles","text":{"en":"James says we put what into horses' mouths so that they may obey us?"},"answers":{"en":["Ropes","Salt","Bits","Grain"]},"correctIndex":2},
-  {"id":"q_b35_002","reference":"Revelation 22:16","difficulty":3,"category":"epistles","text":{"en":"Complete: 'I am the root and the offspring of David; the Bright and ___ Star.'"},"answers":{"en":["Morning","Evening","Shining","Eternal"]},"correctIndex":0},
-  {"id":"q_b35_003","reference":"Revelation 10:10","difficulty":3,"category":"epistles","text":{"en":"The little book John ate was as sweet as what in his mouth?"},"answers":{"en":["Wine","Milk","Figs","Honey"]},"correctIndex":3},
-  {"id":"q_b35_004","reference":"Revelation 12:1","difficulty":3,"category":"epistles","text":{"en":"The woman clothed with the sun wore a crown of how many stars?"},"answers":{"en":["Seven","Twelve","Ten","Three"]},"correctIndex":1},
-  {"id":"q_b35_005","reference":"Revelation 4:7","difficulty":3,"category":"epistles","text":{"en":"Complete: 'The fourth [living creature] was like a flying ___.'"},"answers":{"en":["Dove","Hawk","Eagle","Raven"]},"correctIndex":2},
-  {"id":"q_b35_006","reference":"Revelation 21:12","difficulty":3,"category":"epistles","text":{"en":"Whose names were written on the twelve gates of the New Jerusalem?"},"answers":{"en":["The twelve tribes of Israel","The twelve apostles","The seven churches","The twenty-four elders on thrones"]},"correctIndex":0},
-  {"id":"q_b35_007","reference":"Revelation 21:14","difficulty":3,"category":"epistles","text":{"en":"Whose names were on the twelve foundations of the New Jerusalem's wall?"},"answers":{"en":["The twelve tribes of Israel","The seven churches","The twenty-four elders on thrones","The twelve apostles"]},"correctIndex":3},
-  {"id":"q_b35_008","reference":"Ephesians 6:12","difficulty":3,"category":"epistles","text":{"en":"Complete: 'For our wrestling is not against flesh and ___.'"},"answers":{"en":["Bone","Blood","Spirit","Sin"]},"correctIndex":1},
-  {"id":"q_b35_009","reference":"1 Thessalonians 4:17","difficulty":3,"category":"epistles","text":{"en":"Those alive at the Lord's coming will be caught up together in what?"},"answers":{"en":["A chariot of fire","A whirlwind","The clouds","The light"]},"correctIndex":2},
-  {"id":"q_b35_010","reference":"1 Peter 4:8","difficulty":3,"category":"epistles","text":{"en":"Complete: 'Be earnest in your love among yourselves, for love covers a multitude of ___.'"},"answers":{"en":["Sins","Faults","Wounds","Debts"]},"correctIndex":0},
-  {"id":"q_b35_011","reference":"1 John 1:5","difficulty":3,"category":"epistles","text":{"en":"Complete: 'God is ___, and in him is no darkness at all.'"},"answers":{"en":["Love","Holy","Truth","Light"]},"correctIndex":3},
-  {"id":"q_b35_012","reference":"1 Corinthians 15:52","difficulty":3,"category":"epistles","text":{"en":"Complete: 'In a moment, in the twinkling of an eye, at the last ___.'"},"answers":{"en":["Hour","Trumpet","Breath","Word"]},"correctIndex":1},
-  {"id":"q_b35_013","reference":"1 Corinthians 9:9","difficulty":3,"category":"epistles","text":{"en":"Paul quotes the law: 'You shall not muzzle an ___ while it treads out the grain.'"},"answers":{"en":["Donkey","Horse","Ox","Camel"]},"correctIndex":2},
-  {"id":"q_b35_014","reference":"1 Peter 1:24","difficulty":3,"category":"epistles","text":{"en":"Complete: 'All flesh is like ___, and all of man's glory like the flower.'"},"answers":{"en":["Grass","Dust","Smoke","Vapor"]},"correctIndex":0},
-  {"id":"q_b35_015","reference":"2 Peter 3:10","difficulty":3,"category":"epistles","text":{"en":"Peter says the day of the Lord will come as what in the night?"},"answers":{"en":["A storm","A trumpet","A fire","A thief"]},"correctIndex":3},
-  {"id":"q_b35_016","reference":"1 John 2:16","difficulty":3,"category":"epistles","text":{"en":"Complete: 'The lust of the flesh, the lust of the eyes, and the ___ of life.'"},"answers":{"en":["Love","Pride","Riches","Cares"]},"correctIndex":1},
-  {"id":"q_b35_017","reference":"Ephesians 4:5","difficulty":3,"category":"epistles","text":{"en":"Complete: 'One Lord, one faith, one ___.'"},"answers":{"en":["Body","Hope","Baptism","Spirit"]},"correctIndex":2},
-  {"id":"q_b35_018","reference":"Romans 16:1","difficulty":4,"category":"epistles","text":{"en":"Phoebe, commended by Paul, was a servant of the assembly in which place?"},"answers":{"en":["Cenchreae","Troas","Philippi","Joppa"]},"correctIndex":0},
-  {"id":"q_b35_019","reference":"Romans 16:3-4","difficulty":4,"category":"epistles","text":{"en":"Which couple 'laid down their own necks' for Paul's life?"},"answers":{"en":["Andronicus and Junia","Philologus and Julia","Tryphaena and Tryphosa","Prisca and Aquila"]},"correctIndex":3},
-  {"id":"q_b35_020","reference":"1 Corinthians 1:11","difficulty":4,"category":"epistles","text":{"en":"Paul learned of contentions in Corinth from those of whose household?"},"answers":{"en":["Lydia's","Chloe's","Cornelius's","Philemon's"]},"correctIndex":1},
-  {"id":"q_b35_021","reference":"1 Corinthians 16:8","difficulty":4,"category":"epistles","text":{"en":"Paul planned to stay at Ephesus until which feast?"},"answers":{"en":["Passover","Tabernacles","Pentecost","Purim"]},"correctIndex":2},
-  {"id":"q_b35_022","reference":"2 Corinthians 11:24","difficulty":4,"category":"epistles","text":{"en":"How many times did Paul receive 'forty stripes minus one' from the Jews?"},"answers":{"en":["Five","Three","Seven","Twice"]},"correctIndex":0},
-  {"id":"q_b35_023","reference":"2 Corinthians 11:25","difficulty":4,"category":"epistles","text":{"en":"According to 2 Corinthians 11, how many times had Paul suffered shipwreck?"},"answers":{"en":["Once","Twice","Five","Three"]},"correctIndex":3},
-  {"id":"q_b35_024","reference":"2 Corinthians 12:2","difficulty":4,"category":"epistles","text":{"en":"Paul tells of a man in Christ caught up into which heaven?"},"answers":{"en":["The seventh heaven","The third heaven","The second heaven","The highest heaven"]},"correctIndex":1},
-  {"id":"q_b35_025","reference":"Galatians 2:1","difficulty":4,"category":"epistles","text":{"en":"Fourteen years later, Paul went up to Jerusalem with Barnabas, taking whom also?"},"answers":{"en":["Timothy","Silas","Titus","Mark"]},"correctIndex":2},
-  {"id":"q_b35_026","reference":"Galatians 6:11","difficulty":4,"category":"epistles","text":{"en":"Complete: 'See with what large ___ I write to you with my own hand.'"},"answers":{"en":["Letters","Words","Scrolls","Seals"]},"correctIndex":0},
-  {"id":"q_b35_027","reference":"Philippians 4:22","difficulty":4,"category":"epistles","text":{"en":"Philippians closes with greetings especially from saints of whose household?"},"answers":{"en":["Herod's","Chloe's","Narcissus's","Caesar's"]},"correctIndex":3},
-  {"id":"q_b35_028","reference":"Colossians 4:10","difficulty":4,"category":"epistles","text":{"en":"In Colossians, Mark is described as the cousin of whom?"},"answers":{"en":["Peter","Barnabas","Silas","Luke"]},"correctIndex":1},
-  {"id":"q_b35_029","reference":"Colossians 4:12","difficulty":4,"category":"epistles","text":{"en":"Which man, 'one of you,' was always striving in prayers for the Colossians?"},"answers":{"en":["Epaphroditus","Tychicus","Epaphras","Aristarchus"]},"correctIndex":2},
-  {"id":"q_b35_030","reference":"Colossians 4:16","difficulty":4,"category":"epistles","text":{"en":"The Colossians were told to also read the letter from which city?"},"answers":{"en":["Laodicea","Ephesus","Philippi","Smyrna"]},"correctIndex":0},
-  {"id":"q_b35_031","reference":"1 Thessalonians 3:1-2","difficulty":4,"category":"epistles","text":{"en":"Where was Paul left behind alone when he sent Timothy to the Thessalonians?"},"answers":{"en":["Corinth","Berea","Philippi","Athens"]},"correctIndex":3},
-  {"id":"q_b35_032","reference":"2 Timothy 1:16","difficulty":4,"category":"epistles","text":{"en":"Whose house did Paul bless because he often refreshed Paul and wasn't ashamed of his chain?"},"answers":{"en":["Onesimus","Onesiphorus","Philemon","Epaphras"]},"correctIndex":1},
-  {"id":"q_b35_033","reference":"2 Timothy 4:13","difficulty":4,"category":"epistles","text":{"en":"In which city had Paul left his cloak with Carpus?"},"answers":{"en":["Miletus","Corinth","Troas","Ephesus"]},"correctIndex":2},
-  {"id":"q_b35_034","reference":"Titus 1:12","difficulty":4,"category":"epistles","text":{"en":"A Cretan prophet said, 'Cretans are always ___, evil beasts, and idle gluttons.'"},"answers":{"en":["Liars","Thieves","Drunkards","Boasters"]},"correctIndex":0},
-  {"id":"q_b35_035","reference":"Hebrews 11:21","difficulty":4,"category":"epistles","text":{"en":"According to Hebrews, the dying Jacob worshiped leaning on the top of his what?"},"answers":{"en":["Altar","Tent pole","Spear","Staff"]},"correctIndex":3},
-  {"id":"q_b35_036","reference":"Hebrews 11:22","difficulty":4,"category":"epistles","text":{"en":"By faith, Joseph near his end gave instructions concerning what?"},"answers":{"en":["His coat","His bones","His silver cup","His land"]},"correctIndex":1},
-  {"id":"q_b35_037","reference":"Hebrews 13:24","difficulty":4,"category":"epistles","text":{"en":"At the close of Hebrews, greetings are sent from which group?"},"answers":{"en":["The Galatians","The Macedonians","The Italians","The Cretans"]},"correctIndex":2},
-  {"id":"q_b35_038","reference":"Hebrews 13:23","difficulty":4,"category":"epistles","text":{"en":"Which brother does Hebrews say 'has been freed'?"},"answers":{"en":["Timothy","Titus","Silas","Epaphras"]},"correctIndex":0},
-  {"id":"q_b35_039","reference":"1 Peter 5:12","difficulty":4,"category":"epistles","text":{"en":"Through which faithful brother did Peter write his first letter?"},"answers":{"en":["Mark","Tertius","Luke","Silvanus"]},"correctIndex":3},
-  {"id":"q_b35_040","reference":"1 Peter 5:13","difficulty":4,"category":"epistles","text":{"en":"In 1 Peter, Mark sends greetings, and Peter calls him his what?"},"answers":{"en":["Brother","Son","Servant","Cousin"]},"correctIndex":1},
-  {"id":"q_b35_041","reference":"2 John 1:1","difficulty":4,"category":"epistles","text":{"en":"To whom is the letter of 2 John addressed?"},"answers":{"en":["Gaius the beloved","Demetrius","The chosen lady and her children","The assembly in Ephesus and its elders"]},"correctIndex":2},
-  {"id":"q_b35_042","reference":"3 John 1:9","difficulty":4,"category":"epistles","text":{"en":"In 3 John, who 'loves to be first' and doesn't accept what the elder says?"},"answers":{"en":["Diotrephes","Demetrius","Gaius","Demas"]},"correctIndex":0}
+  {
+    "id": "q_b35_001",
+    "reference": "James 3:3",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "James says we put what into horses' mouths so that they may obey us?"
+    },
+    "answers": {
+      "en": [
+        "Ropes",
+        "Salt",
+        "Bits",
+        "Grain"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_002",
+    "reference": "Revelation 22:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'I am the root and the offspring of David; the Bright and ___ Star.'"
+    },
+    "answers": {
+      "en": [
+        "Morning",
+        "Evening",
+        "Shining",
+        "Eternal"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_003",
+    "reference": "Revelation 10:10",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The little book John ate was as sweet as what in his mouth?"
+    },
+    "answers": {
+      "en": [
+        "Wine",
+        "Milk",
+        "Figs",
+        "Honey"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_004",
+    "reference": "Revelation 12:1",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "The woman clothed with the sun wore a crown of how many stars?"
+    },
+    "answers": {
+      "en": [
+        "Seven",
+        "Twelve",
+        "Ten",
+        "Three"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_005",
+    "reference": "Revelation 4:7",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'The fourth [living creature] was like a flying ___.'"
+    },
+    "answers": {
+      "en": [
+        "Dove",
+        "Hawk",
+        "Eagle",
+        "Raven"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_006",
+    "reference": "Revelation 21:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Whose names were written on the twelve gates of the New Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The twelve tribes of Israel",
+        "The twelve apostles",
+        "The seven churches",
+        "The twenty-four elders on thrones"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_007",
+    "reference": "Revelation 21:14",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Whose names were on the twelve foundations of the New Jerusalem's wall?"
+    },
+    "answers": {
+      "en": [
+        "The twelve tribes of Israel",
+        "The seven churches",
+        "The twenty-four elders on thrones",
+        "The twelve apostles"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_008",
+    "reference": "Ephesians 6:12",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'For our wrestling is not against flesh and ___.'"
+    },
+    "answers": {
+      "en": [
+        "Bone",
+        "Blood",
+        "Spirit",
+        "Sin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_009",
+    "reference": "1 Thessalonians 4:17",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Those alive at the Lord's coming will be caught up together in what?"
+    },
+    "answers": {
+      "en": [
+        "A chariot of fire",
+        "A whirlwind",
+        "The clouds",
+        "The light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_010",
+    "reference": "1 Peter 4:8",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'Be earnest in your love among yourselves, for love covers a multitude of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Sins",
+        "Faults",
+        "Wounds",
+        "Debts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_011",
+    "reference": "1 John 1:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'God is ___, and in him is no darkness at all.'"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Holy",
+        "Truth",
+        "Light"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_012",
+    "reference": "1 Corinthians 15:52",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'In a moment, in the twinkling of an eye, at the last ___.'"
+    },
+    "answers": {
+      "en": [
+        "Hour",
+        "Trumpet",
+        "Breath",
+        "Word"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_013",
+    "reference": "1 Corinthians 9:9",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul quotes the law: 'You shall not muzzle an ___ while it treads out the grain.'"
+    },
+    "answers": {
+      "en": [
+        "Donkey",
+        "Horse",
+        "Ox",
+        "Camel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_014",
+    "reference": "1 Peter 1:24",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'All flesh is like ___, and all of man's glory like the flower.'"
+    },
+    "answers": {
+      "en": [
+        "Grass",
+        "Dust",
+        "Smoke",
+        "Vapor"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_015",
+    "reference": "2 Peter 3:10",
+    "difficulty": 1,
+    "category": "epistles",
+    "text": {
+      "en": "Peter says the day of the Lord will come as what in the night?"
+    },
+    "answers": {
+      "en": [
+        "A storm",
+        "A trumpet",
+        "A fire",
+        "A thief"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_016",
+    "reference": "1 John 2:16",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'The lust of the flesh, the lust of the eyes, and the ___ of life.'"
+    },
+    "answers": {
+      "en": [
+        "Love",
+        "Pride",
+        "Riches",
+        "Cares"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_017",
+    "reference": "Ephesians 4:5",
+    "difficulty": 2,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'One Lord, one faith, one ___.'"
+    },
+    "answers": {
+      "en": [
+        "Body",
+        "Hope",
+        "Baptism",
+        "Spirit"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_018",
+    "reference": "Romans 16:1",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Phoebe, commended by Paul, was a servant of the assembly in which place?"
+    },
+    "answers": {
+      "en": [
+        "Cenchreae",
+        "Troas",
+        "Philippi",
+        "Joppa"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_019",
+    "reference": "Romans 16:3-4",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which couple 'laid down their own necks' for Paul's life?"
+    },
+    "answers": {
+      "en": [
+        "Andronicus and Junia",
+        "Philologus and Julia",
+        "Tryphaena and Tryphosa",
+        "Prisca and Aquila"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_020",
+    "reference": "1 Corinthians 1:11",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Paul learned of contentions in Corinth from those of whose household?"
+    },
+    "answers": {
+      "en": [
+        "Lydia's",
+        "Chloe's",
+        "Cornelius's",
+        "Philemon's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_021",
+    "reference": "1 Corinthians 16:8",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Paul planned to stay at Ephesus until which feast?"
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "Tabernacles",
+        "Pentecost",
+        "Purim"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_022",
+    "reference": "2 Corinthians 11:24",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "How many times did Paul receive 'forty stripes minus one' from the Jews?"
+    },
+    "answers": {
+      "en": [
+        "Five",
+        "Three",
+        "Seven",
+        "Twice"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_023",
+    "reference": "2 Corinthians 11:25",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "According to 2 Corinthians 11, how many times had Paul suffered shipwreck?"
+    },
+    "answers": {
+      "en": [
+        "Once",
+        "Twice",
+        "Five",
+        "Three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_024",
+    "reference": "2 Corinthians 12:2",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Paul tells of a man in Christ caught up into which heaven?"
+    },
+    "answers": {
+      "en": [
+        "The seventh heaven",
+        "The third heaven",
+        "The second heaven",
+        "The highest heaven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_025",
+    "reference": "Galatians 2:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Fourteen years later, Paul went up to Jerusalem with Barnabas, taking whom also?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Silas",
+        "Titus",
+        "Mark"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_026",
+    "reference": "Galatians 6:11",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "Complete: 'See with what large ___ I write to you with my own hand.'"
+    },
+    "answers": {
+      "en": [
+        "Letters",
+        "Words",
+        "Scrolls",
+        "Seals"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_027",
+    "reference": "Philippians 4:22",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Philippians closes with greetings especially from saints of whose household?"
+    },
+    "answers": {
+      "en": [
+        "Herod's",
+        "Chloe's",
+        "Narcissus's",
+        "Caesar's"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_028",
+    "reference": "Colossians 4:10",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In Colossians, Mark is described as the cousin of whom?"
+    },
+    "answers": {
+      "en": [
+        "Peter",
+        "Barnabas",
+        "Silas",
+        "Luke"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_029",
+    "reference": "Colossians 4:12",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which man, 'one of you,' was always striving in prayers for the Colossians?"
+    },
+    "answers": {
+      "en": [
+        "Epaphroditus",
+        "Tychicus",
+        "Epaphras",
+        "Aristarchus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_030",
+    "reference": "Colossians 4:16",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "The Colossians were told to also read the letter from which city?"
+    },
+    "answers": {
+      "en": [
+        "Laodicea",
+        "Ephesus",
+        "Philippi",
+        "Smyrna"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_031",
+    "reference": "1 Thessalonians 3:1-2",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Where was Paul left behind alone when he sent Timothy to the Thessalonians?"
+    },
+    "answers": {
+      "en": [
+        "Corinth",
+        "Berea",
+        "Philippi",
+        "Athens"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_032",
+    "reference": "2 Timothy 1:16",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Whose house did Paul bless because he often refreshed Paul and wasn't ashamed of his chain?"
+    },
+    "answers": {
+      "en": [
+        "Onesimus",
+        "Onesiphorus",
+        "Philemon",
+        "Epaphras"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_033",
+    "reference": "2 Timothy 4:13",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In which city had Paul left his cloak with Carpus?"
+    },
+    "answers": {
+      "en": [
+        "Miletus",
+        "Corinth",
+        "Troas",
+        "Ephesus"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_034",
+    "reference": "Titus 1:12",
+    "difficulty": 3,
+    "category": "epistles",
+    "text": {
+      "en": "A Cretan prophet said, 'Cretans are always ___, evil beasts, and idle gluttons.'"
+    },
+    "answers": {
+      "en": [
+        "Liars",
+        "Thieves",
+        "Drunkards",
+        "Boasters"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_035",
+    "reference": "Hebrews 11:21",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "According to Hebrews, the dying Jacob worshiped leaning on the top of his what?"
+    },
+    "answers": {
+      "en": [
+        "Altar",
+        "Tent pole",
+        "Spear",
+        "Staff"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_036",
+    "reference": "Hebrews 11:22",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "By faith, Joseph near his end gave instructions concerning what?"
+    },
+    "answers": {
+      "en": [
+        "His coat",
+        "His bones",
+        "His silver cup",
+        "His land"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_037",
+    "reference": "Hebrews 13:24",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "At the close of Hebrews, greetings are sent from which group?"
+    },
+    "answers": {
+      "en": [
+        "The Galatians",
+        "The Macedonians",
+        "The Italians",
+        "The Cretans"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_038",
+    "reference": "Hebrews 13:23",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "Which brother does Hebrews say 'has been freed'?"
+    },
+    "answers": {
+      "en": [
+        "Timothy",
+        "Titus",
+        "Silas",
+        "Epaphras"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b35_039",
+    "reference": "1 Peter 5:12",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "Through which faithful brother did Peter write his first letter?"
+    },
+    "answers": {
+      "en": [
+        "Mark",
+        "Tertius",
+        "Luke",
+        "Silvanus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b35_040",
+    "reference": "1 Peter 5:13",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "In 1 Peter, Mark sends greetings, and Peter calls him his what?"
+    },
+    "answers": {
+      "en": [
+        "Brother",
+        "Son",
+        "Servant",
+        "Cousin"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b35_041",
+    "reference": "2 John 1:1",
+    "difficulty": 4,
+    "category": "epistles",
+    "text": {
+      "en": "To whom is the letter of 2 John addressed?"
+    },
+    "answers": {
+      "en": [
+        "Gaius the beloved",
+        "Demetrius",
+        "The chosen lady and her children",
+        "The assembly in Ephesus and its elders"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b35_042",
+    "reference": "3 John 1:9",
+    "difficulty": 5,
+    "category": "epistles",
+    "text": {
+      "en": "In 3 John, who 'loves to be first' and doesn't accept what the elder says?"
+    },
+    "answers": {
+      "en": [
+        "Diotrephes",
+        "Demetrius",
+        "Gaius",
+        "Demas"
+      ]
+    },
+    "correctIndex": 0
+  }
 ]

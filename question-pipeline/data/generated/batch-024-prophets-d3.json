@@ -1,128 +1,758 @@
 [
-  { "id": "q_b24_001", "reference": "Ezekiel 1:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "By which river was Ezekiel among the captives when the heavens opened?" },
-    "answers": { "en": ["The Chebar", "The Jordan", "The Euphrates", "The Nile"] }, "correctIndex": 0 },
-  { "id": "q_b24_002", "reference": "Ezekiel 1:10", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Ezekiel's living creatures had faces of a man, a lion, an ox, and what?" },
-    "answers": { "en": ["A bear", "An eagle", "A serpent", "A lamb"] }, "correctIndex": 1 },
-  { "id": "q_b24_003", "reference": "Ezekiel 1:16", "difficulty": 3, "category": "prophets",
-    "text": { "en": "How did the wheels beside the living creatures in Ezekiel 1 appear?" },
-    "answers": { "en": ["Made of pure gold", "Covered in feathers", "Like a wheel within a wheel", "Square like a box"] }, "correctIndex": 2 },
-  { "id": "q_b24_004", "reference": "Jeremiah 13:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What linen item did God tell Jeremiah to buy and wear as a sign?" },
-    "answers": { "en": ["A robe", "A turban", "A sash for his head", "A belt"] }, "correctIndex": 3 },
-  { "id": "q_b24_005", "reference": "Jeremiah 35:5-6", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did the Rechabites refuse when Jeremiah set it before them?" },
-    "answers": { "en": ["Wine", "Meat", "Bread", "Gold"] }, "correctIndex": 0 },
-  { "id": "q_b24_006", "reference": "Jeremiah 38:7", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Which Ethiopian eunuch heard that Jeremiah had been put in the dungeon?" },
-    "answers": { "en": ["Baruch", "Ebedmelech", "Pashhur", "Gedaliah"] }, "correctIndex": 1 },
-  { "id": "q_b24_007", "reference": "Jeremiah 39:7", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did the king of Babylon do to King Zedekiah before taking him to Babylon?" },
-    "answers": { "en": ["Made him a governor", "Shaved his head", "Put out his eyes", "Gave him a new name"] }, "correctIndex": 2 },
-  { "id": "q_b24_008", "reference": "Jeremiah 1:11", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What branch did Jeremiah see when God asked, 'Jeremiah, what do you see?'" },
-    "answers": { "en": ["An olive branch", "A fig branch", "A palm branch", "An almond branch"] }, "correctIndex": 3 },
-  { "id": "q_b24_009", "reference": "Jeremiah 24:1-2", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did Jeremiah see in two baskets before the temple, one good and one bad?" },
-    "answers": { "en": ["Figs", "Grapes", "Olives", "Pomegranates"] }, "correctIndex": 0 },
-  { "id": "q_b24_010", "reference": "Isaiah 37:36", "difficulty": 3, "category": "prophets",
-    "text": { "en": "How many Assyrians did Yahweh's angel strike in one night in Isaiah 37?" },
-    "answers": { "en": ["One hundred thousand", "One hundred and eighty-five thousand", "Eighty-five thousand", "Fifty thousand"] }, "correctIndex": 1 },
-  { "id": "q_b24_011", "reference": "Isaiah 38:8", "difficulty": 3, "category": "prophets",
-    "text": { "en": "How many steps did the shadow go back on the sundial as a sign to Hezekiah?" },
-    "answers": { "en": ["Three", "Seven", "Ten", "Fifteen"] }, "correctIndex": 2 },
-  { "id": "q_b24_012", "reference": "Isaiah 39:1-2", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Envoys from which king's land were shown all of Hezekiah's treasures?" },
-    "answers": { "en": ["Egypt", "Assyria", "Tyre", "Babylon"] }, "correctIndex": 3 },
-  { "id": "q_b24_013", "reference": "Isaiah 37:14", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did Hezekiah do with the threatening letter from the Assyrian messengers?" },
-    "answers": { "en": ["Spread it before Yahweh", "Burned it", "Sent it to Egypt", "Read it to the people"] }, "correctIndex": 0 },
-  { "id": "q_b24_014", "reference": "Isaiah 38:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did Isaiah first tell the sick Hezekiah to do, because he would die?" },
-    "answers": { "en": ["Go to the temple", "Set your house in order", "Call for your sons", "Fast seven days"] }, "correctIndex": 1 },
-  { "id": "q_b24_015", "reference": "Isaiah 1:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Isaiah was the son of whom?" },
-    "answers": { "en": ["Hilkiah", "Buzi", "Amoz", "Beeri"] }, "correctIndex": 2 },
-  { "id": "q_b24_016", "reference": "Isaiah 44:28", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Which king does God call 'my shepherd' in Isaiah 44?" },
-    "answers": { "en": ["David", "Hezekiah", "Darius", "Cyrus"] }, "correctIndex": 3 },
-  { "id": "q_b24_017", "reference": "Isaiah 5:2", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Isaiah's song of the vineyard, what did the carefully planted vineyard yield?" },
-    "answers": { "en": ["Wild grapes", "Thorns only", "Sweet figs", "Nothing at all"] }, "correctIndex": 0 },
-  { "id": "q_b24_018", "reference": "Isaiah 49:16", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Isaiah 49: 'I have engraved you on the ___ of my hands.'" },
-    "answers": { "en": ["Backs", "Palms", "Fingers", "Rings"] }, "correctIndex": 1 },
-  { "id": "q_b24_019", "reference": "Isaiah 65:25", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Isaiah 65, what will the lion eat like the ox?" },
-    "answers": { "en": ["Grass", "Bread", "Straw", "Honey"] }, "correctIndex": 2 },
-  { "id": "q_b24_020", "reference": "Lamentations 1:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Lamentations 1 says the once-crowded city has become like what?" },
-    "answers": { "en": ["A ruined tower", "A lost sheep", "A broken pot", "A widow"] }, "correctIndex": 3 },
-  { "id": "q_b24_021", "reference": "Hosea 1:4", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did God tell Hosea to name his first son?" },
-    "answers": { "en": ["Jezreel", "Lo-Ammi", "Immanuel", "Shear-jashub"] }, "correctIndex": 0 },
-  { "id": "q_b24_022", "reference": "Hosea 11:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Hosea 11: 'When Israel was a child, I loved him, and called my son out of ___.'" },
-    "answers": { "en": ["Babylon", "Egypt", "Ur", "Assyria"] }, "correctIndex": 1 },
-  { "id": "q_b24_023", "reference": "Joel 3:10", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Joel 3, what are the nations told to beat their plowshares into?" },
-    "answers": { "en": ["Shields", "Pruning hooks", "Swords", "Chariots"] }, "correctIndex": 2 },
-  { "id": "q_b24_024", "reference": "Amos 7:14", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Amos said he was not a prophet but a herdsman and a farmer of what?" },
-    "answers": { "en": ["Olives", "Wheat", "Grapes", "Sycamore figs"] }, "correctIndex": 3 },
-  { "id": "q_b24_025", "reference": "Amos 7:7-8", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What did the Lord hold in his hand beside a wall in Amos' vision?" },
-    "answers": { "en": ["A plumb line", "A sword", "A measuring reed", "A scroll"] }, "correctIndex": 0 },
-  { "id": "q_b24_026", "reference": "Amos 8:11", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Amos foretold a famine, not of bread, but of what?" },
-    "answers": { "en": ["Rain", "Hearing Yahweh's words", "Kings and leaders", "Joy and gladness"] }, "correctIndex": 1 },
-  { "id": "q_b24_027", "reference": "Jonah 4:8", "difficulty": 3, "category": "prophets",
-    "text": { "en": "What kind of wind did God prepare that made Jonah faint in the sun?" },
-    "answers": { "en": ["A cold north wind", "A whirlwind", "A sultry east wind", "A west wind"] }, "correctIndex": 2 },
-  { "id": "q_b24_028", "reference": "Jonah 3:3", "difficulty": 3, "category": "prophets",
-    "text": { "en": "How big was Nineveh according to the book of Jonah?" },
-    "answers": { "en": ["One day's walk around", "Forty furlongs wide", "Seven gates wide", "Three days' journey across"] }, "correctIndex": 3 },
-  { "id": "q_b24_029", "reference": "Jonah 3:6", "difficulty": 3, "category": "prophets",
-    "text": { "en": "When the king of Nineveh heard Jonah's message, what did he take off?" },
-    "answers": { "en": ["His royal robe", "His crown", "His signet ring", "His sandals"] }, "correctIndex": 0 },
-  { "id": "q_b24_030", "reference": "Micah 4:4", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Micah 4, everyone will sit under his vine and under his what?" },
-    "answers": { "en": ["Olive tree", "Fig tree", "Own roof", "Palm tree"] }, "correctIndex": 1 },
-  { "id": "q_b24_031", "reference": "Micah 7:19", "difficulty": 3, "category": "prophets",
-    "text": { "en": "According to Micah 7, where will God cast all their sins?" },
-    "answers": { "en": ["Into the wilderness", "Under the mountains", "Into the depths of the sea", "Into the fire"] }, "correctIndex": 2 },
-  { "id": "q_b24_032", "reference": "Nahum 1:7", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Nahum 1: 'Yahweh is good, a ___ in the day of trouble.'" },
-    "answers": { "en": ["Shepherd", "Light", "Shield", "Stronghold"] }, "correctIndex": 3 },
-  { "id": "q_b24_033", "reference": "Habakkuk 2:2", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Where did God tell Habakkuk to write the vision plainly, so a runner may read it?" },
-    "answers": { "en": ["On tablets", "On a scroll", "On the city wall", "On his doorposts"] }, "correctIndex": 0 },
-  { "id": "q_b24_034", "reference": "Habakkuk 3:19", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Habakkuk says Yahweh makes his feet like whose feet?" },
-    "answers": { "en": ["A lion's", "Deer's", "An eagle's", "A runner's"] }, "correctIndex": 1 },
-  { "id": "q_b24_035", "reference": "Zephaniah 3:17", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Zephaniah 3, how does God rejoice over his people?" },
-    "answers": { "en": ["With dancing", "With trumpets", "With singing", "With a feast"] }, "correctIndex": 2 },
-  { "id": "q_b24_036", "reference": "Haggai 1:1", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Who was governor of Judah when Haggai prophesied?" },
-    "answers": { "en": ["Nehemiah", "Ezra", "Gedaliah", "Zerubbabel"] }, "correctIndex": 3 },
-  { "id": "q_b24_037", "reference": "Zechariah 14:4", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Zechariah 14, which mountain will be split in two from east to west?" },
-    "answers": { "en": ["The Mount of Olives", "Mount Zion", "Mount Sinai", "Mount Carmel"] }, "correctIndex": 0 },
-  { "id": "q_b24_038", "reference": "Malachi 1:2-3", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Malachi 1, God says 'I loved Jacob' but hated which brother?" },
-    "answers": { "en": ["Ishmael", "Esau", "Reuben", "Laban"] }, "correctIndex": 1 },
-  { "id": "q_b24_039", "reference": "Malachi 4:6", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Malachi 4: he will turn the hearts of the fathers to whom?" },
-    "answers": { "en": ["God", "The priests", "The children", "The nations"] }, "correctIndex": 2 },
-  { "id": "q_b24_040", "reference": "Ezekiel 14:14", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Ezekiel 14 names three righteous men: Noah, Daniel, and who?" },
-    "answers": { "en": ["Abraham", "Moses", "Elijah", "Job"] }, "correctIndex": 3 },
-  { "id": "q_b24_041", "reference": "Ezekiel 38:2", "difficulty": 3, "category": "prophets",
-    "text": { "en": "In Ezekiel 38, Gog comes from the land of what?" },
-    "answers": { "en": ["Magog", "Edom", "Moab", "Cush"] }, "correctIndex": 0 },
-  { "id": "q_b24_042", "reference": "Habakkuk 2:20", "difficulty": 3, "category": "prophets",
-    "text": { "en": "Habakkuk 2: 'Yahweh is in his holy temple. Let all the earth be ___ before him!'" },
-    "answers": { "en": ["Glad", "Silent", "Afraid", "Bowed"] }, "correctIndex": 1 }
+  {
+    "id": "q_b24_001",
+    "reference": "Ezekiel 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "By which river was Ezekiel among the captives when the heavens opened?"
+    },
+    "answers": {
+      "en": [
+        "The Chebar",
+        "The Jordan",
+        "The Euphrates",
+        "The Nile"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_002",
+    "reference": "Ezekiel 1:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel's living creatures had faces of a man, a lion, an ox, and what?"
+    },
+    "answers": {
+      "en": [
+        "A bear",
+        "An eagle",
+        "A serpent",
+        "A lamb"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_003",
+    "reference": "Ezekiel 1:16",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "How did the wheels beside the living creatures in Ezekiel 1 appear?"
+    },
+    "answers": {
+      "en": [
+        "Made of pure gold",
+        "Covered in feathers",
+        "Like a wheel within a wheel",
+        "Square like a box"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_004",
+    "reference": "Jeremiah 13:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What linen item did God tell Jeremiah to buy and wear as a sign?"
+    },
+    "answers": {
+      "en": [
+        "A robe",
+        "A turban",
+        "A sash for his head",
+        "A belt"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_005",
+    "reference": "Jeremiah 35:5-6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did the Rechabites refuse when Jeremiah set it before them?"
+    },
+    "answers": {
+      "en": [
+        "Wine",
+        "Meat",
+        "Bread",
+        "Gold"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_006",
+    "reference": "Jeremiah 38:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Which Ethiopian eunuch heard that Jeremiah had been put in the dungeon?"
+    },
+    "answers": {
+      "en": [
+        "Baruch",
+        "Ebedmelech",
+        "Pashhur",
+        "Gedaliah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_007",
+    "reference": "Jeremiah 39:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did the king of Babylon do to King Zedekiah before taking him to Babylon?"
+    },
+    "answers": {
+      "en": [
+        "Made him a governor",
+        "Shaved his head",
+        "Put out his eyes",
+        "Gave him a new name"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_008",
+    "reference": "Jeremiah 1:11",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What branch did Jeremiah see when God asked, 'Jeremiah, what do you see?'"
+    },
+    "answers": {
+      "en": [
+        "An olive branch",
+        "A fig branch",
+        "A palm branch",
+        "An almond branch"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_009",
+    "reference": "Jeremiah 24:1-2",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did Jeremiah see in two baskets before the temple, one good and one bad?"
+    },
+    "answers": {
+      "en": [
+        "Figs",
+        "Grapes",
+        "Olives",
+        "Pomegranates"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_010",
+    "reference": "Isaiah 37:36",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How many Assyrians did Yahweh's angel strike in one night in Isaiah 37?"
+    },
+    "answers": {
+      "en": [
+        "One hundred thousand",
+        "One hundred and eighty-five thousand",
+        "Eighty-five thousand",
+        "Fifty thousand"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_011",
+    "reference": "Isaiah 38:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How many steps did the shadow go back on the sundial as a sign to Hezekiah?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Seven",
+        "Ten",
+        "Fifteen"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_012",
+    "reference": "Isaiah 39:1-2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Envoys from which king's land were shown all of Hezekiah's treasures?"
+    },
+    "answers": {
+      "en": [
+        "Egypt",
+        "Assyria",
+        "Tyre",
+        "Babylon"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_013",
+    "reference": "Isaiah 37:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Hezekiah do with the threatening letter from the Assyrian messengers?"
+    },
+    "answers": {
+      "en": [
+        "Spread it before Yahweh",
+        "Burned it",
+        "Sent it to Egypt",
+        "Read it to the people"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_014",
+    "reference": "Isaiah 38:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did Isaiah first tell the sick Hezekiah to do, because he would die?"
+    },
+    "answers": {
+      "en": [
+        "Go to the temple",
+        "Set your house in order",
+        "Call for your sons",
+        "Fast seven days"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_015",
+    "reference": "Isaiah 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah was the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Hilkiah",
+        "Buzi",
+        "Amoz",
+        "Beeri"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_016",
+    "reference": "Isaiah 44:28",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Which king does God call 'my shepherd' in Isaiah 44?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Hezekiah",
+        "Darius",
+        "Cyrus"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_017",
+    "reference": "Isaiah 5:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah's song of the vineyard, what did the carefully planted vineyard yield?"
+    },
+    "answers": {
+      "en": [
+        "Wild grapes",
+        "Thorns only",
+        "Sweet figs",
+        "Nothing at all"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_018",
+    "reference": "Isaiah 49:16",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Isaiah 49: 'I have engraved you on the ___ of my hands.'"
+    },
+    "answers": {
+      "en": [
+        "Backs",
+        "Palms",
+        "Fingers",
+        "Rings"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_019",
+    "reference": "Isaiah 65:25",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Isaiah 65, what will the lion eat like the ox?"
+    },
+    "answers": {
+      "en": [
+        "Grass",
+        "Bread",
+        "Straw",
+        "Honey"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_020",
+    "reference": "Lamentations 1:1",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Lamentations 1 says the once-crowded city has become like what?"
+    },
+    "answers": {
+      "en": [
+        "A ruined tower",
+        "A lost sheep",
+        "A broken pot",
+        "A widow"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_021",
+    "reference": "Hosea 1:4",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What did God tell Hosea to name his first son?"
+    },
+    "answers": {
+      "en": [
+        "Jezreel",
+        "Lo-Ammi",
+        "Immanuel",
+        "Shear-jashub"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_022",
+    "reference": "Hosea 11:1",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Hosea 11: 'When Israel was a child, I loved him, and called my son out of ___.'"
+    },
+    "answers": {
+      "en": [
+        "Babylon",
+        "Egypt",
+        "Ur",
+        "Assyria"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_023",
+    "reference": "Joel 3:10",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Joel 3, what are the nations told to beat their plowshares into?"
+    },
+    "answers": {
+      "en": [
+        "Shields",
+        "Pruning hooks",
+        "Swords",
+        "Chariots"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_024",
+    "reference": "Amos 7:14",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Amos said he was not a prophet but a herdsman and a farmer of what?"
+    },
+    "answers": {
+      "en": [
+        "Olives",
+        "Wheat",
+        "Grapes",
+        "Sycamore figs"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_025",
+    "reference": "Amos 7:7-8",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "What did the Lord hold in his hand beside a wall in Amos' vision?"
+    },
+    "answers": {
+      "en": [
+        "A plumb line",
+        "A sword",
+        "A measuring reed",
+        "A scroll"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_026",
+    "reference": "Amos 8:11",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Amos foretold a famine, not of bread, but of what?"
+    },
+    "answers": {
+      "en": [
+        "Rain",
+        "Hearing Yahweh's words",
+        "Kings and leaders",
+        "Joy and gladness"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_027",
+    "reference": "Jonah 4:8",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "What kind of wind did God prepare that made Jonah faint in the sun?"
+    },
+    "answers": {
+      "en": [
+        "A cold north wind",
+        "A whirlwind",
+        "A sultry east wind",
+        "A west wind"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_028",
+    "reference": "Jonah 3:3",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "How big was Nineveh according to the book of Jonah?"
+    },
+    "answers": {
+      "en": [
+        "One day's walk around",
+        "Forty furlongs wide",
+        "Seven gates wide",
+        "Three days' journey across"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_029",
+    "reference": "Jonah 3:6",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "When the king of Nineveh heard Jonah's message, what did he take off?"
+    },
+    "answers": {
+      "en": [
+        "His royal robe",
+        "His crown",
+        "His signet ring",
+        "His sandals"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_030",
+    "reference": "Micah 4:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Micah 4, everyone will sit under his vine and under his what?"
+    },
+    "answers": {
+      "en": [
+        "Olive tree",
+        "Fig tree",
+        "Own roof",
+        "Palm tree"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_031",
+    "reference": "Micah 7:19",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "According to Micah 7, where will God cast all their sins?"
+    },
+    "answers": {
+      "en": [
+        "Into the wilderness",
+        "Under the mountains",
+        "Into the depths of the sea",
+        "Into the fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_032",
+    "reference": "Nahum 1:7",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Nahum 1: 'Yahweh is good, a ___ in the day of trouble.'"
+    },
+    "answers": {
+      "en": [
+        "Shepherd",
+        "Light",
+        "Shield",
+        "Stronghold"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_033",
+    "reference": "Habakkuk 2:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Where did God tell Habakkuk to write the vision plainly, so a runner may read it?"
+    },
+    "answers": {
+      "en": [
+        "On tablets",
+        "On a scroll",
+        "On the city wall",
+        "On his doorposts"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_034",
+    "reference": "Habakkuk 3:19",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk says Yahweh makes his feet like whose feet?"
+    },
+    "answers": {
+      "en": [
+        "A lion's",
+        "Deer's",
+        "An eagle's",
+        "A runner's"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_035",
+    "reference": "Zephaniah 3:17",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Zephaniah 3, how does God rejoice over his people?"
+    },
+    "answers": {
+      "en": [
+        "With dancing",
+        "With trumpets",
+        "With singing",
+        "With a feast"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_036",
+    "reference": "Haggai 1:1",
+    "difficulty": 4,
+    "category": "prophets",
+    "text": {
+      "en": "Who was governor of Judah when Haggai prophesied?"
+    },
+    "answers": {
+      "en": [
+        "Nehemiah",
+        "Ezra",
+        "Gedaliah",
+        "Zerubbabel"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_037",
+    "reference": "Zechariah 14:4",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Zechariah 14, which mountain will be split in two from east to west?"
+    },
+    "answers": {
+      "en": [
+        "The Mount of Olives",
+        "Mount Zion",
+        "Mount Sinai",
+        "Mount Carmel"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_038",
+    "reference": "Malachi 1:2-3",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "In Malachi 1, God says 'I loved Jacob' but hated which brother?"
+    },
+    "answers": {
+      "en": [
+        "Ishmael",
+        "Esau",
+        "Reuben",
+        "Laban"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b24_039",
+    "reference": "Malachi 4:6",
+    "difficulty": 2,
+    "category": "prophets",
+    "text": {
+      "en": "Malachi 4: he will turn the hearts of the fathers to whom?"
+    },
+    "answers": {
+      "en": [
+        "God",
+        "The priests",
+        "The children",
+        "The nations"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b24_040",
+    "reference": "Ezekiel 14:14",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Ezekiel 14 names three righteous men: Noah, Daniel, and who?"
+    },
+    "answers": {
+      "en": [
+        "Abraham",
+        "Moses",
+        "Elijah",
+        "Job"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b24_041",
+    "reference": "Ezekiel 38:2",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "In Ezekiel 38, Gog comes from the land of what?"
+    },
+    "answers": {
+      "en": [
+        "Magog",
+        "Edom",
+        "Moab",
+        "Cush"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b24_042",
+    "reference": "Habakkuk 2:20",
+    "difficulty": 3,
+    "category": "prophets",
+    "text": {
+      "en": "Habakkuk 2: 'Yahweh is in his holy temple. Let all the earth be ___ before him!'"
+    },
+    "answers": {
+      "en": [
+        "Glad",
+        "Silent",
+        "Afraid",
+        "Bowed"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

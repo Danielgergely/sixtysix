@@ -1,122 +1,722 @@
 [
-  { "id": "q_b03_001", "reference": "Psalms 23:1", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "Psalm 23 begins: 'The LORD is my…'?" },
-    "answers": { "en": ["Rock", "Light", "Shepherd", "Fortress"] }, "correctIndex": 2 },
-  { "id": "q_b03_002", "reference": "Proverbs 1:7", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "'The fear of the LORD is the beginning of…'?" },
-    "answers": { "en": ["Wisdom's end", "Knowledge", "Riches", "Peace"] }, "correctIndex": 1 },
-  { "id": "q_b03_003", "reference": "Job 1:22", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "Who lost everything in one day yet did not sin or blame God?" },
-    "answers": { "en": ["Job", "Solomon", "Asaph", "Agur"] }, "correctIndex": 0 },
-  { "id": "q_b03_004", "reference": "Proverbs 15:1", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "What kind of answer turns away wrath?" },
-    "answers": { "en": ["A wise answer", "A quick answer", "A gentle answer", "A loud answer"] }, "correctIndex": 2 },
-  { "id": "q_b03_005", "reference": "Ecclesiastes 3:1", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "'For everything there is a ___, and a time for every purpose.'" },
-    "answers": { "en": ["Reason", "Season", "Plan", "Place"] }, "correctIndex": 1 },
-  { "id": "q_b03_006", "reference": "Proverbs 3:5", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "'Trust in the LORD with all your ___.'" },
-    "answers": { "en": ["Mind", "Strength", "Soul", "Heart"] }, "correctIndex": 3 },
-  { "id": "q_b03_007", "reference": "Ecclesiastes 1:2", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "'Vanity of vanities, all is ___,' says the Preacher." },
-    "answers": { "en": ["Vanity", "Fleeting", "Dust", "Sorrow"] }, "correctIndex": 0 },
-  { "id": "q_b03_008", "reference": "Psalms 119:105", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "'Your word is a lamp to my ___, and a light for my path.'" },
-    "answers": { "en": ["Eyes", "Feet", "Heart", "Way"] }, "correctIndex": 1 },
-  { "id": "q_b03_009", "reference": "Proverbs 1:1", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "The book of Proverbs opens with the proverbs of which king?" },
-    "answers": { "en": ["David", "Hezekiah", "Solomon", "Lemuel"] }, "correctIndex": 2 },
-  { "id": "q_b03_010", "reference": "Proverbs 6:6", "difficulty": 1, "category": "wisdom",
-    "text": { "en": "Which creature should the sluggard watch and be wise?" },
-    "answers": { "en": ["The bee", "The ant", "The spider", "The locust"] }, "correctIndex": 1 },
-  { "id": "q_b03_011", "reference": "Job 2:11", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "How many friends came to comfort Job?" },
-    "answers": { "en": ["Two", "Three", "Four", "Seven"] }, "correctIndex": 1 },
-  { "id": "q_b03_012", "reference": "Job 2:11", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "Job's friends were Eliphaz, Bildad, and…?" },
-    "answers": { "en": ["Elihu", "Zophar", "Barachel", "Teman"] }, "correctIndex": 1 },
-  { "id": "q_b03_013", "reference": "Job 38:1", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "Out of what did the LORD answer Job?" },
-    "answers": { "en": ["A burning bush", "A still small voice", "The whirlwind", "A cloud of fire"] }, "correctIndex": 2 },
-  { "id": "q_b03_014", "reference": "Proverbs 26:11", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "'As a dog returns to his vomit, so is a fool who ___.'" },
-    "answers": { "en": ["Repeats his folly", "Hates knowledge", "Loves his sin", "Trusts himself"] }, "correctIndex": 0 },
-  { "id": "q_b03_015", "reference": "Proverbs 15:17", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "'Better is a dinner of herbs where love is, than a fattened calf with ___.'" },
-    "answers": { "en": ["Strife", "Hatred", "Anger", "Envy"] }, "correctIndex": 1 },
-  { "id": "q_b03_016", "reference": "Proverbs 31:10", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "A worthy woman's price is far above what?" },
-    "answers": { "en": ["Gold", "Pearls", "Rubies", "Silver"] }, "correctIndex": 2 },
-  { "id": "q_b03_017", "reference": "Proverbs 16:18", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "'Pride goes before ___, and an arrogant spirit before a fall.'" },
-    "answers": { "en": ["Shame", "Ruin", "Destruction", "Judgment"] }, "correctIndex": 2 },
-  { "id": "q_b03_018", "reference": "Psalms 137:2", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "By the rivers of Babylon, what did the exiles hang on the willows?" },
-    "answers": { "en": ["Their harps", "Their garments", "Their crowns", "Their swords"] }, "correctIndex": 0 },
-  { "id": "q_b03_019", "reference": "Psalms 8:2", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "From whose lips has God established strength, according to Psalm 8?" },
-    "answers": { "en": ["Kings and princes", "Babes and infants", "Priests and prophets", "The righteous"] }, "correctIndex": 1 },
-  { "id": "q_b03_020", "reference": "Proverbs 27:17", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "'___ sharpens ___; so a man sharpens his friend's countenance.'" },
-    "answers": { "en": ["Iron … iron", "Stone … stone", "Steel … steel", "Flint … flint"] }, "correctIndex": 0 },
-  { "id": "q_b03_021", "reference": "Psalms 1:3", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "Psalm 1 compares the blessed man to what?" },
-    "answers": { "en": ["A strong tower", "A tree planted by streams", "An eagle", "A cedar of Lebanon"] }, "correctIndex": 1 },
-  { "id": "q_b03_022", "reference": "Psalms 19:1", "difficulty": 2, "category": "wisdom",
-    "text": { "en": "'The heavens declare the ___ of God.'" },
-    "answers": { "en": ["Power", "Wonder", "Glory", "Majesty"] }, "correctIndex": 2 },
-  { "id": "q_b03_023", "reference": "Job 1:2", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "How many children did Job have before his trials?" },
-    "answers": { "en": ["Seven sons and three daughters", "Three sons and seven daughters", "Five sons and five daughters", "Ten sons"] }, "correctIndex": 0 },
-  { "id": "q_b03_024", "reference": "Job 42:10", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "What did the LORD give Job after he prayed for his friends?" },
-    "answers": { "en": ["A new house", "Twice as much as before", "A long life only", "A kingdom"] }, "correctIndex": 1 },
-  { "id": "q_b03_025", "reference": "Psalms 51:10", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "'Create in me a clean ___, O God.'" },
-    "answers": { "en": ["Spirit", "Mind", "Heart", "Soul"] }, "correctIndex": 2 },
-  { "id": "q_b03_026", "reference": "Psalms 127:1", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "'Unless the LORD builds the house, they labor in ___ who build it.'" },
-    "answers": { "en": ["Vain", "Sorrow", "Darkness", "Fear"] }, "correctIndex": 0 },
-  { "id": "q_b03_027", "reference": "Ecclesiastes 1:12-14", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "What does the author of Ecclesiastes call himself?" },
-    "answers": { "en": ["The Teacher of Israel", "The Preacher", "The Wise One", "The Servant"] }, "correctIndex": 1 },
-  { "id": "q_b03_028", "reference": "Song of Songs 2:1", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "'I am a rose of ___, a lily of the valleys.'" },
-    "answers": { "en": ["Lebanon", "Gilead", "Sharon", "Carmel"] }, "correctIndex": 2 },
-  { "id": "q_b03_029", "reference": "Proverbs 22:6", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "'Train up a child in the way he should go, and when he is old he will not ___.'" },
-    "answers": { "en": ["Forget it", "Depart from it", "Be ashamed", "Stumble"] }, "correctIndex": 1 },
-  { "id": "q_b03_030", "reference": "Proverbs 9:1", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "Wisdom has built her house with how many pillars?" },
-    "answers": { "en": ["Three", "Five", "Seven", "Twelve"] }, "correctIndex": 2 },
-  { "id": "q_b03_031", "reference": "Psalms 121:2", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "Psalm 121: 'My help comes from the LORD, who made ___.'" },
-    "answers": { "en": ["Heaven and earth", "The mountains", "All flesh", "The seas"] }, "correctIndex": 0 },
-  { "id": "q_b03_032", "reference": "Proverbs 11:30", "difficulty": 3, "category": "wisdom",
-    "text": { "en": "'The fruit of the righteous is a ___ of life.'" },
-    "answers": { "en": ["River", "Crown", "Tree", "Well"] }, "correctIndex": 2 },
-  { "id": "q_b03_033", "reference": "Job 2:9", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "What did Job's wife tell him to do?" },
-    "answers": { "en": ["Flee the land", "Curse God and die", "Repent in ashes", "Sacrifice an offering"] }, "correctIndex": 1 },
-  { "id": "q_b03_034", "reference": "Job 40:15-17", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "Which creature in Job moves his tail like a cedar?" },
-    "answers": { "en": ["Leviathan", "Behemoth", "The wild ox", "The dragon"] }, "correctIndex": 1 },
-  { "id": "q_b03_035", "reference": "Job 32:4-6", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "Who was the youngest of those who spoke to Job, who waited to speak last?" },
-    "answers": { "en": ["Zophar", "Eliphaz", "Elihu", "Bildad"] }, "correctIndex": 2 },
-  { "id": "q_b03_036", "reference": "Proverbs 31:30", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "'Charm is deceitful, and beauty is ___.'" },
-    "answers": { "en": ["Fleeting", "Vain", "A snare", "Passing"] }, "correctIndex": 1 },
-  { "id": "q_b03_037", "reference": "Ecclesiastes 4:12", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "'A threefold cord is not quickly ___.'" },
-    "answers": { "en": ["Broken", "Untied", "Cut", "Frayed"] }, "correctIndex": 0 },
-  { "id": "q_b03_038", "reference": "Song of Songs 8:6", "difficulty": 4, "category": "wisdom",
-    "text": { "en": "'Set me as a seal on your heart, for love is strong as ___.'" },
-    "answers": { "en": ["Iron", "The sea", "Death", "Fire"] }, "correctIndex": 2 },
-  { "id": "q_b03_039", "reference": "Job 42:16", "difficulty": 5, "category": "wisdom",
-    "text": { "en": "How many years did Job live after his restoration?" },
-    "answers": { "en": ["70", "100", "140", "200"] }, "correctIndex": 2 },
-  { "id": "q_b03_040", "reference": "Proverbs 31:1", "difficulty": 5, "category": "wisdom",
-    "text": { "en": "Which king's words, taught by his mother, are recorded in Proverbs 31?" },
-    "answers": { "en": ["King Agur", "King Lemuel", "King Hezekiah", "King Jareb"] }, "correctIndex": 1 }
+  {
+    "id": "q_b03_001",
+    "reference": "Psalms 23:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 23 begins: 'The LORD is my…'?"
+    },
+    "answers": {
+      "en": [
+        "Rock",
+        "Light",
+        "Shepherd",
+        "Fortress"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_002",
+    "reference": "Proverbs 1:7",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'The fear of the LORD is the beginning of…'?"
+    },
+    "answers": {
+      "en": [
+        "Wisdom's end",
+        "Knowledge",
+        "Riches",
+        "Peace"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_003",
+    "reference": "Job 1:22",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "Who lost everything in one day yet did not sin or blame God?"
+    },
+    "answers": {
+      "en": [
+        "Job",
+        "Solomon",
+        "Asaph",
+        "Agur"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_004",
+    "reference": "Proverbs 15:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "What kind of answer turns away wrath?"
+    },
+    "answers": {
+      "en": [
+        "A wise answer",
+        "A quick answer",
+        "A gentle answer",
+        "A loud answer"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_005",
+    "reference": "Ecclesiastes 3:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'For everything there is a ___, and a time for every purpose.'"
+    },
+    "answers": {
+      "en": [
+        "Reason",
+        "Season",
+        "Plan",
+        "Place"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_006",
+    "reference": "Proverbs 3:5",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Trust in the LORD with all your ___.'"
+    },
+    "answers": {
+      "en": [
+        "Mind",
+        "Strength",
+        "Soul",
+        "Heart"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b03_007",
+    "reference": "Ecclesiastes 1:2",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Vanity of vanities, all is ___,' says the Preacher."
+    },
+    "answers": {
+      "en": [
+        "Vanity",
+        "Fleeting",
+        "Dust",
+        "Sorrow"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_008",
+    "reference": "Psalms 119:105",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "'Your word is a lamp to my ___, and a light for my path.'"
+    },
+    "answers": {
+      "en": [
+        "Eyes",
+        "Feet",
+        "Heart",
+        "Way"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_009",
+    "reference": "Proverbs 1:1",
+    "difficulty": 1,
+    "category": "wisdom",
+    "text": {
+      "en": "The book of Proverbs opens with the proverbs of which king?"
+    },
+    "answers": {
+      "en": [
+        "David",
+        "Hezekiah",
+        "Solomon",
+        "Lemuel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_010",
+    "reference": "Proverbs 6:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Which creature should the sluggard watch and be wise?"
+    },
+    "answers": {
+      "en": [
+        "The bee",
+        "The ant",
+        "The spider",
+        "The locust"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_011",
+    "reference": "Job 2:11",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "How many friends came to comfort Job?"
+    },
+    "answers": {
+      "en": [
+        "Two",
+        "Three",
+        "Four",
+        "Seven"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_012",
+    "reference": "Job 2:11",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Job's friends were Eliphaz, Bildad, and…?"
+    },
+    "answers": {
+      "en": [
+        "Elihu",
+        "Zophar",
+        "Barachel",
+        "Teman"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_013",
+    "reference": "Job 38:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "Out of what did the LORD answer Job?"
+    },
+    "answers": {
+      "en": [
+        "A burning bush",
+        "A still small voice",
+        "The whirlwind",
+        "A cloud of fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_014",
+    "reference": "Proverbs 26:11",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'As a dog returns to his vomit, so is a fool who ___.'"
+    },
+    "answers": {
+      "en": [
+        "Repeats his folly",
+        "Hates knowledge",
+        "Loves his sin",
+        "Trusts himself"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_015",
+    "reference": "Proverbs 15:17",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'Better is a dinner of herbs where love is, than a fattened calf with ___.'"
+    },
+    "answers": {
+      "en": [
+        "Strife",
+        "Hatred",
+        "Anger",
+        "Envy"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_016",
+    "reference": "Proverbs 31:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "A worthy woman's price is far above what?"
+    },
+    "answers": {
+      "en": [
+        "Gold",
+        "Ivory",
+        "Rubies",
+        "Silver"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_017",
+    "reference": "Proverbs 16:18",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Pride goes before ___, and an arrogant spirit before a fall.'"
+    },
+    "answers": {
+      "en": [
+        "Shame",
+        "Sorrow",
+        "Destruction",
+        "Judgment"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_018",
+    "reference": "Psalms 137:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "By the rivers of Babylon, what did the exiles hang on the willows?"
+    },
+    "answers": {
+      "en": [
+        "Their harps",
+        "Their garments",
+        "Their crowns",
+        "Their swords"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_019",
+    "reference": "Psalms 8:2",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "From whose lips has God established strength, according to Psalm 8?"
+    },
+    "answers": {
+      "en": [
+        "Kings and princes",
+        "Babes and infants",
+        "Priests and prophets",
+        "The righteous"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_020",
+    "reference": "Proverbs 27:17",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'___ sharpens ___; so a man sharpens his friend's countenance.'"
+    },
+    "answers": {
+      "en": [
+        "Iron … iron",
+        "Stone … stone",
+        "Steel … steel",
+        "Flint … flint"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_021",
+    "reference": "Psalms 1:3",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 1 compares the blessed man to what?"
+    },
+    "answers": {
+      "en": [
+        "A strong tower",
+        "A tree planted by streams",
+        "An eagle",
+        "A cedar of Lebanon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_022",
+    "reference": "Psalms 19:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'The heavens declare the ___ of God.'"
+    },
+    "answers": {
+      "en": [
+        "Power",
+        "Wonder",
+        "Glory",
+        "Majesty"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_023",
+    "reference": "Job 1:2",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "How many children did Job have before his trials?"
+    },
+    "answers": {
+      "en": [
+        "Seven sons and three daughters",
+        "Three sons and seven daughters",
+        "Five sons and five daughters",
+        "Ten sons"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_024",
+    "reference": "Job 42:10",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What did the LORD give Job after he prayed for his friends?"
+    },
+    "answers": {
+      "en": [
+        "A new house",
+        "Twice as much as before",
+        "A long life only",
+        "A kingdom"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_025",
+    "reference": "Psalms 51:10",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Create in me a clean ___, O God.'"
+    },
+    "answers": {
+      "en": [
+        "Spirit",
+        "Mind",
+        "Heart",
+        "Soul"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_026",
+    "reference": "Psalms 127:1",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Unless the LORD builds the house, they labor in ___ who build it.'"
+    },
+    "answers": {
+      "en": [
+        "Vain",
+        "Sorrow",
+        "Darkness",
+        "Fear"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_027",
+    "reference": "Ecclesiastes 1:12-14",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What does the author of Ecclesiastes call himself?"
+    },
+    "answers": {
+      "en": [
+        "The Scribe of Israel",
+        "The Preacher",
+        "The Wise One",
+        "The Servant"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_028",
+    "reference": "Song of Songs 2:1",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'I am a rose of ___, a lily of the valleys.'"
+    },
+    "answers": {
+      "en": [
+        "Lebanon",
+        "Gilead",
+        "Sharon",
+        "Carmel"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_029",
+    "reference": "Proverbs 22:6",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "'Train up a child in the way he should go, and when he is old he will not ___.'"
+    },
+    "answers": {
+      "en": [
+        "Forget it",
+        "Depart from it",
+        "Be ashamed",
+        "Stumble"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_030",
+    "reference": "Proverbs 9:1",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Wisdom has built her house with how many pillars?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Five",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_031",
+    "reference": "Psalms 121:2",
+    "difficulty": 2,
+    "category": "wisdom",
+    "text": {
+      "en": "Psalm 121: 'My help comes from the LORD, who made ___.'"
+    },
+    "answers": {
+      "en": [
+        "Heaven and earth",
+        "The mountains",
+        "All flesh",
+        "The seas"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_032",
+    "reference": "Proverbs 11:30",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'The fruit of the righteous is a ___ of life.'"
+    },
+    "answers": {
+      "en": [
+        "River",
+        "Crown",
+        "Tree",
+        "Well"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_033",
+    "reference": "Job 2:9",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "What did Job's wife tell him to do?"
+    },
+    "answers": {
+      "en": [
+        "Flee the land",
+        "Curse God and die",
+        "Repent in ashes",
+        "Sacrifice an offering"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_034",
+    "reference": "Job 40:15-17",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Which creature in Job moves his tail like a cedar?"
+    },
+    "answers": {
+      "en": [
+        "Leviathan",
+        "Behemoth",
+        "The wild ox",
+        "The dragon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_035",
+    "reference": "Job 32:4-6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Who was the youngest of those who spoke to Job, who waited to speak last?"
+    },
+    "answers": {
+      "en": [
+        "Zophar",
+        "Eliphaz",
+        "Elihu",
+        "Bildad"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_036",
+    "reference": "Proverbs 31:30",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'Charm is deceitful, and beauty is ___.'"
+    },
+    "answers": {
+      "en": [
+        "A crown",
+        "Vain",
+        "A snare",
+        "A treasure"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b03_037",
+    "reference": "Ecclesiastes 4:12",
+    "difficulty": 3,
+    "category": "wisdom",
+    "text": {
+      "en": "'A threefold cord is not quickly ___.'"
+    },
+    "answers": {
+      "en": [
+        "Broken",
+        "Untied",
+        "Cut",
+        "Frayed"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b03_038",
+    "reference": "Song of Songs 8:6",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "'Set me as a seal on your heart, for love is strong as ___.'"
+    },
+    "answers": {
+      "en": [
+        "Iron",
+        "The sea",
+        "Death",
+        "Fire"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_039",
+    "reference": "Job 42:16",
+    "difficulty": 5,
+    "category": "wisdom",
+    "text": {
+      "en": "How many years did Job live after his restoration?"
+    },
+    "answers": {
+      "en": [
+        "70",
+        "100",
+        "140",
+        "200"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b03_040",
+    "reference": "Proverbs 31:1",
+    "difficulty": 4,
+    "category": "wisdom",
+    "text": {
+      "en": "Which king's words, taught by his mother, are recorded in Proverbs 31?"
+    },
+    "answers": {
+      "en": [
+        "King Agur",
+        "King Lemuel",
+        "King Hezekiah",
+        "King Jareb"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]

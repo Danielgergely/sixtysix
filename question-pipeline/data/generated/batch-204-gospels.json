@@ -1,83 +1,1460 @@
 [
-  {"id":"q_b204_001","reference":"John 1:6","difficulty":1,"category":"gospels","text":{"en":"John 1 says a man was sent from God. What was his name?"},"answers":{"en":["Elijah","John","Andrew","Simon"]},"correctIndex":1},
-  {"id":"q_b204_002","reference":"John 1:14","difficulty":1,"category":"gospels","text":{"en":"\"The Word became ___, and lived among us.\""},"answers":{"en":["light","king","flesh","bread"]},"correctIndex":2},
-  {"id":"q_b204_003","reference":"John 1:17","difficulty":3,"category":"gospels","text":{"en":"The law was given through Moses; grace and truth came through whom?"},"answers":{"en":["John the Baptist","Elijah","Abraham","Jesus Christ"]},"correctIndex":3},
-  {"id":"q_b204_004","reference":"John 1:21","difficulty":4,"category":"gospels","text":{"en":"Asked \"Are you Elijah?\", what did John the Baptist answer?"},"answers":{"en":["I am not","I am","Ask the prophets","Only God knows"]},"correctIndex":0},
-  {"id":"q_b204_005","reference":"John 1:23","difficulty":2,"category":"gospels","text":{"en":"John the Baptist called himself the voice of one crying where?"},"answers":{"en":["In the temple","On the mountain","By the sea","In the wilderness"]},"correctIndex":3},
-  {"id":"q_b204_006","reference":"John 1:27","difficulty":3,"category":"gospels","text":{"en":"John said he was not worthy to loosen what of the one coming after him?"},"answers":{"en":["His sandal strap","His belt","His cloak","His burden"]},"correctIndex":0},
-  {"id":"q_b204_007","reference":"John 1:38","difficulty":4,"category":"gospels","text":{"en":"The first two disciples asked Jesus, \"Rabbi, where are you ___?\""},"answers":{"en":["going","from","staying","teaching"]},"correctIndex":2},
-  {"id":"q_b204_008","reference":"John 1:39","difficulty":5,"category":"gospels","text":{"en":"About what hour was it when the two disciples went to see where Jesus stayed?"},"answers":{"en":["The third hour","The tenth hour","The sixth hour","The first hour"]},"correctIndex":1},
-  {"id":"q_b204_009","reference":"John 1:42","difficulty":3,"category":"gospels","text":{"en":"In John 1, Jesus said Simon would be called Cephas, which means what?"},"answers":{"en":["Thunder","Fisherman","Peter","Beloved"]},"correctIndex":2},
-  {"id":"q_b204_010","reference":"John 1:47","difficulty":4,"category":"gospels","text":{"en":"Jesus called Nathanael \"an Israelite indeed, in whom is no ___!\""},"answers":{"en":["fear","deceit","pride","doubt"]},"correctIndex":1},
-  {"id":"q_b204_011","reference":"John 1:49","difficulty":4,"category":"gospels","text":{"en":"Besides \"the Son of God\", what did Nathanael call Jesus?"},"answers":{"en":["King of Israel","Prophet of Galilee","Son of Joseph","Lamb of God"]},"correctIndex":0},
-  {"id":"q_b204_012","reference":"John 2:3","difficulty":1,"category":"gospels","text":{"en":"At the wedding in Cana, who told Jesus, \"They have no wine\"?"},"answers":{"en":["The bridegroom","Peter","The ruler of the feast","His mother"]},"correctIndex":3},
-  {"id":"q_b204_013","reference":"John 2:5","difficulty":2,"category":"gospels","text":{"en":"Jesus' mother told the servants in Cana, \"Whatever he says to you, ___.\""},"answers":{"en":["wait","tell me","do it","ask the master"]},"correctIndex":2},
-  {"id":"q_b204_014","reference":"John 2:8","difficulty":3,"category":"gospels","text":{"en":"At Cana, to whom were the servants told to take the water that had become wine?"},"answers":{"en":["The bride","The priest","Jesus' mother","The ruler of the feast"]},"correctIndex":3},
-  {"id":"q_b204_015","reference":"John 2:10","difficulty":3,"category":"gospels","text":{"en":"What did the ruler of the feast say the bridegroom had done in Cana?"},"answers":{"en":["Kept the good wine until now","Run out of bread","Invited too many guests","Mixed water into the wine"]},"correctIndex":0},
-  {"id":"q_b204_016","reference":"John 2:11","difficulty":3,"category":"gospels","text":{"en":"What does John call the miracle at Cana where water became wine?"},"answers":{"en":["The greatest of his works","The beginning of his signs","The sign of Jonah","The last of his miracles"]},"correctIndex":1},
-  {"id":"q_b204_017","reference":"John 2:12","difficulty":5,"category":"gospels","text":{"en":"After the wedding at Cana, where did Jesus go with his mother, brothers and disciples?"},"answers":{"en":["Jerusalem","Capernaum","Nazareth","Bethany"]},"correctIndex":1},
-  {"id":"q_b204_018","reference":"John 2:14","difficulty":4,"category":"gospels","text":{"en":"In John 2, which animals were being sold in the temple?"},"answers":{"en":["Goats, camels, and donkeys","Horses and mules","Oxen, sheep, and doves","Pigs and goats"]},"correctIndex":2},
-  {"id":"q_b204_019","reference":"John 2:19","difficulty":1,"category":"gospels","text":{"en":"\"Destroy this temple, and in ___ days I will raise it up.\""},"answers":{"en":["seven","forty","two","three"]},"correctIndex":3},
-  {"id":"q_b204_020","reference":"John 3:1","difficulty":3,"category":"gospels","text":{"en":"Nicodemus was a Pharisee and a ruler of whom?"},"answers":{"en":["The Jews","The Romans","Galilee","The temple guard"]},"correctIndex":0},
-  {"id":"q_b204_021","reference":"John 3:8","difficulty":2,"category":"gospels","text":{"en":"Jesus told Nicodemus: \"The ___ blows where it wants to, and you hear its sound.\""},"answers":{"en":["trumpet","wind","storm","spirit of Elijah"]},"correctIndex":1},
-  {"id":"q_b204_022","reference":"John 3:14","difficulty":2,"category":"gospels","text":{"en":"\"As Moses lifted up the ___ in the wilderness, so must the Son of Man be lifted up.\""},"answers":{"en":["staff","tablets","serpent","tabernacle"]},"correctIndex":2},
-  {"id":"q_b204_023","reference":"John 3:29","difficulty":4,"category":"gospels","text":{"en":"John the Baptist compared himself to the friend of whom?"},"answers":{"en":["The king","The shepherd","The farmer","The bridegroom"]},"correctIndex":3},
-  {"id":"q_b204_024","reference":"John 3:30","difficulty":2,"category":"gospels","text":{"en":"John the Baptist said of Jesus: \"He must increase, but I must ___.\""},"answers":{"en":["decrease","wait","follow","rest"]},"correctIndex":0},
-  {"id":"q_b204_025","reference":"John 4:2","difficulty":4,"category":"gospels","text":{"en":"John 4 says Jesus himself didn't baptize. Who did?"},"answers":{"en":["John the Baptist","His disciples","The priests","Nicodemus"]},"correctIndex":1},
-  {"id":"q_b204_026","reference":"John 4:6","difficulty":4,"category":"gospels","text":{"en":"About what hour was it when tired Jesus sat down by Jacob's well?"},"answers":{"en":["The sixth hour","The first hour","The ninth hour","The twelfth hour"]},"correctIndex":0},
-  {"id":"q_b204_027","reference":"John 4:8","difficulty":4,"category":"gospels","text":{"en":"Where were the disciples while Jesus spoke with the woman at the well?"},"answers":{"en":["Asleep under a tree","Fishing","In the synagogue","In the city buying food"]},"correctIndex":3},
-  {"id":"q_b204_028","reference":"John 4:9","difficulty":3,"category":"gospels","text":{"en":"The woman at the well was surprised because Jews have no dealings with whom?"},"answers":{"en":["Romans","Greeks","Samaritans","Egyptians"]},"correctIndex":2},
-  {"id":"q_b204_029","reference":"John 4:20","difficulty":4,"category":"gospels","text":{"en":"The Samaritan woman said her fathers worshiped where?"},"answers":{"en":["In Jerusalem","By the Jordan","In Bethel","In this mountain"]},"correctIndex":3},
-  {"id":"q_b204_030","reference":"John 4:28","difficulty":3,"category":"gospels","text":{"en":"What did the Samaritan woman leave behind when she went into the city?"},"answers":{"en":["Her veil","Her sandals","Her water pot","Her rope"]},"correctIndex":2},
-  {"id":"q_b204_031","reference":"John 4:35","difficulty":3,"category":"gospels","text":{"en":"\"Lift up your eyes, and look at the fields, that they are white for ___ already.\""},"answers":{"en":["harvest","winter","the Sabbath","the feast"]},"correctIndex":0},
-  {"id":"q_b204_032","reference":"John 4:40","difficulty":4,"category":"gospels","text":{"en":"How many days did Jesus stay with the Samaritans of Sychar?"},"answers":{"en":["Three","Two","Seven","One"]},"correctIndex":1},
-  {"id":"q_b204_033","reference":"John 4:46","difficulty":4,"category":"gospels","text":{"en":"Where was Jesus when a nobleman came about his sick son in Capernaum?"},"answers":{"en":["Jerusalem","Nazareth","Cana of Galilee","Sychar"]},"correctIndex":2},
-  {"id":"q_b204_034","reference":"John 5:2","difficulty":3,"category":"gospels","text":{"en":"How many porches did the pool of Bethesda have?"},"answers":{"en":["Three","Five","Seven","Twelve"]},"correctIndex":1},
-  {"id":"q_b204_035","reference":"John 5:2","difficulty":5,"category":"gospels","text":{"en":"The pool of Bethesda was near which gate in Jerusalem?"},"answers":{"en":["The fish gate","The water gate","The dung gate","The sheep gate"]},"correctIndex":3},
-  {"id":"q_b204_036","reference":"John 5:7","difficulty":3,"category":"gospels","text":{"en":"Why couldn't the sick man at Bethesda get into the pool in time?"},"answers":{"en":["No one to put him into the pool","The guards stopped him","He was blind","The water was too deep"]},"correctIndex":0},
-  {"id":"q_b204_037","reference":"John 5:9","difficulty":3,"category":"gospels","text":{"en":"On which day did Jesus heal the man at the pool of Bethesda?"},"answers":{"en":["The Sabbath","Passover","The first day of the week","The Day of Atonement"]},"correctIndex":0},
-  {"id":"q_b204_038","reference":"John 5:35","difficulty":4,"category":"gospels","text":{"en":"Jesus called John the Baptist \"the burning and shining ___.\""},"answers":{"en":["star","lamp","sun","torch of Israel"]},"correctIndex":1},
-  {"id":"q_b204_039","reference":"John 5:46","difficulty":4,"category":"gospels","text":{"en":"Jesus said, \"If you believed ___, you would believe me; for he wrote about me.\""},"answers":{"en":["Isaiah","David","Daniel","Moses"]},"correctIndex":3},
-  {"id":"q_b204_040","reference":"John 6:4","difficulty":4,"category":"gospels","text":{"en":"In John 6, which feast was at hand when Jesus fed the five thousand?"},"answers":{"en":["The Feast of Booths","Pentecost","The Passover","The Dedication"]},"correctIndex":2},
-  {"id":"q_b204_041","reference":"John 6:10","difficulty":2,"category":"gospels","text":{"en":"In John 6, about how many men sat down on the grass to be fed?"},"answers":{"en":["Four thousand","Three thousand","Ten thousand","Five thousand"]},"correctIndex":3},
-  {"id":"q_b204_042","reference":"John 6:15","difficulty":3,"category":"gospels","text":{"en":"Why did Jesus withdraw alone to the mountain after feeding the five thousand?"},"answers":{"en":["He was tired","Herod was looking for him","They wanted to make him king","It was the Sabbath"]},"correctIndex":2},
-  {"id":"q_b204_043","reference":"John 6:19","difficulty":5,"category":"gospels","text":{"en":"In John 6, about how far had the disciples rowed when they saw Jesus walking on the sea?"},"answers":{"en":["Two hundred cubits","Twenty-five or thirty stadia","A mile","Sixty stadia"]},"correctIndex":1},
-  {"id":"q_b204_044","reference":"John 6:31","difficulty":2,"category":"gospels","text":{"en":"The crowd in John 6 said their fathers ate what in the wilderness?"},"answers":{"en":["Manna","Quail","Locusts","Barley bread"]},"correctIndex":0},
-  {"id":"q_b204_045","reference":"John 6:35","difficulty":1,"category":"gospels","text":{"en":"Jesus said, \"I am the ___ of life.\""},"answers":{"en":["water","tree","bread","light"]},"correctIndex":2},
-  {"id":"q_b204_046","reference":"John 6:68","difficulty":3,"category":"gospels","text":{"en":"Who said, \"Lord, to whom would we go? You have the words of eternal life\"?"},"answers":{"en":["Thomas","John","Nathanael","Simon Peter"]},"correctIndex":3},
-  {"id":"q_b204_047","reference":"John 6:71","difficulty":5,"category":"gospels","text":{"en":"In John 6, Judas is called the son of whom?"},"answers":{"en":["Simon Iscariot","Zebedee","Alphaeus","Jonah"]},"correctIndex":0},
-  {"id":"q_b204_048","reference":"John 7:5","difficulty":3,"category":"gospels","text":{"en":"According to John 7, who did not believe in Jesus?"},"answers":{"en":["His mother","His brothers","Nicodemus","The Samaritans"]},"correctIndex":1},
-  {"id":"q_b204_049","reference":"John 7:10","difficulty":4,"category":"gospels","text":{"en":"How did Jesus go up to the Feast of Booths after his brothers had gone?"},"answers":{"en":["On a donkey with crowds","Not publicly, but in secret","With his mother","By boat"]},"correctIndex":1},
-  {"id":"q_b204_050","reference":"John 7:14","difficulty":5,"category":"gospels","text":{"en":"When did Jesus go up into the temple and teach during the Feast of Booths?"},"answers":{"en":["On the first day","After the feast","The night before","In the midst of the feast"]},"correctIndex":3},
-  {"id":"q_b204_051","reference":"John 7:37","difficulty":4,"category":"gospels","text":{"en":"On which day of the feast did Jesus cry, \"If anyone is thirsty, let him come to me\"?"},"answers":{"en":["The last and greatest day","The first day","The Sabbath before","The third day"]},"correctIndex":0},
-  {"id":"q_b204_052","reference":"John 7:42","difficulty":3,"category":"gospels","text":{"en":"Some in John 7 said Scripture says the Christ comes from which village?"},"answers":{"en":["Nazareth","Cana","Bethlehem","Bethany"]},"correctIndex":2},
-  {"id":"q_b204_053","reference":"John 7:50-51","difficulty":4,"category":"gospels","text":{"en":"Which Pharisee asked, \"Does our law judge a man unless it first hears from him?\""},"answers":{"en":["Gamaliel","Nicodemus","Caiaphas","Simon"]},"correctIndex":1},
-  {"id":"q_b204_054","reference":"John 8:7","difficulty":1,"category":"gospels","text":{"en":"\"He who is without sin among you, let him throw the first ___ at her.\""},"answers":{"en":["word","judgment","coin","stone"]},"correctIndex":3},
-  {"id":"q_b204_055","reference":"John 8:9","difficulty":4,"category":"gospels","text":{"en":"When the accusers of the woman went out one by one, who left first?"},"answers":{"en":["The oldest","The youngest","The scribes","The Pharisees' servants"]},"correctIndex":0},
-  {"id":"q_b204_056","reference":"John 8:11","difficulty":2,"category":"gospels","text":{"en":"What did Jesus tell the woman after her accusers had left?"},"answers":{"en":["Go to the temple.","Wash yourself.","Go your way. Sin no more.","Follow me."]},"correctIndex":2},
-  {"id":"q_b204_057","reference":"John 8:12","difficulty":1,"category":"gospels","text":{"en":"Jesus said, \"I am the light of the ___.\""},"answers":{"en":["temple","night","nations","world"]},"correctIndex":3},
-  {"id":"q_b204_058","reference":"John 8:32","difficulty":1,"category":"gospels","text":{"en":"\"You will know the truth, and the truth will make you ___.\""},"answers":{"en":["wise","free","strong","rich"]},"correctIndex":1},
-  {"id":"q_b204_059","reference":"John 8:58","difficulty":2,"category":"gospels","text":{"en":"Jesus said, \"Before Abraham came into existence, ___.\""},"answers":{"en":["I AM","I was promised","God spoke","the law was given"]},"correctIndex":0},
-  {"id":"q_b204_060","reference":"John 8:59","difficulty":3,"category":"gospels","text":{"en":"After Jesus spoke about Abraham, what did the crowd take up to throw at him?"},"answers":{"en":["Spears","Mud","Stones","Dust"]},"correctIndex":2},
-  {"id":"q_b204_061","reference":"John 9:2","difficulty":3,"category":"gospels","text":{"en":"About the man born blind, the disciples asked who sinned: this man or whom?"},"answers":{"en":["His brothers","His parents","The priests","His neighbors"]},"correctIndex":1},
-  {"id":"q_b204_062","reference":"John 9:8","difficulty":3,"category":"gospels","text":{"en":"Before his healing, what had the man born blind been doing?"},"answers":{"en":["Selling doves","Herding sheep","He sat and begged","Mending nets"]},"correctIndex":2},
-  {"id":"q_b204_063","reference":"John 9:14","difficulty":3,"category":"gospels","text":{"en":"On what day did Jesus make mud and open the eyes of the man born blind?"},"answers":{"en":["Passover","The Day of Atonement","A market day","A Sabbath"]},"correctIndex":3},
-  {"id":"q_b204_064","reference":"John 9:21","difficulty":4,"category":"gospels","text":{"en":"The healed man's parents said, \"He is of ___. Ask him.\""},"answers":{"en":["age","Galilee","sound mind","our tribe"]},"correctIndex":0},
-  {"id":"q_b204_065","reference":"John 9:22","difficulty":5,"category":"gospels","text":{"en":"Why were the healed man's parents afraid to speak?"},"answers":{"en":["Losing their house","Roman soldiers","Being put out of the synagogue","Paying a fine"]},"correctIndex":2},
-  {"id":"q_b204_066","reference":"John 9:25","difficulty":1,"category":"gospels","text":{"en":"The healed man said, \"One thing I do know: though I was blind, now I ___.\""},"answers":{"en":["believe","see","walk","speak"]},"correctIndex":1},
-  {"id":"q_b204_067","reference":"John 9:34","difficulty":4,"category":"gospels","text":{"en":"What did the Pharisees do to the healed man who argued with them?"},"answers":{"en":["Made him a teacher","Paid him","Took him to Pilate","Threw him out"]},"correctIndex":3},
-  {"id":"q_b204_068","reference":"John 10:3","difficulty":2,"category":"gospels","text":{"en":"The good shepherd calls his own sheep by what?"},"answers":{"en":["Name","Whistle","Bell","Number"]},"correctIndex":0},
-  {"id":"q_b204_069","reference":"John 10:7","difficulty":2,"category":"gospels","text":{"en":"Jesus said, \"I am the sheep's ___.\""},"answers":{"en":["shepherd","food","fold","door"]},"correctIndex":3},
-  {"id":"q_b204_070","reference":"John 10:10","difficulty":3,"category":"gospels","text":{"en":"Jesus said the thief comes only to steal, kill, and do what?"},"answers":{"en":["Destroy","Lie","Hide","Run away"]},"correctIndex":0},
-  {"id":"q_b204_071","reference":"John 10:12","difficulty":3,"category":"gospels","text":{"en":"Jesus said the hired hand sees which animal coming and flees?"},"answers":{"en":["The lion","The wolf","The bear","The fox"]},"correctIndex":1},
-  {"id":"q_b204_072","reference":"John 10:16","difficulty":4,"category":"gospels","text":{"en":"Jesus said, \"I have other sheep, which are not of this ___.\""},"answers":{"en":["land","temple","fold","tribe"]},"correctIndex":2},
-  {"id":"q_b204_073","reference":"John 10:30","difficulty":1,"category":"gospels","text":{"en":"Jesus said, \"I and the Father are ___.\""},"answers":{"en":["one","near","together","holy"]},"correctIndex":0},
-  {"id":"q_b204_074","reference":"John 10:40","difficulty":5,"category":"gospels","text":{"en":"In John 10, where did Jesus go to stay, at the place where John first baptized?"},"answers":{"en":["Bethany near Jerusalem","Galilee","Ephraim","Beyond the Jordan"]},"correctIndex":3},
-  {"id":"q_b204_075","reference":"John 11:3","difficulty":4,"category":"gospels","text":{"en":"Lazarus' sisters sent word: \"Lord, he for whom you have great ___ is sick.\""},"answers":{"en":["hope","respect","affection","joy"]},"correctIndex":2},
-  {"id":"q_b204_076","reference":"John 11:6","difficulty":3,"category":"gospels","text":{"en":"When Jesus heard Lazarus was sick, how many more days did he stay where he was?"},"answers":{"en":["One","Two","Three","Four"]},"correctIndex":1},
-  {"id":"q_b204_077","reference":"John 11:18","difficulty":5,"category":"gospels","text":{"en":"According to John 11, about how far was Bethany from Jerusalem?"},"answers":{"en":["Fifteen stadia","Sixty stadia","A day's journey","Five miles"]},"correctIndex":0},
-  {"id":"q_b204_078","reference":"John 11:20","difficulty":3,"category":"gospels","text":{"en":"When Martha went out to meet Jesus, what did Mary do?"},"answers":{"en":["Went to the tomb","Ran ahead","Hid in the garden","Stayed in the house"]},"correctIndex":3},
-  {"id":"q_b204_079","reference":"John 11:25","difficulty":1,"category":"gospels","text":{"en":"Jesus said to Martha, \"I am the resurrection and the ___.\""},"answers":{"en":["way","door","life","truth"]},"correctIndex":2},
-  {"id":"q_b204_080","reference":"John 11:44","difficulty":2,"category":"gospels","text":{"en":"How did Lazarus come out of the tomb?"},"answers":{"en":["Carried by his sisters","Bound hand and foot with wrappings","Wearing white robes","Holding a lamp"]},"correctIndex":1},
-  {"id":"q_b204_081","reference":"John 11:49-50","difficulty":3,"category":"gospels","text":{"en":"Who, being high priest that year, said one man should die for the people?"},"answers":{"en":["Annas","Caiaphas","Nicodemus","Gamaliel"]},"correctIndex":1}
+  {
+    "id": "q_b204_001",
+    "reference": "John 1:6",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "John 1 says a man was sent from God. What was his name?"
+    },
+    "answers": {
+      "en": [
+        "Elijah",
+        "John",
+        "Andrew",
+        "Simon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_002",
+    "reference": "John 1:14",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"The Word became ___, and lived among us.\""
+    },
+    "answers": {
+      "en": [
+        "light",
+        "king",
+        "flesh",
+        "bread"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_003",
+    "reference": "John 1:17",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The law was given through Moses; grace and truth came through whom?"
+    },
+    "answers": {
+      "en": [
+        "John the Baptist",
+        "Elijah",
+        "Abraham",
+        "Jesus Christ"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_004",
+    "reference": "John 1:21",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Asked \"Are you Elijah?\", what did John the Baptist answer?"
+    },
+    "answers": {
+      "en": [
+        "I am not",
+        "I am",
+        "Ask the prophets",
+        "Only God knows"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_005",
+    "reference": "John 1:23",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "John the Baptist called himself the voice of one crying where?"
+    },
+    "answers": {
+      "en": [
+        "In the temple",
+        "On the mountain",
+        "By the sea",
+        "In the wilderness"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_006",
+    "reference": "John 1:27",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "John said he was not worthy to loosen what of the one coming after him?"
+    },
+    "answers": {
+      "en": [
+        "His sandal strap",
+        "His belt",
+        "His cloak",
+        "His burden"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_007",
+    "reference": "John 1:38",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The first two disciples asked Jesus, \"Rabbi, where are you ___?\""
+    },
+    "answers": {
+      "en": [
+        "going",
+        "from",
+        "staying",
+        "teaching"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_008",
+    "reference": "John 1:39",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "About what hour was it when the two disciples went to see where Jesus stayed?"
+    },
+    "answers": {
+      "en": [
+        "The third hour",
+        "The tenth hour",
+        "The sixth hour",
+        "The first hour"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_009",
+    "reference": "John 1:42",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In John 1, Jesus said Simon would be called Cephas, which means what?"
+    },
+    "answers": {
+      "en": [
+        "Thunder",
+        "Fisherman",
+        "Peter (Rock)",
+        "Beloved"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_010",
+    "reference": "John 1:47",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus called Nathanael \"an Israelite indeed, in whom is no ___!\""
+    },
+    "answers": {
+      "en": [
+        "fear",
+        "deceit",
+        "pride",
+        "doubt"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_011",
+    "reference": "John 1:49",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Besides \"the Son of God\", what did Nathanael call Jesus?"
+    },
+    "answers": {
+      "en": [
+        "King of Israel",
+        "Prophet of Galilee",
+        "Son of Joseph",
+        "Lamb of God"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_012",
+    "reference": "John 2:3",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "At the wedding in Cana, who told Jesus, \"They have no wine\"?"
+    },
+    "answers": {
+      "en": [
+        "The bridegroom",
+        "Peter",
+        "The ruler of the feast",
+        "His mother"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_013",
+    "reference": "John 2:5",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus' mother told the servants in Cana, \"Whatever he says to you, ___.\""
+    },
+    "answers": {
+      "en": [
+        "wait",
+        "tell me",
+        "do it",
+        "ask the master"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_014",
+    "reference": "John 2:8",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "At Cana, to whom were the servants told to take the water that had become wine?"
+    },
+    "answers": {
+      "en": [
+        "The bride",
+        "The priest",
+        "Jesus' mother",
+        "The ruler of the feast"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_015",
+    "reference": "John 2:10",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What did the ruler of the feast say the bridegroom had done in Cana?"
+    },
+    "answers": {
+      "en": [
+        "Kept the good wine until now",
+        "Run out of bread",
+        "Invited too many guests",
+        "Mixed water into the wine"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_016",
+    "reference": "John 2:11",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What does John call the miracle at Cana where water became wine?"
+    },
+    "answers": {
+      "en": [
+        "The greatest of his works",
+        "The beginning of his signs",
+        "The sign of Jonah",
+        "The last of his miracles"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_017",
+    "reference": "John 2:12",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "After the wedding at Cana, where did Jesus go with his mother, brothers and disciples?"
+    },
+    "answers": {
+      "en": [
+        "Jerusalem",
+        "Capernaum",
+        "Nazareth",
+        "Bethany"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_018",
+    "reference": "John 2:14",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "In John 2, which animals were being sold in the temple?"
+    },
+    "answers": {
+      "en": [
+        "Goats, camels, and donkeys",
+        "Horses and mules",
+        "Oxen, sheep, and doves",
+        "Pigs and goats"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_019",
+    "reference": "John 2:19",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "\"Destroy this temple, and in ___ days I will raise it up.\""
+    },
+    "answers": {
+      "en": [
+        "seven",
+        "forty",
+        "two",
+        "three"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_020",
+    "reference": "John 3:1",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Nicodemus was a Pharisee and a ruler of whom?"
+    },
+    "answers": {
+      "en": [
+        "The Jews",
+        "The Romans",
+        "Galilee",
+        "The temple guard"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_021",
+    "reference": "John 3:8",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus told Nicodemus: \"The ___ blows where it wants to, and you hear its sound.\""
+    },
+    "answers": {
+      "en": [
+        "trumpet",
+        "wind",
+        "storm",
+        "spirit of Elijah"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_022",
+    "reference": "John 3:14",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "\"As Moses lifted up the ___ in the wilderness, so must the Son of Man be lifted up.\""
+    },
+    "answers": {
+      "en": [
+        "staff",
+        "tablets",
+        "serpent",
+        "tabernacle"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_023",
+    "reference": "John 3:29",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "John the Baptist compared himself to the friend of whom?"
+    },
+    "answers": {
+      "en": [
+        "The king",
+        "The shepherd",
+        "The farmer",
+        "The bridegroom"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_024",
+    "reference": "John 3:30",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "John the Baptist said of Jesus: \"He must increase, but I must ___.\""
+    },
+    "answers": {
+      "en": [
+        "decrease",
+        "wait",
+        "follow",
+        "rest"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_025",
+    "reference": "John 4:2",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "John 4 says Jesus himself didn't baptize. Who did?"
+    },
+    "answers": {
+      "en": [
+        "John the Baptist",
+        "His disciples",
+        "The priests",
+        "Nicodemus"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_026",
+    "reference": "John 4:6",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "About what hour was it when tired Jesus sat down by Jacob's well?"
+    },
+    "answers": {
+      "en": [
+        "The sixth hour",
+        "The first hour",
+        "The ninth hour",
+        "The twelfth hour"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_027",
+    "reference": "John 4:8",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Where were the disciples while Jesus spoke with the woman at the well?"
+    },
+    "answers": {
+      "en": [
+        "Asleep under a tree",
+        "Fishing",
+        "In the synagogue",
+        "In the city buying food"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_028",
+    "reference": "John 4:9",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The woman at the well was surprised because Jews have no dealings with whom?"
+    },
+    "answers": {
+      "en": [
+        "Romans",
+        "Greeks",
+        "Samaritans",
+        "Egyptians"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_029",
+    "reference": "John 4:20",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The Samaritan woman said her fathers worshiped where?"
+    },
+    "answers": {
+      "en": [
+        "In Jerusalem",
+        "By the Jordan",
+        "In Bethel",
+        "In this mountain"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_030",
+    "reference": "John 4:28",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "What did the Samaritan woman leave behind when she went into the city?"
+    },
+    "answers": {
+      "en": [
+        "Her veil",
+        "Her sandals",
+        "Her water pot",
+        "Her rope"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_031",
+    "reference": "John 4:35",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "\"Lift up your eyes, and look at the fields, that they are white for ___ already.\""
+    },
+    "answers": {
+      "en": [
+        "harvest",
+        "winter",
+        "the Sabbath",
+        "the feast"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_032",
+    "reference": "John 4:40",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "How many days did Jesus stay with the Samaritans of Sychar?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Two",
+        "Seven",
+        "One"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_033",
+    "reference": "John 4:46",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Where was Jesus when a nobleman came about his sick son in Capernaum?"
+    },
+    "answers": {
+      "en": [
+        "Jerusalem",
+        "Nazareth",
+        "Cana of Galilee",
+        "Sychar"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_034",
+    "reference": "John 5:2",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "How many porches did the pool of Bethesda have?"
+    },
+    "answers": {
+      "en": [
+        "Three",
+        "Five",
+        "Seven",
+        "Twelve"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_035",
+    "reference": "John 5:2",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "The pool of Bethesda was near which gate in Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "The fish gate",
+        "The water gate",
+        "The dung gate",
+        "The sheep gate"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_036",
+    "reference": "John 5:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Why couldn't the sick man at Bethesda get into the pool in time?"
+    },
+    "answers": {
+      "en": [
+        "No one to put him into the pool",
+        "The guards stopped him",
+        "He was blind",
+        "The water was too deep"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_037",
+    "reference": "John 5:9",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "On which day did Jesus heal the man at the pool of Bethesda?"
+    },
+    "answers": {
+      "en": [
+        "The Sabbath",
+        "Passover",
+        "The first day of the week",
+        "The Day of Atonement"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_038",
+    "reference": "John 5:35",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus called John the Baptist \"the burning and shining ___.\""
+    },
+    "answers": {
+      "en": [
+        "star",
+        "lamp",
+        "sun",
+        "torch of Israel"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_039",
+    "reference": "John 5:46",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"If you believed ___, you would believe me; for he wrote about me.\""
+    },
+    "answers": {
+      "en": [
+        "Isaiah",
+        "David",
+        "Daniel",
+        "Moses"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_040",
+    "reference": "John 6:4",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "In John 6, which feast was at hand when Jesus fed the five thousand?"
+    },
+    "answers": {
+      "en": [
+        "The Feast of Booths",
+        "Pentecost",
+        "The Passover",
+        "The Dedication"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_041",
+    "reference": "John 6:10",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "In John 6, about how many men sat down on the grass to be fed?"
+    },
+    "answers": {
+      "en": [
+        "Four thousand",
+        "Three thousand",
+        "Ten thousand",
+        "Five thousand"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_042",
+    "reference": "John 6:15",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Why did Jesus withdraw alone to the mountain after feeding the five thousand?"
+    },
+    "answers": {
+      "en": [
+        "He was tired",
+        "Herod was looking for him",
+        "They wanted to make him king",
+        "It was the Sabbath"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_043",
+    "reference": "John 6:19",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In John 6, about how far had the disciples rowed when they saw Jesus walking on the sea?"
+    },
+    "answers": {
+      "en": [
+        "Two hundred cubits",
+        "Twenty-five or thirty stadia",
+        "A mile",
+        "Sixty stadia"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_044",
+    "reference": "John 6:31",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "The crowd in John 6 said their fathers ate what in the wilderness?"
+    },
+    "answers": {
+      "en": [
+        "Manna",
+        "Quail",
+        "Locusts",
+        "Barley bread"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_045",
+    "reference": "John 6:35",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"I am the ___ of life.\""
+    },
+    "answers": {
+      "en": [
+        "water",
+        "tree",
+        "bread",
+        "light"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_046",
+    "reference": "John 6:68",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Who said, \"Lord, to whom would we go? You have the words of eternal life\"?"
+    },
+    "answers": {
+      "en": [
+        "Thomas",
+        "John",
+        "Nathanael",
+        "Simon Peter"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_047",
+    "reference": "John 6:71",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In John 6, Judas is called the son of whom?"
+    },
+    "answers": {
+      "en": [
+        "Simon Iscariot",
+        "Zebedee",
+        "Alphaeus",
+        "Jonah"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_048",
+    "reference": "John 7:5",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "According to John 7, who did not believe in Jesus?"
+    },
+    "answers": {
+      "en": [
+        "His mother",
+        "His brothers",
+        "Nicodemus",
+        "The Samaritans"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_049",
+    "reference": "John 7:10",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "How did Jesus go up to the Feast of Booths after his brothers had gone?"
+    },
+    "answers": {
+      "en": [
+        "On a donkey with crowds",
+        "Not publicly, but in secret",
+        "With his mother",
+        "By boat"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_050",
+    "reference": "John 7:14",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "When did Jesus go up into the temple and teach during the Feast of Booths?"
+    },
+    "answers": {
+      "en": [
+        "On the first day",
+        "After the feast",
+        "The night before",
+        "In the midst of the feast"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_051",
+    "reference": "John 7:37",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "On which day of the feast did Jesus cry, \"If anyone is thirsty, let him come to me\"?"
+    },
+    "answers": {
+      "en": [
+        "The last and greatest day",
+        "The first day",
+        "The Sabbath before",
+        "The third day"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_052",
+    "reference": "John 7:42",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Some in John 7 said Scripture says the Christ comes from which village?"
+    },
+    "answers": {
+      "en": [
+        "Nazareth",
+        "Cana",
+        "Bethlehem",
+        "Bethany"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_053",
+    "reference": "John 7:50-51",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Which Pharisee asked, \"Does our law judge a man unless it first hears from him?\""
+    },
+    "answers": {
+      "en": [
+        "Gamaliel",
+        "Nicodemus",
+        "Caiaphas",
+        "Simon"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_054",
+    "reference": "John 8:7",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "\"He who is without sin among you, let him throw the first ___ at her.\""
+    },
+    "answers": {
+      "en": [
+        "word",
+        "judgment",
+        "coin",
+        "stone"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_055",
+    "reference": "John 8:9",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "When the accusers of the woman went out one by one, who left first?"
+    },
+    "answers": {
+      "en": [
+        "The oldest",
+        "The youngest",
+        "The scribes",
+        "The Pharisees' servants"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_056",
+    "reference": "John 8:11",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "What did Jesus tell the woman after her accusers had left?"
+    },
+    "answers": {
+      "en": [
+        "Go to the temple.",
+        "Wash yourself.",
+        "Go your way. Sin no more.",
+        "Follow me."
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_057",
+    "reference": "John 8:12",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"I am the light of the ___.\""
+    },
+    "answers": {
+      "en": [
+        "temple",
+        "night",
+        "nations",
+        "world"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_058",
+    "reference": "John 8:32",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "\"You will know the truth, and the truth will make you ___.\""
+    },
+    "answers": {
+      "en": [
+        "wise",
+        "free",
+        "strong",
+        "rich"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_059",
+    "reference": "John 8:58",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"Before Abraham came into existence, ___.\""
+    },
+    "answers": {
+      "en": [
+        "I AM",
+        "I was promised",
+        "God spoke",
+        "the law was given"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_060",
+    "reference": "John 8:59",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "After Jesus spoke about Abraham, what did the crowd take up to throw at him?"
+    },
+    "answers": {
+      "en": [
+        "Spears",
+        "Mud",
+        "Stones",
+        "Dust"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_061",
+    "reference": "John 9:2",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "About the man born blind, the disciples asked who sinned: this man or whom?"
+    },
+    "answers": {
+      "en": [
+        "His brothers",
+        "His parents",
+        "The priests",
+        "His neighbors"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_062",
+    "reference": "John 9:8",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Before his healing, what had the man born blind been doing?"
+    },
+    "answers": {
+      "en": [
+        "Selling doves",
+        "Herding sheep",
+        "He sat and begged",
+        "Mending nets"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_063",
+    "reference": "John 9:14",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "On what day did Jesus make mud and open the eyes of the man born blind?"
+    },
+    "answers": {
+      "en": [
+        "Passover",
+        "The Day of Atonement",
+        "A market day",
+        "A Sabbath"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_064",
+    "reference": "John 9:21",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "The healed man's parents said, \"He is of ___. Ask him.\""
+    },
+    "answers": {
+      "en": [
+        "age",
+        "Galilee",
+        "sound mind",
+        "our tribe"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_065",
+    "reference": "John 9:22",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Why were the healed man's parents afraid to speak?"
+    },
+    "answers": {
+      "en": [
+        "Losing their house",
+        "Roman soldiers",
+        "Being put out of the synagogue",
+        "Paying a fine"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_066",
+    "reference": "John 9:25",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "The healed man said, \"One thing I do know: though I was blind, now I ___.\""
+    },
+    "answers": {
+      "en": [
+        "believe",
+        "see",
+        "walk",
+        "speak"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_067",
+    "reference": "John 9:34",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "What did the Pharisees do to the healed man who argued with them?"
+    },
+    "answers": {
+      "en": [
+        "Made him a teacher",
+        "Paid him",
+        "Took him to Pilate",
+        "Threw him out"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_068",
+    "reference": "John 10:3",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "The good shepherd calls his own sheep by what?"
+    },
+    "answers": {
+      "en": [
+        "Name",
+        "Whistle",
+        "Bell",
+        "Number"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_069",
+    "reference": "John 10:7",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"I am the sheep's ___.\""
+    },
+    "answers": {
+      "en": [
+        "shepherd",
+        "food",
+        "fold",
+        "door"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_070",
+    "reference": "John 10:10",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said the thief comes only to steal, kill, and do what?"
+    },
+    "answers": {
+      "en": [
+        "Destroy",
+        "Lie",
+        "Hide",
+        "Run away"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_071",
+    "reference": "John 10:12",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said the hired hand sees which animal coming and flees?"
+    },
+    "answers": {
+      "en": [
+        "The lion",
+        "The wolf",
+        "The bear",
+        "The fox"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_072",
+    "reference": "John 10:16",
+    "difficulty": 3,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"I have other sheep, which are not of this ___.\""
+    },
+    "answers": {
+      "en": [
+        "land",
+        "temple",
+        "fold",
+        "tribe"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_073",
+    "reference": "John 10:30",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said, \"I and the Father are ___.\""
+    },
+    "answers": {
+      "en": [
+        "one",
+        "near",
+        "together",
+        "holy"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_074",
+    "reference": "John 10:40",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "In John 10, where did Jesus go to stay, at the place where John first baptized?"
+    },
+    "answers": {
+      "en": [
+        "Bethany near Jerusalem",
+        "Galilee",
+        "Ephraim",
+        "Beyond the Jordan"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_075",
+    "reference": "John 11:3",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Lazarus' sisters sent word: \"Lord, he for whom you have great ___ is sick.\""
+    },
+    "answers": {
+      "en": [
+        "hope",
+        "respect",
+        "affection",
+        "joy"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_076",
+    "reference": "John 11:6",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "When Jesus heard Lazarus was sick, how many more days did he stay where he was?"
+    },
+    "answers": {
+      "en": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_077",
+    "reference": "John 11:18",
+    "difficulty": 5,
+    "category": "gospels",
+    "text": {
+      "en": "According to John 11, about how far was Bethany from Jerusalem?"
+    },
+    "answers": {
+      "en": [
+        "Fifteen stadia",
+        "Sixty stadia",
+        "A day's journey",
+        "Five miles"
+      ]
+    },
+    "correctIndex": 0
+  },
+  {
+    "id": "q_b204_078",
+    "reference": "John 11:20",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "When Martha went out to meet Jesus, what did Mary do?"
+    },
+    "answers": {
+      "en": [
+        "Went to the tomb",
+        "Ran ahead",
+        "Hid in the garden",
+        "Stayed in the house"
+      ]
+    },
+    "correctIndex": 3
+  },
+  {
+    "id": "q_b204_079",
+    "reference": "John 11:25",
+    "difficulty": 1,
+    "category": "gospels",
+    "text": {
+      "en": "Jesus said to Martha, \"I am the resurrection and the ___.\""
+    },
+    "answers": {
+      "en": [
+        "way",
+        "door",
+        "life",
+        "truth"
+      ]
+    },
+    "correctIndex": 2
+  },
+  {
+    "id": "q_b204_080",
+    "reference": "John 11:44",
+    "difficulty": 2,
+    "category": "gospels",
+    "text": {
+      "en": "How did Lazarus come out of the tomb?"
+    },
+    "answers": {
+      "en": [
+        "Carried by his sisters",
+        "Bound hand and foot with wrappings",
+        "Wearing white robes",
+        "Holding a lamp"
+      ]
+    },
+    "correctIndex": 1
+  },
+  {
+    "id": "q_b204_081",
+    "reference": "John 11:49-50",
+    "difficulty": 4,
+    "category": "gospels",
+    "text": {
+      "en": "Who, being high priest that year, said one man should die for the people?"
+    },
+    "answers": {
+      "en": [
+        "Annas",
+        "Caiaphas",
+        "Nicodemus",
+        "Gamaliel"
+      ]
+    },
+    "correctIndex": 1
+  }
 ]
