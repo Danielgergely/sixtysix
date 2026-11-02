@@ -60,3 +60,9 @@ The reveal is an animated scene (also on the board):
 - Room code + QR, deep links `/mission/CODE` and `/mission/CODE/board`; "Play again" keeps the room and seats; the saved room code for "Back to game".
 - Rewards once per finished game (`BOARD_REWARDS`-style), only with ≥ 2 people dealt in.
 - Mixed languages: each seat has a locale; questions go out in every language like the arena.
+
+## Rewards
+Paid once per finished game (`BOARD_REWARDS.mission`, client-side like the other board games), only when at least 2 people (not bots) were dealt in. No separate leaderboard: coins and XP go into the profile and the normal XP leaderboard.
+- Each correct multiple-choice answer: 5 coins + 250 XP.
+- Each tie-breaker won: +5 coins.
+- Placement: 1st 60 coins + 3,000 XP, 2nd 30 + 1,500, 3rd 15 + 750 (halved on the Blitz map). Eliminated players get their answers plus last place.
