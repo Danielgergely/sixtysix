@@ -19,7 +19,7 @@ export default {
     name: 'Bibel-Blitz',
     c1: { title: 'Wettlauf zum Thron', text: 'Fahr gegen drei Rivalen zum Thron: Jede richtige Antwort bringt deinen Wagen voran.' },
     c2: { title: 'Schnell und richtig', text: 'Schnelle richtige Antworten bringen mehr Punkte. Lies nach jeder Frage den Vers.' },
-    c3: { title: 'Gaben und Belohnung', text: 'Setz deine Gaben ein, wenn du feststeckst. Fahr das Rennen zu Ende, um Münzen und XP zu behalten.' },
+    c3: { title: 'Belohnung und Gaben', text: 'Fahr das Rennen zu Ende, um Münzen und XP zu behalten. Angemeldet kannst du auch Gaben einsetzen, wenn du feststeckst.' },
   },
   arena: {
     name: 'Offene Arena',

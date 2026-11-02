@@ -19,7 +19,7 @@ export default {
     name: 'Bibliavillám',
     c1: { title: 'Verseny a trónig', text: 'Versenyezz három riválissal a trónig: minden helyes válasz előrébb viszi a harci kocsidat.' },
     c2: { title: 'Gyorsan és jól', text: 'A gyorsabb helyes válasz több pontot ér. Minden kérdés után olvasd el az igeverset.' },
-    c3: { title: 'Ajándékok és jutalom', text: 'Használd az ajándékaidat, ha elakadsz. Fejezd be a versenyt, hogy megtartsd az érméidet és az XP-t.' },
+    c3: { title: 'Jutalom és ajándékok', text: 'Fejezd be a versenyt, hogy megtartsd az érméidet és az XP-t. Bejelentkezve ajándékokat is használhatsz, ha elakadsz.' },
   },
   arena: {
     name: 'Nyílt aréna',

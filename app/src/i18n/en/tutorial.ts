@@ -20,7 +20,7 @@ export default {
     name: 'Bible Blitz',
     c1: { title: 'Race to the throne', text: 'Race three rivals to the throne: every right answer moves your chariot.' },
     c2: { title: 'Fast and right', text: 'Faster right answers score more. Read the verse after each question.' },
-    c3: { title: 'Gifts and rewards', text: 'Use your Gifts when you’re stuck. Finish the race to keep your coins and XP.' },
+    c3: { title: 'Rewards and Gifts', text: 'Finish the race to keep your coins and XP. Signed in, you can also use Gifts when you’re stuck.' },
   },
   arena: {
     name: 'Open Arena',
