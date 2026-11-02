@@ -31,6 +31,7 @@ export function MapView(props: MissionMapViewProps) {
       owners={props.owners}
       seatColors={[...seatColours]}
       walls={props.walls}
+      capitals={props.capitals}
       highlight={hl}
       onRegionTap={props.onRegionTap}
       pins={mapPins}

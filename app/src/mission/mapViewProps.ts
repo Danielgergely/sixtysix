@@ -9,6 +9,8 @@ export interface MissionMapViewProps {
   owners: Record<string, number | null>
   /** Capital region id → walls left. */
   walls: Record<string, number>
+  /** Every capital picked this game, fallen ones included (still worth CAPITAL_VALUE). */
+  capitals?: string[]
   /** Seat colours by seat index. */
   seatColours: readonly string[]
   /** Regions to light up as tappable choices. */

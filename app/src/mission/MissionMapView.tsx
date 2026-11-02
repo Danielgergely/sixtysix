@@ -35,6 +35,8 @@ interface Props {
   seatColors?: string[]
   /** Chosen capitals: walls still standing (0–3). Unchosen capital sites show a faint tower. */
   walls?: Record<string, number>
+  /** Capitals picked this game, fallen ones included: their chip keeps CAPITAL_VALUE. */
+  capitals?: string[]
   highlight?: Record<string, MissionHighlight | undefined>
   onRegionTap?: (id: string) => void
   pins?: MissionPin[]
@@ -121,7 +123,7 @@ function FitBox(props: Props & { map: MissionMap }) {
   )
 }
 
-function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, walls = {}, highlight = {}, onRegionTap, pins, truth, onMapTap, showValues = true, panZoom = true, compactLabels = false, zoom = 1 }: Props & { zoom?: number }) {
+function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, walls = {}, capitals = [], highlight = {}, onRegionTap, pins, truth, onMapTap, showValues = true, panZoom = true, compactLabels = false, zoom = 1 }: Props & { zoom?: number }) {
   const locale = useLocale((s) => s.locale)
   const wasDragged = useWasDragged()
   const svg = useRef<SVGSVGElement>(null)
@@ -257,7 +259,7 @@ function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, wal
                 {chips && (
                   <g transform="translate(0 15)" className={`mm-chip ${r.kind}`}>
                     <rect x={-14} y={-6.5} width={28} height={13} rx={6.5} />
-                    <text y={3.6}>{capital ? CAPITAL_VALUE : r.value}</text>
+                    <text y={3.6}>{capital || capitals.includes(r.id) ? CAPITAL_VALUE : r.value}</text>
                   </g>
                 )}
               </g>

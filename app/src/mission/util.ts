@@ -29,6 +29,7 @@ export function baseMapProps(state: MissionState): MissionMapViewProps {
     blitz: state.options.map === 'blitz',
     owners: state.owners,
     walls: state.walls,
+    capitals: state.seats.flatMap((s) => (s.capital ? [s.capital] : [])),
     seatColours: MISSION_SEAT_COLOURS,
     flags: Object.fromEntries(state.wishes.map((w) => [w.region, w.seat])),
     selected: state.attack ? [state.attack.region] : state.wishes.map((w) => w.region),
