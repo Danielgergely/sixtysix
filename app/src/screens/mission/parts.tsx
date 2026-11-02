@@ -106,14 +106,23 @@ export function OutcomeBanner({ state }: { state: MissionState }) {
   )
 }
 
-export function Rules() {
+/** "How to play": the rules in seven short bullets, as a sheet over the lobby or the board. */
+export function RulesSheet({ onClose }: { onClose: () => void }) {
   const t = useT()
   return (
-    <ul className="ms-rules">
-      {(['r1', 'r2', 'r3', 'r4', 'r5', 'r6'] as const).map((k) => (
-        <li key={k}>{rich(t(`mission.rules.${k}`))}</li>
-      ))}
-    </ul>
+    <motion.div className="ms-sheet-back" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+      <motion.div className="ms-sheet" initial={{ y: 60 }} animate={{ y: 0 }} transition={spring.gentle} onClick={(e: React.MouseEvent) => e.stopPropagation()} role="dialog" aria-label={t('mission.rules.title')}>
+        <h3>{t('mission.rules.title')}</h3>
+        <ul className="ms-rules">
+          {(['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7'] as const).map((k) => (
+            <li key={k}>{rich(t(`mission.rules.${k}`))}</li>
+          ))}
+        </ul>
+        <button className="btn-play ms-wide-btn" onClick={onClose}>
+          {t('mission.rules.close')}
+        </button>
+      </motion.div>
+    </motion.div>
   )
 }
 

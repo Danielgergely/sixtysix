@@ -391,14 +391,15 @@ const REGIONS: Def[] = [
 ]
 
 /** Blitz: neighbouring regions merged (15). The first covered region names the merged one unless `name` is set. */
-const BLITZ: { id: string; covers: string[]; name?: Loc; kind?: Kind }[] = [
+/** `label` (lon, lat) overrides the label point when the first region's sits near the merged outline's edge. */
+const BLITZ: { id: string; covers: string[]; name?: Loc; kind?: Kind; label?: LL }[] = [
   { id: 'b-damascus', covers: ['damascus'] },
   { id: 'b-dan', covers: ['dan', 'bashan'] },
   { id: 'b-galilee', covers: ['hazor', 'kinnereth'], name: { en: 'Galilee', de: 'Galiläa', hu: 'Galilea' }, kind: 'city' },
   { id: 'b-tyre', covers: ['tyre', 'zebulun'] },
   { id: 'b-megiddo', covers: ['megiddo', 'carmel'] },
   { id: 'b-jezreel', covers: ['jezreel', 'sharon'] },
-  { id: 'b-samaria', covers: ['samaria', 'shechem'] },
+  { id: 'b-samaria', covers: ['samaria', 'shechem'], label: [35.25, 32.28] },
   { id: 'b-shiloh', covers: ['shiloh', 'bethel'] },
   { id: 'b-jerusalem', covers: ['jerusalem'] },
   { id: 'b-jericho', covers: ['jericho', 'bethlehem'] },
@@ -493,7 +494,7 @@ const blitz = BLITZ.map((g) => {
     ...(cap ? { capitalSite: true } : {}),
     path: pathOf(rs),
     // Named after its first region: the label (and the walls) sit where that region's do.
-    label: g.name ? labelPoint(xy) : full.find((f) => f.id === g.covers[0])!.label,
+    label: g.label ? (proj(g.label).map(Math.round) as XY) : g.name ? labelPoint(xy) : full.find((f) => f.id === g.covers[0])!.label,
     neighbours: neighboursOf(ids, (id) => groupOf.get(id)),
     covers: g.covers,
     _ring: xy,

@@ -47,8 +47,18 @@ export function AnimatedNumber({ value, duration = 0.9, from, delay = 0, classNa
         shown.current = v
         node.textContent = prefix + format(v, locale)
       },
+      onComplete: () => settle(),
     })
-    return () => controls.stop()
+    // Always end on the exact value, even when animation frames are throttled (background tab).
+    const settle = () => {
+      shown.current = value
+      node.textContent = prefix + format(value, locale)
+    }
+    const fallback = setTimeout(settle, (delay + duration) * 1000 + 120)
+    return () => {
+      clearTimeout(fallback)
+      controls.stop()
+    }
   }, [value, duration, delay, prefix, reduced, locale])
 
   return (

@@ -122,7 +122,7 @@ export function TieReveal({ state, wide = false }: { state: MissionState; wide?:
         {text}
         {unit && <small> ({unit})</small>}
       </div>
-      {tie.kind === 'number' ? <NumberLine state={state} unit={unit} /> : <PinLines state={state} />}
+      {tie.kind === 'number' ? <NumberLine state={state} /> : <PinLines state={state} />}
       {r.sameOff && <DoubleTie state={state} />}
       <motion.div className="ms-tie-winner" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: r.sameOff ? 3.4 : 2.6 }}>
         {r.winner === null ? t('mission.tie.nobody') : rich(t('mission.tie.winner', { name: nameOf(state, r.winner) }))}
@@ -136,11 +136,14 @@ const LINE_W = 320
 const PAD = 24
 
 /** Both guesses slide onto a number line, the answer drops in, the gaps are measured. */
-function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
+function NumberLine({ state }: { state: MissionState }) {
   const r = state.tie!.reveal!
+  const unitKey = state.tie!.unit
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const answer = r.answer ?? 0
-  const vals = [answer, ...r.guesses.filter((g) => g.value !== null).map((g) => g.value!)]
+  const placed = r.guesses.filter((g) => g.value !== null)
+  const vals = [answer, ...placed.map((g) => g.value!)]
   let lo = Math.min(...vals)
   let hi = Math.max(...vals)
   if (hi === lo) {
@@ -152,38 +155,63 @@ function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
   hi += span * 0.08
   const x = (v: number) => PAD + ((v - lo) / (hi - lo)) * (LINE_W - 2 * PAD)
   const ax = x(answer)
+  const fmt = (v: number) => v.toLocaleString(locale)
+  // Guesses close together share one label (both values, both names) instead of overlapping.
+  const close = placed.length === 2 && Math.abs(x(placed[0].value!) - x(placed[1].value!)) < 56
+  const labels = close
+    ? [
+        {
+          key: 'both',
+          at: (x(placed[0].value!) + x(placed[1].value!)) / 2,
+          value: placed[0].value === placed[1].value ? fmt(placed[0].value!) : placed.map((g) => fmt(g.value!)).join(' · '),
+          name: placed.map((g) => nameOf(state, g.seat)).join(' & '),
+          colour: '#3b2412',
+        },
+      ]
+    : placed.map((g) => ({ key: String(g.seat), at: x(g.value!), value: fmt(g.value!), name: nameOf(state, g.seat), colour: seatColour(g.seat) }))
+  // "908 years off" / "908 Jahre daneben" / "908 évvel tévedett"; the number counts up in place of {n}.
+  const gapParts = (off: number) => {
+    const text = unitKey ? t('mission.tie.gap', { unit: t(`mission.unitOff.${unitKey}`, { count: off }), n: '{n}' }) : t('mission.tie.gapPlain', { n: '{n}' })
+    const [before, after = ''] = text.split('{n}')
+    return { before, after }
+  }
   return (
     <div className="ms-numline">
-      <svg viewBox={`0 0 ${LINE_W} 132`} className="ms-numline-svg">
+      <svg viewBox={`0 0 ${LINE_W} 136`} className="ms-numline-svg">
         <line x1={PAD / 2} x2={LINE_W - PAD / 2} y1={70} y2={70} className="ms-axis" />
-        {r.guesses.map((g, i) =>
-          g.value === null ? null : (
-            <g key={g.seat}>
-              <motion.line
-                x1={ax}
-                x2={x(g.value)}
-                y1={70 + (i ? 14 : -14)}
-                y2={70 + (i ? 14 : -14)}
-                stroke={seatColour(g.seat)}
-                strokeWidth={6}
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.85 }}
-                transition={{ delay: 1.5, duration: 0.8, ease: ease.out }}
-              />
-              <motion.g initial={{ x: i ? 200 : -200, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ ...spring.gentle, delay: 0.15 + i * 0.2 }}>
-                <circle cx={x(g.value)} cy={70} r={9} fill={seatColour(g.seat)} stroke="#fff" strokeWidth={2} />
-                <text x={x(g.value)} y={i ? 122 : 102} textAnchor="middle" className="ms-numline-label" fill={seatColour(g.seat)}>
-                  {g.value.toLocaleString()}
-                </text>
-              </motion.g>
-            </g>
-          ),
-        )}
+        {placed.map((g, i) => (
+          <g key={g.seat}>
+            <motion.line
+              x1={ax}
+              x2={x(g.value!)}
+              y1={70 + (i ? 14 : -14)}
+              y2={70 + (i ? 14 : -14)}
+              stroke={seatColour(g.seat)}
+              strokeWidth={6}
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.85 }}
+              transition={{ delay: 1.5, duration: 0.8, ease: ease.out }}
+            />
+            <motion.g initial={{ x: i ? 200 : -200, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ ...spring.gentle, delay: 0.15 + i * 0.2 }}>
+              <circle cx={x(g.value!)} cy={close ? 70 + (i ? 5 : -5) : 70} r={9} fill={seatColour(g.seat)} stroke="#fff" strokeWidth={2} />
+            </motion.g>
+          </g>
+        ))}
+        {labels.map((l) => (
+          <motion.g key={l.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+            <text x={Math.min(LINE_W - 30, Math.max(30, l.at))} y={106} textAnchor="middle" className="ms-numline-label" fill={l.colour}>
+              {l.value}
+            </text>
+            <text x={Math.min(LINE_W - 30, Math.max(30, l.at))} y={124} textAnchor="middle" className="ms-numline-name" fill={l.colour}>
+              {l.name}
+            </text>
+          </motion.g>
+        ))}
         <motion.g initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ ...spring.bouncy, delay: 0.9 }}>
           <rect x={ax - 3} y={44} width={6} height={52} rx={3} className="ms-answer-bar" />
-          <text x={ax} y={30} textAnchor="middle" className="ms-numline-answer">
-            {answer.toLocaleString()}
+          <text x={Math.min(LINE_W - 24, Math.max(24, ax))} y={30} textAnchor="middle" className="ms-numline-answer">
+            {fmt(answer)}
           </text>
         </motion.g>
       </svg>
@@ -193,10 +221,13 @@ function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
             <b>{nameOf(state, g.seat)}</b>{' '}
             {g.off === null ? (
               t('mission.tie.noAnswer')
+            ) : g.off === 0 ? (
+              t('mission.tie.exact')
             ) : (
               <>
-                <AnimatedNumber value={g.off} from={0} delay={1.6} duration={1} /> {t('mission.tie.off')}
-                {unit && <small> {unit}</small>}
+                {gapParts(g.off).before}
+                <AnimatedNumber value={g.off} from={0} delay={1.6} duration={1} />
+                {gapParts(g.off).after}
               </>
             )}
           </span>
