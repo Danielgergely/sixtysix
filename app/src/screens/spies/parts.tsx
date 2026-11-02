@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
-import { CountdownRing, STAGGER, spring } from '../../motion'
+import { CountdownRing, STAGGER, spring, useFirstKeys } from '../../motion'
 import { useSpiesStore } from '../../spies/spiesStore'
 import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wrappedWordSize } from '../../spies/util'
 import { useLocale, useT } from '../../i18n'
@@ -75,6 +75,8 @@ export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
   const locale = useLocale((s) => s.locale)
   const prop = state.proposal
   const proposer = prop ? playerById(state, prop.proposerId) : undefined
+  // Cards already face up when the grid appears don't flip again.
+  const firstFaces = useFirstKeys(state.cards.map((c, i) => (c.revealed ? `${state.game}-${i}` : null)))
   return (
     <div className={`ts-grid ${large ? 'large' : ''}`}>
       {state.cards.map((c, i) => {
@@ -91,9 +93,10 @@ export function Grid({ state, keyColours, onPick, large = false }: GridProps) {
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ ...spring.gentle, delay: (i % 5) * STAGGER * 0.6 + Math.floor(i / 5) * STAGGER }}
           >
-            <AnimatePresence mode="wait" initial={false}>
+            {/* Not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+            <AnimatePresence mode="wait">
               {shown ? (
-                <motion.span key="face" className="ts-card-face" initial={{ rotateY: 90 }} animate={{ rotateY: 0 }} transition={spring.bouncy}>
+                <motion.span key="face" className="ts-card-face" initial={firstFaces.has(`${state.game}-${i}`) ? false : { rotateY: 90 }} animate={{ rotateY: 0 }} transition={spring.bouncy}>
                   <span className="ts-card-icon">{iconFor(state, shown)}</span>
                   <span className="ts-card-word small" style={fitStyle(large ? 17 : 9, cardWord(c, locale))}>
                     {cardWord(c, locale)}
@@ -176,15 +179,17 @@ export function TribeList({ state, team, me, large = false }: { state: SpiesStat
   const t = useT()
   const sm = state.spymasters[team]
   const members = state.players.filter((p) => p.team === team).sort((a, b) => (a.id === sm ? -1 : b.id === sm ? 1 : 0))
+  const firstMembers = useFirstKeys(members.map((p) => p.id))
   return (
     <div className={`ts-tribe ${team} ${state.turn === team ? 'active' : ''} ${large ? 'large' : ''}`}>
       <div className="ts-tribe-head">
         <span>{TRIBE[team].emblem}</span> {tribeName(state, team)}
       </div>
       {members.length === 0 && <p className="ts-empty">{t('spies.common.nobody')}</p>}
-      <AnimatePresence initial={false}>
+      {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+      <AnimatePresence>
         {members.map((p) => (
-          <motion.div key={p.id} layout className="ts-member" initial={{ opacity: 0, x: -20 }} animate={{ opacity: p.connected ? 1 : 0.5, x: 0 }} exit={{ opacity: 0 }} transition={spring.snappy}>
+          <motion.div key={p.id} layout className="ts-member" initial={firstMembers.has(p.id) ? false : { opacity: 0, x: -20 }} animate={{ opacity: p.connected ? 1 : 0.5, x: 0 }} exit={{ opacity: 0 }} transition={spring.snappy}>
             <Token player={p} size={large ? 40 : 30} badge={p.id === sm ? '👁' : undefined} />
             <span className="ts-member-name">
               {p.id === state.leaderId && '👑 '}

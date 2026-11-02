@@ -24,6 +24,12 @@ export interface Bridge {
   badges: Map<string, HTMLElement>
   /** Zoom limits reached, for the +/− buttons. */
   onZoomLimits: ((canIn: boolean, canOut: boolean) => void) | null
+  /** The scene is off screen or the tab hidden: nothing asks for frames (rig.ts usePauseWhenHidden). */
+  paused: boolean
+  /** Called when it shows again (the townsfolk pick up their clock and ask for a frame). */
+  onResume: (() => void) | null
+  /** The scene's box (My Home toggles its tag classes on it). */
+  root: HTMLElement | null
   /** Ask for a frame (the canvas renders on demand): after moving the camera from code. */
   invalidate: () => void
 }
@@ -63,5 +69,8 @@ export const newBridge = (): Bridge => ({
   bubble: null,
   badges: new Map(),
   onZoomLimits: null,
+  paused: false,
+  onResume: null,
+  root: null,
   invalidate: () => {},
 })

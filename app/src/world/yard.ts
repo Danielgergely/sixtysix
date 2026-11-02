@@ -140,10 +140,9 @@ export function useYardActors(levels: Record<BuildingId, number>, plot: PlotStat
   const specs = useMemo(() => specsFor(levels, layout), [levelKey, layout]) // eslint-disable-line react-hooks/exhaustive-deps
   // Who has a gift waiting right now (minute resolution, so the list stays put between ticks).
   const minute = Math.floor(now / 60_000)
-  const giving = useMemo(
-    () => new Set(plot && canGift ? specs.filter((s) => s.gift && !giftError(plot, s.gift, minute * 60_000)).map((s) => s.gift!) : []),
-    [specs, plot?.gifts, plot?.levels, minute, canGift], // eslint-disable-line react-hooks/exhaustive-deps
-  )
+  // Keyed by value: the projected plot is a fresh object every second, the answer changes far less often.
+  const givingKey = plot && canGift ? specs.filter((s) => s.gift && !giftError(plot, s.gift, minute * 60_000)).map((s) => s.gift!).join(',') : ''
+  const giving = useMemo(() => new Set(givingKey ? (givingKey.split(',') as GiftFigure[]) : []), [givingKey])
   const actors = useMemo<Actor[]>(() => {
     const count: Partial<Record<FigureId, number>> = {}
     return specs.map((s) => {

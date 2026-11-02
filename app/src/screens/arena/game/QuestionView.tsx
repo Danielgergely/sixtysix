@@ -263,10 +263,11 @@ export function QuestionView(props: QuestionViewProps) {
                   <AnswerCard index={myAnswer} text={answers[myAnswer]} className="face" />
                   <div className={`eh-card back ${correct ? 'gold' : 'iron'}`} style={correct ? undefined : { backgroundImage: STONE }}>
                     {correct && <span className="empire-gleam" />}
+                    {/* The crack goes first and stays under the verdict and the answer (theme/empire.css). */}
+                    {!correct && <span className="empire-crack" />}
                     <span className="eh-verdict">{correct ? '✦' : '✖'}</span>
                     <span className="eh-card-text">{reveal ? answers[correct ? myAnswer : reveal.correctIndex] : ''}</span>
                     <small>{correct ? t('quiz.question.rightly') : t('quiz.question.wasAnswer')}</small>
-                    {!correct && <span className="empire-crack" />}
                   </div>
                 </motion.div>
                 {revealed && correct && <Sparkles count={10} color="#ffe9a0" />}

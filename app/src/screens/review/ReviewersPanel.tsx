@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { PARCHMENT } from '../../art/textures'
-import { spring } from '../../motion'
+import { spring, useFirstKeys } from '../../motion'
 import { tServer, useT } from '../../i18n'
 import { fetchReviewers, setReviewer } from '../../flags/adminApi'
 
@@ -12,6 +12,7 @@ export function ReviewersPanel() {
   const [name, setName] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const firstRows = useFirstKeys(reviewers)
 
   useEffect(() => {
     let live = true
@@ -71,9 +72,9 @@ export function ReviewersPanel() {
         <p className="fa-intro">{t('review.reviewers.none')}</p>
       ) : (
         <ul className="fa-reviewers">
-          <AnimatePresence initial={false}>
+          <AnimatePresence>
             {reviewers.map((r) => (
-              <motion.li key={r} layout initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={spring.snappy}>
+              <motion.li key={r} layout initial={firstRows.has(r) ? false : { opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={spring.snappy}>
                 <span>{r}</span>
                 <button className="pr-review" disabled={busy} onClick={() => void change(r, 'remove')}>
                   {t('review.reviewers.remove')}

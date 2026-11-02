@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { duration, ease, spring } from '../motion'
+import { duration, ease, spring, useIsFirstKey } from '../motion'
 import { useLocale, useT } from '../i18n'
 import { guide, type GuideId } from './content'
 
@@ -12,6 +12,7 @@ export function IntroSheet({ id, onDone }: { id: GuideId; onDone: () => void }) 
   const [dir, setDir] = useState(1)
   const last = step === g.cards.length - 1
   const card = g.cards[step]
+  const firstStep = useIsFirstKey(String(step))
   const go = (d: number) => {
     setDir(d)
     setStep((s) => Math.max(0, Math.min(g.cards.length - 1, s + d)))
@@ -51,12 +52,13 @@ export function IntroSheet({ id, onDone }: { id: GuideId; onDone: () => void }) 
           )}
         </div>
         <div className="tut-stage">
-          <AnimatePresence mode="popLayout" initial={false} custom={dir}>
+          {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+          <AnimatePresence mode="popLayout" custom={dir}>
             <motion.div
               key={step}
               className="tut-step"
               custom={dir}
-              initial={{ opacity: 0, x: dir * 40 }}
+              initial={firstStep ? false : { opacity: 0, x: dir * 40 }}
               animate={{ opacity: 1, x: 0, transition: { duration: duration.base, ease: ease.out } }}
               exit={{ opacity: 0, x: dir * -40, transition: { duration: duration.fast } }}
             >

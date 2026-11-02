@@ -77,4 +77,13 @@
 }
 .p3 .c3-nav{ right: 8px; bottom: 8px; gap: 5px; }
 .p3 .c3-nav button{ width: 34px; height: 34px; font-size: 18px; }
-@media (prefers-reduced-motion: reduce){ .p3-badge > span, .p3 .lf-bubble{ animation: none; } }
+/* Zoomed out (PlotScene3D sets data-far): the names fade; what you need stays as compact pills (+N ready, the build countdown, New!). The tour shows everything. */
+.p3 .p3-stack .ps-tag{ max-height: 3em; transition: opacity 0.35s ease, scale 0.35s ease, max-height 0.35s ease, padding 0.35s ease, border-width 0.35s ease; }
+/* Faded and folded away, so the pills sit right over the building. */
+.p3[data-far]:not(.touring) .p3-stack .ps-tag{ opacity: 0; scale: 0.85; max-height: 0; padding-top: 0; padding-bottom: 0; border-width: 0; overflow: hidden; }
+.p3-ribbon, .p3-build{ transition: font-size 0.25s ease, padding 0.25s ease; }
+.p3[data-far]:not(.touring) .p3-ribbon{ font-size: 11px; padding: 1px 6px; border-width: 1.5px; }
+.p3[data-far]:not(.touring) .ps-build.p3-build{ min-width: 0; padding: 2px 6px; gap: 0; }
+.p3[data-far]:not(.touring) .p3-build .hp-bar{ display: none; }
+.p3[data-far]:not(.touring) .p3-build small{ font-size: 11px; }
+@media (prefers-reduced-motion: reduce){ .p3-badge > span, .p3 .lf-bubble{ animation: none; } .p3 .p3-stack .ps-tag, .p3-ribbon, .p3-build{ transition: none; } }

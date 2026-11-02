@@ -29,6 +29,12 @@ import { surfaceAt, ux, uz } from './space'
  * My Home (PlotScene3D) uses the same component with its own space (FolkSpace):
  * the yard's px → units, its ground, no exits, everyone always drawn, and the
  * carriers' gift signs (bridge.badges) placed over their heads.
+ *
+ * Frames are scarce: the canvas renders on demand, and the townsfolk ask for
+ * frames only at WALK_FPS while someone walks on screen, now and then while
+ * they walk out of view, and otherwise once, when the next one is due to set
+ * off (everyone standing, sitting or indoors costs nothing). Nothing at all
+ * while `bridge.paused` (the scene is off screen or the tab hidden).
  */
 
 /** World px of a figure's height → units: a person stands ~2.2 units, a house ~3.5. */
@@ -36,6 +42,10 @@ const FIG_SCALE = 0.075
 /** Beyond this camera distance nobody is drawn (or simulated on screen). */
 export const FIG_DIST = 150
 const MAX = 64
+/** Frames per second while someone walks on screen: plenty for a stroll, a third of the work. */
+const WALK_FPS = typeof window !== 'undefined' && Math.min(window.innerWidth, window.innerHeight) < 600 ? 20 : 30
+/** While walkers are only out of view: a slow tick so they keep going. */
+const OFFSCREEN_MS = 500
 
 /** How a scene's walkers (positions in world px) map into 3D. */
 export interface FolkSpace {
@@ -269,8 +279,28 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
   const tmp = useMemo(() => new Vector3(), [])
   const clock = useRef(0)
 
-  useFrame((_, delta) => {
-    const dt = Math.min(0.1, delta)
+  // The next frame the townsfolk asked for (on demand: a timer, not the render loop).
+  const timer = useRef(0)
+  const lastT = useRef(0)
+  const walkedLast = useRef(true)
+  useEffect(() => () => clearTimeout(timer.current), [])
+  useEffect(() => {
+    bridge.onResume = () => {
+      lastT.current = performance.now()
+      invalidate()
+    }
+    return () => {
+      bridge.onResume = null
+    }
+  }, [bridge, invalidate])
+
+  useFrame(() => {
+    // Our own clock: frames come seldom. A long gap with nobody walking only runs down the
+    // waiting times (whoever is due sets off); while people walk, steps stay small.
+    const now = performance.now()
+    const real = lastT.current ? (now - lastT.current) / 1000 : 0
+    lastT.current = now
+    const dt = Math.min(real, walkedLast.current ? 0.25 : 120)
     clock.current += dt
     const dist = bridge.controls?.distance ?? 0
     const show = dist < space.maxDist
@@ -344,8 +374,32 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
         el.style.transform = `translate3d(${s.sx.toFixed(1)}px, ${(s.sy - s.sh - 4).toFixed(1)}px, 0)`
       } else if (el.style.display !== 'none') el.style.display = 'none'
     }
-    // Keep the frames coming while anyone moves on screen.
-    if (show && !still) invalidate()
+    // When to draw next: soon while someone walks on screen, slowly while they walk out of view,
+    // else when the next one is due to move (a pause, a stay indoors, a look round).
+    clearTimeout(timer.current)
+    timer.current = 0
+    let walkingSeen = false
+    let walking = false
+    let due = Infinity
+    for (const s of sims.current.values()) {
+      if (FIGURES[s.a.fig].still) continue
+      if (s.state === 'walk' || s.state === 'run') {
+        walking = true
+        if (s.vis) walkingSeen = true
+      } else {
+        due = Math.min(due, s.state === 'idle' && s.flipAt > 0 ? s.t - s.flipAt : s.t)
+      }
+    }
+    walkedLast.current = walking
+    if (still || bridge.paused || !show) return
+    // (The frame itself then waits for the display's next refresh, so one refresh comes off the walking interval.)
+    const wait = walkingSeen ? 1000 / WALK_FPS - 16 : walking ? OFFSCREEN_MS : Number.isFinite(due) ? Math.max(50, due * 1000 + 20) : 0
+    if (wait > 0) {
+      timer.current = window.setTimeout(() => {
+        timer.current = 0
+        invalidate()
+      }, Math.max(0, wait - (performance.now() - now)))
+    }
   })
 
   return (

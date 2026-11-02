@@ -165,9 +165,12 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
   const select = usePlotStore((s) => s.select)
   const markSeen = usePlotStore((s) => s.markSeen)
   const gift = usePlotStore((s) => s.gift)
+  // The same idle days as the weeds warning above (WeedsNote).
+  const idleDays = usePlotStore((s) => s.home?.idleDays)
   return (
     <PlotView
       levels={plot.levels}
+      idleDays={idleDays}
       plot={plot}
       now={now}
       seen={seen}

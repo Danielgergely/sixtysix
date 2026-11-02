@@ -1,22 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerformanceMonitor } from '@react-three/drei'
 import { NoToneMapping, PCFShadowMap } from 'three'
 import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId } from '@sixtysix/shared'
 import { t as tNow, useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
+import { useTutorialStore } from '../../tutorial/store'
 import { countdown } from '../../screens/home/homeUtil'
 import { buildingName, levelName } from '../../screens/home/plotText'
 import type { PlotSceneProps } from '../PlotScene'
 import { useYardActors } from '../yard'
 import { FIGURES } from '../life/figures'
 import { reducedMotion } from '../life/sim'
+import { DprMonitor } from './DprMonitor'
 import { newBridge, type LabelSpec } from './bridge'
 import { buildingGeometry, scaffoldGeometry, topOf, type Spot } from './models'
 import { PLOT_FOV, PLOT_MIN_DIST, PLOT_START_POLAR, plotStartDist, SPOT_3D, YARD_3D } from './plotSpace'
 import { PlotScene3D } from './PlotScene3D'
 import { NavButtons } from './NavButtons'
-import { labelAt, maxDpr, useContextLost, useScenePointer } from './rig'
+import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } from './rig'
 import '../../theme/city3d.css'
 
 /**
@@ -35,7 +36,7 @@ interface Props extends PlotSceneProps {
   onLost?: () => void
 }
 
-export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, className, onLost }: Props) {
+export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0, onLost }: Props) {
   const t = useT()
   const bridge = useMemo(() => newBridge(), [])
   const box = useRef<HTMLDivElement>(null)
@@ -44,6 +45,12 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
   const [zoom, setZoom] = useState({ in: true, out: true })
   const [bubble, setBubble] = useState<{ id: string; text: string; key: number } | null>(null)
   const { actors, giftOf, giving } = useYardActors(levels, plot, now, !!onGift, YARD_3D)
+  // No frames while the yard is scrolled away or the tab hidden.
+  usePauseWhenHidden(bridge, box)
+  // The tour shows every name (its Spotlight rings the house's tag), even zoomed out.
+  const touring = useTutorialStore((st) => st.intro?.id === 'home')
+  // New or changed gift signs need a frame to be placed (the canvas renders on demand).
+  useEffect(() => bridge.invalidate(), [actors, bridge])
 
   // Buildings going up: their target level.
   const buildKey = plot?.builds.map((b) => `${b.building}${b.toLevel}`).join(',') ?? ''
@@ -118,6 +125,8 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
       bridge.bubble = null
       return
     }
+    // A frame to place it (it then follows its figure on the frames drawn anyway).
+    bridge.invalidate()
     const id = setTimeout(() => setBubble((b) => (b?.key === bubble.key ? null : b)), 3600)
     return () => clearTimeout(id)
   }, [bubble, bridge])
@@ -170,7 +179,14 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
   }
 
   return (
-    <div ref={box} className={`pz ps p3 ${onSelect ? '' : 'read-only'} ${className ?? ''}`} {...pointer}>
+    <div
+      ref={(el) => {
+        box.current = el
+        bridge.root = el
+      }}
+      className={`pz ps p3 ${onSelect ? '' : 'read-only'} ${touring ? 'touring' : ''} ${className ?? ''}`}
+      {...pointer}
+    >
       <Canvas
         className="c3-canvas"
         shadows={{ type: PCFShadowMap }}
@@ -180,8 +196,8 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
         gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
         onCreated={onCreated}
       >
-        <PerformanceMonitor onDecline={() => setDpr(1)} />
-        <PlotScene3D levels={stableLevels} building={building} labels={labels} actors={actors} bridge={bridge} still={still} />
+        <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
+        <PlotScene3D levels={stableLevels} building={building} labels={labels} actors={actors} bridge={bridge} still={still} idleDays={idleDays} />
       </Canvas>
 
       <div className="c3-labels">{SPOTS.map(tag)}</div>

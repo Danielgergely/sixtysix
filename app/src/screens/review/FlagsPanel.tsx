@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { LOCALE_IDS, type AdminFlagGroup, type FlagResolveAction } from '@sixtysix/shared'
 import { PARCHMENT } from '../../art/textures'
-import { STAGGER, spring } from '../../motion'
+import { STAGGER, spring, useFirstKeys } from '../../motion'
 import { tServer, useLocale, useT } from '../../i18n'
 import { downloadExport, fetchFlagGroups, resolveFlags, type FlagFilter } from '../../flags/adminApi'
 import { refreshExcluded } from '../../flags/flagStore'
@@ -17,6 +17,7 @@ export function FlagsPanel() {
   const [error, setError] = useState('')
 
   const [reloads, setReloads] = useState(0)
+  const firstGroups = useFirstKeys(groups ? groups.map((g) => g.questionId) : null)
 
   useEffect(() => {
     let live = true
@@ -73,12 +74,13 @@ export function FlagsPanel() {
       ) : groups.length === 0 && !error ? (
         <p className="fa-empty">{t('flags.admin.empty')}</p>
       ) : (
-        <AnimatePresence initial={false}>
+        <AnimatePresence>
           {groups.map((g, i) => (
             <FlagGroup
               key={g.questionId}
               group={g}
               index={i}
+              first={firstGroups.has(g.questionId)}
               onResolved={() => {
                 setReloads((n) => n + 1)
                 void refreshExcluded(true)
@@ -91,7 +93,7 @@ export function FlagsPanel() {
   )
 }
 
-function FlagGroup({ group, index, onResolved }: { group: AdminFlagGroup; index: number; onResolved: () => void }) {
+function FlagGroup({ group, index, first, onResolved }: { group: AdminFlagGroup; index: number; first: boolean; onResolved: () => void }) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const [note, setNote] = useState('')
@@ -120,7 +122,7 @@ function FlagGroup({ group, index, onResolved }: { group: AdminFlagGroup; index:
       className="fa-group"
       style={{ backgroundImage: PARCHMENT }}
       layout
-      initial={{ opacity: 0, y: 20 }}
+      initial={first ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0, transition: { ...spring.gentle, delay: Math.min(index, 8) * STAGGER } }}
       exit={{ opacity: 0, scale: 0.95 }}
     >
