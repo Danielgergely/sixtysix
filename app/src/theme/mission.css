@@ -292,5 +292,28 @@
 .ms-board-pickers{ display: flex; gap: 4px; justify-content: center; margin-top: 4px; min-height: 14px; }
 .ms-dot{ width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; }
 .ms-board-verse{ font: italic 600 14px/1.4 Georgia, serif; color: #f3e2bb; }
+/* Laptop-height boards (1280×800, 1366×768): the side column fits without scrolling — smaller
+   question text and cards, a compact join card. */
+@media (max-height: 880px){
+  .ms-board{ padding-top: 8px; padding-bottom: 8px; }
+  .ms-board-side{ gap: 8px; }
+  .ms-board-panel{ gap: 8px; }
+  .ms-board-q{ gap: 8px; padding: 10px; }
+  .ms-board-qtext{ padding: 10px 14px; font-size: 21px; }
+  .ms-board-cards .eh-card{ height: 128px; }
+  .ms-board-help{ padding: 12px 14px; }
+  .ms-board-help p{ font-size: 17px; }
+  .ms-board-help-icon{ font-size: 32px; }
+  .ms-board-verse{ font-size: 13px; }
+  .ms-board-join{ padding: 6px 12px; gap: 12px; }
+  .ms-board-join .ms-qr{ width: 64px; }
+  .ms-board-join strong{ font-size: 26px; }
+}
+@media (max-height: 800px){
+  .ms-board-qtext{ font-size: 19px; }
+  .ms-board-cards .eh-card{ height: 112px; }
+  .ms-board-join .ms-qr{ width: 56px; }
+  .ms-board-join small{ font-size: 11px; }
+}
 
 /* ═══ end of the engine agent's block ═══ */
