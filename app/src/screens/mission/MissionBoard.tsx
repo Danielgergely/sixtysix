@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { MissionState } from '@sixtysix/shared'
 import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
@@ -9,7 +10,7 @@ import { AnswerCard } from '../arena/game/AnswerCard'
 import { useClockTicks } from '../../game/useClockTicks'
 import { popIn, spring } from '../../motion'
 import { useLocale, useT } from '../../i18n'
-import { OutcomeBanner, QrCode, Scoreboard, StatusBar } from './parts'
+import { OutcomeBanner, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
 import { duelLine } from '../../mission/lines'
 import { TieReveal } from './tie'
 import { tiePrompt } from '../../mission/lines'
@@ -20,6 +21,7 @@ export function MissionBoard() {
   const state = useMissionStore((s) => s.state)
   const leave = useMissionStore((s) => s.leave)
   const t = useT()
+  const [rules, setRules] = useState(false)
   if (!state) return null
   return (
     <div className="screen ms ms-board emp">
@@ -28,9 +30,13 @@ export function MissionBoard() {
           ✕
         </button>
         <h2>{t('mission.boardTitle')}</h2>
+        <button className="ms-link light" onClick={() => setRules(true)}>
+          {t('mission.board.howTo')}
+        </button>
         <span className="ms-board-code">{state.code}</span>
       </header>
       {state.phase === 'lobby' ? <BoardLobby state={state} /> : <BoardGame state={state} />}
+      <AnimatePresence>{rules && <RulesSheet onClose={() => setRules(false)} />}</AnimatePresence>
     </div>
   )
 }
@@ -89,6 +95,7 @@ function BoardGame({ state }: { state: MissionState }) {
             <BoardPanel state={state} />
           </motion.div>
         </AnimatePresence>
+        {state.phase !== 'over' && <JoinCard code={state.code} />}
       </div>
     </div>
   )
@@ -144,5 +151,36 @@ function BoardPanel({ state }: { state: MissionState }) {
     )
   }
   if (state.phase === 'tieReveal') return <OutcomeBanner state={state} />
-  return null
+  const help = HELP[state.phase]
+  return help ? (
+    <div className="ms-board-help">
+      <span className="ms-board-help-icon">{help.icon}</span>
+      <p>{t(`mission.help.${help.key}`)}</p>
+    </div>
+  ) : null
+}
+
+/** Short rules for the phase on screen. */
+const HELP: Partial<Record<MissionState['phase'], { key: string; icon: string }>> = {
+  capital: { key: 'capitals', icon: '🏰' },
+  wish: { key: 'claim', icon: '🚩' },
+  attack: { key: 'battle', icon: '⚔️' },
+  siege: { key: 'siege', icon: '🧱' },
+}
+
+/** The room code and a QR code, so latecomers (and the board's viewers) can join. */
+function JoinCard({ code }: { code: string }) {
+  const origin = useJoinOrigin()
+  const t = useT()
+  const url = `${origin}/mission/${code}`
+  return (
+    <div className="ms-board-join">
+      <QrCode url={url} />
+      <div>
+        <small>{t('mission.board.join')}</small>
+        <strong>{code}</strong>
+        <span>{url.replace(/^https?:\/\//, '')}</span>
+      </div>
+    </div>
+  )
 }

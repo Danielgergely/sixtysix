@@ -22,7 +22,7 @@ import { useLocale, useT } from '../../i18n'
 import { QuestionView } from '../arena/game/QuestionView'
 import { missionRewardFor } from '../../game/boardRewards'
 import { PaintedCoin } from '../../art/PaintedPortrait'
-import { OutcomeBanner, QrCode, Rules, Scoreboard, StatusBar } from './parts'
+import { OutcomeBanner, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
 import { duelLine } from '../../mission/lines'
 import { TieInput, TieReveal } from './tie'
 import { MissionBoard } from './MissionBoard'
@@ -230,10 +230,10 @@ function Lobby({ state }: { state: MissionState }) {
           </label>
         )}
         <p className="ms-hint">{t('mission.lobby.timeNote', { n: QUESTION_TIME_MS / 1000 })}</p>
-        <button className="ms-link" onClick={() => setRules((r) => !r)}>
-          {rules ? t('mission.common.hideRules') : t('mission.common.showRules')}
+        <button className="ms-link" onClick={() => setRules(true)}>
+          {t('mission.common.showRules')}
         </button>
-        {rules && <Rules />}
+        <AnimatePresence>{rules && <RulesSheet onClose={() => setRules(false)} />}</AnimatePresence>
       </div>
       {humans < MISSION_REWARD_HUMANS && <p className="ms-hint">{t('mission.lobby.practice', { n: MISSION_REWARD_HUMANS })}</p>}
 
@@ -274,8 +274,9 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
   // Only the lit regions answer a tap (the server checks again).
   const tap = send && ((id: string) => state.choices.includes(id) && send(id))
   const me = state.seats[mySeat]
+  const siegeChoice = state.phase === 'siege' && mine && !!state.attack
   return (
-    <div className="ms-col">
+    <div className={`ms-col ${siegeChoice ? 'siege' : ''}`}>
       <Scoreboard state={state} />
       <StatusBar state={state} mySeat={mySeat} />
       <div className="ms-map-wrap">
@@ -318,7 +319,7 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
   const stake =
     q.kind === 'claim' ? `⚑ ${regionName(wish?.region)}` : state.attack ? `${state.attack.attacker === mySeat ? '⚔️' : '🛡'} ${regionName(state.attack.region)}` : ''
   return (
-    <div className="ms-q">
+    <div className={`ms-q ${state.phase === 'reveal' ? 'reveal' : ''}`}>
       <QuestionView
         index={q.n - 1}
         total={q.n}

@@ -147,8 +147,7 @@
 .ms-wall{ width: 7px; height: 8px; border-radius: 1px; border: 1px solid #5a4326; }
 .ms-wall.up{ background: #8d7a5c; }
 .ms-wall.down{ background: transparent; border-style: dashed; opacity: 0.6; }
-.ms-score.wide .ms-seats{ grid-auto-flow: row; }
-.ms-score.wide .ms-seat{ padding: 8px 10px; }
+.ms-score.wide .ms-seat{ padding: 6px 10px; gap: 8px; }
 .ms-score.wide .ms-seat-face{ width: 44px; height: 44px; }
 .ms-score.wide .ms-seat-name{ font-size: 15px; }
 .ms-score.wide .ms-seat-land{ font-size: 24px; }
@@ -190,6 +189,12 @@
 .ms-q .empire-plate{ display: none; }
 .ms-stake{ padding: 5px 10px; border-radius: 999px; font: 900 12px 'Cinzel', serif; background: linear-gradient(#ffe08a, #c98a12); color: #2b1408; border: 2px solid var(--ms-dark); }
 .ms-q-wait{ position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font: 700 13px 'Cinzel', serif; color: #ffe7a3; text-shadow: 0 2px 3px #000; z-index: 5; }
+.ms-col.siege .ms-map-wrap{ flex: 1 1 150px; min-height: 150px; }
+.ms-col.siege .ms-siege{ flex: none; padding: 8px; gap: 5px; }
+.ms-col.siege .ms-siege .btn-play{ padding: 0.6rem; font-size: 1rem; }
+.ms-col.siege .ms-siege .btn-secondary{ padding: 0.45rem; }
+.ms-q.reveal .eh-hand{ height: 112px; padding-bottom: 0; }
+.ms-q.reveal .eh-played{ height: min(300px, 96%); }
 .ms-q-outcome{ position: absolute; left: 12px; right: 12px; bottom: 16px; z-index: 6; }
 
 /* tie-breakers */
@@ -216,7 +221,8 @@
 .ms-numline-svg{ width: 100%; height: auto; display: block; overflow: visible; }
 .ms-axis{ stroke: #5a4326; stroke-width: 3; }
 .ms-answer-bar{ fill: #a87b12; }
-.ms-numline-label{ font: 800 13px 'Cinzel', serif; fill: var(--ms-ink); }
+.ms-numline-label{ font: 800 13px 'Cinzel', serif; }
+.ms-numline-name{ font: 700 10px Georgia, serif; }
 .ms-numline-answer{ font: 900 16px 'Cinzel', serif; fill: #6b1d0e; }
 .ms-gaps{ display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 4px; }
 .ms-gap{ padding: 5px 10px; border-radius: 999px; font: 700 13px Georgia, serif; color: #fff; background: var(--seat); opacity: 0.85; text-shadow: 0 1px 1px #000; }
@@ -259,12 +265,28 @@
 .ms-board-map .ms-map-frame{ height: 100%; max-height: calc(100vh - 90px); }
 .ms-board-map .ms-tiereveal{ width: 100%; max-width: 620px; }
 .ms-board-map .ms-pinreveal .ms-map-frame{ width: auto; height: calc(100vh - 330px); }
-.ms-board-side{ display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow-y: auto; }
+.ms-board-side{ display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow-y: auto; }
 .ms-board-side .ms-status-text{ font-size: 18px; }
 .ms-board-panel{ display: flex; flex-direction: column; gap: 10px; }
 .ms-board-q{ display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 14px; background: rgb(29 15 6 / 0.6); }
 .ms-board-q > small{ font: 700 14px 'Cinzel', serif; color: #e9c98a; }
-.ms-board-qtext{ padding: 12px; border-radius: 12px; background: var(--ms-paper); border: 3px solid #b88a3a; font: 700 20px/1.3 Georgia, serif; color: var(--ms-ink); }
+.ms-board-qtext{ padding: 14px 16px; border-radius: 12px; background: var(--ms-paper); border: 3px solid #b88a3a; font: 700 26px/1.3 Georgia, serif; color: var(--ms-ink); }
+.ms-board-help{ display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 14px; background: var(--ms-paper); border: 3px solid #b88a3a; box-shadow: 0 4px 0 var(--ms-dark); }
+.ms-board-help p{ font: 700 20px/1.35 Georgia, serif; color: var(--ms-ink); }
+.ms-board-help-icon{ font-size: 40px; flex: none; }
+.ms-board-join{ margin-top: auto; display: flex; gap: 14px; align-items: center; padding: 10px 14px; border-radius: 14px; background: rgb(29 15 6 / 0.7); border: 2px solid #b88a3a; }
+.ms-board-join .ms-qr{ width: 96px; flex: none; }
+.ms-board-join div{ display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ms-board-join small{ font: 700 13px 'Cinzel', serif; color: #e9c98a; }
+.ms-board-join strong{ font: 900 34px/1 'Cinzel', serif; letter-spacing: 0.12em; color: #ffe7a3; }
+.ms-board-join span{ font: 600 12px Georgia, serif; color: #e9c98a; overflow-wrap: anywhere; }
+.ms-link.light{ color: #ffe7a3; }
+.ms-sheet-back{ position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / 0.6); display: flex; align-items: flex-end; justify-content: center; padding: 12px; }
+.ms-sheet{ width: min(560px, 100%); max-height: 92vh; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 16px 16px 14px; border-radius: 18px; background: linear-gradient(#f7ebcc, #e6d2a2); border: 3px solid #b88a3a; box-shadow: 0 8px 24px rgb(0 0 0 / 0.6); }
+.ms-sheet h3{ text-align: center; font: 900 20px 'Cinzel', serif; color: #6b1d0e; }
+.ms-sheet .ms-rules{ margin: 0 0 0 18px; }
+.ms-board .ms-sheet-back{ align-items: center; }
+.ms-board .ms-sheet .ms-rules{ font-size: 16px; }
 .ms-board-cards{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .ms-board-cards .eh-card{ width: 100%; height: 170px; }
 .ms-board-pickers{ display: flex; gap: 4px; justify-content: center; margin-top: 4px; min-height: 14px; }

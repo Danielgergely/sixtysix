@@ -125,9 +125,10 @@ function chooseTarget(room: MRoom, seat: number): string {
   })
 }
 
+/** A whole number near the answer, like a person typing on the number pad (small answers: ±1–2). */
 function guessNumber(answer: number, band: number): number {
-  const g = answer * (1 + rand(-band, band))
-  return Math.abs(answer) >= 20 ? Math.round(g) : Math.round(g * 10) / 10
+  const spread = Math.max(Math.abs(answer) * band, band * 5)
+  return Math.max(0, Math.round(answer + rand(-spread, spread)))
 }
 
 function pinNear(lat: number, lon: number, radiusKm: number): { lat: number; lon: number } {
