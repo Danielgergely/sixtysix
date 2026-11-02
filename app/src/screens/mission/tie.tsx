@@ -10,6 +10,7 @@ import { baseMapProps, fmtSeconds, nameOf, rich, seatColour } from '../../missio
 import { useClockTicks } from '../../game/useClockTicks'
 import { useLocale, useT } from '../../i18n'
 import { Timer } from './parts'
+import { Avatar } from '../../avatars/Avatar'
 
 // ── input ───────────────────────────────────────────────────────────────
 
@@ -216,21 +217,36 @@ function NumberLine({ state }: { state: MissionState }) {
         </motion.g>
       </svg>
       <div className="ms-gaps">
-        {r.guesses.map((g) => (
-          <span key={g.seat} className={`ms-gap ${r.winner === g.seat ? 'win' : ''}`} style={{ '--seat': seatColour(g.seat) } as React.CSSProperties}>
-            <b>{nameOf(state, g.seat)}</b>{' '}
-            {g.off === null ? (
-              t('mission.tie.noAnswer')
-            ) : g.off === 0 ? (
-              t('mission.tie.exact')
-            ) : (
-              <>
-                {gapParts(g.off).before}
-                <AnimatedNumber value={g.off} from={0} delay={1.6} duration={1} />
-                {gapParts(g.off).after}
-              </>
-            )}
-          </span>
+        {r.guesses.map((g, i) => (
+          <motion.span
+            key={g.seat}
+            className={`ms-gap ${r.winner === g.seat ? 'win' : ''}`}
+            style={{ '--seat': seatColour(g.seat) } as React.CSSProperties}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring.gentle, delay: 0.2 + i * 0.15 }}
+          >
+            <span className="ms-seat-face">
+              <Avatar id={state.seats[g.seat]?.avatar ?? ''} />
+            </span>
+            <span className="ms-gap-body">
+              <b>{nameOf(state, g.seat)}</b>
+              {g.value !== null && <strong className="ms-gap-guess">{fmt(g.value)}</strong>}
+              <small>
+                {g.off === null ? (
+                  t('mission.tie.noAnswer')
+                ) : g.off === 0 ? (
+                  t('mission.tie.exact')
+                ) : (
+                  <>
+                    {gapParts(g.off).before}
+                    <AnimatedNumber value={g.off} from={0} delay={1.6} duration={1} />
+                    {gapParts(g.off).after}
+                  </>
+                )}
+              </small>
+            </span>
+          </motion.span>
         ))}
       </div>
     </div>
@@ -276,19 +292,57 @@ function PinLines({ state }: { state: MissionState }) {
               )
             })}
         </svg>
+        {pins.map((p, i) => {
+          const [px, py] = projectPoint(MISSION_MAP, p.lat, p.lon)
+          const g = r.guesses.find((x) => x.seat === p.seat)
+          return (
+            <span key={p.seat} className={`ms-pin-at ${i % 2 ? 'left' : ''}`} style={{ left: `${(px / w) * 100}%`, top: `${(py / h) * 100}%` }}>
+              <motion.span
+                className={`ms-pin-face ${r.winner === p.seat ? 'win' : ''}`}
+                style={{ '--seat': seatColour(p.seat) } as React.CSSProperties}
+                initial={{ opacity: 0, scale: 0.3 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ ...spring.bouncy, delay: 0.15 + i * 0.2 }}
+              >
+                <span className="ms-seat-face">
+                  <Avatar id={state.seats[p.seat]?.avatar ?? ''} />
+                </span>
+                {g?.off != null && (
+                  <motion.small initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.1 }}>
+                    {Math.round(g.off)} km
+                  </motion.small>
+                )}
+              </motion.span>
+            </span>
+          )
+        })}
       </div>
       <div className="ms-gaps">
-        {r.guesses.map((g) => (
-          <span key={g.seat} className={`ms-gap ${r.winner === g.seat ? 'win' : ''}`} style={{ '--seat': seatColour(g.seat) } as React.CSSProperties}>
-            <b>{nameOf(state, g.seat)}</b>{' '}
-            {g.off === null ? (
-              t('mission.tie.noAnswer')
-            ) : (
-              <>
-                <AnimatedNumber value={g.off} from={0} delay={1.4} duration={1} /> km
-              </>
-            )}
-          </span>
+        {r.guesses.map((g, i) => (
+          <motion.span
+            key={g.seat}
+            className={`ms-gap ${r.winner === g.seat ? 'win' : ''}`}
+            style={{ '--seat': seatColour(g.seat) } as React.CSSProperties}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring.gentle, delay: 0.2 + i * 0.15 }}
+          >
+            <span className="ms-seat-face">
+              <Avatar id={state.seats[g.seat]?.avatar ?? ''} />
+            </span>
+            <span className="ms-gap-body">
+              <b>{nameOf(state, g.seat)}</b>
+              <small>
+                {g.off === null ? (
+                  t('mission.tie.noAnswer')
+                ) : (
+                  <>
+                    <AnimatedNumber value={g.off} from={0} delay={1.4} duration={1} /> km
+                  </>
+                )}
+              </small>
+            </span>
+          </motion.span>
         ))}
       </div>
       <small className="ms-credit">{t('mission.tie.credit')}</small>

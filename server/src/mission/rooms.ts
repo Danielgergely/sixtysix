@@ -117,6 +117,8 @@ export interface MRoom {
   /** Bumped on every phase change: bots plan per step, a stale timer does nothing. */
   step: number
   phaseEndsAt: number
+  /** Bots wait until then: the clients show a phase banner (a new stage or battle round). */
+  holdUntil: number
   phaseMs: number
   timer?: ReturnType<typeof setTimeout>
   lastActivity: number
@@ -187,6 +189,7 @@ export function createMissionRoom(): MRoom {
     usedPlaces: new Set(),
     step: 0,
     phaseEndsAt: 0,
+    holdUntil: 0,
     phaseMs: 0,
     lastActivity: Date.now(),
   } as unknown as MRoom

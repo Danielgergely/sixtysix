@@ -25,7 +25,8 @@ import { Hint } from '../../tutorial/Hint'
 import { QuestionView } from '../arena/game/QuestionView'
 import { missionRewardFor } from '../../game/boardRewards'
 import { PaintedCoin } from '../../art/PaintedPortrait'
-import { OutcomeBanner, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
+import { OutcomeBanner, PicksRow, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
+import { MissionBanners } from './Banner'
 import { duelLine } from '../../mission/lines'
 import { TieInput, TieReveal } from './tie'
 import { MissionBoard } from './MissionBoard'
@@ -54,8 +55,14 @@ export function MissionScreen() {
           </motion.div>
         </AnimatePresence>
       </div>
+      <PhoneBanners state={state} />
     </div>
   )
+}
+
+function PhoneBanners({ state }: { state: MissionState }) {
+  const mySeat = useMySeat(state)
+  return <MissionBanners state={state} mySeat={mySeat} />
 }
 
 function MissionTopBar({ state }: { state: MissionState }) {
@@ -291,7 +298,7 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
       <StatusBar state={state} mySeat={mySeat} />
       <div className="ms-map-wrap">
         <div className="ms-map-frame pz">
-          <MapView {...baseMapProps(state)} compactLabels highlight={tap ? state.choices : []} onRegionTap={tap} />
+          <MapView {...baseMapProps(state)} animate compactLabels highlight={tap ? state.choices : []} onRegionTap={tap} />
         </div>
       </div>
       {state.phase === 'question' && state.question && (
@@ -300,7 +307,12 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
           <p>{questionIn(state).text}</p>
         </div>
       )}
-      {state.phase === 'reveal' && <OutcomeBanner state={state} />}
+      {state.phase === 'reveal' && (
+        <>
+          <PicksRow state={state} />
+          <OutcomeBanner state={state} />
+        </>
+      )}
       {state.phase === 'siege' && mine && state.attack && (
         <motion.div className="ms-siege" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.bouncy}>
           <p>{t('mission.siege.walls', { n: state.walls[state.attack.region] ?? 0, region: regionName(state.attack.region) })}</p>
@@ -357,6 +369,7 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
       <Hint id="nehemiah" when={nehemiah} place="top" />
       {state.phase === 'reveal' && (
         <div className="ms-q-outcome">
+          <PicksRow state={state} compact />
           <OutcomeBanner state={state} />
         </div>
       )}

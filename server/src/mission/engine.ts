@@ -43,6 +43,9 @@ const REVEAL_MS = 5_000
 const TIE_REVEAL_MS = 8_000
 /** All asked have answered: a short beat before the reveal. */
 const ALL_IN_MS = 600
+/** How long the clients' banners take: a new stage (capitals, claiming, battle) and a new battle round. Bots wait for them. */
+const STAGE_BANNER_MS = 2_400
+const ROUND_BANNER_MS = 1_400
 
 let onBroadcast: (room: MRoom) => void = () => {}
 /** The bots' planner, called after every broadcast (set by handlers.ts). */
@@ -172,6 +175,7 @@ export function startGame(io: MissionIO, room: MRoom): void {
   const last = room.pickOrder[room.pickOrder.length - 1]
   room.base = [last, ...room.pickOrder.slice(0, -1)]
   room.stage = 'capitals'
+  hold(room, STAGE_BANNER_MS)
   room.turnOrder = room.pickOrder
   room.turnIdx = 0
   console.log(`[mission] ${room.code}: game ${room.game} started (${room.seats.length} seats, ${room.options.mode}, ${room.options.map})`)
@@ -195,6 +199,11 @@ function beginCapital(io: MissionIO, room: MRoom): void {
   broadcast(io, room)
 }
 
+/** Bots hold off while the screens show a banner. */
+const hold = (room: MRoom, ms: number) => {
+  room.holdUntil = Date.now() + Math.round(ms * PACE)
+}
+
 const pickRandom = (xs: string[]) => xs[Math.floor(Math.random() * xs.length)]
 
 export function actCapital(io: MissionIO, room: MRoom, seat: number, region: unknown): void {
@@ -211,6 +220,7 @@ export function actCapital(io: MissionIO, room: MRoom, seat: number, region: unk
 
 function startClaimRound(io: MissionIO, room: MRoom): void {
   if (!free(room).length) return startBattle(io, room)
+  if (room.stage !== 'claim') hold(room, STAGE_BANNER_MS)
   room.stage = 'claim'
   room.claimRound++
   room.turnOrder = snakeOrder(room.base, room.claimRound - 1).filter((s) => !room.sd[s].out)
@@ -493,6 +503,7 @@ function nextBattleRound(io: MissionIO, room: MRoom): void {
   if (alive(room).length <= 1) return endGame(io, room, 'domination')
   if (room.battleRound >= room.battleRounds) return endGame(io, room, 'rounds')
   room.battleRound++
+  hold(room, room.battleRound === 1 ? STAGE_BANNER_MS : ROUND_BANNER_MS)
   room.turnOrder = snakeOrder(room.base, room.battleRound - 1).filter((s) => !room.sd[s].out)
   room.turnIdx = 0
   beginTurn(io, room)
