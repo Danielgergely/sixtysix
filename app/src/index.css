@@ -276,8 +276,11 @@ button:disabled{ cursor: default; }
 .seg-row.levels{ flex-wrap: wrap; }
 .seg-row.levels .seg-btn{ flex: 1 1 calc(50% - 0.4rem); }
 .seg-row.levels .seg-btn:first-child{ flex-basis: 100%; }
-.category-chips{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
-.category-chips .seg-btn:first-child{ grid-column: span 2; }
+/* Books: "All books" on its own row, then the six books two by two (minmax(0, …) so
+   long names like "Evangéliumok" can't push the grid wider than a 360 px phone). */
+.category-chips{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; }
+.category-chips .seg-btn:first-child{ grid-column: 1 / -1; }
+.category-chips .seg-btn{ min-width: 0; overflow-wrap: break-word; }
 .seg-btn{
   flex: 1;
   padding: 0.5rem 0.3rem;
