@@ -22,13 +22,13 @@ In a random seat order, each player picks a capital from the capital cities stil
 ### 2. Claiming (until no free region is left)
 Claiming happens in rounds:
 1. **Wishes:** one at a time, each player puts their flag on one free region they want, which must be next to their land when possible (otherwise any free region). A flagged region is taken for this round: the next players must wish for a different one. A player with no free region left skips the wish. The first wisher in round 1 is the player who picked their capital **last**; after that the first wish rotates in a fair snake (ABBA) order: for 3 players C A B | B A C | C A B …, for 2 players B A | A B | B A …
-2. **Question:** one multiple-choice question for everybody at once (20 or 30 s, room option; speed doesn't matter). Everyone who answers right gets the region they wished for. A player who answers wrong gets nothing this round.
+2. **Question:** one multiple-choice question for everybody at once (20 s; speed doesn't matter). Everyone who answers right gets the region they wished for. A player who answers wrong gets nothing this round.
 3. When fewer free regions are left than players, the remaining wishes go in snake order and only those players answer.
 
 ### 3. Battle rounds
 A battle round = every player still in the game takes one turn, in snake order.
 - **Attack:** the active player picks a region of another player that borders their land.
-- **Duel:** attacker and defender answer the same question (20 / 30 s; speed doesn't matter).
+- **Duel:** attacker and defender answer the same question (20 s; speed doesn't matter).
   - Only the attacker right → the attacker takes the region (its value moves over).
   - Only the defender right, or both wrong → nothing changes; the defender earns a **defence bonus** (+100 points, kept even if the region falls later).
   - Both right → **tie-breaker**.
