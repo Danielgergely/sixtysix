@@ -52,6 +52,20 @@ export const BOARD_REWARDS = {
   flock: { winCoins: 20, lossCoins: 5, winXp: 1200, lossXp: 300 },
   /** Twelve Spies: by result. In co-op the players win or lose together. */
   spies: { winCoins: 40, lossCoins: 10, winXp: 3000, lossXp: 750 },
+  /**
+   * Mission (docs/mission.md → Rewards): every right multiple-choice answer, every
+   * tie-breaker won, and the final place (halved in Blitz; knocked-out seats get
+   * the last place's amount).
+   */
+  mission: {
+    perRight: { coins: 5, xp: 250 },
+    tieCoins: 5,
+    place: [
+      { coins: 60, xp: 3000 },
+      { coins: 30, xp: 1500 },
+      { coins: 15, xp: 750 },
+    ],
+  },
 } as const
 
 export function flockReward(won: boolean): { coins: number; xp: number } {
@@ -62,4 +76,24 @@ export function flockReward(won: boolean): { coins: number; xp: number } {
 export function spiesReward(won: boolean): { coins: number; xp: number } {
   const r = BOARD_REWARDS.spies
   return won ? { coins: r.winCoins, xp: r.winXp } : { coins: r.lossCoins, xp: r.lossXp }
+}
+
+export interface MissionRewardParts {
+  right: number
+  tiesWon: number
+  /** 1-based final place. */
+  place: number
+  blitz: boolean
+}
+
+/** A Mission seat's reward, with its parts for the result screen. */
+export function missionReward(parts: MissionRewardParts): { coins: number; xp: number; rightCoins: number; tieCoins: number; placeCoins: number; placeXp: number } {
+  const r = BOARD_REWARDS.mission
+  const place = r.place[Math.min(r.place.length, Math.max(1, parts.place)) - 1]
+  const scale = parts.blitz ? 0.5 : 1
+  const rightCoins = parts.right * r.perRight.coins
+  const tieCoins = parts.tiesWon * r.tieCoins
+  const placeCoins = Math.round(place.coins * scale)
+  const placeXp = Math.round(place.xp * scale)
+  return { coins: rightCoins + tieCoins + placeCoins, xp: parts.right * r.perRight.xp + placeXp, rightCoins, tieCoins, placeCoins, placeXp }
 }

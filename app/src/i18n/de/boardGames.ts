@@ -7,6 +7,11 @@ export default {
     name: 'Wolf in der Herde',
     desc: 'Alle bekommen ein geheimes Bibelwort – nur der Wolf nicht. Gib Hinweise, bluffe und entlarve den Wolf, bevor er das Wort errät!',
   },
+  mission: {
+    tag: 'Neu · 2–3 Spieler · 15–25 Min.',
+    name: 'Mission',
+    desc: 'Juda, Israel und Aram: Erobert das Land Gebiet für Gebiet, gewinnt Duelle mit Bibelfragen und belagert die Hauptstädte!',
+  },
   spies: {
     tag: 'Neu · 2–12 Spieler · 20 Min.',
     name: 'Die zwölf Kundschafter',

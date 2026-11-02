@@ -12,6 +12,7 @@ import { useGameStore } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
 import { useFlockStore } from './flock/flockStore'
 import { useSpiesStore } from './spies/spiesStore'
+import { useMissionStore } from './mission/missionStore'
 import { playSfx } from './game/sfx'
 import { useAccountStore } from './account/accountStore'
 import { initFlags } from './flags/flagStore'
@@ -60,8 +61,17 @@ if (spiesMatch) {
   window.history.replaceState(null, '', '/')
 }
 
+// Mission: /mission/CODE (QR join) and /mission/CODE/board (shared screen).
+const missionMatch = /^\/mission\/([A-Za-z0-9]{4,8})(\/board)?\/?$/.exec(window.location.pathname)
+if (missionMatch) {
+  if (missionMatch[2]) useMissionStore.getState().watch(missionMatch[1])
+  else useMissionStore.getState().setPrefillCode(missionMatch[1])
+  useGameStore.getState().goTo('mission')
+  window.history.replaceState(null, '', '/')
+}
+
 // Reloaded mid-game (no deep link): back into the arena room this device was in.
-if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch) useArenaStore.getState().resume()
+if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch && !missionMatch) useArenaStore.getState().resume()
 
 // Signed in: deliver rewards earned offline and pick up the account's totals.
 void useAccountStore.getState().init()

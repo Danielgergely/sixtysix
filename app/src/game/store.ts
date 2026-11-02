@@ -47,6 +47,7 @@ export type Screen =
   | 'flock'
   | 'flockLocal'
   | 'spies'
+  | 'mission'
   | 'review'
   | 'account'
 

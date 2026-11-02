@@ -20,6 +20,7 @@ import { registerLookRoutes } from './looks.js'
 import { roomCount, startRoomGC } from './rooms.js'
 import { registerFlockHandlers, startFlock, type FlockIO } from './flock/handlers.js'
 import { registerSpiesHandlers, startSpies, type SpiesIO } from './spies/handlers.js'
+import { registerMissionHandlers, startMission, type MissionIO } from './mission/handlers.js'
 
 const PORT = Number(process.env.PORT ?? 3066)
 const root = dirname(fileURLToPath(import.meta.url))
@@ -86,11 +87,14 @@ io.on('connection', (socket) => {
   registerFlockHandlers(io as unknown as FlockIO, socket as unknown as Parameters<typeof registerFlockHandlers>[1])
   // Twelve Spies: likewise (spies:*).
   registerSpiesHandlers(io as unknown as SpiesIO, socket as unknown as Parameters<typeof registerSpiesHandlers>[1])
+  // Mission: likewise (mission:*).
+  registerMissionHandlers(io as unknown as MissionIO, socket as unknown as Parameters<typeof registerMissionHandlers>[1])
 })
 
 startRoomGC((room) => io.to(room.code).emit('room:closed', 'Game expired'))
 startFlock(io as unknown as FlockIO)
 startSpies(io as unknown as SpiesIO)
+startMission(io as unknown as MissionIO)
 
 await app.listen({ port: PORT, host: '0.0.0.0' })
 console.log(`[server] 66 arena server on :${PORT}`)

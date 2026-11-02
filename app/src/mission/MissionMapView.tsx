@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, type MouseEvent, type ReactNode } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { CAPITAL_VALUE, unprojectPoint, type MissionMap, type MissionRegion } from '@sixtysix/shared'
 import { useLocale, useT } from '../i18n'
 import { PanZoom } from '../world/PanZoom'
@@ -44,6 +44,11 @@ interface Props {
   onMapTap?: (lat: number, lon: number) => void
   /** Value chips under the names (default on). */
   showValues?: boolean
+  /**
+   * Crowded whole-map views (phones): below a zoom threshold the value chips go, and a
+   * region's name shows only when it fits the region on screen (towers always show).
+   */
+  compactLabels?: boolean
   panZoom?: boolean
   className?: string
   /** Rendered over the map, not panned (e.g. a prompt). */
@@ -59,6 +64,7 @@ export function MissionMapView(props: Props) {
   const { map, panZoom = true, className, children } = props
   const t = useT()
   const [w, h] = map.viewBox
+  const [zoom, setZoom] = useState(1)
   if (!panZoom) return <FitBox {...props} />
   return (
     <div className={`mm ${className ?? ''}`}>
@@ -69,6 +75,7 @@ export function MissionMapView(props: Props) {
         initialZoom={0.01}
         initialCenter={{ x: w / 2, y: h / 2 }}
         wheelZoom
+        onView={props.compactLabels ? (v) => setZoom(Math.round(v.zoom * 20) / 20) : undefined}
         className="mm-pz"
         overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
           <div className="pz-zoom">
@@ -81,7 +88,7 @@ export function MissionMapView(props: Props) {
           </div>
         )}
       >
-        <MapSvg {...props} />
+        <MapSvg {...props} zoom={zoom} />
       </PanZoom>
       {children}
     </div>
@@ -92,12 +99,14 @@ export function MissionMapView(props: Props) {
 function FitBox(props: Props & { map: MissionMap }) {
   const box = useRef<HTMLDivElement>(null)
   const [w, h] = props.map.viewBox
+  const [zoom, setZoom] = useState(1)
   useLayoutEffect(() => {
     const el = box.current
     if (!el) return
     const measure = () => {
       const z = Math.min(el.clientWidth / w, el.clientHeight / h) || 1
       el.style.setProperty('--inv', String(1 / z))
+      setZoom(Math.round(z * 20) / 20)
     }
     measure()
     const ro = new ResizeObserver(measure)
@@ -106,13 +115,13 @@ function FitBox(props: Props & { map: MissionMap }) {
   }, [w, h])
   return (
     <div ref={box} className={`mm mm-fit ${props.className ?? ''}`}>
-      <MapSvg {...props} />
+      <MapSvg {...props} zoom={zoom} />
       {props.children}
     </div>
   )
 }
 
-function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, walls = {}, highlight = {}, onRegionTap, pins, truth, onMapTap, showValues = true, panZoom = true }: Props) {
+function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, walls = {}, highlight = {}, onRegionTap, pins, truth, onMapTap, showValues = true, panZoom = true, compactLabels = false, zoom = 1 }: Props & { zoom?: number }) {
   const locale = useLocale((s) => s.locale)
   const wasDragged = useWasDragged()
   const svg = useRef<SVGSVGElement>(null)
@@ -120,6 +129,11 @@ function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, wal
   const regions: MissionRegion[] = blitz ? map.blitz : map.regions
   const base = map.base
   const relief = useMemo(() => (base ? reliefPath(base.ridges) : ''), [base])
+  const widths = useMemo(() => new Map(regions.map((r) => [r.id, pathWidth(r.path)])), [regions])
+  // Label size on screen: map size × zoom, but never below --mm-k (see .mm-lbl).
+  const labelPx = Math.max(zoom, panZoom ? 0.6 : 0.85)
+  const chips = showValues && !(compactLabels && zoom < 0.8)
+  const nameFits = (r: MissionRegion) => !compactLabels || r.name[locale].length * 7.6 * labelPx <= (widths.get(r.id) ?? 0) * zoom * 1.15
 
   const mapTap = (e: MouseEvent) => {
     if (!onMapTap || wasDragged() || !svg.current) return
@@ -235,10 +249,12 @@ function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, wal
                     ))}
                   </g>
                 )}
-                <text className="mm-name" y={4}>
-                  {r.name[locale]}
-                </text>
-                {showValues && (
+                {nameFits(r) && (
+                  <text className="mm-name" y={4}>
+                    {r.name[locale]}
+                  </text>
+                )}
+                {chips && (
                   <g transform="translate(0 15)" className={`mm-chip ${r.kind}`}>
                     <rect x={-14} y={-6.5} width={28} height={13} rx={6.5} />
                     <text y={3.6}>{capital ? CAPITAL_VALUE : r.value}</text>
@@ -277,6 +293,12 @@ function MapSvg({ map, blitz, owners = {}, seatColors = MISSION_SEAT_COLORS, wal
   )
 }
 
+
+/** A region's width in map units (from its outline's points). */
+function pathWidth(d: string): number {
+  const xs = [...d.matchAll(/[ML]\s*(-?[\d.]+)[ ,](-?[\d.]+)/g)].map((m) => Number(m[1]))
+  return xs.length ? Math.max(...xs) - Math.min(...xs) : 0
+}
 
 /** Little hill strokes along each ridge line: humps alternating either side, every ~15 units. */
 function reliefPath(ridges: [number, number][][]): string {
