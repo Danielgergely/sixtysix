@@ -122,7 +122,8 @@ export default {
   },
   reward: {
     right: '{n} helyes × 5 🪙',
-    ties: '{n} szétlövés × 5 🪙',
+    ties_one: '{count} szétlövés × 5 🪙',
+    ties_other: '{count} szétlövés × 5 🪙',
     place: '{place} hely {coins} 🪙',
     place1: '1.',
     place2: '2.',

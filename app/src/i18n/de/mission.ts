@@ -122,7 +122,8 @@ export default {
   },
   reward: {
     right: '{n} richtig × 5 🪙',
-    ties: '{n} Stechen × 5 🪙',
+    ties_one: '{count} Stechen × 5 🪙',
+    ties_other: '{count} Stechen × 5 🪙',
     place: '{place} Platz {coins} 🪙',
     place1: '1.',
     place2: '2.',

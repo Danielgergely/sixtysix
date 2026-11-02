@@ -359,7 +359,7 @@ function RewardBreakdown({ state }: { state: MissionState }) {
   const r = missionRewardFor(state, myId)
   if (!r) return null
   const parts = [t('mission.reward.right', { n: r.right, coins: r.rightCoins })]
-  if (r.tiesWon) parts.push(t('mission.reward.ties', { n: r.tiesWon, coins: r.tieCoins }))
+  if (r.tiesWon) parts.push(t('mission.reward.ties', { count: r.tiesWon, coins: r.tieCoins }))
   parts.push(t('mission.reward.place', { place: t(`mission.reward.place${Math.min(3, r.place)}`), coins: r.placeCoins }))
   parts.push(t('mission.reward.xp', { xp: r.xp.toLocaleString(locale) }))
   return (

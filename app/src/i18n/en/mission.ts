@@ -122,7 +122,8 @@ export default {
   },
   reward: {
     right: '{n} right × 5 🪙',
-    ties: '{n} tie-breakers × 5 🪙',
+    ties_one: '{count} tie-breaker × 5 🪙',
+    ties_other: '{count} tie-breakers × 5 🪙',
     place: '{place} place {coins} 🪙',
     place1: '1st',
     place2: '2nd',
