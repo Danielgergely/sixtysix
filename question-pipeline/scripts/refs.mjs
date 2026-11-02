@@ -120,6 +120,21 @@ export const refText = (lang, book, ch, from, to) => `${BOOKS[lang][ENGLISH.inde
 
 /** Schlachter's VPL text starts a verse it numbers differently with the printed number: "(02-1) Und der HERR…". */
 const DE_MARK = /^\((\d{2,3})-(\d+)[a-z]?\)/
+/** A Psalm's verse 1 holds its title first ("Dem Vorsänger. Ein Psalm Davids. (019-2) Die Himmel…"): Schlachter counts the title as verse 1. */
+const DE_TITLE_MARK = /^(.*?)\s*\((\d{2,3})-(\d+)[a-z]?\)\s*/
+
+/**
+ * Schlachter's own number for a verse at the English number, from its VPL mark:
+ * { ch, v, title } (title = the Psalm title before it, which the English verse doesn't hold),
+ * or null when it prints the English number.
+ */
+export function deMark(bible, book, ch, v) {
+  const t = bible?.[book]?.[ch]?.[v] ?? ''
+  const m = DE_MARK.exec(t)
+  if (m) return { ch: +m[1], v: +m[2], title: '' }
+  const tm = book === 'Psalms' && v === 1 ? DE_TITLE_MARK.exec(t) : null
+  return tm ? { ch: +tm[2], v: +tm[3], title: tm[1] } : null
+}
 
 /**
  * Where a single verse is printed in `lang`: { book, ch, v }, from the PLACE tables, and
@@ -132,7 +147,7 @@ export function printedAt(lang, reference, bible) {
   const at = (ch, v, text = { ch, v }) => ({ book: r.book, ch, v, text })
   if (place && !Array.isArray(place)) return at(place.ref[0], place.ref[1])
   if (place) return place[3] === 'keep' ? at(r.ch, r.from, { ch: place[0], v: place[1] }) : at(place[0], place[1])
-  const mark = lang === 'de' ? DE_MARK.exec(bible?.[r.book]?.[r.ch]?.[r.from] ?? '') : null
-  if (mark) return at(+mark[1], +mark[2], { ch: r.ch, v: r.from })
+  const mark = lang === 'de' ? deMark(bible, r.book, r.ch, r.from) : null
+  if (mark) return at(mark.ch, mark.v, { ch: r.ch, v: r.from })
   return at(r.ch, r.from)
 }
