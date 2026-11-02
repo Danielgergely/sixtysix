@@ -29,6 +29,7 @@ function cleanConfig(raw: unknown, base?: RoomConfig): RoomConfig {
       : base!.categories,
     difficulty: has('difficulty') ? (DIFFICULTY_PRESETS.find((d) => d === cfg.difficulty) ?? 'mixed') : base!.difficulty,
     mode: has('mode') ? (ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic') : base!.mode,
+    withImpossible: has('withImpossible') ? cfg.withImpossible === true : base!.withImpossible,
   }
 }
 

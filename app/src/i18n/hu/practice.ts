@@ -6,6 +6,7 @@ export default {
   allBooks: 'Minden könyv',
   difficulty: 'Nehézség',
   levels: { mixed: 'Vegyes', easy: 'Könnyű', medium: 'Közepes', hard: 'Nehéz', impossible: 'Lehetetlen' },
+  withImpossible: 'Lehetetlen kérdésekkel is',
   loading: 'Nyílnak a tekercsek…',
   begin: 'Kezdjük',
   review: 'Hibáim átnézése ({n})',

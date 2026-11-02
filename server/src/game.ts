@@ -47,6 +47,7 @@ export function startGame(io: IO, room: Room): void {
   room.questions = pickQuestions(room.config.questionCount, {
     categories: room.config.categories,
     difficulty: room.config.difficulty,
+    withImpossible: room.config.withImpossible,
     exclude: played,
   })
   if (room.questions.length === 0) return // filters matched nothing: stay in the lobby

@@ -6,6 +6,7 @@ export default {
   allBooks: 'Alle Bücher',
   difficulty: 'Schwierigkeit',
   levels: { mixed: 'Gemischt', easy: 'Leicht', medium: 'Mittel', hard: 'Schwer', impossible: 'Unmöglich' },
+  withImpossible: 'Auch unmögliche Fragen',
   loading: 'Die Rollen werden geöffnet …',
   begin: 'Los geht’s',
   review: 'Meine Fehler wiederholen ({n})',

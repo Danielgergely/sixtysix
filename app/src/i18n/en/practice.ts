@@ -7,6 +7,7 @@ export default {
   allBooks: 'All books',
   difficulty: 'Difficulty',
   levels: { mixed: 'Mixed', easy: 'Easy', medium: 'Medium', hard: 'Hard', impossible: 'Impossible' },
+  withImpossible: 'Also impossible questions',
   loading: 'Opening the scrolls…',
   begin: 'Begin',
   review: 'Review my mistakes ({n})',

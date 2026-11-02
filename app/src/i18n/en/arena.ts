@@ -6,6 +6,7 @@ export default {
     wall: { label: '🧱 Rebuild the Wall', desc: 'Teams race to rebuild their gate of Jerusalem (Nehemiah 3). Needs 2+ players.' },
   },
   difficulty: { mixed: '⚖️ Mixed', easy: '🌱 Easy', medium: '🌿 Medium', hard: '🔥 Hard', impossible: '💀 Impossible' },
+  withImpossible: '💀 Also impossible questions',
   allBooks: '📖 All books',
   inPerson: '🏠 In person',
   remote: '🌍 Remote',

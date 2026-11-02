@@ -12,7 +12,7 @@ import { excludedNow, useFlagStore } from '../../flags/flagStore'
 export function PracticeSetupScreen() {
   const t = useT()
   const goTo = useGameStore((s) => s.goTo)
-  const { categories, difficulty, missed, loading, setCategories, setDifficulty, start } = usePracticeStore()
+  const { categories, difficulty, withImpossible, missed, loading, setCategories, setDifficulty, setWithImpossible, start } = usePracticeStore()
   // Flagged questions are out of play, so they don't count as mistakes to review.
   useFlagStore((s) => s.serverExcluded.length + s.mine.length)
   const out = excludedNow()
@@ -53,6 +53,12 @@ export function PracticeSetupScreen() {
             </button>
           ))}
         </div>
+        {difficulty === 'mixed' && (
+          <label className="opt-check">
+            <input type="checkbox" checked={withImpossible} onChange={(e) => setWithImpossible(e.target.checked)} />
+            <span>{t('practice.withImpossible')}</span>
+          </label>
+        )}
 
         <button className="pr-go" disabled={loading} onClick={() => void start()}>
           {loading ? t('practice.loading') : t('practice.begin')}

@@ -37,6 +37,12 @@ export function RoomOptions({ value, onChange }: { value: RoomConfig; onChange: 
           </button>
         ))}
       </div>
+      {(value.difficulty ?? 'mixed') === 'mixed' && (
+        <label className="opt-check">
+          <input type="checkbox" checked={value.withImpossible === true} onChange={(e) => set({ withImpossible: e.target.checked })} />
+          <span>{t('arena.withImpossible')}</span>
+        </label>
+      )}
       <div className="category-chips">
         <button className={`seg-btn ${categories.length === 0 ? 'selected' : ''}`} onClick={() => set({ categories: [] })}>
           {t('arena.allBooks')}

@@ -5,6 +5,7 @@ export default {
     wall: { label: '🧱 Die Mauer bauen', desc: 'Teams bauen um die Wette ihr Tor von Jerusalem wieder auf (Nehemia 3). Ab 2 Spielern.' },
   },
   difficulty: { mixed: '⚖️ Gemischt', easy: '🌱 Leicht', medium: '🌿 Mittel', hard: '🔥 Schwer', impossible: '💀 Unmöglich' },
+  withImpossible: '💀 Auch unmögliche Fragen',
   allBooks: '📖 Alle Bücher',
   inPerson: '🏠 Vor Ort',
   remote: '🌍 Online',

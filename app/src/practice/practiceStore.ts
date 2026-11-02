@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { DIFFICULTY_RANGE, UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
+import { difficultyRange, UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useLocale } from '../i18n'
@@ -46,6 +46,8 @@ export interface PracticeTally {
 interface PracticeStore {
   categories: Category[]
   difficulty: DifficultyPreset
+  /** Mixed only: also the impossible (level 5) questions. */
+  withImpossible: boolean
   /** Saved missed ids (all sessions). */
   missed: string[]
   /** true while the bank chunk loads. */
@@ -64,6 +66,7 @@ interface PracticeStore {
 
   setCategories: (c: Category[]) => void
   setDifficulty: (d: DifficultyPreset) => void
+  setWithImpossible: (on: boolean) => void
   start: (opts?: { reviewOnly?: boolean }) => Promise<void>
   answer: (index: number) => void
   next: () => void
@@ -78,13 +81,13 @@ let seen = new Set<string>()
 let retryQueue: Array<{ id: string; at: number }> = []
 let served = 0
 
-function eligible(q: Question, cats: Category[], difficulty: DifficultyPreset): boolean {
-  const [min, max] = DIFFICULTY_RANGE[difficulty]
+function eligible(q: Question, cats: Category[], difficulty: DifficultyPreset, withImpossible: boolean): boolean {
+  const [min, max] = difficultyRange(difficulty, withImpossible)
   return q.difficulty >= min && q.difficulty <= max && (cats.length === 0 || cats.includes(q.category))
 }
 
 function pickNext(state: PracticeStore): Question | null {
-  const { categories, difficulty, missed, reviewOnly } = state
+  const { categories, difficulty, withImpossible, missed, reviewOnly } = state
   // Flagged questions are out of play, even one flagged a moment ago.
   const out = excludedNow()
   retryQueue = retryQueue.filter((r) => !out.has(r.id))
@@ -105,14 +108,14 @@ function pickNext(state: PracticeStore): Question | null {
     return r ? (bank.find((b) => b.id === r.id) ?? null) : null
   }
   if (savedPool.length && Math.random() < MISSED_SHARE) {
-    const fromMissed = savedPool.filter((q) => eligible(q, categories, difficulty))
+    const fromMissed = savedPool.filter((q) => eligible(q, categories, difficulty, withImpossible))
     if (fromMissed.length) return fromMissed[Math.floor(Math.random() * fromMissed.length)]
   }
   // 3. fresh question; once everything was seen, start over
-  let pool = bank.filter((q) => eligible(q, categories, difficulty) && !seen.has(q.id) && !out.has(q.id))
+  let pool = bank.filter((q) => eligible(q, categories, difficulty, withImpossible) && !seen.has(q.id) && !out.has(q.id))
   if (pool.length === 0) {
     seen = new Set()
-    pool = bank.filter((q) => eligible(q, categories, difficulty) && !out.has(q.id))
+    pool = bank.filter((q) => eligible(q, categories, difficulty, withImpossible) && !out.has(q.id))
   }
   return pool[Math.floor(Math.random() * pool.length)] ?? null
 }
@@ -120,6 +123,7 @@ function pickNext(state: PracticeStore): Question | null {
 export const usePracticeStore = create<PracticeStore>((set, get) => ({
   categories: [],
   difficulty: 'mixed',
+  withImpossible: false,
   missed: loadMissed(),
   loading: false,
   question: null,
@@ -133,6 +137,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
 
   setCategories: (categories) => set({ categories }),
   setDifficulty: (difficulty) => set({ difficulty }),
+  setWithImpossible: (withImpossible) => set({ withImpossible }),
 
   start: async ({ reviewOnly = false } = {}) => {
     if (get().loading) return

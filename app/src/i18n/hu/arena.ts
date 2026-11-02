@@ -5,6 +5,7 @@ export default {
     wall: { label: '🧱 Építsd fel a falat', desc: 'A csapatok versenyt építik újjá Jeruzsálem egy-egy kapuját (Nehémiás 3). Legalább 2 játékos kell hozzá.' },
   },
   difficulty: { mixed: '⚖️ Vegyes', easy: '🌱 Könnyű', medium: '🌿 Közepes', hard: '🔥 Nehéz', impossible: '💀 Lehetetlen' },
+  withImpossible: '💀 Lehetetlen kérdésekkel is',
   allBooks: '📖 Minden könyv',
   inPerson: '🏠 Személyesen',
   remote: '🌍 Távolról',

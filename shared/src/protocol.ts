@@ -17,6 +17,10 @@ export const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = {
   hard: [4, 4],
   impossible: [5, 5],
 }
+/** The level range a preset draws from; Mixed can be widened to include the impossible ones. */
+export function difficultyRange(preset: DifficultyPreset = 'mixed', withImpossible = false): [number, number] {
+  return preset === 'mixed' && withImpossible ? [1, 5] : DIFFICULTY_RANGE[preset]
+}
 
 /**
  * classic = everyone for themselves (Road to the Throne, Crowning);
@@ -34,6 +38,8 @@ export interface RoomConfig {
   /** Omitted or empty = all categories. */
   categories?: Category[]
   difficulty?: DifficultyPreset
+  /** Mixed only: also draw level-5 (impossible) questions. */
+  withImpossible?: boolean
 }
 
 export const MAX_ARENA_PLAYERS = 100
