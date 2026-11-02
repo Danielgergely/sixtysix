@@ -17,6 +17,12 @@ import { excludedNow, loadExclusions } from '../flags/flagStore'
 const MISSED_KEY = 'sixtysix.practiceMissed.v1'
 /** A question missed this session reappears this many questions later. */
 const RETRY_AFTER = 4
+/**
+ * A missed question (this session's or a saved one) is at most every this many
+ * questions: someone who misses everything still gets fresh ones in between, so
+ * the pool keeps growing instead of cycling the same few.
+ */
+const MISS_SPACING = 4
 /** Share of picks drawn from the saved "missed" list when it has eligible items. */
 const MISSED_SHARE = 0.3
 
@@ -80,6 +86,8 @@ let bank: Question[] = []
 let seen = new Set<string>()
 let retryQueue: Array<{ id: string; at: number }> = []
 let served = 0
+/** `served` when the last missed question came back (-Infinity: none yet). */
+let lastMissAt = -Infinity
 
 function eligible(q: Question, cats: Category[], difficulty: DifficultyPreset, withImpossible: boolean): boolean {
   const [min, max] = difficultyRange(difficulty, withImpossible)
@@ -91,12 +99,18 @@ function pickNext(state: PracticeStore): Question | null {
   // Flagged questions are out of play, even one flagged a moment ago.
   const out = excludedNow()
   retryQueue = retryQueue.filter((r) => !out.has(r.id))
-  // 1. a question missed earlier this session whose turn has come
-  const due = retryQueue.findIndex((r) => r.at <= served)
+  // Review mode is only misses; otherwise a missed one at most every MISS_SPACING questions.
+  const missTurn = reviewOnly || served - lastMissAt >= MISS_SPACING
+  const backAgain = (q: Question) => {
+    lastMissAt = served
+    return q
+  }
+  // 1. a question missed earlier this session whose turn has come (the one waiting longest)
+  const due = missTurn ? retryQueue.findIndex((r) => r.at <= served) : -1
   if (due >= 0) {
     const [r] = retryQueue.splice(due, 1)
     const q = bank.find((b) => b.id === r.id)
-    if (q) return q
+    if (q) return backAgain(q)
   }
   // 2. saved misses from earlier sessions
   const savedPool = bank.filter((q) => missed.includes(q.id) && !seen.has(q.id) && !out.has(q.id))
@@ -107,9 +121,9 @@ function pickNext(state: PracticeStore): Question | null {
     const [r] = retryQueue.splice(0, 1)
     return r ? (bank.find((b) => b.id === r.id) ?? null) : null
   }
-  if (savedPool.length && Math.random() < MISSED_SHARE) {
+  if (missTurn && savedPool.length && Math.random() < MISSED_SHARE) {
     const fromMissed = savedPool.filter((q) => eligible(q, categories, difficulty, withImpossible))
-    if (fromMissed.length) return fromMissed[Math.floor(Math.random() * fromMissed.length)]
+    if (fromMissed.length) return backAgain(fromMissed[Math.floor(Math.random() * fromMissed.length)])
   }
   // 3. fresh question; once everything was seen, start over
   let pool = bank.filter((q) => eligible(q, categories, difficulty, withImpossible) && !seen.has(q.id) && !out.has(q.id))
@@ -157,6 +171,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     seen = new Set()
     retryQueue = []
     served = 0
+    lastMissAt = -Infinity
     set({ loading: false, reviewOnly, streak: 0, coins: 0, tally: { answered: 0, correct: 0 }, byCategory: {}, finished: false })
     useGameStore.getState().goTo('practice')
     useGiftStore.getState().start('practice')
