@@ -8,7 +8,7 @@ import { PaintedPortrait } from '../../art/PaintedPortrait'
 import { t as tNow, useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
 import { FIGURES } from '../life/figures'
-import { LOTS, TEMPLE, lotFor, type LandmarkId } from '../cityLayout'
+import { LOTS, TEMPLE, lotFor, lotOpen, type LandmarkId } from '../cityLayout'
 import type { CityMapProps } from '../CityMap'
 import { CitySearch, FoundCard } from '../CityChrome'
 import { houseName } from '../../screens/home/plotText'
@@ -17,6 +17,8 @@ import { NavButtons } from './NavButtons'
 import { labelAt, maxDpr, useContextLost, useScenePointer } from './rig'
 import type { LandmarkSpot } from './buildings'
 import { CityScene } from './CityScene'
+import { HOUSE_SCALE } from './plan'
+import { clearView } from './view'
 import { heightAt, lotCentre, surfaceAt, ux, uz } from './space'
 import { reducedMotion } from '../life/sim'
 import '../../theme/city3d.css'
@@ -68,7 +70,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   /** Empty lots (1-based numbers), nearest the Temple first. */
   const free = useMemo(() => {
     const taken = new Set(residents.map((r) => r.lot))
-    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
+    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n) && lotOpen(n))
   }, [residents])
   const byLot = useMemo(() => new Map(residents.filter((r) => r.lot).map((r) => [r.lot!, r])), [residents])
 
@@ -80,7 +82,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       if (!l) continue
       const [x, z] = lotCentre(l)
       const special = r.username === me || r.username === found?.username
-      out.push({ id: `r:${r.username}`, x, y: heightAt(x, z) + HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] + 0.8, z, always: special, name: true })
+      out.push({ id: `r:${r.username}`, x, y: heightAt(x, z) + HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] * HOUSE_SCALE + 0.8, z, always: special, name: true })
     }
     for (const n of free.slice(0, FREE_LABELS)) {
       const [x, z] = lotCentre(LOTS[n - 1])
@@ -107,6 +109,9 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       void c.moveTo(x, surfaceAt(x, z), z, !still)
       bridge.invalidate()
       if (dist && c.distance > dist) void c.dollyTo(dist, !still)
+      // Turn or tilt if the Temple Mount, a landmark or the wall would hide the spot.
+      const [az, polar] = clearView(x, z, Math.min(c.distance, dist ?? c.distance), c.azimuthAngle, c.polarAngle)
+      if (az !== c.azimuthAngle || polar !== c.polarAngle) void c.rotateTo(az, polar, !still)
     },
     [bridge, still],
   )

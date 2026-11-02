@@ -1,5 +1,7 @@
-import { LOTS, MOUNT, TEMPLE, WALL, WORLD, type Lot } from '../cityLayout'
-import { ROADS } from '../cityTownsfolk'
+import { TEMPLE, WALL, WORLD } from '../cityLayout'
+import { MOUNT_PTS, PLATFORM, px, py, S, STAIR_RUN, STAIR_SPECS, STAIR_W, ux, uz } from './plan'
+
+export { lotCentre, MOUNT_PTS, px, py, S, ux, uz } from './plan'
 
 /**
  * The 3D city's space. Everything in shared/src/cityLayout.ts is in world px
@@ -14,14 +16,7 @@ import { ROADS } from '../cityTownsfolk'
  * the wall, and the Mount of Olives rising beyond the Kidron.
  */
 
-export const S = 0.1
 export const HALF = (WORLD / 2) * S
-/** Painting px → units. */
-export const ux = (px: number) => (px - WORLD / 2) * S
-export const uz = (py: number) => (py - WORLD / 2) * S
-/** Units → painting px. */
-export const px = (x: number) => x / S + WORLD / 2
-export const py = (z: number) => z / S + WORLD / 2
 
 /** How far the ground runs past the painted square (units each side). */
 export const GROUND_PAD = 130
@@ -66,9 +61,8 @@ export function heightAt(x: number, z: number): number {
   return h
 }
 
-/** The Temple Mount platform: its four corners (x, z) and the height of its pavement. */
-export const MOUNT_PTS: [number, number][] = MOUNT.map(([x, y]) => [ux(x), uz(y)])
-export const MOUNT_TOP = heightAt(TX, TZ) + 3.2
+/** The height of the Temple Mount platform's pavement (its corners: plan.ts MOUNT_PTS). */
+export const MOUNT_TOP = heightAt(PLATFORM.x, PLATFORM.z) + 3.2
 
 /** Inside a convex polygon (corners in order). */
 export function inPolygon(x: number, z: number, pts: [number, number][], grow = 0): boolean {
@@ -89,9 +83,9 @@ export function inPolygon(x: number, z: number, pts: [number, number][], grow = 
 }
 
 /**
- * The two flights of stairs up the platform, where the roads TS and TE meet
- * it: from the edge point (qx, qz) they run `run` units outwards (nx, nz) down
- * to the ground, `width` wide.
+ * The flights of stairs up the platform, one in the middle of every side
+ * (plan.ts STAIR_SPECS): from the edge point (qx, qz) they run `run` units
+ * outwards (nx, nz) down to the ground, `width` wide.
  */
 export interface Stair {
   qx: number
@@ -109,36 +103,19 @@ export interface Stair {
   foot: number
 }
 
-function stairAt(road: readonly [number, number]): Stair {
-  const x = ux((road[0] / 100) * WORLD)
-  const z = uz((road[1] / 100) * WORLD)
-  let best: Stair | null = null
-  let bestD = Infinity
-  const [cx, cz] = MOUNT_PTS.reduce(([a, b], [px2, pz2]) => [a + px2 / 4, b + pz2 / 4], [0, 0])
-  for (let i = 0; i < MOUNT_PTS.length; i++) {
-    const [ax, az] = MOUNT_PTS[i]
-    const [bx, bz] = MOUNT_PTS[(i + 1) % MOUNT_PTS.length]
-    const len = Math.hypot(bx - ax, bz - az)
-    const ex = (bx - ax) / len
-    const ez = (bz - az) / len
-    const t = Math.max(4, Math.min(len - 4, (x - ax) * ex + (z - az) * ez))
-    const qx = ax + ex * t
-    const qz = az + ez * t
-    const d = Math.hypot(x - qx, z - qz)
-    if (d < bestD) {
-      bestD = d
-      // Outwards: away from the platform's middle.
-      let [nx, nz] = [-ez, ex]
-      if ((qx - cx) * nx + (qz - cz) * nz < 0) [nx, nz] = [ez, -ex]
-      const run = 7
-      best = { qx, qz, nx, nz, ex, ez, run, width: 5.5, edge: i, along: t, foot: heightAt(qx + nx * run, qz + nz * run) }
-    }
-  }
-  return best!
-}
-
-// The stairs where the roads TS and TE (cityTownsfolk.ts) come up.
-export const STAIRS: Stair[] = [stairAt(ROADS.TS), stairAt(ROADS.TE)]
+export const STAIRS: Stair[] = STAIR_SPECS.map(({ edge, along }) => {
+  const [ax, az] = MOUNT_PTS[edge]
+  const [bx, bz] = MOUNT_PTS[(edge + 1) % 4]
+  const len = Math.hypot(bx - ax, bz - az)
+  const ex = (bx - ax) / len
+  const ez = (bz - az) / len
+  const qx = ax + ex * along
+  const qz = az + ez * along
+  // Outwards: away from the platform's middle.
+  let [nx, nz] = [-ez, ex]
+  if ((qx - PLATFORM.x) * nx + (qz - PLATFORM.z) * nz < 0) [nx, nz] = [ez, -ex]
+  return { qx, qz, nx, nz, ex, ez, run: STAIR_RUN, width: STAIR_W, edge, along, foot: heightAt(qx + nx * STAIR_RUN, qz + nz * STAIR_RUN) }
+})
 
 /** What people walk on: the platform's pavement on the Mount, its stairs, the ground everywhere else. */
 export function surfaceAt(x: number, z: number): number {
@@ -154,14 +131,6 @@ export function surfaceAt(x: number, z: number): number {
 
 /** The Temple anchor in units. */
 export const TEMPLE_XZ: [number, number] = [TX, TZ]
-
-/**
- * Where a lot's house stands (units). The painting's lots are foot points (the
- * bottom of a sprite drawn upwards), so the house sits a little north of it.
- */
-export function lotCentre(l: Lot): [number, number] {
-  return [ux(l.x), uz(l.y - 26)]
-}
 
 /** A stable random number in [0, 1) for an integer seed. */
 export function hash(n: number): number {
@@ -182,6 +151,3 @@ export function rng(seed: number): () => number {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
 }
-
-/** Every lot's house centre, for keeping trees and props off them. */
-export const LOT_CENTRES: [number, number][] = LOTS.map(lotCentre)

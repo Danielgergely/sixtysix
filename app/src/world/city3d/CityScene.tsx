@@ -26,7 +26,7 @@ import {
 } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
-import { LOTS } from '../cityLayout'
+import { LOTS, lotOpen } from '../cityLayout'
 import { townsfolk, type Home } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
@@ -35,6 +35,9 @@ import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
 import { HOUSE_YARD } from './models'
 import { C } from './palette'
+import { HOUSE_SCALE, LOT_HALF } from './plan'
+import { CITY_NET } from './streets'
+import { PoolWater } from './PoolWater'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
 import { groundTexture, terrainGeometry } from './terrain'
 import { plasterTexture, signTexture, stoneTexture } from './textures'
@@ -77,9 +80,12 @@ interface Props {
 
 const up = new Vector3(0, 1, 0)
 
-/** A lot's house turns a quarter or so, by lot number, so streets don't look stamped. */
+/** Where the camera was when the city last closed (position, target), for this session. */
+let lastView: [number, number, number, number, number, number] | null = null
+
+/** A lot's house turns by quarters, by lot number, so streets don't look stamped (and its square yard stays square to the street). */
 function lotTurn(n: number): number {
-  return Math.floor(hash(n) * 4) * (Math.PI / 2) + (hash(n + 991) - 0.5) * 0.2
+  return Math.floor(hash(n) * 4) * (Math.PI / 2)
 }
 
 export function CityScene({ residents, me, found, labels, bridge, start, still, forSale, onLandmarks, onReady }: Props) {
@@ -96,7 +102,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     const groundMat = new MeshLambertMaterial({ map: groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536) })
     return { stoneMat, plainMat, groundMat, terrain: terrainGeometry() }
   }, [gl, wide])
-  const trees = useMemo(() => placeTrees(city.landmarks), [city])
+  const trees = useMemo(() => placeTrees(), [])
   const treeGeo = useMemo(() => ({ olive: oliveGeometry(), cypress: cypressGeometry() }), [])
   const houseGeo = useMemo(() => houseGeometries(), [])
   // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
@@ -157,10 +163,11 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const r = byLot.get(n)
       o.position.set(x, y, z)
       o.rotation.set(0, lotTurn(n), 0)
-      o.scale.setScalar(1)
+      o.scale.setScalar(HOUSE_SCALE)
       o.updateMatrix()
       if (!r) {
-        free.push(o.matrix.clone())
+        // A retired lot (a road or a landmark took its place) is just ground.
+        if (lotOpen(n)) free.push(o.matrix.clone())
         return
       }
       const level = Math.min(houseGeo.length, Math.max(1, r.house)) - 1
@@ -173,8 +180,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       perLevel[level].push({ n, m: o.matrix.clone(), c: tint })
       const wall = Math.min(fenceGeo.length, r.wall ?? 0)
       if (wall > 0) {
-        const k = HOUSE_YARD[level] / 7
-        o.scale.set(k, 1, k)
+        const k = (HOUSE_YARD[level] / 7) * HOUSE_SCALE
+        o.scale.set(k, HOUSE_SCALE, k)
         o.updateMatrix()
         perWall[wall - 1].push(o.matrix.clone())
       }
@@ -182,18 +189,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const tufts = stage === 0 ? 0 : stage === 1 ? 5 : 12
       for (let t = 0; t < tufts; t++) {
         const a = hash(n * 31 + t) * Math.PI * 2
-        const rr = 2.4 + hash(n * 17 + t) * 1.1
+        const rr = (2.4 + hash(n * 17 + t) * 1.1) * HOUSE_SCALE
         const wx = x + Math.cos(a) * rr
         const wz = z + Math.sin(a) * rr
-        const s = 0.8 + hash(n * 13 + t) * 0.7 + (stage >= 2 ? 0.4 : 0)
+        const s = (0.8 + hash(n * 13 + t) * 0.7 + (stage >= 2 ? 0.4 : 0)) * HOUSE_SCALE
         const wm = new Matrix4().compose(new Vector3(wx, heightAt(wx, wz) + 0.05, wz), new Quaternion().setFromAxisAngle(up, a), new Vector3(s, s, s))
         weeds.push({ m: wm, c: stage >= 2 ? new Color(1.12, 1.0, 0.62) : new Color(1, 1, 1) })
       }
       // For sale: a board at the front corner, facing south (the default view).
       if (stage === 3 && r.username !== me) {
-        const sx = x + 2.9
-        const sz = z + 3.3
-        signs.push(new Matrix4().makeTranslation(sx, heightAt(sx, sz), sz))
+        const sx = x + 2.9 * HOUSE_SCALE
+        const sz = z + 3.3 * HOUSE_SCALE
+        signs.push(new Matrix4().compose(new Vector3(sx, heightAt(sx, sz), sz), new Quaternion(), new Vector3(HOUSE_SCALE, HOUSE_SCALE, HOUSE_SCALE)))
       }
     })
     return { perLevel, perWall, free, weeds, signs }
@@ -243,9 +250,11 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     LOTS.forEach((l, i) => {
       const [x, z] = lotCentre(l)
       const r = byLot.get(i + 1)
-      const h = r ? HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] + 0.5 : 1.2
+      const h = r ? HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] * HOUSE_SCALE + 0.5 : 1.2
       o.position.set(x, heightAt(x, z) + h / 2, z)
-      o.scale.set(7, h, 7)
+      // Retired lots can't be tapped.
+      const w = r || lotOpen(i + 1) ? 2 * LOT_HALF : 0
+      o.scale.set(w, Math.max(0.01, h), w)
       o.updateMatrix()
       mesh.setMatrixAt(i, o.matrix)
     })
@@ -306,10 +315,10 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   // ── The townsfolk ──
   const homes = useMemo<Home[]>(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
-  const folk = useMemo(() => townsfolk(homes), [homes])
+  const folk = useMemo(() => townsfolk(homes, CITY_NET), [homes])
 
   // ── Highlights: my home (a gold ring and a beam of light) and the family just found (a red ring) ──
-  const ringGeo = useMemo(() => new RingGeometry(4.7, 5.5, 48).rotateX(-Math.PI / 2), [])
+  const ringGeo = useMemo(() => new RingGeometry(LOT_HALF + 0.4, LOT_HALF + 1.1, 48).rotateX(-Math.PI / 2), [])
   const beamGeo = useMemo(() => {
     const g = new CylinderGeometry(0.9, 1.6, 34, 20, 1, true).translate(0, 17, 0)
     const p = g.getAttribute('position')
@@ -342,10 +351,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     bridge.controls = c
     bridge.invalidate = invalidate
     configureRig(c, { minDist: MIN_DIST, maxDist: MAX_DIST, minPolar: 0.12, maxPolar: 1.18, boundary: [new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)] })
-    const [x, z] = start
-    const y = surfaceAt(x, z)
-    c.setLookAt(x, y + START_DIST * Math.cos(START_POLAR), z + START_DIST * Math.sin(START_POLAR), x, y, z, false)
+    if (lastView) {
+      // Back from a visit (or the list): the city as it was left.
+      c.setLookAt(...lastView, false)
+    } else {
+      const [x, z] = start
+      const y = surfaceAt(x, z)
+      c.setLookAt(x, y + START_DIST * Math.cos(START_POLAR), z + START_DIST * Math.sin(START_POLAR), x, y, z, false)
+    }
     return () => {
+      const p = c.getPosition(new Vector3())
+      const t = c.getTarget(new Vector3())
+      lastView = [p.x, p.y, p.z, t.x, t.y, t.z]
       bridge.controls = null
     }
     // The start only matters once.
@@ -449,6 +466,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       <mesh geometry={statics.terrain} material={statics.groundMat} receiveShadow />
       <mesh geometry={city.stone} material={statics.stoneMat} castShadow receiveShadow />
       <mesh geometry={city.plain} material={statics.plainMat} castShadow receiveShadow />
+      <PoolWater water={city.water} still={still} />
 
       {houseGeo.map((g, i) => (
         <instancedMesh
