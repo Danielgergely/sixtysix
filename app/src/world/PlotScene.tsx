@@ -117,6 +117,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
   return (
     <motion.button
       className={`ps-spot ${b === 'house' ? 'house' : ''} ${level ? '' : 'empty'} ${build ? 'building' : ''}`}
+      data-tour={b === 'house' ? 'home-house' : undefined}
       style={style}
       onClick={tap}
       aria-disabled={!onSelect}

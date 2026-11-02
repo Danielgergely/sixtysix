@@ -19,6 +19,9 @@ import { OnlineEntry } from '../shell/OnlineEntry'
 import { Avatar } from '../../avatars/Avatar'
 import { popIn, spring } from '../../motion'
 import { useLocale, useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
+import { Hint } from '../../tutorial/Hint'
 import { QuestionView } from '../arena/game/QuestionView'
 import { missionRewardFor } from '../../game/boardRewards'
 import { PaintedCoin } from '../../art/PaintedPortrait'
@@ -72,7 +75,7 @@ function MissionTopBar({ state }: { state: MissionState }) {
           {seatName(mySeat)}
         </span>
       ) : (
-        <span className="topbar-spacer" />
+        <InfoButton id="mission" />
       )}
     </header>
   )
@@ -85,6 +88,7 @@ function MissionMenu() {
   const { create, join, watch, error, busy, prefillCode } = useMissionStore()
   const [last] = useState(lastMissionCode)
   const t = useT()
+  useIntro('mission')
   return (
     <div className="screen ms emp">
       <header className="screen-topbar">
@@ -92,7 +96,7 @@ function MissionMenu() {
           ←
         </button>
         <h2 className="topbar-heading">{t('mission.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="mission" />
       </header>
       <div className="ms-body ms-menu">
         <motion.div className="ms-hero" {...popIn}>
@@ -254,7 +258,13 @@ function GameView({ state }: { state: MissionState }) {
   const mySeat = useMySeat(state)
   const asked = !!state.question?.seats.includes(mySeat)
   if ((state.phase === 'question' || state.phase === 'reveal') && asked && state.question) return <MyQuestion state={state} mySeat={mySeat} />
-  if (state.phase === 'tie' && state.tie) return <TieInput state={state} mySeat={mySeat} />
+  if (state.phase === 'tie' && state.tie)
+    return (
+      <>
+        <TieInput state={state} mySeat={mySeat} />
+        <Hint id="tie" place="top" />
+      </>
+    )
   if (state.phase === 'tieReveal' && state.tie?.reveal)
     return (
       <div className="ms-col">
@@ -303,6 +313,7 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
         </motion.div>
       )}
       {me?.out && <p className="ms-wait">{t('mission.common.youAreOut')}</p>}
+      <Hint id="siege" when={siegeChoice} place="top" />
     </div>
   )
 }
@@ -320,6 +331,8 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
   // After a reload the server knows I answered, but not which card: show the picks at the reveal.
   const played = mine ?? (state.phase === 'reveal' ? (state.reveal?.picks[mySeat] ?? -1) : null)
   const wish = state.wishes.find((w) => w.seat === mySeat)
+  // Nehemiah matters once your capital has a broken wall and you are defending.
+  const nehemiah = q.kind === 'duel' && state.attack?.defender === mySeat && (state.seats[mySeat]?.walls ?? 3) < 3 && state.phase === 'question'
   const stake =
     q.kind === 'claim' ? `⚑ ${regionName(wish?.region)}` : state.attack ? `${state.attack.attacker === mySeat ? '⚔️' : '🛡'} ${regionName(state.attack.region)}` : ''
   return (
@@ -341,6 +354,7 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
         onAnswer={answer}
       />
       {state.phase === 'question' && (mine !== null || state.answered.includes(mySeat)) && <p className="ms-q-wait">{t('mission.question.answered')}</p>}
+      <Hint id="nehemiah" when={nehemiah} place="top" />
       {state.phase === 'reveal' && (
         <div className="ms-q-outcome">
           <OutcomeBanner state={state} />

@@ -28,6 +28,8 @@ import { AnimatedNumber, fireConfetti, spring, STAGGER } from '../motion'
 import { claimCedar, learnSkill, masterBuild, respecSkills } from '../skills/skillsApi'
 import { learnErrorText, pathName, pathWhat, skillEffect, skillName, skillWhere } from '../skills/skillText'
 import { tServer, useLocale, useT } from '../i18n'
+import { InfoButton } from '../tutorial/InfoButton'
+import { useIntro } from '../tutorial/useIntro'
 import { rich } from './home/rich'
 
 
@@ -38,6 +40,7 @@ export function SkillTreeScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const account = useAccountStore((s) => s.account)
   const t = useT()
+  useIntro('skills', !!account)
   const locale = useLocale((s) => s.locale)
   const [path, setPath] = useState<SkillPath>('scholar')
   const [open, setOpen] = useState<SkillDef | null>(null)
@@ -75,7 +78,7 @@ export function SkillTreeScreen() {
           ←
         </button>
         <h2 className="topbar-heading">{t('skills.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="skills" />
       </header>
 
       <div className="st-scroll">

@@ -29,6 +29,7 @@ import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
 import { PlotScene } from '../../world/PlotScene'
+import { useIntro } from '../../tutorial/useIntro'
 
 /** My Home in Jerusalem: the plot with its nine spots (docs/jerusalem-plot.md). */
 export function HomeScreen() {
@@ -40,6 +41,8 @@ export function HomeScreen() {
   useTick(1000)
   const plot = usePlotStore.getState().projected()
   const now = usePlotStore.getState().now()
+  // The spotlight tour, once the plot (and so the buttons it points at) is on screen.
+  useIntro('home', !!account && !!plot)
 
   useEffect(() => {
     void load()
@@ -192,6 +195,7 @@ function Actions({ plot }: { plot: PlotState }) {
       {error && <p className="hp-error">{tServer(error)}</p>}
       <button
         className="hp-btn gold"
+        data-tour="home-collect"
         disabled={busy || waiting === 0}
         onClick={async () => {
           const got = await collect()
@@ -200,7 +204,7 @@ function Actions({ plot }: { plot: PlotState }) {
       >
         {waiting ? t('home.actions.collectAllN', { n: waiting }) : t('home.actions.collectAll')}
       </button>
-      <button className="hp-btn" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()} title={t('home.actions.scrollTitle', { n: cut })}>
+      <button className="hp-btn" data-tour="home-scroll" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()} title={t('home.actions.scrollTitle', { n: cut })}>
         {t('home.actions.scroll')} <small>{t('home.actions.scrollCut', { n: cut })}</small>
       </button>
     </div>

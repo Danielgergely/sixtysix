@@ -275,6 +275,7 @@ const ResidentLot = memo(function ResidentLot({
   return (
     <button
       className={`cm-lot ${mine ? 'me' : ''} ${found ? 'found' : ''} ${stage ? `idle-${stage}` : ''}`}
+      data-tour={mine ? 'city-me' : undefined}
       style={{ left: lot.x, top: lot.y }}
       onClick={() => !wasDragged() && onTap(r)}
       title={t(stage ? 'city.map.lotTitleAway' : 'city.map.lotTitle', vars)}
@@ -303,7 +304,7 @@ const FreeLot = memo(function FreeLot({ n, lot, labelled, onTap }: { n: number; 
   const wasDragged = useWasDragged()
   const t = useT()
   return (
-    <button className={`cm-lot free ${labelled ? '' : 'quiet'}`} style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap(n, null)} aria-label={t('city.map.freeAria', { n })}>
+    <button className={`cm-lot free ${labelled ? '' : 'quiet'}`} data-tour={labelled ? 'city-free' : undefined} style={{ left: lot.x, top: lot.y }} onClick={() => !wasDragged() && onTap(n, null)} aria-label={t('city.map.freeAria', { n })}>
       <img className="cm-house" src="/art/land-free.webp" alt="" draggable={false} loading="lazy" style={{ width: LOT_SIZE, zIndex: Math.round(lot.y) - 40 }} />
       <span className="cm-hit" style={{ width: LOT_SIZE * 0.8, height: LOT_SIZE * 0.5, zIndex: Math.round(lot.y) - 40 }} />
       {labelled && (

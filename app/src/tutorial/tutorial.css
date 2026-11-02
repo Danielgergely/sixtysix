@@ -1,0 +1,127 @@
+/* ══ Tutorials (app/src/tutorial/): intro cards, How to play sheet, spotlight, hints, ⓘ buttons ══ */
+
+.tut-overlay{
+  position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px;
+  background: rgb(20 8 4 / 0.62);
+}
+.tut-overlay.bottom{ align-items: flex-end; padding: 0; }
+
+/* Shared parchment surface */
+.tut-card, .tut-sheet, .tut-spot-card{
+  color: #3b2412; font-family: 'Cinzel', Georgia, serif; text-align: left;
+  background: radial-gradient(circle at 30% 0%, #fff3cf, #f3e2bb 55%, #e8d2a0);
+  border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, inset 0 0 24px rgb(120 70 20 / 0.3), 0 16px 40px rgb(0 0 0 / 0.6);
+}
+
+/* Intro: step-through card */
+.tut-card{ position: relative; width: min(360px, 100%); padding: 14px 16px 16px; border-radius: 18px; display: flex; flex-direction: column; gap: 10px; }
+.tut-head{ display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 28px; }
+.tut-kicker{ font: 900 11px/1.2 'Cinzel', serif; letter-spacing: 0.14em; text-transform: uppercase; color: #8e3b1e; }
+.tut-skip{ padding: 6px 4px; background: none; border: 0; font: 700 13px/1 'Cinzel', serif; color: #6b4120; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.tut-stage{ position: relative; min-height: 168px; display: grid; }
+.tut-step{ grid-area: 1 / 1; }
+.tut-body{ display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.tut-icon{
+  display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; font-size: 44px; line-height: 1;
+  background: radial-gradient(circle at 50% 35%, #7a2f1d, #2a0f08); border: 3px solid #e3b754; box-shadow: 0 0 0 2px #1d0f06, 0 6px 14px rgb(0 0 0 / 0.35);
+}
+.tut-text{ display: flex; flex-direction: column; gap: 6px; }
+.tut-text strong{ font: 900 21px/1.15 'Cinzel Decorative', 'Cinzel', serif; color: #6b1d0e; }
+.tut-text > span{ font: 600 15px/1.45 Georgia, serif; color: #4a2a14; }
+
+/* Small variant: list rows (How to play, spotlight) */
+.tut-body.small{ flex-direction: row; align-items: flex-start; gap: 12px; text-align: left; }
+.tut-body.small .tut-icon{ flex: 0 0 46px; width: 46px; height: 46px; font-size: 24px; border-width: 2px; box-shadow: 0 0 0 1px #1d0f06; }
+.tut-body.small .tut-text{ gap: 2px; padding-top: 2px; }
+.tut-body.small .tut-text strong{ font: 900 15px/1.2 'Cinzel', serif; }
+.tut-body.small .tut-text > span{ font-size: 13.5px; line-height: 1.4; }
+
+.tut-dots{ display: flex; justify-content: center; gap: 7px; }
+.tut-dots span{ width: 8px; height: 8px; border-radius: 50%; background: rgb(107 29 14 / 0.25); transition: background 0.2s, transform 0.2s; }
+.tut-dots span.on{ background: #b8372a; transform: scale(1.25); }
+
+.tut-btns{ display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; align-items: center; }
+.tut-btn{
+  min-height: 44px; padding: 10px 14px; border-radius: 12px; font: 900 15px/1 'Cinzel', serif; cursor: pointer; color: #2b1408;
+  border: 2px solid #1d0f06;
+}
+.tut-btn.gold{ background: linear-gradient(#ffe08a, #c98a12); box-shadow: 0 3px 0 #1d0f06; }
+.tut-btn.gold:active{ translate: 0 2px; box-shadow: 0 1px 0 #1d0f06; }
+.tut-btn.ghost{ background: rgb(255 255 255 / 0.45); border-color: #b88a3a; color: #6b1d0e; }
+.tut-btn.wide{ width: 100%; margin-top: 4px; }
+
+/* How to play: bottom sheet */
+.tut-sheet{
+  position: relative; width: min(100%, 520px); max-height: 88dvh; overflow-y: auto; overscroll-behavior: contain;
+  padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; border-bottom: 0;
+  display: flex; flex-direction: column; gap: 8px; -webkit-user-select: text; user-select: text;
+}
+.tut-x{
+  position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%;
+  background: rgb(255 255 255 / 0.5); border: 2px solid #b88a3a; color: #6b1d0e; font-size: 15px; cursor: pointer;
+}
+.tut-title{ margin: 0 44px 4px 0; font: 900 22px/1.15 'Cinzel Decorative', 'Cinzel', serif; color: #6b1d0e; }
+.tut-list{ list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; }
+.tut-list li{ padding: 8px 10px; border-radius: 12px; background: rgb(255 255 255 / 0.38); border: 1px solid #c9a24a; }
+.tut-more{ margin-top: 8px; font: 900 11px/1 'Cinzel', serif; letter-spacing: 0.14em; text-transform: uppercase; color: #8e3b1e; }
+.tut-details{ margin: 0 0 0 18px; display: grid; gap: 6px; font: 600 13px/1.45 Georgia, serif; color: #4a2a14; }
+.tut-details b{ color: #6b1d0e; }
+
+/* Spotlight tour */
+.tut-spot{ position: fixed; inset: 0; z-index: 300; }
+.tut-spot.dim{ background: rgb(20 8 4 / 0.62); }
+.tut-ring{
+  position: fixed; border-radius: 14px; pointer-events: none;
+  box-shadow: 0 0 0 3px #ffe08a, 0 0 0 6px #1d0f06, 0 0 0 9999px rgb(20 8 4 / 0.62), 0 0 26px 8px rgb(255 200 80 / 0.55);
+}
+@media (prefers-reduced-motion: no-preference){
+  .tut-ring{ animation: tut-ring 1.8s ease-in-out infinite; }
+}
+@keyframes tut-ring{ 50%{ box-shadow: 0 0 0 3px #ffe08a, 0 0 0 6px #1d0f06, 0 0 0 9999px rgb(20 8 4 / 0.62), 0 0 36px 14px rgb(255 200 80 / 0.7); } }
+.tut-spot-card{ position: fixed; padding: 12px 14px 14px; border-radius: 16px; display: flex; flex-direction: column; gap: 10px; }
+
+/* Hints: one-time speech bubbles */
+.tut-hint{
+  position: fixed; z-index: 250; display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; border-radius: 14px; text-align: left;
+  background: linear-gradient(#fff6d6, #f6dd97); border: 2px solid #1d0f06; box-shadow: 0 0 0 2px #e3b754, 0 10px 24px rgb(0 0 0 / 0.5);
+  font: 700 14px/1.35 Georgia, serif; color: #3b2412; cursor: pointer;
+}
+.tut-hint-icon{ font-size: 18px; line-height: 1.1; }
+.tut-hint-x{ margin-left: auto; padding-left: 4px; font-size: 11px; color: #8e3b1e; }
+.tut-hint.arrow-up::before, .tut-hint.arrow-down::before{
+  content: ''; position: absolute; left: calc(var(--arrow, 50%) - 9px); width: 14px; height: 14px; rotate: 45deg;
+  background: #fff3cc; border: 2px solid #1d0f06;
+}
+.tut-hint.arrow-up::before{ top: -9px; border-right: 0; border-bottom: 0; }
+.tut-hint.arrow-down::before{ bottom: -9px; border-left: 0; border-top: 0; background: #f6dd97; }
+
+/* ⓘ buttons */
+.tut-info-bar{ font-size: 20px; font-weight: 700; }
+.tut-cardwrap{ position: relative; }
+.tut-info-card{
+  position: absolute; z-index: 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; padding: 0;
+  background: rgb(29 15 6 / 0.82); border: 2px solid #e3b754; color: #ffe7a3; font: 700 19px/1 Georgia, serif; cursor: pointer;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.5);
+}
+.tut-info-card:active{ scale: 0.92; }
+.hm-modes .tut-info-card{ top: 9px; left: 9px; }
+.tut-cardwrap > .bg-feature + .tut-info-card{ bottom: 32px; right: 12px; }
+
+/* Arena player lobby: the one-line rules */
+.tut-lobby-line{
+  margin: 2px 0; padding: 8px 12px; border-radius: 10px; text-align: center; background: rgb(20 8 4 / 0.55); border: 1px solid #b88a3a;
+  font: 700 13px/1.4 Georgia, serif; color: #ffe7a3;
+}
+
+/* Sign-up card: why an account */
+.tut-signup-line{ margin: 0 0 6px; font: 700 14px/1.4 Georgia, serif; color: #6b1d0e; }
+
+/* Profile: How to play list */
+.tut-howto-list{ display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.tut-howto-item{
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 10px; border-radius: 10px; text-align: left; cursor: pointer;
+  background: rgb(255 255 255 / 0.4); border: 1px solid #c9a24a; font: 700 13px/1.2 'Cinzel', serif; color: #3b2412;
+}
+.tut-howto-item > span:first-child{ font-size: 18px; }
+.tut-reset{ margin-top: 8px; }
+.tut-reset-done{ margin-top: 6px; font: italic 600 12px/1.3 Georgia, serif; color: #2f7a3a; }

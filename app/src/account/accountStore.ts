@@ -5,6 +5,7 @@ import { EMPTY_STATS } from '../game/persistence'
 import { getToken, queueGrant, readOutbox, setOnQueued, setToken, writeOutbox } from './outbox'
 import { setMyRanks } from '../skills/mySkills'
 import { t } from '../i18n'
+import { adoptTutorials, setOnTutorialsChanged, tutorialsForSync, tutorialsSynced } from '../tutorial/store'
 
 /**
  * Optional account. Signed out ("guest"), progress lives on the device as
@@ -119,6 +120,7 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     cache(account)
     set({ account })
     const { profile } = account
+    adoptTutorials(profile.tutorials)
     useGameStore.getState().adoptProgress({ ...profile, stats: { ...EMPTY_STATS, ...profile.stats } })
   }
 
@@ -138,11 +140,13 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       again = false
       const grants = readOutbox()
       const { player } = useGameStore.getState()
-      const res = await api('sync', { grants, name: player.name, avatar: player.avatar })
+      const tips = tutorialsForSync()
+      const res = await api('sync', { grants, name: player.name, avatar: player.avatar, ...tips.body })
       if (!res.ok) {
         if (res.error === 'signed-out') signedOut()
         return // offline: the outbox keeps everything for next time
       }
+      tutorialsSynced(tips.version)
       // Drop exactly what was delivered; anything queued meanwhile stays.
       const sent = new Set(grants.map((g) => g.id))
       writeOutbox(readOutbox().filter((g) => !sent.has(g.id)))
@@ -199,6 +203,13 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     if (!getToken()) return
     clearTimeout(editTimer)
     editTimer = setTimeout(() => void get().sync(), 1500)
+  })
+  // Tutorials seen (or "Show tips again") travel with the account, so a new device doesn't repeat them.
+  let tipsTimer: ReturnType<typeof setTimeout> | undefined
+  setOnTutorialsChanged(() => {
+    if (!getToken()) return
+    clearTimeout(tipsTimer)
+    tipsTimer = setTimeout(() => void get().sync(), 2000)
   })
 
   return {

@@ -80,6 +80,7 @@ export function AccountPanel() {
         </div>
       ) : (
         <>
+          <p className="tut-signup-line">{t('tutorial.signup.line')}</p>
           <p className="account-why">{t('account.why')}</p>
         </>
       )}

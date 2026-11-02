@@ -4,9 +4,10 @@ import type { MissionState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, CountdownRing, popIn, spring } from '../../motion'
 import { useMissionStore } from '../../mission/missionStore'
-import { rich, roundLine, seatColour, seatName } from '../../mission/util'
+import { roundLine, seatColour, seatName } from '../../mission/util'
 import { outcomeLines, statusLine } from '../../mission/lines'
 import { t as tr, useT } from '../../i18n'
+import { HowToSheet } from '../../tutorial/HowToSheet'
 
 export function QrCode({ url }: { url: string }) {
   const [svg, setSvg] = useState('')
@@ -106,24 +107,9 @@ export function OutcomeBanner({ state }: { state: MissionState }) {
   )
 }
 
-/** "How to play": the rules in seven short bullets, as a sheet over the lobby or the board. */
+/** "How to play" over the lobby or the board: the shared tutorial sheet (cards + the seven full rules, mission.rules.r1–r7). */
 export function RulesSheet({ onClose }: { onClose: () => void }) {
-  const t = useT()
-  return (
-    <motion.div className="ms-sheet-back" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="ms-sheet" initial={{ y: 60 }} animate={{ y: 0 }} transition={spring.gentle} onClick={(e: React.MouseEvent) => e.stopPropagation()} role="dialog" aria-label={t('mission.rules.title')}>
-        <h3>{t('mission.rules.title')}</h3>
-        <ul className="ms-rules">
-          {(['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7'] as const).map((k) => (
-            <li key={k}>{rich(t(`mission.rules.${k}`))}</li>
-          ))}
-        </ul>
-        <button className="btn-play ms-wide-btn" onClick={onClose}>
-          {t('mission.rules.close')}
-        </button>
-      </motion.div>
-    </motion.div>
-  )
+  return <HowToSheet id="mission" onClose={onClose} />
 }
 
 export function SeatTag({ seat }: { seat: number }) {
