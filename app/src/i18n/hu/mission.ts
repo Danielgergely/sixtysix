@@ -67,7 +67,8 @@ export default {
   score: {
     walls: '{n} fal',
     out: 'Kiesett',
-    regions: '{n} vidék',
+    regions_one: '{count} vidék',
+    regions_other: '{count} vidék',
   },
   outcome: {
     claimGot: '⚑ {name} megszerzi: {region}',

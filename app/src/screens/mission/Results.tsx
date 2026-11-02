@@ -30,7 +30,7 @@ export function Results({ state }: { state: MissionState }) {
               <span className="ms-rank-name">
                 {s.name}
                 <small>
-                  {seatName(seat)} · {s.out ? t('mission.score.out') : t('mission.score.regions', { n: s.regions })} · {t('mission.over.detail', { land: s.land.toLocaleString(locale), def: s.defence.toLocaleString(locale) })}
+                  {seatName(seat)} · {s.out ? t('mission.score.out') : t('mission.score.regions', { count: s.regions })} · {t('mission.over.detail', { land: s.land.toLocaleString(locale), def: s.defence.toLocaleString(locale) })}
                 </small>
               </span>
               <span className="ms-rank-score">{t('mission.over.points', { n: s.score.toLocaleString(locale) })}</span>

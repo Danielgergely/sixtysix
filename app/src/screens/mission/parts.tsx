@@ -62,9 +62,10 @@ export function Scoreboard({ state, wide = false }: { state: MissionState; wide?
               </span>
               <span className="ms-seat-land">
                 <AnimatedNumber value={s.score} duration={0.6} />
-                <small>{s.out ? t('mission.score.out') : t('mission.score.regions', { n: s.regions })}</small>
+                {s.out && <small>{t('mission.score.out')}</small>}
               </span>
               <span className="ms-seat-meta">
+                {!s.out && <span className="ms-reg" title={t('mission.score.regions', { count: s.regions })}>⚑{s.regions}</span>}
                 {s.capital && !s.out && <Walls n={s.walls} />}
                 {s.defence > 0 && <span className="ms-def">🛡{s.defence}</span>}
               </span>

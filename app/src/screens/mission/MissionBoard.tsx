@@ -102,7 +102,7 @@ function BoardPanel({ state }: { state: MissionState }) {
     const r = state.phase === 'reveal' ? state.reveal : null
     return (
       <div className="ms-board-q">
-        <small>{state.question.kind === 'duel' ? duelLine(state) : t('mission.status.claimQ')}</small>
+        {state.question.kind === 'duel' && <small>{duelLine(state)}</small>}
         <p className="ms-board-qtext">{text}</p>
         <div className="ms-board-cards">
           {answers.map((a, i) => (

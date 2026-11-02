@@ -40,7 +40,7 @@ export function StubMapView(props: MissionMapViewProps) {
         return (
           <g key={r.id} className={`ms-region ${tappable ? 'tap' : ''} ${sel.has(r.id) ? 'sel' : ''}`} onClick={tappable ? (e) => (e.stopPropagation(), props.onRegionTap!(r.id)) : undefined}>
             <path d={r.path} fill={owner === null || owner === undefined ? '#efe3c2' : seatColours[owner]} fillOpacity={owner === null || owner === undefined ? 1 : 0.55} stroke="#5a4326" strokeWidth={2} />
-            {lit.has(r.id) && <path d={r.path} className="ms-region-lit" fill="none" />}
+            {lit.has(r.id) && <path d={r.path} className="ms-region-lit" />}
             <text x={r.label[0]} y={r.label[1] - 6} textAnchor="middle" className="ms-region-name">
               {r.name[locale] ?? r.name.en}
             </text>
@@ -48,7 +48,7 @@ export function StubMapView(props: MissionMapViewProps) {
               {r.id in walls ? `${'■'.repeat(walls[r.id])}${'□'.repeat(Math.max(0, 3 - walls[r.id]))}` : r.capitalSite && owner == null ? '◇' : ''}
             </text>
             {flags[r.id] !== undefined && (
-              <motion.text x={r.label[0] + 26} y={r.label[1] - 4} fontSize={22} initial={{ y: r.label[1] - 40, opacity: 0 }} animate={{ y: r.label[1] - 4, opacity: 1 }} transition={spring.bouncy} fill={seatColours[flags[r.id]]}>
+              <motion.text x={r.label[0] + 26} y={r.label[1] - 4} fontSize={22} initial={{ y: -36, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.bouncy} fill={seatColours[flags[r.id]]}>
                 ⚑
               </motion.text>
             )}

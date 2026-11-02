@@ -67,7 +67,8 @@ export default {
   score: {
     walls: '{n} Mauern',
     out: 'Ausgeschieden',
-    regions: '{n} Gebiete',
+    regions_one: '{count} Gebiet',
+    regions_other: '{count} Gebiete',
   },
   outcome: {
     claimGot: '⚑ {name} gewinnt {region}',

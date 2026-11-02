@@ -67,7 +67,8 @@ export default {
   score: {
     walls: '{n} walls',
     out: 'Out',
-    regions: '{n} regions',
+    regions_one: '{count} region',
+    regions_other: '{count} regions',
   },
   outcome: {
     claimGot: '⚑ {name} wins {region}',
