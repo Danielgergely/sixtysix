@@ -11,6 +11,7 @@ import { useLocale, useT } from '../../i18n'
 import { questionIn, useVerses, verseOf } from '../../questions/localize'
 import { rich } from '../arena/rich'
 import { FlagButton } from '../../flags/FlagSheet'
+import { useIntro } from '../../tutorial/useIntro'
 
 /** Time until local midnight, "5h 12m". */
 function useUntilTomorrow(): string {
@@ -29,6 +30,7 @@ function useUntilTomorrow(): string {
 /** Five questions a day; one card at a time, then the shareable result. */
 export function DailyScreen() {
   const t = useT()
+  useIntro('daily')
   const goTo = useGameStore((s) => s.goTo)
   const { saved, questions, coins, answer } = useDailyStore()
   const locale = useLocale((s) => s.locale)

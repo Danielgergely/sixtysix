@@ -5,12 +5,15 @@ import { usePracticeStore } from '../../practice/practiceStore'
 import { PARCHMENT } from '../../art/textures'
 import { spring } from '../../motion'
 import { useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
 import { excludedNow, useFlagStore } from '../../flags/flagStore'
 
 
 /** Practice entry: pick books and difficulty, or replay your saved mistakes. */
 export function PracticeSetupScreen() {
   const t = useT()
+  useIntro('practice')
   const goTo = useGameStore((s) => s.goTo)
   const { categories, difficulty, withImpossible, missed, loading, setCategories, setDifficulty, setWithImpossible, start } = usePracticeStore()
   // Flagged questions are out of play, so they don't count as mistakes to review.
@@ -27,7 +30,7 @@ export function PracticeSetupScreen() {
           ←
         </button>
         <h2>{t('practice.title')}</h2>
-        <span className="pr-top-spacer" />
+        <InfoButton id="practice" variant="plain" className="pr-back" />
       </header>
 
       <motion.div className="pr-sheet" style={{ backgroundImage: PARCHMENT }} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.gentle}>

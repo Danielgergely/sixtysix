@@ -5,6 +5,8 @@ import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
 import { AnimatedNumber, spring } from '../../motion'
 import { useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
 import { rich } from './rich'
 import { RoomOptions } from './RoomOptions'
 import type { ArenaPlayer, RoomConfig } from '@sixtysix/shared'
@@ -50,6 +52,8 @@ export function ArenaHostLobbyScreen() {
   const [qrSvg, setQrSvg] = useState('')
   const [joinOrigin, setJoinOrigin] = useState(window.location.origin)
   const [editing, setEditing] = useState(false)
+  // The host gets the intro; spectators (boards) never do.
+  useIntro('arena', role === 'host')
 
   // A localhost QR is unscannable by phones — ask the server for its LAN URL.
   useEffect(() => {
@@ -110,7 +114,7 @@ export function ArenaHostLobbyScreen() {
           ✕
         </button>
         <h2 className="topbar-heading">{room.game > 1 ? t('arena.hostLobby.titleNext', { n: room.game }) : t('arena.hostLobby.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="arena" />
       </header>
 
       <div className="host-code-card">

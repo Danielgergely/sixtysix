@@ -7,6 +7,7 @@ import { openSkillTree } from '../skills/nav'
 import { LOCALES, useLocale, useT } from '../i18n'
 import { useAccountStore } from '../account/accountStore'
 import { fetchFlagSummary } from '../flags/adminApi'
+import { HowToList } from '../tutorial/TutorialHost'
 
 const pct = (part: number, total: number, locale: string) =>
   total > 0 ? (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 0 }) : '–'
@@ -81,6 +82,8 @@ export function ProfileScreen() {
           <span className={`setting-pill ${muted ? '' : 'on'}`}>{muted ? t('profile.off') : t('profile.on')}</span>
         </button>
       </div>
+
+      <HowToList />
 
       <div className="profile-stats">
         <button className="chip chip-btn" onClick={() => openSkillTree('profile')} title={t('profile.skillTree')}>

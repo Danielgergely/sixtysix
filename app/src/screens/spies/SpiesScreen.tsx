@@ -16,6 +16,8 @@ import { OnlineEntry } from '../shell/OnlineEntry'
 import { popIn, shake, spring } from '../../motion'
 import { TRIBE, cardWord, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
 import { t as tr, tServer, useLocale, useT } from '../../i18n'
+import { InfoButton } from '../../tutorial/InfoButton'
+import { useIntro } from '../../tutorial/useIntro'
 import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
 import { SpiesBoard } from './SpiesBoard'
 import { Verdict } from './verdict'
@@ -73,7 +75,7 @@ function SpiesTopBar({ state }: { state: SpiesState }) {
           {TRIBE[me.team].emblem} {spymaster ? chiefName(me.team) : t('spies.agent')}
         </span>
       ) : (
-        <span className="topbar-spacer" />
+        <InfoButton id="spies" />
       )}
     </header>
   )
@@ -87,6 +89,7 @@ function SpiesMenu() {
   // A reload drops the in-memory game; the device id still owns the seat.
   const [last] = useState(lastSpiesCode)
   const t = useT()
+  useIntro('spies')
 
   return (
     <div className="screen ts emp">
@@ -95,7 +98,7 @@ function SpiesMenu() {
           ←
         </button>
         <h2 className="topbar-heading">{t('spies.title')}</h2>
-        <span className="topbar-spacer" />
+        <InfoButton id="spies" />
       </header>
       <div className="ts-body ts-menu">
         <motion.div className="ts-hero" {...popIn}>

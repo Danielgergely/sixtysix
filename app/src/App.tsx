@@ -26,6 +26,7 @@ import { TabBar } from './screens/shell/TabBar'
 import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 import { FlagSheetHost } from './flags/FlagSheet'
 import { LookPickerHost } from './looks/LookPicker'
+import { TutorialHost } from './tutorial/TutorialHost'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
 const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
@@ -111,6 +112,7 @@ export default function App() {
       </div>
       <FlagSheetHost />
       <LookPickerHost />
+      <TutorialHost />
       <ConfettiLayer />
     </MotionConfig>
   )

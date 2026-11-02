@@ -11,6 +11,7 @@ import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
 import { TEAM_COLORS, gateName, myTeamOf, teamVoice } from './modes'
 import { useLocale, useT } from '../../i18n'
+import { Hint } from '../../tutorial/Hint'
 import { FlagButton } from '../../flags/FlagSheet'
 import { TeamStrip } from './game/Team'
 
@@ -74,48 +75,51 @@ function ArenaQuestion() {
   const mine = isPlayer ? myTeamOf(room, myPlayerId) : null
   const connected = room.players.filter((p) => p.connected || answeredIds.includes(p.id))
   return (
-    <QuestionView
-      index={question.index}
-      total={question.total}
-      text={local.text}
-      answers={local.answers}
-      phase={phase}
-      endsAt={phaseEndsAt}
-      durationMs={phaseDuration}
-      isPlayer={isPlayer}
-      myAnswer={myAnswer}
-      reveal={room.phase === 'reveal' ? localReveal : null}
-      result={yourResult}
-      score={me?.score}
-      answerCount={answerCount}
-      answered={room.players
-        .filter((p) => p.connected || answeredIds.includes(p.id))
-        .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
-      playerCount={room.players.length}
-      onAnswer={answer}
-      teamStrip={
-        mine ? (
-          <TeamStrip
-            team={mine.team}
-            mates={mine.mates}
-            you={me}
-            answeredIds={answeredIds}
-            allDone={answerCount}
-            allTotal={connected.length}
-          />
-        ) : undefined
-      }
-      teamVoice={mine && phase === 'question' ? teamVoice(teamVotes) : null}
-      badge={
-        team && (!mine || phase === 'reveal') ? (
-          <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
-            🧱 {gateName(t, team.name)}
-          </span>
-        ) : room.goliath ? (
-          <span className="mode-badge goliath">🪨 {Math.round((room.goliath.hp / room.goliath.maxHp) * 100)}%</span>
-        ) : undefined
-      }
-    />
+    <>
+      <Hint id="wall" when={!!mine && phase === 'question'} place="top" />
+      <QuestionView
+        index={question.index}
+        total={question.total}
+        text={local.text}
+        answers={local.answers}
+        phase={phase}
+        endsAt={phaseEndsAt}
+        durationMs={phaseDuration}
+        isPlayer={isPlayer}
+        myAnswer={myAnswer}
+        reveal={room.phase === 'reveal' ? localReveal : null}
+        result={yourResult}
+        score={me?.score}
+        answerCount={answerCount}
+        answered={room.players
+          .filter((p) => p.connected || answeredIds.includes(p.id))
+          .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
+        playerCount={room.players.length}
+        onAnswer={answer}
+        teamStrip={
+          mine ? (
+            <TeamStrip
+              team={mine.team}
+              mates={mine.mates}
+              you={me}
+              answeredIds={answeredIds}
+              allDone={answerCount}
+              allTotal={connected.length}
+            />
+          ) : undefined
+        }
+        teamVoice={mine && phase === 'question' ? teamVoice(teamVotes) : null}
+        badge={
+          team && (!mine || phase === 'reveal') ? (
+            <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
+              🧱 {gateName(t, team.name)}
+            </span>
+          ) : room.goliath ? (
+            <span className="mode-badge goliath">🪨 {Math.round((room.goliath.hp / room.goliath.maxHp) * 100)}%</span>
+          ) : undefined
+        }
+      />
+    </>
   )
 }
 
