@@ -32,4 +32,8 @@ export interface MissionMapViewProps {
   /** Thin out names and value chips on a crowded whole-map view. */
   compactLabels?: boolean
   className?: string
+  /** Room code # game # map size: what mapFx.ts diffs against (baseMapProps sets it). */
+  fxKey?: string
+  /** Animate changes since this device last showed the game map (the main map views only). */
+  animate?: boolean
 }

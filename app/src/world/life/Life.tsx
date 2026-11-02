@@ -1,8 +1,9 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { t } from '../../i18n'
 import { useWasDragged } from '../dragged'
-import { FIGURES, type FigureId } from './figures'
-import { dist, nearest, route, type Graph, type Pt } from './nav'
+import { FIGURES } from './figures'
+import type { Graph } from './nav'
+import { newSim, reducedMotion, stepSim, syncSims, tapSim, type Actor, type Sim } from './sim'
 
 /**
  * Life in the explorable world: people and animals that walk the paths of a
@@ -19,29 +20,7 @@ import { dist, nearest, route, type Graph, type Pt } from './nav'
  * motion the figures stand still at their places (they still talk).
  */
 
-export interface Actor {
-  /** Stable key: the same id keeps its place when the list is rebuilt. */
-  id: string
-  fig: FigureId
-  /** Height in world px. */
-  h: number
-  /** World px per second while walking. */
-  speed?: number
-  /** Where it starts (world px). */
-  at: Pt
-  /** Walks between these graph nodes, in random order... */
-  stops?: string[]
-  /** ...and disappears inside at these for a while (a house door, the city gate). */
-  enter?: string[]
-  /** Or wanders inside this ellipse (animals in a yard). */
-  area?: { x: number; y: number; rx: number; ry: number }
-  /** Seconds it stands at a stop. */
-  pause?: [number, number]
-  /** Starts facing left. */
-  left?: boolean
-  /** Shown over its head (something to give). */
-  badge?: string
-}
+export type { Actor } from './sim'
 
 interface Props {
   actors: Actor[]
@@ -58,44 +37,16 @@ interface Props {
   onTap?: (a: Actor) => string | null | Promise<string | null>
 }
 
-type State = 'idle' | 'walk' | 'run' | 'inside' | 'talk'
-
-interface Sim {
-  a: Actor
-  x: number
-  y: number
-  node?: string
-  path: Pt[]
-  state: State
-  /** Seconds left in this state (idle, inside, talk). */
-  t: number
-  /** Look the other way when t falls below this (idle). */
-  flipAt: number
-  left: boolean
-  /** Running away after a tap (animals). */
-  flee: boolean
-  /** Its own pace (×), so walkers with the same errands drift apart. */
-  pace: number
+/** A sim with its DOM: the sprite, its tap target, and what was last written. */
+type DomSim = Sim & {
   el?: HTMLDivElement | null
   /** Invisible tap target in the layer above every sprite and tag (see .lf-hit). */
   hit?: HTMLButtonElement | null
-  /** What was last written to the DOM. */
   shown: string
 }
 
-const rand = (a: number, b: number) => a + Math.random() * (b - a)
-const pick = <T,>(xs: T[]): T | undefined => xs[Math.floor(Math.random() * xs.length)]
-
-const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-
-function pointIn(area: NonNullable<Actor['area']>): Pt {
-  const r = Math.sqrt(Math.random())
-  const th = Math.random() * Math.PI * 2
-  return { x: area.x + Math.cos(th) * area.rx * r, y: area.y + Math.sin(th) * area.ry * r }
-}
-
 export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inView, onTap }: Props) {
-  const sims = useRef(new Map<string, Sim>())
+  const sims = useRef(new Map<string, DomSim>())
   const props = useRef({ graph, zOf, exits, inView })
   props.current = { graph, zOf, exits, inView }
   const [bubble, setBubble] = useState<{ id: string; text: string; key: number } | null>(null)
@@ -104,104 +55,14 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
   bubbleRef.current = bubble
   const wasDragged = useWasDragged()
 
-  // Keep a sim per actor: new ones start at their place, known ones keep walking.
-  const seen = new Set<string>()
-  for (const a of actors) {
-    seen.add(a.id)
-    const s = sims.current.get(a.id)
-    if (s) s.a = a
-    else {
-      // Walkers start at staggered times: some still indoors, so nobody sets off in step.
-      const indoors = !!a.stops && Math.random() < 0.5
-      sims.current.set(a.id, { a, x: a.at.x, y: a.at.y, path: [], state: indoors ? 'inside' : 'idle', t: rand(0, indoors ? 12 : 5), flipAt: -1, left: !!a.left, flee: false, pace: rand(0.8, 1.2), shown: '' })
-    }
-  }
-  for (const id of [...sims.current.keys()]) if (!seen.has(id)) sims.current.delete(id)
+  syncSims(sims.current, actors, (a) => ({ ...newSim(a), shown: '' }))
 
   useEffect(() => {
     const still = reducedMotion()
     let raf = 0
     let last = performance.now()
 
-    /** Where to next: another stop on the graph, or a spot in its area. */
-    const plan = (s: Sim) => {
-      const { graph: g } = props.current
-      const a = s.a
-      if (a.stops?.length && g) {
-        const from = s.node && g.nodes[s.node] ? s.node : nearest(g, s)
-        const to = pick(a.stops.filter((k) => k !== from && g.nodes[k]))
-        if (!to) return false
-        s.path = [...(from && dist(g.nodes[from], s) > 2 ? [g.nodes[from]] : []), ...route(g, from, to)]
-        s.node = to
-        return true
-      }
-      if (a.area) {
-        s.path = [pointIn(a.area)]
-        return true
-      }
-      return false
-    }
-
-    const arrive = (s: Sim) => {
-      const { exits: ex, graph: g } = props.current
-      const a = s.a
-      s.flee = false
-      if (s.node && (a.enter?.includes(s.node) || ex?.includes(s.node))) {
-        s.state = 'inside'
-        s.t = rand(4, 14)
-        // Gone out of town: someone comes back in through another gate.
-        if (g && ex?.includes(s.node)) {
-          const back = pick(ex)!
-          s.node = back
-          s.x = g.nodes[back].x
-          s.y = g.nodes[back].y
-        }
-        return
-      }
-      s.state = 'idle'
-      const [lo, hi] = a.pause ?? (FIGURES[a.fig].animal ? [2, 7] : [1.5, 5])
-      s.t = rand(lo, hi)
-      s.flipAt = !FIGURES[a.fig].animal && s.t > 2.5 && Math.random() < 0.6 ? s.t / 2 : -1
-    }
-
-    const step = (s: Sim, dt: number) => {
-      const fig = FIGURES[s.a.fig]
-      if (fig.still) return
-      if (s.state === 'walk' || s.state === 'run') {
-        const to = s.path[0]
-        if (!to) return arrive(s)
-        const v = (s.a.speed ?? 16) * s.pace * (s.flee ? 2.4 : 1) * dt
-        const dx = to.x - s.x
-        const dy = to.y - s.y
-        const d = Math.hypot(dx, dy)
-        if (Math.abs(dx) > 0.5) s.left = dx < 0
-        if (d <= v) {
-          s.x = to.x
-          s.y = to.y
-          s.path.shift()
-          if (!s.path.length) arrive(s)
-        } else {
-          s.x += (dx / d) * v
-          s.y += (dy / d) * v
-        }
-        return
-      }
-      s.t -= dt
-      if (s.state === 'idle' && s.flipAt > 0 && s.t < s.flipAt) {
-        s.left = !s.left
-        s.flipAt = -1
-      }
-      if (s.t > 0) return
-      if (s.state === 'inside') {
-        s.state = 'idle'
-        s.t = rand(0.3, 1.2)
-        return
-      }
-      if (plan(s)) s.state = s.flee ? 'run' : 'walk'
-      else s.t = rand(2, 6)
-    }
-
-    const draw = (s: Sim) => {
+    const draw = (s: DomSim) => {
       const el = s.el
       if (!el) return
       const { zOf: z, inView: vis } = props.current
@@ -258,7 +119,7 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
       const dt = Math.min(0.1, (now - last) / 1000)
       last = now
       for (const s of sims.current.values()) {
-        if (!still) step(s, dt)
+        if (!still) stepSim(s, dt, props.current)
         draw(s)
       }
       placeBubble()
@@ -296,16 +157,8 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
   const tap = async (a: Actor) => {
     if (wasDragged()) return
     const s = sims.current.get(a.id)
-    if (!s || s.state === 'inside') return
+    if (!s || !tapSim(s)) return
     const fig = FIGURES[a.fig]
-    if (!fig.still) {
-      // People stop to talk; animals startle and trot off.
-      s.state = 'talk'
-      s.t = fig.animal ? 0.5 : 3.5
-      s.flee = !!fig.animal
-      s.path = []
-      if (fig.animal && a.area) s.node = undefined
-    }
     const line = () => t(`life.say.${a.fig}.l${1 + Math.floor(Math.random() * fig.lines)}`)
     const key = Date.now()
     const custom = onTap?.(a)

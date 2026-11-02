@@ -111,10 +111,15 @@ function getSocket(): MissionSocket {
     }
     if (!prev || prev.phase === state.phase) return
     const mine = me()
+    // Banners (screens/mission/Banner.tsx) and the map (mapFx.ts) bring their own sounds:
+    // fanfares, the duel's clash, flags, walls and a fallen capital.
     if (state.phase === 'over') playSfx('podium')
     else if ((state.phase === 'capital' || state.phase === 'wish' || state.phase === 'attack') && mine && state.activeSeat === mine.seat) playSfx('go')
-    else if (state.phase === 'reveal' || state.phase === 'tieReveal') playSfx('reveal')
-    else if (state.phase === 'question' || state.phase === 'tie') playSfx('flip')
+    else if (state.phase === 'reveal') {
+      const asked = !!mine && !!state.question?.seats.includes(mine.seat)
+      playSfx(!asked || !state.reveal ? 'reveal' : state.reveal.right.includes(mine.seat) ? 'correct' : 'wrong')
+    } else if (state.phase === 'tieReveal') setTimeout(() => playSfx('drumroll'), 250)
+    else if (state.phase === 'tie' || (state.phase === 'question' && state.question?.kind !== 'duel')) playSfx('flip')
   })
 
   useLocale.subscribe((s, prev) => {

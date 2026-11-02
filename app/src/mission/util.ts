@@ -33,6 +33,7 @@ export function baseMapProps(state: MissionState): MissionMapViewProps {
     seatColours: MISSION_SEAT_COLOURS,
     flags: Object.fromEntries(state.wishes.map((w) => [w.region, w.seat])),
     selected: state.attack ? [state.attack.region] : state.wishes.map((w) => w.region),
+    fxKey: `${state.code}#${state.game}#${state.options.map}`,
   }
 }
 
@@ -57,3 +58,11 @@ export function roundLine(state: MissionState): string {
 
 export const fmtSeconds = (ms: number, locale = useLocale.getState().locale): string =>
   (ms / 1000).toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+
+/** Whose move it is: the active seat, or the attacker during a duel of a battle turn. */
+export function actingSeat(state: MissionState): number | null {
+  if (state.phase === 'lobby' || state.phase === 'over') return null
+  return state.activeSeat ?? (state.stage === 'battle' ? (state.attack?.attacker ?? null) : null)
+}
+
+/** Each seat's land value, regions, walls and defence bonus, plus the round counter. */

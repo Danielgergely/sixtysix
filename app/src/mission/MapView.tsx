@@ -1,6 +1,7 @@
 import { projectPoint } from '@sixtysix/shared'
 import { MissionMapView, type MissionHighlight, type MissionPin } from './MissionMapView'
 import type { MissionMapViewProps } from './mapViewProps'
+import { useMapFx } from './mapFx'
 
 /**
  * The game screens' map: MissionMapView fed from game terms (choices, the attacked
@@ -8,6 +9,7 @@ import type { MissionMapViewProps } from './mapViewProps'
  */
 export function MapView(props: MissionMapViewProps) {
   const { map, seatColours, highlight = [], selected = [], flags = {}, pins = [], truth } = props
+  const fx = useMapFx(props.animate ? (props.fxKey ?? null) : null, props.owners, props.walls, props.blitz ? map.blitz : map.regions)
   const hl: Record<string, MissionHighlight> = {}
   for (const id of selected) hl[id] = 'defending'
   for (const id of highlight) hl[id] = 'selectable'
@@ -31,6 +33,7 @@ export function MapView(props: MissionMapViewProps) {
       owners={props.owners}
       seatColors={[...seatColours]}
       walls={props.walls}
+      fx={fx}
       capitals={props.capitals}
       highlight={hl}
       onRegionTap={props.onRegionTap}

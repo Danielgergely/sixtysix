@@ -15,6 +15,7 @@ import { duelLine } from '../../mission/lines'
 import { TieReveal } from './tie'
 import { tiePrompt } from '../../mission/lines'
 import { Results } from './Results'
+import { MissionBanners } from './Banner'
 
 /** The shared board (TV / laptop, /mission/CODE/board): the map big, everything else beside it. */
 export function MissionBoard() {
@@ -37,6 +38,7 @@ export function MissionBoard() {
       </header>
       {state.phase === 'lobby' ? <BoardLobby state={state} /> : <BoardGame state={state} />}
       <AnimatePresence>{rules && <RulesSheet onClose={() => setRules(false)} />}</AnimatePresence>
+      <MissionBanners state={state} mySeat={-1} />
     </div>
   )
 }
@@ -83,7 +85,7 @@ function BoardGame({ state }: { state: MissionState }) {
           <TieReveal state={state} wide />
         ) : (
           <div className="ms-map-frame" style={{ aspectRatio: `${MISSION_MAP.viewBox[0]} / ${MISSION_MAP.viewBox[1]}` }}>
-            <MapView {...baseMapProps(state)} panZoom={false} highlight={['capital', 'wish', 'attack'].includes(state.phase) ? state.choices : []} />
+            <MapView {...baseMapProps(state)} animate panZoom={false} highlight={['capital', 'wish', 'attack'].includes(state.phase) ? state.choices : []} />
           </div>
         )}
       </div>
@@ -121,7 +123,17 @@ function BoardPanel({ state }: { state: MissionState }) {
                   {Object.entries(r.picks)
                     .filter(([, p]) => p === i)
                     .map(([s]) => (
-                      <span key={s} className="ms-dot" style={{ background: seatColour(Number(s)) }} title={nameOf(state, Number(s))} />
+                      <motion.span
+                        key={s}
+                        className="ms-seat-face"
+                        style={{ '--seat': seatColour(Number(s)) } as React.CSSProperties}
+                        title={nameOf(state, Number(s))}
+                        initial={{ scale: 0, y: -10 }}
+                        animate={{ scale: 1, y: 0 }}
+                        transition={{ ...spring.bouncy, delay: 0.3 + Number(s) * 0.1 }}
+                      >
+                        <Avatar id={state.seats[Number(s)]?.avatar ?? ''} />
+                      </motion.span>
                     ))}
                 </span>
               )}
