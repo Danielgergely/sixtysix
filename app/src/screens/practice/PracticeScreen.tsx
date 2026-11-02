@@ -33,7 +33,14 @@ export function PracticeScreen() {
     <div className="screen pr-play">
       <div className="pr-bg" />
       <header className="pr-top">
-        <button className="pr-back" onClick={finish} title={t('practice.end')}>
+        <button
+          className="pr-back"
+          onClick={() => {
+            finish()
+            if (!tally.answered) goTo('practiceSetup')
+          }}
+          title={t('practice.end')}
+        >
           ✕
         </button>
         <div className="pr-stats">
