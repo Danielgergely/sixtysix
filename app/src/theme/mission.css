@@ -300,7 +300,9 @@
   .ms-board-panel{ gap: 8px; }
   .ms-board-q{ gap: 8px; padding: 10px; }
   .ms-board-qtext{ padding: 10px 14px; font-size: 21px; }
-  .ms-board-cards .eh-card{ height: 128px; }
+  .ms-board-cards .eh-card{ height: 132px; padding: 8px 7px; gap: 5px; }
+  .ms-board-cards .eh-crest{ width: 36px; height: 42px; }
+  .ms-board-cards .eh-crest span{ font-size: 16px; padding-bottom: 5px; }
   .ms-board-help{ padding: 12px 14px; }
   .ms-board-help p{ font-size: 17px; }
   .ms-board-help-icon{ font-size: 32px; }
@@ -311,7 +313,9 @@
 }
 @media (max-height: 800px){
   .ms-board-qtext{ font-size: 19px; }
-  .ms-board-cards .eh-card{ height: 112px; }
+  .ms-board-cards .eh-card{ height: 120px; }
+  .ms-board-cards .eh-crest{ width: 30px; height: 34px; }
+  .ms-board-cards .eh-crest span{ font-size: 13px; padding-bottom: 4px; }
   .ms-board-join .ms-qr{ width: 56px; }
   .ms-board-join small{ font-size: 11px; }
 }
