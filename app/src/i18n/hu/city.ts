@@ -65,7 +65,7 @@ export default {
   },
 
   temple: {
-    title: 'Salamon temploma',
+    title: 'A templom',
     sub: 'A város közös építkezése · hamarosan',
     verse: '„Így építé meg Salamon a házat, és elvégezé azt.” <em>1 Kgs 6:14</em>',
     text: 'Egy napon minden csoport – egy ifjúsági csoport, egy osztály, egy család – közösen építi fel a saját templomát: minden arénajáték érméiből egy rész ide kerül, és a templom szakaszról szakaszra emelkedik, az alapoktól a falakon és a Jákin és Boáz nevű rézoszlopokon át a szentélyig és a felszentelésig (1 Kgs 6–8). Minden játékos neve felkerül az adományozók köveire.',

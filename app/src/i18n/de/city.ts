@@ -65,7 +65,7 @@ export default {
   },
 
   temple: {
-    title: 'Salomos Tempel',
+    title: 'Der Tempel',
     sub: 'Das gemeinsame Bauprojekt der Stadt · kommt bald',
     verse: '„Und Salomo baute das Haus und vollendete es.“ <em>1 Kgs 6:14</em>',
     text: 'Eines Tages baut jede Gruppe – eine Jugendgruppe, eine Klasse, eine Familie – gemeinsam ihren eigenen Tempel: Ein Teil der Münzen aus jedem Arena-Spiel fließt hinein, und er wächst Stufe um Stufe, vom Fundament über die Mauern und die ehernen Säulen Jakin und Boas bis zum Heiligtum und zur Einweihung (1 Kgs 6–8). Die Namen aller Spieler kommen auf die Stiftersteine.',

@@ -66,7 +66,7 @@ export default {
   },
 
   temple: {
-    title: 'Solomon’s Temple',
+    title: 'The Temple',
     sub: 'The city’s shared building project · coming soon',
     verse: '“So Solomon built the house, and finished it.” <em>1 Kgs 6:14</em>',
     text: 'One day every group — a church youth group, a class, a family — will raise its own Temple together: a share of the coins from every arena game goes in, and it rises in stages, from the foundation to the walls, the bronze pillars Jachin and Boaz, the Holy Place and the dedication (1 Kgs 6–8). Every player’s name goes on the donor stones.',
