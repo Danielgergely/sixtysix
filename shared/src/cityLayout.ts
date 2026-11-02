@@ -14,9 +14,9 @@ export const WORLD = 2400
 const pct = (v: number) => (v / 100) * WORLD
 
 /** The inside of the city wall: an ellipse. */
-const WALL = { cx: pct(50.5), cy: pct(44), rx: pct(39.5), ry: pct(28.5) }
+export const WALL = { cx: pct(50.5), cy: pct(44), rx: pct(39.5), ry: pct(28.5) }
 /** The Temple Mount platform, a diamond: top, right, bottom, left corners (no houses on it). */
-const MOUNT: [number, number][] = [
+export const MOUNT: [number, number][] = [
   [pct(55), pct(27)],
   [pct(76), pct(39)],
   [pct(55), pct(58)],

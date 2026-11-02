@@ -19,4 +19,14 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    // The 3D city drives three.js the react-three-fiber way: meshes, buffers and the camera rig are
+    // created once (useMemo) and mutated every frame in useFrame / effects. The React Compiler's
+    // immutability and ref rules don't model that, so they are off here only.
+    files: ['src/world/city3d/**/*.{ts,tsx}'],
+    rules: {
+      'react-hooks/immutability': 'off',
+      'react-hooks/refs': 'off',
+    },
+  },
 ])
