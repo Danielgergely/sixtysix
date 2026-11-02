@@ -1,5 +1,5 @@
-import { useCallback, useRef } from 'react'
-import { Box3, type Vector3 } from 'three'
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react'
+import { Box3, type Material, type Object3D, type Texture, type Vector3 } from 'three'
 import type { CameraControls } from '@react-three/drei'
 import type { Bridge } from './bridge'
 
@@ -132,9 +132,71 @@ export function labelAt(bridge: Bridge, e: React.PointerEvent): string | null {
     if (el.style.display === 'none') continue
     // A label is a zero-size anchor; its children are what you see.
     for (const c of el.querySelectorAll<HTMLElement>('*')) {
+      // A name faded out (My Home zoomed out) is not there to tap.
+      if (getComputedStyle(c).opacity === '0') continue
       const b = c.getBoundingClientRect()
       if (b.width && e.clientX >= b.left && e.clientX <= b.right && e.clientY >= b.top && e.clientY <= b.bottom) return id
     }
   }
   return null
+}
+
+/**
+ * No frames while the scene can't be seen: scrolled out of view
+ * (IntersectionObserver) or the tab hidden. `bridge.paused` stops the
+ * townsfolk asking; showing again asks for a frame.
+ */
+export function usePauseWhenHidden(bridge: Bridge, box: React.RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const el = box.current
+    if (!el) return
+    let onScreen = true
+    const update = () => {
+      const paused = !onScreen || document.visibilityState === 'hidden'
+      if (paused === bridge.paused) return
+      bridge.paused = paused
+      if (!paused) {
+        bridge.onResume?.()
+        bridge.invalidate()
+      }
+    }
+    const io = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver((es) => {
+      onScreen = es.some((e) => e.isIntersecting)
+      update()
+    }) : null
+    io?.observe(el)
+    document.addEventListener('visibilitychange', update)
+    return () => {
+      io?.disconnect()
+      document.removeEventListener('visibilitychange', update)
+    }
+  }, [bridge, box])
+}
+
+/**
+ * Frees everything a scene holds when it goes (geometries, materials, their
+ * textures). A layout-effect cleanup: it runs before React detaches the
+ * children, so the scene is still whole. (R3F then drops the WebGL context.)
+ */
+export function useDisposeOnUnmount(scene: Object3D) {
+  useLayoutEffect(
+    () => () => {
+      const mats = new Set<Material>()
+      scene.traverse((o) => {
+        const m = o as Object3D & { geometry?: { dispose: () => void }; material?: Material | Material[]; dispose?: () => void }
+        m.geometry?.dispose()
+        if (m.material) for (const x of Array.isArray(m.material) ? m.material : [m.material]) mats.add(x)
+        if ((o as { isInstancedMesh?: boolean }).isInstancedMesh) m.dispose?.()
+      })
+      for (const m of mats) {
+        for (const v of Object.values(m)) if ((v as Texture | null)?.isTexture) (v as Texture).dispose()
+        const u = (m as Material & { uniforms?: Record<string, { value: unknown }> }).uniforms
+        if (u) for (const { value } of Object.values(u)) if ((value as Texture | null)?.isTexture) (value as Texture).dispose()
+        m.dispose()
+      }
+      const bg = (scene as Object3D & { background?: unknown }).background as Texture | null
+      if (bg?.isTexture) bg.dispose()
+    },
+    [scene],
+  )
 }

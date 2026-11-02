@@ -3,6 +3,7 @@ import { graph, type Pt } from '../life/nav'
 import { YARD_EDGES, type YardLayout, type YardNode } from '../yard'
 import { GATE_HALF, type Spot } from './models'
 import { rng } from './space'
+import { releaseAfterUpload } from './textures'
 
 /**
  * My Home in 3D: where everything stands. Units are the city's (a person is
@@ -222,7 +223,7 @@ export function groundTexture(size = 1024): Texture {
   const t = new CanvasTexture(c)
   t.colorSpace = SRGBColorSpace
   t.anisotropy = 4
-  return t
+  return releaseAfterUpload(t)
 }
 
 /** Olive trees and cypresses round the homestead (outside the fence, off the lane). */
@@ -270,3 +271,30 @@ export function plotStartDist(aspect: number): number {
 }
 /** The farthest out: the whole yard and a little round it. */
 export const plotMaxDist = (aspect: number) => Math.max(plotStartDist(aspect) * 1.1, fit(MAX_HALF, aspect))
+
+/** Names show closer in than this share of the start distance; further out only the ribbons. */
+export const NAMES_AT = 0.85
+
+/**
+ * Weeds for an idle stage (shared/src/city.ts): none, 20 tufts at 20 days,
+ * 46 bigger, yellowing ones at 40 (and when the home is for sale), spread over
+ * the open yard off the buildings, the same tufts and tints as the city's lots.
+ */
+export function placeYardWeeds(stage: number): { m: Matrix4[]; c: Color[] } {
+  const n = stage <= 0 ? 0 : stage === 1 ? 20 : 46
+  const rand = rng(83)
+  const out = { m: [] as Matrix4[], c: [] as Color[] }
+  const up = new Vector3(0, 1, 0)
+  const spots = Object.values(SPOT_3D)
+  let tries = 0
+  while (out.m.length < n && tries++ < 4000) {
+    const x = (rand() * 2 - 1) * (R - 2)
+    const z = (rand() * 2 - 1) * (R - 2)
+    if (Math.abs(x) + Math.abs(z) > R - 2) continue
+    if (spots.some((p) => Math.hypot(p.x - x, p.z - z) < 4.6)) continue
+    const s = 1 + rand() * 0.6 + (stage >= 2 ? 0.45 : 0)
+    out.m.push(new Matrix4().compose(new Vector3(x, 0.05, z), new Quaternion().setFromAxisAngle(up, rand() * 6.3), new Vector3(s, s, s)))
+    out.c.push(stage >= 2 ? new Color(1.12, 1.0, 0.62) : new Color(1, 1, 1))
+  }
+  return out
+}

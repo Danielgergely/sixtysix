@@ -45,6 +45,8 @@ export interface PlotSceneProps {
   /** Your own plot: a carrier in the yard hands over a gift (PlotLife). */
   onGift?: (figure: GiftFigure) => Promise<string>
   className?: string
+  /** Days since the family last played or built (weeds at 20 / 40 in the 3D yard, like the city's lots). */
+  idleDays?: number
 }
 
 export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className }: PlotSceneProps) {

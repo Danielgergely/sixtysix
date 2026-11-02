@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { CameraControls } from '@react-three/drei'
 import {
@@ -18,13 +18,14 @@ import {
   Vector2,
   Vector3,
 } from 'three'
-import { SPOTS, type BuildingId } from '@sixtysix/shared'
+import { idleStage, SPOTS, type BuildingId } from '@sixtysix/shared'
 import type { Actor } from '../life/sim'
 import type { Bridge, LabelSpec } from './bridge'
 import { FENCE_PIECES, fenceParts, pieceGeometry, type FencePiece } from './fence'
 import { blob, buildingGeometry, FOOTPRINT, scaffoldGeometry, topOf, type Spot } from './models'
-import { FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
-import { configureRig } from './rig'
+import { FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, NAMES_AT, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
+import { configureRig, useDisposeOnUnmount } from './rig'
+import { weedGeometry } from './houses'
 import { Geo } from './geo'
 import { C } from './palette'
 import { plasterTexture, stoneTexture } from './textures'
@@ -55,6 +56,8 @@ interface Props {
   actors: Actor[]
   bridge: Bridge
   still: boolean
+  /** Days the family has been away: weeds at 20 and 40 (shared/src/city.ts idleStage). */
+  idleDays: number
 }
 
 const easeOutBack = (t: number) => {
@@ -62,9 +65,11 @@ const easeOutBack = (t: number) => {
   return 1 + (c + 1) * (t - 1) ** 3 + c * (t - 1) ** 2
 }
 
-export function PlotScene3D({ levels, building, labels, actors, bridge, still }: Props) {
+/** Memoised: Plot3D re-renders every second (countdowns), and fresh array props would make R3F ask for a frame each time. */
+export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels, actors, bridge, still, idleDays }: Props) {
   const { gl, scene, camera, invalidate, size } = useThree()
   const controls = useRef<CameraControls>(null)
+  useDisposeOnUnmount(scene)
   const [wide] = useState(() => window.innerWidth > 700)
 
   const mats = useMemo(
@@ -81,7 +86,7 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
 
   useLayoutEffect(() => {
     // Dev only: tests read the renderer's stats through this.
-    if (import.meta.env.DEV) (window as unknown as { __plot3dGl?: unknown }).__plot3dGl = gl
+    if (import.meta.env.DEV) Object.assign(window, { __plot3dGl: gl, __plot3dScene: scene })
     scene.background = new Color('#e9d9b2')
     scene.fog = new Fog('#e9d9b2', 90, 220)
     gl.shadowMap.autoUpdate = false
@@ -111,17 +116,16 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
   // A finished build: the new model springs up out of a puff of dust with a ring of gold.
   const prev = useRef<Record<string, number> | null>(null)
   const pop = useRef<{ spot: Spot; t0: number } | null>(null)
-  const clock = useThree((s) => s.clock)
   useEffect(() => {
     const before = prev.current
     prev.current = { ...levels }
     if (!before || still) return
     const up = (Object.keys(levels) as BuildingId[]).find((b) => levels[b] > (before[b] ?? 0))
     if (up) {
-      pop.current = { spot: up, t0: clock.elapsedTime }
+      pop.current = { spot: up, t0: performance.now() / 1000 }
       invalidate()
     }
-  }, [levels, still, clock, invalidate])
+  }, [levels, still, invalidate])
 
   const ringGeo = useMemo(() => new RingGeometry(0.85, 1, 48).rotateX(-Math.PI / 2), [])
   const ringMat = useMemo(() => new MeshBasicMaterial({ color: '#ffd76a', transparent: true, opacity: 0, depthWrite: false, side: DoubleSide, blending: AdditiveBlending }), [])
@@ -194,6 +198,23 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
     invalidate()
   }, [fence, gl, invalidate])
 
+  // ── Weeds: a few tufts after 20 idle days, the yard full after 40 (like the city's lots) ──
+  const stage = idleStage(idleDays)
+  const weeds = useMemo(() => placeYardWeeds(stage), [stage])
+  const weedGeo = useMemo(() => weedGeometry(), [])
+  const weedMesh = useRef<InstancedMesh>(null)
+  useLayoutEffect(() => {
+    const mesh = weedMesh.current
+    if (!mesh) return
+    weeds.m.forEach((m, i) => mesh.setMatrixAt(i, m))
+    weeds.c.forEach((c, i) => mesh.setColorAt(i, c))
+    mesh.count = weeds.m.length
+    mesh.instanceMatrix.needsUpdate = true
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
+    mesh.computeBoundingSphere()
+    invalidate()
+  }, [weeds, invalidate])
+
   // ── Trees round the homestead ──
   const oliveMesh = useRef<InstancedMesh>(null)
   const cypressMesh = useRef<InstancedMesh>(null)
@@ -240,6 +261,7 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
   // ── Every frame: haze with the zoom, labels, compass, zoom limits, the finishing burst ──
   const v = useMemo(() => new Vector3(), [])
   const lastLimits = useRef('')
+  const lastFar = useRef<boolean | null>(null)
   const o = useMemo(() => new Object3D(), [])
   useFrame((state) => {
     const c = controls.current
@@ -256,7 +278,15 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
       lastLimits.current = limits
       bridge.onZoomLimits?.(canIn, canOut)
     }
-    // Name tags: project and place (nine of them, all always shown).
+    // Zoomed out, the names fade (CSS, [data-far]); the ribbons (+N, the countdown, New!) stay, compact.
+    const far = dist > startDist * NAMES_AT
+    if (far !== lastFar.current && bridge.root) {
+      lastFar.current = far
+      // A data attribute, not a class: React owns the className (and rewrites it).
+      if (far) bridge.root.dataset.far = ''
+      else delete bridge.root.dataset.far
+    }
+    // Name tags: project and place (nine of them).
     const W = state.size.width
     const H = state.size.height
     const cam = state.camera
@@ -280,7 +310,7 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
     // The finishing burst.
     const p = pop.current
     if (p) {
-      const t = (state.clock.elapsedTime - p.t0) / POP_S
+      const t = (performance.now() / 1000 - p.t0) / POP_S
       const g = groups.current[p.spot]
       const at = SPOT_3D[p.spot]
       const [w, d] = FOOTPRINT[p.spot]
@@ -373,10 +403,12 @@ export function PlotScene3D({ levels, building, labels, actors, bridge, still }:
       <instancedMesh ref={oliveMesh} args={[treeGeo.olive, mats.plain, trees.olive.m.length]} castShadow receiveShadow />
       <instancedMesh ref={cypressMesh} args={[treeGeo.cypress, mats.plain, trees.cypress.m.length]} castShadow receiveShadow />
 
+      {weeds.m.length > 0 && <instancedMesh key={stage} ref={weedMesh} args={[weedGeo, mats.plain, weeds.m.length]} frustumCulled={false} />}
+
       <mesh ref={ring} geometry={ringGeo} material={ringMat} visible={false} renderOrder={3} />
       <instancedMesh ref={dust} args={[dustGeo, dustMat, DUST]} visible={false} frustumCulled={false} renderOrder={4} />
 
       <Townsfolk3D actors={actors} roads={YARD_3D.graph} bridge={bridge} still={still} space={SPACE} />
     </>
   )
-}
+})

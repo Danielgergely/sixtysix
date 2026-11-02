@@ -56,7 +56,7 @@ export function VisitScreen() {
             </span>
             <span className="vs-go">{t('city.visit.profile')}</span>
           </button>
-          <PlotView levels={levels} />
+          <PlotView levels={levels} idleDays={player.idleDays} />
           <p className="tab-note">{player.levels ? t('city.visit.drag') : t('city.visit.tent')}</p>
         </>
       )}

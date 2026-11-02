@@ -30,14 +30,14 @@ import { LOTS } from '../cityLayout'
 import { townsfolk, type Home } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
-import { configureRig } from './rig'
+import { configureRig, useDisposeOnUnmount } from './rig'
 import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
 import { HOUSE_YARD } from './models'
 import { C } from './palette'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
 import { groundTexture, terrainGeometry } from './terrain'
-import { plasterTexture, signTexture, stoneTexture } from './textures'
+import { plasterTexture, releaseAfterUpload, signTexture, stoneTexture } from './textures'
 import { Townsfolk3D } from './Townsfolk3D'
 import { cypressGeometry, oliveGeometry, placeTrees } from './trees'
 
@@ -85,6 +85,7 @@ function lotTurn(n: number): number {
 export function CityScene({ residents, me, found, labels, bridge, start, still, forSale, onLandmarks, onReady }: Props) {
   const { gl, scene, camera, invalidate, size } = useThree()
   const controls = useRef<CameraControls>(null)
+  useDisposeOnUnmount(scene)
 
   // ── Static: built once ──
   // Ground painting resolution: decided once (phones get a smaller one).
@@ -93,7 +94,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const statics = useMemo(() => {
     const stoneMat = new MeshLambertMaterial({ vertexColors: true, map: stoneTexture() })
     const plainMat = new MeshLambertMaterial({ vertexColors: true, map: plasterTexture() })
-    const groundMat = new MeshLambertMaterial({ map: groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536) })
+    // The ground painting's canvas is let go once uploaded (up to 16 MB).
+    const groundMat = new MeshLambertMaterial({ map: releaseAfterUpload(groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536)) })
     return { stoneMat, plainMat, groundMat, terrain: terrainGeometry() }
   }, [gl, wide])
   const trees = useMemo(() => placeTrees(city.landmarks), [city])
@@ -121,7 +123,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   // ── Scene setup: sky, haze, static shadows ──
   useLayoutEffect(() => {
-    if (import.meta.env.DEV) (window as unknown as { __city3dGl?: unknown }).__city3dGl = gl
+    if (import.meta.env.DEV) Object.assign(window, { __city3dGl: gl, __city3dScene: scene })
     scene.background = new Color('#ecdcb8')
     scene.fog = new Fog('#ecdcb8', 200, 600)
     gl.shadowMap.autoUpdate = false
@@ -413,11 +415,10 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     }
     // The beam over my home marks it from afar and fades away close up.
     beamMat.opacity = Math.min(1, Math.max(0, (dist - 45) / 70))
-    // A slow pulse on the found family's ring.
+    // A slow pulse on the found family's ring, on the frames drawn anyway (it never asks for frames of its own).
     if (foundRing.current && !still) {
-      const s = 1 + 0.08 * Math.sin(state.clock.elapsedTime * 4)
+      const s = 1 + 0.08 * Math.sin((performance.now() / 1000) * 4)
       foundRing.current.scale.set(s, 1, s)
-      invalidate()
     }
     if (!ready.current) {
       ready.current = true

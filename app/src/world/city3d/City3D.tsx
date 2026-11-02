@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerformanceMonitor } from '@react-three/drei'
 import { NoToneMapping, PCFShadowMap } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
@@ -12,9 +11,10 @@ import { LOTS, TEMPLE, lotFor, type LandmarkId } from '../cityLayout'
 import type { CityMapProps } from '../CityMap'
 import { CitySearch, FoundCard } from '../CityChrome'
 import { houseName } from '../../screens/home/plotText'
+import { DprMonitor } from './DprMonitor'
 import { HOUSE_TOP, MIN_DIST, newBridge, START_DIST, START_POLAR, type LabelSpec } from './bridge'
 import { NavButtons } from './NavButtons'
-import { labelAt, maxDpr, useContextLost, useScenePointer } from './rig'
+import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } from './rig'
 import type { LandmarkSpot } from './buildings'
 import { CityScene } from './CityScene'
 import { heightAt, lotCentre, surfaceAt, ux, uz } from './space'
@@ -52,6 +52,8 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   const t = useT()
   const bridge = useMemo(() => newBridge(), [])
   const box = useRef<HTMLDivElement>(null)
+  // No frames while the tab is hidden.
+  usePauseWhenHidden(bridge, box)
   const still = useMemo(() => reducedMotion(), [])
   const [found, setFound] = useState<Resident | null>(null)
   const [visible, setVisible] = useState<string[]>([])
@@ -259,7 +261,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
         gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
         onCreated={onCreated}
       >
-        <PerformanceMonitor onDecline={() => setDpr(1)} />
+        <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
         <CityScene
           residents={residents}
           me={me}
