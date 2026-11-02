@@ -45,9 +45,31 @@
 .mm-chip text{ text-anchor: middle; font-size: 9px; font-weight: 700; fill: #3b2412; font-family: Georgia, serif; }
 .mm-chip.city rect{ fill: #efd9a6; }
 .mm-chip.holy rect{ fill: #f3d36f; stroke: #7a4d06; }
-.mm-walls use{ fill: #5d4630; stroke: #2a1a0c; stroke-width: 0.8; }
-.mm-walls use.broken{ fill: rgb(93 70 48 / 0.12); stroke-dasharray: 2 1.5; }
-.mm-walls.site use{ fill: none; stroke: #4a321b; stroke-width: 1; opacity: 0.75; }
+.mm-walls{ filter: drop-shadow(0 1.2px 0.6px rgb(42 26 12 / 0.55)); }
+.mm-tw-body{ fill: url(#mm-stone); stroke: #2a1a0c; stroke-width: 0.8; stroke-linejoin: round; }
+.mm-tw-curtain{ fill: #b99a6c; }
+.mm-tw-line{ fill: none; stroke: #6b5233; stroke-width: 0.45; opacity: 0.7; }
+.mm-tw-hole{ fill: #2a1a0c; }
+.mm-tw-rubble path, .mm-tw-rubble rect{ fill: #a48a63; stroke: #2a1a0c; stroke-width: 0.7; stroke-linejoin: round; }
+.mm-tw-debris{ fill: #a48a63; stroke: #2a1a0c; stroke-width: 0.5; }
+.mm-tw-pole{ stroke: #2a1a0c; stroke-width: 1.1; stroke-linecap: round; }
+.mm-tw-flag{ stroke: #2a1a0c; stroke-width: 0.6; stroke-linejoin: round; }
+.mm-walls.site{ filter: none; opacity: 0.7; }
+.mm-walls.site .mm-tw-body{ fill: none; stroke: #4a321b; stroke-width: 1; stroke-dasharray: 2 1.2; }
+.mm-walls.site .mm-tw-line{ display: none; }
+.mm-walls.site .mm-tw-hole{ fill: none; stroke: #4a321b; stroke-width: 0.6; }
+
+/* map fx (mapFx.ts): floods, border pulse, flags, dust, a fallen capital */
+.mm-flood-edge{ fill: none; stroke-width: 5; }
+.mm-pulse{ fill: none; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgb(255 240 190 / 0.9)); }
+.mm-dust{ fill: #d9c49c; }
+.mm-planted{ filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.45)); }
+.mm-fx-fade{ animation: mm-fade-out 0.5s ease forwards; animation-play-state: running; opacity: 1; }
+@keyframes mm-fade-out{ from{ opacity: 1; } to{ opacity: 0; } }
+.mm-shock{ fill: none; stroke-width: 3; }
+.mm-flash{ fill: #fff3c0; }
+.mm-flame{ fill: #f08a1c; stroke: #c4370f; stroke-width: 0.8; filter: drop-shadow(0 0 3px rgb(255 170 40 / 0.9)); }
+.mm-smoke{ fill: #4a3a2c; }
 
 /* pins */
 .mm-pin-s{ transform: scale(max(0.8, calc(var(--inv, 1) * var(--mm-k) * 1.1))); }
@@ -144,15 +166,11 @@
 .ms-reg{ white-space: nowrap; }
 .ms-seat-meta{ display: flex; gap: 5px; align-items: center; font: 700 9px Georgia, serif; color: #6b4120; min-height: 9px; }
 .ms-walls{ display: inline-flex; gap: 2px; }
-.ms-wall{ width: 7px; height: 8px; border-radius: 1px; border: 1px solid #5a4326; }
-.ms-wall.up{ background: #8d7a5c; }
-.ms-wall.down{ background: transparent; border-style: dashed; opacity: 0.6; }
 .ms-score.wide .ms-seat{ padding: 6px 10px; gap: 8px; }
 .ms-score.wide .ms-seat-face{ width: 44px; height: 44px; }
 .ms-score.wide .ms-seat-name{ font-size: 15px; }
 .ms-score.wide .ms-seat-land{ font-size: 24px; }
 .ms-score.wide .ms-seat-land small, .ms-score.wide .ms-seat-meta{ font-size: 13px; }
-.ms-score.wide .ms-wall{ width: 12px; height: 13px; }
 .ms-score.wide .ms-round{ font-size: 18px; }
 
 /* status + map */
@@ -194,7 +212,6 @@
 .ms-col.siege .ms-siege .btn-play{ padding: 0.6rem; font-size: 1rem; }
 .ms-col.siege .ms-siege .btn-secondary{ padding: 0.45rem; }
 .ms-q.reveal .eh-hand{ height: 112px; padding-bottom: 0; }
-.ms-q.reveal .eh-played{ height: min(300px, 96%); }
 .ms-q-outcome{ position: absolute; left: 12px; right: 12px; bottom: 16px; z-index: 6; }
 
 /* tie-breakers */
@@ -321,3 +338,132 @@
 }
 
 /* ═══ end of the engine agent's block ═══ */
+
+/* banners (screens/mission/Banner.tsx): stage titles, battle rounds, duels, "Your turn!" */
+.ms-banner{ position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
+.ms-banner.stage{ pointer-events: auto; cursor: pointer; background: radial-gradient(ellipse at center, rgb(29 15 6 / 0.55), rgb(10 5 2 / 0.88)); }
+/* Guards (Banner.tsx): whatever React does, a banner is hidden (and untappable) after its lifetime + 1 s;
+   one that is going fades out and never takes a tap. */
+.ms-banner{ animation: ms-banner-expire 1ms linear var(--life, 3300ms) forwards; }
+.ms-banner.leaving{ pointer-events: none; animation: ms-banner-out var(--exit, 250ms) ease-out forwards; }
+@keyframes ms-banner-expire{ to{ visibility: hidden; pointer-events: none; } }
+@keyframes ms-banner-out{ from{ opacity: 1; } to{ opacity: 0; visibility: hidden; } }
+.ms-banner.round{ align-items: flex-start; padding-top: 70px; }
+.ms-banner.turn{ align-items: flex-start; padding-top: 132px; }
+.ms-banner-plaque{
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 22px 26px 20px; max-width: min(92vw, 640px); text-align: center;
+  border-radius: 18px; background: linear-gradient(#fff3c9, #e6c477); border: 4px solid #8a5a12; box-shadow: 0 8px 0 #1d0f06, 0 0 60px rgb(255 210 110 / 0.45);
+}
+.ms-banner-icon{ font-size: 54px; line-height: 1; filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.45)); }
+.ms-banner-rule{ display: block; width: 200px; max-width: 70vw; height: 3px; border-radius: 2px; background: linear-gradient(90deg, transparent, #8a5a12, transparent); }
+.ms-banner-title{ margin: 0; font: 900 30px/1.1 'Cinzel', serif; color: #6b1d0e; text-transform: uppercase; }
+.ms-banner-sub{ margin: 0; font: italic 700 15px/1.35 Georgia, serif; color: #3b2412; }
+.ms-banner-ribbon{
+  padding: 8px 22px; border-radius: 999px; font: 900 16px 'Cinzel', serif; letter-spacing: 0.06em; color: #ffe7a3; text-shadow: 0 1px 2px #000;
+  background: linear-gradient(#6b1d0e, #3d0f06); border: 3px solid #e3b754; box-shadow: 0 4px 0 #1d0f06, 0 6px 18px rgb(0 0 0 / 0.5);
+}
+.ms-banner-duel{ display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 18px; border-radius: 18px; background: rgb(20 10 4 / 0.82); border: 3px solid #c2412f; box-shadow: 0 8px 24px rgb(0 0 0 / 0.6); }
+.ms-banner-vs{ display: flex; align-items: center; gap: 14px; }
+.ms-banner-face{ display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ms-banner-face > :first-child{ width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 4px solid var(--seat); background: #3b2412; box-shadow: 0 0 0 2px #1d0f06, 0 0 18px var(--seat); }
+.ms-banner-face small{ font: 800 13px 'Cinzel', serif; color: #ffe7a3; max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-banner-swords{ font-size: 40px; filter: drop-shadow(0 0 8px rgb(255 200 80 / 0.9)); }
+.ms-banner-duel-title{ font: 900 16px 'Cinzel', serif; color: #ffe7a3; text-align: center; text-shadow: 0 1px 2px #000; }
+.ms-banner-turn{
+  padding: 10px 28px; border-radius: 999px; font: 900 24px 'Cinzel', serif; color: #fff; text-shadow: 0 2px 2px #000; text-transform: uppercase;
+  background: var(--seat); border: 4px solid #fff3c9; box-shadow: 0 5px 0 #1d0f06, 0 0 32px var(--seat);
+}
+.ms-board .ms-banner-title{ font-size: 54px; }
+.ms-board .ms-banner-sub{ font-size: 22px; }
+.ms-board .ms-banner-icon{ font-size: 90px; }
+.ms-board .ms-banner-plaque{ padding: 34px 54px 30px; max-width: 900px; }
+.ms-board .ms-banner-rule{ width: 380px; }
+.ms-board .ms-banner-ribbon{ font-size: 26px; padding: 12px 34px; }
+.ms-board .ms-banner-face > :first-child{ width: 130px; height: 130px; }
+.ms-board .ms-banner-face small{ font-size: 20px; max-width: 200px; }
+.ms-board .ms-banner-swords{ font-size: 70px; }
+.ms-board .ms-banner-duel-title{ font-size: 28px; }
+.ms-board .ms-banner-duel{ padding: 24px 36px; }
+
+/* turn: the acting seat in the strip and the status bar */
+.ms-seat{ position: relative; }
+.ms-seat.active{ box-shadow: 0 0 0 3px var(--seat), 0 0 14px 2px var(--seat), 0 2px 0 var(--ms-dark); animation: ms-turn-glow 1.4s ease-in-out infinite; }
+@keyframes ms-turn-glow{ 50%{ box-shadow: 0 0 0 3px var(--seat), 0 0 22px 6px var(--seat), 0 2px 0 var(--ms-dark); } }
+.ms-order{
+  position: absolute; top: -7px; left: -6px; z-index: 2; min-width: 17px; height: 17px; padding: 0 3px; border-radius: 999px; display: grid; place-items: center;
+  font: 900 10px/1 'Cinzel', serif; color: var(--ms-ink); background: #f7ebcc; border: 2px solid var(--seat);
+}
+.ms-order.now{ background: var(--seat); color: #fff; text-shadow: 0 1px 1px #000; }
+.ms-order.done{ opacity: 0.7; }
+.ms-score.wide .ms-order{ min-width: 24px; height: 24px; font-size: 13px; top: -9px; left: -8px; }
+.ms-status-face{ width: 34px; height: 34px; flex: none; border-radius: 50%; overflow: hidden; border: 3px solid var(--seat); background: #3b2412; }
+.ms-status-face > *{ width: 100%; height: 100%; }
+.ms-status-face.busy{ animation: ms-face-pulse 1.2s ease-in-out infinite; }
+@keyframes ms-face-pulse{ 50%{ box-shadow: 0 0 0 4px rgb(255 231 163 / 0.45); } }
+.ms-status-main{ flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.ms-status{ padding-left: 6px; }
+.ms-turn-chip{ padding: 2px 8px; border-radius: 999px; font: 900 10px/1.2 'Cinzel', serif; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ms-ink); background: #ffe7a3; }
+.ms-turn-chip.other{ background: var(--seat); color: #fff; text-shadow: 0 1px 1px #000; text-transform: none; letter-spacing: 0; }
+.ms-status.mine{ animation: ms-mine 1.6s ease-in-out infinite; }
+@keyframes ms-mine{ 50%{ box-shadow: 0 0 16px 2px var(--seat); } }
+.ms-board-side .ms-status-face{ width: 52px; height: 52px; }
+.ms-board-side .ms-turn-chip{ font-size: 14px; }
+
+/* score-strip towers */
+.ms-wall{ width: 9px; height: 13px; border: none; overflow: visible; }
+.ms-wall-body{ fill: #e2c48a; stroke: #3b2412; stroke-width: 1; stroke-linejoin: round; }
+.ms-wall-hole{ fill: #3b2412; }
+.ms-wall-rubble{ fill: #a48a63; stroke: #3b2412; stroke-width: 0.9; opacity: 0.75; }
+.ms-score.wide .ms-wall{ width: 15px; height: 21px; }
+
+/* who played what */
+.ms-picks{ display: flex; flex-direction: column; gap: 4px; }
+.ms-pick{
+  display: flex; align-items: center; gap: 6px; padding: 3px 8px 3px 3px; border-radius: 999px; min-width: 0;
+  background: rgb(29 15 6 / 0.82); border: 2px solid var(--seat); color: #ffe7a3;
+}
+.ms-pick .ms-seat-face{ width: 24px; height: 24px; }
+.ms-pick-name{ font: 800 11px 'Cinzel', serif; white-space: nowrap; max-width: 30%; overflow: hidden; text-overflow: ellipsis; }
+.ms-pick-letter{ flex: none; min-width: 22px; height: 20px; padding: 0 3px; border-radius: 6px; display: grid; place-items: center; font: 900 11px 'Cinzel', serif; color: #fff; text-shadow: 0 1px 1px #000; border: 1.5px solid #fff3c9; }
+.ms-picks.compact{ flex-direction: row; justify-content: center; flex-wrap: wrap; }
+.ms-picks.compact .ms-pick{ padding-right: 6px; }
+.ms-q.reveal .eh-played{ height: min(230px, 78%); }
+.ms-pick-text{ flex: 1; min-width: 0; font: 600 12px Georgia, serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ms-pick-mark{ flex: none; font: 900 15px sans-serif; }
+.ms-pick.right .ms-pick-mark{ color: #8fe07a; }
+.ms-pick.wrong .ms-pick-mark, .ms-pick.none .ms-pick-mark{ color: #ff8a73; }
+.ms-pick.none .ms-pick-text{ font-style: italic; opacity: 0.7; }
+.ms-picks.wide .ms-pick .ms-seat-face{ width: 34px; height: 34px; }
+.ms-picks.wide .ms-pick-name{ font-size: 15px; }
+.ms-picks.wide .ms-pick-text{ font-size: 15px; }
+.ms-picks.wide .ms-pick-letter{ width: 26px; height: 26px; font-size: 15px; }
+.ms-board-pickers .ms-seat-face{ width: 30px; height: 30px; box-shadow: 0 2px 4px rgb(0 0 0 / 0.5); }
+@media (prefers-reduced-motion: reduce){
+  .ms-seat.active, .ms-status.mine, .ms-status-face.busy{ animation: none; }
+}
+.ms-rank.first{ box-shadow: 0 0 0 2px #ffe7a3, 0 0 18px 2px var(--seat), 0 3px 0 var(--ms-dark); }
+.ms-crown{ display: inline-block; font-size: 22px; }
+
+/* tie reveal: every guess with its portrait */
+.ms-gap{ display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px 3px 3px; }
+.ms-gap .ms-seat-face{ width: 30px; height: 30px; border-color: #fff3c9; }
+.ms-gap-body{ display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+.ms-gap-body b{ font: 800 12px 'Cinzel', serif; }
+.ms-gap-guess{ font: 900 16px 'Cinzel', serif; }
+.ms-gap-body small{ font: 600 11px Georgia, serif; }
+.ms-pin-at{ position: absolute; z-index: 2; transform: translate(10px, -50%); pointer-events: none; }
+.ms-pin-at.left{ transform: translate(calc(-100% - 10px), -50%); }
+.ms-pin-at.left .ms-pin-face{ flex-direction: row-reverse; padding: 2px 2px 2px 7px; }
+.ms-pin-face{
+  display: flex; align-items: center; gap: 3px; padding: 2px 7px 2px 2px; border-radius: 999px;
+  background: var(--seat); border: 2px solid #fff3c9; box-shadow: 0 2px 6px rgb(0 0 0 / 0.55); pointer-events: none;
+}
+.ms-pin-face .ms-seat-face{ width: 24px; height: 24px; border-color: #fff3c9; }
+.ms-pin-face small{ font: 800 11px 'Cinzel', serif; color: #fff; text-shadow: 0 1px 1px #000; white-space: nowrap; }
+.ms-pin-face.win{ box-shadow: 0 0 0 3px #ffe7a3, 0 2px 6px rgb(0 0 0 / 0.55); }
+.ms-tiereveal.wide .ms-gap .ms-seat-face{ width: 44px; height: 44px; }
+.ms-tiereveal.wide .ms-gap-body b{ font-size: 16px; }
+.ms-tiereveal.wide .ms-gap-guess{ font-size: 22px; }
+.ms-tiereveal.wide .ms-gap-body small{ font-size: 14px; }
+.ms-tiereveal.wide .ms-pin-face .ms-seat-face{ width: 36px; height: 36px; }
+.ms-tiereveal.wide .ms-pin-face small{ font-size: 15px; }

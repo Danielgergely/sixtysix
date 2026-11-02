@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'motion/react'
 import { TAB_SCREENS, useGameStore, type Screen } from './game/store'
 import { useArenaStore } from './arena/arenaStore'
-import { ConfettiLayer, duration, ease } from './motion'
+import { ConfettiLayer, duration, ease, useIsFirstKey } from './motion'
 import { MainMenuScreen } from './screens/MainMenuScreen'
 import { LobbyScreen } from './screens/LobbyScreen'
 import { RaceScreen } from './screens/RaceScreen'
@@ -77,6 +77,7 @@ export default function App() {
   const spiesRole = useSpiesStore((s) => s.role)
   const missionRole = useMissionStore((s) => s.role)
   const Active = SCREENS[screen]
+  const firstScreen = useIsFirstKey(screen)
   // Top-level areas get the shared header + bottom tabs; games stay full-screen.
   const tabbed = (TAB_SCREENS as readonly string[]).includes(screen)
   // Host/spectator boards are projector/laptop surfaces — let them breathe.
@@ -93,11 +94,12 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <div className={`app ${wide ? 'app-wide' : ''} ${tabbed ? 'app-tabbed' : ''} ${screen === 'jerusalem' ? 'app-city' : ''}`}>
         {tabbed && <TopBar />}
-        <AnimatePresence mode="wait" initial={false}>
+        {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first screen (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
             key={screen}
             className="screen-transition"
-            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            initial={firstScreen ? false : { opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: duration.base, ease: ease.out } }}
             exit={{ opacity: 0, scale: 0.98, transition: { duration: duration.fast } }}
           >

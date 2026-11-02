@@ -238,7 +238,8 @@ export function scheduleBots(room: MRoom, acts: BotActions): void {
           console.error(`[mission] bot in ${room.code} failed:`, err)
         }
       },
-      Math.round(rand(...plan.delay) * PACE),
+      // A phase banner on the screens: the bot waits for it like a person would.
+      Math.round(rand(...plan.delay) * PACE) + Math.max(0, room.holdUntil - Date.now()),
     )
   })
 }

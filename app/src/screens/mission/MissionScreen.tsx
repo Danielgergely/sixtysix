@@ -17,7 +17,7 @@ import { MapView } from '../../mission/MapView'
 import { baseMapProps, nameOf, questionIn, regionName, rich, seatColour, seatName, useJoinOrigin } from '../../mission/util'
 import { OnlineEntry } from '../shell/OnlineEntry'
 import { Avatar } from '../../avatars/Avatar'
-import { popIn, spring } from '../../motion'
+import { popIn, spring, useIsFirstKey } from '../../motion'
 import { useLocale, useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { useIntro } from '../../tutorial/useIntro'
@@ -25,7 +25,8 @@ import { Hint } from '../../tutorial/Hint'
 import { QuestionView } from '../arena/game/QuestionView'
 import { missionRewardFor } from '../../game/boardRewards'
 import { PaintedCoin } from '../../art/PaintedPortrait'
-import { OutcomeBanner, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
+import { OutcomeBanner, PicksRow, QrCode, RulesSheet, Scoreboard, StatusBar } from './parts'
+import { MissionBanners } from './Banner'
 import { duelLine } from '../../mission/lines'
 import { TieInput, TieReveal } from './tie'
 import { MissionBoard } from './MissionBoard'
@@ -36,17 +37,20 @@ import '../../theme/mission.css'
 export function MissionScreen() {
   const role = useMissionStore((s) => s.role)
   const state = useMissionStore((s) => s.state)
+  const phaseKey = state && role === 'player' ? (state.phase === 'lobby' ? 'lobby' : `game-${state.game}`) : null
+  const firstPhase = useIsFirstKey(phaseKey)
   if (!state || !role) return <MissionMenu />
   if (role === 'board') return <MissionBoard />
   return (
     <div className="screen ms emp">
       <MissionTopBar state={state} />
       <div className="ms-body">
-        <AnimatePresence mode="wait" initial={false}>
+        {/* No `initial={false}` here: it would freeze every enter animation in the game view (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key={state.phase === 'lobby' ? 'lobby' : `game-${state.game}`}
+            key={phaseKey}
             className="ms-phase"
-            initial={{ opacity: 0, y: 24 }}
+            initial={firstPhase ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >
@@ -54,8 +58,14 @@ export function MissionScreen() {
           </motion.div>
         </AnimatePresence>
       </div>
+      <PhoneBanners state={state} />
     </div>
   )
+}
+
+function PhoneBanners({ state }: { state: MissionState }) {
+  const mySeat = useMySeat(state)
+  return <MissionBanners state={state} mySeat={mySeat} />
 }
 
 function MissionTopBar({ state }: { state: MissionState }) {
@@ -291,7 +301,7 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
       <StatusBar state={state} mySeat={mySeat} />
       <div className="ms-map-wrap">
         <div className="ms-map-frame pz">
-          <MapView {...baseMapProps(state)} compactLabels highlight={tap ? state.choices : []} onRegionTap={tap} />
+          <MapView {...baseMapProps(state)} animate compactLabels highlight={tap ? state.choices : []} onRegionTap={tap} />
         </div>
       </div>
       {state.phase === 'question' && state.question && (
@@ -300,7 +310,12 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
           <p>{questionIn(state).text}</p>
         </div>
       )}
-      {state.phase === 'reveal' && <OutcomeBanner state={state} />}
+      {state.phase === 'reveal' && (
+        <>
+          <PicksRow state={state} />
+          <OutcomeBanner state={state} />
+        </>
+      )}
       {state.phase === 'siege' && mine && state.attack && (
         <motion.div className="ms-siege" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={spring.bouncy}>
           <p>{t('mission.siege.walls', { n: state.walls[state.attack.region] ?? 0, region: regionName(state.attack.region) })}</p>
@@ -357,6 +372,7 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
       <Hint id="nehemiah" when={nehemiah} place="top" />
       {state.phase === 'reveal' && (
         <div className="ms-q-outcome">
+          <PicksRow state={state} compact />
           <OutcomeBanner state={state} />
         </div>
       )}

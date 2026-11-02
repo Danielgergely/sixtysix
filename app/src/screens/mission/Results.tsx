@@ -1,7 +1,8 @@
+import { useEffect } from 'react'
 import { motion } from 'motion/react'
 import type { MissionState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
-import { popIn, spring } from '../../motion'
+import { fireCannons, popIn, spring } from '../../motion'
 import { nameOf, rich, seatColour, seatName } from '../../mission/util'
 import { useLocale, useT } from '../../i18n'
 
@@ -10,6 +11,11 @@ export function Results({ state }: { state: MissionState }) {
   const t = useT()
   const r = state.result!
   const locale = useLocale((s) => s.locale)
+  // The winner: cannons of confetti once (reduced motion: none, fireConfetti checks).
+  const won = r.winner !== null
+  useEffect(() => {
+    if (won) fireCannons()
+  }, [won, state.game])
   return (
     <div className="ms-results">
       <motion.h3 className="ms-results-title" {...popIn}>
@@ -22,8 +28,8 @@ export function Results({ state }: { state: MissionState }) {
         {r.ranking.map((seat, i) => {
           const s = state.seats[seat]
           return (
-            <motion.li key={seat} className={`ms-rank ${s.out ? 'out' : ''}`} style={{ '--seat': seatColour(seat) } as React.CSSProperties} initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ ...spring.gentle, delay: 0.2 + i * 0.15 }}>
-              <span className="ms-rank-n">{i + 1}</span>
+            <motion.li key={seat} className={`ms-rank ${s.out ? 'out' : ''} ${i === 0 && r.winner !== null ? 'first' : ''}`} style={{ '--seat': seatColour(seat) } as React.CSSProperties} initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ ...spring.gentle, delay: 0.2 + i * 0.15 }}>
+              <span className="ms-rank-n">{i === 0 && r.winner !== null ? <motion.span className="ms-crown" initial={{ y: -30, scale: 0, rotate: -30 }} animate={{ y: 0, scale: 1, rotate: 0 }} transition={{ ...spring.bouncy, delay: 0.6 }}>👑</motion.span> : i + 1}</span>
               <span className="ms-seat-face">
                 <Avatar id={s.avatar} />
               </span>
