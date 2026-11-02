@@ -1,11 +1,10 @@
-import { memo, useCallback, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { popIn } from '../motion'
 import { useT } from '../i18n'
 import { artFor } from '../screens/home/homeUtil'
+import { CitySearch, FoundCard } from './CityChrome'
 import { houseName } from '../screens/home/plotText'
 import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
 import { CityLife } from './CityLife'
@@ -30,7 +29,7 @@ const PAD = 150
 const NEAR = 0.68
 const MID = 0.34
 
-interface Props {
+export interface CityMapProps {
   residents: Resident[]
   me: string | null
   onLandmark: (id: LandmarkId) => void
@@ -39,12 +38,15 @@ interface Props {
   onLot: (lot: number, r: Resident | null) => void
   /** Rendered over the map, top right (List toggle etc.). */
   extra?: React.ReactNode
+  /** Called once the map is drawn (the tour waits for it). */
+  onReady?: () => void
 }
 
 type View = { x0: number; y0: number; x1: number; y1: number; lod: 'near' | 'mid' | 'far' }
 
 /** The painted Jerusalem map: landmarks, one lot per family, a few free lots, people in the streets. */
-export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }: Props) {
+export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, onReady }: CityMapProps) {
+  useEffect(() => onReady?.(), []) // eslint-disable-line react-hooks/exhaustive-deps
   const pz = useRef<PanZoomHandle>(null)
   const mine = residents.find((r) => r.username === me)
   const home = mine?.lot ? lotFor(mine.lot) : undefined
@@ -97,7 +99,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
       overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
         <>
           <div className="cm-top">
-            <Search residents={residents} onPick={flyTo} />
+            <CitySearch residents={residents} onPick={flyTo} />
             <div className="cm-tools">
               {home ? (
                 <button className="cm-chip gold" onClick={() => mine && flyTo(mine)} title={t('city.map.myHomeTitle')}>
@@ -119,29 +121,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
               −
             </button>
           </div>
-          <AnimatePresence>
-            {found && (
-              <motion.div key={found.username} className="cm-found" {...popIn}>
-                <PaintedPortrait id={found.avatar} className="cm-found-portrait" />
-                <span className="cm-found-text">
-                  <strong>{found.username === me ? t('city.map.yourHome') : found.name}</strong>
-                  <small>
-                    {t('city.map.foundSub', {
-                      user: found.username,
-                      house: houseName(found.house),
-                      where: found.lot ? t('city.map.lot', { n: found.lot }) : t('city.map.camping'),
-                    })}
-                  </small>
-                </span>
-                <button className="cm-chip gold" onClick={() => onResident(found)}>
-                  {found.username === me ? t('city.map.build') : t('city.map.visit')}
-                </button>
-                <button className="cm-found-x" onClick={() => setFound(null)} title={t('city.map.close')}>
-                  ✕
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <FoundCard found={found} me={me} onOpen={onResident} onClose={() => setFound(null)} />
         </>
       )}
     >
@@ -178,63 +158,6 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra }:
       })}
       </div>
     </PanZoom>
-  )
-}
-
-/** A search field over the map: name or @username → fly to their lot. */
-function Search({ residents, onPick }: { residents: Resident[]; onPick: (r: Resident) => void }) {
-  const [q, setQ] = useState('')
-  const [open, setOpen] = useState(false)
-  const t = useT()
-  const term = q.trim().replace(/^@/, '').toLowerCase()
-  const hits = term
-    ? residents
-        .filter((r) => r.name.toLowerCase().includes(term) || r.username.toLowerCase().includes(term))
-        .sort((a, b) => Number(!a.name.toLowerCase().startsWith(term)) - Number(!b.name.toLowerCase().startsWith(term)) || (a.lot ?? 1e9) - (b.lot ?? 1e9))
-        .slice(0, 6)
-    : []
-  const pick = (r: Resident) => {
-    onPick(r)
-    setQ('')
-    setOpen(false)
-    ;(document.activeElement as HTMLElement | null)?.blur()
-  }
-  return (
-    <div className="cm-search" onPointerDown={(e) => e.stopPropagation()}>
-      <input
-        type="search"
-        value={q}
-        placeholder={t('city.map.search', { n: residents.length })}
-        aria-label={t('city.map.searchAria')}
-        onChange={(e) => {
-          setQ(e.target.value)
-          setOpen(true)
-        }}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setTimeout(() => setOpen(false), 150)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && hits[0]) pick(hits[0])
-          if (e.key === 'Escape') setQ('')
-        }}
-      />
-      {open && term && (
-        <ul className="cm-hits" data-pz-scroll>
-          {hits.map((r) => (
-            <li key={r.username}>
-              <button onClick={() => pick(r)}>
-                <PaintedPortrait id={r.avatar} className="cm-hit-portrait" />
-                <span className="cm-hit-text">
-                  <strong>{r.name}</strong>
-                  <small>@{r.username}</small>
-                </span>
-                <img src={artFor('house', r.house)} alt="" />
-              </button>
-            </li>
-          ))}
-          {hits.length === 0 && <li className="cm-hits-none">{t('city.map.noHits')}</li>}
-        </ul>
-      )}
-    </div>
   )
 }
 

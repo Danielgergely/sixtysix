@@ -9,13 +9,13 @@ import { usePlotStore } from '../plot/plotStore'
 import { useT } from '../i18n'
 import { artFor } from './home/homeUtil'
 import { houseName } from './home/plotText'
-import { CityMap } from '../world/CityMap'
+import { CityView } from '../world/CityView'
 import { CitySheet, type CitySheetKind, type LotPick } from '../world/CitySheet'
 import { useIntro } from '../tutorial/useIntro'
 import { InfoButton } from '../tutorial/InfoButton'
 
 /**
- * The city: a painted map of Jerusalem to drag around. Landmarks (Temple,
+ * The city: Jerusalem in 3D to turn and zoom (world/CityView; the painted 2D map without WebGL). Landmarks (Temple,
  * Market, governor's house, a gate, a pool) open cards; every account has a
  * stored lot (shared/src/city.ts: weeds on homes left alone, inner places
  * changing hands). Guests can look around and visit; building
@@ -32,6 +32,7 @@ export function JerusalemScreen() {
   const [sheet, setSheet] = useState<CitySheetKind | null>(null)
   const [lot, setLot] = useState<LotPick | null>(null)
   const [reload, setReload] = useState(0)
+  const [mapReady, setMapReady] = useState(false)
 
   useEffect(() => {
     let live = true
@@ -44,7 +45,7 @@ export function JerusalemScreen() {
   }, [reload])
 
   // The spotlight tour, once the map and its lots are drawn.
-  useIntro('city', !list && !!residents)
+  useIntro('city', !list && !!residents && mapReady)
   const me = account?.username ?? null
   const openResident = (r: Resident) => (r.username === me ? goTo('home') : visitPlot(r.username))
   const toggle = (
@@ -63,11 +64,12 @@ export function JerusalemScreen() {
       {!list && (
         <>
           {residents || failed ? (
-            <CityMap
+            <CityView
               residents={residents ?? []}
               me={me}
               onLandmark={(id) => (id === 'market' ? usePlotStore.getState().openMarket(null) : setSheet(id))}
               onResident={openResident}
+              onReady={() => setMapReady(true)}
               onLot={(n, r) => {
                 setLot({ n, resident: r })
                 setSheet('lot')

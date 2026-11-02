@@ -1,0 +1,47 @@
+/* ══ Jerusalem in 3D (world/city3d/City3D): the canvas, name tags placed every frame, the turn/zoom/compass buttons ══ */
+.tab-screen.jr-map > .pz.c3{ background: #ecdcb8; cursor: grab; }
+.c3-canvas{ position: absolute !important; inset: 0; }
+
+/* Tags: zero-size anchors at their 3D point; the loop writes transform (screen px + scale) and z-index. Taps go through to the scene (City3D tests the tag boxes). */
+.c3-labels{ position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.c3-tag{ position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; will-change: transform; }
+.c3-name{
+  position: absolute; left: 0; bottom: 0; translate: -50% 0;
+  display: inline-flex; align-items: center; gap: 0.35em; padding: 0.18em 0.6em 0.18em 0.18em; border-radius: 999px;
+  font: 800 12px/1.15 'Cinzel', serif; white-space: nowrap;
+  background: rgb(29 15 6 / 0.85); border: 1.5px solid #c9a24a; color: #ffe7a3; box-shadow: 0 0.2em 0.5em rgb(0 0 0 / 0.45);
+}
+.c3-label{ max-width: 9em; overflow: hidden; text-overflow: ellipsis; }
+.c3-portrait{ width: 1.75em; height: 1.75em; flex-shrink: 0; }
+.c3-name.land{
+  padding: 0.25em 0.9em; font: 900 14px/1.1 'Cinzel Decorative', serif; color: #ffe08a; letter-spacing: 0.02em;
+  background: linear-gradient(rgb(70 30 12 / 0.95), rgb(29 15 6 / 0.95)); border-color: #e3b754;
+}
+.c3-tag.land.temple .c3-name{ font-size: 16px; }
+.c3-name.free{ padding: 0.18em 0.7em; background: rgb(243 226 187 / 0.92); border-color: #8a5a2a; color: #5a3412; }
+.c3-tag.me .c3-name{ background: linear-gradient(#ffe08a, #c98a12); border-color: #1d0f06; color: #2b1408; font-weight: 900; }
+.c3-tag.found .c3-name{ background: #b3262b; border-color: #ffe08a; color: #fff; }
+.c3-tag.me, .c3-tag.found{ z-index: 20000 !important; }
+/* Under the name of a home that is for sale (like the 2D map's sign). */
+.c3-sale{
+  position: absolute; left: 0; top: 4px; translate: -50% 0; white-space: nowrap; padding: 0.1em 0.5em; border-radius: 4px;
+  font: 800 10px/1.2 Georgia, serif; background: #f3e2bb; border: 1.5px solid #7a4a22; color: #5a2a10; box-shadow: 0 2px 4px rgb(0 0 0 / 0.35);
+}
+
+/* The speech bubble of a tapped walker (placed by Townsfolk3D). */
+.c3-bubble{ position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 4; }
+
+/* Turn, zoom and the compass (its needle turns with the camera; a tap sets north up). */
+.c3-nav button{ font-size: 20px; }
+.c3-compass{ position: relative; border-radius: 50% !important; }
+.c3-needle{ position: absolute; inset: 3px; display: block; border-radius: 50%; }
+.c3-needle::before{
+  content: ''; position: absolute; left: 50%; top: 4px; translate: -50% 0; width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 11px solid #e2463a;
+}
+.c3-needle::after{
+  content: ''; position: absolute; left: 50%; bottom: 4px; translate: -50% 0; width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 11px solid #ffe7a3;
+}
+.c3-n{ position: absolute; inset: 0; display: grid; place-items: center; font: 900 9px/1 'Cinzel', serif; color: #ffe7a3; }
+@media (prefers-reduced-motion: reduce){ .c3 .lf-bubble{ animation: none; } }
