@@ -25,7 +25,7 @@ export default {
     build: 'Építés ›',
     visit: 'Látogatás ›',
     close: 'Bezárás',
-    search: 'Család keresése ({n})',
+    search: 'Családok ({n})',
     searchAria: 'Család keresése Jeruzsálemben',
     noHits: 'Még nincs ilyen nevű család',
     lotTitle: '{name} · {house} · {n}. parcella',
