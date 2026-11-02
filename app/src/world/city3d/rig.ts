@@ -14,11 +14,13 @@ import type { Bridge } from './bridge'
 const TAP_PX = 9
 const TAP_MS = 600
 
+/** A phone-sized screen: the scenes spend less there (pixel ratio, shadow map). */
+export const smallScreen = () => Math.min(window.innerWidth, window.innerHeight) < 600
+
 /** Device pixels: sharp on desktops, capped on phones (3× screens) to keep the frame rate. */
 export function maxDpr(): number {
   const dpr = window.devicePixelRatio || 1
-  const small = Math.min(window.innerWidth, window.innerHeight) < 600
-  return Math.min(dpr, small ? 1.75 : 2)
+  return Math.min(dpr, smallScreen() ? 1.75 : 2)
 }
 
 /** The canvas's onCreated: WebGL context lost (GPU reset, too many contexts) → hand over to the 2D scene. */

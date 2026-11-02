@@ -30,7 +30,7 @@ import { LOTS, lotOpen } from '../cityLayout'
 import { townsfolk, type Home } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
-import { configureRig, useDisposeOnUnmount } from './rig'
+import { configureRig, smallScreen, useDisposeOnUnmount } from './rig'
 import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
 import { HOUSE_YARD } from './models'
@@ -96,6 +96,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   // ── Static: built once ──
   // Ground painting resolution: decided once (phones get a smaller one).
   const [wide] = useState(() => window.innerWidth > 700)
+  // Phones get a smaller shadow map (the same check that caps their pixel ratio).
+  const [shadowSize] = useState(() => (smallScreen() ? 1536 : 2048))
   const city = useMemo(() => buildCity(), [])
   const statics = useMemo(() => {
     const stoneMat = new MeshLambertMaterial({ vertexColors: true, map: stoneTexture() })
@@ -452,7 +454,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
         intensity={2.9}
         color="#ffe6bd"
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[shadowSize, shadowSize]}
         shadow-camera-left={-150}
         shadow-camera-right={150}
         shadow-camera-top={150}
