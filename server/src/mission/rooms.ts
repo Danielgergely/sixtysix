@@ -39,6 +39,8 @@ export interface MPlayer {
   botTimer?: ReturnType<typeof setTimeout>
   /** The step (room.step) the bot's timer is for. */
   botStep?: number
+  /** Test only (bot simulations): this bot's level instead of the room's. */
+  botLevelOverride?: MissionBotLevel
 }
 
 /** Per-seat game data, by seat index. */
