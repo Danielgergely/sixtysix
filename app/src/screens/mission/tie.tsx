@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { MISSION_MAP, projectPoint, type MissionState } from '@sixtysix/shared'
+import { projectPoint, type MissionState } from '@sixtysix/shared'
 import { tiePrompt } from '../../mission/lines'
 import { AnimatedNumber, ease, popIn, spring } from '../../motion'
+import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import { useMissionStore } from '../../mission/missionStore'
 import { MapView } from '../../mission/MapView'
 import { baseMapProps, fmtSeconds, nameOf, rich, seatColour } from '../../mission/util'
@@ -96,8 +97,8 @@ function PinPicker({ state, mySeat }: { state: MissionState; mySeat: number }) {
   const t = useT()
   return (
     <div className="ms-pinpick">
-      <div className="ms-map-frame pin" style={{ aspectRatio: `${MISSION_MAP.viewBox[0]} / ${MISSION_MAP.viewBox[1]}` }}>
-        <MapView {...baseMapProps(state)} selected={[]} flags={{}} pins={pin ? [{ ...pin, seat: mySeat }] : []} onMapTap={(lat, lon) => setPin({ lat, lon })} />
+      <div className="ms-map-frame pz pin">
+        <MapView {...baseMapProps(state)} compactLabels selected={[]} flags={{}} pins={pin ? [{ ...pin, seat: mySeat }] : []} onMapTap={(lat, lon) => setPin({ lat, lon })} />
       </div>
       <p className="ms-hint">{t('mission.tie.pinHint')}</p>
       <button className="btn-play ms-wide-btn" disabled={!pin} onClick={() => pin && send(pin.lat, pin.lon)}>
@@ -216,7 +217,7 @@ function PinLines({ state }: { state: MissionState }) {
   return (
     <div className="ms-pinreveal">
       <div className="ms-map-frame" style={{ aspectRatio: `${w} / ${h}` }}>
-        <MapView {...baseMapProps(state)} selected={[]} flags={{}} pins={pins} truth={null} />
+        <MapView {...baseMapProps(state)} panZoom={false} selected={[]} flags={{}} pins={pins} truth={null} />
         <svg className="ms-map-over" viewBox={`0 0 ${w} ${h}`}>
           {truth && (
             <motion.g initial={{ opacity: 0, scale: 0.2 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...spring.bouncy, delay: 0.8 }} style={{ originX: `${tx}px`, originY: `${ty}px` }}>
@@ -259,6 +260,7 @@ function PinLines({ state }: { state: MissionState }) {
           </span>
         ))}
       </div>
+      <small className="ms-credit">{t('mission.tie.credit')}</small>
     </div>
   )
 }

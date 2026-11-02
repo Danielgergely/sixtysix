@@ -16,7 +16,8 @@ import type {
   MissionRegion,
   Question,
 } from '@sixtysix/shared'
-import { CAPITAL_VALUE, MISSION_DEFAULT_OPTIONS, MISSION_MAP } from '@sixtysix/shared'
+import { CAPITAL_VALUE, MISSION_DEFAULT_OPTIONS } from '@sixtysix/shared'
+import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import type { NumberEntry, PlaceEntry } from './content.js'
 
 /**

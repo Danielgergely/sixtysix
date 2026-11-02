@@ -24,7 +24,7 @@ export const MISSION_REWARD_HUMANS = 2
 export const MISSION_SEATS = ['judah', 'israel', 'aram'] as const
 export type MissionSeatName = (typeof MISSION_SEATS)[number]
 /** Seat colours by seat index: Judah gold, Israel blue, Aram red. */
-export const MISSION_SEAT_COLOURS = ['#d9a52b', '#3f74c9', '#c2412f'] as const
+export const MISSION_SEAT_COLOURS = ['#d4a017', '#2f6db3', '#b8372a'] as const
 
 /** Defence bonus for every defence won (kept even if the region falls later). */
 export const MISSION_DEFENCE_BONUS = 100
@@ -178,9 +178,9 @@ export interface MissionTie {
   /** The duel's region. */
   region: string
   seats: number[]
-  /** Number tie-breakers: the question in every language, and its unit. */
+  /** Number tie-breakers: the question in every language, and its unit (a key: years, cubits, …; texts mission.unit.<key>). */
   text?: Partial<Record<Locale, string>> & { en: string }
-  unit?: Partial<Record<Locale, string>>
+  unit?: string
   /** Pin tie-breakers: the place to find, in every language. */
   place?: Partial<Record<Locale, string>> & { en: string }
   /** Seats that have answered. */
@@ -225,7 +225,7 @@ export interface MissionState {
   leaderId: string | null
   botLevel: MissionBotLevel
   options: MissionOptions
-  /** Map id (shared/src/missionCampaign.ts). */
+  /** Map id (shared/src/missionMaps/campaign.ts). */
   mapId: string
   /** Game number in this room (1-based once started). */
   game: number

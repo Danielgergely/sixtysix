@@ -88,7 +88,9 @@ export default {
   question: {
     answered: 'Válaszoltál — várjuk a többieket…',
   },
+  unit: { years: 'év', months: 'hónap', days: 'nap', cubits: 'könyök', shekels: 'sékel', talents: 'talentum', men: 'férfi', people: 'ember', times: 'alkalom' },
   tie: {
+    credit: 'Helyek: OpenBible.info (CC BY 4.0)',
     title: '⚖️ Szétlövés',
     pin: 'Hol volt {place}?',
     pinHint: 'Koppints a térképre a tűd letételéhez, aztán erősítsd meg.',

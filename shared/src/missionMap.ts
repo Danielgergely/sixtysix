@@ -41,6 +41,24 @@ export interface MissionMap {
   regions: MissionRegion[]
   /** The Blitz map: merged regions; `covers` lists the full-map region ids each one replaces. */
   blitz: (MissionRegion & { covers: string[] })[]
+  /** The landscape under the regions (drawn by the app's MissionMapView). */
+  base?: MissionBaseMap
+}
+
+/** The drawn landscape, all in map units. The land is everything in the viewBox outside `sea`. */
+export interface MissionBaseMap {
+  /** The sea, a closed path (the frame's sea side plus the coast). */
+  sea: string
+  /** The coastline alone (for the ink line). */
+  coast: string
+  /** Lakes (Sea of Galilee, Dead Sea, …), closed paths. */
+  lakes: { id: string; path: string }[]
+  /** Rivers as open paths, with a stroke width in map units. */
+  rivers: { id: string; path: string; width: number }[]
+  /** Hill-country ridge lines, for the relief strokes. */
+  ridges: [number, number][][]
+  /** Names of seas, rivers and the lands outside the play area. */
+  labels: { name: Record<Locale, string>; at: [number, number]; kind: 'sea' | 'water' | 'land' | 'river'; rotate?: number }[]
 }
 
 export const CAPITAL_VALUE = 1000

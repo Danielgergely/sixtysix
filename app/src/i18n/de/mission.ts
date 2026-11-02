@@ -88,7 +88,9 @@ export default {
   question: {
     answered: 'Beantwortet — warte auf die anderen …',
   },
+  unit: { years: 'Jahre', months: 'Monate', days: 'Tage', cubits: 'Ellen', shekels: 'Schekel', talents: 'Talente', men: 'Männer', people: 'Menschen', times: 'Mal' },
   tie: {
+    credit: 'Orte: OpenBible.info (CC BY 4.0)',
     title: '⚖️ Stechen',
     pin: 'Wo lag {place}?',
     pinHint: 'Tippe auf die Karte, um deine Nadel zu setzen, dann bestätige.',

@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'motion/react'
 import {
   DIFFICULTY_PRESETS,
   MISSION_BOT_LEVELS,
-  MISSION_MAP,
   MISSION_MAX_SEATS,
   MISSION_MIN_SEATS,
   MISSION_REWARD_HUMANS,
@@ -11,6 +10,7 @@ import {
   QUESTION_TIME_MS,
   type MissionState,
 } from '@sixtysix/shared'
+import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import { useGameStore } from '../../game/store'
 import { isLeader, lastMissionCode, useMissionStore, useMySeat } from '../../mission/missionStore'
 import { MapView } from '../../mission/MapView'
@@ -277,8 +277,8 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
       <Scoreboard state={state} />
       <StatusBar state={state} mySeat={mySeat} />
       <div className="ms-map-wrap">
-        <div className="ms-map-frame" style={{ aspectRatio: `${MISSION_MAP.viewBox[0]} / ${MISSION_MAP.viewBox[1]}` }}>
-          <MapView {...baseMapProps(state)} highlight={tap ? state.choices : []} onRegionTap={tap} />
+        <div className="ms-map-frame pz">
+          <MapView {...baseMapProps(state)} compactLabels highlight={tap ? state.choices : []} onRegionTap={tap} />
         </div>
       </div>
       {state.phase === 'question' && state.question && (

@@ -10,16 +10,15 @@ import {
   CAPITAL_WALLS,
   MISSION_DEFENCE_BONUS,
   MISSION_DOMINATION_CAP,
-  MISSION_MAP,
   MISSION_PIN_TIE_KM,
   MISSION_REBUILD_STREAK,
   MISSION_REWARD_HUMANS,
   MISSION_TIE_MS,
   QUESTION_TIME_MS,
   distanceKm,
-  missionRegions,
   snakeOrder,
 } from '@sixtysix/shared'
+import { MISSION_MAP, missionRegions } from '@sixtysix/shared/missionMaps/campaign'
 import { pickQuestions, verseFor, versesFor } from '../bank.js'
 import { NUMBERS, placesOn } from './content.js'
 import { avgMs, channel, landOf, toMissionState, touch, type MRoom } from './rooms.js'

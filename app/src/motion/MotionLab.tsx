@@ -10,6 +10,7 @@ import { PaintedPortrait } from '../art/PaintedPortrait'
 import { Crowning } from '../ceremony/Crowning'
 import { WallFinale, WallRound } from '../ceremony/Wall'
 import type { TeamState } from '@sixtysix/shared'
+import { MissionMapLab, type MissionLabMode } from '../mission/MissionMapLab'
 
 const HEADS = itemsIn('head')
 const NECKS = itemsIn('neck')
@@ -46,6 +47,10 @@ export function MotionLab() {
   const [look, setLook] = useState(0)
   const [crowning, setCrowning] = useState(0)
   const [wall, setWall] = useState<{ round: number; teams: number; final: boolean } | null>(null)
+  const [mission, setMission] = useState<MissionLabMode | null>(() => {
+    const m = new URLSearchParams(window.location.search).get('mission')
+    return m === 'full' || m === 'blitz' || m === 'board' || m === 'board-blitz' ? m : null
+  })
 
   return (
     <MotionConfig reducedMotion="user">
@@ -148,6 +153,17 @@ export function MotionLab() {
           </div>
         </section>
 
+        <section className="profile-section">
+          <div className="profile-label">Mission map</div>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            {(['full', 'blitz', 'board', 'board-blitz'] as const).map((m) => (
+              <button key={m} className="btn-secondary" onClick={() => setMission(m)}>
+                {m}
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section className="profile-section" style={{ paddingBottom: '3rem' }}>
           <div className="profile-label">Confetti</div>
           <div style={{ display: 'flex', gap: '0.6rem' }}>
@@ -176,6 +192,7 @@ export function MotionLab() {
           )}
         </div>
       )}
+      {mission && <MissionMapLab mode={mission} onClose={() => setMission(null)} />}
       <ConfettiLayer />
     </MotionConfig>
   )

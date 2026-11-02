@@ -1,4 +1,5 @@
-import { MISSION_MAP, MISSION_SEATS, MISSION_SEAT_COLOURS, missionRegions, type MissionSeat, type MissionState } from '@sixtysix/shared'
+import { MISSION_SEATS, MISSION_SEAT_COLOURS, type MissionSeat, type MissionState } from '@sixtysix/shared'
+import { MISSION_MAP, missionRegions } from '@sixtysix/shared/missionMaps/campaign'
 import { t, useLocale } from '../i18n'
 import type { MissionMapViewProps } from './mapViewProps'
 

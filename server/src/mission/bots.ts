@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import type { MissionBotLevel } from '@sixtysix/shared'
-import { CHARACTERS, MISSION_MAP, SKIN_TONES } from '@sixtysix/shared'
+import { CHARACTERS, SKIN_TONES } from '@sixtysix/shared'
+import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import { landOf, localeOf, newPlayerId, valueOf, type MPlayer, type MRoom } from './rooms.js'
 
 /**

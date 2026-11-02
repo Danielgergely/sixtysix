@@ -1,10 +1,6 @@
 import type { MissionMap } from '@sixtysix/shared'
 
-/**
- * What the Mission screens hand a map renderer (StubMapView now; the painted
- * MissionMapView when merged — see MapView.tsx). Everything is in region ids
- * and latitude/longitude; the renderer projects with `projectPoint`.
- */
+/** What the Mission screens hand the map (MapView.tsx turns it into MissionMapView props). */
 export interface MissionMapViewProps {
   map: MissionMap
   /** Draw the Blitz regions instead of the full map. */
@@ -17,15 +13,21 @@ export interface MissionMapViewProps {
   seatColours: readonly string[]
   /** Regions to light up as tappable choices. */
   highlight?: string[]
-  /** Regions to mark strongly (the attacked region, this round's wishes). */
+  /** The attacked region. */
   selected?: string[]
+  /** The attacker's capital (or nothing). */
+  attacker?: string
   /** Flags planted this claim round: region id → seat. */
   flags?: Record<string, number>
   onRegionTap?: (id: string) => void
   /** Tie-breaker pins (seat colours) and the real place. */
   pins?: { lat: number; lon: number; seat: number }[]
   truth?: { lat: number; lon: number } | null
-  /** Pin mode: a tap anywhere gives latitude/longitude. */
+  /** Pin mode: a tap anywhere gives latitude/longitude (region taps are off). */
   onMapTap?: (lat: number, lon: number) => void
+  /** Drag / pinch / zoom (phones); false fits the whole map (board). Default true. */
+  panZoom?: boolean
+  /** Thin out names and value chips on a crowded whole-map view. */
+  compactLabels?: boolean
   className?: string
 }

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { MISSION_MAP, type MissionState } from '@sixtysix/shared'
+import type { MissionState } from '@sixtysix/shared'
+import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import { useMissionStore } from '../../mission/missionStore'
 import { MapView } from '../../mission/MapView'
 import { baseMapProps, nameOf, questionIn, rich, seatColour, seatName, useJoinOrigin } from '../../mission/util'
@@ -76,7 +77,7 @@ function BoardGame({ state }: { state: MissionState }) {
           <TieReveal state={state} wide />
         ) : (
           <div className="ms-map-frame" style={{ aspectRatio: `${MISSION_MAP.viewBox[0]} / ${MISSION_MAP.viewBox[1]}` }}>
-            <MapView {...baseMapProps(state)} highlight={['capital', 'wish', 'attack'].includes(state.phase) ? state.choices : []} />
+            <MapView {...baseMapProps(state)} panZoom={false} highlight={['capital', 'wish', 'attack'].includes(state.phase) ? state.choices : []} />
           </div>
         )}
       </div>

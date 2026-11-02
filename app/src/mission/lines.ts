@@ -66,7 +66,7 @@ export function outcomeLines(state: MissionState): string[] {
 /** The tie-breaker's question in my language. */
 export function tiePrompt(tie: MissionTie, locale: string): { text: string; unit: string } {
   const loc = locale as 'en'
-  if (tie.kind === 'number') return { text: tie.text?.[loc] ?? tie.text?.en ?? '', unit: tie.unit?.[loc] ?? tie.unit?.en ?? '' }
+  if (tie.kind === 'number') return { text: tie.text?.[loc] ?? tie.text?.en ?? '', unit: tie.unit ? tr(`mission.unit.${tie.unit}`) : '' }
   return { text: tr('mission.tie.pin', { place: tie.place?.[loc] ?? tie.place?.en ?? '' }), unit: '' }
 }
 

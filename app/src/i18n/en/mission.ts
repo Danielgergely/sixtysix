@@ -88,7 +88,9 @@ export default {
   question: {
     answered: 'Answered — waiting for the others…',
   },
+  unit: { years: 'years', months: 'months', days: 'days', cubits: 'cubits', shekels: 'shekels', talents: 'talents', men: 'men', people: 'people', times: 'times' },
   tie: {
+    credit: 'Places: OpenBible.info (CC BY 4.0)',
     title: '⚖️ Tie-breaker',
     pin: 'Where was {place}?',
     pinHint: 'Tap the map to drop your pin, then confirm.',
