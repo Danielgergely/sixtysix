@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
+import { DIFFICULTY_RANGE, UNTIMED_XP_PER_CORRECT, coinsForAnswer, type Category, type DifficultyPreset, type GiftId } from '@sixtysix/shared'
 import type { Question } from '../questions/types'
 import { loadBank, loadVerses } from '../questions/provider'
 import { useLocale } from '../i18n'
@@ -19,7 +19,6 @@ const MISSED_KEY = 'sixtysix.practiceMissed.v1'
 const RETRY_AFTER = 4
 /** Share of picks drawn from the saved "missed" list when it has eligible items. */
 const MISSED_SHARE = 0.3
-const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = { easy: [1, 2], mixed: [1, 5], hard: [3, 5] }
 
 function loadMissed(): string[] {
   try {

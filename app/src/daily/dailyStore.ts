@@ -9,7 +9,7 @@ import { loadExclusions } from '../flags/flagStore'
 
 /**
  * Daily Scroll: five questions per calendar day, the SAME five for everyone
- * (picked by a PRNG seeded with the date), difficulty 1 → 5. One attempt per
+ * (picked by a PRNG seeded with the date), ramping from easy to hard. One attempt per
  * day; the result can be shared Wordle-style. Consecutive days build a streak.
  */
 
@@ -63,15 +63,17 @@ function hash(s: string): number {
   return h >>> 0
 }
 
-/** One question per difficulty 1..5, chosen the same way on every device. */
+/** Five questions ramping easy → hard (levels 1, 2, 3, 4, 4; never impossible), chosen the same way on every device. */
 export function pickDaily(bank: Question[], date: string): Question[] {
   const rand = rng(hash(`66-daily-${date}`))
   // Sort by id first so the result doesn't depend on bank order.
   const sorted = [...bank].sort((a, b) => a.id.localeCompare(b.id))
-  return [1, 2, 3, 4, 5].map((d) => {
-    const pool = sorted.filter((q) => q.difficulty === d)
-    return pool[Math.floor(rand() * pool.length)]
-  })
+  const picked: Question[] = []
+  for (const d of [1, 2, 3, 4, 4]) {
+    const pool = sorted.filter((q) => q.difficulty === d && !picked.includes(q))
+    picked.push(pool[Math.floor(rand() * pool.length)])
+  }
+  return picked
 }
 
 function load(): Saved {

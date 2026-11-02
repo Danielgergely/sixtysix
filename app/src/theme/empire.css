@@ -638,6 +638,8 @@
 .pr-intro { font: italic 14px/1.4 Georgia, serif; color: #6b4120; text-align: center; }
 .pr-label { margin-top: 6px; font-weight: 900; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6b1d0e; }
 .pr-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pr-chips.levels { grid-template-columns: repeat(2, 1fr); }
+.pr-chips.levels > :first-child { grid-column: 1 / -1; }
 .pr-chip { padding: 10px 4px; border-radius: 8px; background: rgb(255 255 255 / 0.4); border: 2px solid #c9a24a; font: 700 13px/1.1 'Cinzel', serif; color: #3b2412; }
 .pr-chip.wide { grid-column: span 3; }
 .pr-chip.on { background: linear-gradient(#ffe08a, #d39b22); border-color: #1d0f06; box-shadow: 0 2px 0 #1d0f06; }

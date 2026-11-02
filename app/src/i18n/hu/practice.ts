@@ -5,7 +5,7 @@ export default {
   books: 'Könyvek',
   allBooks: 'Minden könyv',
   difficulty: 'Nehézség',
-  levels: { easy: 'Könnyed', mixed: 'Vegyes', hard: 'Mélyvíz' },
+  levels: { mixed: 'Vegyes', easy: 'Könnyű', medium: 'Közepes', hard: 'Nehéz', impossible: 'Lehetetlen' },
   loading: 'Nyílnak a tekercsek…',
   begin: 'Kezdjük',
   review: 'Hibáim átnézése ({n})',

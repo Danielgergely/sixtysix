@@ -269,6 +269,10 @@ button:disabled{ cursor: default; }
 
 /* Segmented controls (host config) */
 .seg-row{ display: flex; gap: 0.4rem; }
+/* Difficulty: Mixed on its own row, then the four levels two by two. */
+.seg-row.levels{ flex-wrap: wrap; }
+.seg-row.levels .seg-btn{ flex: 1 1 calc(50% - 0.4rem); }
+.seg-row.levels .seg-btn:first-child{ flex-basis: 100%; }
 .category-chips{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
 .category-chips .seg-btn:first-child{ grid-column: span 2; }
 .seg-btn{

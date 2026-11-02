@@ -4,7 +4,7 @@ export default {
     goliath: { label: '🪨 Dávid és Góliát', desc: 'Az egész terem egy óriás ellen. Minden helyes válasz egy kő a parittyából.' },
     wall: { label: '🧱 Építsd fel a falat', desc: 'A csapatok versenyt építik újjá Jeruzsálem egy-egy kapuját (Nehémiás 3). Legalább 2 játékos kell hozzá.' },
   },
-  difficulty: { easy: '🌱 Könnyű', mixed: '⚖️ Vegyes', hard: '🔥 Nehéz' },
+  difficulty: { mixed: '⚖️ Vegyes', easy: '🌱 Könnyű', medium: '🌿 Közepes', hard: '🔥 Nehéz', impossible: '💀 Lehetetlen' },
   allBooks: '📖 Minden könyv',
   inPerson: '🏠 Személyesen',
   remote: '🌍 Távolról',

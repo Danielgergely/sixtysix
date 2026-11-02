@@ -5,7 +5,7 @@ export default {
     goliath: { label: '🪨 David vs Goliath', desc: 'The whole room against one giant. Every right answer is a stone from the sling.' },
     wall: { label: '🧱 Rebuild the Wall', desc: 'Teams race to rebuild their gate of Jerusalem (Nehemiah 3). Needs 2+ players.' },
   },
-  difficulty: { easy: '🌱 Easy', mixed: '⚖️ Mixed', hard: '🔥 Hard' },
+  difficulty: { mixed: '⚖️ Mixed', easy: '🌱 Easy', medium: '🌿 Medium', hard: '🔥 Hard', impossible: '💀 Impossible' },
   allBooks: '📖 All books',
   inPerson: '🏠 In person',
   remote: '🌍 Remote',

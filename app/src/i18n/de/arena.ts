@@ -4,7 +4,7 @@ export default {
     goliath: { label: '🪨 David gegen Goliat', desc: 'Der ganze Raum gegen einen Riesen. Jede richtige Antwort ist ein Stein aus der Schleuder.' },
     wall: { label: '🧱 Die Mauer bauen', desc: 'Teams bauen um die Wette ihr Tor von Jerusalem wieder auf (Nehemia 3). Ab 2 Spielern.' },
   },
-  difficulty: { easy: '🌱 Leicht', mixed: '⚖️ Gemischt', hard: '🔥 Schwer' },
+  difficulty: { mixed: '⚖️ Gemischt', easy: '🌱 Leicht', medium: '🌿 Mittel', hard: '🔥 Schwer', impossible: '💀 Unmöglich' },
   allBooks: '📖 Alle Bücher',
   inPerson: '🏠 Vor Ort',
   remote: '🌍 Online',

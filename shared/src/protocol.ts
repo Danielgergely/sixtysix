@@ -7,8 +7,16 @@ import type { AnswerSet, Category, Locale, VerseText } from './question'
 
 export type RoomType = 'in-person' | 'remote'
 
-/** easy = difficulty 1–2, mixed = 1–5 ramped easy → hard, hard = 3–5. */
-export type DifficultyPreset = 'easy' | 'mixed' | 'hard'
+/** Question difficulty levels (1–5) a preset draws from; mixed ramps easy → hard and leaves out the impossible ones. */
+export type DifficultyPreset = 'mixed' | 'easy' | 'medium' | 'hard' | 'impossible'
+export const DIFFICULTY_PRESETS: DifficultyPreset[] = ['mixed', 'easy', 'medium', 'hard', 'impossible']
+export const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = {
+  mixed: [1, 4],
+  easy: [1, 2],
+  medium: [3, 3],
+  hard: [4, 4],
+  impossible: [5, 5],
+}
 
 /**
  * classic = everyone for themselves (Road to the Throne, Crowning);

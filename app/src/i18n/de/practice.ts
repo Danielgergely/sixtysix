@@ -5,7 +5,7 @@ export default {
   books: 'Bücher',
   allBooks: 'Alle Bücher',
   difficulty: 'Schwierigkeit',
-  levels: { easy: 'Sanft', mixed: 'Gemischt', hard: 'Knifflig' },
+  levels: { mixed: 'Gemischt', easy: 'Leicht', medium: 'Mittel', hard: 'Schwer', impossible: 'Unmöglich' },
   loading: 'Die Rollen werden geöffnet …',
   begin: 'Los geht’s',
   review: 'Meine Fehler wiederholen ({n})',

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { CATEGORIES, type Category, type DifficultyPreset } from '@sixtysix/shared'
+import { CATEGORIES, DIFFICULTY_PRESETS, type Category } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { usePracticeStore } from '../../practice/practiceStore'
 import { PARCHMENT } from '../../art/textures'
@@ -7,7 +7,6 @@ import { spring } from '../../motion'
 import { useT } from '../../i18n'
 import { excludedNow, useFlagStore } from '../../flags/flagStore'
 
-const DIFFICULTIES: DifficultyPreset[] = ['easy', 'mixed', 'hard']
 
 /** Practice entry: pick books and difficulty, or replay your saved mistakes. */
 export function PracticeSetupScreen() {
@@ -47,8 +46,8 @@ export function PracticeSetupScreen() {
         </div>
 
         <div className="pr-label">{t('practice.difficulty')}</div>
-        <div className="pr-chips three">
-          {DIFFICULTIES.map((d) => (
+        <div className="pr-chips levels">
+          {DIFFICULTY_PRESETS.map((d) => (
             <button key={d} className={`pr-chip ${difficulty === d ? 'on' : ''}`} onClick={() => setDifficulty(d)}>
               {t(`practice.levels.${d}`)}
             </button>

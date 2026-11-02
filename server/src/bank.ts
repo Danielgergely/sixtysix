@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { Category, DifficultyPreset, Locale, Question, VerseText } from '@sixtysix/shared'
+import { DIFFICULTY_RANGE, type Category, type DifficultyPreset, type Locale, type Question, type VerseText } from '@sixtysix/shared'
 
 // Same compiled bank the app bundles — question-pipeline/ is the single source.
 const bankPath = join(
@@ -46,12 +46,6 @@ export function versesFor(id: string): Partial<Record<Locale, VerseText>> {
 
 /** A question's reference written the way `locale` does ("1. Mose 2,22"). */
 export const referenceIn = (q: Question, locale: Locale): string => LOCAL_VERSES[locale]?.[q.id]?.ref ?? q.reference
-
-const DIFFICULTY_RANGE: Record<DifficultyPreset, [number, number]> = {
-  easy: [1, 2],
-  mixed: [1, 5],
-  hard: [3, 5],
-}
 
 export interface PickOptions {
   categories?: Category[]

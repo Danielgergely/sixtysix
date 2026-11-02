@@ -6,7 +6,7 @@ export default {
   books: 'Books',
   allBooks: 'All books',
   difficulty: 'Difficulty',
-  levels: { easy: 'Gentle', mixed: 'Mixed', hard: 'Deep cuts' },
+  levels: { mixed: 'Mixed', easy: 'Easy', medium: 'Medium', hard: 'Hard', impossible: 'Impossible' },
   loading: 'Opening the scrolls…',
   begin: 'Begin',
   review: 'Review my mistakes ({n})',
