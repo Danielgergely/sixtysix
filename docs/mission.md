@@ -21,10 +21,9 @@ In a random seat order, each player picks a capital from the capital cities stil
 
 ### 2. Claiming (until no free region is left)
 Claiming happens in rounds:
-1. **Wishes:** one at a time, each player picks one free region they want, which must be next to their land when possible (otherwise any free region). The first wisher in round 1 is the player who picked their capital **last**; after that the first wish rotates in a fair snake (ABBA) order: for 3 players C A B | B A C | C A B …, for 2 players B A | A B | B A …
+1. **Wishes:** one at a time, each player puts their flag on one free region they want, which must be next to their land when possible (otherwise any free region). A flagged region is taken for this round: the next players must wish for a different one. A player with no free region left skips the wish. The first wisher in round 1 is the player who picked their capital **last**; after that the first wish rotates in a fair snake (ABBA) order: for 3 players C A B | B A C | C A B …, for 2 players B A | A B | B A …
 2. **Question:** one multiple-choice question for everybody at once (20 or 30 s, room option; speed doesn't matter). Everyone who answers right gets the region they wished for. A player who answers wrong gets nothing this round.
-3. If two players wished for the same region (allowed only if no other free region is next to them), both correct → **tie-breaker**; one correct → that one.
-4. When fewer free regions are left than players, the remaining wishes go in snake order and only those players answer.
+3. When fewer free regions are left than players, the remaining wishes go in snake order and only those players answer.
 
 ### 3. Battle rounds
 A battle round = every player still in the game takes one turn, in snake order.
@@ -42,7 +41,7 @@ A battle round = every player still in the game takes one turn, in snake order.
 - **Blitz** is a map option (15 regions instead of 27) usable with both modes.
 
 ## Tie-breakers
-When a duel or a shared wish has both players right, the game randomly picks one of two tie-breaker types:
+When a duel has both players right, the game randomly picks one of two tie-breaker types:
 - **Number:** "How old was Methuselah when he died?" Everyone types a number. Closest wins; equally close → faster wins.
 - **Pin on the map:** "Where was Bethel?" Everyone drops a pin on the map. Closest pin (great-circle distance) wins; equally close (within 1 km) → faster wins.
 
