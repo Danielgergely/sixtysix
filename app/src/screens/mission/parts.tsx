@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { MissionState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
-import { AnimatedNumber, CountdownRing, popIn, spring } from '../../motion'
+import { AnimatedNumber, CountdownRing, popIn, spring, useIsFirstKey } from '../../motion'
 import { useMissionStore } from '../../mission/missionStore'
 import { actingSeat, nameOf, questionIn, roundLine, seatColour, seatName } from '../../mission/util'
 import { outcomeLines, statusLine } from '../../mission/lines'
@@ -101,6 +101,7 @@ export function Scoreboard({ state, wide = false }: { state: MissionState; wide?
 export function StatusBar({ state, mySeat }: { state: MissionState; mySeat: number }) {
   const t = useT()
   const line = statusLine(state, mySeat)
+  const firstLine = useIsFirstKey(line)
   const acting = actingSeat(state)
   const choosing = ['capital', 'wish', 'attack', 'siege'].includes(state.phase)
   const mine = acting === mySeat && choosing
@@ -114,8 +115,9 @@ export function StatusBar({ state, mySeat }: { state: MissionState; mySeat: numb
       )}
       <span className="ms-status-main">
         {mine ? <span className="ms-turn-chip">{t('mission.status.yourTurn')}</span> : who && choosing ? <span className="ms-turn-chip other">{t('mission.status.acting', { name: who.name })}</span> : null}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span key={line} className="ms-status-text" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>
+        {/* Not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
+          <motion.span key={line} className="ms-status-text" initial={firstLine ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>
             {line}
           </motion.span>
         </AnimatePresence>

@@ -225,6 +225,12 @@
 .eh-card.back small{ font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; }
 .eh-verdict{ font-size: 44px; line-height: 1; color: #fff; text-shadow: 0 0 14px rgb(255 240 180 / 0.9), 0 2px 0 #5a3a06; }
 .eh-card.back.iron .eh-verdict{ text-shadow: 0 2px 0 #222; }
+/* The crack lies under the verdict and the answer, which get a halo in the card's own grey: a crack line must never hide a stroke ("70" read as "-0"). */
+.eh-card.back > :not(.empire-crack, .empire-gleam){ position: relative; }
+/* On a small played card (a long question leaves little room) the mark shrinks with it, so the answer keeps its room. */
+.eh-played .eh-verdict{ font-size: min(44px, 26cqi); }
+.eh-played .eh-card.back{ gap: min(10px, 5cqi); }
+.eh-card.back.iron .eh-card-text, .eh-card.back.iron small{ text-shadow: 0 0 3px #6a6a74, 0 0 6px #6a6a74, 0 0 10px #6a6a74, 0 2px 0 #222; }
 
 @keyframes gallop { from { transform: translateY(0) rotate(0); } to { transform: translateY(-3px) rotate(-1.2deg); } }
 

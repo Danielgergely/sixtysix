@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { FlockPlayer, FlockSecret, FlockState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
-import { CountdownRing, STAGGER, spring } from '../../motion'
+import { CountdownRing, STAGGER, spring, useFirstKeys, useIsFirstKey } from '../../motion'
 import { useFlockStore } from '../../flock/flockStore'
 import { categoryLabel, playerById } from '../../flock/util'
 import { useT } from '../../i18n'
@@ -45,6 +45,7 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
   const [open, setOpen] = useState(false)
   const t = useT()
   const wolf = secret.role === 'wolf'
+  const firstFace = useIsFirstKey(open ? 'face' : 'back')
   return (
     <motion.button
       className={`fl-card ${big ? 'big' : 'mini'} ${open ? 'open' : ''} ${wolf ? 'wolf' : 'sheep'}`}
@@ -54,9 +55,10 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
       transition={spring.gentle}
       aria-label={open ? t('flock.card.hide') : t('flock.card.show')}
     >
-      <AnimatePresence mode="wait" initial={false}>
+      {/* Not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+      <AnimatePresence mode="wait">
         {open ? (
-          <motion.span key="face" className="fl-card-face" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.15 }}>
+          <motion.span key="face" className="fl-card-face" initial={firstFace ? false : { opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.15 }}>
             <span className="fl-card-role">{wolf ? (secret.wolfCount > 1 ? t('flock.card.aWolf') : t('flock.card.theWolf')) : t('flock.card.sheep')}</span>
             <span className="fl-card-cat">{categoryLabel(secret.category)}</span>
             {wolf ? (
@@ -74,7 +76,7 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
             )}
           </motion.span>
         ) : (
-          <motion.span key="back" className="fl-card-back" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+          <motion.span key="back" className="fl-card-back" initial={firstFace ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <span className="fl-card-seal">✠</span>
             <span>{big ? t('flock.card.peek') : t('flock.card.yours')}</span>
           </motion.span>
@@ -87,10 +89,12 @@ export function SecretCard({ secret, big = false }: { secret: FlockSecret; big?:
 /** Clues so far, grouped by lap. */
 export function ClueList({ state, large = false }: { state: FlockState; large?: boolean }) {
   const t = useT()
+  const firstClues = useFirstKeys(state.clues.length ? state.clues.map((c, i) => `${c.lap}-${i}`) : null)
   if (state.clues.length === 0) return <p className="fl-empty">{t('flock.clues.none')}</p>
   return (
     <ol className={`fl-clues ${large ? 'large' : ''}`}>
-      <AnimatePresence initial={false}>
+      {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+      <AnimatePresence>
         {state.clues.map((c, i) => {
           const p = playerById(state, c.playerId)
           const newLap = i > 0 && state.clues[i - 1].lap !== c.lap
@@ -98,7 +102,7 @@ export function ClueList({ state, large = false }: { state: FlockState; large?: 
             <motion.li
               key={`${c.lap}-${i}`}
               className={`fl-clue ${c.skipped ? 'skipped' : ''} ${newLap ? 'new-lap' : ''}`}
-              initial={{ opacity: 0, x: -24 }}
+              initial={firstClues.has(`${c.lap}-${i}`) ? false : { opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ ...spring.snappy, delay: STAGGER }}
             >

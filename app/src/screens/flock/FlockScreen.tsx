@@ -6,7 +6,7 @@ import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
 import { OnlineEntry } from '../shell/OnlineEntry'
 import { SetupView } from './local/LocalFlockScreen'
-import { STAGGER, popIn, shake, spring } from '../../motion'
+import { STAGGER, popIn, shake, spring, useFirstKeys, useIsFirstKey } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
 import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
 import { tServer, useT } from '../../i18n'
@@ -22,6 +22,8 @@ import '../../theme/flock.css'
 export function FlockScreen() {
   const role = useFlockStore((s) => s.role)
   const state = useFlockStore((s) => s.state)
+  const phaseKey = state && role === 'player' ? `${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}` : null
+  const firstPhase = useIsFirstKey(phaseKey)
   if (!state || !role) return <FlockMenu />
   if (role === 'board') return <FlockBoard />
   return (
@@ -30,11 +32,12 @@ export function FlockScreen() {
       <div className="fl-body">
         <WolfGuessBar state={state} />
         <CaughtBanner state={state} />
-        <AnimatePresence mode="wait" initial={false}>
+        {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
+            key={phaseKey}
             className="fl-phase"
-            initial={{ opacity: 0, y: 24 }}
+            initial={firstPhase ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >
@@ -173,6 +176,7 @@ function Lobby({ state }: { state: FlockState }) {
   const joinUrl = `${origin}/flock/${state.code}`
   const ready = state.players.filter((p) => p.connected).length >= FLOCK_MIN_PLAYERS
   const humans = state.players.filter((p) => !p.bot).length
+  const firstChips = useFirstKeys(state.players.map((p) => p.id))
   const [rules, setRules] = useState(false)
   const t = useT()
   return (
@@ -190,13 +194,14 @@ function Lobby({ state }: { state: FlockState }) {
           {state.players.length < FLOCK_MIN_PLAYERS ? t('flock.common.inFlockNeed', { n: state.players.length, min: FLOCK_MIN_PLAYERS }) : t('flock.common.inFlock', { n: state.players.length })}
         </div>
         <div className="player-chip-grid">
-          <AnimatePresence initial={false}>
+          {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+          <AnimatePresence>
             {state.players.map((p) => (
               <motion.div
                 key={p.id}
                 layout
                 className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-                initial={{ opacity: 0, scale: 0.3, y: -30 }}
+                initial={firstChips.has(p.id) ? false : { opacity: 0, scale: 0.3, y: -30 }}
                 animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.4 }}
                 transition={spring.bouncy}

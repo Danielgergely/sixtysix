@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { FLOCK_CATEGORIES } from '@sixtysix/shared'
 import { useGameStore } from '../../../game/store'
-import { CountdownRing, fireCannons, fireConfetti, spring } from '../../../motion'
+import { CountdownRing, fireCannons, fireConfetti, spring, useFirstKeys, useIsFirstKey } from '../../../motion'
 import { categoryLabel } from '../../../flock/util'
 import { tServer, useT } from '../../../i18n'
 import {
@@ -23,6 +23,7 @@ import '../../../theme/flock.css'
 export function LocalFlockScreen() {
   const phase = useLocalFlock((s) => s.phase)
   const goTo = useGameStore((s) => s.goTo)
+  const firstPhase = useIsFirstKey(phase)
   useEffect(() => {
     if (phase === 'setup') goTo('flock')
   }, [phase, goTo])
@@ -30,11 +31,12 @@ export function LocalFlockScreen() {
     <div className="screen fl emp">
       <LocalTopBar />
       <div className="fl-body">
-        <AnimatePresence mode="wait" initial={false}>
+        {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
             key={phase}
             className="fl-phase"
-            initial={{ opacity: 0, y: 24 }}
+            initial={firstPhase ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >
@@ -77,6 +79,7 @@ export function SetupView({ onStarted }: { onStarted?: () => void }) {
   const [name, setName] = useState('')
   const t = useT()
   const n = setup.players.length
+  const firstPlayers = useFirstKeys(setup.players)
   const add = () => {
     const clean = name.trim().slice(0, 14)
     if (!clean || n >= LOCAL_MAX_PLAYERS) return
@@ -103,9 +106,10 @@ export function SetupView({ onStarted }: { onStarted?: () => void }) {
       <div className="arena-section">
         <div className="profile-label">{t('flockLocal.setup.players', { n, max: LOCAL_MAX_PLAYERS })}</div>
         <div className="fll-players">
-          <AnimatePresence initial={false}>
+          {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+          <AnimatePresence>
             {setup.players.map((p, i) => (
-              <motion.div key={p} layout className="fll-player" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+              <motion.div key={p} layout className="fll-player" initial={firstPlayers.has(p) ? false : { opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
                 <span className="fll-player-n">{i + 1}</span>
                 <span className="fll-player-name">{p}</span>
                 <button className="fll-mini" disabled={i === 0} onClick={() => move(i, -1)} title={t('flockLocal.setup.moveUp')}>

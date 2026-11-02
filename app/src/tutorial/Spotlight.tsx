@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { duration, spring } from '../motion'
+import { duration, spring, useIsFirstKey } from '../motion'
 import { useT } from '../i18n'
 import { guide, type GuideId } from './content'
 import { CardBody, Dots } from './IntroSheet'
@@ -20,6 +20,7 @@ export function Spotlight({ id, onDone }: { id: GuideId; onDone: () => void }) {
   const g = guide(id)
   const [step, setStep] = useState(0)
   const card = g.cards[step]
+  const firstStep = useIsFirstKey(String(step))
   const rect = useAnchorRect(card.target, true)
   const last = step === g.cards.length - 1
   // The card's real height, so it never runs off the screen.
@@ -76,8 +77,9 @@ export function Spotlight({ id, onDone }: { id: GuideId; onDone: () => void }) {
             </button>
           )}
         </div>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={step} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: duration.fast } }}>
+        {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
+          <motion.div key={step} initial={firstStep ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: duration.fast } }}>
             <CardBody id={id} index={step} icon={card.icon} vars={card.vars} small />
           </motion.div>
         </AnimatePresence>

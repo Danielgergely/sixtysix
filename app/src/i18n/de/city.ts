@@ -25,7 +25,7 @@ export default {
     build: 'Bauen ›',
     visit: 'Besuchen ›',
     close: 'Schließen',
-    search: 'Familie suchen ({n})',
+    search: 'Familien ({n})',
     searchAria: 'Eine Familie in Jerusalem suchen',
     noHits: 'Noch keine Familie mit diesem Namen',
     lotTitle: '{name} · {house} · Parzelle {n}',

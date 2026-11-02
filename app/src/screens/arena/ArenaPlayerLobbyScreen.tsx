@@ -2,7 +2,7 @@ import { useArenaStore } from '../../arena/arenaStore'
 import { useGameStore } from '../../game/store'
 import { AnimatePresence, motion } from 'motion/react'
 import { Avatar } from '../../avatars/Avatar'
-import { AnimatedNumber, spring } from '../../motion'
+import { AnimatedNumber, spring, useFirstKeys } from '../../motion'
 import { useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { rich } from './rich'
@@ -15,6 +15,7 @@ export function ArenaPlayerLobbyScreen() {
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const player = useGameStore((s) => s.player)
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
+  const firstChips = useFirstKeys(room ? room.players.map((p) => p.id) : null)
   if (!room) return null
   // Everyone else in the room, live as they join (you are the big portrait above).
   const others = room.players.filter((p) => p.id !== myPlayerId)
@@ -78,13 +79,14 @@ export function ArenaPlayerLobbyScreen() {
             {others.length === 0 ? t('arena.playerLobby.alone') : t('arena.playerLobby.with', { count: others.length })}
           </div>
           <div className="player-chip-grid">
-            <AnimatePresence initial={false}>
+            {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
+            <AnimatePresence>
               {others.map((p) => (
                 <motion.div
                   key={p.id}
                   layout
                   className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-                  initial={{ opacity: 0, scale: 0.3, y: -30 }}
+                  initial={firstChips.has(p.id) ? false : { opacity: 0, scale: 0.3, y: -30 }}
                   animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
                   transition={spring.bouncy}
