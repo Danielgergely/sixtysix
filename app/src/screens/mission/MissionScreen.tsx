@@ -310,7 +310,11 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
 function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) {
   const { endsAt, myAnswer, answer } = useMissionStore()
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const q = state.question!
+  // The verse and its reference in my language (English when it has no translation), like the arena.
+  const verse = state.reveal?.verses[locale]
+  const reveal = state.reveal && verse ? { ...state.reveal, reference: verse.ref, verse: verse.text } : state.reveal
   const { text, answers } = questionIn(state)
   const mine = myAnswer?.n === q.n ? myAnswer.index : null
   // After a reload the server knows I answered, but not which card: show the picks at the reveal.
@@ -330,7 +334,7 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
         durationMs={QUESTION_TIME_MS}
         isPlayer
         myAnswer={played !== null && played >= 0 ? played : null}
-        reveal={state.phase === 'reveal' && state.reveal ? state.reveal : null}
+        reveal={state.phase === 'reveal' && reveal ? reveal : null}
         result={null}
         badge={stake ? <span className="ms-stake">{stake}</span> : undefined}
         answered={q.seats.map((s) => ({ id: String(s), avatar: state.seats[s]?.avatar ?? '', name: nameOf(state, s), done: state.answered.includes(s), you: s === mySeat }))}
