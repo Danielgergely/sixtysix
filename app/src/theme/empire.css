@@ -1060,6 +1060,9 @@
 .bg-feature.spies .bg-feature-art{ background: radial-gradient(circle at 50% 30%, #2d4f8f, #0f1d3a); }
 .bg-feature.spies .bg-feature-text strong{ color: #1f3f7a; }
 .bg-feature.spies .bg-feature-tag{ color: #2d5aa0; }
+.bg-feature.mission .bg-feature-art{ background: radial-gradient(circle at 50% 30%, #9a3b22, #3a1308); }
+.bg-feature.mission .bg-feature-text strong{ color: #7a2a14; }
+.bg-feature.mission .bg-feature-tag{ color: #a2461f; }
 
 /* Board games: entry screens (screens/shell/OnlineEntry.tsx + the flock's mode
    toggle). Here rather than in the games' lazy CSS: both games share them. */

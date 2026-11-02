@@ -10,7 +10,7 @@ const IDEAS = [
   { id: 'tribes', icon: '🏰' },
 ]
 
-/** Board games tab: Wolf in the Flock and Twelve Spies are playable; the rest are coming soon. */
+/** Board games tab: Wolf in the Flock, Twelve Spies and Mission are playable; the rest are coming soon. */
 export function BoardGamesScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const t = useT()
@@ -50,6 +50,25 @@ export function BoardGamesScreen() {
           <span className="bg-feature-tag">{t('boardGames.spies.tag')}</span>
           <strong>{t('boardGames.spies.name')}</strong>
           <small>{t('boardGames.spies.desc')}</small>
+          <span className="bg-feature-play">{t('boardGames.play')}</span>
+        </span>
+      </motion.button>
+      <motion.button
+        className="bg-feature mission"
+        onClick={() => goTo('mission')}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ...spring.gentle, delay: 0.16 }}
+      >
+        <span className="bg-feature-art" aria-hidden>
+          <span>🏰</span>
+          <span>⚔️</span>
+          <span>🗺️</span>
+        </span>
+        <span className="bg-feature-text">
+          <span className="bg-feature-tag">{t('boardGames.mission.tag')}</span>
+          <strong>{t('boardGames.mission.name')}</strong>
+          <small>{t('boardGames.mission.desc')}</small>
           <span className="bg-feature-play">{t('boardGames.play')}</span>
         </span>
       </motion.button>
