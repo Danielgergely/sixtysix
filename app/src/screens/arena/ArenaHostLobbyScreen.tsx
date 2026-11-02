@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useArenaStore } from '../../arena/arenaStore'
 import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
-import { AnimatedNumber, spring } from '../../motion'
+import { AnimatedNumber, spring, useFirstKeys } from '../../motion'
 import { useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { useIntro } from '../../tutorial/useIntro'
@@ -85,6 +85,7 @@ export function ArenaHostLobbyScreen() {
     if (playerCount > seenCount.current) playSfx('click')
     seenCount.current = playerCount
   }, [playerCount])
+  const firstChips = useFirstKeys(room ? room.players.map((p) => p.id) : null)
 
   if (!room) return null
   const chip = (p: ArenaPlayer) => (
@@ -92,7 +93,7 @@ export function ArenaHostLobbyScreen() {
       key={p.id}
       layout
       className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-      initial={{ opacity: 0, scale: 0.3, y: -40 }}
+      initial={firstChips.has(p.id) ? false : { opacity: 0, scale: 0.3, y: -40 }}
       animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
       transition={spring.bouncy}
@@ -155,14 +156,14 @@ export function ArenaHostLobbyScreen() {
               <div key={team.id} className="tm-host-team" style={{ '--c': teamColor(team.id) } as React.CSSProperties}>
                 <TeamPennant team={team} />
                 <div className="player-chip-grid">
-                  <AnimatePresence initial={false}>{room.players.filter((p) => p.team === team.id).map(chip)}</AnimatePresence>
+                  <AnimatePresence>{room.players.filter((p) => p.team === team.id).map(chip)}</AnimatePresence>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="player-chip-grid">
-            <AnimatePresence initial={false}>{room.players.map(chip)}</AnimatePresence>
+            <AnimatePresence>{room.players.map(chip)}</AnimatePresence>
             {room.players.length === 0 && <div className="slot-spinner" />}
           </div>
         )}
