@@ -342,6 +342,12 @@
 /* banners (screens/mission/Banner.tsx): stage titles, battle rounds, duels, "Your turn!" */
 .ms-banner{ position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
 .ms-banner.stage{ pointer-events: auto; cursor: pointer; background: radial-gradient(ellipse at center, rgb(29 15 6 / 0.55), rgb(10 5 2 / 0.88)); }
+/* Guards (Banner.tsx): whatever React does, a banner is hidden (and untappable) after its lifetime + 1 s;
+   one that is going fades out and never takes a tap. */
+.ms-banner{ animation: ms-banner-expire 1ms linear var(--life, 3300ms) forwards; }
+.ms-banner.leaving{ pointer-events: none; animation: ms-banner-out var(--exit, 250ms) ease-out forwards; }
+@keyframes ms-banner-expire{ to{ visibility: hidden; pointer-events: none; } }
+@keyframes ms-banner-out{ from{ opacity: 1; } to{ opacity: 0; visibility: hidden; } }
 .ms-banner.round{ align-items: flex-start; padding-top: 70px; }
 .ms-banner.turn{ align-items: flex-start; padding-top: 132px; }
 .ms-banner-plaque{

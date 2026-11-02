@@ -17,7 +17,7 @@ import { MapView } from '../../mission/MapView'
 import { baseMapProps, nameOf, questionIn, regionName, rich, seatColour, seatName, useJoinOrigin } from '../../mission/util'
 import { OnlineEntry } from '../shell/OnlineEntry'
 import { Avatar } from '../../avatars/Avatar'
-import { popIn, spring } from '../../motion'
+import { popIn, spring, useIsFirstKey } from '../../motion'
 import { useLocale, useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { useIntro } from '../../tutorial/useIntro'
@@ -37,17 +37,20 @@ import '../../theme/mission.css'
 export function MissionScreen() {
   const role = useMissionStore((s) => s.role)
   const state = useMissionStore((s) => s.state)
+  const phaseKey = state && role === 'player' ? (state.phase === 'lobby' ? 'lobby' : `game-${state.game}`) : null
+  const firstPhase = useIsFirstKey(phaseKey)
   if (!state || !role) return <MissionMenu />
   if (role === 'board') return <MissionBoard />
   return (
     <div className="screen ms emp">
       <MissionTopBar state={state} />
       <div className="ms-body">
-        <AnimatePresence mode="wait" initial={false}>
+        {/* No `initial={false}` here: it would freeze every enter animation in the game view (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key={state.phase === 'lobby' ? 'lobby' : `game-${state.game}`}
+            key={phaseKey}
             className="ms-phase"
-            initial={{ opacity: 0, y: 24 }}
+            initial={firstPhase ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >

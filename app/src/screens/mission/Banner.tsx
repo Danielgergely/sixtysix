@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import type { MissionStage, MissionState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { playSfx, type SfxName } from '../../game/sfx'
@@ -15,6 +15,11 @@ import { nameOf, regionName, roundLine, seatColour } from '../../mission/util'
  * - on your phone, "Your turn!" when you have to pick.
  * They queue so they never cover each other. Only changes seen live show a banner
  * (not the state found on a reload). The server holds the bots meanwhile (engine.ts `hold`).
+ *
+ * No AnimatePresence here: its `mode="wait"` exit once hung half-faded over the whole screen
+ * and swallowed every tap. A banner that goes is kept for EXIT_MS as `leaving` (CSS fade,
+ * never takes taps) and then dropped by a plain timer, so nothing waits on an animation.
+ * As a last guard the CSS hides every banner once its lifetime (+1 s) is over (`--life`).
  */
 
 type Banner =
@@ -24,6 +29,7 @@ type Banner =
   | { id: string; kind: 'turn'; seat: number }
 
 const LIFE_MS: Record<Banner['kind'], number> = { stage: 2300, round: 1400, duel: 1500, turn: 1100 }
+const EXIT_MS = 250
 const SOUND: Partial<Record<Banner['kind'], SfxName>> = { stage: 'fanfare', round: 'horn', duel: 'clash' }
 const ICON: Record<MissionStage, string> = { capitals: '🏰', claim: '🚩', battle: '⚔️' }
 
@@ -73,15 +79,43 @@ export function MissionBanners({ state, mySeat }: { state: MissionState; mySeat:
     }
   }, [head])
 
+  // The banner on screen and the ones fading out (adjusted while rendering, like `prev`).
+  const [shown, setShown] = useState<Banner | undefined>(head)
+  const [leaving, setLeaving] = useState<Banner[]>([])
+  if (shown !== head) {
+    setShown(head)
+    const gone = shown && shown.id !== head?.id ? [shown] : []
+    setLeaving([...leaving.filter((b) => b.id !== head?.id), ...gone].slice(-2))
+  }
+  useEffect(() => {
+    if (!leaving.length) return
+    const id = setTimeout(() => setLeaving([]), EXIT_MS)
+    return () => clearTimeout(id)
+  }, [leaving])
+
   const skip = () => setQueue((q) => (head ? q.slice(q.indexOf(head) + 1) : q))
+  const style = (b: Banner) => ({ '--life': `${LIFE_MS[b.kind] + 1000}ms`, '--exit': `${EXIT_MS}ms` }) as React.CSSProperties
+  // One keyed list, so the banner that goes keeps its element (and its body's animation) while it fades.
+  const shownNow = [...leaving, ...(head ? [head] : [])]
   return (
-    <AnimatePresence mode="wait">
-      {head && (
-        <motion.div key={head.id} className={`ms-banner ${head.kind}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, pointerEvents: 'none', transition: { duration: 0.25 } }} onClick={head.kind === 'stage' ? skip : undefined}>
-          <BannerBody b={head} state={state} />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <>
+      {shownNow.map((b) => {
+        const going = b !== head
+        return (
+          <motion.div
+            key={b.id}
+            className={`ms-banner ${b.kind}${going ? ' leaving' : ''}`}
+            style={style(b)}
+            aria-hidden={going || undefined}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.2, delay: leaving.length && !going ? EXIT_MS / 1000 : 0 } }}
+            onClick={!going && b.kind === 'stage' ? skip : undefined}
+          >
+            <BannerBody b={b} state={state} />
+          </motion.div>
+        )
+      })}
+    </>
   )
 }
 
@@ -108,7 +142,7 @@ function BannerBody({ b, state }: { b: Banner; state: MissionState }) {
       )
     case 'round':
       return (
-        <motion.div className="ms-banner-ribbon" initial={{ y: -60 }} animate={{ y: 0 }} exit={{ y: -60 }} transition={spring.bouncy}>
+        <motion.div className="ms-banner-ribbon" initial={{ y: -60 }} animate={{ y: 0 }} transition={spring.bouncy}>
           ⚔️ {b.text}
         </motion.div>
       )
@@ -136,7 +170,7 @@ function BannerBody({ b, state }: { b: Banner; state: MissionState }) {
     }
     case 'turn':
       return (
-        <motion.div className="ms-banner-turn" style={{ '--seat': seatColour(b.seat) } as React.CSSProperties} initial={{ scale: 0.4 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }} transition={spring.bouncy}>
+        <motion.div className="ms-banner-turn" style={{ '--seat': seatColour(b.seat) } as React.CSSProperties} initial={{ scale: 0.4 }} animate={{ scale: 1 }} transition={spring.bouncy}>
           {t('mission.banner.yourTurn')}
         </motion.div>
       )
