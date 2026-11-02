@@ -21,7 +21,7 @@ export function AnswerCard({ index, text, className = '' }: { index: number; tex
       <span className="eh-card-panel" style={{ backgroundImage: PARCHMENT }}>
         <span className="eh-card-text">
           <span className={`eh-fit ${longest > 9 ? 'long' : ''}`} style={{ '--w': longest, '--s': spread.toFixed(2) } as React.CSSProperties}>
-            {text}
+            {longest > 9 ? text.split(/(\s+)/).map((w, i) => (w.length > 9 ? <span key={i} className="eh-hy">{w}</span> : w)) : text}
           </span>
         </span>
       </span>
