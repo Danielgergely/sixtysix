@@ -154,7 +154,7 @@ function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
   const ax = x(answer)
   return (
     <div className="ms-numline">
-      <svg viewBox={`0 0 ${LINE_W} 130`} className="ms-numline-svg">
+      <svg viewBox={`0 0 ${LINE_W} 132`} className="ms-numline-svg">
         <line x1={PAD / 2} x2={LINE_W - PAD / 2} y1={70} y2={70} className="ms-axis" />
         {r.guesses.map((g, i) =>
           g.value === null ? null : (
@@ -173,7 +173,7 @@ function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
               />
               <motion.g initial={{ x: i ? 200 : -200, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ ...spring.gentle, delay: 0.15 + i * 0.2 }}>
                 <circle cx={x(g.value)} cy={70} r={9} fill={seatColour(g.seat)} stroke="#fff" strokeWidth={2} />
-                <text x={x(g.value)} y={i ? 112 : 38} textAnchor="middle" className="ms-numline-label">
+                <text x={x(g.value)} y={i ? 122 : 102} textAnchor="middle" className="ms-numline-label" fill={seatColour(g.seat)}>
                   {g.value.toLocaleString()}
                 </text>
               </motion.g>
@@ -182,7 +182,7 @@ function NumberLine({ state, unit }: { state: MissionState; unit: string }) {
         )}
         <motion.g initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ ...spring.bouncy, delay: 0.9 }}>
           <rect x={ax - 3} y={44} width={6} height={52} rx={3} className="ms-answer-bar" />
-          <text x={ax} y={14} textAnchor="middle" className="ms-numline-answer">
+          <text x={ax} y={30} textAnchor="middle" className="ms-numline-answer">
             {answer.toLocaleString()}
           </text>
         </motion.g>

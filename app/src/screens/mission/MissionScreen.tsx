@@ -269,8 +269,10 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
   const store = useMissionStore()
   const t = useT()
   const mine = state.activeSeat === mySeat
-  const tap =
+  const send =
     mine && state.phase === 'capital' ? store.pickCapital : mine && state.phase === 'wish' ? store.wish : mine && state.phase === 'attack' ? store.attack : undefined
+  // Only the lit regions answer a tap (the server checks again).
+  const tap = send && ((id: string) => state.choices.includes(id) && send(id))
   const me = state.seats[mySeat]
   return (
     <div className="ms-col">
