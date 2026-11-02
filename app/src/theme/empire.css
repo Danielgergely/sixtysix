@@ -193,13 +193,15 @@
 .eh-card-text{ font-family: 'Cinzel', serif; font-weight: 900; font-size: 15px; line-height: 1.1; hyphens: auto; overflow-wrap: break-word; max-width: 100%; }
 /*
  * The panel is a size container: .eh-fit shrinks the text so its longest word
- * (--w letters) fits the width and the whole answer (--s = √length / 0.79)
- * fits the panel, down to 0.64em. Words that fit are never
- * hyphenated; only very long ones (.long, e.g. German compounds) may be.
+ * (--w letters, Cinzel ≈ 0.75–0.85em a letter) fits the width and the whole answer
+ * (--s = √length / 0.79) fits the panel. The area cap stops at 0.64em; the word cap
+ * has no floor, so a word of up to 9 letters is never broken ("Gomorrah" on a small
+ * reveal card shrinks instead of "GOMORRA / H"). Only very long words (.long, e.g.
+ * German compounds) keep the 0.64em floor and may be hyphenated.
  */
 .eh-card-panel{ container-type: inline-size; }
-.eh-fit{ font-size: max(0.64em, min(1em, calc(100cqi / (var(--w) * 0.8)), calc(100cqi / var(--s, 1)))); hyphens: manual; }
-.eh-fit.long{ hyphens: auto; }
+.eh-fit{ font-size: min(1em, calc(100cqi / (var(--w) * 0.86)), max(0.64em, calc(100cqi / var(--s, 1)))); hyphens: manual; overflow-wrap: normal; word-break: keep-all; }
+.eh-fit.long{ font-size: max(0.64em, min(1em, calc(100cqi / (var(--w) * 0.8)), calc(100cqi / var(--s, 1)))); hyphens: auto; overflow-wrap: break-word; word-break: normal; }
 .eh-hand .eh-card-text{ font-size: 12.5px; letter-spacing: -0.01em; }
 .eh-corner{ position: absolute; width: 14px; height: 14px; border: 2px solid #ffe08a; opacity: 0.8; }
 .eh-corner.c-tr{ top: 6px; right: 6px; border-left: 0; border-bottom: 0; }
