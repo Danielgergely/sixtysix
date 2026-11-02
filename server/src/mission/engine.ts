@@ -464,6 +464,7 @@ function revealTie(io: MissionIO, room: MRoom): void {
     lat: int.kind === 'pin' ? int.place!.lat : null,
     lon: int.kind === 'pin' ? int.place!.lon : null,
     reference: int.kind === 'number' ? int.number!.reference : int.place!.reference,
+    references: (int.kind === 'number' ? int.number!.ref : int.place!.ref) ?? {},
     guesses,
     winner,
     sameOff,

@@ -126,7 +126,7 @@ export function TieReveal({ state, wide = false }: { state: MissionState; wide?:
       {r.sameOff && <DoubleTie state={state} />}
       <motion.div className="ms-tie-winner" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: r.sameOff ? 3.4 : 2.6 }}>
         {r.winner === null ? t('mission.tie.nobody') : rich(t('mission.tie.winner', { name: nameOf(state, r.winner) }))}
-        <small> · {r.reference}</small>
+        <small> · {r.references?.[locale] ?? r.reference}</small>
       </motion.div>
     </div>
   )

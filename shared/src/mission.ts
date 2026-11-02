@@ -191,6 +191,8 @@ export interface MissionTie {
     lat: number | null
     lon: number | null
     reference: string
+    /** The reference as German / Hungarian Bibles print it ("2. Korinther 11,24", "2Kor 11,24"). */
+    references?: Partial<Record<Locale, string>>
     guesses: MissionTieGuess[]
     /** null = nobody answered (the defender holds). */
     winner: number | null

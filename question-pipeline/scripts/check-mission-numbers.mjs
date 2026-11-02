@@ -23,6 +23,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { printedAt, refText } from './refs.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -312,6 +313,34 @@ for (const q of numbers) {
   }
 }
 
+// ---- the references shown in German and Hungarian (mission-refs.mjs) ----------
+// `ref.de` / `ref.hu` must be what refs.mjs gives, and the answer must be in exactly that verse.
+/** Cited verses checked by hand: "id|lang" → why the matcher misses. */
+const REF_OK = {
+  'n_039|de': 'Schlachter starts 35:23 with "Jakob aber hatte zwölf Söhne"; Luther has it in 35,22',
+  'n_353|hu': 'ötezren', 'n_355|hu': 'négyezren', 'n_356|hu': 'száz juha', 'n_363|hu': 'kétezren', 'n_381|hu': 'százfontnyit',
+  'place shunem|de': 'Sunem', 'place bethany|hu': 'Bethániából',
+}
+const verseAt = (bible, book, ch, v) => bible?.[book]?.[String(ch)]?.[String(v)] ?? ''
+// Places: names are spelled many ways, so only a shift is reported: the name missing from
+// the verse cited but found next to it (the verse is printed under another number).
+function checkRefs(id, e, found, shiftOnly = false) {
+  for (const [l, bible] of [['de', de], ['hu', hu]]) {
+    const at = printedAt(l, e.reference, de)
+    const want = refText(l, at.book, at.ch, at.v, at.v)
+    if (e.ref?.[l] !== want) errors.push(`${id}: ref.${l} is "${e.ref?.[l]}", expected "${want}" (run scripts/mission-refs.mjs)`)
+    const get = (ch, v) => verseAt(bible, at.book, ch, v) || (l === 'hu' ? verseAt(karoli, at.book, ch, v) : '')
+    const text = get(at.text.ch, at.text.v)
+    if (found(l, text) || REF_OK[`${id}|${l}`]) continue
+    const near = [get(at.text.ch, at.text.v - 1), get(at.text.ch, at.text.v + 1), get(at.text.ch + 1, 1), get(at.text.ch + 1, 2)]
+    if (!shiftOnly || near.some((t) => found(l, t))) warnings.push(`${id}: ${l}: not in the verse cited as ${want}` + (verbose ? `\n    ${text}` : ''))
+  }
+}
+for (const q of numbers) {
+  if (CHECKED[`${q.reference}|${q.answer}|de`] || CHECKED[`${q.reference}|${q.answer}|hu`]) continue
+  checkRefs(q.id, q, (l, text) => (l === 'de' ? inGerman(text, q.answer) : inHungarian(text, q.answer)))
+}
+
 // ---- places ---------------------------------------------------------------
 
 const placesPath = path.resolve(root, '../shared/src/missionPlaces.json')
@@ -345,6 +374,12 @@ if (fs.existsSync(placesPath)) {
     // The place must be named in the verse: its English name without "Mount"/"the"/"Valley of".
     const core = (WEB_SPELLING[p.name.en] ?? p.name.en).replace(/^(Mount|Valley of) /, '').toLowerCase()
     if (!around(web, r).toLowerCase().includes(core)) errors.push(`place ${id}: "${core}" not in WEB ${p.reference} ±1`)
+    // The German / Hungarian verse cited should name it too (first letters, spelling varies).
+    const stem = (s) => stripHu(s).replace(/[^a-z]/g, '').replace(/^(berg|hegy|tal|volgy)/, '')
+    checkRefs(`place ${id}`, p, (l, text) => {
+      const words = (p.name?.[l] ?? '').split(/[\s-]+/).map(stem).filter((w) => w.length >= 3 && !/^(berg|hegy|tal|volgy|quelle|forras|wuste|puszta|see|to|bach|patak)$/.test(w))
+      return words.some((w) => stem(text).includes(w.slice(0, 4)))
+    }, true)
   }
 }
 

@@ -12,6 +12,8 @@ import type { Locale, MissionMap } from '@sixtysix/shared'
 export interface NumberEntry {
   id: string
   reference: string
+  /** The reference in other languages (question-pipeline/scripts/mission-refs.mjs). */
+  ref?: Partial<Record<Locale, string>>
   answer: number
   /** A unit key (years, months, days, cubits, shekels, talents, men, people, times); the app translates it. */
   unit?: string
@@ -25,6 +27,7 @@ export interface PlaceEntry {
   lat: number
   lon: number
   reference: string
+  ref?: Partial<Record<Locale, string>>
   confidence?: string
 }
 
