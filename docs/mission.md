@@ -61,8 +61,22 @@ The reveal is an animated scene (also on the board):
 
 ## Questions
 - Multiple-choice: the shared bank (`bank.ts`), all difficulties except impossible by default; room option for difficulty like the arena. Optionally harder questions for capitals.
-- Number questions: `shared/src/missionNumbers.json` (+ `.de`, `.hu` text): a number stated in a cited verse (ages, counts, measures, years of reign), each checked against the verse. ~400.
+- Number questions: `shared/src/missionNumbers.json`: a number stated in a cited verse (ages, counts, measures, years of reign), each checked against the verse. ~400.
 - Map places: `shared/src/missionPlaces.json`: ~120 Bible places with latitude/longitude (from OpenBible.info geocoding, CC BY 4.0, credited), names in en/de/hu, reference. Only places on the current campaign's map are asked.
+
+### Tie-breaker content: where it comes from, how to check it
+
+**Number questions** (`shared/src/missionNumbers.json`, 409 entries): `{ id: 'n_001', reference: 'Genesis 5:27', answer: 969, unit?, text: { en, de, hu }, difficulty: 1–5 }`, sorted in Bible order.
+- The answer is a whole number written in the cited verse of the World English Bible, and the same number stands in the German (Schlachter 1951) and Hungarian (Károli OT, Biblica NT) verse. Where a translation has another number, or the manuscripts or parallel passages disagree, the question was left out. Examples: 1 Kings 20:30 (Károli has 22,000), Genesis 5:31 (Schlachter has 772), Genesis 25:17 (Károli has 132), Revelation 21:16 (WEB has 12,012), 2 Chronicles 11:21's eighteen wives (missing in Schlachter), 1 Samuel 13:1, the 4,000 or 40,000 stalls, and the Kings / Chronicles pairs that differ (Ahaziah's and Jehoiachin's ages, the height of the temple pillars).
+- `unit` is one of `years`, `months`, `days`, `cubits`, `shekels`, `talents`, `men`, `people`, `times` (a label for the input; the screens translate it). Questions that already name what is counted, or ask "which year / day", have none.
+- Over a third come from Kings and Chronicles (the divided kingdom); the rest are spread from Genesis to Revelation. Difficulty uses the strict scale (1 = Sunday school … 5 = specialists). Few people know an exact number, but the closest guess wins, so the hard ones still play.
+- Text: ≤ 110 characters per language, German with "du", Hungarian with "te", Bible names per `question-pipeline/i18n/*-names.json`.
+
+**Map places** (`shared/src/missionPlaces.json`, 117 entries): `{ _source, places: [{ id, name: { en, de, hu }, lat, lon, reference, confidence }] }`, all inside lon 34.2–36.6, lat 30.9–33.6.
+- Coordinates come from [OpenBible.info's Bible Geocoding Data](https://github.com/openbibleinfo/Bible-Geocoding-Data) (CC BY 4.0, credited in `_source`): the top-scored identification of each ancient place. `high` = OpenBible scores it 800 or more; `medium` = a lower score but the scholarly consensus site (e.g. Bethel = Beitin, Mizpah = Tell en-Nasbeh, Ai = et-Tell, Anathoth, Heshbon, Mount Nebo, Bethsaida = et-Tell). Places with no agreed site were left out: Sodom, Emmaus, Ziklag, Arimathea, Abel Meholah, Golan, Gideon's Ophrah. Masada has no Bible reference.
+- English names follow WEB spellings (the reference verse names the place); German and Hungarian follow the glossaries.
+
+**Checking:** `node scripts/check-mission-numbers.mjs` (from `question-pipeline/`, needs the Bible corpora in `data/`; `--verbose` prints the verse for every miss). It fails on a reference missing from WEB, a number not in the WEB verse ±1 (digits or English number words), duplicate ids, references + answers or texts, over-long text, a missing translation, a place outside the frame or whose verse doesn't name it. It warns when the number isn't found in the German or Hungarian verse (number words in both languages, Károli's old spelling, verse-numbering shifts) or a glossary name is missing from a translation; every warning needs a look, and a real difference means dropping the question. Spellings the matcher can't read but a human checked go in its `CHECKED` list. Keep it at 0 errors and 0 warnings.
 
 ## Players, bots, rooms
 - 2 or 3 seats. Bots fill empty seats (levels like the flock's bots: they answer right with a level-dependent chance, guess numbers within a noise band, pin within a noise radius).
