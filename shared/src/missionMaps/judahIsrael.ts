@@ -301,8 +301,8 @@ export const JUDAH_ISRAEL: MissionMap = {
    "value": 300,
    "path": "M341.7 827.8L366.7 817.9L491.7 837.6L470.8 882L345.8 882Z",
    "label": [
-    417,
-    848
+    388,
+    840
    ],
    "neighbours": [
     "gath",
@@ -347,8 +347,8 @@ export const JUDAH_ISRAEL: MissionMap = {
    "capitalSite": true,
    "path": "M470.8 882L345.8 882L341.7 946L425 940.1L483.3 938.6Z",
    "label": [
-    413,
-    914
+    417,
+    925
    ],
    "neighbours": [
     "bethel",
@@ -828,8 +828,8 @@ export const JUDAH_ISRAEL: MissionMap = {
    "capitalSite": true,
    "path": "M470.8 882L345.8 882L341.7 946L425 940.1L483.3 938.6Z",
    "label": [
-    413,
-    914
+    417,
+    925
    ],
    "neighbours": [
     "b-jericho",
