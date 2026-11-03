@@ -2,6 +2,8 @@ export default {
   tabs: { menu: 'Kvíz', boardGames: 'Társasjátékok', jerusalem: 'Jeruzsálem', leaderboard: 'Ranglista' },
   language: 'Nyelv',
   back: 'Vissza',
+  /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */
+  secondsLeft: 'még {n} másodperc',
   topBar: {
     coins: 'Az érméid',
     profile: 'A profilod',

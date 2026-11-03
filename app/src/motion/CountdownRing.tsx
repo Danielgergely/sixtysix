@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useT } from '../i18n'
 
 interface Props {
   /** Date.now()-based deadline — the same value the timer digits use. */
@@ -28,6 +29,7 @@ export function CountdownRing({
   format = 'int',
   className = '',
 }: Props) {
+  const t = useT()
   const circleRef = useRef<SVGCircleElement>(null)
   const [label, setLabel] = useState('')
   const [urgent, setUrgent] = useState(false)
@@ -56,7 +58,7 @@ export function CountdownRing({
       className={`countdown-ring ${urgent ? 'urgent' : ''} ${className}`}
       style={{ width: size, height: size }}
       role="timer"
-      aria-label={`${label} seconds left`}
+      aria-label={t('shell.secondsLeft', { n: label })}
     >
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         <circle className="countdown-ring-track" cx={size / 2} cy={size / 2} r={r} strokeWidth={stroke} />

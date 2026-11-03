@@ -2,6 +2,8 @@ export default {
   tabs: { menu: 'Quiz', boardGames: 'Brettspiele', jerusalem: 'Jerusalem', leaderboard: 'Bestenliste' },
   language: 'Sprache',
   back: 'Zurück',
+  /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */
+  secondsLeft: 'noch {n} Sekunden',
   topBar: {
     coins: 'Deine Münzen',
     profile: 'Dein Profil',

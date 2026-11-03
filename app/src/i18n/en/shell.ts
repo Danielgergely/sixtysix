@@ -3,6 +3,8 @@ export default {
   tabs: { menu: 'Quiz', boardGames: 'Board games', jerusalem: 'Jerusalem', leaderboard: 'Leaderboard' },
   language: 'Language',
   back: 'Back',
+  /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */
+  secondsLeft: '{n} seconds left',
   topBar: {
     coins: 'Your coins',
     profile: 'Your profile',
