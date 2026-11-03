@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
 import type { MissionBotLevel, MissionClientToServerEvents, MissionOptions, MissionServerToClientEvents, MissionState } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { clearBoard, saveBoard } from '../game/boardSession'
 import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
@@ -31,7 +32,8 @@ interface MissionStore {
 
   create: () => void
   join: (code: string) => void
-  watch: (code: string) => void
+  /** Show the board of a room; `resumed` = after a reload (boardSession.ts): a room that's gone is forgotten quietly. */
+  watch: (code: string, resumed?: boolean) => void
   leave: () => void
   addBot: () => void
   removeBot: (playerId: string) => void
@@ -73,6 +75,7 @@ function rememberCode(code: string | null): void {
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
+  clearBoard('mission')
   useMissionStore.setState({ role: null, state: null, myId: null, endsAt: 0, myAnswer: null, error: reason, busy: false })
 }
 
@@ -166,11 +169,18 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
     })
   },
 
-  watch: (code) => {
+  watch: (code, resumed = false) => {
     set({ busy: true, error: null })
     getSocket().emit('mission:watch', { code: code.trim().toUpperCase() }, (res) => {
-      if (res.ok) set({ role: 'board', state: res.state, myId: null, busy: false, ...timing(res.state) })
-      else set({ error: res.error, busy: false })
+      if (res.ok) {
+        saveBoard('mission', res.state.code)
+        set({ role: 'board', state: res.state, myId: null, busy: false, ...timing(res.state) })
+      } else {
+        clearBoard('mission')
+        set({ error: resumed ? null : res.error, busy: false })
+        // After a reload the room may simply be gone: back to the menu, no error.
+        if (resumed) useGameStore.getState().goTo('menu')
+      }
     })
   },
 
