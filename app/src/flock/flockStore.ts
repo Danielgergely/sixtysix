@@ -7,6 +7,7 @@ import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { payFlock } from '../game/boardRewards'
+import { closeSocket, lastRoom } from './roomSession'
 
 /**
  * Wolf in the Flock client (docs/board-games.md). Its own socket and store so
@@ -55,24 +56,9 @@ interface FlockStore {
 let socket: FlockSocket | null = null
 
 /** The room this device last sat in, so a reload can offer "Back to your game". */
-const LAST_KEY = 'sixtysix.flockRoom.v1'
-const LAST_TTL_MS = 3 * 3600_000
-export function lastFlockCode(): string | null {
-  try {
-    const v = JSON.parse(localStorage.getItem(LAST_KEY) ?? 'null') as { code?: string; at?: number } | null
-    return v?.code && typeof v.at === 'number' && Date.now() - v.at < LAST_TTL_MS ? v.code : null
-  } catch {
-    return null
-  }
-}
-function rememberCode(code: string | null): void {
-  try {
-    if (code) localStorage.setItem(LAST_KEY, JSON.stringify({ code, at: Date.now() }))
-    else localStorage.removeItem(LAST_KEY)
-  } catch {
-    // storage unavailable — the code can still be typed in
-  }
-}
+const lastCode = lastRoom('sixtysix.flockRoom.v1')
+export const lastFlockCode = lastCode.last
+const rememberCode = lastCode.remember
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
@@ -117,13 +103,18 @@ function getSocket(): FlockSocket {
   })
 
   socket.on('flock:secret', (secret) => setState({ secret }))
-  // Cards come in the player's language: a switch while seated asks for the card again.
-  useLocale.subscribe((s, prev) => {
-    if (s.locale !== prev.locale && getState().role === 'player') socket?.emit('flock:locale', { locale: s.locale })
-  })
   socket.on('flock:closed', (reason) => closeLocally(reason))
   return socket
 }
+
+/** An acked intent (clue, guess): resolves to the server's error message, or null when it was taken. */
+const settle =
+  (resolve: (error: string | null) => void) =>
+  (err: Error | null, res: { ok: true } | { ok: false; error: string }): void => {
+    if (err) return resolve(t('flock.errors.noAnswer'))
+    if (res.ok) playSfx('submit')
+    resolve(res.ok ? null : res.error)
+  }
 
 export const useFlockStore = create<FlockStore>((set) => ({
   role: null,
@@ -179,19 +170,8 @@ export const useFlockStore = create<FlockStore>((set) => ({
   },
 
   leave: () => {
-    const s = socket
+    if (socket) closeSocket(socket, 'flock:leave')
     socket = null
-    if (s) {
-      s.off()
-      let done = false
-      const finish = () => {
-        if (done) return
-        done = true
-        s.disconnect()
-      }
-      s.timeout(600).emit('flock:leave', finish)
-      setTimeout(finish, 700)
-    }
     closeLocally(null)
   },
 
@@ -199,13 +179,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
   ready: () => getSocket().emit('flock:ready'),
   clue: (text) =>
     new Promise((resolve) => {
-      getSocket()
-        .timeout(5000)
-        .emit('flock:clue', { text }, (err, res) => {
-          if (err) return resolve(t('flock.errors.noAnswer'))
-          if (res.ok) playSfx('submit')
-          resolve(res.ok ? null : res.error)
-        })
+      getSocket().timeout(5000).emit('flock:clue', { text }, settle(resolve))
     }),
   decide: (vote) => {
     playSfx('submit')
@@ -217,13 +191,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
   },
   guess: (word) =>
     new Promise((resolve) => {
-      getSocket()
-        .timeout(5000)
-        .emit('flock:guess', { word }, (err, res) => {
-          if (err) return resolve(t('flock.errors.noAnswer'))
-          if (res.ok) playSfx('submit')
-          resolve(res.ok ? null : res.error)
-        })
+      getSocket().timeout(5000).emit('flock:guess', { word }, settle(resolve))
     }),
   judge: (ok) => {
     playSfx('submit')
@@ -235,6 +203,11 @@ export const useFlockStore = create<FlockStore>((set) => ({
   setBotLevel: (level) => getSocket().emit('flock:botLevel', { level }),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),
 }))
+
+// Cards come in the player's language: a switch while seated asks for the card again.
+useLocale.subscribe((s, prev) => {
+  if (s.locale !== prev.locale && useFlockStore.getState().role === 'player') socket?.emit('flock:locale', { locale: s.locale })
+})
 
 /** Convenience: whether I lead the room (only the leader configures and advances). */
 export const isLeader = (s: Pick<FlockStore, 'state' | 'myId'>): boolean => !!s.state && s.state.leaderId === s.myId && s.myId !== null

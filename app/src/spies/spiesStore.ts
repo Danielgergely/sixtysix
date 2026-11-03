@@ -14,6 +14,7 @@ import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { markSpiesPlayed, paySpies } from '../game/boardRewards'
+import { closeSocket, lastRoom } from '../flock/roomSession'
 
 /**
  * Twelve Spies client (docs/board-games.md). Its own socket and store so it
@@ -60,24 +61,9 @@ interface SpiesStore {
 let socket: SpiesSocket | null = null
 
 /** The room this device last sat in, so a reload can offer "Back to your game". */
-const LAST_KEY = 'sixtysix.spiesRoom.v1'
-const LAST_TTL_MS = 3 * 3600_000
-export function lastSpiesCode(): string | null {
-  try {
-    const v = JSON.parse(localStorage.getItem(LAST_KEY) ?? 'null') as { code?: string; at?: number } | null
-    return v?.code && typeof v.at === 'number' && Date.now() - v.at < LAST_TTL_MS ? v.code : null
-  } catch {
-    return null
-  }
-}
-function rememberCode(code: string | null): void {
-  try {
-    if (code) localStorage.setItem(LAST_KEY, JSON.stringify({ code, at: Date.now() }))
-    else localStorage.removeItem(LAST_KEY)
-  } catch {
-    // storage unavailable — the code can still be typed in
-  }
-}
+const lastCode = lastRoom('sixtysix.spiesRoom.v1')
+export const lastSpiesCode = lastCode.last
+const rememberCode = lastCode.remember
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
@@ -126,10 +112,6 @@ function getSocket(): SpiesSocket {
   })
 
   socket.on('spies:key', (key) => setState({ key }))
-  // The server checks clues against every language seated: tell it about a switch.
-  useLocale.subscribe((s, prev) => {
-    if (s.locale !== prev.locale && getState().role === 'player') socket?.emit('spies:locale', { locale: s.locale })
-  })
   socket.on('spies:closed', (reason) => closeLocally(reason))
   return socket
 }
@@ -188,19 +170,8 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   },
 
   leave: () => {
-    const s = socket
+    if (socket) closeSocket(socket, 'spies:leave')
     socket = null
-    if (s) {
-      s.off()
-      let done = false
-      const finish = () => {
-        if (done) return
-        done = true
-        s.disconnect()
-      }
-      s.timeout(600).emit('spies:leave', finish)
-      setTimeout(finish, 700)
-    }
     closeLocally(null)
   },
 
@@ -230,6 +201,11 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   again: (now = false) => getSocket().emit('spies:again', { now }),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),
 }))
+
+// The server checks clues against every language seated: tell it about a switch.
+useLocale.subscribe((s, prev) => {
+  if (s.locale !== prev.locale && useSpiesStore.getState().role === 'player') socket?.emit('spies:locale', { locale: s.locale })
+})
 
 /** Convenience: whether I lead the room (only the leader configures and restarts). */
 export const isLeader = (s: Pick<SpiesStore, 'state' | 'myId'>): boolean => !!s.state && s.state.leaderId === s.myId && s.myId !== null

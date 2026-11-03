@@ -7,6 +7,7 @@ import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { markMissionPlayed, payMission } from '../game/boardRewards'
+import { closeSocket, lastRoom } from '../flock/roomSession'
 
 /**
  * Mission client (docs/mission.md). Its own socket and store, like the flock's
@@ -54,24 +55,9 @@ interface MissionStore {
 let socket: MissionSocket | null = null
 
 /** The room this device last sat in ("Back to game" after a reload). */
-const LAST_KEY = 'sixtysix.missionRoom.v1'
-const LAST_TTL_MS = 3 * 3600_000
-export function lastMissionCode(): string | null {
-  try {
-    const v = JSON.parse(localStorage.getItem(LAST_KEY) ?? 'null') as { code?: string; at?: number } | null
-    return v?.code && typeof v.at === 'number' && Date.now() - v.at < LAST_TTL_MS ? v.code : null
-  } catch {
-    return null
-  }
-}
-function rememberCode(code: string | null): void {
-  try {
-    if (code) localStorage.setItem(LAST_KEY, JSON.stringify({ code, at: Date.now() }))
-    else localStorage.removeItem(LAST_KEY)
-  } catch {
-    // storage unavailable — the code can still be typed in
-  }
-}
+const lastCode = lastRoom('sixtysix.missionRoom.v1')
+export const lastMissionCode = lastCode.last
+const rememberCode = lastCode.remember
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
@@ -125,9 +111,6 @@ function getSocket(): MissionSocket {
     else if (state.phase === 'tie' || (state.phase === 'question' && state.question?.kind !== 'duel')) playSfx('flip')
   })
 
-  useLocale.subscribe((s, prev) => {
-    if (s.locale !== prev.locale && getState().role === 'player') socket?.emit('mission:locale', { locale: s.locale })
-  })
   socket.on('mission:closed', (reason) => closeLocally(reason))
   return socket
 }
@@ -185,19 +168,8 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
   },
 
   leave: () => {
-    const s = socket
+    if (socket) closeSocket(socket, 'mission:leave')
     socket = null
-    if (s) {
-      s.off()
-      let done = false
-      const finish = () => {
-        if (done) return
-        done = true
-        s.disconnect()
-      }
-      s.timeout(600).emit('mission:leave', finish)
-      setTimeout(finish, 700)
-    }
     closeLocally(null)
   },
 
@@ -240,6 +212,11 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
   again: () => getSocket().emit('mission:again'),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),
 }))
+
+// Bots speak the leader's language: tell the server about a switch.
+useLocale.subscribe((s, prev) => {
+  if (s.locale !== prev.locale && useMissionStore.getState().role === 'player') socket?.emit('mission:locale', { locale: s.locale })
+})
 
 export const isLeader = (s: Pick<MissionStore, 'state' | 'myId'>): boolean => !!s.state && s.state.leaderId === s.myId && s.myId !== null
 
