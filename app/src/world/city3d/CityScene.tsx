@@ -113,15 +113,16 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
   const fenceGeo = useMemo(() => lotFenceGeometries(), [])
   const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry() }), [])
-  const signMat = useMemo(() => new MeshLambertMaterial({ map: signTexture(forSale) }), [forSale])
-  // Another language paints a new board: let the old one go.
-  useEffect(
-    () => () => {
-      signMat.map?.dispose()
-      signMat.dispose()
-    },
-    [signMat],
-  )
+  // One material for good: a new one would make R3F rebuild the boards' instanced mesh (and lose its instances).
+  const signMat = useMemo(() => new MeshLambertMaterial(), [])
+  // The board's words, painted again when the language changes; the old painting is let go.
+  useLayoutEffect(() => {
+    const old = signMat.map
+    signMat.map = signTexture(forSale)
+    signMat.needsUpdate = true
+    old?.dispose()
+    invalidate()
+  }, [signMat, forSale, invalidate])
   // The board's painted faces, front and back, in one geometry (the post carries the board itself).
   const signFace = useMemo(() => {
     const faces = [new PlaneGeometry(3.05, 1.45).translate(0, 3.825, 0.06), new PlaneGeometry(3.05, 1.45).rotateY(Math.PI).translate(0, 3.825, -0.06)].map((f) => f.toNonIndexed())
