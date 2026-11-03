@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 import type { MissionState } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { AnimatedNumber, CountdownRing, popIn, spring, useIsFirstKey } from '../../motion'
@@ -115,12 +115,10 @@ export function StatusBar({ state, mySeat }: { state: MissionState; mySeat: numb
       )}
       <span className="ms-status-main">
         {mine ? <span className="ms-turn-chip">{t('mission.status.yourTurn')}</span> : who && choosing ? <span className="ms-turn-chip other">{t('mission.status.acting', { name: who.name })}</span> : null}
-        {/* Not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
-        <AnimatePresence mode="wait">
-          <motion.span key={line} className="ms-status-text" initial={firstLine ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>
-            {line}
-          </motion.span>
-        </AnimatePresence>
+        {/* The new line replaces the old one at once (no exit to wait for), so it always agrees with the chip and face beside it. */}
+        <motion.span key={line} className="ms-status-text" initial={firstLine ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15 }}>
+          {line}
+        </motion.span>
       </span>
       <Timer size={36} />
     </div>
