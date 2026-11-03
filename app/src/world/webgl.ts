@@ -14,7 +14,10 @@ export function hasWebGL(): boolean {
   }
   try {
     const c = document.createElement('canvas')
-    return !!(c.getContext('webgl2') ?? c.getContext('webgl'))
+    const gl = c.getContext('webgl2') ?? c.getContext('webgl')
+    // Let the test context go at once: browsers keep only a few alive, and the scene needs one.
+    gl?.getExtension('WEBGL_lose_context')?.loseContext()
+    return !!gl
   } catch {
     return false
   }

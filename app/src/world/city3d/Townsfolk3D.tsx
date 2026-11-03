@@ -15,6 +15,7 @@ import { FIGURES, type FigureId } from '../life/figures'
 import type { Graph } from '../life/nav'
 import { newSim, stepSim, syncSims, tapSim, type Actor, type Sim } from '../life/sim'
 import type { Bridge } from './bridge'
+import { smallScreen } from './rig'
 import { MAIN_ROADS } from './plan'
 import { blobTexture } from './textures'
 import { surfaceAt, ux, uz } from './space'
@@ -43,7 +44,7 @@ const FIG_SCALE = 0.075
 export const FIG_DIST = 150
 const MAX = 64
 /** Frames per second while someone walks on screen: plenty for a stroll, a third of the work. */
-const WALK_FPS = typeof window !== 'undefined' && Math.min(window.innerWidth, window.innerHeight) < 600 ? 20 : 30
+const WALK_FPS = smallScreen() ? 20 : 30
 /** While walkers are only out of view: a slow tick so they keep going. */
 const OFFSCREEN_MS = 500
 
@@ -250,6 +251,7 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
       geo.dispose()
       mat.dispose()
       shadowGeo.dispose()
+      shadowMat.uniforms.uMap.value.dispose()
       shadowMat.dispose()
       atlas.tex.dispose()
     },
