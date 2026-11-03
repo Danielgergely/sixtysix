@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
+import { MATERIAL_INFO, PRODUCERS, SPOTS, idleStage, levelDef, ready, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
 import { useT } from '../i18n'
 import { artFor, COURTYARD_ART, countdown } from '../screens/home/homeUtil'
@@ -45,11 +45,11 @@ export interface PlotSceneProps {
   /** Your own plot: a carrier in the yard hands over a gift (PlotLife). */
   onGift?: (figure: GiftFigure) => Promise<string>
   className?: string
-  /** Days since the family last played or built (weeds at 20 / 40 in the 3D yard, like the city's lots). */
+  /** Days since the family last played or built (weeds at 20 / 40 days, like the city's lots). */
   idleDays?: number
 }
 
-export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className }: PlotSceneProps) {
+export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0 }: PlotSceneProps) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
   const t = useT()
   return (
@@ -80,6 +80,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, class
       {order.map((spot, i) => (
         <SpotView key={spot} spot={spot} index={i} levels={levels} plot={plot} now={now} seen={seen} onSelect={onSelect} />
       ))}
+      <Weeds stage={idleStage(idleDays)} />
       <PlotLife levels={levels} plot={plot} now={now} onGift={onGift} />
       {levels.wall === 1 && <Hedge />}
       <Fence level={levels.wall} side="front" />
@@ -345,6 +346,32 @@ const Hedge = memo(function Hedge() {
           />
         )
       })}
+    </>
+  )
+})
+
+/**
+ * Weeds on the bare earth when the family stays away (shared/src/city.ts
+ * `idleStage`): a few tufts at 20 days, the yard overgrown and yellowing at 40.
+ * Spots in % of the painting, clear of the buildings and the paths; the first
+ * WEEDS_FEW show at stage 1.
+ */
+const WEED_SPOTS: [number, number][] = [
+  [40, 22], [63, 23], [27, 41], [88, 50], [53, 73], [72, 70], [21, 51], [43, 86],
+  [52, 16], [34, 30], [70, 32], [12, 44], [58, 49], [33, 66], [80, 57], [93, 47],
+  [24, 64], [47, 66], [61, 86], [39, 47], [76, 79], [8, 38], [57, 32], [45, 77],
+]
+const WEEDS_FEW = 8
+const Weeds = memo(function Weeds({ stage }: { stage: number }) {
+  if (!stage) return null
+  const spots = stage === 1 ? WEED_SPOTS.slice(0, WEEDS_FEW) : WEED_SPOTS
+  return (
+    <>
+      {spots.map(([x, y], i) => (
+        <span key={i} className={`ps-weed ${stage > 1 ? 'dry' : ''}`} style={{ left: `${x}%`, top: `${y}%`, zIndex: Math.round(y * 10) }}>
+          {stage > 1 && i % 3 === 0 ? '🌾' : '🌿'}
+        </span>
+      ))}
     </>
   )
 })
