@@ -6,7 +6,7 @@ import { PaintedPortrait } from '../../art/PaintedPortrait'
 import { gateName, teamColor } from '../../screens/arena/modes'
 import { rich } from '../../screens/arena/rich'
 import { useT } from '../../i18n'
-import { WallRenderer, bricksFor, computeLayout } from './wallRender'
+import { FALL_MS, WallRenderer, bricksFor, computeLayout } from './wallRender'
 
 export interface WallSceneProps {
   teams: TeamState[]
@@ -87,8 +87,10 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
   }, [layout, plan, reduced])
   useEffect(() => () => renderer.current?.stop(), [])
 
+  /** ms after the scene starts when a team's last new stone has landed. */
+  const landedAt = (p: { delay: number; from: number; to: number }) => p.delay + Math.max(0, p.to - p.from - 1) * (plan?.stagger ?? 0) + FALL_MS
   // The crown goes on the leading plate once every wall is built.
-  const builtMs = plan ? Math.max(...plan.teams.map((p) => p.delay + Math.max(0, p.to - p.from - 1) * plan.stagger + 430)) : 0
+  const builtMs = plan ? Math.max(...plan.teams.map(landedAt)) : 0
   const [crownedFor, setCrownedFor] = useState<string | null>(null)
   const crowned = reduced || crownedFor === snap.key
   useEffect(() => {
@@ -104,7 +106,7 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
         teams.map((team, i) => {
           const s = layout.sections[i]
           const p = plan.teams[i]
-          const landed = p.delay + Math.max(0, p.to - p.from - 1) * plan.stagger + 430
+          const landed = landedAt(p)
           const topCourse = p.to > 0 ? s.bricks[p.to - 1].course + 1 : 0
           const topY = layout.groundY - topCourse * layout.courseH
           const members = players?.filter((pl) => pl.team === team.id) ?? []

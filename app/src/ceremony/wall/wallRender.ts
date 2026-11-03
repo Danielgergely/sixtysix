@@ -156,7 +156,8 @@ interface Puff {
   born: number
 }
 
-const FALL_MS = 430
+/** A stone's fall, from setting off to landing (WallScene times its DOM overlays by it). */
+export const FALL_MS = 430
 const SQUASH_MS = 140
 const GLOW_MS = 900
 const PUFF_MS = 750
