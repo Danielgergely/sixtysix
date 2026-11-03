@@ -6,10 +6,7 @@ import { PaintedPortrait } from '../art/PaintedPortrait'
 import { IDLE_DAYS } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
 import { houseName } from './home/plotText'
-import { useLocale, useT } from '../i18n'
-
-const pct = (part: number, total: number, locale: string) =>
-  total > 0 ? (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 0 }) : '–'
+import { percentOf, useLocale, useT } from '../i18n'
 
 /** Another player's public page: who they are, their home, their record. */
 export function PlayerScreen() {
@@ -78,7 +75,7 @@ export function PlayerScreen() {
               ['podiums', num(s.firstPlace + s.secondPlace + s.thirdPlace)],
               ['bestScore', num(s.bestScore)],
               ['answered', num(s.questionsAnswered)],
-              ['correct', pct(s.questionsCorrect, s.questionsAnswered, locale)],
+              ['correct', percentOf(s.questionsCorrect, s.questionsAnswered, locale)],
             ].map(([id, value]) => (
               <div key={id} className="pl-stat">
                 <strong>{value}</strong>
