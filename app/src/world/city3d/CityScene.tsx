@@ -5,6 +5,7 @@ import {
   AdditiveBlending,
   BoxGeometry,
   BufferAttribute,
+  BufferGeometry,
   Color,
   CylinderGeometry,
   DoubleSide,
@@ -21,7 +22,6 @@ import {
   RingGeometry,
   Vector2,
   Vector3,
-  type BufferGeometry,
   type DirectionalLight,
 } from 'three'
 import { idleStage } from '@sixtysix/shared'
@@ -122,17 +122,13 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     },
     [signMat],
   )
+  // The board's painted faces, front and back, in one geometry (the post carries the board itself).
   const signFace = useMemo(() => {
-    const a = new PlaneGeometry(3.05, 1.45).translate(0, 3.825, 0.06)
-    const b = new PlaneGeometry(3.05, 1.45).rotateY(Math.PI).translate(0, 3.825, -0.06)
-    const pos = new Float32Array([...(a.toNonIndexed().getAttribute('position').array as Float32Array), ...(b.toNonIndexed().getAttribute('position').array as Float32Array)])
-    const uv = new Float32Array([...(a.toNonIndexed().getAttribute('uv').array as Float32Array), ...(b.toNonIndexed().getAttribute('uv').array as Float32Array)])
-    const nor = new Float32Array([...(a.toNonIndexed().getAttribute('normal').array as Float32Array), ...(b.toNonIndexed().getAttribute('normal').array as Float32Array)])
-    const g = a.clone()
-    g.setIndex(null)
-    g.setAttribute('position', new BufferAttribute(pos, 3))
-    g.setAttribute('uv', new BufferAttribute(uv, 2))
-    g.setAttribute('normal', new BufferAttribute(nor, 3))
+    const faces = [new PlaneGeometry(3.05, 1.45).translate(0, 3.825, 0.06), new PlaneGeometry(3.05, 1.45).rotateY(Math.PI).translate(0, 3.825, -0.06)].map((f) => f.toNonIndexed())
+    const g = new BufferGeometry()
+    for (const [name, size] of [['position', 3], ['uv', 2], ['normal', 3]] as const) {
+      g.setAttribute(name, new BufferAttribute(new Float32Array(faces.flatMap((f) => [...(f.getAttribute(name).array as Float32Array)])), size))
+    }
     return g
   }, [])
 
@@ -468,7 +464,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
           ref={(m) => {
             houseMeshes.current[i] = m
           }}
-          args={[g as BufferGeometry, statics.plainMat, Math.max(1, LOTS.length)]}
+          args={[g, statics.plainMat, Math.max(1, LOTS.length)]}
           count={0}
           castShadow
           receiveShadow
