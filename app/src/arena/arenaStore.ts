@@ -14,6 +14,7 @@ import type {
 import { useGameStore } from '../game/store'
 import { clearBoard } from '../game/boardSession'
 import { getDeviceId } from '../game/persistence'
+import { paidLedger } from '../game/paidLedger'
 import { playSfx } from '../game/sfx'
 import { t } from '../i18n'
 
@@ -72,37 +73,15 @@ interface ArenaStore {
 }
 
 let socket: ArenaSocket | null = null
-/**
- * Games whose coins this device already collected, keyed `CODE#game` ("Play again"
- * keeps the code). The podium is re-sent after a reload, so this is saved; room
- * codes get reused, so entries expire after 6 h.
- */
-const PAID_KEY = 'sixtysix.arenaPaid.v1'
-const PAID_TTL_MS = 6 * 3600_000
-function loadPaid(): Record<string, number> {
-  try {
-    const raw = JSON.parse(localStorage.getItem(PAID_KEY) ?? '{}') as Record<string, number>
-    return Object.fromEntries(Object.entries(raw).filter(([, t]) => typeof t === 'number' && Date.now() - t < PAID_TTL_MS))
-  } catch {
-    return {}
-  }
-}
-const coinsPaid = {
-  has: (code: string) => code in loadPaid(),
-  add: (code: string) => {
-    try {
-      localStorage.setItem(PAID_KEY, JSON.stringify({ ...loadPaid(), [code]: Date.now() }))
-    } catch {
-      // storage unavailable — worst case a reload pays twice
-    }
-  },
-}
+/** Games whose coins this device already collected, keyed `CODE#game` ("Play again" keeps the code). */
+const coinsPaid = paidLedger('sixtysix.arenaPaid.v1')
 
 /**
  * The room this device is in, so a reload (phone tab discarded, host refreshing
  * the TV) lands back in the game instead of the menu. Cleared on leave/close.
  */
 const SESSION_KEY = 'sixtysix.arenaSession.v1'
+const SESSION_TTL_MS = 6 * 3600_000
 type Session = { code: string; role: ArenaRole; at: number }
 const session = {
   save: (code: string, role: ArenaRole) => {
@@ -116,7 +95,7 @@ const session = {
   load: (): Session | null => {
     try {
       const s = JSON.parse(localStorage.getItem(SESSION_KEY) ?? 'null') as Session | null
-      return s && typeof s.code === 'string' && Date.now() - s.at < PAID_TTL_MS ? s : null
+      return s && typeof s.code === 'string' && Date.now() - s.at < SESSION_TTL_MS ? s : null
     } catch {
       return null
     }
@@ -152,6 +131,56 @@ function closeLocally(reason: string | null): void {
   useGameStore.getState().goTo('arenaMenu')
 }
 
+type EnterResult = { ok: true; state: RoomState; myPlayerId: string | null } | { ok: false; error: string }
+
+/**
+ * (Re)enter a room with this device's stable ids: join (or rejoin) as a player,
+ * reclaim it as its host, or watch it. Only players get a public id back.
+ */
+function enterRoom(s: ArenaSocket, role: ArenaRole, code: string, done: (res: EnterResult) => void): void {
+  if (role === 'host') {
+    s.emit('room:rehost', { code, hostId: getDeviceId() }, (res) => done(res.ok ? { ok: true, state: res.state, myPlayerId: null } : res))
+  } else if (role === 'spectator') {
+    s.emit('room:watch', { code }, (res) => done(res.ok ? { ok: true, state: res.state, myPlayerId: null } : res))
+  } else {
+    const player = useGameStore.getState().player
+    s.emit('room:join', { code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) =>
+      done(res.ok ? { ok: true, state: res.state, myPlayerId: res.playerId } : res),
+    )
+  }
+}
+
+/** How long host / join / watch wait for a server that can't be reached before giving up. */
+const ENTER_TIMEOUT_MS = 8000
+
+/**
+ * Wraps the ack of a call the player started (host, join, watch): if the
+ * socket is still not connected after ENTER_TIMEOUT_MS, the call is dropped
+ * from socket.io's send buffer (so it can't land later, behind the player's
+ * back) and the buttons come back with "No connection". A reachable but slow
+ * server still gets to answer.
+ */
+function giveUpOffline<T>(s: ArenaSocket, done: (res: T) => void): (res: T) => void {
+  let over = false
+  const timer = setTimeout(() => {
+    if (s.connected) return
+    over = true
+    s.sendBuffer = []
+    useArenaStore.setState({ busy: false, error: t('arena.errors.offline') })
+  }, ENTER_TIMEOUT_MS)
+  return (res) => {
+    clearTimeout(timer)
+    if (!over) done(res)
+  }
+}
+
+/** In the room: a clean per-game slate, then its lobby or the game, whichever it is in. */
+function arrive(role: ArenaRole, state: RoomState, myPlayerId: string | null): void {
+  useArenaStore.setState({ ...FRESH_GAME, role, room: state, busy: false, myPlayerId })
+  const lobby = role === 'player' ? 'arenaPlayerLobby' : 'arenaHostLobby'
+  useGameStore.getState().goTo(state.phase === 'lobby' ? lobby : 'arenaGame')
+}
+
 function getSocket(): ArenaSocket {
   if (socket) return socket
   // Same origin in production; vite proxies /socket.io to the server in dev.
@@ -162,20 +191,12 @@ function getSocket(): ArenaSocket {
   socket.on('connect', () => {
     // Transparent recovery after a drop: rejoin / reclaim with stable ids.
     const { role, room } = getState()
-    if (!room || !socket) return
+    if (!room || !role || !socket) return
     // If the room died while we were offline (host gone, server restart), the
     // rejoin is refused and room:closed was never received — close here.
-    const onRejoin = (res: { ok: boolean; error?: string }) => {
+    enterRoom(socket, role, room.code, (res) => {
       if (!res.ok) closeLocally(res.error ?? t('arena.errors.ended'))
-    }
-    if (role === 'player') {
-      const player = useGameStore.getState().player
-      socket.emit('room:join', { code: room.code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, onRejoin)
-    } else if (role === 'host') {
-      socket.emit('room:rehost', { code: room.code, hostId: getDeviceId() }, onRejoin)
-    } else if (role === 'spectator') {
-      socket.emit('room:watch', { code: room.code }, onRejoin)
-    }
+    })
   })
 
   socket.on('room:state', (room) => {
@@ -272,37 +293,31 @@ function getSocket(): ArenaSocket {
 }
 
 export const useArenaStore = create<ArenaStore>((set) => ({
+  ...FRESH_GAME,
   role: null,
   room: null,
   error: null,
   busy: false,
   prefillCode: '',
-  question: null,
   phaseEndsAt: 0,
   phaseDuration: 0,
-  myAnswer: null,
-  answerCount: 0,
-  answeredIds: [],
-  reveal: null,
-  teamVotes: null,
-  yourResult: null,
-  leaderboard: null,
-  podium: null,
-  coinsEarned: 0,
-  tally: { answered: 0, correct: 0 },
   myPlayerId: null,
 
   hostGame: (config) => {
     set({ busy: true, error: null })
-    getSocket().emit('room:create', { config, hostId: getDeviceId() }, (res) => {
-      if (res.ok) {
-        set({ ...FRESH_GAME, role: 'host', room: res.state, busy: false, myPlayerId: null })
-        session.save(res.state.code, 'host')
-        useGameStore.getState().goTo('arenaHostLobby')
-      } else {
-        set({ error: res.error, busy: false })
-      }
-    })
+    const s = getSocket()
+    s.emit(
+      'room:create',
+      { config, hostId: getDeviceId() },
+      giveUpOffline(s, (res) => {
+        if (res.ok) {
+          session.save(res.state.code, 'host')
+          arrive('host', res.state, null)
+        } else {
+          set({ error: res.error, busy: false })
+        }
+      }),
+    )
   },
 
   startGame: () => {
@@ -328,16 +343,21 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   watchGame: (code) => {
     set({ busy: true, error: null })
-    getSocket().emit('room:watch', { code: code.trim().toUpperCase() }, (res) => {
-      if (res.ok) {
-        set({ ...FRESH_GAME, role: 'spectator', room: res.state, busy: false, myPlayerId: null })
-        session.save(res.state.code, 'spectator')
-        useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaHostLobby' : 'arenaGame')
-      } else {
-        set({ error: res.error, busy: false })
-        useGameStore.getState().goTo('arenaMenu')
-      }
-    })
+    const s = getSocket()
+    enterRoom(
+      s,
+      'spectator',
+      code.trim().toUpperCase(),
+      giveUpOffline(s, (res: EnterResult) => {
+        if (res.ok) {
+          session.save(res.state.code, 'spectator')
+          arrive('spectator', res.state, null)
+        } else {
+          set({ error: res.error, busy: false })
+          useGameStore.getState().goTo('arenaMenu')
+        }
+      }),
+    )
   },
 
   joinGame: (code: string) => {
@@ -347,19 +367,20 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       return
     }
     set({ busy: true, error: null })
-    const player = useGameStore.getState().player
-    getSocket().emit(
-      'room:join',
-      { code: trimmed, name: player.name, avatar: player.avatar, playerId: getDeviceId() },
-      (res) => {
+    const s = getSocket()
+    enterRoom(
+      s,
+      'player',
+      trimmed,
+      giveUpOffline(s, (res: EnterResult) => {
         if (res.ok) {
-          set({ ...FRESH_GAME, role: 'player', room: res.state, busy: false, prefillCode: '', myPlayerId: res.playerId })
+          set({ prefillCode: '' })
           session.save(res.state.code, 'player')
-          useGameStore.getState().goTo(res.state.phase === 'lobby' ? 'arenaPlayerLobby' : 'arenaGame')
+          arrive('player', res.state, res.myPlayerId)
         } else {
           set({ error: res.error, busy: false })
         }
-      },
+      }),
     )
   },
 
@@ -398,24 +419,8 @@ export const useArenaStore = create<ArenaStore>((set) => ({
     const saved = session.load()
     if (!saved) return session.clear()
     const { code, role } = saved
-    const s = getSocket()
-    const enter = (state: RoomState, myPlayerId: string | null) => {
-      set({ ...FRESH_GAME, role, room: state, busy: false, myPlayerId })
-      const lobby = role === 'player' ? 'arenaPlayerLobby' : 'arenaHostLobby'
-      useGameStore.getState().goTo(state.phase === 'lobby' ? lobby : 'arenaGame')
-    }
     // The room is gone (game over, host left, server restarted): forget it quietly.
-    const fail = () => session.clear()
-    if (role === 'host') {
-      s.emit('room:rehost', { code, hostId: getDeviceId() }, (res) => (res.ok ? enter(res.state, null) : fail()))
-    } else if (role === 'spectator') {
-      s.emit('room:watch', { code }, (res) => (res.ok ? enter(res.state, null) : fail()))
-    } else {
-      const player = useGameStore.getState().player
-      s.emit('room:join', { code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) =>
-        res.ok ? enter(res.state, res.playerId) : fail(),
-      )
-    }
+    enterRoom(getSocket(), role, code, (res) => (res.ok ? arrive(role, res.state, res.myPlayerId) : session.clear()))
   },
   clearError: () => set({ error: null }),
 }))

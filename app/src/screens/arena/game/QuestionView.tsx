@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useAnimate } from 'motion/react'
 import { QUESTION_TIME_MS } from '@sixtysix/shared'
 import type { RevealPayload, YourResult } from '@sixtysix/shared'
-import { AnimatedNumber, CountdownRing, fireConfetti } from '../../../motion'
+import { AnimatedNumber, CountdownRing, ease, fireConfetti } from '../../../motion'
 import { Sparkles } from '../../../art/Sparkles'
 import { PaintedCoin, PaintedPortrait } from '../../../art/PaintedPortrait'
 import { PARCHMENT, STONE } from '../../../art/textures'
@@ -15,6 +15,7 @@ import { useGameStore } from '../../../game/store'
 import { useClockTicks } from '../../../game/useClockTicks'
 import { usePortraitBoard } from '../usePortraitBoard'
 import { VoiceBadge, VoiceRow } from './Team'
+import { WhoFace } from './WhoFace'
 
 /** Sound on/off right on the question screen; the same setting as in Profile. */
 function SoundToggle() {
@@ -102,16 +103,7 @@ function AnsweredStrip({ players, wide }: { players: NonNullable<QuestionViewPro
     <div className={`eh-who ${wide ? 'wide' : ''}`}>
       <div className="eh-who-faces">
         {shown.map((p) => (
-          <motion.span
-            key={p.id}
-            className={`eh-who-face ${p.done ? 'done' : ''} ${p.you ? 'you' : ''}`}
-            title={p.name}
-            animate={p.done ? { scale: [1, 1.25, 1] } : { scale: 1 }}
-            transition={{ duration: 0.35 }}
-          >
-            <PaintedPortrait id={p.avatar} className="eh-who-portrait" />
-            {p.done && <span className="eh-who-tick">✓</span>}
-          </motion.span>
+          <WhoFace key={p.id} avatar={p.avatar} name={p.name} done={p.done} you={p.you} />
         ))}
         {players.length > max && <span className="eh-who-more">+{players.length - max}</span>}
       </div>
@@ -198,7 +190,7 @@ export function QuestionView(props: QuestionViewProps) {
             style={{ backgroundImage: PARCHMENT, originY: 0 }}
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: ease.out }}
           >
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
               <div className="empire-q">{text}</div>

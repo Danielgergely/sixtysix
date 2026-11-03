@@ -10,7 +10,7 @@ import { rng } from './space'
  * 2 a wooden fence, 3 a stone wall, 4 a higher wall with merlons, 5 the same
  * with a watchtower. `fenceParts` lays the pieces along polylines; My Home
  * draws them instanced (one draw call per kind of piece), the city merges a
- * small ring per wall level for the lots (`lotFenceGeometry`).
+ * small ring per wall level for the lots (`lotFenceGeometries`).
  */
 
 export type FencePiece = 'stake' | 'bush' | 'post' | 'rail' | 'wallLow' | 'wallHigh' | 'merlon' | 'tower'
@@ -165,7 +165,7 @@ export function fenceParts(level: number, paths: P2[][], o: { k?: number; step?:
 }
 
 /** Merges fence parts into one geometry (the city's lot rings). */
-export function mergeFence(parts: FencePart[]): BufferGeometry {
+function mergeFence(parts: FencePart[]): BufferGeometry {
   const g = new Geo()
   for (const p of parts) g.addColored(pieceGeometry(p.piece), p.m, p.tint)
   return g.build(3)
@@ -182,6 +182,3 @@ export function lotFenceGeometries(): BufferGeometry[] {
   const ring: P2[] = [[gap, s], [s, s], [s, -s], [-s, -s], [-s, s], [-gap, s]]
   return [1, 2, 3, 4, 5].map((level) => mergeFence(fenceParts(level, [ring], { k: 0.55, step: level === 1 ? 1.5 : 1, tower: [-s + 0.3, -s + 0.3, 0], seed: 40 + level })))
 }
-
-/** The yard edge the city's rings were sized for. */
-export const LOT_FENCE_YARD = 7

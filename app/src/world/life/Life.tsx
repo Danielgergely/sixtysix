@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { t } from '../../i18n'
 import { useWasDragged } from '../dragged'
-import { FIGURES } from './figures'
+import { FIGURES, sayLine } from './figures'
 import type { Graph } from './nav'
 import { newSim, reducedMotion, stepSim, syncSims, tapSim, type Actor, type Sim } from './sim'
 
@@ -158,8 +158,7 @@ export const Life = memo(function Life({ actors, graph, zOf, bubbleZ, exits, inV
     if (wasDragged()) return
     const s = sims.current.get(a.id)
     if (!s || !tapSim(s)) return
-    const fig = FIGURES[a.fig]
-    const line = () => t(`life.say.${a.fig}.l${1 + Math.floor(Math.random() * fig.lines)}`)
+    const line = () => sayLine(a.fig)
     const key = Date.now()
     const custom = onTap?.(a)
     if (custom && typeof custom === 'object') {

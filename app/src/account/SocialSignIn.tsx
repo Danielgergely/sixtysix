@@ -44,7 +44,7 @@ export function SocialSignIn() {
 /** Google's or Apple's own button, for linking it to the signed-in account (Account settings). */
 export function LinkButton({ provider, info, onToken }: { provider: 'google' | 'apple'; info: ServerInfo; onToken: (token: string) => void }) {
   if (provider === 'google' && info.googleClientId) return <GoogleButton clientId={info.googleClientId} onCredential={onToken} />
-  if (provider === 'apple' && info.apple) return <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} onToken={(token) => onToken(token)} />
+  if (provider === 'apple' && info.apple) return <AppleButton clientId={info.apple.clientId} redirectUri={info.apple.redirectUri} onToken={onToken} />
   return null
 }
 

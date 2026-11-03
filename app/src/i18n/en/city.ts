@@ -93,6 +93,7 @@ export default {
 
   gate: {
     title: 'The Sheep Gate',
+    ref: 'Neh 3:1',
     verse: '“Then Eliashib the high priest rose up with his brothers the priests, and they built the sheep gate.” <em>Neh 3:1</em>',
     text: 'Every coin for building is earned out there, answering questions. The road leads back to the quiz.',
     back: '📜 Back to the quiz',
@@ -100,6 +101,7 @@ export default {
 
   pool: {
     title: 'Pool of Siloam',
+    ref: 'John 9:7',
     verse: '“Go, wash in the pool of Siloam.” So he went away, washed, and came back seeing. <em>John 9:7</em>',
     text: 'Hezekiah “made the pool, and the conduit, and brought water into the city” (2 Kgs 20:20) — the same idea as the cistern your own well can become.',
   },

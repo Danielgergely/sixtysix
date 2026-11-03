@@ -1,6 +1,22 @@
 import type { Difficulty, Locale, Question, VerseText } from './types'
 import { loadExclusions } from '../flags/flagStore'
 
+/** One load per language, shared by every caller; a failed load is forgotten so the next call retries. */
+function cachedPerLocale<T>(load: Record<Locale, () => Promise<T>>): (locale: Locale) => Promise<T> {
+  const cache = new Map<Locale, Promise<T>>()
+  return (locale) => {
+    let p = cache.get(locale)
+    if (!p) {
+      p = load[locale]().catch((err) => {
+        cache.delete(locale)
+        throw err
+      })
+      cache.set(locale, p)
+    }
+    return p
+  }
+}
+
 /**
  * bank.json is generated + verified by question-pipeline/ — do not edit by
  * hand. The app loads bank.<locale>.json instead: the same questions with
@@ -12,18 +28,7 @@ const BANK_FILES: Record<Locale, () => Promise<Question[]>> = {
   de: () => import('./bank.de.json').then((m) => m.default as Question[]),
   hu: () => import('./bank.hu.json').then((m) => m.default as Question[]),
 }
-const bankCache = new Map<Locale, Promise<Question[]>>()
-export function loadBank(locale: Locale): Promise<Question[]> {
-  let p = bankCache.get(locale)
-  if (!p) {
-    p = BANK_FILES[locale]().catch((err) => {
-      bankCache.delete(locale)
-      throw err
-    })
-    bankCache.set(locale, p)
-  }
-  return p
-}
+export const loadBank = cachedPerLocale(BANK_FILES)
 
 /**
  * Cited verse per question id in one language — each its own lazy chunk.
@@ -37,18 +42,7 @@ const VERSE_FILES: Record<Locale, () => Promise<Record<string, VerseText>>> = {
   de: () => import('./verses.de.json').then((m) => m.default as Record<string, VerseText>),
   hu: () => import('./verses.hu.json').then((m) => m.default as Record<string, VerseText>),
 }
-const verseCache = new Map<Locale, Promise<Record<string, VerseText>>>()
-export function loadVerses(locale: Locale): Promise<Record<string, VerseText>> {
-  let p = verseCache.get(locale)
-  if (!p) {
-    p = VERSE_FILES[locale]().catch((err) => {
-      verseCache.delete(locale)
-      throw err
-    })
-    verseCache.set(locale, p)
-  }
-  return p
-}
+export const loadVerses = cachedPerLocale(VERSE_FILES)
 
 export interface GetQuestionsOptions {
   count: number

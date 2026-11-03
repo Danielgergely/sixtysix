@@ -33,7 +33,7 @@ export function AccountPanel() {
   const userIssue = mode === 'signup' ? usernameIssue(username) : username.trim() ? null : t('account.problems.usernameEmpty')
   const passIssue = mode === 'signup' ? passwordIssue(password) : password ? null : t('account.problems.passwordEmpty')
   // Characters that can never work show at once; "too short" waits until they leave the field.
-  const typingShort = !!username && ['short'].includes(usernameProblem(username) ?? '')
+  const typingShort = !!username && usernameProblem(username) === 'short'
   const showUser = userIssue && (tried || left.username || (mode === 'signup' && !!username.trim() && !typingShort))
   const showPass = passIssue && (tried || (left.password && !!password))
 
@@ -41,6 +41,8 @@ export function AccountPanel() {
     f(v)
     clearError()
   }
+
+  const [outError, setOutError] = useState<string | null>(null)
 
   const submit = async () => {
     if (busy) return
@@ -74,9 +76,15 @@ export function AccountPanel() {
               .split('\u0000')
               .map((part, i) => (i === 0 ? part : [<strong key={i}>{account.username}</strong>, part]))}
           </span>
-          <button className="btn-secondary account-out" onClick={() => void logout()}>
+          <button
+            className="btn-secondary account-out"
+            onClick={async () => {
+              setOutError(await logout())
+            }}
+          >
             {t('account.signOut')}
           </button>
+          {outError && <div className="arena-error">{outError}</div>}
         </div>
       ) : (
         <>

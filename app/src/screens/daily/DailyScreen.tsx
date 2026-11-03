@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 import { useGameStore } from '../../game/store'
 import { DAILY_COUNT, shareText, useDailyStore } from '../../daily/dailyStore'
 import { PaintedCoin } from '../../art/PaintedPortrait'
 import { PARCHMENT } from '../../art/textures'
-import { AnimatedNumber, STAGGER, spring } from '../../motion'
-import { AnswerCard } from '../arena/game/AnswerCard'
-import { quoteVerse } from '../../questions/quoteVerse'
-import { useLocale, useT } from '../../i18n'
-import { questionIn, useVerses, verseOf } from '../../questions/localize'
+import { AnimatedNumber, spring } from '../../motion'
+import { useT } from '../../i18n'
 import { rich } from '../arena/rich'
-import { FlagButton } from '../../flags/FlagSheet'
 import { useIntro } from '../../tutorial/useIntro'
+import { AnswerGrid, QuestionScroll } from '../practice/QuestionScroll'
 
 /** Time until local midnight, "5h 12m". */
 function useUntilTomorrow(): string {
@@ -33,8 +30,6 @@ export function DailyScreen() {
   useIntro('daily')
   const goTo = useGameStore((s) => s.goTo)
   const { saved, questions, coins, answer } = useDailyStore()
-  const locale = useLocale((s) => s.locale)
-  const verses = useVerses()
   // The question whose verdict is on screen; null while choosing.
   const [shown, setShown] = useState<number | null>(null)
   const done = saved.picks.length >= DAILY_COUNT && shown === null
@@ -67,46 +62,20 @@ export function DailyScreen() {
         </span>
       </header>
 
-      <motion.div key={q.id} className="pr-scroll" style={{ backgroundImage: PARCHMENT, originY: 0 }} initial={{ scaleY: 0.2, opacity: 0 }} animate={{ scaleY: 1, opacity: 1 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-        <div className="pr-meta">
-          {t('daily.meta', { n: index + 1, total: DAILY_COUNT, category: t(`quiz.categories.${q.category}`) })} {'●'.repeat(q.difficulty)}
-          {'○'.repeat(5 - q.difficulty)}
-        </div>
-        <div className="pr-q">{questionIn(q, locale).text}</div>
-        <AnimatePresence>
-          {answered && (
-            <motion.div className="pr-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-              {verseOf(verses, q).text && <>{quoteVerse(verseOf(verses, q).text, locale)} </>}
-              <em>— {verseOf(verses, q).ref}</em>
-              <FlagButton target={{ questionId: q.id, shown: questionIn(q, locale) }} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      <QuestionScroll
+        question={q}
+        meta={t('daily.meta', { n: index + 1, total: DAILY_COUNT, category: t(`quiz.categories.${q.category}`) })}
+        answered={answered}
+      />
 
-      <div className="pr-grid">
-        {questionIn(q, locale).answers.map((text, i) => {
-          const isRight = answered && i === q.correctIndex
-          const isWrongPick = answered && i === picked && !correct
-          return (
-            <motion.button
-              key={`${q.id}-${i}`}
-              className="pr-slot"
-              disabled={answered}
-              onClick={() => {
-                answer(i)
-                setShown(index)
-              }}
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1, scale: isRight ? 1.05 : 1, x: isWrongPick ? [0, -8, 8, -5, 0] : 0 }}
-              whileTap={answered ? undefined : { scale: 0.95 }}
-              transition={{ ...spring.bouncy, delay: answered ? 0 : i * STAGGER }}
-            >
-              <AnswerCard index={i} text={text} className={answered ? (isRight ? 'win' : 'dim') : ''} />
-            </motion.button>
-          )
-        })}
-      </div>
+      <AnswerGrid
+        question={q}
+        picked={answered ? picked : null}
+        onPick={(i) => {
+          answer(i)
+          setShown(index)
+        }}
+      />
 
       <div className="pr-foot">
         {answered && (

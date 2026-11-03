@@ -27,7 +27,7 @@ export function ArenaMenuScreen() {
     if (!canJoin) return
     // Persist the choice — it's also the Bible Blitz identity.
     updateProfile({ name: name.trim() })
-    void joinGame(code)
+    joinGame(code)
   }
 
   return (

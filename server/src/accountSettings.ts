@@ -1,14 +1,16 @@
-import { createHash } from 'node:crypto'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { normalizeUsername, usernameKey } from '@sixtysix/shared'
 import {
+  bodyOf,
   checkPassword,
   clientIp,
   db,
   hashPassword,
   isAdminName,
   passwordError,
+  sha256,
   toAccount,
+  TOO_MANY,
   tooMany,
   userByName,
   userFromRequest,
@@ -24,8 +26,6 @@ import {
  * sign-in (accounts.ts → tooMany). Errors are English; the app translates them.
  */
 
-const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
-const TOO_MANY = 'Too many attempts — wait a minute.'
 
 type Handler = (me: UserRow, body: Record<string, unknown>, req: FastifyRequest, reply: FastifyReply) => unknown
 
@@ -35,8 +35,7 @@ function settingsRoute(app: FastifyInstance, path: string, fn: Handler): void {
     if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const me = userFromRequest(req)
     if (!me) return reply.code(401).send({ ok: false, error: 'Signed out' })
-    const body = (req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {}) as Record<string, unknown>
-    return fn(me, body, req, reply)
+    return fn(me, bodyOf(req), req, reply)
   })
 }
 

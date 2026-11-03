@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { levelDef, type BuildingId } from '@sixtysix/shared'
+import { MATERIAL_INFO, PRODUCERS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -20,12 +20,9 @@ export function countdown(ms: number): string {
   return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`
 }
 
-/** Icon for a building at a level (level 0 shows the first level's icon, dimmed by the caller). */
-export const buildingIcon = (b: BuildingId, level: number) => levelDef(b, Math.max(1, level))?.icon ?? '🏗️'
-
 /** Painted art (app/public/art/plot-*.webp, art-pipeline/prompts.json): a few stages per building, one entry per level. */
 const art = (name: string) => `/art/plot-${name}.webp`
-export const BUILDING_ART: Record<BuildingId, string[]> = {
+const BUILDING_ART: Record<BuildingId, string[]> = {
   house: ['house-1', 'house-2', 'house-3', 'house-3', 'house-4', 'house-4', 'house-5'].map(art),
   well: ['well-1', 'well-2', 'well-2', 'well-3', 'well-3'].map(art),
   wall: ['wall-1', 'wall-1', 'wall-2', 'wall-2', 'wall-2'].map(art),
@@ -41,4 +38,23 @@ export const COURTYARD_ART = art('courtyard')
 export function artFor(b: BuildingId, level: number): string {
   const stages = BUILDING_ART[b]
   return stages[Math.min(stages.length, Math.max(1, level)) - 1]
+}
+
+/** How far a build has come (0…100 %). */
+export const buildPct = (build: { startedAt: number; endsAt: number }, now: number) => Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100)
+
+/**
+ * What a spot shows over the homestead (the painted yard and the 3D one): the
+ * build going up there, production waiting (and its material's icon), and
+ * whether its level is new since the player last looked.
+ */
+export function spotStatus(b: BuildingId, levels: Record<BuildingId, number>, plot: PlotState | undefined, seen: Record<BuildingId, number> | null | undefined) {
+  const level = levels[b]
+  return {
+    level,
+    build: plot?.builds.find((x) => x.building === b),
+    waiting: plot && PRODUCERS.includes(b) ? ready(plot, b) : 0,
+    icon: MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon,
+    isNew: seen && plot ? level > seen[b] : false,
+  }
 }

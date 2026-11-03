@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { motion } from 'motion/react'
 import {
   BUILDINGS,
   MATERIAL_INFO,
@@ -15,39 +13,21 @@ import {
 } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { usePlotStore } from '../../plot/plotStore'
-import { PARCHMENT } from '../../art/textures'
 import { PaintedCoin } from '../../art/PaintedPortrait'
-import { fireConfetti, spring } from '../../motion'
+import { fireConfetti } from '../../motion'
 import { t as tNow, tServer, useLocale, useT } from '../../i18n'
-import { artFor, COURTYARD_ART, countdown } from './homeUtil'
+import { artFor, buildPct, COURTYARD_ART, countdown } from './homeUtil'
 import { buildingName, buildingWhat, formatMinutes, levelName, listMaterials, materialAmount, materialName, requirementLabels } from './plotText'
 import { rich } from './rich'
+import { Sheet } from './parts'
 
 /** Bottom sheet for one spot: what it does, the next level, and the Upgrade / Buy-missing buttons. */
 export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'courtyard'; plot: PlotState; onClose: () => void }) {
   const t = useT()
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
   return (
-    <>
-      <motion.div className="hp-scrim" onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
-      <motion.div
-        className="hp-sheet"
-        style={{ backgroundImage: PARCHMENT }}
-        initial={{ y: '100%' }}
-        animate={{ y: 0, transition: spring.gentle }}
-        exit={{ y: '100%', transition: { duration: 0.2 } }}
-        role="dialog"
-      >
-        <button className="hp-sheet-close" onClick={onClose} title={t('home.close')}>
-          ✕
-        </button>
-        {spot === 'courtyard' ? <Courtyard /> : <Building b={spot} plot={plot} />}
-      </motion.div>
-    </>
+    <Sheet closeTitle={t('home.close')} onClose={onClose}>
+      {spot === 'courtyard' ? <Courtyard /> : <Building b={spot} plot={plot} />}
+    </Sheet>
   )
 }
 
@@ -127,21 +107,27 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           </button>
         </div>
       )}
-      {b === 'well' && cur?.water && <div className="hp-row-box">
+      {b === 'well' && cur?.water && (
+        <div className="hp-row-box">
           <span>{rich(t('home.sheet.well', { n: cur.water }))}</span>
-        </div>}
-      {b === 'store' && cur?.cap && <div className="hp-row-box">
+        </div>
+      )}
+      {b === 'store' && cur?.cap && (
+        <div className="hp-row-box">
           <span>{rich(t('home.sheet.store', { n: cur.cap }))}</span>
-        </div>}
-      {b === 'house' && level < 4 && <div className="hp-row-box">
+        </div>
+      )}
+      {b === 'house' && level < 4 && (
+        <div className="hp-row-box">
           <span>{rich(t('home.sheet.house'))}</span>
-        </div>}
+        </div>
+      )}
 
       {build ? (
         <div className="hp-building">
           <strong>{t('home.sheet.building', { level: build.toLevel, name: levelName(b, build.toLevel) })}</strong>
           <span className="hp-bar big">
-            <span style={{ width: `${Math.min(100, ((now() - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100)}%` }} />
+            <span style={{ width: `${buildPct(build, now())}%` }} />
           </span>
           <small>{t('home.sheet.left', { time: countdown(build.endsAt - now()) })}</small>
           <button className="hp-btn" disabled={busy} onClick={() => void startScroll()}>

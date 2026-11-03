@@ -5,6 +5,7 @@
  *
  * The curve is checked with docs/balance/levelsim.py; change both together.
  */
+import { DAY_MS } from './city'
 
 // ── levels ────────────────────────────────────────────────────────────
 
@@ -114,7 +115,6 @@ export const SKILLS: Record<SkillId, SkillDef> = {
 }
 
 export const skillsInPath = (path: SkillPath): SkillDef[] => SKILL_IDS.map((id) => SKILLS[id]).filter((s) => s.path === path)
-/** Points' worth of skills in the whole tree (37). */
 /** Points the learnable tree can hold ("soon" skills don't count until they open). */
 export const TREE_POINTS = SKILL_IDS.reduce((n, id) => n + (SKILLS[id].soon ? 0 : SKILLS[id].ranks), 0)
 
@@ -171,7 +171,7 @@ export function learnError(state: SkillState, id: SkillId, xp: number): string |
 export function weekStartUtc(now: number): number {
   const d = new Date(now)
   const day = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
-  return day - ((d.getUTCDay() + 6) % 7) * 86_400_000
+  return day - ((d.getUTCDay() + 6) % 7) * DAY_MS
 }
 
 // ── effects: rewards (server, when grants are applied) ─────────────────
@@ -233,7 +233,7 @@ export function plotMods(ranks: SkillRanks | undefined): PlotMods {
 }
 
 export const WEEKLY_CEDAR = 2
-export const SEVEN_YEARS_MS = 7 * 86_400_000
+export const SEVEN_YEARS_MS = 7 * DAY_MS
 
 // ── effects: quiz gifts (client side, Bible Blitz and Practice only) ───
 

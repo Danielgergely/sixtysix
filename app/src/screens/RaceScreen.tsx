@@ -6,7 +6,8 @@ import type { Racer } from '../game/types'
 import { QuestionView } from './arena/game/QuestionView'
 import { RoadToThrone, type RaceEntry } from '../ceremony/RoadToThrone'
 import { PARCHMENT } from '../art/textures'
-import { duration, ease } from '../motion'
+import { sceneSlide } from '../motion'
+import { ConfirmModal } from './arena/game/ConfirmModal'
 import { useGiftStore } from '../skills/giftStore'
 import { GiftBar } from '../skills/GiftBar'
 import { useLocale, useT } from '../i18n'
@@ -106,13 +107,7 @@ export function RaceScreen() {
         </button>
       )}
       <AnimatePresence mode="wait">
-        <motion.div
-          key={sceneKey}
-          className="screen-transition"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0, transition: { duration: duration.slow, ease: ease.out } }}
-          exit={{ opacity: 0, x: -40, transition: { duration: duration.fast } }}
-        >
+        <motion.div key={sceneKey} className="screen-transition" {...sceneSlide}>
           {standings ? (
             <BlitzStandings finished={phase === 'finished'} />
           ) : (
@@ -144,18 +139,14 @@ export function RaceScreen() {
 
       {/* Leave confirmation — the race keeps running behind it. */}
       {confirmLeave && (
-        <div className="modal-overlay" onClick={() => setConfirmLeave(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">{t('quiz.race.leaveTitle')}</div>
-            <p className="modal-text">{t('quiz.race.leaveText')}</p>
-            <button className="btn-play btn-danger" onClick={() => goTo('menu')}>
-              {t('quiz.race.leaveConfirm')}
-            </button>
-            <button className="btn-secondary" onClick={() => setConfirmLeave(false)}>
-              {t('quiz.race.keep')}
-            </button>
-          </div>
-        </div>
+        <ConfirmModal
+          title={t('quiz.race.leaveTitle')}
+          text={t('quiz.race.leaveText')}
+          confirm={t('quiz.race.leaveConfirm')}
+          cancel={t('quiz.race.keep')}
+          onConfirm={() => goTo('menu')}
+          onCancel={() => setConfirmLeave(false)}
+        />
       )}
     </div>
   )

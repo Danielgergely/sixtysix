@@ -1,3 +1,4 @@
+import type { Resident } from '../account/publicApi'
 import { LANDMARKS, WORLD, lotFor } from './cityLayout'
 import type { Actor } from './life/sim'
 import { TOWNSFOLK, type FigureId } from './life/figures'
@@ -23,6 +24,9 @@ export interface Home {
   /** Played or built today. */
   active: boolean
 }
+
+/** The families' homes the townsfolk come and go between. */
+export const homesOf = (residents: Resident[]): Home[] => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 }))
 
 const pct = (v: number) => (v / 100) * WORLD
 const pt = (x: number, y: number): Pt => ({ x: pct(x), y: pct(y) })
@@ -59,8 +63,6 @@ export const LINKS: [Road, Road][] = [
   ['X1', 'gN'], ['X2', 'O330'], ['X3', 'O30'], ['X4', 'O90'], ['X5', 'gSW'], ['X6', 'O180'],
 ]
 export const EXITS: Road[] = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6']
-/** Where the gates are: the road from the inner ring out through each one. */
-export const GATE_ROADS: [Road, Road][] = [['N1', 'gN'], ['E2', 'gNE'], ['W1', 'gW'], ['SW', 'gSW']]
 /** An animal's patch (world px): centre and radii. */
 export interface Area {
   x: number

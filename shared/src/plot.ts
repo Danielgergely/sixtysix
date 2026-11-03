@@ -183,10 +183,9 @@ export const STARTER_GIFT: Materials = { wood: 20, bricks: 20, stone: 20 }
 /** What a producer holds with no storehouse yet. */
 export const BASE_CAP = 10
 export const SECOND_BUILDER_HOUSE = 4
-/** Workers' scroll: answer this many, get this many right, and the build loses SPEEDUP_MS. */
+/** Workers' scroll: answer this many, get this many right, and the build loses scrollCutMs (5 min, more with Skilled workers). */
 export const SCROLL_QUESTIONS = 3
 export const SCROLL_PASS = 2
-export const SPEEDUP_MS = 5 * 60_000
 /** Scrolls can take at most this share of a build's time off, in total. */
 export const SPEEDUP_MAX_SHARE = 0.5
 /** Minimum time between two Workers' scrolls (per player). */
@@ -278,7 +277,7 @@ function produce(s: PlotState, from: number, to: number): void {
   const cap = storeCap(s.levels, mods)
   // Seven good years: the boosted part of this segment counts 1.5×.
   // Only while the skill is still learned (a re-spec ends the boost).
-  const boosted = s.boostUntil && modsOf(s).sevenYears ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
+  const boosted = s.boostUntil && mods.sevenYears ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
   const effMs = (ms + 0.5 * boosted) * (1 + mods.production)
   for (const b of PRODUCERS) {
     const make = levelDef(b, s.levels[b])?.make
@@ -427,7 +426,3 @@ export interface ScrollQuestion {
   text: string
   answers: [string, string, string, string]
 }
-
-export type PlotResponse =
-  | { ok: true; plot: PlotState; coins: number; now: number; collected?: Materials }
-  | { ok: false; error: string }

@@ -1,5 +1,5 @@
 import { TEMPLE, WALL, WORLD } from '../cityLayout'
-import { MOUNT_PTS, PLATFORM, px, py, S, STAIR_RUN, STAIR_SPECS, STAIR_W, ux, uz } from './plan'
+import { MOUNT_PTS, PLATFORM, px, py, S, STAIR_RUN, STAIR_SPECS, STAIR_W, stairFrame, ux, uz } from './plan'
 
 export { lotCentre, MOUNT_PTS, px, py, S, ux, uz } from './plan'
 
@@ -104,16 +104,7 @@ export interface Stair {
 }
 
 export const STAIRS: Stair[] = STAIR_SPECS.map(({ edge, along }) => {
-  const [ax, az] = MOUNT_PTS[edge]
-  const [bx, bz] = MOUNT_PTS[(edge + 1) % 4]
-  const len = Math.hypot(bx - ax, bz - az)
-  const ex = (bx - ax) / len
-  const ez = (bz - az) / len
-  const qx = ax + ex * along
-  const qz = az + ez * along
-  // Outwards: away from the platform's middle.
-  let [nx, nz] = [-ez, ex]
-  if ((qx - PLATFORM.x) * nx + (qz - PLATFORM.z) * nz < 0) [nx, nz] = [ez, -ex]
+  const { qx, qz, ex, ez, nx, nz } = stairFrame(edge, along)
   return { qx, qz, nx, nz, ex, ez, run: STAIR_RUN, width: STAIR_W, edge, along, foot: heightAt(qx + nx * STAIR_RUN, qz + nz * STAIR_RUN) }
 })
 
@@ -128,9 +119,6 @@ export function surfaceAt(x: number, z: number): number {
   }
   return ground
 }
-
-/** The Temple anchor in units. */
-export const TEMPLE_XZ: [number, number] = [TX, TZ]
 
 /** A stable random number in [0, 1) for an integer seed. */
 export function hash(n: number): number {

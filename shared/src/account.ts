@@ -126,4 +126,5 @@ export interface AccountLogins {
   apple: boolean
 }
 
-export type AccountResponse = { ok: true; token?: string; account: Account } | { ok: false; error: string }
+/** `created`: Google/Apple sign-in made a new account (it already started from the guest progress, so nothing is merged). */
+export type AccountResponse = { ok: true; token?: string; account: Account; created?: boolean } | { ok: false; error: string }

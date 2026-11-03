@@ -95,6 +95,7 @@ export default {
     avg: 'Ø {pts}',
   },
   errors: {
+    offline: 'Keine Verbindung zum Server – versuch es gleich noch einmal',
     enterCode: 'Gib den Spielcode ein',
     ended: 'Das Spiel ist zu Ende',
   },

@@ -30,6 +30,10 @@ export const materialName = (m: Material) => t(`home.materials.${m}.name`)
 /** "12 bricks" */
 export const materialAmount = (m: Material, n: number) => t(`home.materials.${m}.amount`, { count: n, n: num(n) })
 
+/** A spot's name tag: its level, or (not built yet) going up, empty, or a dash on someone else's plot. */
+export const spotLevelText = (level: number, building: boolean, ownPlot: boolean) =>
+  level ? t('home.scene.lv', { n: level }) : building ? t('home.scene.goingUp') : ownPlot ? t('home.scene.empty') : '—'
+
 /** "10 wood, 5 bricks" */
 export const listMaterials = (m: Materials) =>
   MATERIALS.filter((k) => m[k])
@@ -53,5 +57,3 @@ export function requirementLabels(plot: PlotState, c: UpgradeCheck): string[] {
   }
   return labels
 }
-
-export { num as formatNumber }

@@ -50,7 +50,7 @@ export function weedGeometry(): BufferGeometry {
   return g.build(3)
 }
 
-/** The "For sale" sign's post; its board is a textured plane (see City3D). */
+/** The "For sale" sign's post; its board is a textured plane (see CityScene). */
 export function signPostGeometry(): BufferGeometry {
   const g = new Geo(rng(17))
   g.box(0, 0, 0, 0.2, 3.2, 0.2, C.woodDark, { jitter: 0 })

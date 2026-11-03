@@ -1,6 +1,7 @@
 import { TEAM_LOSS_COINS, TEAM_WIN_COINS, coinsForPlacement } from '@sixtysix/shared'
 import type { Server } from 'socket.io'
 import type { ClientToServerEvents, ServerToClientEvents, TeamState, TeamVotes } from '@sixtysix/shared'
+import { shuffle } from './bank.js'
 import type { Room, RoomPlayer } from './rooms.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
@@ -22,15 +23,6 @@ export const GATES = ['Sheep Gate', 'Fish Gate', 'Valley Gate', 'Fountain Gate']
  */
 const GOLIATH_HP_PER_PLAYER_QUESTION = 330
 
-function shuffled<T>(items: T[]): T[] {
-  const a = [...items]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
 function countMembers(room: Room): void {
   if (!room.teams) return
   for (const t of room.teams) t.members = [...room.players.values()].filter((p) => p.team === t.id).length
@@ -44,7 +36,7 @@ const teamCount = (players: number): number => (players < 8 ? 2 : players < 15 ?
  * room grows past 8 / 15 players a gate is added, and the last joiners of the
  * biggest teams move over. Any other mode clears the teams.
  */
-export function formTeams(room: Room, shuffle = false): void {
+export function formTeams(room: Room, reshuffle = false): void {
   const players = [...room.players.values()]
   if (room.config.mode !== 'wall') {
     room.teams = undefined
@@ -54,7 +46,7 @@ export function formTeams(room: Room, shuffle = false): void {
   const n = teamCount(players.length)
   const teams: TeamState[] = GATES.slice(0, n).map((name, id) => ({ id, name, stones: 0, lastGain: 0, members: 0 }))
   room.teams = teams
-  if (shuffle) shuffled(players).forEach((p, i) => (p.team = i % n))
+  if (reshuffle) shuffle([...players]).forEach((p, i) => (p.team = i % n))
   const size = (id: number) => players.filter((p) => p.team === id).length
   const bySize = () => teams.map((t) => t.id).sort((a, b) => size(a) - size(b) || a - b)
   for (const p of players) if (p.team !== undefined && p.team >= n) p.team = undefined

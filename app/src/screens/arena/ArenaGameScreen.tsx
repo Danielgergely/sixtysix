@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useArenaStore } from '../../arena/arenaStore'
-import { duration, ease } from '../../motion'
+import { sceneSlide } from '../../motion'
+import { ConfirmModal } from './game/ConfirmModal'
 import { Leaderboard } from './game/Leaderboard'
 import { Podium } from './game/Podium'
 import { QuestionView } from './game/QuestionView'
@@ -9,7 +10,7 @@ import { RotateHint } from './RotateHint'
 import { usePortraitBoard } from './usePortraitBoard'
 import { GoliathFinale, GoliathRound } from '../../ceremony/Goliath'
 import { WallFinale, WallRound } from '../../ceremony/Wall'
-import { TEAM_COLORS, gateName, myTeamOf, teamVoice } from './modes'
+import { gateName, myTeamOf, teamColor, teamVoice } from './modes'
 import { useLocale, useT } from '../../i18n'
 import { Hint } from '../../tutorial/Hint'
 import { FlagButton } from '../../flags/FlagSheet'
@@ -27,20 +28,14 @@ function LeaveControl({ role }: { role: string | null }) {
         {isHost ? t('arena.game.end') : t('arena.game.leave')}
       </button>
       {confirm && (
-        <div className="modal-overlay" onClick={() => setConfirm(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">{isHost ? t('arena.game.endTitle') : t('arena.game.leaveTitle')}</div>
-            <p className="modal-text">
-              {isHost ? t('arena.game.endText') : t('arena.game.leaveText')}
-            </p>
-            <button className="btn-play btn-danger" onClick={leaveArena}>
-              {isHost ? t('arena.game.endGame') : t('arena.game.leaveGame')}
-            </button>
-            <button className="btn-secondary" onClick={() => setConfirm(false)}>
-              {isHost ? t('arena.game.keepPlaying') : t('arena.game.stay')}
-            </button>
-          </div>
-        </div>
+        <ConfirmModal
+          title={isHost ? t('arena.game.endTitle') : t('arena.game.leaveTitle')}
+          text={isHost ? t('arena.game.endText') : t('arena.game.leaveText')}
+          confirm={isHost ? t('arena.game.endGame') : t('arena.game.leaveGame')}
+          cancel={isHost ? t('arena.game.keepPlaying') : t('arena.game.stay')}
+          onConfirm={leaveArena}
+          onCancel={() => setConfirm(false)}
+        />
       )}
     </>
   )
@@ -91,9 +86,7 @@ function ArenaQuestion() {
         result={yourResult}
         score={me?.score}
         answerCount={answerCount}
-        answered={room.players
-          .filter((p) => p.connected || answeredIds.includes(p.id))
-          .map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
+        answered={connected.map((p) => ({ id: p.id, avatar: p.avatar, name: p.name, done: answeredIds.includes(p.id), you: p.id === myPlayerId }))}
         playerCount={room.players.length}
         onAnswer={answer}
         teamStrip={
@@ -111,7 +104,7 @@ function ArenaQuestion() {
         teamVoice={mine && phase === 'question' ? teamVoice(teamVotes) : null}
         badge={
           team && (!mine || phase === 'reveal') ? (
-            <span className="mode-badge" style={{ background: TEAM_COLORS[team.id % TEAM_COLORS.length] }}>
+            <span className="mode-badge" style={{ background: teamColor(team.id) }}>
               🧱 {gateName(t, team.name)}
             </span>
           ) : room.goliath ? (
@@ -222,13 +215,7 @@ export function ArenaGameScreen() {
       )}
       <AnimatePresence mode="wait">
         {scene && (
-          <motion.div
-            key={scene.key}
-            className="screen-transition"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0, transition: { duration: duration.slow, ease: ease.out } }}
-            exit={{ opacity: 0, x: -40, transition: { duration: duration.fast } }}
-          >
+          <motion.div key={scene.key} className="screen-transition" {...sceneSlide}>
             {scene.node}
           </motion.div>
         )}

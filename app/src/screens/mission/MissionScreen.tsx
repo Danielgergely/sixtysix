@@ -12,7 +12,7 @@ import {
 } from '@sixtysix/shared'
 import { MISSION_MAP } from '@sixtysix/shared/missionMaps/campaign'
 import { useGameStore } from '../../game/store'
-import { isLeader, lastMissionCode, useMissionStore, useMySeat } from '../../mission/missionStore'
+import { isLeader, lastMissionCode, myAnswerTo, useMissionStore, useMySeat } from '../../mission/missionStore'
 import { MapView } from '../../mission/MapView'
 import { baseMapProps, nameOf, questionIn, regionName, rich, seatColour, seatName, useJoinOrigin } from '../../mission/util'
 import { OnlineEntry } from '../shell/OnlineEntry'
@@ -334,7 +334,8 @@ function MapPhase({ state, mySeat }: { state: MissionState; mySeat: number }) {
 }
 
 function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) {
-  const { endsAt, myAnswer, answer } = useMissionStore()
+  const { endsAt, answer } = useMissionStore()
+  const mine = useMissionStore((s) => myAnswerTo(s, state))
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const q = state.question!
@@ -342,7 +343,6 @@ function MyQuestion({ state, mySeat }: { state: MissionState; mySeat: number }) 
   const verse = state.reveal?.verses[locale]
   const reveal = state.reveal && verse ? { ...state.reveal, reference: verse.ref, verse: verse.text } : state.reveal
   const { text, answers } = questionIn(state)
-  const mine = myAnswer?.n === q.n ? myAnswer.index : null
   // After a reload the server knows I answered, but not which card: show the picks at the reveal.
   const played = mine ?? (state.phase === 'reveal' ? (state.reveal?.picks[mySeat] ?? -1) : null)
   const wish = state.wishes.find((w) => w.seat === mySeat)

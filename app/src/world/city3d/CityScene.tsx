@@ -5,6 +5,7 @@ import {
   AdditiveBlending,
   BoxGeometry,
   BufferAttribute,
+  BufferGeometry,
   Color,
   CylinderGeometry,
   DoubleSide,
@@ -21,13 +22,12 @@ import {
   RingGeometry,
   Vector2,
   Vector3,
-  type BufferGeometry,
   type DirectionalLight,
 } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
 import { LOTS, lotOpen } from '../cityLayout'
-import { townsfolk, type Home } from '../cityTownsfolk'
+import { homesOf, townsfolk } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
 import { configureRig, smallScreen, useDisposeOnUnmount } from './rig'
@@ -37,6 +37,7 @@ import { HOUSE_YARD } from './models'
 import { C } from './palette'
 import { HOUSE_SCALE, LOT_HALF } from './plan'
 import { CITY_NET } from './streets'
+import { setInstances } from './geo'
 import { PoolWater } from './PoolWater'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
 import { groundTexture, terrainGeometry } from './terrain'
@@ -112,18 +113,23 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
   const fenceGeo = useMemo(() => lotFenceGeometries(), [])
   const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry() }), [])
-  const signMat = useMemo(() => new MeshLambertMaterial({ map: signTexture(forSale) }), [forSale])
+  // One material for good: a new one would make R3F rebuild the boards' instanced mesh (and lose its instances).
+  const signMat = useMemo(() => new MeshLambertMaterial(), [])
+  // The board's words, painted again when the language changes; the old painting is let go.
+  useLayoutEffect(() => {
+    const old = signMat.map
+    signMat.map = signTexture(forSale)
+    signMat.needsUpdate = true
+    old?.dispose()
+    invalidate()
+  }, [signMat, forSale, invalidate])
+  // The board's painted faces, front and back, in one geometry (the post carries the board itself).
   const signFace = useMemo(() => {
-    const a = new PlaneGeometry(3.05, 1.45).translate(0, 3.825, 0.06)
-    const b = new PlaneGeometry(3.05, 1.45).rotateY(Math.PI).translate(0, 3.825, -0.06)
-    const pos = new Float32Array([...(a.toNonIndexed().getAttribute('position').array as Float32Array), ...(b.toNonIndexed().getAttribute('position').array as Float32Array)])
-    const uv = new Float32Array([...(a.toNonIndexed().getAttribute('uv').array as Float32Array), ...(b.toNonIndexed().getAttribute('uv').array as Float32Array)])
-    const nor = new Float32Array([...(a.toNonIndexed().getAttribute('normal').array as Float32Array), ...(b.toNonIndexed().getAttribute('normal').array as Float32Array)])
-    const g = a.clone()
-    g.setIndex(null)
-    g.setAttribute('position', new BufferAttribute(pos, 3))
-    g.setAttribute('uv', new BufferAttribute(uv, 2))
-    g.setAttribute('normal', new BufferAttribute(nor, 3))
+    const faces = [new PlaneGeometry(3.05, 1.45).translate(0, 3.825, 0.06), new PlaneGeometry(3.05, 1.45).rotateY(Math.PI).translate(0, 3.825, -0.06)].map((f) => f.toNonIndexed())
+    const g = new BufferGeometry()
+    for (const [name, size] of [['position', 3], ['uv', 2], ['normal', 3]] as const) {
+      g.setAttribute(name, new BufferAttribute(new Float32Array(faces.flatMap((f) => [...(f.getAttribute(name).array as Float32Array)])), size))
+    }
     return g
   }, [])
 
@@ -154,7 +160,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const hitMesh = useRef<InstancedMesh>(null)
 
   const layout = useMemo(() => {
-    const perLevel: { n: number; m: Matrix4; c: Color }[][] = houseGeo.map(() => [])
+    const perLevel: { m: Matrix4; c: Color }[][] = houseGeo.map(() => [])
     const perWall: Matrix4[][] = fenceGeo.map(() => [])
     const free: Matrix4[] = []
     const weeds: { m: Matrix4; c: Color }[] = []
@@ -181,7 +187,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const [tr, tg, tb] = HOUSE_TINTS[Math.floor(hash(n * 5 + 1) * HOUSE_TINTS.length)]
       const fade = stage >= 2 ? [0.8, 0.78, 0.72] : stage === 1 ? [0.92, 0.91, 0.86] : [1, 1, 1]
       const tint = new Color(k * tr * fade[0], k * tg * fade[1], k * tb * fade[2])
-      perLevel[level].push({ n, m: o.matrix.clone(), c: tint })
+      perLevel[level].push({ m: o.matrix.clone(), c: tint })
       const wall = Math.min(fenceGeo.length, r.wall ?? 0)
       if (wall > 0) {
         const k = (HOUSE_YARD[level] / 7) * HOUSE_SCALE
@@ -212,27 +218,14 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   // Write the instances.
   useLayoutEffect(() => {
-    layout.perLevel.forEach((list, level) => {
-      const mesh = houseMeshes.current[level]
-      if (!mesh) return
-      list.forEach((h, i) => {
-        mesh.setMatrixAt(i, h.m)
-        mesh.setColorAt(i, h.c)
-      })
-      mesh.count = list.length
-      mesh.instanceMatrix.needsUpdate = true
-      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-      mesh.computeBoundingSphere()
-    })
-    const set = (mesh: InstancedMesh | null, ms: Matrix4[], colors?: Color[]) => {
-      if (!mesh) return
-      ms.forEach((m, i) => mesh.setMatrixAt(i, m))
-      colors?.forEach((c, i) => mesh.setColorAt(i, c))
-      mesh.count = ms.length
-      mesh.instanceMatrix.needsUpdate = true
-      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-      mesh.computeBoundingSphere()
-    }
+    const set = (mesh: InstancedMesh | null, ms: Matrix4[], colors?: Color[]) => mesh && setInstances(mesh, ms, colors)
+    layout.perLevel.forEach((list, level) =>
+      set(
+        houseMeshes.current[level],
+        list.map((h) => h.m),
+        list.map((h) => h.c),
+      ),
+    )
     layout.perWall.forEach((ms, i) => set(fenceMeshes.current[i], ms))
     set(freeMesh.current, layout.free)
     set(
@@ -307,18 +300,13 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       [oliveMesh.current, trees.olive],
       [cypressMesh.current, trees.cypress],
     ] as const) {
-      if (!mesh) continue
-      set.matrices.forEach((m, i) => mesh.setMatrixAt(i, m))
-      set.colors.forEach((c, i) => mesh.setColorAt(i, c))
-      mesh.instanceMatrix.needsUpdate = true
-      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-      mesh.computeBoundingSphere()
+      if (mesh) setInstances(mesh, set.matrices, set.colors)
     }
     gl.shadowMap.needsUpdate = true
   }, [trees, gl])
 
   // ── The townsfolk ──
-  const homes = useMemo<Home[]>(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
+  const homes = useMemo(() => homesOf(residents), [residents])
   const folk = useMemo(() => townsfolk(homes, CITY_NET), [homes])
 
   // ── Highlights: my home (a gold ring and a beam of light) and the family just found (a red ring) ──
@@ -469,7 +457,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       <mesh geometry={statics.terrain} material={statics.groundMat} receiveShadow />
       <mesh geometry={city.stone} material={statics.stoneMat} castShadow receiveShadow />
       <mesh geometry={city.plain} material={statics.plainMat} castShadow receiveShadow />
-      <PoolWater water={city.water} still={still} />
+      <PoolWater water={city.water} still={still} bridge={bridge} />
 
       {houseGeo.map((g, i) => (
         <instancedMesh
@@ -477,7 +465,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
           ref={(m) => {
             houseMeshes.current[i] = m
           }}
-          args={[g as BufferGeometry, statics.plainMat, Math.max(1, LOTS.length)]}
+          args={[g, statics.plainMat, Math.max(1, LOTS.length)]}
           count={0}
           castShadow
           receiveShadow

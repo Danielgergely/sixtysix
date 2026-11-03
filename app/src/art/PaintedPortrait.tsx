@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { LOOK_ITEMS, parseLook, type ItemId, type Look } from '@sixtysix/shared'
+import { DEFAULT_BACKDROP, DEFAULT_FRAME, LOOK_ITEMS, parseLook, type ItemId, type Look } from '@sixtysix/shared'
 import { BUST_ANCHORS, ITEM_FIT, bustSrc } from '../looks/bustArt'
 
 /**
@@ -9,22 +9,21 @@ import { BUST_ANCHORS, ITEM_FIT, bustSrc } from '../looks/bustArt'
  * circle; the neck item, backdrop and frame stay inside it.
  */
 export function PaintedPortrait({ id, size, className = '', bare = false }: { id: string; size?: number; className?: string; bare?: boolean }) {
-  const look = parseLook(id)
-  return <LookPortrait look={look} size={size} className={className} bare={bare} />
+  return <LookPortrait look={parseLook(id)} size={size} className={className} bare={bare} />
 }
 
 export function LookPortrait({ look, size, className = '', bare = false, lazy = false }: { look: Look; size?: number; className?: string; bare?: boolean; lazy?: boolean }) {
   const anchor = BUST_ANCHORS[look.base]
-  const backdrop = look.backdrop ?? 'crimson'
-  const frame = look.frame ?? 'gilt'
+  const backdrop = look.backdrop ?? DEFAULT_BACKDROP
+  const frame = look.frame ?? DEFAULT_FRAME
   const loading = lazy ? 'lazy' : undefined
   return (
-    <span className={`painted-portrait ${frame !== 'gilt' && !bare ? 'pp-framed' : ''} ${className}`} style={size ? { width: size, height: size } : undefined}>
+    <span className={`painted-portrait ${frame !== DEFAULT_FRAME && !bare ? 'pp-framed' : ''} ${className}`} style={size ? { width: size, height: size } : undefined}>
       <span className={`pp-disc pp-bd-${backdrop}`}>
         <img className="pp-bust" src={bustSrc(look)} alt={look.base} draggable={false} loading={loading} />
         {!bare && look.neck && <ItemImg id={look.neck} at={anchor.neck} />}
       </span>
-      {!bare && frame !== 'gilt' && <FrameRing frame={frame} />}
+      {!bare && frame !== DEFAULT_FRAME && <FrameRing frame={frame} />}
       {!bare && look.head && <ItemImg id={look.head} at={anchor.head} />}
     </span>
   )

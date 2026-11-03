@@ -96,6 +96,7 @@ export default {
     avg: 'avg {pts}',
   },
   errors: {
+    offline: 'No connection to the server — try again in a moment',
     enterCode: 'Enter the game code',
     ended: 'The game has ended',
   },

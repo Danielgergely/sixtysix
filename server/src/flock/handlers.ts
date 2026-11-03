@@ -33,9 +33,11 @@ import {
   deleteFlockRoom,
   findFlockRoomBySocket,
   getFlockRoom,
+  isIn,
   localeOf,
   newPlayerId,
   roomLocales,
+  shuffle,
   startFlockGC,
   toFlockState,
   touch,
@@ -69,18 +71,8 @@ const GUESSING = ['secret', 'clues', 'decide', 'out']
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 const ackOf = (cb: unknown): Ack => (typeof cb === 'function' ? (cb as Ack) : () => {})
 
-function shuffle<T>(xs: T[]): T[] {
-  for (let i = xs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[xs[i], xs[j]] = [xs[j], xs[i]]
-  }
-  return xs
-}
-
 // ── who is still in ─────────────────────────────────────────────────────
 
-/** Dealt in, not out, not gone. */
-const isIn = (room: FRoom, secret: string) => room.dealt.has(secret) && !room.out.has(secret) && room.players.has(secret)
 /** Still in and online: the players who clue, decide and vote. */
 const active = (room: FRoom) => [...room.dealt].filter((s) => isIn(room, s) && room.players.get(s)!.connected)
 const wolvesLeft = (room: FRoom) => room.wolves.filter((s) => isIn(room, s))
@@ -158,8 +150,9 @@ export function startGame(io: FlockIO, room: FRoom): void {
   room.game++
   // Random, but not last game's wolves again when there are enough others.
   const count = flockWolfCount(everyone.length)
-  const fresh = everyone.filter((s) => !room.wolves.includes(s))
+  const fresh = everyone.filter((s) => !room.lastWolves.includes(s))
   room.wolves = shuffle([...(fresh.length >= count ? fresh : everyone)]).slice(0, count)
+  room.lastWolves = room.wolves
 
   // One entry (category + index) for everyone; each card shows it in its player's language.
   const category = FLOCK_CATEGORIES[Math.floor(Math.random() * FLOCK_CATEGORIES.length)]

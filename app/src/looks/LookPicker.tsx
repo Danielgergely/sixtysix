@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import {
   CHARACTERS,
+  DEFAULT_BACKDROP,
+  DEFAULT_FRAME,
   LOOK_SLOTS,
   SKIN_TONES,
+  canWear,
   formatLook,
   isRare,
   itemsIn,
@@ -83,7 +86,7 @@ function LookPicker({ onClose }: { onClose: () => void }) {
   const [error, setError] = useState('')
   const owned = ownedItems(account)
   const progress = unlockProgress(account)
-  const wearable = (id: ItemId) => unlockOf(id).kind === 'free' || owned.includes(id)
+  const wearable = (id: ItemId) => canWear(id, owned)
 
   const set = (patch: Partial<Look>) => {
     setError('')
@@ -176,7 +179,7 @@ function LookPicker({ onClose }: { onClose: () => void }) {
               </button>
             )}
             {itemsIn(slot).map((id) => {
-              const on = (draft[slot] ?? (slot === 'frame' ? 'gilt' : slot === 'backdrop' ? 'crimson' : undefined)) === id
+              const on = (draft[slot] ?? (slot === 'frame' ? DEFAULT_FRAME : slot === 'backdrop' ? DEFAULT_BACKDROP : undefined)) === id
               const u = unlockOf(id)
               return (
                 <button key={id} className={`look-cell ${on ? 'on' : ''} ${wearable(id) ? '' : 'locked'}`} onClick={() => wear(slot, id)}>
