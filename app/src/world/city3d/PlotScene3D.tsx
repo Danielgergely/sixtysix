@@ -23,7 +23,7 @@ import type { Actor } from '../life/sim'
 import type { Bridge, LabelSpec } from './bridge'
 import { FENCE_PIECES, fenceParts, pieceGeometry, type FencePiece } from './fence'
 import { blob, buildingGeometry, FOOTPRINT, scaffoldGeometry, topOf, type Spot } from './models'
-import { FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, NAMES_AT, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
+import { bushGeometry, FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, grassTuftGeometry, NAMES_AT, placeYardGreens, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
 import { configureRig, useDisposeOnUnmount } from './rig'
 import { weedGeometry } from './houses'
 import { Geo } from './geo'
@@ -83,12 +83,15 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   const ground = useMemo(() => groundGeometry(), [])
   const trees = useMemo(() => placeYardTrees(), [])
   const treeGeo = useMemo(() => ({ olive: oliveGeometry(), cypress: cypressGeometry() }), [])
+  const greens = useMemo(() => placeYardGreens(), [])
+  const greenGeo = useMemo(() => ({ tuft: grassTuftGeometry(), bush: bushGeometry() }), [])
 
   useLayoutEffect(() => {
     // Dev only: tests read the renderer's stats through this.
     if (import.meta.env.DEV) Object.assign(window, { __plot3dGl: gl, __plot3dScene: scene })
-    scene.background = new Color('#e9d9b2')
-    scene.fog = new Fog('#e9d9b2', 90, 220)
+    // A warm, green-gold haze over the hills (the painting's distance), not a pale sky.
+    scene.background = new Color('#c9bd82')
+    scene.fog = new Fog('#c9bd82', 90, 220)
     gl.shadowMap.autoUpdate = false
     gl.shadowMap.needsUpdate = true
   }, [scene, gl])
@@ -218,10 +221,14 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   // ── Trees round the homestead ──
   const oliveMesh = useRef<InstancedMesh>(null)
   const cypressMesh = useRef<InstancedMesh>(null)
+  const tuftMesh = useRef<InstancedMesh>(null)
+  const bushMesh = useRef<InstancedMesh>(null)
   useLayoutEffect(() => {
     for (const [mesh, set] of [
       [oliveMesh.current, trees.olive],
       [cypressMesh.current, trees.cypress],
+      [tuftMesh.current, greens.tufts],
+      [bushMesh.current, greens.bushes],
     ] as const) {
       if (!mesh) continue
       set.m.forEach((m, i) => mesh.setMatrixAt(i, m))
@@ -231,7 +238,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
       mesh.computeBoundingSphere()
     }
     gl.shadowMap.needsUpdate = true
-  }, [trees, gl])
+  }, [trees, greens, gl])
 
   // On-demand rendering: ask for a frame on mount and whenever the box changes size.
   useEffect(() => invalidate(), [size.width, size.height, invalidate])
@@ -268,8 +275,8 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
     if (!c) return
     const dist = c.distance
     const fog = scene.fog as Fog
-    fog.near = dist + 25
-    fog.far = dist * 2 + 110
+    fog.near = dist + 35
+    fog.far = dist * 2 + 130
     if (bridge.compass) bridge.compass.style.transform = `rotate(${(c.azimuthAngle * 180) / Math.PI}deg)`
     const canIn = dist > PLOT_MIN_DIST + 0.5
     const canOut = dist < maxDist - 0.5
@@ -352,11 +359,12 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
 
   return (
     <>
-      <hemisphereLight args={['#fff1d2', '#8a6a3c', 0.95]} />
+      {/* Low warm sun from the south-west and less fill than the city: deeper shadows, richer colour, like the painting. */}
+      <hemisphereLight args={['#fff2d6', '#6e4024', 0.62]} />
       <directionalLight
-        position={[-45, 70, 40]}
-        intensity={2.9}
-        color="#ffe6bd"
+        position={[-42, 58, 46]}
+        intensity={3.5}
+        color="#fff0d6"
         castShadow
         shadow-mapSize={wide ? [2048, 2048] : [1024, 1024]}
         shadow-camera-left={-R - 8}
@@ -402,6 +410,8 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
 
       <instancedMesh ref={oliveMesh} args={[treeGeo.olive, mats.plain, trees.olive.m.length]} castShadow receiveShadow />
       <instancedMesh ref={cypressMesh} args={[treeGeo.cypress, mats.plain, trees.cypress.m.length]} castShadow receiveShadow />
+      <instancedMesh ref={tuftMesh} args={[greenGeo.tuft, mats.plain, greens.tufts.m.length]} receiveShadow />
+      <instancedMesh ref={bushMesh} args={[greenGeo.bush, mats.plain, greens.bushes.m.length]} castShadow receiveShadow />
 
       {weeds.m.length > 0 && <instancedMesh key={stage} ref={weedMesh} args={[weedGeo, mats.plain, weeds.m.length]} frustumCulled={false} />}
 

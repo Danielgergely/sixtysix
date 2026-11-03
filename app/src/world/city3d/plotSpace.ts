@@ -1,7 +1,8 @@
 import { CanvasTexture, Color, Matrix4, PlaneGeometry, Quaternion, SRGBColorSpace, Vector3, type BufferGeometry, type Texture } from 'three'
 import { graph, type Pt } from '../life/nav'
 import { YARD_EDGES, type YardLayout, type YardNode } from '../yard'
-import { GATE_HALF, type Spot } from './models'
+import { Geo } from './geo'
+import { blob, GATE_HALF, type Spot } from './models'
 import { rng } from './space'
 import { releaseAfterUpload } from './textures'
 
@@ -116,14 +117,29 @@ export function groundGeometry(): BufferGeometry {
 type RGB = [number, number, number]
 const hex = (h: string): RGB => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]
 const mix = (a: RGB, b: RGB, t: number): RGB => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]
-const GRASS = hex('#9aa356')
-const LUSH = hex('#7f9446')
-const DRY = hex('#b9a868')
-const EARTH = hex('#d3b17a')
-const DUST = hex('#e2c58f')
+// The painted yard's colours (art/plot-ground.webp): terracotta earth, lush grass going gold further out.
+const GRASS = hex('#8ea443')
+const LUSH = hex('#6c8a32')
+const DRY = hex('#b8ad5a')
+const EARTH = hex('#d6904f')
+const EARTH_LIGHT = hex('#e8b273')
+const EARTH_DARK = hex('#b4622f')
+const LANE = hex('#dcc08a')
 const noise = (x: number, z: number) => 0.5 + 0.25 * Math.sin(x * 0.19 + Math.sin(z * 0.11) * 2) * Math.cos(z * 0.16 - 1.7) + 0.25 * Math.sin((x + z) * 0.09 + Math.cos(x * 0.07) * 1.5)
 
-/** The ground painting: grass round the yard, the yard's earth in its diamond, the worn paths, two stone paths crossing in front of the house, the lane out of the gate. */
+/** The two flagstone paths that cross in front of the house (stops of the path graph), and the lane out of the gate. */
+const STONE_PATHS: YardNode[][] = [
+  ['hd', 'x', 'c1', 'y1', 'g'],
+  ['n1', 'x', 'e1', 'st'],
+]
+
+/**
+ * The ground painting, in the painted yard's manner: terracotta earth in the
+ * diamond with a darker rim where it meets the grass, worn paths, two
+ * flagstone paths crossing in front of the house on a pale dusty bed, the
+ * lane out of the gate, pebbles; outside, grass painted blade by blade with a
+ * few flowers, drying to gold on the hills. Painted once at load.
+ */
 export function groundTexture(size = 1024): Texture {
   const c = document.createElement('canvas')
   c.width = c.height = size
@@ -133,7 +149,7 @@ export function groundTexture(size = 1024): Texture {
   const rand = rng(91)
 
   // 1. Grass and earth per cell, smoothed up.
-  const N = 200
+  const N = 220
   const small = document.createElement('canvas')
   small.width = small.height = N
   const sg = small.getContext('2d')!
@@ -144,14 +160,16 @@ export function groundTexture(size = 1024): Texture {
       const x = -GROUND / 2 + (i + 0.5) * step
       const z = -GROUND / 2 + (j + 0.5) * step
       const n = noise(x, z)
-      let col = mix(mix(GRASS, LUSH, n), DRY, smooth(R + 20, R + 60, Math.hypot(x, z)) * 0.6)
-      // The yard: earth inside the diamond, fading into the grass just outside the fence.
+      let col = mix(mix(GRASS, LUSH, n), DRY, smooth(R + 14, R + 50, Math.hypot(x, z)) * 0.75)
+      // The yard: earth in broad light and dark washes, darker towards the rim.
       const d = Math.abs(x) + Math.abs(z)
-      const yard = 1 - smooth(R - 1.5, R + 1.5, d)
-      col = mix(col, mix(EARTH, DUST, noise(z * 1.7, x * 1.3)), yard)
+      const wash = noise(z * 1.3 + 7, x * 1.1 - 3)
+      let earth = mix(mix(EARTH, EARTH_LIGHT, smooth(0.45, 0.8, wash)), EARTH_DARK, smooth(0.5, 0.15, wash) * 0.55)
+      earth = mix(earth, EARTH_DARK, smooth(R - 4, R - 0.6, d) * 0.6)
+      col = mix(col, earth, 1 - smooth(R - 0.6, R + 0.3, d))
       // The lane from the gate out to the south.
       const lane = z > R - 3 ? 1 - smooth(2.2, 3.6, Math.abs(x + Math.sin(z * 0.08) * 1.5)) : 0
-      col = mix(col, DUST, lane * 0.85)
+      col = mix(col, LANE, lane * 0.9)
       const k = (j * N + i) * 4
       img.data[k] = col[0]
       img.data[k + 1] = col[1]
@@ -163,11 +181,36 @@ export function groundTexture(size = 1024): Texture {
   g.imageSmoothingEnabled = true
   g.drawImage(small, 0, 0, size, size)
 
-  // 2. Worn paths between the stops.
-  g.lineCap = 'round'
+  // 2. Brushwork on the earth: soft strokes of lighter and darker paint.
+  for (let i = 0; i < 900; i++) {
+    const x = (rand() * 2 - 1) * R
+    const z = (rand() * 2 - 1) * R
+    if (Math.abs(x) + Math.abs(z) > R - 1.2) continue
+    const light = rand() < 0.5
+    g.fillStyle = light ? `rgba(240,180,110,${0.12 + rand() * 0.15})` : `rgba(150,70,30,${0.08 + rand() * 0.12})`
+    g.beginPath()
+    g.ellipse(toPx(x), toPx(z), (0.8 + rand() * 2.4) * unit, (0.3 + rand() * 0.7) * unit, -0.4 + rand() * 0.8, 0, Math.PI * 2)
+    g.fill()
+  }
+
+  // 3. The rim: an inked edge where the earth meets the grass.
   g.lineJoin = 'round'
-  g.strokeStyle = 'rgba(236, 214, 168, 0.55)'
-  g.lineWidth = 1.7 * unit
+  g.strokeStyle = 'rgba(95,45,20,0.55)'
+  g.lineWidth = Math.max(1.5, 0.28 * unit)
+  g.beginPath()
+  const RIM = R - 0.15
+  const corners: [number, number][] = [[0, -RIM], [RIM, 0], [0, RIM], [-RIM, 0], [0, -RIM]]
+  corners.forEach(([x, z], i) => {
+    const wob = i ? (rand() - 0.5) * 0.4 : 0
+    if (i === 0) g.moveTo(toPx(x), toPx(z))
+    else g.lineTo(toPx(x + wob), toPx(z + wob))
+  })
+  g.stroke()
+
+  // 4. Worn paths between the stops.
+  g.lineCap = 'round'
+  g.strokeStyle = 'rgba(240,196,132,0.5)'
+  g.lineWidth = 1.8 * unit
   for (const [a, b] of YARD_EDGES) {
     g.beginPath()
     g.moveTo(toPx(NODES[a][0]), toPx(NODES[a][1]))
@@ -175,30 +218,38 @@ export function groundTexture(size = 1024): Texture {
     g.stroke()
   }
 
-  // 3. The two stone paths that cross in front of the house: flags along each.
-  const flags = (pts: YardNode[]) => {
+  // 5. The flagstone paths: a pale dusty bed, then the stones with dark grout.
+  const route = (pts: YardNode[]) => {
+    g.beginPath()
+    pts.forEach((k, i) => (i ? g.lineTo : g.moveTo).call(g, toPx(NODES[k][0]), toPx(NODES[k][1])))
+    g.stroke()
+  }
+  g.strokeStyle = 'rgba(214,196,150,0.95)'
+  g.lineWidth = 2.9 * unit
+  STONE_PATHS.forEach(route)
+  for (const pts of STONE_PATHS) {
     for (let s = 0; s + 1 < pts.length; s++) {
       const [ax, az] = NODES[pts[s]]
       const [bx, bz] = NODES[pts[s + 1]]
       const len = Math.hypot(bx - ax, bz - az)
-      const n = Math.ceil(len / 0.75)
+      const n = Math.ceil(len / 0.8)
       const ang = Math.atan2(bz - az, bx - ax)
       for (let k = 0; k < n; k++) {
         const t = (k + 0.5) / n
-        for (const side of [-0.55, 0.55]) {
-          const ox = -Math.sin(ang) * side + (rand() - 0.5) * 0.15
-          const oz = Math.cos(ang) * side + (rand() - 0.5) * 0.15
-          const l = 205 + Math.floor(rand() * 30)
+        for (const side of [-0.62, 0.62]) {
+          const ox = -Math.sin(ang) * side + (rand() - 0.5) * 0.18
+          const oz = Math.cos(ang) * side + (rand() - 0.5) * 0.18
+          const l = 222 + Math.floor(rand() * 26)
           g.save()
           g.translate(toPx(ax + (bx - ax) * t + ox), toPx(az + (bz - az) * t + oz))
-          g.rotate(ang + (rand() - 0.5) * 0.3)
-          g.fillStyle = `rgb(${l},${l - 12},${l - 34})`
-          g.strokeStyle = 'rgba(110,80,50,0.45)'
-          g.lineWidth = Math.max(1, unit * 0.06)
-          const w = (0.62 + rand() * 0.12) * unit
-          const h = (0.5 + rand() * 0.12) * unit
+          g.rotate(ang + (rand() - 0.5) * 0.35)
+          g.fillStyle = `rgb(${l},${l - 8},${l - 30})`
+          g.strokeStyle = 'rgba(120,95,60,0.6)'
+          g.lineWidth = Math.max(1, unit * 0.07)
+          const w = (0.66 + rand() * 0.14) * unit
+          const h = (0.52 + rand() * 0.14) * unit
           g.beginPath()
-          g.rect(-w / 2, -h / 2, w, h)
+          g.roundRect(-w / 2, -h / 2, w, h, unit * 0.12)
           g.fill()
           g.stroke()
           g.restore()
@@ -206,17 +257,58 @@ export function groundTexture(size = 1024): Texture {
       }
     }
   }
-  flags(['hd', 'x', 'c1', 'y1', 'g'])
-  flags(['n1', 'x', 'e1', 'st'])
 
-  // 4. Pebbles and tufts.
-  for (let i = 0; i < 1400; i++) {
-    const x = (rand() - 0.5) * GROUND
-    const z = (rand() - 0.5) * GROUND
-    const inYard = Math.abs(x) + Math.abs(z) < R - 1
-    g.fillStyle = inYard ? `rgba(120,90,55,${0.15 + rand() * 0.2})` : `rgba(70,90,35,${0.15 + rand() * 0.25})`
+  // 6. Pebbles on the earth: pale stones with a shadow under them.
+  for (let i = 0; i < 260; i++) {
+    const x = (rand() * 2 - 1) * R
+    const z = (rand() * 2 - 1) * R
+    if (Math.abs(x) + Math.abs(z) > R - 1) continue
+    const r = (0.12 + rand() * 0.22) * unit
+    g.fillStyle = 'rgba(110,55,25,0.35)'
     g.beginPath()
-    g.ellipse(toPx(x), toPx(z), (0.1 + rand() * 0.25) * unit, (0.08 + rand() * 0.15) * unit, rand() * 3, 0, Math.PI * 2)
+    g.ellipse(toPx(x) + r * 0.25, toPx(z) + r * 0.35, r, r * 0.7, 0, 0, Math.PI * 2)
+    g.fill()
+    const l = 200 + Math.floor(rand() * 40)
+    g.fillStyle = `rgb(${l},${l - 10},${l - 25})`
+    g.beginPath()
+    g.ellipse(toPx(x), toPx(z), r, r * 0.7, 0, 0, Math.PI * 2)
+    g.fill()
+  }
+
+  // 7. Grass, blade by blade: short strokes leaning "up" the painting (north, away from the camera), greener near the yard.
+  const blades = Math.round(size * size * 0.012)
+  g.lineCap = 'round'
+  for (let i = 0; i < blades; i++) {
+    const a = rand() * Math.PI * 2
+    const r = R + rand() * 60
+    const x = Math.cos(a) * r
+    const z = Math.sin(a) * r
+    if (Math.abs(x) + Math.abs(z) < R + 0.15) continue
+    if (z > R - 3 && Math.abs(x + Math.sin(z * 0.08) * 1.5) < 3) continue
+    const far = smooth(R + 12, R + 50, r)
+    const t = rand()
+    const col = mix(t < 0.4 ? LUSH : t < 0.8 ? GRASS : hex('#c8c070'), DRY, far * rand())
+    const shade = rand() < 0.35 ? 0.72 : 1.05
+    g.strokeStyle = `rgba(${col[0] * shade | 0},${col[1] * shade | 0},${col[2] * shade | 0},0.85)`
+    g.lineWidth = Math.max(1, unit * 0.09)
+    const len = (0.35 + rand() * 0.6) * unit
+    const lean = (rand() - 0.5) * 0.9
+    g.beginPath()
+    g.moveTo(toPx(x), toPx(z))
+    g.lineTo(toPx(x) + Math.sin(lean) * len, toPx(z) - Math.cos(lean) * len)
+    g.stroke()
+  }
+  // A few flowers in the grass.
+  const FLOWERS = ['#fff6dc', '#f3d34a', '#e0583a', '#c9a3e0']
+  for (let i = 0; i < 380; i++) {
+    const a = rand() * Math.PI * 2
+    const r = R + 1 + rand() * 30
+    const x = Math.cos(a) * r
+    const z = Math.sin(a) * r
+    if (Math.abs(x) + Math.abs(z) < R + 1) continue
+    g.fillStyle = FLOWERS[Math.floor(rand() * FLOWERS.length)]
+    g.beginPath()
+    g.arc(toPx(x), toPx(z), Math.max(1, unit * 0.11), 0, Math.PI * 2)
     g.fill()
   }
 
@@ -248,18 +340,73 @@ export function placeYardTrees(): { olive: { m: Matrix4[]; c: Color[] }; cypress
     const s = cypress ? 0.8 + rand() * 0.4 : 0.85 + rand() * 0.5
     const set = cypress ? out.cypress : out.olive
     set.m.push(new Matrix4().compose(new Vector3(x, groundAt(x, z), z), new Quaternion().setFromAxisAngle(up, rand() * 6.3), new Vector3(s, s, s)))
+    // Greener than the city's dusty olives, like the painted yard's.
     const k = 0.9 + rand() * 0.2
-    set.c.push(new Color(k, k, k))
+    set.c.push(cypress ? new Color(k, k, k) : new Color(k * 0.8, k * 1.05, k * 0.62))
   })
+  return out
+}
+
+/** A tuft of long grass: a fan of thin blades. */
+export function grassTuftGeometry(): BufferGeometry {
+  const g = new Geo(rng(31))
+  const cols = ['#6c8a32', '#8ea443', '#a8ad55', '#7c9a3a']
+  for (let i = 0; i < 7; i++) {
+    const a = (i / 7) * Math.PI * 2
+    g.cone(Math.cos(a) * 0.18, 0, Math.sin(a) * 0.18, 0.09, 0.9 + (i % 3) * 0.35, cols[i % 4], 3, { rz: Math.cos(a) * 0.45, rx: Math.sin(a) * 0.45 })
+  }
+  g.cone(0, 0, 0, 0.12, 1.4, '#c2b866', 3)
+  return g.build(3)
+}
+
+/** A round bush of three leafy lumps. */
+export function bushGeometry(): BufferGeometry {
+  const g = new Geo(rng(33))
+  blob(g, 0, 0.55, 0, 1.15, 0.85, 1.0, '#5f7f2e')
+  blob(g, 0.7, 0.45, 0.35, 0.8, 0.65, 0.75, '#759a38')
+  blob(g, -0.6, 0.4, 0.4, 0.75, 0.6, 0.7, '#6a8c34')
+  return g.build(3)
+}
+
+/** Long grass and bushes outside the fence (and a little grass hugging its inside), off the lane, as in the painting. */
+export function placeYardGreens(): { tufts: { m: Matrix4[]; c: Color[] }; bushes: { m: Matrix4[]; c: Color[] } } {
+  const rand = rng(61)
+  const up = new Vector3(0, 1, 0)
+  const out = { tufts: { m: [] as Matrix4[], c: [] as Color[] }, bushes: { m: [] as Matrix4[], c: [] as Color[] } }
+  const onLane = (x: number, z: number, w: number) => z > R - 5 && Math.abs(x) < w
+  const put = (set: { m: Matrix4[]; c: Color[] }, x: number, z: number, s: number, k: number) => {
+    set.m.push(new Matrix4().compose(new Vector3(x, groundAt(x, z) - 0.05, z), new Quaternion().setFromAxisAngle(up, rand() * 6.3), new Vector3(s, s * (0.8 + rand() * 0.5), s)))
+    set.c.push(new Color(k, k, k * (0.9 + rand() * 0.15)))
+  }
+  for (let tries = 0; out.tufts.m.length < 340 && tries < 6000; tries++) {
+    const x = (rand() * 2 - 1) * (R + 26)
+    const z = (rand() * 2 - 1) * (R + 26)
+    const d = Math.abs(x) + Math.abs(z)
+    // Mostly in a band just outside the fence, thinning out; a few just inside it.
+    const inside = d > R - 2.2 && d < R - 0.9
+    if (!inside && (d < R + 0.8 || rand() > 1.15 - (d - R) / 26)) continue
+    if (onLane(x, z, 4.5)) continue
+    put(out.tufts, x, z, 0.8 + rand() * 0.7, 0.85 + rand() * 0.3)
+  }
+  const bushes: [number, number][] = []
+  for (let tries = 0; bushes.length < 34 && tries < 3000; tries++) {
+    const x = (rand() * 2 - 1) * (R + 22)
+    const z = (rand() * 2 - 1) * (R + 22)
+    const d = Math.abs(x) + Math.abs(z)
+    if (d < R + 2.5 || d > R + 22 || onLane(x, z, 6)) continue
+    if (bushes.some(([bx, bz]) => Math.hypot(bx - x, bz - z) < 3.5)) continue
+    bushes.push([x, z])
+    put(out.bushes, x, z, 0.8 + rand() * 0.7, 0.85 + rand() * 0.3)
+  }
   return out
 }
 
 // ── Camera (units; polar = tilt away from straight down). The yard always stays framed. ──
 
 export const PLOT_MIN_DIST = 14
-export const PLOT_START_POLAR = 0.92
+export const PLOT_START_POLAR = 0.8
 /** Half the width and half the (foreshortened) depth the first view shows (units), and the most it may ever show. */
-const START_HALF: [number, number] = [21, 16]
+const START_HALF: [number, number] = [23, 17]
 const MAX_HALF: [number, number] = [34, 25]
 export const PLOT_FOV = 42
 const tanHalf = Math.tan(((PLOT_FOV / 2) * Math.PI) / 180)
@@ -272,8 +419,8 @@ export function plotStartDist(aspect: number): number {
 /** The farthest out: the whole yard and a little round it. */
 export const plotMaxDist = (aspect: number) => Math.max(plotStartDist(aspect) * 1.1, fit(MAX_HALF, aspect))
 
-/** Names show closer in than this share of the start distance; further out only the ribbons. */
-export const NAMES_AT = 0.85
+/** Names show up to a little beyond the start view (as in the painted yard); further out only the ribbons. */
+export const NAMES_AT = 1.12
 
 /**
  * Weeds for an idle stage (shared/src/city.ts): none, 20 tufts at 20 days,
