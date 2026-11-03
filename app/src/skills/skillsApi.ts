@@ -1,5 +1,6 @@
 import type { Account, BuildingId, SkillId } from '@sixtysix/shared'
 import { getToken, readOutbox } from '../account/outbox'
+import { authedJson } from '../account/authFetch'
 import { useAccountStore } from '../account/accountStore'
 import { usePlotStore } from '../plot/plotStore'
 
@@ -13,17 +14,7 @@ type Res = { ok: true; account?: Account } | { ok: false; error: string }
 async function post(path: string, body: unknown = {}): Promise<Res> {
   const token = getToken()
   if (!token) return { ok: false, error: 'Sign in to use the skill tree' }
-  try {
-    const res = await fetch(path, {
-      method: 'POST',
-      headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-    })
-    if (res.status === 401) return { ok: false, error: 'Signed out — sign in again' }
-    return (await res.json()) as Res
-  } catch {
-    return { ok: false, error: 'No connection to the server' }
-  }
+  return authedJson<Res>(token, path, body)
 }
 
 async function afterChange(res: Res): Promise<string | null> {
