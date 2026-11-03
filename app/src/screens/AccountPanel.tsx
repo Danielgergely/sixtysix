@@ -42,6 +42,8 @@ export function AccountPanel() {
     clearError()
   }
 
+  const [outError, setOutError] = useState<string | null>(null)
+
   const submit = async () => {
     if (busy) return
     setTried(true)
@@ -74,9 +76,15 @@ export function AccountPanel() {
               .split('\u0000')
               .map((part, i) => (i === 0 ? part : [<strong key={i}>{account.username}</strong>, part]))}
           </span>
-          <button className="btn-secondary account-out" onClick={() => void logout()}>
+          <button
+            className="btn-secondary account-out"
+            onClick={async () => {
+              setOutError(await logout())
+            }}
+          >
             {t('account.signOut')}
           </button>
+          {outError && <div className="arena-error">{outError}</div>}
         </div>
       ) : (
         <>

@@ -95,6 +95,7 @@ export default {
     avg: 'átl. {pts}',
   },
   errors: {
+    offline: 'Nincs kapcsolat a szerverrel – próbáld újra egy kicsit később',
     enterCode: 'Írd be a játékkódot',
     ended: 'A játék véget ért',
   },

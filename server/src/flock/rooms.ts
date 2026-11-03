@@ -67,6 +67,8 @@ export interface FRoom {
   wordIdx: number
   /** This game's wolves (secrets), out or not. */
   wolves: string[]
+  /** The last game's wolves, kept through the lobby so "Play again" doesn't deal them again. */
+  lastWolves: string[]
   /** Players dealt into this game (late joiners wait for the next one). */
   dealt: Set<string>
   /** People (not bots) dealt in, counted at the deal so later departures don't change the rewards. */
@@ -139,6 +141,7 @@ export function createFlockRoom(): FRoom {
     word: null,
     wordIdx: 0,
     wolves: [],
+    lastWolves: [],
     dealt: new Set(),
     dealtHumans: 0,
     out: new Set(),

@@ -150,8 +150,9 @@ export function startGame(io: FlockIO, room: FRoom): void {
   room.game++
   // Random, but not last game's wolves again when there are enough others.
   const count = flockWolfCount(everyone.length)
-  const fresh = everyone.filter((s) => !room.wolves.includes(s))
+  const fresh = everyone.filter((s) => !room.lastWolves.includes(s))
   room.wolves = shuffle([...(fresh.length >= count ? fresh : everyone)]).slice(0, count)
+  room.lastWolves = room.wolves
 
   // One entry (category + index) for everyone; each card shows it in its player's language.
   const category = FLOCK_CATEGORIES[Math.floor(Math.random() * FLOCK_CATEGORIES.length)]

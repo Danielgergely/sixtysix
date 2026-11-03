@@ -93,6 +93,7 @@ export default {
   errors: {
     generic: 'Etwas ist schiefgelaufen',
     offline: 'Keine Verbindung zum Server',
+    offlineSignOut: 'Keine Verbindung: Melde dich ab, sobald du wieder online bist, damit deine letzten Belohnungen zuerst gespeichert werden.',
     signInFailed: 'Anmeldung fehlgeschlagen',
   },
   server: {

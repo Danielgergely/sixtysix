@@ -95,6 +95,7 @@ export default {
   errors: {
     generic: 'Something went wrong',
     offline: 'No connection to the server',
+    offlineSignOut: 'No connection: sign out once you are online again, so your latest rewards are saved first.',
     signInFailed: 'Sign-in failed',
   },
   server: {

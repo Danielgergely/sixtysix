@@ -67,7 +67,7 @@ export default {
   temple: {
     title: 'A templom',
     sub: 'A város közös építkezése · hamarosan',
-    verse: '„Így építé meg Salamon a házat, és elvégezé azt.” <em>1 Kgs 6:14</em>',
+    verse: '„Így építé meg Salamon a házat, és elvégezé azt.” <em>1Kir 6,14</em>',
     text: 'Egy napon minden csoport – egy ifjúsági csoport, egy osztály, egy család – közösen építi fel a saját templomát: minden arénajáték érméiből egy rész ide kerül, és a templom szakaszról szakaszra emelkedik, az alapoktól a falakon és a Jákin és Boáz nevű rézoszlopokon át a szentélyig és a felszentelésig (1 Kgs 6–8). Minden játékos neve felkerül az adományozók köveire.',
     until: 'Addig is építsd a saját otthonodat – a templom minden telek mögött ott áll majd.',
   },
@@ -75,7 +75,7 @@ export default {
   notice: {
     title: 'Hirdetőtábla',
     sub: 'A helytartó háza · Nehémiás',
-    verse: '„Ti látjátok a nyomorúságot, a melyben vagyunk… jertek, építsük meg Jeruzsálem kőfalát.” <em>Neh 2:17</em>',
+    verse: '„Ti látjátok a nyomorúságot, a melyben vagyunk… jertek, építsük meg Jeruzsálem kőfalát.” <em>Neh 2,17</em>',
     families_one: '<b>{n}</b> család',
     families_other: '<b>{n}</b> család',
     stone_one: '<b>{n}</b> kőház',
@@ -92,15 +92,17 @@ export default {
 
   gate: {
     title: 'A Juh-kapu',
-    verse: '„És felkele Eljasib, a főpap, és az ő atyjafiai, a papok, és megépíték a juhok kapuját.” <em>Neh 3:1</em>',
+    ref: 'Neh 3,1',
+    verse: '„És felkele Eljasib, a főpap, és az ő atyjafiai, a papok, és megépíték a juhok kapuját.” <em>Neh 3,1</em>',
     text: 'Az építéshez szükséges minden érmét odakint szerzed, kérdésekre válaszolva. Az út visszavezet a kvízhez.',
     back: '📜 Vissza a kvízhez',
   },
 
   pool: {
     title: 'Siloám tava',
-    verse: '„Menj el, mosakodjál meg a Siloám tavában.” Elméne azért és megmosakodék, és megjöve látva. <em>John 9:7</em>',
-    text: 'Ezékiás „megcsinálta a tavat és a csatornát, és a vizet bevezette a városba” (2 Kgs 20:20) – ugyanaz az ötlet, mint a ciszterna, amivé a saját kutad is válhat.',
+    ref: 'Jn 9,7',
+    verse: '„Menj el, mosakodjál meg a Siloám tavában.” Elméne azért és megmosakodék, és megjöve látva. <em>Jn 9,7</em>',
+    text: 'Ezékiás „megcsinálta a tavat és a csatornát, és a vizet bevezette a városba” (2Kir 20,20) – ugyanaz az ötlet, mint a ciszterna, amivé a saját kutad is válhat.',
   },
 
   lot: {
@@ -110,7 +112,7 @@ export default {
     saleText: '{name} {days} napja nem játszott és nem épített, és elburjánzott a gaz. Egy aktív család átveheti ezt a helyet. {name} megtartja az épületeit, és ha visszatér, kap egy szabad parcellát.',
     saleTextInner: '{name} {days} napja nem játszott és nem épített, és elburjánzott a gaz. Egy aktív család átveheti ezt a falon belüli helyet (udvaros házzal vagy jobbal). {name} megtartja az épületeit, és ha visszatér, kap egy szabad parcellát.',
     freeTitle: 'Szabad föld',
-    freeVerse: '„A nép többi része pedig sorsot vete, hogy minden tíz közül egyet Jeruzsálembe, a szent városba vigyenek lakni.” <em>Neh 11:1</em>',
+    freeVerse: '„A nép többi része pedig sorsot vete, hogy minden tíz közül egyet Jeruzsálembe, a szent városba vigyenek lakni.” <em>Neh 11,1</em>',
     freeText: 'Az új családok az első szabad parcellára költöznek, a falon belül, amíg van hely. A tanyádat ide is áthelyezheted – az épületeid veled jönnek.',
     signUp: 'Hozz létre fiókot, hogy telked legyen',
     takeOver: 'Hely átvétele · {cost} 🪙',

@@ -95,7 +95,8 @@ interface AccountStore {
   googleSignIn: (credential: string) => Promise<boolean>
   /** `name` = the first name Apple shares on the first sign-in only. */
   appleSignIn: (idToken: string, name: string) => Promise<boolean>
-  logout: () => Promise<void>
+  /** Signs this device out; refused while offline (null = done, else the message), so rewards still queued are never lost. */
+  logout: () => Promise<string | null>
   /** Clear the form error (the player is typing again). */
   clearError: () => void
   // Account settings (screens/AccountSettingsScreen.tsx). Each resolves to an error to show, or null when done.
@@ -263,8 +264,11 @@ export const useAccountStore = create<AccountStore>((set, get) => {
 
     logout: async () => {
       await get().sync() // deliver pending rewards first
-      await api('logout', {})
+      const res = await api('logout', {})
+      // Offline: the queued rewards would be lost and the session stay valid; sign out once connected.
+      if (!res.ok && res.error === 'offline') return t('account.errors.offlineSignOut')
       resetToGuest()
+      return null
     },
 
     clearError: () => {
@@ -287,6 +291,11 @@ export const useAccountStore = create<AccountStore>((set, get) => {
 
     deleteAccount: async (confirm, password) => {
       const res = await api('delete', { confirm, password })
+      // A lost session signs this device out, like the other settings calls.
+      if (!res.ok && res.error === 'signed-out') {
+        resetToGuest()
+        return 'Signed out' // shown with tServer
+      }
       if (!res.ok) return errorText(res)
       resetToGuest()
       return null

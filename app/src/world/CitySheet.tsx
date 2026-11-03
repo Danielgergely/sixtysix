@@ -151,7 +151,7 @@ function Gate() {
   const t = useT()
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-gate.webp" title={t('city.gate.title')} sub="Neh 3:1" />
+      <Head art="/art/land-gate.webp" title={t('city.gate.title')} sub={t('city.gate.ref')} />
       <p className="hp-what">{rich(t('city.gate.verse'))}</p>
       <p className="hp-what">{t('city.gate.text')}</p>
       <button className="hp-btn gold big" onClick={() => goTo('menu')}>
@@ -165,7 +165,7 @@ function Pool() {
   const t = useT()
   return (
     <div className="hp-sheet-body">
-      <Head art="/art/land-pool.webp" title={t('city.pool.title')} sub="John 9:7" />
+      <Head art="/art/land-pool.webp" title={t('city.pool.title')} sub={t('city.pool.ref')} />
       <p className="hp-what">{rich(t('city.pool.verse'))}</p>
       <p className="hp-what">{t('city.pool.text')}</p>
     </div>

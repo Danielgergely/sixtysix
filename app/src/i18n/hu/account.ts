@@ -93,6 +93,7 @@ export default {
   errors: {
     generic: 'Valami hiba történt',
     offline: 'Nincs kapcsolat a szerverrel',
+    offlineSignOut: 'Nincs kapcsolat: akkor jelentkezz ki, amikor újra online vagy, hogy a legutóbbi jutalmaid előbb mentésre kerüljenek.',
     signInFailed: 'A belépés nem sikerült',
   },
   server: {

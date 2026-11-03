@@ -67,7 +67,7 @@ export default {
   temple: {
     title: 'Der Tempel',
     sub: 'Das gemeinsame Bauprojekt der Stadt · kommt bald',
-    verse: '„Und Salomo baute das Haus und vollendete es.“ <em>1 Kgs 6:14</em>',
+    verse: '„Und Salomo baute das Haus und vollendete es.“ <em>1. Könige 6,14</em>',
     text: 'Eines Tages baut jede Gruppe – eine Jugendgruppe, eine Klasse, eine Familie – gemeinsam ihren eigenen Tempel: Ein Teil der Münzen aus jedem Arena-Spiel fließt hinein, und er wächst Stufe um Stufe, vom Fundament über die Mauern und die ehernen Säulen Jakin und Boas bis zum Heiligtum und zur Einweihung (1 Kgs 6–8). Die Namen aller Spieler kommen auf die Stiftersteine.',
     until: 'Bis dahin bau dein eigenes Zuhause aus – der Tempel wird hinter jedem Grundstück stehen.',
   },
@@ -75,7 +75,7 @@ export default {
   notice: {
     title: 'Anschlagbrett',
     sub: 'Das Haus des Statthalters · Nehemia',
-    verse: '„Ihr seht das Unglück, in dem wir sind … Kommt und lasst uns die Mauer Jerusalems aufbauen.“ <em>Neh 2:17</em>',
+    verse: '„Ihr seht das Unglück, in dem wir sind … Kommt und lasst uns die Mauer Jerusalems aufbauen.“ <em>Nehemia 2,17</em>',
     families_one: '<b>{n}</b> Familie',
     families_other: '<b>{n}</b> Familien',
     stone_one: '<b>{n}</b> Steinhaus',
@@ -92,15 +92,17 @@ export default {
 
   gate: {
     title: 'Das Schaftor',
-    verse: '„Und Eljaschib, der Hohepriester, und seine Brüder, die Priester, machten sich auf und bauten das Schaftor.“ <em>Neh 3:1</em>',
+    ref: 'Nehemia 3,1',
+    verse: '„Und Eljaschib, der Hohepriester, und seine Brüder, die Priester, machten sich auf und bauten das Schaftor.“ <em>Nehemia 3,1</em>',
     text: 'Jede Münze zum Bauen verdienst du dort draußen, beim Beantworten von Fragen. Der Weg führt zurück zum Quiz.',
     back: '📜 Zurück zum Quiz',
   },
 
   pool: {
     title: 'Teich Siloam',
-    verse: '„Geh hin, wasche dich in dem Teich Siloam.“ Da ging er hin und wusch sich und kam sehend. <em>John 9:7</em>',
-    text: 'Hiskia „machte den Teich und die Wasserleitung und leitete das Wasser in die Stadt“ (2 Kgs 20:20) – dieselbe Idee wie die Zisterne, zu der dein eigener Brunnen werden kann.',
+    ref: 'Johannes 9,7',
+    verse: '„Geh hin, wasche dich in dem Teich Siloam.“ Da ging er hin und wusch sich und kam sehend. <em>Johannes 9,7</em>',
+    text: 'Hiskia „machte den Teich und die Wasserleitung und leitete das Wasser in die Stadt“ (2. Könige 20,20) – dieselbe Idee wie die Zisterne, zu der dein eigener Brunnen werden kann.',
   },
 
   lot: {
@@ -110,7 +112,7 @@ export default {
     saleText: '{name} hat seit {days} Tagen weder gespielt noch gebaut, und das Unkraut hat alles überwuchert. Eine aktive Familie darf diesen Platz übernehmen. {name} behält alle Gebäude und bekommt bei der Rückkehr eine freie Parzelle.',
     saleTextInner: '{name} hat seit {days} Tagen weder gespielt noch gebaut, und das Unkraut hat alles überwuchert. Eine aktive Familie darf diesen Platz innerhalb der Mauer übernehmen (mit einem Hofhaus oder besser). {name} behält alle Gebäude und bekommt bei der Rückkehr eine freie Parzelle.',
     freeTitle: 'Freies Land',
-    freeVerse: '„Und das übrige Volk warf Lose, um je einen von zehn kommen zu lassen, damit er in Jerusalem, der heiligen Stadt, wohne.“ <em>Neh 11:1</em>',
+    freeVerse: '„Und das übrige Volk warf Lose, um je einen von zehn kommen zu lassen, damit er in Jerusalem, der heiligen Stadt, wohne.“ <em>Nehemia 11,1</em>',
     freeText: 'Neue Familien ziehen auf die erste freie Parzelle, innerhalb der Mauer, solange Platz ist. Du kannst deinen Hof auch hierher verlegen – deine Gebäude ziehen mit.',
     signUp: 'Erstelle ein Konto für ein Grundstück',
     takeOver: 'Diesen Platz übernehmen · {cost} 🪙',

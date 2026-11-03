@@ -150,6 +150,30 @@ function enterRoom(s: ArenaSocket, role: ArenaRole, code: string, done: (res: En
   }
 }
 
+/** How long host / join / watch wait for a server that can't be reached before giving up. */
+const ENTER_TIMEOUT_MS = 8000
+
+/**
+ * Wraps the ack of a call the player started (host, join, watch): if the
+ * socket is still not connected after ENTER_TIMEOUT_MS, the call is dropped
+ * from socket.io's send buffer (so it can't land later, behind the player's
+ * back) and the buttons come back with "No connection". A reachable but slow
+ * server still gets to answer.
+ */
+function giveUpOffline<T>(s: ArenaSocket, done: (res: T) => void): (res: T) => void {
+  let over = false
+  const timer = setTimeout(() => {
+    if (s.connected) return
+    over = true
+    s.sendBuffer = []
+    useArenaStore.setState({ busy: false, error: t('arena.errors.offline') })
+  }, ENTER_TIMEOUT_MS)
+  return (res) => {
+    clearTimeout(timer)
+    if (!over) done(res)
+  }
+}
+
 /** In the room: a clean per-game slate, then its lobby or the game, whichever it is in. */
 function arrive(role: ArenaRole, state: RoomState, myPlayerId: string | null): void {
   useArenaStore.setState({ ...FRESH_GAME, role, room: state, busy: false, myPlayerId })
@@ -281,14 +305,19 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   hostGame: (config) => {
     set({ busy: true, error: null })
-    getSocket().emit('room:create', { config, hostId: getDeviceId() }, (res) => {
-      if (res.ok) {
-        session.save(res.state.code, 'host')
-        arrive('host', res.state, null)
-      } else {
-        set({ error: res.error, busy: false })
-      }
-    })
+    const s = getSocket()
+    s.emit(
+      'room:create',
+      { config, hostId: getDeviceId() },
+      giveUpOffline(s, (res) => {
+        if (res.ok) {
+          session.save(res.state.code, 'host')
+          arrive('host', res.state, null)
+        } else {
+          set({ error: res.error, busy: false })
+        }
+      }),
+    )
   },
 
   startGame: () => {
@@ -314,15 +343,21 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   watchGame: (code) => {
     set({ busy: true, error: null })
-    enterRoom(getSocket(), 'spectator', code.trim().toUpperCase(), (res) => {
-      if (res.ok) {
-        session.save(res.state.code, 'spectator')
-        arrive('spectator', res.state, null)
-      } else {
-        set({ error: res.error, busy: false })
-        useGameStore.getState().goTo('arenaMenu')
-      }
-    })
+    const s = getSocket()
+    enterRoom(
+      s,
+      'spectator',
+      code.trim().toUpperCase(),
+      giveUpOffline(s, (res: EnterResult) => {
+        if (res.ok) {
+          session.save(res.state.code, 'spectator')
+          arrive('spectator', res.state, null)
+        } else {
+          set({ error: res.error, busy: false })
+          useGameStore.getState().goTo('arenaMenu')
+        }
+      }),
+    )
   },
 
   joinGame: (code: string) => {
@@ -332,15 +367,21 @@ export const useArenaStore = create<ArenaStore>((set) => ({
       return
     }
     set({ busy: true, error: null })
-    enterRoom(getSocket(), 'player', trimmed, (res) => {
-      if (res.ok) {
-        set({ prefillCode: '' })
-        session.save(res.state.code, 'player')
-        arrive('player', res.state, res.myPlayerId)
-      } else {
-        set({ error: res.error, busy: false })
-      }
-    })
+    const s = getSocket()
+    enterRoom(
+      s,
+      'player',
+      trimmed,
+      giveUpOffline(s, (res: EnterResult) => {
+        if (res.ok) {
+          set({ prefillCode: '' })
+          session.save(res.state.code, 'player')
+          arrive('player', res.state, res.myPlayerId)
+        } else {
+          set({ error: res.error, busy: false })
+        }
+      }),
+    )
   },
 
   answer: (index) => {
