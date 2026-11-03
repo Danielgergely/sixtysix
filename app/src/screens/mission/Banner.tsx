@@ -50,6 +50,12 @@ function bannersFor(p: MissionState, s: MissionState, mySeat: number): Banner[] 
   return out
 }
 
+/** "Your turn!" hangs just below the status bar, never over it: its line says what to do. */
+function belowStatus(el: HTMLDivElement | null) {
+  const bar = el && document.querySelector('.ms-status')
+  if (el && bar) el.style.paddingTop = `${Math.round(bar.getBoundingClientRect().bottom + 10)}px`
+}
+
 export function MissionBanners({ state, mySeat }: { state: MissionState; mySeat: number }) {
   const [queue, setQueue] = useState<Banner[]>([])
   // The state last looked at (adjusting state while rendering, not in an effect).
@@ -106,6 +112,7 @@ export function MissionBanners({ state, mySeat }: { state: MissionState; mySeat:
             key={b.id}
             className={`ms-banner ${b.kind}${going ? ' leaving' : ''}`}
             style={style(b)}
+            ref={b.kind === 'turn' ? belowStatus : undefined}
             aria-hidden={going || undefined}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.2, delay: leaving.length && !going ? EXIT_MS / 1000 : 0 } }}
