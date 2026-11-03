@@ -2,7 +2,7 @@ import type { ArenaPlayer, RoomState, TeamState, TeamVotes } from '@sixtysix/sha
 import type { Vars } from '../../i18n'
 
 /** Team colours for Rebuild the Wall, by team id. */
-export const TEAM_COLORS = ['#2f6fd8', '#d2332f', '#2f9a45', '#d89a1f']
+const TEAM_COLORS = ['#2f6fd8', '#d2332f', '#2f9a45', '#d89a1f']
 
 /** The server names teams after Jerusalem's gates (in English); these are their translation keys. */
 const GATE_KEYS: Record<string, string> = { 'Sheep Gate': 'sheep', 'Fish Gate': 'fish', 'Valley Gate': 'valley', 'Fountain Gate': 'fountain' }

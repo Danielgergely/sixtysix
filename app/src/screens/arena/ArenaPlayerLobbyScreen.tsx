@@ -8,6 +8,7 @@ import { InfoButton } from '../../tutorial/InfoButton'
 import { rich } from './rich'
 import { TeamCard } from './game/Team'
 import { myTeamOf } from './modes'
+import { PlayerChip } from './PlayerChip'
 
 export function ArenaPlayerLobbyScreen() {
   const t = useT()
@@ -82,20 +83,7 @@ export function ArenaPlayerLobbyScreen() {
             {/* Items already there when the list appears skip their enter animation; not `initial={false}` on AnimatePresence (motion/firstKey.ts). */}
             <AnimatePresence>
               {others.map((p) => (
-                <motion.div
-                  key={p.id}
-                  layout
-                  className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-                  initial={firstChips.has(p.id) ? false : { opacity: 0, scale: 0.3, y: -30 }}
-                  animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
-                  transition={spring.bouncy}
-                >
-                  <span className="player-chip-avatar">
-                    <Avatar id={p.avatar} />
-                  </span>
-                  <span className="player-chip-name">{p.name}</span>
-                </motion.div>
+                <PlayerChip key={p.id} player={p} first={firstChips.has(p.id)} dropFrom={30} />
               ))}
             </AnimatePresence>
           </div>

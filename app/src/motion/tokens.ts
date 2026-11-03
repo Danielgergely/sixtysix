@@ -54,6 +54,13 @@ export const pulse: TargetAndTransition = {
 
 // ── entrance/exit variants ──────────────────────────────────────────────
 
+/** One game scene to the next (question → standings → …) in Bible Blitz and the arena. */
+export const sceneSlide = {
+  initial: { opacity: 0, x: 40 },
+  animate: { opacity: 1, x: 0, transition: { duration: duration.slow, ease: ease.out } },
+  exit: { opacity: 0, x: -40, transition: { duration: duration.fast } },
+}
+
 export const popIn = {
   initial: { scale: 0.6, opacity: 0 },
   animate: { scale: 1, opacity: 1, transition: spring.bouncy },

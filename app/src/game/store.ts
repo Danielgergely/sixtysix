@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type { PlayerProfile, RacePhase, Racer } from './types'
 import { pickBots, sampleBotAnswer, type BotRacer } from './bots'
 import { scoreAnswer, FINISH_LINE_SCORE, MAX_QUESTIONS, QUESTION_TIME_MS } from './scoring'
-import { playSfx } from './sfx'
+import { playSfx, setMuted } from './sfx'
 import {
   levelForXp,
   addStats,
@@ -15,7 +15,6 @@ import {
   saveStats,
   type PlayerStats,
 } from './persistence'
-import { setMuted } from './sfx'
 import { ALL_ANSWERED_BEAT_MS, GIFT_EXTRA_MS, READING_MS, coinsForAnswer, coinsForPlacement, type GiftId, type YourResult } from '@sixtysix/shared'
 import { useGiftStore } from '../skills/giftStore'
 import { bundledBank, loadVerses } from '../questions/provider'
@@ -99,8 +98,7 @@ interface GameStore {
   answer: (index: number) => void
   toggleMute: () => void
   updateProfile: (patch: { name?: string; avatar?: string }) => void
-  /** Credit coins to the persisted profile (every mode earns them). */
-  /** Credit coins (and optionally XP) to the saved profile. */
+  /** Credit coins (and optionally XP and stats) to the saved profile; queued as a grant for the account. */
   addCoins: (amount: number, xp?: number, stats?: Partial<PlayerStats>) => void
   /** Reveal / standings: move on without waiting. */
   skip: () => void
@@ -141,7 +139,10 @@ export const useGameStore = create<GameStore>((set, get) => {
   const setRacer = (id: string, patch: Partial<Racer>) =>
     set({ racers: get().racers.map((r) => (r.profile.id === id ? { ...r, ...patch } : r)) })
 
-  async function startRace() {
+  /** Bumped by every findMatch: a race whose bank arrives after the player left and re-queued must not start. */
+  let match = 0
+
+  async function startRace(id: number) {
     let bank: Question[]
     try {
       // The verses load along (cached for the reveal, also offline).
@@ -149,11 +150,11 @@ export const useGameStore = create<GameStore>((set, get) => {
     } catch {
       // The question chunk didn't load (offline web build): don't strand the
       // player on a lobby with no buttons.
-      if (get().screen === 'lobby') get().goTo('menu')
+      if (get().screen === 'lobby' && id === match) get().goTo('menu')
       return
     }
-    // The player left the lobby while the bank was loading.
-    if (get().screen !== 'lobby') return
+    // The player left the lobby while the bank was loading (and maybe queued again).
+    if (get().screen !== 'lobby' || id !== match) return
     const questions = bank
       // Races ramp up: start with easy questions, end with hard ones.
       .sort((a, b) => a.difficulty - b.difficulty)
@@ -287,50 +288,22 @@ export const useGameStore = create<GameStore>((set, get) => {
     const player = get().racers.find((r) => !r.isBot)
     const sorted = [...get().racers].sort((a, b) => b.score - a.score)
     const rank = sorted.findIndex((r) => r === player)
-    const bonus = coinsForPlacement(rank, 'blitz')
-    const xp = get().player.xp + (player?.score ?? 0)
-    const updated = {
-      ...get().player,
-      coins: get().player.coins + get().raceCoins + bonus,
-      xp,
-      level: levelForXp(xp),
-    }
-    savePlayer(updated)
+    const coins = get().raceCoins + coinsForPlacement(rank, 'blitz')
+    const score = player?.score ?? 0
 
     // Lifetime stats — abandoned races never reach this point by design.
     const { answerLog, questions, stats } = get()
-    const answered = answerLog.filter((a) => a !== -1).length
-    const correct = answerLog.filter((a, i) => a === questions[i].correctIndex).length
-    const won = rank === 0
-    const currentStreak = won ? stats.currentStreak + 1 : 0
-    const newStats: PlayerStats = {
-      ...stats,
-      gamesPlayed: stats.gamesPlayed + 1,
-      firstPlace: stats.firstPlace + (rank === 0 ? 1 : 0),
-      secondPlace: stats.secondPlace + (rank === 1 ? 1 : 0),
-      thirdPlace: stats.thirdPlace + (rank === 2 ? 1 : 0),
-      questionsAnswered: stats.questionsAnswered + answered,
-      questionsCorrect: stats.questionsCorrect + correct,
-      bestScore: Math.max(stats.bestScore, player?.score ?? 0),
-      currentStreak,
-      bestStreak: Math.max(stats.bestStreak, currentStreak),
-    }
-    saveStats(newStats)
-    queueGrant({
-      coins: get().raceCoins + bonus,
-      xp: player?.score ?? 0,
-      stats: {
-        gamesPlayed: 1,
-        firstPlace: rank === 0 ? 1 : 0,
-        secondPlace: rank === 1 ? 1 : 0,
-        thirdPlace: rank === 2 ? 1 : 0,
-        questionsAnswered: answered,
-        questionsCorrect: correct,
-        bestScore: player?.score ?? 0,
-        currentStreak,
-      },
+    get().addCoins(coins, score, {
+      gamesPlayed: 1,
+      firstPlace: rank === 0 ? 1 : 0,
+      secondPlace: rank === 1 ? 1 : 0,
+      thirdPlace: rank === 2 ? 1 : 0,
+      questionsAnswered: answerLog.filter((a) => a !== -1).length,
+      questionsCorrect: answerLog.filter((a, i) => a === questions[i].correctIndex).length,
+      bestScore: score,
+      currentStreak: rank === 0 ? stats.currentStreak + 1 : 0,
     })
-    set({ screen: 'podium', player: updated, stats: newStats, raceCoins: get().raceCoins + bonus })
+    set({ screen: 'podium', raceCoins: coins })
   }
 
   return {
@@ -374,7 +347,8 @@ export const useGameStore = create<GameStore>((set, get) => {
       bots.forEach((bot, i) => {
         later(() => set((s) => ({ racers: [...s.racers, bot] })), LOBBY_FILL_MS * (i + 1))
       })
-      later(() => void startRace(), LOBBY_FILL_MS * bots.length + 1400)
+      const id = ++match
+      later(() => void startRace(id), LOBBY_FILL_MS * bots.length + 1400)
     },
 
     skip: () => {

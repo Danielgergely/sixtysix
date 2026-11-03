@@ -1,5 +1,6 @@
 import { flockReward, missionReward, spiesReward, type FlockState, type MissionState, type SpiesState } from '@sixtysix/shared'
 import { useGameStore } from './store'
+import { paidLedger } from './paidLedger'
 
 /**
  * Board game rewards (shared/src/coins.ts → BOARD_REWARDS). Paid once per game
@@ -13,26 +14,11 @@ export interface BoardReward {
   xp: number
 }
 
-const PAID_KEY = 'sixtysix.boardPaid.v1'
-const PAID_TTL_MS = 6 * 3600_000
-
-function loadPaid(): Record<string, number> {
-  try {
-    const raw = JSON.parse(localStorage.getItem(PAID_KEY) ?? '{}') as Record<string, number>
-    return Object.fromEntries(Object.entries(raw).filter(([, t]) => typeof t === 'number' && Date.now() - t < PAID_TTL_MS))
-  } catch {
-    return {}
-  }
-}
+const paid = paidLedger('sixtysix.boardPaid.v1')
 
 function payOnce(key: string, reward: BoardReward): void {
-  const paid = loadPaid()
-  if (key in paid) return
-  try {
-    localStorage.setItem(PAID_KEY, JSON.stringify({ ...paid, [key]: Date.now() }))
-  } catch {
-    // storage unavailable — worst case a reload pays twice
-  }
+  if (paid.has(key)) return
+  paid.add(key)
   useGameStore.getState().addCoins(reward.coins, reward.xp)
 }
 
