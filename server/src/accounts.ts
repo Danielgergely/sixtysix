@@ -2,7 +2,7 @@ import { createHash, randomBytes, scryptSync, timingSafeEqual } from 'node:crypt
 import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
-import type { FastifyInstance, FastifyRequest } from 'fastify'
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
   DAY_MS,
   IDLE_DAYS,
@@ -288,6 +288,26 @@ export function userFromRequest(req: FastifyRequest): UserRow | undefined {
 }
 
 // ── validation ────────────────────────────────────────────────────────
+
+/** A JSON object body, or {} for anything else (missing, an array, a string). */
+export const bodyOf = (req: FastifyRequest): Record<string, unknown> =>
+  req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {}
+
+export type AccountHandler = (row: UserRow, account: Account, body: Record<string, unknown>) => unknown
+
+/** POST route for the signed-in player (skills.ts, looks.ts); errors are logged under `tag` and answered with a 500. */
+export function accountRoute(app: FastifyInstance, path: string, tag: string, fn: AccountHandler): void {
+  app.post(path, (req: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const row = userFromRequest(req)
+      if (!row) return reply.code(401).send({ ok: false, error: 'Signed out' })
+      return fn(row, toAccount(row), bodyOf(req))
+    } catch (err) {
+      console.error(`[${tag}] ${path} failed`, err)
+      return reply.code(500).send({ ok: false, error: 'Something went wrong' })
+    }
+  })
+}
 
 const int = (v: unknown, max: number): number => {
   const n = Math.floor(Number(v))

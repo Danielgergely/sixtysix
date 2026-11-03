@@ -1,6 +1,7 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { normalizeUsername, usernameKey } from '@sixtysix/shared'
 import {
+  bodyOf,
   checkPassword,
   clientIp,
   db,
@@ -34,8 +35,7 @@ function settingsRoute(app: FastifyInstance, path: string, fn: Handler): void {
     if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const me = userFromRequest(req)
     if (!me) return reply.code(401).send({ ok: false, error: 'Signed out' })
-    const body = (req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {}) as Record<string, unknown>
-    return fn(me, body, req, reply)
+    return fn(me, bodyOf(req), req, reply)
   })
 }
 

@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { USERNAME_RE, hasRole, normalizeUsername, usernameKey, type StaffRole } from '@sixtysix/shared'
-import { db, isAdminName, roleOf, userFromRequest, type UserRow } from './accounts.js'
+import { bodyOf, db, isAdminName, roleOf, userFromRequest, type UserRow } from './accounts.js'
 
 /**
  * Staff roles. Admins come from ADMIN_USERNAMES (env only; they can't be
@@ -53,7 +53,7 @@ export function registerRoleRoutes(app: FastifyInstance): void {
 
   /** Admins: { username, action: 'add' | 'remove' } grants or revokes the reviewer role. */
   staffRoute(app, 'post', '/api/admin/reviewers', 'admin', (row, req, reply) => {
-    const body = (req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {}) as Record<string, unknown>
+    const body = bodyOf(req)
     const username = typeof body.username === 'string' ? normalizeUsername(body.username) : ''
     if ((body.action !== 'add' && body.action !== 'remove') || !USERNAME_RE.test(username)) {
       return reply.code(400).send({ ok: false, error: 'Bad request' })

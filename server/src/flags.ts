@@ -17,7 +17,7 @@ import {
   type Question,
   type VerseText,
 } from '@sixtysix/shared'
-import { clientIp, db, sha256, userFromRequest } from './accounts.js'
+import { bodyOf, clientIp, db, sha256, userFromRequest } from './accounts.js'
 import { staffRoute } from './roles.js'
 import { questionById, setOutOfPlay, verseFor, versesFor } from './bank.js'
 
@@ -122,9 +122,6 @@ function parseShown(json: string): FlagShown | null {
     return null
   }
 }
-
-const bodyOf = (req: FastifyRequest): Record<string, unknown> =>
-  req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {}
 
 /** Every language's verse for the admin view; the English reference is the question's own. */
 function allVerses(q: Question): Partial<Record<Locale, VerseText>> {

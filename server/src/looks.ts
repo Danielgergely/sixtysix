@@ -1,6 +1,6 @@
-import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
-import { isItem, settleWardrobe, unlockOf, type Account } from '@sixtysix/shared'
-import { markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import type { FastifyInstance } from 'fastify'
+import { isItem, settleWardrobe, unlockOf } from '@sixtysix/shared'
+import { accountRoute, markActive, saveProfile } from './accounts.js'
 
 /**
  * Look items (shared/src/looks.ts, docs/economy.md). The wardrobe lives in the
@@ -9,25 +9,9 @@ import { markActive, saveProfile, toAccount, userFromRequest, type UserRow } fro
  * Replies carry the whole account; the app adopts it (coins included).
  */
 
-type Handler = (row: UserRow, account: Account, body: Record<string, unknown>) => unknown
-
-function route(app: FastifyInstance, path: string, fn: Handler): void {
-  app.post(path, (req: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const row = userFromRequest(req)
-      if (!row) return reply.code(401).send({ ok: false, error: 'Signed out' })
-      const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {}
-      return fn(row, toAccount(row), body)
-    } catch (err) {
-      console.error(`[looks] ${path} failed`, err)
-      return reply.code(500).send({ ok: false, error: 'Something went wrong' })
-    }
-  })
-}
-
 export function registerLookRoutes(app: FastifyInstance): void {
   /** Buy one Market item: { item }. Rare items can't be bought; they are earned. */
-  route(app, '/api/looks/buy', (row, account, body) => {
+  accountRoute(app, '/api/looks/buy', 'looks', (row, account, body) => {
     const id = body.item
     if (!isItem(id)) return { ok: false, error: 'Unknown item' }
     const unlock = unlockOf(id)

@@ -33,7 +33,7 @@ import {
   type PlotState,
   type ScrollQuestion,
 } from '@sixtysix/shared'
-import { db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
 import { pickQuestions, referenceIn } from './bank.js'
 
 /**
@@ -139,8 +139,7 @@ function route(app: FastifyInstance, method: 'get' | 'post', path: string, fn: H
       const c = load(req)
       if (!c) return reply.code(401).send(fail('Signed out'))
       if (method === 'post') markActive(c.row.id) // building tends the home
-      const body = req.body && typeof req.body === 'object' ? (req.body as Record<string, unknown>) : {}
-      return fn(c, body)
+      return fn(c, bodyOf(req))
     } catch (err) {
       console.error(`[plot] ${path} failed`, err)
       return reply.code(500).send(fail('Something went wrong'))
