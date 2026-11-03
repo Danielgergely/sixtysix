@@ -25,8 +25,8 @@ interface MissionStore {
   myId: string | null
   /** Date.now()-based end of the current phase (0 = none). */
   endsAt: number
-  /** The card I played on question n (for the flip at the reveal). */
-  myAnswer: { n: number; index: number } | null
+  /** The card I played on question n of a game (for the flip at the reveal; n starts again each game). */
+  myAnswer: { game: number; n: number; index: number } | null
   error: string | null
   busy: boolean
   prefillCode: string
@@ -191,9 +191,10 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
     getSocket().emit('mission:attack', { region })
   },
   answer: (index) => {
-    const n = get().state?.question?.n
-    if (n === undefined || get().myAnswer?.n === n) return
-    set({ myAnswer: { n, index } })
+    const state = get().state
+    const n = state?.question?.n
+    if (!state || n === undefined || myAnswerTo(get(), state) !== null) return
+    set({ myAnswer: { game: state.game, n, index } })
     playSfx('submit')
     getSocket().emit('mission:answer', { index })
   },
@@ -217,6 +218,10 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
 useLocale.subscribe((s, prev) => {
   if (s.locale !== prev.locale && useMissionStore.getState().role === 'player') socket?.emit('mission:locale', { locale: s.locale })
 })
+
+/** The card I played on the current question (null = none yet). */
+export const myAnswerTo = (s: Pick<MissionStore, 'myAnswer'>, state: MissionState): number | null =>
+  s.myAnswer && s.myAnswer.game === state.game && s.myAnswer.n === state.question?.n ? s.myAnswer.index : null
 
 export const isLeader = (s: Pick<MissionStore, 'state' | 'myId'>): boolean => !!s.state && s.state.leaderId === s.myId && s.myId !== null
 
