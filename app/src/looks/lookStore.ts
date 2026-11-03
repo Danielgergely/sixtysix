@@ -1,6 +1,7 @@
 import { create } from 'zustand'
-import { cleanWardrobe, earnedItems, progressFor, type Account, type ItemId, type UnlockProgress } from '@sixtysix/shared'
+import { ownedItemsOf, progressFor, type Account, type ItemId, type UnlockProgress } from '@sixtysix/shared'
 import { getToken, readOutbox } from '../account/outbox'
+import { authedJson } from '../account/authFetch'
 import { useAccountStore } from '../account/accountStore'
 
 /**
@@ -28,12 +29,7 @@ export const useLookStore = create<LookStore>((set) => ({
 
 export const openLookPicker = (tab?: PickerTab) => useLookStore.getState().openPicker(tab)
 
-export function ownedItems(account: Account | null): ItemId[] {
-  if (!account) return []
-  const owned = cleanWardrobe(account.profile.wardrobe)
-  for (const id of earnedItems(progressFor(account.profile))) if (!owned.includes(id)) owned.push(id)
-  return owned
-}
+export const ownedItems = (account: Account | null): ItemId[] => (account ? ownedItemsOf(account.profile) : [])
 
 export const unlockProgress = (account: Account | null): UnlockProgress | null => (account ? progressFor(account.profile) : null)
 
@@ -41,18 +37,7 @@ export const unlockProgress = (account: Account | null): UnlockProgress | null =
 export async function buyItem(item: ItemId): Promise<string | null> {
   const token = getToken()
   if (!token) return 'Sign in to buy'
-  let res: { ok: true; account: Account } | { ok: false; error: string }
-  try {
-    const r = await fetch('/api/looks/buy', {
-      method: 'POST',
-      headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
-      body: JSON.stringify({ item }),
-    })
-    if (r.status === 401) return 'Signed out — sign in again'
-    res = await r.json()
-  } catch {
-    return 'No connection to the server'
-  }
+  const res = await authedJson<{ ok: true; account: Account } | { ok: false; error: string }>(token, '/api/looks/buy', { item })
   if (!res.ok) return res.error
   const acc = useAccountStore.getState()
   acc.adoptAccount(res.account)

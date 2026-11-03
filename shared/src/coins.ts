@@ -68,15 +68,11 @@ export const BOARD_REWARDS = {
   },
 } as const
 
-export function flockReward(won: boolean): { coins: number; xp: number } {
-  const r = BOARD_REWARDS.flock
-  return won ? { coins: r.winCoins, xp: r.winXp } : { coins: r.lossCoins, xp: r.lossXp }
-}
+type WinLossReward = { winCoins: number; lossCoins: number; winXp: number; lossXp: number }
+const byResult = (r: WinLossReward, won: boolean) => (won ? { coins: r.winCoins, xp: r.winXp } : { coins: r.lossCoins, xp: r.lossXp })
 
-export function spiesReward(won: boolean): { coins: number; xp: number } {
-  const r = BOARD_REWARDS.spies
-  return won ? { coins: r.winCoins, xp: r.winXp } : { coins: r.lossCoins, xp: r.lossXp }
-}
+export const flockReward = (won: boolean): { coins: number; xp: number } => byResult(BOARD_REWARDS.flock, won)
+export const spiesReward = (won: boolean): { coins: number; xp: number } => byResult(BOARD_REWARDS.spies, won)
 
 export interface MissionRewardParts {
   right: number

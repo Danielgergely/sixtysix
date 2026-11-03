@@ -216,8 +216,7 @@ export interface ClientToServerEvents {
 export interface ServerToClientEvents {
   'room:state': (state: RoomState) => void
   'room:closed': (reason: string) => void
-  /** endsInMs = duration from receipt (no clock-sync needed). */
-  /** `yourAnswer` is set when re-sent to a player who already answered this question. */
+  /** endsInMs = duration from receipt (no clock-sync needed). `yourAnswer` is set when re-sent to a player who already answered this question. */
   'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
   /** Public ids of the players who have answered the current question (count = length). */
   'game:answerCount': (count: number, answeredIds: string[]) => void
