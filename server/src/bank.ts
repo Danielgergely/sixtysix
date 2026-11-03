@@ -56,7 +56,8 @@ export interface PickOptions {
   exclude?: Set<string>
 }
 
-function shuffle<T>(xs: T[]): T[] {
+/** Fisher–Yates, in place (returns `xs`). */
+export function shuffle<T>(xs: T[]): T[] {
   for (let i = xs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[xs[i], xs[j]] = [xs[j], xs[i]]

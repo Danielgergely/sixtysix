@@ -2,7 +2,7 @@ import { createHash, randomBytes, scryptSync, timingSafeEqual } from 'node:crypt
 import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
-import type { FastifyInstance, FastifyRequest } from 'fastify'
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
   DAY_MS,
   IDLE_DAYS,
@@ -180,6 +180,10 @@ export interface UserRow {
   pass_set?: number | null
 }
 
+/** Whole days since the family was last active (weeds and "For sale", shared/src/city.ts). */
+export const idleDaysOf = (r: { last_active: number | null; created_at: number }, now = Date.now()): number =>
+  Math.max(0, Math.floor((now - (r.last_active ?? r.created_at)) / DAY_MS))
+
 /** The account with this username, any case and however its letters were composed. */
 export function userByName(username: string): UserRow | undefined {
   return db.prepare('SELECT * FROM users WHERE username_key = ?').get(usernameKey(username)) as UserRow | undefined
@@ -238,12 +242,41 @@ export function checkPassword(password: string, stored: string): boolean {
   return tries.some((p) => matches(p, stored))
 }
 
-const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
+export const sha256 = (s: string): string => createHash('sha256').update(s).digest('hex')
 
 export function newSession(userId: number): string {
   const token = randomBytes(32).toString('base64url')
   db.prepare('INSERT INTO sessions (token_hash, user_id, created_at) VALUES (?, ?, ?)').run(sha256(token), userId, Date.now())
   return token
+}
+
+/**
+ * Google / Apple sign-in: the account linked to `sub`, or a new one made by `fresh()` (`created`).
+ * Its password hash matches nothing: password sign-in works only after the player sets one (Account settings).
+ * Null only when the insert failed and no racing sign-in created the account either.
+ */
+export function signInLinked(
+  provider: 'google' | 'apple',
+  sub: string,
+  fresh: () => { username: string; profile: AccountProfile },
+): { row: UserRow; created: boolean } | null {
+  const linked = () => db.prepare(`SELECT * FROM users WHERE ${provider}_sub = ?`).get(sub) as UserRow | undefined
+  const row = linked()
+  if (row) return { row, created: false }
+  const { username, profile } = fresh()
+  let result: { row: UserRow; created: boolean } | null
+  try {
+    const { lastInsertRowid } = db
+      .prepare(`INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile, ${provider}_sub) VALUES (?, ?, ?, 0, ?, ?, ?)`)
+      .run(username, usernameKey(username), hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), sub)
+    result = { row: db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow, created: true }
+  } catch {
+    // A second sign-in raced us and created the account first: use it.
+    const raced = linked()
+    result = raced ? { row: raced, created: false } : null
+  }
+  if (result) console.log(`[account] ${provider} signup ${username}`)
+  return result
 }
 
 export function userFromRequest(req: FastifyRequest): UserRow | undefined {
@@ -255,6 +288,26 @@ export function userFromRequest(req: FastifyRequest): UserRow | undefined {
 }
 
 // ── validation ────────────────────────────────────────────────────────
+
+/** A JSON object body, or {} for anything else (missing, an array, a string). */
+export const bodyOf = (req: FastifyRequest): Record<string, unknown> =>
+  req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {}
+
+export type AccountHandler = (row: UserRow, account: Account, body: Record<string, unknown>) => unknown
+
+/** POST route for the signed-in player (skills.ts, looks.ts); errors are logged under `tag` and answered with a 500. */
+export function accountRoute(app: FastifyInstance, path: string, tag: string, fn: AccountHandler): void {
+  app.post(path, (req: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const row = userFromRequest(req)
+      if (!row) return reply.code(401).send({ ok: false, error: 'Signed out' })
+      return fn(row, toAccount(row), bodyOf(req))
+    } catch (err) {
+      console.error(`[${tag}] ${path} failed`, err)
+      return reply.code(500).send({ ok: false, error: 'Something went wrong' })
+    }
+  })
+}
 
 const int = (v: unknown, max: number): number => {
   const n = Math.floor(Number(v))
@@ -335,7 +388,6 @@ export function saveProfile(id: number, profile: AccountProfile): void {
 
 // ── brute-force guard: per IP, sliding minute ─────────────────────────
 
-/** The caller's address. Behind Fly's proxy `req.ip` is the proxy, shared by every player; Fly names the real client. */
 /**
  * The player's address behind a proxy, for rate limits. Coolify's Traefik
  * replaces any X-Forwarded-For sent by the client with the real address, and
@@ -350,16 +402,23 @@ export function clientIp(req: FastifyRequest): string {
   return last || req.ip
 }
 
+const ATTEMPT_WINDOW_MS = 60_000
+export const TOO_MANY = 'Too many attempts — wait a minute.'
 const attempts = new Map<string, number[]>()
 /** Counts this attempt (unless `record` is false) and says whether the caller has had too many this minute. */
 export function tooMany(ip: string, record = true): boolean {
   const now = Date.now()
-  const recent = (attempts.get(ip) ?? []).filter((t) => now - t < 60_000)
+  const recent = (attempts.get(ip) ?? []).filter((t) => now - t < ATTEMPT_WINDOW_MS)
   if (record) recent.push(now)
   if (recent.length) attempts.set(ip, recent)
   else attempts.delete(ip)
   return recent.length > 10
 }
+// An address that never comes back would otherwise keep its entry for good.
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, times] of attempts) if (times.every((t) => now - t >= ATTEMPT_WINDOW_MS)) attempts.delete(ip)
+}, 10 * ATTEMPT_WINDOW_MS).unref()
 
 // ── validation messages (English; the app translates them with tServer) ──
 
@@ -389,7 +448,7 @@ export function passwordError(password: string): string | null {
 
 export function registerAccountRoutes(app: FastifyInstance): void {
   app.post('/api/account/signup', (req, reply) => {
-    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown; profile?: unknown }
     const username = typeof body.username === 'string' ? normalizeUsername(body.username) : ''
     const password = typeof body.password === 'string' ? body.password : ''
@@ -414,7 +473,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
 
   app.post('/api/account/login', (req, reply) => {
     // Only wrong passwords count, so a family signing in behind one router isn't locked out.
-    if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req), false)) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const body = (req.body ?? {}) as { username?: unknown; password?: unknown }
     const row = typeof body.username === 'string' ? userByName(body.username) : undefined
     if (!row || typeof body.password !== 'string' || !checkPassword(body.password, row.pass_hash)) {
@@ -448,7 +507,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     const now = Date.now()
     const today = (db
       .prepare('SELECT COALESCE(SUM(coins), 0) AS coins, COALESCE(SUM(xp), 0) AS xp FROM grants WHERE user_id = ? AND at >= ?')
-      .get(row.id, now - (now % 86_400_000)) ?? { coins: 0, xp: 0 }) as { coins: number; xp: number }
+      .get(row.id, now - (now % DAY_MS)) ?? { coins: 0, xp: 0 }) as { coins: number; xp: number }
     // Skill bonuses (Diligent student, Faithful in little) are added here, on the
     // server, inside the daily ceiling; guest progress merged at sign-in gets none.
     const bonus = { xp: 0, coins: 0 }
@@ -489,8 +548,8 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     // Tutorials seen: added to the account's list; "Show tips again" (tutorialsReset) replaces it.
     const tutorials = cleanTutorials(body.tutorials)
     if (tutorials) {
-      const merged = body.tutorialsReset === true ? tutorials : cleanTutorials([...(account.profile.tutorials ?? []), ...tutorials])!
-      if (merged.length) account.profile.tutorials = merged
+      const seenIds = body.tutorialsReset === true ? tutorials : cleanTutorials([...(account.profile.tutorials ?? []), ...tutorials])!
+      if (seenIds.length) account.profile.tutorials = seenIds
       else delete account.profile.tutorials
     }
     saveProfile(row.id, account.profile)
@@ -541,7 +600,7 @@ export function registerPublicRoutes(app: FastifyInstance): void {
     return {
       ok: true,
       period: week ? 'week' : 'all',
-      resetsAt: since + 7 * 86_400_000,
+      resetsAt: since + 7 * DAY_MS,
       top: ranked.slice(0, 50).map((p, i) => ({ ...p, rank: i + 1 })),
       me: myIndex >= 0 ? { ...ranked[myIndex], rank: myIndex + 1 } : null,
     }
@@ -549,19 +608,18 @@ export function registerPublicRoutes(app: FastifyInstance): void {
 
   app.get('/api/players/:username', (req, reply) => {
     const { username } = req.params as { username: string }
-    const row = db.prepare('SELECT id, username, profile, created_at FROM users WHERE username_key = ?').get(usernameKey(username)) as
-      | (PublicRow & { id: number })
-      | undefined
+    const row = db
+      .prepare('SELECT id, username, profile, created_at, lot, last_active FROM users WHERE username_key = ?')
+      .get(usernameKey(username)) as (PublicRow & { id: number; lot: number | null; last_active: number | null }) | undefined
     if (!row) return reply.code(404).send({ ok: false, error: 'No such player' })
-    const home = db.prepare('SELECT lot, last_active FROM users WHERE id = ?').get(row.id) as { lot: number | null; last_active: number | null }
     const profile = JSON.parse(row.profile) as AccountProfile
     const levels = publicLevels(row.id)
     return {
       ok: true,
       player: {
         ...publicPlayer(row),
-        lot: home.lot,
-        idleDays: Math.floor((Date.now() - (home.last_active ?? row.created_at)) / DAY_MS),
+        lot: row.lot,
+        idleDays: idleDaysOf(row),
         house: levels?.house ?? 1,
         levels,
         stats: { ...EMPTY_STATS, ...profile.stats },

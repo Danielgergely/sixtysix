@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto'
 import type { FastifyInstance, FastifyRequest } from 'fastify'
 import {
   DAY_MS,
@@ -18,7 +17,7 @@ import {
   type Question,
   type VerseText,
 } from '@sixtysix/shared'
-import { clientIp, db, userFromRequest } from './accounts.js'
+import { bodyOf, clientIp, db, sha256, userFromRequest } from './accounts.js'
 import { staffRoute } from './roles.js'
 import { questionById, setOutOfPlay, verseFor, versesFor } from './bank.js'
 
@@ -54,8 +53,6 @@ interface FlagRow {
   note: string
   username?: string | null
 }
-
-const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
 
 /** The rate-limit key: a hash of the address, never the address itself. */
 const ipKey = (req: FastifyRequest) => sha256(`66-flags:${clientIp(req)}`).slice(0, 32)
@@ -125,9 +122,6 @@ function parseShown(json: string): FlagShown | null {
     return null
   }
 }
-
-const bodyOf = (req: FastifyRequest): Record<string, unknown> =>
-  req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {}
 
 /** Every language's verse for the admin view; the English reference is the question's own. */
 function allVerses(q: Question): Partial<Record<Locale, VerseText>> {

@@ -3,7 +3,6 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
   cleanLocale,
   questionIn,
-  DAY_MS,
   BUILDING_IDS,
   MATERIALS,
   MATERIAL_INFO,
@@ -34,8 +33,8 @@ import {
   type PlotState,
   type ScrollQuestion,
 } from '@sixtysix/shared'
-import { db, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
-import { pickQuestions, referenceIn } from './bank.js'
+import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import { pickQuestions, referenceIn, shuffle } from './bank.js'
 
 /**
  * My Home in Jerusalem (docs/jerusalem-plot.md): the plot, the Market and the
@@ -117,7 +116,7 @@ function save(c: Ctx): void {
 /** Where the homestead stands and how long its family has been away (weeds, shared/src/city.ts). */
 function home(userId: number, now: number): { lot: number | null; idleDays: number } {
   const r = db.prepare('SELECT lot, last_active, created_at FROM users WHERE id = ?').get(userId) as { lot: number | null; last_active: number | null; created_at: number }
-  return { lot: r.lot, idleDays: Math.max(0, Math.floor((now - (r.last_active ?? r.created_at)) / DAY_MS)) }
+  return { lot: r.lot, idleDays: idleDaysOf(r, now) }
 }
 
 const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({
@@ -140,8 +139,7 @@ function route(app: FastifyInstance, method: 'get' | 'post', path: string, fn: H
       const c = load(req)
       if (!c) return reply.code(401).send(fail('Signed out'))
       if (method === 'post') markActive(c.row.id) // building tends the home
-      const body = req.body && typeof req.body === 'object' ? (req.body as Record<string, unknown>) : {}
-      return fn(c, body)
+      return fn(c, bodyOf(req))
     } catch (err) {
       console.error(`[plot] ${path} failed`, err)
       return reply.code(500).send(fail('Something went wrong'))
@@ -251,7 +249,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (qs.length < SCROLL_QUESTIONS) return fail('No questions available')
     const correct: number[] = []
     const questions: ScrollQuestion[] = qs.map((q, i) => {
-      const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5)
+      const order = shuffle([0, 1, 2, 3])
       correct.push(order.indexOf(q.correctIndex))
       const { text, answers } = questionIn(q, locale)
       return { id: String(i), reference: referenceIn(q, locale), text, answers: order.map((k) => answers[k]) as ScrollQuestion['answers'] }
@@ -329,8 +327,8 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (!skills || !modsOf(c.plot).masterBuilder) return fail('Learn Master builder first')
     const week = weekStartUtc(c.now)
     if (skills.masterWeek === week) return fail('Already used this week')
-    if (body.building !== undefined && !asBuilding(body.building)) return fail('Unknown building')
     const wanted = asBuilding(body.building)
+    if (body.building !== undefined && !wanted) return fail('Unknown building')
     const build = wanted ? c.plot.builds.find((x) => x.building === wanted) : [...c.plot.builds].sort((a, b) => b.endsAt - a.endsAt)[0]
     if (!build) return fail(wanted ? 'That building is not being built' : 'Nothing is being built')
     skills.masterWeek = week
@@ -366,9 +364,4 @@ export function cityLevels(): Map<number, { house: number; wall: number }> {
     out.set(r.user_id, { house: plot.levels.house, wall: plot.levels.wall })
   }
   return out
-}
-
-/** House level per user id for the city grid (1 = tent, also for players without a plot). */
-export function houseLevels(): Map<number, number> {
-  return new Map([...cityLevels()].map(([id, l]) => [id, l.house]))
 }

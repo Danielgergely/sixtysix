@@ -9,7 +9,7 @@ import type {
 import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { applyModeRound, endsEarly, finalBonus, formTeams, queueTeamVotes, setupMode, teamVotesFor } from './modes.js'
 import { pickQuestions, verseFor, versesFor } from './bank.js'
-import { toPublicState, touch, type Room } from './rooms.js'
+import { toPublicState, touch, type Room, type RoomPlayer } from './rooms.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 
@@ -57,16 +57,23 @@ export function startGame(io: IO, room: Room): void {
   playedByHost.set(room.hostId, played)
   room.questionIndex = 0
   room.prevRanks = new Map()
-  for (const p of room.players.values()) {
-    p.score = 0
-    p.streak = 0
-    p.lastGain = 0
-    p.coins = 0
-  }
+  for (const p of room.players.values()) resetPlayer(p)
   setupMode(room)
   nextQuestion(io, room)
   console.log(`[game] ${room.code} started: ${room.questions.length} questions, ${room.players.size} players`)
 }
+
+/** A fresh game for this player: no points, streak or coins yet. */
+function resetPlayer(p: RoomPlayer): void {
+  p.score = 0
+  p.streak = 0
+  p.lastGain = 0
+  p.coins = 0
+  p.answer = undefined
+}
+
+/** Public ids of the players who have answered the current question. */
+const answeredIds = (room: Room): string[] => [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
 
 function nextQuestion(io: IO, room: Room): void {
   touch(room)
@@ -117,7 +124,7 @@ export function sendCurrentPhase(
   const answered = secret ? room.players.get(secret)?.answer?.index : undefined
   socket.emit('game:question', publicQuestion(room, q), room.phase, remaining, answered)
   if (room.phase === 'question') {
-    const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
+    const ids = answeredIds(room)
     socket.emit('game:answerCount', ids.length, ids)
     const me = secret ? room.players.get(secret) : undefined
     if (me?.team !== undefined && room.teams) socket.emit('game:teamVotes', teamVotesFor(room, me))
@@ -135,11 +142,7 @@ export function backToLobby(io: IO, room: Room): void {
       room.players.delete(secret)
       continue
     }
-    p.score = 0
-    p.streak = 0
-    p.lastGain = 0
-    p.coins = 0
-    p.answer = undefined
+    resetPlayer(p)
   }
   room.phase = 'lobby'
   room.game++
@@ -177,7 +180,7 @@ function finishGame(io: IO, room: Room): void {
 
 /** Who has answered so far — players see faces, boards see the count. */
 function emitAnswered(io: IO, room: Room): void {
-  const ids = [...room.players.values()].filter((p) => p.answer).map((p) => p.id)
+  const ids = answeredIds(room)
   io.to(room.code).emit('game:answerCount', ids.length, ids)
 }
 
