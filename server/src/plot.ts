@@ -34,7 +34,7 @@ import {
   type ScrollQuestion,
 } from '@sixtysix/shared'
 import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
-import { pickQuestions, referenceIn } from './bank.js'
+import { pickQuestions, referenceIn, shuffle } from './bank.js'
 
 /**
  * My Home in Jerusalem (docs/jerusalem-plot.md): the plot, the Market and the
@@ -249,7 +249,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (qs.length < SCROLL_QUESTIONS) return fail('No questions available')
     const correct: number[] = []
     const questions: ScrollQuestion[] = qs.map((q, i) => {
-      const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5)
+      const order = shuffle([0, 1, 2, 3])
       correct.push(order.indexOf(q.correctIndex))
       const { text, answers } = questionIn(q, locale)
       return { id: String(i), reference: referenceIn(q, locale), text, answers: order.map((k) => answers[k]) as ScrollQuestion['answers'] }
@@ -327,8 +327,8 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (!skills || !modsOf(c.plot).masterBuilder) return fail('Learn Master builder first')
     const week = weekStartUtc(c.now)
     if (skills.masterWeek === week) return fail('Already used this week')
-    if (body.building !== undefined && !asBuilding(body.building)) return fail('Unknown building')
     const wanted = asBuilding(body.building)
+    if (body.building !== undefined && !wanted) return fail('Unknown building')
     const build = wanted ? c.plot.builds.find((x) => x.building === wanted) : [...c.plot.builds].sort((a, b) => b.endsAt - a.endsAt)[0]
     if (!build) return fail(wanted ? 'That building is not being built' : 'Nothing is being built')
     skills.masterWeek = week
