@@ -1,6 +1,8 @@
+import { useEffect, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { usePlotStore } from '../../plot/plotStore'
-import { popIn } from '../../motion'
+import { PARCHMENT } from '../../art/textures'
+import { popIn, spring } from '../../motion'
 import { useT } from '../../i18n'
 
 /** Back button, title and an optional Market button (My Home, Market). */
@@ -39,5 +41,32 @@ export function Toast() {
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+/** A parchment sheet sliding up over a dimmed screen (a building, a landmark): the scrim, ✕ or Escape closes it. */
+export function Sheet({ className = '', closeTitle, onClose, children }: { className?: string; closeTitle: string; onClose: () => void; children: ReactNode }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+  return (
+    <>
+      <motion.div className="hp-scrim" onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+      <motion.div
+        className={className ? `hp-sheet ${className}` : 'hp-sheet'}
+        style={{ backgroundImage: PARCHMENT }}
+        initial={{ y: '100%' }}
+        animate={{ y: 0, transition: spring.gentle }}
+        exit={{ y: '100%', transition: { duration: 0.2 } }}
+        role="dialog"
+      >
+        <button className="hp-sheet-close" onClick={onClose} title={closeTitle}>
+          ✕
+        </button>
+        {children}
+      </motion.div>
+    </>
   )
 }

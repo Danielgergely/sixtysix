@@ -1,4 +1,4 @@
-import { BoxGeometry, BufferAttribute, BufferGeometry, Color, ConeGeometry, CylinderGeometry, Euler, Matrix4, Quaternion, Vector3, type ColorRepresentation } from 'three'
+import { BoxGeometry, BufferAttribute, BufferGeometry, Color, ConeGeometry, CylinderGeometry, Euler, Matrix4, Quaternion, Vector3, type ColorRepresentation, type InstancedMesh } from 'three'
 
 /**
  * A tiny mesh builder for the city's low-poly models. Parts (boxes, prisms,
@@ -188,6 +188,16 @@ export class Geo {
 export function place(x: number, y: number, z: number, o: PartOpts = {}): Matrix4 {
   const q = new Quaternion().setFromEuler(new Euler(o.rx ?? 0, o.ry ?? 0, o.rz ?? 0, 'YXZ'))
   return new Matrix4().compose(new Vector3(x, y, z), q, new Vector3(1, 1, 1))
+}
+
+/** Writes an instanced mesh's matrices (and colours): it draws that many, with fresh bounds. */
+export function setInstances(mesh: InstancedMesh, matrices: Matrix4[], colors?: Color[]) {
+  matrices.forEach((m, i) => mesh.setMatrixAt(i, m))
+  colors?.forEach((c, i) => mesh.setColorAt(i, c))
+  mesh.count = matrices.length
+  mesh.instanceMatrix.needsUpdate = true
+  if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
+  mesh.computeBoundingSphere()
 }
 
 /** A model's frame: placed at (x, y, z), turned by ry about Y. */

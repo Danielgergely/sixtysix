@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { CanvasTexture, Frustum, Matrix4, MeshLambertMaterial, PlaneGeometry, RepeatWrapping, SRGBColorSpace, Vector3, AdditiveBlending, MeshBasicMaterial } from 'three'
+import type { Bridge } from './bridge'
 import type { PoolWater as Water } from './buildings'
 import { rng } from './space'
 
@@ -8,8 +9,8 @@ import { rng } from './space'
  * The water of the Pool of Siloam: a tinted, half-clear surface over the
  * stepped basin with two layers of ripples drifting across it. The canvas
  * renders on demand, so the ripples move on whatever frames are drawn, and
- * while the pool is on screen and near, a few frames a second are asked for.
- * Reduced motion (`still`): calm water.
+ * while the pool is on screen and near, a few frames a second are asked for
+ * (none while `bridge.paused`). Reduced motion (`still`): calm water.
  */
 
 /** Soft light ripples on a transparent ground, tiling. */
@@ -43,7 +44,7 @@ function rippleTexture(seed: number, alpha: number): CanvasTexture {
 const FPS = 12
 const NEAR = 170
 
-export function PoolWater({ water, still }: { water: Water; still: boolean }) {
+export function PoolWater({ water, still, bridge }: { water: Water; still: boolean; bridge: Bridge }) {
   const invalidate = useThree((s) => s.invalidate)
   const geo = useMemo(() => new PlaneGeometry(water.hw * 2, water.hd * 2).rotateX(-Math.PI / 2), [water])
   const mats = useMemo(() => {
@@ -72,9 +73,9 @@ export function PoolWater({ water, still }: { water: Water; still: boolean }) {
   const wantFrames = useRef(false)
   useEffect(() => {
     if (still) return
-    const id = window.setInterval(() => wantFrames.current && invalidate(), 1000 / FPS)
+    const id = window.setInterval(() => wantFrames.current && !bridge.paused && invalidate(), 1000 / FPS)
     return () => window.clearInterval(id)
-  }, [still, invalidate])
+  }, [still, invalidate, bridge])
 
   const frustum = useMemo(() => new Frustum(), [])
   const m = useMemo(() => new Matrix4(), [])

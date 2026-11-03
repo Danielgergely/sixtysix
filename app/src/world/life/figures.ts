@@ -1,3 +1,5 @@
+import { t } from '../../i18n'
+
 /**
  * The people and animals of the explorable world (app/public/art/walk-*.webp
  * and life-*.webp, made with art-pipeline/). A walker's picture is a strip of
@@ -68,3 +70,6 @@ export const FIGURES: Record<FigureId, Figure> = {
 
 /** Townsfolk of the city, in the order new walkers are dressed. */
 export const TOWNSFOLK: FigureId[] = ['man', 'woman', 'merchant', 'woodcutter', 'elder', 'boy', 'mason', 'shepherd', 'picker']
+
+/** One of a figure's speech lines (life.say.<id>.l1 …), at random. */
+export const sayLine = (fig: FigureId) => t(`life.say.${fig}.l${1 + Math.floor(Math.random() * FIGURES[fig].lines)}`)

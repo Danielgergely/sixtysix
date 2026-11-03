@@ -71,10 +71,13 @@ function adoptCoins(coins: number, rev: number | undefined): void {
   if (acc.account) useAccountStore.setState({ account: { ...acc.account, profile: { ...acc.account.profile, coins } } })
 }
 
+/** The Workers' scroll answered: how many right, the right answers, and the build it sped up (by `cutMs`). */
+type ScrollResult = { right: number; passed: boolean; correct: number[]; building?: BuildingId; cutMs: number }
+
 export interface ScrollRound {
   id: string
   questions: ScrollQuestion[]
-  result?: { right: number; passed: boolean; correct: number[]; building?: BuildingId; cutMs: number }
+  result?: ScrollResult
 }
 
 interface PlotStore {
@@ -203,7 +206,7 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       if (!round) return
       set({ busy: true })
       const res = take(
-        await call<{ right: number; passed: boolean; correct: number[]; building?: BuildingId; cutMs: number }>('/scroll/answer', {
+        await call<ScrollResult>('/scroll/answer', {
           scrollId: round.id,
           answers,
           building,

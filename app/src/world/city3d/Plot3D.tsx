@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { NoToneMapping, PCFShadowMap } from 'three'
-import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId } from '@sixtysix/shared'
-import { t as tNow, useT } from '../../i18n'
+import { SPOTS, type BuildingId } from '@sixtysix/shared'
+import { useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
 import { useTutorialStore } from '../../tutorial/store'
-import { countdown } from '../../screens/home/homeUtil'
-import { buildingName, levelName } from '../../screens/home/plotText'
+import { buildPct, countdown, spotStatus } from '../../screens/home/homeUtil'
+import { buildingName, levelName, spotLevelText } from '../../screens/home/plotText'
 import type { PlotSceneProps } from '../PlotScene'
 import { useYardActors } from '../yard'
-import { FIGURES } from '../life/figures'
+import { sayLine, type FigureId } from '../life/figures'
 import { reducedMotion } from '../life/sim'
 import { DprMonitor } from './DprMonitor'
 import { newBridge, type LabelSpec } from './bridge'
@@ -17,6 +17,8 @@ import { buildingGeometry, scaffoldGeometry, topOf, type Spot } from './models'
 import { PLOT_FOV, PLOT_MIN_DIST, PLOT_START_POLAR, plotStartDist, SPOT_3D, YARD_3D } from './plotSpace'
 import { PlotScene3D } from './PlotScene3D'
 import { NavButtons } from './NavButtons'
+import { useSpeechBubble } from './bubble'
+import { SpeechBubble } from './SpeechBubble'
 import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } from './rig'
 import '../../theme/city3d.css'
 
@@ -43,7 +45,7 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
   const still = useMemo(() => reducedMotion(), [])
   const [dpr, setDpr] = useState(maxDpr)
   const [zoom, setZoom] = useState({ in: true, out: true })
-  const [bubble, setBubble] = useState<{ id: string; text: string; key: number } | null>(null)
+  const [bubble, setBubble] = useSpeechBubble(bridge)
   const { actors, giftOf, giving } = useYardActors(levels, plot, now, !!onGift, YARD_3D)
   // No frames while the yard is scrolled away or the tab hidden.
   usePauseWhenHidden(bridge, box)
@@ -98,8 +100,8 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
 
   const onCreated = useContextLost(onLost)
 
-  const say = async (id: string, fig: keyof typeof FIGURES) => {
-    const line = () => tNow(`life.say.${fig}.l${1 + Math.floor(Math.random() * FIGURES[fig].lines)}`)
+  const say = async (id: string, fig: FigureId) => {
+    const line = () => sayLine(fig)
     const key = Date.now()
     const gift = giftOf.get(id)
     if (gift && onGift && giving.has(gift)) {
@@ -119,18 +121,6 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
     if (hit?.kind === 'spot') onSelect?.(hit.id as Spot)
   })
 
-  // The bubble fades on its own.
-  useEffect(() => {
-    if (!bubble) {
-      bridge.bubble = null
-      return
-    }
-    // A frame to place it (it then follows its figure on the frames drawn anyway).
-    bridge.invalidate()
-    const id = setTimeout(() => setBubble((b) => (b?.key === bubble.key ? null : b)), 3600)
-    return () => clearTimeout(id)
-  }, [bubble, bridge])
-
   const tag = (spot: Spot) => {
     const ref = (el: HTMLElement | null) => {
       if (el) bridge.labels.set(spot, el)
@@ -148,30 +138,26 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
       )
     }
     const b = spot
-    const level = levels[b]
-    const build = plot?.builds.find((x) => x.building === b)
-    const waiting = plot && PRODUCERS.includes(b) ? ready(plot, b) : 0
-    const isNew = seen && plot ? level > seen[b] : false
-    const pct = build ? Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100) : 0
+    const { level, build, waiting, icon, isNew } = spotStatus(b, levels, plot, seen)
     return (
       <div key={spot} ref={ref} className="c3-tag p3-tag" data-tour={b === 'house' ? 'home-house' : undefined} title={level ? levelName(b, level) : undefined} style={{ display: 'none' }}>
         <div className={`p3-stack ps-tagspot ${b === 'house' ? 'house' : ''} ${level ? '' : 'empty'}`}>
           {isNew && !build && <span className="p3-ribbon new">{t('home.scene.new')}</span>}
           {!isNew && waiting > 0 && (
             <span className="p3-ribbon">
-              +{waiting} {MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon}
+              +{waiting} {icon}
             </span>
           )}
           {build && (
             <span className="ps-build p3-build">
               <span className="hp-bar">
-                <span style={{ width: `${pct}%` }} />
+                <span style={{ width: `${buildPct(build, now)}%` }} />
               </span>
               <small>🔨 {countdown(build.endsAt - now)}</small>
             </span>
           )}
           <span className="ps-tag">
-            {buildingName(b)} <small>{level ? t('home.scene.lv', { n: level }) : build ? t('home.scene.goingUp') : plot ? t('home.scene.empty') : '—'}</small>
+            {buildingName(b)} <small>{spotLevelText(level, !!build, !!plot)}</small>
           </span>
         </div>
       </div>
@@ -218,19 +204,7 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
             </span>
           ))}
       </div>
-      {bubble && (
-        <div
-          key={bubble.key}
-          className="c3-bubble"
-          ref={(el) => {
-            // Set here, not in an effect: the ref runs first, and Townsfolk3D places it from the next frame.
-            if (el) bridge.bubble = { id: bubble.id, el }
-          }}
-          style={{ display: 'none' }}
-        >
-          <div className="lf-bubble">{bubble.text}</div>
-        </div>
-      )}
+      <SpeechBubble bubble={bubble} bridge={bridge} />
       <NavButtons
         bridge={bridge}
         still={still}

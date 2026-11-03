@@ -9,12 +9,34 @@ import { houseName } from '../screens/home/plotText'
 
 /**
  * The controls over the Jerusalem map, shared by the 3D city (city3d/) and the
- * painted 2D map (CityMap): the family search and the card of the family just
- * found.
+ * painted 2D map (CityMap): the top bar (search, "My home" or "Temple", the
+ * screen's own chips) and the card of the family just found.
  */
 
+/** The bar over the map: the family search, a chip to fly home (or to the Temple without a home), then `extra`. */
+export function CityTop({ residents, onPick, hasHome, onHome, onTemple, extra }: { residents: Resident[]; onPick: (r: Resident) => void; hasHome: boolean; onHome: () => void; onTemple: () => void; extra?: React.ReactNode }) {
+  const t = useT()
+  return (
+    <div className="cm-top">
+      <CitySearch residents={residents} onPick={onPick} />
+      <div className="cm-tools">
+        {hasHome ? (
+          <button className="cm-chip gold" onClick={onHome} title={t('city.map.myHomeTitle')}>
+            📍 <span>{t('city.map.myHome')}</span>
+          </button>
+        ) : (
+          <button className="cm-chip" onClick={onTemple} title={t('city.map.templeTitle')}>
+            🏛️ <span>{t('city.map.temple')}</span>
+          </button>
+        )}
+        {extra}
+      </div>
+    </div>
+  )
+}
+
 /** A search field over the map: name or @username → fly to their lot. */
-export function CitySearch({ residents, onPick }: { residents: Resident[]; onPick: (r: Resident) => void }) {
+function CitySearch({ residents, onPick }: { residents: Resident[]; onPick: (r: Resident) => void }) {
   const [q, setQ] = useState('')
   const [open, setOpen] = useState(false)
   const t = useT()

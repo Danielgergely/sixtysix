@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'motion/react'
 import { INNER_MIN_HOUSE, MOVE_COST, moveError } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { useAccountStore } from '../account/accountStore'
 import { fetchLeaderboard, type LeaderboardData, type Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { PARCHMENT } from '../art/textures'
-import { spring } from '../motion'
 import { tServer, useLocale, useT } from '../i18n'
 import { INNER_LOTS, type LandmarkId } from './cityLayout'
 import { artFor } from '../screens/home/homeUtil'
 import { houseName } from '../screens/home/plotText'
 import { rich } from '../screens/home/rich'
+import { Sheet } from '../screens/home/parts'
 import { moveHome } from './cityApi'
 
 export type CitySheetKind = Exclude<LandmarkId, 'market'> | 'lot'
@@ -38,32 +36,14 @@ export function CitySheet({
   onClose: () => void
 }) {
   const t = useT()
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
   return (
-    <>
-      <motion.div className="hp-scrim" onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
-      <motion.div
-        className="hp-sheet cs"
-        style={{ backgroundImage: PARCHMENT }}
-        initial={{ y: '100%' }}
-        animate={{ y: 0, transition: spring.gentle }}
-        exit={{ y: '100%', transition: { duration: 0.2 } }}
-        role="dialog"
-      >
-        <button className="hp-sheet-close" onClick={onClose} title={t('city.map.close')}>
-          ✕
-        </button>
-        {kind === 'temple' && <Temple />}
-        {kind === 'governor' && <NoticeBoard residents={residents} />}
-        {kind === 'gate' && <Gate />}
-        {kind === 'pool' && <Pool />}
-        {kind === 'lot' && lot && <LotCard pick={lot} residents={residents} onMoved={onMoved} onClose={onClose} />}
-      </motion.div>
-    </>
+    <Sheet className="cs" closeTitle={t('city.map.close')} onClose={onClose}>
+      {kind === 'temple' && <Temple />}
+      {kind === 'governor' && <NoticeBoard residents={residents} />}
+      {kind === 'gate' && <Gate />}
+      {kind === 'pool' && <Pool />}
+      {kind === 'lot' && lot && <LotCard pick={lot} residents={residents} onMoved={onMoved} onClose={onClose} />}
+    </Sheet>
   )
 }
 

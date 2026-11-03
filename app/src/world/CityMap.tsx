@@ -4,10 +4,11 @@ import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { useT } from '../i18n'
 import { artFor } from '../screens/home/homeUtil'
-import { CitySearch, FoundCard } from './CityChrome'
+import { CityTop, FoundCard } from './CityChrome'
 import { houseName } from '../screens/home/plotText'
-import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, lotOpen, type LandmarkId, type Lot } from './cityLayout'
+import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, freeLots, lotFor, type LandmarkId, type Lot } from './cityLayout'
 import { CityLife } from './CityLife'
+import { homesOf } from './cityTownsfolk'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
 
@@ -63,14 +64,9 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, o
     setView((cur) => (cur && cur.x0 === next.x0 && cur.y0 === next.y0 && cur.x1 === next.x1 && cur.y1 === next.y1 && cur.lod === next.lod ? cur : next))
   }, [])
 
-  /** Empty lots (1-based numbers), nearest the Temple first. */
-  const free = useMemo(() => {
-    const taken = new Set(residents.map((r) => r.lot))
-    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n) && lotOpen(n))
-  }, [residents])
-
+  const free = useMemo(() => freeLots(residents), [residents])
   /** The townsfolk come and go between these homes; more of them with every family, more still when they're active. */
-  const homes = useMemo(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
+  const homes = useMemo(() => homesOf(residents), [residents])
 
   const inView = (x: number, y: number) => !view || (x > view.x0 && x < view.x1 && y > view.y0 && y < view.y1)
   const flyTo = (r: Resident) => {
@@ -98,21 +94,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, o
       }
       overlay={({ canZoomIn, canZoomOut, zoomBy }) => (
         <>
-          <div className="cm-top">
-            <CitySearch residents={residents} onPick={flyTo} />
-            <div className="cm-tools">
-              {home ? (
-                <button className="cm-chip gold" onClick={() => mine && flyTo(mine)} title={t('city.map.myHomeTitle')}>
-                  📍 <span>{t('city.map.myHome')}</span>
-                </button>
-              ) : (
-                <button className="cm-chip" onClick={() => pz.current?.centerOn(TEMPLE.x + PAD, TEMPLE.y + PAD, START_ZOOM)} title={t('city.map.templeTitle')}>
-                  🏛️ <span>{t('city.map.temple')}</span>
-                </button>
-              )}
-              {extra}
-            </div>
-          </div>
+          <CityTop residents={residents} onPick={flyTo} hasHome={!!home} onHome={() => mine && flyTo(mine)} onTemple={() => pz.current?.centerOn(TEMPLE.x + PAD, TEMPLE.y + PAD, START_ZOOM)} extra={extra} />
           <div className="pz-zoom">
             <button onClick={() => zoomBy(1)} disabled={!canZoomIn} title={t('city.map.zoomIn')}>
               +
@@ -126,36 +108,36 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, o
       )}
     >
       <div className="cm-world" style={{ left: PAD, top: PAD, width: WORLD, height: WORLD }}>
-      <CityLife homes={homes} view={view} />
-      {LANDMARKS.map((l) => (
-        <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
-      ))}
-      {/* Free land: the next few lots always (they're labelled); the rest only close up. */}
-      {free.map((n, i) => {
-        const l = LOTS[n - 1]
-        const labelled = i < FREE_LABELS
-        return (labelled || view?.lod === 'near') && inView(l.x, l.y) ? <FreeLot key={n} n={n} lot={l} labelled={labelled} onTap={onLot} /> : null
-      })}
-      {residents.map((r) => {
-        const lot = r.lot ? lotFor(r.lot) : undefined
-        if (!lot) return null
-        const special = r.username === me || r.username === found?.username
-        const stage = idleStage(r.idleDays)
-        // A home whose family has been away 60+ days can be taken over.
-        const forSale = stage === 3 && r.username !== me
-        return inView(lot.x, lot.y) || special ? (
-          <ResidentLot
-            key={r.username}
-            r={r}
-            lot={lot}
-            stage={stage}
-            forSale={forSale}
-            mine={r.username === me}
-            found={r.username === found?.username}
-            onTap={forSale ? () => onLot(r.lot!, r) : onResident}
-          />
-        ) : null
-      })}
+        <CityLife homes={homes} view={view} />
+        {LANDMARKS.map((l) => (
+          <LandmarkView key={l.id} id={l.id} name={t(`city.landmarks.${l.id}`)} art={l.art} x={l.x} y={l.y} size={l.size} onTap={onLandmark} />
+        ))}
+        {/* Free land: the next few lots always (they're labelled); the rest only close up. */}
+        {free.map((n, i) => {
+          const l = LOTS[n - 1]
+          const labelled = i < FREE_LABELS
+          return (labelled || view?.lod === 'near') && inView(l.x, l.y) ? <FreeLot key={n} n={n} lot={l} labelled={labelled} onTap={onLot} /> : null
+        })}
+        {residents.map((r) => {
+          const lot = r.lot ? lotFor(r.lot) : undefined
+          if (!lot) return null
+          const special = r.username === me || r.username === found?.username
+          const stage = idleStage(r.idleDays)
+          // A home whose family has been away 60+ days can be taken over.
+          const forSale = stage === 3 && r.username !== me
+          return inView(lot.x, lot.y) || special ? (
+            <ResidentLot
+              key={r.username}
+              r={r}
+              lot={lot}
+              stage={stage}
+              forSale={forSale}
+              mine={r.username === me}
+              found={r.username === found?.username}
+              onTap={forSale ? () => onLot(r.lot!, r) : onResident}
+            />
+          ) : null
+        })}
       </div>
     </PanZoom>
   )
