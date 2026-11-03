@@ -127,9 +127,15 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           </button>
         </div>
       )}
-      {b === 'well' && cur?.water && <div className="hp-row-box">{rich(t('home.sheet.well', { n: cur.water }))}</div>}
-      {b === 'store' && cur?.cap && <div className="hp-row-box">{rich(t('home.sheet.store', { n: cur.cap }))}</div>}
-      {b === 'house' && level < 4 && <div className="hp-row-box">{rich(t('home.sheet.house'))}</div>}
+      {b === 'well' && cur?.water && <div className="hp-row-box">
+          <span>{rich(t('home.sheet.well', { n: cur.water }))}</span>
+        </div>}
+      {b === 'store' && cur?.cap && <div className="hp-row-box">
+          <span>{rich(t('home.sheet.store', { n: cur.cap }))}</span>
+        </div>}
+      {b === 'house' && level < 4 && <div className="hp-row-box">
+          <span>{rich(t('home.sheet.house'))}</span>
+        </div>}
 
       {build ? (
         <div className="hp-building">

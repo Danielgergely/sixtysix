@@ -11,11 +11,11 @@ import {
   Vector3,
   type Texture,
 } from 'three'
-import { EXITS } from '../cityTownsfolk'
 import { FIGURES, type FigureId } from '../life/figures'
 import type { Graph } from '../life/nav'
 import { newSim, stepSim, syncSims, tapSim, type Actor, type Sim } from '../life/sim'
 import type { Bridge } from './bridge'
+import { MAIN_ROADS } from './plan'
 import { blobTexture } from './textures'
 import { surfaceAt, ux, uz } from './space'
 
@@ -62,7 +62,7 @@ export interface FolkSpace {
   bubbleTop: number
 }
 
-const CITY_SPACE: FolkSpace = { x: ux, z: uz, ground: surfaceAt, scale: FIG_SCALE, maxDist: FIG_DIST, exits: EXITS, bubbleTop: 150 }
+const CITY_SPACE: FolkSpace = { x: ux, z: uz, ground: surfaceAt, scale: FIG_SCALE, maxDist: FIG_DIST, exits: MAIN_ROADS.map((r) => r.exit), bubbleTop: 150 }
 
 type Sim3 = Sim & { hy: number; vis: boolean; sx: number; sy: number; sh: number; sw: number }
 

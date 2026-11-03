@@ -117,6 +117,8 @@ export function townsfolk(homes: Home[], net: StreetNet = PAINTED): { roads: Gra
     if (l) houses[`h${h.lot}`] = { x: l.x, y: l.y + 4 }
   }
   const roads = withPlaces(net.base, { ...houses, ...net.landmarks })
+  // Only the exits this network has (the 3D streets have four of the painting's six).
+  const exits = EXITS.filter((x) => roads.nodes[x])
   const houseIds = Object.keys(houses)
   const out: Actor[] = []
   const n = walkerCount(homes)
@@ -125,7 +127,7 @@ export function townsfolk(homes: Home[], net: StreetNet = PAINTED): { roads: Gra
     const home = houseIds.length ? nth(houseIds, i, 1) : nth(LANDMARK_IDS, i, 1)
     // A few errands each: home, a neighbour, two landmarks, and now and then out of town.
     const stops = [home, ...(houseIds.length ? [nth(houseIds, i, 2), nth(houseIds, i, 3)] : []), nth(LANDMARK_IDS, i, 4), nth(LANDMARK_IDS, i, 5)]
-    if (i % 3 === 0) stops.push(nth(EXITS, i, 6))
+    if (i % 3 === 0 && exits.length) stops.push(nth(exits, i, 6))
     const child = fig === 'boy'
     out.push({
       id: `p${i}`,
