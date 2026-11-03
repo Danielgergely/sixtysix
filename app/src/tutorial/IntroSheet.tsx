@@ -19,6 +19,8 @@ export function IntroSheet({ id, onDone }: { id: GuideId; onDone: () => void }) 
   }
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
+      // Enter on a focused button (Next is focused at first) already clicks it; acting here too would skip a card.
+      if (e.key === 'Enter' && e.target instanceof Element && e.target.closest('button')) return
       if (e.key === 'Escape') onDone()
       else if (e.key === 'ArrowRight' || e.key === 'Enter') {
         if (last) onDone()

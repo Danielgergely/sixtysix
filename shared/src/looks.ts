@@ -14,7 +14,7 @@
  * look; unknown ids become the default.
  */
 import type { AccountProfile } from './account'
-import { levelForXp, rankOf, skillsInPath } from './skills'
+import { levelForXp, pathPoints } from './skills'
 
 export const CHARACTERS = [
   'david', 'moses', 'esther', 'ruth',
@@ -54,7 +54,7 @@ const buy = (price: number) => ({ kind: 'buy', price }) as const
 /**
  * Every item, in picker order per slot. Painted ones (head, neck) are
  * public/art/item-<id>.webp; frames and backdrops are CSS. The first frame and
- * backdrop are the defaults (worn when the slot is empty).
+ * backdrop are the defaults (worn when the slot is empty, DEFAULT_FRAME / DEFAULT_BACKDROP).
  */
 export const LOOK_ITEMS = {
   // head
@@ -96,6 +96,8 @@ export const LOOK_ITEMS = {
 } as const satisfies Record<string, LookItem>
 
 export type ItemId = keyof typeof LOOK_ITEMS
+export const DEFAULT_FRAME: ItemId = 'gilt'
+export const DEFAULT_BACKDROP: ItemId = 'crimson'
 export const ITEM_IDS = Object.keys(LOOK_ITEMS) as ItemId[]
 export const itemsIn = (slot: LookSlot): ItemId[] => ITEM_IDS.filter((id) => LOOK_ITEMS[id].slot === slot)
 export const isItem = (v: unknown): v is ItemId => typeof v === 'string' && Object.prototype.hasOwnProperty.call(LOOK_ITEMS, v)
@@ -188,17 +190,23 @@ export function progressFor(p: Pick<AccountProfile, 'stats' | 'xp' | 'skills'>):
   return {
     stats: { arenaWins: p.stats?.arenaWins ?? 0, bestDailyStreak: p.stats?.bestDailyStreak ?? 0, questionsCorrect: p.stats?.questionsCorrect ?? 0 },
     level: levelForXp(p.xp),
-    pathPoints: { scholar: skillsInPath('scholar').reduce((n, s) => n + rankOf(p.skills?.ranks, s.id), 0) },
+    pathPoints: { scholar: pathPoints(p.skills?.ranks ?? {}, 'scholar') },
   }
 }
 
-/**
- * Server side: clean the profile's wardrobe and add every rare item it has
- * earned by now. Earned items are kept even if the condition later lapses (a re-spec).
- */
-export function settleWardrobe(profile: AccountProfile): ItemId[] {
+/** The profile's cleaned wardrobe plus every rare item it has earned by now. */
+export function ownedItemsOf(profile: Pick<AccountProfile, 'wardrobe' | 'stats' | 'xp' | 'skills'>): ItemId[] {
   const owned = cleanWardrobe(profile.wardrobe)
   for (const id of earnedItems(progressFor(profile))) if (!owned.includes(id)) owned.push(id)
+  return owned
+}
+
+/**
+ * Server side: store ownedItemsOf on the profile. Earned items are kept even
+ * if the condition later lapses (a re-spec).
+ */
+export function settleWardrobe(profile: AccountProfile): ItemId[] {
+  const owned = ownedItemsOf(profile)
   profile.wardrobe = owned
   return owned
 }

@@ -175,6 +175,13 @@ export const useAccountStore = create<AccountStore>((set, get) => {
     return true
   }
 
+  /** Google / Apple: a brand-new account already started from the guest progress, so only an existing one gets it merged. */
+  async function socialSignIn(provider: 'google' | 'apple', body: Record<string, string>): Promise<boolean> {
+    set({ busy: true, error: '' })
+    const res = await api(provider, { ...body, profile: guestProgress() })
+    return signedIn(res, !(res.ok && res.created))
+  }
+
   /** This device becomes a fresh guest (after a sign-out); the progress stays safe in the account. */
   const resetToGuest = () => {
     signedOut()
@@ -251,19 +258,8 @@ export const useAccountStore = create<AccountStore>((set, get) => {
       return signedIn(await api('login', { username, password }), true)
     },
 
-    googleSignIn: async (credential) => {
-      set({ busy: true, error: '' })
-      const res = await api('google', { credential, profile: guestProgress() })
-      // A brand-new Google account already started from the guest progress.
-      return signedIn(res, !(res.ok && (res as { created?: boolean }).created))
-    },
-
-    appleSignIn: async (idToken, name) => {
-      set({ busy: true, error: '' })
-      const res = await api('apple', { idToken, name, profile: guestProgress() })
-      // A brand-new Apple account already started from the guest progress.
-      return signedIn(res, !(res.ok && (res as { created?: boolean }).created))
-    },
+    googleSignIn: (credential) => socialSignIn('google', { credential }),
+    appleSignIn: (idToken, name) => socialSignIn('apple', { idToken, name }),
 
     logout: async () => {
       await get().sync() // deliver pending rewards first

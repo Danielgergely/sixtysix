@@ -32,13 +32,13 @@ import { InfoButton } from '../tutorial/InfoButton'
 import { useIntro } from '../tutorial/useIntro'
 import { rich } from './home/rich'
 
-
 const GOLD = ['#f7d36b', '#e9b23a', '#fff1b8', '#c98a12']
 
 /** "Gifts": three paths (Scholar, Builder, Steward), five tiers each. Accounts only. */
 export function SkillTreeScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const account = useAccountStore((s) => s.account)
+  const guestXp = useGameStore((s) => s.player.xp)
   const t = useT()
   useIntro('skills', !!account)
   const locale = useLocale((s) => s.locale)
@@ -48,7 +48,7 @@ export function SkillTreeScreen() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
-  const xp = account?.profile.xp ?? useGameStore.getState().player.xp
+  const xp = account?.profile.xp ?? guestXp
   const skills: SkillState = account?.profile.skills ?? EMPTY_SKILLS
   const { level, into, need } = levelProgress(xp)
   const total = pointsForXp(xp)

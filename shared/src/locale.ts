@@ -7,6 +7,5 @@ import { LOCALE_IDS, isLocale, type Locale } from './question'
  */
 export type GameLocale = Locale
 export const GAME_LOCALES = LOCALE_IDS
-export const isGameLocale = isLocale
 /** A client-sent locale, validated (anything else is English). */
 export const cleanLocale = (x: unknown): GameLocale => (isLocale(x) ? x : 'en')

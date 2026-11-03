@@ -11,6 +11,7 @@ import {
 } from '@sixtysix/shared'
 import { useLocale } from '../i18n'
 import { getToken, readOutbox } from '../account/outbox'
+import { authedJson } from '../account/authFetch'
 import { acceptRev, useAccountStore } from '../account/accountStore'
 import { useGameStore } from '../game/store'
 
@@ -50,24 +51,10 @@ type Res<T = object> = ({ ok: true; plot: PlotState; coins: number; rev?: number
 
 async function call<T = object>(path: string, body?: unknown): Promise<Res<T>> {
   const token = getToken()
-  const res = await send<T>(token, path, body)
+  if (!token) return { ok: false, error: 'Sign in to build' }
+  const res = await authedJson<Res<T>>(token, `/api/plot${path}`, body)
   // Signed out or switched account while waiting: this reply belongs to someone else.
   return getToken() === token ? res : { ok: false, error: '' }
-}
-
-async function send<T>(token: string | null, path: string, body?: unknown): Promise<Res<T>> {
-  if (!token) return { ok: false, error: 'Sign in to build' }
-  try {
-    const res = await fetch(`/api/plot${path}`, {
-      method: body === undefined ? 'GET' : 'POST',
-      headers: { authorization: `Bearer ${token}`, ...(body !== undefined && { 'content-type': 'application/json' }) },
-      body: body === undefined ? undefined : JSON.stringify(body),
-    })
-    if (res.status === 401) return { ok: false, error: 'Signed out — sign in again' }
-    return (await res.json()) as Res<T>
-  } catch {
-    return { ok: false, error: 'No connection to the server' }
-  }
 }
 
 /** The server's coin total wins (it just spent or paid out). */

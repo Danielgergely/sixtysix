@@ -13,7 +13,7 @@ import { create } from 'zustand'
  *   Intl.PluralRules of the locale) when they exist.
  */
 
-import type { Locale } from '@sixtysix/shared'
+import { isLocale, type Locale } from '@sixtysix/shared'
 
 export type { Locale }
 export const LOCALES: { id: Locale; name: string }[] = [
@@ -64,7 +64,7 @@ const KEY = 'sixtysix.locale.v1'
 function initialLocale(): Locale {
   try {
     const saved = localStorage.getItem(KEY)
-    if (saved === 'en' || saved === 'de' || saved === 'hu') return saved
+    if (isLocale(saved)) return saved
   } catch {
     // storage unavailable
   }
@@ -125,6 +125,10 @@ function translate(dict: Dict, locale: Locale, key: string, vars?: Vars): string
   if (vars) text = text.replace(/\{(\w+)\}/g, (m, name: string) => (name in vars ? String(vars[name]) : m))
   return text
 }
+
+/** `part` of `total` as a whole percentage in the locale's style ("42 %"), or "–" when there is no total. */
+export const percentOf = (part: number, total: number, locale: string) =>
+  total > 0 ? (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 0 }) : '–'
 
 /** `const t = useT()` — re-renders the component when the language changes. */
 export function useT(): (key: string, vars?: Vars) => string {
