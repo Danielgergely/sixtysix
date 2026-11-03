@@ -548,8 +548,8 @@ export function registerAccountRoutes(app: FastifyInstance): void {
     // Tutorials seen: added to the account's list; "Show tips again" (tutorialsReset) replaces it.
     const tutorials = cleanTutorials(body.tutorials)
     if (tutorials) {
-      const merged = body.tutorialsReset === true ? tutorials : cleanTutorials([...(account.profile.tutorials ?? []), ...tutorials])!
-      if (merged.length) account.profile.tutorials = merged
+      const seenIds = body.tutorialsReset === true ? tutorials : cleanTutorials([...(account.profile.tutorials ?? []), ...tutorials])!
+      if (seenIds.length) account.profile.tutorials = seenIds
       else delete account.profile.tutorials
     }
     saveProfile(row.id, account.profile)
