@@ -48,7 +48,8 @@
   background: rgb(29 15 6 / 0.88) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='6.5' cy='6.5' r='5' fill='none' stroke='%23ffd36b' stroke-width='2'/%3E%3Cpath d='M10.5 10.5 15 15' stroke='%23ffd36b' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") 12px 50% no-repeat;
   color: #ffe7a3; font: 700 14px/1 'Cinzel', serif; box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); -webkit-user-select: text; user-select: text;
 }
-.cm-search input::placeholder{ color: #c9a970; font-weight: 600; }
+.cm-search input::placeholder{ color: #c9a970; font-weight: 600; font-size: 13px; letter-spacing: -0.01em; }
+.cm-search input{ text-overflow: ellipsis; }
 .cm-search input:focus{ border-color: #ffe08a; box-shadow: 0 0 0 3px rgb(255 214 100 / 0.3), 0 3px 10px rgb(0 0 0 / 0.5); }
 .cm-search input::-webkit-search-cancel-button{ filter: sepia(1) saturate(4); }
 .cm-hits{ touch-action: pan-y;
@@ -167,7 +168,7 @@
 
 /* ── The plot scene (My Home, visiting) ── */
 .ps{
-  height: min(58vh, 420px); margin: 0 -14px; border-top: 3px solid #b88a3a; border-bottom: 3px solid #b88a3a;
+  flex: none; height: min(58vh, 420px); margin: 0 -14px; border-top: 3px solid #b88a3a; border-bottom: 3px solid #b88a3a;
   background: #7d8a45; box-shadow: inset 0 0 30px rgb(0 0 0 / 0.5);
 }
 .ps-ground{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }

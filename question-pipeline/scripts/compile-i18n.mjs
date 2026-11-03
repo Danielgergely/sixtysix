@@ -11,7 +11,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { PLACE, parse, refText } from './refs.mjs'
+import { BOOKS, ENGLISH, PLACE, deMark, parse, refText } from './refs.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const appQ = join(root, '..', 'app', 'src', 'questions')
@@ -28,12 +28,27 @@ function verse(lang, bible, fallback, reference) {
   const [ch, from, to] = place ? [place[0], place[1], place[2] ?? place[1]] : [r.ch, r.from, r.to]
   const texts = []
   for (let v = from; v <= to; v++) {
-    const t = bible[book]?.[ch]?.[v] ?? fallback?.[book]?.[ch]?.[v]
+    let t = bible[book]?.[ch]?.[v] ?? fallback?.[book]?.[ch]?.[v]
     if (!t) throw new Error(`${lang}: no text for ${book} ${ch}:${v} (${reference})`)
+    // A Psalm title in front of the verse is Schlachter's verse 1, not part of the English verse.
+    const title = !place && lang === 'de' ? deMark(bible, book, ch, v)?.title : ''
+    if (title) t = t.slice(t.indexOf(title) + title.length)
     texts.push(clean(t))
   }
   const shown = place?.[3] === 'keep' ? [r.ch, r.from, r.to] : [ch, from, to]
-  return { ref: refText(lang, book, ...shown), text: texts.join(' ') }
+  return { ref: place || lang !== 'de' ? refText(lang, book, ...shown) : schlachterRef(bible, r), text: texts.join(' ') }
+}
+
+/**
+ * German references in Schlachter's own numbering (the Psalm titles counted as verses,
+ * Jonah 1:17 → 2,1, …), read from its VPL marks like Mission's tie-breakers (refs.mjs).
+ */
+function schlachterRef(bible, r) {
+  const at = (v) => deMark(bible, r.book, r.ch, v) ?? { ch: r.ch, v }
+  const a = at(r.from)
+  const b = at(r.to)
+  if (a.ch === b.ch) return refText('de', r.book, a.ch, a.v, b.v)
+  return `${BOOKS.de[ENGLISH.indexOf(r.book)]} ${a.ch},${a.v}–${b.ch},${b.v}`
 }
 
 const bank = read(join(appQ, 'bank.json'))

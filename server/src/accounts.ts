@@ -26,7 +26,7 @@ import {
   type Grant,
   type StaffRole,
 } from '@sixtysix/shared'
-import { LOTS } from '@sixtysix/shared/cityLayout'
+import { LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
 import { cleanName } from './rooms.js'
 import { publicLevels } from './plot.js'
 
@@ -149,7 +149,8 @@ function settleHomeless(): void {
 /** The first free lot (inside the wall first), or null when the city is full (they camp outside the walls until it grows). */
 function freeLot(): number | null {
   const taken = new Set((db.prepare('SELECT lot FROM users WHERE lot IS NOT NULL').all() as { lot: number }[]).map((r) => r.lot))
-  for (let n = 1; n <= LOTS.length; n++) if (!taken.has(n)) return n
+  // Retired lots (a road or a landmark of the 3D city took their place) are never given out.
+  for (let n = 1; n <= LOTS.length; n++) if (!taken.has(n) && lotOpen(n)) return n
   return null
 }
 

@@ -25,7 +25,7 @@ export default {
     build: 'Építés ›',
     visit: 'Látogatás ›',
     close: 'Bezárás',
-    search: 'Család keresése ({n})',
+    search: 'Családok ({n})',
     searchAria: 'Család keresése Jeruzsálemben',
     noHits: 'Még nincs ilyen nevű család',
     lotTitle: '{name} · {house} · {n}. parcella',
@@ -60,7 +60,7 @@ export default {
     lot: '{n}. parcella',
     outside: 'a falakon kívül',
     profile: 'Profil ›',
-    drag: 'Húzd a képet, hogy körülnézz. Itt csak a gazdája építhet.',
+    drag: 'Húzd a képet, hogy körülnézz; két ujjal vagy a gombokkal forgathatod. Itt csak a gazdája építhet.',
     tent: 'Itt még nem kezdődött el az építkezés – egy sátor áll a telken.',
   },
 

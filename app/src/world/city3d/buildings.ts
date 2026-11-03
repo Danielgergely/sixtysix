@@ -1,119 +1,44 @@
 import { Matrix4, type BufferGeometry } from 'three'
-import { LANDMARKS, WALL, WORLD, type LandmarkId } from '../cityLayout'
-import { GATE_ROADS, ROADS } from '../cityTownsfolk'
 import { Geo, frameAt } from './geo'
 import { C } from './palette'
-import { heightAt, MOUNT_PTS, MOUNT_TOP, rng, S, STAIRS, TEMPLE_XZ, ux, uz, wallSpace } from './space'
+import {
+  ANTONIA,
+  GATE_W,
+  GATES,
+  LANDMARK_RECTS,
+  onWall,
+  PEN,
+  PLATFORM,
+  SANCTUARY,
+  tAt,
+  TOWER_AT,
+  TOWER_SIZE,
+  WALL_H,
+  WALL_SEGS,
+  wallDir,
+  type Gate,
+  type PlanLandmark,
+} from './plan'
+import type { LandmarkId } from '../cityLayout'
+import { heightAt, MOUNT_PTS, MOUNT_TOP, rng, STAIRS } from './space'
+import { buildStreets } from './roads'
 
 /**
  * Everything in the city that never changes, as two merged geometries (one
  * for dressed stone, one for plaster, wood and cloth): the city wall with its
- * towers and gates, the Temple Mount with Herod's Temple, and the landmarks
- * (market, governor's palace, Sheep Gate, Pool of Siloam). Built once when
- * the 3D city opens; positions come from shared/src/cityLayout.ts.
+ * towers and gates, the Temple Mount with Herod's Temple, the paved plaza and
+ * streets (roads.ts), and the landmarks (market, governor's palace, Sheep
+ * Gate, Pool of Siloam, the sheep pen). Built once when the 3D city opens;
+ * where everything stands comes from plan.ts. The Pool's water is a mesh of
+ * its own (CityScene), so it can shimmer.
  */
-
-const pctX = (p: number) => ux((p / 100) * WORLD)
-const pctZ = (p: number) => uz((p / 100) * WORLD)
 
 // ── The wall ────────────────────────────────────────────────────────────────
 
-const W_CX = ux(WALL.cx)
-const W_CZ = uz(WALL.cy)
-const W_RX = WALL.rx * S
-const W_RZ = WALL.ry * S
-const WALL_H = 5.5
-const SEG = 3.2
-
-const onWall = (t: number): [number, number] => [W_CX + W_RX * Math.cos(t), W_CZ + W_RZ * Math.sin(t)]
-
-/** Arc length along the wall ↔ ellipse angle. */
-const ARC = (() => {
-  const M = 2048
-  const len: number[] = [0]
-  let prev = onWall(0)
-  for (let i = 1; i <= M; i++) {
-    const p = onWall((i / M) * Math.PI * 2)
-    len.push(len[i - 1] + Math.hypot(p[0] - prev[0], p[1] - prev[1]))
-    prev = p
-  }
-  return { M, len, total: len[M] }
-})()
-
-function tAt(s: number): number {
-  const { M, len, total } = ARC
-  const x = ((s % total) + total) % total
-  let lo = 0
-  let hi = M
-  while (hi - lo > 1) {
-    const mid = (lo + hi) >> 1
-    if (len[mid] <= x) lo = mid
-    else hi = mid
-  }
-  const f = (x - len[lo]) / (len[hi] - len[lo] || 1)
-  return ((lo + f) / M) * Math.PI * 2
-}
-
-function sAt(t: number): number {
-  const { M, len } = ARC
-  const u = ((((t / (Math.PI * 2)) % 1) + 1) % 1) * M
-  const i = Math.floor(u)
-  return len[i] + (len[Math.min(M, i + 1)] - len[i]) * (u - i)
-}
-
-const arcDist = (a: number, b: number) => {
-  const d = Math.abs(a - b) % ARC.total
-  return Math.min(d, ARC.total - d)
-}
-
-/** Direction of the wall at t (unit x, z) and the outward normal. */
-function wallDir(t: number) {
-  const dx = -W_RX * Math.sin(t)
-  const dz = W_RZ * Math.cos(t)
-  const l = Math.hypot(dx, dz)
-  const nx = Math.cos(t) / W_RX
-  const nz = Math.sin(t) / W_RZ
-  const nl = Math.hypot(nx, nz)
-  return { dx: dx / l, dz: dz / l, nx: nx / nl, nz: nz / nl, ry: Math.atan2(-dz / l, dx / l) }
-}
-
-export interface Gate {
-  id: string
-  x: number
-  z: number
-  s: number
-  t: number
-  sheep: boolean
-}
-
-/** The gates: where each road out of the city crosses the wall. The one by the Sheep Gate landmark is the Sheep Gate. */
-export const GATES: Gate[] = GATE_ROADS.map(([a, b]) => {
-  const A = ROADS[a]
-  const B = ROADS[b]
-  let lo = 0
-  let hi = 1
-  const at = (p: number): [number, number] => [pctX(A[0] + (B[0] - A[0]) * p), pctZ(A[1] + (B[1] - A[1]) * p)]
-  for (let i = 0; i < 30; i++) {
-    const mid = (lo + hi) / 2
-    if (wallSpace(...at(mid)).e < 1) lo = mid
-    else hi = mid
-  }
-  const [x, z] = at(lo)
-  const t = Math.atan2((z - W_CZ) / W_RZ, (x - W_CX) / W_RX)
-  const sheep = LANDMARKS.some((l) => l.id === 'gate' && Math.hypot(pctX((l.x / WORLD) * 100) - x, pctZ((l.y / WORLD) * 100) - z) < 12)
-  return { id: `${a}-${b}`, x, z, s: sAt(t), t, sheep }
-})
-
-const GATE_W = 4.6
-
 function buildWall(stone: Geo) {
-  const gapOf = (g: Gate) => (g.sheep ? 6.5 : 5.2) + GATE_W / 2
-  const nearGate = (s: number, extra = 0) => GATES.some((g) => arcDist(s, g.s) < gapOf(g) + extra)
   // Curtain wall, merlons, inner parapet.
-  for (let s0 = 0; s0 < ARC.total - 0.01; s0 += SEG) {
-    const s1 = Math.min(ARC.total, s0 + SEG)
+  for (const [s0, s1] of WALL_SEGS) {
     const sm = (s0 + s1) / 2
-    if (nearGate(sm, -SEG / 2)) continue
     const p0 = onWall(tAt(s0))
     const p1 = onWall(tAt(s1))
     const tm = tAt(sm)
@@ -131,12 +56,10 @@ function buildWall(stone: Geo) {
     stone.box(pm[0] - nx * 1.0, top, pm[1] - nz * 1.0, len + 0.3, 0.55, 0.4, C.limeDark, { ry })
   }
   // Towers.
-  const TOWER_GAP = 34
-  for (let s = 8; s < ARC.total - 8; s += TOWER_GAP) {
-    if (nearGate(s, 8)) continue
+  for (const s of TOWER_AT) {
     const t = tAt(s)
     const [x, z] = onWall(t)
-    tower(stone, x, z, t, 5.6, WALL_H + 3.4)
+    tower(stone, x, z, t, TOWER_SIZE, WALL_H + 3.4)
   }
   // Gates.
   for (const g of GATES) gate(stone, g)
@@ -203,7 +126,7 @@ function gate(stone: Geo, g: Gate) {
 
 // ── The Temple Mount ────────────────────────────────────────────────────────
 
-const centroid = MOUNT_PTS.reduce(([a, b], [x, z]) => [a + x / 4, b + z / 4], [0, 0])
+const centroid: [number, number] = [PLATFORM.x, PLATFORM.z]
 
 function buildMount(stone: Geo, plain: Geo) {
   const ground = Math.min(...MOUNT_PTS.map(([x, z]) => heightAt(x, z)))
@@ -211,10 +134,10 @@ function buildMount(stone: Geo, plain: Geo) {
   // The platform: retaining walls of huge ashlar, a cornice, the pavement.
   stone.poly(MOUNT_PTS, base, MOUNT_TOP, C.lime, { topColor: C.limeLight })
   const grow = (k: number) => MOUNT_PTS.map(([x, z]) => [centroid[0] + (x - centroid[0]) * k, centroid[1] + (z - centroid[1]) * k] as [number, number])
-  stone.poly(grow(1.012), MOUNT_TOP - 0.6, MOUNT_TOP + 0.12, C.limeDark, { top: false })
+  stone.poly(grow(1.012), MOUNT_TOP - 0.5, MOUNT_TOP + 0.12, C.limeDark, { top: false })
   stone.poly(grow(1.008), base, base + (MOUNT_TOP - base) * 0.35, C.limeDark, { top: false })
 
-  // Porticoes round the edges; the Royal Stoa on the south side (edge 2), Solomon's Porch on the east (edge 1).
+  // Porticoes round the edges: the Royal Stoa on the south side (edge 2), Solomon's Porch on the east (edge 1).
   for (let i = 0; i < 4; i++) {
     const [ax, az] = MOUNT_PTS[i]
     const [bx, bz] = MOUNT_PTS[(i + 1) % 4]
@@ -226,42 +149,42 @@ function buildMount(stone: Geo, plain: Geo) {
     const ry = Math.atan2(-ez, ex)
     const royal = i === 2
     const double = i === 1 || royal
-    const height = royal ? 7.2 : 4.6
-    const depth = royal ? 7.4 : double ? 6 : 3.8
-    // Openings: the stairs, and Antonia's corner (between edges 3 and 0).
+    const height = royal ? 4.6 : 3.3
+    const depth = royal ? 4.4 : double ? 3.6 : 2.6
+    // Openings: the stairs, and Antonia's corner (the north-west, between edges 3 and 0).
     const gaps: [number, number][] = []
-    for (const s of STAIRS) if (s.edge === i) gaps.push([s.along - s.width / 2 - 0.6, s.along + s.width / 2 + 0.6])
-    if (i === 0) gaps.push([0, 15])
-    if (i === 3) gaps.push([len - 15, len])
+    for (const s of STAIRS) if (s.edge === i) gaps.push([s.along - s.width / 2 - 0.5, s.along + s.width / 2 + 0.5])
+    if (i === 0) gaps.push([0, 10.8])
+    if (i === 3) gaps.push([len - 9.4, len])
     const open = (d: number) => gaps.some(([a, b]) => d > a && d < b)
     const P = (d: number, inset: number): [number, number] => [ax + ex * d + nx * inset, az + ez * d + nz * inset]
     // Back wall and roof in runs between the openings.
     const runs: [number, number][] = []
-    let start = 1.2
+    let start = 0.8
     for (const [a, b] of [...gaps].sort((p, q) => p[0] - q[0])) {
       if (a > start) runs.push([start, a])
       start = Math.max(start, b)
     }
-    if (start < len - 1.2) runs.push([start, len - 1.2])
+    if (start < len - 0.8) runs.push([start, len - 0.8])
     for (const [a, b] of runs) {
       const m = (a + b) / 2
-      const [wx, wz] = P(m, 0.55)
-      stone.box(wx, MOUNT_TOP, wz, b - a, height + 0.4, 0.8, C.lime, { ry })
-      const [rx, rz] = P(m, depth / 2 + 0.2)
-      plain.box(rx, MOUNT_TOP + height, rz, b - a, 0.5, depth + 0.6, C.roof, { ry })
-      plain.box(rx + nx * (depth / 2 + 0.25), MOUNT_TOP + height + 0.5, rz + nz * (depth / 2 + 0.25), b - a, 0.35, 0.3, C.gold, { ry, jitter: 0 })
+      const [wx, wz] = P(m, 0.4)
+      stone.box(wx, MOUNT_TOP, wz, b - a, height + 0.3, 0.6, C.lime, { ry })
+      const [rx, rz] = P(m, depth / 2 + 0.15)
+      plain.box(rx, MOUNT_TOP + height, rz, b - a, 0.4, depth + 0.4, C.roof, { ry })
+      plain.box(rx + nx * (depth / 2 + 0.2), MOUNT_TOP + height + 0.4, rz + nz * (depth / 2 + 0.2), b - a, 0.28, 0.24, C.gold, { ry, jitter: 0 })
       if (royal) {
         const [cx, cz] = P(m, depth / 2)
-        stone.box(cx, MOUNT_TOP + height + 0.5, cz, b - a, 2.4, 2.8, C.limeLight, { ry })
-        plain.box(cx, MOUNT_TOP + height + 2.9, cz, b - a, 0.4, 3.4, C.roof, { ry })
+        stone.box(cx, MOUNT_TOP + height + 0.4, cz, b - a, 1.6, 1.8, C.limeLight, { ry })
+        plain.box(cx, MOUNT_TOP + height + 2.0, cz, b - a, 0.3, 2.3, C.roof, { ry })
       }
       // Columns.
-      const rows = royal ? [depth - 0.6, depth / 2] : double ? [depth - 0.6, depth / 2 + 0.2] : [depth - 0.5]
-      for (let d = a + 1.2; d < b - 0.6; d += 2.3) {
+      const rows = royal ? [depth - 0.45, depth / 2] : double ? [depth - 0.45, depth / 2 + 0.15] : [depth - 0.4]
+      for (let d = a + 0.9; d < b - 0.45; d += 1.8) {
         if (open(d)) continue
         for (const inset of rows) {
           const [cx, cz] = P(d, inset)
-          stone.cyl(cx, MOUNT_TOP, cz, 0.36, 0.42, height, C.marble, 7, { jitter: 0.03 })
+          stone.cyl(cx, MOUNT_TOP, cz, 0.26, 0.3, height, C.marble, 7, { jitter: 0.03 })
         }
       }
     }
@@ -290,15 +213,10 @@ function buildMount(stone: Geo, plain: Geo) {
   sanctuary(stone, plain)
 }
 
-/** The Antonia fortress in the north corner of the platform: a keep with four towers, the south-east one tallest. */
+/** The Antonia fortress in the north-west corner of the platform: a keep with four towers, the south-east one tallest. */
 function antonia(stone: Geo, plain: Geo) {
-  const [tx, tz] = MOUNT_PTS[0]
-  const [rx, rz] = MOUNT_PTS[1]
-  const k = 0.2
-  const x = tx + (centroid[0] - tx) * k
-  const z = tz + (centroid[1] - tz) * k
-  const ry = Math.atan2(-(rz - tz), rx - tx)
-  stone.frame = frameAt(x, MOUNT_TOP, z, ry)
+  const k = ANTONIA.scale
+  stone.frame = frameAt(ANTONIA.x, MOUNT_TOP, ANTONIA.z, 0).multiply(new Matrix4().makeScale(k, k, k))
   plain.frame = stone.frame.clone()
   stone.box(0, -0.2, 0, 13, 7.5, 11, C.limeDark, { jitter: 0.04 })
   plain.box(0, 7.3, 0, 12.4, 0.3, 10.4, C.roof)
@@ -322,12 +240,9 @@ function antonia(stone: Geo, plain: Geo) {
  * sanctuary with its high golden-trimmed porch facing east.
  */
 function sanctuary(stone: Geo, plain: Geo) {
-  const [ax, az] = MOUNT_PTS[0]
-  const [bx, bz] = MOUNT_PTS[1]
-  const ry = Math.atan2(-(bz - az), bx - ax)
-  const [x, z] = TEMPLE_XZ
-  // A little larger than life against the houses, so it reads as the heart of the city.
-  stone.frame = frameAt(x, MOUNT_TOP, z, ry).multiply(new Matrix4().makeScale(1.2, 1.2, 1.2))
+  // Facing east (local +x); scaled to sit in its courts on the platform with room to walk round it.
+  const k = SANCTUARY.scale
+  stone.frame = frameAt(SANCTUARY.x, MOUNT_TOP, SANCTUARY.z, 0).multiply(new Matrix4().makeScale(k, k, k))
   plain.frame = stone.frame.clone()
   // Local: +x (a) to the east (the façade's front), z (b) across.
   const wallRun = (x0: number, z0: number, x1: number, z1: number, h: number, t: number, gaps: [number, number][] = [], color: string = C.limeLight) => {
@@ -434,16 +349,16 @@ export interface LandmarkSpot {
   ry: number
 }
 
-/** A landmark's model centre: its sprite's foot point, moved north to the middle of the space the lots leave it. */
-function centreOf(id: LandmarkId): [number, number] {
-  const l = LANDMARKS.find((m) => m.id === id)!
-  return [ux(l.x), uz(l.y - l.size * 0.35)]
+/** A landmark's model frame (plan.ts). */
+function frameOf(id: PlanLandmark): { x: number; z: number; ry: number } {
+  const r = LANDMARK_RECTS[id]
+  return { x: r.x, z: r.z, ry: r.ry }
 }
 
 function market(stone: Geo, plain: Geo, rand: () => number): LandmarkSpot {
-  const [x, z] = centreOf('market')
+  const { x, z, ry } = frameOf('market')
   const y = heightAt(x, z)
-  stone.frame = frameAt(x, y, z, 0.12)
+  stone.frame = frameAt(x, y, z, ry)
   plain.frame = stone.frame.clone()
   stone.box(0, -1.5, 0, 22, 1.8, 16, C.limeLight, { jitter: 0.02 })
   const cloth = [C.red, C.blue, C.ochre, C.green, C.cream, C.red]
@@ -469,14 +384,13 @@ function market(stone: Geo, plain: Geo, rand: () => number): LandmarkSpot {
   for (let k = 0; k < 7; k++) plain.box(-9 + rand() * 18, 0.3, k % 2 ? 6.6 : -6.6, 0.9, 0.8, 0.9, C.wood, { ry: rand() })
   stone.frame.identity()
   plain.frame.identity()
-  return { id: 'market', x, z, y, top: y + 5, hw: 11, hd: 8, ry: 0.12 }
+  return { id: 'market', x, z, y, top: y + 5, hw: 11, hd: 8, ry }
 }
 
 function governor(stone: Geo, plain: Geo): LandmarkSpot {
-  const [x, z] = centreOf('governor')
+  // Its colonnade (local +x) faces north, onto the east road.
+  const { x, z, ry } = frameOf('governor')
   const y = heightAt(x, z)
-  // Facing west, towards the city.
-  const ry = Math.PI
   stone.frame = frameAt(x, y, z, ry)
   plain.frame = stone.frame.clone()
   stone.box(0, -2, 0, 17, 3, 14, C.limeDark, { jitter: 0.03 })
@@ -504,40 +418,64 @@ function governor(stone: Geo, plain: Geo): LandmarkSpot {
   plain.cone(9.5, 7, 4.6, 0.35, 0.8, C.gold, 5, { jitter: 0 })
   stone.frame.identity()
   plain.frame.identity()
-  return { id: 'governor', x, z, y, top: y + 13, hw: 9, hd: 7.5, ry }
+  return { id: 'governor', x, z, y, top: y + 13, hw: 9.7, hd: 7, ry }
 }
 
-function pool(stone: Geo, plain: Geo): LandmarkSpot {
-  const [x, z] = centreOf('pool')
-  const y = heightAt(x, z)
-  stone.frame = frameAt(x, y, z, -0.08)
+/** The Pool of Siloam's water surface: centre, half sizes, height, turn (CityScene draws it). */
+export interface PoolWater {
+  x: number
+  z: number
+  y: number
+  hw: number
+  hd: number
+  ry: number
+}
+
+/** The Pool of Siloam: a stepped stone basin sunk in a paved surround, a colonnade on the north side. */
+function pool(stone: Geo, plain: Geo): { spot: LandmarkSpot; water: PoolWater } {
+  const { x, z, ry } = frameOf('pool')
+  // The basin is built up from the highest ground under it, so its water lies above the hill (the terrain would cover a sunken one).
+  let y = -Infinity
+  for (const [dx, dz] of [[0, 0], [-9, -6], [9, -6], [-9, 6], [9, 6], [0, -6], [0, 6], [-9, 0], [9, 0]]) y = Math.max(y, heightAt(x + dx, z + dz))
+  y += 1.4
+  stone.frame = frameAt(x, y, z, ry)
   plain.frame = stone.frame.clone()
-  // A stepped stone basin round the water, a colonnade on the north side.
-  stone.box(0, -2, 0, 19, 3, 13, C.limeDark, { jitter: 0.02 })
-  for (let k = 0; k < 4; k++) {
-    const w = 15 - k * 1.6
-    const d = 8.6 - k * 1.3
-    const top = 1 - k * 0.32
-    stone.box(0, top - 0.32, -d / 2 + 0.4, w, 0.32, 0.8, k % 2 ? C.lime : C.limeLight, { jitter: 0.01 })
-    stone.box(0, top - 0.32, d / 2 - 0.4, w, 0.32, 0.8, k % 2 ? C.lime : C.limeLight, { jitter: 0.01 })
-    stone.box(-w / 2 + 0.4, top - 0.32, 0, 0.8, 0.32, d, k % 2 ? C.lime : C.limeLight, { jitter: 0.01 })
-    stone.box(w / 2 - 0.4, top - 0.32, 0, 0.8, 0.32, d, k % 2 ? C.lime : C.limeLight, { jitter: 0.01 })
+  const W = 17
+  const D = 11
+  const RIM = 1.3
+  const TOP = 0.9
+  const FLOOR = -1.5
+  // The surround, as four slabs round the basin, so the basin is open.
+  const ring = (w: number, d: number, t: number, y0: number, y1: number, color: string) => {
+    stone.box(0, y0, -d / 2 + t / 2, w, y1 - y0, t, color, { jitter: 0.015 })
+    stone.box(0, y0, d / 2 - t / 2, w, y1 - y0, t, color, { jitter: 0.015 })
+    stone.box(-w / 2 + t / 2, y0, 0, t, y1 - y0, d - 2 * t, color, { jitter: 0.015 })
+    stone.box(w / 2 - t / 2, y0, 0, t, y1 - y0, d - 2 * t, color, { jitter: 0.015 })
   }
-  plain.box(0, -0.6, 0, 9.6, 0.62, 3.6, C.water, { jitter: 0 })
-  for (let a = -7.5; a <= 7.51; a += 2.5) stone.cyl(a, 1, -5.6, 0.3, 0.34, 3.8, C.marble, 7, { jitter: 0.02 })
-  plain.box(0, 4.8, -6.1, 17, 0.4, 2.6, C.roof)
-  stone.box(0, 1, -7.1, 17, 4.2, 0.6, C.lime)
+  ring(W + 2, D + 2.4, RIM, -2.5, TOP, C.limeDark)
+  // Steps down into the water: four courses, each a frame a little lower and further in.
+  const STEP = 0.75
+  for (let k = 0; k < 4; k++) {
+    const w = W - 2 * k * STEP
+    const d = D - 2 * k * STEP
+    ring(w, d, STEP, FLOOR, TOP - 0.42 - k * 0.42, k % 2 ? C.lime : C.limeLight)
+  }
+  // The floor of the basin, dark under the water.
+  stone.box(0, FLOOR - 0.5, 0, W - 8 * STEP, 0.5, D - 8 * STEP, '#7d8f86', { jitter: 0 })
+  // A colonnade along the north side, on the surround.
+  for (let a = -7.5; a <= 7.51; a += 2.5) stone.cyl(a, TOP, -D / 2 - 0.6, 0.28, 0.32, 3.4, C.marble, 7, { jitter: 0.02 })
+  plain.box(0, TOP + 3.4, -D / 2 - 0.9, W + 1, 0.35, 2.2, C.roof)
+  stone.box(0, TOP, -D / 2 - 1.75, W + 1, 3.8, 0.5, C.lime)
   stone.frame.identity()
   plain.frame.identity()
-  return { id: 'pool', x, z, y, top: y + 6, hw: 9.5, hd: 6.5, ry: -0.08 }
+  // The water covers the two lowest steps.
+  const water: PoolWater = { x, z, y: y + TOP - 0.42 * 3 + 0.06, hw: W / 2 - STEP * 1.9, hd: D / 2 - STEP * 1.9, ry }
+  return { spot: { id: 'pool', x, z, y, top: y + 6, hw: LANDMARK_RECTS.pool.hw, hd: LANDMARK_RECTS.pool.hd, ry }, water }
 }
 
-/** The sheep pen by the Sheep Gate, where the flock grazes (cityTownsfolk.ts: 76 %, 27 %). */
+/** The sheep pen inside the Sheep Gate, by the east road, where the flock grazes (plan.ts PEN). */
 function sheepPen(plain: Geo) {
-  const cx = pctX(76)
-  const cz = pctZ(27)
-  const rx = 7
-  const rz = 4.2
+  const { x: cx, z: cz, rx, rz } = PEN
   const n = 18
   for (let i = 0; i < n; i++) {
     if (i === 13) continue
@@ -559,6 +497,7 @@ export interface StaticCity {
   stone: BufferGeometry
   plain: BufferGeometry
   landmarks: LandmarkSpot[]
+  water: PoolWater
 }
 
 /** Builds the whole static city. */
@@ -568,11 +507,13 @@ export function buildCity(): StaticCity {
   const plain = new Geo(rand)
   buildWall(stone)
   buildMount(stone, plain)
-  const landmarks = [market(stone, plain, rand), governor(stone, plain), pool(stone, plain)]
+  buildStreets(stone)
+  const p = pool(stone, plain)
+  const landmarks = [market(stone, plain, rand), governor(stone, plain), p.spot]
   sheepPen(plain)
   const sheep = GATES.find((g) => g.sheep) ?? GATES[0]
   landmarks.push({ id: 'gate', x: sheep.x, z: sheep.z, y: heightAt(sheep.x, sheep.z), top: heightAt(sheep.x, sheep.z) + 14, hw: 9, hd: 4.5, ry: wallDir(sheep.t).ry })
-  const [tx, tz] = TEMPLE_XZ
-  landmarks.push({ id: 'temple', x: tx, z: tz, y: MOUNT_TOP, top: MOUNT_TOP + 24, hw: 20, hd: 14, ry: Math.atan2(-(MOUNT_PTS[1][1] - MOUNT_PTS[0][1]), MOUNT_PTS[1][0] - MOUNT_PTS[0][0]) })
-  return { stone: stone.build(4.8), plain: plain.build(3), landmarks }
+  const k = SANCTUARY.scale
+  landmarks.push({ id: 'temple', x: SANCTUARY.x, z: SANCTUARY.z, y: MOUNT_TOP, top: MOUNT_TOP + 19 * k + 2, hw: 19 * k, hd: 13 * k, ry: 0 })
+  return { stone: stone.build(4.8), plain: plain.build(3), landmarks, water: p.water }
 }

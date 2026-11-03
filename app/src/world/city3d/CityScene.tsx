@@ -3,7 +3,6 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { CameraControls } from '@react-three/drei'
 import {
   AdditiveBlending,
-  Box3,
   BoxGeometry,
   BufferAttribute,
   Color,
@@ -27,15 +26,21 @@ import {
 } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
-import { LOTS } from '../cityLayout'
+import { LOTS, lotOpen } from '../cityLayout'
 import { townsfolk, type Home } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
+import { configureRig, smallScreen, useDisposeOnUnmount } from './rig'
+import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
+import { HOUSE_YARD } from './models'
 import { C } from './palette'
+import { HOUSE_SCALE, LOT_HALF } from './plan'
+import { CITY_NET } from './streets'
+import { PoolWater } from './PoolWater'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
 import { groundTexture, terrainGeometry } from './terrain'
-import { plasterTexture, signTexture, stoneTexture } from './textures'
+import { plasterTexture, releaseAfterUpload, signTexture, stoneTexture } from './textures'
 import { Townsfolk3D } from './Townsfolk3D'
 import { cypressGeometry, oliveGeometry, placeTrees } from './trees'
 
@@ -75,28 +80,37 @@ interface Props {
 
 const up = new Vector3(0, 1, 0)
 
-/** A lot's house turns a quarter or so, by lot number, so streets don't look stamped. */
+/** Where the camera was when the city last closed (position, target), for this session. */
+let lastView: [number, number, number, number, number, number] | null = null
+
+/** A lot's house turns by quarters, by lot number, so streets don't look stamped (and its square yard stays square to the street). */
 function lotTurn(n: number): number {
-  return Math.floor(hash(n) * 4) * (Math.PI / 2) + (hash(n + 991) - 0.5) * 0.2
+  return Math.floor(hash(n) * 4) * (Math.PI / 2)
 }
 
 export function CityScene({ residents, me, found, labels, bridge, start, still, forSale, onLandmarks, onReady }: Props) {
   const { gl, scene, camera, invalidate, size } = useThree()
   const controls = useRef<CameraControls>(null)
+  useDisposeOnUnmount(scene)
 
   // ── Static: built once ──
   // Ground painting resolution: decided once (phones get a smaller one).
   const [wide] = useState(() => window.innerWidth > 700)
+  // Phones get a smaller shadow map (the same check that caps their pixel ratio).
+  const [shadowSize] = useState(() => (smallScreen() ? 1536 : 2048))
   const city = useMemo(() => buildCity(), [])
   const statics = useMemo(() => {
     const stoneMat = new MeshLambertMaterial({ vertexColors: true, map: stoneTexture() })
     const plainMat = new MeshLambertMaterial({ vertexColors: true, map: plasterTexture() })
-    const groundMat = new MeshLambertMaterial({ map: groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536) })
+    // The ground painting's canvas is let go once uploaded (up to 16 MB).
+    const groundMat = new MeshLambertMaterial({ map: releaseAfterUpload(groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536)) })
     return { stoneMat, plainMat, groundMat, terrain: terrainGeometry() }
   }, [gl, wide])
-  const trees = useMemo(() => placeTrees(city.landmarks), [city])
+  const trees = useMemo(() => placeTrees(), [])
   const treeGeo = useMemo(() => ({ olive: oliveGeometry(), cypress: cypressGeometry() }), [])
   const houseGeo = useMemo(() => houseGeometries(), [])
+  // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
+  const fenceGeo = useMemo(() => lotFenceGeometries(), [])
   const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry() }), [])
   const signMat = useMemo(() => new MeshLambertMaterial({ map: signTexture(forSale) }), [forSale])
   const signFace = useMemo(() => {
@@ -117,7 +131,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   // ── Scene setup: sky, haze, static shadows ──
   useLayoutEffect(() => {
-    if (import.meta.env.DEV) (window as unknown as { __city3dGl?: unknown }).__city3dGl = gl
+    if (import.meta.env.DEV) Object.assign(window, { __city3dGl: gl, __city3dScene: scene })
     scene.background = new Color('#ecdcb8')
     scene.fog = new Fog('#ecdcb8', 200, 600)
     gl.shadowMap.autoUpdate = false
@@ -132,6 +146,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   }, [residents])
 
   const houseMeshes = useRef<(InstancedMesh | null)[]>([])
+  const fenceMeshes = useRef<(InstancedMesh | null)[]>([])
   const freeMesh = useRef<InstancedMesh>(null)
   const weedMesh = useRef<InstancedMesh>(null)
   const postMesh = useRef<InstancedMesh>(null)
@@ -140,6 +155,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   const layout = useMemo(() => {
     const perLevel: { n: number; m: Matrix4; c: Color }[][] = houseGeo.map(() => [])
+    const perWall: Matrix4[][] = fenceGeo.map(() => [])
     const free: Matrix4[] = []
     const weeds: { m: Matrix4; c: Color }[] = []
     const signs: Matrix4[] = []
@@ -151,10 +167,11 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const r = byLot.get(n)
       o.position.set(x, y, z)
       o.rotation.set(0, lotTurn(n), 0)
-      o.scale.setScalar(1)
+      o.scale.setScalar(HOUSE_SCALE)
       o.updateMatrix()
       if (!r) {
-        free.push(o.matrix.clone())
+        // A retired lot (a road or a landmark took its place) is just ground.
+        if (lotOpen(n)) free.push(o.matrix.clone())
         return
       }
       const level = Math.min(houseGeo.length, Math.max(1, r.house)) - 1
@@ -165,26 +182,33 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const fade = stage >= 2 ? [0.8, 0.78, 0.72] : stage === 1 ? [0.92, 0.91, 0.86] : [1, 1, 1]
       const tint = new Color(k * tr * fade[0], k * tg * fade[1], k * tb * fade[2])
       perLevel[level].push({ n, m: o.matrix.clone(), c: tint })
+      const wall = Math.min(fenceGeo.length, r.wall ?? 0)
+      if (wall > 0) {
+        const k = (HOUSE_YARD[level] / 7) * HOUSE_SCALE
+        o.scale.set(k, HOUSE_SCALE, k)
+        o.updateMatrix()
+        perWall[wall - 1].push(o.matrix.clone())
+      }
       // Weeds: a few tufts at 20 days, a yard full at 40.
       const tufts = stage === 0 ? 0 : stage === 1 ? 5 : 12
       for (let t = 0; t < tufts; t++) {
         const a = hash(n * 31 + t) * Math.PI * 2
-        const rr = 2.4 + hash(n * 17 + t) * 1.1
+        const rr = (2.4 + hash(n * 17 + t) * 1.1) * HOUSE_SCALE
         const wx = x + Math.cos(a) * rr
         const wz = z + Math.sin(a) * rr
-        const s = 0.8 + hash(n * 13 + t) * 0.7 + (stage >= 2 ? 0.4 : 0)
+        const s = (0.8 + hash(n * 13 + t) * 0.7 + (stage >= 2 ? 0.4 : 0)) * HOUSE_SCALE
         const wm = new Matrix4().compose(new Vector3(wx, heightAt(wx, wz) + 0.05, wz), new Quaternion().setFromAxisAngle(up, a), new Vector3(s, s, s))
         weeds.push({ m: wm, c: stage >= 2 ? new Color(1.12, 1.0, 0.62) : new Color(1, 1, 1) })
       }
       // For sale: a board at the front corner, facing south (the default view).
       if (stage === 3 && r.username !== me) {
-        const sx = x + 2.9
-        const sz = z + 3.3
-        signs.push(new Matrix4().makeTranslation(sx, heightAt(sx, sz), sz))
+        const sx = x + 2.9 * HOUSE_SCALE
+        const sz = z + 3.3 * HOUSE_SCALE
+        signs.push(new Matrix4().compose(new Vector3(sx, heightAt(sx, sz), sz), new Quaternion(), new Vector3(HOUSE_SCALE, HOUSE_SCALE, HOUSE_SCALE)))
       }
     })
-    return { perLevel, free, weeds, signs }
-  }, [byLot, houseGeo, me])
+    return { perLevel, perWall, free, weeds, signs }
+  }, [byLot, houseGeo, fenceGeo, me])
 
   // Write the instances.
   useLayoutEffect(() => {
@@ -209,6 +233,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
       mesh.computeBoundingSphere()
     }
+    layout.perWall.forEach((ms, i) => set(fenceMeshes.current[i], ms))
     set(freeMesh.current, layout.free)
     set(
       weedMesh.current,
@@ -229,9 +254,11 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     LOTS.forEach((l, i) => {
       const [x, z] = lotCentre(l)
       const r = byLot.get(i + 1)
-      const h = r ? HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] + 0.5 : 1.2
+      const h = r ? HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] * HOUSE_SCALE + 0.5 : 1.2
       o.position.set(x, heightAt(x, z) + h / 2, z)
-      o.scale.set(7, h, 7)
+      // Retired lots can't be tapped.
+      const w = r || lotOpen(i + 1) ? 2 * LOT_HALF : 0
+      o.scale.set(w, Math.max(0.01, h), w)
       o.updateMatrix()
       mesh.setMatrixAt(i, o.matrix)
     })
@@ -292,10 +319,10 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   // ── The townsfolk ──
   const homes = useMemo<Home[]>(() => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 })), [residents])
-  const folk = useMemo(() => townsfolk(homes), [homes])
+  const folk = useMemo(() => townsfolk(homes, CITY_NET), [homes])
 
   // ── Highlights: my home (a gold ring and a beam of light) and the family just found (a red ring) ──
-  const ringGeo = useMemo(() => new RingGeometry(4.7, 5.5, 48).rotateX(-Math.PI / 2), [])
+  const ringGeo = useMemo(() => new RingGeometry(LOT_HALF + 0.4, LOT_HALF + 1.1, 48).rotateX(-Math.PI / 2), [])
   const beamGeo = useMemo(() => {
     const g = new CylinderGeometry(0.9, 1.6, 34, 20, 1, true).translate(0, 17, 0)
     const p = g.getAttribute('position')
@@ -327,31 +354,19 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     if (!c) return
     bridge.controls = c
     bridge.invalidate = invalidate
-    const A = (c.constructor as unknown as { ACTION: Record<string, number> }).ACTION
-    // Phones: one finger pans the map, two pinch (zoom) and drag/twist (turn and tilt). Mouse: left turns, right pans, wheel zooms.
-    c.mouseButtons.left = A.ROTATE as never
-    c.mouseButtons.right = A.TRUCK as never
-    c.mouseButtons.middle = A.DOLLY as never
-    c.mouseButtons.wheel = A.DOLLY as never
-    // TRUCK slides along the ground (camera-controls 3), like dragging a map.
-    c.touches.one = A.TOUCH_TRUCK as never
-    c.touches.two = A.TOUCH_DOLLY_ROTATE as never
-    c.touches.three = A.TOUCH_TRUCK as never
-    c.minDistance = MIN_DIST
-    c.maxDistance = MAX_DIST
-    c.minPolarAngle = 0.12
-    c.maxPolarAngle = 1.18
-    c.dollyToCursor = true
-    c.smoothTime = 0.45
-    c.draggingSmoothTime = 0.1
-    c.azimuthRotateSpeed = 0.8
-    c.polarRotateSpeed = 0.8
-    c.dollySpeed = 0.8
-    c.setBoundary(new Box3(new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)))
-    const [x, z] = start
-    const y = surfaceAt(x, z)
-    c.setLookAt(x, y + START_DIST * Math.cos(START_POLAR), z + START_DIST * Math.sin(START_POLAR), x, y, z, false)
+    configureRig(c, { minDist: MIN_DIST, maxDist: MAX_DIST, minPolar: 0.12, maxPolar: 1.18, boundary: [new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)] })
+    if (lastView) {
+      // Back from a visit (or the list): the city as it was left.
+      c.setLookAt(...lastView, false)
+    } else {
+      const [x, z] = start
+      const y = surfaceAt(x, z)
+      c.setLookAt(x, y + START_DIST * Math.cos(START_POLAR), z + START_DIST * Math.sin(START_POLAR), x, y, z, false)
+    }
     return () => {
+      const p = c.getPosition(new Vector3())
+      const t = c.getTarget(new Vector3())
+      lastView = [p.x, p.y, p.z, t.x, t.y, t.z]
       bridge.controls = null
     }
     // The start only matters once.
@@ -419,11 +434,10 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     }
     // The beam over my home marks it from afar and fades away close up.
     beamMat.opacity = Math.min(1, Math.max(0, (dist - 45) / 70))
-    // A slow pulse on the found family's ring.
+    // A slow pulse on the found family's ring, on the frames drawn anyway (it never asks for frames of its own).
     if (foundRing.current && !still) {
-      const s = 1 + 0.08 * Math.sin(state.clock.elapsedTime * 4)
+      const s = 1 + 0.08 * Math.sin((performance.now() / 1000) * 4)
       foundRing.current.scale.set(s, 1, s)
-      invalidate()
     }
     if (!ready.current) {
       ready.current = true
@@ -440,7 +454,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
         intensity={2.9}
         color="#ffe6bd"
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[shadowSize, shadowSize]}
         shadow-camera-left={-150}
         shadow-camera-right={150}
         shadow-camera-top={150}
@@ -455,6 +469,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       <mesh geometry={statics.terrain} material={statics.groundMat} receiveShadow />
       <mesh geometry={city.stone} material={statics.stoneMat} castShadow receiveShadow />
       <mesh geometry={city.plain} material={statics.plainMat} castShadow receiveShadow />
+      <PoolWater water={city.water} still={still} />
 
       {houseGeo.map((g, i) => (
         <instancedMesh
@@ -463,6 +478,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
             houseMeshes.current[i] = m
           }}
           args={[g as BufferGeometry, statics.plainMat, Math.max(1, LOTS.length)]}
+          count={0}
+          castShadow
+          receiveShadow
+        />
+      ))}
+      {fenceGeo.map((g, i) => (
+        <instancedMesh
+          key={`f${i}`}
+          ref={(m) => {
+            fenceMeshes.current[i] = m
+          }}
+          args={[g, statics.plainMat, Math.max(1, LOTS.length)]}
           count={0}
           castShadow
           receiveShadow

@@ -1,13 +1,14 @@
 import { CanvasTexture, PlaneGeometry, SRGBColorSpace, type BufferGeometry, type Texture } from 'three'
-import { LOTS, WALL } from '../cityLayout'
-import { LINKS, ROADS } from '../cityTownsfolk'
-import { GROUND, heightAt, lotCentre, MOUNT_PTS, rng, ux, uz, wallSpace } from './space'
+import { WALL } from '../cityLayout'
+import { OPEN_LOTS, PLAZA } from './plan'
+import { GROUND, heightAt, rng, ux, uz, wallSpace } from './space'
+import { STREETS } from './streets'
 
 /**
  * The hills of Jerusalem: one height-mapped plane (space.ts heightAt) with a
  * ground texture painted on a canvas at load: sandy streets and yards inside
  * the wall, grass along it, terraced olive slopes outside, darker valley
- * floors, the roads the townsfolk walk, a pale patch under every lot.
+ * floors, a worn edge under the paved streets, a pale patch under every lot.
  */
 
 const SEG = 170
@@ -122,54 +123,29 @@ export function groundTexture(size = 2048): Texture {
     g.fill()
   }
 
-  // 4. A pale yard under every lot (the city's plan; free ones too).
-  for (const l of LOTS) {
-    const [x, z] = lotCentre(l)
-    const s = 7.6 * unit
-    g.fillStyle = l.outside ? 'rgba(214,184,128,0.42)' : 'rgba(226,196,140,0.5)'
+  // 4. A pale yard under every open lot (the city's plan; free ones too).
+  for (const { r, lot } of OPEN_LOTS) {
+    const sz = (2 * r.hw + 0.6) * unit
+    g.fillStyle = lot.outside ? 'rgba(214,184,128,0.42)' : 'rgba(226,196,140,0.5)'
     g.beginPath()
-    g.roundRect(toPx(x) - s / 2, toPx(z) - s / 2, s, s, 1.4 * unit)
+    g.roundRect(toPx(r.x) - sz / 2, toPx(r.z) - sz / 2, sz, sz, 1.2 * unit)
     g.fill()
   }
 
-  // 5. The roads the townsfolk walk: a dark rim, then the pale dust on top.
-  const P = Object.fromEntries(Object.entries(ROADS).map(([k, [x, y]]) => [k, [toPx(ux((x / 100) * 2400)), toPx(uz((y / 100) * 2400))]])) as Record<string, [number, number]>
+  // 5. A soft worn edge under the paved streets (built in roads.ts), so they read from far away too.
   g.lineCap = 'round'
-  g.lineJoin = 'round'
-  for (const [w, colour] of [
-    [3.6, 'rgba(150,115,70,0.45)'],
-    [2.6, 'rgba(236,214,166,0.95)'],
-  ] as const) {
-    g.strokeStyle = colour
-    for (const [a, b] of LINKS) {
-      // The stairs onto the Temple platform are built, not painted.
-      const onMount = (k: string) => k === 'TT'
-      if (onMount(a) || onMount(b)) continue
-      const outer = a.startsWith('O') || a.startsWith('X') || b.startsWith('X')
-      g.lineWidth = (outer ? w * 0.8 : w) * unit
-      g.beginPath()
-      g.moveTo(...P[a])
-      g.lineTo(...P[b])
-      g.stroke()
-    }
+  g.strokeStyle = 'rgba(120,92,55,0.32)'
+  for (const st of STREETS.segs) {
+    if (st.kind === 'stair' || st.kind === 'mount') continue
+    g.lineWidth = (st.w + 0.9) * unit
+    g.beginPath()
+    g.moveTo(toPx(st.a[0]), toPx(st.a[1]))
+    g.lineTo(toPx(st.b[0]), toPx(st.b[1]))
+    g.stroke()
   }
-  // A few loose stones on the roads.
-  for (let i = 0; i < 2500; i++) {
-    const [a, b] = LINKS[Math.floor(rand() * LINKS.length)]
-    const t = rand()
-    const x = P[a][0] + (P[b][0] - P[a][0]) * t + (rand() - 0.5) * 2 * unit
-    const y = P[a][1] + (P[b][1] - P[a][1]) * t + (rand() - 0.5) * 2 * unit
-    g.fillStyle = rand() < 0.5 ? 'rgba(170,140,95,0.35)' : 'rgba(255,248,225,0.35)'
-    g.fillRect(x, y, 2, 2)
-  }
-
-  // 6. The ground under the Temple platform is never seen, but its foot is: a dark band of shade.
-  g.strokeStyle = 'rgba(90,70,40,0.35)'
-  g.lineWidth = 2.5 * unit
-  g.beginPath()
-  MOUNT_PTS.forEach(([x, z], i) => (i ? g.lineTo(toPx(x), toPx(z)) : g.moveTo(toPx(x), toPx(z))))
-  g.closePath()
-  g.stroke()
+  // The plaza round the Temple Mount.
+  g.fillStyle = 'rgba(120,92,55,0.3)'
+  g.fillRect(toPx(PLAZA.x - PLAZA.hw - 0.6), toPx(PLAZA.z - PLAZA.hd - 0.6), (2 * PLAZA.hw + 1.2) * unit, (2 * PLAZA.hd + 1.2) * unit)
 
   const t = new CanvasTexture(c)
   t.colorSpace = SRGBColorSpace

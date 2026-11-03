@@ -9,6 +9,7 @@ import type {
   SpiesTeam,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { clearBoard, saveBoard } from '../game/boardSession'
 import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
@@ -40,7 +41,8 @@ interface SpiesStore {
 
   create: () => void
   join: (code: string) => void
-  watch: (code: string) => void
+  /** Show the board of a room; `resumed` = after a reload (boardSession.ts): a room that's gone is forgotten quietly. */
+  watch: (code: string, resumed?: boolean) => void
   leave: () => void
   team: (team: SpiesTeam) => void
   volunteer: () => void
@@ -79,6 +81,7 @@ function rememberCode(code: string | null): void {
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
+  clearBoard('spies')
   useSpiesStore.setState({ role: null, state: null, key: null, myId: null, endsAt: 0, forceAt: 0, error: reason, busy: false })
 }
 
@@ -169,11 +172,18 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
     })
   },
 
-  watch: (code) => {
+  watch: (code, resumed = false) => {
     set({ busy: true, error: null })
     getSocket().emit('spies:watch', { code: code.trim().toUpperCase() }, (res) => {
-      if (res.ok) set({ role: 'board', state: res.state, myId: null, key: null, busy: false, ...timing(res.state) })
-      else set({ error: res.error, busy: false })
+      if (res.ok) {
+        saveBoard('spies', res.state.code)
+        set({ role: 'board', state: res.state, myId: null, key: null, busy: false, ...timing(res.state) })
+      } else {
+        clearBoard('spies')
+        set({ error: resumed ? null : res.error, busy: false })
+        // After a reload the room may simply be gone: back to the menu, no error.
+        if (resumed) useGameStore.getState().goTo('menu')
+      }
     })
   },
 

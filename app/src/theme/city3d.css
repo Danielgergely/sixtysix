@@ -45,3 +45,45 @@
 }
 .c3-n{ position: absolute; inset: 0; display: grid; place-items: center; font: 900 9px/1 'Cinzel', serif; color: #ffe7a3; }
 @media (prefers-reduced-motion: reduce){ .c3 .lf-bubble{ animation: none; } }
+
+/* ══ My Home in 3D (world/city3d/Plot3D): the yard's canvas inside the .ps box, tags over each building, gift signs ══ */
+.ps.p3, .ps.p3-loading{ height: min(58vh, 440px); min-height: 300px; }
+.ps.p3{ background: #e9d9b2; cursor: grab; }
+.ps.p3-loading{ position: relative; display: grid; place-items: center; background: #e9d9b2; }
+.ps.p3-loading .tab-note{ margin: 0; color: #5a3412; }
+/* The tag stack grows upwards from its anchor over the building: ribbon, build progress, name. */
+.ps-tagspot.p3-stack{
+  position: absolute; left: 0; bottom: 0; z-index: auto; translate: -50% 0;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer;
+}
+.p3.read-only .p3-stack{ cursor: inherit; }
+.p3-stack .ps-tag{ font-size: 13px; padding: 2px 8px; }
+.p3-stack.house .ps-tag{ font-size: 15px; }
+.p3-stack.court .ps-tag{ background: rgb(243 226 187 / 0.85); border-color: #8a5a2a; color: #5a3412; }
+.p3-stack.court .ps-tag small{ color: #8a5a2a; }
+.ps-build.p3-build{ position: static; translate: none; width: auto; min-width: 92px; }
+.p3-ribbon{
+  padding: 2px 10px; border-radius: 999px; white-space: nowrap; background: #2f7a3a; border: 2px solid #ffe08a; color: #fff;
+  font: 900 13px/1.2 'Cinzel', serif; text-shadow: 0 1px 1px #000; box-shadow: 0 2px 4px rgb(0 0 0 / 0.4);
+}
+.p3-ribbon.new{ background: #b3262b; }
+/* A carrier's gift sign, over the head (placed by Townsfolk3D). */
+.p3-badges{ z-index: 3; }
+.p3-badge{ position: absolute; left: 0; top: 0; width: 0; height: 0; will-change: transform; }
+.p3-badge > span{
+  position: absolute; left: 0; bottom: 0; translate: -50% 0; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  font-size: 15px; line-height: 1; background: #f3e2bb; border: 2px solid #c9a24a; box-shadow: 0 2px 4px rgb(0 0 0 / 0.4);
+  animation: lf-badge 1.2s ease-in-out infinite alternate;
+}
+.p3 .c3-nav{ right: 8px; bottom: 8px; gap: 5px; }
+.p3 .c3-nav button{ width: 34px; height: 34px; font-size: 18px; }
+/* Zoomed out (PlotScene3D sets data-far): the names fade; what you need stays as compact pills (+N ready, the build countdown, New!). The tour shows everything. */
+.p3 .p3-stack .ps-tag{ max-height: 3em; transition: opacity 0.35s ease, scale 0.35s ease, max-height 0.35s ease, padding 0.35s ease, border-width 0.35s ease; }
+/* Faded and folded away, so the pills sit right over the building. */
+.p3[data-far]:not(.touring) .p3-stack .ps-tag{ opacity: 0; scale: 0.85; max-height: 0; padding-top: 0; padding-bottom: 0; border-width: 0; overflow: hidden; }
+.p3-ribbon, .p3-build{ transition: font-size 0.25s ease, padding 0.25s ease; }
+.p3[data-far]:not(.touring) .p3-ribbon{ font-size: 11px; padding: 1px 6px; border-width: 1.5px; }
+.p3[data-far]:not(.touring) .ps-build.p3-build{ min-width: 0; padding: 2px 6px; gap: 0; }
+.p3[data-far]:not(.touring) .p3-build .hp-bar{ display: none; }
+.p3[data-far]:not(.touring) .p3-build small{ font-size: 11px; }
+@media (prefers-reduced-motion: reduce){ .p3-badge > span, .p3 .lf-bubble{ animation: none; } .p3 .p3-stack .ps-tag, .p3-ribbon, .p3-build{ transition: none; } }

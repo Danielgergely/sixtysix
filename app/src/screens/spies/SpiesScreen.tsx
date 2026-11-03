@@ -13,7 +13,7 @@ import {
 import { useGameStore } from '../../game/store'
 import { isLeader, lastSpiesCode, useSpiesStore } from '../../spies/spiesStore'
 import { OnlineEntry } from '../shell/OnlineEntry'
-import { popIn, shake, spring } from '../../motion'
+import { popIn, shake, spring, useIsFirstKey } from '../../motion'
 import { TRIBE, cardWord, chiefName, otherTeam, playerById, rich, statusLine, tribeName, useAfter, useJoinOrigin } from '../../spies/util'
 import { t as tr, tServer, useLocale, useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
@@ -29,17 +29,20 @@ import '../../theme/spies.css'
 export function SpiesScreen() {
   const role = useSpiesStore((s) => s.role)
   const state = useSpiesStore((s) => s.state)
+  const phaseKey = state && role === 'player' ? (state.phase === 'lobby' ? 'lobby' : `game-${state.game}`) : null
+  const firstPhase = useIsFirstKey(phaseKey)
   if (!state || !role) return <SpiesMenu />
   if (role === 'board') return <SpiesBoard />
   return (
     <div className="screen ts emp">
       <SpiesTopBar state={state} />
       <div className="ts-body">
-        <AnimatePresence mode="wait" initial={false}>
+        {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key={state.phase === 'lobby' ? 'lobby' : `game-${state.game}`}
+            key={phaseKey}
             className="ts-phase"
-            initial={{ opacity: 0, y: 24 }}
+            initial={firstPhase ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: spring.gentle }}
             exit={{ opacity: 0, y: -16, transition: { duration: 0.15 } }}
           >

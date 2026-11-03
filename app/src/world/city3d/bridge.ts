@@ -20,13 +20,21 @@ export interface Bridge {
   compass: HTMLElement | null
   /** The open speech bubble: which figure and its element. */
   bubble: { id: string; el: HTMLElement | null } | null
+  /** Signs over figures' heads (My Home's gift carriers), by actor id; Townsfolk3D places them. */
+  badges: Map<string, HTMLElement>
   /** Zoom limits reached, for the +/− buttons. */
   onZoomLimits: ((canIn: boolean, canOut: boolean) => void) | null
+  /** The scene is off screen or the tab hidden: nothing asks for frames (rig.ts usePauseWhenHidden). */
+  paused: boolean
+  /** Called when it shows again (the townsfolk pick up their clock and ask for a frame). */
+  onResume: (() => void) | null
+  /** The scene's box (My Home toggles its tag classes on it). */
+  root: HTMLElement | null
   /** Ask for a frame (the canvas renders on demand): after moving the camera from code. */
   invalidate: () => void
 }
 
-export type ScenePick = { kind: 'lot'; n: number } | { kind: 'landmark'; id: string }
+export type ScenePick = { kind: 'lot'; n: number } | { kind: 'landmark'; id: string } | { kind: 'spot'; id: string }
 
 /** Camera limits and start (units; polar = tilt away from straight down, radians). */
 export const MIN_DIST = 22
@@ -59,6 +67,10 @@ export const newBridge = (): Bridge => ({
   onVisible: null,
   compass: null,
   bubble: null,
+  badges: new Map(),
   onZoomLimits: null,
+  paused: false,
+  onResume: null,
+  root: null,
   invalidate: () => {},
 })

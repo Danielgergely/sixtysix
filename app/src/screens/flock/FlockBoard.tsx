@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { FLOCK_MAX_LAPS, FLOCK_MIN_PLAYERS, type FlockState } from '@sixtysix/shared'
 import { useFlockStore } from '../../flock/flockStore'
-import { spring } from '../../motion'
+import { spring, useIsFirstKey } from '../../motion'
 import { ClueList, QrCode, Scoreboard, Timer, Token, TurnRibbon } from './parts'
 import { categoryLabel, playerById, rich, useJoinOrigin } from '../../flock/util'
 import { useT } from '../../i18n'
@@ -16,6 +16,8 @@ export function FlockBoard() {
   const state = useFlockStore((s) => s.state)
   const leave = useFlockStore((s) => s.leave)
   const t = useT()
+  const phaseKey = state ? `${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}` : null
+  const firstPhase = useIsFirstKey(phaseKey)
   if (!state) return null
   return (
     <div className="screen fl fl-board emp">
@@ -31,11 +33,12 @@ export function FlockBoard() {
           </span>
         )}
       </header>
-      <AnimatePresence mode="wait" initial={false}>
+      {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
+      <AnimatePresence mode="wait">
         <motion.div
-          key={`${state.game}-${state.phase}-${state.phase === 'clues' || state.phase === 'decide' ? state.lap : ''}`}
+          key={phaseKey}
           className="flb-main"
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={firstPhase ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1, transition: spring.gentle }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}
         >

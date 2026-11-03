@@ -355,15 +355,20 @@ export function publicLevels(userId: number): Record<BuildingId, number> | null 
   return plot.levels
 }
 
-/** House level per user id for the city grid (1 = tent, also for players without a plot). */
-export function houseLevels(): Map<number, number> {
+/** House and wall level per user id for the city (1 = tent, 0 = no fence; also for players without a plot). */
+export function cityLevels(): Map<number, { house: number; wall: number }> {
   const now = Date.now()
-  const out = new Map<number, number>()
+  const out = new Map<number, { house: number; wall: number }>()
   for (const r of db.prepare('SELECT user_id, state FROM plots').all() as unknown as { user_id: number; state: string }[]) {
     const plot = parsePlot(r.state, now)
     // Only finished builds count; no need to run production here.
     for (const b of plot.builds) if (b.endsAt <= now) plot.levels[b.building] = Math.max(plot.levels[b.building], b.toLevel)
-    out.set(r.user_id, plot.levels.house)
+    out.set(r.user_id, { house: plot.levels.house, wall: plot.levels.wall })
   }
   return out
+}
+
+/** House level per user id for the city grid (1 = tent, also for players without a plot). */
+export function houseLevels(): Map<number, number> {
+  return new Map([...cityLevels()].map(([id, l]) => [id, l.house]))
 }

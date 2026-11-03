@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
 import type { FlockBotLevel, FlockClientToServerEvents, FlockSecret, FlockServerToClientEvents, FlockState } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { clearBoard, saveBoard } from '../game/boardSession'
 import { t, useLocale } from '../i18n'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
@@ -31,7 +32,8 @@ interface FlockStore {
 
   create: () => void
   join: (code: string) => void
-  watch: (code: string) => void
+  /** Show the board of a room; `resumed` = after a reload (boardSession.ts): a room that's gone is forgotten quietly. */
+  watch: (code: string, resumed?: boolean) => void
   leave: () => void
   start: () => void
   ready: () => void
@@ -74,6 +76,7 @@ function rememberCode(code: string | null): void {
 
 function closeLocally(reason: string | null): void {
   rememberCode(null)
+  clearBoard('flock')
   useFlockStore.setState({ role: null, state: null, secret: null, myId: null, endsAt: 0, error: reason, busy: false })
 }
 
@@ -160,11 +163,18 @@ export const useFlockStore = create<FlockStore>((set) => ({
     })
   },
 
-  watch: (code) => {
+  watch: (code, resumed = false) => {
     set({ busy: true, error: null })
     getSocket().emit('flock:watch', { code: code.trim().toUpperCase() }, (res) => {
-      if (res.ok) set({ role: 'board', state: res.state, myId: null, secret: null, busy: false, endsAt: res.state.endsInMs ? Date.now() + res.state.endsInMs : 0 })
-      else set({ error: res.error, busy: false })
+      if (res.ok) {
+        saveBoard('flock', res.state.code)
+        set({ role: 'board', state: res.state, myId: null, secret: null, busy: false, endsAt: res.state.endsInMs ? Date.now() + res.state.endsInMs : 0 })
+      } else {
+        clearBoard('flock')
+        set({ error: resumed ? null : res.error, busy: false })
+        // After a reload the room may simply be gone: back to the menu, no error.
+        if (resumed) useGameStore.getState().goTo('menu')
+      }
     })
   },
 

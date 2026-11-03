@@ -85,6 +85,10 @@ export default {
     empty: 'üres',
     soon: 'hamarosan',
     new: 'Új!',
+    turnLeft: 'Az udvar forgatása balra',
+    turnRight: 'Az udvar forgatása jobbra',
+    north: 'Egyenesre állítás – hátul a ház',
+    loading: 'Készül a portád…',
   },
 
   scroll: {

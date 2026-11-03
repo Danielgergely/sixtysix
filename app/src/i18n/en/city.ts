@@ -61,7 +61,7 @@ export default {
     lot: 'lot {n}',
     outside: 'outside the walls',
     profile: 'Profile ›',
-    drag: 'Drag to look around. Only they can build here.',
+    drag: 'Drag to look around, twist or use the buttons to turn. Only they can build here.',
     tent: 'They haven’t started building yet — a tent stands on their land.',
   },
 

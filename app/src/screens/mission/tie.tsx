@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { projectPoint, type MissionState } from '@sixtysix/shared'
 import { tiePrompt } from '../../mission/lines'
@@ -11,6 +11,7 @@ import { useClockTicks } from '../../game/useClockTicks'
 import { useLocale, useT } from '../../i18n'
 import { Timer } from './parts'
 import { Avatar } from '../../avatars/Avatar'
+import { usePinTags } from '../../mission/pinTags'
 
 // ── input ───────────────────────────────────────────────────────────────
 
@@ -261,9 +262,12 @@ function PinLines({ state }: { state: MissionState }) {
   const truth = r.lat !== null && r.lon !== null ? { lat: r.lat, lon: r.lon } : null
   const pins = r.guesses.filter((g) => g.lat !== null && g.lon !== null).map((g) => ({ lat: g.lat!, lon: g.lon!, seat: g.seat }))
   const [tx, ty] = truth ? projectPoint(MISSION_MAP, truth.lat, truth.lon) : [0, 0]
+  // Each tag ("74 km") goes where it hides the fewest region names (mission/pinTags.ts).
+  const frame = useRef<HTMLDivElement>(null)
+  const spots = usePinTags(frame, pins.length, pins.map((p) => `${p.seat}:${p.lat},${p.lon}`).join('|'))
   return (
     <div className="ms-pinreveal">
-      <div className="ms-map-frame" style={{ aspectRatio: `${w} / ${h}` }}>
+      <div className="ms-map-frame" ref={frame} style={{ aspectRatio: `${w} / ${h}` }}>
         <MapView {...baseMapProps(state)} panZoom={false} selected={[]} flags={{}} pins={pins} truth={null} />
         <svg className="ms-map-over" viewBox={`0 0 ${w} ${h}`}>
           {truth && (
@@ -295,8 +299,15 @@ function PinLines({ state }: { state: MissionState }) {
         {pins.map((p, i) => {
           const [px, py] = projectPoint(MISSION_MAP, p.lat, p.lon)
           const g = r.guesses.find((x) => x.seat === p.seat)
+          const spot = spots[i]
+          const left = spot ? spot.left : i % 2 === 1
           return (
-            <span key={p.seat} className={`ms-pin-at ${i % 2 ? 'left' : ''}`} style={{ left: `${(px / w) * 100}%`, top: `${(py / h) * 100}%` }}>
+            <span
+              key={p.seat}
+              data-tag
+              className={`ms-pin-at ${left ? 'left' : ''}`}
+              style={{ left: `${(px / w) * 100}%`, top: `${(py / h) * 100}%`, ...(spot ? { transform: `translate(${spot.dx}px, ${spot.dy}px)` } : {}) }}
+            >
               <motion.span
                 className={`ms-pin-face ${r.winner === p.seat ? 'win' : ''}`}
                 style={{ '--seat': seatColour(p.seat) } as React.CSSProperties}

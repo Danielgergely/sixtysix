@@ -12,6 +12,7 @@ import type {
   YourResult,
 } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
+import { clearBoard } from '../game/boardSession'
 import { getDeviceId } from '../game/persistence'
 import { playSfx } from '../game/sfx'
 import { t } from '../i18n'
@@ -107,6 +108,7 @@ const session = {
   save: (code: string, role: ArenaRole) => {
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify({ code, role, at: Date.now() } satisfies Session))
+      clearBoard()
     } catch {
       // storage unavailable — a reload then needs the code again
     }

@@ -85,6 +85,10 @@ export default {
     empty: 'leer',
     soon: 'bald',
     new: 'Neu!',
+    turnLeft: 'Den Hof nach links drehen',
+    turnRight: 'Den Hof nach rechts drehen',
+    north: 'Ansicht gerade rücken – das Haus hinten',
+    loading: 'Dein Hof wird aufgebaut …',
   },
 
   scroll: {

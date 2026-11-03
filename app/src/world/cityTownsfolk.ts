@@ -14,7 +14,8 @@ import { graph, withPlaces, type Graph, type Pt } from './life/nav'
  *
  * Only who goes where, in world px of the painting: the 2D map draws them with
  * CityLife (life/Life.tsx), the 3D city with city3d/Townsfolk3D.tsx, both
- * moved by life/sim.ts. The 3D city also paints the roads on its ground.
+ * moved by life/sim.ts. Each draws its own roads (StreetNet): the 2D map the
+ * painted ones below, the 3D city its streets (city3d/streets.ts).
  */
 
 export interface Home {
@@ -60,10 +61,42 @@ export const LINKS: [Road, Road][] = [
 export const EXITS: Road[] = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6']
 /** Where the gates are: the road from the inner ring out through each one. */
 export const GATE_ROADS: [Road, Road][] = [['N1', 'gN'], ['E2', 'gNE'], ['W1', 'gW'], ['SW', 'gSW']]
-const BASE = graph(Object.fromEntries(Object.entries(ROADS).map(([k, [x, y]]) => [k, pt(x, y)])), LINKS)
-/** Where people go at the landmarks (the Temple's court is on the road graph already). */
-const LANDMARK_SPOTS: Record<string, Pt> = Object.fromEntries(LANDMARKS.filter((l) => l.id !== 'temple').map((l) => [`lm-${l.id}`, { x: l.x, y: l.y + 10 }]))
-const LANDMARK_IDS = [...Object.keys(LANDMARK_SPOTS), 'TT']
+/** An animal's patch (world px): centre and radii. */
+export interface Area {
+  x: number
+  y: number
+  rx: number
+  ry: number
+}
+
+/**
+ * A city's road network for the townsfolk: the graph, where people go at the
+ * landmarks (`lm-<id>`, tied to the nearest road), the Temple court's node,
+ * and where the animals roam. The 2D map uses the painted roads (PAINTED);
+ * the 3D city its own streets (city3d/streets.ts CITY_NET).
+ */
+export interface StreetNet {
+  base: Graph
+  landmarks: Record<string, Pt>
+  temple: string
+  dogStart: string[]
+  dogStops: string[]
+  donkeyStops: string[]
+  areas: Record<'sheep' | 'hen' | 'goat' | 'cat' | 'kitten', Area>
+}
+
+const near = (x: number, y: number, rx: number, ry: number): Area => ({ x: pct(x), y: pct(y), rx: pct(rx), ry: pct(ry) })
+
+/** The roads painted on city-map.webp. */
+export const PAINTED: StreetNet = {
+  base: graph(Object.fromEntries(Object.entries(ROADS).map(([k, [x, y]]) => [k, pt(x, y)])), LINKS),
+  landmarks: Object.fromEntries(LANDMARKS.filter((l) => l.id !== 'temple').map((l) => [`lm-${l.id}`, { x: l.x, y: l.y + 10 }])),
+  temple: 'TT',
+  dogStart: ['S4', 'L2', 'R2', 'E1'],
+  dogStops: ['S4', 'L1', 'W0', 'E1', 'R3', 'S2', 'TT'],
+  donkeyStops: ['lm-market', 'gSW', 'S4', 'lm-gate'],
+  areas: { sheep: near(76, 27, 2.2, 1), hen: near(21.5, 50.5, 2, 0.8), goat: near(84, 66, 2.5, 1.5), cat: near(47, 60, 3, 1), kitten: near(30, 33, 3, 1) },
+}
 
 const H = { adult: 30, child: 22, dog: 15, cat: 11, sheep: 17, goat: 17, hen: 10, donkey: 25 }
 
@@ -76,13 +109,14 @@ function walkerCount(homes: Home[]): number {
 const nth = <T,>(xs: T[], i: number, salt: number): T => xs[Math.abs((i * 7919 + salt * 104729) % xs.length)]
 
 /** The city's walkers and animals for these homes, and the roads they walk (houses and landmarks tied in). */
-export function townsfolk(homes: Home[]): { roads: Graph; actors: Actor[] } {
+export function townsfolk(homes: Home[], net: StreetNet = PAINTED): { roads: Graph; actors: Actor[] } {
+  const LANDMARK_IDS = [...Object.keys(net.landmarks), net.temple]
   const houses: Record<string, Pt> = {}
   for (const h of homes) {
     const l = lotFor(h.lot)
     if (l) houses[`h${h.lot}`] = { x: l.x, y: l.y + 4 }
   }
-  const roads = withPlaces(BASE, { ...houses, ...LANDMARK_SPOTS })
+  const roads = withPlaces(net.base, { ...houses, ...net.landmarks })
   const houseIds = Object.keys(houses)
   const out: Actor[] = []
   const n = walkerCount(homes)
@@ -107,17 +141,17 @@ export function townsfolk(homes: Home[]): { roads: Graph; actors: Actor[] } {
   // Animals: dogs roam the streets, cats sit about, a few sheep at the Sheep Gate, hens at the market, goats on the terraces.
   const dogs = Math.max(1, Math.round(n / 12))
   for (let i = 0; i < dogs; i++) {
-    out.push({ id: `dog${i}`, fig: 'dog', h: H.dog, speed: 48, at: BASE.nodes[nth(['S4', 'L2', 'R2', 'E1'] as Road[], i, 7)], stops: ['S4', 'L1', 'W0', 'E1', 'R3', 'S2', 'TT', ...houseIds.slice(0, 4)], pause: [1, 5] })
+    out.push({ id: `dog${i}`, fig: 'dog', h: H.dog, speed: 48, at: net.base.nodes[nth(net.dogStart, i, 7)], stops: [...net.dogStops, ...houseIds.slice(0, 4)], pause: [1, 5] })
   }
-  const near = (x: number, y: number, rx: number, ry: number) => ({ x: pct(x), y: pct(y), rx: pct(rx), ry: pct(ry) })
-  const flock = (id: string, fig: FigureId, count: number, a: ReturnType<typeof near>, h: number, speed: number) => {
+  const flock = (id: string, fig: FigureId, count: number, a: Area, h: number, speed: number) => {
     for (let i = 0; i < count; i++) out.push({ id: `${id}${i}`, fig, h, speed, at: { x: a.x + (i - count / 2) * 14, y: a.y + (i % 2) * 8 }, area: a, pause: [3, 9], left: i % 2 === 1 })
   }
-  flock('sheep', 'sheep', 3, near(76, 27, 2.2, 1), H.sheep, 9)
-  flock('hen', 'hen', 3, near(21.5, 50.5, 2, 0.8), H.hen, 10)
-  flock('goat', 'goat', 2, near(84, 66, 2.5, 1.5), H.goat, 10)
-  flock('cat', 'cat', 1, near(47, 60, 3, 1), H.cat, 14)
-  flock('kitten', 'cat', 1, near(30, 33, 3, 1), H.cat, 14)
-  out.push({ id: 'donkey', fig: 'donkey', h: H.donkey, speed: 14, at: roads.nodes['lm-market'] ?? pt(21, 48), stops: ['lm-market', 'gSW', 'S4', 'lm-gate'], pause: [3, 8] })
+  const A = net.areas
+  flock('sheep', 'sheep', 3, A.sheep, H.sheep, 9)
+  flock('hen', 'hen', 3, A.hen, H.hen, 10)
+  flock('goat', 'goat', 2, A.goat, H.goat, 10)
+  flock('cat', 'cat', 1, A.cat, H.cat, 14)
+  flock('kitten', 'cat', 1, A.kitten, H.cat, 14)
+  out.push({ id: 'donkey', fig: 'donkey', h: H.donkey, speed: 14, at: roads.nodes['lm-market'] ?? pt(21, 48), stops: net.donkeyStops, pause: [3, 8] })
   return { roads, actors: out }
 }

@@ -25,7 +25,7 @@ export default {
     build: 'Bauen ›',
     visit: 'Besuchen ›',
     close: 'Schließen',
-    search: 'Familie suchen ({n})',
+    search: 'Familien ({n})',
     searchAria: 'Eine Familie in Jerusalem suchen',
     noHits: 'Noch keine Familie mit diesem Namen',
     lotTitle: '{name} · {house} · Parzelle {n}',
@@ -60,7 +60,7 @@ export default {
     lot: 'Parzelle {n}',
     outside: 'vor den Mauern',
     profile: 'Profil ›',
-    drag: 'Zieh, um dich umzusehen. Bauen kann hier nur die Familie selbst.',
+    drag: 'Zieh, um dich umzusehen; mit zwei Fingern oder den Knöpfen drehst du den Hof. Bauen kann hier nur die Familie selbst.',
     tent: 'Hier wurde noch nicht gebaut – auf dem Land steht ein Zelt.',
   },
 

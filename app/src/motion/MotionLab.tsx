@@ -112,7 +112,7 @@ export function MotionLab() {
         <section className="profile-section">
           <div className="profile-label">Layout reorder (leaderboard)</div>
           <div className="lb-list">
-            <AnimatePresence initial={false}>
+            <AnimatePresence>
               {items.map((name, i) => (
                 <motion.div key={name} layout transition={spring.gentle} className="lb-row">
                   <span className="lb-rank">{i + 1}.</span>

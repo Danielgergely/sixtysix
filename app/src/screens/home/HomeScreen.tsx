@@ -28,7 +28,7 @@ import { rich } from './rich'
 import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
-import { PlotScene } from '../../world/PlotScene'
+import { PlotView } from '../../world/PlotView'
 import { useIntro } from '../../tutorial/useIntro'
 
 /** My Home in Jerusalem: the plot with its nine spots (docs/jerusalem-plot.md). */
@@ -165,9 +165,12 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
   const select = usePlotStore((s) => s.select)
   const markSeen = usePlotStore((s) => s.markSeen)
   const gift = usePlotStore((s) => s.gift)
+  // The same idle days as the weeds warning above (WeedsNote).
+  const idleDays = usePlotStore((s) => s.home?.idleDays)
   return (
-    <PlotScene
+    <PlotView
       levels={plot.levels}
+      idleDays={idleDays}
       plot={plot}
       now={now}
       seen={seen}

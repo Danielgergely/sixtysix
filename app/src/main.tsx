@@ -17,6 +17,7 @@ import { playSfx } from './game/sfx'
 import { useAccountStore } from './account/accountStore'
 import { initFlags } from './flags/flagStore'
 import { silenceTutorials } from './tutorial/store'
+import { loadBoard } from './game/boardSession'
 
 // One delegated listener gives every button a click sound. Answer buttons
 // are excluded — they have their own (louder) submit sound.
@@ -78,8 +79,17 @@ if (missionMatch) {
   window.history.replaceState(null, '', '/')
 }
 
-// Reloaded mid-game (no deep link): back into the arena room this device was in.
-if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch && !missionMatch) useArenaStore.getState().resume()
+// Reloaded mid-game (no deep link): back to the board this device showed (game/boardSession.ts),
+// else into the arena room it was in.
+if (!joinMatch && !boardMatch && !flockMatch && !spiesMatch && !missionMatch) {
+  const board = loadBoard()
+  if (board) {
+    silenceTutorials()
+    const stores = { flock: useFlockStore, spies: useSpiesStore, mission: useMissionStore }
+    stores[board.game].getState().watch(board.code, true)
+    useGameStore.getState().goTo(board.game)
+  } else useArenaStore.getState().resume()
+}
 
 // Signed in: deliver rewards earned offline and pick up the account's totals.
 void useAccountStore.getState().init()
