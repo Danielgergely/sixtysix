@@ -3,7 +3,6 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
   cleanLocale,
   questionIn,
-  DAY_MS,
   BUILDING_IDS,
   MATERIALS,
   MATERIAL_INFO,
@@ -34,7 +33,7 @@ import {
   type PlotState,
   type ScrollQuestion,
 } from '@sixtysix/shared'
-import { db, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import { db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
 import { pickQuestions, referenceIn } from './bank.js'
 
 /**
@@ -117,7 +116,7 @@ function save(c: Ctx): void {
 /** Where the homestead stands and how long its family has been away (weeds, shared/src/city.ts). */
 function home(userId: number, now: number): { lot: number | null; idleDays: number } {
   const r = db.prepare('SELECT lot, last_active, created_at FROM users WHERE id = ?').get(userId) as { lot: number | null; last_active: number | null; created_at: number }
-  return { lot: r.lot, idleDays: Math.max(0, Math.floor((now - (r.last_active ?? r.created_at)) / DAY_MS)) }
+  return { lot: r.lot, idleDays: idleDaysOf(r, now) }
 }
 
 const view = (c: Ctx, extra: Record<string, unknown> = {}) => ({
@@ -366,9 +365,4 @@ export function cityLevels(): Map<number, { house: number; wall: number }> {
     out.set(r.user_id, { house: plot.levels.house, wall: plot.levels.wall })
   }
   return out
-}
-
-/** House level per user id for the city grid (1 = tent, also for players without a plot). */
-export function houseLevels(): Map<number, number> {
-  return new Map([...cityLevels()].map(([id, l]) => [id, l.house]))
 }

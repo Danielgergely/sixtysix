@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { normalizeUsername, usernameKey } from '@sixtysix/shared'
 import {
@@ -8,7 +7,9 @@ import {
   hashPassword,
   isAdminName,
   passwordError,
+  sha256,
   toAccount,
+  TOO_MANY,
   tooMany,
   userByName,
   userFromRequest,
@@ -24,8 +25,6 @@ import {
  * sign-in (accounts.ts → tooMany). Errors are English; the app translates them.
  */
 
-const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
-const TOO_MANY = 'Too many attempts — wait a minute.'
 
 type Handler = (me: UserRow, body: Record<string, unknown>, req: FastifyRequest, reply: FastifyReply) => unknown
 

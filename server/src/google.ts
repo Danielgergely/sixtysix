@@ -1,7 +1,6 @@
-import { randomBytes } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
 import { usernameKey } from '@sixtysix/shared'
-import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
+import { TOO_MANY, cleanProfile, clientIp, db, markActive, newSession, signInLinked, toAccount, tooMany, userFromRequest } from './accounts.js'
 
 /**
  * "Sign in with Google" (Google Identity Services). Enabled only when the
@@ -50,31 +49,18 @@ export function freeUsername(email: string): string {
 export function registerGoogleRoutes(app: FastifyInstance): void {
   /** Sign in (or sign up on first use). `created` tells the app whether to merge guest progress. */
   app.post('/api/account/google', async (req, reply) => {
-    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const body = (req.body ?? {}) as { credential?: unknown; profile?: unknown }
     const id = await verify(body.credential)
     if (!id) return reply.code(401).send({ ok: false, error: 'Google sign-in failed' })
-    let row = db.prepare('SELECT * FROM users WHERE google_sub = ?').get(id.sub) as UserRow | undefined
-    let created = false
-    if (!row) {
+    const signedIn = signInLinked('google', id.sub, () => {
       const profile = cleanProfile(body.profile)
       profile.merged = { coins: profile.coins, xp: profile.xp }
       if (profile.name === 'Player' || profile.name === 'You') profile.name = id.name.slice(0, 14) || profile.name
-      const username = freeUsername(id.email)
-      try {
-        const { lastInsertRowid } = db
-          .prepare('INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile, google_sub) VALUES (?, ?, ?, 0, ?, ?, ?)')
-          // Password sign-in stays possible only after the player sets one (Account settings); this hash matches nothing.
-          .run(username, usernameKey(username), hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
-        row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
-        created = true
-      } catch {
-        // A second sign-in raced us and created the account first: use it.
-        row = db.prepare('SELECT * FROM users WHERE google_sub = ?').get(id.sub) as UserRow | undefined
-        if (!row) return reply.code(500).send({ ok: false, error: 'Google sign-in failed' })
-      }
-      console.log(`[account] google signup ${username}`)
-    }
+      return { username: freeUsername(id.email), profile }
+    })
+    if (!signedIn) return reply.code(500).send({ ok: false, error: 'Google sign-in failed' })
+    const { row, created } = signedIn
     markActive(row.id)
     return { ok: true, created, token: newSession(row.id), account: toAccount(row) }
   })

@@ -1,8 +1,8 @@
 import type { FastifyInstance } from 'fastify'
-import { DAY_MS, MOVE_COST, moveError, type MoveError } from '@sixtysix/shared'
+import { MOVE_COST, moveError, type MoveError } from '@sixtysix/shared'
 import { INNER_LOTS, LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
-import { db, markActive, publicPlayer, saveProfile, toAccount, userFromRequest, type PublicRow, type UserRow } from './accounts.js'
-import { cityLevels, houseLevels } from './plot.js'
+import { db, idleDaysOf, markActive, publicPlayer, saveProfile, toAccount, userFromRequest, type PublicRow, type UserRow } from './accounts.js'
+import { cityLevels } from './plot.js'
 
 /**
  * Jerusalem's residents and moving house (rules in shared/src/city.ts). Lots
@@ -11,9 +11,6 @@ import { cityLevels, houseLevels } from './plot.js'
  */
 
 type CityRow = PublicRow & { id: number; lot: number | null; last_active: number | null }
-
-const idleDaysOf = (r: { last_active: number | null; created_at: number }, now: number) =>
-  Math.max(0, Math.floor((now - (r.last_active ?? r.created_at)) / DAY_MS))
 
 const MOVE_MESSAGES: Record<MoveError, string> = {
   'signed-out': 'Sign in to build in Jerusalem',
@@ -56,7 +53,7 @@ export function registerCityRoutes(app: FastifyInstance): void {
     const err = moveError({
       inner,
       owner: owner ? { idleDays: idleDaysOf(owner, now), isMe: owner.id === me.id } : null,
-      house: houseLevels().get(me.id) ?? 1,
+      house: cityLevels().get(me.id)?.house ?? 1,
       coins: account.profile.coins,
       lastMoveAt: mine.last_move_at,
       now,

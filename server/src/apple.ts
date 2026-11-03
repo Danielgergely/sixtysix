@@ -1,7 +1,6 @@
-import { createPublicKey, randomBytes, verify as verifySignature, type JsonWebKey } from 'node:crypto'
+import { createPublicKey, verify as verifySignature, type JsonWebKey } from 'node:crypto'
 import type { FastifyInstance } from 'fastify'
-import { usernameKey } from '@sixtysix/shared'
-import { cleanProfile, clientIp, db, hashPassword, markActive, newSession, toAccount, tooMany, userFromRequest, type UserRow } from './accounts.js'
+import { TOO_MANY, cleanProfile, clientIp, db, markActive, newSession, signInLinked, toAccount, tooMany, userFromRequest } from './accounts.js'
 import { freeUsername } from './google.js'
 
 /**
@@ -71,34 +70,21 @@ export function registerAppleRoutes(app: FastifyInstance): void {
    * first sign-in, from the popup: the app passes it along.
    */
   app.post('/api/account/apple', async (req, reply) => {
-    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: 'Too many attempts — wait a minute.' })
+    if (tooMany(clientIp(req))) return reply.code(429).send({ ok: false, error: TOO_MANY })
     const body = (req.body ?? {}) as { idToken?: unknown; name?: unknown; profile?: unknown }
     const id = await verify(body.idToken)
     if (!id) return reply.code(401).send({ ok: false, error: 'Apple sign-in failed' })
-    let row = db.prepare('SELECT * FROM users WHERE apple_sub = ?').get(id.sub) as UserRow | undefined
-    let created = false
-    if (!row) {
+    const signedIn = signInLinked('apple', id.sub, () => {
       const profile = cleanProfile(body.profile)
       profile.merged = { coins: profile.coins, xp: profile.xp }
       const given = typeof body.name === 'string' ? body.name.trim().slice(0, 14) : ''
       if (given && (profile.name === 'Player' || profile.name === 'You')) profile.name = given
       // Apple may hide the email behind a relay address; then the name (or "player") seeds the username.
       const hidden = !id.email || id.email.endsWith('@privaterelay.appleid.com')
-      const username = freeUsername(hidden ? `${given.replace(/\s+/g, '') || 'player'}@x` : id.email)
-      try {
-        const { lastInsertRowid } = db
-          .prepare('INSERT INTO users (username, username_key, pass_hash, pass_set, created_at, profile, apple_sub) VALUES (?, ?, ?, 0, ?, ?, ?)')
-          // Password sign-in stays possible only after the player sets one (Account settings); this hash matches nothing.
-          .run(username, usernameKey(username), hashPassword(randomBytes(24).toString('hex')), Date.now(), JSON.stringify(profile), id.sub)
-        row = db.prepare('SELECT * FROM users WHERE id = ?').get(lastInsertRowid) as unknown as UserRow
-        created = true
-      } catch {
-        // A second sign-in raced us and created the account first: use it.
-        row = db.prepare('SELECT * FROM users WHERE apple_sub = ?').get(id.sub) as UserRow | undefined
-        if (!row) return reply.code(500).send({ ok: false, error: 'Apple sign-in failed' })
-      }
-      console.log(`[account] apple signup ${username}`)
-    }
+      return { username: freeUsername(hidden ? `${given.replace(/\s+/g, '') || 'player'}@x` : id.email), profile }
+    })
+    if (!signedIn) return reply.code(500).send({ ok: false, error: 'Apple sign-in failed' })
+    const { row, created } = signedIn
     markActive(row.id)
     return { ok: true, created, token: newSession(row.id), account: toAccount(row) }
   })
