@@ -176,6 +176,11 @@
 /* z-index here is foot y in % × 10 (PlotScene, PlotLife). The front sides cover the feet of the buildings behind them;
    only the gate (wall spot, y 95) stands in front. */
 .ps-fence.front{ z-index: 900; }
+.ps-weed{
+  position: absolute; translate: -50% -80%; pointer-events: none; font-size: 18px; line-height: 1;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.45)) saturate(0.85);
+}
+.ps-weed.dry{ font-size: 25px; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.45)) sepia(0.45) saturate(0.9); }
 .ps-bush{ position: absolute; translate: -50% -82%; height: auto; pointer-events: none; }
 .ps-spot{
   position: absolute; translate: -50% -86%; display: flex; flex-direction: column; align-items: center;
