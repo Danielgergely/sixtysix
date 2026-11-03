@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { BuildingId } from '@sixtysix/shared'
+import { MATERIAL_INFO, PRODUCERS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -38,4 +38,23 @@ export const COURTYARD_ART = art('courtyard')
 export function artFor(b: BuildingId, level: number): string {
   const stages = BUILDING_ART[b]
   return stages[Math.min(stages.length, Math.max(1, level)) - 1]
+}
+
+/** How far a build has come (0…100 %). */
+export const buildPct = (build: { startedAt: number; endsAt: number }, now: number) => Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100)
+
+/**
+ * What a spot shows over the homestead (the painted yard and the 3D one): the
+ * build going up there, production waiting (and its material's icon), and
+ * whether its level is new since the player last looked.
+ */
+export function spotStatus(b: BuildingId, levels: Record<BuildingId, number>, plot: PlotState | undefined, seen: Record<BuildingId, number> | null | undefined) {
+  const level = levels[b]
+  return {
+    level,
+    build: plot?.builds.find((x) => x.building === b),
+    waiting: plot && PRODUCERS.includes(b) ? ready(plot, b) : 0,
+    icon: MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon,
+    isNew: seen && plot ? level > seen[b] : false,
+  }
 }

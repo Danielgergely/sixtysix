@@ -1,10 +1,10 @@
 import { memo, useMemo } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, PRODUCERS, SPOTS, idleStage, levelDef, ready, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
+import { SPOTS, idleStage, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
 import { useT } from '../i18n'
-import { artFor, COURTYARD_ART, countdown } from '../screens/home/homeUtil'
-import { buildingName, levelName } from '../screens/home/plotText'
+import { artFor, buildPct, COURTYARD_ART, countdown, spotStatus } from '../screens/home/homeUtil'
+import { buildingName, levelName, spotLevelText } from '../screens/home/plotText'
 import { PanZoom } from './PanZoom'
 import { PlotLife } from './PlotLife'
 import { useWasDragged } from './dragged'
@@ -132,11 +132,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
   }
 
   const b = spot
-  const level = levels[b]
-  const build = plot?.builds.find((x) => x.building === b)
-  const waiting = plot && PRODUCERS.includes(b) ? ready(plot, b) : 0
-  const isNew = seen && plot ? level > seen[b] : false
-  const pct = build ? Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100) : 0
+  const { level, build, waiting, icon, isNew } = spotStatus(b, levels, plot, seen)
   const name = levelName(b, level)
 
   return (
@@ -153,7 +149,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
       {build && (
         <span className="ps-build">
           <span className="hp-bar">
-            <span style={{ width: `${pct}%` }} />
+            <span style={{ width: `${buildPct(build, now)}%` }} />
           </span>
           <small>🔨 {countdown(build.endsAt - now)}</small>
         </span>
@@ -161,7 +157,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
       {isNew && !build && <span className="hp-ribbon new">{t('home.scene.new')}</span>}
       {!isNew && waiting > 0 && (
         <span className="hp-ribbon">
-          +{waiting} {MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon}
+          +{waiting} {icon}
         </span>
       )}
     </motion.button>
@@ -189,7 +185,7 @@ function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<PlotSce
   return (
     <button className={`ps-tagspot ${spot === 'house' ? 'house' : ''} ${level ? '' : 'empty'}`} style={style} onClick={tap} aria-disabled={!onSelect} tabIndex={-1}>
       <span className="ps-tag">
-        {buildingName(spot)} <small>{level ? t('home.scene.lv', { n: level }) : build ? t('home.scene.goingUp') : plot ? t('home.scene.empty') : '—'}</small>
+        {buildingName(spot)} <small>{spotLevelText(level, !!build, !!plot)}</small>
       </span>
     </button>
   )

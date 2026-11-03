@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { NoToneMapping, PCFShadowMap } from 'three'
-import { MATERIAL_INFO, PRODUCERS, SPOTS, levelDef, ready, type BuildingId } from '@sixtysix/shared'
+import { SPOTS, type BuildingId } from '@sixtysix/shared'
 import { useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
 import { useTutorialStore } from '../../tutorial/store'
-import { countdown } from '../../screens/home/homeUtil'
-import { buildingName, levelName } from '../../screens/home/plotText'
+import { buildPct, countdown, spotStatus } from '../../screens/home/homeUtil'
+import { buildingName, levelName, spotLevelText } from '../../screens/home/plotText'
 import type { PlotSceneProps } from '../PlotScene'
 import { useYardActors } from '../yard'
 import { sayLine, type FigureId } from '../life/figures'
@@ -138,30 +138,26 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
       )
     }
     const b = spot
-    const level = levels[b]
-    const build = plot?.builds.find((x) => x.building === b)
-    const waiting = plot && PRODUCERS.includes(b) ? ready(plot, b) : 0
-    const isNew = seen && plot ? level > seen[b] : false
-    const pct = build ? Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100) : 0
+    const { level, build, waiting, icon, isNew } = spotStatus(b, levels, plot, seen)
     return (
       <div key={spot} ref={ref} className="c3-tag p3-tag" data-tour={b === 'house' ? 'home-house' : undefined} title={level ? levelName(b, level) : undefined} style={{ display: 'none' }}>
         <div className={`p3-stack ps-tagspot ${b === 'house' ? 'house' : ''} ${level ? '' : 'empty'}`}>
           {isNew && !build && <span className="p3-ribbon new">{t('home.scene.new')}</span>}
           {!isNew && waiting > 0 && (
             <span className="p3-ribbon">
-              +{waiting} {MATERIAL_INFO[levelDef(b, level)?.make?.material ?? 'wood'].icon}
+              +{waiting} {icon}
             </span>
           )}
           {build && (
             <span className="ps-build p3-build">
               <span className="hp-bar">
-                <span style={{ width: `${pct}%` }} />
+                <span style={{ width: `${buildPct(build, now)}%` }} />
               </span>
               <small>🔨 {countdown(build.endsAt - now)}</small>
             </span>
           )}
           <span className="ps-tag">
-            {buildingName(b)} <small>{level ? t('home.scene.lv', { n: level }) : build ? t('home.scene.goingUp') : plot ? t('home.scene.empty') : '—'}</small>
+            {buildingName(b)} <small>{spotLevelText(level, !!build, !!plot)}</small>
           </span>
         </div>
       </div>
