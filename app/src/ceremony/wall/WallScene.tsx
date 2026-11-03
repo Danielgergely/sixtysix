@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import type { ArenaPlayer, TeamState } from '@sixtysix/shared'
 import { AnimatedNumber } from '../../motion'
 import { PaintedPortrait } from '../../art/PaintedPortrait'
-import { TEAM_COLORS, gateName } from '../../screens/arena/modes'
+import { gateName, teamColor } from '../../screens/arena/modes'
 import { rich } from '../../screens/arena/rich'
 import { useT } from '../../i18n'
 import { WallRenderer, bricksFor, computeLayout } from './wallRender'
@@ -73,7 +73,7 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
       stagger,
       teams: teams.map((team, i) => ({
         ...counts[i],
-        color: TEAM_COLORS[team.id % TEAM_COLORS.length],
+        color: teamColor(team.id),
         leading: team.stones === best && best > 0,
         delay: FIRST_DELAY_MS + i * TEAM_OFFSET_MS,
       })),
@@ -124,7 +124,7 @@ export default function WallScene({ teams: liveTeams, questionTotal, wide, myTea
               )}
               <div
                 className={`wl3-plate ${myTeam === team.id ? 'mine' : ''} ${p.leading && crowned ? 'lead' : ''}`}
-                style={{ left: (s.x0 + s.x1) / 2 - Math.min(s.x1 - s.x0, wide ? 340 : 999) / 2, width: Math.min(s.x1 - s.x0, wide ? 340 : 999), top: layout.groundY + Math.max(6, layout.courseH * 0.35), '--c': TEAM_COLORS[team.id % TEAM_COLORS.length] } as React.CSSProperties}
+                style={{ left: (s.x0 + s.x1) / 2 - Math.min(s.x1 - s.x0, wide ? 340 : 999) / 2, width: Math.min(s.x1 - s.x0, wide ? 340 : 999), top: layout.groundY + Math.max(6, layout.courseH * 0.35), '--c': teamColor(team.id) } as React.CSSProperties}
               >
                 <span className="wl3-name" style={wide ? undefined : { fontSize: nameSize(gateName(t, team.name), Math.min(s.x1 - s.x0, 999) - 10) }}>
                   {p.leading && crowned && '👑 '}

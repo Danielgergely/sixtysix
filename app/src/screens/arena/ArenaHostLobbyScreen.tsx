@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
 import { useArenaStore } from '../../arena/arenaStore'
-import { Avatar } from '../../avatars/Avatar'
 import { playSfx } from '../../game/sfx'
-import { AnimatedNumber, spring, useFirstKeys } from '../../motion'
+import { AnimatedNumber, useFirstKeys } from '../../motion'
 import { useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { useIntro } from '../../tutorial/useIntro'
@@ -12,6 +11,7 @@ import { RoomOptions } from './RoomOptions'
 import type { ArenaPlayer, RoomConfig } from '@sixtysix/shared'
 import { TeamPennant } from './game/Team'
 import { teamColor } from './modes'
+import { PlayerChip } from './PlayerChip'
 
 /** Host only: change the options in the lobby (also before "Play again" starts the next game). */
 function OptionsSheet({ initial, onClose }: { initial: RoomConfig; onClose: () => void }) {
@@ -88,22 +88,7 @@ export function ArenaHostLobbyScreen() {
   const firstChips = useFirstKeys(room ? room.players.map((p) => p.id) : null)
 
   if (!room) return null
-  const chip = (p: ArenaPlayer) => (
-    <motion.div
-      key={p.id}
-      layout
-      className={`player-chip ${p.connected ? '' : 'player-gone'}`}
-      initial={firstChips.has(p.id) ? false : { opacity: 0, scale: 0.3, y: -40 }}
-      animate={{ opacity: p.connected ? 1 : 0.45, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.4, transition: { duration: 0.2 } }}
-      transition={spring.bouncy}
-    >
-      <span className="player-chip-avatar">
-        <Avatar id={p.avatar} />
-      </span>
-      <span className="player-chip-name">{p.name}</span>
-    </motion.div>
-  )
+  const chip = (p: ArenaPlayer) => <PlayerChip key={p.id} player={p} first={firstChips.has(p.id)} dropFrom={40} />
   const isHost = role === 'host'
   const minPlayers = room.config.mode === 'wall' ? 2 : 1
   const cats = room.config.categories ?? []

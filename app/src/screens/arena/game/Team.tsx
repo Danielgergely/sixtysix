@@ -5,6 +5,7 @@ import { AnimatedNumber } from '../../../motion'
 import { useLocale, useT } from '../../../i18n'
 import { gateName, myTeamOf, teamAverage, teamColor } from '../modes'
 import { rich } from '../rich'
+import { WhoFace } from './WhoFace'
 import '../../../theme/wall.css'
 
 /**
@@ -77,19 +78,7 @@ export function TeamStrip({
       <TeamPennant team={team} className="small" />
       <span className="tm-strip-faces">
         {shown.map((p) => {
-          const done = answeredIds.includes(p.id)
-          return (
-            <motion.span
-              key={p.id}
-              className={`eh-who-face ${done ? 'done' : ''} ${p.id === you?.id ? 'you' : ''}`}
-              title={p.name}
-              animate={done ? { scale: [1, 1.25, 1] } : { scale: 1 }}
-              transition={{ duration: 0.35 }}
-            >
-              <PaintedPortrait id={p.avatar} className="eh-who-portrait" />
-              {done && <span className="eh-who-tick">✓</span>}
-            </motion.span>
-          )
+          return <WhoFace key={p.id} avatar={p.avatar} name={p.name} done={answeredIds.includes(p.id)} you={p.id === you?.id} />
         })}
         {people.length > shown.length && <span className="eh-who-more">{t('arena.team.more', { n: people.length - shown.length })}</span>}
       </span>
