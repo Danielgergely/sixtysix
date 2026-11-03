@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import type { FlockBotLevel, FlockCategory, FlockWord, GameLocale } from '@sixtysix/shared'
 import { CHARACTERS, SKIN_TONES } from '@sixtysix/shared'
 import { huStem, tokens } from './match.js'
-import { LISTS, localeOf, newPlayerId, roomLocales, type FPlayer, type FRoom } from './rooms.js'
+import { LISTS, isIn, localeOf, newPlayerId, roomLocales, shuffle, type FPlayer, type FRoom } from './rooms.js'
 
 /**
  * Wolf in the Flock bots (docs/board-games.md → Bots). A bot is an ordinary
@@ -85,13 +85,6 @@ const GENERIC: Record<GameLocale, Record<FlockCategory, string[]>> = {
 }
 
 const rand = (a: number, b: number) => a + Math.random() * (b - a)
-function shuffle<T>(xs: T[]): T[] {
-  for (let i = xs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[xs[i], xs[j]] = [xs[j], xs[i]]
-  }
-  return xs
-}
 
 // ── word profiles ───────────────────────────────────────────────────────
 
@@ -194,7 +187,6 @@ export function addBot(room: FRoom): FPlayer {
 
 // ── the brain ───────────────────────────────────────────────────────────
 
-const isIn = (room: FRoom, secret: string) => room.dealt.has(secret) && !room.out.has(secret) && room.players.has(secret)
 const level = (room: FRoom) => LEVELS[room.botLevel] ?? LEVELS.normal
 /** The bot's language. */
 const langOf = (room: FRoom, secret: string): GameLocale => {

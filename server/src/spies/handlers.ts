@@ -476,6 +476,9 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     if (prev && prev.room !== room) {
       void socket.leave(channel(prev.room))
       leaveRoom(io, prev.room, prev.secret, true)
+    } else if (prev && prev.secret !== secret) {
+      // A second seat on the same socket would receive that seat's key too (and leave the first one stranded).
+      return ack({ ok: false, error: 'You are already in this game' })
     }
     let p = room.players.get(secret)
     if (p) {

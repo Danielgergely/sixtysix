@@ -192,6 +192,18 @@ export const touch = (room: FRoom): void => {
 
 export const newPlayerId = (): string => randomUUID()
 
+/** Dealt into this game, not out, not gone. */
+export const isIn = (room: FRoom, secret: string): boolean => room.dealt.has(secret) && !room.out.has(secret) && room.players.has(secret)
+
+/** Fisher–Yates, in place. */
+export function shuffle<T>(xs: T[]): T[] {
+  for (let i = xs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[xs[i], xs[j]] = [xs[j], xs[i]]
+  }
+  return xs
+}
+
 // ── languages ───────────────────────────────────────────────────────────
 
 /** A seat's language; bots speak the leader's. */
