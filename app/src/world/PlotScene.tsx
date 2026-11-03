@@ -8,6 +8,7 @@ import { buildingName, levelName } from '../screens/home/plotText'
 import { PanZoom } from './PanZoom'
 import { PlotLife } from './PlotLife'
 import { useWasDragged } from './dragged'
+import { YardAmbience, type SpritePoint } from './YardAmbience'
 
 /**
  * The homestead as a place: the painted yard (app/public/art/plot-ground.webp)
@@ -35,6 +36,24 @@ const PLACES: Record<Spot, { x: number; y: number; w: number }> = {
   wall: { x: 50, y: 95, w: 17 },
 }
 
+/** Each painted sprite's height / width (app/public/art/plot-*.webp, all 480 wide), to find points inside it. */
+const ART_ASPECT: Record<string, number> = {
+  'house-1': 397, 'house-2': 457, 'house-3': 480, 'house-4': 461, 'house-5': 452,
+  'well-1': 401, 'well-2': 434, 'well-3': 422, 'wall-1': 407, 'wall-2': 454,
+  'store-1': 417, 'store-2': 410, 'workshop-1': 414, 'workshop-2': 403,
+  'fold-1': 320, 'fold-2': 437, 'grove-1': 473, 'grove-2': 396, 'kiln-1': 367, 'kiln-2': 440,
+}
+
+/** A point inside a building's sprite (fractions of its image) in % of the scene; the sprite stands 86% down on its foot point (.ps-spot). */
+function spritePoint(levels: Record<BuildingId, number>): SpritePoint {
+  return (b, u, v) => {
+    const p = PLACES[b]
+    const name = artFor(b, levels[b]).replace(/^.*plot-|\.webp$/g, '')
+    const h = (p.w * (ART_ASPECT[name] ?? 430)) / 480
+    return { left: `${p.x - p.w / 2 + u * p.w}%`, top: `${p.y - 0.86 * h + v * h}%` }
+  }
+}
+
 export interface PlotSceneProps {
   levels: Record<BuildingId, number>
   /** Your own plot: builds, waiting production. Absent when visiting. */
@@ -51,6 +70,8 @@ export interface PlotSceneProps {
 
 export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0 }: PlotSceneProps) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
+  const at = useMemo(() => spritePoint(levels), [levels])
+  const building = useMemo(() => plot?.builds.map((b) => b.building) ?? [], [plot?.builds])
   const t = useT()
   return (
     <PanZoom
@@ -81,6 +102,7 @@ export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, class
         <SpotView key={spot} spot={spot} index={i} levels={levels} plot={plot} now={now} seen={seen} onSelect={onSelect} />
       ))}
       <Weeds stage={idleStage(idleDays)} />
+      <YardAmbience levels={levels} building={building} at={at} />
       <PlotLife levels={levels} plot={plot} now={now} onGift={onGift} />
       {levels.wall === 1 && <Hedge />}
       <Fence level={levels.wall} side="front" />
