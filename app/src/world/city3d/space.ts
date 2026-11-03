@@ -129,9 +129,6 @@ export function surfaceAt(x: number, z: number): number {
   return ground
 }
 
-/** The Temple anchor in units. */
-export const TEMPLE_XZ: [number, number] = [TX, TZ]
-
 /** A stable random number in [0, 1) for an integer seed. */
 export function hash(n: number): number {
   let t = (n * 0x6d2b79f5 + 0x9e3779b9) | 0

@@ -59,8 +59,6 @@ export const LINKS: [Road, Road][] = [
   ['X1', 'gN'], ['X2', 'O330'], ['X3', 'O30'], ['X4', 'O90'], ['X5', 'gSW'], ['X6', 'O180'],
 ]
 export const EXITS: Road[] = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6']
-/** Where the gates are: the road from the inner ring out through each one. */
-export const GATE_ROADS: [Road, Road][] = [['N1', 'gN'], ['E2', 'gNE'], ['W1', 'gW'], ['SW', 'gSW']]
 /** An animal's patch (world px): centre and radii. */
 export interface Area {
   x: number

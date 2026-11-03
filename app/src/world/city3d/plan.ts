@@ -92,11 +92,6 @@ export function rectDist(r: Rect, x: number, z: number): number {
   return Math.hypot(Math.max(0, Math.abs(a) - r.hw), Math.max(0, Math.abs(b) - r.hd))
 }
 
-/** A road piece from a to b, `w` wide, as a rectangle. */
-export function segRect(ax: number, az: number, bx: number, bz: number, w: number): Rect {
-  return rect((ax + bx) / 2, (az + bz) / 2, Math.hypot(bx - ax, bz - az) / 2, w / 2, Math.atan2(-(bz - az), bx - ax))
-}
-
 /** A lot's yard (square: houses only turn by quarters). */
 export function lotRect(l: Lot): Rect {
   const [x, z] = lotCentre(l)
@@ -175,7 +170,6 @@ const ARC = (() => {
   }
   return { M, len, total: len[M] }
 })()
-export const WALL_LENGTH = ARC.total
 
 export function tAt(s: number): number {
   const { M, len, total } = ARC

@@ -53,5 +53,3 @@ export function requirementLabels(plot: PlotState, c: UpgradeCheck): string[] {
   }
   return labels
 }
-
-export { num as formatNumber }

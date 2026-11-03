@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { levelDef, type BuildingId } from '@sixtysix/shared'
+import type { BuildingId } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -20,12 +20,9 @@ export function countdown(ms: number): string {
   return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`
 }
 
-/** Icon for a building at a level (level 0 shows the first level's icon, dimmed by the caller). */
-export const buildingIcon = (b: BuildingId, level: number) => levelDef(b, Math.max(1, level))?.icon ?? '🏗️'
-
 /** Painted art (app/public/art/plot-*.webp, art-pipeline/prompts.json): a few stages per building, one entry per level. */
 const art = (name: string) => `/art/plot-${name}.webp`
-export const BUILDING_ART: Record<BuildingId, string[]> = {
+const BUILDING_ART: Record<BuildingId, string[]> = {
   house: ['house-1', 'house-2', 'house-3', 'house-3', 'house-4', 'house-4', 'house-5'].map(art),
   well: ['well-1', 'well-2', 'well-2', 'well-3', 'well-3'].map(art),
   wall: ['wall-1', 'wall-1', 'wall-2', 'wall-2', 'wall-2'].map(art),
