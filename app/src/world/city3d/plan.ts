@@ -304,17 +304,27 @@ export function landmarkRects(): { id: string; r: Rect }[] {
   return out
 }
 
-/** A flight of stairs as a rectangle (with its side walls). */
-export function stairRect(edge: number, along: number): Rect {
+/**
+ * Where a flight of stairs leaves the platform: the point (qx, qz) `along`
+ * edge `edge` of MOUNT_PTS (i → i + 1), the edge's direction (ex, ez) and the
+ * outward normal (nx, nz).
+ */
+export function stairFrame(edge: number, along: number) {
   const [ax, az] = MOUNT_PTS[edge]
   const [bx, bz] = MOUNT_PTS[(edge + 1) % 4]
   const len = Math.hypot(bx - ax, bz - az)
   const ex = (bx - ax) / len
   const ez = (bz - az) / len
-  // Outwards: away from the middle.
-  let [nx, nz] = [-ez, ex]
   const qx = ax + ex * along
   const qz = az + ez * along
+  // Outwards: away from the platform's middle.
+  let [nx, nz] = [-ez, ex]
   if ((qx - PLATFORM.x) * nx + (qz - PLATFORM.z) * nz < 0) [nx, nz] = [ez, -ex]
+  return { qx, qz, ex, ez, nx, nz }
+}
+
+/** A flight of stairs as a rectangle (with its side walls). */
+function stairRect(edge: number, along: number): Rect {
+  const { qx, qz, ex, ez, nx, nz } = stairFrame(edge, along)
   return rect(qx + (nx * STAIR_RUN) / 2, qz + (nz * STAIR_RUN) / 2, STAIR_W / 2 + 0.8, STAIR_RUN / 2, Math.atan2(-ez, ex))
 }
