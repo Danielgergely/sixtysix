@@ -26,7 +26,7 @@ import { blob, buildingGeometry, FOOTPRINT, scaffoldGeometry, topOf, type Spot }
 import { bushGeometry, FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, grassTuftGeometry, NAMES_AT, placeYardGreens, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
 import { configureRig, useDisposeOnUnmount } from './rig'
 import { weedGeometry } from './houses'
-import { Geo } from './geo'
+import { Geo, setInstances } from './geo'
 import { C } from './palette'
 import { plasterTexture, stoneTexture } from './textures'
 import { Townsfolk3D, type FolkSpace } from './Townsfolk3D'
@@ -184,18 +184,14 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   }, [levels.wall])
   const fenceMeshes = useRef<(InstancedMesh | null)[]>([])
   useLayoutEffect(() => {
-    const c = new Color()
     fence.forEach(({ parts }, i) => {
       const mesh = fenceMeshes.current[i]
-      if (!mesh) return
-      parts.forEach((p, k) => {
-        mesh.setMatrixAt(k, p.m)
-        mesh.setColorAt(k, c.setScalar(p.tint))
-      })
-      mesh.count = parts.length
-      mesh.instanceMatrix.needsUpdate = true
-      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-      mesh.computeBoundingSphere()
+      if (mesh)
+        setInstances(
+          mesh,
+          parts.map((p) => p.m),
+          parts.map((p) => new Color().setScalar(p.tint)),
+        )
     })
     gl.shadowMap.needsUpdate = true
     invalidate()
@@ -209,12 +205,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   useLayoutEffect(() => {
     const mesh = weedMesh.current
     if (!mesh) return
-    weeds.m.forEach((m, i) => mesh.setMatrixAt(i, m))
-    weeds.c.forEach((c, i) => mesh.setColorAt(i, c))
-    mesh.count = weeds.m.length
-    mesh.instanceMatrix.needsUpdate = true
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-    mesh.computeBoundingSphere()
+    setInstances(mesh, weeds.m, weeds.c)
     invalidate()
   }, [weeds, invalidate])
 
@@ -230,12 +221,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
       [tuftMesh.current, greens.tufts],
       [bushMesh.current, greens.bushes],
     ] as const) {
-      if (!mesh) continue
-      set.m.forEach((m, i) => mesh.setMatrixAt(i, m))
-      set.c.forEach((c, i) => mesh.setColorAt(i, c))
-      mesh.instanceMatrix.needsUpdate = true
-      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-      mesh.computeBoundingSphere()
+      if (mesh) setInstances(mesh, set.m, set.c)
     }
     gl.shadowMap.needsUpdate = true
   }, [trees, greens, gl])

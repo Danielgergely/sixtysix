@@ -1,3 +1,4 @@
+import type { Resident } from '../account/publicApi'
 import { LANDMARKS, WORLD, lotFor } from './cityLayout'
 import type { Actor } from './life/sim'
 import { TOWNSFOLK, type FigureId } from './life/figures'
@@ -23,6 +24,9 @@ export interface Home {
   /** Played or built today. */
   active: boolean
 }
+
+/** The families' homes the townsfolk come and go between. */
+export const homesOf = (residents: Resident[]): Home[] => residents.filter((r) => r.lot).map((r) => ({ lot: r.lot!, active: r.idleDays === 0 }))
 
 const pct = (v: number) => (v / 100) * WORLD
 const pt = (x: number, y: number): Pt => ({ x: pct(x), y: pct(y) })

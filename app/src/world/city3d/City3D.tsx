@@ -4,16 +4,18 @@ import { NoToneMapping, PCFShadowMap } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
 import { PaintedPortrait } from '../../art/PaintedPortrait'
-import { t as tNow, useT } from '../../i18n'
+import { useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
-import { FIGURES } from '../life/figures'
-import { LOTS, TEMPLE, lotFor, lotOpen, type LandmarkId } from '../cityLayout'
+import { sayLine } from '../life/figures'
+import { LOTS, TEMPLE, freeLots, lotFor, type LandmarkId } from '../cityLayout'
 import type { CityMapProps } from '../CityMap'
-import { CitySearch, FoundCard } from '../CityChrome'
+import { CityTop, FoundCard } from '../CityChrome'
 import { houseName } from '../../screens/home/plotText'
 import { DprMonitor } from './DprMonitor'
 import { HOUSE_TOP, MIN_DIST, newBridge, START_DIST, START_POLAR, type LabelSpec } from './bridge'
 import { NavButtons } from './NavButtons'
+import { useSpeechBubble } from './bubble'
+import { SpeechBubble } from './SpeechBubble'
 import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } from './rig'
 import type { LandmarkSpot } from './buildings'
 import { CityScene } from './CityScene'
@@ -43,6 +45,8 @@ import '../../theme/city3d.css'
 /** How many of the next free lots (where new families settle) are labelled "Free land". */
 const FREE_LABELS = 6
 const FOCUS_DIST = 48
+/** Where the camera looks without a home to show: just south of the Temple. */
+const TEMPLE_VIEW: [number, number] = [ux(TEMPLE.x), uz(TEMPLE.y + 160)]
 
 interface Props extends CityMapProps {
   onReady?: () => void
@@ -60,20 +64,16 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   const [found, setFound] = useState<Resident | null>(null)
   const [visible, setVisible] = useState<string[]>([])
   const [zoom, setZoom] = useState({ in: true, out: true })
-  const [bubble, setBubble] = useState<{ id: string; text: string; key: number } | null>(null)
+  const [bubble, setBubble] = useSpeechBubble(bridge)
   const [spots, setSpots] = useState<LandmarkSpot[]>([])
   // Sharp on capable screens; a struggling device drops to 1 device pixel per CSS pixel.
   const [dpr, setDpr] = useState(maxDpr)
 
   const mine = residents.find((r) => r.username === me)
   const home = mine?.lot ? lotFor(mine.lot) : undefined
-  const start = useMemo<[number, number]>(() => (home ? lotCentre(home) : [ux(TEMPLE.x), uz(TEMPLE.y + 160)]), []) // eslint-disable-line react-hooks/exhaustive-deps
+  const start = useMemo(() => (home ? lotCentre(home) : TEMPLE_VIEW), []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  /** Empty lots (1-based numbers), nearest the Temple first. */
-  const free = useMemo(() => {
-    const taken = new Set(residents.map((r) => r.lot))
-    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n) && lotOpen(n))
-  }, [residents])
+  const free = useMemo(() => freeLots(residents), [residents])
   const byLot = useMemo(() => new Map(residents.filter((r) => r.lot).map((r) => [r.lot!, r])), [residents])
 
   // Label anchors: landmarks, every family's house, the first free lots.
@@ -181,9 +181,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
     // 2. Someone in the street.
     const a = bridge.pickFigure?.(x, y)
     if (a) {
-      const fig = FIGURES[a.fig]
-      const text = tNow(`life.say.${a.fig}.l${1 + Math.floor(Math.random() * fig.lines)}`)
-      setBubble({ id: a.id, text, key: Date.now() })
+      setBubble({ id: a.id, text: sayLine(a.fig), key: Date.now() })
       return
     }
     // 3. A house, a plot or a landmark.
@@ -192,16 +190,6 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
     if (hit.kind === 'landmark') onLandmark(hit.id as LandmarkId)
     else if (hit.kind === 'lot') tapLot(hit.n)
   })
-
-  // The bubble fades on its own.
-  useEffect(() => {
-    if (!bubble) {
-      bridge.bubble = null
-      return
-    }
-    const id = setTimeout(() => setBubble((b) => (b?.key === bubble.key ? null : b)), 3600)
-    return () => clearTimeout(id)
-  }, [bubble, bridge])
 
   const visibleSet = useMemo(() => new Set(visible), [visible])
   const label = (spec: LabelSpec) => {
@@ -282,35 +270,9 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       </Canvas>
 
       <div className="c3-labels">{labels.map(label)}</div>
-      {bubble && (
-        <div
-          key={bubble.key}
-          className="c3-bubble"
-          ref={(el) => {
-            // Set here, not in an effect: the ref runs first, and Townsfolk3D places it from the next frame.
-            if (el) bridge.bubble = { id: bubble.id, el }
-          }}
-          style={{ display: 'none' }}
-        >
-          <div className="lf-bubble">{bubble.text}</div>
-        </div>
-      )}
+      <SpeechBubble bubble={bubble} bridge={bridge} />
 
-      <div className="cm-top">
-        <CitySearch residents={residents} onPick={focus} />
-        <div className="cm-tools">
-          {home ? (
-            <button className="cm-chip gold" onClick={() => mine && focus(mine)} title={t('city.map.myHomeTitle')}>
-              📍 <span>{t('city.map.myHome')}</span>
-            </button>
-          ) : (
-            <button className="cm-chip" onClick={() => flyTo(ux(TEMPLE.x), uz(TEMPLE.y + 160), START_DIST)} title={t('city.map.templeTitle')}>
-              🏛️ <span>{t('city.map.temple')}</span>
-            </button>
-          )}
-          {extra}
-        </div>
-      </div>
+      <CityTop residents={residents} onPick={focus} hasHome={!!home} onHome={() => mine && focus(mine)} onTemple={() => flyTo(...TEMPLE_VIEW, START_DIST)} extra={extra} />
       <NavButtons
         bridge={bridge}
         still={still}
