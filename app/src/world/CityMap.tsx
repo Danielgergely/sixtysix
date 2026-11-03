@@ -6,7 +6,7 @@ import { useT } from '../i18n'
 import { artFor } from '../screens/home/homeUtil'
 import { CitySearch, FoundCard } from './CityChrome'
 import { houseName } from '../screens/home/plotText'
-import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, type LandmarkId, type Lot } from './cityLayout'
+import { LANDMARKS, LOT_SIZE, LOTS, TEMPLE, WORLD, lotFor, lotOpen, type LandmarkId, type Lot } from './cityLayout'
 import { CityLife } from './CityLife'
 import { PanZoom, type PanZoomHandle, type ViewRect } from './PanZoom'
 import { useWasDragged } from './dragged'
@@ -66,7 +66,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, o
   /** Empty lots (1-based numbers), nearest the Temple first. */
   const free = useMemo(() => {
     const taken = new Set(residents.map((r) => r.lot))
-    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
+    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n) && lotOpen(n))
   }, [residents])
 
   /** The townsfolk come and go between these homes; more of them with every family, more still when they're active. */

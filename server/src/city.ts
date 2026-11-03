@@ -1,8 +1,8 @@
 import type { FastifyInstance } from 'fastify'
 import { DAY_MS, MOVE_COST, moveError, type MoveError } from '@sixtysix/shared'
-import { INNER_LOTS, LOTS } from '@sixtysix/shared/cityLayout'
+import { INNER_LOTS, LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
 import { db, markActive, publicPlayer, saveProfile, toAccount, userFromRequest, type PublicRow, type UserRow } from './accounts.js'
-import { houseLevels } from './plot.js'
+import { cityLevels, houseLevels } from './plot.js'
 
 /**
  * Jerusalem's residents and moving house (rules in shared/src/city.ts). Lots
@@ -30,12 +30,12 @@ export function registerCityRoutes(app: FastifyInstance): void {
   app.get('/api/city', () => {
     const now = Date.now()
     const rows = db.prepare('SELECT id, username, profile, created_at, lot, last_active FROM users ORDER BY lot IS NULL, lot').all() as unknown as CityRow[]
-    const houses = houseLevels()
+    const levels = cityLevels()
     return {
       ok: true,
       lots: LOTS.length,
       innerLots: INNER_LOTS,
-      residents: rows.map((r) => ({ ...publicPlayer(r), lot: r.lot, idleDays: idleDaysOf(r, now), house: houses.get(r.id) ?? 1 })),
+      residents: rows.map((r) => ({ ...publicPlayer(r), lot: r.lot, idleDays: idleDaysOf(r, now), house: levels.get(r.id)?.house ?? 1, wall: levels.get(r.id)?.wall ?? 0 })),
     }
   })
 
@@ -44,7 +44,8 @@ export function registerCityRoutes(app: FastifyInstance): void {
     const me = userFromRequest(req)
     if (!me) return reply.code(401).send({ ok: false, error: MOVE_MESSAGES['signed-out'] })
     const lot = Number((req.body as { lot?: unknown } | undefined)?.lot)
-    if (!Number.isInteger(lot) || lot < 1 || lot > LOTS.length) return { ok: false, error: MOVE_MESSAGES['no-lot'] }
+    // A retired lot is no place to live (shared/src/cityLayout.ts RETIRED_LOTS).
+    if (!lotOpen(lot)) return { ok: false, error: MOVE_MESSAGES['no-lot'] }
     const now = Date.now()
     const inner = lot <= INNER_LOTS
     const owner = db.prepare('SELECT id, created_at, last_active FROM users WHERE lot = ?').get(lot) as

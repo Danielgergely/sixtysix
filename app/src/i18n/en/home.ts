@@ -86,6 +86,10 @@ export default {
     empty: 'empty',
     soon: 'soon',
     new: 'New!',
+    turnLeft: 'Turn the yard left',
+    turnRight: 'Turn the yard right',
+    north: 'Straighten the view — the house at the back',
+    loading: 'Setting out your homestead…',
   },
 
   scroll: {

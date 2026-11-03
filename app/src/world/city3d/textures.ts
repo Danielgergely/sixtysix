@@ -119,3 +119,18 @@ export function signTexture(text: string): Texture {
   g.fillText(words, 128, 68)
   return tex(c, false, 4)
 }
+
+/**
+ * A painted texture whose canvas is let go once it is on the GPU: the big
+ * ground paintings (up to 2048² px, 16 MB of canvas) are uploaded once and
+ * never repainted. `userData.bytes` keeps its GPU size for the dev stats.
+ */
+export function releaseAfterUpload<T extends Texture>(t: T): T {
+  const img = t.image as HTMLCanvasElement
+  t.userData.bytes = img.width * img.height * 4 * 1.33
+  t.onUpdate = () => {
+    t.onUpdate = null
+    img.width = img.height = 1
+  }
+  return t
+}

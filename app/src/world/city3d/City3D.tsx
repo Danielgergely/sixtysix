@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerformanceMonitor } from '@react-three/drei'
 import { NoToneMapping, PCFShadowMap } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
@@ -8,13 +7,18 @@ import { PaintedPortrait } from '../../art/PaintedPortrait'
 import { t as tNow, useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
 import { FIGURES } from '../life/figures'
-import { LOTS, TEMPLE, lotFor, type LandmarkId } from '../cityLayout'
+import { LOTS, TEMPLE, lotFor, lotOpen, type LandmarkId } from '../cityLayout'
 import type { CityMapProps } from '../CityMap'
 import { CitySearch, FoundCard } from '../CityChrome'
 import { houseName } from '../../screens/home/plotText'
+import { DprMonitor } from './DprMonitor'
 import { HOUSE_TOP, MIN_DIST, newBridge, START_DIST, START_POLAR, type LabelSpec } from './bridge'
+import { NavButtons } from './NavButtons'
+import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } from './rig'
 import type { LandmarkSpot } from './buildings'
 import { CityScene } from './CityScene'
+import { HOUSE_SCALE } from './plan'
+import { clearView } from './view'
 import { heightAt, lotCentre, surfaceAt, ux, uz } from './space'
 import { reducedMotion } from '../life/sim'
 import '../../theme/city3d.css'
@@ -38,9 +42,6 @@ import '../../theme/city3d.css'
 
 /** How many of the next free lots (where new families settle) are labelled "Free land". */
 const FREE_LABELS = 6
-/** A tap is a press that moves less than this (px) and lasts less than TAP_MS. */
-const TAP_PX = 9
-const TAP_MS = 600
 const FOCUS_DIST = 48
 
 interface Props extends CityMapProps {
@@ -53,6 +54,8 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   const t = useT()
   const bridge = useMemo(() => newBridge(), [])
   const box = useRef<HTMLDivElement>(null)
+  // No frames while the tab is hidden.
+  usePauseWhenHidden(bridge, box)
   const still = useMemo(() => reducedMotion(), [])
   const [found, setFound] = useState<Resident | null>(null)
   const [visible, setVisible] = useState<string[]>([])
@@ -69,7 +72,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   /** Empty lots (1-based numbers), nearest the Temple first. */
   const free = useMemo(() => {
     const taken = new Set(residents.map((r) => r.lot))
-    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n))
+    return LOTS.map((_, i) => i + 1).filter((n) => !taken.has(n) && lotOpen(n))
   }, [residents])
   const byLot = useMemo(() => new Map(residents.filter((r) => r.lot).map((r) => [r.lot!, r])), [residents])
 
@@ -81,7 +84,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       if (!l) continue
       const [x, z] = lotCentre(l)
       const special = r.username === me || r.username === found?.username
-      out.push({ id: `r:${r.username}`, x, y: heightAt(x, z) + HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] + 0.8, z, always: special, name: true })
+      out.push({ id: `r:${r.username}`, x, y: heightAt(x, z) + HOUSE_TOP[Math.min(6, Math.max(0, r.house - 1))] * HOUSE_SCALE + 0.8, z, always: special, name: true })
     }
     for (const n of free.slice(0, FREE_LABELS)) {
       const [x, z] = lotCentre(LOTS[n - 1])
@@ -108,6 +111,9 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       void c.moveTo(x, surfaceAt(x, z), z, !still)
       bridge.invalidate()
       if (dist && c.distance > dist) void c.dollyTo(dist, !still)
+      // Turn or tilt if the Temple Mount, a landmark or the wall would hide the spot.
+      const [az, polar] = clearView(x, z, Math.min(c.distance, dist ?? c.distance), c.azimuthAngle, c.polarAngle)
+      if (az !== c.azimuthAngle || polar !== c.polarAngle) void c.rotateTo(az, polar, !still)
     },
     [bridge, still],
   )
@@ -141,15 +147,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   }, [flyToLot])
 
   // WebGL context lost (GPU reset, too many contexts): hand over to the 2D map.
-  const onCreated = useCallback(
-    ({ gl }: { gl: { domElement: HTMLCanvasElement } }) => {
-      gl.domElement.addEventListener('webglcontextlost', (e) => {
-        e.preventDefault()
-        onLost?.()
-      })
-    },
-    [onLost],
-  )
+  const onCreated = useContextLost(onLost)
 
   const tapLot = (n: number) => {
     const r = byLot.get(n) ?? null
@@ -176,50 +174,10 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   }
 
   // Taps (a press that hardly moved): labels, then walkers, then the scene.
-  const press = useRef<{ x: number; y: number; t: number; id: number; multi: boolean } | null>(null)
-  const pointers = useRef(new Map<number, { x: number; y: number }>())
-  const isUi = (e: React.PointerEvent) => !!(e.target as HTMLElement).closest('.cm-top, .c3-nav, .cm-found, .c3-bubble')
-  const onPointerDown = (e: React.PointerEvent) => {
-    if (isUi(e)) return
-    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
-    if (pointers.current.size > 1 && press.current) press.current.multi = true
-    else press.current = { x: e.clientX, y: e.clientY, t: performance.now(), id: e.pointerId, multi: false }
-  }
-  const onPointerMove = (e: React.PointerEvent) => {
-    const ps = pointers.current
-    const prev = ps.get(e.pointerId)
-    if (!prev) return
-    // Two fingers twisting turn the city (camera-controls does pinch and the two-finger drag).
-    if (ps.size === 2 && e.pointerType === 'touch') {
-      const [a, b] = [...ps.entries()]
-      const other = a[0] === e.pointerId ? b[1] : a[1]
-      const before = Math.atan2(prev.y - other.y, prev.x - other.x)
-      const after = Math.atan2(e.clientY - other.y, e.clientX - other.x)
-      let d = after - before
-      if (d > Math.PI) d -= 2 * Math.PI
-      if (d < -Math.PI) d += 2 * Math.PI
-      if (Math.abs(d) < 0.3) {
-        void bridge.controls?.rotate(d, 0, false)
-        bridge.invalidate()
-      }
-    }
-    ps.set(e.pointerId, { x: e.clientX, y: e.clientY })
-  }
-  const onPointerUp = (e: React.PointerEvent) => {
-    pointers.current.delete(e.pointerId)
-    const p = press.current
-    if (!p || p.id !== e.pointerId) return
-    press.current = null
-    if (p.multi || Math.hypot(e.clientX - p.x, e.clientY - p.y) > TAP_PX || performance.now() - p.t > TAP_MS || isUi(e)) return
-    const r = box.current!.getBoundingClientRect()
-    const x = e.clientX - r.left
-    const y = e.clientY - r.top
+  const pointer = useScenePointer(bridge, box, '.cm-top, .c3-nav, .cm-found, .c3-bubble', (e, x, y) => {
     // 1. A name label.
-    for (const [id, el] of bridge.labels) {
-      if (el.style.display === 'none') continue
-      const b = el.getBoundingClientRect()
-      if (b.width && e.clientX >= b.left && e.clientX <= b.right && e.clientY >= b.top && e.clientY <= b.bottom) return tapLabel(id)
-    }
+    const id = labelAt(bridge, e)
+    if (id) return tapLabel(id)
     // 2. Someone in the street.
     const a = bridge.pickFigure?.(x, y)
     if (a) {
@@ -232,12 +190,8 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
     const hit = bridge.pickScene?.(x, y)
     if (!hit) return
     if (hit.kind === 'landmark') onLandmark(hit.id as LandmarkId)
-    else tapLot(hit.n)
-  }
-  const onPointerCancel = (e: React.PointerEvent) => {
-    pointers.current.delete(e.pointerId)
-    press.current = null
-  }
+    else if (hit.kind === 'lot') tapLot(hit.n)
+  })
 
   // The bubble fades on its own.
   useEffect(() => {
@@ -245,29 +199,9 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       bridge.bubble = null
       return
     }
-    bridge.bubble = { id: bubble.id, el: null }
     const id = setTimeout(() => setBubble((b) => (b?.key === bubble.key ? null : b)), 3600)
     return () => clearTimeout(id)
   }, [bubble, bridge])
-
-  // Camera moves from code need a frame asked for (the canvas renders on demand).
-  const c = () => bridge.controls
-  const turn = (a: number) => {
-    void c()?.rotate(a, 0, !still)
-    bridge.invalidate()
-  }
-  const zoomBy = (k: number) => {
-    const ctl = c()
-    if (ctl) void ctl.dollyTo(Math.max(MIN_DIST, ctl.distance * k), !still)
-    bridge.invalidate()
-  }
-  const northUp = () => {
-    const ctl = c()
-    if (!ctl) return
-    void ctl.rotateTo(0, START_POLAR, !still)
-    if (ctl.distance > START_DIST * 1.6) void ctl.dollyTo(START_DIST, !still)
-    bridge.invalidate()
-  }
 
   const visibleSet = useMemo(() => new Set(visible), [visible])
   const label = (spec: LabelSpec) => {
@@ -321,11 +255,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
     <div
       ref={box}
       className="pz c3"
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerCancel}
-      onContextMenu={(e) => e.preventDefault()}
+      {...pointer}
     >
       <Canvas
         className="c3-canvas"
@@ -336,7 +266,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
         gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
         onCreated={onCreated}
       >
-        <PerformanceMonitor onDecline={() => setDpr(1)} />
+        <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
         <CityScene
           residents={residents}
           me={me}
@@ -357,7 +287,8 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
           key={bubble.key}
           className="c3-bubble"
           ref={(el) => {
-            if (bridge.bubble?.id === bubble.id) bridge.bubble.el = el
+            // Set here, not in an effect: the ref runs first, and Townsfolk3D places it from the next frame.
+            if (el) bridge.bubble = { id: bubble.id, el }
           }}
           style={{ display: 'none' }}
         >
@@ -380,38 +311,16 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
           {extra}
         </div>
       </div>
-      <div className="pz-zoom c3-nav">
-        <button className="c3-compass" onClick={northUp} title={t('city.map.north')} aria-label={t('city.map.north')}>
-          <span
-            className="c3-needle"
-            ref={(el) => {
-              bridge.compass = el
-            }}
-          >
-            <span className="c3-n">{t('city.map.northLetter')}</span>
-          </span>
-        </button>
-        <button onClick={() => turn(-Math.PI / 4)} title={t('city.map.turnLeft')} aria-label={t('city.map.turnLeft')}>
-          ⟲
-        </button>
-        <button onClick={() => turn(Math.PI / 4)} title={t('city.map.turnRight')} aria-label={t('city.map.turnRight')}>
-          ⟳
-        </button>
-        <button onClick={() => zoomBy(0.6)} disabled={!zoom.in} title={t('city.map.zoomIn')} aria-label={t('city.map.zoomIn')}>
-          +
-        </button>
-        <button onClick={() => zoomBy(1 / 0.6)} disabled={!zoom.out} title={t('city.map.zoomOut')} aria-label={t('city.map.zoomOut')}>
-          −
-        </button>
-      </div>
+      <NavButtons
+        bridge={bridge}
+        still={still}
+        zoom={zoom}
+        minDist={MIN_DIST}
+        startDist={START_DIST}
+        startPolar={START_POLAR}
+        texts={{ north: t('city.map.north'), northLetter: t('city.map.northLetter'), turnLeft: t('city.map.turnLeft'), turnRight: t('city.map.turnRight'), zoomIn: t('city.map.zoomIn'), zoomOut: t('city.map.zoomOut') }}
+      />
       <FoundCard found={found} me={me} onOpen={onResident} onClose={() => setFound(null)} />
     </div>
   )
-}
-
-/** Device pixels: sharp on desktops, capped on phones (3× screens) to keep the frame rate. */
-function maxDpr(): number {
-  const dpr = window.devicePixelRatio || 1
-  const small = Math.min(window.innerWidth, window.innerHeight) < 600
-  return Math.min(dpr, small ? 1.75 : 2)
 }

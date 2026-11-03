@@ -63,6 +63,23 @@ export class Geo {
     return this
   }
 
+  /** Adds a built model (with its own vertex colours, e.g. from another Geo), transformed by `m`, its colours × `tint`. */
+  addColored(g: BufferGeometry, m: Matrix4 = ID, tint = 1): this {
+    const p = g.getAttribute('position')
+    const n = g.getAttribute('normal')
+    const c = g.getAttribute('color')
+    const full = new Matrix4().multiplyMatrices(this.frame, m)
+    const normalM = new Matrix4().copy(full).invert().transpose()
+    for (let i = 0; i < p.count; i++) {
+      tmpPos.fromBufferAttribute(p, i).applyMatrix4(full)
+      this.pos.push(tmpPos.x, tmpPos.y, tmpPos.z)
+      tmpNor.fromBufferAttribute(n, i).transformDirection(normalM)
+      this.nor.push(tmpNor.x, tmpNor.y, tmpNor.z)
+      this.col.push(c.getX(i) * tint, c.getY(i) * tint, c.getZ(i) * tint)
+    }
+    return this
+  }
+
   /** A box by its bottom centre (x, y, z) and size; rotations about its centre. */
   box(x: number, y: number, z: number, w: number, h: number, d: number, color: ColorRepresentation, o: PartOpts = {}): this {
     const g = BOX

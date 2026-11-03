@@ -18,9 +18,9 @@ export interface LeaderboardData {
   me: (PublicPlayer & { rank: number }) | null
 }
 
-/** `house`: house level (1 = tent). */
+/** `house`: house level (1 = tent); `wall`: fence & wall level (0 = none; older servers leave it out). */
 /** `lot` is null while the city is full (camping outside the walls); `idleDays` = days since they last played or built. */
-export type Resident = PublicPlayer & { lot: number | null; idleDays: number; house: number }
+export type Resident = PublicPlayer & { lot: number | null; idleDays: number; house: number; wall?: number }
 /** `levels` is null until they first open My Home. */
 export type PlayerPage = Resident & { stats: AccountStats; levels: Record<BuildingId, number> | null }
 
