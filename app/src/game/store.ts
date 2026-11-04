@@ -36,6 +36,8 @@ export type Screen =
   | 'practice'
   | 'daily'
   | 'boardGames'
+  | 'adventures'
+  | 'exodus'
   | 'jerusalem'
   | 'leaderboard'
   | 'player'
@@ -50,8 +52,8 @@ export type Screen =
   | 'review'
   | 'account'
 
-/** Screens with the bottom tab bar (and the shared top bar). */
-export const TAB_SCREENS = ['menu', 'boardGames', 'jerusalem', 'leaderboard'] as const
+/** Screens with the bottom tab bar (and the shared top bar). The leaderboard has no tab of its own: the 🏆 in the top bar opens it. */
+export const TAB_SCREENS = ['menu', 'boardGames', 'adventures', 'jerusalem', 'leaderboard'] as const
 export type TabScreen = (typeof TAB_SCREENS)[number]
 const isTab = (s: Screen): s is TabScreen => (TAB_SCREENS as readonly string[]).includes(s)
 

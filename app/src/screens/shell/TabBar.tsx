@@ -2,11 +2,12 @@ import { useGameStore, type TabScreen } from '../../game/store'
 import { DAILY_COUNT, today, useDailyStore } from '../../daily/dailyStore'
 import { useT } from '../../i18n'
 
+/** The leaderboard is reached from the top bar's 🏆 instead. */
 const TABS: Array<{ id: TabScreen; icon: string }> = [
   { id: 'menu', icon: '📜' },
   { id: 'boardGames', icon: '🎲' },
+  { id: 'adventures', icon: '🏃' },
   { id: 'jerusalem', icon: '🏛️' },
-  { id: 'leaderboard', icon: '🏆' },
 ]
 
 /** Bottom navigation between the top-level areas; hidden inside games. */

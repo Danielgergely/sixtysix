@@ -1,4 +1,4 @@
-import { FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, MOVE_COST, QUESTION_TIME_MS, RESPEC_COST, IDLE_DAYS } from '@sixtysix/shared'
+import { EXODUS_REWARDS, FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, MOVE_COST, QUESTION_TIME_MS, RESPEC_COST, IDLE_DAYS } from '@sixtysix/shared'
 import type { Vars } from '../i18n'
 
 /**
@@ -30,13 +30,14 @@ export interface Guide {
 
 const SECS = QUESTION_TIME_MS / 1000
 
-export type GuideId = 'blitz' | 'arena' | 'daily' | 'practice' | 'flock' | 'spies' | 'mission' | 'home' | 'city' | 'skills' | 'looks'
+export type GuideId = 'blitz' | 'arena' | 'daily' | 'practice' | 'exodus' | 'flock' | 'spies' | 'mission' | 'home' | 'city' | 'skills' | 'looks'
 
 export const GUIDES: Record<GuideId, Guide> = {
   blitz: { icon: '🏇', cards: [{ icon: '🏇' }, { icon: '⚡' }, { icon: '🎁' }] },
   arena: { icon: '🏟️', cards: [{ icon: '📺' }, { icon: '🎭' }, { icon: '⏱️', vars: { n: SECS } }, { icon: '🔁' }] },
   daily: { icon: '📜', cards: [{ icon: '📜' }, { icon: '🔥' }] },
   practice: { icon: '📖', cards: [{ icon: '📖' }, { icon: '🔄' }] },
+  exodus: { icon: '🏃', cards: [{ icon: '👆' }, { icon: '📜' }, { icon: '✨', vars: { cap: EXODUS_REWARDS.runCoinCap } }, { icon: '🏺' }] },
   flock: {
     icon: '🐺',
     cards: [{ icon: '🐺' }, { icon: '💬' }, { icon: '🗳️' }, { icon: '🎯' }, { icon: '📱' }],
@@ -80,7 +81,7 @@ export const GUIDES: Record<GuideId, Guide> = {
 export const guide = (id: GuideId): Guide => GUIDES[id]
 
 /** The order of the Profile → How to play list. */
-export const GUIDE_ORDER: GuideId[] = ['blitz', 'arena', 'daily', 'practice', 'flock', 'spies', 'mission', 'home', 'city', 'skills', 'looks']
+export const GUIDE_ORDER: GuideId[] = ['blitz', 'arena', 'daily', 'practice', 'exodus', 'flock', 'spies', 'mission', 'home', 'city', 'skills', 'looks']
 
 /** One-time hints (`<Hint id>`); texts: tutorial.hints.<id>. Listed so the i18n keys stay complete. */
 export const HINT_IDS = ['daily', 'wall', 'siege', 'nehemiah', 'tie'] as const

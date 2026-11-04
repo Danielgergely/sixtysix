@@ -10,4 +10,13 @@ export default {
   emptyAll: 'Még senki sincs a ranglistán.',
   who: '@{user} · {n}. szint',
   you: 'te',
+  kindXp: 'XP',
+  kindExodus: 'Exodus',
+  daily: 'Napi futás',
+  exodusTitle: 'Exodus',
+  exodusSubWeek: 'A hét leghosszabb futása · hétfőn újraindul',
+  exodusSubAll: 'Minden idők leghosszabb futása',
+  exodusSubDaily: 'A mai napi futás leghosszabb futása',
+  exodusEmpty: 'Itt még senki nem futott – légy te az első!',
+  metres: '{n} m',
 }

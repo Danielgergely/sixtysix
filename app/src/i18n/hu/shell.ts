@@ -1,10 +1,11 @@
 export default {
-  tabs: { menu: 'Kvíz', boardGames: 'Társasjátékok', jerusalem: 'Jeruzsálem', leaderboard: 'Ranglista' },
+  tabs: { menu: 'Kvíz', boardGames: 'Társasjátékok', adventures: 'Kalandok', jerusalem: 'Jeruzsálem', leaderboard: 'Ranglista' },
   language: 'Nyelv',
   back: 'Vissza',
   /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */
   secondsLeft: 'még {n} másodperc',
   topBar: {
+    leaderboard: 'Ranglista',
     coins: 'Az érméid',
     profile: 'A profilod',
     level: '{n}. szint',

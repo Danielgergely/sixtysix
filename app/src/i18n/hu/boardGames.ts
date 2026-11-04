@@ -31,7 +31,6 @@ export default {
   soon: 'Hamarosan',
   ideas: {
     paul: { title: 'Pál útjai', desc: 'Hajózd be a Földközi-tengert, és alapíts gyülekezeteket városról városra – útvonalépítő játék 2–5 főre.' },
-    exodus: { title: 'Exodus', desc: 'Vezesd a törzsedet Egyiptomból az ígéret földjére. Válaszolj, hogy átkelj a tengeren, mannát találj, és elkerüld a puszta csapdáit.' },
     tribes: { title: 'Tizenkét törzs', desc: 'Telepedj le a törzseddel Kánaán földjén, kereskedj a szomszédokkal, és építsétek fel együtt Jeruzsálemet.' },
   },
   next: 'Melyik jöjjön legközelebb? Írd meg nekünk!',

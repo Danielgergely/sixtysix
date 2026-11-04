@@ -127,6 +127,7 @@ export function registerAccountSettingsRoutes(app: FastifyInstance): void {
       db.prepare('DELETE FROM sessions WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM grants WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM plots WHERE user_id = ?').run(me.id)
+      db.prepare('DELETE FROM exodus_runs WHERE user_id = ?').run(me.id)
       db.prepare('UPDATE question_flags SET user_id = NULL WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM users WHERE id = ?').run(me.id)
       db.exec('COMMIT')

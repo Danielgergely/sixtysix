@@ -42,6 +42,13 @@ export default {
     c1: { title: 'No clock', text: 'Pick books and difficulty and learn at your own pace.' },
     c2: { title: 'Learn from mistakes', text: 'Missed questions come back later; “Review my mistakes” replays them.' },
   },
+  exodus: {
+    name: 'Exodus',
+    c1: { title: 'Run!', text: 'Flee Egypt with Pharaoh’s chariots behind you. Swipe left or right to change lanes, up to jump; after a minute, down to duck.' },
+    c2: { title: 'Answer with your feet', text: 'Now and then the world slows down for a question. The answers appear over the lanes: run through the right gate. The wrong gate ends the run.' },
+    c3: { title: 'Lights and shekels', text: 'Lights give XP, the odd shekel and every right gate give coins (at most {cap} a run). Two stumbles close together and the chariots catch you.' },
+    c4: { title: 'Help on the way', text: 'A jar of manna gathers every light near you, the pillar of cloud catches your next fall, Moses’ staff clears the way. The Daily Run is the same track for everyone each day.' },
+  },
   flock: {
     name: 'Wolf in the Flock',
     c1: { title: 'The secret word', text: 'Everyone sees a secret Bible word, except the wolf 🐺, who sees only the category.' },
