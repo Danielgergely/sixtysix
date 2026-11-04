@@ -7,7 +7,6 @@ import { InfoButton } from '../tutorial/InfoButton'
 /** Texts: boardGames.ideas.<id>. */
 const IDEAS = [
   { id: 'paul', icon: '⛵' },
-  { id: 'exodus', icon: '🏜️' },
   { id: 'tribes', icon: '🏰' },
 ]
 

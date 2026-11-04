@@ -41,6 +41,13 @@ export default {
     c1: { title: 'Ohne Uhr', text: 'Wähl Bücher und Schwierigkeit und lerne in deinem Tempo.' },
     c2: { title: 'Aus Fehlern lernen', text: 'Verpasste Fragen kommen später wieder; „Meine Fehler wiederholen“ spielt sie nochmal.' },
   },
+  exodus: {
+    name: 'Exodus',
+    c1: { title: 'Lauf!', text: 'Flieh aus Ägypten, die Streitwagen des Pharao hinter dir. Wisch nach links oder rechts für die Spur, nach oben zum Springen; nach einer Minute nach unten zum Ducken.' },
+    c2: { title: 'Antworte mit den Füßen', text: 'Ab und zu wird die Welt langsam für eine Frage. Die Antworten erscheinen über den Spuren: Lauf durch das richtige Tor. Das falsche Tor beendet den Lauf.' },
+    c3: { title: 'Lichter und Schekel', text: 'Lichter geben XP, ein gelegentlicher Schekel und jedes richtige Tor geben Münzen (höchstens {cap} pro Lauf). Zweimal kurz nacheinander gestolpert, und die Streitwagen holen dich ein.' },
+    c4: { title: 'Hilfe unterwegs', text: 'Ein Krug mit Manna sammelt alle Lichter um dich, die Wolkensäule fängt deinen nächsten Sturz auf, der Stab des Mose macht den Weg frei. Der Tageslauf ist jeden Tag für alle dieselbe Strecke.' },
+  },
   flock: {
     name: 'Wolf in der Herde',
     c1: { title: 'Das geheime Wort', text: 'Alle sehen ein geheimes Bibelwort, außer dem Wolf 🐺: Er sieht nur die Kategorie.' },

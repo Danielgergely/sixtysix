@@ -22,6 +22,18 @@ export type SfxName =
   | 'crumble' // a capital wall breaks
   | 'fall' // a capital falls: rumble and a falling call
   | 'drumroll' // a tie-breaker reveal: roll, then a bell
+  // Exodus, the runner (docs/exodus.md)
+  | 'runJump' // a short rising whoosh
+  | 'runLand' // a soft thud in the sand
+  | 'runLane' // a quick swish to the side
+  | 'runRoll' // a low tumble
+  | 'runLight' // a tiny bright chime, a step higher with each light in a row
+  | 'runShekel' // two bright coin notes
+  | 'runPower' // a glittering run upwards
+  | 'runShield' // a soft airy burst
+  | 'runStaff' // a deep swell and a rush
+  | 'runHooves' // chariots close behind: drumming hooves and a rumble
+  | 'runGateRight' // a bright fanfare through the gate
 
 let ctx: AudioContext | null = null
 let muted = false
@@ -106,6 +118,11 @@ function brass(freq: number, durationMs: number, delayMs = 0, gain = 0.05) {
   osc.stop(end)
 }
 
+/** Lights picked up close together climb a little scale. */
+let lightStep = 0
+let lightAt = 0
+const LIGHT_SCALE = [1047, 1175, 1319, 1397, 1568, 1760, 1976, 2093]
+
 export function playSfx(name: SfxName) {
   if (muted) return
   // AudioContext must be created after a user gesture; Play Now qualifies.
@@ -173,6 +190,58 @@ export function playSfx(name: SfxName) {
       brass(784, 620, 510)
       brass(523, 620, 510, 0.03)
       noise(260, 510, 'lowpass', 180, 0.12) // timpani under the last note
+      break
+    case 'runJump':
+      sweep(260, 620, 160, 'sine', 0.035)
+      noise(140, 0, 'bandpass', 1800, 0.02, 0.8)
+      break
+    case 'runLand':
+      sweep(140, 60, 120, 'sine', 0.06)
+      noise(110, 0, 'lowpass', 600, 0.05)
+      break
+    case 'runLane':
+      noise(130, 0, 'bandpass', 2400, 0.03, 1.2)
+      break
+    case 'runRoll':
+      sweep(180, 90, 260, 'sine', 0.05)
+      noise(260, 0, 'lowpass', 500, 0.05)
+      break
+    case 'runLight': {
+      const now = performance.now()
+      lightStep = now - lightAt < 450 ? Math.min(lightStep + 1, LIGHT_SCALE.length - 1) : 0
+      lightAt = now
+      beep(LIGHT_SCALE[lightStep], 110, 0, 'sine', 0.025)
+      break
+    }
+    case 'runShekel':
+      beep(1568, 70, 0, 'square', 0.025)
+      beep(2093, 160, 70, 'square', 0.022)
+      break
+    case 'runPower':
+      for (let i = 0; i < 6; i++) beep(880 * 2 ** (i / 4), 120, i * 45, 'triangle', 0.035)
+      noise(380, 0, 'highpass', 5000, 0.03)
+      break
+    case 'runShield':
+      noise(420, 0, 'bandpass', 900, 0.08, 0.6)
+      sweep(500, 900, 300, 'sine', 0.03)
+      break
+    case 'runStaff':
+      sweep(70, 140, 600, 'sawtooth', 0.04)
+      noise(800, 100, 'lowpass', 900, 0.08)
+      brass(220, 500, 0, 0.03)
+      break
+    case 'runHooves':
+      for (let i = 0; i < 8; i++) {
+        noise(60, i * 95, 'lowpass', 320, 0.12)
+        noise(40, i * 95 + 40, 'lowpass', 420, 0.07)
+      }
+      sweep(60, 45, 800, 'sine', 0.05)
+      break
+    case 'runGateRight':
+      brass(523, 140, 0, 0.04)
+      brass(659, 140, 130, 0.04)
+      brass(784, 420, 260, 0.045)
+      beep(1568, 300, 260, 'sine', 0.02)
       break
     case 'horn':
       brass(440, 150, 0, 0.04)

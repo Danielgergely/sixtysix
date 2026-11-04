@@ -1,0 +1,657 @@
+/* Exodus, the runner (app/src/exodus/, docs/exodus.md). */
+
+.ex-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #f6d7a4;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.ex-canvas {
+  position: absolute !important;
+  inset: 0;
+  transition: filter 0.4s ease;
+}
+/* The question moment: the world is drawn at a low resolution (soft) and warmed a little. */
+.is-reading .ex-canvas {
+  filter: blur(1.5px) saturate(0.85) brightness(0.92);
+}
+
+.ex-hud {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.ex-pill {
+  min-width: 0;
+  padding: 6px 11px;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(54, 32, 14, 0.62);
+  color: #fff4dc;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+  box-shadow: inset 0 0 0 2px rgba(240, 196, 90, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+.ex-coins {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ex-coins i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff2a8, #f2c443 55%, #b9831a);
+  box-shadow: 0 0 0 1.5px #8a5a10;
+}
+.ex-mult {
+  color: #ffd257;
+}
+
+/* The question, one line, while the gates come up. */
+.ex-strip {
+  position: absolute;
+  top: calc(max(12px, env(safe-area-inset-top)) + 46px);
+  left: 16px;
+  right: 16px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: rgba(250, 238, 210, 0.92);
+  color: #3a210e;
+  font-size: 15px;
+  line-height: 1.25;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(60, 30, 10, 0.25);
+  pointer-events: none;
+  animation: ex-in 0.35s ease-out;
+}
+
+.ex-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, rgba(40, 20, 5, 0.05), rgba(40, 20, 5, 0.55));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.ex-veil.on {
+  opacity: 1;
+}
+
+/* The scroll the question is read from. */
+.ex-scroll {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: min(420px, calc(100% - 32px));
+  transform: translate(-50%, -50%);
+  padding: 22px 22px 18px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 40%),
+    #f4e4bc;
+  color: #3a210e;
+  text-align: center;
+  box-shadow:
+    0 0 0 3px #c9902e,
+    0 0 0 7px #5c3a1e,
+    0 18px 40px rgba(30, 12, 0, 0.45);
+  animation: ex-unroll 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.ex-hint {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #7a5530;
+  font-style: italic;
+}
+.ex-q {
+  margin: 0 0 14px;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.ex-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(92, 58, 30, 0.2);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.ex-bar > div {
+  height: 100%;
+  background: linear-gradient(90deg, #c9902e, #e7b63e);
+  transform-origin: left;
+}
+.ex-ready {
+  font: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 9px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f0c552, #c9902e);
+  color: #3a210e;
+  box-shadow: 0 3px 0 #8a5a10;
+}
+.ex-ready:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #8a5a10;
+}
+
+.ex-over {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: min(420px, calc(100% - 32px));
+  transform: translate(-50%, -50%);
+  padding: 22px;
+  border-radius: 14px;
+  background: #f4e4bc;
+  color: #3a210e;
+  text-align: center;
+  box-shadow:
+    0 0 0 3px #c9902e,
+    0 0 0 7px #5c3a1e,
+    0 18px 40px rgba(30, 12, 0, 0.45);
+  animation: ex-in 0.4s ease-out;
+}
+.ex-over h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  color: #8a2a1a;
+}
+.ex-over .ex-q {
+  font-size: 17px;
+}
+.ex-ref {
+  color: #7a5530;
+  font-size: 14px;
+}
+
+.ex-lab {
+  position: absolute;
+  left: 8px;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  max-width: calc(100% - 16px);
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font: 12px system-ui, sans-serif;
+}
+.ex-lab button {
+  font: inherit;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 0;
+  background: #fff;
+  color: #222;
+}
+
+@keyframes ex-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%);
+  }
+}
+.ex-strip {
+  animation-name: ex-drop;
+}
+@keyframes ex-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@keyframes ex-unroll {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ex-scroll,
+  .ex-over,
+  .ex-strip {
+    animation: none;
+  }
+}
+
+/* The three answers over their lanes, from the end of the read until the gates. */
+.ex-answers {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: calc(max(12px, env(safe-area-inset-top)) + 112px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  pointer-events: none;
+  animation: ex-drop 0.35s ease-out;
+}
+.ex-answers span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 6px 6px;
+  border-radius: 10px;
+  background: rgba(54, 32, 14, 0.66);
+  color: #fff4dc;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.15;
+  text-align: center;
+  overflow-wrap: anywhere;
+  box-shadow: inset 0 0 0 2px rgba(240, 196, 90, 0.35);
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.15s;
+}
+.ex-answers[data-lane='0'] span:nth-child(1),
+.ex-answers[data-lane='1'] span:nth-child(2),
+.ex-answers[data-lane='2'] span:nth-child(3) {
+  background: #f4e4bc;
+  color: #3a210e;
+  box-shadow:
+    0 0 0 3px #e7b63e,
+    0 4px 14px rgba(60, 30, 10, 0.35);
+  transform: translateY(2px) scale(1.04);
+}
+.ex-xp {
+  color: #cfe9ff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-answers,
+  .ex-answers span {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* "Swipe down to duck": once, as the first row to duck under comes up. */
+.ex-hint-duck {
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  transform: translate(-50%, 10px);
+  padding: 10px 18px 10px 44px;
+  border-radius: 999px;
+  background: rgba(250, 238, 210, 0.95);
+  color: #3a210e;
+  font-weight: 700;
+  font-size: 18px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(60, 30, 10, 0.35);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+}
+.ex-hint-duck::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-right: 3px solid #c9902e;
+  border-bottom: 3px solid #c9902e;
+  transform: translateY(-75%) rotate(45deg);
+  animation: ex-nudge 0.7s ease-in-out infinite;
+}
+.ex-hint-duck.on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@keyframes ex-nudge {
+  50% {
+    transform: translateY(-35%) rotate(45deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-hint-duck,
+  .ex-hint-duck::before {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* What is picked up flies from the runner into its box in the top bar. */
+.ex-flyers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ex-flyer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  will-change: transform, opacity;
+}
+.ex-flyer.xp {
+  border-radius: 3px;
+  background: radial-gradient(circle, #ffffff 20%, #d9f0ff 55%, #8fc9ff);
+  box-shadow:
+    0 0 8px 3px rgba(190, 230, 255, 0.85),
+    0 0 18px 6px rgba(140, 200, 255, 0.4);
+  rotate: 45deg;
+}
+.ex-flyer.xp.big {
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+}
+.ex-flyer.coins {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff2a8, #f2c443 55%, #b9831a);
+  box-shadow:
+    0 0 0 1.5px #8a5a10,
+    0 0 12px 3px rgba(255, 210, 87, 0.7);
+}
+/* The box answers each landing with a small pop. */
+.ex-pill.bump {
+  animation: ex-bump 0.25s ease-out;
+}
+@keyframes ex-bump {
+  40% {
+    transform: scale(1.12);
+  }
+}
+.ex-xp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-pill.bump {
+    animation: none;
+  }
+}
+
+/* ── the game screen (screens/exodus) ── */
+.ex-pause {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  width: 40px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.ex-pause i {
+  width: 4px;
+  height: 14px;
+  border-radius: 1px;
+  background: #fff4dc;
+}
+.ex-hud {
+  align-items: center;
+}
+.ex-start {
+  padding-top: 26px;
+}
+.ex-start h2 {
+  font-size: 30px;
+  color: #6b1d0e;
+}
+.ex-sub {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.ex-best {
+  margin: 4px 0 12px;
+  font-size: 14px;
+  color: #7a5530;
+}
+.ex-newbest {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff1b8, #e9b23a);
+  color: #5a2a08;
+  font-size: 15px;
+}
+.ex-big {
+  display: block;
+  margin: 8px auto 0;
+  min-width: 180px;
+  font-size: 19px;
+  padding: 11px 30px;
+}
+.ex-big:disabled {
+  opacity: 0.6;
+}
+.ex-link {
+  display: block;
+  margin: 12px auto 0;
+  border: 0;
+  background: none;
+  color: #7a5530;
+  font: inherit;
+  font-size: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ex-info {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #c9902e;
+  background: #fff6dc;
+  color: #7a5530;
+  font-size: 16px;
+  cursor: pointer;
+}
+.ex-answer {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(92, 58, 30, 0.08);
+}
+.ex-answer p {
+  margin: 0 0 6px;
+}
+.ex-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 6px 0 8px;
+}
+.ex-stats span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  background: rgba(92, 58, 30, 0.08);
+}
+.ex-stats span:last-child {
+  grid-column: 1 / -1;
+}
+.ex-stats small {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7a5530;
+}
+.ex-stats b {
+  font-size: 18px;
+}
+.ex-coin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: -1px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff2a8, #f2c443 55%, #b9831a);
+  box-shadow: 0 0 0 1.5px #8a5a10;
+}
+.ex-note {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-style: italic;
+  color: #7a5530;
+}
+.ex-nogl {
+  display: grid;
+  place-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  color: #ffe7a3;
+}
+/* The end card can be long on small phones. */
+.ex-over {
+  max-height: calc(100% - 120px);
+  overflow-y: auto;
+}
+.ex-verse {
+  font-size: 14px;
+  line-height: 1.4;
+  font-style: italic;
+  color: #4a2a14;
+}
+.ex-verse em {
+  font-style: normal;
+  color: #7a5530;
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .ex-pill {
+    font-size: 15px;
+    padding: 6px 9px;
+  }
+}
+
+/* Power-ups: the ones that last, under the top bar, their bars running down; a banner when one is taken. */
+.ex-powers {
+  position: absolute;
+  top: 46%;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+.ex-power {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  place-items: center;
+  font-size: 20px;
+  background: rgba(54, 32, 14, 0.62);
+  box-shadow: inset 0 0 0 2px rgba(255, 230, 150, 0.8), 0 0 12px rgba(255, 220, 120, 0.6);
+  overflow: hidden;
+}
+.ex-power.on {
+  display: grid;
+}
+.ex-power i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(var(--left, 1) * 100%);
+  background: rgba(255, 220, 120, 0.25);
+}
+.ex-toast {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(250, 238, 210, 0.95);
+  color: #3a210e;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(60, 30, 10, 0.3);
+  pointer-events: none;
+  opacity: 0;
+}
+.ex-toast.on {
+  animation: ex-toast 2.2s ease-out;
+}
+@keyframes ex-toast {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px) scale(0.9);
+  }
+  12%,
+  75% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-toast.on {
+    animation: none;
+    opacity: 1;
+  }
+}
+.ex-daily {
+  margin-top: 10px;
+  background: linear-gradient(180deg, #9fd3e8, #3f8fb8);
+  color: #0f2a3a;
+  box-shadow: 0 3px 0 #1f4f6a;
+  line-height: 1.15;
+}
+.ex-daily small {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.ex-tag {
+  margin: 0 0 2px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #3f8fb8;
+  font-weight: 700;
+}

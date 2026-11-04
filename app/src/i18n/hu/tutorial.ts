@@ -41,6 +41,13 @@ export default {
     c1: { title: 'Nincs óra', text: 'Válassz könyveket és nehézséget, és tanulj a saját tempódban.' },
     c2: { title: 'Tanulj a hibáidból', text: 'A rontott kérdések később visszajönnek; a „Hibáim átnézése” újra feladja őket.' },
   },
+  exodus: {
+    name: 'Kivonulás',
+    c1: { title: 'Fuss!', text: 'Menekülj Egyiptomból, a fáraó harci szekerei a nyomodban. Húzd balra vagy jobbra a sávváltáshoz, felfelé az ugráshoz; egy perc után lefelé a guggoláshoz.' },
+    c2: { title: 'Válaszolj a lábaddal', text: 'Időnként lelassul a világ egy kérdés idejére. A válaszok a sávok fölött jelennek meg: fuss át a helyes kapun. A rossz kapu véget vet a futásnak.' },
+    c3: { title: 'Fények és sékelek', text: 'A fények XP-t adnak, az elvétve felbukkanó sékel és minden helyes kapu érmét (futásonként legfeljebb {cap}-t). Ha kétszer gyorsan egymás után megbotlasz, utolérnek a szekerek.' },
+    c4: { title: 'Segítség az úton', text: 'A mannás korsó összegyűjti a körülötted lévő fényeket, a felhőoszlop elkapja a következő esésedet, Mózes botja szabaddá teszi az utat. A napi futás minden nap mindenkinek ugyanaz a pálya.' },
+  },
   flock: {
     name: 'Farkas a nyájban',
     c1: { title: 'A titkos szó', text: 'Mindenki lát egy titkos bibliai szót, kivéve a farkast 🐺: ő csak a kategóriát látja.' },

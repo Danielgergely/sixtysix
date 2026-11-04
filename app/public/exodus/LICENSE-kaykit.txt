@@ -1,0 +1,3 @@
+runner.glb: "Rogue_Hooded" from KayKit Adventurers Character Pack 1.0
+by Kay Lousberg (www.kaylousberg.com), CC0 1.0 (public domain).
+Stripped to the animations Exodus uses (weapons removed) with gltf-transform.

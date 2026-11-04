@@ -32,7 +32,6 @@ export default {
   soon: 'Coming soon',
   ideas: {
     paul: { title: 'Paul’s Journeys', desc: 'Sail the Mediterranean and plant churches city by city — a route-building game for 2–5.' },
-    exodus: { title: 'Exodus', desc: 'Lead your tribe from Egypt to the Promised Land. Answer to cross the sea, find manna, avoid the wilderness traps.' },
     tribes: { title: 'Twelve Tribes', desc: 'Settle the land of Canaan with your tribe, trade with neighbours and build Jerusalem together.' },
   },
   next: 'Which one should come next? Tell us!',

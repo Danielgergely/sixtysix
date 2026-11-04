@@ -31,7 +31,6 @@ export default {
   soon: 'Demnächst',
   ideas: {
     paul: { title: 'Die Reisen des Paulus', desc: 'Segle übers Mittelmeer und gründe Gemeinden, Stadt für Stadt – ein Routenspiel für 2–5.' },
-    exodus: { title: 'Exodus', desc: 'Führe deinen Stamm von Ägypten ins Gelobte Land. Antworte, um das Meer zu teilen, Manna zu finden und den Fallen der Wüste zu entgehen.' },
     tribes: { title: 'Zwölf Stämme', desc: 'Besiedle mit deinem Stamm das Land Kanaan, handle mit den Nachbarn und baut gemeinsam Jerusalem.' },
   },
   next: 'Welches soll als Nächstes kommen? Sag es uns!',

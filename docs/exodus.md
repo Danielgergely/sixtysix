@@ -1,0 +1,49 @@
+# Exodus: the runner
+
+A single-player endless runner (three lanes; jump, change lanes, and duck once the run has gone on a minute) through the Exodus story, with Bible questions answered by running through one of three gates. Status: **playable** in the Adventures tab (`exodus` screen); `/exodus-lab` (dev only) is the test page with autopilot and switches.
+
+## Decisions so far
+
+- **Setting:** fleeing Egypt with Pharaoh's chariots behind. The places follow one another along the run: Egypt's brick yards and town → a beach → the Red Sea (walking between the walls of water, Exodus 14:22) → later the wilderness, the Jordan, Jericho.
+- **Questions never interrupt dodging.** One cycle:
+  1. **Run** 10–30 s (varies) with obstacles.
+  2. **Warn** ~1 s: a horn, the track ahead clears (obstacles sink into the sand), the world starts slowing.
+  3. **Read**: slow motion (×0.14), the world goes soft (drawn at low resolution plus a light blur and a dark veil), the question on a scroll. Reading time fits the text: 3 s + 0.22 s a word, 4–8 s. **Ready** skips the rest.
+  4. **Speed up** ~1.6 s back to full speed. The question stays as a one-line strip at the top, and **the three answers appear over their lanes** (the one over your lane is lit), so there are **5.6 s to choose a lane** before the gates.
+  5. **Gates**: three gates (one per lane) with the same answers, reached 4 s after the speed-up. The right gate: gold burst, multiplier +1. **The wrong gate ends the run.** The run-over card shows the question, the right answer and the reference (learning moment; flag button to come).
+  6. **Breather** ~1.6 s with no obstacles, then back to the run.
+- Gate questions come from the bank: difficulty ≤ 3, text ≤ 120 characters, every answer ≤ 22 characters (they must fit a sign at speed); one wrong answer of the four is dropped at random, the three left are shuffled into the lanes.
+- **Obstacles:** a jump (brick pallet / reef), a block to go round (straw cart, statue sledge / boulder) and, **from about one minute of running** (slow motion not counted), something to **duck under** (linen on a beam / coral arch, underside at 1.5; swipe down to roll, or in the air to drop and roll on landing). The first one comes right across all three lanes, alone in its row, with a one-time "Swipe down to duck!" hint; later duck rows sometimes have a block in one lane. Every row has a way through.
+- **Feedback:** whatever is earned flies from the runner into its box in the top bar (lights into XP, each coin into the coins), and the number counts up as it lands. Glancing a block from the side or failing a jump/roll is a **stumble** (speed drops); a second stumble within 6 s, or running head-on into a block, means the chariots catch you.
+- **Rewards** (`EXODUS_REWARDS` in `shared/src/coins.ts`), mostly XP so the runner can't be farmed for coins: lights along the track 10 XP each; a shekel (1 coin) only every 10–15 s of running; a right gate 500 XP + 3 coins; at most 60 coins a run (about the best Bible Blitz game). Paid when the run ends, like Bible Blitz (one grant, inside the server's daily caps). Simulated perfect play: ~2,100 XP and 6–8 coins a minute; a perfect Bible Blitz pays ~10–12 coins and up to ~3,000 XP a minute.
+- **Server load:** none while running. The run lives entirely on the device; the server sees one reward grant at the end, and static files (the model is 180 KB gzipped; three.js is the chunk the 3D city already uses).
+- **Score** = distance × multiplier; the multiplier grows with every right gate. Speed rises from 15 to 30 units/s.
+- **Navigation:** the Adventures tab (single-player games, Exodus first) sits between Board games and Jerusalem; the Leaderboard has no tab any more: the 🏆 next to your portrait in the top bar opens it.
+- **The screen:** a start card (your best, ⓘ How to play; the intro shows once before the first run), a pause button (the run also pauses itself when the app goes to the background; End the run pays like any other end), and the end card: why it ended, for a wrong gate the question, the right answer, the verse in your language and a flag button; distance, gates, XP and coins earned, new best. Pharaoh's chariots (a pair, plumed horses, blue-crowned drivers) close in behind you after a stumble and fall back after 6 s of clean running; they catch you on the second stumble or a head-on crash.
+- **Look:** 3D, but not plain: cel shading (`MeshToonMaterial` with a 4-band ramp), a curved world (the track rolls away over a hill, done in the vertex shader), warm sunset sky, strong sun with shadows near the runner, chunky props in a few clear shapes, dust, sparks, drifting sand or bubbles.
+
+## Code
+
+- `app/src/exodus/sim.ts`: the run without drawing: tiles, things placed by track distance `s` (drawn at z = dist − s, the runner stays at z = 0), the runner (lane, jump, stumble), obstacle rows (always one way through), lights and shekels, the run's XP and coins, the question cycle and phases, `autopilot` for the lab.
+- `app/src/exodus/scene/`: `ExodusScene.tsx` (the `ExodusWorld` class: sky, tile pool, every model instanced by kind, water walls, coins, gates, lights, camera, effects; the component only attaches it and steps it in `useFrame`), `props.ts` (all models built with the city's `Geo`), `curve.ts` (curved-world shader patch, toon ramp, sky colours), `sea.ts` (the walls of water shader), `fx.ts` (particles), `textures.ts` (road, sand, sea floor, gate signs painted at load), `runner.ts` (the character).
+- `app/src/exodus/controller.ts` (`RunController`): the run on screen, shared by the game and the lab: question deck (`questions.ts`: difficulty ≤ 3, short texts and answers, flagged ones excluded) and when to ask (every 10–30 s of running), swipes and keys, pause, the HUD written every frame, flyers into the top bar, `takeResult` once per finished run. `ExodusRun.tsx`: the canvas, top bar, scroll, answers over the lanes, hints. `best.ts`: the best distance on this device.
+- `app/src/screens/AdventuresScreen.tsx` (the tab) and `app/src/screens/exodus/ExodusScreen.tsx` (the game: start, pause, end card, paying).
+- `app/src/exodus/ExodusLab.tsx`: the dev page (swipe or arrow keys; panel: switch place, question now, autopilot, wrong gate, no crashes). `window.__exodus` (the controller) in dev, also on the game screen.
+- The runner is KayKit's "Rogue_Hooded" (Kay Lousberg, **CC0**; `app/public/exodus/LICENSE-kaykit.txt`), stripped to the 9 animations used (run, jump start/air/land, hit, death, cheer, idle) with gltf-transform: `runner.glb`, 480 KB (177 KB gzipped). The cloak's green swatches are repainted at load (`repaint`), so the player's look colours can be applied later.
+- Texts: `exodus` i18n namespace.
+
+## Added after the first playable version
+
+- **The route** (`ROUTE` / `routeAt` in `sim.ts`): Egypt 700 → (a beach) → the Red Sea 640 → the wilderness 900 → the Jordan 340 → Jericho 800, then round again from the wilderness. The wilderness: red rock, acacias, the camp's goat-hair tents and fires, now and then the Tabernacle in its court or the bronze serpent (Numbers 21:9), Mount Sinai under its cloud on the horizon. The Jordan: a pebbly riverbed, the water heaped up on the left (Joshua 3:16), reeds and willows, the ark with its priests or the twelve memorial stones. Jericho: its mud-brick wall with towers and houses on the right, now and then Rahab's scarlet cord (Joshua 2:18), palms on the left. Each place has its own obstacles (`OBSTACLES`) and haze.
+- **Power-ups**, one every 25–40 s of running from ~20 s on, leading a line of lights: a jar of manna (10 s: every light near you, in any lane, is gathered), the pillar of cloud (up to 20 s: the next stumble or crash is forgiven), Moses' staff (at once: everything in sight ahead sinks away). A banner says what it does; manna and cloud show as pills with a running-down bar.
+- **"66" gates** (`books.ts`): one question in four asks which book comes after (or before) another, with two books near it as the wrong answers; book names as each language's Bibles name them. No verse or flag on those.
+- **Daily Run**: the start card's second button. Seeded by the UTC date (`daySeed`), so the track, the questions and when they come are the same for everyone that day (as far as stumbles let the same rows come at the same place). Best today on this device (`sixtysix.exodusDaily.v1`).
+- **Online leaderboard** (`server/src/exodus.ts`, `shared/src/exodus.ts`, `app/src/exodus/scoresApi.ts`): every finished run of a signed-in player is sent (`POST /api/exodus/run { distance, seconds, daily }`, checked for plausibility: distance ≤ seconds × 31 + 60, at most 60 runs an hour); the table `exodus_runs` keeps each player's best all time, per week and per Daily Run day (week/day rows pruned after 60 days; in the delete-account transaction). `GET /api/exodus/leaderboard?board=all|week|daily` (guests too): top 20 and your rank. The Leaderboard screen switches between XP and Exodus (this week / all time / Daily Run).
+- **Your look**: the cloak and trim per character (`scene/looks.ts`), the hands and face in your skin tone.
+- **Sounds**: jump, land, lane, roll, a light chime climbing a scale for lights in a row, shekel, power-up, the cloud, the staff, hooves when the chariots come up, a fanfare through the right gate (`run*` in `game/sfx.ts`).
+- **Slow phones**: over each 2 s of running below ~40 fps the quality steps down for the rest of the run: resolution 1, then no shadows, then resolution 0.75 (`watchSpeed`).
+
+## Still open
+
+- Elijah's chariot of fire and Samson as power-ups; more places (Canaan, the Judges); the runner's look items (head/neck) on the model.
+- Measuring on a real mid-range phone (the quality steps are a guess at the thresholds).

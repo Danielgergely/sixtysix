@@ -23,6 +23,7 @@ All of these live in `shared/src/coins.ts`. Coins buy Jerusalem materials (`docs
 
 > The detailed plot / buildings / shop / timers design is in `docs/jerusalem-plot.md`.
 > Coin rates below are outdated: see `shared/src/coins.ts` (arena > Blitz > Practice).
+> Exodus, the runner, pays mostly XP and at most 60 coins a run (`EXODUS_REWARDS`; about half Bible Blitz's coins a minute, so it can't be farmed): `docs/exodus.md` → Rewards.
 
 ## Recommended: "Rebuild Jerusalem" — your own plot, from rubble to glory
 

@@ -10,4 +10,13 @@ export default {
   emptyAll: 'Noch steht niemand in der Liste.',
   who: '@{user} · Stufe {n}',
   you: 'du',
+  kindXp: 'XP',
+  kindExodus: 'Exodus',
+  daily: 'Tageslauf',
+  exodusTitle: 'Exodus',
+  exodusSubWeek: 'Weitester Lauf dieser Woche · neu ab Montag',
+  exodusSubAll: 'Weitester Lauf aller Zeiten',
+  exodusSubDaily: 'Weitester Lauf im heutigen Tageslauf',
+  exodusEmpty: 'Hier ist noch niemand gelaufen – fang du an!',
+  metres: '{n} m',
 }

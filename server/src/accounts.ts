@@ -560,7 +560,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
 // ── public views: leaderboard, city, profiles (accounts only) ─────────
 
 /** Monday 00:00 UTC of the current week: the weekly board resets then. */
-function weekStart(now = new Date()): number {
+export function weekStart(now = new Date()): number {
   const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
   d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7))
   return d.getTime()

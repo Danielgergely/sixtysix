@@ -8,11 +8,12 @@ import { pointsForXp, spentPoints } from '@sixtysix/shared'
 import { openSkillTree } from '../../skills/nav'
 import { useT } from '../../i18n'
 
-/** Shared header on every tab: purse on the left, you (→ Profile) on the right. */
+/** Shared header on every tab: purse on the left, the leaderboard (🏆) and you (→ Profile) on the right. */
 export function TopBar() {
   const player = useGameStore((s) => s.player)
   const goTo = useGameStore((s) => s.goTo)
   const lastTab = useGameStore((s) => s.lastTab)
+  const screen = useGameStore((s) => s.screen)
   const account = useAccountStore((s) => s.account)
   const t = useT()
   // Unspent skill points: a gold seal that opens the skill tree.
@@ -28,6 +29,9 @@ export function TopBar() {
           🌳 <b>{free}</b>
         </button>
       )}
+      <button className={`tb-ranks${free > 0 ? '' : ' push'}${screen === 'leaderboard' ? ' on' : ''}`} onClick={() => goTo('leaderboard')} title={t('shell.topBar.leaderboard')} aria-label={t('shell.topBar.leaderboard')}>
+        🏆
+      </button>
       <button className="tb-me" onClick={() => goTo('profile')} title={t('shell.topBar.profile')}>
         <span className="tb-name">
           {/* The default name is stored as "You"; show it in the player's language. */}

@@ -116,6 +116,15 @@ if (import.meta.env.DEV && window.location.pathname === '/motion-lab') {
       </StrictMode>,
     ),
   )
+} else if (import.meta.env.DEV && window.location.pathname === '/exodus-lab') {
+  // Dev-only look test for the Exodus runner (docs/exodus.md).
+  void import('./exodus/ExodusLab').then(({ ExodusLab }) =>
+    root.render(
+      <StrictMode>
+        <ExodusLab />
+      </StrictMode>,
+    ),
+  )
 } else {
   root.render(
     <StrictMode>

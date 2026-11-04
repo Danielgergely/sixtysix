@@ -1,11 +1,12 @@
 /** Navigation shell: tabs, top bar, error screen, language. */
 export default {
-  tabs: { menu: 'Quiz', boardGames: 'Board games', jerusalem: 'Jerusalem', leaderboard: 'Leaderboard' },
+  tabs: { menu: 'Quiz', boardGames: 'Board games', adventures: 'Adventures', jerusalem: 'Jerusalem', leaderboard: 'Leaderboard' },
   language: 'Language',
   back: 'Back',
   /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */
   secondsLeft: '{n} seconds left',
   topBar: {
+    leaderboard: 'Leaderboard',
     coins: 'Your coins',
     profile: 'Your profile',
     level: 'Level {n}',

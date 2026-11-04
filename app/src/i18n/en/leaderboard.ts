@@ -1,4 +1,4 @@
-/** Leaderboard tab: weekly and all-time XP rankings. */
+/** Leaderboard tab: weekly and all-time XP rankings, and Exodus best runs. */
 export default {
   title: 'Leaderboard',
   subWeek: 'XP this week · resets Monday',
@@ -11,4 +11,13 @@ export default {
   emptyAll: 'No one is ranked yet.',
   who: '@{user} · Lv {n}',
   you: 'you',
+  kindXp: 'XP',
+  kindExodus: 'Exodus',
+  daily: 'Daily Run',
+  exodusTitle: 'Exodus',
+  exodusSubWeek: 'Longest run this week · resets Monday',
+  exodusSubAll: 'Longest run of all time',
+  exodusSubDaily: 'Longest run in today’s Daily Run',
+  exodusEmpty: 'No runs here yet — be the first!',
+  metres: '{n} m',
 }

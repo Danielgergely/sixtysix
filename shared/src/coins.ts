@@ -39,6 +39,25 @@ export function coinsForPlacement(rank: number, mode: CoinMode): number {
   return r.placement[rank] ?? r.finish
 }
 
+/**
+ * Exodus, the runner (docs/exodus.md → Rewards): mostly XP, so it can't be
+ * farmed for coins. Lights along the track are XP; a shekel lies on the track
+ * only every 10–15 s, a right gate pays like a right Bible Blitz answer, and a
+ * run pays at most `runCoinCap` (about the best Bible Blitz game). Paid when
+ * the run ends, like Bible Blitz.
+ */
+export const EXODUS_REWARDS = {
+  /** XP per light picked up. */
+  lightXp: 10,
+  /** Per right gate. */
+  gateXp: 500,
+  gateCoins: 3,
+  /** A shekel on the track: one coin, every `shekelEvery` seconds of running (min, max). */
+  shekelCoins: 1,
+  shekelEvery: [10, 15] as const,
+  runCoinCap: 60,
+} as const
+
 /** David vs Goliath / Rebuild the Wall: shared result instead of a placement. */
 export const TEAM_WIN_COINS = 40
 export const TEAM_LOSS_COINS = 15
