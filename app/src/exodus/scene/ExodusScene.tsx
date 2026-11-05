@@ -482,7 +482,14 @@ class ExodusWorld {
     for (const e of events) {
       if (e.type === 'jump') playSfx('runJump')
       if (e.type === 'lane') playSfx('runLane')
-      if (e.type === 'roll') playSfx('runRoll')
+      if (e.type === 'roll') {
+        playSfx('runRoll')
+        // A spray of sand out to both sides as the runner drops into the duck.
+        for (let i = 0; i < 12; i++) {
+          const side = i % 2 ? 1 : -1
+          this.dust.emit({ x: p.x + side * (0.3 + Math.random() * 0.3), y: 0.15, z: (Math.random() - 0.5) * 0.6, vx: side * (1.5 + Math.random() * 2.5), vy: 0.8 + Math.random() * 1.5, vz: 1.5, size: 0.6, grow: 2.4, max: 0.7, color: DUST, peak: 0.6 })
+        }
+      }
       if (e.type === 'light') playSfx('runLight')
       if (e.type === 'land') {
         playSfx('runLand')
@@ -518,8 +525,9 @@ class ExodusWorld {
       }
     }
 
-    // Feet kick up a little sand while running.
-    if (real > 0 && !p.airborne && r.phase !== 'over' && Math.random() < 0.5 * r.timeScale + 0.05)
+    // Feet kick up a little sand while running, more while sliding under something.
+    const kick = p.roll > 0 ? 1.6 : 0.5
+    if (real > 0 && !p.airborne && r.phase !== 'over' && Math.random() < kick * r.timeScale + 0.05)
       this.dust.emit({ x: p.x + (Math.random() - 0.5) * 0.5, y: 0.1, z: 0.3, vx: (Math.random() - 0.5) * 1.2, vy: 0.6 + Math.random(), vz: 2, size: 0.45, grow: 2.2, max: 0.55, color: DUST, peak: 0.45 })
 
     const moved = r.speed * dt

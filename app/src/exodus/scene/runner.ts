@@ -1,4 +1,4 @@
-import { AnimationMixer, type AnimationClip, CanvasTexture, Color, LoopOnce, LoopRepeat, MeshToonMaterial, SRGBColorSpace, type AnimationAction, type Group, type Mesh, type Texture } from 'three'
+import { AnimationMixer, type AnimationClip, type Bone, CanvasTexture, Color, LoopOnce, LoopRepeat, MeshToonMaterial, PropertyBinding, Quaternion, SRGBColorSpace, Vector3, type AnimationAction, type Group, type Mesh, type Object3D, type Texture } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { ROLL_S, type Run } from '../sim'
 
@@ -6,8 +6,69 @@ import { ROLL_S, type Run } from '../sim'
  * The runner: KayKit's hooded rogue (CC0, public/exodus/LICENSE-kaykit.txt)
  * with the green of the cloak repainted as a traveller's colours, cel-shaded
  * like the world, and its animations driven by the run: run, jump (start,
- * air, land), roll (to duck), stumble, fall, cheer.
+ * air, land), roll (to duck), stumble, fall, cheer. The chibi rogue is
+ * slimmed (narrower body, smaller head), its running stride and arm swing
+ * are exaggerated round the clip's average pose, and the body squashes and
+ * stretches on take-off, landing and the duck, so each move reads from
+ * behind the runner's back.
  */
+
+/** Body width / depth against the model (its height stays). */
+const SLIM_X = 0.84
+const SLIM_Z = 0.88
+/** The hooded head, which is as wide as the body. */
+const HEAD_SCALE = 0.82
+/** The cape hung to the ground and hid the legs: shortened to the thighs, a little narrower. */
+const CAPE_SCALE = { x: 0.85, y: 0.55 }
+/** Longer legs (the chibi's are half its head); the hips rise by what the legs gain. */
+const LEG_SCALE = 1.18
+/** The legs' length (hips to sole) in the hips' parent space. */
+const LEG_LENGTH = 0.53
+/** How much bigger the running stride and arm swing are than the clip's. */
+const STRIDE = 1.45
+/** The model's bone names as three.js loads them (dots dropped). */
+const STRIDE_BONES = ['upperleg.l', 'lowerleg.l', 'upperleg.r', 'lowerleg.r', 'upperarm.l', 'lowerarm.l', 'upperarm.r', 'lowerarm.r'].map((n) => PropertyBinding.sanitizeNodeName(n))
+/** Height while ducking (the body squashes down to it, widening a little). */
+const DUCK_HEIGHT = 0.6
+
+/** The average rotation of each bone over a clip (keys roughly evenly spaced). */
+function meanPose(clip: AnimationClip, bones: string[]): Map<string, Quaternion> {
+  const out = new Map<string, Quaternion>()
+  for (const track of clip.tracks) {
+    if (!track.name.endsWith('.quaternion')) continue
+    const bone = track.name.slice(0, -'.quaternion'.length)
+    if (!bones.includes(bone)) continue
+    const v = track.values
+    const sum = new Quaternion(0, 0, 0, 0)
+    const first = new Quaternion(v[0], v[1], v[2], v[3])
+    for (let i = 0; i < v.length; i += 4) {
+      // Keep every key on the first one's side so they don't cancel out.
+      const sign = v[i] * first.x + v[i + 1] * first.y + v[i + 2] * first.z + v[i + 3] * first.w < 0 ? -1 : 1
+      sum.x += v[i] * sign
+      sum.y += v[i + 1] * sign
+      sum.z += v[i + 2] * sign
+      sum.w += v[i + 3] * sign
+    }
+    out.set(bone, sum.normalize())
+  }
+  return out
+}
+
+const tmpQ = new Quaternion()
+const tmpQ2 = new Quaternion()
+const AXIS = new Vector3()
+
+/** `q` pushed further from `mean` by `k` (k = 1 leaves it). */
+function exaggerate(q: Quaternion, mean: Quaternion, k: number) {
+  // delta = mean⁻¹ · q, scaled in angle by k, put back: mean · delta^k.
+  tmpQ.copy(mean).invert().multiply(q)
+  if (tmpQ.w < 0) tmpQ.set(-tmpQ.x, -tmpQ.y, -tmpQ.z, -tmpQ.w)
+  const angle = 2 * Math.acos(Math.min(1, tmpQ.w))
+  if (angle < 1e-4) return
+  AXIS.set(tmpQ.x, tmpQ.y, tmpQ.z).normalize()
+  tmpQ2.setFromAxisAngle(AXIS, angle * k)
+  q.copy(mean).multiply(tmpQ2)
+}
 
 export interface RunnerColors {
   /** The cloak and hood. */
@@ -73,10 +134,30 @@ export class Runner {
   private time = 0
   private wasAir = false
   private wasRoll = false
+  private head: Object3D | null = null
+  private hips: Object3D | null = null
+  private legs: Object3D[] = []
+  /** The clips' own values of everything `step` changes, put back before the mixer runs again. */
+  private saved: { q: Quaternion[]; legs: Vector3[]; hipsY: number; head: Vector3 } | null = null
+  private stride: { bone: Bone; mean: Quaternion }[] = []
+  /** Squash and stretch: height factor and its speed (a damped spring back to 1, or to the duck). */
+  private squash = 1
+  private squashV = 0
   private constructor(root: Group, clips: AnimationClip[]) {
     this.root = root
     this.mixer = new AnimationMixer(root)
     for (const clip of clips) this.actions.set(clip.name as Clip, this.mixer.clipAction(clip))
+    this.head = root.getObjectByName('head') ?? null
+    this.hips = root.getObjectByName('hips') ?? null
+    this.legs = ['upperleg.l', 'upperleg.r'].flatMap((n) => root.getObjectByName(PropertyBinding.sanitizeNodeName(n)) ?? [])
+    root.getObjectByName('Rogue_Cape')?.scale.set(CAPE_SCALE.x, CAPE_SCALE.y, 1)
+    const running = clips.find((c) => c.name === 'Running_A')
+    if (running) {
+      for (const [name, mean] of meanPose(running, STRIDE_BONES)) {
+        const bone = root.getObjectByName(name) as Bone | undefined
+        if (bone) this.stride.push({ bone, mean })
+      }
+    }
     this.play('Running_A', 0)
   }
 
@@ -118,19 +199,23 @@ export class Runner {
     const p = run.player
     const r = this.root
     r.position.set(p.x, p.y, 0)
-    // Lean into a lane change, turn a touch towards it.
+    // Lean into a lane change, turn a touch towards it, lean forward into the run.
     const dx = p.lane * 2.4 - p.x
     r.rotation.z = -dx * 0.06
     r.rotation.y = Math.PI - dx * 0.12
+    r.rotation.x = run.phase === 'over' ? 0 : p.airborne ? -0.16 : -0.09
 
     for (const e of run.events) {
+      // Stretch up off the ground, squash into the landing.
+      if (e.type === 'jump') this.squashV += 3.2
+      if (e.type === 'land') this.squashV -= 3.6
       if (e.type === 'stumble') this.oneShot('Hit_A', 0.45, 1.6)
       if (e.type === 'crash' || (e.type === 'gate' && !e.right)) this.play('Death_A', 0.1, true)
       if (e.type === 'gate' && e.right) this.oneShot('Cheer', 0.8, 1.8)
     }
     if (run.phase === 'over') {
       if (this.current !== 'Death_A') this.play('Death_A', 0.15, true)
-      this.mixer.update(dt)
+      this.step(dt, false)
       return
     }
 
@@ -146,7 +231,39 @@ export class Runner {
 
     const run1 = this.actions.get('Running_A')
     if (run1) run1.timeScale = 0.9 + (run.speed - 15) * 0.035
+    this.step(dt, rolling)
+  }
+
+  /** Advances the clips, then slims, exaggerates the stride and squashes on top. */
+  private step(dt: number, ducking: boolean) {
+    // The mixer writes a bone only when the clip's value changes, so first undo last frame's changes.
+    const saved = this.saved
+    if (saved) {
+      this.stride.forEach(({ bone }, i) => bone.quaternion.copy(saved.q[i]))
+      this.legs.forEach((leg, i) => leg.scale.copy(saved.legs[i]))
+      if (this.hips) this.hips.position.y = saved.hipsY
+      this.head?.scale.copy(saved.head)
+    }
     this.mixer.update(dt)
+    this.saved = {
+      q: this.stride.map(({ bone }, i) => (saved?.q[i] ?? new Quaternion()).copy(bone.quaternion)),
+      legs: this.legs.map((leg, i) => (saved?.legs[i] ?? new Vector3()).copy(leg.scale)),
+      hipsY: this.hips?.position.y ?? 0,
+      head: (saved?.head ?? new Vector3()).copy(this.head?.scale ?? new Vector3(1, 1, 1)),
+    }
+    // The stride, by how much the run clip is playing.
+    const w = this.actions.get('Running_A')?.getEffectiveWeight() ?? 0
+    if (w > 0.01) for (const { bone, mean } of this.stride) exaggerate(bone.quaternion, mean, 1 + (STRIDE - 1) * w)
+    this.head?.scale.multiplyScalar(HEAD_SCALE)
+    for (const leg of this.legs) leg.scale.multiplyScalar(LEG_SCALE)
+    if (this.hips) this.hips.position.y += LEG_LENGTH * (LEG_SCALE - 1)
+    // Squash and stretch: a spring to 1, or down to the duck's height.
+    const target = ducking ? DUCK_HEIGHT : 1
+    const k = dt > 0 ? Math.min(dt, 1 / 30) : 0
+    this.squashV += ((target - this.squash) * 260 - this.squashV * 20) * k
+    this.squash = Math.min(1.25, Math.max(0.5, this.squash + this.squashV * k))
+    const wide = 1 / Math.sqrt(this.squash)
+    this.root.scale.set(SLIM_X * wide, this.squash, SLIM_Z * wide)
   }
 
   private actionDone(clip: Clip): boolean {
@@ -164,6 +281,9 @@ export class Runner {
     this.time = 0
     this.oneShotUntil = 0
     this.wasAir = this.wasRoll = false
+    this.squash = 1
+    this.squashV = 0
+    this.saved = null
     this.play('Running_A', 0)
   }
 
