@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import {
   SPIES_CLUE_MAX,
+  SPIES_FORCE_MS,
   SPIES_MAX_NUMBER,
   SPIES_MIN_COOP,
   SPIES_MIN_VERSUS,
@@ -18,7 +19,7 @@ import { TRIBE, cardWord, chiefName, otherTeam, playerById, rich, statusLine, tr
 import { t as tr, tServer, useLocale, useT } from '../../i18n'
 import { InfoButton } from '../../tutorial/InfoButton'
 import { useIntro } from '../../tutorial/useIntro'
-import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
+import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList, Vacancies } from './parts'
 import { SpiesBoard } from './SpiesBoard'
 import { Verdict } from './verdict'
 import { RewardChip } from '../shell/RewardChip'
@@ -232,7 +233,9 @@ function GameView({ state }: { state: SpiesState }) {
   const key = store.key && store.key.game === state.game ? store.key.colours : null
   const over = state.phase === 'over'
   const myTurn = !!me && state.turn === me.team
-  const canPick = myTurn && !spymaster && state.phase === 'guess'
+  // A tribe without its spy master is paused (server-side too).
+  const paused = !!state.turn && !!state.vacancies?.[state.turn]
+  const canPick = myTurn && !spymaster && state.phase === 'guess' && !paused
   return (
     <div className="ts-col">
       <ScoreBar state={state} />
@@ -247,10 +250,11 @@ function GameView({ state }: { state: SpiesState }) {
           <Timer size={44} />
         </div>
       )}
+      {!over && <Vacancies state={state} />}
       <Grid state={state} keyColours={over ? state.result?.key : key} onPick={canPick ? store.pick : undefined} />
-      {!over && spymaster && myTurn && state.phase === 'clue' && <ClueComposer state={state} />}
+      {!over && spymaster && myTurn && state.phase === 'clue' && !paused && <ClueComposer state={state} />}
       {!over && canPick && <AgentBar state={state} />}
-      {!over && !canPick && !(spymaster && myTurn && state.phase === 'clue') && <WaitNote state={state} spymaster={spymaster} myTurn={myTurn} />}
+      {!over && !paused && !canPick && !(spymaster && myTurn && state.phase === 'clue') && <WaitNote state={state} spymaster={spymaster} myTurn={myTurn} />}
       {over && <OverActions state={state} />}
       <button className="ts-link" onClick={() => setLog((l) => !l)}>
         {log ? t('spies.game.hideLog') : t('spies.game.clueLog', { n: state.history.filter((h) => h.word).length })}
@@ -349,9 +353,7 @@ function AgentBar({ state }: { state: SpiesState }) {
             )}
           </span>
           {mine ? (
-            <button className="btn-play ts-small-btn" disabled={!canForce} onClick={store.confirm}>
-              {canForce ? t('spies.agents.reveal') : t('spies.agents.wait')}
-            </button>
+            <span className="ts-agreed waiting">{t('spies.agents.waitingForTribe')}</span>
           ) : backed ? (
             <span className="ts-agreed">{t('spies.agents.agreed')}</span>
           ) : (
@@ -359,6 +361,15 @@ function AgentBar({ state }: { state: SpiesState }) {
               {t('spies.agents.agree')}
             </button>
           )}
+        </div>
+      )}
+      {mine && canForce && (
+        // Not an "agree": a separate, later action for when teammates don't answer (away, asleep, offline).
+        <div className="ts-force">
+          <p>{t('spies.agents.forceNote', { seconds: Math.round(SPIES_FORCE_MS / 1000) })}</p>
+          <button className="btn-secondary ts-force-btn" onClick={store.confirm}>
+            {t('spies.agents.forceReveal')}
+          </button>
         </div>
       )}
       {made > 0 && prop?.pick !== SPIES_PASS && (

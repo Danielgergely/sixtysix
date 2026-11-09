@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import type { SpiesColour, SpiesPlayer, SpiesState, SpiesTeam } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { CountdownRing, STAGGER, spring, useFirstKeys } from '../../motion'
-import { useSpiesStore } from '../../spies/spiesStore'
+import { isLeader, useSpiesStore } from '../../spies/spiesStore'
 import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wrappedWordSize } from '../../spies/util'
 import { useLocale, useT } from '../../i18n'
 
@@ -255,4 +255,75 @@ function CardWord({ word, large }: { word: string; large: boolean }) {
       {wrapped ? softHyphens(word) : word}
     </span>
   )
+}
+
+/**
+ * A tribe lost its spy master mid-game: who left, the countdown for their
+ * return, whether the turn is paused, and the choices (a teammate takes over,
+ * or the leader starts a new game). Phones get the buttons; the board only reads.
+ */
+export function Vacancies({ state, large = false }: { state: SpiesState; large?: boolean }) {
+  const teams = (['judah', 'ephraim'] as SpiesTeam[]).filter((team) => state.vacancies?.[team])
+  if (teams.length === 0) return null
+  return (
+    <div className="ts-vacancies">
+      {teams.map((team) => (
+        <VacancyCard key={team} state={state} team={team} large={large} />
+      ))}
+    </div>
+  )
+}
+
+function VacancyCard({ state, team, large }: { state: SpiesState; team: SpiesTeam; large: boolean }) {
+  const t = useT()
+  const store = useSpiesStore()
+  const v = state.vacancies[team]!
+  const endsAt = store.waitEnds[team] ?? 0
+  const waiting = useBefore(endsAt)
+  const tribe = tribeName(state, team)
+  const me = large ? undefined : playerById(state, store.myId)
+  const canTake = !!me && me.team === team && state.spymasters[team] !== me.id
+  const leader = !large && isLeader(store)
+  const leaderName = playerById(state, state.leaderId)?.name ?? t('spies.common.theLeader')
+  return (
+    <motion.div className={`ts-vacancy ${team} ${large ? 'large' : ''}`} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={spring.bouncy}>
+      <div className="ts-vacancy-head">
+        <span className="ts-token off" style={{ width: large ? 52 : 40, height: large ? 52 : 40 }}>
+          <Avatar id={v.avatar} />
+        </span>
+        <b>{t('spies.vacancy.title', { name: v.name, tribe })}</b>
+        {waiting && <CountdownRing endsAt={endsAt} totalMs={v.waitMs} size={large ? 64 : 44} stroke={large ? 7 : 5} urgentAt={10} className="ts-timer" />}
+      </div>
+      <p className="ts-vacancy-line">
+        {v.left ? t('spies.vacancy.leftForGood', { name: v.name }) : waiting ? t('spies.vacancy.waiting', { name: v.name }) : t('spies.vacancy.notBack', { name: v.name })}
+      </p>
+      <p className="ts-vacancy-line">{state.turn === team ? t('spies.vacancy.paused', { tribe }) : t('spies.vacancy.pausesLater', { tribe })}</p>
+      {canTake && (
+        <>
+          <button className="btn-play ts-wide-btn" onClick={store.takeover}>
+            {t('spies.vacancy.takeOver')}
+          </button>
+          <p className="ts-vacancy-note">{t('spies.vacancy.takeOverNote')}</p>
+        </>
+      )}
+      {leader && (
+        <button className="btn-secondary ts-wide-btn" onClick={() => store.again()}>
+          {t('spies.vacancy.newGame')}
+        </button>
+      )}
+      {!canTake && !leader && <p className="ts-vacancy-note">{t('spies.vacancy.choices', { tribe, name: leaderName })}</p>}
+      {canTake && !leader && <p className="ts-vacancy-note">{t('spies.vacancy.orLeader', { name: leaderName })}</p>}
+    </motion.div>
+  )
+}
+
+/** True until `at` (a Date.now() deadline) has passed. */
+function useBefore(at: number): boolean {
+  const [passedFor, setPassedFor] = useState(0)
+  useEffect(() => {
+    if (!at) return
+    const timer = setTimeout(() => setPassedFor(at), Math.max(0, at - Date.now()))
+    return () => clearTimeout(timer)
+  }, [at])
+  return at > 0 && passedFor !== at
 }

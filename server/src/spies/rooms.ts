@@ -2,8 +2,8 @@ import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { GameLocale, SpiesColour, SpiesMode, SpiesPhase, SpiesResult, SpiesState, SpiesTeam, SpiesTurn } from '@sixtysix/shared'
-import { GAME_LOCALES, SPIES_FORCE_MS, SPIES_GRID } from '@sixtysix/shared'
+import type { GameLocale, SpiesColour, SpiesMode, SpiesPhase, SpiesResult, SpiesState, SpiesTeam, SpiesTurn, SpiesVacancy } from '@sixtysix/shared'
+import { GAME_LOCALES, SPIES_FORCE_MS, SPIES_GRID, SPIES_SM_WAIT_MS, SPIES_TEAMS } from '@sixtysix/shared'
 
 /**
  * Twelve Spies rooms: an in-memory registry with its own codes and GC,
@@ -59,6 +59,17 @@ export interface SProposal {
   at: number
 }
 
+/** A tribe waiting for a spy master (see SpiesVacancy). */
+export interface SVacancy {
+  /** The missing spy master's device id (null once they left for good). */
+  secret: string | null
+  name: string
+  avatar: string
+  left: boolean
+  /** Date.now() when the wait for their return ends (0 = over / left). */
+  until: number
+}
+
 export interface SRoom {
   code: string
   phase: SpiesPhase
@@ -86,7 +97,13 @@ export interface SRoom {
   phaseEndsAt: number
   phaseMs: number
   timer?: ReturnType<typeof setTimeout>
-  /** Grace timers for an offline spy master before a teammate takes over. */
+  /** What the turn timer does when it runs out (kept so a pause can resume it). */
+  timerFn?: () => void
+  /** Turn time left while the turn is paused (a tribe without its spy master); null = not paused. */
+  frozenMs: number | null
+  /** Tribes whose spy master is offline or gone mid-game; nobody is promoted automatically. */
+  vacancies: Partial<Record<SpiesTeam, SVacancy>>
+  /** Per tribe: ends the wait for an offline spy master (the choices stay offered after it). */
   smTimers: Partial<Record<SpiesTeam, ReturnType<typeof setTimeout>>>
   lastActivity: number
 }
@@ -132,6 +149,8 @@ export function createSpiesRoom(): SRoom {
     seq: 0,
     phaseEndsAt: 0,
     phaseMs: 0,
+    frozenMs: null,
+    vacancies: {},
     smTimers: {},
     lastActivity: Date.now(),
   }
@@ -219,6 +238,21 @@ export function toSpiesState(room: SRoom): SpiesState {
             forceInMs: Math.max(0, prop.at + SPIES_FORCE_MS - Date.now()),
           }
         : null,
+    vacancies: Object.fromEntries(
+      SPIES_TEAMS.flatMap((t) => {
+        const v = room.vacancies[t]
+        if (!v || (room.phase !== 'clue' && room.phase !== 'guess')) return []
+        const pv: SpiesVacancy = {
+          playerId: pub(v.secret),
+          name: v.name,
+          avatar: v.avatar,
+          left: v.left,
+          waitInMs: v.until ? Math.max(0, v.until - Date.now()) : 0,
+          waitMs: SPIES_SM_WAIT_MS,
+        }
+        return [[t, pv]]
+      }),
+    ),
     history: room.history,
     endsInMs: room.phaseEndsAt ? Math.max(0, room.phaseEndsAt - Date.now()) : 0,
     phaseMs: room.phaseMs,
