@@ -78,6 +78,7 @@ export default {
     c3: { title: 'Begyűjtés', text: 'Az épületek nyersanyagot termelnek. Gyűjtsd be: a teli raktár nem telik tovább.' },
     c4: { title: 'Munkások tekercse', text: 'Ha 3 kérdésből 2-re jól felelsz, egy építkezés 5 perccel hamarabb kész.' },
     c5: { title: 'Piac és ajándékok', text: 'A Piac nyersanyagot vesz és elad. Az udvarodon dolgozók néha ajándékot hoznak: koppints rájuk.' },
+    c6: { title: 'Mezők és expedíciók', text: 'A Kőháztól a völgyi mezőiden árpa és búza terem; a pékség kenyeret süt a nagy építkezésekhez. A 4. háztól munkásokat küldhetsz a kőfejtőbe és a rézbányákba.' },
   },
   city: {
     name: 'Jeruzsálem',

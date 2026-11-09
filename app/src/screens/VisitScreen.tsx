@@ -4,7 +4,9 @@ import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
 import { fetchPlayer, type PlayerPage } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
-import { useT } from '../i18n'
+import { t as tNow, tServer, useT } from '../i18n'
+import { useAccountStore } from '../account/accountStore'
+import { usePlotStore } from '../plot/plotStore'
 import { PlotView } from '../world/PlotView'
 import { Top } from './home/parts'
 import { houseName } from './home/plotText'
@@ -57,9 +59,37 @@ export function VisitScreen() {
             <span className="vs-go">{t('city.visit.profile')}</span>
           </button>
           <PlotView levels={levels} idleDays={player.idleDays} />
+          {levels.field1 > 0 && <Glean username={player.username} />}
           <p className="tab-note">{player.levels ? t('city.visit.drag') : t('city.visit.tent')}</p>
         </>
       )}
+    </div>
+  )
+}
+
+/** Gleaning in their fields (Ruth 2): once a day, a little barley for you and for them. */
+function Glean({ username }: { username: string }) {
+  const t = useT()
+  const me = useAccountStore((s) => s.account?.username)
+  const glean = usePlotStore((s) => s.glean)
+  const [said, setSaid] = useState('')
+  const [busy, setBusy] = useState(false)
+  if (!me || me === username) return null
+  return (
+    <div className="hp-actions vs-glean">
+      <button
+        className="hp-btn gold"
+        disabled={busy || !!said}
+        onClick={async () => {
+          setBusy(true)
+          const res = await glean(username)
+          setBusy(false)
+          setSaid('error' in res ? tServer(res.error) || tNow('home.farm.gleanLater') : tNow('home.farm.gleaned', { n: res.got.barley ?? 0 }))
+        }}
+      >
+        {t('home.farm.glean')}
+      </button>
+      <small>{said || t('home.farm.gleanWhat')}</small>
     </div>
   )
 }

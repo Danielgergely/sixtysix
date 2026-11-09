@@ -3,6 +3,9 @@ import {
   advance,
   BUILDING_IDS,
   type BuildingId,
+  type CropId,
+  type DestinationId,
+  type FieldId,
   type GiftFigure,
   type Material,
   type Materials,
@@ -80,6 +83,18 @@ export interface ScrollRound {
   result?: ScrollResult
 }
 
+/** A team about to set out: its road questions, then how they went. */
+export interface RoadRound {
+  id: string
+  dest: DestinationId
+  workers: number
+  questions: ScrollQuestion[]
+  result?: { right: number; correct: number[] }
+}
+
+/** My Home's three parts. */
+export type HomeView = 'yard' | 'fields' | 'expeditions'
+
 interface PlotStore {
   plot: PlotState | null
   home: HomeInfo | null
@@ -93,8 +108,10 @@ interface PlotStore {
   /** Levels the player has already admired; higher levels get a "new" ribbon. */
   seen: Levels | null
   /** The open building sheet. */
-  selected: BuildingId | 'courtyard' | null
+  selected: BuildingId | null
   scroll: ScrollRound | null
+  road: RoadRound | null
+  view: HomeView
   /** Where the Market's back button goes. */
   marketBack: 'home' | null
 
@@ -112,7 +129,20 @@ interface PlotStore {
   startScroll: () => Promise<void>
   answerScroll: (answers: number[], building?: BuildingId) => Promise<void>
   closeScroll: () => void
-  select: (b: BuildingId | 'courtyard' | null) => void
+  sow: (field: FieldId, crop: CropId, buyMissing: boolean) => Promise<boolean>
+  harvest: (field?: FieldId) => Promise<Materials | null>
+  bake: (grain: CropId, amount: number, buyMissing: boolean) => Promise<boolean>
+  feedFold: (buyMissing: boolean) => Promise<boolean>
+  feedBuilders: (b: BuildingId, buyMissing: boolean) => Promise<number | null>
+  /** Road questions for a team; then `setOut` with the answers (−1 = skipped). */
+  startRoad: (dest: DestinationId, workers: number) => Promise<void>
+  setOut: (answers: number[], buyMissing: boolean) => Promise<boolean>
+  closeRoad: () => void
+  unload: (id: string) => Promise<Materials | null>
+  /** Glean in someone else's fields (the Visit screen): what you got, or the error. */
+  glean: (username: string) => Promise<{ got: Materials } | { error: string }>
+  setView: (v: HomeView) => void
+  select: (b: BuildingId | null) => void
   markSeen: (b: BuildingId) => void
   say: (text: string) => void
   openMarket: (from: 'home' | null) => void
@@ -146,6 +176,8 @@ export const usePlotStore = create<PlotStore>((set, get) => {
     seen: loadSeen(),
     selected: null,
     scroll: null,
+    road: null,
+    view: 'yard',
     marketBack: null,
 
     now: () => Date.now() + get().offset,
@@ -217,6 +249,65 @@ export const usePlotStore = create<PlotStore>((set, get) => {
 
     closeScroll: () => set({ scroll: null }),
 
+    sow: async (field, crop, buyMissing) => {
+      set({ busy: true })
+      return !!take(await call('/sow', { field, crop, buyMissing }))
+    },
+
+    harvest: async (field) => {
+      set({ busy: true })
+      const res = take(await call<{ collected: Materials }>('/harvest', field ? { field } : {}))
+      return res ? res.collected : null
+    },
+
+    bake: async (grain, amount, buyMissing) => {
+      set({ busy: true })
+      return !!take(await call('/bake', { grain, amount, buyMissing }))
+    },
+
+    feedFold: async (buyMissing) => {
+      set({ busy: true })
+      return !!take(await call('/feed', { target: 'fold', buyMissing }))
+    },
+
+    feedBuilders: async (building, buyMissing) => {
+      set({ busy: true })
+      const res = take(await call<{ cutMs: number }>('/feed', { target: 'build', building, buyMissing }))
+      return res ? res.cutMs : null
+    },
+
+    startRoad: async (dest, workers) => {
+      set({ busy: true })
+      const res = take(await call<{ roadId: string; questions: ScrollQuestion[] }>('/expedition', { dest, workers, locale: useLocale.getState().locale }))
+      if (res) set({ road: { id: res.roadId, dest, workers, questions: res.questions } })
+    },
+
+    setOut: async (answers, buyMissing) => {
+      const round = get().road
+      if (!round) return false
+      set({ busy: true })
+      const res = take(await call<{ right: number; correct: number[] }>('/expedition/start', { roadId: round.id, answers, buyMissing }))
+      if (res) set({ road: { ...round, result: { right: res.right, correct: res.correct } } })
+      return !!res
+    },
+
+    closeRoad: () => set({ road: null }),
+
+    unload: async (id) => {
+      set({ busy: true })
+      const res = take(await call<{ collected: Materials }>('/expedition/unload', { id }))
+      return res ? res.collected : null
+    },
+
+    glean: async (username) => {
+      const res = await call<{ collected: Materials }>('/glean', { username })
+      if (!res.ok) return { error: res.error }
+      const ok = take(res)
+      return ok ? { got: ok.collected } : { error: '' }
+    },
+
+    setView: (view) => set({ view, selected: null, error: '' }),
+
     select: (selected) => set({ selected, error: '' }),
 
     markSeen: (b) => {
@@ -240,5 +331,5 @@ export const usePlotStore = create<PlotStore>((set, get) => {
 // Another account (or a sign-out) on this device: drop the previous player's plot.
 useAccountStore.subscribe((s, prev) => {
   if (s.account?.username === prev.account?.username) return
-  usePlotStore.setState({ plot: null, home: null, scroll: null, selected: null, error: '', toast: null, seen: loadSeen() })
+  usePlotStore.setState({ plot: null, home: null, scroll: null, road: null, selected: null, view: 'yard', error: '', toast: null, seen: loadSeen() })
 })

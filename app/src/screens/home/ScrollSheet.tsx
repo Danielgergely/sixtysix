@@ -19,7 +19,7 @@ export function ScrollSheet() {
   const result = scroll.result
   const i = Math.min(answers.length, SCROLL_QUESTIONS - 1)
   const q = scroll.questions[i]
-  const target = typeof selected === 'string' && selected !== 'courtyard' && plot?.builds.some((b) => b.building === selected) ? selected : undefined
+  const target = selected && plot?.builds.some((b) => b.building === selected) ? selected : undefined
 
   const pick = async (a: number) => {
     if (busy || result) return

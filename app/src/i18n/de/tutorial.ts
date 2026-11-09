@@ -78,6 +78,7 @@ export default {
     c3: { title: 'Einsammeln', text: 'Gebäude stellen Material her. Sammle es ein: Ein volles Lager füllt sich nicht weiter.' },
     c4: { title: 'Arbeiterrolle', text: 'Beantworte 2 von 3 Fragen richtig, und ein Bau ist 5 Minuten früher fertig.' },
     c5: { title: 'Markt und Geschenke', text: 'Der Markt kauft und verkauft Material. Die Leute auf deinem Hof haben manchmal ein Geschenk: Tippe sie an.' },
+    c6: { title: 'Felder und Expeditionen', text: 'Ab dem Steinhaus wachsen auf deinen Feldern im Tal Gerste und Weizen; das Backhaus backt Brot für große Bauten. Ab Haus 4 schickst du Arbeiter in den Steinbruch und die Kupferminen.' },
   },
   city: {
     name: 'Jerusalem',

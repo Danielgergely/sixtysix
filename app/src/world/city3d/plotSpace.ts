@@ -26,7 +26,7 @@ export const SPOT_3D: Record<Spot, { x: number; z: number; ry: number }> = {
   store: { x: 12.5, z: -6.5, ry: -0.6 },
   grove: { x: 16, z: 8.5, ry: -0.5 },
   well: { x: 5.5, z: 6.5, ry: 0 },
-  courtyard: { x: -5, z: 1, ry: 0 },
+  bake: { x: -5, z: 1, ry: 0 },
   fold: { x: -15, z: 6.5, ry: 0.4 },
   workshop: { x: -9, z: 17, ry: 0.5 },
   kiln: { x: 8.5, z: 17.5, ry: -0.5 },

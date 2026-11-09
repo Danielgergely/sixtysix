@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { motion } from 'motion/react'
-import { SPOTS, idleStage, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
+import { SPOTS, idleStage, type BuildingId, type GiftFigure, type PlotState, type YardSpot } from '@sixtysix/shared'
 import { spring, STAGGER } from '../motion'
 import { useT } from '../i18n'
 import { artFor, buildPct, COURTYARD_ART, countdown, spotStatus } from '../screens/home/homeUtil'
@@ -22,13 +22,14 @@ import { YardAmbience, type SpritePoint } from './YardAmbience'
  */
 
 const SCENE = 640
-type Spot = BuildingId | 'courtyard'
+type Spot = YardSpot
 const PLACES: Record<Spot, { x: number; y: number; w: number }> = {
   house: { x: 50, y: 38, w: 31 },
   store: { x: 76, y: 45, w: 19 },
   grove: { x: 84, y: 64, w: 21 },
   well: { x: 62, y: 63, w: 15 },
-  courtyard: { x: 38, y: 56, w: 17 },
+  // The Bakehouse, on the old courtyard.
+  bake: { x: 38, y: 56, w: 17 },
   fold: { x: 17, y: 60, w: 20 },
   workshop: { x: 31, y: 78, w: 19 },
   kiln: { x: 64, y: 80, w: 17 },
@@ -42,6 +43,7 @@ const ART_ASPECT: Record<string, number> = {
   'well-1': 401, 'well-2': 434, 'well-3': 422, 'wall-1': 407, 'wall-2': 454,
   'store-1': 417, 'store-2': 410, 'workshop-1': 414, 'workshop-2': 403,
   'fold-1': 320, 'fold-2': 437, 'grove-1': 473, 'grove-2': 396, 'kiln-1': 367, 'kiln-2': 440,
+  'bake-1': 297, 'bake-2': 393, 'thresh-1': 326, 'thresh-2': 416,
 }
 
 /** A point inside a building's sprite (fractions of its image) in % of the scene; the sprite stands 86% down on its foot point (.ps-spot). */
@@ -71,7 +73,8 @@ export interface PlotSceneProps {
 export function PlotScene({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0 }: PlotSceneProps) {
   const order = useMemo(() => [...SPOTS].sort((a, b) => PLACES[a].y - PLACES[b].y), [])
   const at = useMemo(() => spritePoint(levels), [levels])
-  const building = useMemo(() => plot?.builds.map((b) => b.building) ?? [], [plot?.builds])
+  // Builds in the yard (the valley's have their own scene).
+  const building = useMemo(() => (plot?.builds.map((b) => b.building) ?? []).filter((b): b is YardSpot => (SPOTS as readonly string[]).includes(b)), [plot?.builds])
   const t = useT()
   return (
     <PanZoom
@@ -123,21 +126,17 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
   const tap = onSelect && (() => !wasDragged() && onSelect(spot))
   const enter = { initial: { opacity: 0, y: -14, scale: 0.9 }, animate: { opacity: 1, y: 0, scale: 1 }, transition: { ...spring.bouncy, delay: index * STAGGER } }
 
-  if (spot === 'courtyard') {
-    return (
-      <motion.button className="ps-spot court" style={style} onClick={tap} aria-disabled={!onSelect} {...enter}>
-        <img className="ps-art" src={COURTYARD_ART} alt="" draggable={false} />
-      </motion.button>
-    )
-  }
-
   const b = spot
   const { level, build, waiting, icon, isNew } = spotStatus(b, levels, plot, seen)
   const name = levelName(b, level)
+  // Before the Bakehouse is built its spot is the plain courtyard (not dimmed like an empty site).
+  const court = b === 'bake' && level === 0
+  // The Bakehouse's bread waiting to come out.
+  const bread = b === 'bake' && plot?.bake && plot.bake.endsAt <= now ? plot.bake.bread : 0
 
   return (
     <motion.button
-      className={`ps-spot ${b === 'house' ? 'house' : ''} ${level ? '' : 'empty'} ${build ? 'building' : ''}`}
+      className={`ps-spot ${b === 'house' ? 'house' : ''} ${level || court ? '' : 'empty'} ${court ? 'court' : ''} ${build ? 'building' : ''}`}
       data-tour={b === 'house' ? 'home-house' : undefined}
       style={style}
       onClick={tap}
@@ -145,7 +144,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
       title={name}
       {...enter}
     >
-      <img className="ps-art" src={artFor(b, level)} alt="" draggable={false} />
+      <img className="ps-art" src={court ? COURTYARD_ART : artFor(b, level)} alt="" draggable={false} />
       {build && (
         <span className="ps-build">
           <span className="hp-bar">
@@ -160,6 +159,7 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
           +{waiting} {icon}
         </span>
       )}
+      {!isNew && bread > 0 && <span className="hp-ribbon">+{bread} 🍞</span>}
     </motion.button>
   )
 }
@@ -167,19 +167,9 @@ function SpotView({ spot, index, levels, plot, now, seen, onSelect }: { spot: Sp
 /** A spot's name tag, placed just under its sprite (the sprite's foot is 86% down its height, ~0.9 × its width). */
 function TagView({ spot, levels, plot, onSelect }: { spot: Spot } & Pick<PlotSceneProps, 'levels' | 'plot' | 'onSelect'>) {
   const wasDragged = useWasDragged()
-  const t = useT()
   const place = PLACES[spot]
   const style = { left: `${place.x}%`, top: `${place.y + place.w * 0.1}%` }
   const tap = onSelect && (() => !wasDragged() && onSelect(spot))
-  if (spot === 'courtyard') {
-    return (
-      <button className="ps-tagspot court" style={style} onClick={tap} aria-disabled={!onSelect} tabIndex={-1}>
-        <span className="ps-tag">
-          {t('home.sheet.courtyard')} <small>{t('home.scene.soon')}</small>
-        </span>
-      </button>
-    )
-  }
   const level = levels[spot]
   const build = plot?.builds.find((x) => x.building === spot)
   return (

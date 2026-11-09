@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import type { BuildingId } from '@sixtysix/shared'
+import type { BuildingId, YardSpot } from '@sixtysix/shared'
 
 /**
  * The painted yard's weather and small life, on top of the sprites (world.css,
@@ -12,7 +12,7 @@ import type { BuildingId } from '@sixtysix/shared'
  */
 
 /** A point inside a building's sprite (fractions of the image) → % of the scene. */
-export type SpritePoint = (b: BuildingId, u: number, v: number) => { left: string; top: string }
+export type SpritePoint = (b: YardSpot, u: number, v: number) => { left: string; top: string }
 
 /** Where the effects sit in each sprite (fractions of the painted image). */
 const KILN_CHIMNEY = [0.51, 0.22] as const
@@ -25,7 +25,7 @@ const WELL_GLINTS: Record<number, (readonly [number, number])[]> = {
   5: [[0.33, 0.62], [0.7, 0.6], [0.35, 0.5], [0.66, 0.5]],
 }
 
-export function YardAmbience({ levels, building, at }: { levels: Record<BuildingId, number>; building: BuildingId[]; at: SpritePoint }) {
+export function YardAmbience({ levels, building, at }: { levels: Record<BuildingId, number>; building: YardSpot[]; at: SpritePoint }) {
   const ref = useRef<HTMLDivElement>(null)
   // Pause everything while the yard is scrolled away or the tab hidden.
   useEffect(() => {

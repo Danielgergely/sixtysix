@@ -25,6 +25,42 @@ import {
   isGiftFigure,
   takeGift,
   GIFT_FIGURES,
+  GLEAN,
+  BUILD_BREAD,
+  CROPS,
+  DESTINATIONS,
+  FEED_BARLEY,
+  FIELD_IDS,
+  ROAD_QUESTIONS,
+  bakeCost,
+  bakeError,
+  breadCut,
+  expeditionError,
+  expeditionPlan,
+  feedBuilders,
+  feedError,
+  feedFold,
+  giveFirstField,
+  glean,
+  gleanError,
+  harvest,
+  isCrop,
+  isDestination,
+  isField,
+  seedMissing,
+  sellable,
+  shortOf,
+  sow,
+  sowError,
+  startBake,
+  takeBread,
+  unload,
+  type Bake,
+  type Crop,
+  type DestinationId,
+  type Expedition,
+  type FieldId,
+  type Glean,
   type GiftLog,
   type AccountProfile,
   type BuildingId,
@@ -33,7 +69,7 @@ import {
   type PlotState,
   type ScrollQuestion,
 } from '@sixtysix/shared'
-import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userFromRequest, type UserRow } from './accounts.js'
+import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userByName, userFromRequest, type UserRow } from './accounts.js'
 import { pickQuestions, referenceIn, shuffle } from './bank.js'
 
 /**
@@ -50,6 +86,17 @@ const MAX_TRADE = 10_000
 // ── load / save ───────────────────────────────────────────────────────
 
 const num = (v: unknown, fallback = 0) => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? v : fallback)
+const obj = (v: unknown): Record<string, unknown> | undefined => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : undefined)
+const materials = (v: unknown): Materials => {
+  const o = obj(v) ?? {}
+  const out: Materials = {}
+  for (const m of MATERIALS) if (num(o[m])) out[m] = Math.floor(num(o[m]))
+  return out
+}
+const parseGlean = (v: unknown): Glean | undefined => {
+  const o = obj(v)
+  return o ? { day: Math.floor(num(o.day)), n: Math.floor(num(o.n)) } : undefined
+}
 
 /** Parse a stored plot defensively: unknown keys dropped, missing ones defaulted. */
 function parsePlot(raw: string, now: number): PlotState {
@@ -73,6 +120,29 @@ function parsePlot(raw: string, now: number): PlotState {
     for (const f of GIFT_FIGURES) if (p.gifts.last?.[f] !== undefined) last[f] = num(p.gifts.last[f])
     base.gifts = { day: Math.floor(num(p.gifts.day)), n: Math.floor(num(p.gifts.n)), last }
   }
+  // The valley and the workers (shared/src/farm.ts).
+  const crops = obj(p.crops)
+  if (crops) {
+    base.crops = {}
+    for (const f of FIELD_IDS) {
+      const c = obj(crops[f])
+      if (c && isCrop(c.crop) && num(c.readyAt)) base.crops[f] = { crop: c.crop, sownAt: num(c.sownAt), readyAt: num(c.readyAt), amount: Math.floor(num(c.amount)) } satisfies Crop
+    }
+  }
+  const bake = obj(p.bake)
+  if (bake && isCrop(bake.grain) && num(bake.endsAt))
+    base.bake = { grain: bake.grain, amount: Math.floor(num(bake.amount)), bread: Math.floor(num(bake.bread)), startedAt: num(bake.startedAt), endsAt: num(bake.endsAt) } satisfies Bake
+  if (p.fedUntil !== undefined) base.fedUntil = num(p.fedUntil)
+  if (Array.isArray(p.expeditions)) {
+    base.expeditions = p.expeditions.flatMap((e): Expedition[] => {
+      const o = obj(e)
+      if (!o || typeof o.id !== 'string' || !isDestination(o.dest) || !num(o.endsAt)) return []
+      return [{ id: o.id, dest: o.dest, workers: Math.floor(num(o.workers)), startedAt: num(o.startedAt), endsAt: num(o.endsAt), right: Math.floor(num(o.right)), haul: materials(o.haul) }]
+    })
+  }
+  base.glean = parseGlean(p.glean)
+  base.gleaned = parseGlean(p.gleaned)
+  if (p.fieldGift === true) base.fieldGift = true
   return base
 }
 
@@ -99,7 +169,12 @@ function load(req: FastifyRequest): Ctx | undefined {
   // Skill effects (Builder / Steward) for every rule in shared/plot.ts; the app sees them too.
   plot.mods = plotMods(profile.skills?.ranks)
   advance(plot, now)
-  return { row, profile, plot, now }
+  const ctx = { row, profile, plot, now }
+  // The valley opened: homesteads already at House 3 get Field 1 cleared and sown, once.
+  const had = plot.fieldGift
+  giveFirstField(plot, now)
+  if (plot.fieldGift !== had) savePlot(ctx)
+  return ctx
 }
 
 function savePlot(c: Ctx): void {
@@ -165,6 +240,42 @@ interface PendingScroll {
   expiresAt: number
 }
 const scrolls = new Map<number, PendingScroll>()
+
+/** Road questions for a team about to set out (one open set per player, like the scroll). */
+interface PendingRoad {
+  id: string
+  dest: DestinationId
+  workers: number
+  questions: ScrollQuestion[]
+  correct: number[]
+  expiresAt: number
+}
+const roads = new Map<number, PendingRoad>()
+
+/** Questions from the bank as sent to a player: answers shuffled, no bank ids. */
+function asked(qs: ReturnType<typeof pickQuestions>, locale: ReturnType<typeof cleanLocale>) {
+  const correct: number[] = []
+  const questions: ScrollQuestion[] = qs.map((q, i) => {
+    const order = shuffle([0, 1, 2, 3])
+    correct.push(order.indexOf(q.correctIndex))
+    const { text, answers } = questionIn(q, locale)
+    return { id: String(i), reference: referenceIn(q, locale), text, answers: order.map((k) => answers[k]) as ScrollQuestion['answers'] }
+  })
+  return { questions, correct }
+}
+
+const asField = (v: unknown): FieldId | undefined => (typeof v === 'string' && isField(v as BuildingId) ? (v as FieldId) : undefined)
+
+/** Pay for missing materials (when the player allows it): false when there aren't enough coins. */
+function buyShort(c: Ctx, cost: Materials, allowed: boolean, extraCoins = 0): 'ok' | 'materials' | 'coins' {
+  const { missing, coins } = shortOf(c.plot, cost)
+  if (coins > 0 && !allowed) return 'materials'
+  if (c.profile.coins < coins + extraCoins) return 'coins'
+  c.profile.coins -= coins
+  for (const m of MATERIALS) c.plot.inventory[m] += missing[m] ?? 0
+  return 'ok'
+}
+const shortError = (r: 'materials' | 'coins') => fail(r === 'coins' ? 'Not enough coins' : 'Not enough materials')
 /** When each player last answered a scroll (cooldown). */
 const lastScroll = new Map<number, number>()
 const SCROLL_TTL_MS = 10 * 60_000
@@ -194,6 +305,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     const m = asMaterial(body.material)
     const qty = asQty(body.qty)
     if (!m || !qty) return fail('Unknown material or amount')
+    if (!sellable(m)) return fail('The Market doesn’t buy that')
     if (c.plot.inventory[m] < qty) return fail(`You only have ${c.plot.inventory[m]} ${MATERIAL_INFO[m].name.toLowerCase()}`)
     c.plot.inventory[m] -= qty
     c.profile.coins += sellPrice(m, qty, modsOf(c.plot))
@@ -210,9 +322,11 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (check.busy) return fail('Already being built')
     if (!check.reqsMet) return fail(`Needs ${check.reqs.filter((r) => !r.met).map((r) => r.label).join(', ')}`)
     if (!check.freeBuilder) return fail('Your builders are all busy')
+    if (check.missingCoins > 0 && body.buyMissing !== true) return fail('Not enough materials')
+    // The land's price (fields), and whatever is missing when buying it.
+    if (c.profile.coins < check.price + check.missingCoins) return fail('Not enough coins')
+    c.profile.coins -= check.price
     if (check.missingCoins > 0) {
-      if (body.buyMissing !== true) return fail('Not enough materials')
-      if (c.profile.coins < check.missingCoins) return fail('Not enough coins')
       c.profile.coins -= check.missingCoins
       for (const m of MATERIALS) c.plot.inventory[m] += check.missing[m] ?? 0
     }
@@ -221,16 +335,168 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     c.plot.builds.push({ building: b, toLevel: check.toLevel, startedAt: c.now, endsAt: c.now + ms })
     advance(c.plot, c.now) // a zero-minute level would finish at once
     save(c)
-    return view(c, { spent: check.missingCoins })
+    return view(c, { spent: check.missingCoins + check.price })
   })
 
   /** Collect one producer (`building`) or all of them. */
   route(app, 'post', '/api/plot/collect', (c, body) => {
     const only = body.building === undefined ? undefined : asBuilding(body.building)
     if (body.building !== undefined && !only) return fail('Unknown building')
-    const collected: Materials = collect(c.plot, only)
+    const collected: Materials = only === 'bake' ? {} : collect(c.plot, only)
+    // "Collect all" (or the Bakehouse) also takes out baked bread.
+    if (!only || only === 'bake') {
+      const bread = takeBread(c.plot, c.now)
+      if (bread) collected.bread = bread
+    }
     save(c)
     return view(c, { collected })
+  })
+
+  // ── the valley (shared/src/farm.ts) ─────────────────────────────────
+
+  /** Sow a field: { field, crop, buyMissing? } (the seed can be bought at the Market). */
+  route(app, 'post', '/api/plot/sow', (c, body) => {
+    const field = asField(body.field)
+    if (!field || !isCrop(body.crop)) return fail('Unknown field or crop')
+    const why = sowError(c.plot, field)
+    if (why === 'notCleared') return fail('Clear the field first')
+    if (why === 'growing') return fail('Something is already growing there')
+    const paid = buyShort(c, { [body.crop]: CROPS[body.crop].seed }, body.buyMissing === true)
+    if (paid !== 'ok') return shortError(paid)
+    sow(c.plot, field, body.crop, c.now)
+    save(c)
+    return view(c)
+  })
+
+  /** Bring in one ripe field ({ field }) or all of them. */
+  route(app, 'post', '/api/plot/harvest', (c, body) => {
+    const field = body.field === undefined ? undefined : asField(body.field)
+    if (body.field !== undefined && !field) return fail('Unknown field')
+    const collected = harvest(c.plot, c.now, field)
+    if (!Object.keys(collected).length) return fail('Nothing is ripe yet')
+    savePlot(c) // materials only
+    return view(c, { collected })
+  })
+
+  /** Put a batch in the Bakehouse: { grain, amount, buyMissing? }. */
+  route(app, 'post', '/api/plot/bake', (c, body) => {
+    if (!isCrop(body.grain)) return fail('Unknown grain')
+    const amount = Number(body.amount)
+    const why = bakeError(c.plot, amount)
+    if (why === 'notBuilt') return fail('Build the Bakehouse first')
+    if (why === 'busy') return fail('The oven is busy')
+    if (why === 'amount') return fail('That batch doesn’t fit the oven')
+    const paid = buyShort(c, bakeCost(body.grain, amount).cost, body.buyMissing === true)
+    if (paid !== 'ok') return shortError(paid)
+    startBake(c.plot, body.grain, amount, c.now)
+    save(c)
+    return view(c)
+  })
+
+  /** Barley for the flock ({ target: 'fold' }) or bread for the builders ({ target: 'build', building }). */
+  route(app, 'post', '/api/plot/feed', (c, body) => {
+    if (body.target === 'fold') {
+      const why = feedError(c.plot, c.now)
+      if (why === 'noFold') return fail('Build the sheepfold first')
+      if (why === 'full') return fail('The flock has had enough for now')
+      const paid = buyShort(c, { barley: FEED_BARLEY }, body.buyMissing === true)
+      if (paid !== 'ok') return shortError(paid)
+      feedFold(c.plot, c.now)
+      save(c)
+      return view(c)
+    }
+    if (body.target === 'build') {
+      const b = asBuilding(body.building)
+      const build = c.plot.builds.find((x) => x.building === b)
+      if (!build) return fail('That building is not being built')
+      if (breadCut(build, c.now) <= 0) return fail('The builders can’t go any faster')
+      const paid = buyShort(c, { bread: BUILD_BREAD }, body.buyMissing === true)
+      if (paid !== 'ok') return shortError(paid)
+      const cutMs = feedBuilders(c.plot, build, c.now)
+      advance(c.plot, c.now)
+      save(c)
+      return view(c, { building: build.building, cutMs })
+    }
+    return fail('Feed whom?')
+  })
+
+  /**
+   * Expeditions, step 1: { dest, workers, locale } → three road questions from
+   * the destination's book. Nothing is paid yet. One open set per player.
+   */
+  route(app, 'post', '/api/plot/expedition', (c, body) => {
+    if (!isDestination(body.dest)) return fail('Unknown destination')
+    const workers = Number(body.workers)
+    const why = expeditionError(c.plot, body.dest, workers)
+    if (why === 'house') return fail('Your house isn’t big enough to hire for that yet')
+    if (why === 'count') return fail('That many workers can’t go there')
+    if (why === 'workers') return fail('Not enough free workers')
+    const open = roads.get(c.row.id)
+    if (open && open.expiresAt > c.now && open.dest === body.dest && open.workers === workers) return view(c, { roadId: open.id, questions: open.questions })
+    const qs = pickQuestions(ROAD_QUESTIONS, { difficulty: 'mixed', book: DESTINATIONS[body.dest].book })
+    // A book without enough questions: any questions will do.
+    const all = qs.length < ROAD_QUESTIONS ? pickQuestions(ROAD_QUESTIONS, { difficulty: 'mixed' }) : qs
+    if (all.length < ROAD_QUESTIONS) return fail('No questions available')
+    const { questions, correct } = asked(all, cleanLocale(body.locale))
+    const pending: PendingRoad = { id: randomBytes(9).toString('base64url'), dest: body.dest, workers, questions, correct, expiresAt: c.now + SCROLL_TTL_MS }
+    roads.set(c.row.id, pending)
+    return view(c, { roadId: pending.id, questions })
+  })
+
+  /** Step 2: { roadId, answers (−1 = skipped), buyMissing? } → wages and provisions paid, the team sets out. */
+  route(app, 'post', '/api/plot/expedition/start', (c, body) => {
+    const pending = roads.get(c.row.id)
+    if (!pending || pending.id !== body.roadId || pending.expiresAt < c.now) return fail('These questions have expired')
+    const answers = Array.isArray(body.answers) ? body.answers : []
+    if (answers.length !== ROAD_QUESTIONS || !answers.every((a) => Number.isInteger(a) && a >= -1 && a <= 3)) return fail('Answer all three questions')
+    const why = expeditionError(c.plot, pending.dest, pending.workers)
+    if (why) return fail('Not enough free workers')
+    const right = pending.correct.filter((ci, i) => answers[i] === ci).length
+    const plan = expeditionPlan(pending.dest, pending.workers, right)
+    const paid = buyShort(c, plan.provisions, body.buyMissing === true, plan.wages)
+    if (paid !== 'ok') return shortError(paid)
+    roads.delete(c.row.id) // one use per set
+    c.profile.coins -= plan.wages
+    for (const m of MATERIALS) c.plot.inventory[m] -= plan.provisions[m] ?? 0
+    const e: Expedition = {
+      id: randomBytes(6).toString('base64url'),
+      dest: pending.dest,
+      workers: pending.workers,
+      startedAt: c.now,
+      endsAt: c.now + plan.minutes * 60_000,
+      right,
+      haul: plan.haul,
+    }
+    c.plot.expeditions = [...(c.plot.expeditions ?? []), e]
+    save(c)
+    return view(c, { right, correct: pending.correct, references: pending.questions.map((q) => q.reference), expedition: e.id })
+  })
+
+  /** A team is back: { id } → its haul into the inventory. */
+  route(app, 'post', '/api/plot/expedition/unload', (c, body) => {
+    const got = typeof body.id === 'string' ? unload(c.plot, body.id, c.now) : null
+    if (!got) return fail('That team isn’t back yet')
+    savePlot(c)
+    return view(c, { collected: got })
+  })
+
+  /** Gleaning (Ruth 2): { username } → a little barley for you and for them, once a day. */
+  route(app, 'post', '/api/plot/glean', (c, body) => {
+    const owner = typeof body.username === 'string' ? userByName(body.username) : undefined
+    if (!owner) return fail('No such player')
+    if (owner.id === c.row.id) return fail('These are your own fields')
+    const stored = db.prepare('SELECT state FROM plots WHERE user_id = ?').get(owner.id) as { state: string } | undefined
+    if (!stored) return fail('They have no fields yet')
+    const theirs = parsePlot(stored.state, c.now)
+    const why = gleanError(c.plot, theirs, c.now)
+    if (why === 'noFields') return fail('They have no fields yet')
+    if (why === 'visitorDone') return fail('You have gleaned enough for today')
+    if (why === 'ownerFull') return fail('Their fields have had enough gleaners today')
+    glean(c.plot, theirs, c.now)
+    // Their plot is written as stored, only with the barley and the count added (no production run).
+    db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(theirs), owner.id)
+    savePlot(c)
+    return view(c, { collected: { barley: GLEAN.visitor } })
   })
 
   /**
@@ -247,13 +513,7 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (wait > 0) return fail(`The workers are resting — next scroll in ${Math.ceil(wait / 1000)} s`)
     const qs = pickQuestions(SCROLL_QUESTIONS, { difficulty: 'mixed' })
     if (qs.length < SCROLL_QUESTIONS) return fail('No questions available')
-    const correct: number[] = []
-    const questions: ScrollQuestion[] = qs.map((q, i) => {
-      const order = shuffle([0, 1, 2, 3])
-      correct.push(order.indexOf(q.correctIndex))
-      const { text, answers } = questionIn(q, locale)
-      return { id: String(i), reference: referenceIn(q, locale), text, answers: order.map((k) => answers[k]) as ScrollQuestion['answers'] }
-    })
+    const { questions, correct } = asked(qs, locale)
     const pending: PendingScroll = { id: randomBytes(9).toString('base64url'), questions, correct, expiresAt: c.now + SCROLL_TTL_MS }
     scrolls.set(c.row.id, pending)
     return view(c, { scrollId: pending.id, questions })

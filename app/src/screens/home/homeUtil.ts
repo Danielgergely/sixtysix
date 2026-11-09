@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MATERIAL_INFO, PRODUCERS, levelDef, ready, type BuildingId, type PlotState } from '@sixtysix/shared'
+import { FIELD_IDS, MATERIAL_INFO, PRODUCERS, levelDef, ready, type BuildingId, type FieldId, type PlotState } from '@sixtysix/shared'
 
 /** Re-render every `ms` (timers, production). */
 export function useTick(ms = 1000): number {
@@ -31,7 +31,12 @@ const BUILDING_ART: Record<BuildingId, string[]> = {
   fold: ['fold-1', 'fold-1', 'fold-2', 'fold-2', 'fold-2'].map(art),
   grove: ['grove-1', 'grove-1', 'grove-2', 'grove-2', 'grove-2'].map(art),
   kiln: ['kiln-1', 'kiln-2', 'kiln-2', 'kiln-2'].map(art),
+  bake: ['bake-1', 'bake-1', 'bake-2', 'bake-2'].map(art),
+  thresh: ['thresh-1', 'thresh-2', 'thresh-2', 'thresh-2'].map(art),
+  // Fields are their beds in the valley (FieldScene); sheets and the next step show the soil, the young crop, the ripe one.
+  ...(Object.fromEntries(FIELD_IDS.map((f) => [f, ['soil', 'shoots', 'wheat'].map((n) => `/art/fields-${n}.webp`)])) as Record<FieldId, string[]>),
 }
+/** The empty courtyard, where the Bakehouse will stand. */
 export const COURTYARD_ART = art('courtyard')
 
 /** The picture for a building at a level; level 0 shows level 1 (the caller dims it). */

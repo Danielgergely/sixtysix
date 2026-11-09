@@ -54,6 +54,8 @@ export interface PickOptions {
   withImpossible?: boolean
   /** Ids to avoid (recently played by this host); used only while enough remain. */
   exclude?: Set<string>
+  /** Only questions whose reference is in this book (its English name, e.g. "1 Kings"). */
+  book?: string
 }
 
 /** Fisher–Yates, in place (returns `xs`). */
@@ -70,7 +72,12 @@ export function pickQuestions(count: number, opts: PickOptions = {}): Question[]
   const [min, max] = difficultyRange(opts.difficulty, opts.withImpossible)
   const cats = opts.categories?.length ? new Set(opts.categories) : null
   const eligible = BANK.filter(
-    (q) => q.difficulty >= min && q.difficulty <= max && (!cats || cats.has(q.category)) && !outOfPlay.has(q.id),
+    (q) =>
+      q.difficulty >= min &&
+      q.difficulty <= max &&
+      (!cats || cats.has(q.category)) &&
+      !outOfPlay.has(q.id) &&
+      (!opts.book || q.reference.startsWith(opts.book + ' ')),
   )
   // Prefer unseen questions; top up with seen ones once the fresh pool runs dry.
   const fresh = shuffle(eligible.filter((q) => !opts.exclude?.has(q.id)))

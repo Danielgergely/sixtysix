@@ -4,6 +4,7 @@ import {
   MATERIALS,
   PRODUCERS,
   checkUpgrade,
+  isField,
   levelDef,
   modsOf,
   ready,
@@ -17,33 +18,18 @@ import { PaintedCoin } from '../../art/PaintedPortrait'
 import { fireConfetti } from '../../motion'
 import { t as tNow, tServer, useLocale, useT } from '../../i18n'
 import { artFor, buildPct, COURTYARD_ART, countdown } from './homeUtil'
+import { BakePanel, BreadButton, CropPanel, FeedPanel } from './FarmPanels'
 import { buildingName, buildingWhat, formatMinutes, levelName, listMaterials, materialAmount, materialName, requirementLabels } from './plotText'
 import { rich } from './rich'
 import { Sheet } from './parts'
 
 /** Bottom sheet for one spot: what it does, the next level, and the Upgrade / Buy-missing buttons. */
-export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId | 'courtyard'; plot: PlotState; onClose: () => void }) {
+export function BuildingSheet({ spot, plot, onClose }: { spot: BuildingId; plot: PlotState; onClose: () => void }) {
   const t = useT()
   return (
     <Sheet closeTitle={t('home.close')} onClose={onClose}>
-      {spot === 'courtyard' ? <Courtyard /> : <Building b={spot} plot={plot} />}
+      <Building b={spot} plot={plot} />
     </Sheet>
-  )
-}
-
-function Courtyard() {
-  const t = useT()
-  return (
-    <div className="hp-sheet-body">
-      <div className="hp-sheet-head">
-        <img className="hp-sheet-art" src={COURTYARD_ART} alt="" />
-        <div>
-          <h3>{t('home.sheet.courtyard')}</h3>
-          <small>{t('home.sheet.decorations')}</small>
-        </div>
-      </div>
-      <p className="hp-what">{t('home.sheet.courtyardWhat')}</p>
-    </div>
   )
 }
 
@@ -57,7 +43,10 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
   const cur = levelDef(b, level)
   const c = checkUpgrade(plot, b)
   const build = plot.builds.find((x) => x.building === b)
-  const art = artFor(b, Math.max(1, level))
+  // Before it is built, the Bakehouse's spot is the courtyard; a field shows its soil.
+  const art = b === 'bake' && !level ? COURTYARD_ART : artFor(b, Math.max(1, level))
+  const t0 = now()
+  const price = c.price
   const make = cur?.make
   const waiting = PRODUCERS.includes(b) ? ready(plot, b) : 0
   const reqLabels = requirementLabels(plot, c)
@@ -79,7 +68,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
   return (
     <div className="hp-sheet-body">
       <div className="hp-sheet-head">
-        <img className={`hp-sheet-art ${level ? '' : 'empty'}`} src={art} alt="" />
+        <img className={`hp-sheet-art ${level || b === 'bake' ? '' : 'empty'} ${isField(b) ? 'field' : ''}`} src={art} alt="" />
         <div>
           <h3>{buildingName(b)}</h3>
           <small>{cur ? t('home.sheet.level', { level, name: levelName(b, level) }) : t('home.sheet.notBuilt')}</small>
@@ -107,6 +96,19 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           </button>
         </div>
       )}
+      {isField(b) && level >= 1 && <CropPanel field={b} plot={plot} now={t0} />}
+      {isField(b) && cur?.yield && cur.yield > 1 && (
+        <div className="hp-row-box">
+          <span>{rich(t('home.farm.fieldYield', { n: cur.yield }))}</span>
+        </div>
+      )}
+      {b === 'thresh' && cur?.grainBonus ? (
+        <div className="hp-row-box">
+          <span>{rich(t('home.farm.threshBonus', { n: Math.round(cur.grainBonus * 100) }))}</span>
+        </div>
+      ) : null}
+      {b === 'bake' && level >= 1 && <BakePanel plot={plot} now={t0} />}
+      {b === 'fold' && level >= 1 && <FeedPanel plot={plot} now={t0} />}
       {b === 'well' && cur?.water && (
         <div className="hp-row-box">
           <span>{rich(t('home.sheet.well', { n: cur.water }))}</span>
@@ -133,6 +135,7 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           <button className="hp-btn" disabled={busy} onClick={() => void startScroll()}>
             {t('home.sheet.scroll', { n: modsOf(plot).scrollMin })}
           </button>
+          <BreadButton b={b} build={build} now={t0} />
         </div>
       ) : c.maxed ? (
         <p className="hp-what done">{t('home.sheet.complete')}</p>
@@ -142,6 +145,15 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
           <div className="hp-next-level">
             <h4>{t('home.sheet.nextLevel', { level: c.toLevel, name: levelName(b, c.toLevel) })}</h4>
             <ul className="hp-cost">
+              {price > 0 && (
+                <li className={coins >= price ? 'ok' : 'short'}>
+                  <span>
+                    <PaintedCoin size={16} />
+                  </span>
+                  <span className="hp-cost-name">{t('home.farm.land')}</span>
+                  <b>{price.toLocaleString(locale)}</b>
+                </li>
+              )}
               {MATERIALS.filter((m) => c.cost[m]).map((m) => {
                 const have = plot.inventory[m]
                 const need = c.cost[m] ?? 0
@@ -166,16 +178,16 @@ function Building({ b, plot }: { b: BuildingId; plot: PlotState }) {
               <li className="ok">{t('home.sheet.buildTime', { time: c.minutes ? formatMinutes(c.minutes) : t('home.sheet.instant') })}</li>
             </ul>
             <div className="hp-sheet-btns">
-              {c.missingCoins === 0 ? (
+              {c.missingCoins === 0 && price === 0 ? (
                 <button className="hp-btn gold big" disabled={busy || !c.reqsMet || !c.freeBuilder} onClick={() => void start(false)}>
-                  {t('home.sheet.upgrade')}
+                  {t(isField(b) && !level ? 'home.farm.clear' : 'home.sheet.upgrade')}
                 </button>
               ) : (
-                <button className="hp-btn gold big" disabled={busy || !c.reqsMet || !c.freeBuilder || coins < c.missingCoins} onClick={() => void start(true)}>
-                  {t('home.sheet.buyBuild')} <PaintedCoin size={18} /> {c.missingCoins.toLocaleString(locale)}
+                <button className="hp-btn gold big" disabled={busy || !c.reqsMet || !c.freeBuilder || coins < c.missingCoins + price} onClick={() => void start(c.missingCoins > 0)}>
+                  {t(c.missingCoins ? (price ? 'home.farm.buyAll' : 'home.sheet.buyBuild') : 'home.farm.buyLand')} <PaintedCoin size={18} /> {(c.missingCoins + price).toLocaleString(locale)}
                 </button>
               )}
-              {c.missingCoins > coins && <small className="hp-short">{t('home.sheet.short', { count: coins, n: coins.toLocaleString(locale) })}</small>}
+              {c.missingCoins + price > coins && <small className="hp-short">{t('home.sheet.short', { count: coins, n: coins.toLocaleString(locale) })}</small>}
             </div>
           </div>
         )

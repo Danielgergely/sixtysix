@@ -1,10 +1,15 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import {
+  FARM_MATERIALS,
   IDLE_DAYS,
   MATERIAL_INFO,
   MATERIALS,
   PRODUCERS,
+  CROPS,
+  CROP_IDS,
+  ripeFields,
+  seasonAt,
   builderCount,
   idleStage,
   modsOf,
@@ -29,6 +34,8 @@ import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
 import { PlotView } from '../../world/PlotView'
+import { FieldScene } from '../../world/FieldScene'
+import { ExpeditionsView, RoadSheet } from './ExpeditionsView'
 import { useIntro } from '../../tutorial/useIntro'
 
 /** My Home in Jerusalem: the plot with its nine spots (docs/jerusalem-plot.md). */
@@ -36,7 +43,7 @@ export function HomeScreen() {
   const lastTab = useGameStore((s) => s.lastTab)
   const goTo = useGameStore((s) => s.goTo)
   const account = useAccountStore((s) => s.account)
-  const { plot: raw, loading, error, load, select, selected, scroll, seen, openMarket } = usePlotStore()
+  const { plot: raw, loading, error, load, select, selected, scroll, road, seen, openMarket, view } = usePlotStore()
   const t = useT()
   useTick(1000)
   const plot = usePlotStore.getState().projected()
@@ -87,15 +94,23 @@ export function HomeScreen() {
       {plot && (
         <>
           <Summary plot={plot} />
-          <WeedsNote />
-          <NextStep plot={plot} />
-          <HomeScene plot={plot} now={now} seen={seen} />
-          <Actions plot={plot} />
-          <p className="tab-note hp-foot">{t('home.foot')}</p>
+          <Views plot={plot} />
+          {view === 'yard' && (
+            <>
+              <WeedsNote />
+              <NextStep plot={plot} />
+              <HomeScene plot={plot} now={now} seen={seen} />
+              <Actions plot={plot} />
+            </>
+          )}
+          {view === 'fields' && <Fields plot={plot} now={now} />}
+          {view === 'expeditions' && <ExpeditionsView plot={plot} now={now} />}
+          <p className="tab-note hp-foot">{t(view === 'fields' ? 'home.farm.foot' : view === 'expeditions' ? 'home.exp.foot' : 'home.foot')}</p>
         </>
       )}
       <AnimatePresence>{selected && plot && <BuildingSheet key="sheet" spot={selected} plot={plot} onClose={() => select(null)} />}</AnimatePresence>
       <AnimatePresence>{scroll && <ScrollSheet key="scroll" />}</AnimatePresence>
+      <AnimatePresence>{road && <RoadSheet key="road" />}</AnimatePresence>
       <Toast />
     </div>
   )
@@ -113,7 +128,8 @@ function Summary({ plot }: { plot: PlotState }) {
         <span title={t('home.summary.buildersTitle')}>{rich(t('home.summary.builders', { busy: plot.builds.length, count: builders }))}</span>
       </div>
       <div className="hp-inv">
-        {MATERIALS.map((m) => (
+        {/* Grain, bread and copper once the valley is open (or there is some). */}
+        {MATERIALS.filter((m) => !FARM_MATERIALS.includes(m) || plot.levels.field1 > 0 || plot.inventory[m] > 0).map((m) => (
           <span key={m} className={`hp-mat ${plot.inventory[m] ? '' : 'none'}`} title={materialName(m)}>
             <i>{MATERIAL_INFO[m].icon}</i>
             {plot.inventory[m]}
@@ -121,6 +137,77 @@ function Summary({ plot }: { plot: PlotState }) {
         ))}
       </div>
     </div>
+  )
+}
+
+/** Homestead · Fields · Expeditions. The valley opens at House 3, the workers at House 4 (shown locked before). */
+function Views({ plot }: { plot: PlotState }) {
+  const { view, setView } = usePlotStore()
+  const t = useT()
+  const ripe = ripeFields(plot, usePlotStore.getState().now()).length
+  const back = (plot.expeditions ?? []).filter((e) => e.endsAt <= usePlotStore.getState().now()).length
+  const tabs = [
+    { id: 'yard', label: t('home.views.yard'), badge: 0, locked: false },
+    { id: 'fields', label: t('home.views.fields'), badge: ripe, locked: plot.levels.house < 3 },
+    { id: 'expeditions', label: t('home.views.expeditions'), badge: back, locked: plot.levels.house < 4 },
+  ] as const
+  return (
+    <div className="hp-views" role="tablist" data-tour="home-views">
+      {tabs.map((v) => (
+        <button
+          key={v.id}
+          role="tab"
+          aria-selected={view === v.id}
+          className={`hp-view ${view === v.id ? 'on' : ''} ${v.locked ? 'locked' : ''}`}
+          onClick={() => (v.locked ? usePlotStore.getState().say(tNow(v.id === 'fields' ? 'home.views.fieldsLocked' : 'home.views.expLocked')) : setView(v.id))}
+        >
+          {v.label}
+          {v.badge > 0 && <span className="hp-view-badge">{v.badge}</span>}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+/** The valley: the season, the painted fields, and Harvest all. */
+function Fields({ plot, now }: { plot: PlotState; now: number }) {
+  const t = useT()
+  const { select, busy, harvest, startScroll, say, error } = usePlotStore()
+  const { season, endsAt } = seasonAt(now)
+  const good = CROP_IDS.filter((c) => CROPS[c].seasons.includes(season))
+  const ripe = ripeFields(plot, now)
+  const total = ripe.reduce((n, f) => n + (plot.crops?.[f]?.amount ?? 0), 0)
+  return (
+    <>
+      <div className="hp-next hp-season">
+        <span className="hp-next-art season">{t(`home.farm.season.${season}.icon`)}</span>
+        <span className="hp-next-text">
+          <small>{t('home.farm.seasonLabel', { days: Math.max(1, Math.ceil((endsAt - now) / 86_400_000)) })}</small>
+          <strong>{t(`home.farm.season.${season}.name`)}</strong>
+          <span>{good.length ? t('home.farm.seasonGood', { list: good.map((c) => `${MATERIAL_INFO[c].icon} ${materialName(c)}`).join(', ') }) : t('home.farm.seasonNone')}</span>
+        </span>
+      </div>
+      <FieldScene plot={plot} now={now} onSelect={(b) => select(b)} />
+      <div className="hp-actions">
+        {error && <p className="hp-error">{tServer(error)}</p>}
+        <button
+          className="hp-btn gold"
+          disabled={busy || !ripe.length}
+          onClick={async () => {
+            const got = await harvest()
+            if (got) {
+              say(tNow('home.farm.harvested', { list: listMaterials(got) }))
+              fireConfetti({ y: 0.5, count: 60 })
+            }
+          }}
+        >
+          {ripe.length ? t('home.farm.harvestAll', { n: total }) : t('home.farm.harvestNone')}
+        </button>
+        <button className="hp-btn" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()}>
+          {t('home.actions.scroll')} <small>{t('home.actions.scrollCut', { n: modsOf(plot).scrollMin })}</small>
+        </button>
+      </div>
+    </>
   )
 }
 
@@ -175,7 +262,7 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
       now={now}
       seen={seen}
       onSelect={(spot) => {
-        if (spot !== 'courtyard') markSeen(spot)
+        markSeen(spot)
         select(spot)
       }}
       onGift={async (figure) => {
@@ -191,7 +278,9 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
 function Actions({ plot }: { plot: PlotState }) {
   const { busy, collect, startScroll, say, error } = usePlotStore()
   const t = useT()
-  const waiting = PRODUCERS.reduce((n, b) => n + ready(plot, b), 0)
+  // Production waiting, and baked bread to take out.
+  const bread = plot.bake && plot.bake.endsAt <= usePlotStore.getState().now() ? plot.bake.bread : 0
+  const waiting = PRODUCERS.reduce((n, b) => n + ready(plot, b), 0) + bread
   const cut = modsOf(plot).scrollMin
   return (
     <div className="hp-actions">

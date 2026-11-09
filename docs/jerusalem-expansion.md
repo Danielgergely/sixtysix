@@ -524,6 +524,60 @@ week is kept.
 
 ---
 
+## 7a. Built: release 1 (fields, bread, the quarry and the copper mines)
+
+What shipped, and where it differs from the proposal above (the code is the
+source: `shared/src/plot.ts` for buildings and levels, `shared/src/farm.ts`
+for crops, baking, feeding, workers, expeditions and gleaning, the routes in
+`server/src/plot.ts`):
+
+- **No merchant's purse** (owner's decision 1). Grain, bread and copper can't
+  be sold (`MATERIAL_INFO.sell` 0, `sellable`); everything else sells as before.
+- **Field 1 is free for everyone** (its land costs 0, the 2 h clearing is
+  free); homesteads already at House 3 got it cleared and sown with barley
+  once (`giveFirstField`, `PlotState.fieldGift`). Clearing any field turns up
+  10 stone; Field 1 brings the old threshing floor.
+- **Seasons: a fast year**, one season a week from Monday 9 Nov 2026
+  (`seasonAt`): sowing (barley, wheat), the late rains (wheat), the barley
+  harvest (barley), summer (none). Sown in season: +50 %.
+- **Crops:** barley 12 h → 20 (seed 4), wheat 24 h → 30 (seed 5), × the
+  field's level (1 / 1.5 / 2) × the floor (+0…30 %) × the season, fixed at
+  sowing. Ripe grain waits.
+- **Bread:** 10 barley → 8 bread, 10 wheat → 12 bread, 2 wood per 10 grain;
+  one batch at a time. Bread for the builders: 10 bread, −10 % of the build,
+  within the half-time cap shared with the scroll. Barley for the flock: 10,
+  +50 % wool for a day, at most two days ahead.
+- **Higher levels** for the homestead (bread and copper): Well 6
+  (Hezekiah's tunnel, **22 water**: with everything at the top the flock,
+  grove, kiln and six irrigated fields need 21), Storehouse 6, Workshop 6,
+  Sheepfold 6, Olive grove 6, Kiln 5. They reuse the top painted stage and,
+  in the 3D yard, the top model.
+- **Workers:** one per house level from House 4 (1…4). **Quarry** 8 h,
+  1–4 workers, 2 bread + 15 coins each → 8 stone each (the wage was raised
+  from 10 so quarried stone isn't a way to coins while stone still sells).
+  **Copper mines** 24 h, 2–4 workers, 4 bread + 1 oil + 20 coins each →
+  3 copper each. Three road questions (1 Kings, Deuteronomy) as the team
+  sets out, +15 % each, skippable. No map yet: destination cards.
+- **Gleaning:** from the Visit screen, once a day per visitor, five gleaners a
+  day per homestead; the visitor gets 3 barley, the owner 2.
+- **Scenes:** My Home has tabs Homestead · Fields (from House 3) ·
+  Expeditions (from House 4). The valley is `fields-valley.webp` with the six
+  beds drawn as polygons (`world/fieldsLayout.ts`) filled with four tiling
+  crop textures; the Bakehouse stands on the yard's courtyard spot.
+- **Pacing** (`python3 docs/balance/plotsim.py`, and `--sell` for a player who
+  sells everything above 150), days until everything is built:
+
+  | Player | Before (no selling) | Now, no selling | Now, selling surplus |
+  |---|---|---|---|
+  | Casual + arena (70/day) | 175 | 500 | 60 |
+  | Keen (130/day) | 95 | 270 | 44 |
+  | Very keen (220/day) | 57 | 160 | 41 |
+
+  With selling unlimited, the sale of yard surplus still pays for most of the
+  new content, so for sellers this release roughly doubles the game rather
+  than stretching it to months. Phases 2–3 (more destinations, flax and
+  linen, the late game, the Temple) are the next levers.
+
 ## 8. The owner's decisions (2026-11-09)
 
 1. **Selling stays as it is: no purse.** The owner wants more to spend on and

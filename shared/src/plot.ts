@@ -11,11 +11,16 @@
  */
 import { NO_MODS, SEVEN_YEARS_MS, type PlotMods } from './skills'
 import type { GiftLog } from './life'
+import type { Bake, Crop, Expedition, Glean } from './farm'
 
-export const MATERIALS = ['wood', 'bricks', 'stone', 'wool', 'oil', 'cedar', 'gold'] as const
+export const MATERIALS = ['wood', 'bricks', 'stone', 'wool', 'oil', 'cedar', 'gold', 'barley', 'wheat', 'bread', 'copper'] as const
 export type Material = (typeof MATERIALS)[number]
 export type Materials = Partial<Record<Material, number>>
 
+/**
+ * Market prices. `sell: 0` can't be sold: the fields' grain, bread and what
+ * the workers bring home only ever become buildings (docs/jerusalem-expansion.md §3.4).
+ */
 export const MATERIAL_INFO: Record<Material, { name: string; icon: string; buy: number; sell: number }> = {
   wood: { name: 'Wood', icon: '🪵', buy: 4, sell: 2 },
   bricks: { name: 'Bricks', icon: '🧱', buy: 3, sell: 1 },
@@ -24,10 +29,21 @@ export const MATERIAL_INFO: Record<Material, { name: string; icon: string; buy: 
   oil: { name: 'Olive oil', icon: '🫙', buy: 8, sell: 4 },
   cedar: { name: 'Cedar of Lebanon', icon: '🌲', buy: 30, sell: 15 },
   gold: { name: 'Gold', icon: '✨', buy: 80, sell: 40 },
+  // Barley costs half as much as wheat (2 Kgs 7:1).
+  barley: { name: 'Barley', icon: '🌾', buy: 1, sell: 0 },
+  wheat: { name: 'Wheat', icon: '🌻', buy: 2, sell: 0 },
+  bread: { name: 'Bread', icon: '🍞', buy: 3, sell: 0 },
+  copper: { name: 'Copper', icon: '🔶', buy: 15, sell: 0 },
 }
+/** Materials the Market buys back. */
+export const sellable = (m: Material) => MATERIAL_INFO[m].sell > 0
 
-export const BUILDING_IDS = ['house', 'well', 'wall', 'store', 'workshop', 'fold', 'grove', 'kiln'] as const
+export const FIELD_IDS = ['field1', 'field2', 'field3', 'field4', 'field5', 'field6'] as const
+export type FieldId = (typeof FIELD_IDS)[number]
+/** The homestead's nine spots (the Bakehouse on the old courtyard), then the valley: the threshing floor and six fields. */
+export const BUILDING_IDS = ['house', 'well', 'wall', 'store', 'workshop', 'fold', 'grove', 'kiln', 'bake', 'thresh', ...FIELD_IDS] as const
 export type BuildingId = (typeof BUILDING_IDS)[number]
+export const isField = (b: BuildingId): b is FieldId => (FIELD_IDS as readonly string[]).includes(b)
 
 export interface LevelDef {
   name: string
@@ -42,6 +58,14 @@ export interface LevelDef {
   make?: { material: Material; perHour: number }
   /** Storehouse: how much each producer can hold before it waits. */
   cap?: number
+  /** Fields: the land's price in coins (paid with level 1). */
+  price?: number
+  /** Fields: harvest × this. */
+  yield?: number
+  /** Threshing floor: every harvest + this share. */
+  grainBonus?: number
+  /** Bakehouse: grain per batch, its wood (per 10 grain) and baking time. */
+  batch?: { grain: number; minutes: number }
 }
 
 export interface BuildingDef {
@@ -92,6 +116,7 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Well with pulley and trough', '🪣', { stone: 40, wood: 15, wool: 5 }, 4 * H, { house: 3 }, { water: 7 }),
       L('Covered well and cistern', '⛲', { stone: 80, bricks: 20 }, 12 * H, { house: 4 }, { water: 10 }),
       L('Cistern with channels', '⛲', { stone: 125, bricks: 30, cedar: 10 }, 24 * H, { house: 5 }, { water: 14 }),
+      L("Hezekiah's tunnel", '⛲', { stone: 150, bricks: 40, cedar: 15, bread: 40 }, 36 * H, { house: 7, field2: 2 }, { water: 22 }),
     ],
   },
   wall: {
@@ -118,6 +143,7 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Barn', '🛖', { wood: 40, bricks: 30 }, 4 * H, { house: 4 }, { cap: 80 }),
       L('Storehouse', '🏚️', { stone: 60, wood: 40 }, 10 * H, { house: 5 }, { cap: 150 }),
       L("Joseph's storehouse", '🏛️', { stone: 100, cedar: 10 }, 20 * H, { house: 6 }, { cap: 300 }),
+      L('Royal store city', '🏛️', { stone: 150, cedar: 15, copper: 10, bread: 30 }, 30 * H, { house: 7 }, { cap: 500 }),
     ],
   },
   workshop: {
@@ -131,6 +157,7 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Shop with lathe', '🪓', { stone: 30, wood: 30 }, 4 * H, { house: 3 }, { make: { material: 'wood', perHour: 4 } }),
       L('Shop with apprentice', '🪓', { stone: 60, wood: 40, wool: 10 }, 10 * H, { house: 4 }, { make: { material: 'wood', perHour: 6 } }),
       L("Master's workshop", '🛠️', { stone: 100, cedar: 10, oil: 10 }, 20 * H, { house: 6 }, { make: { material: 'wood', perHour: 8 } }),
+      L("Shipwright's yard", '🛠️', { stone: 150, cedar: 15, copper: 12, bread: 30 }, 30 * H, { house: 7 }, { make: { material: 'wood', perHour: 10 } }),
     ],
   },
   fold: {
@@ -144,6 +171,7 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Flock with goats', '🐐', { wood: 40, stone: 30 }, 4 * H, { house: 4 }, { make: { material: 'wool', perHour: 1.5 }, water: 3 }),
       L("Sheepfold with shepherd's hut", '🐏', { stone: 60, wood: 40, oil: 10 }, 10 * H, { house: 5 }, { make: { material: 'wool', perHour: 2.5 }, water: 4 }),
       L('Great flock, donkey and camel', '🐪', { stone: 100, wood: 60, cedar: 10 }, 20 * H, { house: 6 }, { make: { material: 'wool', perHour: 3.5 }, water: 5 }),
+      L('Shearing house', '🐏', { stone: 150, wood: 80, copper: 8, bread: 30 }, 30 * H, { house: 7 }, { make: { material: 'wool', perHour: 4.5 }, water: 6 }),
     ],
   },
   grove: {
@@ -157,6 +185,7 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Grove with oil press', '🫒', { stone: 40, wood: 20 }, 4 * H, { house: 4 }, { make: { material: 'oil', perHour: 1 }, water: 2 }),
       L('Large grove', '🌳', { stone: 60, wood: 30, wool: 10 }, 10 * H, { house: 5 }, { make: { material: 'oil', perHour: 1.5 }, water: 3 }),
       L('Grove with vineyard terraces', '🍇', { stone: 100, wood: 40, cedar: 10 }, 20 * H, { house: 6 }, { make: { material: 'oil', perHour: 2 }, water: 4 }),
+      L('Oil press of Gethsemane', '🫒', { stone: 150, wood: 60, copper: 10, bread: 30 }, 30 * H, { house: 7 }, { make: { material: 'oil', perHour: 2.5 }, water: 5 }),
     ],
   },
   kiln: {
@@ -169,15 +198,79 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Kiln', '🔥', { stone: 20, wood: 10 }, 1 * H, { house: 3 }, { make: { material: 'bricks', perHour: 4 }, water: 1 }),
       L('Double kiln', '🔥', { stone: 40, wood: 20 }, 4 * H, { house: 4 }, { make: { material: 'bricks', perHour: 6 }, water: 2 }),
       L('Brickworks', '🏭', { stone: 75, wood: 30 }, 10 * H, { house: 5 }, { make: { material: 'bricks', perHour: 9 }, water: 3 }),
+      L("Potter's house", '🏺', { stone: 120, wood: 50, copper: 8, bread: 20 }, 24 * H, { house: 6 }, { make: { material: 'bricks', perHour: 12 }, water: 4 }),
     ],
   },
+  bake: {
+    id: 'bake',
+    name: 'Bakehouse',
+    what: 'Grinds your grain and bakes it into bread, a batch at a time. Builders and workers eat bread.',
+    verse: 'Matt 24:41',
+    levels: [
+      L('Hand mill and clay oven', '🫓', { bricks: 15, stone: 10 }, 1 * H, { house: 3, field1: 1 }, { batch: { grain: 10, minutes: 2 * H } }),
+      L('Two millstones', '🫓', { bricks: 30, wood: 20 }, 4 * H, { house: 4 }, { batch: { grain: 20, minutes: 2 * H } }),
+      L('Bakehouse', '🍞', { bricks: 60, stone: 40, wood: 10, bread: 20 }, 10 * H, { house: 5 }, { batch: { grain: 40, minutes: 3 * H } }),
+      L('Donkey mill', '🍞', { stone: 80, cedar: 10, wool: 10, bread: 40 }, 20 * H, { house: 6 }, { batch: { grain: 80, minutes: 4 * H } }),
+    ],
+  },
+  thresh: {
+    id: 'thresh',
+    name: 'Threshing floor',
+    what: 'Where the harvest is threshed and winnowed. A better floor gets more grain out of every harvest.',
+    verse: '2 Sam 24:24',
+    levels: [
+      L('Old threshing floor', '🌾', {}, 0, { field1: 1 }, { grainBonus: 0 }),
+      L('Paved floor', '🌾', { stone: 30, wood: 20 }, 4 * H, { house: 4 }, { grainBonus: 0.1 }),
+      L('Floor with winnowing wind', '🌬️', { stone: 60, cedar: 2, bread: 20 }, 10 * H, { house: 5 }, { grainBonus: 0.2 }),
+      L("Araunah's threshing floor", '🌾', { stone: 100, cedar: 5, bread: 40 }, 20 * H, { house: 6 }, { grainBonus: 0.3 }),
+    ],
+  },
+  ...fields(),
 }
 
-/** The nine fixed spots, row by row (docs/jerusalem-plot.md §2). The courtyard holds decorations (not built yet). */
-export const SPOTS: ReadonlyArray<BuildingId | 'courtyard'> = ['grove', 'house', 'store', 'fold', 'courtyard', 'well', 'workshop', 'kiln', 'wall']
+/**
+ * The six fields in the Valley of Rephaim (Isa 17:5): bought one by one (the
+ * first is a gift), cleared, terraced, irrigated. A field is a building like
+ * the others (builders, scrolls), with crops on top (shared/src/farm.ts).
+ */
+function fields(): Record<FieldId, BuildingDef> {
+  const land: [number, number][] = [
+    // [price, house level]
+    [0, 3],
+    [600, 4],
+    [1200, 5],
+    [2000, 6],
+    [3000, 7],
+    [4500, 7],
+  ]
+  return Object.fromEntries(
+    FIELD_IDS.map((id, i) => {
+      const [price, house] = land[i]
+      const needs: LevelDef['needs'] = i ? { house, [FIELD_IDS[i - 1]]: 1 } : { house }
+      const def: BuildingDef = {
+        id,
+        name: `Field ${i + 1}`,
+        what: 'A field in the valley. Sow barley or wheat; terrace and water it for bigger harvests.',
+        verse: 'Prov 31:16',
+        levels: [
+          L('Cleared field', '🟫', {}, 2 * H, needs, { price, yield: 1 }),
+          L('Terraced field', '🧱', { stone: 40, bricks: 30 }, 6 * H, { thresh: 2 }, { yield: 1.5 }),
+          L('Irrigated terrace', '💧', { stone: 60, bricks: 40, bread: 20 }, 12 * H, { thresh: 3, well: 4 }, { yield: 2, water: 1 }),
+        ],
+      }
+      return [id, def]
+    }),
+  ) as Record<FieldId, BuildingDef>
+}
+
+/** The homestead's nine fixed spots, row by row (docs/jerusalem-plot.md §2). The Bakehouse stands on the old courtyard. */
+export const SPOTS = ['grove', 'house', 'store', 'fold', 'bake', 'well', 'workshop', 'kiln', 'wall'] as const
+export type YardSpot = (typeof SPOTS)[number]
+/** The valley's buildings (the Fields scene). */
+export const VALLEY: readonly BuildingId[] = ['thresh', ...FIELD_IDS]
 
 export const PRODUCERS: readonly BuildingId[] = ['workshop', 'kiln', 'fold', 'grove']
-export const WATER_USERS: readonly BuildingId[] = ['kiln', 'fold', 'grove']
+export const WATER_USERS: readonly BuildingId[] = ['kiln', 'fold', 'grove', ...FIELD_IDS]
 
 export const STARTER_GIFT: Materials = { wood: 20, bricks: 20, stone: 20 }
 /** What a producer holds with no storehouse yet. */
@@ -216,6 +309,20 @@ export interface PlotState {
   boostUntil?: number
   /** Gifts from the people in the yard (shared/src/life.ts). */
   gifts?: GiftLog
+  // The valley and the workers (shared/src/farm.ts):
+  /** What grows on each field. */
+  crops?: Partial<Record<FieldId, Crop>>
+  /** The Bakehouse's batch (in the oven, or baked and waiting). */
+  bake?: Bake
+  /** Barley for the flock: the sheepfold makes +50 % until then. */
+  fedUntil?: number
+  /** Teams of workers out on expeditions. */
+  expeditions?: Expedition[]
+  /** Gleaning (Ruth 2): this plot's owner gleaned elsewhere today / gleaners in these fields today. */
+  glean?: Glean
+  gleaned?: Glean
+  /** Existing homesteads (House 3+) got Field 1 cleared and sown once, at launch. */
+  fieldGift?: boolean
 }
 
 export const modsOf = (s: Pick<PlotState, 'mods'>): PlotMods => s.mods ?? NO_MODS
@@ -234,6 +341,7 @@ export const maxLevel = (b: BuildingId) => BUILDINGS[b].levels.length
 export const buyPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) => Math.ceil(MATERIAL_INFO[m].buy * qty * (1 - mods.buyDiscount) - 1e-9)
 /** What selling `qty` pays: the listed half price, or more of the buy price with Fair trader. */
 export const sellPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) => {
+  if (!sellable(m)) return 0
   const base = MATERIAL_INFO[m].sell * qty
   return mods.sellRate > NO_MODS.sellRate ? Math.max(base, Math.floor(MATERIAL_INFO[m].buy * qty * mods.sellRate + 1e-9)) : base
 }
@@ -279,12 +387,24 @@ function produce(s: PlotState, from: number, to: number): void {
   // Only while the skill is still learned (a re-spec ends the boost).
   const boosted = s.boostUntil && mods.sevenYears ? Math.max(0, Math.min(to, s.boostUntil) - from) : 0
   const effMs = (ms + 0.5 * boosted) * (1 + mods.production)
+  // Fed with barley: the sheepfold's fed part of this segment counts 1.5× as well.
+  const fed = s.fedUntil ? Math.max(0, Math.min(to, s.fedUntil) - from) : 0
   for (const b of PRODUCERS) {
     const make = levelDef(b, s.levels[b])?.make
     if (!make) continue
     const cur = s.stock[b] ?? 0
-    s.stock[b] = Math.max(cur, Math.min(cap, cur + (make.perHour * effMs) / 3_600_000))
+    const ms = b === 'fold' ? effMs + 0.5 * fed * (1 + mods.production) : effMs
+    s.stock[b] = Math.max(cur, Math.min(cap, cur + (make.perHour * ms) / 3_600_000))
   }
+}
+
+/** Stone turned up clearing a field ("he dug it and cleared it of stones", Isa 5:2). */
+export const CLEARING_STONE = 10
+
+/** What finishing a level brings besides the level: a cleared field's stones, Field 1's old threshing floor. */
+function finished(s: PlotState, b: BuildingId, toLevel: number): void {
+  if (isField(b) && toLevel === 1) s.inventory.stone += CLEARING_STONE
+  if (b === 'field1') s.levels.thresh = Math.max(s.levels.thresh, 1)
 }
 
 /** Bring the plot up to `now`: production in segments, each finished build applied at its own time. */
@@ -296,6 +416,7 @@ export function advance(s: PlotState, now: number): void {
     produce(s, t, segEnd)
     t = Math.max(t, segEnd)
     if (!next) break
+    if (s.levels[next.building] < next.toLevel) finished(s, next.building, next.toLevel)
     s.levels[next.building] = Math.max(s.levels[next.building], next.toLevel)
     if (next.building === 'house' && modsOf(s).sevenYears) s.boostUntil = next.endsAt + SEVEN_YEARS_MS
     s.builds = s.builds.filter((x) => x !== next)
@@ -347,6 +468,8 @@ export interface UpgradeCheck {
   missing: Materials
   /** Coins to buy everything missing at the Market. */
   missingCoins: number
+  /** Coins for the land itself (fields), paid on top. */
+  price: number
   waterNeeded: number
 }
 
@@ -357,7 +480,7 @@ export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
   const busy = s.builds.some((x) => x.building === b)
   const freeBuilder = s.builds.length < builderCount(s.levels, mods)
   if (!def) {
-    return { building: b, minutes: 0, maxed: true, busy, reqs: [], reqsMet: false, freeBuilder, cost: {}, missing: {}, missingCoins: 0, waterNeeded: 0 }
+    return { building: b, minutes: 0, maxed: true, busy, reqs: [], reqsMet: false, freeBuilder, cost: {}, missing: {}, missingCoins: 0, price: 0, waterNeeded: 0 }
   }
   const reqs: Requirement[] = []
   for (const [r, lvl] of Object.entries(def.needs) as [BuildingId, number][]) {
@@ -389,6 +512,7 @@ export function checkUpgrade(s: PlotState, b: BuildingId): UpgradeCheck {
     cost: def.cost,
     missing,
     missingCoins: coinValue(missing, mods),
+    price: def.price ?? 0,
     waterNeeded,
   }
 }
@@ -404,7 +528,7 @@ export function suggestNext(s: PlotState): UpgradeCheck | null {
     const c = checkUpgrade(s, b)
     if (c.maxed || c.busy || !c.reqsMet) continue
     const favoured = PRODUCERS.includes(b) || b === 'well'
-    const prio = c.missingCoins * (favoured ? 0.6 : 1) + c.minutes / 600
+    const prio = (c.missingCoins + c.price) * (favoured ? 0.6 : 1) + c.minutes / 600
     if (!best || prio < best.prio) best = { prio, c }
   }
   return best?.c ?? null
