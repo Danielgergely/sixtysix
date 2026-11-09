@@ -25,8 +25,10 @@ function compactRows(entries: LeaderboardEntry[], meIndex: number): LeaderboardE
  * A player's own standing between questions (phones only): place, score, the
  * gap to the one ahead and to the leader, and a compact top list. Everyone
  * playing remotely sees only their phone, so this is their scoreboard.
+ * `brief` leaves out the list (the road or the ranked list above shows everyone),
+ * which gives the scene above more room.
  */
-export function Standing({ entries, myPlayerId }: { entries: LeaderboardEntry[]; myPlayerId: string | null }) {
+export function Standing({ entries, myPlayerId, brief = false }: { entries: LeaderboardEntry[]; myPlayerId: string | null; brief?: boolean }) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const sorted = [...entries].sort((a, b) => a.rank - b.rank)
@@ -65,7 +67,7 @@ export function Standing({ entries, myPlayerId }: { entries: LeaderboardEntry[];
       </div>
       {gap && <div className="stand-gap">{gap}</div>}
       {showLeader && <div className="stand-gap st-leader">{t('arena.standing.leader', { name: leader.name, pts: pts(leader.score) })}</div>}
-      {sorted.length > 1 && (
+      {!brief && sorted.length > 1 && (
         <ol className="stand-list">
           {rows.map((e, i) => (
             <li key={e.playerId} className={`stand-row ${e.playerId === myPlayerId ? 'you' : ''} ${i > 0 && rows[i - 1].rank < e.rank - 1 ? 'gap' : ''}`}>

@@ -95,6 +95,16 @@ function buildModels(): Record<string, { geo: BufferGeometry; cap: number }> {
   // Jericho.
   add('wall', P.cityWall(995, TILE, false), 16)
   add('wallRahab', P.cityWall(996, TILE, true), 6)
+  // Platforms to run along (and their ramped ends), and the quail flying at you.
+  for (const ramp of [false, true]) {
+    const k = ramp ? 'Ramp' : ''
+    add('hauled' + k, P.hauledStone(1000, ramp), 6)
+    add('shelf' + k, P.rockShelf(1010, ramp, [P.S.rock, P.S.rockDark, P.S.moss], true), 6)
+    add('ledge' + k, P.rockShelf(1020, ramp, [P.W.rockPale, P.W.rock, P.W.rockDark]), 6)
+    add('riverLedge' + k, P.rockShelf(1030, ramp, [P.J.stone, P.J.stoneDark, '#7d8a5a']), 6)
+  }
+  add('quailA', P.quail(1040, true), 12)
+  add('quailB', P.quail(1040, false), 12)
   return m
 }
 
@@ -235,10 +245,10 @@ const sc = new Vector3()
 
 function thingMatrix(t: Thing, dist: number, out: Matrix4, lift = 0): Matrix4 {
   q.setFromAxisAngle(up, t.ry)
-  // Sinking things go down into the sand and shrink.
+  // Sinking things go down into the sand and shrink; a flock flies off upwards.
   const k = 1 - t.sink * 0.6
   sc.set(t.scale * k, t.scale * k, t.scale * k)
-  v.set(t.x, t.y + lift - t.sink * 2.5, dist - t.s)
+  v.set(t.x, t.y + lift + t.sink * ('fly' in t && t.fly ? 6 : -2.5), dist - t.s)
   return out.compose(v, q, sc)
 }
 
@@ -481,6 +491,14 @@ class ExodusWorld {
     const p = r.player
     for (const e of events) {
       if (e.type === 'jump') playSfx('runJump')
+      if (e.type === 'jump2') {
+        playSfx('runJump2')
+        // A puff of air under the feet.
+        for (let i = 0; i < 10; i++) {
+          const a = (i / 10) * Math.PI * 2
+          this.dust.emit({ x: p.x + Math.cos(a) * 0.3, y: p.y, z: Math.sin(a) * 0.3, vx: Math.cos(a) * 3, vy: -0.5, vz: Math.sin(a) * 3, size: 0.5, grow: 2, max: 0.5, color: WHITE, peak: 0.5, drag: 2 })
+        }
+      }
       if (e.type === 'lane') playSfx('runLane')
       if (e.type === 'roll') {
         playSfx('runRoll')
@@ -566,7 +584,11 @@ class ExodusWorld {
     // Instanced models.
     const lists = new Map<string, Thing[]>()
     for (const th of r.scenery) (lists.get(th.model) ?? lists.set(th.model, []).get(th.model)!).push(th)
-    for (const o of r.obstacles) (lists.get(o.model) ?? lists.set(o.model, []).get(o.model)!).push(o)
+    for (const o of r.obstacles) {
+      // A flock flaps: each one flips between its wings-up and wings-down model.
+      const name = o.fly ? o.model + (Math.sin(t * 22 + o.x * 3) > 0 ? 'A' : 'B') : o.model
+      ;(lists.get(name) ?? lists.set(name, []).get(name)!).push(o)
+    }
     for (const [name, mesh] of this.meshes) {
       const list = lists.get(name) ?? []
       const n = Math.min(list.length, mesh.instanceMatrix.count)

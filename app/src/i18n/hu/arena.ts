@@ -74,6 +74,22 @@ export default {
     skip: 'Tovább ▸',
     playAgain: '▶ Újra játszunk',
   },
+  /** The start intro: the most experienced players, then a countdown. */
+  intro: {
+    title: 'A legtapasztaltabbak',
+    solo: 'A kihívó',
+    teams: 'Az építők elfoglalják kapuikat',
+    level: '{n}. szint',
+    sub: { classic: 'Ki ér fel a trónhoz?', goliath: 'Ki dönti le az óriást?', wall: 'Melyik fal áll elsőként?' },
+    ready: 'Vigyázz…',
+    set: 'Kész…',
+    go: 'Rajt!',
+  },
+  /** Standings between questions in big rooms. */
+  ranks: {
+    title: 'Állás',
+    more: 'még {n} játékos a versenyben',
+  },
   /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
   standing: {
     place: '{place} hely / {total}',

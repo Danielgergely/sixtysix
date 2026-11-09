@@ -18,6 +18,7 @@ import {
   SPIES_MIN_COOP,
   SPIES_MIN_VERSUS,
   SPIES_PASS,
+  SPIES_SM_WAIT_MS,
   SPIES_TEAMS,
   SPIES_TIMER_OPTIONS,
 } from '@sixtysix/shared'
@@ -40,6 +41,7 @@ import {
   wordIn,
   type SPlayer,
   type SRoom,
+  type SVacancy,
 } from './rooms.js'
 
 /**
@@ -51,9 +53,6 @@ export type SpiesIO = Server<SpiesClientToServerEvents, SpiesServerToClientEvent
 type SpiesSocket = Socket<SpiesClientToServerEvents, SpiesServerToClientEvents>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- acks are client-supplied
 type Ack = (res: any) => void
-
-/** An offline spy master gets this long to come back before a teammate takes the key. */
-const SM_GRACE_MS = 20_000
 
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 const ackOf = (cb: unknown): Ack => (typeof cb === 'function' ? (cb as Ack) : () => {})
@@ -78,6 +77,7 @@ const teamSize = (room: SRoom, team: SpiesTeam, connectedOnly = false) =>
 
 function broadcast(io: SpiesIO, room: SRoom): void {
   touch(room)
+  syncPause(room)
   io.to(channel(room)).emit('spies:state', toSpiesState(room))
 }
 
@@ -98,9 +98,8 @@ function sendAllKeys(io: SpiesIO, room: SRoom): void {
   for (const secret of room.players.keys()) sendKey(io, room, secret)
 }
 
-function setTimer(io: SpiesIO, room: SRoom, ms: number, fn: () => void): void {
+function armTimer(room: SRoom, ms: number, fn: () => void): void {
   clearTimeout(room.timer)
-  room.phaseMs = ms
   room.phaseEndsAt = ms ? Date.now() + ms : 0
   room.timer = ms
     ? setTimeout(() => {
@@ -111,6 +110,37 @@ function setTimer(io: SpiesIO, room: SRoom, ms: number, fn: () => void): void {
         }
       }, ms)
     : undefined
+}
+
+function setTimer(_io: SpiesIO, room: SRoom, ms: number, fn: () => void): void {
+  room.phaseMs = ms
+  room.timerFn = fn
+  room.frozenMs = null
+  armTimer(room, ms, fn)
+}
+
+/** The tribe whose turn it is, if it has no spy master right now: its turn is paused. */
+const pausedTeam = (room: SRoom): SpiesTeam | null =>
+  (room.phase === 'clue' || room.phase === 'guess') && room.turn && room.vacancies[room.turn] ? room.turn : null
+
+/**
+ * Freeze the turn timer while the active tribe has no spy master, and run the
+ * rest of it once it has one again. Called on every broadcast, so every state
+ * change (a vacancy opening or closing, the turn passing) settles it.
+ */
+function syncPause(room: SRoom): void {
+  const paused = pausedTeam(room) !== null
+  if (paused && room.frozenMs === null) {
+    room.frozenMs = room.phaseEndsAt ? Math.max(1000, room.phaseEndsAt - Date.now()) : 0
+    clearTimeout(room.timer)
+    room.timer = undefined
+    room.phaseEndsAt = 0
+    room.proposal = null
+  } else if (!paused && room.frozenMs !== null) {
+    const left = room.frozenMs
+    room.frozenMs = null
+    if (left && room.timerFn) armTimer(room, left, room.timerFn)
+  }
 }
 
 // ── teams & spy masters ─────────────────────────────────────────────────
@@ -136,36 +166,37 @@ function ensureSpymasters(room: SRoom): void {
   }
 }
 
-/** Mid-game: hand the key to another teammate (the old spy master becomes an agent). */
-function promote(io: SpiesIO, room: SRoom, team: SpiesTeam): void {
-  const old = room.spymasters[team]
-  const next = pickSpymaster(room, team, old ?? undefined)
-  if (!next) return
-  room.spymasters[team] = next
-  // The new spy master can no longer back a proposal.
-  if (room.proposal) {
-    room.proposal.backers.delete(next)
-    if (room.proposal.proposer === next) room.proposal = null
-  }
-  console.log(`[spies] ${room.code}: new ${team} spy master`)
-  if (old) sendKey(io, room, old)
-  sendKey(io, room, next)
-}
-
-function armSpymasterGrace(io: SpiesIO, room: SRoom, team: SpiesTeam): void {
-  clearTimeout(room.smTimers[team])
+/**
+ * Mid-game: a tribe lost its spy master (offline: they get SPIES_SM_WAIT_MS to
+ * come back; left: no wait). The tribe's turns pause; nobody is promoted
+ * automatically. A teammate may take over (`spies:takeover`) or the leader
+ * starts a new game; an offline spy master who returns simply carries on.
+ */
+function openVacancy(io: SpiesIO, room: SRoom, team: SpiesTeam, v: SVacancy): void {
+  closeVacancy(room, team)
+  room.vacancies[team] = v
+  console.log(`[spies] ${room.code}: ${team} spy master ${v.left ? 'left' : 'offline'}`)
+  if (!v.until) return
   room.smTimers[team] = setTimeout(() => {
     try {
       room.smTimers[team] = undefined
-      const cur = room.spymasters[team]
-      const p = cur ? room.players.get(cur) : undefined
-      if ((room.phase !== 'clue' && room.phase !== 'guess') || p?.connected) return
-      promote(io, room, team)
-      afterRosterChange(io, room)
+      if (room.vacancies[team] !== v) return
+      v.until = 0 // the wait is over; the game stays paused and the choices stay offered
+      broadcast(io, room)
     } catch (err) {
-      console.error(`[spies] grace in ${room.code} failed:`, err)
+      console.error(`[spies] wait in ${room.code} failed:`, err)
     }
-  }, SM_GRACE_MS)
+  }, SPIES_SM_WAIT_MS)
+}
+
+function closeVacancy(room: SRoom, team: SpiesTeam): void {
+  clearTimeout(room.smTimers[team])
+  room.smTimers[team] = undefined
+  delete room.vacancies[team]
+}
+
+function clearVacancies(room: SRoom): void {
+  for (const t of SPIES_TEAMS) closeVacancy(room, t)
 }
 
 /** Alternate the connected players between the tribes (random order). */
@@ -318,7 +349,7 @@ function resolvePick(io: SpiesIO, room: SRoom, pick: number): void {
 /** Reveal once a majority of the tribe's connected agents back the proposal. */
 function checkProposal(io: SpiesIO, room: SRoom): boolean {
   const prop = room.proposal
-  if (room.phase !== 'guess' || !prop || !room.turn) return false
+  if (room.phase !== 'guess' || !prop || !room.turn || pausedTeam(room)) return false
   const live = new Set(agents(room, room.turn))
   for (const b of prop.backers) if (!live.has(b)) prop.backers.delete(b)
   if (!live.has(prop.proposer) && prop.backers.size === 0) {
@@ -338,8 +369,7 @@ function gameOver(io: SpiesIO, room: SRoom, winner: SpiesTeam | null, reason: Sp
   room.result = { winner, reason, loser, key: [...room.key] }
   if (winner) for (const p of room.players.values()) if (p.team === winner) p.wins++
   setTimer(io, room, 0, () => {})
-  for (const t of SPIES_TEAMS) clearTimeout(room.smTimers[t])
-  room.smTimers = {}
+  clearVacancies(room)
   console.log(`[spies] ${room.code}: game ${room.game} over (${reason}, ${winner ?? 'nobody'} wins)`)
   broadcast(io, room)
   sendAllKeys(io, room)
@@ -419,6 +449,7 @@ function leaveRoom(io: SpiesIO, room: SRoom, secret: string, explicit: boolean):
   const p = room.players.get(secret)
   if (!p) return
   const wasSpymaster = room.spymasters[p.team] === secret
+  const gone: SVacancy = { secret: explicit ? null : secret, name: p.name, avatar: p.avatar, left: explicit, until: explicit ? 0 : Date.now() + SPIES_SM_WAIT_MS }
   if (explicit) room.players.delete(secret)
   else {
     p.connected = false
@@ -441,8 +472,8 @@ function leaveRoom(io: SpiesIO, room: SRoom, secret: string, explicit: boolean):
   } else if (inGame(room)) {
     if (explicit && !enoughPlayers(room)) return gameOver(io, room, null, 'abandoned', null)
     if (wasSpymaster) {
-      if (explicit) promote(io, room, p.team)
-      else armSpymasterGrace(io, room, p.team)
+      if (explicit) room.spymasters[p.team] = null
+      openVacancy(io, room, p.team, gone)
     }
   }
   afterRosterChange(io, room)
@@ -487,10 +518,8 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
       if (typeof payload.name === 'string' && payload.name.trim()) p.name = cleanName(payload.name)
       if (payload.avatar !== undefined) p.avatar = cleanAvatar(payload.avatar)
       if (payload.locale !== undefined) p.locale = cleanLocale(payload.locale)
-      if (room.spymasters[p.team] === secret) {
-        clearTimeout(room.smTimers[p.team])
-        room.smTimers[p.team] = undefined
-      }
+      // The spy master is back (in time or not, as long as nobody took over): carry on.
+      if (room.spymasters[p.team] === secret) closeVacancy(room, p.team)
     } else {
       if (room.players.size >= SPIES_MAX_PLAYERS) return ack({ ok: false, error: `The camp is full (${SPIES_MAX_PLAYERS} players)` })
       // New players join the smaller tribe (co-op: Judah) as field agents.
@@ -512,13 +541,6 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     }
     ensureLeader(room)
     if (room.phase === 'lobby') ensureSpymasters(room)
-    // A tribe whose spy master is gone (grace over, nobody was online to take
-    // the key) gets one now that someone is back.
-    if (inGame(room))
-      for (const t of playingTeams(room)) {
-        const sm = room.spymasters[t]
-        if (!(sm && room.players.get(sm)?.connected) && !room.smTimers[t]) promote(io, room, t)
-      }
     void socket.join(channel(room))
     ack({ ok: true, playerId: p.id, state: toSpiesState(room) })
     afterRosterChange(io, room)
@@ -626,6 +648,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     if (!s || s.room.phase !== 'clue') return ack({ ok: false, error: 'Not now' })
     const { room } = s
     if (room.turn !== s.p.team || room.spymasters[s.p.team] !== s.secret) return ack({ ok: false, error: 'Only the spy master gives the clue' })
+    if (pausedTeam(room)) return ack({ ok: false, error: 'Not now' })
     const payload = (raw ?? {}) as { word?: unknown; number?: unknown }
     const word = cleanClueWord(payload.word)
     if (!word) return ack({ ok: false, error: 'One word only (no spaces)' })
@@ -640,7 +663,7 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     const s = seat()
     if (!s || s.room.phase !== 'guess') return
     const { room } = s
-    if (room.turn !== s.p.team || room.spymasters[s.p.team] === s.secret) return
+    if (room.turn !== s.p.team || room.spymasters[s.p.team] === s.secret || pausedTeam(room)) return
     const pick = (raw as { pick?: unknown } | undefined)?.pick
     if (typeof pick !== 'number' || !Number.isInteger(pick)) return
     if (pick === SPIES_PASS) {
@@ -648,11 +671,8 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     } else if (pick < 0 || pick >= SPIES_GRID || room.revealed[pick]) return
     const prop = room.proposal
     if (prop && prop.pick === pick) {
-      if (prop.proposer === s.secret) {
-        // Tapping your own pick again = confirm, once the 3 seconds are up.
-        if (Date.now() - prop.at >= SPIES_FORCE_MS) return resolvePick(io, room, pick)
-        return
-      }
+      // Tapping your own pick again does nothing: revealing alone is `spies:confirm`.
+      if (prop.proposer === s.secret) return
       prop.backers.add(s.secret)
     } else {
       room.proposal = { pick, proposer: s.secret, backers: new Set([s.secret]), at: Date.now() }
@@ -664,19 +684,47 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     const s = seat()
     const prop = s?.room.proposal
     if (!s || s.room.phase !== 'guess' || !prop || prop.proposer !== s.secret) return
-    if (s.room.turn !== s.p.team || s.room.spymasters[s.p.team] === s.secret) return
+    if (s.room.turn !== s.p.team || s.room.spymasters[s.p.team] === s.secret || pausedTeam(s.room)) return
+    // Alone only after a long quiet wait: teammates who are there get their say first.
     if (Date.now() - prop.at < SPIES_FORCE_MS) return
     resolvePick(io, s.room, prop.pick)
   })
 
-  // Play again in the same room: back to the lobby (everyone stays seated, spy
+  // A tribe without its spy master: one of its agents takes the role and gets the key.
+  on('spies:takeover', () => {
+    const s = seat()
+    if (!s || !inGame(s.room)) return
+    const { room, secret, p } = s
+    const team = p.team
+    if (!room.vacancies[team] || room.spymasters[team] === secret || !playingTeams(room).includes(team)) return
+    const old = room.spymasters[team]
+    room.spymasters[team] = secret
+    p.served++
+    p.lastServed = room.game
+    closeVacancy(room, team)
+    // The new spy master can no longer back a proposal.
+    if (room.proposal) {
+      room.proposal.backers.delete(secret)
+      if (room.proposal.proposer === secret) room.proposal = null
+    }
+    console.log(`[spies] ${room.code}: ${team} spy master taken over`)
+    if (old) sendKey(io, room, old) // null: the old spy master is an agent now
+    sendKey(io, room, secret)
+    afterRosterChange(io, room)
+  })
+
+  // Play again in the same room (also mid-game when a tribe lost its spy master): back to the lobby (everyone stays seated, spy
   // masters rotate; tribes and settings can change there), or with `now`
   // straight into the next game when the teams still work.
   on('spies:again', (raw) => {
     const now = (raw as { now?: unknown } | undefined)?.now === true
     const s = seat()
-    if (!s || s.room.phase !== 'over' || s.room.leaderSecret !== s.secret) return
+    if (!s || s.room.leaderSecret !== s.secret) return
     const { room } = s
+    // Mid-game only while a tribe has no spy master (the choice offered with the pause).
+    const stuck = inGame(room) && Object.keys(room.vacancies).length > 0
+    if (room.phase !== 'over' && !stuck) return
+    clearVacancies(room)
     for (const [secret, p] of room.players) if (!p.connected) room.players.delete(secret)
     room.phase = 'lobby'
     room.turn = null

@@ -74,6 +74,22 @@ export default {
     skip: 'Weiter ▸',
     playAgain: '▶ Nochmal spielen',
   },
+  /** The start intro: the most experienced players, then a countdown. */
+  intro: {
+    title: 'Die Erfahrensten',
+    solo: 'Bereit zur Prüfung',
+    teams: 'Die Bauleute an ihren Toren',
+    level: 'Stufe {n}',
+    sub: { classic: 'Wer erreicht den Thron?', goliath: 'Wer bringt den Riesen zu Fall?', wall: 'Welche Mauer steht zuerst?' },
+    ready: 'Auf die Plätze…',
+    set: 'Fertig…',
+    go: 'Los!',
+  },
+  /** Standings between questions in big rooms. */
+  ranks: {
+    title: 'Rangliste',
+    more: '+{n} weitere im Rennen',
+  },
   /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
   standing: {
     place: '{place} von {total}',

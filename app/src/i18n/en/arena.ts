@@ -75,6 +75,22 @@ export default {
     skip: 'Skip ▸',
     playAgain: '▶ Play again',
   },
+  /** The start intro: the most experienced players, then a countdown. */
+  intro: {
+    title: 'The most experienced',
+    solo: 'Our challenger',
+    teams: 'The builders take their gates',
+    level: 'Level {n}',
+    sub: { classic: 'Who will reach the throne?', goliath: 'Who will bring down the giant?', wall: 'Which wall will rise first?' },
+    ready: 'Ready…',
+    set: 'Set…',
+    go: 'Go!',
+  },
+  /** Standings between questions in big rooms. */
+  ranks: {
+    title: 'Standings',
+    more: '+{n} more in the race',
+  },
   /** A player's own standing between questions (phones). {place} is “3rd” / “3.”. */
   standing: {
     place: '{place} of {total}',

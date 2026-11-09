@@ -44,7 +44,7 @@ export default {
   },
   exodus: {
     name: 'Exodus',
-    c1: { title: 'Run!', text: 'Flee Egypt with Pharaoh’s chariots behind you. Swipe left or right to change lanes, up to jump; after a minute, down to duck.' },
+    c1: { title: 'Run!', text: 'Flee Egypt with Pharaoh’s chariots behind you. Swipe left or right to change lanes, up to jump, and once more in the air (or tap) for a double jump; after a minute, down to duck. Jump up onto platforms and run along them, and watch for quail flying at you.' },
     c2: { title: 'Answer with your feet', text: 'Now and then the world slows down for a question. The answers appear over the lanes: run through the right gate. The wrong gate ends the run.' },
     c3: { title: 'Lights and shekels', text: 'Lights give XP, the odd shekel and every right gate give coins (at most {cap} a run). Two stumbles close together and the chariots catch you.' },
     c4: { title: 'Help on the way', text: 'A jar of manna gathers every light near you, the pillar of cloud catches your next fall, Moses’ staff clears the way. The Daily Run is the same track for everyone each day.' },

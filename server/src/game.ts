@@ -1,12 +1,13 @@
 import type { Server, Socket } from 'socket.io'
 import type {
+  ArenaIntro,
   ArenaQuestion,
   ClientToServerEvents,
   LeaderboardEntry,
   Question,
   ServerToClientEvents,
 } from '@sixtysix/shared'
-import { ALL_ANSWERED_BEAT_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
+import { ALL_ANSWERED_BEAT_MS, INTRO_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { applyModeRound, endsEarly, finalBonus, formTeams, queueTeamVotes, setupMode, teamVotesFor } from './modes.js'
 import { pickQuestions, verseFor, versesFor } from './bank.js'
 import { toPublicState, touch, type Room, type RoomPlayer } from './rooms.js'
@@ -59,8 +60,27 @@ export function startGame(io: IO, room: Room): void {
   room.prevRanks = new Map()
   for (const p of room.players.values()) resetPlayer(p)
   setupMode(room)
-  nextQuestion(io, room)
+  startIntro(io, room)
   console.log(`[game] ${room.code} started: ${room.questions.length} questions, ${room.players.size} players`)
+}
+
+/**
+ * The start intro: the most experienced players present (level, then XP, then
+ * join order), then Ready… Set… Go! on the clients; question 1 follows.
+ */
+function startIntro(io: IO, room: Room): void {
+  const players = [...room.players.values()].filter((p) => p.connected)
+  const order = new Map(players.map((p, i) => [p, i]))
+  const top = players
+    .sort((a, b) => (b.level ?? 1) - (a.level ?? 1) || b.xp - a.xp || order.get(a)! - order.get(b)!)
+    .slice(0, 3)
+    .map(({ id, name, avatar, level }) => ({ id, name, avatar, level: level ?? 1 }))
+  room.intro = { top } satisfies ArenaIntro
+  room.introStartedAt = Date.now()
+  room.phase = 'intro'
+  io.to(room.code).emit('game:intro', room.intro, INTRO_MS)
+  broadcastState(io, room)
+  schedule(room, () => nextQuestion(io, room), INTRO_MS)
 }
 
 /** A fresh game for this player: no points, streak or coins yet. */
@@ -107,6 +127,10 @@ export function sendCurrentPhase(
 ): void {
   if (room.phase === 'leaderboard') return void socket.emit('game:leaderboard', room.lastEntries)
   if (room.phase === 'podium') return void socket.emit('game:podium', room.lastEntries)
+  if (room.phase === 'intro') {
+    if (room.intro) socket.emit('game:intro', room.intro, Math.max(0, INTRO_MS - (Date.now() - room.introStartedAt)))
+    return
+  }
   const q = room.questions[room.questionIndex]
   if (!q) return
   if (room.phase === 'reveal') {
@@ -151,6 +175,7 @@ export function backToLobby(io: IO, room: Room): void {
   room.questionIndex = 0
   room.lastEntries = []
   room.lastReveal = undefined
+  room.intro = undefined
   room.prevRanks = new Map()
   room.goliath = undefined
   formTeams(room) // the same teams play again (the host may shuffle)
@@ -275,6 +300,10 @@ function advance(io: IO, room: Room): void {
 /** Host control: move the game along regardless of pending timers. */
 export function skipPhase(io: IO, room: Room): void {
   switch (room.phase) {
+    case 'intro':
+      clearTimeout(room.timer)
+      nextQuestion(io, room)
+      break
     case 'question':
       resolveQuestion(io, room)
       break
