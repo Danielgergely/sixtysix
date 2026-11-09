@@ -249,6 +249,34 @@
 .ts-board .ts-wait{ font-size: 17px; }
 .ts-board .host-join-url{ font-size: 15px; }
 
+/* ── lone reveal (teammates away) ────────────────────────────────────── */
+.ts-agreed.waiting{ color: #6b4120; font-style: italic; }
+.ts-force{
+  display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border-radius: 12px;
+  background: rgb(29 15 6 / 0.82); border: 2px dashed #b88a3a;
+}
+.ts-force p{ font: italic 600 13px/1.35 Georgia, serif; color: #f3e2bb; text-align: center; }
+.ts-force-btn{ margin: 0; padding: 8px; }
+
+/* ── a tribe without its spy master (its turns pause) ────────────────── */
+.ts-vacancies{ display: flex; flex-direction: column; gap: 8px; }
+.ts-vacancy{
+  display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px;
+  background: rgb(243 226 187 / 0.97); border: 3px solid var(--ts-gold-deep); box-shadow: 0 0 0 2px var(--ts-dark), 0 6px 16px rgb(0 0 0 / 0.5);
+  color: var(--ts-ink);
+}
+.ts-vacancy.ephraim{ border-color: var(--ts-blue); }
+.ts-vacancy-head{ display: flex; align-items: center; gap: 10px; }
+.ts-vacancy-head b{ flex: 1; min-width: 0; font: 900 15px/1.25 'Cinzel', serif; color: #6b1d0e; overflow-wrap: anywhere; }
+.ts-vacancy .ts-timer{ flex: none; }
+.ts-vacancy-line{ font: 700 13px/1.35 'Cinzel', serif; }
+.ts-vacancy-note{ font: italic 600 12.5px/1.35 Georgia, serif; color: #6b4120; text-align: center; }
+.ts-vacancy .ts-wide-btn{ font-size: 1rem; }
+.ts-vacancy.large{ padding: 14px 20px; gap: 8px; }
+.ts-vacancy.large .ts-vacancy-head b{ font-size: clamp(18px, 1.8vw, 26px); }
+.ts-vacancy.large .ts-vacancy-line{ font-size: 17px; }
+.ts-vacancy.large .ts-vacancy-note{ font-size: 16px; }
+
 @media (max-width: 760px){
   .tsb-lobby, .tsb-split{ grid-template-columns: 1fr; }
   .ts-board{ overflow-y: auto; }

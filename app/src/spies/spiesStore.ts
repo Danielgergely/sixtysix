@@ -35,6 +35,8 @@ interface SpiesStore {
   endsAt: number
   /** Date.now()-based moment the proposer may reveal alone (0 = no proposal). */
   forceAt: number
+  /** Per tribe without a spy master: Date.now()-based end of the wait for their return (0 = over). */
+  waitEnds: Partial<Record<SpiesTeam, number>>
   error: string | null
   busy: boolean
   /** Code from a /spies/CODE link, prefilled in the join form. */
@@ -53,7 +55,9 @@ interface SpiesStore {
   clue: (word: string, number: number) => Promise<string | null>
   pick: (pick: number) => void
   confirm: () => void
-  /** Leader, game over: back to the lobby (same code), or `now` = next game at once. */
+  /** Take over as your tribe's spy master while it has none. */
+  takeover: () => void
+  /** Leader, game over (or mid-game while a tribe has no spy master): back to the lobby (same code), or `now` = next game at once. */
   again: (now?: boolean) => void
   setPrefillCode: (code: string) => void
 }
@@ -68,12 +72,15 @@ const rememberCode = lastCode.remember
 function closeLocally(reason: string | null): void {
   rememberCode(null)
   clearBoard('spies')
-  useSpiesStore.setState({ role: null, state: null, key: null, myId: null, endsAt: 0, forceAt: 0, error: reason, busy: false })
+  useSpiesStore.setState({ role: null, state: null, key: null, myId: null, endsAt: 0, forceAt: 0, waitEnds: {}, error: reason, busy: false })
 }
 
 const timing = (state: SpiesState) => ({
   endsAt: state.endsInMs ? Date.now() + state.endsInMs : 0,
   forceAt: state.proposal ? Date.now() + state.proposal.forceInMs : 0,
+  waitEnds: Object.fromEntries(
+    Object.entries(state.vacancies ?? {}).map(([team, v]) => [team, v && v.waitInMs ? Date.now() + v.waitInMs : 0]),
+  ) as Partial<Record<SpiesTeam, number>>,
 })
 
 function getSocket(): SpiesSocket {
@@ -123,6 +130,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   myId: null,
   endsAt: 0,
   forceAt: 0,
+  waitEnds: {},
   error: null,
   busy: false,
   prefillCode: '',
@@ -197,6 +205,10 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   confirm: () => {
     playSfx('submit')
     getSocket().emit('spies:confirm')
+  },
+  takeover: () => {
+    playSfx('submit')
+    getSocket().emit('spies:takeover')
   },
   again: (now = false) => getSocket().emit('spies:again', { now }),
   setPrefillCode: (code) => set({ prefillCode: code.toUpperCase(), error: null }),

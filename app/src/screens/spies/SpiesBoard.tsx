@@ -4,7 +4,7 @@ import { useSpiesStore } from '../../spies/spiesStore'
 import { spring, useIsFirstKey } from '../../motion'
 import { playerById, rich, statusLine, useJoinOrigin } from '../../spies/util'
 import { useT } from '../../i18n'
-import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList } from './parts'
+import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList, Vacancies } from './parts'
 import { Verdict } from './verdict'
 
 /**
@@ -87,6 +87,7 @@ function BoardGame({ state }: { state: SpiesState }) {
             <Timer size={78} />
           </div>
         )}
+        {!over && <Vacancies state={state} large />}
         {/* The board never gets the key; at the end the public result carries it. */}
         <Grid state={state} keyColours={over ? state.result?.key : null} large />
       </div>

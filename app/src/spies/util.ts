@@ -90,6 +90,7 @@ export function statusLine(state: SpiesState): string {
   if (!state.turn) return ''
   const sm = playerById(state, state.spymasters[state.turn])
   const tribe = tribeName(state, state.turn)
+  if (state.vacancies?.[state.turn]) return t('spies.status.paused', { tribe })
   if (state.phase === 'clue') return t('spies.status.thinking', { tribe, name: sm?.name ?? t('spies.status.theSpymaster') })
   const prop = state.proposal
   if (prop) {

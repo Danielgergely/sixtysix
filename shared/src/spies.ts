@@ -35,8 +35,14 @@ export const SPIES_CLUE_MAX = 20
 export const SPIES_MAX_NUMBER = 9
 /** Per-turn timer options in seconds (0 = no timer). */
 export const SPIES_TIMER_OPTIONS = [0, 90, 150] as const
-/** A proposer may reveal their own pick alone after this long. */
-export const SPIES_FORCE_MS = 3000
+/**
+ * A proposer may reveal their own pick alone only after this long with nobody
+ * agreeing (an idle or absent teammate), as a separate, explained action.
+ * With a single connected agent no wait is needed: they are the majority.
+ */
+export const SPIES_FORCE_MS = 20_000
+/** An offline spy master's tribe waits this long (paused) before it is offered a new one. */
+export const SPIES_SM_WAIT_MS = 30_000
 /** Pick for "end our turn" in a proposal. */
 export const SPIES_PASS = -1
 
@@ -79,10 +85,29 @@ export interface SpiesProposal {
   proposerId: string
   /** Public ids who agree (the proposer included). */
   backers: string[]
-  /** Backers needed for a reveal without the proposer's 3-second override. */
+  /** Backers needed for a reveal: a majority of the tribe's connected agents. */
   needed: number
-  /** ms from receipt until the proposer may confirm alone (0 = now). */
+  /** ms from receipt until the proposer may reveal alone (`spies:confirm`, SPIES_FORCE_MS; 0 = now). */
   forceInMs: number
+}
+
+/**
+ * A tribe whose spy master went offline or left mid-game. While it lasts the
+ * tribe's turns are paused (timer frozen, no clue, no picks). It ends when the
+ * spy master comes back, a teammate takes over (`spies:takeover`) or the
+ * leader starts a new game (`spies:again`). Nobody is promoted automatically.
+ */
+export interface SpiesVacancy {
+  /** The spy master who is missing (public id; null once they left for good). */
+  playerId: string | null
+  name: string
+  avatar: string
+  /** Left on purpose: no wait, the choices show at once. */
+  left: boolean
+  /** ms from receipt until the wait for their return is over (0 = over / left). */
+  waitInMs: number
+  /** The whole wait (SPIES_SM_WAIT_MS), for the countdown ring. */
+  waitMs: number
 }
 
 export type SpiesEndReason = 'found' | 'goliath' | 'rival' | 'abandoned'
@@ -120,6 +145,8 @@ export interface SpiesState {
   /** Reveals left this turn (number + 1). */
   guessesLeft: number
   proposal: SpiesProposal | null
+  /** Tribes waiting for a spy master (mid-game only). The tribe whose turn it is and has one is paused. */
+  vacancies: Partial<Record<SpiesTeam, SpiesVacancy>>
   /** Turns so far, newest last. */
   history: SpiesTurn[]
   /** Time left in the current turn from receipt; 0 = no timer. */
@@ -159,10 +186,12 @@ export interface SpiesClientToServerEvents {
   'spies:clue': (payload: { word: string; number: number }, cb: Ack<object>) => void
   /** Agent of the active tribe: propose or back a pick (grid index or SPIES_PASS). */
   'spies:pick': (payload: { pick: number }) => void
-  /** The proposer, after SPIES_FORCE_MS: reveal without waiting for a majority. */
+  /** The proposer, after SPIES_FORCE_MS with no majority: reveal alone (absent / idle teammates). */
   'spies:confirm': () => void
+  /** An agent of a tribe whose spy master is missing takes the role (and gets the key). */
+  'spies:takeover': () => void
   /**
-   * Leader, phase 'over': play again in the same room. Default: back to the lobby
+   * Leader, phase 'over' (or mid-game while a tribe has no spy master): play again in the same room. Default: back to the lobby
    * (spy masters rotate, offline players are dropped). `now`: start the next game
    * straight away (falls back to the lobby when the teams don't allow a start).
    */
