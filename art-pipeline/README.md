@@ -47,6 +47,7 @@ node looks.mjs grid out.png <webp…>                         # 10 % grid, for m
 - `looks.mjs` has its own keyer: only the backdrop and a thin band along its
   edge turn transparent, so grey hair and beards stay solid (the generic keyer
   in `generate.mjs` tints their midtones green).
-- After regenerating a bust, re-measure its head and neck anchors in
-  `app/src/looks/bustArt.ts`; the Motion Lab (`/motion-lab`, dev only) shows every
-  character wearing each item.
+- After regenerating a bust, re-measure its head, brow, neck and cover anchors in
+  `app/src/looks/bustArt.ts` on `/looks-lab?grid=1&size=900` (dev only), then
+  check every item on it with `/looks-lab?slot=neck&crop=45&size=310` and
+  `/looks-lab?slot=head&size=280`.
