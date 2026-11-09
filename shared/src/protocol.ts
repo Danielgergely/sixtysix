@@ -48,6 +48,7 @@ export const MAX_ARENA_PLAYERS = 100
 
 export type ArenaPhase =
   | 'lobby'
+  | 'intro' // after Start: the most experienced players, then Ready… Set… Go! (INTRO_MS)
   | 'reading' // question flashed + 3-2-1, no answers yet
   | 'question' // answering window open
   | 'reveal' // correct answer + distribution
@@ -62,6 +63,28 @@ export interface ArenaPlayer {
   connected: boolean
   /** Wall mode: index into RoomState.teams. */
   team?: number
+  /** Level from the player's profile XP (sent on join, checked by the server); 1 when unknown. */
+  level?: number
+}
+
+/**
+ * The start intro (phase 'intro', INTRO_MS in all): the room's most
+ * experienced players, then "Ready… Set… Go!" for the last
+ * INTRO_COUNTDOWN_MS. Wall games show their teams instead (from RoomState).
+ */
+export const INTRO_MS = 6000
+export const INTRO_COUNTDOWN_MS = 2700
+
+export interface IntroPlayer {
+  id: string
+  name: string
+  avatar: string
+  level: number
+}
+
+export interface ArenaIntro {
+  /** Up to three players, most experienced (level, then XP) first. */
+  top: IntroPlayer[]
 }
 
 /** David vs Goliath: the giant's health is measured in points. */
@@ -183,10 +206,11 @@ export interface ClientToServerEvents {
    * score, which is how reconnection works). playerId is the stable
    * client-generated device UUID and acts as a secret: it is never broadcast.
    * The ack returns the player's PUBLIC id, the one used in room state and
-   * leaderboards.
+   * leaderboards. `xp` is the profile's experience (the intro's "most
+   * experienced"); the server clamps it and publishes only the level.
    */
   'room:join': (
-    payload: { code: string; name: string; avatar: string; playerId: string },
+    payload: { code: string; name: string; avatar: string; playerId: string; xp?: number },
     cb: (res: { ok: true; playerId: string; state: RoomState } | { ok: false; error: string }) => void,
   ) => void
   /** Host reclaims their room after a disconnect (within the grace window). */
@@ -216,6 +240,8 @@ export interface ClientToServerEvents {
 export interface ServerToClientEvents {
   'room:state': (state: RoomState) => void
   'room:closed': (reason: string) => void
+  /** The start intro; endsInMs = time left of INTRO_MS (less when re-sent after a rejoin). */
+  'game:intro': (intro: ArenaIntro, endsInMs: number) => void
   /** endsInMs = duration from receipt (no clock-sync needed). `yourAnswer` is set when re-sent to a player who already answered this question. */
   'game:question': (q: ArenaQuestion, phase: 'reading' | 'question', endsInMs: number, yourAnswer?: number) => void
   /** Public ids of the players who have answered the current question (count = length). */

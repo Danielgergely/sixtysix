@@ -15,6 +15,7 @@ import { useLocale, useT } from '../../i18n'
 import { Hint } from '../../tutorial/Hint'
 import { FlagButton } from '../../flags/FlagSheet'
 import { TeamStrip } from './game/Team'
+import { ArenaIntroView } from './game/Intro'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -129,6 +130,8 @@ export function ArenaGameScreen() {
   const myPlayerId = useArenaStore((s) => s.myPlayerId)
   const coinsEarned = useArenaStore((s) => s.coinsEarned)
   const reveal = useArenaStore((s) => s.reveal)
+  const intro = useArenaStore((s) => s.intro)
+  const phaseEndsAt = useArenaStore((s) => s.phaseEndsAt)
   const locale = useLocale((s) => s.locale)
   const upright = usePortraitBoard()
   if (!room) return null
@@ -154,7 +157,22 @@ export function ArenaGameScreen() {
       <button onClick={leaveArena}>{isHost ? t('arena.game.endGame') : t('arena.game.leave')}</button>
     </>
   )
-  if (phase === 'podium' && podium) {
+  if (phase === 'intro' && intro) {
+    scene = {
+      key: 'intro',
+      node: (
+        <ArenaIntroView
+          intro={intro}
+          endsAt={phaseEndsAt}
+          mode={room.config.mode ?? 'classic'}
+          players={room.players}
+          teams={room.teams}
+          wide={landscape}
+          myPlayerId={isPlayer ? myPlayerId : null}
+        />
+      ),
+    }
+  } else if (phase === 'podium' && podium) {
     let node = <Podium entries={podium} isPlayer={isPlayer} actions={endButton} />
     if (room.goliath) {
       node = <GoliathFinale goliath={room.goliath} entries={podium} wide={landscape} coins={isPlayer ? coinsEarned : undefined} actions={endButton} />
@@ -194,7 +212,7 @@ export function ArenaGameScreen() {
   }
 
   const skipLabel = phase === 'leaderboard' ? t('arena.game.next') : t('arena.game.skip')
-  const canSkip = isHost && (phase === 'question' || phase === 'reveal' || phase === 'leaderboard')
+  const canSkip = isHost && (phase === 'intro' || phase === 'question' || phase === 'reveal' || phase === 'leaderboard')
 
   return (
     <div className="screen arena-game-shell">

@@ -261,8 +261,10 @@
 /* ══ Road to the Throne ════════════════════════════════════════════════ */
 .tr{ position: absolute; inset: 0; z-index: 12; overflow: hidden; background: #1d0b06; display: grid; place-items: center; }
 /* Stage keeps the background's own aspect ratio so % coordinates match the painted carpet. */
-.tr-stage{ position: absolute; left: 50%; top: 0; translate: -50% 0; height: 100%; background-size: 100% 100%; }
-.tr.wide .tr-stage{ width: 100%; height: auto; top: 50%; translate: -50% -50%; }
+.tr-stage{ position: absolute; left: 50%; top: 0; translate: -50% 0; height: 100%; background-size: 100% 100%; container-type: inline-size; }
+/* Boards: the stage is drawn 1.2× and anchored at the bottom, so the carpet (the lower 45% of the
+   painting) fills more of the screen and the chariots get bigger; the throne stays in view. */
+.tr.wide .tr-stage{ width: 120%; height: auto; top: auto; bottom: 0; translate: -50% 0; }
 
 .tr-racer{
   position: absolute;
@@ -292,7 +294,7 @@
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff3b8, #e3b754 55%, #9e6c0c);
   border: 2px solid #1d0f06;
-  font: 900 13px/1 'Cinzel', serif;
+  font: 900 clamp(11px, 2.8cqw, 18px)/1 'Cinzel', serif;
   color: #2b1408;
 }
 .tr-tag{
@@ -304,7 +306,7 @@
   background: var(--c);
   border: 2px solid #1d0f06;
   color: #fff;
-  font: 700 10px/1.3 'Cinzel', serif;
+  font: 700 clamp(10px, 2.4cqw, 15px)/1.3 'Cinzel', serif;
   text-shadow: 0 1px 1px #000;
   white-space: nowrap;
 }
@@ -397,9 +399,9 @@
 .tr-board-score{ font-variant-numeric: tabular-nums; }
 
 .tr-up{ margin-left: 4px; color: #b9ffb0; }
-.tr.wide .tr-tag{ font-size: 13px; }
-.tr.wide .tr-rank{ font-size: 16px; }
-.tr.wide .tr-overtake{ font-size: 13px; }
+.tr.wide .tr-tag{ font-size: clamp(13px, 1.05cqw, 28px); }
+.tr.wide .tr-rank{ font-size: clamp(16px, 1.3cqw, 34px); }
+.tr.wide .tr-overtake{ font-size: clamp(13px, 1.05cqw, 28px); }
 
 /* ══ The Crowning ═════════════════════════════════════════════════════ */
 .cr{ position: absolute; inset: 0; z-index: 14; overflow: hidden; background: #1d0b06; display: grid; place-items: center; }
@@ -700,7 +702,8 @@
 /* Long verses on small phones: keep the played card visible below the scroll. */
 .empire-verse { max-height: 20dvh; overflow-y: auto; }
 /* Ultra-wide boards: fit the stage by height instead of cropping top/bottom. */
-.tr.wide .tr-stage, .cr.wide .cr-stage { width: min(100%, calc(100dvh * 1600 / 893)); }
+.cr.wide .cr-stage { width: min(100%, calc(100dvh * 1600 / 893)); }
+.tr.wide .tr-stage { width: min(120%, calc(120dvh * 1600 / 893)); }
 
 /* ══ Daily Scroll ═════════════════════════════════════════════════════ */
 .daily-bg { background: linear-gradient(rgb(20 8 4 / 0.2), rgb(20 8 4 / 0.75)), url('/art/banner-daily.webp') center / cover; }

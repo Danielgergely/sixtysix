@@ -5,16 +5,8 @@ import { PaintedPortrait } from '../art/PaintedPortrait'
 import { PARCHMENT } from '../art/textures'
 import { useLocale, useT } from '../i18n'
 import { nameTag } from './names'
+import { RACE_COLORS } from './raceColors'
 
-/** Six chariot liveries; a player keeps theirs for the whole game. */
-const RACE_COLORS = [
-  { key: 'red', hex: '#d2332f' },
-  { key: 'blue', hex: '#2f6fd8' },
-  { key: 'green', hex: '#2f9a45' },
-  { key: 'purple', hex: '#8a3fc0' },
-  { key: 'teal', hex: '#1fa3a0' },
-  { key: 'silver', hex: '#c9ced6' },
-]
 
 export interface RaceEntry {
   id: string
@@ -33,14 +25,17 @@ export interface RaceEntry {
 /**
  * Where the carpet is in each background, in % of the image: start/finish =
  * y of the start line and the throne steps; the carpet's left and right edges
- * at those two heights (linear in between).
+ * at those two heights (linear in between). `base` = a chariot's width in % of
+ * the stage's width, so chariots grow with the screen (a projector gets big ones).
  */
 const GEOMETRY = {
-  phone: { img: '/art/bg-road-portrait.webp', aspect: 800 / 1433, startY: 93, finishY: 39, bottom: [17, 83], top: [44, 56], base: 66, gap: 6.4, slots: [-1, 1] },
-  wide: { img: '/art/bg-road-landscape.webp', aspect: 1600 / 893, startY: 94, finishY: 54, bottom: [33, 67], top: [45.5, 55], base: 74, gap: 5.4, slots: [0, 1, -1] },
+  phone: { img: '/art/bg-road-portrait.webp', aspect: 800 / 1433, startY: 93, finishY: 39, bottom: [17, 83], top: [44, 56], base: 17, gap: 6.4, slots: [-1, 1] },
+  // The board's start line sits a little up the carpet so the last name tags stay on screen (the stage is drawn 1.2×, see empire.css).
+  wide: { img: '/art/bg-road-landscape.webp', aspect: 1600 / 893, startY: 89, finishY: 54, bottom: [34.6, 65.5], top: [45.5, 55], base: 8, gap: 5.4, slots: [0, 1, -1] },
 } as const
 type Geometry = (typeof GEOMETRY)[keyof typeof GEOMETRY]
 
+/** Chariots drawn by default (Bible Blitz has four; the arena passes its room size, up to ROAD_MAX_PLAYERS). */
 const SHOWN = 6
 /** Chariots gallop, then the order settles and badges/banners appear. */
 const SETTLE_MS = 3000
@@ -73,15 +68,18 @@ function progressFor(score: number, leaderScore: number, total: number, goal?: n
  * keep at least `g.gap`% apart so the order always reads; the whole pack then
  * shifts up if it would spill past the start line. Close pairs step sideways.
  */
-function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, total: number, goal?: number): Map<string, Placed> {
-  const sorted = [...entries].sort((a, b) => b[key] - a[key]).slice(0, SHOWN + 2)
+function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, total: number, shownCount: number, goal?: number): Map<string, Placed> {
+  const sorted = [...entries].sort((a, b) => b[key] - a[key]).slice(0, shownCount + 2)
   const leader = sorted[0]?.[key] ?? 0
+  // More chariots on the same carpet: close the minimum gap only as far as the pack needs to fit.
+  const n = Math.min(shownCount, entries.length)
+  const gap = n > 1 ? Math.min(g.gap, (g.startY - g.finishY - 4) / (n - 1)) : g.gap
   const ys: number[] = []
   for (const r of sorted) {
     const real = g.startY + (g.finishY - g.startY) * progressFor(r[key], leader, total, goal)
-    ys.push(ys.length ? Math.max(real, ys[ys.length - 1] + g.gap) : real)
+    ys.push(ys.length ? Math.max(real, ys[ys.length - 1] + gap) : real)
   }
-  const lastShown = ys[Math.min(SHOWN, ys.length) - 1] ?? g.startY
+  const lastShown = ys[Math.min(shownCount, ys.length) - 1] ?? g.startY
   const overflow = Math.max(0, lastShown - g.startY)
   const out = new Map<string, Placed>()
   let run = 0 // consecutive tight neighbours → walk through the side slots
@@ -91,7 +89,7 @@ function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, tota
     const left = g.bottom[0] + (g.top[0] - g.bottom[0]) * f
     const right = g.bottom[1] + (g.top[1] - g.bottom[1]) * f
     const scale = 1 - 0.3 * f // mild perspective; readability first
-    const tight = i > 0 && ys[i] - ys[i - 1] < g.gap * 1.6
+    const tight = i > 0 && ys[i] - ys[i - 1] < gap * 1.6
     run = tight ? run + 1 : 0
     const slot = tight ? g.slots[run % g.slots.length] : 0
     const x = (left + right) / 2 + slot * ((right - left) / 2) * 0.55
@@ -104,8 +102,9 @@ function layout(entries: RaceEntry[], key: 'before' | 'after', g: Geometry, tota
  * "Road to the Throne": standings between questions. Chariots race up a single
  * red-carpet track toward the throne — height on screen is progress. Each
  * player owns a colour (chariot + portrait ring + tag); the leader trails holy
- * fire. Phone shows the top 6 (+ a pinned card for you); boards add a full
- * standings column.
+ * fire. Phone shows the top `shown` (+ a pinned card for you); boards add a
+ * full standings column. Big arena rooms get the ranked list instead
+ * (screens/arena/game/Leaderboard.tsx, ROAD_MAX_PLAYERS).
  */
 interface Props {
   entries: RaceEntry[]
@@ -116,21 +115,25 @@ interface Props {
   goal?: number
   /** A standings panel sits below the road (arena phones): it shows your rank, so drop the "#rank" pill. */
   compact?: boolean
+  /** How many chariots to draw (default 6). */
+  shown?: number
 }
 
-export function RoadToThrone({ entries, played, total, wide, goal, compact }: Props) {
+export function RoadToThrone({ entries, played, total, wide, goal, compact, shown: shownCount = SHOWN }: Props) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const g = wide ? GEOMETRY.wide : GEOMETRY.phone
-  const before = useMemo(() => layout(entries, 'before', g, total, goal), [entries, g, total, goal])
-  const after = useMemo(() => layout(entries, 'after', g, total, goal), [entries, g, total, goal])
+  const before = useMemo(() => layout(entries, 'before', g, total, shownCount, goal), [entries, g, total, shownCount, goal])
+  const after = useMemo(() => layout(entries, 'after', g, total, shownCount, goal), [entries, g, total, shownCount, goal])
   const [settled, setSettled] = useState(false)
   useEffect(() => {
     const id = setTimeout(() => setSettled(true), SETTLE_MS)
     return () => clearTimeout(id)
   }, [])
 
-  const shown = entries.filter((r) => r.rankAfter <= SHOWN).sort((a, b) => after.get(a.id)!.y - after.get(b.id)!.y)
+  // Up to six chariots at full size; a bigger pack (arena rooms up to ROAD_MAX_PLAYERS) a little smaller.
+  const sizeK = Math.sqrt(6 / Math.max(6, Math.min(shownCount, entries.length)))
+  const shown = entries.filter((r) => r.rankAfter <= shownCount).sort((a, b) => after.get(a.id)!.y - after.get(b.id)!.y)
   const you = entries.find((r) => r.you)
   const byRank = [...entries].sort((a, b) => a.rankAfter - b.rankAfter)
   const color = (r: RaceEntry) => RACE_COLORS[r.color % RACE_COLORS.length]
@@ -151,7 +154,7 @@ export function RoadToThrone({ entries, played, total, wide, goal, compact }: Pr
             <motion.div
               key={r.id}
               className={`tr-racer ${r.you ? 'you' : ''}`}
-              style={{ '--c': c.hex, '--base': `${g.base}px` } as React.CSSProperties}
+              style={{ '--c': c.hex, '--base': `${g.base * sizeK}%` } as React.CSSProperties}
               initial={{ left: `${from.x}%`, top: `${from.y}%`, scale: from.scale }}
               animate={{ left: `${to.x}%`, top: `${to.y}%`, scale: to.scale }}
               transition={{ duration: 2.4, delay: 0.5 + i * 0.08, ease: [0.35, 0, 0.2, 1] }}
@@ -194,7 +197,7 @@ export function RoadToThrone({ entries, played, total, wide, goal, compact }: Pr
         <small>{goal ? t('ceremony.road.firstTo', { n: goal.toLocaleString(locale) }) : t('ceremony.road.after', { played, total })}</small>
       </motion.div>
 
-      {!wide && !compact && you && you.rankAfter > SHOWN && (
+      {!wide && !compact && you && you.rankAfter > shownCount && (
         <div className="tr-you-card" style={{ '--c': color(you).hex } as React.CSSProperties}>
           #{you.rankAfter} · {you.name} · {you.after.toLocaleString(locale)}
         </div>
