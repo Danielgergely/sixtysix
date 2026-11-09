@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { DEFAULT_BACKDROP, DEFAULT_FRAME, LOOK_ITEMS, parseLook, type ItemId, type Look } from '@sixtysix/shared'
-import { BUST_ANCHORS, ITEM_FIT, bustSrc } from '../looks/bustArt'
+import { BUST_ANCHORS, bustSrc, itemPlacement, type BustAnchor } from '../looks/bustArt'
 
 /**
  * A player's portrait: the AI-painted bust (art-pipeline → public/art) in a
@@ -21,24 +21,24 @@ export function LookPortrait({ look, size, className = '', bare = false, lazy = 
     <span className={`painted-portrait ${frame !== DEFAULT_FRAME && !bare ? 'pp-framed' : ''} ${className}`} style={size ? { width: size, height: size } : undefined}>
       <span className={`pp-disc pp-bd-${backdrop}`}>
         <img className="pp-bust" src={bustSrc(look)} alt={look.base} draggable={false} loading={loading} />
-        {!bare && look.neck && <ItemImg id={look.neck} at={anchor.neck} />}
+        {!bare && look.neck && <ItemImg id={look.neck} anchor={anchor} />}
       </span>
       {!bare && frame !== DEFAULT_FRAME && <FrameRing frame={frame} />}
-      {!bare && look.head && <ItemImg id={look.head} at={anchor.head} />}
+      {!bare && look.head && <ItemImg id={look.head} anchor={anchor} />}
     </span>
   )
 }
 
-function ItemImg({ id, at }: { id: ItemId; at: { x: number; y: number; w: number } }) {
-  const fit = ITEM_FIT[id] ?? { k: 1, dy: 0 }
-  const w = at.w * fit.k
+function ItemImg({ id, anchor }: { id: ItemId; anchor: BustAnchor }) {
+  const slot = LOOK_ITEMS[id].slot === 'neck' ? 'neck' : 'head'
+  const p = itemPlacement(id, slot, anchor)
   return (
     <img
-      className={`pp-item pp-${LOOK_ITEMS[id].slot}`}
+      className={`pp-item pp-${slot}`}
       src={`/art/item-${id}.webp`}
       alt=""
       draggable={false}
-      style={{ left: `${at.x - w / 2}%`, top: `${at.y + fit.dy * at.w}%`, width: `${w}%` }}
+      style={{ left: `${p.left}%`, top: `${p.top}%`, width: `${p.width}%`, maskImage: p.mask, WebkitMaskImage: p.mask }}
     />
   )
 }
