@@ -1651,6 +1651,87 @@
         "out/raw/bust-daniel-1.png"
       ],
       "prompt": "Edit the attached portrait. Keep EVERYTHING exactly the same: the same person and face shape, expression, eyes, hair and hair colour, beard, clothes, props, pose, framing, size and position in the frame, line work, painting style and the flat magenta background. Change ONLY the skin tone of the face, ears, neck and hands to a deep dark-brown skin tone, as of East African people, with matching natural shading and highlights."
+    },
+    {
+      "id": "fields-valley",
+      "aspect": "1:1",
+      "refs": [
+        "refs/style-d.png",
+        "refs/fields-ground.png"
+      ],
+      "prompt": "Painted isometric game background (Forge of Empires style), the companion scene to the attached homestead-yard painting: same top-down 3/4 angle, same painterly brushwork, palette, warm soft daylight and grassy greens. It shows the family's farm fields in the Valley of Rephaim below Jerusalem: a gentle valley slope that descends towards the viewer, with SIX EMPTY terraced field beds arranged as three rows of two (two side by side on each step), stepping down the slope from the top of the image to the bottom; the bottom pair is the largest and nearest. Each bed is a clear, separate, flat, roughly trapezoid or rounded lens-shaped patch of plain bare brown earth with nothing growing on it, an even flat colour with no furrows, held up on its downhill side by a low curved dry-stone terrace wall, with a strip of grass between neighbouring beds. A winding pale dirt footpath runs up the middle of the slope between the two columns of beds, touching every bed, from the bottom edge of the image to the top. At the top centre, where the path ends, a flat, empty, round open space of beaten pale earth (an empty threshing-floor site, nothing on it). A few silver-green olive trees, rocks and bushes between and around the terraces at the edges, and far in the background along the top edge rolling hills and the golden-limestone city wall of Jerusalem in the distance. No buildings in the fields, no people, no animals, no crops."
+    },
+    {
+      "id": "fields-soil",
+      "aspect": "1:1",
+      "refs": [
+        "refs/fields-ground.png"
+      ],
+      "prompt": "Seamless tileable square game texture, hand-painted in the same warm painterly style as the attached background painting, seen from above at the same gentle 3/4 top-down angle. It fills the whole square edge to edge with an even, uniform pattern and lighting, so it can be repeated and clipped into the shape of a terraced field bed. No border, no frame, no vignette, no horizon, no stones or walls, no shadows from objects outside, no single focal point. Freshly ploughed dark-brown field soil: parallel straight furrows and ridges running horizontally across the image, evenly spaced, rich moist earth with soft highlights on the ridges and a few tiny clods."
+    },
+    {
+      "id": "fields-shoots",
+      "aspect": "1:1",
+      "refs": [
+        "refs/fields-ground.png"
+      ],
+      "prompt": "Seamless tileable square game texture, hand-painted in the same warm painterly style as the attached background painting, seen from above at the same gentle 3/4 top-down angle. It fills the whole square edge to edge with an even, uniform pattern and lighting, so it can be repeated and clipped into the shape of a terraced field bed. No border, no frame, no vignette, no horizon, no stones or walls, no shadows from objects outside, no single focal point. A field of young sprouting grain: neat parallel horizontal rows of small fresh bright-green shoots growing out of brown ploughed soil, the soil showing between the rows, evenly spaced, the shoots short and tufty."
+    },
+    {
+      "id": "fields-barley",
+      "aspect": "1:1",
+      "refs": [
+        "refs/fields-ground.png"
+      ],
+      "prompt": "Seamless tileable square game texture, hand-painted in the same warm painterly style as the attached background painting, seen from above at the same gentle 3/4 top-down angle. It fills the whole square edge to edge with an even, uniform pattern and lighting, so it can be repeated and clipped into the shape of a terraced field bed. No border, no frame, no vignette, no horizon, no stones or walls, no shadows from objects outside, no single focal point. A dense field of ripe barley ready for harvest, seen from above: pale straw-yellow, slightly silvery barley stalks with long bristly awns on the ears, all leaning gently the same way, densely packed so no soil shows, soft painterly highlights."
+    },
+    {
+      "id": "fields-wheat",
+      "aspect": "1:1",
+      "refs": [
+        "refs/fields-ground.png"
+      ],
+      "prompt": "Seamless tileable square game texture, hand-painted in the same warm painterly style as the attached background painting, seen from above at the same gentle 3/4 top-down angle. It fills the whole square edge to edge with an even, uniform pattern and lighting, so it can be repeated and clipped into the shape of a terraced field bed. No border, no frame, no vignette, no horizon, no stones or walls, no shadows from objects outside, no single focal point. A dense field of ripe golden wheat ready for harvest, seen from above: rich deep-golden heavy ears of wheat, plump and nodding, warmer and more orange-gold than barley, densely packed so no soil shows, soft painterly highlights."
+    },
+    {
+      "id": "plot-thresh-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png",
+        "refs/fields-sprites.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Match the painting style, outline weight, warm lighting from the upper left, scale and the diamond-shaped earth base of the attached sprite sheet exactly (it shows other buildings of the same homestead), but paint a NEW object: An old village threshing floor (Ruth 3): a flat round circle of hard beaten pale earth ringed by a low border of rough field stones, a wooden pitchfork (winnowing fork) lying on it, one bound sheaf of golden barley and a few loose stalks."
+    },
+    {
+      "id": "plot-thresh-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png",
+        "refs/fields-sprites.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Match the painting style, outline weight, warm lighting from the upper left, scale and the diamond-shaped earth base of the attached sprite sheet exactly (it shows other buildings of the same homestead), but paint a NEW object: Araunah's threshing floor (2 Sam 24): a large round threshing floor paved with smooth limestone slabs, ringed by a neat cut-stone kerb, a brown ox pulling a wooden threshing sledge across scattered golden grain stalks, a big heap of golden grain and pale chaff on one side, a wooden winnowing fork leaning on a filled grain sack."
+    },
+    {
+      "id": "plot-bake-1",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png",
+        "refs/fields-sprites.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Match the painting style, outline weight, warm lighting from the upper left, scale and the diamond-shaped earth base of the attached sprite sheet exactly (it shows other buildings of the same homestead), but paint a NEW object: A household hand mill and clay oven (Matt 24:41): a small hand mill of two round grey basalt millstones, one on top of the other with a wooden handle, a little flour and a basket of grain beside it, and a small domed clay bread oven (a tannur) with a round opening on top and a soft glow inside, a small pile of firewood and a clay water jar."
+    },
+    {
+      "id": "plot-bake-2",
+      "aspect": "1:1",
+      "transparent": true,
+      "refs": [
+        "refs/style-d.png",
+        "refs/fields-sprites.png"
+      ],
+      "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Match the painting style, outline weight, warm lighting from the upper left, scale and the diamond-shaped earth base of the attached sprite sheet exactly (it shows other buildings of the same homestead), but paint a NEW object: A small bakehouse (Jer 37:21, the bakers' street): a small flat-roofed mud-brick bakehouse with an open front and a reed awning, a big domed clay oven beside it with a glowing mouth and a wisp of pale smoke rising, a pair of large round millstones on a stone base, round flat loaves of bread cooling on a wooden board, sacks of flour and stacked firewood."
     }
   ]
 }

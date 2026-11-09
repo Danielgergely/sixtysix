@@ -392,3 +392,17 @@
 @media (prefers-reduced-motion: reduce){ .lf, .lf *, .lf-bubble{ animation: none !important; transition: none !important; } }
 /* The city from far away: no people. */
 .cm.lod-far .lf, .cm.lod-far .lf-bubble-anchor{ display: none !important; }
+
+/* ══ The valley (world/FieldScene.tsx): beds drawn over the painting, the threshing floor, tags ══ */
+.fs-beds{ position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.fs-bed{ cursor: pointer; }
+.fs-bed polygon{ transition: fill 0.4s; }
+/* A field not bought yet: a faint dashed outline over the bare painted bed. */
+.fs-bed.unbought polygon:first-child{ stroke: rgb(255 236 180 / 0.55); stroke-width: 0.35; stroke-dasharray: 1 0.8; }
+.fs-edge{ fill: none; stroke: #8f8676; stroke-width: 0.7; stroke-linejoin: round; }
+.fs-water{ fill: none; stroke: #6fb7e0; stroke-width: 0.35; stroke-dasharray: 1.4 0.6; opacity: 0.9; }
+.fs-tagwrap{ display: contents; }
+.fs-tag{ translate: -50% -50%; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.fs-tag .hp-ribbon{ position: static; rotate: none; width: auto; padding: 2px 8px; border-radius: 999px; }
+.fs-tag .ps-build{ position: static; translate: none; }
+.fs-grow{ padding: 1px 6px; border-radius: 999px; background: rgb(29 15 6 / 0.75); color: #d9f0a8; font: 800 11px/1.4 'Cinzel', serif; font-variant-numeric: tabular-nums; }

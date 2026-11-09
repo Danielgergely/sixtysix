@@ -63,7 +63,7 @@ export const GUIDES: Record<GuideId, Guide> = {
   home: {
     icon: '🏡',
     tour: true,
-    cards: [{ icon: '🏡' }, { icon: '🔨', target: 'home-house' }, { icon: '🧺', target: 'home-collect' }, { icon: '📜', target: 'home-scroll' }, { icon: '⚖️', target: 'home-market' }],
+    cards: [{ icon: '🏡' }, { icon: '🔨', target: 'home-house' }, { icon: '🧺', target: 'home-collect' }, { icon: '📜', target: 'home-scroll' }, { icon: '⚖️', target: 'home-market' }, { icon: '🌾', target: 'home-views' }],
   },
   city: {
     icon: '🏘️',

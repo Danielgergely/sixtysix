@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, MATERIALS, buyPrice, modsOf, sellPrice, type Material } from '@sixtysix/shared'
+import { MATERIAL_INFO, MATERIALS, buyPrice, modsOf, sellPrice, sellable, type Material } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { useAccountStore } from '../../account/accountStore'
 import { usePlotStore } from '../../plot/plotStore'
@@ -92,9 +92,14 @@ export function MarketScreen() {
                 <button className="hp-btn small gold" disabled={!account || busy || coins < price} onClick={() => void trade(m, 'buy')}>
                   {t('market.buy')} <PaintedCoin size={14} /> {price.toLocaleString(locale)}
                 </button>
-                <button className="hp-btn small" disabled={!account || busy || have < qty} onClick={() => void trade(m, 'sell')}>
-                  {t('market.sell', { n: sellPrice(m, qty, mods).toLocaleString(locale) })}
-                </button>
+                {sellable(m) ? (
+                  <button className="hp-btn small" disabled={!account || busy || have < qty} onClick={() => void trade(m, 'sell')}>
+                    {t('market.sell', { n: sellPrice(m, qty, mods).toLocaleString(locale) })}
+                  </button>
+                ) : (
+                  // Grain, bread and copper only ever become buildings.
+                  <small className="mk-nosell">{t('market.noSell')}</small>
+                )}
               </span>
             </motion.div>
           )

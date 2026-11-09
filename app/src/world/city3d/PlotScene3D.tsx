@@ -101,9 +101,9 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   const models = useMemo(
     () =>
       SPOTS.map((spot) => {
-        const level = spot === 'courtyard' ? 1 : levels[spot]
+        const level = levels[spot]
         const geo = buildingGeometry(spot, level)
-        const to = spot === 'courtyard' ? undefined : building[spot]
+        const to = building[spot]
         // The scaffold is as tall as what is going up.
         const scaffold = to ? scaffoldGeometry(spot, Math.max(topOf(geo), topOf(buildingGeometry(spot, to)))) : null
         return { spot, level, geo, scaffold }
@@ -123,7 +123,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
     const before = prev.current
     prev.current = { ...levels }
     if (!before || still) return
-    const up = (Object.keys(levels) as BuildingId[]).find((b) => levels[b] > (before[b] ?? 0))
+    const up = SPOTS.find((b) => levels[b] > (before[b] ?? 0))
     if (up) {
       pop.current = { spot: up, t0: performance.now() / 1000 }
       invalidate()

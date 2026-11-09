@@ -79,6 +79,7 @@ export default {
     c3: { title: 'Collect', text: 'Buildings produce materials. Collect them: a full storehouse stops filling.' },
     c4: { title: 'Workers’ scroll', text: 'Get 2 of 3 questions right to take 5 minutes off a build.' },
     c5: { title: 'Market and gifts', text: 'The Market buys and sells materials. Workers in your yard sometimes carry a gift: tap them.' },
+    c6: { title: 'Fields and expeditions', text: 'From the Stone house your fields in the valley grow barley and wheat; the Bakehouse makes bread for big builds. From House 4, send workers to the quarry and the copper mines.' },
   },
   city: {
     name: 'Jerusalem',

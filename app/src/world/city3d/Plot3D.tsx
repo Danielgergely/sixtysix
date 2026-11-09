@@ -66,8 +66,8 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
   const labels = useMemo<LabelSpec[]>(
     () =>
       SPOTS.map((spot) => {
-        const lv = spot === 'courtyard' ? 1 : levels[spot]
-        const to = spot === 'courtyard' ? undefined : building[spot]
+        const lv = levels[spot]
+        const to = building[spot]
         let top = topOf(buildingGeometry(spot, lv))
         if (to) top = Math.max(top, topOf(scaffoldGeometry(spot, Math.max(top, topOf(buildingGeometry(spot, to))))))
         const p = SPOT_3D[spot]
@@ -125,17 +125,6 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
     const ref = (el: HTMLElement | null) => {
       if (el) bridge.labels.set(spot, el)
       else bridge.labels.delete(spot)
-    }
-    if (spot === 'courtyard') {
-      return (
-        <div key={spot} ref={ref} className="c3-tag p3-tag" style={{ display: 'none' }}>
-          <div className="p3-stack ps-tagspot court">
-            <span className="ps-tag">
-              {t('home.sheet.courtyard')} <small>{t('home.scene.soon')}</small>
-            </span>
-          </div>
-        </div>
-      )
     }
     const b = spot
     const { level, build, waiting, icon, isNew } = spotStatus(b, levels, plot, seen)

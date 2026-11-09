@@ -1,5 +1,5 @@
 import { BufferGeometry, IcosahedronGeometry, Matrix4, type ColorRepresentation } from 'three'
-import { maxLevel, type BuildingId } from '@sixtysix/shared'
+import { maxLevel, type YardSpot } from '@sixtysix/shared'
 import { Geo, place } from './geo'
 import { C } from './palette'
 import { rng } from './space'
@@ -546,7 +546,7 @@ function gate(g: Geo, level: number) {
   }
 }
 
-// ── The courtyard spot (decorations to come) ──
+// ── The courtyard spot (the Bakehouse's; the 3D yard keeps this model) ──
 
 function courtyardSpot(g: Geo) {
   g.box(0, 0, 0, 4.2, 0.1, 4.2, '#d4b27c', { jitter: 0.02 })
@@ -569,7 +569,7 @@ function courtyardSpot(g: Geo) {
 // ── Empty spots and building sites ──
 
 /** Footprint (w × d) of each building's spot, for the site markers, scaffolds and tap boxes. */
-export const FOOTPRINT: Record<BuildingId | 'courtyard', [number, number]> = {
+export const FOOTPRINT: Record<YardSpot, [number, number]> = {
   house: [8.4, 8.4],
   well: [4.6, 4.6],
   wall: [7.4, 2.4],
@@ -578,7 +578,7 @@ export const FOOTPRINT: Record<BuildingId | 'courtyard', [number, number]> = {
   fold: [7, 7],
   grove: [6.6, 6.2],
   kiln: [5, 4.4],
-  courtyard: [4.2, 4.2],
+  bake: [4.2, 4.2],
 }
 
 /** An empty spot: surveyor's pegs and a string round the ground. */
@@ -623,7 +623,10 @@ function scaffold(g: Geo, w: number, d: number, h: number) {
 
 // ── The catalogue ───────────────────────────────────────────────────────
 
-export type Spot = BuildingId | 'courtyard'
+export type Spot = YardSpot
+
+/** The levels the models are drawn for; higher levels (copper and bread, shared/src/plot.ts) keep the top model. */
+const MODELLED: Partial<Record<YardSpot, number>> = { house: 7, well: 5, wall: 5, store: 5, workshop: 5, fold: 5, grove: 5, kiln: 4 }
 
 const cache = new Map<string, BufferGeometry>()
 const make = (key: string, seed: number, f: (g: Geo, rand: () => number) => void): BufferGeometry => {
@@ -638,10 +641,10 @@ const make = (key: string, seed: number, f: (g: Geo, rand: () => number) => void
   return geo
 }
 
-/** The model of a building at a level (level 0 = the empty site; the courtyard spot has one model). Cached. */
+/** The model of a building at a level (level 0 = the empty site; the Bakehouse's spot keeps the courtyard model). Cached. */
 export function buildingGeometry(spot: Spot, level: number): BufferGeometry {
-  if (spot === 'courtyard') return make('courtyard', 31, courtyardSpot)
-  const lv = Math.min(maxLevel(spot), Math.max(0, level))
+  if (spot === 'bake') return make('courtyard', 31, courtyardSpot)
+  const lv = Math.min(MODELLED[spot] ?? maxLevel(spot), Math.max(0, level))
   const [w, d] = FOOTPRINT[spot]
   if (lv === 0) return make(`${spot}:0`, 41, (g) => emptySite(g, w, d))
   return make(`${spot}:${lv}`, 50 + lv, (g, rand) => {
