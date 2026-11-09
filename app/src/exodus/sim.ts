@@ -1,8 +1,9 @@
 /**
  * Exodus, the run itself without drawing (docs/exodus.md): the track as
  * tiles and things placed by their distance along it (`s`, growing forward),
- * the runner's lane, jump and roll (ducking comes in after the first
- * minute), obstacles, lights (XP) and shekels (coins),
+ * the runner's lane, jump (and a second one in the air) and roll (ducking
+ * comes in after the first minute), obstacles (among them platforms to run
+ * along and flocks of quail flying at you), lights (XP) and shekels (coins),
  * and the question cycle: warn → read (slow motion) → speed up with the
  * answers shown over the lanes → three answer gates.
  * The scene draws a thing at z = dist − s, so the runner stays at z = 0.
@@ -50,8 +51,8 @@ export const AHEAD = 240
 /** How far behind the runner they are kept (the camera sits ~7 back). */
 const BEHIND = 16
 
-/** What an obstacle asks: jump it, duck under it (roll), or go round it. */
-export type Need = 'jump' | 'roll' | 'block'
+/** What an obstacle asks: jump it, duck under it (roll), go round it, or jump up and run along it. */
+export type Need = 'jump' | 'roll' | 'block' | 'platform'
 
 import { EXODUS_REWARDS, type FlagShown } from '@sixtysix/shared'
 
@@ -73,7 +74,27 @@ export interface Obstacle extends Thing {
   /** Half its length along the track. */
   half: number
   hit: boolean
+  /** A platform's top; it starts with a ramp up (`RAMP` long) when `ramp`. */
+  top?: number
+  ramp?: boolean
+  /** A flock flying at the runner: its speed (track units/s) once the runner is within `FLY_FROM`. */
+  fly?: number
 }
+
+/** A platform: its top, length and the ramp at its near end. */
+export const PLATFORM = { top: 1.5, half: 7, ramp: 4.5 }
+/** Quail (Numbers 11:31, "about two cubits above the ground"): how fast a flock flies at you, and from how far. */
+const FLY_SPEED = 9
+const FLY_FROM = 45
+// (A flock's half length is 1: at the closing speed a slow frame must not skip past it.)
+/** Flying low (jump over) or at head height (duck under): the flock's height. */
+export const FLOCK_Y = { low: 0.35, high: 1.6 }
+/** Things to jump onto come after this many seconds of running, flocks after this many. */
+const PLATFORMS_FROM_S = 25
+const FLOCKS_FROM_S = 40
+/** A double jump clears a block or a duck from above this height. */
+const OVER_BLOCK_Y = 3.1
+const OVER_DUCK_Y = 3
 
 /**
  * The power-ups: a jar of manna (Exodus 16:33) gathers every light near you
@@ -128,7 +149,7 @@ export interface Gate {
 export type Phase = 'run' | 'warn' | 'read' | 'speedup' | 'gates' | 'over'
 
 export type RunEvent =
-  | { type: 'jump' | 'land' | 'roll' | 'lane' | 'stumble' | 'crash' | 'light' | 'shekel' }
+  | { type: 'jump' | 'jump2' | 'land' | 'roll' | 'lane' | 'stumble' | 'crash' | 'light' | 'shekel' }
   | { type: 'gate'; right: boolean }
   | { type: 'power'; kind: PowerKind }
   /** The pillar of cloud took a fall for you. */
@@ -145,10 +166,14 @@ export interface Player {
   /** Seconds since the last stumble (a second one soon after catches you). */
   sinceStumble: number
   airborne: boolean
+  /** The second jump, in the air, is used up (until landing). */
+  doubled: boolean
 }
 
 const GRAVITY = 32
 const JUMP_V = 11
+/** The second jump's push (from whatever the runner's speed upwards is then). */
+const JUMP2_V = 10
 export const ROLL_S = 0.7
 /** Ducking is introduced after this many seconds of running (not counting the slow motion). */
 const ROLL_FROM_S = 60
@@ -190,13 +215,13 @@ export function rand(seed: number) {
 
 const POWERS: readonly PowerKind[] = ['manna', 'cloud', 'staff']
 
-/** Each place's obstacles: what you jump, duck under and go round. */
+/** Each place's obstacles: what you jump, duck under, go round and run along (with `Ramp` added: the one with a ramp up at its near end). */
 const OBSTACLES: Record<Biome, (r: () => number) => Record<Need, string>> = {
-  egypt: (r) => ({ jump: 'pile', roll: 'beam', block: r() < 0.5 ? 'cart' : 'sledge' }),
-  sea: () => ({ jump: 'reef', roll: 'arch', block: 'boulder' }),
-  wilderness: () => ({ jump: 'stones', roll: 'awning', block: 'rockBlock' }),
-  jordan: () => ({ jump: 'riverStones', roll: 'trunk', block: 'riverBoulder' }),
-  jericho: (r) => ({ jump: 'pile', roll: 'beam', block: r() < 0.5 ? 'cart' : 'rockBlock' }),
+  egypt: (r) => ({ jump: 'pile', roll: 'beam', block: r() < 0.5 ? 'cart' : 'sledge', platform: 'hauled' }),
+  sea: () => ({ jump: 'reef', roll: 'arch', block: 'boulder', platform: 'shelf' }),
+  wilderness: () => ({ jump: 'stones', roll: 'awning', block: 'rockBlock', platform: 'ledge' }),
+  jordan: () => ({ jump: 'riverStones', roll: 'trunk', block: 'riverBoulder', platform: 'riverLedge' }),
+  jericho: (r) => ({ jump: 'pile', roll: 'beam', block: r() < 0.5 ? 'cart' : 'rockBlock', platform: 'hauled' }),
 }
 
 export class Run {
@@ -216,7 +241,7 @@ export class Run {
   gate: Gate | null = null
   /** The answer gate just passed: kept a moment for the scene's burst. */
   lastGate: Gate | null = null
-  player: Player = { lane: 0, x: 0, y: 0, vy: 0, roll: 0, sinceStumble: 99, airborne: false }
+  player: Player = { lane: 0, x: 0, y: 0, vy: 0, roll: 0, sinceStumble: 99, airborne: false, doubled: false }
   /** What the run has earned so far (paid when it ends). */
   xp = 0
   coins = 0
@@ -270,9 +295,17 @@ export class Run {
     this.events.push({ type: 'lane' })
   }
 
+  /** Swipe up: jump; once more in the air: a second, smaller jump (a somersault). */
   jump() {
     const p = this.player
-    if (this.phase === 'over' || p.airborne) return
+    if (this.phase === 'over') return
+    if (p.airborne) {
+      if (p.doubled) return
+      p.doubled = true
+      p.vy = Math.max(p.vy, 0) * 0.3 + JUMP2_V
+      this.events.push({ type: 'jump2' })
+      return
+    }
     p.roll = 0
     p.vy = JUMP_V
     p.airborne = true
@@ -299,7 +332,7 @@ export class Run {
     this.pending = q
     this.setPhase('warn')
     // Everything not yet close sinks away; nothing new is placed until after the gates.
-    for (const o of this.obstacles) if (o.s > this.dist + 6 && o.sink === 0) o.sink = 0.001
+    for (const o of this.obstacles) if (o.s - o.half > this.dist + 6 && o.sink === 0) o.sink = 0.001
     this.clearUntil = Infinity
   }
 
@@ -396,14 +429,23 @@ export class Run {
   private stepPlayer(dt: number) {
     const p = this.player
     p.x += (p.lane * LANE_W - p.x) * Math.min(1, dt * 13)
-    if (p.airborne || p.y > 0) {
+    const floor = this.floorAt(p.x)
+    // Up a ramp; off the end (or the side) of a platform: falling.
+    if (!p.airborne && p.y < floor) p.y = floor
+    else if (!p.airborne && p.y > floor + 0.05) {
+      // Ran off the edge: one jump is left, in the air.
+      p.airborne = true
+      p.vy = 0
+    }
+    if (p.airborne) {
       p.vy -= GRAVITY * dt
       p.y += p.vy * dt
-      if (p.y <= 0) {
-        p.y = 0
+      if (p.y <= floor && p.vy <= 0) {
+        p.y = floor
         p.vy = 0
-        if (p.airborne) this.events.push({ type: 'land' })
         p.airborne = false
+        p.doubled = false
+        this.events.push({ type: 'land' })
       }
     }
     if (p.roll > 0 && !p.airborne) p.roll = Math.max(0, p.roll - dt)
@@ -419,8 +461,23 @@ export class Run {
     this.chase += (want - this.chase) * Math.min(1, dt * (want > this.chase ? 3 : 0.8))
   }
 
+  /** The ground under the runner: a platform's top (rising along its ramp) or the track. */
+  private floorAt(x: number): number {
+    let floor = 0
+    for (const o of this.obstacles) {
+      if (o.need !== 'platform' || o.sink > 0 || o.hit || Math.abs(o.x - x) > 1.25) continue
+      const into = this.dist - (o.s - o.half)
+      if (into < 0 || into > o.half * 2) continue
+      const top = o.top ?? 0
+      floor = Math.max(floor, o.ramp && into < PLATFORM.ramp ? (top * into) / PLATFORM.ramp : top)
+    }
+    return floor
+  }
+
   private stepThings(dt: number, real: number) {
     const behind = this.dist - BEHIND
+    // Flocks fly at the runner once near.
+    if (this.phase !== 'over') for (const o of this.obstacles) if (o.fly && o.s - this.dist < FLY_FROM) o.s -= o.fly * dt
     for (const o of this.obstacles) if (o.sink > 0) o.sink = Math.min(1, o.sink + real * 2.2)
     this.obstacles = this.obstacles.filter((o) => o.s > behind && o.sink < 1)
     this.scenery = this.scenery.filter((t) => t.s > behind - 20)
@@ -436,7 +493,11 @@ export class Run {
       if (o.hit || o.sink > 0) continue
       if (Math.abs(o.s - this.dist) > o.half + 0.35) continue
       if (Math.abs(o.x - p.x) > 1.25) continue
-      const clear = (o.need === 'jump' && p.y > 0.8) || (o.need === 'roll' && p.roll > 0 && p.y < 0.6)
+      const clear =
+        (o.need === 'jump' && p.y > 0.8) ||
+        (o.need === 'roll' && ((p.roll > 0 && p.y < 0.6) || p.y > OVER_DUCK_Y)) ||
+        (o.need === 'block' && p.y > OVER_BLOCK_Y) ||
+        (o.need === 'platform' && p.y > this.floorTopAt(o) - 0.3)
       if (clear) continue
       o.hit = true
       // The pillar of cloud takes the fall.
@@ -446,8 +507,9 @@ export class Run {
         this.events.push({ type: 'shielded' })
         continue
       }
-      // Head-on into something you had to go round, or a second stumble: caught.
-      const headOn = o.need === 'block' && Math.abs(o.x - p.x) < 0.7
+      // Head-on into something you had to go round (or jump up on), or a second stumble: caught.
+      const solid = o.need === 'block' || o.need === 'platform'
+      const headOn = solid && Math.abs(o.x - p.x) < 0.7
       if (!this.immortal && (headOn || p.sinceStumble < CAUGHT_S)) {
         this.events.push({ type: 'crash' })
         this.endedBy = 'caught'
@@ -458,7 +520,7 @@ export class Run {
       this.speed = Math.max(START_SPEED, this.speed * 0.8)
       this.events.push({ type: 'stumble' })
       // Ran into its side changing lanes: knocked back into the lane you came from.
-      if (o.need === 'block' && !headOn && p.lane === o.lane) p.lane = this.prevLane
+      if (solid && !headOn && p.lane === o.lane) p.lane = this.prevLane
     }
     const manna = !!this.powers.manna
     for (const c of this.pickups) {
@@ -475,6 +537,13 @@ export class Run {
         this.events.push({ type: 'shekel' })
       } else this.takePower(c.kind)
     }
+  }
+
+  /** A platform's height where the runner is now (its ramp rises). */
+  private floorTopAt(o: Obstacle): number {
+    const into = this.dist - (o.s - o.half)
+    const top = o.top ?? 0
+    return o.ramp && into < PLATFORM.ramp ? (top * Math.max(0, into)) / PLATFORM.ramp : top
   }
 
   private passGate() {
@@ -505,7 +574,7 @@ export class Run {
       return
     }
     // The staff: everything ahead in sight sinks into the sand, and the way stays clear a moment.
-    for (const o of this.obstacles) if (o.s > this.dist + 2 && o.s < this.dist + 120 && o.sink === 0) o.sink = 0.001
+    for (const o of this.obstacles) if (o.s - o.half > this.dist + 2 && o.s < this.dist + 120 && o.sink === 0) o.sink = 0.001
     if (this.clearUntil !== Infinity) this.clearUntil = Math.max(this.clearUntil, this.dist + 120)
   }
 
@@ -526,9 +595,9 @@ export class Run {
     // Rows are placed at the horizon, never closer than `clearUntil` (a question's gates and the breather after them).
     if (this.nextRowAt < this.clearUntil) this.nextRowAt = this.clearUntil
     while (this.nextRowAt < this.dist + AHEAD - 20) {
-      this.addRow(this.nextRowAt)
-      // Rows come about every 1.1–1.6 s at the current speed.
-      this.nextRowAt += Math.max(14, this.speed * (1.1 + this.r() * 0.5))
+      const long = this.addRow(this.nextRowAt)
+      // Rows come about every 1.1–1.6 s at the current speed (after a platform's length).
+      this.nextRowAt += long + Math.max(14, this.speed * (1.1 + this.r() * 0.5))
     }
   }
 
@@ -683,11 +752,12 @@ export class Run {
     }
   }
 
-  private addRow(s: number) {
+  /** Places a row of obstacles at `s`; returns how much further along it reaches (a platform's length). */
+  private addRow(s: number): number {
     const r = this.r
     const biome = this.biomeAt(s)
     const models: Record<Need, string> = OBSTACLES[biome](r)
-    const half: Record<Need, number> = { jump: 0.55, roll: 0.25, block: models.block === 'cart' || models.block === 'sledge' ? 1.45 : 1.2 }
+    const half: Record<Need, number> = { jump: 0.55, roll: 0.25, block: models.block === 'cart' || models.block === 'sledge' ? 1.45 : 1.2, platform: PLATFORM.half }
     // Rows are placed ~10 s ahead, so ducking starts at about ROLL_FROM_S of running.
     const canRoll = this.runTime + (s - this.dist) / this.speed >= ROLL_FROM_S
     const add = (lane: Lane, need: Need) =>
@@ -720,7 +790,32 @@ export class Run {
       this.firstRoll = s
       for (const l of LANES) add(l, 'roll')
       lights(pick(), s - 5, 4)
-      return
+      return 0
+    }
+    // Rows are placed ~10 s ahead of the runner.
+    const at = this.runTime + (s - this.dist) / this.speed
+    const special = r()
+    if (at >= PLATFORMS_FROM_S && special < 0.13) {
+      // One or two platforms side by side (a ramp up, or jump on); lights along the top.
+      const lanes = r() < 0.35 ? LANES.filter((l) => l !== pick()) : [pick()]
+      for (const l of lanes) {
+        const ramp = r() < 0.5
+        this.obstacles.push({ model: models.platform + (ramp ? 'Ramp' : ''), s: s + PLATFORM.half, x: l * LANE_W, y: 0, ry: 0, scale: 1, sink: 0, lane: l, need: 'platform', half: PLATFORM.half, hit: false, top: PLATFORM.top, ramp })
+      }
+      const on = lanes[Math.floor(r() * lanes.length)]
+      for (let i = 0; i < 7; i++) this.pickups.push({ kind: 'light', s: s + 2.5 + i * 1.6, lane: on, y: PLATFORM.top + 1, taken: -1 })
+      return PLATFORM.half * 2
+    }
+    if (at >= FLOCKS_FROM_S && special < 0.24) {
+      // Quail: low over one or two lanes (jump, or go round), or after the first minute at head height right across (duck).
+      const high = canRoll && r() < 0.4
+      const lanes = high ? LANES : r() < 0.5 ? [pick()] : LANES.filter((l) => l !== pick())
+      // Placed further on, so they meet the runner about where the row is.
+      const ahead = (FLY_FROM * FLY_SPEED) / (this.speed + FLY_SPEED)
+      for (const l of lanes)
+        this.obstacles.push({ model: 'quail', s: s + ahead, x: l * LANE_W, y: high ? FLOCK_Y.high : FLOCK_Y.low, ry: 0, scale: 1.4, sink: 0, lane: l, need: high ? 'roll' : 'jump', half: 1, hit: false, fly: FLY_SPEED })
+      if (!high) lights(LANES.find((l) => !lanes.includes(l)) ?? pick(), s - 5, 4)
+      return 0
     }
     const k = r()
     if (canRoll && k < 0.22) {
@@ -752,6 +847,7 @@ export class Run {
       add(b, 'block')
       lights(LANES.filter((l) => l !== b)[Math.floor(r() * 2)], s - 8, 8)
     }
+    return 0
   }
 
   /** This frame's events, handed over once (the scene and the HUD read them). */
@@ -796,7 +892,9 @@ export function autopilot(run: Run, gateLane: 'right' | 'wrong' = 'right') {
     const open = LANES.filter((l) => !blocked(l)).sort((a, b) => Math.abs(a - p.lane) - Math.abs(b - p.lane))[0]
     if (open !== undefined) run.move(open > p.lane ? 1 : -1)
   }
-  const o = run.ahead(p.lane, run.speed * 0.3)
-  if (o?.need === 'jump' && !p.airborne) run.jump()
-  else if (o?.need === 'roll' && p.roll <= 0 && o.s - o.half - run.dist < run.speed * 0.25) run.roll()
+  const o = run.ahead(p.lane, (run.speed + FLY_SPEED) * 0.3)
+  const close = o ? (o.s - o.half - run.dist) / (run.speed + (o.fly ?? 0)) : Infinity
+  const jumpOn = o?.need === 'platform' && !o.ramp && p.y < 0.1
+  if ((o?.need === 'jump' || jumpOn) && !p.airborne && close < 0.3) run.jump()
+  else if (o?.need === 'roll' && p.roll <= 0 && close < 0.25) run.roll()
 }

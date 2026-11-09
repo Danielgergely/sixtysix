@@ -857,3 +857,76 @@ export function staff(): BufferGeometry {
   }
   return g.build(1)
 }
+
+// ── Platforms and flocks ─────────────────────────────────────────────────
+
+/** Platforms: 14 long, the top at 1.5, a lane wide; with `ramp`, the near 4.5 (+z) is a ramp up. */
+const PL = { half: 7, top: 1.5, ramp: 4.5, w: 2.2 }
+
+/** Jump on (Egypt, Jericho): a long dressed stone on log rollers, as the builders haul it; or a plank ramp up its end. */
+export function hauledStone(seed: number, ramp: boolean): BufferGeometry {
+  const r = rng(seed)
+  const g = new Geo(r)
+  const front = ramp ? PL.half - PL.ramp : PL.half
+  const len = PL.half + front
+  const mid = (front - PL.half) / 2
+  // Lying down: `cyl` centres a part at y + h/2, so lower it by half its length.
+  const roller = PL.w + 0.3
+  for (let z = -PL.half + 1; z < front; z += 2.6) g.cyl(0, 0.22 - roller / 2, z, 0.22, 0.22, roller, E.wood, 8, { rz: Math.PI / 2 })
+  g.box(0, 0.4, mid, PL.w, PL.top - 0.4, len, E.sandstone)
+  // Joints between the courses, a rope along the side.
+  for (let z = -PL.half + 3; z < front - 1; z += 3.4) g.box(0, 0.4, z, PL.w + 0.02, PL.top - 0.42, 0.06, E.stoneDark, { jitter: 0.02 })
+  g.box(PL.w / 2 + 0.03, 0.95, mid, 0.06, 0.08, len, '#c7a46a', { jitter: 0.02 })
+  if (ramp) {
+    g.slope(0, 0, PL.half - PL.ramp / 2, PL.w - 0.2, PL.top, PL.ramp, 0.16, E.wood)
+    for (const x of [-0.8, 0.8]) g.box(x, 0, PL.half - PL.ramp + 0.3, 0.14, PL.top - 0.15, 0.14, E.woodDark)
+  }
+  return g.build(2)
+}
+
+/** Jump on (the sea bed, the wilderness, the riverbed): a long rock shelf, or with a rubble slope up its end. */
+export function rockShelf(seed: number, ramp: boolean, colors: [string, string, string], coral = false): BufferGeometry {
+  const r = rng(seed)
+  const g = new Geo(r)
+  const front = ramp ? PL.half - PL.ramp : PL.half
+  const len = PL.half + front
+  const mid = (front - PL.half) / 2
+  g.box(0, 0, mid, PL.w, PL.top, len, colors[0])
+  // Rounded rock along the sides and the near end, below the running surface.
+  for (let z = -PL.half + 0.8; z < front; z += 1.6 + r() * 0.6)
+    for (const side of [-1, 1]) lump(g, side * (PL.w / 2), 0.55 + r() * 0.3, z, 0.4 + r() * 0.2, 0.55, 0.9, r() < 0.5 ? colors[1] : colors[2], seed + Math.floor(z * 10) + side)
+  if (!ramp) lump(g, 0, 0.6, front, 0.9, 0.6, 0.35, colors[1], seed + 99)
+  if (coral) for (let i = 0; i < 4; i++) g.cone((r() - 0.5) * 1.2, PL.top - 0.05, -PL.half + 1 + r() * (len - 2), 0.12, 0.3, [S.coralPink, S.coralOrange][i % 2], 5)
+  if (ramp) {
+    g.slope(0, 0, PL.half - PL.ramp / 2, PL.w - 0.1, PL.top, PL.ramp, 0.2, colors[2])
+    for (let i = 0; i < 4; i++) lump(g, (i % 2 ? -1 : 1) * (PL.w / 2 - 0.1), 0.2, PL.half - 0.6 - i * 0.9, 0.3, 0.3 + i * 0.12, 0.4, colors[1], seed + 50 + i)
+  }
+  return g.build(2)
+}
+
+/**
+ * Jump over or duck under: a flock of quail (Numbers 11:31) flying at the
+ * runner, a lane wide, wings up or down (`up`: the scene flips between the two).
+ * Centred on y = 0; the sim sets the flock's height.
+ */
+export function quail(seed: number, up: boolean): BufferGeometry {
+  const r = rng(seed)
+  const g = new Geo(r)
+  const brown = '#8a6a44'
+  const dark = '#5a4430'
+  const pale = '#d9c3a0'
+  for (let i = 0; i < 5; i++) {
+    const x = -0.8 + i * 0.4 + (r() - 0.5) * 0.2
+    const y = (r() - 0.5) * 0.45
+    const z = (r() - 0.5) * 0.9
+    // A plump body, a pale breast, a small head, facing the runner (+z).
+    g.box(x, y - 0.1, z, 0.22, 0.2, 0.34, brown)
+    g.box(x, y - 0.12, z + 0.06, 0.18, 0.1, 0.24, pale)
+    g.box(x, y + 0.02, z + 0.2, 0.13, 0.13, 0.13, dark)
+    g.cone(x, y + 0.03, z + 0.3, 0.03, 0.06, '#e2a64a', 4, { rx: Math.PI / 2 })
+    const lift = up ? 0.22 : -0.16
+    for (const side of [-1, 1])
+      g.tris([x + side * 0.1, y, z + 0.1, x + side * 0.1, y, z - 0.12, x + side * 0.42, y + lift, z - 0.02, x + side * 0.1, y, z - 0.12, x + side * 0.1, y, z + 0.1, x + side * 0.42, y + lift, z - 0.02], dark)
+  }
+  return g.build(2)
+}

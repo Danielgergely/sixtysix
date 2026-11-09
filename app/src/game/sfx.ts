@@ -24,6 +24,7 @@ export type SfxName =
   | 'drumroll' // a tie-breaker reveal: roll, then a bell
   // Exodus, the runner (docs/exodus.md)
   | 'runJump' // a short rising whoosh
+  | 'runJump2' // the double jump: a higher, quicker whoosh with a flutter
   | 'runLand' // a soft thud in the sand
   | 'runLane' // a quick swish to the side
   | 'runRoll' // a low tumble
@@ -194,6 +195,10 @@ export function playSfx(name: SfxName) {
     case 'runJump':
       sweep(260, 620, 160, 'sine', 0.035)
       noise(140, 0, 'bandpass', 1800, 0.02, 0.8)
+      break
+    case 'runJump2':
+      sweep(420, 980, 150, 'sine', 0.035)
+      noise(120, 0, 'bandpass', 2600, 0.025, 1.2)
       break
     case 'runLand':
       sweep(140, 60, 120, 'sine', 0.06)

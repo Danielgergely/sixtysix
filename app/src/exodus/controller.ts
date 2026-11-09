@@ -260,7 +260,11 @@ export class RunController {
   }
 
   down = (e: React.PointerEvent) => (this.swipe = { x: e.clientX, y: e.clientY, id: e.pointerId })
-  up = () => (this.swipe = null)
+  /** A tap (no swipe) while in the air: the double jump. */
+  up = () => {
+    if (this.swipe && !this.paused && this.run.player.airborne) this.run.jump()
+    this.swipe = null
+  }
   move = (e: React.PointerEvent) => {
     const s = this.swipe
     if (!s || s.id !== e.pointerId || this.paused) return

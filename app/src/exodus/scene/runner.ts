@@ -28,6 +28,9 @@ const LEG_LENGTH = 0.53
 const STRIDE = 1.45
 /** The model's bone names as three.js loads them (dots dropped). */
 const STRIDE_BONES = ['upperleg.l', 'lowerleg.l', 'upperleg.r', 'lowerleg.r', 'upperarm.l', 'lowerarm.l', 'upperarm.r', 'lowerarm.r'].map((n) => PropertyBinding.sanitizeNodeName(n))
+/** The double jump's somersault: how long, and the height it turns round. */
+const FLIP_S = 0.5
+const FLIP_PIVOT = 1.05
 /** Height while ducking (the body squashes down to it, widening a little). */
 const DUCK_HEIGHT = 0.6
 
@@ -143,6 +146,8 @@ export class Runner {
   /** Squash and stretch: height factor and its speed (a damped spring back to 1, or to the duck). */
   private squash = 1
   private squashV = 0
+  /** Seconds into the double jump's somersault (−1: none). */
+  private flip = -1
   private constructor(root: Group, clips: AnimationClip[]) {
     this.root = root
     this.mixer = new AnimationMixer(root)
@@ -204,10 +209,24 @@ export class Runner {
     r.rotation.z = -dx * 0.06
     r.rotation.y = Math.PI - dx * 0.12
     r.rotation.x = run.phase === 'over' ? 0 : p.airborne ? -0.16 : -0.09
+    // The double jump: a forward somersault round the middle of the body.
+    if (this.flip >= 0) {
+      this.flip += dt
+      const k = Math.min(1, this.flip / FLIP_S)
+      const a = -Math.PI * 2 * (1 - (1 - k) * (1 - k))
+      r.rotation.x += a
+      r.position.y += FLIP_PIVOT * (1 - Math.cos(a))
+      r.position.z += -FLIP_PIVOT * Math.sin(a)
+      if (k >= 1 || !p.airborne) this.flip = -1
+    }
 
     for (const e of run.events) {
       // Stretch up off the ground, squash into the landing.
       if (e.type === 'jump') this.squashV += 3.2
+      if (e.type === 'jump2') {
+        this.flip = 0
+        this.squashV += 2
+      }
       if (e.type === 'land') this.squashV -= 3.6
       if (e.type === 'stumble') this.oneShot('Hit_A', 0.45, 1.6)
       if (e.type === 'crash' || (e.type === 'gate' && !e.right)) this.play('Death_A', 0.1, true)
@@ -284,6 +303,7 @@ export class Runner {
     this.squash = 1
     this.squashV = 0
     this.saved = null
+    this.flip = -1
     this.play('Running_A', 0)
   }
 
