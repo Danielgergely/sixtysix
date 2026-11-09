@@ -11,7 +11,7 @@ type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
 type Ack = (res: any) => void
 
 const HOST_GRACE_MS = 90_000 // host may reconnect within this window
-const PHASES: ArenaPhase[] = ['lobby', 'reading', 'question', 'reveal', 'leaderboard', 'podium']
+const PHASES: ArenaPhase[] = ['lobby', 'intro', 'reading', 'question', 'reveal', 'leaderboard', 'podium']
 const isId = (s: unknown): s is string => typeof s === 'string' && s.length >= 8 && s.length <= 64
 /** Room options from a client (create or lobby change); anything malformed falls back to the defaults. */
 function cleanConfig(raw: unknown, base?: RoomConfig): RoomConfig {
@@ -65,11 +65,11 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
 
   on('room:join', (raw, cb) => {
     const ack = ackOf(cb)
-    const payload = (raw ?? {}) as { code?: unknown; name?: unknown; avatar?: unknown; playerId?: unknown }
+    const payload = (raw ?? {}) as { code?: unknown; name?: unknown; avatar?: unknown; playerId?: unknown; xp?: unknown }
     const room = getRoom(payload.code)
     if (!room) return ack({ ok: false, error: 'Game not found — check the code' })
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
-    const result = addOrRebindPlayer(room, payload.playerId, socket.id, payload.name, payload.avatar)
+    const result = addOrRebindPlayer(room, payload.playerId, socket.id, payload.name, payload.avatar, payload.xp)
     if ('error' in result) return ack({ ok: false, error: result.error })
     assignLateJoiner(room, result.player)
     void socket.join(room.code)

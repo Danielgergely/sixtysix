@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
-import type { ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
-import { MAX_ARENA_PLAYERS, cleanLook } from '@sixtysix/shared'
+import type { ArenaIntro, ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
+import { MAX_ARENA_PLAYERS, cleanLook, levelForXp } from '@sixtysix/shared'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
 export interface RoomPlayer extends ArenaPlayer {
@@ -13,6 +13,8 @@ export interface RoomPlayer extends ArenaPlayer {
   lastGain: number
   /** Coins earned this game (paid out at the podium, so leavers forfeit them). */
   coins: number
+  /** Profile XP as sent on join (cleanXp); only the level is public. */
+  xp: number
 }
 
 export interface Room {
@@ -26,6 +28,9 @@ export interface Room {
   questions: Question[]
   questionIndex: number
   questionStartedAt: number
+  /** The start intro (phase 'intro'): who it shows and when it began, for a rejoin mid-intro. */
+  intro?: ArenaIntro
+  introStartedAt: number
   /** Last leaderboard/podium payload, re-sent to anyone (re)joining mid-phase. */
   lastEntries: LeaderboardEntry[]
   /** Current question's reveal, re-sent to anyone (re)joining during the reveal. */
@@ -78,6 +83,7 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     questions: [],
     questionIndex: 0,
     questionStartedAt: 0,
+    introStartedAt: 0,
     prevRanks: new Map(),
     lastEntries: [],
     lastActivity: Date.now(),
@@ -117,6 +123,12 @@ export function cleanName(name: unknown): string {
 /** A look string (shared/src/looks.ts): old character ids stay valid, unknown parts become the default. Worn items are trusted here (family game). */
 export const cleanAvatar = (avatar: unknown): string => cleanLook(avatar)
 
+/** Profile XP from a client: a whole number from 0 up to a sane cap; anything else counts as none. Trusted otherwise (family game). */
+export function cleanXp(xp: unknown): number {
+  const n = typeof xp === 'number' && Number.isFinite(xp) ? Math.floor(xp) : 0
+  return Math.min(100_000_000, Math.max(0, n))
+}
+
 /** Add a new player, or rebind an existing one (reconnection). */
 export function addOrRebindPlayer(
   room: Room,
@@ -124,6 +136,7 @@ export function addOrRebindPlayer(
   socketId: string,
   name: unknown,
   avatar: unknown,
+  xp?: unknown,
 ): { player: RoomPlayer; rejoined: boolean } | { error: string } {
   const existing = room.players.get(playerId)
   if (existing) {
@@ -131,6 +144,10 @@ export function addOrRebindPlayer(
     existing.connected = true
     if (typeof name === 'string' && name.trim()) existing.name = cleanName(name)
     if (avatar !== undefined) existing.avatar = cleanAvatar(avatar)
+    if (xp !== undefined) {
+      existing.xp = cleanXp(xp)
+      existing.level = levelForXp(existing.xp)
+    }
     touch(room)
     return { player: existing, rejoined: true }
   }
@@ -146,7 +163,10 @@ export function addOrRebindPlayer(
     streak: 0,
     lastGain: 0,
     coins: 0,
+    xp: cleanXp(xp),
+    level: 1,
   }
+  player.level = levelForXp(player.xp)
   room.players.set(playerId, player) // late joiners enter at the next question
   touch(room)
   return { player, rejoined: false }
@@ -157,13 +177,14 @@ export function toPublicState(room: Room): RoomState {
     code: room.code,
     config: room.config,
     phase: room.phase,
-    players: [...room.players.values()].map(({ id, name, avatar, score, connected, team }) => ({
+    players: [...room.players.values()].map(({ id, name, avatar, score, connected, team, level }) => ({
       id,
       name,
       avatar,
       score,
       connected,
       team,
+      level,
     })),
     hostConnected: room.hostSocketId !== null,
     questionIndex: room.questionIndex,

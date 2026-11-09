@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { io, type Socket } from 'socket.io-client'
 import type {
+  ArenaIntro,
   ArenaQuestion,
   ClientToServerEvents,
   LeaderboardEntry,
@@ -11,6 +12,7 @@ import type {
   TeamVotes,
   YourResult,
 } from '@sixtysix/shared'
+import { INTRO_COUNTDOWN_MS } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { clearBoard } from '../game/boardSession'
 import { getDeviceId } from '../game/persistence'
@@ -31,6 +33,8 @@ interface ArenaStore {
   prefillCode: string
 
   // Live game state (server-driven)
+  /** The start intro (phase 'intro'): who is shown; its deadline is phaseEndsAt. */
+  intro: ArenaIntro | null
   question: ArenaQuestion | null
   /** Date.now()-based end of the current reading/question window. */
   phaseEndsAt: number
@@ -111,6 +115,7 @@ const session = {
 
 /** Per-game state; spread on every entry/exit so nothing leaks between games. */
 const FRESH_GAME = {
+  intro: null,
   question: null,
   myAnswer: null,
   reveal: null,
@@ -144,7 +149,7 @@ function enterRoom(s: ArenaSocket, role: ArenaRole, code: string, done: (res: En
     s.emit('room:watch', { code }, (res) => done(res.ok ? { ok: true, state: res.state, myPlayerId: null } : res))
   } else {
     const player = useGameStore.getState().player
-    s.emit('room:join', { code, name: player.name, avatar: player.avatar, playerId: getDeviceId() }, (res) =>
+    s.emit('room:join', { code, name: player.name, avatar: player.avatar, playerId: getDeviceId(), xp: player.xp }, (res) =>
       done(res.ok ? { ok: true, state: res.state, myPlayerId: res.playerId } : res),
     )
   }
@@ -215,6 +220,12 @@ function getSocket(): ArenaSocket {
   })
 
   socket.on('room:closed', (reason) => closeLocally(reason))
+
+  socket.on('game:intro', (intro, endsInMs) => {
+    setState({ intro, phaseEndsAt: Date.now() + endsInMs, phaseDuration: endsInMs })
+    // The countdown's own sounds play in the intro view (ArenaIntroView), in step with the words.
+    if (endsInMs > INTRO_COUNTDOWN_MS) playSfx('fanfare')
+  })
 
   socket.on('game:question', (q, phase, endsInMs, yourAnswer) => {
     setState((s) => ({
