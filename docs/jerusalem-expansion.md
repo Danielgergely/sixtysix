@@ -524,7 +524,30 @@ week is kept.
 
 ---
 
-## 8. Questions for the owner
+## 8. The owner's decisions (2026-11-09)
+
+1. **Selling stays as it is: no purse.** The owner wants more to spend on and
+   higher building levels, not a cap on the Market. So Phase 0 (the purse) is
+   dropped. The longer game has to come from new sinks and levels: the field
+   land, terracing and irrigation, higher building levels, expedition wages and
+   outfitting, bread for big builds, and later the Temple. **The pacing numbers
+   above assume the purse and must be re-simulated without it.**
+2. **Seasons: a fast game year.** Each season lasts a week, so players see the
+   whole cycle in a month.
+3. **The Courtyard spot** becomes the Bakehouse (decorations move to the wall's
+   decor spots).
+4. **Existing players:** a free Field 1 at launch for everyone at House 3 or above.
+5. **Gleaning (Ruth 2):** yes, visitors may glean a little once a day (both sides
+   get a small amount).
+6. **Ships** to Tarshish and Ophir are fine (1 Kings 9:26–28).
+7. **The Temple:** one for the whole city.
+8. **Art:** approved (about $2.35 of the remaining budget, in three batches).
+9. **Scope of the first release:** fields and bread **together with** sending
+   workers to the quarry and a mine (Phase 1 + the quarry/mine part of Phase 2).
+
+<details><summary>The questions as asked</summary>
+
+
 
 1. **The purse.** Is 100 coins a day from selling right? Or should players
    not be able to sell produce at all? (0 means homestead done on day 95 for a
@@ -549,3 +572,5 @@ week is kept.
 9. **Scope of Phase 1.** Ship fields and bread first, or wait and launch
    Fields together with the quarry (the "send workers to a mine" part of the
    feedback)?
+
+</details>
