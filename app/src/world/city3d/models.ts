@@ -1,6 +1,6 @@
-import { BufferGeometry, IcosahedronGeometry, Matrix4, type ColorRepresentation } from 'three'
+import { BufferGeometry, IcosahedronGeometry, Matrix4, PlaneGeometry, type ColorRepresentation } from 'three'
 import { maxLevel, type YardSpot } from '@sixtysix/shared'
-import { Geo, place } from './geo'
+import { Geo, place, type PartOpts } from './geo'
 import { C } from './palette'
 import { rng } from './space'
 
@@ -31,7 +31,6 @@ const door = (g: Geo, x: number, z: number, w = 0.9, h = 1.8, frame: string = C.
   g.box(x, 0, z + 0.07, w, h, 0.06, C.dark, { jitter: 0 })
 }
 const windowAt = (g: Geo, x: number, y: number, z: number, w = 0.55, h = 0.6) => g.box(x, y, z + 0.04, w, h, 0.06, C.dark, { jitter: 0 })
-const sideWindow = (g: Geo, x: number, y: number, z: number, w = 0.55, h = 0.6) => g.box(x + 0.04 * Math.sign(x), y, z, 0.06, h, w, C.dark, { jitter: 0 })
 
 /** The yard plate a house stands on. */
 function plate(g: Geo, size: number, color: string = C.earth) {
@@ -93,19 +92,166 @@ function stoneRing(g: Geo, r: number, h: number, gapAt = 0, gap = 0.5, rand: () 
 }
 
 // ── The house: tent → mud-brick → stone house → courtyard house → two storeys → villa → house of cedar ──
+//
+// The city draws up to 400 of these, so the small things are cheap: a window,
+// a shutter, a stripe or a rug on a roof is a flat panel (two triangles) held
+// a little off what is behind it, never a hole in the wall.
+
+const PLANE = new PlaneGeometry(1, 1)
+const STRAW = '#d9c283'
+const PAVING = '#c98f66'
+
+/** A wall facing +z turned by ry: which way is out, and which way runs along it ([out x, out z, along x, along z]). */
+const wallDirs = (ry: number): [number, number, number, number] => [Math.sin(ry), Math.cos(ry), Math.cos(ry), -Math.sin(ry)]
+
+/** A flat panel, seen from its front only: it stands on (x, y, z) facing +z, turned by ry (and leaning by rx about its middle). */
+function panel(g: Geo, x: number, y: number, z: number, w: number, h: number, color: string, o: PartOpts = {}) {
+  g.add(PLANE, place(x, y + h / 2, z, o).multiply(new Matrix4().makeScale(w, h, 1)), color, o.jitter ?? 0)
+}
+
+/** A flat panel lying face up, its middle at (x, y, z): a cloth or a rug spread out on a roof. */
+function lying(g: Geo, x: number, y: number, z: number, w: number, d: number, color: string, ry = 0) {
+  g.add(PLANE, place(x, y, z, { ry, rx: -Math.PI / 2 }).multiply(new Matrix4().makeScale(w, d, 1)), color, 0.05)
+}
+
+/** A rug spread out on a roof (y = the roof's top), with a stripe near each end. */
+function rugFlat(g: Geo, x: number, y: number, z: number, w: number, d: number, color: string, stripe: string, ry = 0) {
+  lying(g, x, y + 0.04, z, w, d, color, ry)
+  for (const k of [-0.32, 0.32]) lying(g, x + Math.cos(ry) * k * w, y + 0.08, z - Math.sin(ry) * k * w, w * 0.12, d, stripe, ry)
+}
+
+interface WinOpts {
+  w?: number
+  h?: number
+  /** Wooden shutters folded back against the wall, in this colour. */
+  shutters?: string
+  /** A lattice across the opening, in this colour. */
+  lattice?: string
+  /** A sill under it, in this colour. */
+  sill?: string
+}
+
+/** A small deep-set window: (x, z) on the wall's face, y its foot; the wall faces +z turned by ry. */
+function win(g: Geo, x: number, y: number, z: number, ry = 0, o: WinOpts = {}) {
+  const w = o.w ?? 0.5
+  const h = o.h ?? 0.62
+  const [ox, oz, ax, az] = wallDirs(ry)
+  panel(g, x + ox * 0.05, y, z + oz * 0.05, w, h, C.dark, { ry })
+  if (o.sill) g.box(x + ox * 0.05, y - 0.11, z + oz * 0.05, w + 0.3, 0.11, 0.22, o.sill, { ry, jitter: 0 })
+  if (o.shutters) {
+    for (const k of [-1, 1]) {
+      const d = k * (w * 0.76 + 0.02)
+      panel(g, x + ox * 0.09 + ax * d, y - 0.02, z + oz * 0.09 + az * d, w * 0.5, h + 0.04, o.shutters, { ry, jitter: 0.1 })
+    }
+  }
+  if (o.lattice) {
+    for (const k of [-1, 1]) panel(g, x + ox * 0.09 + (ax * k * w) / 6, y, z + oz * 0.09 + (az * k * w) / 6, 0.05, h, o.lattice, { ry })
+    panel(g, x + ox * 0.09, y + h / 2 - 0.025, z + oz * 0.09, w, 0.05, o.lattice, { ry })
+  }
+}
+
+/** A house door in a wall facing +z at z: a frame, the dark doorway, a wooden leaf standing half open and a lintel. */
+function houseDoor(g: Geo, x: number, z: number, o: { w?: number; h?: number; frame?: string; leaf?: string; lintel?: string } = {}) {
+  const w = o.w ?? 0.9
+  const h = o.h ?? 1.8
+  g.box(x, 0, z + 0.03, w + 0.3, h + 0.2, 0.06, o.frame ?? C.woodDark, { jitter: 0 })
+  panel(g, x, 0.14, z + 0.1, w, h - 0.14, C.dark)
+  panel(g, x - w * 0.2, 0.14, z + 0.14, w * 0.6, h - 0.14, o.leaf ?? C.wood, { jitter: 0.06 })
+  g.box(x, h + 0.08, z + 0.06, w + 0.55, 0.2, 0.24, o.lintel ?? C.wood, { jitter: 0 })
+}
+
+/**
+ * A cloth awning on a wall facing +z turned by ry: the middle of its back
+ * edge is at (x, y, z); it reaches d out and drops by `drop` (0 = a flat
+ * shade). Stripes run down it.
+ */
+function awning(g: Geo, x: number, y: number, z: number, w: number, d: number, drop: number, color: string, o: { ry?: number; stripe?: string; n?: number } = {}) {
+  const ry = o.ry ?? 0
+  const [ox, oz] = wallDirs(ry)
+  const cx = x + (ox * d) / 2
+  const cz = z + (oz * d) / 2
+  g.slope(cx, y - drop, cz, w, drop, d, 0.06, color, { ry, jitter: 0.04 })
+  if (!o.stripe) return
+  const n = o.n ?? 3
+  const len = Math.hypot(drop, d)
+  const base = place(cx, y - drop / 2, cz, { ry }).multiply(new Matrix4().makeRotationX(Math.atan2(drop, d)))
+  for (let i = 0; i < n; i++) {
+    const m = base
+      .clone()
+      .multiply(new Matrix4().makeTranslation(((i + 0.5) / n - 0.5) * w, 0.07, 0))
+      .multiply(new Matrix4().makeRotationX(-Math.PI / 2))
+      .multiply(new Matrix4().makeScale(w / (2 * n), len, 1))
+    g.add(PLANE, m, o.stripe, 0)
+  }
+}
+
+/** A rug hung over a parapet to air: (x, z) the parapet's middle, `top` its top edge; it faces +z turned by ry. */
+function rug(g: Geo, x: number, top: number, z: number, w: number, color: string, stripe: string, ry = 0) {
+  g.box(x, top - 0.5, z, w, 0.54, 0.32, color, { ry, jitter: 0.04 })
+  const [ox, oz, ax, az] = wallDirs(ry)
+  for (const k of [-0.3, 0.3]) panel(g, x + ox * 0.2 + ax * k * w, top - 0.5, z + oz * 0.2 + az * k * w, w * 0.14, 0.54, stripe, { ry })
+}
+
+/** A storage jar on a roof or in a corner (cheaper than `jar`). */
+const pot = (g: Geo, x: number, y: number, z: number, s = 1, color: string = C.mud) => g.cyl(x, y, z, 0.13 * s, 0.24 * s, 0.52 * s, color, 5)
+
+/** A reed mat rolled up. */
+const matRoll = (g: Geo, x: number, y: number, z: number, len = 1.3, ry = 0) => g.box(x, y, z, len, 0.26, 0.28, STRAW, { ry, jitter: 0.05 })
+
+/** A ladder against a wall facing +z turned by ry: its top at (x, y + hgt, z), its feet `foot` out from there. */
+function ladder(g: Geo, x: number, y: number, z: number, hgt: number, foot: number, ry = 0) {
+  const [ox, oz, ax, az] = wallDirs(ry)
+  const lean = -Math.atan2(foot, hgt)
+  const len = Math.hypot(foot, hgt)
+  for (const k of [-0.2, 0.2]) g.box(x + (ox * foot) / 2 + ax * k, y + hgt / 2 - len / 2, z + (oz * foot) / 2 + az * k, 0.07, len, 0.07, C.wood, { ry, rx: lean, jitter: 0 })
+  for (let i = 1; i <= 4; i++) {
+    const d = foot * (1 - i / 5) + 0.06
+    panel(g, x + ox * d, y + (hgt * i) / 5 - 0.035, z + oz * d, 0.4, 0.07, C.woodDark, { ry, rx: lean })
+  }
+}
+
+/** Stone steps rising towards −z, from zLow up to zHigh: w wide, open on the −x side (and on +x with `both`). */
+function stairs(g: Geo, x: number, y: number, zLow: number, zHigh: number, w: number, rise: number, n: number, color: string, both = false) {
+  const xl = x - w / 2
+  const xr = x + w / 2
+  const t: number[] = []
+  for (let i = 0; i < n; i++) {
+    const z0 = zLow + ((zHigh - zLow) * i) / n
+    const z1 = zLow + ((zHigh - zLow) * (i + 1)) / n
+    const y0 = y + (rise * i) / n
+    const y1 = y + (rise * (i + 1)) / n
+    // The riser, the tread, then the side from the ground up to the tread.
+    t.push(xl, y0, z0, xr, y0, z0, xr, y1, z0, xl, y0, z0, xr, y1, z0, xl, y1, z0)
+    t.push(xl, y1, z0, xr, y1, z0, xr, y1, z1, xl, y1, z0, xr, y1, z1, xl, y1, z1)
+    t.push(xl, y, z1, xl, y, z0, xl, y1, z0, xl, y, z1, xl, y1, z0, xl, y1, z1)
+    if (both) t.push(xr, y, z0, xr, y, z1, xr, y1, z1, xr, y, z0, xr, y1, z1, xr, y1, z0)
+  }
+  const top = y + rise
+  t.push(xr, y, zHigh, xl, y, zHigh, xl, top, zHigh, xr, y, zHigh, xl, top, zHigh, xr, top, zHigh)
+  g.tris(t, color)
+}
+
+const post = (g: Geo, x: number, y: number, z: number, h: number, color: string = C.wood) => g.box(x, y, z, 0.1, h, 0.1, color, { jitter: 0 })
 
 function tent(g: Geo) {
   plate(g, 6.2)
   g.prism(0, 0.1, -0.2, 4.4, 2.3, 3.6, C.goatHair)
-  g.prism(0, 0.1, -0.2, 4.0, 2.31, 3.62, '#5a443a', { jitter: 0.02 })
-  g.box(0, 0.1, 1.62, 1.0, 1.3, 0.05, C.dark, { jitter: 0 })
-  for (const x of [-2.15, 2.15]) g.cyl(x, 0.1, 1.8, 0.05, 0.05, 1.6, C.wood, 4)
-  // A fire ring and a water jar.
+  g.prism(0, 0.1, -0.2, 4.0, 2.36, 3.7, '#5a443a', { jitter: 0.02 })
+  // Woven bands over the ridge.
+  g.prism(0, 0.1, -0.2, 0.55, 2.42, 3.8, C.madder, { jitter: 0.02 })
+  for (const x of [-1.3, 1.3]) g.prism(x, 0.1, -0.2, 0.26, 2.42, 3.8, C.cream, { jitter: 0.02 })
+  // The doorway under a flap held up on two poles.
+  g.box(0, 0.1, 1.62, 1.5, 1.3, 0.05, C.dark, { jitter: 0 })
+  awning(g, 0, 1.42, 0.6, 2.0, 1.75, -0.08, C.saffron, { stripe: C.madder, n: 2 })
+  for (const x of [-0.9, 0.9]) g.cyl(x, 0.1, 2.25, 0.05, 0.05, 1.38, C.wood, 4)
+  // A fire ring, a water jar, a rug to sit on and a pack.
   for (let i = 0; i < 6; i++) {
     const a = (i / 6) * Math.PI * 2
-    g.box(1.6 + Math.cos(a) * 0.45, 0.12, 2.3 + Math.sin(a) * 0.45, 0.25, 0.2, 0.25, C.limeDark)
+    g.box(2.05 + Math.cos(a) * 0.45, 0.12, 2.2 + Math.sin(a) * 0.45, 0.25, 0.2, 0.25, C.limeDark)
   }
-  g.cyl(-2.2, 0.12, 2.3, 0.28, 0.22, 0.7, C.mud, 7)
+  g.cyl(-2.55, 0.12, 1.7, 0.28, 0.22, 0.7, C.mud, 7)
+  rugFlat(g, -1.75, 0.14, 2.45, 1.5, 0.85, C.madder, C.cream, 0.12)
+  g.box(2.6, 0.12, 0.5, 0.5, 0.42, 0.8, '#c9b07a', { ry: 0.2 })
 }
 
 function mudBrick(g: Geo) {
@@ -113,8 +259,17 @@ function mudBrick(g: Geo) {
   g.box(0, 0.1, -0.3, 4.2, 2.7, 3.8, C.mud)
   g.box(0, 2.8, -0.3, 4.5, 0.3, 4.1, C.mudDark)
   for (const x of [-1.6, -0.55, 0.55, 1.6]) g.box(x, 2.82, 1.75, 0.16, 0.16, 0.5, C.woodDark, { jitter: 0 })
-  door(g, -0.6, 1.6, 0.85, 1.7)
-  windowAt(g, 1.1, 1.5, 1.6, 0.5, 0.45)
+  houseDoor(g, -0.6, 1.6, { w: 0.85, h: 1.7 })
+  win(g, 1.1, 1.45, 1.6, 0, { w: 0.5, h: 0.5, shutters: C.wood, sill: C.woodDark })
+  win(g, -2.1, 1.5, -0.6, -Math.PI / 2, { h: 0.5 })
+  win(g, 0.7, 1.5, -2.2, Math.PI, { h: 0.5 })
+  // A cloth shade over the door, hung from the roof beams.
+  awning(g, -0.6, 2.62, 1.6, 1.8, 1.25, 0.5, C.ochre, { stripe: C.cream, n: 3 })
+  // The roof is the family's second room: a ladder up, a mat, cloth drying.
+  ladder(g, 2.3, 0.14, -1.1, 3.1, 0.8, Math.PI / 2)
+  matRoll(g, -1.1, 3.1, -1.5, 1.3, 0.3)
+  lying(g, 0.7, 3.14, -0.7, 1.5, 0.95, C.indigo, 0.1)
+  lying(g, -0.9, 3.14, 0.5, 1.0, 0.7, C.cream, -0.2)
   g.cyl(1.9, 0.12, 2.4, 0.3, 0.24, 0.75, C.mudDark, 7)
   g.box(-2.1, 0.12, 2.3, 1.2, 0.5, 0.7, '#c9b07a')
 }
@@ -123,75 +278,169 @@ function stoneHouse(g: Geo) {
   plate(g, 7)
   g.box(0, 0.1, -0.4, 5, 3.2, 4.4, C.lime)
   flatRoof(g, 0, 3.3, -0.4, 5, 4.4)
-  door(g, -0.9, 1.8)
-  windowAt(g, 1.0, 1.7, 1.8)
-  sideWindow(g, 2.5, 1.7, -0.4)
-  // Outside stair up to the roof.
-  g.slope(-2.95, 0.1, -0.4, 0.9, 3.2, 3.6, 0.5, C.limeDark, { ry: Math.PI / 2 })
+  houseDoor(g, -0.9, 1.8, { frame: C.limeDark })
+  win(g, 1.1, 1.7, 1.8, 0, { shutters: C.wood, sill: C.limeLight })
+  win(g, 2.5, 1.7, -0.4, Math.PI / 2, { shutters: C.wood })
+  for (const x of [-1.2, 1.2]) win(g, x, 1.8, -2.6, Math.PI)
+  // Outside steps up to the roof.
+  stairs(g, -2.95, 0.1, 1.5, -2.2, 0.9, 3.4, 5, C.limeDark)
+  // A striped shade over the door on two posts.
+  awning(g, -0.9, 2.75, 1.8, 1.9, 1.3, 0.4, C.indigo, { stripe: C.cream, n: 3 })
+  for (const x of [-1.75, -0.05]) post(g, x, 0.12, 3.02, 2.24)
+  // On the roof: a rug airing over the parapet, a mat, a cloth.
+  rug(g, 1.2, 4.05, 1.8, 1.3, C.madder, C.cream)
+  matRoll(g, 1.0, 3.6, -1.6, 1.4, -0.3)
+  lying(g, -0.6, 3.64, -0.6, 1.5, 1.0, C.saffron, 0.15)
   g.cyl(1.9, 0.12, 2.6, 0.32, 0.25, 0.8, C.mud, 7)
 }
 
+interface CourtOpts {
+  size: number
+  wall: string
+  /** The flat roofs' floor. */
+  roof: string
+  /** The two cloth colours of the house (awnings and rugs), and the shutters' colour. */
+  a: string
+  b: string
+  shutter: string
+  storey?: boolean
+  upper?: boolean
+  cedar?: boolean
+}
+
 /** The courtyard house and every level above it share this plan: rooms at the back and left, a walled court in front. */
-function courtyard(g: Geo, o: { size: number; wall: string; storey?: boolean; upper?: boolean; cedar?: boolean }) {
+function courtyard(g: Geo, o: CourtOpts) {
   const s = o.size
   const h = s / 2 - 0.3
   plate(g, s, '#d4b27c')
-  // Back rooms and the left wing.
+  // Back rooms (their front at zf) and the left wing (its court side at xw).
   const backD = s * 0.38
   const bz = -h + backD / 2
-  g.box(0, 0.1, bz, s - 0.6, 3.3, backD, o.wall)
+  const zf = bz + backD / 2
   const wingW = s * 0.3
   const wx = -h + wingW / 2
-  g.box(wx, 0.1, (bz + backD / 2 + h) / 2, wingW, 3.0, h - (bz + backD / 2), o.wall)
+  const xw = wx + wingW / 2
+  const wz = (zf + h) / 2
+  const wd = h - zf
+  /** The court's right side: the court wall, or the house of cedar's right wing. */
+  const xr = o.cedar ? -xw : h - 0.24
+  const trim = o.cedar ? C.cedar : C.lime
+  const timber = o.cedar ? C.cedar : C.woodDark
+  const sh = { shutters: o.shutter }
+  g.box(0, 0.1, bz, s - 0.6, 3.3, backD, o.wall)
+  g.box(wx, 0.1, wz, wingW, 3.0, wd, o.wall)
+  if (o.cedar) g.box(-wx, 0.1, wz, wingW, 3.0, wd, o.wall)
+  else g.box(h - 0.12, 0.1, wz, 0.24, 1.7, wd, o.wall)
+  // The court's front wall and its gate, the leaves swung in.
+  const gx = o.cedar ? 0 : (xw + xr) / 2 + 0.3
+  const gh = o.cedar ? 0.75 : 0.6
+  const fr = o.cedar ? xr : h
+  g.box((xw + gx - gh) / 2, 0.1, h - 0.12, gx - gh - xw, 1.7, 0.24, o.wall)
+  g.box((gx + gh + fr) / 2, 0.1, h - 0.12, fr - gx - gh, 1.7, 0.24, o.wall)
+  g.box(gx, 1.8, h - 0.12, 2 * gh + 0.5, 0.25, 0.3, timber, { jitter: 0 })
+  const swing = 1.1
+  const leaf = (k: 1 | -1, len: number) =>
+    g.box(gx - k * gh + (k * Math.cos(swing) * len) / 2, 0.14, h - 0.14 - (Math.sin(swing) * len) / 2, len, 1.5, 0.08, o.cedar ? C.cedar : C.wood, { ry: k * swing, jitter: 0.05 })
+  leaf(1, o.cedar ? 0.74 : 1.15)
   if (o.cedar) {
-    // A right wing too: the court enclosed on three sides.
-    g.box(-wx, 0.1, (bz + backD / 2 + h) / 2, wingW, 3.0, h - (bz + backD / 2), o.wall)
+    leaf(-1, 0.74)
+    panel(g, gx, 1.87, h + 0.07, 2 * gh + 0.3, 0.1, C.gold)
   }
-  // Court walls and gate.
-  const cw = o.cedar ? 0 : 1
-  if (cw) g.box(h - 0.12, 0.1, (bz + backD / 2 + h) / 2, 0.24, 1.7, h - (bz + backD / 2), o.wall)
-  const frontL = o.cedar ? -wx - wingW / 2 : h
-  g.box((wx + wingW / 2 + frontL) / 2 - 0.9, 0.1, h - 0.12, (frontL - wx - wingW / 2) / 2 - 0.4, 1.7, 0.24, o.wall)
-  g.box((wx + wingW / 2 + frontL) / 2 + 1.4, 0.1, h - 0.12, (frontL - wx - wingW / 2) / 2 - 1.2, 1.7, 0.24, o.wall)
-  g.box((wx + wingW / 2 + frontL) / 2 + 0.25, 1.8, h - 0.12, 1.6, 0.25, 0.3, C.woodDark, { jitter: 0 })
-  // Doors and windows on the court.
-  door(g, 0.6, bz + backD / 2, 0.9, 1.9, o.cedar ? C.cedar : C.woodDark)
-  windowAt(g, -0.9, 1.9, bz + backD / 2)
-  windowAt(g, 2.0, 1.9, bz + backD / 2)
-  sideWindow(g, wx + wingW / 2, 1.6, h - 1.4)
-  // Flat roofs.
-  const roofWall = o.cedar ? C.cedar : C.lime
-  flatRoof(g, 0, 3.4, bz, s - 0.6, backD, C.roof, roofWall)
-  g.box(wx, 3.1, (bz + backD / 2 + h) / 2, wingW + 0.2, 0.3, h - (bz + backD / 2) + 0.2, C.roof)
-  if (o.cedar) g.box(-wx, 3.1, (bz + backD / 2 + h) / 2, wingW + 0.2, 0.3, h - (bz + backD / 2) + 0.2, C.roof)
-  // The court: a tree, a cistern, jars.
-  olive(g, 1.3, 1.6, o.cedar ? 1.15 : 0.9)
-  g.cyl(-0.4, 0.12, 2.0, 0.5, 0.55, 0.45, C.limeDark, 8)
-  g.cyl(o.cedar ? 0.4 : 2.4, 0.12, h - 0.8, 0.28, 0.22, 0.7, C.mud, 7)
+  // Doors and windows on the court, and windows to the street and the back.
+  const dx = o.cedar ? 0 : 0.6
+  houseDoor(g, dx, zf, { h: 1.9, frame: timber, leaf: o.cedar ? C.cedar : C.wood, lintel: o.cedar ? C.gold : C.wood })
+  win(g, Math.max(xw + 0.45, dx - 1.5), 1.9, zf, 0, { lattice: timber })
+  win(g, o.cedar ? 0.93 : 2.0, 1.9, zf, 0, { lattice: timber })
+  win(g, xw, 1.6, h - 1.4, Math.PI / 2, sh)
+  win(g, wx, 1.7, h, 0, { ...sh, sill: C.limeLight })
+  for (const z of [wz - 0.9, wz + 0.9]) win(g, -h, 1.8, z, -Math.PI / 2)
+  for (const x of [-2.2, 0, 2.2]) win(g, x, 1.9, -h, Math.PI)
+  if (o.cedar) {
+    win(g, -wx, 1.7, h, 0, { ...sh, sill: C.limeLight })
+    win(g, -xw, 1.6, h - 1.4, -Math.PI / 2, sh)
+    for (const z of [wz - 0.9, wz + 0.9]) win(g, h, 1.8, z, Math.PI / 2)
+  } else win(g, h, 1.9, bz, Math.PI / 2, sh)
+  // Flat roofs: the back rooms', and each wing's a step lower.
+  flatRoof(g, 0, 3.4, bz, s - 0.6, backD, o.roof, trim)
+  const wingRoof = (k: 1 | -1, parapet: boolean) => {
+    g.box(k * wx, 3.1, wz, wingW + 0.2, 0.3, wd + 0.2, o.roof)
+    g.box(k * wx, 3.4, h, wingW + 0.2, 0.4, 0.22, trim)
+    if (!parapet) return
+    g.box(-k * h, 3.4, wz, 0.22, 0.4, wd + 0.2, trim)
+    g.box(k * xw, 3.4, wz, 0.22, 0.4, wd + 0.2, trim)
+  }
+  wingRoof(1, !o.upper)
+  if (o.cedar) wingRoof(-1, true)
+  rug(g, wx, 3.8, h, 1.2, o.b, C.cream)
+  // The court: a tree, a cistern, a jar, and steps up to the roof.
+  olive(g, o.cedar ? 0.45 : 1.3, o.cedar ? 1.8 : 1.6, o.cedar ? 1.0 : 0.9)
+  g.cyl(-0.4, 0.12, 2.0, 0.5, 0.55, 0.45, C.limeDark, 7)
+  pot(g, o.cedar ? -1.05 : xr - 0.4, 0.12, h - 0.65, 1.3)
+  if (!o.cedar) stairs(g, xr - 0.4, 0.1, zf + 3.0, zf, 0.8, 3.3, 5, C.limeDark, true)
+  if (!o.upper) {
+    // A cloth shade over the door, and washing spread out on the wing's roof.
+    awning(g, dx, 2.75, zf, 1.9, 1.2, 0.35, o.a, { stripe: C.cream, n: 3 })
+    for (const x of [dx - 0.86, dx + 0.86]) post(g, x, 0.12, zf + 1.12, 2.26)
+    lying(g, wx - 0.1, 3.44, wz - 0.7, 1.2, 0.8, C.cream, 0.2)
+    lying(g, wx + 0.15, 3.44, wz + 0.8, 1.0, 0.7, o.a, -0.3)
+  }
+  if (!o.storey) {
+    rugFlat(g, 1.2, 3.7, bz, 1.7, 1.1, o.b, C.cream, 0.1)
+    matRoll(g, -1.2, 3.7, bz - 0.3, 1.4, 0.4)
+    pot(g, 2.7, 3.7, bz + 0.6)
+  }
   if (o.storey) {
     // A second storey on the back rooms, with a shaded roof terrace beside it.
-    const ux2 = -s * 0.16
+    const ux = -s * 0.16
     const uw = s * 0.55
-    g.box(ux2, 3.4, bz, uw, 2.8, backD - 0.2, o.wall)
-    flatRoof(g, ux2, 6.2, bz, uw, backD - 0.2, C.roof, roofWall)
-    windowAt(g, ux2 - 0.6, 4.6, bz + (backD - 0.2) / 2)
-    windowAt(g, ux2 + 0.8, 4.6, bz + (backD - 0.2) / 2)
-    const tx = ux2 + uw / 2 + (s / 2 - 0.3 - (ux2 + uw / 2)) / 2
-    for (const [px2, pz] of [[-0.9, -0.8], [0.9, -0.8], [-0.9, 0.8], [0.9, 0.8]]) g.box(tx + px2, 3.7, bz + pz, 0.12, 1.7, 0.12, C.woodDark, { jitter: 0 })
-    g.box(tx, 5.4, bz, 2.2, 0.1, 2.0, o.cedar ? C.red : C.ochre, { jitter: 0.02 })
+    const ud = backD - 0.2
+    const zu = bz + ud / 2
+    g.box(ux, 3.4, bz, uw, 2.8, ud, o.wall)
+    flatRoof(g, ux, 6.2, bz, uw, ud, o.roof, trim)
+    // Its windows on the court, clear of the upper room.
+    const cu = o.upper ? (xw + ux + uw / 2) / 2 : ux
+    const gap = o.upper ? 0.6 : 0.9
+    for (const k of [-1, 1]) win(g, cu + k * gap, 4.6, zu, 0, { ...sh, sill: o.cedar ? C.gold : C.limeLight })
+    for (const x of [ux - 1.0, ux + 1.0]) win(g, x, 4.6, bz - ud / 2, Math.PI)
+    win(g, ux - uw / 2, 4.6, bz, -Math.PI / 2)
+    rug(g, cu, 6.95, zu, 0.7, o.b, C.cream)
+    const tx = (ux + uw / 2 + h) / 2
+    for (const [px, pz] of [[-0.9, -0.8], [0.9, -0.8], [-0.9, 0.8], [0.9, 0.8]]) g.box(tx + px, 3.7, bz + pz, 0.12, 1.7, 0.12, timber, { jitter: 0 })
+    awning(g, tx, 5.45, bz - 1.0, 2.2, 2.0, 0, o.a, { stripe: C.cream, n: 3 })
+    pot(g, tx + 0.7, 3.7, zf - 0.4, 1.1)
+    blob(g, tx + 0.7, 4.5, zf - 0.4, 0.34, 0.32, 0.34, C.green)
+    // On the top roof: a rug, a mat, a jar.
+    rugFlat(g, ux + 0.7, 6.5, bz, 1.6, 1.0, o.cedar ? C.blue : C.green, C.cream, 0.12)
+    matRoll(g, ux - 1.0, 6.5, bz + 0.2, 1.3, 1.2)
+    pot(g, ux - uw / 2 + 0.6, 6.5, bz - 0.5)
+    if (o.cedar) g.box(ux, 6.55, zu + 0.1, uw, 0.18, 0.1, C.gold, { jitter: 0 })
   }
   if (o.upper) {
     // The upper room (aliyah) over the wing, with a little colonnade in the court.
-    g.box(wx, 3.4, (bz + backD / 2 + h) / 2 - 0.2, wingW, 2.3, h - (bz + backD / 2) - 0.6, o.wall)
-    flatRoof(g, wx, 5.7, (bz + backD / 2 + h) / 2 - 0.2, wingW, h - (bz + backD / 2) - 0.6, C.roof, roofWall)
-    sideWindow(g, wx + wingW / 2, 4.4, (bz + backD / 2 + h) / 2)
-    for (const x of [-0.6, 1.2, 3.0].slice(0, o.cedar ? 3 : 2)) g.cyl(x, 0.12, bz + backD / 2 + 0.9, 0.18, 0.2, 3.2, C.marble, 6)
-    g.box(1.2, 3.3, bz + backD / 2 + 0.9, 4.6, 0.25, 1.0, o.cedar ? C.cedar : C.roof)
+    const rz = wz - 0.2
+    const rd = wd - 0.6
+    g.box(wx, 3.4, rz, wingW, 2.3, rd, o.wall)
+    flatRoof(g, wx, 5.7, rz, wingW, rd, o.roof, trim)
+    win(g, xw, 4.4, wz, Math.PI / 2, sh)
+    win(g, wx, 4.3, rz + rd / 2, 0, { lattice: timber, sill: o.cedar ? C.gold : C.limeLight })
+    for (const z of [wz - 0.8, wz + 0.6]) win(g, -h, 4.4, z, -Math.PI / 2)
+    rugFlat(g, wx, 6.0, rz, 1.3, 0.9, o.a, C.cream, Math.PI / 2 + 0.1)
+    const c0 = xw
+    const c1 = o.cedar ? xr : xr - 0.9
+    for (const x of [c0 + 0.2, c1 - 0.2]) g.cyl(x, 0.12, zf + 0.95, 0.18, 0.2, 3.05, C.marble, 6)
+    g.box((c0 + c1) / 2, 3.17, zf + 0.95, c1 - c0, 0.16, 0.2, timber, { jitter: 0 })
+    if (o.cedar) {
+      // A cedar roof on the colonnade, edged with gold.
+      g.box((c0 + c1) / 2, 3.33, zf + 0.6, c1 - c0, 0.2, 1.2, C.cedar)
+      g.box((c0 + c1) / 2, 3.36, zf + 1.2, c1 - c0, 0.14, 0.08, C.gold, { jitter: 0 })
+      g.box(wx, 6.05, rz + rd / 2 + 0.1, wingW, 0.18, 0.1, C.gold, { jitter: 0 })
+    } else awning(g, (c0 + c1) / 2, 3.62, zf, c1 - c0, 1.25, 0.3, C.tile, { stripe: '#cf7a52', n: 6 })
   }
   if (o.cedar) {
-    // Cedar beams along the eaves and a touch of gold.
-    g.box(0, 3.1, bz + backD / 2 + 0.05, s - 0.6, 0.25, 0.12, C.cedar, { jitter: 0 })
-    g.box(0, 6.55, bz + (backD - 0.2) / 2 + 0.05, s * 0.55, 0.18, 0.12, C.gold, { jitter: 0 })
+    // The right wing's roof: a blue shade and a rug.
+    awning(g, -wx, 4.9, wz - 1.0, 1.7, 1.8, 0, C.blue, { stripe: C.gold, n: 2 })
+    for (const [px, pz] of [[-0.75, 0.1], [0.75, 0.1], [-0.75, 1.7], [0.75, 1.7]]) post(g, -wx + px, 3.4, wz - 1.0 + pz, 1.47, C.cedar)
+    rug(g, -wx, 3.8, h, 1.2, C.red, C.gold)
   }
 }
 
@@ -202,10 +451,10 @@ const HOUSE: ((g: Geo) => void)[] = [
   tent,
   mudBrick,
   stoneHouse,
-  (g) => courtyard(g, { size: 7.4, wall: C.lime }),
-  (g) => courtyard(g, { size: 7.6, wall: C.limeLight, storey: true }),
-  (g) => courtyard(g, { size: 8, wall: C.plaster, storey: true, upper: true }),
-  (g) => courtyard(g, { size: 8.4, wall: C.marble, storey: true, upper: true, cedar: true }),
+  (g) => courtyard(g, { size: 7.4, wall: C.lime, roof: C.roof, a: C.madder, b: C.saffron, shutter: C.wood }),
+  (g) => courtyard(g, { size: 7.6, wall: C.limeLight, roof: '#dcc59a', a: C.indigo, b: C.madder, shutter: C.wood, storey: true }),
+  (g) => courtyard(g, { size: 8, wall: C.plaster, roof: PAVING, a: C.saffron, b: C.indigo, shutter: C.green, storey: true, upper: true }),
+  (g) => courtyard(g, { size: 8.4, wall: C.marble, roof: C.cream, a: C.red, b: C.blue, shutter: C.cedar, storey: true, upper: true, cedar: true }),
 ]
 
 /** Draws house level 1…7 into g (the city adds its foundation first). */
@@ -635,7 +884,8 @@ const make = (key: string, seed: number, f: (g: Geo, rand: () => number) => void
     const rand = rng(seed)
     const g = new Geo(rand)
     f(g, rand)
-    geo = g.build(3)
+    // Shade baked into the colours: where walls meet the ground and each other (ao.ts).
+    geo = g.build(3, { ao: { ground: () => 0 } })
     cache.set(key, geo)
   }
   return geo

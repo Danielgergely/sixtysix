@@ -25,7 +25,7 @@ export function cypressGeometry(): BufferGeometry {
   const g = new Geo(rng(23))
   g.cyl(0, -0.5, 0, 0.18, 0.22, 1.4, C.trunk, 4)
   g.cone(0, 0.6, 0, 1.0, 6.2, C.cypress, 6)
-  g.cone(0, 2.4, 0, 0.75, 5.4, '#4a6834', 6)
+  g.cone(0, 2.4, 0, 0.75, 5.4, '#5a7a3f', 6)
   return g.build(3)
 }
 

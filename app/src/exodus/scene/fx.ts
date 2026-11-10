@@ -51,17 +51,26 @@ interface P {
   peak: number
 }
 
+/** How a kind of particle looks and behaves (what is left out takes the default). Make each one once, not per particle. */
+export type Puff = Partial<Pick<P, 'max' | 'size' | 'grow' | 'color' | 'drag' | 'gravity' | 'peak'>>
+
+const ATTRIBUTES = ['position', 'size', 'alpha', 'tint'] as const
+
 export class Particles {
   readonly points: Points
+  /** A fixed pool: the first `n` are alive, oldest first. Nothing is allocated while it runs. */
   private ps: P[] = []
+  private n = 0
   private pos: Float32Array
   private size: Float32Array
   private alpha: Float32Array
   private tint: Float32Array
+  private attributes: BufferAttribute[]
   private cap: number
 
   constructor(map: Texture, cap: number, additive = false) {
     this.cap = cap
+    for (let i = 0; i < cap; i++) this.ps.push({ x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0, max: 0.8, size: 0.5, grow: 1, color: WHITE, drag: 1.5, gravity: 0, peak: 1 })
     const g = new BufferGeometry()
     this.pos = new Float32Array(cap * 3)
     this.size = new Float32Array(cap)
@@ -71,6 +80,8 @@ export class Particles {
     g.setAttribute('size', new BufferAttribute(this.size, 1))
     g.setAttribute('alpha', new BufferAttribute(this.alpha, 1))
     g.setAttribute('tint', new BufferAttribute(this.tint, 3))
+    this.attributes = ATTRIBUTES.map((a) => g.getAttribute(a) as BufferAttribute)
+    g.setDrawRange(0, 0)
     const m = new ShaderMaterial({
       uniforms: { uMap: { value: map }, uScale: { value: 600 } },
       vertexShader: vertex,
@@ -80,6 +91,7 @@ export class Particles {
       blending: additive ? AdditiveBlending : NormalBlending,
     })
     this.points = new Points(g, m)
+    // The points move every frame, so a bounding sphere would have to be recomputed every frame: not worth it for one draw call near the runner.
     this.points.frustumCulled = false
   }
 
@@ -88,15 +100,38 @@ export class Particles {
     ;(this.points.material as ShaderMaterial).uniforms.uScale.value = px
   }
 
-  emit(p: Partial<P> & { x: number; y: number; z: number }) {
-    if (this.ps.length >= this.cap) this.ps.shift()
-    this.ps.push({ vx: 0, vy: 0, vz: 0, life: 0, max: 0.8, size: 0.5, grow: 1, color: WHITE, drag: 1.5, gravity: 0, peak: 1, ...p })
+  /** One particle of kind `puff` at a place, with a velocity. When the pool is full the oldest one goes. */
+  emit(puff: Puff, x: number, y: number, z: number, vx = 0, vy = 0, vz = 0) {
+    const ps = this.ps
+    if (this.n >= this.cap) {
+      const oldest = ps[0]
+      ps.copyWithin(0, 1, this.n)
+      ps[--this.n] = oldest
+    }
+    const p = ps[this.n++]
+    p.x = x
+    p.y = y
+    p.z = z
+    p.vx = vx
+    p.vy = vy
+    p.vz = vz
+    p.life = 0
+    p.max = puff.max ?? 0.8
+    p.size = puff.size ?? 0.5
+    p.grow = puff.grow ?? 1
+    p.color = puff.color ?? WHITE
+    p.drag = puff.drag ?? 1.5
+    p.gravity = puff.gravity ?? 0
+    p.peak = puff.peak ?? 1
   }
 
   /** `dz`: how far the world moved towards the camera this step (things on the ground move with it). */
   step(dt: number, dz: number, groundBound = 1) {
+    const ps = this.ps
+    // Move them all; the ones still alive close up to the front of the pool, in order (the dead swap to the back).
     let n = 0
-    for (const p of this.ps) {
+    for (let i = 0; i < this.n; i++) {
+      const p = ps[i]
       p.life += dt
       const k = Math.max(0, 1 - p.drag * dt)
       p.vx *= k
@@ -105,9 +140,11 @@ export class Particles {
       p.x += p.vx * dt
       p.y += p.vy * dt
       p.z += p.vz * dt + dz * groundBound
-    }
-    this.ps = this.ps.filter((p) => p.life < p.max)
-    for (const p of this.ps) {
+      if (p.life >= p.max) continue
+      if (n !== i) {
+        ps[i] = ps[n]
+        ps[n] = p
+      }
       const t = p.life / p.max
       this.pos[n * 3] = p.x
       this.pos[n * 3 + 1] = p.y
@@ -120,13 +157,17 @@ export class Particles {
       this.tint[n * 3 + 2] = p.color.b
       n++
     }
-    const g = this.points.geometry
-    g.setDrawRange(0, n)
-    for (const a of ['position', 'size', 'alpha', 'tint']) (g.getAttribute(a) as BufferAttribute).needsUpdate = true
+    // Nothing alive, nothing to draw or upload (and nothing changed since the last step that drew nothing).
+    const idle = n === 0 && this.n === 0
+    this.n = n
+    this.points.visible = n > 0
+    if (idle) return
+    this.points.geometry.setDrawRange(0, n)
+    for (const a of this.attributes) a.needsUpdate = true
   }
 
   clear() {
-    this.ps = []
+    this.n = 0
   }
 
   dispose() {

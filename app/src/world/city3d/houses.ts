@@ -12,6 +12,9 @@ import { rng } from './space'
  * the city turns each house a quarter (or not) by lot.
  */
 
+/** Baked shade (ao.ts) for a model on a foundation: the ground is the foundation's foot, so the walls take their shade from its top. */
+const FOUNDED = { ground: () => -3 }
+
 /** The foundation under a lot's yard: the part below 0 sinks into the hillside. */
 function foundation(g: Geo, size: number) {
   g.box(0, -3, 0, size + 0.4, 3.0, size + 0.4, C.limeDark, { jitter: 0.03 })
@@ -24,7 +27,7 @@ export function houseGeometries(): BufferGeometry[] {
     const g = new Geo(rand)
     foundation(g, size)
     drawHouse(g, i + 1)
-    return g.build(3)
+    return g.build(3, { ao: FOUNDED })
   })
 }
 
@@ -36,7 +39,7 @@ export function freeLotGeometry(): BufferGeometry {
   for (const [x, z, w, d] of [[0, -3.3, 6.8, 0.3], [0, 3.3, 6.8, 0.3], [-3.3, 0, 0.3, 6.8], [3.3, 0, 0.3, 6.8]]) g.box(x, 0, z, w, 0.32, d, C.lime)
   for (const [x, z] of [[-3.3, -3.3], [3.3, -3.3], [-3.3, 3.3], [3.3, 3.3]]) g.box(x, 0, z, 0.16, 1.1, 0.16, C.wood, { jitter: 0 })
   for (let i = 0; i < 5; i++) g.box(1.6 + (i % 3) * 0.45, 0.1 + (i > 2 ? 0.35 : 0), -1.6 + (i % 2) * 0.4, 0.45, 0.35, 0.4, C.lime, { ry: i })
-  return g.build(3)
+  return g.build(3, { ao: FOUNDED })
 }
 
 /** A tuft of weeds: grass blades and a thistle. */

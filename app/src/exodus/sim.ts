@@ -214,6 +214,8 @@ export function rand(seed: number) {
 }
 
 const POWERS: readonly PowerKind[] = ['manna', 'cloud', 'staff']
+/** The powers that last a while. */
+const TIMED_POWERS = ['manna', 'cloud'] as const
 
 /** Each place's obstacles: what you jump, duck under, go round and run along (with `Ramp` added: the one with a ramp up at its near end). */
 const OBSTACLES: Record<Biome, (r: () => number) => Record<Need, string>> = {
@@ -265,6 +267,8 @@ export class Run {
   /** Lab: obstacles never end the run. */
   immortal = false
   events: RunEvent[] = []
+  /** The array `takeEvents` handed out last, used again for the frame after. */
+  private spareEvents: RunEvent[] = []
   /** Track distance up to which no obstacles are placed (questions, breathers). */
   private clearUntil = 40
   private nextRowAt = 40
@@ -386,18 +390,22 @@ export class Run {
     this.events.push({ type: 'phase', phase })
   }
 
+  /** Moves the time scale towards `to`. */
+  private ease(to: number, real: number, rate: number) {
+    this.timeScale += (to - this.timeScale) * Math.min(1, real * rate)
+  }
+
   private updatePhase(real: number) {
-    const ease = (to: number, rate: number) => (this.timeScale += (to - this.timeScale) * Math.min(1, real * rate))
     switch (this.phase) {
       case 'warn':
-        ease(0.55, 2.5)
+        this.ease(0.55, real, 2.5)
         if (this.phaseT >= WARN_S) {
           this.readFor = readSeconds(this.pending?.text ?? '')
           this.setPhase('read')
         }
         break
       case 'read':
-        ease(READ_SCALE, 6)
+        this.ease(READ_SCALE, real, 6)
         if (this.phaseT >= this.readFor) this.setPhase('speedup')
         break
       case 'speedup': {
@@ -418,10 +426,10 @@ export class Run {
         this.timeScale = 1
         break
       case 'run':
-        ease(1, 3)
+        this.ease(1, real, 3)
         break
       case 'over':
-        ease(0.35, 3)
+        this.ease(0.35, real, 3)
         break
     }
   }
@@ -450,7 +458,7 @@ export class Run {
     }
     if (p.roll > 0 && !p.airborne) p.roll = Math.max(0, p.roll - dt)
     p.sinceStumble += dt
-    for (const k of ['manna', 'cloud'] as const) {
+    for (const k of TIMED_POWERS) {
       const left = this.powers[k]
       if (left === undefined) continue
       if (left - dt <= 0) delete this.powers[k]
@@ -464,7 +472,9 @@ export class Run {
   /** The ground under the runner: a platform's top (rising along its ramp) or the track. */
   private floorAt(x: number): number {
     let floor = 0
-    for (const o of this.obstacles) {
+    const obstacles = this.obstacles
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i]
       if (o.need !== 'platform' || o.sink > 0 || o.hit || Math.abs(o.x - x) > 1.25) continue
       const into = this.dist - (o.s - o.half)
       if (into < 0 || into > o.half * 2) continue
@@ -476,20 +486,39 @@ export class Run {
 
   private stepThings(dt: number, real: number) {
     const behind = this.dist - BEHIND
-    // Flocks fly at the runner once near.
-    if (this.phase !== 'over') for (const o of this.obstacles) if (o.fly && o.s - this.dist < FLY_FROM) o.s -= o.fly * dt
-    for (const o of this.obstacles) if (o.sink > 0) o.sink = Math.min(1, o.sink + real * 2.2)
-    this.obstacles = this.obstacles.filter((o) => o.s > behind && o.sink < 1)
-    this.scenery = this.scenery.filter((t) => t.s > behind - 20)
-    this.tiles = this.tiles.filter((t) => t.s + TILE > behind)
-    for (const c of this.pickups) if (c.taken >= 0) c.taken += dt
-    this.pickups = this.pickups.filter((c) => c.s > behind && c.taken < 0.6)
+    const { obstacles, scenery, tiles, pickups } = this
+    // What is left behind (or has sunk, or was taken) goes: each list closes up in place, in order.
+    // (Plain loops, and no new arrays: a step allocates nothing.)
+    let n = 0
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i]
+      // Flocks fly at the runner once near.
+      if (this.phase !== 'over' && o.fly && o.s - this.dist < FLY_FROM) o.s -= o.fly * dt
+      if (o.sink > 0) o.sink = Math.min(1, o.sink + real * 2.2)
+      if (o.s > behind && o.sink < 1) obstacles[n++] = o
+    }
+    obstacles.length = n
+    n = 0
+    for (let i = 0; i < scenery.length; i++) if (scenery[i].s > behind - 20) scenery[n++] = scenery[i]
+    scenery.length = n
+    n = 0
+    for (let i = 0; i < tiles.length; i++) if (tiles[i].s + TILE > behind) tiles[n++] = tiles[i]
+    tiles.length = n
+    n = 0
+    for (let i = 0; i < pickups.length; i++) {
+      const c = pickups[i]
+      if (c.taken >= 0) c.taken += dt
+      if (c.s > behind && c.taken < 0.6) pickups[n++] = c
+    }
+    pickups.length = n
     if (this.lastGate && this.lastGate.s < behind) this.lastGate = null
   }
 
   private collide() {
     const p = this.player
-    for (const o of this.obstacles) {
+    const { obstacles, pickups } = this
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i]
       if (o.hit || o.sink > 0) continue
       if (Math.abs(o.s - this.dist) > o.half + 0.35) continue
       if (Math.abs(o.x - p.x) > 1.25) continue
@@ -523,7 +552,8 @@ export class Run {
       if (solid && !headOn && p.lane === o.lane) p.lane = this.prevLane
     }
     const manna = !!this.powers.manna
-    for (const c of this.pickups) {
+    for (let i = 0; i < pickups.length; i++) {
+      const c = pickups[i]
       if (c.taken >= 0 || Math.abs(c.s - this.dist) > (manna && c.kind === 'light' ? 1.4 : 0.7)) continue
       // With the manna, lights in every lane and at every height are gathered.
       const near = Math.abs(c.lane * LANE_W - p.x) <= 1 && Math.abs(c.y - (p.y + 1)) <= 1.3
@@ -850,10 +880,15 @@ export class Run {
     return 0
   }
 
-  /** This frame's events, handed over once (the scene and the HUD read them). */
+  /**
+   * This frame's events, handed over once (the scene and the HUD read them).
+   * The array is used again: it is only good until the next call.
+   */
   takeEvents(): RunEvent[] {
     const e = this.events
-    this.events = []
+    this.events = this.spareEvents
+    this.events.length = 0
+    this.spareEvents = e
     return e
   }
 

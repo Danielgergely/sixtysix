@@ -106,6 +106,16 @@ window.addEventListener('vite:preloadError', () => {
   }
 })
 
+// The service worker (public/sw.js) caches the app's files so returning players hardly touch the
+// server and Bible Blitz works offline. Production web builds only: never in dev, never in the
+// native shell (its files are already on the device). After `load`, so it never competes with startup.
+const native = (window as { Capacitor?: { isNativePlatform?: () => boolean } }).Capacitor?.isNativePlatform?.() === true
+if (import.meta.env.PROD && 'serviceWorker' in navigator && !native) {
+  const register = () => void navigator.serviceWorker.register('/sw.js').catch(() => undefined)
+  if (document.readyState === 'complete') register()
+  else window.addEventListener('load', register, { once: true })
+}
+
 const root = createRoot(document.getElementById('root')!)
 
 // Dev-only playground for the motion primitives (tree-shaken from builds).

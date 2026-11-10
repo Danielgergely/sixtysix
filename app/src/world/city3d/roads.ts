@@ -15,11 +15,11 @@ import { STREETS, type StreetSeg } from './streets'
 const LIFT = { plaza: 0.16, main: 0.13, street: 0.09, alley: 0.07 }
 const KERB = { w: 0.34, h: 0.26 }
 const PAVE = {
-  plaza: '#ead8b0',
-  main: '#dcc59a',
-  mainOut: '#cfb98e',
-  street: '#cdb284',
-  alley: '#c4a879',
+  plaza: '#efe4c8',
+  main: '#e2d2ae',
+  mainOut: '#d8c6a0',
+  street: '#d6c198',
+  alley: '#cbb48a',
   kerb: C.limeDark,
 }
 

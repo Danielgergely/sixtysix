@@ -4,13 +4,21 @@ import type { Locale } from '@sixtysix/shared'
 import { bookQuestion } from './books'
 import { autopilot, LANE_W, POWER_SECONDS, Run, type Biome, type GateQuestion, type Phase, type RunEvent } from './sim'
 
+/** The powers with a pill in the top bar. */
+const TIMED_POWERS = ['manna', 'cloud'] as const
+/** Speed lines show from this run speed on (it rises from 15 to 30), and while the world speeds up again after a question. */
+const FAST_SPEED = 24
+/** A power's bar runs down in this many steps (it is written only when it moves). */
+const BAR_STEPS = 500
+
 /**
  * The mutable side of a run on screen, shared by the game (screens/exodus)
  * and the dev lab: the `Run`, the question deck and when to ask, the
- * controls (swipes, keys), pausing, and the HUD elements written every frame
- * (React only re-renders on a phase change, through `onView`). What is
- * earned flies from the runner into its box in the top bar and is counted
- * when it lands.
+ * controls (swipes, keys), pausing, and the HUD elements written from the
+ * frame (React only re-renders on a phase change, through `onView`); each is
+ * written only when what it shows has changed, and a frame allocates
+ * nothing. What is earned flies from the runner into its box in the top bar
+ * and is counted when it lands.
  *
  * Called from React through methods only (the React compiler treats the
  * controller as immutable state).
@@ -36,7 +44,7 @@ export interface RunResult {
   capped: boolean
 }
 
-export type HudKey = 'dist' | 'coins' | 'xp' | 'mult' | 'fps' | 'read' | 'answers' | 'hint' | 'coinIcon' | 'flyers' | 'toast' | 'manna' | 'cloud'
+export type HudKey = 'speed' | 'dist' | 'coins' | 'xp' | 'mult' | 'fps' | 'read' | 'answers' | 'hint' | 'coinIcon' | 'flyers' | 'toast' | 'manna' | 'cloud'
 
 /** Running seconds between questions (slow motion not counted). */
 const ASK_FIRST = 12
@@ -59,6 +67,10 @@ export class RunController {
   /** Seeded for the Daily Run (the same questions at the same moments for everyone), else Math.random. */
   private rand: () => number = Math.random
   private hud: Partial<Record<HudKey, HTMLElement | null>> = {}
+  /** What each HUD element shows now (the number behind its text), so it is written only when that changes. */
+  private wrote: Partial<Record<HudKey, number>> = {}
+  /** Asks the scene for a frame now (it draws few while paused). */
+  private wake: () => void = () => {}
   private onView: (v: RunView) => void = () => {}
   private askAt = ASK_FIRST
   private frames = 0
@@ -75,8 +87,17 @@ export class RunController {
     this.onView = onView
   }
 
+  /** The scene hands over how to ask for a frame. */
+  onWake(wake: () => void) {
+    this.wake = wake
+  }
+
   el(key: HudKey) {
-    return (el: HTMLElement | null) => void (this.hud[key] = el)
+    return (el: HTMLElement | null) => {
+      this.hud[key] = el
+      // A new element (or the same one after a render: another language, say) is written afresh.
+      delete this.wrote[key]
+    }
   }
 
   setDeck(deck: GateQuestion[], locale: Locale, rand: () => number = Math.random) {
@@ -89,6 +110,7 @@ export class RunController {
 
   setPaused(paused: boolean) {
     this.paused = paused
+    this.wake()
   }
 
   /** Lab only. */
@@ -135,15 +157,17 @@ export class RunController {
     this.askAt = ASK_FIRST
     this.paused = false
     this.onView({ phase: 'run', question: null, over: null })
+    this.wake()
   }
 
   quit() {
     this.paused = false
     this.run.quit()
+    this.wake()
   }
 
   /** After each step (the scene calls it). */
-  frame = (r: Run, events: RunEvent[], runnerAt: { x: number; y: number }) => {
+  frame = (r: Run, events: RunEvent[], runnerAt: { x: number; y: number }, lean = false) => {
     this.sendFlyers(r, runnerAt)
     for (const e of events) {
       if (e.type === 'power') this.toast(`${t(`exodus.powers.${e.kind}.name`)}: ${t(`exodus.powers.${e.kind}.text`)}`)
@@ -162,22 +186,35 @@ export class RunController {
       this.ask()
     }
     const h = this.hud
-    if (h.dist) h.dist.textContent = t('exodus.distance', { n: Math.floor(r.dist) })
+    const w = this.wrote
+    // Speed lines at the screen's edges: never while paused or over (the cards), nor on a struggling device.
+    const fast = !this.paused && !lean && (r.phase === 'speedup' ? r.timeScale > 0.45 : (r.phase === 'run' || r.phase === 'gates') && r.speed >= FAST_SPEED && r.timeScale > 0.9)
+    if (h.speed && w.speed !== +fast) h.speed.classList.toggle('on', (w.speed = +fast) === 1)
+    const dist = Math.floor(r.dist)
+    if (h.dist && w.dist !== dist) h.dist.textContent = t('exodus.distance', { n: (w.dist = dist) })
     // With nothing in the air, the bar is exact (and never lags behind the run).
-    if (this.flying === 0) this.shown = { xp: r.xp, coins: r.coins }
-    if (h.coins) h.coins.textContent = String(this.shown.coins)
-    if (h.xp) h.xp.textContent = t('exodus.xp', { n: this.shown.xp })
+    if (this.flying === 0) {
+      this.shown.xp = r.xp
+      this.shown.coins = r.coins
+    }
+    const { xp, coins } = this.shown
+    if (h.coins && w.coins !== coins) h.coins.textContent = String((w.coins = coins))
+    if (h.xp && w.xp !== xp) h.xp.textContent = t('exodus.xp', { n: (w.xp = xp) })
     if (h.hint) h.hint.classList.toggle('on', r.duckHint)
     // The answer over the lane you are in is lit.
-    if (h.answers) h.answers.dataset.lane = String(Math.round(r.player.x / LANE_W) + 1)
-    if (h.mult) h.mult.textContent = `×${r.multiplier}`
+    const lane = Math.round(r.player.x / LANE_W) + 1
+    if (h.answers && w.answers !== lane) h.answers.dataset.lane = String((w.answers = lane))
+    if (h.mult && w.mult !== r.multiplier) h.mult.textContent = `×${(w.mult = r.multiplier)}`
     // The manna and the cloud while they last, their bars running down.
-    for (const k of ['manna', 'cloud'] as const) {
+    for (const k of TIMED_POWERS) {
       const el = h[k]
       if (!el) continue
       const left = r.powers[k]
-      el.classList.toggle('on', left !== undefined)
-      if (left !== undefined) el.style.setProperty('--left', String(left / POWER_SECONDS[k]))
+      const step = left === undefined ? -1 : Math.ceil((left / POWER_SECONDS[k]) * BAR_STEPS)
+      if (w[k] === step) continue
+      w[k] = step
+      el.classList.toggle('on', step >= 0)
+      if (step >= 0) el.style.setProperty('--left', String(step / BAR_STEPS))
     }
     if (h.read && r.phase === 'read') h.read.style.transform = `scaleX(${Math.max(0, 1 - r.phaseT / r.readFor)})`
     if (h.fps) {
@@ -209,7 +246,8 @@ export class RunController {
   private sendFlyers(r: Run, from: { x: number; y: number }) {
     const xp = r.xp - this.sent.xp
     const coins = r.coins - this.sent.coins
-    this.sent = { xp: r.xp, coins: r.coins }
+    this.sent.xp = r.xp
+    this.sent.coins = r.coins
     if (xp > 0) this.fly('xp', xp, from, xp >= 100)
     for (let i = 0; i < coins; i++) this.fly('coins', 1, from, false, i * 90)
   }

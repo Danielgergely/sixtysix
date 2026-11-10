@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { NoToneMapping, PCFShadowMap } from 'three'
+import { ACESFilmicToneMapping, PCFShadowMap } from 'three'
 import { SPOTS, type BuildingId } from '@sixtysix/shared'
 import { useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
@@ -11,8 +11,9 @@ import type { PlotSceneProps } from '../PlotScene'
 import { useYardActors } from '../yard'
 import { sayLine, type FigureId } from '../life/figures'
 import { reducedMotion } from '../life/sim'
+import { DevStats } from './DevStats'
 import { DprMonitor } from './DprMonitor'
-import { newBridge, type LabelSpec } from './bridge'
+import { EXPOSURE, newBridge, type LabelSpec } from './bridge'
 import { buildingGeometry, scaffoldGeometry, topOf, type Spot } from './models'
 import { PLOT_FOV, PLOT_MIN_DIST, PLOT_START_POLAR, plotStartDist, SPOT_3D, YARD_3D } from './plotSpace'
 import { PlotScene3D } from './PlotScene3D'
@@ -168,10 +169,11 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
         dpr={dpr}
         frameloop="demand"
         camera={{ fov: PLOT_FOV, near: 1, far: 600, position: [0, 50, 60] }}
-        gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
+        gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: ACESFilmicToneMapping, toneMappingExposure: EXPOSURE }}
         onCreated={onCreated}
       >
         <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
+        <DevStats />
         <PlotScene3D levels={stableLevels} building={building} labels={labels} actors={actors} bridge={bridge} still={still} idleDays={idleDays} />
       </Canvas>
 

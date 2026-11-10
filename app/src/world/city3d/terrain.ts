@@ -1,4 +1,4 @@
-import { CanvasTexture, PlaneGeometry, SRGBColorSpace, type BufferGeometry, type Texture } from 'three'
+import { CanvasTexture, MeshLambertMaterial, PlaneGeometry, SRGBColorSpace, type BufferGeometry, type Texture } from 'three'
 import { WALL } from '../cityLayout'
 import { OPEN_LOTS, PLAZA } from './plan'
 import { GROUND, heightAt, rng, ux, uz, wallSpace } from './space'
@@ -11,14 +11,43 @@ import { STREETS } from './streets'
  * floors, a worn edge under the paved streets, a pale patch under every lot.
  */
 
-const SEG = 170
+/** The grid is this fine (units between lines) where lots and streets lie… */
+const FINE = 2.94
+/** …out to here from the middle; beyond, where only hills and trees are, the lines spread out. */
+const CORE = 126
+const OUTER = 12
+
+/** The grid's lines along one axis: even across the core, then wider and wider to the edge. */
+function gridLines(): number[] {
+  const n = Math.round((2 * CORE) / FINE)
+  const core = Array.from({ length: n + 1 }, (_, i) => -CORE + (2 * CORE * i) / n)
+  const rest = GROUND / 2 - CORE
+  const out = Array.from({ length: OUTER }, (_, i) => {
+    const t = (i + 1) / OUTER
+    return CORE + (rest * (t + 3 * t * t)) / 4
+  })
+  return [...out.map((v) => -v).reverse(), ...core, ...out]
+}
 
 export function terrainGeometry(): BufferGeometry {
-  const g = new PlaneGeometry(GROUND, GROUND, SEG, SEG)
+  const lines = gridLines()
+  const n = lines.length - 1
+  const g = new PlaneGeometry(GROUND, GROUND, n, n)
   g.rotateX(-Math.PI / 2)
   const p = g.getAttribute('position')
-  for (let i = 0; i < p.count; i++) p.setY(i, heightAt(p.getX(i), p.getZ(i)))
+  const uv = g.getAttribute('uv')
+  // PlaneGeometry lays its vertices row by row (z rising), x rising within a row; the painting's uv follows the position.
+  for (let j = 0; j <= n; j++) {
+    for (let i = 0; i <= n; i++) {
+      const k = j * (n + 1) + i
+      const [x, z] = [lines[i], lines[j]]
+      p.setXYZ(k, x, heightAt(x, z), z)
+      uv.setXY(k, x / GROUND + 0.5, 0.5 - z / GROUND)
+    }
+  }
   g.computeVertexNormals()
+  g.computeBoundingSphere()
+  g.computeBoundingBox()
   return g
 }
 
@@ -27,10 +56,10 @@ const hex = (h: string): RGB => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3
 const mix = (a: RGB, b: RGB, t: number): RGB => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v))
 
-const SAND = hex('#d9b77e')
-const DUST = hex('#e3c48e')
-const GRASS = hex('#a3a55a')
-const LUSH = hex('#8c9a4c')
+const SAND = hex('#c9a268')
+const DUST = hex('#d6b47c')
+const GRASS = hex('#8fa04e')
+const LUSH = hex('#7b9444')
 const OLIVE = hex('#7f8f45')
 const DRY = hex('#bea56a')
 const VALLEY = hex('#6f7f3e')
@@ -151,4 +180,36 @@ export function groundTexture(size = 2048): Texture {
   t.colorSpace = SRGBColorSpace
   t.anisotropy = 8
   return t
+}
+
+/** How wide one repeat of the ground's grain is, in units (a person is 2.2 high). */
+const GRAIN = 7
+
+/**
+ * The ground's material: the big painting (`map`, one texture over the whole
+ * terrain of `span` units) times a small tiling grain (`detail`,
+ * textures.ts `groundDetailTexture`), so the ground keeps its texture when
+ * the camera is close. The grain is laid twice, at two sizes and turned, so
+ * its repeat doesn't show. It costs two texture reads and no extra pass.
+ */
+export function groundMaterial(map: Texture, detail: Texture, span = GROUND): MeshLambertMaterial {
+  const m = new MeshLambertMaterial({ map })
+  // A plain property, so useDisposeOnUnmount (rig.ts) finds the texture and frees it.
+  Object.assign(m, { grainMap: detail })
+  m.onBeforeCompile = (shader) => {
+    shader.uniforms.uDetail = { value: detail }
+    shader.uniforms.uGrain = { value: span / GRAIN }
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <map_pars_fragment>', '#include <map_pars_fragment>\nuniform sampler2D uDetail;\nuniform float uGrain;')
+      .replace(
+        '#include <map_fragment>',
+        `#include <map_fragment>
+        vec2 gUv = vMapUv * uGrain;
+        float fine = 1.0 + ( texture2D( uDetail, gUv ).g - 0.5 ) * 3.0;
+        float broad = 1.0 + ( texture2D( uDetail, vec2( gUv.y, -gUv.x ) * 0.283 + 0.37 ).g - 0.5 ) * 2.2;
+        diffuseColor.rgb *= fine * broad;`,
+      )
+  }
+  m.customProgramCacheKey = () => 'ground-grain'
+  return m
 }

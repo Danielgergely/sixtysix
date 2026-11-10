@@ -1,4 +1,4 @@
-import { Matrix4, type BufferGeometry } from 'three'
+import { Color, Matrix4, type BufferGeometry, type ColorRepresentation } from 'three'
 import { Geo, frameAt } from './geo'
 import { C } from './palette'
 import {
@@ -169,7 +169,7 @@ function buildMount(stone: Geo, plain: Geo) {
     for (const [a, b] of runs) {
       const m = (a + b) / 2
       const [wx, wz] = P(m, 0.4)
-      stone.box(wx, MOUNT_TOP, wz, b - a, height + 0.3, 0.6, C.lime, { ry })
+      stone.box(wx, MOUNT_TOP, wz, b - a, height + 0.3, 0.6, C.limeLight, { ry })
       const [rx, rz] = P(m, depth / 2 + 0.15)
       plain.box(rx, MOUNT_TOP + height, rz, b - a, 0.4, depth + 0.4, C.roof, { ry })
       plain.box(rx + nx * (depth / 2 + 0.2), MOUNT_TOP + height + 0.4, rz + nz * (depth / 2 + 0.2), b - a, 0.28, 0.24, C.gold, { ry, jitter: 0 })
@@ -235,6 +235,17 @@ function antonia(stone: Geo, plain: Geo) {
 }
 
 /**
+ * The Temple's own colours. The stone texture and the warm sun turn a plain
+ * white into sandstone, so the marble is a cool white brighter than 1 (vertex
+ * colours are floats; tone mapping brings it back), and the gold is pushed the
+ * same way so it glows instead of reading as ochre.
+ */
+const MARBLE = new Color().setRGB(1.3, 1.28, 1.3)
+const PALE = new Color().setRGB(1.06, 1.01, 0.93)
+const GOLD = new Color().setRGB(1.75, 0.92, 0.16)
+const GOLD_DEEP = new Color().setRGB(1.1, 0.5, 0.06)
+
+/**
  * Herod's Temple in its courts: the Soreg balustrade, the raised terrace, the
  * Court of the Women (east) and the inner court with the altar, the
  * sanctuary with its high golden-trimmed porch facing east.
@@ -245,7 +256,7 @@ function sanctuary(stone: Geo, plain: Geo) {
   stone.frame = frameAt(SANCTUARY.x, MOUNT_TOP, SANCTUARY.z, 0).multiply(new Matrix4().makeScale(k, k, k))
   plain.frame = stone.frame.clone()
   // Local: +x (a) to the east (the façade's front), z (b) across.
-  const wallRun = (x0: number, z0: number, x1: number, z1: number, h: number, t: number, gaps: [number, number][] = [], color: string = C.limeLight) => {
+  const wallRun = (x0: number, z0: number, x1: number, z1: number, h: number, t: number, gaps: [number, number][] = [], color: ColorRepresentation = PALE) => {
     const len = Math.hypot(x1 - x0, z1 - z0)
     const ex = (x1 - x0) / len
     const ez = (z1 - z0) / len
@@ -270,7 +281,7 @@ function sanctuary(stone: Geo, plain: Geo) {
     const ex = (x1 - x0) / len
     const ez = (z1 - z0) / len
     const r = Math.atan2(-ez, ex)
-    for (const [a, b] of [[0, len / 2 - 1.5], [len / 2 + 1.5, len]]) stone.box(x0 + ex * (a + b) / 2, 0, z0 + ez * (a + b) / 2, b - a, 0.75, 0.25, C.marble, { ry: r })
+    for (const [a, b] of [[0, len / 2 - 1.5], [len / 2 + 1.5, len]]) stone.box(x0 + ex * (a + b) / 2, 0, z0 + ez * (a + b) / 2, b - a, 0.75, 0.25, MARBLE, { ry: r })
   }
   // The terrace (Chel) the courts stand on, with steps all round.
   stone.box(0.5, 0, 0, 34, T0, 21, C.limeLight, { jitter: 0.02 })
@@ -287,9 +298,9 @@ function sanctuary(stone: Geo, plain: Geo) {
   wallRun(WO, -7, WO, 7, H - 0.8, 1, [[5.6, 8.4]])
   // Gatehouses: Nicanor (between the courts) and the Beautiful Gate (east).
   for (const [ga, h, w] of [[IN, H + 2.6, 1.6], [WO, H + 1.2, 1.4]] as const) {
-    for (const side of [-1, 1]) stone.box(ga, T0, side * (w + 0.9), 2.2, h, 1.8, C.limeLight, { jitter: 0.03 })
-    stone.box(ga, T0 + h - 1.6, 0, 2.2, 1.6, w * 2 + 0.2, C.limeLight)
-    plain.box(ga, T0 + h - 1.75, 0, 2.3, 0.3, w * 2 + 0.3, C.gold, { jitter: 0 })
+    for (const side of [-1, 1]) stone.box(ga, T0, side * (w + 0.9), 2.2, h, 1.8, PALE, { jitter: 0.03 })
+    stone.box(ga, T0 + h - 1.6, 0, 2.2, 1.6, w * 2 + 0.2, PALE)
+    plain.box(ga, T0 + h - 1.75, 0, 2.3, 0.3, w * 2 + 0.3, GOLD, { jitter: 0 })
   }
   // Rooms in the corners of the Court of the Women, and its great lampstands.
   for (const [ca, cb] of [[IN + 1.8, -5.2], [WO - 1.8, -5.2], [IN + 1.8, 5.2], [WO - 1.8, 5.2]]) {
@@ -297,8 +308,8 @@ function sanctuary(stone: Geo, plain: Geo) {
     plain.box(ca, T0 + 3.2, cb, 2.8, 0.25, 2.8, C.roof)
   }
   for (const [la, lb] of [[IN + 3.6, -2.4], [WO - 3.6, -2.4], [IN + 3.6, 2.4], [WO - 3.6, 2.4]]) {
-    plain.cyl(la, T0, lb, 0.12, 0.16, 5.4, C.gold, 6, { jitter: 0 })
-    plain.cyl(la, T0 + 5.4, lb, 0.55, 0.2, 0.5, C.gold, 7, { jitter: 0 })
+    plain.cyl(la, T0, lb, 0.12, 0.16, 5.4, GOLD, 6, { jitter: 0 })
+    plain.cyl(la, T0 + 5.4, lb, 0.55, 0.2, 0.5, GOLD, 7, { jitter: 0 })
   }
   // The altar of burnt offering, its ramp and horns; the laver.
   const ALTAR = 2.4
@@ -309,25 +320,25 @@ function sanctuary(stone: Geo, plain: Geo) {
   // The sanctuary: Holy Place and Holy of Holies, its side rooms, the tall porch.
   const back = -13.6
   const [SIDE, HOLY, PORCH] = [9.5, 13.5, 17.5]
-  stone.box((back - 4.4) / 2, T0, 0, -4.4 - back, SIDE, 9.6, C.limeLight, { jitter: 0.03 })
-  stone.box((back - 4.4) / 2, T0, 0, -4.4 - back, HOLY, 6.6, C.marble, { jitter: 0.02 })
-  stone.box(-3.4, T0, 0, 2.2, PORCH, 14, C.marble, { jitter: 0.02 })
+  stone.box((back - 4.4) / 2, T0, 0, -4.4 - back, SIDE, 9.6, PALE, { jitter: 0.03 })
+  stone.box((back - 4.4) / 2, T0, 0, -4.4 - back, HOLY, 6.6, MARBLE, { jitter: 0.02 })
+  stone.box(-3.4, T0, 0, 2.2, PORCH, 14, MARBLE, { jitter: 0.02 })
   // Steps up to the porch.
   for (let k = 0; k < 3; k++) stone.box(-2.2 + k * 0.55, T0, 0, 0.6, 0.9 - k * 0.3, 8 - k, C.limeLight, { jitter: 0.02 })
   // The façade, plated with gold; the dark doorway, the golden vine over it, engaged columns; gold edges and spikes on the roofs.
   const front = -2.3
-  plain.box(front - 0.02, T0 + 0.9, 0, 0.1, PORCH - 2.4, 11, C.gold, { jitter: 0 })
+  plain.box(front - 0.02, T0 + 0.9, 0, 0.1, PORCH - 2.4, 11, GOLD, { jitter: 0 })
   plain.box(front + 0.04, T0 + 1, 0, 0.12, 8.2, 3.8, C.dark, { jitter: 0 })
-  plain.box(front + 0.08, T0 + 9.6, 0, 0.16, 0.8, 5.4, '#c98a1e', { jitter: 0 })
-  for (const b of [-6.2, -4.4, 4.4, 6.2]) stone.cyl(front + 0.1, T0, b, 0.42, 0.42, PORCH - 1.4, C.marble, 8, { jitter: 0.02 })
-  stone.box(-3.4, T0 + PORCH, 0, 2.6, 0.5, 14.4, C.marble, { jitter: 0 })
-  plain.box(front + 0.2, T0 + PORCH - 0.1, 0, 0.12, 0.45, 14.4, C.gold, { jitter: 0 })
-  stone.box((back - 4.4) / 2, T0 + HOLY, 0, -4.4 - back + 0.2, 0.35, 6.9, C.marble, { jitter: 0 })
-  for (const b of [-3.45, 3.45]) plain.box((back - 4.4) / 2, T0 + HOLY - 0.05, b, -4.4 - back + 0.2, 0.4, 0.1, C.gold, { jitter: 0 })
-  for (let b = -6.6; b <= 6.61; b += 1.1) plain.cone(-3.4, T0 + PORCH + 0.5, b, 0.12, 0.9, C.gold, 4, { jitter: 0 })
+  plain.box(front + 0.08, T0 + 9.6, 0, 0.16, 0.8, 5.4, GOLD_DEEP, { jitter: 0 })
+  for (const b of [-6.2, -4.4, 4.4, 6.2]) stone.cyl(front + 0.1, T0, b, 0.42, 0.42, PORCH - 1.4, MARBLE, 8, { jitter: 0.02 })
+  stone.box(-3.4, T0 + PORCH, 0, 2.6, 0.5, 14.4, MARBLE, { jitter: 0 })
+  plain.box(front + 0.2, T0 + PORCH - 0.1, 0, 0.12, 0.45, 14.4, GOLD, { jitter: 0 })
+  stone.box((back - 4.4) / 2, T0 + HOLY, 0, -4.4 - back + 0.2, 0.35, 6.9, MARBLE, { jitter: 0 })
+  for (const b of [-3.45, 3.45]) plain.box((back - 4.4) / 2, T0 + HOLY - 0.05, b, -4.4 - back + 0.2, 0.4, 0.1, GOLD, { jitter: 0 })
+  for (let b = -6.6; b <= 6.61; b += 1.1) plain.cone(-3.4, T0 + PORCH + 0.5, b, 0.12, 0.9, GOLD, 4, { jitter: 0 })
   for (let a = back + 0.6; a < -4.6; a += 1.2) {
-    plain.cone(a, T0 + HOLY + 0.35, -3.2, 0.1, 0.7, C.gold, 4, { jitter: 0 })
-    plain.cone(a, T0 + HOLY + 0.35, 3.2, 0.1, 0.7, C.gold, 4, { jitter: 0 })
+    plain.cone(a, T0 + HOLY + 0.35, -3.2, 0.1, 0.7, GOLD, 4, { jitter: 0 })
+    plain.cone(a, T0 + HOLY + 0.35, 3.2, 0.1, 0.7, GOLD, 4, { jitter: 0 })
   }
   stone.frame.identity()
   plain.frame.identity()

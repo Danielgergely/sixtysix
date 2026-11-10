@@ -1,4 +1,5 @@
 import { BoxGeometry, BufferAttribute, BufferGeometry, Color, ConeGeometry, CylinderGeometry, Euler, Matrix4, Quaternion, Vector3, type ColorRepresentation, type InstancedMesh } from 'three'
+import { bakeAo, type AoOptions } from './ao'
 
 /**
  * A tiny mesh builder for the city's low-poly models. Parts (boxes, prisms,
@@ -153,8 +154,11 @@ export class Geo {
     return this
   }
 
-  /** Bakes everything added into a geometry with position, normal, color and box-projected uv. */
-  build(uvScale = 4): BufferGeometry {
+  /**
+   * Bakes everything added into a geometry with position, normal, color and box-projected uv.
+   * With `ao`, ambient shading is baked into the colours (ao.ts).
+   */
+  build(uvScale = 4, opts?: { ao?: AoOptions }): BufferGeometry {
     const g = new BufferGeometry()
     const pos = new Float32Array(this.pos)
     const nor = new Float32Array(this.nor)
@@ -180,6 +184,7 @@ export class Geo {
     g.setAttribute('uv', new BufferAttribute(uv, 2))
     g.computeBoundingSphere()
     g.computeBoundingBox()
+    if (opts?.ao) bakeAo(g, opts.ao)
     return g
   }
 }

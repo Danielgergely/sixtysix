@@ -81,7 +81,7 @@ export function pieceGeometry(piece: FencePiece): BufferGeometry {
       break
     }
   }
-  geo = g.build(3)
+  geo = g.build(3, { ao: { ground: () => 0 } })
   geoCache.set(piece, geo)
   return geo
 }
@@ -124,10 +124,13 @@ function pieces(path: P2[], step: number): { x: number; z: number; ry: number; l
  * the pieces (1 = My Home, smaller round a city lot), `step` their spacing; `corners` get the
  * stakes at level 0; `tower` (x, z, ry) is where the watchtower stands at 5.
  */
-export function fenceParts(level: number, paths: P2[][], o: { k?: number; step?: number; corners?: P2[]; tower?: [number, number, number]; seed?: number } = {}): FencePart[] {
+export function fenceParts(level: number, paths: P2[][], o: { k?: number; step?: number; wallStep?: number; corners?: P2[]; tower?: [number, number, number]; seed?: number } = {}): FencePart[] {
   const k = o.k ?? 1
   /** Spacing × (the city's rings use fewer, bigger pieces). */
   const st = o.step ?? 1
+  /** Length × of a stretch of wall and spacing × of the merlons (the city's rings: one stretch a side, fewer and wider merlons). */
+  const ws = o.wallStep ?? 1
+  const wide = ws > 1 ? 1.35 : 1
   const rand = rng(o.seed ?? 3)
   const out: FencePart[] = []
   const tint = (spread: number) => 1 + (rand() * 2 - 1) * spread
@@ -154,8 +157,8 @@ export function fenceParts(level: number, paths: P2[][], o: { k?: number; step?:
   const high = level >= 4
   for (const path of paths) {
     // Stretches of wall, each a little different in stone and height.
-    for (const p of pieces(path, 2.4 * k)) out.push({ piece: high ? 'wallHigh' : 'wallLow', m: mat(p.x, 0, p.z, p.ry, p.len + 0.04, k * (0.97 + rand() * 0.06), k), tint: tint(0.06) })
-    if (high) for (const p of along(path, 1.15 * k)) out.push({ piece: 'merlon', m: mat(p.x, (WALL_HIGH + CAP) * k, p.z, p.ry, k, k, k), tint: tint(0.05) })
+    for (const p of pieces(path, 2.4 * k * ws)) out.push({ piece: high ? 'wallHigh' : 'wallLow', m: mat(p.x, 0, p.z, p.ry, p.len + 0.04, k * (0.97 + rand() * 0.06), k), tint: tint(0.06) })
+    if (high) for (const p of along(path, 1.15 * k * Math.min(ws, 1.7))) out.push({ piece: 'merlon', m: mat(p.x, (WALL_HIGH + CAP) * k, p.z, p.ry, k * wide, k, k), tint: tint(0.05) })
   }
   if (level >= 5 && o.tower) {
     const [x, z, ry] = o.tower
@@ -174,11 +177,13 @@ function mergeFence(parts: FencePart[]): BufferGeometry {
 /**
  * The ring round a city lot for each wall level 1…5 (index 0 = level 1),
  * sized for a 7-unit yard with the gate gap at the front (+z); the city
- * scales each to its house's yard.
+ * scales each to its house's yard. Up to 400 are drawn, so they are built
+ * from few pieces: bigger bushes, wider post spacing, one stretch of wall a
+ * side, fewer and wider merlons.
  */
 export function lotFenceGeometries(): BufferGeometry[] {
   const s = 3.7
   const gap = 0.95
   const ring: P2[] = [[gap, s], [s, s], [s, -s], [-s, -s], [-s, s], [-gap, s]]
-  return [1, 2, 3, 4, 5].map((level) => mergeFence(fenceParts(level, [ring], { k: 0.55, step: level === 1 ? 1.5 : 1, tower: [-s + 0.3, -s + 0.3, 0], seed: 40 + level })))
+  return [1, 2, 3, 4, 5].map((level) => mergeFence(fenceParts(level, [ring], { k: 0.55, step: level === 1 ? 1.9 : 1.5, wallStep: 6, tower: [-s + 0.3, -s + 0.3, 0], seed: 40 + level })))
 }
