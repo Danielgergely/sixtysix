@@ -16,6 +16,7 @@ export default {
     bread: 'Pékség · Mt 24,41',
     copper: 'Rézbányák · 5Móz 8,9',
   },
+  hauled: 'Amit a munkásaid és a tekercsvadászat hazahoz, az építkezésre való: a piac csak azt veszi meg, amit a birtokod maga termel.',
   noSell: 'nem eladó',
   buy: 'Vétel',
   sell: 'Eladás +{n}',

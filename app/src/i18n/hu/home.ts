@@ -75,8 +75,7 @@ export default {
   },
 
   scene: {
-    toPainted: 'Festett udvar mutatása',
-    to3d: '3D-s birtok mutatása',
+    no3d: 'Ez az eszköz nem tudja 3D-ben megrajzolni a birtokot. Koppints egy épületre, hogy dolgozz rajta.',
     zoomIn: 'Nagyítás',
     zoomOut: 'Kicsinyítés',
     lv: '{n}. szint',
@@ -102,15 +101,12 @@ export default {
 
   views: {
     yard: '🏠 Tanya',
-    fields: '🌾 Mezők',
     expeditions: '🐪 Expedíciók',
-    fieldsLocked: 'A völgy mezői a Kőházzal (3. ház) nyílnak meg.',
     expLocked: 'Munkások az udvaros házzal (4. ház) jönnek a kapudhoz.',
   },
 
   /** The valley: fields, crops, the Bakehouse, the flock's barley, bread for the builders, gleaning (shared/src/farm.ts). */
   farm: {
-    foot: '„Gondol egy szántóföldre, és megveszi; keze szerzeményéből szőlőt ültet.” — Péld 31,16',
     buyFirst: 'Előbb megveszi: {list}',
     land: 'Föld',
     clear: 'Mező megtisztítása',
@@ -124,7 +120,6 @@ export default {
     harvest: '{n} {icon} learatása',
     harvested: 'Betakarítva: {list}',
     harvestAll: '🌾 Mindent learatni ({n})',
-    harvestNone: '🌾 Még semmi sem érett',
     sowWhat: 'Mit vetsz?',
     sow: '{icon} {crop}: {n}, {time}{season}',
     inSeason: ' · most szezonja van!',
@@ -466,6 +461,7 @@ export default {
     'Learn Master builder first': 'Előbb tanuld meg: Építőmester',
     'Already used this week': 'Ezen a héten már felhasználtad',
     'That building is not being built': 'Ez az épület most nem épül',
+    'The Market doesn’t buy what your workers brought home': 'A piac nem veszi meg, amit a munkásaid hoztak haza',
     'The Market doesn’t buy that': 'Ezt a piac nem veszi meg',
     'Unknown field or crop': 'Ismeretlen mező vagy vetemény',
     'Clear the field first': 'Előbb tisztítsd meg a mezőt',

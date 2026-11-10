@@ -26,8 +26,8 @@ import { duelBadge, useDuelStore } from '../duel/duelStore'
  * changing hands). Guests can look around and visit; building
  * (docs/jerusalem-plot.md) needs an account.
  *
- * Two games live on the map: the scroll hunt (hunt/: every tap on a place first asks
- * whether one of today's scrolls lies there) and duels (duel/: challenge a family
+ * Two games live on the map: the scroll hunt (hunt/: while a riddle is being searched
+ * for, a tap on a place is a guess for its scroll) and duels (duel/: challenge a family
  * from its card; the ⚔️ chip opens the list).
  */
 export function JerusalemScreen() {
@@ -60,15 +60,15 @@ export function JerusalemScreen() {
   }, [account])
   const duelsWaiting = useDuelStore((s) => duelBadge(s.duels))
 
-  /** A landmark tapped: a scroll lying there is found; otherwise its card opens as ever. */
+  /** A landmark tapped: a guess while a riddle is being searched for; otherwise its card opens as ever. */
   const tapLandmark = async (id: LandmarkId) => {
-    if (await useHuntStore.getState().tap(LANDMARK_PLACE[id])) return
+    if ((await useHuntStore.getState().tap(LANDMARK_PLACE[id])) !== 'off') return
     if (id === 'market') usePlotStore.getState().openMarket(null)
     else setSheet(id)
   }
-  /** One of the hunt's other places (3D only): a scroll, or just its name. */
+  /** One of the hunt's other places (3D only): a guess, or just its name. */
   const tapPlace = async (id: HuntPlace) => {
-    if (!(await useHuntStore.getState().tap(id))) useHuntStore.getState().say(id)
+    if ((await useHuntStore.getState().tap(id)) === 'off') useHuntStore.getState().say(id)
   }
 
   // The spotlight tour, once the map and its lots are drawn.

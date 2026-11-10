@@ -78,7 +78,7 @@ export default {
     c3: { title: 'Begyűjtés', text: 'Az épületek nyersanyagot termelnek. Gyűjtsd be: a teli raktár nem telik tovább.' },
     c4: { title: 'Munkások tekercse', text: 'Ha 3 kérdésből 2-re jól felelsz, egy építkezés 5 perccel hamarabb kész.' },
     c5: { title: 'Piac és ajándékok', text: 'A Piac nyersanyagot vesz és elad. Az udvarodon dolgozók néha ajándékot hoznak: koppints rájuk.' },
-    c6: { title: 'Mezők és expedíciók', text: 'A Kőháztól a völgyi mezőiden árpa és búza terem; a pékség kenyeret süt a nagy építkezésekhez. A 4. háztól munkásokat küldhetsz a kőfejtőbe és a rézbányákba.' },
+    c6: { title: 'Mezők és expedíciók', text: 'A Kőháztól a kerítéseden kívüli mezőkön árpa és búza terem; a pékség kenyeret süt a nagy építkezésekhez. A 4. háztól munkásokat küldhetsz expedícióra kőért, tégláért, rézért, cédrusért és aranyért; istállóval többet hoznak haza.' },
   },
   city: {
     name: 'Jeruzsálem',
@@ -89,7 +89,7 @@ export default {
   hunt: {
     name: 'Tekercsvadászat',
     c1: { title: 'Naponta három tekercs', text: 'Minden nap {n} tekercs van elrejtve Jeruzsálemben. Mindegyikhez tartozik egy bibliai rejtvény.' },
-    c2: { title: 'Indulj keresni', text: 'Keresd meg a helyet, amelyre a rejtvény utal, és koppints rá: templom, kapu, tó, torony…' },
+    c2: { title: 'Indulj keresni', text: 'Válassz egy rejtvényt, koppints a Keresésre, majd arra a helyre, amelyre utal: templom, kapu, tó, torony… Tekercsenként három próbálkozásod van.' },
     c3: { title: 'Mi van benne', text: 'Minden tekercsben {n} építőanyag van. Ha jól válaszolsz a kérdésére, kétszer annyi.' },
   },
   duel: {

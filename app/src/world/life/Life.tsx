@@ -8,7 +8,7 @@ import { newSim, reducedMotion, stepSim, syncSims, tapSim, type Actor, type Sim 
 /**
  * Life in the explorable world: people and animals that walk the paths of a
  * scene, stop, look around, go into houses and come out again, and answer a
- * tap with a speech bubble. Used by the homestead (PlotLife) and the city
+ * tap with a speech bubble. Used by the painted 2D city
  * (CityLife).
  *
  * One requestAnimationFrame loop per scene moves every figure by writing its

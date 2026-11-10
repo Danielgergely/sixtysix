@@ -1,6 +1,6 @@
 /**
  * Life on the homestead: some of the people walking about the yard carry
- * something (app/src/world/PlotLife.tsx). Tapping one on your own plot gets
+ * something (app/src/world/yard.ts). Tapping one on your own plot gets
  * you one of it: the woodcutter's log, the shepherd's wool, the mason's stone,
  * the picker's olive oil. A small daily treat, not an income: GIFTS_PER_DAY
  * in all per UTC day, and each carrier only once every GIFT_COOLDOWN_MS.

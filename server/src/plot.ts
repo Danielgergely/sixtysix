@@ -17,6 +17,8 @@ import {
   plotMods,
   scrollCutMs,
   sellPrice,
+  sellableQty,
+  spendHauled,
   weekStartUtc,
   checkUpgrade,
   collect,
@@ -161,6 +163,14 @@ export function parsePlot(raw: string, now: number): PlotState {
   base.gleaned = parseGlean(p.gleaned)
   if (p.fieldGift === true) base.fieldGift = true
   // Round the homestead (shared/src/homeLife.ts).
+  if (p.hauled && typeof p.hauled === 'object') {
+    const hauled: Materials = {}
+    for (const m of MATERIALS) {
+      const n = Math.floor(num((p.hauled as Record<string, unknown>)[m]))
+      if (n > 0 && sellable(m)) hauled[m] = Math.min(n, base.inventory[m])
+    }
+    if (Object.keys(hauled).length) base.hauled = hauled
+  }
   if (p.sheepDay !== undefined) base.sheepDay = Math.floor(num(p.sheepDay))
   const count = (v: unknown): DayCount | undefined => {
     const o = obj(v)
@@ -181,6 +191,8 @@ interface Ctx {
   profile: AccountProfile
   plot: PlotState
   now: number
+  /** The inventory as loaded: what a route spends comes out of the hauled units first (`spendHauled`). */
+  before: Record<Material, number>
 }
 
 /** Signed-in user, their profile and plot brought up to now (created with the starter gift on first visit). */
@@ -199,7 +211,7 @@ function load(req: FastifyRequest): Ctx | undefined {
   // Skill effects (Builder / Steward) for every rule in shared/plot.ts; the app sees them too.
   plot.mods = plotMods(profile.skills?.ranks)
   advance(plot, now)
-  const ctx = { row, profile, plot, now }
+  const ctx = { row, profile, plot, now, before: { ...plot.inventory } }
   // The valley opened: homesteads already at House 3 get Field 1 cleared and sown, once.
   const had = plot.fieldGift
   giveFirstField(plot, now)
@@ -208,6 +220,8 @@ function load(req: FastifyRequest): Ctx | undefined {
 }
 
 function savePlot(c: Ctx): void {
+  spendHauled(c.plot, c.before)
+  c.before = { ...c.plot.inventory }
   const { mods: _derived, ...stored } = c.plot // mods are recomputed from the skills on every load
   void _derived
   db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(stored), c.row.id)
@@ -356,7 +370,10 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (!m || !qty) return fail('Unknown material or amount')
     if (!sellable(m)) return fail('The Market doesn’t buy that')
     if (c.plot.inventory[m] < qty) return fail(`You only have ${c.plot.inventory[m]} ${MATERIAL_INFO[m].name.toLowerCase()}`)
+    // What expeditions and the scroll hunt brought home is for building.
+    if (sellableQty(c.plot, m) < qty) return fail('The Market doesn’t buy what your workers brought home')
     c.plot.inventory[m] -= qty
+    c.before[m] -= qty // sold from the homestead's own, not the hauled units
     c.profile.coins += sellPrice(m, qty, modsOf(c.plot))
     save(c)
     return view(c)

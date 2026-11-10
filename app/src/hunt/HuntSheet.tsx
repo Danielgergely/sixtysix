@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { HUNT_REWARD, HUNT_SCROLLS, MATERIAL_INFO } from '@sixtysix/shared'
+import { HUNT_REWARD, HUNT_SCROLLS, HUNT_TRIES, MATERIAL_INFO } from '@sixtysix/shared'
 import { useAccountStore } from '../account/accountStore'
 import { PARCHMENT } from '../art/textures'
 import { useGameStore } from '../game/store'
@@ -16,9 +16,10 @@ import '../theme/hunt.css'
 
 /**
  * The scroll hunt's pieces over the Jerusalem map: the chip that opens it (with
- * how many scrolls are left today), the parchment sheet of today's clues, the
- * reading of a scroll just found (question, then what it gave) and the short
- * note naming a place where nothing lies.
+ * how many scrolls are left today), the parchment sheet of today's clues
+ * (each with a Search button), the strip that keeps the riddle on screen
+ * while its place is searched for, the reading of a scroll just found
+ * (question, then what it gave) and the short note after a tap on a place.
  */
 
 const LETTERS = ['A', 'B', 'C', 'D']
@@ -43,6 +44,7 @@ function Clues({ onClose }: { onClose: () => void }) {
   const account = useAccountStore((s) => s.account)
   const view = useHuntStore((s) => s.view)
   const failed = useHuntStore((s) => s.failed)
+  const seek = useHuntStore((s) => s.seek)
   // The guide, the first time the sheet opens.
   useIntro('hunt')
   const reward = HUNT_REWARD.materials.map((m) => MATERIAL_INFO[m].icon).join(' ')
@@ -63,9 +65,9 @@ function Clues({ onClose }: { onClose: () => void }) {
         {view && (
           <ol className="hx-list">
             {view.scrolls.map((s, i) => (
-              <li key={i} className={s.found ? 'found' : ''}>
+              <li key={i} className={s.found ? 'found' : s.lost ? 'lost' : ''}>
                 <span className="hx-mark" aria-hidden>
-                  {s.found ? '✓' : i + 1}
+                  {s.found ? '✓' : s.lost ? '✕' : i + 1}
                 </span>
                 <div className="hx-clue">
                   <p>{s.text}</p>
@@ -78,6 +80,12 @@ function Clues({ onClose }: { onClose: () => void }) {
                       {MATERIAL_INFO[s.material].icon} +{materialAmount(s.material, s.amount ?? 0)}
                       {s.right && <i> · {t('hunt.doubled')}</i>}
                     </span>
+                  )}
+                  {s.lost && <span className="hx-lost">{t('hunt.lost')}</span>}
+                  {account && !s.found && !s.lost && (
+                    <button className="hp-btn small gold hx-seek" onClick={() => seek(i)}>
+                      {t('hunt.search')} <small>{t('hunt.tries', { count: s.tries, n: s.tries })}</small>
+                    </button>
                   )}
                 </div>
               </li>
@@ -96,6 +104,7 @@ function Clues({ onClose }: { onClose: () => void }) {
           {rich(
             t('hunt.rules', {
               n: HUNT_REWARD.amount,
+              tries: HUNT_TRIES,
               icons: reward,
               bonus: materialAmount(HUNT_REWARD.bonus.material, HUNT_REWARD.bonus.amount),
             }),
@@ -193,6 +202,28 @@ function Reading({ reading }: { reading: ReadingState }) {
   )
 }
 
+/** While a riddle's place is searched for: the riddle stays on screen over the map, with the guesses left and a way out. */
+function Seeking({ scroll }: { scroll: number }) {
+  const t = useT()
+  const clue = useHuntStore((s) => s.view?.scrolls[scroll])
+  const busy = useHuntStore((s) => s.busy)
+  const seek = useHuntStore((s) => s.seek)
+  if (!clue) return null
+  return (
+    <motion.div className={`hx-seeking ${busy ? 'busy' : ''}`} style={{ backgroundImage: PARCHMENT }} {...popIn}>
+      <div>
+        <p>{clue.text}</p>
+        <small>
+          {clue.ref} · <b>{t('hunt.seeking', { count: clue.tries, n: clue.tries })}</b>
+        </small>
+      </div>
+      <button className="hx-stop" onClick={() => seek(null)} title={t('hunt.stop')} aria-label={t('hunt.stop')}>
+        ✕
+      </button>
+    </motion.div>
+  )
+}
+
 /** Everything the hunt puts over the map; mounted once in the Jerusalem screen. */
 export function HuntLayer() {
   const t = useT()
@@ -200,8 +231,7 @@ export function HuntLayer() {
   const reading = useHuntStore((s) => s.reading)
   const note = useHuntStore((s) => s.note)
   const setOpen = useHuntStore((s) => s.setOpen)
-  const left = useHuntStore((s) => scrollsLeft(s.view))
-  const signedIn = useAccountStore((s) => !!s.account)
+  const seeking = useHuntStore((s) => s.seeking)
   // The note goes by itself.
   useEffect(() => {
     if (!note) return
@@ -212,11 +242,12 @@ export function HuntLayer() {
     <>
       <AnimatePresence>{open && !reading && <Clues key="clues" onClose={() => setOpen(false)} />}</AnimatePresence>
       <AnimatePresence>{reading && <Reading key={`r${reading.scroll}`} reading={reading} />}</AnimatePresence>
+      <AnimatePresence>{seeking !== null && !reading && !open && <Seeking key="seeking" scroll={seeking} />}</AnimatePresence>
       <AnimatePresence>
         {note && !reading && (
           <motion.div key={note.key} className="hx-note" {...popIn}>
             <strong>{t(`hunt.places.${note.place}`)}</strong>
-            <small>{t(signedIn && left > 0 ? 'hunt.nothingHere' : `hunt.about.${note.place}`)}</small>
+            <small>{note.left === undefined ? t(`hunt.about.${note.place}`) : note.left > 0 ? t('hunt.notHere', { count: note.left, n: note.left }) : t('hunt.gone')}</small>
           </motion.div>
         )}
       </AnimatePresence>

@@ -17,6 +17,7 @@ export default {
     bread: 'Bakehouse · Matt 24:41',
     copper: 'Copper mines · Deut 8:9',
   },
+  hauled: 'What your workers and the scroll hunt bring home is for building: the Market buys only what your homestead makes.',
   noSell: 'not sold',
   buy: 'Buy',
   sell: 'Sell +{n}',

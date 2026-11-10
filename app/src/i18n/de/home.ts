@@ -75,8 +75,7 @@ export default {
   },
 
   scene: {
-    toPainted: 'Gemalten Hof zeigen',
-    to3d: '3D-Gehöft zeigen',
+    no3d: 'Dieses Gerät kann das Gehöft nicht in 3D zeichnen. Tippe ein Gebäude an, um daran zu arbeiten.',
     zoomIn: 'Hineinzoomen',
     zoomOut: 'Herauszoomen',
     lv: 'St. {n}',
@@ -102,15 +101,12 @@ export default {
 
   views: {
     yard: '🏠 Gehöft',
-    fields: '🌾 Felder',
     expeditions: '🐪 Expeditionen',
-    fieldsLocked: 'Die Felder im Tal öffnen sich mit dem Steinhaus (Haus 3).',
     expLocked: 'Arbeiter kommen mit dem Hofhaus (Haus 4) an dein Tor.',
   },
 
   /** The valley: fields, crops, the Bakehouse, the flock's barley, bread for the builders, gleaning (shared/src/farm.ts). */
   farm: {
-    foot: '„Sie sieht nach einem Acker und kauft ihn und pflanzt einen Weinberg von der Frucht ihrer Hände.“ — Spr 31,16',
     buyFirst: 'Kauft zuerst {list}',
     land: 'Land',
     clear: 'Feld roden',
@@ -124,7 +120,6 @@ export default {
     harvest: '{n} {icon} ernten',
     harvested: 'Eingebracht: {list}',
     harvestAll: '🌾 Alles ernten ({n})',
-    harvestNone: '🌾 Noch nichts reif',
     sowWhat: 'Was säst du?',
     sow: '{icon} {crop}: {n} in {time}{season}',
     inSeason: ' · in der Saison!',
@@ -466,6 +461,7 @@ export default {
     'Learn Master builder first': 'Lerne zuerst „Weiser Baumeister“',
     'Already used this week': 'Diese Woche schon genutzt',
     'That building is not being built': 'Dieses Gebäude wird gerade nicht gebaut',
+    'The Market doesn’t buy what your workers brought home': 'Der Markt kauft nicht, was deine Arbeiter heimgebracht haben',
     'The Market doesn’t buy that': 'Das kauft der Markt nicht',
     'Unknown field or crop': 'Unbekanntes Feld oder Saatgut',
     'Clear the field first': 'Rode zuerst das Feld',

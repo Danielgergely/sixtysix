@@ -7,7 +7,7 @@ import { PZ_REVEAL } from '../../tutorial/anchor'
 import { useTutorialStore } from '../../tutorial/store'
 import { buildPct, countdown, spotStatus } from '../../screens/home/homeUtil'
 import { buildingName, levelName, spotLevelText } from '../../screens/home/plotText'
-import type { PlotSceneProps } from '../PlotScene'
+import type { PlotSceneProps } from '../plotProps'
 import { useYardActors } from '../yard'
 import { sayLine, type FigureId } from '../life/figures'
 import { reducedMotion } from '../life/sim'
@@ -28,8 +28,8 @@ import '../../theme/city3d.css'
  * My Home in 3D (the homestead on the `home` screen, and read-only on
  * `visit`): the same buildings as the city, in a yard you can turn, tilt and
  * zoom a little. A lazy chunk that shares three.js with the 3D city; PlotView
- * falls back to the painted PlotScene without WebGL, when the chunk fails or
- * the GPU drops the context.
+ * mounts it afresh when the GPU drops the context and shows a plain list of
+ * the buildings without WebGL or when the chunk fails.
  *
  * Taps: a name tag or a building opens its sheet (`onSelect`), a figure
  * talks, a carrier with a gift waiting hands it over (`onGift`).
@@ -124,7 +124,7 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
     } else setBubble({ id, text: line(), key })
   }
 
-  // Taps: someone in the yard (they win, as in the painted yard, so a carrier is never hidden by a tag), then a name tag, then a building.
+  // Taps: someone in the yard (they win, so a carrier is never hidden by a tag), then a name tag, then a building.
   const pointer = useScenePointer(bridge, box, '.c3-nav, .c3-bubble', (e, x, y) => {
     const a = bridge.pickFigure?.(x, y)
     if (a) return void say(a.id, a.fig)

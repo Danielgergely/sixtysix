@@ -191,7 +191,6 @@ img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-
   position: absolute; top: -7px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px;
   background: #2f7a3a; border: 1px solid #ffe08a; color: #fff; font: 900 11px/18px 'Cinzel', serif;
 }
-.hp-season .hp-next-art.season{ display: grid; place-items: center; font-size: 34px; filter: none; }
 .hp-crop, .hp-bake{ flex-direction: column; align-items: stretch; }
 .hp-row-box > span:has(.hp-bar){ flex: 1; display: flex; flex-direction: column; gap: 4px; }
 .hp-crop small{ font: 600 11px/1.35 Georgia, serif; color: #5b3a1a; }
@@ -341,9 +340,20 @@ img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-
 }
 .hp-season-strip strong{ font-family: 'Cinzel', serif; font-size: 13px; white-space: nowrap; }
 .hp-season-strip small{ color: #e6d2a4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hp-mode{ display: block; margin: 8px auto 0; font-size: 13px; opacity: 0.85; }
 /* Round the homestead: helpers, raiders, the lost sheep (one line each). */
 .hp-round{ display: grid; gap: 4px; margin: 6px 2px; }
 .hp-round span{ padding: 5px 10px; border-radius: 10px; background: rgb(20 12 6 / 0.55); border: 1px solid rgb(255 224 138 / 0.35); color: #ffe9b8; font-size: 12.5px; line-height: 1.35; }
 .hp-round span.raid{ border-color: #e0583a; color: #ffd2c4; }
 .hp-raid{ display: grid; gap: 8px; }
+
+/* The homestead as a list (world/PlotList.tsx): where 3D can't be drawn. */
+.hl-list{ margin: 4px 0; }
+.hl-grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+.hl-item{
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 6px;
+  border: 2px solid #b88a3a; border-radius: 12px; background: rgb(29 15 6 / 0.7); color: #f6e6bd; cursor: pointer;
+}
+.hl-item img{ width: 64px; height: 56px; object-fit: contain; }
+.hl-item strong{ font: 700 12px/1.2 'Cinzel', serif; text-align: center; }
+.hl-item small{ color: #ffd36b; font-size: 11px; font-variant-numeric: tabular-nums; }
+.hl-badge{ position: absolute; top: 4px; right: 4px; padding: 1px 6px; border-radius: 999px; background: #c98a12; color: #1d0f06; font: 800 11px/1.4 'Cinzel', serif; }

@@ -61,3 +61,22 @@
 }
 .hx-note strong{ font: 900 14px/1.2 'Cinzel', serif; color: #ffe08a; }
 .hx-note small{ font: 600 12px/1.35 Georgia, serif; color: #f3e2bb; }
+
+/* Searching for a riddle's place: the riddle stays over the map. */
+.hx-list li.lost{ opacity: 0.7; border-style: dashed; }
+.hx-lost{ font: 800 12px/1.3 'Cinzel', serif; color: #8a3a1a; }
+.hx-seek{ margin-top: 6px; align-self: flex-start; }
+.hx-seek small{ font-weight: 600; opacity: 0.8; margin-left: 4px; }
+.tab-screen.jr-map > .hx-seeking{
+  position: absolute; z-index: 3; left: 10px; right: 10px; top: 62px; display: flex; align-items: flex-start; gap: 8px;
+  padding: 9px 10px 9px 12px; border-radius: 12px; border: 2px solid #8a5a2a; background-color: #f3e2bb; background-size: cover;
+  color: #3a2410; box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
+}
+.hx-seeking > div{ flex: 1; min-width: 0; }
+.hx-seeking p{ margin: 0 0 3px; font: 600 14px/1.35 Georgia, serif; }
+.hx-seeking small{ font: 600 12px/1.3 Georgia, serif; color: #6b4a1e; }
+.hx-seeking small b{ color: #8a3a1a; }
+.hx-seeking.busy{ opacity: 0.75; }
+.hx-stop{ flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid #8a5a2a; background: rgb(255 255 255 / 0.5); color: #3a2410; font-weight: 900; cursor: pointer; }
+@media (min-width: 700px){ .tab-screen.jr-map > .hx-seeking{ left: 50%; right: auto; width: 440px; translate: -50% 0; } }
+.tab-screen.jr-map > .hx-seeking ~ .hx-note{ top: 170px; }

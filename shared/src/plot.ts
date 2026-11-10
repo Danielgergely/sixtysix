@@ -338,6 +338,13 @@ export interface PlotState {
   gleaned?: Glean
   /** Existing homesteads (House 3+) got Field 1 cleared and sown once, at launch. */
   fieldGift?: boolean
+  /**
+   * Units brought home by expeditions and found on the scroll hunt that are
+   * still in the inventory: they are for building, the Market never buys
+   * them back (so neither is a way to coins, whatever the skills). Building
+   * uses them up first (`spendHauled`).
+   */
+  hauled?: Materials
   // Round the homestead (shared/src/homeLife.ts):
   /** The UTC day the lost sheep was last found. */
   sheepDay?: number
@@ -366,6 +373,31 @@ export const sellPrice = (m: Material, qty: number, mods: PlotMods = NO_MODS) =>
   if (!sellable(m)) return 0
   const base = MATERIAL_INFO[m].sell * qty
   return mods.sellRate > NO_MODS.sellRate ? Math.max(base, Math.floor(MATERIAL_INFO[m].buy * qty * mods.sellRate + 1e-9)) : base
+}
+
+/** How many of a material the Market would buy: what is in the inventory less what was hauled home (`PlotState.hauled`). */
+export const sellableQty = (s: Pick<PlotState, 'inventory' | 'hauled'>, m: Material) => (sellable(m) ? Math.max(0, s.inventory[m] - (s.hauled?.[m] ?? 0)) : 0)
+
+/** Materials brought home (an expedition's haul, a found scroll's gift) go into the inventory marked as hauled. */
+export function addHauled(s: PlotState, got: Materials): void {
+  const hauled = (s.hauled ??= {})
+  for (const [m, n] of Object.entries(got) as [Material, number][]) {
+    if (!n) continue
+    s.inventory[m] += n
+    if (sellable(m)) hauled[m] = (hauled[m] ?? 0) + n
+  }
+}
+
+/** After spending: whatever left the inventory since `before` came out of the hauled units first. */
+export function spendHauled(s: PlotState, before: Record<Material, number>): void {
+  if (!s.hauled) return
+  for (const m of Object.keys(s.hauled) as Material[]) {
+    const spent = Math.max(0, before[m] - s.inventory[m])
+    const left = Math.min(s.inventory[m], (s.hauled[m] ?? 0) - spent)
+    if (left > 0) s.hauled[m] = left
+    else delete s.hauled[m]
+  }
+  if (!Object.keys(s.hauled).length) delete s.hauled
 }
 
 export const coinValue = (m: Materials, mods: PlotMods = NO_MODS) => MATERIALS.reduce((sum, k) => sum + (m[k] ? buyPrice(k, m[k], mods) : 0), 0)

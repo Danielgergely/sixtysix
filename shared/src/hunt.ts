@@ -4,8 +4,10 @@ import type { ScrollQuestion } from './plot'
 /**
  * The scroll hunt in Jerusalem: every UTC day three scrolls are hidden at
  * places of the city, the same for everyone. Each has a riddle from a Bible
- * passage; tapping the right place finds it, one quiz question doubles what
- * was in it. The clues and where they lie are in huntClues.ts, which only the
+ * passage. The player picks a riddle to search for and taps the place it
+ * means: `HUNT_TRIES` guesses per scroll, then it stays hidden for the day
+ * (so tapping every place finds nothing). One quiz question doubles what a
+ * found scroll held. The clues and where they lie are in huntClues.ts, which only the
  * server imports: a place reaches the app once its scroll is found.
  */
 
@@ -25,6 +27,8 @@ export const LANDMARK_PLACE: Record<'temple' | 'market' | 'governor' | 'gate' | 
 
 /** Scrolls hidden each day. */
 export const HUNT_SCROLLS = 3
+/** Places a player may try for one scroll before it stays hidden for the day. */
+export const HUNT_TRIES = 3
 
 /**
  * What a scroll holds: `amount` of one of `materials` (picked at random), the
@@ -43,6 +47,10 @@ export interface HuntScroll {
   text: string
   ref: string
   found: boolean
+  /** Guesses left for this scroll today (signed in). */
+  tries: number
+  /** Out of guesses: it stays hidden today. */
+  lost?: boolean
   /** Only once found. */
   place?: HuntPlace
   material?: Material
@@ -63,9 +71,9 @@ export interface HuntView {
   signedIn: boolean
 }
 
-/** The reply to a tap on a place. */
+/** The reply to a guess: the scroll searched for, and the place tapped. */
 export type HuntFind =
-  | { ok: true; found: false }
+  | { ok: true; found: false; hunt: HuntView }
   | {
       ok: true
       found: true
