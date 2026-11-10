@@ -34,7 +34,8 @@ export interface Bridge {
   invalidate: () => void
 }
 
-export type ScenePick = { kind: 'lot'; n: number } | { kind: 'landmark'; id: string } | { kind: 'spot'; id: string }
+/** `place`: one of the scroll hunt's places that isn't a landmark (places.ts). */
+export type ScenePick = { kind: 'lot'; n: number } | { kind: 'landmark'; id: string } | { kind: 'place'; id: string } | { kind: 'spot'; id: string }
 
 /** Camera limits and start (units; polar = tilt away from straight down, radians). */
 export const MIN_DIST = 22

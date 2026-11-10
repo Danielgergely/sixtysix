@@ -93,7 +93,7 @@ function CitySearch({ residents, onPick }: { residents: Resident[]; onPick: (r: 
 }
 
 /** The family just found (search, "My home"): who, which house, and Visit / Build. */
-export function FoundCard({ found, me, onOpen, onClose }: { found: Resident | null; me: string | null; onOpen: (r: Resident) => void; onClose: () => void }) {
+export function FoundCard({ found, me, onOpen, onDuel, onClose }: { found: Resident | null; me: string | null; onOpen: (r: Resident) => void; onDuel?: (r: Resident) => void; onClose: () => void }) {
   const t = useT()
   return (
     <AnimatePresence>
@@ -110,6 +110,11 @@ export function FoundCard({ found, me, onOpen, onClose }: { found: Resident | nu
               })}
             </small>
           </span>
+          {onDuel && found.username !== me && (
+            <button className="cm-chip cm-duel" onClick={() => onDuel(found)} title={t('duel.challenge')} aria-label={t('duel.challenge')}>
+              ⚔️
+            </button>
+          )}
           <button className="cm-chip gold" onClick={() => onOpen(found)}>
             {found.username === me ? t('city.map.build') : t('city.map.visit')}
           </button>

@@ -1,0 +1,71 @@
+/* Duels at the gate (app/src/duel/, screens/duel/). */
+
+/* The challenge sheet */
+.dl-sheet-head{ display: flex; align-items: center; gap: 12px; padding-right: 40px; }
+.dl-sheet-head > div{ flex: 1; min-width: 0; }
+.dl-sheet-head h3{ font: 900 20px/1.15 'Cinzel Decorative', serif; color: #6b1d0e; overflow-wrap: anywhere; }
+.dl-sheet-head small{ font: 700 12px/1.2 'Cinzel', serif; color: #6b4120; }
+.dl-sheet-portrait{ width: 60px; height: 60px; flex-shrink: 0; }
+.dl-sheet .hx-info{ width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: rgb(29 15 6 / 0.12); border: 2px solid #b88a3a; color: #6b4120; font-size: 14px; }
+.dl-stakes{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dl-stake{
+  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 6px; border-radius: 12px; background: rgb(255 255 255 / 0.45); border: 2px solid #c9a24a; color: #3b2412;
+}
+.dl-stake strong{ font: 900 20px/1 'Cinzel', serif; }
+.dl-stake.on{ background: linear-gradient(#ffe08a, #e2a93a); border-color: #1d0f06; box-shadow: 0 3px 0 #1d0f06; }
+.dl-stake:disabled{ opacity: 0.4; }
+
+/* The Duels screen */
+.dl .screen-topbar{ padding-top: 12px; padding-bottom: 6px; }
+.dl-section{ margin-bottom: 6px; }
+.dl-error{ margin: 6px 2px; padding: 8px 10px; border-radius: 10px; background: rgb(120 20 12 / 0.7); border: 2px solid #e0453a; font: 700 12px/1.35 'Cinzel', serif; color: #ffe7a3; }
+.dl-row{
+  display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: 'pic text stake' 'btns btns btns'; align-items: center; gap: 4px 10px; margin-bottom: 8px; padding: 9px 10px;
+  border-radius: 14px; background: rgb(29 15 6 / 0.82); border: 2px solid #c9a24a;
+}
+.dl-row.new{ border-color: #ffe08a; box-shadow: 0 0 14px rgb(255 214 100 / 0.35); }
+.dl-row-portrait{ grid-area: pic; width: 44px; height: 44px; }
+.dl-row-text{ grid-area: text; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.dl-row-text strong{ font: 900 15px/1.1 'Cinzel', serif; color: #ffe08a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dl-row-text small{ font: 600 12px/1.3 Georgia, serif; color: #e9d6a8; }
+.dl-row-text small.won{ color: #a8e08a; font-weight: 800; }
+.dl-row-text small.lost{ color: #f0a090; font-weight: 800; }
+.dl-stake-tag{ grid-area: stake; display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; border-radius: 999px; background: rgb(0 0 0 / 0.4); border: 1.5px solid #c9a24a; font: 900 13px/1 'Cinzel', serif; color: #ffe08a; }
+.dl-row-btns{ grid-area: btns; display: flex; gap: 6px; justify-content: flex-end; }
+.dl-row-btns .hp-btn{ min-width: 84px; padding: 8px 12px; font-size: 13px; }
+
+/* Playing: the arena's question view fills the screen; the way on sits over it. */
+.dl-play{ position: absolute; inset: 0; }
+.hp-btn.dl-next{ position: absolute; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 30; translate: -50% 0; width: min(88%, 380px); }
+.dl-wait{ margin-top: 38vh; }
+.dl-wait-btns{ display: flex; gap: 8px; justify-content: center; }
+
+/* The result */
+.dl-verdict{ margin: 6px 0 10px; padding: 14px 12px; border-radius: 14px; text-align: center; background: rgb(29 15 6 / 0.85); border: 2px solid #c9a24a; display: flex; flex-direction: column; gap: 4px; }
+.dl-verdict strong{ font: 900 24px/1.15 'Cinzel Decorative', serif; color: #ffe08a; overflow-wrap: anywhere; }
+.dl-verdict small{ font: 700 13px/1.35 'Cinzel', serif; color: #e9d6a8; }
+.dl-verdict.won{ border-color: #ffe08a; box-shadow: 0 0 18px rgb(255 214 100 / 0.4); }
+.dl-verdict.won small{ color: #a8e08a; }
+.dl-verdict.lost small{ color: #f0a090; }
+.dl-versus{ display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; margin-bottom: 10px; }
+.dl-side{ display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+.dl-side-portrait{ width: 64px; height: 64px; }
+.dl-side small{ max-width: 100%; font: 700 12px/1.2 'Cinzel', serif; color: #e9d6a8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dl-side strong{ font: 900 26px/1 'Cinzel', serif; color: #ffe08a; }
+.dl-vs{ display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 999px; background: rgb(0 0 0 / 0.45); border: 1.5px solid #c9a24a; font: 900 14px/1 'Cinzel', serif; color: #ffe08a; }
+.dl-rounds{ list-style: none; display: grid; gap: 6px; margin-bottom: 12px; }
+.dl-rounds li{ display: grid; grid-template-columns: 58px minmax(0, 1fr) 58px; align-items: center; gap: 8px; padding: 8px; border-radius: 10px; background: rgb(243 226 187 / 0.94); color: #3b2412; }
+.dl-round-q{ display: flex; flex-direction: column; gap: 2px; text-align: center; min-width: 0; }
+.dl-round-q span{ font: 600 12px/1.35 Georgia, serif; }
+.dl-round-q small{ font: 700 11px/1.3 'Cinzel', serif; color: #8a5a10; }
+.dl-mark{ display: flex; flex-direction: column; align-items: center; gap: 1px; font: 900 16px/1 'Cinzel', serif; }
+.dl-mark b{ font-size: 12px; }
+.dl-mark.ok{ color: #2f7a3a; }
+.dl-mark.no{ color: #a8402f; }
+.dl-mark.none{ color: #9a8a6a; }
+.dl-result-btns{ display: flex; flex-direction: column; gap: 8px; }
+
+/* The duel button on a found family's card in the city */
+.cm-found .cm-duel{ padding: 0 9px; font-size: 15px; }
+
+.dl-play-error{ position: absolute; left: 12px; right: 12px; top: 64px; z-index: 31; text-align: center; }

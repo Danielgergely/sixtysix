@@ -32,6 +32,8 @@ const BUILDING_ART: Record<BuildingId, string[]> = {
   grove: ['grove-1', 'grove-1', 'grove-2', 'grove-2', 'grove-2'].map(art),
   kiln: ['kiln-1', 'kiln-2', 'kiln-2', 'kiln-2'].map(art),
   bake: ['bake-1', 'bake-1', 'bake-2', 'bake-2'].map(art),
+  // No painting yet: the yard's donkey and camel stand for the Stable.
+  stable: ['/art/life-donkey.webp', '/art/life-donkey.webp', '/art/life-camel.webp', '/art/life-camel.webp'],
   thresh: ['thresh-1', 'thresh-2', 'thresh-2', 'thresh-2'].map(art),
   // Fields are their beds in the valley (FieldScene); sheets and the next step show the soil, the young crop, the ripe one.
   ...(Object.fromEntries(FIELD_IDS.map((f) => [f, ['soil', 'shoots', 'wheat'].map((n) => `/art/fields-${n}.webp`)])) as Record<FieldId, string[]>),

@@ -3,6 +3,8 @@ import { useGameStore, type TabScreen } from '../../game/store'
 import { DAILY_COUNT, today, useDailyStore } from '../../daily/dailyStore'
 import { useT } from '../../i18n'
 import { preloadCity3DWhenIdle } from '../../world/preload3d'
+import { duelBadge, useDuelStore } from '../../duel/duelStore'
+import { useAccountStore } from '../../account/accountStore'
 
 /** The leaderboard is reached from the top bar's 🏆 instead. */
 const TABS: Array<{ id: TabScreen; icon: string }> = [
@@ -22,6 +24,12 @@ export function TabBar() {
   useEffect(() => preloadCity3DWhenIdle(), [])
   // A dot on Quiz while today's Daily Scroll is still waiting.
   const dailyWaiting = !(daily.date === today() && daily.picks.length >= DAILY_COUNT)
+  // A dot on Jerusalem while a duel waits for you (a challenge, your move, a result). Asked once when the tabs first show, never polled.
+  const signedIn = useAccountStore((s) => !!s.account)
+  const duelWaiting = useDuelStore((s) => duelBadge(s.duels) > 0)
+  useEffect(() => {
+    if (signedIn && !useDuelStore.getState().loaded) void useDuelStore.getState().load()
+  }, [signedIn])
   return (
     <nav className="tabbar">
       {TABS.map((tab) => (
@@ -29,6 +37,7 @@ export function TabBar() {
           <span className="tabbar-icon">
             {tab.icon}
             {tab.id === 'menu' && dailyWaiting && <span className="tabbar-dot" />}
+            {tab.id === 'jerusalem' && duelWaiting && <span className="tabbar-dot" />}
           </span>
           <span className="tabbar-label">{t(`shell.tabs.${tab.id}`)}</span>
         </button>

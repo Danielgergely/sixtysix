@@ -1,35 +1,27 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import { useT } from '../i18n'
 import { PlotScene, type PlotSceneProps } from './PlotScene'
 import { Fallback } from './Fallback3D'
-import { hasWebGL } from './webgl'
+import { usePlotMode } from './plotMode'
 
 /**
- * The homestead (My Home, and read-only on Visit): the painted PlotScene. The
- * 3D yard (city3d/Plot3D, a lazy chunk sharing three.js with the 3D city) is
- * opt-in for now (`localStorage['sixtysix.plot3d.v1'] = '1'` on a device with
- * WebGL): players found the painting livelier. The painted yard also takes over
- * if the chunk fails to load, throws, or the GPU drops its WebGL context, the
- * same way the city does (webgl.ts).
+ * The homestead (My Home, and read-only on Visit): the 3D homestead
+ * (city3d/Plot3D, a lazy chunk sharing three.js with the 3D city) wherever
+ * WebGL works, or the painted PlotScene if the player prefers it
+ * (plotMode.ts). The painted yard also takes over if the chunk fails to load,
+ * throws, or the GPU drops its WebGL context, the same way the city does
+ * (webgl.ts).
  */
-
-const WANT_3D = 'sixtysix.plot3d.v1'
-function want3d(): boolean {
-  try {
-    return localStorage.getItem(WANT_3D) === '1' && hasWebGL()
-  } catch {
-    return false
-  }
-}
 
 const Plot3D = lazy(() => import('./city3d/Plot3D'))
 
 export function PlotView(props: PlotSceneProps) {
   const t = useT()
-  const [mode, setMode] = useState<'3d' | '2d'>(() => (want3d() ? '3d' : '2d'))
+  const mode = usePlotMode((m) => m.mode)
+  const fail = usePlotMode((m) => m.fail)
   if (mode === '2d') return <PlotScene {...props} />
   return (
-    <Fallback onError={() => setMode('2d')}>
+    <Fallback onError={fail}>
       <Suspense
         fallback={
           <div className={`ps p3-loading ${props.className ?? ''}`}>
@@ -37,7 +29,7 @@ export function PlotView(props: PlotSceneProps) {
           </div>
         }
       >
-        <Plot3D {...props} onLost={() => setMode('2d')} />
+        <Plot3D {...props} onLost={fail} />
       </Suspense>
     </Fallback>
   )

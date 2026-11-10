@@ -28,6 +28,7 @@ import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 import { FlagSheetHost } from './flags/FlagSheet'
 import { LookPickerHost } from './looks/LookPicker'
 import { TutorialHost } from './tutorial/TutorialHost'
+import { useDuelStore } from './duel/duelStore'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
 const JerusalemScreen = lazy(() => import('./screens/JerusalemScreen').then((m) => ({ default: m.JerusalemScreen })))
@@ -42,6 +43,9 @@ const ReviewScreen = lazy(() => import('./screens/review/ReviewScreen').then((m)
 const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
 // Exodus brings three.js: its own chunk (shared with the 3D city's).
 const ExodusScreen = lazy(() => import('./screens/exodus/ExodusScreen').then((m) => ({ default: m.ExodusScreen })))
+const DuelScreen = lazy(() => import('./screens/duel/DuelScreen').then((m) => ({ default: m.DuelScreen })))
+// The stake sheet of a duel challenge: loaded when someone is first challenged.
+const DuelChallenge = lazy(() => import('./duel/DuelChallenge'))
 const MissionScreen = lazy(() => import('./screens/mission/MissionScreen').then((m) => ({ default: m.MissionScreen })))
 
 const SCREENS: Record<Screen, React.ComponentType> = {
@@ -73,6 +77,18 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   mission: MissionScreen,
   review: ReviewScreen,
   account: AccountSettingsScreen,
+  duel: DuelScreen,
+}
+
+/** "Challenge to a duel" (duel/DuelChallenge), opened from the city and a player's page; one for the whole app. */
+function DuelChallengeHost() {
+  const open = useDuelStore((s) => s.target !== null)
+  // The boundary sits outside the presence, so the sheet's exit animation is the presence's own child.
+  return (
+    <Suspense fallback={null}>
+      <AnimatePresence>{open && <DuelChallenge key="duel-challenge" />}</AnimatePresence>
+    </Suspense>
+  )
 }
 
 export default function App() {
@@ -119,6 +135,7 @@ export default function App() {
       </div>
       <FlagSheetHost />
       <LookPickerHost />
+      <DuelChallengeHost />
       <TutorialHost />
       <ConfettiLayer />
     </MotionConfig>

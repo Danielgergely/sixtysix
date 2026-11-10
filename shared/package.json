@@ -9,6 +9,7 @@
     "./flockWords.de.json": "./src/flockWords.de.json",
     "./flockWords.hu.json": "./src/flockWords.hu.json",
     "./cityLayout": "./src/cityLayout.ts",
+    "./huntClues": "./src/huntClues.ts",
     "./missionMaps/*": "./src/missionMaps/*.ts"
   }
 }

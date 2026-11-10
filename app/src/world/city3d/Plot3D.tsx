@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ACESFilmicToneMapping, PCFShadowMap } from 'three'
-import { SPOTS, type BuildingId } from '@sixtysix/shared'
-import { useT } from '../../i18n'
+import { FIELD_IDS, MATERIAL_INFO, SPOTS, VALLEY, checkUpgrade, type BuildingId, type FieldId } from '@sixtysix/shared'
+import { useLocale, useT } from '../../i18n'
 import { PZ_REVEAL } from '../../tutorial/anchor'
 import { useTutorialStore } from '../../tutorial/store'
 import { buildPct, countdown, spotStatus } from '../../screens/home/homeUtil'
@@ -14,7 +14,8 @@ import { reducedMotion } from '../life/sim'
 import { DevStats } from './DevStats'
 import { DprMonitor } from './DprMonitor'
 import { EXPOSURE, newBridge, type LabelSpec } from './bridge'
-import { buildingGeometry, scaffoldGeometry, topOf, type Spot } from './models'
+import { buildingGeometry, scaffoldGeometry, threshGeometry, topOf, type Spot } from './models'
+import { bedTop, FIELD_3D, THRESH_3D } from './fields3d'
 import { PLOT_FOV, PLOT_MIN_DIST, PLOT_START_POLAR, plotStartDist, SPOT_3D, YARD_3D } from './plotSpace'
 import { PlotScene3D } from './PlotScene3D'
 import { NavButtons } from './NavButtons'
@@ -39,8 +40,9 @@ interface Props extends PlotSceneProps {
   onLost?: () => void
 }
 
-export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0, onLost }: Props) {
+export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, className, idleDays = 0, onLost, sheep, onSheep }: Props) {
   const t = useT()
+  const locale = useLocale((s) => s.locale)
   const bridge = useMemo(() => newBridge(), [])
   const box = useRef<HTMLDivElement>(null)
   const still = useMemo(() => reducedMotion(), [])
@@ -72,10 +74,20 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
         let top = topOf(buildingGeometry(spot, lv))
         if (to) top = Math.max(top, topOf(scaffoldGeometry(spot, Math.max(top, topOf(buildingGeometry(spot, to))))))
         const p = SPOT_3D[spot]
-        return { id: spot, x: p.x, y: top + 0.5, z: p.z, always: true, name: false }
-      }),
+        return { id: spot as string, x: p.x, y: top + 0.5, z: p.z, always: true, name: false }
+      }).concat(
+        // The fields and the threshing floor: low over the bed, so they don't cover the yard behind.
+        FIELD_IDS.map((f) => ({ id: f as string, x: FIELD_3D[f].x, y: bedTop(levels[f]) + 1.6, z: FIELD_3D[f].z, always: true, name: false })),
+        [{ id: 'thresh', x: THRESH_3D.x, y: topOf(threshGeometry(levels.thresh)) + 0.4, z: THRESH_3D.z, always: true, name: false }],
+      ),
     [levelKey, building], // eslint-disable-line react-hooks/exhaustive-deps
   )
+
+  // What grows on each bed, as the scene draws it: shoots until ripe. A string, so the scene only hears of real changes.
+  const crops = FIELD_IDS.map((f) => {
+    const c = plot?.crops?.[f]
+    return !c ? '' : c.readyAt <= now ? (c.raid ? `${c.crop}!` : c.crop) : 'shoots'
+  }).join(',')
 
   useEffect(() => {
     bridge.onZoomLimits = (i, o) => setZoom({ in: i, out: o })
@@ -117,9 +129,10 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
     const a = bridge.pickFigure?.(x, y)
     if (a) return void say(a.id, a.fig)
     const id = labelAt(bridge, e)
-    if (id) return onSelect?.(id as Spot)
+    if (id) return onSelect?.(id as BuildingId)
     const hit = bridge.pickScene?.(x, y)
-    if (hit?.kind === 'spot') onSelect?.(hit.id as Spot)
+    if (hit?.kind === 'spot' && hit.id === 'sheep') return onSheep?.()
+    if (hit?.kind === 'spot') onSelect?.(hit.id as BuildingId)
   })
 
   const tag = (spot: Spot) => {
@@ -154,6 +167,53 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
     )
   }
 
+  /** A field's or the threshing floor's tag: its build, its ripe crop or how long it still grows, its price before it is bought. */
+  const valleyTag = (b: BuildingId) => {
+    const ref = (el: HTMLElement | null) => {
+      if (el) bridge.labels.set(b, el)
+      else bridge.labels.delete(b)
+    }
+    const level = levels[b]
+    const build = plot?.builds.find((x) => x.building === b)
+    const crop = b === 'thresh' ? undefined : plot?.crops?.[b as FieldId]
+    const ripe = crop && crop.readyAt <= now
+    let sub = spotLevelText(level, !!build, !!plot)
+    if (plot && !level && !build && b !== 'thresh') {
+      const c = checkUpgrade(plot, b)
+      sub = c.reqsMet ? t('home.farm.forSale', { n: c.price.toLocaleString(locale) }) : t('home.farm.locked')
+    }
+    // A bed with a crop shows only the crop; the names come back when nothing grows.
+    const named = !crop || !!build
+    return (
+      <div key={b} ref={ref} className="c3-tag p3-tag" title={level ? levelName(b, level) : undefined} style={{ display: 'none' }}>
+        <div className={`p3-stack ps-tagspot p3-valley ${level ? '' : 'empty'}`}>
+          {crop && !build && ripe && crop.raid && <span className="p3-ribbon new">{t('home.round.raidTag')}</span>}
+          {crop && !build && ripe && !crop.raid && (
+            <span className="p3-ribbon">
+              +{crop.amount} {MATERIAL_INFO[crop.crop].icon}
+            </span>
+          )}
+          {crop && !build && !ripe && <span className="p3-grow">🌱 {countdown(crop.readyAt - now)}</span>}
+          {build && (
+            <span className="ps-build p3-build">
+              <span className="hp-bar">
+                <span style={{ width: `${buildPct(build, now)}%` }} />
+              </span>
+              <small>🔨 {countdown(build.endsAt - now)}</small>
+            </span>
+          )}
+          {named && (
+            <span className="ps-tag">
+              {buildingName(b)} <small>{sub}</small>
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }
+  // Someone else's homestead, or your own before the valley opens: only what is there is tagged.
+  const valley = VALLEY.filter((b) => levels[b] > 0 || (plot && (plot.levels.house >= 3 || plot.builds.some((x) => x.building === b))))
+
   return (
     <div
       ref={(el) => {
@@ -174,10 +234,25 @@ export default function Plot3D({ levels, plot, now = 0, seen, onSelect, onGift, 
       >
         <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
         <DevStats />
-        <PlotScene3D levels={stableLevels} building={building} labels={labels} actors={actors} bridge={bridge} still={still} idleDays={idleDays} />
+        <PlotScene3D levels={stableLevels} building={building} labels={labels} actors={actors} bridge={bridge} still={still} idleDays={idleDays} crops={crops} sheep={onSheep ? sheep : undefined} />
       </Canvas>
 
-      <div className="c3-labels">{SPOTS.map(tag)}</div>
+      <div className="c3-labels">
+        {SPOTS.map(tag)}
+        {valley.map(valleyTag)}
+      </div>
+      {/* Cloud shadows drifting over and birds crossing: CSS on top of the canvas, so they cost no frames of the scene. */}
+      <div className="ps-amb p3-amb" aria-hidden="true">
+        <span className="ps-cloud mv c1" />
+        <span className="ps-cloud mv c2" />
+        <span className="ps-birds mv">
+          {[0, 1, 2].map((i) => (
+            <svg key={i} className="ps-bird" viewBox="0 0 24 10">
+              <path d="M1 6 Q6 0 12 6 Q18 0 23 6" fill="none" stroke="#2b1a0e" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          ))}
+        </span>
+      </div>
       <div className="c3-labels p3-badges">
         {actors
           .filter((a) => a.badge)

@@ -524,7 +524,7 @@ week is kept.
 
 ---
 
-## 7a. Built: release 1 (fields, bread, the quarry and the copper mines)
+## 7a. Built: release 1 (fields, bread, the workers' expeditions)
 
 What shipped, and where it differs from the proposal above (the code is the
 source: `shared/src/plot.ts` for buildings and levels, `shared/src/farm.ts`
@@ -552,12 +552,44 @@ for crops, baking, feeding, workers, expeditions and gleaning, the routes in
   grove, kiln and six irrigated fields need 21), Storehouse 6, Workshop 6,
   Sheepfold 6, Olive grove 6, Kiln 5. They reuse the top painted stage and,
   in the 3D yard, the top model.
-- **Workers:** one per house level from House 4 (1…4). **Quarry** 8 h,
-  1–4 workers, 2 bread + 15 coins each → 8 stone each (the wage was raised
-  from 10 so quarried stone isn't a way to coins while stone still sells).
-  **Copper mines** 24 h, 2–4 workers, 4 bread + 1 oil + 20 coins each →
-  3 copper each. Three road questions (1 Kings, Deuteronomy) as the team
-  sets out, +15 % each, skippable. No map yet: destination cards.
+- **Workers:** one per house level from House 4 (1…4). Three road questions
+  from the place's book as the team sets out, +15 % each, skippable.
+  Expeditions never fail.
+- **Destinations and trips** (`DESTINATIONS`, `TRIPS` in `shared/src/farm.ts`).
+  Every destination offers three trips: a day's work (×1), a long stay
+  (3× the time, 3.5× the haul) and a great expedition (7× the time, 9× the
+  haul); wages grow with the haul (rounded up to 5 coins), provisions ×1 / 2 / 4.
+  Per worker, before the road questions:
+
+  | Destination (book, house) | Workers | Day's work | Long stay | Great expedition | Provisions (day's work) |
+  |---|---|---|---|---|---|
+  | Quarry (1 Kings, House 4) | 1–4 | 7 h · 20 stone · 60 coins | 21 h · 70 · 210 | 49 h · 180 · 540 | 2 bread |
+  | Jordan plain (Joshua, House 4) | 1–4 | 6 h · 30 bricks · 45 | 18 h · 105 · 160 | 42 h · 270 · 405 | 2 bread |
+  | Copper mines (Deuteronomy, House 5) | 2–4 | 16 h · 3 copper · 25 | 48 h · 10.5 · 90 | 112 h · 27 · 225 | 3 bread, 1 oil |
+  | Lebanon (1 Kings, House 6) | 2–4 | 14 h · 2 cedar + 10 wood · 75 | 42 h · 7 + 35 · 265 | 98 h · 18 + 90 · 675 | 3 bread, 1 oil |
+  | Ophir (2 Chronicles, House 7) | 3–4 | 24 h · 1 gold · 60 | 72 h · 3.5 · 210 | 168 h · 9 · 540 | 6 bread, 2 oil |
+
+  Four workers on a great quarry expedition with all three questions right
+  bring 1,044 stone (1,584 with the Caravan yard). Stored expeditions without
+  a `trip` are day's work.
+- **The Stable's pack animals** add their share (15 / 30 / 50 / 75 %) to
+  every haul on top of the road bonus: haul × (1 + 15 % × right + pack),
+  rounded down. They eat barley, packed with the provisions (bought like
+  missing bread): what their extra load would sell for, or a third of the
+  price for copper (`fodderPer`).
+- **No way to coins:** a worker's wage is at least what their haul sells for
+  with every question right, and wages + fodder cover the animals' share too.
+  `npx tsx shared/scripts/check-expeditions.mts` asserts it for every
+  destination, trip, team size and Stable level (at the listed sale prices:
+  Fair trader's better prices are not covered).
+- **The map:** the Expeditions tab is a drawn map (inline SVG on parchment,
+  `screens/home/ExpeditionMap.tsx`, geometry in `expeditionMapData.ts`): a
+  pin per destination where it lies, dotted roads from Jerusalem, locked
+  places greyed with "from House N", each team a token moving along its road
+  (out by half time, back by the end; a ship on the sea legs to Lebanon and
+  Ophir), back teams waiting at Jerusalem with Unload, and the loot counted
+  up big. A pin opens the destination's sheet: the three trips as cards,
+  the workers stepper, costs and Send.
 - **Gleaning:** from the Visit screen, once a day per visitor, five gleaners a
   day per homestead; the visitor gets 3 barley, the owner 2.
 - **Scenes:** My Home has tabs Homestead · Fields (from House 3) ·

@@ -17,6 +17,8 @@ import {
   usernameError,
   type UserRow,
 } from './accounts.js'
+import { dropDuelsOf } from './duels.js'
+import { dropHuntOf } from './hunt.js'
 
 /**
  * Account settings for a signed-in player (Profile → Account settings in the
@@ -128,9 +130,13 @@ export function registerAccountSettingsRoutes(app: FastifyInstance): void {
       db.prepare('DELETE FROM grants WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM plots WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM exodus_runs WHERE user_id = ?').run(me.id)
+      db.prepare('DELETE FROM hunt_days WHERE user_id = ?').run(me.id)
+      // Duels still running: the other side gets their stake back, then the rows go.
+      dropDuelsOf(me.id)
       db.prepare('UPDATE question_flags SET user_id = NULL WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM users WHERE id = ?').run(me.id)
       db.exec('COMMIT')
+      dropHuntOf(me.id) // and the question waiting in memory
     } catch (err) {
       db.exec('ROLLBACK')
       console.error('[account] delete failed', err)

@@ -7,6 +7,8 @@ import { IDLE_DAYS } from '@sixtysix/shared'
 import { artFor } from './home/homeUtil'
 import { houseName } from './home/plotText'
 import { percentOf, useLocale, useT } from '../i18n'
+import { useAccountStore } from '../account/accountStore'
+import { useDuelStore } from '../duel/duelStore'
 
 /** Another player's public page: who they are, their home, their record. */
 export function PlayerScreen() {
@@ -19,6 +21,7 @@ export function PlayerScreen() {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const num = (n: number) => n.toLocaleString(locale)
+  const me = useAccountStore((s) => s.account?.username)
 
   useEffect(() => {
     if (!username) return
@@ -68,6 +71,11 @@ export function PlayerScreen() {
               </small>
             </span>
           </button>
+          {player.username !== me && (
+            <button className="tab-banner pl-duel" onClick={() => useDuelStore.getState().openChallenge({ username: player.username, name: player.name, avatar: player.avatar })}>
+              ⚔️ {t('duel.challenge')}
+            </button>
+          )}
           <div className="pl-stats">
             {[
               ['games', num(s.gamesPlayed)],

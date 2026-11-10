@@ -1,68 +1,109 @@
-import { useState } from 'react'
-import { motion } from 'motion/react'
+import { useCallback, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
 import {
-  DESTINATION_IDS,
   DESTINATIONS,
+  MATERIALS,
+  MATERIAL_INFO,
   ROAD_BONUS,
   ROAD_QUESTIONS,
+  TRIP_IDS,
+  BUILDINGS,
   expeditionPlan,
   freeWorkers,
+  packShare,
   shortOf,
+  tripOf,
   workersFor,
   type DestinationId,
+  type Expedition,
+  type Materials,
   type PlotState,
+  type TripId,
 } from '@sixtysix/shared'
 import { usePlotStore } from '../../plot/plotStore'
 import { useGameStore } from '../../game/store'
 import { PARCHMENT } from '../../art/textures'
 import { PaintedCoin } from '../../art/PaintedPortrait'
-import { fireConfetti, spring } from '../../motion'
+import { AnimatedNumber, fireConfetti, spring } from '../../motion'
 import { t as tNow, tServer, useLocale, useT } from '../../i18n'
 import { buildPct, countdown } from './homeUtil'
-import { formatMinutes, listMaterials } from './plotText'
+import { formatMinutes, listMaterials, materialName } from './plotText'
 import { rich } from './rich'
+import { ExpeditionMap } from './ExpeditionMap'
+import { DEST_ICON } from './expeditionMapData'
 
 /**
- * The workers' expeditions (docs/jerusalem-expansion.md §3.2): day labourers
- * by house level, sent to the quarry or the copper mines with bread (and oil)
- * and their wages; three road questions from the place's book add to the
- * haul. Teams on the road show their countdown; back home, tap to unload.
+ * The workers' expeditions (docs/jerusalem-expansion.md §3.2, §7a): day
+ * labourers by house level, sent out from the map (ExpeditionMap) to the
+ * quarry, the Jordan plain, the copper mines, Lebanon or Ophir, for a day's
+ * work, a long stay or a great expedition, with bread (and oil), their wages
+ * and, with a Stable, barley for the pack animals. Three road questions from
+ * the place's book add to the haul. Teams move along their road on the map;
+ * back home, unload to see the loot.
  */
 
-const DEST_ICON: Record<DestinationId, string> = { quarry: '⛏️', copper: '🔶' }
+interface Loot {
+  dest: DestinationId
+  workers: number
+  haul: Materials
+}
+
+const TRIP_ICON: Record<TripId, string> = { short: '🌤️', long: '⛺', great: '🐪' }
+const topPack = BUILDINGS.stable.levels.reduce((m, l) => Math.max(m, l.pack ?? 0), 0)
 
 export function ExpeditionsView({ plot, now }: { plot: PlotState; now: number }) {
   const t = useT()
+  const busy = usePlotStore((s) => s.busy)
+  const [open, setOpen] = useState<DestinationId | null>(null)
+  const [loot, setLoot] = useState<Loot | null>(null)
   const total = workersFor(plot.levels.house)
   const free = freeWorkers(plot)
   const teams = plot.expeditions ?? []
+
+  const unload = useCallback(async (id: string) => {
+    const store = usePlotStore.getState()
+    const e = store.plot?.expeditions?.find((x) => x.id === id)
+    if (!e || store.busy) return
+    const got = await store.unload(id)
+    if (!got) return
+    setLoot({ dest: e.dest, workers: e.workers, haul: got })
+    fireConfetti({ y: 0.45, count: 90 })
+  }, [])
+
   return (
     <div className="hp-exp">
       <div className="hp-summary" style={{ backgroundImage: PARCHMENT }}>
         <p className="hp-exp-head">{rich(total ? t('home.exp.workers', { free, total }) : t('home.exp.noWorkers'))}</p>
+        {total > 0 && <p className="hp-exp-hint">{t('home.exp.hint')}</p>}
       </div>
+      <ExpeditionMap plot={plot} now={now} busy={busy} onPick={setOpen} onUnload={unload} />
       {teams.map((e) => (
-        <TeamCard key={e.id} id={e.id} plot={plot} now={now} />
+        <TeamCard key={e.id} e={e} now={now} busy={busy} onUnload={unload} />
       ))}
-      {DESTINATION_IDS.map((d) => (
-        <DestinationCard key={d} dest={d} plot={plot} />
-      ))}
+      {createPortal(
+        <>
+          <AnimatePresence>{open && <DestinationSheet key="dest" dest={open} plot={plot} onClose={() => setOpen(null)} />}</AnimatePresence>
+          <AnimatePresence>{loot && <LootCard key="loot" loot={loot} onClose={() => setLoot(null)} />}</AnimatePresence>
+        </>,
+        document.body,
+      )}
     </div>
   )
 }
 
-function TeamCard({ id, plot, now }: { id: string; plot: PlotState; now: number }) {
+/** One team in the list under the map: where, how long a stay, what it brings, and Unload once it is back. */
+function TeamCard({ e, now, busy, onUnload }: { e: Expedition; now: number; busy: boolean; onUnload: (id: string) => void }) {
   const t = useT()
-  const { unload, busy, say } = usePlotStore()
-  const e = plot.expeditions?.find((x) => x.id === id)
-  if (!e) return null
   const back = e.endsAt <= now
   return (
     <motion.div className={`hp-exp-card team ${back ? 'back' : ''}`} style={{ backgroundImage: PARCHMENT }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={spring.gentle}>
       <span className="hp-exp-icon">{DEST_ICON[e.dest]}</span>
       <div className="hp-exp-text">
         <strong>{t(`home.exp.dest.${e.dest}.name`)}</strong>
-        <small>{rich(t(back ? 'home.exp.back' : 'home.exp.away', { count: e.workers, n: e.workers, list: listMaterials(e.haul) }))}</small>
+        <small>
+          {t(`home.exp.trip.${tripOf(e)}.name`)} · {rich(t(back ? 'home.exp.back' : 'home.exp.away', { count: e.workers, n: e.workers, list: listMaterials(e.haul) }))}
+        </small>
         {!back && (
           <>
             <span className="hp-bar">
@@ -73,17 +114,7 @@ function TeamCard({ id, plot, now }: { id: string; plot: PlotState; now: number 
         )}
       </div>
       {back && (
-        <button
-          className="hp-btn small gold"
-          disabled={busy}
-          onClick={async () => {
-            const got = await unload(e.id)
-            if (got) {
-              say(tNow('home.collected', { list: listMaterials(got) }))
-              fireConfetti({ y: 0.5, count: 50 })
-            }
-          }}
-        >
+        <button className="hp-btn small gold" disabled={busy} onClick={() => onUnload(e.id)}>
           {t('home.exp.unload')}
         </button>
       )}
@@ -91,61 +122,184 @@ function TeamCard({ id, plot, now }: { id: string; plot: PlotState; now: number 
   )
 }
 
-function DestinationCard({ dest, plot }: { dest: DestinationId; plot: PlotState }) {
+/** Big numbers: what a haul holds, one tile per material. */
+function Haul({ haul, countUp = false }: { haul: Materials; countUp?: boolean }) {
+  const locale = useLocale((s) => s.locale)
+  return (
+    <span className="xs-haul">
+      {MATERIALS.filter((m) => haul[m]).map((m, i) => (
+        <span key={m} title={materialName(m)}>
+          {countUp ? <AnimatedNumber value={haul[m]!} from={0} duration={1.2} delay={0.25 + i * 0.2} /> : <b>{haul[m]!.toLocaleString(locale)}</b>}
+          <i>{MATERIAL_INFO[m].icon}</i>
+        </span>
+      ))}
+    </span>
+  )
+}
+
+/** A destination's sheet: what it brings, the three trips as cards, how many workers, and Send. */
+function DestinationSheet({ dest, plot, onClose }: { dest: DestinationId; plot: PlotState; onClose: () => void }) {
   const t = useT()
   const locale = useLocale((s) => s.locale)
   const coins = useGameStore((s) => s.player.coins)
-  const { startRoad, busy } = usePlotStore()
+  const { startRoad, busy, error } = usePlotStore()
   const d = DESTINATIONS[dest]
   const free = freeWorkers(plot)
-  const [want, setWant] = useState(d.minWorkers)
-  const n = Math.max(d.minWorkers, Math.min(d.maxWorkers, want))
-  const plan = expeditionPlan(dest, n)
-  const best = expeditionPlan(dest, n, ROAD_QUESTIONS)
-  const short = shortOf(plot, plan.provisions)
+  const pack = packShare(plot)
   const locked = plot.levels.house < d.house
-  const cost = plan.wages + short.coins
+  const most = Math.min(d.maxWorkers, Math.max(d.minWorkers, free))
+  const [want, setWant] = useState(most)
+  const [trip, setTrip] = useState<TripId>('short')
+  const n = Math.max(d.minWorkers, Math.min(most, want))
+
+  const plans = TRIP_IDS.map((id) => {
+    const plan = expeditionPlan(dest, n, { trip: id, pack })
+    const best = expeditionPlan(dest, n, { trip: id, pack, right: ROAD_QUESTIONS })
+    const short = shortOf(plot, plan.provisions)
+    return { id, plan, best, short, cost: plan.wages + short.coins }
+  })
+  const chosen = plans.find((p) => p.id === trip)!
+  const food = { ...chosen.plan.provisions }
+  delete food.barley
+  if (chosen.plan.provisions.barley && chosen.plan.provisions.barley > chosen.plan.fodder) food.barley = chosen.plan.provisions.barley - chosen.plan.fodder
+  const pctOf = (x: number) => Math.round(x * 100)
+
+  const send = async () => {
+    if (await startRoad(dest, n, trip)) onClose()
+  }
+
   return (
-    <div className={`hp-exp-card ${locked ? 'locked' : ''}`} style={{ backgroundImage: PARCHMENT }}>
-      <span className="hp-exp-icon">{DEST_ICON[dest]}</span>
-      <div className="hp-exp-text">
-        <strong>{t(`home.exp.dest.${dest}.name`)}</strong>
-        <small>
-          {t(`home.exp.dest.${dest}.what`)} <em>{d.verse}</em>
-        </small>
-        {locked ? (
-          <small className="hp-short">{t('home.exp.needsHouse', { n: d.house })}</small>
-        ) : (
-          <>
-            <div className="hp-stepper">
-              <button className="hp-btn small" disabled={n <= d.minWorkers} onClick={() => setWant(n - 1)}>
-                −
-              </button>
-              <span>{t('home.exp.team', { count: n, n })}</span>
-              <button className="hp-btn small" disabled={n >= Math.min(d.maxWorkers, Math.max(d.minWorkers, free))} onClick={() => setWant(n + 1)}>
-                +
-              </button>
+    <>
+      <motion.div className="hp-scrim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+      <motion.div
+        className="hp-sheet xs"
+        style={{ backgroundImage: PARCHMENT }}
+        initial={{ y: '100%' }}
+        animate={{ y: 0, transition: spring.gentle }}
+        exit={{ y: '100%', transition: { duration: 0.2 } }}
+        role="dialog"
+        aria-label={t(`home.exp.dest.${dest}.name`)}
+      >
+        <button className="hp-sheet-close" onClick={onClose} title={t('home.close')}>
+          ✕
+        </button>
+        <div className="hp-sheet-body">
+          <div className="xs-head">
+            <span className={`xs-seal ${dest}`}>{DEST_ICON[dest]}</span>
+            <div>
+              <h3>{t(`home.exp.dest.${dest}.name`)}</h3>
+              <small>{d.verse}</small>
             </div>
-            <small>
-              {rich(
-                t('home.exp.plan', {
-                  time: formatMinutes(plan.minutes),
-                  provisions: listMaterials(plan.provisions),
-                  wages: plan.wages,
-                  haul: listMaterials(plan.haul),
-                  best: listMaterials(best.haul),
-                  pct: Math.round(ROAD_BONUS * 100),
-                }),
-              )}
-            </small>
-            <button className="hp-btn gold" disabled={busy || n > free || coins < cost} onClick={() => void startRoad(dest, n)}>
-              {t('home.exp.send')} · <PaintedCoin size={14} /> {cost.toLocaleString(locale)}
-            </button>
-            {n > free && <small className="hp-short">{t('home.exp.busy')}</small>}
-          </>
-        )}
-      </div>
-    </div>
+          </div>
+          <p className="hp-what">{t(`home.exp.dest.${dest}.what`)}</p>
+          {locked ? (
+            <p className="hp-short">🔒 {t('home.exp.needsHouse', { n: d.house })}</p>
+          ) : (
+            <>
+              <div className="xs-trips" role="radiogroup">
+                {plans.map((p) => (
+                  <button key={p.id} role="radio" aria-checked={p.id === trip} className={`xs-trip ${p.id === trip ? 'on' : ''}`} onClick={() => setTrip(p.id)} data-trip={p.id}>
+                    <span className="xs-trip-name">
+                      {TRIP_ICON[p.id]} {t(`home.exp.trip.${p.id}.name`)}
+                    </span>
+                    <span className="xs-trip-time">⏳ {formatMinutes(p.plan.minutes)}</span>
+                    <Haul haul={p.plan.haul} />
+                    <span className="xs-trip-best">{t('home.exp.upTo', { list: listNumbers(p.best.haul, locale) })}</span>
+                    <span className="xs-trip-cost">
+                      <PaintedCoin size={13} /> {p.cost.toLocaleString(locale)}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="hp-stepper xs-step">
+                <button className="hp-btn small" disabled={n <= d.minWorkers} onClick={() => setWant(n - 1)} aria-label="−">
+                  −
+                </button>
+                <span>👷 {t('home.exp.team', { count: n, n })}</span>
+                <button className="hp-btn small" disabled={n >= most} onClick={() => setWant(n + 1)} aria-label="+">
+                  +
+                </button>
+              </div>
+
+              <dl className="xs-plan">
+                <div>
+                  <dt>{t('home.exp.brings')}</dt>
+                  <dd>
+                    <b>{listMaterials(chosen.plan.haul)}</b> · {t('home.exp.roadNote', { pct: pctOf(ROAD_BONUS), best: listMaterials(chosen.best.haul) })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>{t('home.exp.wages')}</dt>
+                  <dd>
+                    <PaintedCoin size={13} /> <b>{chosen.plan.wages.toLocaleString(locale)}</b>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{t('home.exp.provisions')}</dt>
+                  <dd>
+                    {listMaterials(food)}
+                    {chosen.plan.fodder > 0 && <> · {t('home.exp.fodder', { list: listMaterials({ barley: chosen.plan.fodder }) })}</>}
+                    {chosen.short.coins > 0 && (
+                      <em>
+                        {' '}
+                        {t('home.exp.buys', { list: listMaterials(chosen.short.missing), coins: chosen.short.coins.toLocaleString(locale) })}
+                      </em>
+                    )}
+                  </dd>
+                </div>
+              </dl>
+              <p className={`xs-pack ${pack ? 'has' : ''}`}>
+                {pack
+                  ? rich(t(plot.levels.stable >= 3 ? 'home.exp.packCamels' : 'home.exp.packDonkeys', { pct: pctOf(pack) }))
+                  : t(plot.levels.house >= (BUILDINGS.stable.levels[0].needs.house ?? 0) ? 'home.exp.noStable' : 'home.exp.noStableYet', { pct: pctOf(topPack) })}
+              </p>
+
+              {error && <p className="hp-error">{tServer(error)}</p>}
+              <div className="hp-sheet-btns">
+                <button className="hp-btn gold big" disabled={busy || n > free || coins < chosen.cost} onClick={() => void send()}>
+                  {t('home.exp.send')} · <PaintedCoin size={15} /> {chosen.cost.toLocaleString(locale)}
+                </button>
+                {n > free ? <p className="hp-short">{t('home.exp.busy')}</p> : coins < chosen.cost ? <p className="hp-short">{t('home.exp.noCoins')}</p> : null}
+              </div>
+            </>
+          )}
+        </div>
+      </motion.div>
+    </>
+  )
+}
+
+/** "29 🪨 · 14 🪵": a haul as numbers and icons, for the small "up to" line. */
+const listNumbers = (m: Materials, locale: string) =>
+  MATERIALS.filter((k) => m[k])
+    .map((k) => `${m[k]!.toLocaleString(locale)} ${MATERIAL_INFO[k].icon}`)
+    .join(' · ')
+
+/** The team is back: its loot, big, counting up. */
+function LootCard({ loot, onClose }: { loot: Loot; onClose: () => void }) {
+  const t = useT()
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+  return (
+    <>
+      <motion.div className="hp-scrim top" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+      <motion.div className="hp-scroll xl" style={{ backgroundImage: PARCHMENT }} initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1, transition: spring.bouncy }} exit={{ scale: 0.9, opacity: 0 }} role="dialog">
+        <span className={`xs-seal big ${loot.dest}`}>{DEST_ICON[loot.dest]}</span>
+        <h3>{t('home.exp.lootTitle')}</h3>
+        <p className="hp-scroll-sub">{t('home.exp.lootSub', { count: loot.workers, n: loot.workers, name: t(`home.exp.dest.${loot.dest}.name`) })}</p>
+        <Haul haul={loot.haul} countUp />
+        <p className="xl-names">{listMaterials(loot.haul)}</p>
+        <div className="hp-sheet-btns">
+          <button className="hp-btn gold big" onClick={onClose}>
+            {t('home.exp.lootDone')}
+          </button>
+        </div>
+      </motion.div>
+    </>
   )
 }
 

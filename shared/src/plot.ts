@@ -12,6 +12,7 @@
 import { NO_MODS, SEVEN_YEARS_MS, type PlotMods } from './skills'
 import type { GiftLog } from './life'
 import type { Bake, Crop, Expedition, Glean } from './farm'
+import type { DayCount, Helper } from './homeLife'
 
 export const MATERIALS = ['wood', 'bricks', 'stone', 'wool', 'oil', 'cedar', 'gold', 'barley', 'wheat', 'bread', 'copper'] as const
 export type Material = (typeof MATERIALS)[number]
@@ -40,8 +41,8 @@ export const sellable = (m: Material) => MATERIAL_INFO[m].sell > 0
 
 export const FIELD_IDS = ['field1', 'field2', 'field3', 'field4', 'field5', 'field6'] as const
 export type FieldId = (typeof FIELD_IDS)[number]
-/** The homestead's nine spots (the Bakehouse on the old courtyard), then the valley: the threshing floor and six fields. */
-export const BUILDING_IDS = ['house', 'well', 'wall', 'store', 'workshop', 'fold', 'grove', 'kiln', 'bake', 'thresh', ...FIELD_IDS] as const
+/** The homestead's ten spots (the Bakehouse on the old courtyard, the Stable by the gate), then the valley: the threshing floor and six fields. */
+export const BUILDING_IDS = ['house', 'well', 'wall', 'store', 'workshop', 'fold', 'grove', 'kiln', 'bake', 'stable', 'thresh', ...FIELD_IDS] as const
 export type BuildingId = (typeof BUILDING_IDS)[number]
 export const isField = (b: BuildingId): b is FieldId => (FIELD_IDS as readonly string[]).includes(b)
 
@@ -66,6 +67,8 @@ export interface LevelDef {
   grainBonus?: number
   /** Bakehouse: grain per batch, its wood (per 10 grain) and baking time. */
   batch?: { grain: number; minutes: number }
+  /** Stable: the pack animals carry this share more home from every expedition (shared/src/farm.ts). */
+  pack?: number
 }
 
 export interface BuildingDef {
@@ -213,6 +216,18 @@ export const BUILDINGS: Record<BuildingId, BuildingDef> = {
       L('Donkey mill', '🍞', { stone: 80, cedar: 10, wool: 10, bread: 40 }, 20 * H, { house: 6 }, { batch: { grain: 80, minutes: 4 * H } }),
     ],
   },
+  stable: {
+    id: 'stable',
+    name: 'Stable',
+    what: 'Donkeys and camels for your workers. With pack animals every team brings more home; the animals eat barley on the road.',
+    verse: 'Gen 24:10',
+    levels: [
+      L('Donkey and manger', '🐴', { wood: 20, bricks: 10 }, 1 * H, { house: 4 }, { pack: 0.15 }),
+      L('Two donkeys', '🐴', { wood: 40, stone: 20, barley: 20 }, 4 * H, { house: 5 }, { pack: 0.3 }),
+      L('Camel shed', '🐪', { stone: 50, wood: 40, wool: 10, bread: 20 }, 10 * H, { house: 6 }, { pack: 0.5 }),
+      L('Caravan yard', '🐪', { stone: 100, cedar: 10, copper: 8, bread: 30 }, 24 * H, { house: 7 }, { pack: 0.75 }),
+    ],
+  },
   thresh: {
     id: 'thresh',
     name: 'Threshing floor',
@@ -263,8 +278,8 @@ function fields(): Record<FieldId, BuildingDef> {
   ) as Record<FieldId, BuildingDef>
 }
 
-/** The homestead's nine fixed spots, row by row (docs/jerusalem-plot.md §2). The Bakehouse stands on the old courtyard. */
-export const SPOTS = ['grove', 'house', 'store', 'fold', 'bake', 'well', 'workshop', 'kiln', 'wall'] as const
+/** The homestead's ten fixed spots, row by row (docs/jerusalem-plot.md §2). The Bakehouse stands on the old courtyard, the Stable inside the gate. */
+export const SPOTS = ['grove', 'house', 'store', 'fold', 'bake', 'well', 'workshop', 'kiln', 'stable', 'wall'] as const
 export type YardSpot = (typeof SPOTS)[number]
 /** The valley's buildings (the Fields scene). */
 export const VALLEY: readonly BuildingId[] = ['thresh', ...FIELD_IDS]
@@ -323,6 +338,13 @@ export interface PlotState {
   gleaned?: Glean
   /** Existing homesteads (House 3+) got Field 1 cleared and sown once, at launch. */
   fieldGift?: boolean
+  // Round the homestead (shared/src/homeLife.ts):
+  /** The UTC day the lost sheep was last found. */
+  sheepDay?: number
+  /** Hands this plot's owner lent elsewhere today / hands lent here today, and who lent them lately. */
+  help?: DayCount
+  helped?: DayCount
+  helpers?: Helper[]
 }
 
 export const modsOf = (s: Pick<PlotState, 'mods'>): PlotMods => s.mods ?? NO_MODS

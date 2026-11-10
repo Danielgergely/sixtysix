@@ -5,6 +5,7 @@ import {
   type BuildingId,
   type CropId,
   type DestinationId,
+  type TripId,
   type FieldId,
   type GiftFigure,
   type Material,
@@ -83,10 +84,22 @@ export interface ScrollRound {
   result?: ScrollResult
 }
 
+/** Raiders in a field, or a hand lent to a neighbour: the questions, then how they went (shared/src/homeLife.ts). */
+export interface Challenge {
+  kind: 'raid' | 'help'
+  id: string
+  /** The raided field, or the neighbour's username. */
+  field?: FieldId
+  username?: string
+  questions: ScrollQuestion[]
+  result?: { right: number; correct: number[]; lost?: number; collected?: Materials; cutMs?: number; building?: BuildingId }
+}
+
 /** A team about to set out: its road questions, then how they went. */
 export interface RoadRound {
   id: string
   dest: DestinationId
+  trip: TripId
   workers: number
   questions: ScrollQuestion[]
   result?: { right: number; correct: number[] }
@@ -135,9 +148,17 @@ interface PlotStore {
   feedFold: (buyMissing: boolean) => Promise<boolean>
   feedBuilders: (b: BuildingId, buyMissing: boolean) => Promise<number | null>
   /** Road questions for a team; then `setOut` with the answers (−1 = skipped). */
-  startRoad: (dest: DestinationId, workers: number) => Promise<void>
+  startRoad: (dest: DestinationId, workers: number, trip?: TripId) => Promise<boolean>
   setOut: (answers: number[], buyMissing: boolean) => Promise<boolean>
   closeRoad: () => void
+  /** Raiders at harvest and lending a hand: the questions, the answers, closing the sheet. */
+  challenge: Challenge | null
+  startRaid: (field: FieldId) => Promise<void>
+  startHelp: (username: string) => Promise<string | null>
+  answerChallenge: (answers: number[]) => Promise<boolean>
+  closeChallenge: () => void
+  /** The lost sheep, found. */
+  findSheep: () => Promise<Materials | null>
   unload: (id: string) => Promise<Materials | null>
   /** Glean in someone else's fields (the Visit screen): what you got, or the error. */
   glean: (username: string) => Promise<{ got: Materials } | { error: string }>
@@ -177,6 +198,7 @@ export const usePlotStore = create<PlotStore>((set, get) => {
     selected: null,
     scroll: null,
     road: null,
+    challenge: null,
     view: 'yard',
     marketBack: null,
 
@@ -276,10 +298,11 @@ export const usePlotStore = create<PlotStore>((set, get) => {
       return res ? res.cutMs : null
     },
 
-    startRoad: async (dest, workers) => {
+    startRoad: async (dest, workers, trip = 'short') => {
       set({ busy: true })
-      const res = take(await call<{ roadId: string; questions: ScrollQuestion[] }>('/expedition', { dest, workers, locale: useLocale.getState().locale }))
-      if (res) set({ road: { id: res.roadId, dest, workers, questions: res.questions } })
+      const res = take(await call<{ roadId: string; questions: ScrollQuestion[] }>('/expedition', { dest, trip, workers, locale: useLocale.getState().locale }))
+      if (res) set({ road: { id: res.roadId, dest, trip, workers, questions: res.questions } })
+      return !!res
     },
 
     setOut: async (answers, buyMissing) => {
@@ -292,6 +315,42 @@ export const usePlotStore = create<PlotStore>((set, get) => {
     },
 
     closeRoad: () => set({ road: null }),
+
+    startRaid: async (field) => {
+      set({ busy: true })
+      const res = take(await call<{ raidId: string; questions: ScrollQuestion[] }>('/raid', { field, locale: useLocale.getState().locale }))
+      if (res) set({ challenge: { kind: 'raid', id: res.raidId, field, questions: res.questions }, selected: null })
+    },
+
+    // On someone else's homestead: errors come back as text for the Visit screen, not into the plot's error line.
+    startHelp: async (username) => {
+      const res = await call<{ helpId: string; questions: ScrollQuestion[] }>('/help', { username, locale: useLocale.getState().locale })
+      if (!res.ok) return res.error
+      set({ challenge: { kind: 'help', id: res.helpId, username, questions: res.questions }, error: '' })
+      return null
+    },
+
+    answerChallenge: async (answers) => {
+      const ch = get().challenge
+      if (!ch) return false
+      set({ busy: true })
+      const res = take(
+        ch.kind === 'raid'
+          ? await call<{ right: number; correct: number[]; lost: number; collected: Materials }>('/raid/answer', { raidId: ch.id, answers })
+          : await call<{ right: boolean; correct: number; cutMs: number; building?: BuildingId; collected: Materials }>('/help/answer', { helpId: ch.id, answer: answers[0] }),
+      )
+      if (!res) return false
+      const result = 'lost' in res ? { right: res.right, correct: res.correct, lost: res.lost, collected: res.collected } : { right: res.right ? 1 : 0, correct: [res.correct], cutMs: res.cutMs, building: res.building, collected: res.collected }
+      set({ challenge: { ...ch, result } })
+      return true
+    },
+
+    closeChallenge: () => set({ challenge: null }),
+
+    findSheep: async () => {
+      const res = take(await call<{ collected: Materials }>('/sheep', {}))
+      return res ? res.collected : null
+    },
 
     unload: async (id) => {
       set({ busy: true })
@@ -331,5 +390,5 @@ export const usePlotStore = create<PlotStore>((set, get) => {
 // Another account (or a sign-out) on this device: drop the previous player's plot.
 useAccountStore.subscribe((s, prev) => {
   if (s.account?.username === prev.account?.username) return
-  usePlotStore.setState({ plot: null, home: null, scroll: null, road: null, selected: null, view: 'yard', error: '', toast: null, seen: loadSeen() })
+  usePlotStore.setState({ plot: null, home: null, scroll: null, road: null, challenge: null, selected: null, view: 'yard', error: '', toast: null, seen: loadSeen() })
 })

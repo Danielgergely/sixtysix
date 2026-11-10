@@ -88,6 +88,13 @@ B = {
   ({'bricks': 60, 'stone': 40, 'wood': 10, 'bread': 20}, 10, {'house': 5}, {'bake': (40, 3)}),
   ({'stone': 80, 'cedar': 10, 'wool': 10, 'bread': 40}, 20, {'house': 6}, {'bake': (80, 4)}),
  ],
+ # The Stable: 'pack' = the share more a team brings home from an expedition (the sim sends no teams).
+ 'stable': [
+  ({'wood': 20, 'bricks': 10}, 1, {'house': 4}, {'pack': 0.15}),
+  ({'wood': 40, 'stone': 20, 'barley': 20}, 4, {'house': 5}, {'pack': 0.3}),
+  ({'stone': 50, 'wood': 40, 'wool': 10, 'bread': 20}, 10, {'house': 6}, {'pack': 0.5}),
+  ({'stone': 100, 'cedar': 10, 'copper': 8, 'bread': 30}, 24, {'house': 7}, {'pack': 0.75}),
+ ],
  'thresh': [
   ({}, 0, {'field1': 1}, {'grain': 0}),
   ({'stone': 30, 'wood': 20}, 4, {'house': 4}, {'grain': 0.1}),

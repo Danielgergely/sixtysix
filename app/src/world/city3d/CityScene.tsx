@@ -33,7 +33,8 @@ import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type
 import { buildCity, type LandmarkSpot } from './buildings'
 import { configureRig, useDisposeOnUnmount } from './rig'
 import { lotFenceGeometries } from './fence'
-import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
+import { freeLotGeometry, houseGeometries, pennantGeometry, signPostGeometry, weedGeometry } from './houses'
+import { placeSpots } from './places'
 import { HOUSE_YARD } from './models'
 import { C } from './palette'
 import { HOUSE_SCALE, LOT_HALF } from './plan'
@@ -146,7 +147,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const houseGeo = useMemo(() => houseGeometries(), [])
   // The family's fence or wall round its yard (My Home's wall level), one merged ring per level.
   const fenceGeo = useMemo(() => lotFenceGeometries(), [])
-  const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry() }), [])
+  const lotGeo = useMemo(() => ({ free: freeLotGeometry(), weed: weedGeometry(), post: signPostGeometry(), pennant: pennantGeometry() }), [])
   // One material for good: a new one would make R3F rebuild the boards' instanced mesh (and lose its instances).
   const signMat = useMemo(() => new MeshLambertMaterial(), [])
   // The board's words, painted again when the language changes; the old painting is let go.
@@ -233,6 +234,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const faceMesh = useRef<InstancedMesh>(null)
   const hitMesh = useRef<InstancedMesh>(null)
   const contactMesh = useRef<InstancedMesh>(null)
+  const pennantMesh = useRef<InstancedMesh>(null)
 
   // Only the instances in view are drawn (cull.ts), on the frames drawn anyway.
   const culler = useMemo(() => new InstanceCuller(), [])
@@ -248,6 +250,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     const contacts: Matrix4[] = []
     const glows: Matrix4[] = []
     const flames: Matrix4[] = []
+    const pennants: Matrix4[] = []
     const o = new Object3D()
     LOTS.forEach((l, i) => {
       const n = i + 1
@@ -281,6 +284,11 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const [fx, fz] = [x + Math.sin(turn) * half * 0.55 + Math.cos(turn) * half * 0.5, z + Math.cos(turn) * half * 0.55 - Math.sin(turn) * half * 0.5]
       glows.push(new Matrix4().compose(new Vector3(x, y + 0.1, z).addScaledVector(slope, 0.04), new Quaternion().setFromUnitVectors(up, slope), new Vector3(side * 1.25, 1, side * 1.25)))
       flames.push(new Matrix4().compose(new Vector3(fx, y + 1.5, fz), new Quaternion(), new Vector3(1, 1, 1)))
+      // A duel won in the last day (/api/city `duelWin`): a pennant at the yard's back corner, flying towards the house.
+      if (r.duelWin) {
+        const [bx, bz] = [x - Math.cos(turn) * half * 0.86 - Math.sin(turn) * half * 0.86, z + Math.sin(turn) * half * 0.86 - Math.cos(turn) * half * 0.86]
+        pennants.push(new Matrix4().compose(new Vector3(bx, y, bz), new Quaternion().setFromAxisAngle(up, turn), new Vector3(HOUSE_SCALE, HOUSE_SCALE, HOUSE_SCALE)))
+      }
       const wall = Math.min(fenceGeo.length, r.wall ?? 0)
       if (wall > 0) {
         const k = (HOUSE_YARD[level] / 7) * HOUSE_SCALE
@@ -306,7 +314,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
         signs.push(new Matrix4().compose(new Vector3(sx, heightAt(sx, sz), sz), new Quaternion(), new Vector3(HOUSE_SCALE, HOUSE_SCALE, HOUSE_SCALE)))
       }
     })
-    return { perLevel, perWall, free, weeds, signs, contacts, glows, flames }
+    return { perLevel, perWall, free, weeds, signs, contacts, glows, flames, pennants }
   }, [byLot, houseGeo, fenceGeo, me])
 
   // Write the instances.
@@ -331,6 +339,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     set(contactMesh.current, layout.contacts)
     set(glowMesh.current, layout.glows)
     set(flameMesh.current, layout.flames)
+    set(pennantMesh.current, layout.pennants)
     gl.shadowMap.needsUpdate = true
     invalidate()
   }, [layout, gl, invalidate, culler])
@@ -372,6 +381,19 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       }),
     [city],
   )
+  // The scroll hunt's other places (places.ts): the Porch, the Antonia, the pen, the plain gates, every tower.
+  const placeHits = useMemo(
+    () =>
+      placeSpots().map((p) => {
+        const m = new Mesh(new BoxGeometry(p.hw * 2, p.top - p.y + 1, p.hd * 2), new MeshBasicMaterial())
+        m.position.set(p.x, (p.top + p.y) / 2 - 0.5, p.z)
+        m.rotation.y = p.ry
+        m.updateMatrixWorld()
+        m.userData.place = p.id
+        return m
+      }),
+    [],
+  )
 
   useEffect(() => {
     const ray = new Raycaster()
@@ -379,17 +401,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     bridge.pickScene = (x, y) => {
       v.set((x / size.width) * 2 - 1, -(y / size.height) * 2 + 1)
       ray.setFromCamera(v, camera)
-      const hits = [...(hitMesh.current ? ray.intersectObject(hitMesh.current) : []), ...ray.intersectObjects(landmarkHits)]
+      const hits = [...(hitMesh.current ? ray.intersectObject(hitMesh.current) : []), ...ray.intersectObjects(landmarkHits), ...ray.intersectObjects(placeHits)]
       hits.sort((a, b) => a.distance - b.distance)
       const h = hits[0]
       if (!h) return null
       if (h.object.userData.landmark) return { kind: 'landmark', id: h.object.userData.landmark as string }
+      if (h.object.userData.place) return { kind: 'place', id: h.object.userData.place as string }
       return h.instanceId != null ? { kind: 'lot', n: h.instanceId + 1 } : null
     }
     return () => {
       bridge.pickScene = null
     }
-  }, [bridge, camera, size, landmarkHits])
+  }, [bridge, camera, size, landmarkHits, placeHits])
 
   // ── Trees ──
   const oliveMesh = useRef<InstancedMesh>(null)
@@ -658,6 +681,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       <instancedMesh ref={weedMesh} args={[lotGeo.weed, statics.plainMat, LOTS.length * 12]} count={0} />
       <instancedMesh ref={postMesh} args={[lotGeo.post, statics.plainMat, LOTS.length]} count={0} castShadow />
       <instancedMesh ref={faceMesh} args={[signFace, signMat, LOTS.length]} count={0} />
+      <instancedMesh ref={pennantMesh} args={[lotGeo.pennant, statics.plainMat, LOTS.length]} count={0} castShadow />
       {/* Invisible, but three only ray-tests meshes that have a material. */}
       <instancedMesh ref={hitMesh} args={[hitGeo, hitMat, LOTS.length]} visible={false} />
 

@@ -56,10 +56,21 @@ function PayButton({ cost, label, disabled, run, className = 'hp-btn small gold'
 /** What grows on a field, and the buttons to sow or bring it in. */
 export function CropPanel({ field, plot, now }: { field: FieldId; plot: PlotState; now: number }) {
   const t = useT()
-  const { sow, harvest, say } = usePlotStore()
+  const { sow, harvest, say, startRaid, busy } = usePlotStore()
   const crop = plot.crops?.[field]
   if (crop) {
     const ripe = crop.readyAt <= now
+    // Raiders in the ripe field (shared/src/homeLife.ts): they are driven off with questions, then it is brought in.
+    if (ripe && crop.raid) {
+      return (
+        <div className="hp-row-box hp-crop hp-raid">
+          <span>{t('home.round.raidWhat')}</span>
+          <button className="hp-btn gold" disabled={busy} onClick={() => void startRaid(field)}>
+            {t('home.round.raidDrive')}
+          </button>
+        </div>
+      )
+    }
     return (
       <div className="hp-row-box hp-crop">
         <span>

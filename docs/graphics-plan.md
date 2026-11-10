@@ -13,8 +13,9 @@ run (desktop Chrome, an empty local city) and a read of the 3D code.
 - **Frames on demand stay.** The city and the yard draw only when the camera
   moves or someone walks (CLAUDE.md, "Frames in both 3D scenes"). No effect may
   ask for frames of its own: no swaying trees, no full-screen post-processing.
-- **My Home stays painted.** The 3D yard is opt-in and only inherits what the
-  shared models gain.
+- **My Home** was painted when this plan was written; since 2026-11-10 it is
+  drawn in 3D in the city's manner by default (see Status), the painting is
+  the fallback.
 - The target is a mid-range phone.
 
 ## Baseline (measured)
@@ -154,3 +155,10 @@ is 506 KB. It draws at full rate behind the start, pause and end cards.
   a three upgrade. The walkers' new shader has not been seen in My Home's 3D
   yard with figures in it. After a deploy, check with `curl -I` that the proxy
   passes `Cache-Control`, `Vary` and `Content-Encoding` through.
+- My Home in 3D (2026-11-10, at the owner's request after the city's new
+  look): the default view. It has the city's sky, time of day, quality tier,
+  ground grain, contact shade and lamps; the six fields and the threshing
+  floor lie outside the fence with their crops (`fields3d.ts`); new models
+  for the Stable, the Bakehouse and the threshing floor; things standing
+  about the yard by house level; cloud shadows and birds as CSS over the
+  canvas. Seen in desktop Chrome at phone and desktop sizes only.

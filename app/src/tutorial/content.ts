@@ -1,4 +1,4 @@
-import { EXODUS_REWARDS, FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, MOVE_COST, QUESTION_TIME_MS, RESPEC_COST, IDLE_DAYS } from '@sixtysix/shared'
+import { DUEL_EXPIRE_MS, DUEL_QUESTIONS, DUEL_STAKES, DAY_MS, EXODUS_REWARDS, HUNT_REWARD, HUNT_SCROLLS, FLOCK_MAX_LAPS, FLOCK_TWO_WOLVES_FROM, MOVE_COST, QUESTION_TIME_MS, RESPEC_COST, IDLE_DAYS } from '@sixtysix/shared'
 import type { Vars } from '../i18n'
 
 /**
@@ -30,7 +30,7 @@ export interface Guide {
 
 const SECS = QUESTION_TIME_MS / 1000
 
-export type GuideId = 'blitz' | 'arena' | 'daily' | 'practice' | 'exodus' | 'flock' | 'spies' | 'mission' | 'home' | 'city' | 'skills' | 'looks'
+export type GuideId = 'blitz' | 'arena' | 'daily' | 'practice' | 'exodus' | 'flock' | 'spies' | 'mission' | 'home' | 'city' | 'hunt' | 'duel' | 'skills' | 'looks'
 
 export const GUIDES: Record<GuideId, Guide> = {
   blitz: { icon: '🏇', cards: [{ icon: '🏇' }, { icon: '⚡' }, { icon: '🎁' }] },
@@ -74,6 +74,15 @@ export const GUIDES: Record<GuideId, Guide> = {
       { icon: '🚚', target: 'city-free', vars: { outer: MOVE_COST.outer, inner: MOVE_COST.inner } },
     ],
   },
+  hunt: { icon: '📜', cards: [{ icon: '📜', vars: { n: HUNT_SCROLLS } }, { icon: '👆' }, { icon: '🧱', vars: { n: HUNT_REWARD.amount } }] },
+  duel: {
+    icon: '⚔️',
+    cards: [
+      { icon: '⚔️', vars: { low: DUEL_STAKES[0], high: DUEL_STAKES[DUEL_STAKES.length - 1] } },
+      { icon: '⏱️', vars: { n: DUEL_QUESTIONS, secs: SECS } },
+      { icon: '👑', vars: { days: DUEL_EXPIRE_MS / DAY_MS } },
+    ],
+  },
   skills: { icon: '🌳', cards: [{ icon: '⭐' }, { icon: '🌳' }, { icon: '🔁', vars: { coins: RESPEC_COST } }] },
   looks: { icon: '🎨', cards: [{ icon: '🎨' }] },
 }
@@ -81,7 +90,7 @@ export const GUIDES: Record<GuideId, Guide> = {
 export const guide = (id: GuideId): Guide => GUIDES[id]
 
 /** The order of the Profile → How to play list. */
-export const GUIDE_ORDER: GuideId[] = ['blitz', 'arena', 'daily', 'practice', 'exodus', 'flock', 'spies', 'mission', 'home', 'city', 'skills', 'looks']
+export const GUIDE_ORDER: GuideId[] = ['blitz', 'arena', 'daily', 'practice', 'exodus', 'flock', 'spies', 'mission', 'home', 'city', 'hunt', 'duel', 'skills', 'looks']
 
 /** One-time hints (`<Hint id>`); texts: tutorial.hints.<id>. Listed so the i18n keys stay complete. */
 export const HINT_IDS = ['daily', 'wall', 'siege', 'nehemiah', 'tie'] as const

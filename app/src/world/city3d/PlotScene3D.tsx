@@ -13,28 +13,41 @@ import {
   MeshBasicMaterial,
   MeshLambertMaterial,
   Object3D,
+  PlaneGeometry,
+  Quaternion,
+  Matrix4,
   Raycaster,
   RingGeometry,
   Vector2,
   Vector3,
 } from 'three'
-import { idleStage, SPOTS, type BuildingId } from '@sixtysix/shared'
+import { FIELD_IDS, idleStage, SPOTS, type BuildingId } from '@sixtysix/shared'
 import type { Actor } from '../life/sim'
 import type { Bridge, LabelSpec } from './bridge'
 import { FENCE_PIECES, fenceParts, pieceGeometry, type FencePiece } from './fence'
-import { blob, buildingGeometry, FOOTPRINT, scaffoldGeometry, topOf, type Spot } from './models'
-import { bushGeometry, FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, grassTuftGeometry, NAMES_AT, placeYardGreens, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D } from './plotSpace'
+import { blob, buildingGeometry, FOOTPRINT, scaffoldGeometry, sheepGeometry, threshGeometry, topOf, type Spot } from './models'
+import { SHEEP_PLACES } from '../sheepPlaces'
+import { DAYLIGHT, forcedPeriod, periodAt, untilNextPeriod } from './daylight'
+import { earGeometry, FIELD_3D, FIELD_D, FIELD_W, fieldBedGeometry, MAX_EARS, MAX_ROWS, placeCrops, raidersGeometry, rowGeometry, THRESH_3D, THRESH_R, type BedCrop } from './fields3d'
+import { gfxTier, QUALITY } from './quality'
+import { CITY_SKY, setSky, skyDome, type SkyMesh } from './sky'
+import { groundMaterial } from './terrain'
+import { bushGeometry, FENCE_CORNERS, FENCE_PATHS, FIG_UNITS, grassTuftGeometry, NAMES_AT, placeYardGreens, placeYardWeeds, groundAt, groundGeometry, groundTexture, placeYardTrees, PLOT_MIN_DIST, PLOT_START_POLAR, plotMaxDist, plotStartDist, PX, R, SPOT_3D, TOWER, YARD_3D, GROUND, yardPropsGeometry } from './plotSpace'
 import { configureRig, useDisposeOnUnmount } from './rig'
 import { weedGeometry } from './houses'
 import { Geo, setInstances } from './geo'
 import { C } from './palette'
-import { plasterTexture, stoneTexture } from './textures'
+import { contactTexture, glowTexture, groundDetailTexture, plasterTexture, stoneTexture } from './textures'
 import { Townsfolk3D, type FolkSpace } from './Townsfolk3D'
 import { cypressGeometry, oliveGeometry } from './trees'
 
 /**
- * My Home in 3D, inside the <Canvas>: the ground with the yard and its paths,
- * the nine spots (models.ts, shared with the city), scaffolding round what is
+ * My Home in 3D, inside the <Canvas>, in the city's manner (its sky, its light
+ * by the time of day, baked shade, a soft shade under every building, lamps
+ * at night): the ground with the yard and its paths, the yard's spots
+ * (models.ts, shared with the city), the things standing about it, the six
+ * fields and the threshing floor outside the fence with what grows on them
+ * (fields3d.ts), scaffolding round what is
  * being built and a little burst when it is finished, the fence of the wall
  * level (instanced, one draw call per kind of piece), olive trees round the
  * homestead, the yard's people and animals (Townsfolk3D on PlotLife's paths),
@@ -58,6 +71,10 @@ interface Props {
   still: boolean
   /** Days the family has been away: weeds at 20 and 40 (shared/src/city.ts idleStage). */
   idleDays: number
+  /** What grows on the six fields, comma separated ('' nothing, shoots, barley, wheat): a string, so it only changes when a bed does. */
+  crops: string
+  /** Today's lost sheep: an index into SHEEP_PLACES (undefined: none to find). */
+  sheep?: number
 }
 
 const easeOutBack = (t: number) => {
@@ -66,19 +83,31 @@ const easeOutBack = (t: number) => {
 }
 
 /** Memoised: Plot3D re-renders every second (countdowns), and fresh array props would make R3F ask for a frame each time. */
-export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels, actors, bridge, still, idleDays }: Props) {
+export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels, actors, bridge, still, idleDays, crops, sheep }: Props) {
   const { gl, scene, camera, invalidate, size } = useThree()
   const controls = useRef<CameraControls>(null)
   useDisposeOnUnmount(scene)
-  const [wide] = useState(() => window.innerWidth > 700)
+  // What this device's tier turns on (quality.ts), and the time of day by the player's clock (daylight.ts), as in the city.
+  const [quality] = useState(() => QUALITY[gfxTier()])
+  const [period, setPeriod] = useState(() => forcedPeriod() ?? periodAt())
+  const light = DAYLIGHT[period]
+  useEffect(() => {
+    if (forcedPeriod()) return
+    const id = window.setTimeout(() => setPeriod(periodAt()), untilNextPeriod() + 500)
+    return () => window.clearTimeout(id)
+  }, [period])
 
   const mats = useMemo(
     () => ({
       plain: new MeshLambertMaterial({ vertexColors: true, map: plasterTexture() }),
       stone: new MeshLambertMaterial({ vertexColors: true, map: stoneTexture() }),
-      ground: new MeshLambertMaterial({ map: groundTexture(gl.capabilities.maxTextureSize >= 2048 && wide ? 2048 : 1024) }),
+      crop: new MeshLambertMaterial({ vertexColors: true }),
+      ground: (() => {
+        const painting = groundTexture(gl.capabilities.maxTextureSize >= 2048 ? 2048 : 1024)
+        return quality.grain ? groundMaterial(painting, groundDetailTexture(), GROUND) : new MeshLambertMaterial({ map: painting })
+      })(),
     }),
-    [gl, wide],
+    [gl, quality],
   )
   const ground = useMemo(() => groundGeometry(), [])
   const trees = useMemo(() => placeYardTrees(), [])
@@ -89,12 +118,33 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   useLayoutEffect(() => {
     // Dev only: tests read the renderer's stats through this.
     if (import.meta.env.DEV) Object.assign(window, { __plot3dGl: gl, __plot3dScene: scene })
-    // A warm, green-gold haze over the hills (the painting's distance), not a pale sky.
-    scene.background = new Color('#c9bd82')
-    scene.fog = new Fog('#c9bd82', 90, 220)
+    // The city's sky (sky.ts): its haze at the horizon is the fog's colour, so the hills melt into it.
+    const sky = skyDome({ radius: 500 })
+    skyRef.current = sky
+    scene.add(sky)
+    scene.fog = new Fog(CITY_SKY.haze, 90, 220)
     gl.shadowMap.autoUpdate = false
     gl.shadowMap.needsUpdate = true
+    return () => {
+      scene.remove(sky)
+      sky.geometry.dispose()
+      sky.material.dispose()
+      skyRef.current = null
+    }
   }, [scene, gl])
+
+  // The time of day: sky, haze and lamps take its colours, and the shadow is drawn again.
+  const skyRef = useRef<SkyMesh | null>(null)
+  const lampMat = useMemo(() => new MeshBasicMaterial({ map: glowTexture(), transparent: true, depthWrite: false, blending: AdditiveBlending, opacity: 0, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }), [])
+  useLayoutEffect(() => {
+    const sky = skyRef.current
+    if (sky) setSky(sky, { ...CITY_SKY, ...light.sky, haze: light.haze, sunDir: light.sun })
+    ;(scene.fog as Fog | null)?.color.set(light.haze)
+    lampMat.opacity = light.lamps
+    gl.shadowMap.needsUpdate = true
+    invalidate()
+  }, [light, scene, gl, lampMat, invalidate])
+  const sunAt = useMemo(() => new Vector3(...light.sun).normalize().multiplyScalar(130).toArray(), [light])
 
   // ── The spots ──
   const groups = useRef<Partial<Record<Spot, Group | null>>>({})
@@ -142,6 +192,13 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   const dust = useRef<InstancedMesh>(null)
   const DUST = 12
 
+  // Today's lost sheep, standing in the hills.
+  const sheepAt = useMemo<[number, number, number] | null>(() => {
+    const p = sheep === undefined ? undefined : SHEEP_PLACES[sheep]
+    return p ? [p[0], groundAt(p[0], p[1]), p[1]] : null
+  }, [sheep])
+  useEffect(() => invalidate(), [sheepAt, invalidate])
+
   // ── Tap boxes ──
   const hits = useMemo(
     () =>
@@ -155,9 +212,95 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
         m.updateMatrixWorld()
         m.userData.spot = spot
         return m
-      }),
-    [models],
+      }).concat(
+        [...FIELD_IDS, 'thresh' as const].map((id) => {
+          const floor = id === 'thresh'
+          const at = floor ? THRESH_3D : FIELD_3D[id]
+          const m = new Mesh(new BoxGeometry(floor ? THRESH_R * 2 : FIELD_W, 2, floor ? THRESH_R * 2 : FIELD_D), new MeshBasicMaterial())
+          m.position.set(at.x, 1, at.z)
+          m.updateMatrixWorld()
+          m.userData.spot = id
+          return m
+        }),
+        // The lost sheep: a generous box, so a thumb finds it.
+        sheepAt
+          ? [
+              (() => {
+                const m = new Mesh(new BoxGeometry(4, 4, 4), new MeshBasicMaterial())
+                m.position.set(sheepAt[0], sheepAt[1] + 1.5, sheepAt[2])
+                m.updateMatrixWorld()
+                m.userData.spot = 'sheep'
+                return m
+              })(),
+            ]
+          : [],
+      ),
+    [models, sheepAt],
   )
+
+  // ── The fields and the threshing floor, outside the fence ──
+  const fieldKey = FIELD_IDS.map((f) => levels[f]).join(',')
+  const beds = useMemo(() => {
+    // A '!' after the crop: raiders are camped by that bed.
+    const grown = crops.split(',')
+    return FIELD_IDS.map((f, i) => ({ id: f, level: levels[f], crop: (grown[i] ?? '').replace('!', '') as BedCrop, raid: (grown[i] ?? '').endsWith('!') }))
+  }, [fieldKey, crops]) // eslint-disable-line react-hooks/exhaustive-deps
+  const cropGeo = useMemo(() => ({ row: rowGeometry(), ear: earGeometry() }), [])
+  const rowMesh = useRef<InstancedMesh>(null)
+  const earMesh = useRef<InstancedMesh>(null)
+  const campMesh = useRef<InstancedMesh>(null)
+  const campGeo = useMemo(() => raidersGeometry(), [])
+  useLayoutEffect(() => {
+    const set = placeCrops(beds)
+    if (rowMesh.current) setInstances(rowMesh.current, set.rows.m, set.rows.c)
+    if (earMesh.current) setInstances(earMesh.current, set.ears.m, set.ears.c)
+    if (campMesh.current)
+      setInstances(
+        campMesh.current,
+        beds.filter((b) => b.raid).map((b) => new Matrix4().makeTranslation(FIELD_3D[b.id].x - FIELD_W / 2 + 3, 0, FIELD_3D[b.id].z + FIELD_D / 2 + 2.2)),
+      )
+    gl.shadowMap.needsUpdate = true
+    invalidate()
+  }, [beds, gl, invalidate])
+
+  // ── A soft shade on the ground under every building and bed, and a lamp by each door at dusk and at night ──
+  const flatGeo = useMemo(() => new PlaneGeometry(1, 1).rotateX(-Math.PI / 2), [])
+  const contactMat = useMemo(() => new MeshBasicMaterial({ map: contactTexture(), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }), [])
+  const flameMat = useMemo(() => new MeshBasicMaterial({ color: new Color().setRGB(2.2, 0.95, 0.22) }), [])
+  const flameGeo = useMemo(() => new BoxGeometry(0.2, 0.3, 0.2), [])
+  const contactMesh = useRef<InstancedMesh>(null)
+  const glowMesh = useRef<InstancedMesh>(null)
+  const flameMesh = useRef<InstancedMesh>(null)
+  const levelKey = SPOTS.map((s) => levels[s]).join(',')
+  useLayoutEffect(() => {
+    const up = new Vector3(0, 1, 0)
+    const contacts: Matrix4[] = []
+    const glows: Matrix4[] = []
+    const flames: Matrix4[] = []
+    for (const spot of SPOTS) {
+      if (levels[spot] < 1) continue
+      const p = SPOT_3D[spot]
+      const [w, d] = FOOTPRINT[spot]
+      const q = new Quaternion().setFromAxisAngle(up, p.ry)
+      if (spot !== 'wall') contacts.push(new Matrix4().compose(new Vector3(p.x, 0.05, p.z), q, new Vector3(w * 1.35, 1, d * 1.35)))
+      if (spot === 'well' || spot === 'grove' || spot === 'fold') continue
+      // The lamp hangs by the front (+z, turned with the building).
+      const fx = p.x + Math.sin(p.ry) * (d / 2 + 0.5) + Math.cos(p.ry) * (w / 4)
+      const fz = p.z + Math.cos(p.ry) * (d / 2 + 0.5) - Math.sin(p.ry) * (w / 4)
+      glows.push(new Matrix4().compose(new Vector3(fx, 0.09, fz), new Quaternion(), new Vector3(11, 1, 11)))
+      flames.push(new Matrix4().makeTranslation(fx, 1.7, fz))
+    }
+    for (const b of beds) {
+      if (b.level < 1) continue
+      const p = FIELD_3D[b.id]
+      contacts.push(new Matrix4().compose(new Vector3(p.x, 0.04, p.z), new Quaternion(), new Vector3(FIELD_W * 1.22, 1, FIELD_D * 1.3)))
+    }
+    if (contactMesh.current) setInstances(contactMesh.current, contacts)
+    if (glowMesh.current) setInstances(glowMesh.current, glows)
+    if (flameMesh.current) setInstances(flameMesh.current, flames)
+    invalidate()
+  }, [levelKey, beds, invalidate]) // eslint-disable-line react-hooks/exhaustive-deps
+  const props = useMemo(() => yardPropsGeometry(levels.house), [levels.house])
   useEffect(() => {
     const ray = new Raycaster()
     const v = new Vector2()
@@ -238,7 +381,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
     if (!c) return
     bridge.controls = c
     bridge.invalidate = invalidate
-    configureRig(c, { minDist: PLOT_MIN_DIST, maxDist, minPolar: 0.2, maxPolar: 1.15, boundary: [new Vector3(-17, -1, -19), new Vector3(17, 6, 22)] })
+    configureRig(c, { minDist: PLOT_MIN_DIST, maxDist, minPolar: 0.2, maxPolar: 1.18, boundary: [new Vector3(-30, -1, -19), new Vector3(30, 6, 46)] })
     return () => {
       bridge.controls = null
     }
@@ -246,7 +389,7 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
   useEffect(() => {
     const c = controls.current
     if (!c) return
-    const tz = 0.5
+    const tz = 8
     c.setLookAt(0, startDist * Math.cos(PLOT_START_POLAR), tz + startDist * Math.sin(PLOT_START_POLAR), 0, 0, tz, false)
     // The start only matters once.
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -345,20 +488,20 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
 
   return (
     <>
-      {/* The city's light (tone mapped, a warm sun against cool sky light), the sun lower: deeper shadows, like the painting. */}
-      <hemisphereLight args={['#b4cdf0', '#8a6a44', 1.0]} />
+      {/* The city's light by the time of day (tone mapped, a warm sun against cool sky light). */}
+      <hemisphereLight args={[light.skyLight, light.groundLight, light.ambient]} />
       <directionalLight
-        position={[-42, 58, 46]}
-        intensity={3.6}
-        color="#ffe9c4"
+        position={sunAt}
+        intensity={light.sunIntensity}
+        color={light.sunColor}
         castShadow
-        shadow-mapSize={wide ? [2048, 2048] : [1024, 1024]}
-        shadow-camera-left={-R - 8}
-        shadow-camera-right={R + 8}
-        shadow-camera-top={R + 8}
-        shadow-camera-bottom={-R - 8}
+        shadow-mapSize={[quality.shadowSize, quality.shadowSize]}
+        shadow-camera-left={-R - 30}
+        shadow-camera-right={R + 30}
+        shadow-camera-top={R + 30}
+        shadow-camera-bottom={-R - 30}
         shadow-camera-near={10}
-        shadow-camera-far={200}
+        shadow-camera-far={300}
         shadow-bias={-0.0006}
         shadow-normalBias={0.05}
       />
@@ -381,6 +524,22 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
           </group>
         )
       })}
+
+      <mesh geometry={props} material={mats.plain} castShadow receiveShadow />
+
+      {beds.map((b) => (
+        <mesh key={b.id} geometry={fieldBedGeometry(b.level)} material={mats.stone} position={[FIELD_3D[b.id].x, 0, FIELD_3D[b.id].z]} castShadow receiveShadow />
+      ))}
+      <mesh geometry={threshGeometry(levels.thresh)} material={mats.stone} position={[THRESH_3D.x, 0, THRESH_3D.z]} castShadow receiveShadow />
+      <instancedMesh ref={rowMesh} args={[cropGeo.row, mats.crop, MAX_ROWS]} count={0} castShadow receiveShadow frustumCulled={false} />
+      <instancedMesh ref={earMesh} args={[cropGeo.ear, mats.crop, MAX_EARS]} count={0} frustumCulled={false} />
+
+      <instancedMesh ref={campMesh} args={[campGeo, mats.plain, FIELD_IDS.length]} count={0} castShadow frustumCulled={false} />
+      {sheepAt && <mesh geometry={sheepGeometry()} material={mats.plain} position={sheepAt} rotation-y={0.8} scale={1.5} castShadow />}
+
+      <instancedMesh ref={contactMesh} args={[flatGeo, contactMat, 20]} count={0} renderOrder={1} frustumCulled={false} />
+      <instancedMesh ref={glowMesh} args={[flatGeo, lampMat, 12]} count={0} renderOrder={2} visible={light.lamps > 0} frustumCulled={false} />
+      <instancedMesh ref={flameMesh} args={[flameGeo, flameMat, 12]} count={0} visible={light.lamps > 0} frustumCulled={false} />
 
       {fence.map(({ piece, parts }, i) => (
         <instancedMesh

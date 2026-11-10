@@ -20,9 +20,10 @@ export interface LeaderboardData {
 
 /**
  * `lot` is null while the city is full (camping outside the walls); `idleDays` = days since they last played or built;
- * `house`: house level (1 = tent); `wall`: fence & wall level (0 = none; older servers leave it out).
+ * `house`: house level (1 = tent); `wall`: fence & wall level (0 = none; older servers leave it out);
+ * `duelWin`: won a duel in the last day (a pennant flies over the house).
  */
-export type Resident = PublicPlayer & { lot: number | null; idleDays: number; house: number; wall?: number }
+export type Resident = PublicPlayer & { lot: number | null; idleDays: number; house: number; wall?: number; duelWin?: boolean }
 /** `levels` is null until they first open My Home. */
 export type PlayerPage = Resident & { stats: AccountStats; levels: Record<BuildingId, number> | null }
 

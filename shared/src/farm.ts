@@ -72,6 +72,8 @@ export interface Crop {
   sownAt: number
   readyAt: number
   amount: number
+  /** Raiders will be after this harvest when it ripens (shared/src/homeLife.ts); they must be driven off before it is brought in. */
+  raid?: boolean
 }
 
 export const inSeason = (crop: CropId, now: number) => CROPS[crop].seasons.includes(seasonAt(now).season)
@@ -116,6 +118,8 @@ export function harvest(s: PlotState, now: number, only?: FieldId): Materials {
   for (const f of ripeFields(s, now)) {
     if (only && f !== only) continue
     const c = s.crops![f]!
+    // Raiders in the field: they are driven off first (the raid routes), then it is harvested.
+    if (c.raid) continue
     s.inventory[c.crop] += c.amount
     got[c.crop] = (got[c.crop] ?? 0) + c.amount
     delete s.crops![f]
@@ -217,19 +221,20 @@ export function feedBuilders(s: PlotState, b: Build, now: number): number {
 /** Day labourers by house level (Matt 20:1–16): one from House 4, up to four in the House of cedar. */
 export const workersFor = (house: number) => Math.max(0, Math.min(4, house - 3))
 
-export const DESTINATION_IDS = ['quarry', 'copper'] as const
+export const DESTINATION_IDS = ['quarry', 'jordan', 'copper', 'lebanon', 'ophir'] as const
 export type DestinationId = (typeof DESTINATION_IDS)[number]
 export const isDestination = (v: unknown): v is DestinationId => (DESTINATION_IDS as readonly unknown[]).includes(v)
 
 export interface DestinationDef {
+  /** A day's work (the `short` trip); `TRIPS` stretches it. */
   hours: number
   minWorkers: number
   maxWorkers: number
-  /** Packed per worker. */
+  /** Packed per worker on a short trip. */
   provisions: Materials
-  /** Coins per worker ("a denarius a day", Matt 20:2). */
+  /** Coins per worker on a short trip ("a denarius a day", Matt 20:2). */
   wage: number
-  /** Brought home per worker, before the road questions. */
+  /** Brought home per worker from a short trip, before the road questions and the pack animals. */
   haul: Materials
   house: number
   /** The road questions come from this book (its English name in the bank's references). */
@@ -238,13 +243,38 @@ export interface DestinationDef {
 }
 
 /**
- * Where the workers go. Hauls are tuned so quarried stone is a good deal for
- * building but no way to coins: wages and bread cost about what the stone
- * would sell for.
+ * Where the workers go. Hauls are a cheap way to building materials but no
+ * way to coins: a worker's wage is at least what their haul sells for at the
+ * Market with every road question right (`shared/scripts/check-expeditions.mts`
+ * asserts it for every destination, trip and Stable level).
  */
 export const DESTINATIONS: Record<DestinationId, DestinationDef> = {
-  quarry: { hours: 8, minWorkers: 1, maxWorkers: 4, provisions: { bread: 2 }, wage: 15, haul: { stone: 8 }, house: 4, book: '1 Kings', verse: '1 Kgs 5:17' },
-  copper: { hours: 24, minWorkers: 2, maxWorkers: 4, provisions: { bread: 4, oil: 1 }, wage: 20, haul: { copper: 3 }, house: 5, book: 'Deuteronomy', verse: 'Deut 8:9' },
+  quarry: { hours: 7, minWorkers: 1, maxWorkers: 4, provisions: { bread: 2 }, wage: 60, haul: { stone: 20 }, house: 4, book: '1 Kings', verse: '1 Kgs 5:17' },
+  jordan: { hours: 6, minWorkers: 1, maxWorkers: 4, provisions: { bread: 2 }, wage: 45, haul: { bricks: 30 }, house: 4, book: 'Joshua', verse: '1 Kgs 7:46' },
+  copper: { hours: 16, minWorkers: 2, maxWorkers: 4, provisions: { bread: 3, oil: 1 }, wage: 25, haul: { copper: 3 }, house: 5, book: 'Deuteronomy', verse: 'Deut 8:9' },
+  lebanon: { hours: 14, minWorkers: 2, maxWorkers: 4, provisions: { bread: 3, oil: 1 }, wage: 75, haul: { cedar: 2, wood: 10 }, house: 6, book: '1 Kings', verse: '1 Kgs 5:6–9' },
+  ophir: { hours: 24, minWorkers: 3, maxWorkers: 4, provisions: { bread: 6, oil: 2 }, wage: 60, haul: { gold: 1 }, house: 7, book: '2 Chronicles', verse: '1 Kgs 9:26–28' },
+}
+
+/**
+ * How long the team stays: a day's work, a long stay or a great expedition.
+ * Each multiplies the destination's time, haul, wages and provisions; the
+ * longer the stay, the more each worker brings home (and per hour, too).
+ */
+export const TRIP_IDS = ['short', 'long', 'great'] as const
+export type TripId = (typeof TRIP_IDS)[number]
+export const isTrip = (v: unknown): v is TripId => (TRIP_IDS as readonly unknown[]).includes(v)
+export interface TripDef {
+  time: number
+  haul: number
+  /** Wages grow with the haul, so no trip is a way to coins. */
+  pay: number
+  provisions: number
+}
+export const TRIPS: Record<TripId, TripDef> = {
+  short: { time: 1, haul: 1, pay: 1, provisions: 1 },
+  long: { time: 3, haul: 3.5, pay: 3.5, provisions: 2 },
+  great: { time: 7, haul: 9, pay: 9, provisions: 4 },
 }
 
 /** Each road question answered right as the team sets out: +15 % haul. */
@@ -254,6 +284,8 @@ export const ROAD_BONUS = 0.15
 export interface Expedition {
   id: string
   dest: DestinationId
+  /** How long a stay (expeditions stored before trips existed have none: `short`). */
+  trip?: TripId
   workers: number
   startedAt: number
   endsAt: number
@@ -261,16 +293,57 @@ export interface Expedition {
   right: number
   haul: Materials
 }
+export const tripOf = (e: Pick<Expedition, 'trip'>): TripId => e.trip ?? 'short'
 
 export const busyWorkers = (s: PlotState) => (s.expeditions ?? []).reduce((n, e) => n + e.workers, 0)
 export const freeWorkers = (s: PlotState) => workersFor(s.levels.house) - busyWorkers(s)
 
-const times = (m: Materials, k: number): Materials => Object.fromEntries(Object.entries(m).map(([key, v]) => [key, Math.round((v ?? 0) * k)]))
+/** The Stable's pack animals carry this share more home from every expedition (0 without a Stable). */
+export const packShare = (s: Pick<PlotState, 'levels'>) => levelDef('stable', s.levels.stable)?.pack ?? 0
 
-/** What a team needs: provisions, wages, and what it will bring (with `right` road questions). */
-export function expeditionPlan(dest: DestinationId, workers: number, right = 0) {
+/**
+ * Barley the animals eat per unit they carry: what the unit sells for (so
+ * fodder bought at the Market never turns a profit), and a third of the
+ * price for what can't be sold (copper).
+ */
+export const fodderPer = (m: Material) => Math.max(MATERIAL_INFO[m].sell, Math.ceil(MATERIAL_INFO[m].buy / 3))
+
+/** A destination's wage per worker for a trip, in round coins. */
+export const tripWage = (dest: DestinationId, trip: TripId) => Math.ceil((DESTINATIONS[dest].wage * TRIPS[trip].pay) / 5 - 1e-9) * 5
+
+const scaled = (m: Materials, k: number, round: (n: number) => number): Materials =>
+  Object.fromEntries(Object.entries(m).map(([key, v]) => [key, round((v ?? 0) * k)]))
+const down = (n: number) => Math.floor(n + 1e-9)
+const up = (n: number) => Math.ceil(n - 1e-9)
+
+export interface ExpeditionOptions {
+  trip?: TripId
+  /** Road questions answered right. */
+  right?: number
+  /** The Stable's share (`packShare(plot)`). */
+  pack?: number
+}
+
+/**
+ * What a team needs and brings: provisions (bread, oil and, with pack
+ * animals, their barley), wages, and the haul with `right` road questions.
+ * The animals' share and the road bonus add up: haul × (1 + 15 % × right + pack).
+ */
+export function expeditionPlan(dest: DestinationId, workers: number, { trip = 'short', right = 0, pack = 0 }: ExpeditionOptions = {}) {
   const d = DESTINATIONS[dest]
-  return { provisions: times(d.provisions, workers), wages: d.wage * workers, haul: times(d.haul, workers * (1 + ROAD_BONUS * right)), minutes: d.hours * 60 }
+  const tr = TRIPS[trip]
+  const load = workers * tr.haul
+  const fodder = pack > 0 ? up(Object.entries(d.haul).reduce((sum, [m, n]) => sum + (n ?? 0) * load * pack * fodderPer(m as Material), 0)) : 0
+  const provisions = scaled(d.provisions, workers * tr.provisions, up)
+  if (fodder) provisions.barley = (provisions.barley ?? 0) + fodder
+  return {
+    provisions,
+    /** The animals' barley (already in `provisions`). */
+    fodder,
+    wages: tripWage(dest, trip) * workers,
+    haul: scaled(d.haul, load * (1 + ROAD_BONUS * right + pack), down),
+    minutes: Math.round(d.hours * tr.time * 60),
+  }
 }
 
 export type ExpeditionError = 'house' | 'workers' | 'count'

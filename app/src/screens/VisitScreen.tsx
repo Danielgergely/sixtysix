@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AnimatePresence } from 'motion/react'
 import { BUILDING_IDS, IDLE_DAYS, type BuildingId } from '@sixtysix/shared'
 import { useGameStore } from '../game/store'
 import { levelForXp } from '../game/persistence'
@@ -9,6 +10,7 @@ import { useAccountStore } from '../account/accountStore'
 import { usePlotStore } from '../plot/plotStore'
 import { PlotView } from '../world/PlotView'
 import { Top } from './home/parts'
+import { ChallengeSheet } from './home/LifeSheets'
 import { houseName } from './home/plotText'
 
 /** Before their first visit to My Home a player has no plot yet: show a tent on bare ground. */
@@ -21,6 +23,7 @@ export function VisitScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const viewPlayer = useGameStore((s) => s.viewPlayer)
   const t = useT()
+  const challenge = usePlotStore((s) => s.challenge)
   const [player, setPlayer] = useState<PlayerPage | null>(null)
   const [failed, setFailed] = useState(false)
 
@@ -60,9 +63,38 @@ export function VisitScreen() {
           </button>
           <PlotView levels={levels} idleDays={player.idleDays} />
           {levels.field1 > 0 && <Glean username={player.username} />}
+          {player.levels && <Help username={player.username} />}
+          <AnimatePresence>{challenge && <ChallengeSheet key="challenge" />}</AnimatePresence>
           <p className="tab-note">{player.levels ? t('city.visit.drag') : t('city.visit.tent')}</p>
         </>
       )}
+    </div>
+  )
+}
+
+/** Lending a hand (shared/src/homeLife.ts): one question; a right answer takes time off their build and pays a little stone. */
+function Help({ username }: { username: string }) {
+  const t = useT()
+  const me = useAccountStore((s) => s.account?.username)
+  const startHelp = usePlotStore((s) => s.startHelp)
+  const [said, setSaid] = useState('')
+  const [busy, setBusy] = useState(false)
+  if (!me || me === username) return null
+  return (
+    <div className="hp-actions vs-glean">
+      <button
+        className="hp-btn"
+        disabled={busy || !!said}
+        onClick={async () => {
+          setBusy(true)
+          const error = await startHelp(username)
+          setBusy(false)
+          if (error) setSaid(tServer(error))
+        }}
+      >
+        {t('home.round.help')}
+      </button>
+      <small>{said || t('home.round.helpWhat')}</small>
     </div>
   )
 }
