@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   BackSide,
   Color,
@@ -12,6 +12,7 @@ import {
   Matrix4,
   Mesh,
   MeshBasicMaterial,
+  MeshDepthMaterial,
   OctahedronGeometry,
   PerspectiveCamera,
   PlaneGeometry,
@@ -21,15 +22,17 @@ import {
   SphereGeometry,
   Vector3,
   type BufferGeometry,
+  type Camera,
   type Material,
   type Texture,
+  type WebGLRenderer,
 } from 'three'
 import { playSfx } from '../../game/sfx'
 import { plasterTexture } from '../../world/city3d/textures'
 import { LANE_W, TILE, type Biome, type PowerKind, type Run, type RunEvent, type Thing } from '../sim'
-import { bend, curved, SKY, toon, toonRamp } from './curve'
+import { bend, curved, FLAT_Z, SKY, toon, toonRamp } from './curve'
 import { maxDpr } from '../../world/city3d/rig'
-import { Particles } from './fx'
+import { Particles, type Puff } from './fx'
 import * as P from './props'
 import { Runner, type RunnerColors } from './runner'
 import { seaUniforms, WALL_H, waterMaterial } from './sea'
@@ -38,14 +41,25 @@ import { bankTexture, dotTexture, riverbedTexture, roadTexture, sandTexture, sea
 /**
  * The run drawn with three.js (inside the Canvas): the sky, tiles of ground,
  * every model instanced by kind, the parted sea's walls, lights and shekels, the answer
- * gates and the runner, with dust and sparks. It steps `run` every frame
- * (a runner needs every frame: `frameloop="always"`) and reports each frame
- * back through `onFrame` for the HTML on top.
+ * gates and the runner, with dust and sparks. It steps `run` every frame it
+ * draws and reports each frame back through `lab.frame` for the HTML on top.
+ *
+ * Frames: the canvas draws on demand (`frameloop="demand"`) and the scene asks
+ * for the next frame itself: at once while the run is on, fewer while the
+ * question is read or the end card is up, and one a second while it is paused
+ * (the start and pause cards: nothing moves). `frame` allocates nothing.
  */
 
 export interface SceneProps {
   /** The run to step (read every frame, so it may be swapped for a new one), and what to call after each step. */
-  lab: { readonly run: Run; readonly paused: boolean; frame: (run: Run, events: RunEvent[], runnerAt: { x: number; y: number }) => void }
+  lab: {
+    readonly run: Run
+    readonly paused: boolean
+    /** `events` and `runnerAt` are only good during the call (both are reused). `lean`: the device is on the lowest quality step. */
+    frame: (run: Run, events: RunEvent[], runnerAt: { x: number; y: number }, lean: boolean) => void
+    /** Hands over what asks for a frame now (the run was started, paused or resumed). */
+    onWake: (wake: () => void) => void
+  }
   colors: RunnerColors
 }
 
@@ -252,21 +266,56 @@ function thingMatrix(t: Thing, dist: number, out: Matrix4, lift = 0): Matrix4 {
   return out.compose(v, q, sc)
 }
 
+/** One model's instances, and what decides which of them are drawn. */
+interface Model {
+  mesh: InstancedMesh
+  /** The model's height, and how far it reaches from where it stands (at scale 1). */
+  top: number
+  reach: number
+  /** It throws a shadow. */
+  casts: boolean
+  /** This frame: how many are drawn, and how many of those (the first ones) stand where a shadow can fall into view. */
+  n: number
+  near: number
+}
+
+/** The camera's height over the track, and how much of the runner's height it follows. */
+const EYE = 6.4
+const EYE_RISE = 0.35
+/** The camera's height may be this much off what the horizon is worked out from (its shake). */
+const EYE_SLACK = 0.5
+/** Something has to be this far under the horizon before it is left out (the ground is drawn in flat pieces, not as a true curve). */
+const HIDDEN_SLACK = 0.5
+/**
+ * The sun's shadow map reaches 45 ahead of the runner on the ground (its
+ * camera, in the constructor), and shadows fall forwards, so nothing further
+ * ahead than this can throw one into view.
+ */
+const SHADOW_AHEAD = 48
+/** More than the tallest pickup stands over its `y` (the pillar of cloud, bobbing), and more than any reaches along the track. */
+const PICKUP_TOP = 2
+const PICKUP_REACH = 1
+
 /** Everything drawn, built once; `frame` steps the run and moves it all. */
 class ExodusWorld {
   readonly root = new Group()
   readonly fog = new Fog(EGYPT_FOG.clone(), 60, 230)
-  private meshes = new Map<string, InstancedMesh>()
+  private models = new Map<string, Model>()
+  private modelList: Model[] = []
+  /** A flock's two wing poses, by its model name. */
+  private flocks = new Map<string, [up: Model, down: Model]>()
   private tiles: { group: Group; road: Mesh; sand: Mesh; walls: Mesh[]; caps: Mesh[] }[] = []
   private groundMat: Record<'egyptRoad' | 'egyptSand' | 'seaPath' | 'seaBed' | 'track' | 'wild' | 'riverbed' | 'bank', Material>
   private shekels: InstancedMesh
   private lights: InstancedMesh
   private powerMeshes: Record<PowerKind, InstancedMesh>
+  private pickupMeshes: InstancedMesh[]
   private gate = new Group()
   private signs: Mesh[] = []
   private signFor = ''
   private sky: Mesh
   private far: { egypt: Group; wilderness: Group; hills: Group }
+  private farList: Group[]
   private hemi: HemisphereLight
   private dust: Particles
   private sparks: Particles
@@ -276,7 +325,18 @@ class ExodusWorld {
   private runner: Runner | null = null
   private disposed = false
   private shake = 0
-  private lowDpr = false
+  /** The track distance of the horizon (see `frame`). */
+  private crest = Infinity
+  /** Dev (`window.__exodusWorld.cull = false`): draw what is under the horizon too, to check that leaving it out changes no pixel. */
+  cull = true
+  /** Shaders, buffers and textures readied behind the start card: 0 not yet, 1 compiled (one frame with everything in it is still to be drawn), 2 done. */
+  private warm: 0 | 1 | 2 = 0
+  private compiling = 0
+  private runnerDone = false
+  private gl: WebGLRenderer | null = null
+  private scene: Scene | null = null
+  private camera: Camera | null = null
+  private wake: () => void = () => {}
   /** The resolution the run is drawn at (lowered step by step on a slow device). */
   private dpr = maxDpr()
   /** How far quality has been stepped down: 0 full, 1 resolution 1, 2 no shadows, 3 resolution 0.75. */
@@ -289,21 +349,42 @@ class ExodusWorld {
 
   constructor(colors: RunnerColors) {
     const root = this.root
-    const meshes = this.meshes
     const tiles = this.tiles
     const gate = this.gate
     const signs = this.signs
     const paint = plasterTexture()
     const propMat = toon({ map: paint })
+    // The few models that are not instanced (the gates, the chariots) have a material of their own, and their own
+    // one in the shadow pass: three keeps one shader per material and works it out again every time the same
+    // material goes from an instanced mesh to a plain one, which would be several times a frame.
+    const plainMat = toon({ map: paint })
+    const plainDepth = new MeshDepthMaterial()
     const models = buildModels()
     for (const [name, { geo, cap }] of Object.entries(models)) {
       const mesh = new InstancedMesh(geo, propMat, cap)
-      mesh.castShadow = !name.startsWith('dune') && !name.startsWith('shells')
+      const casts = !name.startsWith('dune') && !name.startsWith('shells')
+      mesh.castShadow = casts
       mesh.receiveShadow = true
       mesh.count = 0
+      mesh.visible = false
+      // No frustum test: one model's instances line the whole track, so together they are always in view,
+      // and the shader bends them away from where three thinks they are. `place` leaves out what can't be seen.
       mesh.frustumCulled = false
-      meshes.set(name, mesh)
+      geo.computeBoundingBox()
+      geo.computeBoundingSphere()
+      const sphere = geo.boundingSphere!
+      const model: Model = { mesh, top: geo.boundingBox!.max.y, reach: Math.hypot(sphere.center.x, sphere.center.z) + sphere.radius, casts, n: 0, near: 0 }
+      // The shadow pass draws only the instances near enough to throw a shadow into view.
+      mesh.onBeforeShadow = () => void (mesh.count = model.near)
+      mesh.onAfterShadow = () => void (mesh.count = model.n)
+      this.models.set(name, model)
+      this.modelList.push(model)
       root.add(mesh)
+    }
+    // A flock's models come in pairs: wings up (`…A`) and down (`…B`).
+    for (const [name, up] of this.models) {
+      const down = name.endsWith('A') ? this.models.get(name.slice(0, -1) + 'B') : undefined
+      if (down) this.flocks.set(name.slice(0, -1), [up, down])
     }
 
     // Ground: a road and the sand round it per tile, a pool reused as the run goes on.
@@ -340,15 +421,17 @@ class ExodusWorld {
       r.position.y = 0.01
       const s = new Mesh(sand, groundMat.egyptSand)
       s.receiveShadow = true
+      // The walls of water: no frustum test either (bent by their shader); `frame` hides them by tile.
       const walls = [-1, 1].map((side) => {
         const w = new Mesh(wallGeo, water)
         w.position.set(side * 7.6, WALL_H / 2, 0)
         w.frustumCulled = false
         return w
       })
+      // Their end faces stand at the near end of the tile.
       const caps = [-1, 1].map((side) => {
         const c = new Mesh(capGeo, water)
-        c.position.set(side * (7.6 + 30), WALL_H / 2, 0)
+        c.position.set(side * (7.6 + 30), WALL_H / 2, TILE / 2)
         c.frustumCulled = false
         return c
       })
@@ -369,8 +452,10 @@ class ExodusWorld {
       cloud: new InstancedMesh(P.cloudPillar(), powerMat, 4),
       staff: new InstancedMesh(P.staff(), powerMat, 4),
     }
-    for (const m of [shekels, lights, ...Object.values(powerMeshes)]) {
+    const pickupMeshes = [shekels, lights, ...Object.values(powerMeshes)]
+    for (const m of pickupMeshes) {
       m.count = 0
+      m.visible = false
       m.frustumCulled = false
       root.add(m)
     }
@@ -379,10 +464,12 @@ class ExodusWorld {
     const frameGeo = P.gateFrame()
     const signGeo = new PlaneGeometry(2.3, 1.3)
     for (let i = 0; i < 3; i++) {
-      const f = new Mesh(frameGeo, propMat)
+      const f = new Mesh(frameGeo, plainMat)
       f.castShadow = true
+      f.customDepthMaterial = plainDepth
       f.position.x = (i - 1) * LANE_W
-      const s = new Mesh(signGeo, curved(new MeshBasicMaterial({ fog: false })))
+      // An empty sign from the start, so the shader with a picture is compiled before the first question.
+      const s = new Mesh(signGeo, curved(new MeshBasicMaterial({ fog: false, map: signTexture('') })))
       s.position.set((i - 1) * LANE_W, 4.05, 0.4)
       signs.push(s)
       gate.add(f, s)
@@ -392,6 +479,7 @@ class ExodusWorld {
 
     // Sky and far pyramids follow the camera.
     const sky = new Mesh(new SphereGeometry(800, 32, 16), skyMaterial())
+    // Round the camera, so always in view.
     sky.frustumCulled = false
     sky.renderOrder = -1
     const far = { egypt: pyramids(), wilderness: sinai(), hills: hills() }
@@ -402,13 +490,15 @@ class ExodusWorld {
     const wheelGeo = P.chariotWheel()
     for (const seed of [800, 801]) {
       const group = new Group()
-      const body = new Mesh(P.chariot(seed), propMat)
+      const body = new Mesh(P.chariot(seed), plainMat)
       body.castShadow = true
+      body.customDepthMaterial = plainDepth
       group.add(body)
       const wheels = P.CHARIOT_WHEELS.map(([x, y, z]) => {
-        const w = new Mesh(wheelGeo, propMat)
+        const w = new Mesh(wheelGeo, plainMat)
         w.position.set(x, y, z)
         w.castShadow = true
+        w.customDepthMaterial = plainDepth
         group.add(w)
         return w
       })
@@ -440,14 +530,16 @@ class ExodusWorld {
     const drift = new Particles(dotTexture(), 140)
     root.add(dust.points, sparks.points, drift.points)
 
-    const materials: Material[] = [propMat, coinMat, lightMat, powerMat, water, ...Object.values(groundMat), ...signs.map((s) => s.material as Material), sky.material as Material]
+    const materials: Material[] = [propMat, plainMat, plainDepth, coinMat, lightMat, powerMat, water, ...Object.values(groundMat), ...signs.map((s) => s.material as Material), sky.material as Material]
     const textures: Texture[] = [paint, ...Object.values(tex)]
     this.groundMat = groundMat
     this.shekels = shekels
     this.lights = lights
     this.powerMeshes = powerMeshes
+    this.pickupMeshes = pickupMeshes
     this.sky = sky
     this.far = far
+    this.farList = Object.values(far)
     this.hemi = hemi
     this.sun = sun
     this.dust = dust
@@ -455,22 +547,91 @@ class ExodusWorld {
     this.drift = drift
     this.materials = materials
     this.textures = textures
-    void Runner.load(colors, toonRamp()).then((r) => {
-      if (this.disposed) return r.dispose()
-      this.runner = r
-      this.root.add(r.root)
-    })
+    void Runner.load(colors, toonRamp())
+      .then((r) => {
+        if (this.disposed) return r.dispose()
+        this.runner = r
+        r.setOutline(!this.lean)
+        this.root.add(r.root)
+      })
+      // Without the runner (offline) the rest is still readied.
+      .catch(() => {})
+      .then(() => {
+        this.runnerDone = true
+        this.compile()
+        this.wake()
+      })
   }
 
-  attach(scene: Scene) {
+  /** `wake` asks the canvas for a frame. */
+  attach(scene: Scene, gl: WebGLRenderer, camera: Camera, wake: () => void) {
     scene.add(this.root)
     scene.fog = this.fog
     scene.background = SKY.horizon.clone()
+    this.gl = gl
+    this.scene = scene
+    this.camera = camera
+    this.wake = wake
+    this.compile()
   }
 
   detach(scene: Scene) {
     scene.remove(this.root)
     scene.fog = null
+    this.gl = this.scene = this.camera = null
+    this.wake = () => {}
+  }
+
+  /**
+   * Compiles every shader in the scene, shown or not (obstacles, the walls of
+   * water, the gates, the chariots, power-ups), while the start card is up, so
+   * none is compiled in the middle of a run; off the main thread where the
+   * browser can. Called when the scene is attached and again once the runner
+   * has arrived; when the last call is through, `warmUp` does the rest.
+   */
+  private compile() {
+    const { gl, scene, camera } = this
+    if (!gl || !scene || !camera || this.disposed) return
+    const turn = ++this.compiling
+    void gl.compileAsync(scene, camera).then(() => {
+      if (this.disposed || turn !== this.compiling || !this.runnerDone || this.warm) return
+      this.warm = 1
+      this.wake()
+    })
+  }
+
+  /**
+   * Once, when the shaders are compiled: a frame with everything in it, which
+   * nobody sees (the real frame is drawn over it in the same step). It sends
+   * every model, the ground textures of every place and the shadow pass's
+   * shaders to the graphics card now instead of when each first shows up
+   * mid-run. `frame` puts everything back.
+   */
+  private warmUp() {
+    const { gl, scene, camera } = this
+    if (this.warm !== 1 || !gl || !scene || !camera) return
+    this.warm = 2
+    for (const m of this.modelList) {
+      m.mesh.visible = true
+      m.mesh.castShadow = m.casts
+      m.mesh.count = m.n = m.near = 1
+    }
+    for (const mesh of this.pickupMeshes) {
+      mesh.visible = true
+      mesh.count = 1
+    }
+    const grounds = Object.values(this.groundMat)
+    this.tiles.forEach((slot, i) => {
+      slot.group.visible = slot.road.visible = slot.sand.visible = true
+      slot.road.material = grounds[i % grounds.length]
+      for (const w of slot.walls) w.visible = true
+      for (const c of slot.caps) c.visible = true
+    })
+    this.gate.visible = true
+    for (const c of this.chariots) c.group.visible = true
+    for (const f of this.farList) f.visible = true
+    for (const p of [this.dust, this.sparks, this.drift]) p.points.visible = true
+    gl.render(scene, camera)
   }
 
   /** Point sizes are in world units: they scale with the canvas height. */
@@ -479,6 +640,9 @@ class ExodusWorld {
   }
 
   frame(r: Run, real: number, camera: PerspectiveCamera, setDpr: (dpr: number) => void) {
+    this.warmUp()
+    // The first frame after a wait (the pause card, a hidden tab) is not a slow frame.
+    real = Math.min(real, 0.1)
     r.step(real)
     const dt = Math.min(real, 0.05) * r.timeScale
     this.time += Math.min(real, 0.05)
@@ -496,7 +660,7 @@ class ExodusWorld {
         // A puff of air under the feet.
         for (let i = 0; i < 10; i++) {
           const a = (i / 10) * Math.PI * 2
-          this.dust.emit({ x: p.x + Math.cos(a) * 0.3, y: p.y, z: Math.sin(a) * 0.3, vx: Math.cos(a) * 3, vy: -0.5, vz: Math.sin(a) * 3, size: 0.5, grow: 2, max: 0.5, color: WHITE, peak: 0.5, drag: 2 })
+          this.dust.emit(PUFF.air, p.x + Math.cos(a) * 0.3, p.y, Math.sin(a) * 0.3, Math.cos(a) * 3, -0.5, Math.sin(a) * 3)
         }
       }
       if (e.type === 'lane') playSfx('runLane')
@@ -505,105 +669,128 @@ class ExodusWorld {
         // A spray of sand out to both sides as the runner drops into the duck.
         for (let i = 0; i < 12; i++) {
           const side = i % 2 ? 1 : -1
-          this.dust.emit({ x: p.x + side * (0.3 + Math.random() * 0.3), y: 0.15, z: (Math.random() - 0.5) * 0.6, vx: side * (1.5 + Math.random() * 2.5), vy: 0.8 + Math.random() * 1.5, vz: 1.5, size: 0.6, grow: 2.4, max: 0.7, color: DUST, peak: 0.6 })
+          this.dust.emit(PUFF.spray, p.x + side * (0.3 + Math.random() * 0.3), 0.15, (Math.random() - 0.5) * 0.6, side * (1.5 + Math.random() * 2.5), 0.8 + Math.random() * 1.5, 1.5)
         }
       }
       if (e.type === 'light') playSfx('runLight')
       if (e.type === 'land') {
         playSfx('runLand')
         this.shake = Math.max(this.shake, 0.12)
-        for (let i = 0; i < 8; i++) this.dust.emit({ x: p.x + (Math.random() - 0.5) * 0.8, y: 0.15, z: (Math.random() - 0.5) * 0.6, vx: (Math.random() - 0.5) * 3, vy: Math.random() * 1.5, size: 0.7, grow: 2.4, max: 0.7, color: DUST, peak: 0.6 })
+        for (let i = 0; i < 8; i++) this.dust.emit(PUFF.land, p.x + (Math.random() - 0.5) * 0.8, 0.15, (Math.random() - 0.5) * 0.6, (Math.random() - 0.5) * 3, Math.random() * 1.5)
       }
       // The chariots come thundering up behind you.
       if (e.type === 'stumble' || e.type === 'crash') {
         playSfx('runHooves')
         this.shake = 0.5
-        for (let i = 0; i < 18; i++) this.dust.emit({ x: p.x, y: 0.8, z: -0.8, vx: (Math.random() - 0.5) * 6, vy: Math.random() * 4, vz: (Math.random() - 0.5) * 3, size: 0.9, grow: 2.2, max: 0.9, color: DUST, peak: 0.7, gravity: 4 })
+        for (let i = 0; i < 18; i++) this.dust.emit(PUFF.stumble, p.x, 0.8, -0.8, (Math.random() - 0.5) * 6, Math.random() * 4, (Math.random() - 0.5) * 3)
       }
       if (e.type === 'shekel') {
-        for (let i = 0; i < 14; i++) this.sparks.emit({ x: p.x, y: p.y + 1.2, z: -0.4, vx: (Math.random() - 0.5) * 5, vy: Math.random() * 4 + 1, vz: (Math.random() - 0.5) * 3, size: 0.4, max: 0.6, color: GOLD })
+        for (let i = 0; i < 14; i++) this.sparks.emit(PUFF.shekel, p.x, p.y + 1.2, -0.4, (Math.random() - 0.5) * 5, Math.random() * 4 + 1, (Math.random() - 0.5) * 3)
         playSfx('runShekel')
       }
       if (e.type === 'gate') {
         if (e.right) {
-          for (let i = 0; i < 70; i++) this.sparks.emit({ x: p.x + (Math.random() - 0.5) * 2, y: 1 + Math.random() * 3, z: -1 - Math.random() * 2, vx: (Math.random() - 0.5) * 9, vy: Math.random() * 7, vz: (Math.random() - 0.5) * 6, size: 0.45, max: 1.1, color: Math.random() < 0.7 ? GOLD : WHITE, gravity: 5, drag: 1 })
+          for (let i = 0; i < 70; i++) this.sparks.emit(Math.random() < 0.7 ? PUFF.gateGold : PUFF.gateWhite, p.x + (Math.random() - 0.5) * 2, 1 + Math.random() * 3, -1 - Math.random() * 2, (Math.random() - 0.5) * 9, Math.random() * 7, (Math.random() - 0.5) * 6)
           playSfx('runGateRight')
         } else playSfx('wrong')
       }
       if (e.type === 'phase' && e.phase === 'warn') playSfx('horn')
       if (e.type === 'power') {
-        for (let i = 0; i < 40; i++) this.sparks.emit({ x: p.x + (Math.random() - 0.5) * 1.5, y: p.y + 0.5 + Math.random() * 2, z: -0.5 + (Math.random() - 0.5), vx: (Math.random() - 0.5) * 6, vy: Math.random() * 5, vz: (Math.random() - 0.5) * 4, size: 0.4, max: 0.9, color: e.kind === 'cloud' ? WHITE : GOLD, gravity: 3 })
+        for (let i = 0; i < 40; i++) this.sparks.emit(e.kind === 'cloud' ? PUFF.powerWhite : PUFF.powerGold, p.x + (Math.random() - 0.5) * 1.5, p.y + 0.5 + Math.random() * 2, -0.5 + (Math.random() - 0.5), (Math.random() - 0.5) * 6, Math.random() * 5, (Math.random() - 0.5) * 4)
         if (e.kind === 'staff') this.shake = Math.max(this.shake, 0.35)
         playSfx(e.kind === 'staff' ? 'runStaff' : 'runPower')
       }
       if (e.type === 'shielded') {
         playSfx('runShield')
         this.shake = Math.max(this.shake, 0.3)
-        for (let i = 0; i < 30; i++) this.dust.emit({ x: p.x + (Math.random() - 0.5) * 2, y: 0.5 + Math.random() * 2, z: -1, vx: (Math.random() - 0.5) * 5, vy: Math.random() * 3, size: 1.1, grow: 2, max: 0.9, color: WHITE, peak: 0.7 })
+        for (let i = 0; i < 30; i++) this.dust.emit(PUFF.shield, p.x + (Math.random() - 0.5) * 2, 0.5 + Math.random() * 2, -1, (Math.random() - 0.5) * 5, Math.random() * 3)
       }
     }
 
     // Feet kick up a little sand while running, more while sliding under something.
     const kick = p.roll > 0 ? 1.6 : 0.5
     if (real > 0 && !p.airborne && r.phase !== 'over' && Math.random() < kick * r.timeScale + 0.05)
-      this.dust.emit({ x: p.x + (Math.random() - 0.5) * 0.5, y: 0.1, z: 0.3, vx: (Math.random() - 0.5) * 1.2, vy: 0.6 + Math.random(), vz: 2, size: 0.45, grow: 2.2, max: 0.55, color: DUST, peak: 0.45 })
+      this.dust.emit(PUFF.kick, p.x + (Math.random() - 0.5) * 0.5, 0.1, 0.3, (Math.random() - 0.5) * 1.2, 0.6 + Math.random(), 2)
 
     const moved = r.speed * dt
     this.dust.step(dt, moved * 0.2)
     this.sparks.step(Math.min(real, 0.05), 0)
 
     // Sand (Egypt) or bubbles (the sea) drifting past.
-    const here = r.tiles.find((tile) => r.dist >= tile.s && r.dist < tile.s + TILE)
-    const biome: Biome = here?.biome ?? 'egypt'
+    let biome: Biome = 'egypt'
+    for (let i = 0; i < r.tiles.length; i++) {
+      const tile = r.tiles[i]
+      if (r.dist < tile.s || r.dist >= tile.s + TILE) continue
+      biome = tile.biome
+      break
+    }
     if (real > 0 && Math.random() < 0.6) {
-      if (biome === 'egypt') this.drift.emit({ x: (Math.random() - 0.5) * 16, y: 0.2 + Math.random() * 2.5, z: -40 - Math.random() * 20, vx: 1.5, size: 0.12, max: 3, color: SAND, peak: 0.55, drag: 0 })
-      else this.drift.emit({ x: (Math.random() < 0.5 ? -1 : 1) * (5.5 + Math.random() * 2), y: Math.random() * 3, z: -10 - Math.random() * 40, vy: 1.2 + Math.random(), size: 0.2, max: 3, color: BUBBLE, peak: 0.6, drag: 0 })
+      if (biome === 'egypt') this.drift.emit(PUFF.sand, (Math.random() - 0.5) * 16, 0.2 + Math.random() * 2.5, -40 - Math.random() * 20, 1.5)
+      else this.drift.emit(PUFF.bubble, (Math.random() < 0.5 ? -1 : 1) * (5.5 + Math.random() * 2), Math.random() * 3, -10 - Math.random() * 40, 0, 1.2 + Math.random())
     }
     this.drift.step(dt, moved * 1.1)
 
+    // The horizon. The curved world drops by `bend.down` × (distance ahead)², so the line of sight
+    // from the camera's height touches the ground at a crest about 58 ahead; past it the ground is
+    // out of sight, and something `top` high standing `d` past it shows above it only while
+    // bend.down × d² < top. What is under the horizon is not drawn (`hidden`). The camera's height
+    // here is the most it can be once it has moved this frame.
+    const eye = Math.max(camera.position.y, EYE + p.y * EYE_RISE) + EYE_SLACK
+    const back = FLAT_Z - camera.position.z
+    this.crest = r.dist - FLAT_Z + back + Math.sqrt(back * back + eye / bend.down.value)
+
     // Tiles.
-    this.tiles.forEach((slot, i) => {
+    for (let i = 0; i < this.tiles.length; i++) {
+      const slot = this.tiles[i]
       const tile = r.tiles[i]
       slot.group.visible = !!tile
-      if (!tile) return
+      if (!tile) continue
       slot.group.position.z = r.dist - tile.s - TILE / 2
-      const [road, sand] = GROUND[tile.shore ? 'shore' : tile.biome]
-      slot.road.material = this.groundMat[road]
-      slot.sand.material = this.groundMat[sand]
+      const ground = GROUND[tile.shore ? 'shore' : tile.biome]
+      slot.road.material = this.groundMat[ground[0]]
+      slot.sand.material = this.groundMat[ground[1]]
+      slot.road.visible = slot.sand.visible = !this.hidden(tile.s, 0)
       // The Red Sea stands on both sides; the Jordan heaped up on the left only (upstream).
       const sea = tile.biome === 'sea'
       const river = tile.biome === 'jordan'
-      slot.walls[0].visible = sea || river
-      slot.walls[1].visible = sea
+      // (The crest of the water rolls half a unit higher.)
+      const water = !this.hidden(tile.s, WALL_H + 0.5)
+      slot.walls[0].visible = water && (sea || river)
+      slot.walls[1].visible = water && sea
       // The walls' end faces: at the near end of the first tile in the water, and of the first one after it.
-      slot.caps[0].visible = tile.seaStart || tile.seaEnd || tile.riverStart || tile.riverEnd
-      slot.caps[1].visible = tile.seaStart || tile.seaEnd
-      for (const c of slot.caps) c.position.z = TILE / 2
-    })
-
-    // Instanced models.
-    const lists = new Map<string, Thing[]>()
-    for (const th of r.scenery) (lists.get(th.model) ?? lists.set(th.model, []).get(th.model)!).push(th)
-    for (const o of r.obstacles) {
-      // A flock flaps: each one flips between its wings-up and wings-down model.
-      const name = o.fly ? o.model + (Math.sin(t * 22 + o.x * 3) > 0 ? 'A' : 'B') : o.model
-      ;(lists.get(name) ?? lists.set(name, []).get(name)!).push(o)
+      slot.caps[0].visible = water && (tile.seaStart || tile.seaEnd || tile.riverStart || tile.riverEnd)
+      slot.caps[1].visible = water && (tile.seaStart || tile.seaEnd)
     }
-    for (const [name, mesh] of this.meshes) {
-      const list = lists.get(name) ?? []
-      const n = Math.min(list.length, mesh.instanceMatrix.count)
-      for (let i = 0; i < n; i++) mesh.setMatrixAt(i, thingMatrix(list[i], r.dist, m4))
-      mesh.count = n
-      mesh.instanceMatrix.needsUpdate = true
+
+    // Instanced models. (Plain loops over the long lists: `for … of` makes an object per step until the engine has optimised it.)
+    const { modelList, pickupMeshes } = this
+    const { scenery, obstacles, pickups } = r
+    for (let i = 0; i < modelList.length; i++) modelList[i].n = modelList[i].near = 0
+    for (let i = 0; i < scenery.length; i++) this.place(this.models.get(scenery[i].model), scenery[i], r.dist)
+    for (let i = 0; i < obstacles.length; i++) {
+      const o = obstacles[i]
+      // A flock flaps: each one flips between its wings-up and wings-down model.
+      const flock = o.fly ? this.flocks.get(o.model) : undefined
+      this.place(flock ? flock[Math.sin(t * 22 + o.x * 3) > 0 ? 0 : 1] : this.models.get(o.model), o, r.dist)
+    }
+    for (let i = 0; i < modelList.length; i++) {
+      const m = modelList[i]
+      const mesh = m.mesh
+      mesh.count = m.n
+      // A model with nothing out is skipped altogether, and one with nothing near throws no shadow.
+      mesh.visible = m.n > 0
+      mesh.castShadow = m.casts && m.near > 0
+      if (m.n > 0) mesh.instanceMatrix.needsUpdate = true
     }
 
     // Pickups spin and bob; taken ones pop up and vanish. A shekel is bigger, so it stands out.
-    const counts = new Map<InstancedMesh, number>()
-    for (const c of r.pickups) {
+    for (let i = 0; i < pickupMeshes.length; i++) pickupMeshes[i].count = 0
+    for (let j = 0; j < pickups.length; j++) {
+      const c = pickups[j]
       const z = r.dist - c.s
-      if (z < -170) continue
+      if (z < -170 || this.hidden(c.s - PICKUP_REACH, c.y + PICKUP_TOP)) continue
       const mesh = c.kind === 'shekel' ? this.shekels : c.kind === 'light' ? this.lights : this.powerMeshes[c.kind]
-      const i = counts.get(mesh) ?? 0
+      const i = mesh.count
       if (i >= mesh.instanceMatrix.count) continue
       const power = c.kind !== 'light' && c.kind !== 'shekel'
       const k = c.taken >= 0 ? Math.max(0, 1 - c.taken / 0.18) : 1
@@ -611,31 +798,33 @@ class ExodusWorld {
       v.set(c.lane * LANE_W, c.y + (c.taken >= 0 ? c.taken * 4 : Math.sin(t * 3 + c.s) * (power ? 0.2 : 0.08)), z)
       sc.setScalar(k * (c.kind === 'shekel' ? 1.15 : power ? 1.3 : 1))
       mesh.setMatrixAt(i, m4.compose(v, q, sc))
-      counts.set(mesh, i + 1)
+      mesh.count = i + 1
       // A power-up glows: sparks rise round it as it comes near.
-      if (power && c.taken < 0 && z > -60 && real > 0 && Math.random() < 0.25) this.sparks.emit({ x: c.lane * LANE_W + (Math.random() - 0.5), y: c.y - 0.4, z: z + (Math.random() - 0.5), vy: 1.5, size: 0.3, max: 0.7, color: c.kind === 'cloud' ? WHITE : GOLD })
+      if (power && c.taken < 0 && z > -60 && real > 0 && Math.random() < 0.25) this.sparks.emit(c.kind === 'cloud' ? PUFF.glowWhite : PUFF.glowGold, c.lane * LANE_W + (Math.random() - 0.5), c.y - 0.4, z + (Math.random() - 0.5), 0, 1.5)
     }
-    for (const mesh of [this.shekels, this.lights, ...Object.values(this.powerMeshes)]) {
-      mesh.count = counts.get(mesh) ?? 0
-      mesh.instanceMatrix.needsUpdate = true
+    for (let i = 0; i < pickupMeshes.length; i++) {
+      const mesh = pickupMeshes[i]
+      mesh.visible = mesh.count > 0
+      if (mesh.count > 0) mesh.instanceMatrix.needsUpdate = true
     }
 
     // While a power lasts: the cloud wreathes you in white, the manna in gold.
-    if (real > 0 && r.powers.cloud && Math.random() < 0.6) this.dust.emit({ x: p.x + (Math.random() - 0.5) * 1.8, y: p.y + Math.random() * 2.4, z: (Math.random() - 0.5) * 1.2, vy: 0.4, size: 0.9, grow: 1.6, max: 0.9, color: WHITE, peak: 0.5, drag: 0.5 })
-    if (real > 0 && r.powers.manna && Math.random() < 0.5) this.sparks.emit({ x: p.x + (Math.random() - 0.5) * 1.4, y: p.y + 0.4 + Math.random() * 1.8, z: (Math.random() - 0.5), vy: 1, size: 0.25, max: 0.6, color: GOLD })
+    if (real > 0 && r.powers.cloud && Math.random() < 0.6) this.dust.emit(PUFF.cloud, p.x + (Math.random() - 0.5) * 1.8, p.y + Math.random() * 2.4, (Math.random() - 0.5) * 1.2, 0, 0.4)
+    if (real > 0 && r.powers.manna && Math.random() < 0.5) this.sparks.emit(PUFF.manna, p.x + (Math.random() - 0.5) * 1.4, p.y + 0.4 + Math.random() * 1.8, Math.random() - 0.5, 0, 1)
 
     // The chariots: closer the higher `chase`; past you once you are caught.
-    this.chariots.forEach((c, i) => {
+    for (let i = 0; i < this.chariots.length; i++) {
+      const c = this.chariots[i]
       const chase = r.chase
       c.group.visible = chase > 0.03
-      if (!c.group.visible) return
+      if (!c.group.visible) continue
       const side = i === 0 ? -1 : 1
       // Right behind you, one each side of your back (a phone held upright sees little of the next lanes up close).
       const z = 2.7 + i * 0.6 + (1 - Math.min(chase, 1)) * 10 - Math.max(0, chase - 1) * 5
       c.group.position.set(Math.max(-3.9, Math.min(3.9, p.x + side * 1.35)), Math.abs(Math.sin(t * 9 + i * 1.7)) * 0.08, z)
       c.group.rotation.z = Math.sin(t * 9 + i) * 0.015
       for (const w of c.wheels) w.rotation.x -= (r.speed * dt) / 0.62
-    })
+    }
 
     // The answer gates.
     const g = r.gate ?? r.lastGate
@@ -671,7 +860,7 @@ class ExodusWorld {
     this.shake = Math.max(0, this.shake - real * 1.6)
     const sh = this.shake
     c.position.x += (p.x * 0.55 - c.position.x) * Math.min(1, real * 6)
-    c.position.y += (6.4 + p.y * 0.35 - c.position.y) * Math.min(1, real * 5)
+    c.position.y += (EYE + p.y * EYE_RISE - c.position.y) * Math.min(1, real * 5)
     c.position.z = 9.6
     c.position.x += (Math.random() - 0.5) * sh * 0.4
     c.position.y += (Math.random() - 0.5) * sh * 0.3
@@ -682,16 +871,27 @@ class ExodusWorld {
     }
     c.lookAt(p.x * 0.7, 0.4 + p.y * 0.2, -14)
     this.sky.position.copy(c.position)
-    for (const f of Object.values(this.far)) f.position.set(c.position.x * 0.9, 0, 0)
+    for (const f of this.farList) f.position.set(c.position.x * 0.9, 0, 0)
 
-    // While the question is read the world goes soft: draw it at a fraction of the resolution.
-    const soft = r.phase === 'read' || (r.phase === 'warn' && r.phaseT > 0.6)
-    if (soft !== this.lowDpr) {
-      this.lowDpr = soft
-      setDpr(soft ? 0.3 : this.dpr)
-    }
-    if (!soft && real > 0 && (r.phase === 'run' || r.phase === 'gates')) this.watchSpeed(real, setDpr)
+    // (While the question is read the world goes soft: a CSS blur on the canvas, `.is-reading` in exodus.css.)
+    if (real > 0 && (r.phase === 'run' || r.phase === 'gates')) this.watchSpeed(real, setDpr)
+  }
 
+  /** Something `top` high whose nearest point is at track distance `s`: is it under the horizon (see `frame`)? */
+  private hidden(s: number, top: number): boolean {
+    const d = s - this.crest
+    return this.cull && d > 0 && bend.down.value * d * d > top + HIDDEN_SLACK
+  }
+
+  /** Adds one thing to its model's instances, unless it is under the horizon. */
+  private place(m: Model | undefined, t: Thing, dist: number) {
+    if (!m || m.n >= m.mesh.instanceMatrix.count) return
+    const nearest = t.s - m.reach * t.scale
+    const shadows = !this.cull || nearest - dist < SHADOW_AHEAD
+    // (A flock that was cleared flies up as it goes: `thingMatrix`.)
+    if (!shadows && this.hidden(nearest, m.top * t.scale + t.y + ('fly' in t && t.fly ? t.sink * 6 : 0))) return
+    m.mesh.setMatrixAt(m.n++, thingMatrix(t, dist, m4))
+    if (shadows) m.near = m.n
   }
 
   /**
@@ -713,8 +913,17 @@ class ExodusWorld {
     else if (this.quality <= 2) {
       this.quality = 2
       this.sun.castShadow = false
-    } else this.dpr = 0.75
+    } else {
+      // The last step also drops the extras: the runner's outline here, the speed lines in the HUD.
+      this.dpr = 0.75
+      this.runner?.setOutline(false)
+    }
     setDpr(this.dpr)
+  }
+
+  /** The device is on the lowest quality step. */
+  get lean(): boolean {
+    return this.quality >= 3
   }
 
   dispose() {
@@ -735,20 +944,42 @@ class ExodusWorld {
 }
 
 const onScreen = new Vector3()
+const runnerAt = { x: 0, y: 0 }
+
+/**
+ * Frames a second when fewer will do: while the question is read (slow
+ * motion, behind the blur and the scroll), behind the end card once the fall
+ * has played (drifting sand, the chariots, the water), and while paused (the
+ * start and pause cards: nothing moves, so this only repairs a lost picture).
+ */
+const READ_FPS = 30
+const OVER_FPS = 20
+const PAUSED_FPS = 1
+const OVER_FULL_S = 4
 
 export function ExodusScene({ lab, colors }: SceneProps) {
   const scene = useThree((s) => s.scene)
+  const gl = useThree((s) => s.gl)
+  const camera = useThree((s) => s.camera)
+  const invalidate = useThree((s) => s.invalidate)
   const size = useThree((s) => s.size)
   const dpr = useThree((s) => s.viewport.dpr)
   const [world] = useState(() => new ExodusWorld(colors))
+  /** The timer for the next frame while fewer are drawn. */
+  const next = useRef(0)
 
   useEffect(() => {
-    world.attach(scene)
+    const wake = () => invalidate()
+    world.attach(scene, gl, camera, wake)
+    lab.onWake(wake)
+    if (import.meta.env.DEV) Object.assign(window, { __exodusWorld: world, __exodusGl: gl })
     return () => {
+      window.clearTimeout(next.current)
+      lab.onWake(() => {})
       world.detach(scene)
       world.dispose()
     }
-  }, [scene, world])
+  }, [scene, gl, camera, invalidate, world, lab])
 
   useEffect(() => world.resize(size.height, dpr), [world, size.height, dpr])
 
@@ -759,7 +990,16 @@ export function ExodusScene({ lab, colors }: SceneProps) {
     // Where the runner is on screen (above the shoulders): what is picked up flies from there to the top bar.
     const p = r.player
     onScreen.set(p.x, p.y + 1.6, 0).project(state.camera)
-    lab.frame(r, r.takeEvents(), { x: (onScreen.x * 0.5 + 0.5) * state.size.width, y: (0.5 - onScreen.y * 0.5) * state.size.height })
+    runnerAt.x = (onScreen.x * 0.5 + 0.5) * state.size.width
+    runnerAt.y = (0.5 - onScreen.y * 0.5) * state.size.height
+    lab.frame(r, r.takeEvents(), runnerAt, world.lean)
+    // The next frame: at once while the run is on, else after a wait (a start, a pause or a resume wakes it at once).
+    if (next.current) window.clearTimeout(next.current)
+    next.current = 0
+    const fps = lab.paused ? PAUSED_FPS : r.phase === 'read' ? READ_FPS : r.phase === 'over' && r.phaseT > OVER_FULL_S ? OVER_FPS : 0
+    if (fps === 0) invalidate()
+    // (The timer fires a little early: the frame is drawn at the screen's next refresh after it.)
+    else next.current = window.setTimeout(invalidate, 1000 / fps - 8)
   })
 
   return null
@@ -772,4 +1012,29 @@ const GOLD = new Color('#ffd257')
 const WHITE = new Color('#ffffff')
 const HEMI_EGYPT = new Color('#d6ecff')
 const HEMI_SEA = new Color('#a8e6ee')
+
+/** Every kind of particle the scene emits, made once (`frame` allocates nothing). */
+const PUFF = {
+  /** The double jump's puff of air. */
+  air: { size: 0.5, grow: 2, max: 0.5, color: WHITE, peak: 0.5, drag: 2 },
+  /** Sand sprayed out by the duck. */
+  spray: { size: 0.6, grow: 2.4, max: 0.7, color: DUST, peak: 0.6 },
+  land: { size: 0.7, grow: 2.4, max: 0.7, color: DUST, peak: 0.6 },
+  stumble: { size: 0.9, grow: 2.2, max: 0.9, color: DUST, peak: 0.7, gravity: 4 },
+  shekel: { size: 0.4, max: 0.6, color: GOLD },
+  gateGold: { size: 0.45, max: 1.1, color: GOLD, gravity: 5, drag: 1 },
+  gateWhite: { size: 0.45, max: 1.1, color: WHITE, gravity: 5, drag: 1 },
+  powerGold: { size: 0.4, max: 0.9, color: GOLD, gravity: 3 },
+  powerWhite: { size: 0.4, max: 0.9, color: WHITE, gravity: 3 },
+  shield: { size: 1.1, grow: 2, max: 0.9, color: WHITE, peak: 0.7 },
+  /** Sand kicked up by the feet. */
+  kick: { size: 0.45, grow: 2.2, max: 0.55, color: DUST, peak: 0.45 },
+  sand: { size: 0.12, max: 3, color: SAND, peak: 0.55, drag: 0 },
+  bubble: { size: 0.2, max: 3, color: BUBBLE, peak: 0.6, drag: 0 },
+  /** Round a power-up on the track. */
+  glowGold: { size: 0.3, max: 0.7, color: GOLD },
+  glowWhite: { size: 0.3, max: 0.7, color: WHITE },
+  cloud: { size: 0.9, grow: 1.6, max: 0.9, color: WHITE, peak: 0.5, drag: 0.5 },
+  manna: { size: 0.25, max: 0.6, color: GOLD },
+} satisfies Record<string, Puff>
 

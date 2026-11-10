@@ -345,12 +345,12 @@ export const PlotScene3D = memo(function PlotScene3D({ levels, building, labels,
 
   return (
     <>
-      {/* Low warm sun from the south-west and less fill than the city: deeper shadows, richer colour, like the painting. */}
-      <hemisphereLight args={['#fff2d6', '#6e4024', 0.62]} />
+      {/* The city's light (tone mapped, a warm sun against cool sky light), the sun lower: deeper shadows, like the painting. */}
+      <hemisphereLight args={['#b4cdf0', '#8a6a44', 1.0]} />
       <directionalLight
         position={[-42, 58, 46]}
-        intensity={3.5}
-        color="#fff0d6"
+        intensity={3.6}
+        color="#ffe9c4"
         castShadow
         shadow-mapSize={wide ? [2048, 2048] : [1024, 1024]}
         shadow-camera-left={-R - 8}

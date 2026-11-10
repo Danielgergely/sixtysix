@@ -1,12 +1,27 @@
 import { Canvas } from '@react-three/fiber'
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { NoToneMapping, PCFShadowMap } from 'three'
 import { useT } from '../i18n'
+import { DevStats } from '../world/city3d/DevStats'
 import { maxDpr } from '../world/city3d/rig'
 import type { RunController, RunView } from './controller'
 import { ExodusScene } from './scene/ExodusScene'
 import type { RunnerColors } from './scene/runner'
 import '../theme/exodus.css'
+
+/** Where the track runs off to on screen (%), which the speed lines point away from. */
+const VANISH = { x: 50, y: 40 }
+/** The speed lines at the screen's edges: x and y in %, how long one pass takes and when it starts (s). */
+const STREAKS: readonly [x: number, y: number, seconds: number, delay: number][] = [
+  [14, 18, 0.5, 0],
+  [18, 47, 0.42, -0.2],
+  [13, 66, 0.55, -0.35],
+  [20, 86, 0.46, -0.1],
+  [83, 12, 0.52, -0.28],
+  [86, 33, 0.44, -0.05],
+  [82, 57, 0.5, -0.4],
+  [87, 78, 0.47, -0.17],
+]
 
 /**
  * A run on screen: the 3D scene, the top bar (distance, coins, XP,
@@ -16,6 +31,8 @@ import '../theme/exodus.css'
  */
 export function ExodusRun({ ctl, view, colors, lead, dim = false, children }: { ctl: RunController; view: RunView; colors: RunnerColors; lead?: ReactNode; dim?: boolean; children?: ReactNode }) {
   const t = useT()
+  // The screen's shape, for the speed lines' angles (as it was when the run opened: near enough after a turn of the phone).
+  const [aspect] = useState(() => window.innerWidth / Math.max(1, window.innerHeight))
   useEffect(() => {
     window.addEventListener('keydown', ctl.key)
     return () => window.removeEventListener('keydown', ctl.key)
@@ -26,17 +43,25 @@ export function ExodusRun({ ctl, view, colors, lead, dim = false, children }: { 
   const approaching = (phase === 'speedup' || phase === 'gates') && question
 
   return (
-    <div className={`ex-root${phase === 'read' ? ' is-reading' : ''}`} onPointerDown={ctl.down} onPointerMove={ctl.move} onPointerUp={ctl.up}>
+    <div className={`ex-root${phase === 'read' ? ' is-reading' : phase === 'warn' ? ' is-warned' : ''}`} onPointerDown={ctl.down} onPointerMove={ctl.move} onPointerUp={ctl.up}>
       <Canvas
         className="ex-canvas"
         shadows={{ type: PCFShadowMap }}
         dpr={[1, maxDpr()]}
-        frameloop="always"
+        // The scene asks for its own frames: every one while running, few behind the cards (ExodusScene).
+        frameloop="demand"
         camera={{ fov: 58, near: 0.1, far: 2000, position: [0, 6.4, 9.6] }}
         gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
       >
         <ExodusScene lab={ctl} colors={colors} />
+        <DevStats />
       </Canvas>
+
+      <div className="ex-speed" ref={ctl.el('speed')} aria-hidden="true">
+        {STREAKS.map(([x, y, seconds, delay], i) => (
+          <i key={i} style={{ '--x': `${x}%`, '--y': `${y}%`, '--a': `${Math.atan2(y - VANISH.y, (x - VANISH.x) * aspect)}rad`, '--t': `${seconds}s`, '--d': `${delay}s` } as CSSProperties} />
+        ))}
+      </div>
 
       <div className="ex-hud">
         {lead}

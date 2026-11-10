@@ -1,13 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
-  CanvasTexture,
   Color,
+  DataTexture,
   InstancedBufferAttribute,
   InstancedBufferGeometry,
+  LinearFilter,
+  LinearMipmapLinearFilter,
   PlaneGeometry,
+  RGBAFormat,
   ShaderMaterial,
   SRGBColorSpace,
+  UniformsLib,
+  UniformsUtils,
+  UnsignedByteType,
   Vector3,
   type Texture,
 } from 'three'
@@ -27,6 +33,10 @@ import { surfaceAt, ux, uz } from './space'
  * each: two draw calls for everybody. They walk the road graph (life/sim.ts),
  * turn to face the way they go as seen from the camera, and are hidden when
  * the camera is far away. Taps are tested on screen (City3D asks `pick`).
+ * Their outlines are smoothed by alpha to coverage (the canvas is multisampled;
+ * they still write depth and need no sorting), and they take the scene's light:
+ * the sun and sky light of whatever scene they stand in, and the shade of the
+ * buildings from the sun's shadow map, one value for the whole figure.
  * My Home (PlotScene3D) uses the same component with its own space (FolkSpace):
  * the yard's px → units, its ground, no exits, everyone always drawn, and the
  * carriers' gift signs (bridge.badges) placed over their heads.
@@ -95,39 +105,134 @@ async function buildAtlas(figs: FigureId[]): Promise<Atlas> {
   let x = 0
   let y = 0
   for (const item of items) {
-    const w = Math.ceil((item.img.naturalWidth / item.img.naturalHeight) * ROW) + 2
+    const w = Math.ceil((item.img.naturalWidth / item.img.naturalHeight) * ROW) + GAP * 2
     if (x + w > W) {
       x = 0
-      y += ROW + 2
+      y += ROW + GAP * 2
     }
     placed.push({ item, x, y, w })
     x += w
   }
-  const H = 2 ** Math.ceil(Math.log2(y + ROW + 2))
+  const H = 2 ** Math.ceil(Math.log2(y + ROW + GAP * 2))
   const c = document.createElement('canvas')
   c.width = W
   c.height = H
-  const g = c.getContext('2d')!
+  const g = c.getContext('2d', { willReadFrequently: true })!
+  g.imageSmoothingQuality = 'high'
   const rects: Atlas['rects'] = {}
   const uv = (x0: number, y0: number, w: number, h: number) => [x0 / W, 1 - (y0 + h) / H, (x0 + w) / W, 1 - y0 / H]
   for (const { item, x: px, y: py, w } of placed) {
-    const dw = w - 2
-    g.drawImage(item.img, px + 1, py, dw, ROW)
+    const dw = w - GAP * 2
+    const top = py + GAP
+    g.drawImage(item.img, px + GAP, top, dw, ROW)
     const r = (rects[item.fig] ??= { walk: [[], []], aspect: FIGURES[item.fig].aspect })
     if (item.kind === 'walk') {
       const fw = dw / 2
-      r.walk = [uv(px + 1 + 0.5, py, fw - 1, ROW), uv(px + 1 + fw + 0.5, py, fw - 1, ROW)]
+      r.walk = [uv(px + GAP + 0.5, top, fw - 1, ROW), uv(px + GAP + fw + 0.5, top, fw - 1, ROW)]
     } else {
-      r.idle = uv(px + 1, py, dw, ROW)
+      r.idle = uv(px + GAP, top, dw, ROW)
       r.idleAspect = FIGURES[item.fig].idle!.aspect
     }
   }
-  const tex = new CanvasTexture(c)
+  // The canvas's clear surround is transparent black, and filtering and the smaller mip levels
+  // would mix that black into every outline (a dark fringe). So the texture is made from the
+  // pixels themselves, with each figure's edge colours spread out into the clear pixels round it.
+  const px = g.getImageData(0, 0, W, H).data
+  bleedColour(px, W, H, GAP)
+  // Bottom row first, as the canvas texture had it (the rects count v from the bottom).
+  const data = new Uint8Array(px.length)
+  for (let row = 0; row < H; row++) data.set(px.subarray(row * W * 4, (row + 1) * W * 4), (H - 1 - row) * W * 4)
+  const tex = new DataTexture(data, W, H, RGBAFormat, UnsignedByteType)
   tex.colorSpace = SRGBColorSpace
+  tex.magFilter = LinearFilter
+  tex.minFilter = LinearMipmapLinearFilter
+  tex.generateMipmaps = true
   tex.anisotropy = 4
+  tex.needsUpdate = true
   return { tex, rects }
 }
 
+/** Clear pixels round each sprite in the atlas, on every side (their colour is spread into it). */
+const GAP = 6
+/** Below this alpha a pixel's own colour is not to be trusted (the canvas keeps colour × alpha). */
+const SOLID = 40
+
+/**
+ * Spreads the colour of solid pixels into the (nearly) clear ones next to them, `steps` pixels
+ * deep, leaving alpha alone: straight-alpha RGBA in place.
+ */
+function bleedColour(px: Uint8ClampedArray, W: number, H: number, steps: number) {
+  const n = W * H
+  // 1 = has a colour to give, 2 = queued.
+  const state = new Uint8Array(n)
+  for (let i = 0; i < n; i++) if (px[i * 4 + 3] >= SOLID) state[i] = 1
+  let front: number[] = []
+  const queueRound = (i: number) => {
+    const x = i % W
+    const y = (i - x) / W
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        const xx = x + dx
+        const yy = y + dy
+        if (xx < 0 || yy < 0 || xx >= W || yy >= H) continue
+        const j = yy * W + xx
+        if (state[j] === 0) {
+          state[j] = 2
+          front.push(j)
+        }
+      }
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    if (state[i] !== 1) continue
+    const x = i % W
+    // Only edge pixels have anything to do.
+    if ((x > 0 && state[i - 1] !== 1) || (x < W - 1 && state[i + 1] !== 1) || (i >= W && state[i - W] !== 1) || (i < n - W && state[i + W] !== 1)) queueRound(i)
+  }
+  for (let step = 0; step < steps && front.length; step++) {
+    const now = front
+    front = []
+    for (const i of now) {
+      const x = i % W
+      const y = (i - x) / W
+      let r = 0
+      let gg = 0
+      let b = 0
+      let k = 0
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const xx = x + dx
+          const yy = y + dy
+          if (xx < 0 || yy < 0 || xx >= W || yy >= H) continue
+          const j = yy * W + xx
+          if (state[j] !== 1) continue
+          r += px[j * 4]
+          gg += px[j * 4 + 1]
+          b += px[j * 4 + 2]
+          k++
+        }
+      }
+      if (!k) continue
+      px[i * 4] = r / k
+      px[i * 4 + 1] = gg / k
+      px[i * 4 + 2] = b / k
+    }
+    // They give colour only from the next step on, so a step is one pixel deep.
+    for (const i of now) state[i] = 1
+    for (const i of now) queueRound(i)
+  }
+}
+
+/**
+ * The light on a figure, worked out once per figure (every corner of its quad gets the same
+ * value): the scene's own lights, read from three's light uniforms (`lights: true`), so the
+ * city and My Home each give theirs. A figure is lit like an upright matt thing: sky light on
+ * a surface that leans a little upwards, the sun at a fixed share (it doesn't change as the
+ * camera turns), and the sun taken away where a building's shadow falls on it. The shadow map
+ * is read in the vertex shader at three heights and five spots each, so someone walking into
+ * the shade darkens over a step or two instead of flickering along the map's coarse edge.
+ * Only with PCF shadow maps (what both scenes use); any other kind leaves them in the sun.
+ */
 const VERT = /* glsl */ `
   uniform vec3 uRight;
   uniform vec3 uUp;
@@ -136,12 +241,81 @@ const VERT = /* glsl */ `
   attribute vec4 aRect;
   attribute float aFlip;
   varying vec2 vUv;
+  varying vec3 vLight;
   #include <fog_pars_vertex>
+
+  uniform vec3 ambientLightColor;
+  #if NUM_DIR_LIGHTS > 0
+    struct DirectionalLight {
+      vec3 direction;
+      vec3 color;
+    };
+    uniform DirectionalLight directionalLights[ NUM_DIR_LIGHTS ];
+  #endif
+  #if NUM_HEMI_LIGHTS > 0
+    struct HemisphereLight {
+      vec3 direction;
+      vec3 skyColor;
+      vec3 groundColor;
+    };
+    uniform HemisphereLight hemisphereLights[ NUM_HEMI_LIGHTS ];
+  #endif
+  #if defined( USE_SHADOWMAP ) && defined( SHADOWMAP_TYPE_PCF ) && NUM_DIR_LIGHT_SHADOWS > 0
+    #define FOLK_SHADE
+    uniform sampler2DShadow directionalShadowMap[ NUM_DIR_LIGHT_SHADOWS ];
+    uniform mat4 directionalShadowMatrix[ NUM_DIR_LIGHT_SHADOWS ];
+
+    float sunAt( vec3 p ) {
+      vec4 c = directionalShadowMatrix[ 0 ] * vec4( p, 1.0 );
+      c.xyz /= c.w;
+      // Outside the map: in the sun.
+      if ( c.x < 0.0 || c.x > 1.0 || c.y < 0.0 || c.y > 1.0 || c.z > 1.0 || c.z < 0.0 ) return 1.0;
+      #ifdef USE_REVERSED_DEPTH_BUFFER
+        c.z += 0.0008;
+      #else
+        c.z -= 0.0008;
+      #endif
+      return texture( directionalShadowMap[ 0 ], c.xyz );
+    }
+    float sunOn( vec3 foot, float h ) {
+      float sum = 0.0;
+      for ( int i = 0; i < 3; i ++ ) {
+        vec3 p = foot + vec3( 0.0, h * ( 0.25 + 0.3 * float( i ) ), 0.0 );
+        sum += sunAt( p ) * 2.0 + sunAt( p + vec3( 0.55, 0.0, 0.0 ) ) + sunAt( p - vec3( 0.55, 0.0, 0.0 ) ) + sunAt( p + vec3( 0.0, 0.0, 0.55 ) ) + sunAt( p - vec3( 0.0, 0.0, 0.55 ) );
+      }
+      return sum / 18.0;
+    }
+  #endif
+
   void main() {
     vec2 q = position.xy;
     vec3 p = aPos + uRight * q.x * aSize.x + uUp * q.y * aSize.y;
     float fx = aFlip > 0.0 ? q.x + 0.5 : 0.5 - q.x;
     vUv = vec2(mix(aRect.x, aRect.z, fx), mix(aRect.y, aRect.w, q.y));
+
+    vec3 light = ambientLightColor;
+    #if NUM_HEMI_LIGHTS > 0
+      for ( int i = 0; i < NUM_HEMI_LIGHTS; i ++ ) {
+        // As on a surface leaning a little upwards: mostly sky, some of the ground's bounce.
+        light += mix( hemisphereLights[ i ].groundColor, hemisphereLights[ i ].skyColor, 0.72 );
+      }
+    #endif
+    #if NUM_DIR_LIGHTS > 0
+      vec3 upView = normalize( ( viewMatrix * vec4( 0.0, 1.0, 0.0, 0.0 ) ).xyz );
+      for ( int i = 0; i < NUM_DIR_LIGHTS; i ++ ) {
+        // An upright figure's sunny side: more under a high sun, never nothing.
+        float share = 0.34 + 0.4 * max( dot( directionalLights[ i ].direction, upView ), 0.0 );
+        #ifdef FOLK_SHADE
+          // three lists the lights that cast shadows first.
+          // In the shade a little of it stays, bounced off the sunlit ground round about, so nobody turns into a silhouette.
+          if ( i == 0 ) share *= mix( 0.26, 1.0, sunOn( aPos, aSize.y ) );
+        #endif
+        light += directionalLights[ i ].color * share;
+      }
+    #endif
+    // Lambert, as three's own materials: light / pi.
+    vLight = light * 0.3183099;
+
     vec4 mvPosition = viewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mvPosition;
     #include <fog_vertex>
@@ -150,11 +324,21 @@ const VERT = /* glsl */ `
 const FRAG = /* glsl */ `
   uniform sampler2D uMap;
   varying vec2 vUv;
+  varying vec3 vLight;
   #include <fog_pars_fragment>
   void main() {
     vec4 c = texture2D(uMap, vUv);
-    if (c.a < 0.5) discard;
-    gl_FragColor = vec4(c.rgb * 0.96, 1.0);
+    #ifdef ALPHA_TO_COVERAGE
+      // The outline, one screen pixel wide whatever the figure's size: the multisampling
+      // turns that into a smooth edge, and solid pixels still write depth.
+      float a = clamp((c.a - 0.5) / max(fwidth(c.a), 0.0001) + 0.5, 0.0, 1.0);
+      if (a <= 0.0) discard;
+    #else
+      if (c.a < 0.5) discard;
+      float a = 1.0;
+    #endif
+    gl_FragColor = vec4(c.rgb * vLight, a);
+    #include <tonemapping_fragment>
     #include <colorspace_fragment>
     #include <fog_fragment>
   }
@@ -210,6 +394,7 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
   const invalidate = useThree((s) => s.invalidate)
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
+  const gl = useThree((s) => s.gl)
 
   const { geo, mat, shadowGeo, shadowMat, attrs } = useMemo(() => {
     const quad = new PlaneGeometry(1, 1).translate(0, 0.5, 0)
@@ -224,11 +409,25 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
     geo.setAttribute('aRect', aRect)
     geo.setAttribute('aFlip', aFlip)
     geo.instanceCount = 0
+    // Smooth outlines need a multisampled canvas; without one they stay cut out.
+    const ctx = gl.getContext()
+    const msaa = ctx.getParameter(ctx.SAMPLES) > 1
     const mat = new ShaderMaterial({
-      uniforms: { uMap: { value: atlas.tex }, uRight: { value: new Vector3(1, 0, 0) }, uUp: { value: new Vector3(0, 1, 0) }, fogColor: { value: new Color() }, fogNear: { value: 1 }, fogFar: { value: 1000 } },
+      uniforms: {
+        // The scene's lights and shadow map (three fills these in for a material with `lights`).
+        ...UniformsUtils.clone(UniformsLib.lights),
+        uMap: { value: atlas.tex },
+        uRight: { value: new Vector3(1, 0, 0) },
+        uUp: { value: new Vector3(0, 1, 0) },
+        fogColor: { value: new Color() },
+        fogNear: { value: 1 },
+        fogFar: { value: 1000 },
+      },
       vertexShader: VERT,
       fragmentShader: FRAG,
       fog: true,
+      lights: true,
+      alphaToCoverage: msaa,
     })
     const shadowQuad = new PlaneGeometry(1, 1)
     const shadowGeo = new InstancedBufferGeometry().copy(shadowQuad as unknown as InstancedBufferGeometry)
@@ -241,7 +440,7 @@ function Figures({ atlas, actors, roads, bridge, still, space }: Props & { atlas
     shadowGeo.instanceCount = 0
     const shadowMat = new ShaderMaterial({ uniforms: { uMap: { value: blobTexture() } }, vertexShader: SHADOW_VERT, fragmentShader: SHADOW_FRAG, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 })
     return { geo, mat, shadowGeo, shadowMat, attrs: { aPos, aSize, aRect, aFlip, sPos, sSize } }
-  }, [atlas])
+  }, [atlas, gl])
 
   // The atlas has arrived: draw them (the canvas renders on demand).
   useEffect(() => invalidate(), [geo, invalidate])

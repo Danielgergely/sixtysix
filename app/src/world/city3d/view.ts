@@ -1,4 +1,4 @@
-import { ANTONIA, ellipseE, LANDMARK_RECTS, PLATFORM, rectDist, SANCTUARY, type Rect } from './plan'
+import { ANTONIA, ellipseE, LANDMARK_RECTS, PLATFORM, rectDist, SANCTUARY, W_CX, W_CZ, W_RX, W_RZ, WALL_H, type Rect } from './plan'
 import { heightAt, MOUNT_TOP } from './space'
 
 /**
@@ -54,4 +54,32 @@ export function clearView(x: number, z: number, dist: number, az: number, polar:
     }
   }
   return [az, 0.2]
+}
+
+/**
+ * Is the city wall between the eye and a point? The wall is the ellipse of
+ * the plan, as high as its merlons; the line of sight is cut with it (in the
+ * ellipse's own space, where it is a circle) and hidden where it passes
+ * below the top. For the name tags, which are HTML and would otherwise show
+ * through the wall from a low camera outside it.
+ */
+export function wallHides(ex: number, ey: number, ez: number, x: number, y: number, z: number): boolean {
+  const ax = (ex - W_CX) / W_RX
+  const az = (ez - W_CZ) / W_RZ
+  const dx = (x - W_CX) / W_RX - ax
+  const dz = (z - W_CZ) / W_RZ - az
+  const a = dx * dx + dz * dz
+  if (a < 1e-9) return false
+  const b = 2 * (ax * dx + az * dz)
+  const c = ax * ax + az * az - 1
+  const disc = b * b - 4 * a * c
+  if (disc <= 0) return false
+  const root = Math.sqrt(disc)
+  for (const t of [(-b - root) / (2 * a), (-b + root) / (2 * a)]) {
+    if (t <= 0.02 || t >= 0.98) continue
+    const wx = ex + (x - ex) * t
+    const wz = ez + (z - ez) * t
+    if (ey + (y - ey) * t < heightAt(wx, wz) + WALL_H + 0.6) return true
+  }
+  return false
 }

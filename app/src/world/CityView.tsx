@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react'
 import { useT } from '../i18n'
 import { CityMap, type CityMapProps } from './CityMap'
 import { Fallback } from './Fallback3D'
+import { loadCity3D } from './preload3d'
 import { hasWebGL } from './webgl'
 
 /**
@@ -11,7 +12,7 @@ import { hasWebGL } from './webgl'
  * WebGL context (webgl.ts; `sixtysix.city2d.v1` forces 2D).
  */
 
-const City3D = lazy(() => import('./city3d/City3D'))
+const City3D = lazy(loadCity3D)
 
 export function CityView(props: CityMapProps & { onReady?: () => void }) {
   const t = useT()

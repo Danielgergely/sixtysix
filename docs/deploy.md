@@ -183,6 +183,22 @@ Measured on the 2026-10-29 build:
   CPU, not storage or bandwidth. A single small Node process comfortably
   handles a few hundred phones at once.
 
+## Static files: precompressed, cached, service worker
+
+The server never compresses anything. `npm run build` ends with
+`app/scripts/precompress.mjs`, which writes a `.br` and a `.gz` next to every
+text-like file in `app/dist`; `@fastify/static` sends the one the browser
+accepts (`preCompressed`). `/assets/*` (content-hashed names) is served
+`immutable` for a year, `index.html` and `sw.js` with `no-cache` (one small
+ETag check per visit), art and other unhashed files for a day. A small service
+worker (`app/public/sw.js`, production web builds only, not the native shells)
+keeps the hashed files and the art on the device, so returning players fetch
+little more than `index.html`, and Bible Blitz works offline once played. The
+page itself is always taken from the network first, so a deploy shows up on the
+next load. A proxy or CDN in front must pass `Cache-Control`, `Vary` and
+`Content-Encoding` through unchanged. To retire the worker, ship a `sw.js` that
+unregisters itself; to drop everything it stored, bump `VERSION` in it.
+
 ## When accounts and saved progress arrive
 
 - Profiles, coins and stats live only in each browser's `localStorage` today.

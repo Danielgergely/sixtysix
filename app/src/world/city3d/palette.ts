@@ -20,12 +20,16 @@ export const C = {
   ochre: '#d89a2b',
   green: '#5f7f3a',
   cream: '#f3e6c4',
+  // Dyed cloth, muted: madder red, indigo, saffron.
+  madder: '#a8402f',
+  indigo: '#3d5687',
+  saffron: '#e0aa3e',
   water: '#4f9ea3',
   bronze: '#b0793a',
   goatHair: '#3f3029',
   leaf: '#6f8a3c',
   olive: '#8f9a63',
-  cypress: '#3f5a2c',
+  cypress: '#4d6c35',
   trunk: '#6b4a2b',
   earth: '#c9a46c',
 } as const

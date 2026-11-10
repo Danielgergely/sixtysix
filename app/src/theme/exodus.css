@@ -16,9 +16,24 @@
   inset: 0;
   transition: filter 0.4s ease;
 }
-/* The question moment: the world is drawn at a low resolution (soft) and warmed a little. */
+/*
+ * The question moment: the world goes soft and a little duller. A blur on the
+ * canvas (the picture itself is drawn as sharp as ever, so its size never
+ * changes), kept small: a phone blurs the whole screen on every frame, which
+ * is why the scene draws fewer frames while it lasts. It starts going soft
+ * over the last part of the horn's second (`.is-warned`), as the track clears.
+ */
+.is-warned .ex-canvas {
+  filter: blur(3px) saturate(1) brightness(1);
+  transition-delay: 0.6s;
+}
 .is-reading .ex-canvas {
-  filter: blur(1.5px) saturate(0.85) brightness(0.92);
+  filter: blur(3px) saturate(0.85) brightness(0.92);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-canvas {
+    transition: none;
+  }
 }
 
 .ex-hud {
@@ -333,6 +348,62 @@
   .ex-hint-duck::before {
     transition: none;
     animation: none;
+  }
+}
+
+/*
+ * Speed lines: a few pale streaks at the screen's edges, pointing away from
+ * where the track runs off to, while the run is fast (`.on`, set by the
+ * controller). Only transforms and opacity move; they stand still (and
+ * hidden) the rest of the time, and are left out under reduced motion.
+ */
+.ex-speed {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    visibility 0s linear 0.35s;
+}
+.ex-speed.on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease;
+}
+.ex-speed i {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 20vmin;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+  transform-origin: 0 50%;
+  opacity: 0;
+  animation: ex-streak var(--t) linear var(--d) infinite paused;
+}
+.ex-speed.on i {
+  animation-play-state: running;
+}
+@keyframes ex-streak {
+  0% {
+    transform: rotate(var(--a)) translateX(-5vmin) scaleX(0.3);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(var(--a)) translateX(14vmin) scaleX(1.3);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-speed {
+    display: none;
   }
 }
 

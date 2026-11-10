@@ -42,6 +42,8 @@ export const MAX_DIST = 290
 export const START_DIST = 105
 export const START_POLAR = 0.86
 /** Names of families show below about this camera distance (the HTML labels). */
+/** The city's film exposure under the renderer's tone mapping (ACES): below 1 keeps sunlit limestone from burning out. */
+export const EXPOSURE = 0.8
 export const NAME_DIST = 72
 
 /** How tall each house level stands (for its label and tap box). */

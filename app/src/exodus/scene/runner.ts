@@ -1,4 +1,4 @@
-import { AnimationMixer, type AnimationClip, type Bone, CanvasTexture, Color, LoopOnce, LoopRepeat, MeshToonMaterial, PropertyBinding, Quaternion, SRGBColorSpace, Vector3, type AnimationAction, type Group, type Mesh, type Object3D, type Texture } from 'three'
+import { AnimationMixer, type AnimationClip, BackSide, type Bone, CanvasTexture, Color, LoopOnce, LoopRepeat, MeshBasicMaterial, MeshDepthMaterial, MeshToonMaterial, PropertyBinding, Quaternion, SRGBColorSpace, Vector3, type AnimationAction, type Group, type Mesh, type Object3D, SkinnedMesh, type Texture } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { ROLL_S, type Run } from '../sim'
 
@@ -84,14 +84,40 @@ export interface RunnerColors {
 
 export const DEFAULT_COLORS: RunnerColors = { cloak: '#3456a6', trim: '#b8432f' }
 
+/** The dark line round the runner: how far the hull stands out from the body (model units; the runner is about 1.3 tall), and its colour. */
+const OUTLINE = 0.03
+const OUTLINE_COLOR = '#2a1a12'
+
+/**
+ * The outline's material: the body drawn once more, inside out and a little
+ * bigger (each vertex pushed out along its normal before the skinning, so it
+ * follows the bones), in one dark colour. Only the rim shows round the body.
+ * The camera keeps its distance from the runner, so the line keeps its width.
+ */
+function outlineMaterial(): MeshBasicMaterial {
+  const m = new MeshBasicMaterial({ color: OUTLINE_COLOR, side: BackSide, fog: false })
+  m.onBeforeCompile = (s) => {
+    s.vertexShader = s.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n  transformed += normalize( normal ) * ${OUTLINE.toFixed(4)};`)
+  }
+  m.customProgramCacheKey = () => 'outline'
+  return m
+}
+
+/** The width the runner's palette texture is used at. */
+const PALETTE_PX = 256
+
 /** Repaints the palette texture's green and teal swatches (the rogue's cloak) in `colors`. */
 function repaint(src: Texture, colors: RunnerColors): Texture {
   const img = src.image as HTMLImageElement | ImageBitmap
   const c = document.createElement('canvas')
-  c.width = img.width
-  c.height = img.height
+  // The model's picture is 1024 px of flat swatches; the runner is a hundred or two px tall on screen. A quarter
+  // of the size looks the same, takes a sixteenth of the memory on the graphics card and is repainted 16× sooner.
+  const k = Math.min(1, PALETTE_PX / img.width)
+  c.width = Math.round(img.width * k)
+  c.height = Math.round(img.height * k)
   const g = c.getContext('2d')!
-  g.drawImage(img, 0, 0)
+  g.imageSmoothingQuality = 'high'
+  g.drawImage(img, 0, 0, c.width, c.height)
   const data = g.getImageData(0, 0, c.width, c.height)
   const d = data.data
   const cloak = new Color(colors.cloak)
@@ -140,16 +166,19 @@ export class Runner {
   private head: Object3D | null = null
   private hips: Object3D | null = null
   private legs: Object3D[] = []
-  /** The clips' own values of everything `step` changes, put back before the mixer runs again. */
-  private saved: { q: Quaternion[]; legs: Vector3[]; hipsY: number; head: Vector3 } | null = null
+  /** The clips' own values of everything `step` changes, put back before the mixer runs again (`hasSaved`: taken at least once). */
+  private saved: { q: Quaternion[]; legs: Vector3[]; hipsY: number; head: Vector3 }
+  private hasSaved = false
   private stride: { bone: Bone; mean: Quaternion }[] = []
   /** Squash and stretch: height factor and its speed (a damped spring back to 1, or to the duck). */
   private squash = 1
   private squashV = 0
   /** Seconds into the double jump's somersault (−1: none). */
   private flip = -1
-  private constructor(root: Group, clips: AnimationClip[]) {
+  private outlines: Mesh[]
+  private constructor(root: Group, clips: AnimationClip[], outlines: Mesh[]) {
     this.root = root
+    this.outlines = outlines
     this.mixer = new AnimationMixer(root)
     for (const clip of clips) this.actions.set(clip.name as Clip, this.mixer.clipAction(clip))
     this.head = root.getObjectByName('head') ?? null
@@ -163,6 +192,7 @@ export class Runner {
         if (bone) this.stride.push({ bone, mean })
       }
     }
+    this.saved = { q: this.stride.map(() => new Quaternion()), legs: this.legs.map(() => new Vector3()), hipsY: 0, head: new Vector3(1, 1, 1) }
     this.play('Running_A', 0)
   }
 
@@ -170,18 +200,44 @@ export class Runner {
     const gltf = await new GLTFLoader().loadAsync('/exodus/runner.glb')
     const root = gltf.scene
     let painted: Texture | null = null
+    // The runner's own materials in the shadow pass (one for the skinned body, one for the cape, which is not):
+    // sharing three's one with the instanced models would make it work the shader out again several times a frame
+    // (see the scene's `plainDepth`).
+    const depth = { skinned: new MeshDepthMaterial(), plain: new MeshDepthMaterial() }
     root.traverse((o) => {
       const m = o as Mesh
       if (!m.isMesh) return
       m.castShadow = true
+      m.customDepthMaterial = (m as SkinnedMesh).isSkinnedMesh ? depth.skinned : depth.plain
       const std = m.material as MeshToonMaterial & { map: Texture | null }
       if (std.map && !painted) painted = repaint(std.map, colors)
       m.material = new MeshToonMaterial({ map: painted ?? std.map, gradientMap: ramp })
       std.dispose()
     })
+    // The outline: every skinned part once more with the outline's material, on the same bones (six small draw calls).
+    // The cape is left out: it is a flat sheet against the back, which a hull cannot go round.
+    const skinned: SkinnedMesh[] = []
+    root.traverse((o) => {
+      if ((o as SkinnedMesh).isSkinnedMesh) skinned.push(o as SkinnedMesh)
+    })
+    const ink = outlineMaterial()
+    const outlines = skinned.map((m) => {
+      const hull = new SkinnedMesh(m.geometry, ink)
+      hull.bind(m.skeleton, m.bindMatrix)
+      hull.position.copy(m.position)
+      hull.quaternion.copy(m.quaternion)
+      hull.scale.copy(m.scale)
+      m.parent?.add(hull)
+      return hull
+    })
     // The model faces +z; the run goes towards −z.
     root.rotation.y = Math.PI
-    return new Runner(root, gltf.animations)
+    return new Runner(root, gltf.animations, outlines)
+  }
+
+  /** Shows or drops the outline (dropped on the lowest quality step). */
+  setOutline(on: boolean) {
+    for (const o of this.outlines) o.visible = on
   }
 
   private play(clip: Clip, fade = 0.12, once = false, speed = 1) {
@@ -257,19 +313,19 @@ export class Runner {
   private step(dt: number, ducking: boolean) {
     // The mixer writes a bone only when the clip's value changes, so first undo last frame's changes.
     const saved = this.saved
-    if (saved) {
-      this.stride.forEach(({ bone }, i) => bone.quaternion.copy(saved.q[i]))
-      this.legs.forEach((leg, i) => leg.scale.copy(saved.legs[i]))
+    const { stride, legs } = this
+    if (this.hasSaved) {
+      for (let i = 0; i < stride.length; i++) stride[i].bone.quaternion.copy(saved.q[i])
+      for (let i = 0; i < legs.length; i++) legs[i].scale.copy(saved.legs[i])
       if (this.hips) this.hips.position.y = saved.hipsY
       this.head?.scale.copy(saved.head)
     }
     this.mixer.update(dt)
-    this.saved = {
-      q: this.stride.map(({ bone }, i) => (saved?.q[i] ?? new Quaternion()).copy(bone.quaternion)),
-      legs: this.legs.map((leg, i) => (saved?.legs[i] ?? new Vector3()).copy(leg.scale)),
-      hipsY: this.hips?.position.y ?? 0,
-      head: (saved?.head ?? new Vector3()).copy(this.head?.scale ?? new Vector3(1, 1, 1)),
-    }
+    for (let i = 0; i < stride.length; i++) saved.q[i].copy(stride[i].bone.quaternion)
+    for (let i = 0; i < legs.length; i++) saved.legs[i].copy(legs[i].scale)
+    saved.hipsY = this.hips?.position.y ?? 0
+    if (this.head) saved.head.copy(this.head.scale)
+    this.hasSaved = true
     // The stride, by how much the run clip is playing.
     const w = this.actions.get('Running_A')?.getEffectiveWeight() ?? 0
     if (w > 0.01) for (const { bone, mean } of this.stride) exaggerate(bone.quaternion, mean, 1 + (STRIDE - 1) * w)
@@ -302,7 +358,7 @@ export class Runner {
     this.wasAir = this.wasRoll = false
     this.squash = 1
     this.squashV = 0
-    this.saved = null
+    this.hasSaved = false
     this.flip = -1
     this.play('Running_A', 0)
   }
@@ -316,6 +372,7 @@ export class Runner {
       const mat = m.material as MeshToonMaterial
       mat.map?.dispose()
       mat.dispose()
+      m.customDepthMaterial?.dispose()
     })
   }
 }

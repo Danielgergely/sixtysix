@@ -12,7 +12,7 @@ import { Color, DataTexture, MeshToonMaterial, NearestFilter, RedFormat, type Ma
 export const bend = { down: { value: 0.0016 }, side: { value: 0 } }
 
 /** z behind which nothing bends (just in front of the camera). */
-const FLAT_Z = 4
+export const FLAT_Z = 4
 
 export function curved<M extends Material>(m: M): M {
   m.onBeforeCompile = (s) => {

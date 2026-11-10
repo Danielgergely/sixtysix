@@ -100,14 +100,23 @@ export function waterMaterial(): ShaderMaterial {
           float depth = 0.45 + 0.2 * fi;
           col = mix(col, uDeep * 0.4, smoothstep(0.06, -0.04, d) * depth * step(0.2, rnd));
         }
-        // Foam at the crest and at the foot.
-        float crest = smoothstep(H - 1.2, H - 0.2, vW.y + sin(s * 2.1 + uTime * 3.0) * 0.25);
-        float foot = smoothstep(0.9, 0.0, vW.y + sin(s * 1.3 - uTime * 2.0) * 0.2);
-        col = mix(col, vec3(0.93, 0.98, 1.0), max(crest * 0.85, foot * 0.75));
+        // Foam: a band along the crest and where the wall meets the ground, each with a broken fringe
+        // of lace that drifts (two sines multiplied: blobs, a third to break their rows), and a bright line at the very foot.
+        float lace = sin(s * 5.3 + uTime * 1.7) * sin(vW.y * 6.1 - uTime * 2.4 + sin(s * 2.3) * 1.5) + sin(s * 11.7 - uTime * 2.1 + vW.y * 3.3) * 0.3;
+        float crestY = vW.y + sin(s * 2.1 + uTime * 3.0) * 0.25;
+        float crest = smoothstep(H - 1.2, H - 0.2, crestY) * 0.85;
+        crest = max(crest, smoothstep(H - 2.8, H - 1.0, crestY) * smoothstep(0.15, 0.6, lace) * 0.6);
+        // (The foot's band laps up and down along the wall.)
+        float footY = vW.y + sin(s * 1.3 - uTime * 2.0) * 0.2 - abs(sin(s * 0.9 + uTime * 0.8)) * 0.35;
+        float foot = smoothstep(0.9, 0.0, footY) * 0.8;
+        foot = max(foot, smoothstep(2.4, 0.7, footY) * smoothstep(0.2, 0.65, lace) * 0.55);
+        foot = max(foot, smoothstep(0.32, 0.12, vW.y));
+        float foam = max(crest, foot);
+        col = mix(col, vec3(0.93, 0.98, 1.0), foam);
         // Haze far ahead, like the scene's fog.
         float fog = smoothstep(90.0, 230.0, vAhead);
         col = mix(col, uFog, fog * 0.85);
-        gl_FragColor = vec4(col, mix(0.88, 0.97, h));
+        gl_FragColor = vec4(col, max(mix(0.88, 0.97, h), foam));
         #include <colorspace_fragment>
       }
     `,

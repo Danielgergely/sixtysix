@@ -1,4 +1,4 @@
-import { CanvasTexture, RepeatWrapping, SRGBColorSpace, type Texture } from 'three'
+import { CanvasTexture, NoColorSpace, RepeatWrapping, SRGBColorSpace, type Texture } from 'three'
 import { rng } from './space'
 
 /**
@@ -95,6 +95,119 @@ export function blobTexture(): Texture {
   g.fillStyle = grad
   g.fillRect(0, 0, 64, 64)
   return tex(c, false, 1)
+}
+
+/** A lamp's pool of warm light on the ground at night (drawn additively). */
+export function glowTexture(): Texture {
+  const [c, g] = canvas(64)
+  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32)
+  grad.addColorStop(0, 'rgba(255,196,120,1)')
+  grad.addColorStop(0.5, 'rgba(255,170,90,0.7)')
+  grad.addColorStop(1, 'rgba(255,150,70,0)')
+  g.fillStyle = grad
+  g.fillRect(0, 0, 64, 64)
+  return tex(c, false, 1)
+}
+
+/**
+ * The soft shade a house's foundation casts on the ground round it: a dark
+ * square fading out to nothing at the quad's edge. The middle is under the
+ * house; only the rim shows, so the house sits on the hill instead of floating.
+ */
+export function contactTexture(): Texture {
+  const W = 64
+  const [c, g] = canvas(W)
+  const img = g.createImageData(W, W)
+  for (let j = 0; j < W; j++) {
+    for (let i = 0; i < W; i++) {
+      // 0 at the quad's edge, 1 from CONTACT_INNER of the way in.
+      const e = Math.min(i, j, W - 1 - i, W - 1 - j) / (W / 2)
+      const t = Math.min(1, e / (1 - CONTACT_INNER))
+      const k = (j * W + i) * 4
+      img.data[k] = 46
+      img.data[k + 1] = 34
+      img.data[k + 2] = 30
+      img.data[k + 3] = 255 * 0.5 * t * t * (3 - 2 * t)
+    }
+  }
+  g.putImageData(img, 0, 0)
+  return tex(c, false, 1)
+}
+
+/** How much of the contact quad's half-width is fully dark (the rest is the fade). */
+export const CONTACT_INNER = 0.72
+
+/**
+ * The ground's grain close up: grit, pebbles and short strokes on mid grey,
+ * tiling. The ground material (terrain.ts) multiplies the big ground painting
+ * by it about mid grey, so mid grey changes nothing; far away its small mip levels
+ * are flat grey and the grain fades by itself.
+ */
+export function groundDetailTexture(): Texture {
+  const W = 256
+  const [c, g] = canvas(W)
+  const rand = rng(23)
+  g.fillStyle = 'rgb(128,128,128)'
+  g.fillRect(0, 0, W, W)
+  // Everything is drawn at its wrapped copies too, so the texture tiles.
+  const wrapped = (x: number, y: number, r: number, draw: (x: number, y: number) => void) => {
+    for (const ox of x < r ? [0, W] : x > W - r ? [0, -W] : [0]) for (const oy of y < r ? [0, W] : y > W - r ? [0, -W] : [0]) draw(x + ox, y + oy)
+  }
+  // Soft blotches of lighter and darker earth.
+  for (let i = 0; i < 70; i++) {
+    const [x, y, r] = [rand() * W, rand() * W, 14 + rand() * 26]
+    const v = rand() < 0.5 ? 96 : 160
+    const a = 0.05 + rand() * 0.06
+    wrapped(x, y, r, (px, py) => {
+      const grad = g.createRadialGradient(px, py, 0, px, py, r)
+      grad.addColorStop(0, `rgba(${v},${v},${v},${a})`)
+      grad.addColorStop(1, `rgba(${v},${v},${v},0)`)
+      g.fillStyle = grad
+      g.fillRect(px - r, py - r, r * 2, r * 2)
+    })
+  }
+  // Grit.
+  for (let i = 0; i < 2600; i++) {
+    const [x, y] = [rand() * W, rand() * W]
+    const v = rand() < 0.55 ? 70 + rand() * 30 : 165 + rand() * 40
+    g.fillStyle = `rgba(${v},${v - 2},${v - 6},${0.18 + rand() * 0.25})`
+    const sz = 0.8 + rand() * 1.4
+    wrapped(x, y, 2, (px, py) => g.fillRect(px, py, sz, sz))
+  }
+  // Pebbles: a light top, a dark foot.
+  for (let i = 0; i < 90; i++) {
+    const [x, y, r] = [rand() * W, rand() * W, 1.6 + rand() * 2.6]
+    const turn = rand() * Math.PI
+    wrapped(x, y, r + 2, (px, py) => {
+      g.fillStyle = 'rgba(60,52,44,0.35)'
+      g.beginPath()
+      g.ellipse(px + 0.6, py + 0.9, r, r * 0.7, turn, 0, Math.PI * 2)
+      g.fill()
+      g.fillStyle = 'rgba(190,186,176,0.5)'
+      g.beginPath()
+      g.ellipse(px, py, r * 0.85, r * 0.6, turn, 0, Math.PI * 2)
+      g.fill()
+    })
+  }
+  // Short strokes: straw, cracks, blades.
+  g.lineCap = 'round'
+  for (let i = 0; i < 420; i++) {
+    const [x, y, len, dir] = [rand() * W, rand() * W, 3 + rand() * 6, rand() * Math.PI * 2]
+    const v = rand() < 0.5 ? 78 : 176
+    g.strokeStyle = `rgba(${v},${v},${v - 8},${0.16 + rand() * 0.2})`
+    g.lineWidth = 0.6 + rand() * 0.8
+    wrapped(x, y, len, (px, py) => {
+      g.beginPath()
+      g.moveTo(px, py)
+      g.lineTo(px + Math.cos(dir) * len, py + Math.sin(dir) * len)
+      g.stroke()
+    })
+  }
+  const t = new CanvasTexture(c)
+  t.colorSpace = NoColorSpace
+  t.wrapS = t.wrapT = RepeatWrapping
+  t.anisotropy = 4
+  return t
 }
 
 /** The board on a home that is for sale, in the player's language. */

@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useGameStore, type TabScreen } from '../../game/store'
 import { DAILY_COUNT, today, useDailyStore } from '../../daily/dailyStore'
 import { useT } from '../../i18n'
+import { preloadCity3DWhenIdle } from '../../world/preload3d'
 
 /** The leaderboard is reached from the top bar's 🏆 instead. */
 const TABS: Array<{ id: TabScreen; icon: string }> = [
@@ -16,6 +18,8 @@ export function TabBar() {
   const goTo = useGameStore((s) => s.goTo)
   const daily = useDailyStore((s) => s.saved)
   const t = useT()
+  // The tabs have been up for a moment: fetch the 3D city's chunk ahead of the Jerusalem tab.
+  useEffect(() => preloadCity3DWhenIdle(), [])
   // A dot on Quiz while today's Daily Scroll is still waiting.
   const dailyWaiting = !(daily.date === today() && daily.picks.length >= DAILY_COUNT)
   return (

@@ -10,6 +10,7 @@ import {
   CylinderGeometry,
   DoubleSide,
   Fog,
+  Frustum,
   InstancedMesh,
   Matrix4,
   Mesh,
@@ -30,18 +31,23 @@ import { LOTS, lotOpen } from '../cityLayout'
 import { homesOf, townsfolk } from '../cityTownsfolk'
 import { HOUSE_TOP, MAX_DIST, MIN_DIST, NAME_DIST, START_DIST, START_POLAR, type Bridge, type LabelSpec } from './bridge'
 import { buildCity, type LandmarkSpot } from './buildings'
-import { configureRig, smallScreen, useDisposeOnUnmount } from './rig'
+import { configureRig, useDisposeOnUnmount } from './rig'
 import { lotFenceGeometries } from './fence'
 import { freeLotGeometry, houseGeometries, signPostGeometry, weedGeometry } from './houses'
 import { HOUSE_YARD } from './models'
 import { C } from './palette'
 import { HOUSE_SCALE, LOT_HALF } from './plan'
 import { CITY_NET } from './streets'
-import { setInstances } from './geo'
+import { bakeAo } from './ao'
+import { InstanceCuller } from './cull'
+import { DAYLIGHT, forcedPeriod, periodAt, poolSky, untilNextPeriod } from './daylight'
+import { gfxTier, QUALITY } from './quality'
+import { CITY_SKY, farHills, setSky, skyDome, type SkyMesh } from './sky'
 import { PoolWater } from './PoolWater'
 import { GROUND, HALF, hash, heightAt, lotCentre, surfaceAt } from './space'
-import { groundTexture, terrainGeometry } from './terrain'
-import { plasterTexture, releaseAfterUpload, signTexture, stoneTexture } from './textures'
+import { groundMaterial, groundTexture, terrainGeometry } from './terrain'
+import { wallHides } from './view'
+import { CONTACT_INNER, contactTexture, glowTexture, groundDetailTexture, plasterTexture, releaseAfterUpload, signTexture, stoneTexture } from './textures'
 import { Townsfolk3D } from './Townsfolk3D'
 import { cypressGeometry, oliveGeometry, placeTrees } from './trees'
 
@@ -63,6 +69,12 @@ const HOUSE_TINTS: [number, number, number][] = [
   [1, 1, 1],
 ]
 
+/** Half the side of the ground the shadow map covers: the whole city, and the tightest fit close up. */
+const SHADOW_WIDE = 150
+const SHADOW_TIGHT = 55
+/** The camera counts as at rest this long after its last move. */
+const REST_MS = 180
+
 /** At most this many family names at once (nearest first). */
 const MAX_NAMES = 40
 
@@ -80,6 +92,7 @@ interface Props {
 }
 
 const up = new Vector3(0, 1, 0)
+const slope = new Vector3()
 
 /** Where the camera was when the city last closed (position, target), for this session. */
 let lastView: [number, number, number, number, number, number] | null = null
@@ -92,21 +105,42 @@ function lotTurn(n: number): number {
 export function CityScene({ residents, me, found, labels, bridge, start, still, forSale, onLandmarks, onReady }: Props) {
   const { gl, scene, camera, invalidate, size } = useThree()
   const controls = useRef<CameraControls>(null)
+  const skyRef = useRef<SkyMesh | null>(null)
+  // The shadow's fit: the square of ground (centre, half side) the one shadow map covers now; half < 0 = fit it afresh.
+  const rested = useRef(true)
+  const fit = useRef({ x: 0, z: 0, half: -1 })
+  // Lamps by the houses at dusk and at night: a pool of warm light on the ground and a flame, two draw calls.
+  const lampMat = useMemo(() => new MeshBasicMaterial({ map: glowTexture(), transparent: true, depthWrite: false, blending: AdditiveBlending, opacity: 0, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }), [])
+  const flameMat = useMemo(() => new MeshBasicMaterial({ color: new Color().setRGB(2.2, 0.95, 0.22) }), [])
+  const flameGeo = useMemo(() => new BoxGeometry(0.16, 0.24, 0.16), [])
+  const glowMesh = useRef<InstancedMesh>(null)
+  const flameMesh = useRef<InstancedMesh>(null)
   useDisposeOnUnmount(scene)
 
   // ── Static: built once ──
   // Ground painting resolution: decided once (phones get a smaller one).
   const [wide] = useState(() => window.innerWidth > 700)
   // Phones get a smaller shadow map (the same check that caps their pixel ratio).
-  const [shadowSize] = useState(() => (smallScreen() ? 1536 : 2048))
+  // What this device's tier turns on (quality.ts): decided once per opening.
+  const [quality] = useState(() => QUALITY[gfxTier()])
+  const shadowSize = quality.shadowSize
+  // The time of day by the player's clock (daylight.ts); looked up again when the next period begins.
+  const [period, setPeriod] = useState(() => forcedPeriod() ?? periodAt())
+  const light = DAYLIGHT[period]
+  useEffect(() => {
+    if (forcedPeriod()) return
+    const id = window.setTimeout(() => setPeriod(periodAt()), untilNextPeriod() + 500)
+    return () => window.clearTimeout(id)
+  }, [period])
   const city = useMemo(() => buildCity(), [])
   const statics = useMemo(() => {
     const stoneMat = new MeshLambertMaterial({ vertexColors: true, map: stoneTexture() })
     const plainMat = new MeshLambertMaterial({ vertexColors: true, map: plasterTexture() })
     // The ground painting's canvas is let go once uploaded (up to 16 MB).
-    const groundMat = new MeshLambertMaterial({ map: releaseAfterUpload(groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536)) })
+    const painting = releaseAfterUpload(groundTexture(gl.capabilities.maxTextureSize >= 4096 && wide ? 2048 : 1536))
+    const groundMat = quality.grain ? groundMaterial(painting, groundDetailTexture()) : new MeshLambertMaterial({ map: painting })
     return { stoneMat, plainMat, groundMat, terrain: terrainGeometry() }
-  }, [gl, wide])
+  }, [gl, wide, quality])
   const trees = useMemo(() => placeTrees(), [])
   const treeGeo = useMemo(() => ({ olive: oliveGeometry(), cypress: cypressGeometry() }), [])
   const houseGeo = useMemo(() => houseGeometries(), [])
@@ -135,14 +169,54 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   useEffect(() => onLandmarks(city.landmarks), [city, onLandmarks])
 
+  // The static city's baked shade (ao.ts): where walls meet the ground, towers the wall, stalls the paving.
+  // It takes longer than building the city, so it runs once the first picture is up, then asks for one frame.
+  useEffect(() => {
+    if (!quality.bakedShade) return
+    const id = window.setTimeout(() => {
+      bakeAo(city.stone, { ground: heightAt, occluders: [city.plain], strength: 0.55 })
+      bakeAo(city.plain, { ground: heightAt, occluders: [city.stone], strength: 0.55 })
+      invalidate()
+    }, 80)
+    return () => window.clearTimeout(id)
+  }, [city, invalidate, quality])
+
   // ── Scene setup: sky, haze, static shadows ──
   useLayoutEffect(() => {
     if (import.meta.env.DEV) Object.assign(window, { __city3dGl: gl, __city3dScene: scene })
-    scene.background = new Color('#ecdcb8')
-    scene.fog = new Fog('#ecdcb8', 200, 600)
+    // The sky is a dome (sky.ts); its haze at the horizon is the fog's colour, so the far land melts into it.
+    const sky = skyDome()
+    skyRef.current = sky
+    const hills = farHills()
+    scene.add(sky, hills)
+    scene.background = null
+    scene.fog = new Fog(CITY_SKY.haze, 200, 600)
     gl.shadowMap.autoUpdate = false
     gl.shadowMap.needsUpdate = true
+    return () => {
+      scene.remove(sky, hills)
+      for (const m of [sky, hills]) {
+        m.geometry.dispose()
+        m.material.dispose()
+      }
+    }
   }, [scene, gl])
+
+  // The time of day: the sky, the haze and the Pool's mirror take its colours, and the shadow is drawn again.
+  useLayoutEffect(() => {
+    const sky = skyRef.current
+    if (sky) setSky(sky, { ...CITY_SKY, ...light.sky, haze: light.haze, sunDir: light.sun })
+    ;(scene.fog as Fog | null)?.color.set(light.haze)
+    const mirror = { ...CITY_SKY, ...light.sky }
+    poolSky.zenith.set(mirror.zenith)
+    poolSky.mid.set(mirror.mid)
+    poolSky.horizon.set(mirror.horizon)
+    lampMat.opacity = light.lamps
+    // The sun has moved: fit the shadow afresh on the next frame.
+    fit.current.half = -1
+    rested.current = true
+    invalidate()
+  }, [light, scene, invalidate]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Lots: who lives where ──
   const byLot = useMemo(() => {
@@ -158,6 +232,12 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const postMesh = useRef<InstancedMesh>(null)
   const faceMesh = useRef<InstancedMesh>(null)
   const hitMesh = useRef<InstancedMesh>(null)
+  const contactMesh = useRef<InstancedMesh>(null)
+
+  // Only the instances in view are drawn (cull.ts), on the frames drawn anyway.
+  const culler = useMemo(() => new InstanceCuller(), [])
+  const frustum = useMemo(() => new Frustum(), [])
+  const projView = useMemo(() => new Matrix4(), [])
 
   const layout = useMemo(() => {
     const perLevel: { m: Matrix4; c: Color }[][] = houseGeo.map(() => [])
@@ -165,6 +245,9 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     const free: Matrix4[] = []
     const weeds: { m: Matrix4; c: Color }[] = []
     const signs: Matrix4[] = []
+    const contacts: Matrix4[] = []
+    const glows: Matrix4[] = []
+    const flames: Matrix4[] = []
     const o = new Object3D()
     LOTS.forEach((l, i) => {
       const n = i + 1
@@ -188,6 +271,16 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const fade = stage >= 2 ? [0.8, 0.78, 0.72] : stage === 1 ? [0.92, 0.91, 0.86] : [1, 1, 1]
       const tint = new Color(k * tr * fade[0], k * tg * fade[1], k * tb * fade[2])
       perLevel[level].push({ m: o.matrix.clone(), c: tint })
+      // The shade round the foundation, lying on the slope: its dark part ends at the foundation's edge.
+      const half = ((HOUSE_YARD[level] + 0.4) / 2) * HOUSE_SCALE
+      const side = (2 * half) / CONTACT_INNER
+      slope.set(heightAt(x - 1, z) - heightAt(x + 1, z), 2, heightAt(x, z - 1) - heightAt(x, z + 1)).normalize()
+      contacts.push(new Matrix4().compose(new Vector3(x, y + 0.06, z).addScaledVector(slope, 0.02), new Quaternion().setFromUnitVectors(up, slope).multiply(new Quaternion().setFromAxisAngle(up, lotTurn(n))), new Vector3(side, 1, side)))
+      // A lamp by the door (the front is +z, turned with the house): its glow lies on the slope round the house.
+      const turn = lotTurn(n)
+      const [fx, fz] = [x + Math.sin(turn) * half * 0.55 + Math.cos(turn) * half * 0.5, z + Math.cos(turn) * half * 0.55 - Math.sin(turn) * half * 0.5]
+      glows.push(new Matrix4().compose(new Vector3(x, y + 0.1, z).addScaledVector(slope, 0.04), new Quaternion().setFromUnitVectors(up, slope), new Vector3(side * 1.25, 1, side * 1.25)))
+      flames.push(new Matrix4().compose(new Vector3(fx, y + 1.5, fz), new Quaternion(), new Vector3(1, 1, 1)))
       const wall = Math.min(fenceGeo.length, r.wall ?? 0)
       if (wall > 0) {
         const k = (HOUSE_YARD[level] / 7) * HOUSE_SCALE
@@ -213,12 +306,12 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
         signs.push(new Matrix4().compose(new Vector3(sx, heightAt(sx, sz), sz), new Quaternion(), new Vector3(HOUSE_SCALE, HOUSE_SCALE, HOUSE_SCALE)))
       }
     })
-    return { perLevel, perWall, free, weeds, signs }
+    return { perLevel, perWall, free, weeds, signs, contacts, glows, flames }
   }, [byLot, houseGeo, fenceGeo, me])
 
   // Write the instances.
   useLayoutEffect(() => {
-    const set = (mesh: InstancedMesh | null, ms: Matrix4[], colors?: Color[]) => mesh && setInstances(mesh, ms, colors)
+    const set = (mesh: InstancedMesh | null, ms: Matrix4[], colors?: Color[]) => culler.set(mesh, ms, colors)
     layout.perLevel.forEach((list, level) =>
       set(
         houseMeshes.current[level],
@@ -235,9 +328,12 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     )
     set(postMesh.current, layout.signs)
     set(faceMesh.current, layout.signs)
+    set(contactMesh.current, layout.contacts)
+    set(glowMesh.current, layout.glows)
+    set(flameMesh.current, layout.flames)
     gl.shadowMap.needsUpdate = true
     invalidate()
-  }, [layout, gl, invalidate])
+  }, [layout, gl, invalidate, culler])
 
   // Tap boxes: one per lot (houses and free plots alike), ray-tested by pickScene.
   useLayoutEffect(() => {
@@ -259,6 +355,9 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     mesh.computeBoundingSphere()
   }, [byLot])
 
+  // The houses' contact shade: one flat quad per home, one draw call.
+  const contactGeo = useMemo(() => new PlaneGeometry(1, 1).rotateX(-Math.PI / 2), [])
+  const contactMat = useMemo(() => new MeshBasicMaterial({ map: contactTexture(), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }), [])
   const hitGeo = useMemo(() => new BoxGeometry(1, 1, 1), [])
   const hitMat = useMemo(() => new MeshBasicMaterial(), [])
   const landmarkHits = useMemo(
@@ -300,10 +399,10 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       [oliveMesh.current, trees.olive],
       [cypressMesh.current, trees.cypress],
     ] as const) {
-      if (mesh) setInstances(mesh, set.matrices, set.colors)
+      culler.set(mesh, set.matrices, set.colors)
     }
     gl.shadowMap.needsUpdate = true
-  }, [trees, gl])
+  }, [trees, gl, culler])
 
   // ── The townsfolk ──
   const homes = useMemo(() => homesOf(residents), [residents])
@@ -342,7 +441,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     if (!c) return
     bridge.controls = c
     bridge.invalidate = invalidate
-    configureRig(c, { minDist: MIN_DIST, maxDist: MAX_DIST, minPolar: 0.12, maxPolar: 1.18, boundary: [new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)] })
+    configureRig(c, { minDist: MIN_DIST, maxDist: MAX_DIST, minPolar: 0.12, maxPolar: 1.3, boundary: [new Vector3(-HALF - 10, -20, -HALF - 10), new Vector3(HALF + 10, 40, HALF + 10)] })
     if (lastView) {
       // Back from a visit (or the list): the city as it was left.
       c.setLookAt(...lastView, false)
@@ -355,6 +454,7 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const p = c.getPosition(new Vector3())
       const t = c.getTarget(new Vector3())
       lastView = [p.x, p.y, p.z, t.x, t.y, t.z]
+      window.clearTimeout(restTimer.current)
       bridge.controls = null
     }
     // The start only matters once.
@@ -367,6 +467,27 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
   const lastLimits = useRef('')
   const ready = useRef(false)
   const dirLight = useRef<DirectionalLight>(null)
+  // What each label's styles were last set to.
+  const written = useMemo(() => new WeakMap<HTMLElement, { css: string; z: string }>(), [])
+  const restTimer = useRef(0)
+  const lastCam = useRef('')
+  const periodRef = useRef(period)
+  periodRef.current = period
+  const fitShadow = (x: number, z: number, half: number) => {
+    const light = dirLight.current
+    if (!light) return
+    fit.current = { x, z, half }
+    const sun = DAYLIGHT[periodRef.current].sun
+    light.position.set(x + sun[0], sun[1], z + sun[2])
+    light.target.position.set(x, 0, z)
+    light.target.updateMatrixWorld()
+    const cam = light.shadow.camera
+    cam.left = cam.bottom = -half
+    cam.right = cam.top = half
+    cam.updateProjectionMatrix()
+    gl.shadowMap.needsUpdate = true
+    invalidate()
+  }
 
   useFrame((state) => {
     const c = controls.current
@@ -378,6 +499,44 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
     const fog = scene.fog as Fog
     fog.near = dist * 0.8 + 20
     fog.far = dist * 2 + 90
+    // The shadow follows the view: at rest it is fitted to what is on screen (a few times sharper close up) and
+    // drawn once; while the camera moves it stays, unless the view leaves it: then the whole city's, once.
+    {
+      const want = quality.fitShadow ? Math.min(SHADOW_WIDE, Math.max(SHADOW_TIGHT, dist * 1.5)) : SHADOW_WIDE
+      const wide = want >= SHADOW_WIDE
+      state.camera.getWorldDirection(v)
+      const ahead = Math.hypot(v.x, v.z) || 1
+      const cx = wide ? 0 : target.x + (v.x / ahead) * want * 0.3
+      const cz = wide ? 0 : target.z + (v.z / ahead) * want * 0.3
+      const f = fit.current
+      // Has the view changed since the last frame? Then one more frame a moment after it stops, to fit the shadow.
+      const p = state.camera.position
+      const view = `${p.x.toFixed(2)},${p.y.toFixed(2)},${p.z.toFixed(2)},${target.x.toFixed(2)},${target.z.toFixed(2)}`
+      if (view !== lastCam.current) {
+        lastCam.current = view
+        rested.current = false
+        window.clearTimeout(restTimer.current)
+        restTimer.current = window.setTimeout(() => {
+          rested.current = true
+          invalidate()
+        }, REST_MS)
+      }
+      if (rested.current) {
+        rested.current = false
+        if (f.half < 0 || Math.abs(f.half - want) > want * 0.2 || Math.hypot(f.x - cx, f.z - cz) > want * 0.2) fitShadow(cx, cz, want)
+      } else if (f.half >= 0 && f.half < SHADOW_WIDE) {
+        const reach = want * 0.7
+        if (Math.abs(cx - f.x) + reach > f.half || Math.abs(cz - f.z) + reach > f.half) fitShadow(0, 0, SHADOW_WIDE)
+      }
+    }
+    // Houses, fences, free lots and trees out of view are not drawn; the frame that draws the shadow map takes them all.
+    if (gl.shadowMap.needsUpdate) {
+      culler.showAll()
+      invalidate()
+    } else {
+      state.camera.updateMatrixWorld()
+      culler.cull(frustum.setFromProjectionMatrix(projView.multiplyMatrices(state.camera.projectionMatrix, state.camera.matrixWorldInverse)), state.camera.position, fog.far)
+    }
     // Compass: north is −z.
     if (bridge.compass) bridge.compass.style.transform = `rotate(${(c.azimuthAngle * 180) / Math.PI}deg)`
     const limits = `${dist > MIN_DIST + 0.5}|${dist < MAX_DIST - 0.5}`
@@ -395,7 +554,8 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       v.set(l.x, l.y, l.z)
       const d = v.distanceTo(cam.position)
       v.project(cam)
-      const on = v.z < 1 && v.x > -1.15 && v.x < 1.15 && v.y > -1.15 && v.y < 1.25
+      // A family's name is hidden while the city wall stands between it and the eye (landmarks and the tour's tags stay).
+      const on = v.z < 1 && v.x > -1.15 && v.x < 1.15 && v.y > -1.15 && v.y < 1.25 && (l.always || !wallHides(cam.position.x, cam.position.y, cam.position.z, l.x, l.y, l.z))
       const el = bridge.labels.get(l.id)
       if (on && (l.always || (l.name && d < NAME_DIST * (dist / START_DIST) ** 0.2 + 8))) {
         if (l.always) want.push(l.id)
@@ -409,9 +569,17 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
       const sx = (v.x * 0.5 + 0.5) * W
       const sy = (-v.y * 0.5 + 0.5) * H
       const scale = Math.max(0.62, Math.min(1.05, 70 / d))
-      el.style.display = ''
-      el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`
-      el.style.zIndex = String(10000 - Math.round(d * 10))
+      if (el.style.display !== '') el.style.display = ''
+      // Styles are written only when they change: a still label costs the browser nothing.
+      const css = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) scale(${scale.toFixed(2)})`
+      const z = String(10000 - Math.round(d * 10))
+      const last = written.get(el)
+      if (!last || last.css !== css) el.style.transform = css
+      if (!last || last.z !== z) el.style.zIndex = z
+      if (last) {
+        last.css = css
+        last.z = z
+      } else written.set(el, { css, z })
     }
     names.sort((a, b) => a.d - b.d)
     for (const n of names.slice(0, MAX_NAMES)) want.push(n.id)
@@ -435,18 +603,18 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
 
   return (
     <>
-      <hemisphereLight args={['#fff1d2', '#8a6a3c', 0.95]} />
+      {/* A warm sun against cool light from the sky: lit stone glows, shade turns blue. */}
+      <hemisphereLight args={[light.skyLight, light.groundLight, light.ambient]} />
       <directionalLight
         ref={dirLight}
-        position={[-110, 150, 95]}
-        intensity={2.9}
-        color="#ffe6bd"
+        intensity={light.sunIntensity}
+        color={light.sunColor}
         castShadow
         shadow-mapSize={[shadowSize, shadowSize]}
-        shadow-camera-left={-150}
-        shadow-camera-right={150}
-        shadow-camera-top={150}
-        shadow-camera-bottom={-150}
+        shadow-camera-left={-SHADOW_WIDE}
+        shadow-camera-right={SHADOW_WIDE}
+        shadow-camera-top={SHADOW_WIDE}
+        shadow-camera-bottom={-SHADOW_WIDE}
         shadow-camera-near={20}
         shadow-camera-far={450}
         shadow-bias={-0.0006}
@@ -483,6 +651,9 @@ export function CityScene({ residents, me, found, labels, bridge, start, still, 
           receiveShadow
         />
       ))}
+      <instancedMesh ref={contactMesh} args={[contactGeo, contactMat, LOTS.length]} count={0} renderOrder={1} />
+      <instancedMesh ref={glowMesh} args={[contactGeo, lampMat, LOTS.length]} count={0} renderOrder={2} visible={light.lamps > 0} />
+      <instancedMesh ref={flameMesh} args={[flameGeo, flameMat, LOTS.length]} count={0} visible={light.lamps > 0} />
       <instancedMesh ref={freeMesh} args={[lotGeo.free, statics.plainMat, LOTS.length]} count={0} receiveShadow />
       <instancedMesh ref={weedMesh} args={[lotGeo.weed, statics.plainMat, LOTS.length * 12]} count={0} />
       <instancedMesh ref={postMesh} args={[lotGeo.post, statics.plainMat, LOTS.length]} count={0} castShadow />

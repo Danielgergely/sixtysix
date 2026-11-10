@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { NoToneMapping, PCFShadowMap } from 'three'
+import { ACESFilmicToneMapping, PCFShadowMap } from 'three'
 import { idleStage } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
 import { PaintedPortrait } from '../../art/PaintedPortrait'
@@ -11,8 +11,10 @@ import { LOTS, TEMPLE, freeLots, lotFor, type LandmarkId } from '../cityLayout'
 import type { CityMapProps } from '../CityMap'
 import { CityTop, FoundCard } from '../CityChrome'
 import { houseName } from '../../screens/home/plotText'
+import { DevStats } from './DevStats'
 import { DprMonitor } from './DprMonitor'
-import { HOUSE_TOP, MIN_DIST, newBridge, START_DIST, START_POLAR, type LabelSpec } from './bridge'
+import { lowerTier } from './quality'
+import { EXPOSURE, HOUSE_TOP, MIN_DIST, newBridge, START_DIST, START_POLAR, type LabelSpec } from './bridge'
 import { NavButtons } from './NavButtons'
 import { useSpeechBubble } from './bubble'
 import { SpeechBubble } from './SpeechBubble'
@@ -251,10 +253,18 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
         dpr={dpr}
         frameloop="demand"
         camera={{ fov: 42, near: 1, far: 1400, position: [0, 120, 120] }}
-        gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: NoToneMapping }}
+        gl={{ antialias: true, powerPreference: 'high-performance', toneMapping: ACESFilmicToneMapping, toneMappingExposure: EXPOSURE }}
         onCreated={onCreated}
       >
-        <DprMonitor bridge={bridge} onDecline={() => setDpr(1)} />
+        <DprMonitor
+          bridge={bridge}
+          onDecline={() => {
+            // Slow while the camera moves: a coarser picture now, and a lower quality tier from the next opening on.
+            setDpr(1)
+            lowerTier()
+          }}
+        />
+        <DevStats />
         <CityScene
           residents={residents}
           me={me}

@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { networkInterfaces } from 'node:os'
-import { dirname, join } from 'node:path'
+import { dirname, join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Fastify from 'fastify'
 import fastifyStatic from '@fastify/static'
@@ -63,9 +63,33 @@ function lanUrls(): string[] {
   return ips.sort((a, b) => rank(a) - rank(b)).map((ip) => `http://${ip}:${PORT}`)
 }
 
+/**
+ * How long browsers may keep a file of the built app. `path` is the file on disk, which may be
+ * the .br / .gz variant; the SPA fallback's index.html comes through here too.
+ */
+function cacheControlFor(path: string): string {
+  const file = relative(webDist, path).split(sep).join('/').replace(/\.(br|gz)$/, '')
+  // Vite puts a content hash in every name under /assets/: a changed file is a new URL.
+  if (file.startsWith('assets/')) return 'public, max-age=31536000, immutable'
+  // The page, the service worker and a web manifest are checked with the server every time (ETag → 304).
+  if (file === 'index.html' || file === 'sw.js' || file.endsWith('.webmanifest')) return 'no-cache'
+  // Art, the Exodus model, the favicon: names don't change with the content, so a day, then revalidate.
+  return 'public, max-age=86400'
+}
+
 // Serve the built web app (same origin as the socket → QR join links work).
 if (existsSync(webDist)) {
-  await app.register(fastifyStatic, { root: webDist })
+  await app.register(fastifyStatic, {
+    root: webDist,
+    // The build wrote .br / .gz next to each file (app/scripts/precompress.mjs): nothing is compressed here.
+    preCompressed: true,
+    // Cache-Control is set per file below (the plugin would overwrite ours with its own otherwise).
+    cacheControl: false,
+    setHeaders: (res, path) => {
+      res.setHeader('Cache-Control', cacheControlFor(path))
+      res.setHeader('Vary', 'Accept-Encoding')
+    },
+  })
   // SPA fallback: /join/CODE, /board/CODE etc. all load the app shell.
   app.setNotFoundHandler((req, reply) => {
     // Missing build files (an old tab after a deploy) must 404, not get index.html.

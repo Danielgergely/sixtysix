@@ -35,6 +35,16 @@ async function get<T>(path: string): Promise<T> {
 }
 
 export const fetchLeaderboard = (period: 'week' | 'all') => get<LeaderboardData>(`/api/leaderboard?period=${period}`)
-export const fetchCity = () => get<{ residents: Resident[] }>('/api/city').then((b) => b.residents)
+
+/**
+ * Dev only: `?fakeCity=N` fills the city with N made-up families (dev/fakeCity.ts) instead of asking the server.
+ * Read once when this file loads, because main.tsx resets the URL after a deep link.
+ */
+const FAKE_CITY = import.meta.env.DEV ? Number(new URLSearchParams(window.location.search).get('fakeCity')) || 0 : 0
+
+export const fetchCity = async (): Promise<Resident[]> => {
+  if (import.meta.env.DEV && FAKE_CITY > 0) return (await import('../dev/fakeCity')).fakeResidents(FAKE_CITY)
+  return (await get<{ residents: Resident[] }>('/api/city')).residents
+}
 export const fetchPlayer = (username: string) =>
   get<{ player: PlayerPage }>(`/api/players/${encodeURIComponent(username)}`).then((b) => b.player)
