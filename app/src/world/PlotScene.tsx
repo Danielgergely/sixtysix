@@ -33,6 +33,8 @@ const PLACES: Record<Spot, { x: number; y: number; w: number }> = {
   fold: { x: 17, y: 60, w: 20 },
   workshop: { x: 31, y: 78, w: 19 },
   kiln: { x: 64, y: 80, w: 17 },
+  // The Stable, inside the west corner (no painting of its own yet: the donkey stands for it).
+  stable: { x: 19, y: 45, w: 11 },
   // The gate stands in the fence's gap at the front corner.
   wall: { x: 50, y: 95, w: 17 },
 }
@@ -62,10 +64,14 @@ export interface PlotSceneProps {
   plot?: PlotState
   now?: number
   seen?: Record<BuildingId, number> | null
-  onSelect?: (spot: Spot) => void
+  /** A yard spot; the 3D yard also sends the fields and the threshing floor outside its fence. */
+  onSelect?: (spot: BuildingId) => void
   /** Your own plot: a carrier in the yard hands over a gift (PlotLife). */
   onGift?: (figure: GiftFigure) => Promise<string>
   className?: string
+  /** Your own plot, 3D only: where today's lost sheep hides (an index into sheepPlaces.ts), and what finding it does. */
+  sheep?: number
+  onSheep?: () => void
   /** Days since the family last played or built (weeds at 20 / 40 days, like the city's lots). */
   idleDays?: number
 }

@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { idleStage } from '@sixtysix/shared'
+import { idleStage, type HuntPlace } from '@sixtysix/shared'
 import type { Resident } from '../account/publicApi'
 import { PaintedPortrait } from '../art/PaintedPortrait'
 import { useT } from '../i18n'
@@ -34,7 +34,11 @@ export interface CityMapProps {
   residents: Resident[]
   me: string | null
   onLandmark: (id: LandmarkId) => void
+  /** One of the scroll hunt's places that isn't a landmark (the 3D city only: the painting has none of them). */
+  onPlace?: (id: HuntPlace) => void
   onResident: (r: Resident) => void
+  /** "Challenge to a duel" on a found family's card. */
+  onDuel?: (r: Resident) => void
   /** A free lot, or an inner lot whose family has been away long enough to be taken over. */
   onLot: (lot: number, r: Resident | null) => void
   /** Rendered over the map, top right (List toggle etc.). */
@@ -46,7 +50,7 @@ export interface CityMapProps {
 type View = { x0: number; y0: number; x1: number; y1: number; lod: 'near' | 'mid' | 'far' }
 
 /** The painted Jerusalem map: landmarks, one lot per family, a few free lots, people in the streets. */
-export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, onReady }: CityMapProps) {
+export function CityMap({ residents, me, onLandmark, onResident, onLot, onDuel, extra, onReady }: CityMapProps) {
   useEffect(() => onReady?.(), []) // eslint-disable-line react-hooks/exhaustive-deps
   const pz = useRef<PanZoomHandle>(null)
   const mine = residents.find((r) => r.username === me)
@@ -103,7 +107,7 @@ export function CityMap({ residents, me, onLandmark, onResident, onLot, extra, o
               −
             </button>
           </div>
-          <FoundCard found={found} me={me} onOpen={onResident} onClose={() => setFound(null)} />
+          <FoundCard found={found} me={me} onOpen={onResident} onDuel={onDuel} onClose={() => setFound(null)} />
         </>
       )}
     >

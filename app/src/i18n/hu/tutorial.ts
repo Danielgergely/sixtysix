@@ -86,6 +86,18 @@ export default {
     c2: { title: 'Maradj aktív', text: '{weeds} nap távollét után gaz nő; {sale} nap után az otthon eladóvá válik.' },
     c3: { title: 'Költözés', text: 'Költözz szabad parcellára vagy eladó otthonba: {outer} érme, a falon belül {inner}.' },
   },
+  hunt: {
+    name: 'Tekercsvadászat',
+    c1: { title: 'Naponta három tekercs', text: 'Minden nap {n} tekercs van elrejtve Jeruzsálemben. Mindegyikhez tartozik egy bibliai rejtvény.' },
+    c2: { title: 'Indulj keresni', text: 'Keresd meg a helyet, amelyre a rejtvény utal, és koppints rá: templom, kapu, tó, torony…' },
+    c3: { title: 'Mi van benne', text: 'Minden tekercsben {n} építőanyag van. Ha jól válaszolsz a kérdésére, kétszer annyi.' },
+  },
+  duel: {
+    name: 'Párbajok',
+    c1: { title: 'Hívj ki egy családot', text: 'Koppints egy család kártyáján a ⚔️ jelre, és tegyél fel {low}–{high} érmét.' },
+    c2: { title: 'Ugyanazok a kérdések', text: 'Te most játszol {n} kérdést, egyenként {secs} másodperc. Az ellenfeled ugyanezeket kapja, ha elfogadja.' },
+    c3: { title: 'A győztes mindent visz', text: 'Akinek több pontja van, viszi mindkét tétet. Elutasítás vagy {days} nap csend: visszakapod a tétedet.' },
+  },
   skills: {
     name: 'Ajándékok',
     c1: { title: 'Szintenként egy pont', text: 'Minden új szint ad egy elkölthető pontot.' },

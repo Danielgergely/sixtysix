@@ -51,6 +51,7 @@ export type Screen =
   | 'mission'
   | 'review'
   | 'account'
+  | 'duel'
 
 /** Screens with the bottom tab bar (and the shared top bar). The leaderboard has no tab of its own: the 🏆 in the top bar opens it. */
 export const TAB_SCREENS = ['menu', 'boardGames', 'adventures', 'jerusalem', 'leaderboard'] as const

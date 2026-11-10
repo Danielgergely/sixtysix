@@ -1,0 +1,63 @@
+/* The scroll hunt over the Jerusalem map (app/src/hunt/). */
+
+/* The chips at the map's lower left, above the found family's card: scroll hunt, duels. (Three classes: .tab-screen makes its children relative.) */
+.tab-screen.jr-map > .cx-side{ position: absolute; left: 10px; bottom: 82px; z-index: 2; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; pointer-events: none; }
+.cx-side > *{ pointer-events: auto; }
+.cx-side .cm-chip{ height: 36px; padding: 0 11px; font-size: 15px; }
+.cx-side .cm-chip b{ font: 900 13px/1 'Cinzel', serif; color: #ffe08a; }
+.hx-chip.done b{ color: #9fe08a; }
+.cx-count{
+  min-width: 18px; height: 18px; padding: 0 5px; display: grid; place-items: center; border-radius: 9px; background: #e0453a; border: 2px solid #1d0b06;
+  font: 900 10px/1 'Cinzel', serif; color: #fff;
+}
+@media (min-width: 700px){ .tab-screen.jr-map > .cx-side{ left: 16px; } }
+
+/* The sheet of today's clues */
+.hx-head{ display: flex; align-items: center; gap: 10px; padding-right: 40px; }
+.hx-head h3{ font: 900 22px/1.1 'Cinzel Decorative', serif; color: #6b1d0e; }
+.hx-head small{ display: block; margin-top: 2px; font: 700 12px/1.3 'Cinzel', serif; color: #6b4120; }
+.hx-head > div{ flex: 1; min-width: 0; }
+.hx-seal{ font-size: 34px; line-height: 1; }
+.hx-info{ width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: rgb(29 15 6 / 0.12); border: 2px solid #b88a3a; color: #6b4120; font-size: 14px; }
+.hx-list{ list-style: none; display: grid; gap: 8px; }
+.hx-list li{ display: flex; gap: 10px; padding: 10px; border-radius: 10px; background: rgb(255 255 255 / 0.42); border: 2px solid #c9a24a; }
+.hx-list li.found{ background: rgb(220 240 200 / 0.55); border-color: #5f8f4a; }
+.hx-mark{
+  width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06;
+  font: 900 13px/1 'Cinzel', serif; color: #2b1408;
+}
+.hx-list li.found .hx-mark{ background: linear-gradient(#b9e39a, #4f8f3a); color: #10300a; }
+.hx-clue{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.hx-clue p{ font: italic 600 14px/1.4 Georgia, serif; color: #3b2412; }
+.hx-clue small{ font: 700 11px/1.3 'Cinzel', serif; color: #8a5a10; }
+.hx-clue small b{ color: #2f6a2a; }
+.hx-got{ font: 800 12px/1.3 'Cinzel', serif; color: #2f6a2a; }
+.hx-got i{ font-style: normal; color: #8a5a10; }
+.hx-bonus{ padding: 8px 10px; border-radius: 10px; background: linear-gradient(#ffe9a8, #f0c860); border: 2px solid #b88a3a; font: 800 13px/1.35 'Cinzel', serif; color: #4a2a08; text-align: center; }
+.hx-rules{ font-size: 12px; }
+
+/* A scroll just found */
+.hx-read{ text-align: center; }
+.hx-read h3{ padding: 0 30px; font-size: 18px; }
+.hx-where{ margin-top: 6px; font: 600 13px/1.4 Georgia, serif; color: #4a2a14; }
+.hx-where b{ color: #6b1d0e; }
+.hx-where em{ font-style: normal; font: 700 11px/1 'Cinzel', serif; color: #8a5a10; white-space: nowrap; }
+.hx-gift{ margin: 10px 0 6px; font: 900 20px/1.2 'Cinzel', serif; color: #2f6a2a; }
+.hx-read .hx-bonus{ margin-bottom: 8px; }
+.hx-read .hp-scroll-error{ margin: 6px 0; font: 700 12px/1.3 'Cinzel', serif; color: #8a1d14; }
+.hx-q{ margin-top: 8px; padding-top: 10px; border-top: 2px dashed #c9a24a; text-align: left; }
+.hx-q .hp-scroll-sub{ margin-top: 0; text-align: center; }
+.hx-q .hp-scroll-a.picked{ background: #ffe08a; }
+.hx-q .hp-scroll-a.ok{ background: #cfe9b8; border-color: #3f7f2f; opacity: 1; }
+.hx-q .hp-scroll-a.no{ background: #f1c4b8; border-color: #a8402f; opacity: 1; }
+.hx-q .hp-scroll-a.dim{ opacity: 0.5; }
+.hx-ref{ display: block; margin-top: 8px; text-align: center; font: 700 11px/1.3 'Cinzel', serif; color: #8a5a10; }
+.hx-read > .hp-btn{ margin-top: 12px; }
+
+/* The name of a place where nothing lies */
+.tab-screen.jr-map > .hx-note{
+  position: absolute; left: 50%; top: 62px; z-index: 3; translate: -50% 0; width: max-content; max-width: calc(100% - 24px); display: flex; flex-direction: column; gap: 2px; align-items: center;
+  padding: 8px 14px; border-radius: 12px; background: rgb(29 15 6 / 0.92); border: 2px solid #e3b754; box-shadow: 0 6px 18px rgb(0 0 0 / 0.55); text-align: center; pointer-events: none;
+}
+.hx-note strong{ font: 900 14px/1.2 'Cinzel', serif; color: #ffe08a; }
+.hx-note small{ font: 600 12px/1.35 Georgia, serif; color: #f3e2bb; }

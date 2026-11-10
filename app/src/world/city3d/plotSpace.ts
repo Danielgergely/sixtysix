@@ -2,7 +2,9 @@ import { CanvasTexture, Color, Matrix4, PlaneGeometry, Quaternion, SRGBColorSpac
 import { graph, type Pt } from '../life/nav'
 import { YARD_EDGES, type YardLayout, type YardNode } from '../yard'
 import { Geo } from './geo'
-import { blob, GATE_HALF, type Spot } from './models'
+import { onFarm, FIELD_3D, FIELD_D, FIELD_W, THRESH_3D, THRESH_R } from './fields3d'
+import { blob, GATE_HALF, PROP, type PropId, type Spot } from './models'
+import { FIELD_IDS } from '@sixtysix/shared'
 import { rng } from './space'
 import { releaseAfterUpload } from './textures'
 
@@ -30,6 +32,8 @@ export const SPOT_3D: Record<Spot, { x: number; z: number; ry: number }> = {
   fold: { x: -15, z: 6.5, ry: 0.4 },
   workshop: { x: -9, z: 17, ry: 0.5 },
   kiln: { x: 8.5, z: 17.5, ry: -0.5 },
+  // The Stable, inside the west corner, its open front to the yard.
+  stable: { x: -20.5, z: -2.5, ry: 1.28 },
   wall: { x: 0, z: R - GATE_HALF, ry: 0 },
 }
 
@@ -61,6 +65,7 @@ const NODES: Record<YardNode, [number, number]> = {
   kl: [6.5, 20.5],
   g: [0, 25],
   f1: [9, 13],
+  sb: [-16.8, -1.4],
 }
 
 const area = (x: number, z: number, rx: number, rz: number) => ({ x: x * PX, y: z * PX, rx: rx * PX, ry: rz * PX })
@@ -98,15 +103,16 @@ const smooth = (a: number, b: number, x: number) => {
 }
 
 /** The ground's size (units) and its height: flat in and round the yard, rising into low hills beyond. */
-export const GROUND = 170
+export const GROUND = 220
 export function groundAt(x: number, z: number): number {
-  const r = Math.hypot(x, z)
+  // The valley south of the gate (the fields) stays flat much further out than the other sides.
+  const r = Math.hypot(x, z > 0 ? z * 0.55 : z)
   const hills = smooth(R + 10, R + 55, r)
   return hills * (7 + 3 * Math.sin(x * 0.07 + 1) * Math.cos(z * 0.06)) + hills * 1.2 * Math.sin(x * 0.21 - z * 0.17)
 }
 
 export function groundGeometry(): BufferGeometry {
-  const g = new PlaneGeometry(GROUND, GROUND, 72, 72)
+  const g = new PlaneGeometry(GROUND, GROUND, 96, 96)
   g.rotateX(-Math.PI / 2)
   const p = g.getAttribute('position')
   for (let i = 0; i < p.count; i++) p.setY(i, groundAt(p.getX(i), p.getZ(i)))
@@ -168,8 +174,18 @@ export function groundTexture(size = 1024): Texture {
       earth = mix(earth, EARTH_DARK, smooth(R - 4, R - 0.6, d) * 0.6)
       col = mix(col, earth, 1 - smooth(R - 0.6, R + 0.3, d))
       // The lane from the gate out to the south.
-      const lane = z > R - 3 ? 1 - smooth(2.2, 3.6, Math.abs(x + Math.sin(z * 0.08) * 1.5)) : 0
+      const lane = z > R - 3 && z < THRESH_3D.z ? 1 - smooth(2.2, 3.6, Math.abs(x)) : 0
       col = mix(col, LANE, lane * 0.9)
+      // Trodden earth round the beds and the threshing floor, and the paths from the lane to the beds.
+      let worn = 1 - smooth(THRESH_R + 0.5, THRESH_R + 3, Math.hypot(x - THRESH_3D.x, z - THRESH_3D.z))
+      for (const f of FIELD_IDS) {
+        const p = FIELD_3D[f]
+        const dx = Math.abs(x - p.x) - FIELD_W / 2
+        const dz = Math.abs(z - p.z) - FIELD_D / 2
+        worn = Math.max(worn, 1 - smooth(0.4, 2.2, Math.max(dx, dz)))
+        if (Math.abs(z - p.z) < 1.1 && Math.abs(x) < Math.abs(p.x)) worn = Math.max(worn, 0.8)
+      }
+      col = mix(col, mix(LANE, EARTH, 0.35), worn * 0.8)
       const k = (j * N + i) * 4
       img.data[k] = col[0]
       img.data[k + 1] = col[1]
@@ -276,15 +292,16 @@ export function groundTexture(size = 1024): Texture {
   }
 
   // 7. Grass, blade by blade: short strokes leaning "up" the painting (north, away from the camera), greener near the yard.
-  const blades = Math.round(size * size * 0.012)
+  const blades = Math.round(size * size * 0.016)
   g.lineCap = 'round'
   for (let i = 0; i < blades; i++) {
     const a = rand() * Math.PI * 2
-    const r = R + rand() * 60
+    const r = R + rand() * 85
     const x = Math.cos(a) * r
     const z = Math.sin(a) * r
     if (Math.abs(x) + Math.abs(z) < R + 0.15) continue
-    if (z > R - 3 && Math.abs(x + Math.sin(z * 0.08) * 1.5) < 3) continue
+    if (z > R - 3 && z < THRESH_3D.z && Math.abs(x) < 3) continue
+    if (onFarm(x, z, 1.6)) continue
     const far = smooth(R + 12, R + 50, r)
     const t = rand()
     const col = mix(t < 0.4 ? LUSH : t < 0.8 ? GRASS : hex('#c8c070'), DRY, far * rand())
@@ -305,7 +322,7 @@ export function groundTexture(size = 1024): Texture {
     const r = R + 1 + rand() * 30
     const x = Math.cos(a) * r
     const z = Math.sin(a) * r
-    if (Math.abs(x) + Math.abs(z) < R + 1) continue
+    if (Math.abs(x) + Math.abs(z) < R + 1 || onFarm(x, z, 1)) continue
     g.fillStyle = FLOWERS[Math.floor(rand() * FLOWERS.length)]
     g.beginPath()
     g.arc(toPx(x), toPx(z), Math.max(1, unit * 0.11), 0, Math.PI * 2)
@@ -325,13 +342,14 @@ export function placeYardTrees(): { olive: { m: Matrix4[]; c: Color[] }; cypress
   const up = new Vector3(0, 1, 0)
   const spots: [number, number][] = []
   let tries = 0
-  while (spots.length < 70 && tries++ < 3000) {
+  while (spots.length < 110 && tries++ < 5000) {
     const a = rand() * Math.PI * 2
-    const r = R + 5 + rand() * 45
+    const r = R + 5 + rand() * 75
     const x = Math.cos(a) * r
     const z = Math.sin(a) * r
     if (Math.abs(x) + Math.abs(z) < R + 4) continue
     if (z > R - 4 && Math.abs(x) < 6) continue
+    if (onFarm(x, z, 3.5)) continue
     if (spots.some(([sx, sz]) => Math.hypot(sx - x, sz - z) < 4.5)) continue
     spots.push([x, z])
   }
@@ -385,7 +403,7 @@ export function placeYardGreens(): { tufts: { m: Matrix4[]; c: Color[] }; bushes
     // Mostly in a band just outside the fence, thinning out; a few just inside it.
     const inside = d > R - 2.2 && d < R - 0.9
     if (!inside && (d < R + 0.8 || rand() > 1.15 - (d - R) / 26)) continue
-    if (onLane(x, z, 4.5)) continue
+    if (onLane(x, z, 4.5) || onFarm(x, z, 1.2)) continue
     put(out.tufts, x, z, 0.8 + rand() * 0.7, 0.85 + rand() * 0.3)
   }
   const bushes: [number, number][] = []
@@ -393,7 +411,7 @@ export function placeYardGreens(): { tufts: { m: Matrix4[]; c: Color[] }; bushes
     const x = (rand() * 2 - 1) * (R + 22)
     const z = (rand() * 2 - 1) * (R + 22)
     const d = Math.abs(x) + Math.abs(z)
-    if (d < R + 2.5 || d > R + 22 || onLane(x, z, 6)) continue
+    if (d < R + 2.5 || d > R + 22 || onLane(x, z, 6) || onFarm(x, z, 2.5)) continue
     if (bushes.some(([bx, bz]) => Math.hypot(bx - x, bz - z) < 3.5)) continue
     bushes.push([x, z])
     put(out.bushes, x, z, 0.8 + rand() * 0.7, 0.85 + rand() * 0.3)
@@ -404,17 +422,17 @@ export function placeYardGreens(): { tufts: { m: Matrix4[]; c: Color[] }; bushes
 // ── Camera (units; polar = tilt away from straight down). The yard always stays framed. ──
 
 export const PLOT_MIN_DIST = 14
-export const PLOT_START_POLAR = 0.8
+export const PLOT_START_POLAR = 0.92
 /** Half the width and half the (foreshortened) depth the first view shows (units), and the most it may ever show. */
-const START_HALF: [number, number] = [23, 17]
-const MAX_HALF: [number, number] = [34, 25]
+const START_HALF: [number, number] = [25, 19]
+const MAX_HALF: [number, number] = [44, 36]
 export const PLOT_FOV = 42
 const tanHalf = Math.tan(((PLOT_FOV / 2) * Math.PI) / 180)
 const fit = ([w, h]: [number, number], aspect: number) => Math.max(w / (tanHalf * Math.min(1.8, aspect)), h / tanHalf)
 
 /** The start distance for a canvas of this aspect: the yard's middle fills the view. */
 export function plotStartDist(aspect: number): number {
-  return Math.min(80, Math.max(40, fit(START_HALF, aspect)))
+  return Math.min(90, Math.max(40, fit(START_HALF, aspect)))
 }
 /** The farthest out: the whole yard and a little round it. */
 export const plotMaxDist = (aspect: number) => Math.max(plotStartDist(aspect) * 1.1, fit(MAX_HALF, aspect))
@@ -438,10 +456,46 @@ export function placeYardWeeds(stage: number): { m: Matrix4[]; c: Color[] } {
     const x = (rand() * 2 - 1) * (R - 2)
     const z = (rand() * 2 - 1) * (R - 2)
     if (Math.abs(x) + Math.abs(z) > R - 2) continue
-    if (spots.some((p) => Math.hypot(p.x - x, p.z - z) < 4.6)) continue
+    if (spots.some((p) => Math.hypot(p.x - x, p.z - z) < 4.6) || YARD_PROPS.some((p) => Math.hypot(p.x - x, p.z - z) < 2.4)) continue
     const s = 1 + rand() * 0.6 + (stage >= 2 ? 0.45 : 0)
     out.m.push(new Matrix4().compose(new Vector3(x, 0.05, z), new Quaternion().setFromAxisAngle(up, rand() * 6.3), new Vector3(s, s, s)))
     out.c.push(stage >= 2 ? new Color(1.12, 1.0, 0.62) : new Color(1, 1, 1))
   }
   return out
+}
+
+// ── Things standing about the yard (models.ts PROP), more of them as the house grows ──
+
+/** Where each thing stands (units, turn), and the house level it comes with. Clear of the spots and the paths. */
+export const YARD_PROPS: { prop: PropId; x: number; z: number; ry?: number; house: number }[] = [
+  { prop: 'fire', x: -3.2, z: 10.5, house: 1 },
+  { prop: 'garden', x: -9.5, z: -15.8, ry: -0.785, house: 2 },
+  { prop: 'washing', x: 7.8, z: -13.2, ry: 1.2, house: 2 },
+  { prop: 'tree', x: -2.5, z: -25, house: 2 },
+  { prop: 'bench', x: 22, z: -1, ry: -1.2, house: 3 },
+  { prop: 'jars', x: -4.2, z: 25, ry: 0.4, house: 3 },
+  { prop: 'tree', x: 4, z: -24, ry: 2, house: 3 },
+  { prop: 'cart', x: 4.4, z: 24, ry: 0.9, house: 4 },
+  { prop: 'dovecote', x: 9.5, z: -17, house: 4 },
+  { prop: 'flowers', x: -2.6, z: -9.9, house: 5 },
+  { prop: 'flowers', x: 3.4, z: -9.9, ry: 1, house: 5 },
+  { prop: 'bench', x: -21, z: 6.5, ry: 1.9, house: 6 },
+]
+
+const propCache = new Map<number, BufferGeometry>()
+/** Everything standing about the yard at a house level, as one geometry (one draw call). */
+export function yardPropsGeometry(house: number): BufferGeometry {
+  let geo = propCache.get(house)
+  if (geo) return geo
+  const g = new Geo(rng(97))
+  const q = new Quaternion()
+  const up = new Vector3(0, 1, 0)
+  for (const p of YARD_PROPS) {
+    if (p.house > house) continue
+    g.frame = new Matrix4().compose(new Vector3(p.x, 0, p.z), q.setFromAxisAngle(up, p.ry ?? 0), new Vector3(1, 1, 1))
+    PROP[p.prop](g)
+  }
+  geo = g.build(3, { ao: { ground: () => 0 } })
+  propCache.set(house, geo)
+  return geo
 }

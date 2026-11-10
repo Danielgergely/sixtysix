@@ -225,7 +225,125 @@ img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-
 .hp-exp-text small{ font: 600 12px/1.4 Georgia, serif; }
 .hp-exp-text em{ font-style: normal; font: 700 11px/1 'Cinzel', serif; color: #8a5a10; white-space: nowrap; }
 .hp-exp-text .hp-btn.gold{ align-self: flex-start; }
+.hp-exp-hint{ margin-top: 3px; text-align: center; font: italic 600 12px/1.3 Georgia, serif; color: #6b4120; }
+
+/* The expedition map (screens/home/ExpeditionMap.tsx): ink on parchment, pins and tokens in % of the box. */
+.xm{ padding: 6px; border-radius: 14px; background-color: #f3e2bb; border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 8px 18px rgb(0 0 0 / 0.45); }
+.xm-box{ position: relative; aspect-ratio: 360 / 530; border-radius: 8px; overflow: hidden; box-shadow: inset 0 0 0 1px rgb(107 65 32 / 0.55), inset 0 0 44px rgb(120 70 20 / 0.4); }
+.xm-art{ position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.xm-sea{ font: italic 700 13px Georgia, serif; fill: #2f5c66; letter-spacing: 3px; }
+.xm-water{ font: italic 700 9px Georgia, serif; fill: #2f5c66; }
+.xm-road{ fill: none; stroke: #6b1d0e; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.1 5.5; opacity: 0.85; }
+.xm-road.locked{ stroke: #6b4120; opacity: 0.4; }
+.xm-road.on{ stroke: #b3262b; stroke-width: 3.2; opacity: 1; animation: xm-march 1.4s linear infinite; }
+@keyframes xm-march{ to{ stroke-dashoffset: -11.2; } }
+
+.xm-place{ position: absolute; translate: 8px -50%; font: italic 700 11px/1 Georgia, serif; color: #4a2a14; white-space: nowrap; text-shadow: 0 0 3px #f3e2bb, 0 0 3px #f3e2bb; pointer-events: none; }
+.xm-place.left{ translate: calc(-100% - 8px) -50%; }
+
+.xm-pin{ position: absolute; z-index: 2; translate: -50% -20px; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0; background: none; border: 0; color: #3b2412; }
+.xm-pin.side{ flex-direction: row; gap: 4px; translate: -20px -50%; }
+.xm-pin-dot{
+  position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; line-height: 1;
+  background: radial-gradient(circle at 35% 30%, #fff8dc, #f0cd74 70%, #c9962f); border: 2px solid #1d0f06;
+  box-shadow: 0 0 0 2px #e3b754, 0 3px 6px rgb(0 0 0 / 0.5);
+}
+.xm-pin:not(.locked):active .xm-pin-dot{ scale: 0.92; }
+.xm-pin-label{
+  display: flex; flex-direction: column; align-items: center; padding: 2px 6px; border-radius: 6px; white-space: nowrap;
+  background: rgb(248 233 196 / 0.94); border: 1px solid #8a5a10; box-shadow: 0 1px 3px rgb(0 0 0 / 0.35); font: 800 11px/1.2 'Cinzel', serif;
+}
+.xm-pin-label small{ font: 700 10px/1.2 'Cinzel', serif; color: #6b4120; }
+.xm-pin.locked .xm-pin-dot{ filter: grayscale(1); opacity: 0.8; box-shadow: 0 0 0 2px #a59a86, 0 2px 4px rgb(0 0 0 / 0.4); }
+.xm-pin.locked .xm-pin-label{ color: #6b5a48; background: rgb(232 222 200 / 0.94); border-color: #8d8370; }
+.xm-pin-lock, .xm-pin-away{ position: absolute; font-style: normal; }
+.xm-pin-lock{ right: -7px; bottom: -6px; font-size: 13px; filter: none; }
+.xm-pin-away{ right: -8px; top: -7px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: #b3262b; border: 1px solid #1d0f06; color: #fff; font: 900 10px/16px 'Cinzel', serif; }
+
+.xm-home{ position: absolute; z-index: 3; translate: -50% 13px; display: flex; flex-direction: column; align-items: center; gap: 5px; pointer-events: none; }
+.xm-home b{ font: 900 12px/1 'Cinzel Decorative', 'Cinzel', serif; color: #6b1d0e; text-shadow: 0 0 3px #f8e7b4, 0 0 3px #f8e7b4, 0 0 5px #f8e7b4; white-space: nowrap; }
+.xm-unload{
+  pointer-events: auto; display: inline-flex; align-items: center; gap: 4px; padding: 7px 12px; border-radius: 999px; white-space: nowrap;
+  background: linear-gradient(#ffe08a, #c98a12); border: 2px solid #1d0f06; color: #2b1408; font: 900 12px/1 'Cinzel', serif;
+  box-shadow: 0 3px 0 #1d0f06, 0 0 0 0 rgb(255 224 138 / 0.8); animation: xm-ready 1.5s ease-out infinite;
+}
+.xm-unload span{ font-size: 15px; }
+.xm-unload:disabled{ opacity: 0.6; }
+@keyframes xm-ready{ to{ box-shadow: 0 3px 0 #1d0f06, 0 0 0 12px rgb(255 224 138 / 0); } }
+
+.xm-token{ position: absolute; z-index: 4; translate: calc(-50% + var(--k, 0) * 17px) -50%; display: flex; flex-direction: column; align-items: center; pointer-events: none; transition: left 1s linear, top 1s linear; }
+.xm-token.still{ translate: calc(-50% + 30px + var(--k, 0) * 17px) calc(-50% - 24px); }
+.xm-token-fig{
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 17px; line-height: 1;
+  background: #fff8e1; border: 2px solid #b3262b; box-shadow: 0 2px 5px rgb(0 0 0 / 0.5); animation: xm-bob 0.6s ease-in-out infinite alternate;
+}
+.xm-token.home .xm-token-fig{ border-color: #2f7a3a; }
+.xm-token.still .xm-token-fig{ animation: none; }
+.xm-token-time{ margin-top: 1px; padding: 1px 5px; border-radius: 999px; background: rgb(29 15 6 / 0.88); color: #ffe7a3; font: 800 10px/1.4 'Cinzel', serif; font-variant-numeric: tabular-nums; }
+@keyframes xm-bob{ to{ translate: 0 -2px; } }
+@media (prefers-reduced-motion: reduce){
+  .xm-road.on, .xm-unload, .xm-token-fig{ animation: none; }
+  .xm-token{ transition: none; }
+}
+
+/* A destination's sheet and the loot card (ExpeditionsView) */
+.xs-head{ display: flex; align-items: center; gap: 12px; padding-right: 40px; }
+.xs-head h3{ font: 900 19px/1.15 'Cinzel Decorative', serif; color: #6b1d0e; }
+.xs-head small{ font: 700 12px/1.6 'Cinzel', serif; color: #8a5a10; }
+.xs-seal{
+  display: grid; place-items: center; flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; font-size: 32px; line-height: 1;
+  background: radial-gradient(circle at 35% 28%, #fff3c9, #d9a94a 78%); border: 3px solid #1d0f06;
+  box-shadow: 0 0 0 3px #e3b754, inset 0 -8px 14px rgb(0 0 0 / 0.22), 0 4px 8px rgb(0 0 0 / 0.4);
+}
+.xs-seal.quarry{ background: radial-gradient(circle at 35% 28%, #f6f1e6, #a39c90 80%); }
+.xs-seal.jordan{ background: radial-gradient(circle at 35% 28%, #f8d8b4, #b9683c 80%); }
+.xs-seal.copper{ background: radial-gradient(circle at 35% 28%, #ffe0b4, #b96c2c 80%); }
+.xs-seal.lebanon{ background: radial-gradient(circle at 35% 28%, #e2f1cf, #55804a 80%); }
+.xs-seal.big{ width: 84px; height: 84px; font-size: 44px; margin: 0 auto 10px; }
+.xs-trips{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.xs-trip{
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 3px; border-radius: 12px; min-width: 0;
+  background: rgb(255 255 255 / 0.45); border: 2px solid #c9a24a; color: #3b2412;
+}
+.xs-trip.on{ background: linear-gradient(#fff6d6, #ffd978); border-color: #6b1d0e; box-shadow: 0 0 0 2px #6b1d0e, 0 4px 10px rgb(0 0 0 / 0.3); }
+.xs-trip-name{ display: grid; place-items: center; min-height: 2.4em; font: 900 11px/1.2 'Cinzel', serif; color: #6b1d0e; text-align: center; }
+.xs-trip-time{ font: 800 11px/1.2 'Cinzel', serif; color: #6b4120; white-space: nowrap; }
+.xs-haul{ display: flex; flex-direction: column; align-items: center; }
+.xs-haul > span{ display: flex; align-items: baseline; gap: 3px; font: 900 24px/1.15 'Cinzel', serif; color: #2b1408; font-variant-numeric: tabular-nums; }
+.xs-haul i{ font-style: normal; font-size: 16px; }
+.xs-trip-best{ font: 700 11px/1.25 Georgia, serif; color: #1f6a2c; text-align: center; }
+.xs-trip-cost{ display: inline-flex; align-items: center; gap: 3px; margin-top: auto; padding: 3px 8px; border-radius: 999px; background: rgb(29 15 6 / 0.85); color: #ffe7a3; font: 900 12px/1.2 'Cinzel', serif; }
+.xs-step > span{ font: 800 14px/1.3 'Cinzel', serif; }
+.xs-plan{ display: grid; gap: 4px; margin: 0; padding: 8px 10px; border-radius: 10px; background: rgb(255 255 255 / 0.4); border: 1px solid #c9a24a; font: 600 12px/1.45 Georgia, serif; }
+.xs-plan > div{ display: grid; grid-template-columns: 78px 1fr; gap: 8px; }
+.xs-plan dt{ font: 800 11px/1.6 'Cinzel', serif; color: #6b4120; }
+.xs-plan dd{ margin: 0; }
+.xs-plan dd b{ font-family: 'Cinzel', serif; }
+.xs-plan em{ font-style: italic; color: #8a1d14; }
+.xs-pack{ padding: 6px 10px; border-radius: 10px; background: rgb(29 15 6 / 0.07); border: 1px dashed #b88a3a; color: #6b4120; font: 600 12px/1.35 Georgia, serif; text-align: center; }
+.xs-pack.has{ border: 1px solid #2f7a3a; background: rgb(47 122 58 / 0.13); color: #1f5127; }
+.hp-sheet.xs .hp-error{ margin: 0; }
+
+.hp-scroll.xl{ text-align: center; padding-top: 22px; }
+.hp-scroll.xl h3{ padding: 0; font-size: 22px; }
+.hp-scroll.xl .xs-haul{ flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px 26px; margin: 10px 0 4px; }
+.hp-scroll.xl .xs-haul > span{ flex-direction: column-reverse; align-items: center; gap: 0; font-size: 46px; color: #6b1d0e; text-shadow: 0 2px 0 #ffe08a; }
+.hp-scroll.xl .xs-haul i{ font-size: 42px; }
+.xl-names{ margin-bottom: 14px; font: 700 12px/1.3 Georgia, serif; color: #6b4120; }
 
 .mk-nosell{ align-self: center; font: 700 11px/1.2 'Cinzel', serif; color: #c9b48a; text-align: center; }
 .vs-glean{ grid-template-columns: 1fr; text-align: center; }
 .vs-glean small{ font: 600 12px/1.4 Georgia, serif; color: #f3e2bb; }
+/* The season as one line over the 3D homestead (its fields are in the scene). */
+.hp-season-strip{
+  display: flex; align-items: baseline; gap: 6px; margin: 6px 2px 4px; padding: 4px 10px; border-radius: 999px;
+  background: rgb(20 12 6 / 0.55); border: 1px solid rgb(255 224 138 / 0.35); color: #ffe9b8; font-size: 12px; line-height: 1.3;
+}
+.hp-season-strip strong{ font-family: 'Cinzel', serif; font-size: 13px; white-space: nowrap; }
+.hp-season-strip small{ color: #e6d2a4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hp-mode{ display: block; margin: 8px auto 0; font-size: 13px; opacity: 0.85; }
+/* Round the homestead: helpers, raiders, the lost sheep (one line each). */
+.hp-round{ display: grid; gap: 4px; margin: 6px 2px; }
+.hp-round span{ padding: 5px 10px; border-radius: 10px; background: rgb(20 12 6 / 0.55); border: 1px solid rgb(255 224 138 / 0.35); color: #ffe9b8; font-size: 12.5px; line-height: 1.35; }
+.hp-round span.raid{ border-color: #e0583a; color: #ffd2c4; }
+.hp-raid{ display: grid; gap: 8px; }

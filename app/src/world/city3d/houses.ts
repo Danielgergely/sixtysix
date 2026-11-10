@@ -60,3 +60,21 @@ export function signPostGeometry(): BufferGeometry {
   g.box(0, 3.0, 0, 3.3, 1.65, 0.1, C.wood, { jitter: 0 })
   return g.build(3)
 }
+
+/**
+ * A duel winner's pennant: a tall pole at the yard's corner with a madder-red
+ * swallow-tailed flag, standing higher than any house (its foot is the lot's
+ * ground; the city scales it with the houses).
+ */
+export function pennantGeometry(): BufferGeometry {
+  const g = new Geo(rng(23))
+  g.box(0, 0, 0, 0.16, 10.4, 0.16, C.woodDark, { jitter: 0 })
+  g.cone(0, 10.4, 0, 0.2, 0.45, C.gold, 5, { jitter: 0 })
+  // The cloth narrows away from the pole in three steps, then forks.
+  g.box(0.5, 8.6, 0, 0.9, 1.5, 0.06, C.madder, { jitter: 0 })
+  g.box(1.3, 8.75, 0, 0.8, 1.2, 0.06, C.madder, { jitter: 0 })
+  g.box(2.0, 9.45, 0, 0.7, 0.42, 0.06, C.madder, { jitter: 0 })
+  g.box(2.0, 8.8, 0, 0.7, 0.42, 0.06, C.madder, { jitter: 0 })
+  g.box(0.5, 9.2, 0, 0.9, 0.22, 0.07, C.saffron, { jitter: 0 })
+  return g.build(3)
+}

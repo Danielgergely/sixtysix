@@ -13,6 +13,11 @@ import { CityView } from '../world/CityView'
 import { CitySheet, type CitySheetKind, type LotPick } from '../world/CitySheet'
 import { useIntro } from '../tutorial/useIntro'
 import { InfoButton } from '../tutorial/InfoButton'
+import { LANDMARK_PLACE, type HuntPlace } from '@sixtysix/shared'
+import type { LandmarkId } from '../world/cityLayout'
+import { HuntChip, HuntLayer } from '../hunt/HuntSheet'
+import { useHuntStore } from '../hunt/huntStore'
+import { duelBadge, useDuelStore } from '../duel/duelStore'
 
 /**
  * The city: Jerusalem in 3D to turn and zoom (world/CityView; the painted 2D map without WebGL). Landmarks (Temple,
@@ -20,6 +25,10 @@ import { InfoButton } from '../tutorial/InfoButton'
  * stored lot (shared/src/city.ts: weeds on homes left alone, inner places
  * changing hands). Guests can look around and visit; building
  * (docs/jerusalem-plot.md) needs an account.
+ *
+ * Two games live on the map: the scroll hunt (hunt/: every tap on a place first asks
+ * whether one of today's scrolls lies there) and duels (duel/: challenge a family
+ * from its card; the ⚔️ chip opens the list).
  */
 export function JerusalemScreen() {
   const goTo = useGameStore((s) => s.goTo)
@@ -44,6 +53,24 @@ export function JerusalemScreen() {
     }
   }, [reload])
 
+  // Today's clues and my duels, once per opening of the city (never polled).
+  useEffect(() => {
+    void useHuntStore.getState().load()
+    if (account) void useDuelStore.getState().load()
+  }, [account])
+  const duelsWaiting = useDuelStore((s) => duelBadge(s.duels))
+
+  /** A landmark tapped: a scroll lying there is found; otherwise its card opens as ever. */
+  const tapLandmark = async (id: LandmarkId) => {
+    if (await useHuntStore.getState().tap(LANDMARK_PLACE[id])) return
+    if (id === 'market') usePlotStore.getState().openMarket(null)
+    else setSheet(id)
+  }
+  /** One of the hunt's other places (3D only): a scroll, or just its name. */
+  const tapPlace = async (id: HuntPlace) => {
+    if (!(await useHuntStore.getState().tap(id))) useHuntStore.getState().say(id)
+  }
+
   // The spotlight tour, once the map and its lots are drawn.
   useIntro('city', !list && !!residents && mapReady)
   const me = account?.username ?? null
@@ -67,7 +94,9 @@ export function JerusalemScreen() {
             <CityView
               residents={residents ?? []}
               me={me}
-              onLandmark={(id) => (id === 'market' ? usePlotStore.getState().openMarket(null) : setSheet(id))}
+              onLandmark={(id) => void tapLandmark(id)}
+              onPlace={(id) => void tapPlace(id)}
+              onDuel={(r) => useDuelStore.getState().openChallenge({ username: r.username, name: r.name, avatar: r.avatar })}
               onResident={openResident}
               onReady={() => setMapReady(true)}
               onLot={(n, r) => {
@@ -85,6 +114,13 @@ export function JerusalemScreen() {
             <p className="tab-note cm-loading">{t('city.screen.loading')}</p>
           )}
           {failed && !residents && <p className="cm-offline">{t('city.screen.offline')}</p>}
+          <div className="cx-side">
+            <HuntChip />
+            <button className="cm-chip" onClick={() => goTo('duel')} title={t('duel.title')} aria-label={t('duel.chipAria', { n: duelsWaiting })}>
+              ⚔️ {duelsWaiting > 0 && <span className="cx-count">{duelsWaiting}</span>}
+            </button>
+          </div>
+          <HuntLayer />
         </>
       )}
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ACESFilmicToneMapping, PCFShadowMap } from 'three'
-import { idleStage } from '@sixtysix/shared'
+import { idleStage, type HuntPlace } from '@sixtysix/shared'
 import type { Resident } from '../../account/publicApi'
 import { PaintedPortrait } from '../../art/PaintedPortrait'
 import { useT } from '../../i18n'
@@ -22,6 +22,7 @@ import { labelAt, maxDpr, useContextLost, usePauseWhenHidden, useScenePointer } 
 import type { LandmarkSpot } from './buildings'
 import { CityScene } from './CityScene'
 import { HOUSE_SCALE } from './plan'
+import { placeSpots } from './places'
 import { clearView } from './view'
 import { heightAt, lotCentre, surfaceAt, ux, uz } from './space'
 import { reducedMotion } from '../life/sim'
@@ -41,7 +42,8 @@ import '../../theme/city3d.css'
  *
  * Taps: a name label, then a walker (speech bubble), then a ray into the scene:
  * a house flies there and shows the family card (Visit / Build), a free or
- * for-sale lot opens the lot sheet, a landmark its card.
+ * for-sale lot opens the lot sheet, a landmark its card, one of the scroll
+ * hunt's other places (places.ts) goes to `onPlace`.
  */
 
 /** How many of the next free lots (where new families settle) are labelled "Free land". */
@@ -56,7 +58,7 @@ interface Props extends CityMapProps {
   onLost?: () => void
 }
 
-export default function City3D({ residents, me, onLandmark, onResident, onLot, extra, onReady, onLost }: Props) {
+export default function City3D({ residents, me, onLandmark, onPlace, onResident, onLot, onDuel, extra, onReady, onLost }: Props) {
   const t = useT()
   const bridge = useMemo(() => newBridge(), [])
   const box = useRef<HTMLDivElement>(null)
@@ -76,11 +78,14 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   const start = useMemo(() => (home ? lotCentre(home) : TEMPLE_VIEW), []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const free = useMemo(() => freeLots(residents), [residents])
+  const places = useMemo(() => placeSpots(), [])
   const byLot = useMemo(() => new Map(residents.filter((r) => r.lot).map((r) => [r.lot!, r])), [residents])
 
   // Label anchors: landmarks, every family's house, the first free lots.
   const labels = useMemo<LabelSpec[]>(() => {
     const out: LabelSpec[] = spots.map((s) => ({ id: `l:${s.id}`, x: s.x, y: s.top, z: s.z, always: true, name: false }))
+    // The hunt's other places: the gates are named from afar like the Sheep Gate, the rest close up (the towers not at all).
+    for (const p of places) if (p.tag) out.push({ id: `p:${p.id}`, x: p.x, y: p.top, z: p.z, always: p.id.endsWith('Gate'), name: true })
     for (const r of residents) {
       const l = r.lot ? lotFor(r.lot) : undefined
       if (!l) continue
@@ -93,7 +98,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       out.push({ id: `f:${n}`, x, y: heightAt(x, z) + 1.6, z, always: true, name: false })
     }
     return out
-  }, [spots, residents, free, me, found])
+  }, [spots, places, residents, free, me, found])
 
   useEffect(() => {
     bridge.onVisible = (ids) => setVisible(ids)
@@ -168,6 +173,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
   const tapLabel = (id: string) => {
     const [kind, key] = [id.slice(0, 1), id.slice(2)]
     if (kind === 'l') onLandmark(key as LandmarkId)
+    else if (kind === 'p') onPlace?.(key as HuntPlace)
     else if (kind === 'f') tapLot(Number(key))
     else {
       const r = residents.find((x) => x.username === key)
@@ -190,6 +196,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
     const hit = bridge.pickScene?.(x, y)
     if (!hit) return
     if (hit.kind === 'landmark') onLandmark(hit.id as LandmarkId)
+    else if (hit.kind === 'place') onPlace?.(hit.id as HuntPlace)
     else if (hit.kind === 'lot') tapLot(hit.n)
   })
 
@@ -207,6 +214,13 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
       return (
         <div key={spec.id} ref={ref} className={`c3-tag land ${key}`} style={{ display: 'none' }}>
           <span className="c3-name land">{t(`city.landmarks.${key}`)}</span>
+        </div>
+      )
+    }
+    if (kind === 'p') {
+      return (
+        <div key={spec.id} ref={ref} className="c3-tag land place" style={{ display: 'none' }}>
+          <span className="c3-name land">{t(`hunt.places.${key}`)}</span>
         </div>
       )
     }
@@ -292,7 +306,7 @@ export default function City3D({ residents, me, onLandmark, onResident, onLot, e
         startPolar={START_POLAR}
         texts={{ north: t('city.map.north'), northLetter: t('city.map.northLetter'), turnLeft: t('city.map.turnLeft'), turnRight: t('city.map.turnRight'), zoomIn: t('city.map.zoomIn'), zoomOut: t('city.map.zoomOut') }}
       />
-      <FoundCard found={found} me={me} onOpen={onResident} onClose={() => setFound(null)} />
+      <FoundCard found={found} me={me} onOpen={onResident} onDuel={onDuel} onClose={() => setFound(null)} />
     </div>
   )
 }

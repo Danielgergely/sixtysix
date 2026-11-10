@@ -795,7 +795,7 @@ function gate(g: Geo, level: number) {
   }
 }
 
-// ── The courtyard spot (the Bakehouse's; the 3D yard keeps this model) ──
+// ── The courtyard spot (where the Bakehouse will stand) ──
 
 function courtyardSpot(g: Geo) {
   g.box(0, 0, 0, 4.2, 0.1, 4.2, '#d4b27c', { jitter: 0.02 })
@@ -815,6 +815,321 @@ function courtyardSpot(g: Geo) {
   }
 }
 
+// ── Animals (the Stable's, standing) ──
+
+/** Draws in a frame at (x, z) turned by ry and scaled by s, then puts the Geo's frame back. */
+function inFrame(g: Geo, x: number, z: number, ry: number, s: number, draw: () => void) {
+  const before = g.frame
+  g.frame = before.clone().multiply(place(x, 0, z, { ry })).multiply(new Matrix4().makeScale(s, s, s))
+  draw()
+  g.frame = before
+}
+
+/** A donkey facing +x: grey-brown, long ears, a pale muzzle. */
+function donkey(g: Geo, x: number, z: number, ry = 0, s = 1, packed = false) {
+  const coat = '#8d7b68'
+  inFrame(g, x, z, ry, s, () => {
+    for (const [lx, lz] of [[-0.42, -0.16], [-0.42, 0.16], [0.42, -0.16], [0.42, 0.16]]) g.box(lx, 0, lz, 0.13, 0.62, 0.13, '#6f6052', { jitter: 0 })
+    g.box(0, 0.58, 0, 1.2, 0.48, 0.46, coat)
+    g.box(0, 0.6, 0, 1.0, 0.2, 0.48, '#c9bba6', { jitter: 0 })
+    g.box(0.62, 0.92, 0, 0.3, 0.5, 0.3, coat, { rz: -0.5 })
+    g.box(0.9, 1.18, 0, 0.5, 0.26, 0.26, coat)
+    g.box(1.12, 1.16, 0, 0.14, 0.2, 0.22, '#e4d9c6', { jitter: 0 })
+    for (const ez of [-0.09, 0.09]) g.box(0.74, 1.4, ez, 0.07, 0.3, 0.07, '#6f6052', { jitter: 0 })
+    g.box(-0.62, 0.72, 0, 0.07, 0.36, 0.07, '#5a4c40', { rz: 0.35, jitter: 0 })
+    if (packed) {
+      g.box(0, 1.06, 0, 0.5, 0.08, 0.56, C.madder, { jitter: 0 })
+      for (const pz of [-0.34, 0.34]) g.box(0, 0.62, pz, 0.5, 0.42, 0.22, '#d8c49a')
+    }
+  })
+}
+
+/** A camel facing +x: sand-coloured, one hump, a long neck. */
+function camel(g: Geo, x: number, z: number, ry = 0, s = 1, packed = false) {
+  const coat = '#c9a36b'
+  inFrame(g, x, z, ry, s, () => {
+    for (const [lx, lz] of [[-0.55, -0.2], [-0.55, 0.2], [0.55, -0.2], [0.55, 0.2]]) g.box(lx, 0, lz, 0.14, 1.15, 0.14, '#b08c58', { jitter: 0 })
+    g.box(0, 1.1, 0, 1.6, 0.62, 0.6, coat)
+    blob(g, -0.05, 1.86, 0, 0.5, 0.36, 0.3, '#b9925a')
+    g.box(0.86, 1.5, 0, 0.26, 1.0, 0.26, coat, { rz: -0.4 })
+    g.box(1.2, 2.3, 0, 0.56, 0.26, 0.26, coat)
+    g.box(1.44, 2.26, 0, 0.14, 0.18, 0.22, '#e3c996', { jitter: 0 })
+    g.box(-0.84, 1.3, 0, 0.06, 0.5, 0.06, '#a8844f', { rz: 0.3, jitter: 0 })
+    if (packed) {
+      g.box(-0.05, 1.7, 0, 0.9, 0.1, 0.7, C.indigo, { jitter: 0 })
+      for (const pz of [-0.42, 0.42]) g.box(-0.05, 1.2, pz, 0.7, 0.5, 0.24, '#d8c49a')
+    }
+  })
+}
+
+/** A manger: a wooden trough of hay on legs. */
+function manger(g: Geo, x: number, z: number, ry = 0) {
+  inFrame(g, x, z, ry, 1, () => {
+    for (const lx of [-0.5, 0.5]) g.box(lx, 0, 0, 0.1, 0.5, 0.4, C.woodDark, { jitter: 0 })
+    g.box(0, 0.45, 0, 1.3, 0.3, 0.5, C.wood)
+    g.box(0, 0.72, 0, 1.15, 0.12, 0.38, '#e0c26a', { jitter: 0.1 })
+  })
+}
+
+// ── The Stable: a donkey under a lean-to → two donkeys in a shed → a camel shed → a caravan yard ──
+
+function stable(g: Geo, level: number) {
+  g.box(0, 0, 0, 6, 0.06, 5, '#c7a873', { jitter: 0.02 })
+  const hay = (x: number, z: number, k = 1) => blob(g, x, 0.36 * k, z, 0.7 * k, 0.5 * k, 0.6 * k, '#e0c26a')
+  if (level === 1) {
+    // Four posts and a roof of branches against the weather; a manger, a donkey.
+    for (const [x, z] of [[-1.6, -1.7], [1.6, -1.7], [-1.6, 0.2], [1.6, 0.2]]) g.box(x, 0, z, 0.14, z < 0 ? 2.1 : 1.7, 0.14, C.wood, { jitter: 0 })
+    g.slope(0, 1.7, -0.75, 3.8, 0.45, 2.4, 0.14, '#9a8a4a', { jitter: 0.08 })
+    manger(g, -0.7, -1.3)
+    donkey(g, 0.3, -0.5, 2.6)
+    hay(-2.2, 1.2)
+    g.box(1.9, 0.05, 1.2, 1.2, 0.36, 0.45, C.wood, { ry: 0.3 })
+    g.box(1.9, 0.39, 1.2, 1.0, 0.02, 0.28, C.water, { ry: 0.3, jitter: 0 })
+    return
+  }
+  if (level === 2) {
+    // A mud-brick shed open to the front, two donkeys.
+    g.box(0, 0.05, -1.9, 5, 2.2, 0.35, C.mud)
+    for (const x of [-2.5, 2.5]) g.box(x, 0.05, -0.9, 0.35, 2.2, 2.3, C.mud)
+    g.box(0, 2.2, -0.9, 5.5, 0.22, 2.7, '#9a8a4a', { jitter: 0.06 })
+    for (const x of [-0.9, 0.9]) g.box(x, 0.05, 0.25, 0.16, 2.15, 0.16, C.wood, { jitter: 0 })
+    manger(g, -1.5, -1.3)
+    manger(g, 1.2, -1.3)
+    donkey(g, -1.3, -0.5, 1.9)
+    donkey(g, 1.4, 0.9, -0.4, 1, true)
+    hay(-2.2, 1.5)
+    g.box(2.1, 0.05, 1.7, 1.3, 0.38, 0.5, C.limeDark)
+    g.box(2.1, 0.41, 1.7, 1.1, 0.02, 0.32, C.water, { jitter: 0 })
+    return
+  }
+  // Stone: a camel shed (3), a caravan yard with two bays, packs and banners (4).
+  const big = level >= 4
+  const w = big ? 5.6 : 5
+  g.box(0, 0.05, -1.7, w, 2.9, 1.5, C.lime)
+  for (const x of big ? [-1.4, 1.4] : [0]) g.box(x, 0.05, -0.93, big ? 1.9 : 2.6, 2.3, 0.06, C.dark, { jitter: 0 })
+  flatRoof(g, 0, 2.95, -1.7, w, 1.5)
+  // An awning of cloth on poles in front of the bays.
+  for (const x of [-w / 2 + 0.3, w / 2 - 0.3]) g.box(x, 0.05, 0.5, 0.12, 2.2, 0.12, C.wood, { jitter: 0 })
+  g.slope(0, 2.2, -0.2, w - 0.2, 0.45, 1.6, 0.06, big ? C.indigo : C.madder, { jitter: 0.04 })
+  manger(g, -1.7, 0.1, 0.2)
+  camel(g, 0.7, 0.6, 2.9, 1, big)
+  donkey(g, -1.5, 1.5, -0.3, 1, true)
+  hay(2.4, 1.7, 1.1)
+  for (const [x, z, ry] of [[-2.5, 0.4, 0], [-2.3, 1.0, 1], [2.3, 0.2, 2]]) sack(g, x, z, ry)
+  jar(g, 2.6, 1.0)
+  if (big) {
+    camel(g, -0.4, 1.9, 0.5, 0.92, true)
+    for (const x of [-w / 2 + 0.2, w / 2 - 0.2]) {
+      g.box(x, 3.7, -1.7, 0.08, 1.7, 0.08, C.woodDark, { jitter: 0 })
+      g.box(x + 0.42, 4.6, -1.7, 0.75, 0.7, 0.04, C.saffron, { jitter: 0.03 })
+    }
+    bricks(g, 2.3, -0.3, 2, 2)
+  }
+}
+
+// ── The Bakehouse: a hand mill and a clay oven → two millstones → a bakehouse → a donkey mill ──
+
+/** A domed clay oven with a glowing mouth towards +z. */
+function oven(g: Geo, x: number, z: number, s = 1) {
+  g.cyl(x, 0.05, z, 0.8 * s, 0.9 * s, 0.5 * s, '#b98a62', 9)
+  g.cone(x, 0.5 * s, z, 0.82 * s, 0.75 * s, '#c79a70', 9)
+  g.box(x, 0.08, z + 0.8 * s, 0.5 * s, 0.42 * s, 0.14, C.dark, { jitter: 0 })
+  g.box(x, 0.1, z + 0.86 * s, 0.32 * s, 0.2 * s, 0.05, '#f08a2a', { jitter: 0 })
+}
+/** A pair of millstones on a block. */
+function quern(g: Geo, x: number, z: number, s = 1) {
+  g.cyl(x, 0.05, z, 0.5 * s, 0.55 * s, 0.4 * s, C.limeDark, 8)
+  g.cyl(x, 0.45 * s, z, 0.42 * s, 0.42 * s, 0.18 * s, '#8f8a82', 10)
+  g.cyl(x, 0.63 * s, z, 0.36 * s, 0.4 * s, 0.16 * s, '#a39d94', 10)
+  g.box(x + 0.3 * s, 0.75 * s, z, 0.08, 0.3 * s, 0.08, C.wood, { jitter: 0 })
+}
+/** Loaves on a board. */
+function loaves(g: Geo, x: number, z: number, n = 4, ry = 0) {
+  inFrame(g, x, z, ry, 1, () => {
+    g.box(0, 0.55, 0, 0.3 + n * 0.32, 0.06, 0.5, C.wood, { jitter: 0 })
+    for (const lx of [-n * 0.14, n * 0.14]) g.box(lx, 0, 0, 0.08, 0.55, 0.4, C.woodDark, { jitter: 0 })
+    for (let i = 0; i < n; i++) g.cyl(-((n - 1) * 0.3) / 2 + i * 0.3, 0.61, 0, 0.1, 0.13, 0.1, '#d79a52', 6, { jitter: 0.1 })
+  })
+}
+
+function bakehouse(g: Geo, level: number) {
+  g.box(0, 0, 0, 4.2, 0.08, 4.2, '#d4b27c', { jitter: 0.02 })
+  if (level <= 2) {
+    oven(g, -0.7, -0.8)
+    quern(g, 1.1, -0.9)
+    if (level === 2) quern(g, 1.3, 0.4, 0.9)
+    loaves(g, -0.9, 1.1, 3, 0.2)
+    sack(g, 1.5, 1.4)
+    sack(g, 0.8, 1.5, 1)
+    logPile(g, -1.7, 0.2, 2)
+    // A shade of reeds over the oven.
+    for (const [x, z] of [[-1.7, -1.7], [0.3, -1.7], [-1.7, 0.1], [0.3, 0.1]]) g.box(x, 0.05, z, 0.1, 1.9, 0.1, C.wood, { jitter: 0 })
+    g.box(-0.7, 1.95, -0.8, 2.4, 0.1, 2.2, '#9a8a4a', { jitter: 0.08 })
+    return
+  }
+  // A plastered bakehouse with a chimney; ovens in front; a donkey turning the mill (4).
+  const big = level >= 4
+  g.box(0, 0.05, -1.1, 3.6, 2.4, 1.8, C.plaster)
+  flatRoof(g, 0, 2.45, -1.1, 3.6, 1.8, C.roof, C.plaster)
+  door(g, -0.9, -0.2, 0.8, 1.7)
+  windowAt(g, 0.8, 1.3, -0.2)
+  g.box(1.3, 2.75, -1.5, 0.5, 1.3, 0.5, C.mudDark)
+  blob(g, 1.45, 4.4, -1.5, 0.4, 0.3, 0.4, '#d9d3cc')
+  blob(g, 1.75, 4.95, -1.45, 0.3, 0.24, 0.3, '#e6e1da')
+  oven(g, 1.2, 0.5, 0.85)
+  loaves(g, -1.2, 0.8, 5, 0.1)
+  sack(g, -1.7, 1.6)
+  sack(g, -1.1, 1.7, 1)
+  awning(g, -0.9, 2.0, -0.2, 1.6, 1.0, 0.4, C.saffron, { stripe: C.madder })
+  if (big) {
+    g.cyl(0.6, 0.05, 1.5, 0.7, 0.75, 0.45, C.limeDark, 10)
+    g.cyl(0.6, 0.5, 1.5, 0.55, 0.6, 0.3, '#8f8a82', 10)
+    g.box(0.6, 0.8, 1.5, 1.9, 0.08, 0.08, C.wood, { ry: 0.5, jitter: 0 })
+    donkey(g, 1.55, 1.05, 2.1, 0.8)
+  } else quern(g, 0.3, 1.5)
+}
+
+// ── The threshing floor: a ring of beaten earth → paved → with a winnowing shelter → Araunah's floor ──
+
+/** The threshing floor (the valley's `thresh`), level 0 = the bare ring it will be. Faces +z, about 9 across. */
+export function threshGeometry(level: number): BufferGeometry {
+  const lv = Math.max(0, Math.min(4, level))
+  return make(`thresh:${lv}`, 73 + lv, (g, rand) => {
+    const r = 4.2
+    g.cyl(0, 0, 0, r, r + 0.25, 0.1, lv >= 2 ? C.limeLight : '#d9bd84', 20, { jitter: 0.03 })
+    if (lv === 0) {
+      for (let i = 0; i < 6; i++) g.box(Math.sin(i * 1.05) * (r - 0.3), 0, Math.cos(i * 1.05) * (r - 0.3), 0.12, 0.6, 0.12, C.wood, { jitter: 0 })
+      return
+    }
+    // A kerb of stones round it.
+    const n = lv >= 2 ? 26 : 14
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2 + 0.2
+      if (Math.abs(a - Math.PI) < 0.35) continue
+      g.box(Math.sin(a) * (r + 0.1), 0, Math.cos(a) * (r + 0.1), lv >= 2 ? 0.95 : 0.6, 0.24 + rand() * 0.16, 0.5, lv >= 2 ? C.lime : C.limeDark, { ry: a })
+    }
+    if (lv >= 2) for (let i = 0; i < 18; i++) g.box(Math.sin(i * 2.4) * (0.6 + (i % 5) * 0.7), 0.1, Math.cos(i * 2.4) * (0.6 + (i % 5) * 0.7), 0.9, 0.03, 0.8, i % 2 ? C.lime : C.limeLight, { ry: i, jitter: 0.08 })
+    // The grain spread out, a threshing sledge, the heap of grain, sheaves.
+    g.cyl(-0.4, 0.1, 0.2, 2.3, 2.4, 0.05, '#e3c463', 14, { jitter: 0.1 })
+    g.box(-0.6, 0.16, 0.4, 1.5, 0.1, 0.8, C.wood, { ry: 0.5 })
+    g.box(0.3, 0.2, -0.1, 0.9, 0.06, 0.06, C.woodDark, { ry: 0.5, jitter: 0 })
+    g.cone(2.3, 0.1, -1.6, 0.9 + lv * 0.12, 0.7 + lv * 0.14, '#e8c95a', 9)
+    for (let i = 0; i < 3 + lv; i++) {
+      const a = 3.6 + i * 0.42
+      const x = Math.sin(a) * (r - 0.9)
+      const z = Math.cos(a) * (r - 0.9)
+      g.cyl(x, 0.1, z, 0.12, 0.3, 0.9, '#d9b24c', 6, { jitter: 0.1 })
+      g.cone(x, 0.95, z, 0.34, 0.4, '#e8c95a', 6)
+    }
+    if (lv >= 3) {
+      // A shelter where the wind winnows: poles and a cloth, a winnowing fork leaning.
+      for (const [x, z] of [[-2.9, -2.2], [-1.3, -2.9], [-3.3, -0.6], [-1.6, -1.2]]) g.box(x, 0.1, z, 0.1, 2.0, 0.1, C.wood, { jitter: 0 })
+      g.box(-2.3, 2.1, -1.75, 2.3, 0.07, 2.1, C.cream, { ry: 0.45, jitter: 0.05 })
+      g.box(-0.9, 0.1, -2.6, 0.06, 1.9, 0.06, C.woodDark, { rz: 0.3, jitter: 0 })
+    }
+    if (lv >= 4) {
+      // Araunah's floor: an altar of unhewn stones at its edge (2 Sam 24:25).
+      g.box(0, 0.1, -3.1, 1.6, 0.9, 1.1, C.lime, { jitter: 0.1 })
+      g.box(0, 1.0, -3.1, 1.8, 0.16, 1.3, C.limeLight)
+      for (const x of [-0.8, 0.8]) for (const z of [-3.6, -2.6]) g.box(x, 1.16, z, 0.2, 0.24, 0.2, C.limeLight, { jitter: 0 })
+    }
+  })
+}
+
+// ── Things standing about a yard (placed by plotSpace.ts YARD_PROPS); each is drawn round its own origin ──
+
+export type PropId = 'fire' | 'garden' | 'washing' | 'tree' | 'bench' | 'jars' | 'cart' | 'dovecote' | 'flowers'
+
+export const PROP: Record<PropId, (g: Geo) => void> = {
+  /** A cooking fire in a ring of stones, a pot on three sticks, two stools. */
+  fire(g) {
+    for (let i = 0; i < 8; i++) g.box(Math.sin(i * 0.785) * 0.6, 0, Math.cos(i * 0.785) * 0.6, 0.3, 0.2, 0.26, C.limeDark, { ry: i * 0.785 })
+    g.cone(0, 0.02, 0, 0.3, 0.42, '#f08a2a', 5, { jitter: 0 })
+    g.cone(0.1, 0.02, 0.05, 0.16, 0.3, '#ffd15a', 4, { jitter: 0 })
+    for (let i = 0; i < 3; i++) g.box(Math.sin(i * 2.1) * 0.5, 0, Math.cos(i * 2.1) * 0.5, 0.06, 1.35, 0.06, C.woodDark, { rz: Math.sin(i * 2.1) * 0.36, rx: -Math.cos(i * 2.1) * 0.36, jitter: 0 })
+    g.cyl(0, 0.55, 0, 0.24, 0.18, 0.28, '#3a302a', 7)
+    for (const [x, z] of [[1.2, 0.5], [-0.9, 1.0]]) g.cyl(x, 0, z, 0.24, 0.2, 0.36, C.wood, 6)
+    rugFlat(g, -1.3, 0.03, -0.6, 1.4, 0.9, C.madder, C.cream, 0.5)
+  },
+  /** A kitchen garden: three beds of greens, a scarecrow. */
+  garden(g) {
+    for (let r = 0; r < 3; r++) {
+      g.box(0, 0, -1.1 + r * 1.1, 4.6, 0.14, 0.8, '#7d5132', { jitter: 0.04 })
+      for (let i = 0; i < 7; i++) blob(g, -2 + i * 0.66, 0.26, -1.1 + r * 1.1, 0.24, 0.2, 0.24, r === 1 ? '#8fb04a' : i % 2 ? '#6f9a3c' : '#5f8a34', i)
+    }
+    g.box(2.7, 0, 0, 0.08, 1.7, 0.08, C.woodDark, { jitter: 0 })
+    g.box(2.7, 1.1, 0, 1.1, 0.07, 0.07, C.woodDark, { jitter: 0 })
+    g.box(2.7, 0.75, 0, 0.5, 0.6, 0.1, C.indigo)
+    g.cyl(2.7, 1.45, 0, 0.16, 0.16, 0.26, '#e0c26a', 6)
+    g.cone(2.7, 1.68, 0, 0.3, 0.2, '#b59a55', 7)
+  },
+  /** A washing line between two poles: cloths in the family's colours. */
+  washing(g) {
+    for (const x of [-1.9, 1.9]) g.box(x, 0, 0, 0.1, 2.0, 0.1, C.wood, { jitter: 0 })
+    g.box(0, 1.9, 0, 3.8, 0.03, 0.03, C.cream, { jitter: 0 })
+    const cloths: [number, number, string][] = [[-1.3, 0.9, C.cream], [-0.45, 1.1, C.madder], [0.4, 0.7, C.saffron], [1.2, 1.0, C.indigo]]
+    for (const [x, h, col] of cloths) g.box(x, 1.9 - h, 0, 0.62, h, 0.04, col, { jitter: 0.04 })
+  },
+  /** An olive tree in a ring of stones. */
+  tree(g) {
+    for (let i = 0; i < 7; i++) g.box(Math.sin(i * 0.9) * 0.9, 0, Math.cos(i * 0.9) * 0.9, 0.4, 0.22, 0.3, C.limeDark, { ry: i * 0.9 })
+    olive(g, 0, 0, 1.5)
+  },
+  /** A fig tree with a stone bench in its shade. */
+  bench(g) {
+    g.cyl(0, 0, 0, 0.16, 0.24, 1.7, C.trunk, 6)
+    blob(g, 0, 2.5, 0, 1.7, 1.1, 1.6, '#5f8a34')
+    blob(g, 0.9, 2.0, 0.5, 1.0, 0.7, 1.0, '#6f9a3c', 1)
+    blob(g, -0.8, 2.1, -0.4, 1.0, 0.7, 0.9, '#567d30', 2)
+    for (const x of [-0.7, 0.7]) g.box(x, 0, 1.5, 0.3, 0.4, 0.5, C.limeDark)
+    g.box(0, 0.4, 1.5, 1.9, 0.14, 0.6, C.lime)
+  },
+  /** Jars and sacks waiting by the gate. */
+  jars(g) {
+    jar(g, 0, 0, 1.2)
+    jar(g, 0.7, 0.2, 0.9, C.mudDark)
+    jar(g, 0.3, 0.7, 1)
+    sack(g, -0.8, 0.3)
+    sack(g, -0.6, -0.5, 1)
+  },
+  /** A two-wheeled cart with a load of stone. */
+  cart(g) {
+    g.box(0, 0.55, 0, 2.2, 0.12, 1.2, C.wood)
+    for (const z of [-0.6, 0.6]) g.box(0, 0.67, z, 2.2, 0.4, 0.07, C.woodDark, { jitter: 0 })
+    g.box(-1.1, 0.67, 0, 0.07, 0.4, 1.2, C.woodDark, { jitter: 0 })
+    for (const z of [-0.72, 0.72]) g.cyl(0, 0.49, z, 0.55, 0.55, 0.12, C.woodDark, 10, { rx: Math.PI / 2 })
+    for (const z of [-0.35, 0.35]) g.box(1.9, 0.5, z, 1.7, 0.07, 0.07, C.wood, { rz: -0.12, jitter: 0 })
+    for (let i = 0; i < 5; i++) g.box(-0.6 + (i % 3) * 0.55, 0.67 + (i > 2 ? 0.3 : 0), -0.2 + (i % 2) * 0.4, 0.5, 0.3, 0.42, C.lime, { ry: i * 0.5 })
+  },
+  /** A round dovecote with a thatched cone. */
+  dovecote(g) {
+    g.cyl(0, 0, 0, 1.0, 1.15, 2.6, C.plaster, 10)
+    g.cone(0, 2.6, 0, 1.3, 1.2, '#b59a55', 10)
+    for (let r = 0; r < 2; r++) for (let i = 0; i < 5; i++) g.box(Math.sin(i * 1.26 + r * 0.6) * 1.04, 1.2 + r * 0.7, Math.cos(i * 1.26 + r * 0.6) * 1.04, 0.2, 0.2, 0.1, C.dark, { ry: i * 1.26 + r * 0.6, jitter: 0 })
+    for (const [x, y, z] of [[0.3, 3.82, 0], [-0.95, 2.62, 0.5]]) g.box(x, y, z, 0.26, 0.14, 0.12, '#f4f0e8', { jitter: 0 })
+  },
+  /** Pots of flowers by the door. */
+  flowers(g) {
+    const blooms = [C.madder, C.saffron, '#c9a3e0']
+    for (let i = 0; i < 3; i++) {
+      pot(g, i * 0.55 - 0.55, 0, (i % 2) * 0.3, 1 + (i % 2) * 0.2)
+      blob(g, i * 0.55 - 0.55, 0.66 + (i % 2) * 0.1, (i % 2) * 0.3, 0.26, 0.2, 0.26, '#6f9a3c', i)
+      blob(g, i * 0.55 - 0.55, 0.84 + (i % 2) * 0.1, (i % 2) * 0.3, 0.16, 0.1, 0.16, blooms[i], i)
+    }
+  },
+}
+
+/** A sheep, standing (the lost one in the hills round the homestead): facing +x, about 1.3 tall. */
+export function sheepGeometry(): BufferGeometry {
+  return make('sheep', 79, (g) => {
+    for (const [x, z] of [[-0.4, -0.22], [-0.4, 0.22], [0.4, -0.22], [0.4, 0.22]]) g.box(x, 0, z, 0.12, 0.5, 0.12, '#3a302a', { jitter: 0 })
+    blob(g, 0, 0.85, 0, 0.85, 0.52, 0.55, '#f4efe4')
+    blob(g, -0.5, 0.95, 0, 0.4, 0.36, 0.42, '#ece5d6', 1)
+    g.box(0.85, 0.85, 0, 0.42, 0.38, 0.34, '#4a3d34')
+    for (const z of [-0.2, 0.2]) g.box(0.78, 1.12, z, 0.1, 0.1, 0.16, '#4a3d34', { jitter: 0 })
+  })
+}
+
 // ── Empty spots and building sites ──
 
 /** Footprint (w × d) of each building's spot, for the site markers, scaffolds and tap boxes. */
@@ -828,6 +1143,7 @@ export const FOOTPRINT: Record<YardSpot, [number, number]> = {
   grove: [6.6, 6.2],
   kiln: [5, 4.4],
   bake: [4.2, 4.2],
+  stable: [6, 5],
 }
 
 /** An empty spot: surveyor's pegs and a string round the ground. */
@@ -891,9 +1207,9 @@ const make = (key: string, seed: number, f: (g: Geo, rand: () => number) => void
   return geo
 }
 
-/** The model of a building at a level (level 0 = the empty site; the Bakehouse's spot keeps the courtyard model). Cached. */
+/** The model of a building at a level (level 0 = the empty site; the Bakehouse's spot is a paved courtyard until it is built). Cached. */
 export function buildingGeometry(spot: Spot, level: number): BufferGeometry {
-  if (spot === 'bake') return make('courtyard', 31, courtyardSpot)
+  if (spot === 'bake' && level < 1) return make('courtyard', 31, courtyardSpot)
   const lv = Math.min(MODELLED[spot] ?? maxLevel(spot), Math.max(0, level))
   const [w, d] = FOOTPRINT[spot]
   if (lv === 0) return make(`${spot}:0`, 41, (g) => emptySite(g, w, d))
@@ -915,6 +1231,10 @@ export function buildingGeometry(spot: Spot, level: number): BufferGeometry {
         return kiln(g, lv)
       case 'wall':
         return gate(g, lv)
+      case 'bake':
+        return bakehouse(g, lv)
+      case 'stable':
+        return stable(g, lv)
     }
   })
 }

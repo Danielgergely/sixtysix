@@ -87,3 +87,14 @@
 .p3[data-far]:not(.touring) .p3-build .hp-bar{ display: none; }
 .p3[data-far]:not(.touring) .p3-build small{ font-size: 11px; }
 @media (prefers-reduced-motion: reduce){ .p3-badge > span, .p3 .lf-bubble{ animation: none; } .p3 .p3-stack .ps-tag, .p3-ribbon, .p3-build{ transition: none; } }
+/* My Home in 3D with the fields: the scene is the screen's main thing. */
+.ps.p3, .ps.p3-loading{ height: min(62vh, 560px); }
+.p3-amb{ z-index: 1; }
+.p3-amb .ps-cloud{ z-index: auto; opacity: 0.8; }
+.p3-amb .ps-birds{ z-index: auto; }
+.p3-stack.p3-valley .ps-tag{ font-size: 12px; padding: 1px 7px; }
+.p3-grow{
+  padding: 1px 8px; border-radius: 999px; white-space: nowrap; background: rgb(40 60 24 / 0.82); border: 1.5px solid #cfe08a; color: #f4ffd8;
+  font: 800 11px/1.3 'Cinzel', serif; text-shadow: 0 1px 1px #000;
+}
+.p3[data-far]:not(.touring) .p3-grow{ font-size: 10px; padding: 0 6px; }

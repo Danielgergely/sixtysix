@@ -45,12 +45,13 @@ const N = {
   kl: [57, 82], // kiln
   g: [50, 86], // the gate
   f1: [68, 72],
+  sb: [21, 49], // the Stable
 } as const
 export type YardNode = keyof typeof N
 export const YARD_EDGES: [YardNode, YardNode][] = [
   ['hd', 'x'], ['x', 'n1'], ['n1', 'n0'], ['x', 'e1'], ['e1', 'st'], ['e1', 'e2'], ['e2', 'e3'], ['e2', 'f1'], ['x', 'c1'], ['c1', 'ct'],
   ['c1', 's1'], ['c1', 'wl'], ['s1', 't1'], ['s1', 's2'], ['s2', 'fd'], ['s2', 's3'], ['s1', 'w1'], ['w1', 'ws'], ['w1', 'y1'], ['y1', 'c1'],
-  ['y1', 'wl'], ['y1', 'g'], ['y1', 'kl'], ['y1', 'f1'], ['f1', 'wl'], ['f1', 'e3'], ['kl', 'g'],
+  ['y1', 'wl'], ['y1', 'g'], ['y1', 'kl'], ['y1', 'f1'], ['f1', 'wl'], ['f1', 'e3'], ['kl', 'g'], ['sb', 'n0'], ['sb', 't1'],
 ]
 
 /** Where the yard's people and animals are, in world px of the scene (heights are % × `P`). */
@@ -94,7 +95,7 @@ interface Spec {
 /** Who lives on a plot with these building levels. */
 function specsFor(levels: Record<BuildingId, number>, L: YardLayout): Spec[] {
   const out: Spec[] = []
-  const { house, fold, workshop, kiln, grove, well, store, wall } = levels
+  const { house, fold, workshop, kiln, grove, well, store, wall, stable } = levels
   const at = (n: YardNode) => L.graph.nodes[n]
   const { front: FRONT_YARD, house: HOUSE_YARD, cat: CAT } = L.areas
   const walker = (fig: FigureId, stops: YardNode[], more: Partial<Spec> = {}) => out.push({ fig, h: H.adult, speed: 15, start: at(stops[0]), stops, ...more })
@@ -122,6 +123,8 @@ function specsFor(levels: Record<BuildingId, number>, L: YardLayout): Spec[] {
     walker('donkey', ['g', 'st', 'fd'], { h: H.donkey, speed: 9, pause: [4, 9] })
     out.push({ fig: 'camel', h: 8.4, start: L.spots.camel })
   }
+  // The Stable's donkey goes to the gate and back (the fold's own donkey comes with its level 4).
+  if (stable >= 1 && fold < 4) walker('donkey', ['sb', 't1', 'y1', 'g'], { h: H.donkey, speed: 9, pause: [5, 11] })
   // Craftsmen at their benches, the watchman on the wall by the tower.
   if (workshop >= 1) out.push({ fig: 'carpenter', h: 5.6, start: L.spots.carpenter, left: true })
   if (kiln >= 2) out.push({ fig: 'brickmaker', h: 6, start: L.spots.brickmaker })

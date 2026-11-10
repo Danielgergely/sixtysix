@@ -86,6 +86,18 @@ export default {
     c2: { title: 'Bleib aktiv', text: 'Nach {weeds} Tagen ohne dich wächst Unkraut; nach {sale} Tagen steht das Zuhause zum Verkauf.' },
     c3: { title: 'Umziehen', text: 'Zieh auf eine freie Parzelle oder in ein Zuhause, das zum Verkauf steht: {outer} Münzen, {inner} innerhalb der Mauer.' },
   },
+  hunt: {
+    name: 'Schriftrollen-Suche',
+    c1: { title: 'Drei Rollen am Tag', text: 'Jeden Tag sind {n} Schriftrollen in Jerusalem versteckt. Jede hat ein Rätsel aus der Bibel.' },
+    c2: { title: 'Geh suchen', text: 'Finde den Ort, den das Rätsel meint, und tippe ihn an: Tempel, Tor, Teich, Turm …' },
+    c3: { title: 'Was drin ist', text: 'In jeder Rolle stecken {n} Baustoffe. Beantwortest du ihre Frage richtig, sind es doppelt so viele.' },
+  },
+  duel: {
+    name: 'Duelle',
+    c1: { title: 'Fordere eine Familie', text: 'Tippe auf der Karte einer Familie auf ⚔️ und setze {low} bis {high} Münzen.' },
+    c2: { title: 'Gleiche Fragen', text: 'Du spielst jetzt {n} Fragen, je {secs} Sekunden. Dein Gegner spielt dieselben, wenn er annimmt.' },
+    c3: { title: 'Sieger nimmt beides', text: 'Wer mehr Punkte hat, bekommt beide Einsätze. Absage oder {days} Tage keine Antwort: Dein Einsatz kommt zurück.' },
+  },
   skills: {
     name: 'Gaben',
     c1: { title: 'Ein Punkt pro Stufe', text: 'Jede neue Stufe gibt dir einen Punkt zum Verteilen.' },

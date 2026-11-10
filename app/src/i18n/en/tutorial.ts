@@ -87,6 +87,18 @@ export default {
     c2: { title: 'Stay active', text: 'Weeds grow after {weeds} days away; after {sale} days the home goes up for sale.' },
     c3: { title: 'Move house', text: 'Move to a free lot or a home for sale: {outer} coins, {inner} inside the wall.' },
   },
+  hunt: {
+    name: 'Scroll hunt',
+    c1: { title: 'Three scrolls a day', text: 'Every day {n} scrolls are hidden in Jerusalem. Each has a riddle from the Bible.' },
+    c2: { title: 'Go and look', text: 'Find the place the riddle means and tap it: the Temple, a gate, the pool, a tower…' },
+    c3: { title: 'What’s inside', text: 'Each scroll holds {n} building materials. Answer its question right and it holds double.' },
+  },
+  duel: {
+    name: 'Duels',
+    c1: { title: 'Challenge a family', text: 'Tap ⚔️ on a family’s card and stake {low} to {high} coins.' },
+    c2: { title: 'Same questions', text: 'You play {n} questions now, {secs} seconds each. They play the same ones when they accept.' },
+    c3: { title: 'Winner takes both', text: 'The higher score takes both stakes. Declined or no answer in {days} days: your stake comes back.' },
+  },
   skills: {
     name: 'Gifts',
     c1: { title: 'A point per level', text: 'Each new level gives you a point to spend.' },

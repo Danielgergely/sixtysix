@@ -3,6 +3,7 @@ import { MOVE_COST, moveError, type MoveError } from '@sixtysix/shared'
 import { INNER_LOTS, LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
 import { db, idleDaysOf, markActive, publicPlayer, saveProfile, toAccount, userFromRequest, type PublicRow, type UserRow } from './accounts.js'
 import { cityLevels } from './plot.js'
+import { recentDuelWinners } from './duels.js'
 
 /**
  * Jerusalem's residents and moving house (rules in shared/src/city.ts). Lots
@@ -28,11 +29,13 @@ export function registerCityRoutes(app: FastifyInstance): void {
     const now = Date.now()
     const rows = db.prepare('SELECT id, username, profile, created_at, lot, last_active FROM users ORDER BY lot IS NULL, lot').all() as unknown as CityRow[]
     const levels = cityLevels()
+    // A family that won a duel in the last day flies a pennant over its house.
+    const winners = recentDuelWinners(now)
     return {
       ok: true,
       lots: LOTS.length,
       innerLots: INNER_LOTS,
-      residents: rows.map((r) => ({ ...publicPlayer(r), lot: r.lot, idleDays: idleDaysOf(r, now), house: levels.get(r.id)?.house ?? 1, wall: levels.get(r.id)?.wall ?? 0 })),
+      residents: rows.map((r) => ({ ...publicPlayer(r), lot: r.lot, idleDays: idleDaysOf(r, now), house: levels.get(r.id)?.house ?? 1, wall: levels.get(r.id)?.wall ?? 0, ...(winners.has(r.id) && { duelWin: true }) })),
     }
   })
 
