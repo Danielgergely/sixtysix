@@ -79,7 +79,7 @@ export default {
     c3: { title: 'Collect', text: 'Buildings produce materials. Collect them: a full storehouse stops filling.' },
     c4: { title: 'Workers’ scroll', text: 'Get 2 of 3 questions right to take 5 minutes off a build.' },
     c5: { title: 'Market and gifts', text: 'The Market buys and sells materials. Workers in your yard sometimes carry a gift: tap them.' },
-    c6: { title: 'Fields and expeditions', text: 'From the Stone house your fields in the valley grow barley and wheat; the Bakehouse makes bread for big builds. From House 4, send workers to the quarry and the copper mines.' },
+    c6: { title: 'Fields and expeditions', text: 'From the Stone house the fields outside your fence grow barley and wheat; the Bakehouse makes bread for big builds. From House 4, send workers on expeditions for stone, bricks, copper, cedar and gold; a Stable makes them bring home more.' },
   },
   city: {
     name: 'Jerusalem',
@@ -90,7 +90,7 @@ export default {
   hunt: {
     name: 'Scroll hunt',
     c1: { title: 'Three scrolls a day', text: 'Every day {n} scrolls are hidden in Jerusalem. Each has a riddle from the Bible.' },
-    c2: { title: 'Go and look', text: 'Find the place the riddle means and tap it: the Temple, a gate, the pool, a tower…' },
+    c2: { title: 'Go and look', text: 'Pick a riddle and tap Search, then tap the place it means: the Temple, a gate, the pool, a tower… You have three guesses for each scroll.' },
     c3: { title: 'What’s inside', text: 'Each scroll holds {n} building materials. Answer its question right and it holds double.' },
   },
   duel: {

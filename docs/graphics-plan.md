@@ -14,8 +14,8 @@ run (desktop Chrome, an empty local city) and a read of the 3D code.
   moves or someone walks (CLAUDE.md, "Frames in both 3D scenes"). No effect may
   ask for frames of its own: no swaying trees, no full-screen post-processing.
 - **My Home** was painted when this plan was written; since 2026-11-10 it is
-  drawn in 3D in the city's manner by default (see Status), the painting is
-  the fallback.
+  drawn only in 3D in the city's manner (see Status); the painted yard was
+  removed.
 - The target is a mid-range phone.
 
 ## Baseline (measured)
@@ -161,4 +161,6 @@ is 506 KB. It draws at full rate behind the start, pause and end cards.
   floor lie outside the fence with their crops (`fields3d.ts`); new models
   for the Stable, the Bakehouse and the threshing floor; things standing
   about the yard by house level; cloud shadows and birds as CSS over the
-  canvas. Seen in desktop Chrome at phone and desktop sizes only.
+  canvas. Seen in desktop Chrome at phone and desktop sizes only. The painted
+  yard and the painted valley were removed the same day; without WebGL the
+  buildings show as a plain list (`world/PlotList.tsx`).

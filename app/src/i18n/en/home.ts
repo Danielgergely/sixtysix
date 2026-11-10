@@ -76,8 +76,7 @@ export default {
   },
 
   scene: {
-    toPainted: 'Show the painted yard',
-    to3d: 'Show the 3D homestead',
+    no3d: 'This device can\'t draw the homestead in 3D. Tap a building to work on it.',
     zoomIn: 'Zoom in',
     zoomOut: 'Zoom out',
     lv: 'Lv {n}',
@@ -103,15 +102,12 @@ export default {
 
   views: {
     yard: '🏠 Homestead',
-    fields: '🌾 Fields',
     expeditions: '🐪 Expeditions',
-    fieldsLocked: 'The fields in the valley open with the Stone house (House 3).',
     expLocked: 'Workers come to your gate with the Courtyard house (House 4).',
   },
 
   /** The valley: fields, crops, the Bakehouse, the flock's barley, bread for the builders, gleaning (shared/src/farm.ts). */
   farm: {
-    foot: '“She considers a field and buys it; with the fruit of her hands she plants a vineyard.” — Prov 31:16',
     buyFirst: 'Buys {list} first',
     land: 'Land',
     clear: 'Clear the field',
@@ -125,7 +121,6 @@ export default {
     harvest: 'Harvest {n} {icon}',
     harvested: 'Brought in {list}',
     harvestAll: '🌾 Harvest all ({n})',
-    harvestNone: '🌾 Nothing ripe yet',
     sowWhat: 'What will you sow?',
     sow: '{icon} {crop}: {n} in {time}{season}',
     inSeason: ' · in season!',
@@ -469,6 +464,7 @@ export default {
     'Learn Master builder first': 'Learn Master builder first',
     'Already used this week': 'Already used this week',
     'That building is not being built': 'That building is not being built',
+    'The Market doesn’t buy what your workers brought home': 'The Market doesn’t buy what your workers brought home',
     'The Market doesn’t buy that': 'The Market doesn’t buy that',
     'Unknown field or crop': 'Unknown field or crop',
     'Clear the field first': 'Clear the field first',

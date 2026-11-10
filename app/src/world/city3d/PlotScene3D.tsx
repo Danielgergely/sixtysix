@@ -50,7 +50,7 @@ import { cypressGeometry, oliveGeometry } from './trees'
  * (fields3d.ts), scaffolding round what is
  * being built and a little burst when it is finished, the fence of the wall
  * level (instanced, one draw call per kind of piece), olive trees round the
- * homestead, the yard's people and animals (Townsfolk3D on PlotLife's paths),
+ * homestead, the yard's people and animals (Townsfolk3D on the yard's paths, world/yard.ts),
  * the camera rig, and per frame the name tags, compass and zoom limits.
  * Shadows are drawn once and again only when something is built.
  */

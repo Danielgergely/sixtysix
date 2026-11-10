@@ -16,6 +16,7 @@ export default {
     bread: 'Backhaus · Mt 24,41',
     copper: 'Kupferminen · 5. Mose 8,9',
   },
+  hauled: 'Was deine Arbeiter und die Schriftrollenjagd heimbringen, ist zum Bauen da: Der Markt kauft nur, was dein Gehöft selbst herstellt.',
   noSell: 'unverkäuflich',
   buy: 'Kaufen',
   sell: 'Verkaufen +{n}',

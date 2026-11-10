@@ -39,8 +39,6 @@ import { BuildingSheet } from './BuildingSheet'
 import { Top, Toast } from './parts'
 import { ScrollSheet } from './ScrollSheet'
 import { PlotView } from '../../world/PlotView'
-import { FieldScene } from '../../world/FieldScene'
-import { usePlotMode } from '../../world/plotMode'
 import { ExpeditionsView, RoadSheet } from './ExpeditionsView'
 import { ChallengeSheet } from './LifeSheets'
 import { SHEEP_PLACES } from '../../world/sheepPlaces'
@@ -53,9 +51,6 @@ export function HomeScreen() {
   const account = useAccountStore((s) => s.account)
   const { plot: raw, loading, error, load, select, selected, scroll, road, challenge, seen, openMarket, view } = usePlotStore()
   const t = useT()
-  // In 3D the fields lie outside the homestead's fence: one scene, no Fields tab.
-  const merged = usePlotMode((m) => m.mode === '3d')
-  const shown = merged && view === 'fields' ? 'yard' : view
   useTick(1000)
   const plot = usePlotStore.getState().projected()
   const now = usePlotStore.getState().now()
@@ -105,22 +100,20 @@ export function HomeScreen() {
       {plot && (
         <>
           <Summary plot={plot} />
-          <Views plot={plot} merged={merged} shown={shown} />
-          {shown === 'yard' && (
+          <Views plot={plot} />
+          {view === 'yard' && (
             <>
               <WeedsNote />
               <NextStep plot={plot} />
               <HomeScene plot={plot} now={now} seen={seen} />
               {/* Under the scene, so the homestead stays high on the screen. */}
-              <RoundNotes plot={plot} now={now} sheep={merged} />
-              {merged && plot.levels.field1 > 0 && <Season now={now} compact />}
-              <Actions plot={plot} now={now} harvest={merged} />
+              <RoundNotes plot={plot} now={now} />
+              {plot.levels.field1 > 0 && <Season now={now} />}
+              <Actions plot={plot} now={now} />
             </>
           )}
-          {shown === 'fields' && <Fields plot={plot} now={now} />}
-          {shown === 'expeditions' && <ExpeditionsView plot={plot} now={now} />}
-          <p className="tab-note hp-foot">{t(shown === 'fields' ? 'home.farm.foot' : shown === 'expeditions' ? 'home.exp.foot' : 'home.foot')}</p>
-          {shown === 'yard' && <ModeSwitch />}
+          {view === 'expeditions' && <ExpeditionsView plot={plot} now={now} />}
+          <p className="tab-note hp-foot">{t(view === 'expeditions' ? 'home.exp.foot' : 'home.foot')}</p>
         </>
       )}
       <AnimatePresence>{selected && plot && <BuildingSheet key="sheet" spot={selected} plot={plot} onClose={() => select(null)} />}</AnimatePresence>
@@ -156,16 +149,14 @@ function Summary({ plot }: { plot: PlotState }) {
   )
 }
 
-/** Homestead · Fields · Expeditions. The valley opens at House 3, the workers at House 4 (shown locked before). */
-function Views({ plot, merged, shown }: { plot: PlotState; merged: boolean; shown: string }) {
-  const { setView } = usePlotStore()
-  const view = shown
+/** Homestead (with its fields) · Expeditions. The workers come at House 4 (shown locked before). */
+function Views({ plot }: { plot: PlotState }) {
+  const { view, setView } = usePlotStore()
   const t = useT()
   const ripe = ripeFields(plot, usePlotStore.getState().now()).length
   const back = (plot.expeditions ?? []).filter((e) => e.endsAt <= usePlotStore.getState().now()).length
   const tabs = [
-    { id: 'yard', label: t('home.views.yard'), badge: merged ? ripe : 0, locked: false },
-    ...(merged ? [] : [{ id: 'fields', label: t('home.views.fields'), badge: ripe, locked: plot.levels.house < 3 } as const]),
+    { id: 'yard', label: t('home.views.yard'), badge: ripe, locked: false },
     { id: 'expeditions', label: t('home.views.expeditions'), badge: back, locked: plot.levels.house < 4 },
   ] as const
   return (
@@ -176,7 +167,7 @@ function Views({ plot, merged, shown }: { plot: PlotState; merged: boolean; show
           role="tab"
           aria-selected={view === v.id}
           className={`hp-view ${view === v.id ? 'on' : ''} ${v.locked ? 'locked' : ''}`}
-          onClick={() => (v.locked ? usePlotStore.getState().say(tNow(v.id === 'fields' ? 'home.views.fieldsLocked' : 'home.views.expLocked')) : setView(v.id))}
+          onClick={() => (v.locked ? usePlotStore.getState().say(tNow('home.views.expLocked')) : setView(v.id))}
         >
           {v.label}
           {v.badge > 0 && <span className="hp-view-badge">{v.badge}</span>}
@@ -186,85 +177,27 @@ function Views({ plot, merged, shown }: { plot: PlotState; merged: boolean; show
   )
 }
 
-/** The valley: the season, the painted fields, and Harvest all. */
-function Fields({ plot, now }: { plot: PlotState; now: number }) {
-  const t = useT()
-  const { select, busy, harvest, startScroll, say, error } = usePlotStore()
-  const ripe = ripeFields(plot, now)
-  const total = ripe.reduce((n, f) => n + (plot.crops?.[f]?.amount ?? 0), 0)
-  return (
-    <>
-      <Season now={now} />
-      <FieldScene plot={plot} now={now} onSelect={(b) => select(b)} />
-      <div className="hp-actions">
-        {error && <p className="hp-error">{tServer(error)}</p>}
-        <button
-          className="hp-btn gold"
-          disabled={busy || !ripe.length}
-          onClick={async () => {
-            const got = await harvest()
-            if (got) {
-              say(tNow('home.farm.harvested', { list: listMaterials(got) }))
-              fireConfetti({ y: 0.5, count: 60 })
-            }
-          }}
-        >
-          {ripe.length ? t('home.farm.harvestAll', { n: total }) : t('home.farm.harvestNone')}
-        </button>
-        <button className="hp-btn" disabled={busy || plot.builds.length === 0} onClick={() => void startScroll()}>
-          {t('home.actions.scroll')} <small>{t('home.actions.scrollCut', { n: modsOf(plot).scrollMin })}</small>
-        </button>
-      </div>
-    </>
-  )
-}
-
-/** The farmer's season and what it is good for; `compact` is the one-line strip over the 3D homestead. */
-function Season({ now, compact }: { now: number; compact?: boolean }) {
+/** The farmer's season and what it is good for: a one-line strip under the homestead. */
+function Season({ now }: { now: number }) {
   const t = useT()
   const { season, endsAt } = seasonAt(now)
   const good = CROP_IDS.filter((c) => CROPS[c].seasons.includes(season))
   const what = good.length ? t('home.farm.seasonGood', { list: good.map((c) => `${MATERIAL_INFO[c].icon} ${materialName(c)}`).join(', ') }) : t('home.farm.seasonNone')
-  const label = t('home.farm.seasonLabel', { days: Math.max(1, Math.ceil((endsAt - now) / 86_400_000)) })
-  if (compact) {
-    return (
-      <div className="hp-season-strip" title={label}>
-        <span>{t(`home.farm.season.${season}.icon`)}</span>
-        <strong>{t(`home.farm.season.${season}.name`)}</strong>
-        <small>{what}</small>
-      </div>
-    )
-  }
   return (
-    <div className="hp-next hp-season">
-      <span className="hp-next-art season">{t(`home.farm.season.${season}.icon`)}</span>
-      <span className="hp-next-text">
-        <small>{label}</small>
-        <strong>{t(`home.farm.season.${season}.name`)}</strong>
-        <span>{what}</span>
-      </span>
+    <div className="hp-season-strip" title={t('home.farm.seasonLabel', { days: Math.max(1, Math.ceil((endsAt - now) / 86_400_000)) })}>
+      <span>{t(`home.farm.season.${season}.icon`)}</span>
+      <strong>{t(`home.farm.season.${season}.name`)}</strong>
+      <small>{what}</small>
     </div>
   )
 }
 
-/** Switch between the 3D homestead and the painted yard (remembered; hidden where 3D can't run). */
-function ModeSwitch() {
-  const t = useT()
-  const { mode, can3d, choose } = usePlotMode()
-  if (!can3d) return null
-  return (
-    <button className="hp-link hp-mode" onClick={() => choose(mode === '3d' ? '2d' : '3d')}>
-      {t(mode === '3d' ? 'home.scene.toPainted' : 'home.scene.to3d')}
-    </button>
-  )
-}
-
 /** Round the homestead (shared/src/homeLife.ts): who lent a hand lately, raiders waiting in ripe fields, today's lost sheep. */
-function RoundNotes({ plot, now, sheep }: { plot: PlotState; now: number; sheep: boolean }) {
+function RoundNotes({ plot, now }: { plot: PlotState; now: number }) {
   const t = useT()
   const helpers = (plot.helpers ?? []).filter((h) => now - h.at < DAY_MS).map((h) => h.name)
   const raids = raidedFields(plot, now).length
-  const lost = sheep && !sheepError(plot, now)
+  const lost = !sheepError(plot, now)
   if (!helpers.length && !raids && !lost) return null
   return (
     <div className="hp-round">
@@ -321,7 +254,7 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
   const findSheep = usePlotStore((s) => s.findSheep)
   const say = usePlotStore((s) => s.say)
   const username = useAccountStore((s) => s.account?.username ?? '')
-  // Today's lost sheep (the 3D homestead hides it in the hills): where, until it is found.
+  // Today's lost sheep hides in the hills round the homestead: where, until it is found.
   const sheep = sheepError(plot, now) ? undefined : sheepPlace(username, now, SHEEP_PLACES.length)
   return (
     <PlotView
@@ -351,10 +284,10 @@ function HomeScene({ plot, now, seen }: { plot: PlotState; now: number; seen: Re
   )
 }
 
-function Actions({ plot, now, harvest: withHarvest }: { plot: PlotState; now: number; harvest: boolean }) {
+function Actions({ plot, now }: { plot: PlotState; now: number }) {
   const { busy, collect, startScroll, say, error, harvest } = usePlotStore()
-  // With the fields in the scene, ripe grain is brought in from here too.
-  const ripe = withHarvest ? ripeFields(plot, now) : []
+  // The fields are part of the scene: ripe grain is brought in from here too.
+  const ripe = ripeFields(plot, now)
   const grain = ripe.reduce((n, f) => n + (plot.crops?.[f]?.amount ?? 0), 0)
   const t = useT()
   // Production waiting, and baked bread to take out.

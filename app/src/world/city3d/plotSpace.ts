@@ -11,8 +11,7 @@ import { releaseAfterUpload } from './textures'
 /**
  * My Home in 3D: where everything stands. Units are the city's (a person is
  * ~2.2 tall), x east, z south, y up; the camera starts south of the yard
- * looking north, so the view is the painted yard's (PlotScene): the house at
- * the back, the gate at the front corner.
+ * looking north, so the house is at the back, the gate at the front corner.
  *
  * The yard is a square turned 45° (a diamond, corners north, east, south,
  * west) with half-diagonal R; the fence runs along its edges, the gate fills
@@ -70,7 +69,7 @@ const NODES: Record<YardNode, [number, number]> = {
 
 const area = (x: number, z: number, rx: number, rz: number) => ({ x: x * PX, y: z * PX, rx: rx * PX, ry: rz * PX })
 
-/** The 3D yard's layout for PlotLife's people and animals (heights in the painting's px, so P is the same). */
+/** The yard's layout for its people and animals (walker px: units × `PX`). */
 export const YARD_3D: YardLayout = {
   graph: graph(Object.fromEntries(Object.entries(NODES).map(([k, [x, z]]) => [k, u(x, z)])), YARD_EDGES),
   spots: { camel: u(-19.5, 9.5), carpenter: u(-4.4, 19.6), brickmaker: u(4.4, 19.4), watchman: u(-25.5, 2.2) },
@@ -78,7 +77,7 @@ export const YARD_3D: YardLayout = {
   P: 6.4,
 }
 
-/** Figure px → units (an adult, 44.8 px in the painting, stands 2.24). */
+/** Figure px → units (an adult, 44.8 px, stands 2.24). */
 export const FIG_UNITS = 1 / PX
 
 // ── The fence line ──
@@ -123,7 +122,7 @@ export function groundGeometry(): BufferGeometry {
 type RGB = [number, number, number]
 const hex = (h: string): RGB => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]
 const mix = (a: RGB, b: RGB, t: number): RGB => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]
-// The painted yard's colours (art/plot-ground.webp): terracotta earth, lush grass going gold further out.
+// The yard's colours: terracotta earth, lush grass going gold further out.
 const GRASS = hex('#8ea443')
 const LUSH = hex('#6c8a32')
 const DRY = hex('#b8ad5a')
@@ -140,7 +139,7 @@ const STONE_PATHS: YardNode[][] = [
 ]
 
 /**
- * The ground painting, in the painted yard's manner: terracotta earth in the
+ * The ground painting: terracotta earth in the
  * diamond with a darker rim where it meets the grass, worn paths, two
  * flagstone paths crossing in front of the house on a pale dusty bed, the
  * lane out of the gate, pebbles; outside, grass painted blade by blade with a
@@ -358,7 +357,7 @@ export function placeYardTrees(): { olive: { m: Matrix4[]; c: Color[] }; cypress
     const s = cypress ? 0.8 + rand() * 0.4 : 0.85 + rand() * 0.5
     const set = cypress ? out.cypress : out.olive
     set.m.push(new Matrix4().compose(new Vector3(x, groundAt(x, z), z), new Quaternion().setFromAxisAngle(up, rand() * 6.3), new Vector3(s, s, s)))
-    // Greener than the city's dusty olives, like the painted yard's.
+    // Greener than the city's dusty olives.
     const k = 0.9 + rand() * 0.2
     set.c.push(cypress ? new Color(k, k, k) : new Color(k * 0.8, k * 1.05, k * 0.62))
   })
@@ -437,7 +436,7 @@ export function plotStartDist(aspect: number): number {
 /** The farthest out: the whole yard and a little round it. */
 export const plotMaxDist = (aspect: number) => Math.max(plotStartDist(aspect) * 1.1, fit(MAX_HALF, aspect))
 
-/** Names show up to a little beyond the start view (as in the painted yard); further out only the ribbons. */
+/** Names show up to a little beyond the start view ; further out only the ribbons. */
 export const NAMES_AT = 1.12
 
 /**

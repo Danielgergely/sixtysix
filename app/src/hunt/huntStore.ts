@@ -7,8 +7,10 @@ import { useLocale } from '../i18n'
 
 /**
  * The scroll hunt in Jerusalem (shared/src/hunt.ts, server/src/hunt.ts): today's
- * three clues, what this player found, and the scroll being read right now.
- * The app never knows where a scroll lies: a tap on a place asks the server.
+ * three clues, what this player found, the riddle they are searching for and
+ * the scroll being read right now. The app never knows where a scroll lies:
+ * while a riddle is being searched for (`seeking`), a tap on a place is a
+ * guess sent to the server; each scroll has a few guesses a day.
  */
 
 /** A scroll just found: the question that came with it, then what it gave. */
@@ -32,21 +34,23 @@ interface HuntStore {
   open: boolean
   reading: Reading | null
   busy: boolean
-  /** A place tapped where nothing lies today (the 3D city's gates, towers …): its name shows for a moment. */
-  note: { place: HuntPlace; key: number } | null
+  /** The riddle being searched for (0…2): taps on places are guesses for it. */
+  seeking: number | null
+  /** A place tapped: its name shows for a moment, with what the guess came to (`left` guesses, 0 = the scroll stays hidden) when it was one. */
+  note: { place: HuntPlace; key: number; left?: number } | null
   load: () => Promise<void>
   setOpen: (open: boolean) => void
-  /** A tap on a place. Resolves true when a scroll was lying there (the reading opens). */
-  tap: (place: HuntPlace) => Promise<boolean>
+  /** Search for a riddle's scroll (closes the sheet), or stop searching with null. */
+  seek: (scroll: number | null) => void
+  /** A tap on a place: 'off' when no riddle is being searched for (the place's own card opens), else the guess's outcome. */
+  tap: (place: HuntPlace) => Promise<'off' | 'found' | 'miss'>
   answer: (pick: number) => Promise<void>
   closeReading: () => void
   say: (place: HuntPlace) => void
 }
 
-/** A tap must not hang on a slow network: after this long the place's own card opens instead. */
-const TAP_WAIT_MS = 2500
-
-export const scrollsLeft = (v: HuntView | null): number => (v ? v.scrolls.filter((s) => !s.found).length : 0)
+/** Scrolls that can still be found today. */
+export const scrollsLeft = (v: HuntView | null): number => (v ? v.scrolls.filter((s) => !s.found && !s.lost).length : 0)
 
 export const useHuntStore = create<HuntStore>((set, get) => ({
   view: null,
@@ -54,6 +58,7 @@ export const useHuntStore = create<HuntStore>((set, get) => ({
   open: false,
   reading: null,
   busy: false,
+  seeking: null,
   note: null,
 
   load: async () => {
@@ -75,37 +80,35 @@ export const useHuntStore = create<HuntStore>((set, get) => ({
     if (open && (!v || v.day !== utcDay())) void get().load()
   },
 
+  seek: (scroll) => set({ seeking: scroll, open: false }),
+
   tap: async (place) => {
     const token = getToken()
-    const { view, busy } = get()
-    // Guests, a hunt that is finished and yesterday's clues have nothing to find.
-    if (!token || !view || busy || scrollsLeft(view) === 0 || view.day !== utcDay()) return false
+    const { view, busy, seeking } = get()
+    const want = seeking === null ? undefined : view?.scrolls[seeking]
+    // Nothing is being searched for (or it is yesterday's riddle): the tap is an ordinary one.
+    if (!token || !view || !want || want.found || want.lost || view.day !== utcDay()) {
+      if (seeking !== null) set({ seeking: null })
+      return 'off'
+    }
+    if (busy) return 'miss'
     set({ busy: true })
-    const asked = authedJson<HuntFind>(token, '/api/hunt/find', {
-      place,
-      locale: useLocale.getState().locale,
-    })
-    const found = (res: Awaited<typeof asked>): boolean => {
-      if (!res.ok || !res.found || getToken() !== token) return false
-      set({
-        view: res.hunt,
-        reading: {
-          scroll: res.scroll,
-          question: res.question,
-          bonus: res.bonus,
-        },
-        open: false,
-      })
-      return true
-    }
-    const first = await Promise.race([asked, new Promise<null>((r) => setTimeout(() => r(null), TAP_WAIT_MS))])
-    if (first === null) {
-      // Too slow: the tap goes on as usual. If a scroll was there after all, its reading still opens.
-      void asked.then(found).finally(() => set({ busy: false }))
-      return false
-    }
+    const res = await authedJson<HuntFind>(token, '/api/hunt/find', { scroll: seeking, place, locale: useLocale.getState().locale })
     set({ busy: false })
-    return found(first)
+    if (getToken() !== token) return 'off'
+    if (!res.ok) {
+      // No connection, or the scroll was found or lost on another device: stop searching and fetch the day afresh.
+      set({ seeking: null })
+      void get().load()
+      return 'off'
+    }
+    if (res.found) {
+      set({ view: res.hunt, seeking: null, reading: { scroll: res.scroll, question: res.question, bonus: res.bonus }, open: false })
+      return 'found'
+    }
+    const left = res.hunt.scrolls[seeking!]?.tries ?? 0
+    set({ view: res.hunt, seeking: left > 0 ? seeking : null, note: { place, key: Date.now(), left } })
+    return 'miss'
   },
 
   answer: async (pick) => {
@@ -145,7 +148,9 @@ export const useHuntStore = create<HuntStore>((set, get) => ({
 
 // Another account (or a sign-out), or another language: the clues are fetched afresh.
 useAccountStore.subscribe((s, prev) => {
-  if (s.account?.username !== prev.account?.username && useHuntStore.getState().view) void useHuntStore.getState().load()
+  if (s.account?.username === prev.account?.username) return
+  useHuntStore.setState({ seeking: null })
+  if (useHuntStore.getState().view) void useHuntStore.getState().load()
 })
 useLocale.subscribe((s, prev) => {
   if (s.locale !== prev.locale && useHuntStore.getState().view) void useHuntStore.getState().load()

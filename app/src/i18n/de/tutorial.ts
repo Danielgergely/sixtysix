@@ -78,7 +78,7 @@ export default {
     c3: { title: 'Einsammeln', text: 'Gebäude stellen Material her. Sammle es ein: Ein volles Lager füllt sich nicht weiter.' },
     c4: { title: 'Arbeiterrolle', text: 'Beantworte 2 von 3 Fragen richtig, und ein Bau ist 5 Minuten früher fertig.' },
     c5: { title: 'Markt und Geschenke', text: 'Der Markt kauft und verkauft Material. Die Leute auf deinem Hof haben manchmal ein Geschenk: Tippe sie an.' },
-    c6: { title: 'Felder und Expeditionen', text: 'Ab dem Steinhaus wachsen auf deinen Feldern im Tal Gerste und Weizen; das Backhaus backt Brot für große Bauten. Ab Haus 4 schickst du Arbeiter in den Steinbruch und die Kupferminen.' },
+    c6: { title: 'Felder und Expeditionen', text: 'Ab dem Steinhaus wachsen auf den Feldern vor deinem Zaun Gerste und Weizen; das Backhaus backt Brot für große Bauten. Ab Haus 4 schickst du Arbeiter auf Expeditionen für Stein, Ziegel, Kupfer, Zedernholz und Gold; mit einem Stall bringen sie mehr nach Hause.' },
   },
   city: {
     name: 'Jerusalem',
@@ -89,7 +89,7 @@ export default {
   hunt: {
     name: 'Schriftrollen-Suche',
     c1: { title: 'Drei Rollen am Tag', text: 'Jeden Tag sind {n} Schriftrollen in Jerusalem versteckt. Jede hat ein Rätsel aus der Bibel.' },
-    c2: { title: 'Geh suchen', text: 'Finde den Ort, den das Rätsel meint, und tippe ihn an: Tempel, Tor, Teich, Turm …' },
+    c2: { title: 'Geh suchen', text: 'Wähle ein Rätsel, tippe auf Suchen und dann auf den Ort, den es meint: Tempel, Tor, Teich, Turm … Für jede Rolle hast du drei Versuche.' },
     c3: { title: 'Was drin ist', text: 'In jeder Rolle stecken {n} Baustoffe. Beantwortest du ihre Frage richtig, sind es doppelt so viele.' },
   },
   duel: {

@@ -10,6 +10,7 @@ import {
   MATERIAL_INFO,
   MATERIALS,
   SPEEDUP_MAX_SHARE,
+  addHauled,
   coinValue,
   levelDef,
   modsOf,
@@ -371,7 +372,7 @@ export const homeExpeditions = (s: PlotState, now: number) => (s.expeditions ?? 
 export function unload(s: PlotState, id: string, now: number): Materials | null {
   const e = (s.expeditions ?? []).find((x) => x.id === id && x.endsAt <= now)
   if (!e) return null
-  for (const [m, n] of Object.entries(e.haul) as [Material, number][]) s.inventory[m] += n
+  addHauled(s, e.haul)
   s.expeditions = s.expeditions!.filter((x) => x !== e)
   return e.haul
 }

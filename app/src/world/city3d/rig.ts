@@ -23,13 +23,18 @@ export function maxDpr(): number {
   return Math.min(dpr, smallScreen() ? 1.75 : 2)
 }
 
-/** The canvas's onCreated: WebGL context lost (GPU reset, too many contexts) → hand over to the 2D scene. */
+/**
+ * The canvas's onCreated: WebGL context lost (GPU reset, too many contexts) →
+ * `onLost`. R3F drops the context itself when a canvas unmounts
+ * (`forceContextLoss`), which fires the same event: a canvas that has left
+ * the page is not a loss.
+ */
 export function useContextLost(onLost?: () => void) {
   return useCallback(
     ({ gl }: { gl: { domElement: HTMLCanvasElement } }) => {
       gl.domElement.addEventListener('webglcontextlost', (e) => {
         e.preventDefault()
-        onLost?.()
+        if (gl.domElement.isConnected) onLost?.()
       })
     },
     [onLost],

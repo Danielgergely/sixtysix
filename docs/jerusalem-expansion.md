@@ -400,6 +400,8 @@ works) but **never sold**. They cannot become coins. The prices follow
 
 - **My Home gets a switch at the top:** 🏠 Homestead · 🌾 Fields
   (· 🐪 Expeditions in Phase 2). The homestead stays the painted 2D yard.
+  (Superseded 2026-11-10: the homestead and its fields are one 3D scene, the
+  painted yard and the painted valley were removed.)
 - **Fields** is a second painted scene, built with the same parts as
   `PlotScene`: `PanZoom`, sprites at % positions, tags and ribbons, the
   existing `BuildingSheet`, and `Life.tsx` figures (reapers and gleaners are
@@ -592,10 +594,10 @@ for crops, baking, feeding, workers, expeditions and gleaning, the routes in
   the workers stepper, costs and Send.
 - **Gleaning:** from the Visit screen, once a day per visitor, five gleaners a
   day per homestead; the visitor gets 3 barley, the owner 2.
-- **Scenes:** My Home has tabs Homestead · Fields (from House 3) ·
-  Expeditions (from House 4). The valley is `fields-valley.webp` with the six
-  beds drawn as polygons (`world/fieldsLayout.ts`) filled with four tiling
-  crop textures; the Bakehouse stands on the yard's courtyard spot.
+- **Scenes:** My Home has tabs Homestead · Expeditions (from House 4). The
+  fields (from House 3) lie outside the homestead's fence in the 3D scene
+  (`city3d/fields3d.ts`); the painted valley and its Fields tab were removed
+  on 2026-11-10. The Bakehouse stands on the yard's courtyard spot.
 - **Pacing** (`python3 docs/balance/plotsim.py`, and `--sell` for a player who
   sells everything above 150), days until everything is built:
 

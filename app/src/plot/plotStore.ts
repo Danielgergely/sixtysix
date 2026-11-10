@@ -106,7 +106,7 @@ export interface RoadRound {
 }
 
 /** My Home's three parts. */
-export type HomeView = 'yard' | 'fields' | 'expeditions'
+export type HomeView = 'yard' | 'expeditions'
 
 interface PlotStore {
   plot: PlotState | null

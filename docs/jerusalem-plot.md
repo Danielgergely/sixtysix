@@ -33,15 +33,15 @@ pages show real levels. Painted art: a few stages per building.
   zoomed far out, and answer a tap with a speech bubble (a Bible-flavoured line
   in the player's language). The old residents grid is still behind "☰ List".
 - The homestead has its own people and animals, who come with the buildings
-  and walk the yard's paths (`world/PlotLife.tsx`). Four of them carry
+  and walk the yard's paths (`world/yard.ts`). Four of them carry
   something: the woodcutter (1 wood, workshop), the shepherd (1 wool, fold),
   the mason (1 stone, kiln) and the olive picker (1 oil, grove). On your own
   plot a sign over their head shows a gift is waiting; a tap hands it over
   (`POST /api/plot/gift`, rules in `shared/src/life.ts`: each carrier once
   every 3 h, at most 6 gifts per UTC day).
-- My Home is a scene: the nine building sprites stand on a painted yard, ringed
-  by hedge, fence or stone wall by wall level; drag and zoom a little, tap a
-  building for its sheet. Ribbons, timers and the header stay as before.
+- My Home is a scene: first the building sprites on a painted yard; since
+  2026-11-10 only the 3D homestead in the city's style (the painted yard, its
+  code and its ground painting were removed). Tap a building for its sheet.
 
 **Not built yet:** courtyard decorations, extra land and the Quarry, the
 group Temple, neighbouring plots for friends, a friend's helping hand (and Good neighbour), the "casting lots" animation,
@@ -327,7 +327,7 @@ Day each house level is reached (greedy player, collects 1–2× a day):
 
 *Done so far: 21 isometric building sprites (`app/public/art/plot-*.webp`):
 house ×5, well ×3, two stages each for the other buildings, and the courtyard;
-the plot ground (`plot-ground.webp`), the city map (`city-map.webp`) and five
+the plot ground (removed since, with the painted yard), the city map (`city-map.webp`) and five
 landmarks plus a free lot (`land-*.webp`). Still to make: material icons and
 decorations.*
 

@@ -2,81 +2,40 @@ import { useMemo } from 'react'
 import { GIFTS, giftError, MATERIAL_INFO, type BuildingId, type GiftFigure, type PlotState } from '@sixtysix/shared'
 import type { Actor } from './life/sim'
 import type { FigureId } from './life/figures'
-import { graph, type Graph, type Pt } from './life/nav'
+import type { Graph, Pt } from './life/nav'
 
 /**
- * Who lives on a homestead, whatever draws it: people and animals who come
- * with the buildings (`specsFor`), the yard's path graph (YARD_EDGES), and
- * each scene's layout of it — the painted yard's (YARD_2D, in % of
- * plot-ground.webp, used by PlotLife) and the 3D yard's (city3d/plotSpace.ts).
+ * Who lives on a homestead: people and animals who come with the buildings
+ * (`specsFor`) and the yard's path graph (YARD_EDGES). The 3D yard lays the
+ * graph out (city3d/plotSpace.ts `YARD_3D`).
  */
 
-const SCENE = 640
-/** World px per % of the painted yard. */
-export const P = SCENE / 100
-const pt = (x: number, y: number): Pt => ({ x: x * P, y: y * P })
 
 /**
- * The yard's paths (% of plot-ground.webp): the two painted stone paths that
- * cross in front of the house, and the open earth round the buildings, with a
- * stop in front of each building's door. Re-measure with the buildings if the
- * ground or a building's place changes.
+ * The yard's stops: the house door (hd), where the two stone paths cross (x),
+ * a stop at each building's door (st storehouse, e3 olive grove, wl well,
+ * ct Bakehouse, fd sheepfold, ws workshop, kl kiln, sb Stable, g the gate)
+ * and the open earth between them. The 3D yard places them (plotSpace.ts).
  */
-const N = {
-  hd: [50, 41], // house door
-  x: [52, 47], // where the paths cross
-  n1: [36, 37],
-  n0: [24, 33],
-  e1: [64, 52],
-  st: [72, 49], // storehouse
-  e2: [74, 58],
-  e3: [83, 68], // olive grove
-  wl: [60, 66], // well
-  c1: [47, 57],
-  ct: [40, 59], // courtyard
-  s1: [34, 63],
-  t1: [28, 58],
-  s2: [22, 67],
-  fd: [18, 63], // sheepfold
-  s3: [13, 68],
-  w1: [38, 72],
-  ws: [38, 81], // workshop
-  y1: [50, 72],
-  kl: [57, 82], // kiln
-  g: [50, 86], // the gate
-  f1: [68, 72],
-  sb: [21, 49], // the Stable
-} as const
-export type YardNode = keyof typeof N
+export type YardNode = 'hd' | 'x' | 'n1' | 'n0' | 'e1' | 'st' | 'e2' | 'e3' | 'wl' | 'c1' | 'ct' | 's1' | 't1' | 's2' | 'fd' | 's3' | 'w1' | 'ws' | 'y1' | 'kl' | 'g' | 'f1' | 'sb'
 export const YARD_EDGES: [YardNode, YardNode][] = [
   ['hd', 'x'], ['x', 'n1'], ['n1', 'n0'], ['x', 'e1'], ['e1', 'st'], ['e1', 'e2'], ['e2', 'e3'], ['e2', 'f1'], ['x', 'c1'], ['c1', 'ct'],
   ['c1', 's1'], ['c1', 'wl'], ['s1', 't1'], ['s1', 's2'], ['s2', 'fd'], ['s2', 's3'], ['s1', 'w1'], ['w1', 'ws'], ['w1', 'y1'], ['y1', 'c1'],
   ['y1', 'wl'], ['y1', 'g'], ['y1', 'kl'], ['y1', 'f1'], ['f1', 'wl'], ['f1', 'e3'], ['kl', 'g'], ['sb', 'n0'], ['sb', 't1'],
 ]
 
-/** Where the yard's people and animals are, in world px of the scene (heights are % × `P`). */
+/** Where the yard's people and animals are, in walker px (heights are `H` × `P`). */
 export interface YardLayout {
   graph: Graph
   /** Who stays put: the camel by the fold, the craftsmen at their benches, the watchman by the tower. */
   spots: Record<'camel' | 'carpenter' | 'brickmaker' | 'watchman', Pt>
   /** Where animals wander: the front yard (the flock), by the house (hens), the doorstep (the cat). */
   areas: Record<'front' | 'house' | 'cat', NonNullable<Actor['area']>>
-  /** World px per % of height (H below). */
+  /** Walker px per unit of height (H below). */
   P: number
 }
 
-/** Yards where animals wander (% centre and radii). */
-const area = (x: number, y: number, rx: number, ry: number) => ({ x: x * P, y: y * P, rx: rx * P, ry: ry * P })
-
-/** The painted yard's layout. */
-export const YARD_2D: YardLayout = {
-  graph: graph(Object.fromEntries(Object.entries(N).map(([k, [x, y]]) => [k, pt(x, y)])), YARD_EDGES),
-  spots: { camel: pt(13, 66), carpenter: pt(44, 79), brickmaker: pt(54, 77), watchman: pt(9, 46) },
-  areas: { front: area(47, 77, 6, 3.5), house: area(58, 45, 4.5, 2), cat: area(46, 44, 4, 1.4) },
-  P,
-}
-
-/** Heights in % of the scene: grown-ups, a boy, animals. */
+/** Heights (× the layout's `P`): grown-ups, a boy, animals. */
 const H = { adult: 7, child: 5, donkey: 6.2, sheep: 4, goat: 4.2, dog: 3.6, cat: 2.6, hen: 2.5 }
 
 interface Spec {

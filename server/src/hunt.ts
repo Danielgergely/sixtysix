@@ -2,7 +2,10 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import {
   DAY_MS,
   HUNT_REWARD,
+  HUNT_SCROLLS,
+  HUNT_TRIES,
   MATERIALS,
+  addHauled,
   cleanLocale,
   isHuntPlace,
   newPlot,
@@ -10,6 +13,7 @@ import {
   utcDay,
   type HuntAnswer,
   type HuntFind,
+  type HuntPlace,
   type HuntScroll,
   type HuntView,
   type Locale,
@@ -61,12 +65,14 @@ interface Found {
 }
 interface DayState {
   found: Record<string, Found>
+  /** The wrong places tried, by scroll. */
+  missed: Record<string, HuntPlace[]>
   bonus: boolean
 }
 
 function readDay(userId: number, day: string): DayState {
   const row = db.prepare('SELECT state FROM hunt_days WHERE user_id = ? AND day = ?').get(userId, day) as { state: string } | undefined
-  const out: DayState = { found: {}, bonus: false }
+  const out: DayState = { found: {}, missed: {}, bonus: false }
   if (!row) return out
   try {
     const raw = JSON.parse(row.state) as Partial<DayState>
@@ -74,6 +80,7 @@ function readDay(userId: number, day: string): DayState {
       if (!f || !MATERIALS.includes(f.material)) continue
       out.found[k] = { at: Number(f.at) || 0, material: f.material, amount: Math.max(0, Math.floor(Number(f.amount) || 0)), answered: f.answered === true, right: f.right === true }
     }
+    for (const [k, places] of Object.entries(raw.missed ?? {})) if (Array.isArray(places)) out.missed[k] = places.filter(isHuntPlace).slice(0, HUNT_TRIES)
     out.bonus = raw.bonus === true
   } catch {
     // An unreadable row counts as nothing found.
@@ -89,7 +96,7 @@ function writeDay(userId: number, day: string, state: DayState): void {
 function give(userId: number, gift: Materials, now: number): void {
   const stored = db.prepare('SELECT state FROM plots WHERE user_id = ?').get(userId) as { state: string } | undefined
   const plot = stored ? parsePlot(stored.state, now) : newPlot(now)
-  for (const m of MATERIALS) plot.inventory[m] += gift[m] ?? 0
+  addHauled(plot, gift)
   if (stored) db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(plot), userId)
   else db.prepare('INSERT INTO plots (user_id, state, created_at) VALUES (?, ?, ?)').run(userId, JSON.stringify(plot), now)
 }
@@ -98,8 +105,9 @@ function give(userId: number, gift: Materials, now: number): void {
 function viewOf(day: string, locale: Locale, state: DayState | null): HuntView {
   const scrolls: HuntScroll[] = cluesFor(day).map((c, i) => {
     const f = state?.found[i]
-    const base = { text: c.text[locale], ref: c.ref[locale] }
-    return f ? { ...base, found: true, place: c.place, material: f.material, amount: f.amount, answered: f.answered, right: f.right } : { ...base, found: false }
+    const tries = HUNT_TRIES - (state?.missed[i]?.length ?? 0)
+    const base = { text: c.text[locale], ref: c.ref[locale], tries }
+    return f ? { ...base, found: true, place: c.place, material: f.material, amount: f.amount, answered: f.answered, right: f.right } : { ...base, found: false, ...(tries <= 0 ? { lost: true } : {}) }
   })
   return { ok: true, day, scrolls, bonus: state?.bonus === true, signedIn: state !== null }
 }
@@ -155,16 +163,32 @@ export function registerHuntRoutes(app: FastifyInstance): void {
     }
   })
 
-  /** A tap on a place: { place, locale }. A scroll lying there is found (its materials given at once) and comes with a question. */
+  /**
+   * A guess: { scroll, place, locale }. The player searches for one riddle's
+   * scroll and taps a place. Right: it is found (its materials given at once)
+   * and comes with a question. Wrong: one of its `HUNT_TRIES` guesses is gone
+   * (the same wrong place twice counts once); out of guesses, it stays hidden
+   * for the day.
+   */
   route<HuntFind>(app, '/api/hunt/find', (me, body) => {
     if (!isHuntPlace(body.place)) return fail('Unknown place')
+    const scroll = Number(body.scroll)
+    if (!Number.isInteger(scroll) || scroll < 0 || scroll >= HUNT_SCROLLS) return fail('Unknown scroll')
     const locale = cleanLocale(body.locale)
     const now = Date.now()
     const day = utcDay(now)
     const clues = cluesFor(day)
     const state = readDay(me.id, day)
-    const scroll = clues.findIndex((c, i) => c.place === body.place && !state.found[i])
-    if (scroll < 0) return { ok: true, found: false }
+    if (state.found[scroll]) return fail('That scroll has been read already')
+    const missed = (state.missed[scroll] ??= [])
+    if (missed.length >= HUNT_TRIES) return fail('That scroll stays hidden today')
+    if (clues[scroll].place !== body.place) {
+      if (!missed.includes(body.place)) {
+        missed.push(body.place)
+        writeDay(me.id, day, state)
+      }
+      return { ok: true, found: false, hunt: viewOf(day, locale, state) }
+    }
     const material = HUNT_REWARD.materials[Math.floor(Math.random() * HUNT_REWARD.materials.length)]
     state.found[scroll] = { at: now, material, amount: HUNT_REWARD.amount, answered: false, right: false }
     const gift: Materials = { [material]: HUNT_REWARD.amount }

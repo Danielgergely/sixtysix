@@ -32,10 +32,10 @@ const BUILDING_ART: Record<BuildingId, string[]> = {
   grove: ['grove-1', 'grove-1', 'grove-2', 'grove-2', 'grove-2'].map(art),
   kiln: ['kiln-1', 'kiln-2', 'kiln-2', 'kiln-2'].map(art),
   bake: ['bake-1', 'bake-1', 'bake-2', 'bake-2'].map(art),
-  // No painting yet: the yard's donkey and camel stand for the Stable.
+  // No painting: the donkey and camel figures stand for the Stable in sheets and lists.
   stable: ['/art/life-donkey.webp', '/art/life-donkey.webp', '/art/life-camel.webp', '/art/life-camel.webp'],
   thresh: ['thresh-1', 'thresh-2', 'thresh-2', 'thresh-2'].map(art),
-  // Fields are their beds in the valley (FieldScene); sheets and the next step show the soil, the young crop, the ripe one.
+  // Fields are beds outside the fence (city3d/fields3d.ts); sheets and the next step show the soil, the young crop, the ripe one.
   ...(Object.fromEntries(FIELD_IDS.map((f) => [f, ['soil', 'shoots', 'wheat'].map((n) => `/art/fields-${n}.webp`)])) as Record<FieldId, string[]>),
 }
 /** The empty courtyard, where the Bakehouse will stand. */
@@ -51,7 +51,7 @@ export function artFor(b: BuildingId, level: number): string {
 export const buildPct = (build: { startedAt: number; endsAt: number }, now: number) => Math.min(100, ((now - build.startedAt) / Math.max(1, build.endsAt - build.startedAt)) * 100)
 
 /**
- * What a spot shows over the homestead (the painted yard and the 3D one): the
+ * What a spot shows over the homestead: the
  * build going up there, production waiting (and its material's icon), and
  * whether its level is new since the player last looked.
  */
