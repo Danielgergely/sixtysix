@@ -8,16 +8,39 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Cinzel:wght@700;900&family=Cinzel+Decorative:wght@700;900&display=swap"
-      rel="stylesheet"
-    />
     <title>66 — Race through the Bible</title>
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      Moving from 66.broscafe.hu: the old address forwards here with the player's local data in the
+      URL fragment (#handoff=…, never sent to any server; see cloudflare/handoff/old-domain.html).
+      Runs before the app reads localStorage. Keeps anything already stored on this address.
+    -->
+    <script>
+      ;(function () {
+        var m = /^#handoff=([A-Za-z0-9_-]+)$/.exec(location.hash)
+        if (!m) return
+        try {
+          var b64 = m[1].replace(/-/g, '+').replace(/_/g, '/')
+          var bin = atob(b64 + '==='.slice((b64.length + 3) % 4))
+          var bytes = new Uint8Array(bin.length)
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
+          var data = JSON.parse(new TextDecoder().decode(bytes))
+          if (localStorage.getItem('sixtysix.handoff.v1') === null) {
+            for (var k in data) {
+              if (k.indexOf('sixtysix.') === 0 && typeof data[k] === 'string' && localStorage.getItem(k) === null) {
+                localStorage.setItem(k, data[k])
+              }
+            }
+            localStorage.setItem('sixtysix.handoff.v1', String(Date.now()))
+          }
+        } catch (e) {
+          console.warn('[handoff] could not import data from the old address', e)
+        }
+        history.replaceState(null, '', location.pathname + location.search)
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

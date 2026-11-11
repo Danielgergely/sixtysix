@@ -1,3 +1,4 @@
+import { atomic } from './tx.js'
 import type { FastifyInstance } from 'fastify'
 import {
   DAY_MS,
@@ -101,20 +102,12 @@ export function registerExodusRoutes(app: FastifyInstance): void {
       if (tooManyRuns(me.id, now)) return reply.code(429).send({ ok: false, error: 'Too many runs — wait a while.' })
       // A Daily Run counts on its own day, or the next one (a run that started before midnight).
       const dailyOk = typeof daily === 'string' && (daily === utcDay(now) || daily === utcDay(now - DAY_MS))
-      db.exec('BEGIN')
-      let res: ExodusRunResponse
-      try {
-        res = {
-          ok: true,
-          best: record(me.id, 'all', distance, seconds, now),
-          weekBest: record(me.id, weekKey(now), distance, seconds, now),
-          dailyBest: dailyOk ? record(me.id, dayKey(daily), distance, seconds, now) : null,
-        }
-        db.exec('COMMIT')
-      } catch (err) {
-        db.exec('ROLLBACK')
-        throw err
-      }
+      const res: ExodusRunResponse = atomic(() => ({
+        ok: true,
+        best: record(me.id, 'all', distance, seconds, now),
+        weekBest: record(me.id, weekKey(now), distance, seconds, now),
+        dailyBest: dailyOk ? record(me.id, dayKey(daily), distance, seconds, now) : null,
+      }))
       markActive(me.id)
       return res
     } catch (err) {

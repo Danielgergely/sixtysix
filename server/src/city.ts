@@ -3,6 +3,7 @@ import { MOVE_COST, moveError, type MoveError } from '@sixtysix/shared'
 import { INNER_LOTS, LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
 import { db, idleDaysOf, markActive, publicPlayer, saveProfile, toAccount, userFromRequest, type PublicRow, type UserRow } from './accounts.js'
 import { cityLevels } from './plot.js'
+import { atomic } from './tx.js'
 import { recentDuelWinners } from './duels.js'
 
 /**
@@ -63,17 +64,12 @@ export function registerCityRoutes(app: FastifyInstance): void {
     })
     if (err) return { ok: false, error: MOVE_MESSAGES[err] }
     // The family that was away loses the place but keeps its homestead; it gets a free lot when it comes back.
-    db.exec('BEGIN')
-    try {
+    atomic(() => {
       if (owner) db.prepare('UPDATE users SET lot = NULL WHERE id = ?').run(owner.id)
       db.prepare('UPDATE users SET lot = ?, last_move_at = ? WHERE id = ?').run(lot, now, me.id)
       account.profile.coins -= inner ? MOVE_COST.inner : MOVE_COST.outer
       saveProfile(me.id, account.profile)
-      db.exec('COMMIT')
-    } catch (e) {
-      db.exec('ROLLBACK')
-      throw e
-    }
+    })
     markActive(me.id)
     console.log(`[city] ${me.username} moved to lot ${lot}${owner ? ' (taken over)' : ''}`)
     const row = db.prepare('SELECT * FROM users WHERE id = ?').get(me.id) as unknown as UserRow
