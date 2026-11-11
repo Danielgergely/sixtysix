@@ -5,7 +5,6 @@ import {
   HUNT_SCROLLS,
   HUNT_TRIES,
   MATERIALS,
-  addHauled,
   cleanLocale,
   isHuntPlace,
   newPlot,
@@ -96,7 +95,7 @@ function writeDay(userId: number, day: string, state: DayState): void {
 function give(userId: number, gift: Materials, now: number): void {
   const stored = db.prepare('SELECT state FROM plots WHERE user_id = ?').get(userId) as { state: string } | undefined
   const plot = stored ? parsePlot(stored.state, now) : newPlot(now)
-  addHauled(plot, gift)
+  for (const m of MATERIALS) plot.inventory[m] += gift[m] ?? 0
   if (stored) db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(plot), userId)
   else db.prepare('INSERT INTO plots (user_id, state, created_at) VALUES (?, ?, ?)').run(userId, JSON.stringify(plot), now)
 }

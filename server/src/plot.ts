@@ -17,8 +17,6 @@ import {
   plotMods,
   scrollCutMs,
   sellPrice,
-  sellableQty,
-  spendHauled,
   weekStartUtc,
   checkUpgrade,
   collect,
@@ -85,9 +83,15 @@ import {
   repel,
   sheepError,
   type DayCount,
+  STALL_LIST,
+  STALL_MAX,
+  stallRange,
+  stallable,
+  type StallLot,
 } from '@sixtysix/shared'
 import { bodyOf, db, idleDaysOf, markActive, saveProfile, toAccount, userByName, userFromRequest, type UserRow } from './accounts.js'
 import { pickQuestions, referenceIn, shuffle } from './bank.js'
+import { atomic } from './tx.js'
 
 /**
  * My Home in Jerusalem (docs/jerusalem-plot.md): the plot, the Market and the
@@ -163,14 +167,6 @@ export function parsePlot(raw: string, now: number): PlotState {
   base.gleaned = parseGlean(p.gleaned)
   if (p.fieldGift === true) base.fieldGift = true
   // Round the homestead (shared/src/homeLife.ts).
-  if (p.hauled && typeof p.hauled === 'object') {
-    const hauled: Materials = {}
-    for (const m of MATERIALS) {
-      const n = Math.floor(num((p.hauled as Record<string, unknown>)[m]))
-      if (n > 0 && sellable(m)) hauled[m] = Math.min(n, base.inventory[m])
-    }
-    if (Object.keys(hauled).length) base.hauled = hauled
-  }
   if (p.sheepDay !== undefined) base.sheepDay = Math.floor(num(p.sheepDay))
   const count = (v: unknown): DayCount | undefined => {
     const o = obj(v)
@@ -191,8 +187,6 @@ interface Ctx {
   profile: AccountProfile
   plot: PlotState
   now: number
-  /** The inventory as loaded: what a route spends comes out of the hauled units first (`spendHauled`). */
-  before: Record<Material, number>
 }
 
 /** Signed-in user, their profile and plot brought up to now (created with the starter gift on first visit). */
@@ -211,7 +205,7 @@ function load(req: FastifyRequest): Ctx | undefined {
   // Skill effects (Builder / Steward) for every rule in shared/plot.ts; the app sees them too.
   plot.mods = plotMods(profile.skills?.ranks)
   advance(plot, now)
-  const ctx = { row, profile, plot, now, before: { ...plot.inventory } }
+  const ctx = { row, profile, plot, now }
   // The valley opened: homesteads already at House 3 get Field 1 cleared and sown, once.
   const had = plot.fieldGift
   giveFirstField(plot, now)
@@ -220,8 +214,6 @@ function load(req: FastifyRequest): Ctx | undefined {
 }
 
 function savePlot(c: Ctx): void {
-  spendHauled(c.plot, c.before)
-  c.before = { ...c.plot.inventory }
   const { mods: _derived, ...stored } = c.plot // mods are recomputed from the skills on every load
   void _derived
   db.prepare('UPDATE plots SET state = ? WHERE user_id = ?').run(JSON.stringify(stored), c.row.id)
@@ -343,9 +335,45 @@ const shortError = (r: 'materials' | 'coins') => fail(r === 'coins' ? 'Not enoug
 const lastScroll = new Map<number, number>()
 const SCROLL_TTL_MS = 10 * 60_000
 
+// ── The families' stall ────────────────────────────────────────────────
+
+interface StallRow {
+  id: number
+  user_id: number
+  material: string
+  qty: number
+  price: number
+  username: string
+}
+
+/** The stall as `meId` sees it: their own lots first, then the newest of everybody else's. */
+function stallLots(meId: number): StallLot[] {
+  const rows = db
+    .prepare('SELECT s.*, u.username FROM stall s JOIN users u ON u.id = s.user_id ORDER BY (s.user_id = ?) DESC, s.created_at DESC LIMIT ?')
+    .all(meId, STALL_LIST) as unknown as StallRow[]
+  return rows.map((r) => ({ id: r.id, seller: r.username, material: r.material as Material, qty: r.qty, price: r.price, mine: r.user_id === meId }))
+}
+
+/** A deleted account's lots go with it (call inside the delete transaction). */
+export function dropStallOf(userId: number): void {
+  db.prepare('DELETE FROM stall WHERE user_id = ?').run(userId)
+}
+
 // ── routes ────────────────────────────────────────────────────────────
 
 export function registerPlotRoutes(app: FastifyInstance): void {
+  // Created here, not at module load: this module is part of an import cycle with accounts.ts (`db`).
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS stall (
+      id INTEGER PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      material TEXT NOT NULL,
+      qty INTEGER NOT NULL,
+      price INTEGER NOT NULL,
+      created_at INTEGER NOT NULL
+    )
+  `)
+
   /** The plot (created with the starter gift on the first visit). */
   route(app, 'get', '/api/plot', (c) => {
     savePlot(c) // looking spends nothing: leave the profile (and its rev) alone
@@ -370,14 +398,59 @@ export function registerPlotRoutes(app: FastifyInstance): void {
     if (!m || !qty) return fail('Unknown material or amount')
     if (!sellable(m)) return fail('The Market doesn’t buy that')
     if (c.plot.inventory[m] < qty) return fail(`You only have ${c.plot.inventory[m]} ${MATERIAL_INFO[m].name.toLowerCase()}`)
-    // What expeditions and the scroll hunt brought home is for building.
-    if (sellableQty(c.plot, m) < qty) return fail('The Market doesn’t buy what your workers brought home')
     c.plot.inventory[m] -= qty
-    c.before[m] -= qty // sold from the homestead's own, not the hauled units
     c.profile.coins += sellPrice(m, qty, modsOf(c.plot))
     save(c)
     return view(c)
   })
+
+  // ── The families' stall (shared/src/stall.ts): lots of materials for coins, family to family ──
+
+  route(app, 'get', '/api/plot/stall', (c) => ({ ok: true, lots: stallLots(c.row.id) }))
+
+  /** Put a lot up: the goods leave the storehouse now. */
+  route(app, 'post', '/api/plot/stall/offer', (c, body) => {
+    const m = asMaterial(body.material)
+    const qty = asQty(body.qty)
+    const price = Number(body.price)
+    if (!m || !qty || !stallable(m)) return fail('Unknown material or amount')
+    const { min, max } = stallRange(m, qty)
+    if (!Number.isInteger(price) || price < min || price > max) return fail('That price is outside what the stall allows')
+    if (c.plot.inventory[m] < qty) return fail('Not enough materials')
+    const open = db.prepare('SELECT COUNT(*) AS n FROM stall WHERE user_id = ?').get(c.row.id) as { n: number }
+    if (open.n >= STALL_MAX) return fail('Your stall is full')
+    atomic(() => {
+      c.plot.inventory[m] -= qty
+      db.prepare('INSERT INTO stall (user_id, material, qty, price, created_at) VALUES (?, ?, ?, ?, ?)').run(c.row.id, m, qty, price, c.now)
+      savePlot(c)
+    })
+    return view(c, { lots: stallLots(c.row.id) })
+  })
+
+  /** Buy a lot, or take your own down (`withdraw`). */
+  for (const kind of ['buy', 'withdraw'] as const) {
+    route(app, 'post', `/api/plot/stall/${kind}`, (c, body) => {
+      const lot = db.prepare('SELECT * FROM stall WHERE id = ?').get(Number(body.id) || 0) as unknown as StallRow | undefined
+      const m = lot && asMaterial(lot.material)
+      const mine = lot?.user_id === c.row.id
+      if (!lot || !m || mine !== (kind === 'withdraw')) return { ...fail('That lot is gone'), lots: stallLots(c.row.id) }
+      if (kind === 'buy' && c.profile.coins < lot.price) return fail('Not enough coins')
+      atomic(() => {
+        db.prepare('DELETE FROM stall WHERE id = ?').run(lot.id)
+        c.plot.inventory[m] += lot.qty
+        if (kind === 'withdraw') return savePlot(c)
+        c.profile.coins -= lot.price
+        save(c)
+        const seller = db.prepare('SELECT * FROM users WHERE id = ?').get(lot.user_id) as unknown as UserRow | undefined
+        if (seller) {
+          const profile = toAccount(seller).profile
+          profile.coins += lot.price
+          saveProfile(seller.id, profile)
+        }
+      })
+      return view(c, { lots: stallLots(c.row.id) })
+    })
+  }
 
   /** Start the next level. `buyMissing: true` first buys whatever is short at Market prices. */
   route(app, 'post', '/api/plot/upgrade', (c, body) => {

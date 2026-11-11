@@ -357,3 +357,24 @@ img.jr-plot-house{ width: 64px; height: 50px; object-fit: contain; filter: drop-
 .hl-item strong{ font: 700 12px/1.2 'Cinzel', serif; text-align: center; }
 .hl-item small{ color: #ffd36b; font-size: 11px; font-variant-numeric: tabular-nums; }
 .hl-badge{ position: absolute; top: 4px; right: 4px; padding: 1px 6px; border-radius: 999px; background: #c98a12; color: #1d0f06; font: 800 11px/1.4 'Cinzel', serif; }
+
+/* The families' stall at the Market (screens/home/Stall.tsx). */
+.fst{ margin-top: 18px; }
+.fst-title{ margin: 0; font: 900 17px/1.15 'Cinzel Decorative', serif; color: #ffe08a; text-shadow: 0 2px 4px #000; }
+.fst-sub{ margin: 4px 0 10px; font: italic 600 12px/1.4 Georgia, serif; color: #f3e2bb; }
+.fst-offer{
+  display: grid; gap: 6px; margin-bottom: 10px; padding: 10px; border-radius: 12px; background-color: #f3e2bb;
+  border: 2px solid #b88a3a; box-shadow: 0 0 0 1px #1d0f06; color: #3b2412;
+}
+.fst-line{ display: flex; align-items: center; gap: 8px; }
+.fst-pick{ flex: 1; min-width: 0; padding: 8px; border-radius: 10px; border: 2px solid #b88a3a; background: #fff8e6; color: #3b2412; font: 700 14px/1.2 Georgia, serif; }
+.fst-amount{ font: 900 14px/1 'Cinzel', serif; }
+.fst-price{ display: flex; align-items: center; gap: 4px; min-width: 64px; justify-content: flex-end; font: 900 16px/1 'Cinzel', serif; }
+.fst-range{ width: 100%; accent-color: #c98a12; }
+.fst-ends{ justify-content: space-between; }
+.fst-ends small, .fst-count{ font: 600 11px/1.3 Georgia, serif; color: #6b4120; }
+.fst-count{ text-align: center; }
+.fst-empty{ margin: 8px 4px; text-align: center; font: italic 600 13px/1.4 Georgia, serif; color: #e9d6a8; }
+.fst-mine{ background-color: #e9d3a0; }
+.fst-seller{ align-self: flex-start; padding: 0; border: 0; background: none; font: 600 12px/1.3 Georgia, serif; color: #6b4120; text-decoration: underline; cursor: pointer; }
+.fst{ flex-shrink: 0; }

@@ -18,6 +18,7 @@ import {
   type UserRow,
 } from './accounts.js'
 import { dropDuelsOf } from './duels.js'
+import { dropStallOf } from './plot.js'
 import { dropHuntOf } from './hunt.js'
 
 /**
@@ -133,6 +134,7 @@ export function registerAccountSettingsRoutes(app: FastifyInstance): void {
       db.prepare('DELETE FROM hunt_days WHERE user_id = ?').run(me.id)
       // Duels still running: the other side gets their stake back, then the rows go.
       dropDuelsOf(me.id)
+      dropStallOf(me.id)
       db.prepare('UPDATE question_flags SET user_id = NULL WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM users WHERE id = ?').run(me.id)
       db.exec('COMMIT')

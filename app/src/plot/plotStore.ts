@@ -12,6 +12,7 @@ import {
   type Materials,
   type PlotState,
   type ScrollQuestion,
+  type StallLot,
 } from '@sixtysix/shared'
 import { useLocale } from '../i18n'
 import { getToken, readOutbox } from '../account/outbox'
@@ -135,6 +136,11 @@ interface PlotStore {
   load: () => Promise<boolean>
   buy: (m: Material, qty: number) => Promise<boolean>
   sell: (m: Material, qty: number) => Promise<boolean>
+  /** The families' stall (shared/src/stall.ts): the lots, putting one up, buying one, taking your own down. */
+  stall: StallLot[] | null
+  loadStall: () => Promise<void>
+  offerLot: (m: Material, qty: number, price: number) => Promise<boolean>
+  takeLot: (id: number, kind: 'buy' | 'withdraw') => Promise<boolean>
   upgrade: (b: BuildingId, buyMissing: boolean) => Promise<boolean>
   collect: (b?: BuildingId) => Promise<Materials | null>
   /** A carrier in the yard hands over a gift (shared/src/life.ts): what was given, or the error text. */
@@ -228,6 +234,28 @@ export const usePlotStore = create<PlotStore>((set, get) => {
     sell: async (material, qty) => {
       set({ busy: true })
       return !!take(await call('/sell', { material, qty }))
+    },
+
+    stall: null,
+
+    loadStall: async () => {
+      const res = await call<{ lots: StallLot[] }>('/stall')
+      if (res.ok) set({ stall: res.lots })
+    },
+
+    offerLot: async (material, qty, price) => {
+      set({ busy: true })
+      const res = take(await call<{ lots: StallLot[] }>('/stall/offer', { material, qty, price }))
+      if (res) set({ stall: res.lots })
+      return !!res
+    },
+
+    takeLot: async (id, kind) => {
+      set({ busy: true })
+      const res = take(await call<{ lots: StallLot[] }>(`/stall/${kind}`, { id }))
+      if (res) set({ stall: res.lots })
+      else void get().loadStall() // somebody was quicker: show the stall as it is now
+      return !!res
     },
 
     upgrade: async (building, buyMissing) => {

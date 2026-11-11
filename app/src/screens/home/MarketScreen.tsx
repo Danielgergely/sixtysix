@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { MATERIAL_INFO, MATERIALS, buyPrice, modsOf, sellPrice, sellable, sellableQty, type Material } from '@sixtysix/shared'
+import { MATERIAL_INFO, MATERIALS, buyPrice, modsOf, sellPrice, sellable, type Material } from '@sixtysix/shared'
 import { useGameStore } from '../../game/store'
 import { useAccountStore } from '../../account/accountStore'
 import { usePlotStore } from '../../plot/plotStore'
@@ -10,6 +10,7 @@ import { t as tNow, tServer, useLocale, useT } from '../../i18n'
 import { Top, Toast } from './parts'
 import { openLookPicker } from '../../looks/lookStore'
 import { materialAmount, materialName } from './plotText'
+import { Stall } from './Stall'
 
 const AMOUNTS = [1, 10, 50] as const
 
@@ -93,7 +94,7 @@ export function MarketScreen() {
                   {t('market.buy')} <PaintedCoin size={14} /> {price.toLocaleString(locale)}
                 </button>
                 {sellable(m) ? (
-                  <button className="hp-btn small" disabled={!account || busy || !plot || sellableQty(plot, m) < qty} onClick={() => void trade(m, 'sell')}>
+                  <button className="hp-btn small" disabled={!account || busy || have < qty} onClick={() => void trade(m, 'sell')}>
                     {t('market.sell', { n: sellPrice(m, qty, mods).toLocaleString(locale) })}
                   </button>
                 ) : (
@@ -105,8 +106,8 @@ export function MarketScreen() {
           )
         })}
       </div>
+      {account && <Stall qty={qty} />}
       <p className="tab-note">{t('market.note')}</p>
-      {plot?.hauled && <p className="tab-note">{t('market.hauled')}</p>}
       <Toast />
     </div>
   )
