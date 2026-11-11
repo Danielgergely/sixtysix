@@ -8,7 +8,7 @@
     "directory": "./app/dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/api/*", "/ws", "/healthz"]
+    "run_worker_first": ["/api/*", "/ws", "/healthz", "/assets/*"]
   },
   // Lets the Worker and the GameHost compare which deployed version each one runs (see worker.ts).
   "version_metadata": { "binding": "CF_VERSION" },

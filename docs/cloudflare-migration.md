@@ -93,6 +93,13 @@ free plan allows. The bundle (2.2 MB gzip) fits either plan. The Durable Object 
   the next request once live games have ended, and never cuts a live game off.
 - **Paths starting with `/__` never reach the Worker** (Cloudflare answers 403 itself). The import route is therefore
   `/api/admin/import`.
+- **Hardening after a code review (12 Nov):** WebSocket messages over 64 KB close the socket; the server answers pings and
+  the client reconnects after 60 s of silence; calls made while offline are dropped when they time out or when the store
+  gives up (as with Socket.IO); a missing `/assets/*` file is a 404 instead of the app page; the handoff is only accepted
+  when the visitor comes from 66.broscafe.hu.
+- **Still in memory only** (as on the old server): open questions of solo modes (scrolls, hunt) and the login-attempt
+  counter. They are lost when the object restarts.
+- **The snapshot on 66.gracelabs.dev is from 12 Nov 00:13.** Repeat step 6 with `?replace=1` at the real switch.
 - **Request bodies are capped at 1 MB** in `worker.ts` (Fastify's old default).
 - **Cloudflare blocks some script user agents** (e.g. Python-urllib gets 403); the API test sends its own.
 

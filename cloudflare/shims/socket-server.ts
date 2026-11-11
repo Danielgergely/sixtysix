@@ -10,6 +10,7 @@
 type Listener = (...args: unknown[]) => void
 
 const SILENT_LIMIT_MS = 75_000 // the client pings every 25 s; three missed pings and the socket is gone
+const MAX_FRAME = 64 * 1024 // client messages are tiny; anything bigger is not the game
 
 function newId(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(15))
@@ -86,13 +87,21 @@ export class ShimSocket {
 
   handleMessage(raw: string): void {
     this.lastSeen = Date.now()
+    if (raw.length > MAX_FRAME) {
+      this.ws.close(1009, 'message too big')
+      return
+    }
     let msg: { t?: string; e?: unknown; a?: unknown; k?: unknown }
     try {
       msg = JSON.parse(raw)
     } catch {
       return
     }
-    if (msg.t === 'p' || typeof msg.e !== 'string') return
+    if (msg.t === 'p') {
+      this.sendFrame('{"t":"p"}') // lets the client tell a live connection from a dead one
+      return
+    }
+    if (typeof msg.e !== 'string') return
     // Reserved Socket.IO names can't be sent by a client.
     if (msg.e === 'connect' || msg.e === 'disconnect') return
     const args = Array.isArray(msg.a) ? [...msg.a] : []

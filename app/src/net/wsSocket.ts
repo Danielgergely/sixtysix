@@ -6,6 +6,9 @@
 type Fn = (...args: any[]) => void // eslint-disable-line @typescript-eslint/no-explicit-any
 
 const PING_MS = 25_000
+const DEAD_MS = 60_000 // no frame from the server for this long (it answers every ping): reconnect
+
+type Queued = { k?: number; frame: string }
 
 class WsSocket {
   id = ''
@@ -13,7 +16,8 @@ class WsSocket {
   private ws: WebSocket | null = null
   private listeners = new Map<string, Set<Fn>>()
   private acks = new Map<number, Fn>()
-  private queue: string[] = []
+  private queue: Queued[] = []
+  private lastRx = 0
   private nextAck = 1
   private retries = 0
   private manualClose = false
@@ -30,12 +34,10 @@ class WsSocket {
     const url = `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/ws`
     const ws = new WebSocket(url)
     this.ws = ws
-    ws.onopen = () => {
-      this.ping = setInterval(() => ws.readyState === WebSocket.OPEN && ws.send('{"t":"p"}'), PING_MS)
-    }
-    ws.onmessage = (ev) => this.receive(String(ev.data))
-    ws.onclose = () => {
-      if (this.ws !== ws) return
+    let closed = false
+    const onClose = () => {
+      if (closed || this.ws !== ws) return
+      closed = true
       if (this.ping) clearInterval(this.ping)
       this.ping = null
       const was = this.connected
@@ -46,6 +48,22 @@ class WsSocket {
         this.reconnectTimer = setTimeout(() => this.open(), delay)
       }
     }
+    ws.onopen = () => {
+      this.lastRx = Date.now()
+      this.ping = setInterval(() => {
+        if (Date.now() - this.lastRx > DEAD_MS) {
+          // e.g. after a network switch the socket can look open for minutes while nothing arrives
+          ws.close()
+          onClose()
+        } else if (ws.readyState === WebSocket.OPEN) ws.send('{"t":"p"}')
+      }, PING_MS)
+    }
+    ws.onmessage = (ev) => {
+      if (this.ws !== ws) return
+      this.lastRx = Date.now()
+      this.receive(String(ev.data))
+    }
+    ws.onclose = onClose
   }
 
   private receive(raw: string): void {
@@ -61,7 +79,7 @@ class WsSocket {
       this.retries = 0
       const pending = this.queue
       this.queue = []
-      for (const frame of pending) this.ws?.send(frame)
+      for (const q of pending) this.ws?.send(q.frame)
       this.fire('connect')
       return
     }
@@ -90,7 +108,7 @@ class WsSocket {
     const frame = JSON.stringify({ e: event, a: args, k })
     // Like Socket.IO: emits while offline are buffered and sent once connected.
     if (this.connected && this.ws?.readyState === WebSocket.OPEN) this.ws.send(frame)
-    else this.queue.push(frame)
+    else this.queue.push({ k, frame })
     return k
   }
 
@@ -138,12 +156,24 @@ class WsSocket {
         timer.id = setTimeout(() => {
           if (done) return
           done = true
-          if (k !== undefined) this.acks.delete(k)
+          if (k !== undefined) {
+            this.acks.delete(k)
+            this.queue = this.queue.filter((q) => q.k !== k) // like Socket.IO: a timed-out emit is not sent later
+          }
           cb?.(new Error('operation has timed out'))
         }, ms)
         return this
       },
     }
+  }
+
+  /** Socket.IO's offline buffer; the stores empty it (`sendBuffer = []`) to cancel calls made while offline. */
+  get sendBuffer(): unknown[] {
+    return this.queue
+  }
+  set sendBuffer(_v: unknown[]) {
+    for (const q of this.queue) if (q.k !== undefined) this.acks.delete(q.k)
+    this.queue = []
   }
 
   connect(): this {

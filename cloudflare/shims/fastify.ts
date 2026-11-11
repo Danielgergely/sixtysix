@@ -90,8 +90,14 @@ export class ShimApp {
       let ok = true
       for (let i = 0; i < segs.length; i++) {
         const p = route.parts[i]
-        if (p.startsWith(':')) params[p.slice(1)] = decodeURIComponent(segs[i])
-        else if (p !== segs[i]) {
+        if (p.startsWith(':')) {
+          try {
+            params[p.slice(1)] = decodeURIComponent(segs[i])
+          } catch {
+            ok = false // malformed %-escape: no such route
+            break
+          }
+        } else if (p !== segs[i]) {
           ok = false
           break
         }
