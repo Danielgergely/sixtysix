@@ -2,7 +2,7 @@ import json, sys, urllib.request
 B = sys.argv[1]
 def call(method, path, body=None, token=None):
     req = urllib.request.Request(B + path, method=method, data=None if body is None else json.dumps(body).encode(),
-                                 headers={'Content-Type': 'application/json', **({'Authorization': 'Bearer ' + token} if token else {})})
+                                 headers={'Content-Type': 'application/json', 'User-Agent': 'sixtysix-api-test', **({'Authorization': 'Bearer ' + token} if token else {})})
     try:
         with urllib.request.urlopen(req, timeout=30) as r: return r.status, r.read().decode()
     except urllib.error.HTTPError as e: return e.code, e.read().decode()
@@ -14,7 +14,7 @@ tests = [('POST','/api/plot/buy',{}),('POST','/api/plot/collect',{}),('POST','/a
  ('POST','/api/hunt/find',{'index':0}),('POST','/api/exodus/run',{'distance':100,'seconds':30}),('POST','/api/flags',{'questionId':'q1','reason':'typo'}),
  ('POST','/api/duels/challenge',{'username':'tester','stake':0}),('GET','/api/admin/flags/summary',None),
  ('POST','/api/account/username',{'username':'tester3b','password':'correct horse 66'}),
- ('POST','/api/account/password',{'current':'correct horse 66','next':'another horse 77'}),
+ ('POST','/api/account/password',{'current':'correct horse 66','password':'another horse 77'}),
  ('POST','/api/account/delete',{'confirm':'tester3b','password':'another horse 77'})]
 bad = 0
 for m, p, body in tests:

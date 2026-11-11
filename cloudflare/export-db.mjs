@@ -2,7 +2,7 @@
 // read-only, for the one-time move into the Cloudflare Durable Object.
 //
 //   node cloudflare/export-db.mjs /path/to/sixtysix.db > dump.json
-//   curl -X POST https://66.gracelabs.dev/__import -H "Authorization: Bearer $IMPORT_TOKEN" \
+//   curl -X POST https://66.gracelabs.dev/api/admin/import -H "Authorization: Bearer $IMPORT_TOKEN" \
 //        -H "Content-Type: application/json" --data-binary @dump.json
 //
 // Run it on a copy of the database (or with the server stopped) so the WAL is checkpointed.

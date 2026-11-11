@@ -21,6 +21,7 @@ export default {
   hidePassword: 'Hide password',
   hintSignup: 'Your progress so far on this device becomes your account’s start.',
   hintLogin: 'Progress you made on this device as a guest is added to your account.',
+  privacy: 'Privacy',
   or: 'or',
   apple: 'Sign in with Apple',
   /** Shown under the form the moment something can't be accepted (never a silently disabled button). */

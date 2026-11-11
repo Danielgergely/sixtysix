@@ -8,22 +8,31 @@
     "directory": "./app/dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/api/*", "/ws", "/healthz", "/__import"]
+    "run_worker_first": ["/api/*", "/ws", "/healthz"]
   },
-  "durable_objects": { "bindings": [{ "name": "GAME", "class_name": "GameServer" }] },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GameServer"] }],
+  // Lets the Worker and the GameHost compare which deployed version each one runs (see worker.ts).
+  "version_metadata": { "binding": "CF_VERSION" },
+  "durable_objects": { "bindings": [{ "name": "GAME", "class_name": "GameHost" }] },
+  // v2 replaced the first class: its instances had started without the version check in worker.ts
+  // and could not be restarted onto new code.
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["GameServer"] },
+    { "tag": "v2", "new_sqlite_classes": ["GameHost"] },
+    { "tag": "v3", "deleted_classes": ["GameServer"] }
+  ],
   // The server's Node built-ins that have no Worker equivalent (see cloudflare/shims/).
   "alias": {
     "node:sqlite": "./cloudflare/shims/sqlite.ts",
     "node:fs": "./cloudflare/shims/fs.ts",
     "node:url": "./cloudflare/shims/url.ts"
   },
-  // Wakes the GameServer hourly so its own sweeps (duel expiry, prunes) keep running.
+  // Wakes the GameHost hourly so its own sweeps (duel expiry, prunes) keep running.
   "triggers": { "crons": ["17 * * * *"] },
   "vars": {
     "APPLE_REDIRECT_URI": "https://66.gracelabs.dev/api/account/apple/return"
   },
   "workers_dev": false,
+  "preview_urls": false,
   "routes": [{ "pattern": "66.gracelabs.dev", "custom_domain": true }]
   // Secrets (npx wrangler secret put NAME): GOOGLE_CLIENT_ID, APPLE_SERVICES_ID, APPLE_EXTRA_AUDIENCES,
   // ADMIN_USERNAMES, IMPORT_TOKEN (only for the one-time database move).

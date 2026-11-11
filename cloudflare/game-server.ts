@@ -8,13 +8,16 @@ import type { ShimServer } from './shims/socket-server'
 
 export interface Env {
   ASSETS: Fetcher
-  GAME: DurableObjectNamespace<GameServer>
+  GAME: DurableObjectNamespace<GameHost>
   IMPORT_TOKEN?: string
+  CF_VERSION?: { id: string }
 }
+
+export const VERSION_HEADER = 'x-sixtysix-version'
 
 type ServerModule = { app: ShimApp; io: ShimServer }
 
-export class GameServer extends DurableObject<Env> {
+export class GameHost extends DurableObject<Env> {
   private server!: ServerModule
 
   constructor(ctx: DurableObjectState, env: Env) {
@@ -28,6 +31,14 @@ export class GameServer extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url)
 
+    // A running object keeps the code it started with, even after a deploy. The Worker (always the
+    // newest version) tells us which version it is; if ours is older and nobody is connected, restart
+    // so the next request gets the new code. Live games are never cut off by a deploy this way.
+    const wanted = request.headers.get(VERSION_HEADER)
+    if (wanted && this.env.CF_VERSION && wanted !== this.env.CF_VERSION.id && this.server.io.count() === 0) {
+      this.ctx.abort('new version deployed')
+    }
+
     if (url.pathname === '/ws') {
       if (request.headers.get('Upgrade') !== 'websocket') return new Response('Expected WebSocket', { status: 426 })
       const pair = new WebSocketPair()
@@ -39,7 +50,7 @@ export class GameServer extends DurableObject<Env> {
       return new Response(null, { status: 101, webSocket: client })
     }
 
-    if (url.pathname === '/__import' && request.method === 'POST') return this.importRows(request)
+    if (url.pathname === '/api/admin/import' && request.method === 'POST') return this.importRows(request)
 
     return this.server.app.handle(request)
   }

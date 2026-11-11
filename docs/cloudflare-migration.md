@@ -1,7 +1,8 @@
 # 66 on Cloudflare (66.gracelabs.dev)
 
 Moving 66 off the Rackforest VPS (Coolify) onto Cloudflare Workers. Prepared 11 Nov 2026 in a separate working copy
-(`~/git/66-cloudflare`); **nothing is deployed, committed or pushed yet**, and the live game on 66.broscafe.hu is untouched.
+(`~/git/66-cloudflare`); deployed to 66.gracelabs.dev on 12 Nov with a snapshot of the live data for testing. The live game on 66.broscafe.hu is untouched
+and stays the real one until the switch (steps 6 to 8).
 
 ## How it works
 
@@ -57,17 +58,22 @@ free plan allows. The bundle (2.2 MB gzip) fits either plan. The Durable Object 
 
 ## Switching over (checklist)
 
-1. **Upgrade** the Cloudflare account to Workers Paid (Daniel's decision).
-2. **Secrets** (`npx wrangler secret put NAME`): `GOOGLE_CLIENT_ID`, `APPLE_SERVICES_ID`, `APPLE_EXTRA_AUDIENCES` (if used),
-   `ADMIN_USERNAMES`, and `IMPORT_TOKEN` (a long random string, only for step 6). `APPLE_REDIRECT_URI` is already in `wrangler.jsonc`.
+1. **Upgrade** the Cloudflare account to Workers Paid (done 11 Nov). The account also needs a **workers.dev subdomain**
+   (Durable Objects refuse to deploy without one, error 10063): open *Workers & Pages* in the dashboard once.
+   The game is still only served at 66.gracelabs.dev (`workers_dev` and `preview_urls` are off).
+2. **Secrets** (`npx wrangler secret put NAME`): `ADMIN_USERNAMES` and `IMPORT_TOKEN` (a long random string, only for step 6).
+   Google and Apple sign-in are **not configured** on the old server (checked 11 Nov: `/api/server-info` returns null for both),
+   so steps 3 and 4 only matter if they are switched on later (`GOOGLE_CLIENT_ID`, `APPLE_SERVICES_ID`, `APPLE_EXTRA_AUDIENCES`).
 3. **Google Cloud console**, OAuth client: add `https://66.gracelabs.dev` to *Authorized JavaScript origins*.
 4. **Apple Developer**, Services ID `hu.broscafe.sixtysix.web`: add domain `66.gracelabs.dev` and return URL
    `https://66.gracelabs.dev/api/account/apple/return`.
 5. **Deploy**: `npm run cf:build && npx wrangler deploy` → 66.gracelabs.dev goes live with an empty database. Play-test there.
 6. **Move the data** (short maintenance window, the old game must not take new writes meanwhile):
-   - on the VPS, stop the 66 app in Coolify, copy `/data/sixtysix.db*` off the volume;
+   - on the VPS (`root@92.119.123.141`, container `aiphjjvkdyavz6zv6jjkjzgc-*`, volume mounted at `/data`), stop the 66 app in
+     Coolify and copy `/data/sixtysix.db*` off the volume. For a rehearsal without downtime, take a consistent snapshot from
+     the running container instead: open the database read-only with `node:sqlite` and run `VACUUM INTO '/tmp/copy.db'`;
    - `node cloudflare/export-db.mjs sixtysix.db > dump.json` (read-only; prints row counts);
-   - `curl -X POST "https://66.gracelabs.dev/__import?replace=1" -H "Authorization: Bearer $IMPORT_TOKEN" -H "Content-Type: application/json" --data-binary @dump.json`
+   - `curl -X POST "https://66.gracelabs.dev/api/admin/import?replace=1" -H "Authorization: Bearer $IMPORT_TOKEN" -H "Content-Type: application/json" --data-binary @dump.json`
      → answers with the imported row counts. Without `replace=1` it refuses to touch a database that already has users.
    - Tested locally: players log in on Cloudflare with their **old passwords** (incl. accented ones), progress, plots and scores identical.
 7. **Old address**: in Coolify, replace the 66 app with `cloudflare/handoff/old-domain.html`, served for every path.
@@ -80,6 +86,15 @@ free plan allows. The bundle (2.2 MB gzip) fits either plan. The Durable Object 
 10. After a quiet week or two: stop the old container. The VPS itself stays until Bros Cafe has moved too.
 
 ## Known differences and limits
+
+- **Deploys and the running object.** A running Durable Object keeps the code it started with, and its timers keep it
+  awake, so a plain deploy never reached it (found 12 Nov). `worker.ts` now sends its version id with every request;
+  `game-server.ts` restarts itself when its own version is older **and nobody is connected**. So a deploy takes effect on
+  the next request once live games have ended, and never cuts a live game off.
+- **Paths starting with `/__` never reach the Worker** (Cloudflare answers 403 itself). The import route is therefore
+  `/api/admin/import`.
+- **Request bodies are capped at 1 MB** in `worker.ts` (Fastify's old default).
+- **Cloudflare blocks some script user agents** (e.g. Python-urllib gets 403); the API test sends its own.
 
 - **One instance for everything**, like the old process: fine for this game's size (thousands of messages per second);
   rooms, timers and bots behave exactly as before. A deploy restarts the object and ends live games (as a Coolify redeploy did).

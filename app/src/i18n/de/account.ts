@@ -20,6 +20,7 @@ export default {
   hidePassword: 'Passwort verbergen',
   hintSignup: 'Dein bisheriger Fortschritt auf diesem Gerät wird zum Start deines Kontos.',
   hintLogin: 'Was du auf diesem Gerät als Gast erreicht hast, kommt zu deinem Konto dazu.',
+  privacy: 'Datenschutz',
   or: 'oder',
   apple: 'Mit Apple anmelden',
   problems: {
