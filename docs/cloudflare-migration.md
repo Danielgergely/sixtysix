@@ -1,8 +1,17 @@
 # 66 on Cloudflare (66.gracelabs.dev)
 
-Moving 66 off the Rackforest VPS (Coolify) onto Cloudflare Workers. Prepared 11 Nov 2026 in a separate working copy
-(`~/git/66-cloudflare`); deployed to 66.gracelabs.dev on 12 Nov with a snapshot of the live data for testing. The live game on 66.broscafe.hu is untouched
-and stays the real one until the switch (steps 6 to 8).
+66 moved off the Rackforest VPS (Coolify) onto Cloudflare Workers. **Switched on 12 Nov 2026, 08:05**: the old app
+container is stopped, the final data copy is imported, and 66.broscafe.hu forwards to 66.gracelabs.dev.
+
+State on the VPS after the switch:
+
+- old app container `aiphjjvkdyavz6zv6jjkjzgc-*`: stopped, not removed; its data volume is untouched (the fallback).
+  **Stop or disable the app in Coolify**, otherwise a push to `main` redeploys it next to the forwarder.
+- `sixtysix-handoff` container (started by hand with `docker run`, not known to Coolify): serves `/opt/sixtysix-handoff`
+  (`old-domain.html` as `index.html`, `old-domain-sw.js` as `sw.js`, `old-domain-server.mjs` as `server.mjs`) for
+  66.broscafe.hu. `/healthz` answers 200 because the image's health check asks for it; `/api/*` answers 410.
+- To go back: `docker rm -f sixtysix-handoff && docker start <old container>`.
+- `IMPORT_TOKEN` is deleted; the import route answers 403.
 
 ## How it works
 
@@ -99,7 +108,6 @@ free plan allows. The bundle (2.2 MB gzip) fits either plan. The Durable Object 
   when the visitor comes from 66.broscafe.hu.
 - **Still in memory only** (as on the old server): open questions of solo modes (scrolls, hunt) and the login-attempt
   counter. They are lost when the object restarts.
-- **The snapshot on 66.gracelabs.dev is from 12 Nov 00:13.** Repeat step 6 with `?replace=1` at the real switch.
 - **Request bodies are capped at 1 MB** in `worker.ts` (Fastify's old default).
 - **Cloudflare blocks some script user agents** (e.g. Python-urllib gets 403); the API test sends its own.
 
