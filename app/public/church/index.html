@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<style>
+  :root{color-scheme:dark light;--bg:#1d120b;--fg:#efe2c8;--h1:#ffe2a8;--accent:#ffcf6b;--line:#6b4a2b;--mute:#a8957a;--card:#2a1b11;--btnfg:#2a1704}
+  @media (prefers-color-scheme:light){:root{--bg:#fbf4e4;--fg:#3a2713;--h1:#5a3510;--accent:#8a4e00;--line:#d9c39a;--mute:#7a6648;--card:#f3e8cc;--btnfg:#fff8e6}}
+  body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+  main{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-size:34px;line-height:1.15;margin:0 0 8px;color:var(--h1)}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:34px 0 8px}
+  h3{font-size:17px;margin:14px 0 2px;color:var(--h1)}
+  p,li{margin:0 0 10px}ul,ol{padding-left:20px}
+  a{color:var(--accent)}
+  nav{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+  nav a{padding:6px 12px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:14px}
+  nav a.on{background:var(--accent);color:var(--btnfg);border-color:var(--accent)}
+  section{scroll-margin-top:20px}
+  .lead{font-size:20px;line-height:1.5}
+  .btn{display:inline-block;margin:10px 0 6px;padding:14px 30px;border-radius:99px;background:var(--accent);color:var(--btnfg);font-weight:700;font-size:19px;text-decoration:none}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0 0 12px}
+  .card h3{margin-top:0}.card p:last-child{margin-bottom:0}
+  .small{color:var(--mute);font-size:14px}
+  .back{display:inline-block;margin-top:30px}
+</style>
+<script>
+(function(){
+  var L=['en','de','hu'],q=(location.search.match(/[?&]lang=(\w+)/)||[])[1],s,h=location.hash.slice(1);
+  try{s=localStorage.getItem('sixtysix.locale.v1')}catch(e){}
+  var n=(navigator.language||'en').slice(0,2);
+  var l=[q,h,s,n].filter(function(x){return L.indexOf(x)>-1})[0]||'en';
+  function show(l){
+    document.documentElement.lang=l;
+    L.forEach(function(k){
+      var e=document.getElementById(k);if(e)e.hidden=k!==l;
+      var a=document.querySelector('nav a[href="#'+k+'"]');if(a)a.className=k===l?'on':'';
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    show(l);
+    document.querySelectorAll('nav a').forEach(function(a){
+      a.addEventListener('click',function(ev){ev.preventDefault();show(a.getAttribute('href').slice(1))});
+    });
+  });
+})();
+</script>
+<title>66 · Church</title>
+</head>
+<body>
+<main>
+<nav><a href="#en">English</a><a href="#de">Deutsch</a><a href="#hu">Magyar</a></nav>
+
+<section id="en" lang="en">
+<h1>66 for your church / youth group</h1>
+<p class="lead">66 is a free Bible quiz game. Your group plays together on their phones, and you only need a laptop and a screen.</p>
+<p><a class="btn" href="/">Play now</a></p>
+<p class="small">Free, no ads, no account needed. Works in any browser. English, German and Hungarian.</p>
+
+<h2>A game night in 3 steps</h2>
+<ol>
+<li><b>Show it.</b> Open 66 on a laptop connected to a projector or TV. Go to Together, open Bible Blitz and choose "Host a game".</li>
+<li><b>Join.</b> Everyone scans the QR code with their phone and picks a nickname. Nothing to download. If someone should not be in the game, you can remove them.</li>
+<li><b>Play.</b> Choose the mode (Classic, David vs Goliath or Rebuild the Wall), 5 to 20 questions, the difficulty and the Bible books. A game of 10 questions takes about 10 minutes.</li>
+</ol>
+<!-- VIDEO: Bible Blitz, hosting a game on the projector and joining by QR code (30-60 s) -->
+
+<h2>What is inside</h2>
+<h3>Together</h3>
+<div class="card">
+<h3>Bible Blitz</h3>
+<p>The live group quiz for the whole room. Questions on the big screen, answers on the phones, scores after every question.</p>
+<!-- VIDEO: Bible Blitz gameplay, one question round with the leaderboard -->
+</div>
+<div class="card">
+<h3>Wolf in the Flock</h3>
+<p>3 to 12 players, about 5 minutes. Everyone knows the secret word except the wolf. Give short clues, find the wolf. One phone in a room or online, each on their own phone.</p>
+<!-- VIDEO: Wolf in the Flock, clues, vote and reveal -->
+</div>
+<div class="card">
+<h3>Spies</h3>
+<p>2 to 12 players, about 20 minutes. Two teams, secret roles and clues. Good for a bigger youth group.</p>
+<!-- VIDEO: Spies, a round on phones and the shared screen -->
+</div>
+<div class="card">
+<h3>Kingdoms</h3>
+<p>2 or 3 players, 15 to 25 minutes. Claim land on the map. Every claim is decided by a Bible question.</p>
+<!-- VIDEO: Kingdoms, claiming and defending a region -->
+</div>
+<h3>Solo</h3>
+<div class="card">
+<p><b>Daily Scroll</b> is a short daily quiz. <b>Practice</b> trains at your own pace, and you can race the bots. <b>Exodus</b> is a 3D runner: run through the Exodus story and answer questions to keep going. Good for the days between your meetings.</p>
+<!-- VIDEO: Exodus, a short run with a question gate -->
+</div>
+<h3>Jerusalem</h3>
+<div class="card">
+<p>With an optional account, every player builds a home in a shared city. Quizzes earn what they need to build. Nobody has to, and the group games work without it.</p>
+</div>
+
+<h2>Can we trust the questions?</h2>
+<p>There are about 5,500 questions across all 66 books of the Bible. They were generated with care, then each one was checked against the Bible text. Daniel's family tested them for weeks. We cannot promise there is no mistake left, so anyone can flag a question inside the game. Flagged questions are reviewed and fixed or removed.</p>
+<p>The questions ask what the text says. They do not push a denomination or a particular interpretation.</p>
+<p>Bible texts: World English Bible (public domain), Schlachter 1951 (CC BY 4.0), Biblica Nyitott Újszövetség (CC BY-SA 4.0) and Károli 1908.</p>
+
+<h2>Safe for young people</h2>
+<ul>
+<li>No ads and no tracking. No cookies, no analytics.</li>
+<li>No account needed. Nobody has to give an email address.</li>
+<li>No chat between players. In Wolf in the Flock, players type a short clue of up to three words, and the group sees it.</li>
+<li>Players join with a nickname. Rude nicknames are blocked, and you, the host, can remove a player.</li>
+<li>Game data of an online game is kept only in memory and is gone at the latest two hours after the game ends.</li>
+<li>66 runs on Cloudflare. Details are on the <a href="/privacy/">privacy page</a>.</li>
+</ul>
+
+<h2>Free, and how to help</h2>
+<p>66 is free and stays free. If it is useful for your group, you can support it. Half of what comes in goes to Compassion, a child sponsorship charity. The other half pays for hosting and development. <a href="/support/">How to support 66</a></p>
+
+<h2>Contact</h2>
+<p>Questions, ideas, a school or church that wants to try it together? Write to <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a>. 66 is made by Daniel Gergely, <a href="https://gracelabs.dev">Grace Labs</a>.</p>
+<p><a class="btn" href="/">Play now</a></p>
+</section>
+
+<section id="de" lang="de">
+<h1>66 für deine Gemeinde / Jugendgruppe</h1>
+<p class="lead">66 ist ein kostenloses Bibelquiz. Eure Gruppe spielt zusammen auf den Handys, und du brauchst nur einen Laptop und einen Bildschirm.</p>
+<p><a class="btn" href="/">Jetzt spielen</a></p>
+<p class="small">Gratis, keine Werbung, kein Konto nötig. Läuft in jedem Browser. Deutsch, Englisch und Ungarisch.</p>
+
+<h2>Ein Spieleabend in 3 Schritten</h2>
+<ol>
+<li><b>Zeigen.</b> Öffne 66 auf einem Laptop, der an einen Beamer oder Fernseher angeschlossen ist. Geh zu «Zusammen», öffne den Bibel-Blitz und wähle «Spiel starten».</li>
+<li><b>Beitreten.</b> Alle scannen den QR-Code mit dem Handy und wählen einen Spitznamen. Nichts zum Herunterladen. Wenn jemand nicht mitspielen soll, kannst du ihn entfernen.</li>
+<li><b>Spielen.</b> Wähle den Modus (Klassisch, David gegen Goliat oder Mauerbau), 5 bis 20 Fragen, den Schwierigkeitsgrad und die Bibelbücher. Ein Spiel mit 10 Fragen dauert etwa 10 Minuten.</li>
+</ol>
+<!-- VIDEO: Bibel-Blitz, Spiel am Beamer starten und per QR-Code beitreten (30-60 s) -->
+
+<h2>Was drin ist</h2>
+<h3>Zusammen</h3>
+<div class="card">
+<h3>Bibel-Blitz</h3>
+<p>Das Live-Gruppenquiz für den ganzen Raum. Fragen auf dem grossen Bildschirm, Antworten auf den Handys, Punkte nach jeder Frage.</p>
+<!-- VIDEO: Bibel-Blitz, eine Fragerunde mit Rangliste -->
+</div>
+<div class="card">
+<h3>Wolf in der Herde</h3>
+<p>3 bis 12 Spieler, etwa 5 Minuten. Alle kennen das geheime Wort, nur der Wolf nicht. Gebt kurze Hinweise und findet den Wolf. Mit einem Handy im Raum oder online, jeder mit seinem eigenen.</p>
+<!-- VIDEO: Wolf in der Herde, Hinweise, Abstimmung und Auflösung -->
+</div>
+<div class="card">
+<h3>Kundschafter</h3>
+<p>2 bis 12 Spieler, etwa 20 Minuten. Zwei Teams, geheime Rollen und Hinweise. Gut für eine grössere Jugendgruppe.</p>
+<!-- VIDEO: Kundschafter, eine Runde auf den Handys und dem gemeinsamen Bildschirm -->
+</div>
+<div class="card">
+<h3>Königreiche</h3>
+<p>2 oder 3 Spieler, 15 bis 25 Minuten. Erobert Land auf der Karte. Jede Eroberung wird mit einer Bibelfrage entschieden.</p>
+<!-- VIDEO: Königreiche, eine Region erobern und verteidigen -->
+</div>
+<h3>Allein</h3>
+<div class="card">
+<p>Die <b>Tagesrolle</b> ist ein kurzes Quiz pro Tag. Beim <b>Üben</b> trainierst du in deinem Tempo und kannst gegen die Bots antreten. <b>Exodus</b> ist ein 3D-Läufer: Lauf durch die Exodus-Geschichte und beantworte Fragen, um weiterzukommen. Gut für die Tage zwischen euren Treffen.</p>
+<!-- VIDEO: Exodus, ein kurzer Lauf mit Fragentor -->
+</div>
+<h3>Jerusalem</h3>
+<div class="card">
+<p>Mit einem freiwilligen Konto baut jeder ein Zuhause in einer gemeinsamen Stadt. Quiz bringt das, was man zum Bauen braucht. Niemand muss, und die Gruppenspiele gehen auch ohne.</p>
+</div>
+
+<h2>Kann man den Fragen trauen?</h2>
+<p>Es gibt etwa 5500 Fragen zu allen 66 Büchern der Bibel. Sie wurden sorgfältig erstellt, und jede wurde am Bibeltext geprüft. Daniels Familie hat sie wochenlang getestet. Wir können nicht versprechen, dass kein Fehler mehr drin ist. Darum kann jede und jeder im Spiel eine Frage melden. Gemeldete Fragen werden geprüft und korrigiert oder entfernt.</p>
+<p>Die Fragen fragen, was im Text steht. Sie vertreten keine Konfession und keine bestimmte Auslegung.</p>
+<p>Bibeltexte: World English Bible (gemeinfrei), Schlachter 1951 (CC BY 4.0), Biblica Nyitott Újszövetség (CC BY-SA 4.0) und Károli 1908.</p>
+
+<h2>Sicher für junge Leute</h2>
+<ul>
+<li>Keine Werbung und kein Tracking. Keine Cookies, keine Statistik.</li>
+<li>Kein Konto nötig. Niemand muss eine E-Mail-Adresse angeben.</li>
+<li>Kein Chat zwischen den Spielern. Bei «Wolf in der Herde» tippen die Spieler einen kurzen Hinweis mit höchstens drei Wörtern, den die Gruppe sieht.</li>
+<li>Die Spieler treten mit einem Spitznamen bei. Grobe Spitznamen werden blockiert, und du als Spielleitung kannst Spieler entfernen.</li>
+<li>Die Daten eines Online-Spiels liegen nur im Arbeitsspeicher und sind spätestens zwei Stunden nach Spielende weg.</li>
+<li>66 läuft bei Cloudflare. Details stehen in der <a href="/privacy/#de">Datenschutzerklärung</a>.</li>
+</ul>
+
+<h2>Gratis, und wie du helfen kannst</h2>
+<p>66 ist gratis und bleibt gratis. Wenn es für deine Gruppe nützlich ist, kannst du es unterstützen. Die Hälfte von dem, was hereinkommt, geht an Compassion, ein Kinderpatenschafts-Hilfswerk. Die andere Hälfte bezahlt Hosting und Entwicklung. <a href="/support/#de">So kannst du 66 unterstützen</a></p>
+
+<h2>Kontakt</h2>
+<p>Fragen, Ideen, eine Schule oder Gemeinde, die es gemeinsam ausprobieren möchte? Schreib an <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a>. 66 wird von Daniel Gergely, <a href="https://gracelabs.dev">Grace Labs</a>, entwickelt.</p>
+<p><a class="btn" href="/">Jetzt spielen</a></p>
+</section>
+
+<section id="hu" lang="hu">
+<h1>66 a gyülekezetednek / ifjúsági csoportodnak</h1>
+<p class="lead">A 66 ingyenes bibliakvíz. A csoportod együtt játszik a telefonján, neked csak egy laptop és egy képernyő kell.</p>
+<p><a class="btn" href="/">Játssz most</a></p>
+<p class="small">Ingyenes, reklám nélkül, fiók nélkül is megy. Bármelyik böngészőben fut. Magyarul, németül és angolul.</p>
+
+<h2>Játékest 3 lépésben</h2>
+<ol>
+<li><b>Mutasd meg.</b> Nyisd meg a 66-ot egy laptopon, amely vetítőre vagy tévére van kötve. Menj az Együtt részhez, nyisd meg a Bibliavillámot, és válaszd a „Játék indítása” lehetőséget.</li>
+<li><b>Csatlakozzatok.</b> Mindenki a telefonjával beolvassa a QR-kódot, és választ egy becenevet. Nem kell letölteni semmit. Ha valakinek nem kellene a játékban lennie, kidobhatod.</li>
+<li><b>Játsszatok.</b> Válaszd ki a módot (Klasszikus, Dávid és Góliát vagy Falépítés), 5–20 kérdést, a nehézséget és a bibliai könyveket. Egy 10 kérdéses játék kb. 10 percig tart.</li>
+</ol>
+<!-- VIDEO: Bibliavillám, játék indítása a kivetítőn és csatlakozás QR-kóddal (30-60 mp) -->
+
+<h2>Mi van benne</h2>
+<h3>Együtt</h3>
+<div class="card">
+<h3>Bibliavillám</h3>
+<p>Az élő csoportos kvíz az egész teremnek. A kérdések a nagy képernyőn, a válaszok a telefonokon, minden kérdés után pontok.</p>
+<!-- VIDEO: Bibliavillám, egy kérdéskör ranglistával -->
+</div>
+<div class="card">
+<h3>Farkas a nyájban</h3>
+<p>3–12 játékos, kb. 5 perc. Mindenki ismeri a titkos szót, kivéve a farkast. Adjatok rövid célzásokat, és találjátok meg a farkast. Egy telefonnal egy szobában, vagy online, mindenki a sajátján.</p>
+<!-- VIDEO: Farkas a nyájban, célzások, szavazás és leleplezés -->
+</div>
+<div class="card">
+<h3>Kémek</h3>
+<p>2–12 játékos, kb. 20 perc. Két csapat, titkos szerepek és célzások. Jó egy nagyobb ifjúsági csoportnak.</p>
+<!-- VIDEO: Kémek, egy forduló a telefonokon és a közös képernyőn -->
+</div>
+<div class="card">
+<h3>Királyságok</h3>
+<p>2–3 játékos, 15–25 perc. Foglaljatok földet a térképen. Minden foglalást egy bibliai kérdés dönt el.</p>
+<!-- VIDEO: Királyságok, egy terület elfoglalása és megvédése -->
+</div>
+<h3>Egyedül</h3>
+<div class="card">
+<p>A <b>Napi tekercs</b> egy rövid napi kvíz. A <b>Gyakorlás</b> a saját tempódban megy, és a botok ellen is versenyezhetsz. Az <b>Exodus</b> egy 3D futójáték: futsz végig a kivonulás történetén, és kérdésekre válaszolva haladsz tovább. Jó az alkalmak közötti napokra.</p>
+<!-- VIDEO: Exodus, egy rövid futás kérdéskapuval -->
+</div>
+<h3>Jeruzsálem</h3>
+<div class="card">
+<p>Egy önkéntes fiókkal mindenki otthont építhet egy közös városban. A kvízekért kapod, ami az építéshez kell. Senkinek nem kötelező, és a csoportos játékok nélküle is mennek.</p>
+</div>
+
+<h2>Megbízhatóak a kérdések?</h2>
+<p>Kb. 5500 kérdés van a Biblia mind a 66 könyvéhez. Gondosan készültek, és mindegyiket ellenőriztük a bibliai szöveggel. Dániel családja hetekig tesztelte őket. Nem ígérhetjük, hogy nem maradt hiba, ezért a játékban bárki jelezhet egy kérdést. A jelzett kérdéseket átnézzük, és javítjuk vagy töröljük.</p>
+<p>A kérdések azt kérdezik, mit mond a szöveg. Nem képviselnek felekezetet vagy egy bizonyos értelmezést.</p>
+<p>Bibliafordítások: World English Bible (közkincs), Schlachter 1951 (CC BY 4.0), Biblica Nyitott Újszövetség (CC BY-SA 4.0) és Károli 1908.</p>
+
+<h2>Biztonságos fiataloknak</h2>
+<ul>
+<li>Nincs reklám, nincs követés. Nincs süti, nincs statisztika.</li>
+<li>Fiók nélkül is megy. Senkinek nem kell e-mail-címet megadnia.</li>
+<li>Nincs csevegés a játékosok között. A Farkas a nyájban játékban a játékosok egy rövid, legfeljebb háromszavas célzást gépelnek be, amit a csoport lát.</li>
+<li>A játékosok becenévvel csatlakoznak. A durva beceneveket a játék nem engedi, és te, a játékvezető, kidobhatsz egy játékost.</li>
+<li>Egy online játék adatai csak a memóriában vannak, és legkésőbb két órával a játék vége után törlődnek.</li>
+<li>A 66 a Cloudflare-en fut. A részleteket az <a href="/privacy/#hu">adatvédelmi oldalon</a> találod.</li>
+</ul>
+
+<h2>Ingyenes, és hogyan segíthetsz</h2>
+<p>A 66 ingyenes, és az is marad. Ha hasznos a csoportodnak, támogathatod. Ami beérkezik, annak a fele a Compassionhoz megy, a gyermekpatronálással foglalkozó segélyszervezethez. A másik fele a tárhelyet és a fejlesztést fedezi. <a href="/support/#hu">Így támogathatod a 66-ot</a></p>
+
+<h2>Kapcsolat</h2>
+<p>Kérdés, ötlet, vagy egy iskola vagy gyülekezet, amelyik együtt kipróbálná? Írj a <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> címre. A 66-ot Gergely Dániel készíti, <a href="https://gracelabs.dev">Grace Labs</a>.</p>
+<p><a class="btn" href="/">Játssz most</a></p>
+</section>
+
+<a class="back" href="/">← 66</a>
+</main>
+</body>
+</html>

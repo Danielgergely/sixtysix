@@ -16,7 +16,6 @@ import { PracticeSetupScreen } from './screens/practice/PracticeSetupScreen'
 import { PracticeScreen } from './screens/practice/PracticeScreen'
 import { DailyScreen } from './screens/daily/DailyScreen'
 import { BoardGamesScreen } from './screens/BoardGamesScreen'
-import { AdventuresScreen } from './screens/AdventuresScreen'
 import { LeaderboardScreen } from './screens/LeaderboardScreen'
 import { PlayerScreen } from './screens/PlayerScreen'
 import { useFlockStore } from './flock/flockStore'
@@ -39,6 +38,7 @@ const SkillTreeScreen = lazy(() => import('./screens/SkillTreeScreen').then((m) 
 const FlockScreen = lazy(() => import('./screens/flock/FlockScreen').then((m) => ({ default: m.FlockScreen })))
 const LocalFlockScreen = lazy(() => import('./screens/flock/local/LocalFlockScreen').then((m) => ({ default: m.LocalFlockScreen })))
 const AccountSettingsScreen = lazy(() => import('./screens/AccountSettingsScreen').then((m) => ({ default: m.AccountSettingsScreen })))
+const AboutScreen = lazy(() => import('./screens/AboutScreen').then((m) => ({ default: m.AboutScreen })))
 const ReviewScreen = lazy(() => import('./screens/review/ReviewScreen').then((m) => ({ default: m.ReviewScreen })))
 const SpiesScreen = lazy(() => import('./screens/spies/SpiesScreen').then((m) => ({ default: m.SpiesScreen })))
 // Exodus brings three.js: its own chunk (shared with the 3D city's).
@@ -62,7 +62,6 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   practice: PracticeScreen,
   daily: DailyScreen,
   boardGames: BoardGamesScreen,
-  adventures: AdventuresScreen,
   exodus: ExodusScreen,
   jerusalem: JerusalemScreen,
   leaderboard: LeaderboardScreen,
@@ -77,6 +76,7 @@ const SCREENS: Record<Screen, React.ComponentType> = {
   mission: MissionScreen,
   review: ReviewScreen,
   account: AccountSettingsScreen,
+  about: AboutScreen,
   duel: DuelScreen,
 }
 

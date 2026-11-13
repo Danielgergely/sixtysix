@@ -22,7 +22,8 @@ import {
   SPIES_TEAMS,
   SPIES_TIMER_OPTIONS,
 } from '@sixtysix/shared'
-import { cleanAvatar, cleanName } from '../rooms.js'
+import { isNameAllowed } from '@sixtysix/shared'
+import { KICKED, NAME_REFUSED, cleanAvatar, cleanName } from '../rooms.js'
 import {
   WORDS,
   agents,
@@ -502,6 +503,8 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
   const join = (room: SRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown; locale?: unknown }, ack: Ack) => {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
+    if (room.banned.has(secret)) return ack({ ok: false, error: KICKED })
+    if (typeof payload.name === 'string' && payload.name.trim() && !isNameAllowed(payload.name)) return ack({ ok: false, error: NAME_REFUSED })
     // One seat per socket: leave any other spies room first.
     const prev = findSpiesRoomBySocket(socket.id)
     if (prev && prev.room !== room) {
@@ -744,6 +747,24 @@ export function registerSpiesHandlers(io: SpiesIO, socket: SpiesSocket): void {
     if (now && !startCheck(room)) return startGame(io, room)
     broadcast(io, room)
     sendAllKeys(io, room)
+  })
+
+  // The leader removes a person: told, seat dropped through the normal leave path, device banned from this room.
+  on('spies:kick', (raw) => {
+    const s = seat()
+    if (!s || s.room.leaderSecret !== s.secret) return
+    const id = (raw as { playerId?: unknown } | undefined)?.playerId
+    if (typeof id !== 'string' || id === s.p.id) return
+    for (const [secret, p] of s.room.players) {
+      if (p.id !== id) continue
+      s.room.banned.add(secret)
+      if (p.socketId) {
+        io.to(p.socketId).emit('spies:closed', KICKED)
+        io.sockets.sockets.get(p.socketId)?.leave(channel(s.room))
+      }
+      leaveRoom(io, s.room, secret, true)
+      return
+    }
   })
 
   on('disconnect', () => {

@@ -1,7 +1,7 @@
-/** Bible Blitz (lobby, race, podium), the shared question scene, categories and bot names. */
+/** Race the bots (lobby, race, podium), the shared question scene, categories and bot names. */
 export default {
   categories: { torah: 'Torah', history: 'History', wisdom: 'Wisdom', prophets: 'Prophets', gospels: 'Gospels', epistles: 'Epistles' },
-  /** Bot opponents in Bible Blitz. */
+  /** Bot opponents in Race the bots. */
   bots: { Miriam: 'Miriam', Caleb: 'Caleb', Tabitha: 'Tabitha', Eli: 'Eli', Phoebe: 'Phoebe', Silas: 'Silas' },
   lobby: {
     starting: 'Race starting…',
@@ -28,7 +28,7 @@ export default {
     noAnswer: '⏰ no answer',
     yours: '{answer} — you',
   },
-  /** The question scene, shared by Bible Blitz and Open Arena. */
+  /** The question scene, shared by Race the bots and Bible Blitz. */
   question: {
     trial: 'Trial',
     of: '{n} of {total}',

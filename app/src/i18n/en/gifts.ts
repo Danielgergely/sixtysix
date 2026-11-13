@@ -1,4 +1,4 @@
-/** Scholar gifts in Bible Blitz and Practice: names (button titles) and the note shown when one is played. */
+/** Scholar gifts in Race the bots and Practice: names (button titles) and the note shown when one is played. */
 export default {
   names: {
     lamp: 'Lamp: show the reference',

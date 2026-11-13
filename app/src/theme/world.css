@@ -222,7 +222,7 @@
 /* Desktop: the city map gets the whole window; the bars and the list view stay a centred column */
 @media (min-width: 700px){
   .app.app-city{ max-width: none; }
-  .app.app-city > .tb, .app.app-city > .tabbar{ padding-left: max(14px, calc((100% - 480px) / 2)); padding-right: max(14px, calc((100% - 480px) / 2)); }
+  .app.app-city > .tb{ padding-left: max(14px, calc((100% - 480px) / 2)); padding-right: max(14px, calc((100% - 480px) / 2)); }
   .tab-screen.jr:not(.jr-map) > *:not(.tab-bg){ width: 100%; max-width: 452px; margin-left: auto; margin-right: auto; }
   .cm-top{ left: 16px; right: auto; width: min(560px, calc(100% - 32px)); }
   .cm-found{ left: 16px; right: auto; width: 400px; }

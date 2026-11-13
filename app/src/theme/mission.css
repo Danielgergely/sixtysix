@@ -141,7 +141,6 @@
 .ms-settings .seg-row.wrap .seg-btn{ flex: 1 1 30%; }
 .ms-settings .seg-btn{ flex: 1; padding: 0.5rem 0.3rem; font-size: 0.82rem; }
 .ms-settings .seg-btn:disabled:not(.selected){ opacity: 0.55; }
-.ms-check{ display: flex; gap: 8px; align-items: center; font: 600 13px Georgia, serif; color: var(--ms-ink); }
 .ms-rules{ margin: 4px 0 0 18px; display: grid; gap: 6px; font: 600 13px/1.4 Georgia, serif; color: var(--ms-ink); }
 .ms-rules b{ color: #6b1d0e; }
 
@@ -467,3 +466,4 @@
 .ms-tiereveal.wide .ms-gap-body small{ font-size: 14px; }
 .ms-tiereveal.wide .ms-pin-face .ms-seat-face{ width: 36px; height: 36px; }
 .ms-tiereveal.wide .ms-pin-face small{ font-size: 15px; }
+.ms-kick{ position: absolute; top: 2px; right: 4px; margin: 0; }

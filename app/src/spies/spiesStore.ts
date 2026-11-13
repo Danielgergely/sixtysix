@@ -52,6 +52,8 @@ interface SpiesStore {
   settings: (mode: SpiesMode, turnSeconds: number) => void
   shuffle: () => void
   start: () => void
+  /** Leader: remove a person from the room. */
+  kick: (playerId: string) => void
   clue: (word: string, number: number) => Promise<string | null>
   pick: (pick: number) => void
   confirm: () => void
@@ -172,7 +174,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
         clearBoard('spies')
         set({ error: resumed ? null : res.error, busy: false })
         // After a reload the room may simply be gone: back to the menu, no error.
-        if (resumed) useGameStore.getState().goTo('menu')
+        if (resumed) useGameStore.getState().goTo('boardGames')
       }
     })
   },
@@ -188,6 +190,7 @@ export const useSpiesStore = create<SpiesStore>((set) => ({
   settings: (mode, turnSeconds) => getSocket().emit('spies:settings', { mode, turnSeconds }),
   shuffle: () => getSocket().emit('spies:shuffle'),
   start: () => getSocket().emit('spies:start'),
+  kick: (playerId) => getSocket().emit('spies:kick', { playerId }),
   clue: (word, number) =>
     new Promise((resolve) => {
       getSocket()

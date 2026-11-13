@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { isNameAllowed } from '@sixtysix/shared'
 import { openLookPicker } from '../../looks/lookStore'
 import { useGameStore } from '../../game/store'
 import { Avatar } from '../../avatars/Avatar'
@@ -29,7 +30,8 @@ export function OnlineEntry(props: {
   const [code, setCode] = useState(prefillCode)
   const [name, setName] = useState(player.name === 'You' ? '' : player.name)
   const avatar = player.avatar
-  const named = name.trim().length > 0
+  const rude = !isNameAllowed(name)
+  const named = name.trim().length > 0 && !rude
   const save = () => updateProfile({ name: name.trim() })
   const t = useT()
 
@@ -106,7 +108,7 @@ export function OnlineEntry(props: {
           </button>
           <input className="profile-name-input be-name" placeholder={t('boardGames.entry.nickname')} maxLength={14} value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        {!named && <p className="be-hint">{t('boardGames.entry.needName')}</p>}
+        {rude ? <p className="arena-error">{t('safety.rudeName')}</p> : !named && <p className="be-hint">{t('boardGames.entry.needName')}</p>}
       </div>
 
       <div className="arena-section be-card">

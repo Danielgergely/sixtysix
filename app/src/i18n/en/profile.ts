@@ -8,6 +8,7 @@ export default {
   off: '🔇 Off',
   skillTree: 'Skill tree',
   levelGifts: '⭐ Level {n} · 🌳 Gifts ›',
+  about: 'About 66',
   xp: '✨ {xp} XP',
   stats: {
     gamesPlayed: 'Games played',
@@ -18,6 +19,4 @@ export default {
     answered: 'Questions answered',
     correct: 'Correct answers',
   },
-  /** Where the quiz's verse texts come from in this language (license credit). */
-  bibleText: 'Bible verses: World English Bible (public domain).',
 }

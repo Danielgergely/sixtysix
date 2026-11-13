@@ -1,5 +1,5 @@
 export default {
-  tabs: { menu: 'Kvíz', boardGames: 'Társasjátékok', adventures: 'Kalandok', jerusalem: 'Jeruzsálem', leaderboard: 'Ranglista' },
+  tabs: { boardGames: 'Együtt', menu: 'Egyedül', jerusalem: 'Jeruzsálem', leaderboard: 'Ranglista' },
   language: 'Nyelv',
   back: 'Vissza',
   /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */

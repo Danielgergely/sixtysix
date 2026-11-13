@@ -1,7 +1,7 @@
-/** Mission (ein Bibel-Gebietsquiz, docs/mission.md). */
+/** Königreiche (ein Bibel-Gebietsquiz, docs/mission.md). */
 export default {
-  title: 'Mission',
-  boardTitle: '🏰 Mission',
+  title: 'Königreiche',
+  boardTitle: '🏰 Königreiche',
   seat: { judah: 'Juda', israel: 'Israel', aram: 'Aram' },
   common: {
     back: 'Zurück',
@@ -35,7 +35,7 @@ export default {
     rounds: '{n} Runden',
     map: 'Karte',
     mapFull: 'Ganz ({n} Gebiete)',
-    mapBlitz: 'Blitz ({n} Gebiete)',
+    mapBlitz: 'Schnell ({n} Gebiete)',
     difficulty: 'Fragen',
     timeNote: '{n} Sekunden pro Frage — Tempo zählt nur bei Gleichstand.',
     practice: 'Übungsspiel: Belohnungen gibt es ab {n} Personen.',

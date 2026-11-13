@@ -49,6 +49,7 @@ export function ArenaHostLobbyScreen() {
   const leaveArena = useArenaStore((s) => s.leaveArena)
   const startGame = useArenaStore((s) => s.startGame)
   const shuffleTeams = useArenaStore((s) => s.shuffleTeams)
+  const kick = useArenaStore((s) => s.kick)
   const [qrSvg, setQrSvg] = useState('')
   const [joinOrigin, setJoinOrigin] = useState(window.location.origin)
   const [editing, setEditing] = useState(false)
@@ -88,7 +89,7 @@ export function ArenaHostLobbyScreen() {
   const firstChips = useFirstKeys(room ? room.players.map((p) => p.id) : null)
 
   if (!room) return null
-  const chip = (p: ArenaPlayer) => <PlayerChip key={p.id} player={p} first={firstChips.has(p.id)} dropFrom={40} />
+  const chip = (p: ArenaPlayer) => <PlayerChip key={p.id} player={p} first={firstChips.has(p.id)} dropFrom={40} onKick={role === 'host' ? () => kick(p.id) : undefined} />
   const isHost = role === 'host'
   const minPlayers = room.config.mode === 'wall' ? 2 : 1
   const cats = room.config.categories ?? []

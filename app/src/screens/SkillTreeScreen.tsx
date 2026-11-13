@@ -231,7 +231,7 @@ function PathColumn({
             </div>
             <div className="st-nodes">
               {all
-                .filter((s) => s.tier === tier)
+                .filter((s) => s.tier === tier && !s.soon)
                 .map((s, i) => {
                   const rank = rankOf(skills.ranks, s.id)
                   const learnable = opened && !s.soon && rank < s.ranks && free > 0

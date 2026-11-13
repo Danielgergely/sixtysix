@@ -2,7 +2,8 @@ import { randomUUID } from 'node:crypto'
 import type { Socket } from 'socket.io'
 import type { MissionClientToServerEvents, MissionOptions, MissionServerToClientEvents } from '@sixtysix/shared'
 import { DIFFICULTY_PRESETS, MISSION_BOT_LEVELS, MISSION_MAX_SEATS, MISSION_MIN_SEATS, cleanLocale } from '@sixtysix/shared'
-import { cleanAvatar, cleanName } from '../rooms.js'
+import { isNameAllowed } from '@sixtysix/shared'
+import { KICKED, NAME_REFUSED, cleanAvatar, cleanName } from '../rooms.js'
 import { addBot, botFor, scheduleBots, type BotActions } from './bots.js'
 import {
   actAnswer,
@@ -70,7 +71,7 @@ function ensureLeader(room: MRoom): void {
  * game a bot takes the seat over (same name and portrait), so the game goes on.
  * Otherwise they are offline and may rejoin with their device id.
  */
-function leaveRoom(io: MissionIO, room: MRoom, secret: string, explicit: boolean): void {
+function leaveRoom(io: MissionIO, room: MRoom, secret: string, explicit: boolean, removed = false): void {
   const p = room.players.get(secret)
   if (!p) return
   if (!explicit || room.phase === 'over') {
@@ -82,7 +83,7 @@ function leaveRoom(io: MissionIO, room: MRoom, secret: string, explicit: boolean
   } else {
     const seat = room.seats.indexOf(secret)
     room.players.delete(secret)
-    if (seat >= 0) replaceWithBot(room, p, seat)
+    if (seat >= 0) replaceWithBot(room, p, seat, removed)
   }
   if (![...room.players.values()].some((x) => !x.bot && (x.connected || !explicit))) {
     io.to(channel(room)).emit('mission:closed', 'Everyone left the game')
@@ -95,9 +96,10 @@ function leaveRoom(io: MissionIO, room: MRoom, secret: string, explicit: boolean
   broadcast(io, room)
 }
 
-function replaceWithBot(room: MRoom, p: MPlayer, seat: number): void {
+function replaceWithBot(room: MRoom, p: MPlayer, seat: number, removed: boolean): void {
   const secret = `bot-${randomUUID()}`
-  room.players.set(secret, botFor(p))
+  // A removed player's name and portrait must not stay on the board.
+  room.players.set(secret, removed ? { ...botFor(p), name: `Bot ${seat + 1}`, avatar: cleanAvatar('david') } : botFor(p))
   room.seats[seat] = secret
 }
 
@@ -137,6 +139,8 @@ export function registerMissionHandlers(io: MissionIO, socket: MissionSocket): v
   const join = (room: MRoom, payload: Record<string, unknown>, ack: Ack, rejoinOnly: boolean) => {
     if (!isId(payload.playerId) || payload.playerId.startsWith('bot-')) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
+    if (room.banned.has(secret)) return ack({ ok: false, error: KICKED })
+    if (typeof payload.name === 'string' && payload.name.trim() && !isNameAllowed(payload.name)) return ack({ ok: false, error: NAME_REFUSED })
     const prev = findMissionRoomBySocket(socket.id)
     if (prev && prev.room !== room) {
       void socket.leave(channel(prev.room))
@@ -287,6 +291,23 @@ export function registerMissionHandlers(io: MissionIO, socket: MissionSocket): v
       resetGame(r)
       ensureLeader(r)
     })
+  })
+
+  // The leader removes a person: told, seat dropped through the normal leave path, device banned from this room.
+  on('mission:kick', (raw) => {
+    const s = leaderSeat()
+    const id = (raw as { playerId?: unknown } | undefined)?.playerId
+    if (!s || typeof id !== 'string' || id === s.p.id) return
+    for (const [secret, p] of s.room.players) {
+      if (p.id !== id || p.bot) continue
+      s.room.banned.add(secret)
+      if (p.socketId) {
+        io.to(p.socketId).emit('mission:closed', KICKED)
+        io.sockets.sockets.get(p.socketId)?.leave(channel(s.room))
+      }
+      leaveRoom(io, s.room, secret, true, true)
+      return
+    }
   })
 
   on('disconnect', () => {

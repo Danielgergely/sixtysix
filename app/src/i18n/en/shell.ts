@@ -1,6 +1,6 @@
 /** Navigation shell: tabs, top bar, error screen, language. */
 export default {
-  tabs: { menu: 'Quiz', boardGames: 'Board games', adventures: 'Adventures', jerusalem: 'Jerusalem', leaderboard: 'Leaderboard' },
+  tabs: { boardGames: 'Together', menu: 'Solo', jerusalem: 'Jerusalem', leaderboard: 'Leaderboard' },
   language: 'Language',
   back: 'Back',
   /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */

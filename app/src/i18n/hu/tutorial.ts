@@ -16,13 +16,13 @@ export default {
     resetDone: 'Kész: minden tipp újra megjelenik.',
   },
   blitz: {
-    name: 'Bibliavillám',
+    name: 'Verseny a gépek ellen',
     c1: { title: 'Verseny a trónig', text: 'Versenyezz három riválissal a trónig: minden helyes válasz előrébb viszi a harci kocsidat.' },
     c2: { title: 'Gyorsan és jól', text: 'A gyorsabb helyes válasz több pontot ér. Minden kérdés után olvasd el az igeverset.' },
     c3: { title: 'Jutalom és ajándékok', text: 'Fejezd be a versenyt, hogy megtartsd az érméidet és az XP-t. Bejelentkezve ajándékokat is használhatsz, ha elakadsz.' },
   },
   arena: {
-    name: 'Nyílt aréna',
+    name: 'Bibliavillám',
     c1: { title: 'Egy nagy képernyő', text: 'Vezesd a játékot tévén vagy laptopon; mindenki a saját telefonján lép be a játékkóddal vagy a QR-kóddal.' },
     c2: {
       title: 'Válassz módot',
@@ -57,14 +57,14 @@ export default {
     c5: { title: 'Kétféle játék', text: 'A „Saját telefonok” online megy; az „Egy telefon” kézről kézre jár.' },
   },
   spies: {
-    name: 'A tizenkét kém',
+    name: 'Kémek',
     c1: { title: 'Két törzs', text: 'Júda és Efraim. Minden kémfőnök titokban látja, melyik a 25 kártyából a törzséé.' },
     c2: { title: 'Egy szó, egy szám', text: 'A kémfőnök egyszavas tippet és egy számot ad: hány kártyára illik.' },
     c3: { title: 'Találd meg a kártyáitokat', text: 'A kémek a megfelelő kártyákra koppintanak; ha a törzs egyetért, a kártya megfordul.' },
     c4: { title: 'Vigyázz, Góliát!', text: 'Ha Góliátot ⚔️ fordítjátok fel, a törzsetek azonnal veszít. Kooperatív módban (2+ játékos) mind együtt játszotok.' },
   },
   mission: {
-    name: 'Misszió',
+    name: 'Királyságok',
     c1: { title: 'A fővárosod', text: 'Válassz fővárost; 3 fala van.' },
     c2: { title: 'Foglalás', text: 'Tűzd ki a zászlód egy szabad területre a földed mellett, aztán mindenki válaszol; aki jól felel, megkapja a területét.' },
     c3: { title: 'Csata', text: 'Támadj meg egy szomszédot; mindketten válaszoltok. Csak ha egyedül a támadó felel jól, akkor cserél gazdát a föld.' },

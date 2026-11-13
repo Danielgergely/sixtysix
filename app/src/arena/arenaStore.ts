@@ -59,6 +59,8 @@ interface ArenaStore {
 
   hostGame: (config: RoomConfig) => void
   startGame: () => void
+  /** Host: remove a player from the room. */
+  kick: (playerId: string) => void
   /** Host, lobby only: change the room options. */
   setOptions: (config: Partial<RoomConfig>) => void
   /** Host, at the podium: back to the lobby with the same code ("Play again"). */
@@ -333,6 +335,10 @@ export const useArenaStore = create<ArenaStore>((set) => ({
 
   startGame: () => {
     getSocket().emit('host:start')
+  },
+
+  kick: (playerId) => {
+    getSocket().emit('host:kick', { playerId })
   },
 
   setOptions: (config) => {

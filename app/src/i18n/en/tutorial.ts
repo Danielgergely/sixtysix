@@ -17,13 +17,13 @@ export default {
     resetDone: 'Done: every tip will show again.',
   },
   blitz: {
-    name: 'Bible Blitz',
+    name: 'Race the bots',
     c1: { title: 'Race to the throne', text: 'Race three rivals to the throne: every right answer moves your chariot.' },
     c2: { title: 'Fast and right', text: 'Faster right answers score more. Read the verse after each question.' },
     c3: { title: 'Rewards and Gifts', text: 'Finish the race to keep your coins and XP. Signed in, you can also use Gifts when you’re stuck.' },
   },
   arena: {
-    name: 'Open Arena',
+    name: 'Bible Blitz',
     c1: { title: 'One big screen', text: 'Host on a TV or laptop; everyone joins with the code or QR on their own phone.' },
     c2: {
       title: 'Pick a mode',
@@ -58,14 +58,14 @@ export default {
     c5: { title: 'Two ways to play', text: '“Own phones” plays online; “One phone” is passed around.' },
   },
   spies: {
-    name: 'Twelve Spies',
+    name: 'Spies',
     c1: { title: 'Two tribes', text: 'Judah and Ephraim. Each spy master secretly sees which of the 25 cards are their tribe’s.' },
     c2: { title: 'One word, one number', text: 'The spy master gives a one-word clue and a number: how many cards it fits.' },
     c3: { title: 'Find your cards', text: 'Agents tap the matching cards; when the tribe agrees, the card turns over.' },
     c4: { title: 'Beware of Goliath', text: 'Turn over Goliath ⚔️ and your tribe loses at once. In co-op (2+ players) you all play together.' },
   },
   mission: {
-    name: 'Mission',
+    name: 'Kingdoms',
     c1: { title: 'Your capital', text: 'Pick a capital; it has 3 walls.' },
     c2: { title: 'Claiming', text: 'Flag a free region next to your land, then everyone answers; right answers take their region.' },
     c3: { title: 'Battle', text: 'Attack a neighbour; you both answer. Only if just the attacker is right does the land change hands.' },

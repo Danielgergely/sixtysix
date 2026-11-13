@@ -1,21 +1,19 @@
 export default {
-  title: 'Társasjátékok',
-  sub: 'Partijátékok családnak és barátoknak',
-  play: '▶ Játék',
+  heading: 'Partijátékok',
   flock: {
-    tag: 'Új · ~5 perc · egy szobában vagy online, bárhonnan',
+    tag: '~5 perc · 1 telefon vagy online',
     name: 'Farkas a nyájban',
-    desc: 'Mindenki kap egy titkos bibliai szót – kivéve a farkast. Adj tippeket, blöffölj, és leplezd le a farkast, mielőtt kitalálja a szót!',
+    desc: 'Mindenki ismeri a titkos szót, csak a farkas nem. Leplezd le!',
   },
   mission: {
-    tag: 'Új · 2–3 játékos · 15–25 perc',
-    name: 'Misszió',
-    desc: 'Júda, Izráel és Arám: foglaljátok el az országot vidékről vidékre, nyerjetek párbajokat bibliai kérdésekkel, és ostromoljátok a fővárosokat!',
+    tag: '2–3 játékos · 15–25 perc',
+    name: 'Királyságok',
+    desc: 'Foglaljátok el az országot, párbajozzatok bibliai kérdésekkel, ostromoljátok a fővárosokat.',
   },
   spies: {
-    tag: 'Új · 2–12 játékos · 20 perc',
-    name: 'A tizenkét kém',
-    desc: 'Bibliai Codenames: a kémfőnökötök egyszavas tippeket ad, a törzsetek megkeresi a szavait. Vigyázat, Góliát!',
+    tag: '2–12 játékos · 20 perc',
+    name: 'Kémek',
+    desc: 'Egyszavas tippek, a törzsed megtalálja a szavait. Vigyázat, Góliát!',
   },
   entry: {
     you: 'Te',
@@ -28,10 +26,4 @@ export default {
     rejoin: '↩ VISSZA A JÁTÉKBA: {code}',
     or: '– vagy –',
   },
-  soon: 'Hamarosan',
-  ideas: {
-    paul: { title: 'Pál útjai', desc: 'Hajózd be a Földközi-tengert, és alapíts gyülekezeteket városról városra – útvonalépítő játék 2–5 főre.' },
-    tribes: { title: 'Tizenkét törzs', desc: 'Telepedj le a törzseddel Kánaán földjén, kereskedj a szomszédokkal, és építsétek fel együtt Jeruzsálemet.' },
-  },
-  next: 'Melyik jöjjön legközelebb? Írd meg nekünk!',
 }

@@ -16,6 +16,7 @@ import { Hint } from '../../tutorial/Hint'
 import { FlagButton } from '../../flags/FlagSheet'
 import { TeamStrip } from './game/Team'
 import { ArenaIntroView } from './game/Intro'
+import { PlayersFab } from '../shell/KickControls'
 
 /** Small leave/end control with confirmation, present in every game phase. */
 function LeaveControl({ role }: { role: string | null }) {
@@ -119,6 +120,7 @@ function ArenaQuestion() {
 
 export function ArenaGameScreen() {
   const t = useT()
+  const kick = useArenaStore((s) => s.kick)
   const role = useArenaStore((s) => s.role)
   const room = useArenaStore((s) => s.room)
   const question = useArenaStore((s) => s.question)
@@ -219,6 +221,7 @@ export function ArenaGameScreen() {
       {!isPlayer && <RotateHint />}
       {/* Always offer a way out, unless the Crowning shows its own buttons. */}
       {(phase !== 'podium' || !scene) && <LeaveControl role={role} />}
+      {isHost && phase !== 'podium' && room && <PlayersFab players={room.players} onKick={kick} />}
       {/* Players may flag the question once it is revealed; the sheet floats above the game, which goes on. */}
       {isPlayer && phase === 'reveal' && question && reveal?.questionId && (
         <FlagButton

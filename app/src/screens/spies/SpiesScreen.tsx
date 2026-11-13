@@ -23,6 +23,7 @@ import { ClueBanner, Grid, History, QrCode, Rules, ScoreBar, Timer, TribeList, V
 import { SpiesBoard } from './SpiesBoard'
 import { Verdict } from './verdict'
 import { RewardChip } from '../shell/RewardChip'
+import { PlayersFab } from '../shell/KickControls'
 import { spiesRewardFor } from '../../game/boardRewards'
 import '../../theme/spies.css'
 
@@ -37,6 +38,7 @@ export function SpiesScreen() {
   return (
     <div className="screen ts emp">
       <SpiesTopBar state={state} />
+      <KickFab />
       <div className="ts-body">
         {/* Not `initial={false}` on AnimatePresence: it would freeze every enter animation inside the first child (motion/firstKey.ts). */}
         <AnimatePresence mode="wait">
@@ -53,6 +55,13 @@ export function SpiesScreen() {
       </div>
     </div>
   )
+}
+
+/** The leader's way to remove someone during a game (the lobby has a ✕ per player). */
+function KickFab() {
+  const store = useSpiesStore()
+  if (!store.state || store.state.phase === 'lobby' || !isLeader(store)) return null
+  return <PlayersFab players={store.state.players} meId={store.myId} onKick={store.kick} />
 }
 
 function useMe(state: SpiesState) {

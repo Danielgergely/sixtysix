@@ -22,7 +22,8 @@ import {
   FLOCK_REWARD_HUMANS,
   flockWolfCount,
 } from '@sixtysix/shared'
-import { cleanAvatar, cleanName } from '../rooms.js'
+import { isNameAllowed } from '@sixtysix/shared'
+import { KICKED, NAME_REFUSED, cleanAvatar, cleanName } from '../rooms.js'
 import { bestVerdict, FILLER_DE, fold, FOREIGN_FILLER, huStem, judgeGuess, tokens, type GuessVerdict, type Langs } from './match.js'
 import { addBot, scheduleBots, type BotActions } from './bots.js'
 import {
@@ -663,6 +664,8 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
   const join = (room: FRoom, payload: { name?: unknown; avatar?: unknown; playerId?: unknown; locale?: unknown }, ack: Ack) => {
     if (!isId(payload.playerId)) return ack({ ok: false, error: 'Invalid player id' })
     const secret = payload.playerId
+    if (room.banned.has(secret)) return ack({ ok: false, error: KICKED })
+    if (typeof payload.name === 'string' && payload.name.trim() && !isNameAllowed(payload.name)) return ack({ ok: false, error: NAME_REFUSED })
     // One seat per socket: leave any other flock room first.
     const prev = findFlockRoomBySocket(socket.id)
     if (prev?.secret && prev.room !== room) {
@@ -840,6 +843,23 @@ export function registerFlockHandlers(io: FlockIO, socket: FlockSocket): void {
     setTimer(io, room, 0, () => {})
     broadcast(io, room)
     sendAllSecrets(io, room)
+  })
+
+  // The leader removes a person: told, seat dropped through the normal leave path, device banned from this room.
+  on('flock:kick', (raw) => {
+    const s = leaderSeat()
+    const id = (raw as { playerId?: unknown } | undefined)?.playerId
+    if (!s || typeof id !== 'string' || id === s.p.id) return
+    for (const [secret, p] of s.room.players) {
+      if (p.id !== id || p.bot) continue
+      s.room.banned.add(secret)
+      if (p.socketId) {
+        io.to(p.socketId).emit('flock:closed', KICKED)
+        io.sockets.sockets.get(p.socketId)?.leave(channel(s.room))
+      }
+      leaveRoom(io, s.room, secret, true)
+      return
+    }
   })
 
   on('disconnect', () => {

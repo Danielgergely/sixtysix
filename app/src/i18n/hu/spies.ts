@@ -1,6 +1,6 @@
 export default {
-  title: 'A tizenkét kém',
-  boardTitle: '🍇 A tizenkét kém',
+  title: 'Kémek',
+  boardTitle: '🍇 Kémek',
   tribe: { judah: 'Júda', ephraim: 'Efraim', canaanites: 'Kananeusok' },
   chief: { judah: 'Káleb', ephraim: 'Józsué' },
   agent: 'Kém',

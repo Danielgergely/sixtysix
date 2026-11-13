@@ -36,7 +36,6 @@ export type Screen =
   | 'practice'
   | 'daily'
   | 'boardGames'
-  | 'adventures'
   | 'exodus'
   | 'jerusalem'
   | 'leaderboard'
@@ -51,10 +50,11 @@ export type Screen =
   | 'mission'
   | 'review'
   | 'account'
+  | 'about'
   | 'duel'
 
 /** Screens with the bottom tab bar (and the shared top bar). The leaderboard has no tab of its own: the 🏆 in the top bar opens it. */
-export const TAB_SCREENS = ['menu', 'boardGames', 'adventures', 'jerusalem', 'leaderboard'] as const
+export const TAB_SCREENS = ['boardGames', 'menu', 'jerusalem', 'leaderboard'] as const
 export type TabScreen = (typeof TAB_SCREENS)[number]
 const isTab = (s: Screen): s is TabScreen => (TAB_SCREENS as readonly string[]).includes(s)
 
@@ -74,6 +74,8 @@ interface GameStore {
   /** Walk over to another player's plot ('visit' screen); its back button returns to `visitFrom`. */
   visitPlot: (username: string) => void
   visitFrom: Screen
+  /** Where 'about' was opened from; its back button returns here. */
+  aboutFrom: Screen
   player: PlayerProfile
   racers: Racer[]
   phase: RacePhase
@@ -310,8 +312,8 @@ export const useGameStore = create<GameStore>((set, get) => {
   }
 
   return {
-    screen: 'menu',
-    lastTab: 'menu',
+    screen: 'boardGames',
+    lastTab: 'boardGames',
     viewingPlayer: null,
     player: loadPlayer() ?? DEFAULT_PLAYER,
     racers: [],
@@ -332,12 +334,18 @@ export const useGameStore = create<GameStore>((set, get) => {
       if (screen !== 'race') useGiftStore.getState().stop()
       clearTimers()
       clearTimeout(questionTimer)
+      if (screen === 'about') {
+        const from = get().screen
+        set({ screen, aboutFrom: isTab(from) ? from : 'profile' })
+        return
+      }
       set(isTab(screen) ? { screen, lastTab: screen } : { screen })
     },
 
     viewPlayer: (username) => set({ screen: 'player', viewingPlayer: username }),
     visitPlot: (username) => set((s) => ({ screen: 'visit', viewingPlayer: username, visitFrom: s.screen === 'player' ? 'player' : s.lastTab })),
     visitFrom: 'jerusalem',
+    aboutFrom: 'profile',
 
     findMatch: () => {
       clearTimers()

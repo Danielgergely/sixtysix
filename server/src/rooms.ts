@@ -1,6 +1,9 @@
 import { randomUUID } from 'node:crypto'
 import type { ArenaIntro, ArenaPhase, ArenaPlayer, GoliathState, LeaderboardEntry, Question, RevealPayload, RoomConfig, RoomState, TeamState } from '@sixtysix/shared'
-import { MAX_ARENA_PLAYERS, cleanLook, levelForXp } from '@sixtysix/shared'
+import { MAX_ARENA_PLAYERS, cleanLook, isNameAllowed, levelForXp } from '@sixtysix/shared'
+
+export const NAME_REFUSED = 'Please choose another name.'
+export const KICKED = 'The host removed you from this game.'
 
 /** Keyed in Room.players by the SECRET device id; `id` is the public id. */
 export interface RoomPlayer extends ArenaPlayer {
@@ -24,6 +27,8 @@ export interface Room {
   /** Stable host identity (device UUID) — survives reconnects. */
   hostId: string
   hostSocketId: string | null
+  /** Device ids the host removed: they can't come back to this room. */
+  banned: Set<string>
   players: Map<string, RoomPlayer>
   questions: Question[]
   questionIndex: number
@@ -79,6 +84,7 @@ export function createRoom(config: RoomConfig, hostId: string, hostSocketId: str
     phase: 'lobby',
     hostId,
     hostSocketId,
+    banned: new Set(),
     players: new Map(),
     questions: [],
     questionIndex: 0,
@@ -138,6 +144,8 @@ export function addOrRebindPlayer(
   avatar: unknown,
   xp?: unknown,
 ): { player: RoomPlayer; rejoined: boolean } | { error: string } {
+  if (room.banned.has(playerId)) return { error: KICKED }
+  if (typeof name === 'string' && name.trim() && !isNameAllowed(name)) return { error: NAME_REFUSED }
   const existing = room.players.get(playerId)
   if (existing) {
     existing.socketId = socketId

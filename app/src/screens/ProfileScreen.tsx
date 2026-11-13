@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useGameStore } from '../game/store'
-import { hasRole } from '@sixtysix/shared'
+import { hasRole, isNameAllowed } from '@sixtysix/shared'
 import { LookButton } from '../looks/LookPicker'
 import { AccountPanel } from './AccountPanel'
 import { openSkillTree } from '../skills/nav'
@@ -18,6 +18,7 @@ export function ProfileScreen() {
   const goTo = useGameStore((s) => s.goTo)
   const lastTab = useGameStore((s) => s.lastTab)
   const t = useT()
+  const [draft, setDraft] = useState<string | null>(null)
   const locale = useLocale((s) => s.locale)
   const num = (n: number) => n.toLocaleString(locale)
 
@@ -62,10 +63,17 @@ export function ProfileScreen() {
             className="profile-name-input"
             type="text"
             maxLength={14}
-            value={player.name}
-            onChange={(e) => updateProfile({ name: e.target.value })}
-            onBlur={(e) => updateProfile({ name: e.target.value.trim() || 'You' })}
+            value={draft ?? player.name}
+            onChange={(e) => {
+              setDraft(e.target.value)
+              if (isNameAllowed(e.target.value)) updateProfile({ name: e.target.value })
+            }}
+            onBlur={(e) => {
+              if (isNameAllowed(e.target.value)) updateProfile({ name: e.target.value.trim() || 'You' })
+              setDraft(null)
+            }}
           />
+          {draft !== null && !isNameAllowed(draft) && <p className="arena-error">{t('safety.rudeName')}</p>}
         </div>
 
         <div className="profile-section">
@@ -81,6 +89,13 @@ export function ProfileScreen() {
         </div>
 
         <HowToList />
+
+        <div className="profile-section">
+          <button className="setting-row" onClick={() => goTo('about')}>
+            <span>{t('profile.about')}</span>
+            <span>›</span>
+          </button>
+        </div>
 
         <div className="profile-stats">
           <button className="chip chip-btn" onClick={() => openSkillTree('profile')} title={t('profile.skillTree')}>
@@ -128,7 +143,6 @@ function LanguagePicker() {
           </button>
         ))}
       </div>
-      <p className="profile-credit">{t('profile.bibleText')}</p>
     </div>
   )
 }

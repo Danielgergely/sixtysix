@@ -7,6 +7,7 @@ export default {
   off: '🔇 Aus',
   skillTree: 'Gaben',
   levelGifts: '⭐ Stufe {n} · 🌳 Gaben ›',
+  about: 'Über 66',
   xp: '✨ {xp} XP',
   stats: {
     gamesPlayed: 'Gespielte Spiele',
@@ -17,6 +18,4 @@ export default {
     answered: 'Beantwortete Fragen',
     correct: 'Richtige Antworten',
   },
-  /** Where the quiz's verse texts come from in this language (license credit). */
-  bibleText: 'Bibelverse: Schlachter-Bibel 1951, © Genfer Bibelgesellschaft, CC BY 4.0.',
 }

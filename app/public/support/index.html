@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<style>
+  :root{color-scheme:dark light;--bg:#1d120b;--fg:#efe2c8;--h1:#ffe2a8;--accent:#ffcf6b;--line:#6b4a2b;--mute:#a8957a;--card:#2a1b11;--btnfg:#2a1704}
+  @media (prefers-color-scheme:light){:root{--bg:#fbf4e4;--fg:#3a2713;--h1:#5a3510;--accent:#8a4e00;--line:#d9c39a;--mute:#7a6648;--card:#f3e8cc;--btnfg:#fff8e6}}
+  body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+  main{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-size:34px;line-height:1.15;margin:0 0 8px;color:var(--h1)}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:34px 0 8px}
+  h3{font-size:17px;margin:14px 0 2px;color:var(--h1)}
+  p,li{margin:0 0 10px}ul,ol{padding-left:20px}
+  a{color:var(--accent)}
+  nav{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+  nav a{padding:6px 12px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:14px}
+  nav a.on{background:var(--accent);color:var(--btnfg);border-color:var(--accent)}
+  section{scroll-margin-top:20px}
+  .lead{font-size:20px;line-height:1.5}
+  .btn{display:inline-block;margin:10px 0 6px;padding:14px 30px;border-radius:99px;background:var(--accent);color:var(--btnfg);font-weight:700;font-size:19px;text-decoration:none}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0 0 12px}
+  .card h3{margin-top:0}.card p:last-child{margin-bottom:0}
+  .small{color:var(--mute);font-size:14px}
+  .back{display:inline-block;margin-top:30px}
+</style>
+<script>
+(function(){
+  var L=['en','de','hu'],q=(location.search.match(/[?&]lang=(\w+)/)||[])[1],s,h=location.hash.slice(1);
+  try{s=localStorage.getItem('sixtysix.locale.v1')}catch(e){}
+  var n=(navigator.language||'en').slice(0,2);
+  var l=[q,h,s,n].filter(function(x){return L.indexOf(x)>-1})[0]||'en';
+  function show(l){
+    document.documentElement.lang=l;
+    L.forEach(function(k){
+      var e=document.getElementById(k);if(e)e.hidden=k!==l;
+      var a=document.querySelector('nav a[href="#'+k+'"]');if(a)a.className=k===l?'on':'';
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    show(l);
+    document.querySelectorAll('nav a').forEach(function(a){
+      a.addEventListener('click',function(ev){ev.preventDefault();show(a.getAttribute('href').slice(1))});
+    });
+  });
+})();
+</script>
+<title>Support 66</title>
+</head>
+<body>
+<main>
+<nav><a href="#en">English</a><a href="#de">Deutsch</a><a href="#hu">Magyar</a></nav>
+
+<section id="en" lang="en">
+<h1>Support 66</h1>
+<p class="lead">66 is free, with no ads and no tracking. It stays that way.</p>
+<p>Running it costs money for servers, and a lot of time. If it helps your group, you can support it.</p>
+<h2>Where it goes</h2>
+<p>Half of everything that comes in is passed on to Compassion, a child sponsorship charity. The other half covers hosting and development. Once a year we will publish a short note: what came in, and what was passed on.</p>
+<h2>Ways to support</h2>
+<div class="card">
+<h3>Card, TWINT, Apple Pay, Google Pay</h3>
+<p>Quick and simple, any amount.</p>
+<!-- TODO: payment link: replace the line below with <p><a class="btn" href="PAYMENT_LINK">Support 66</a></p> -->
+<p>Bank transfer details: <a href="mailto:hello@gracelabs.dev">write to hello@gracelabs.dev</a></p>
+</div>
+<div class="card">
+<h3>Bank transfer with Swiss QR-bill</h3>
+<p>For churches and groups in Switzerland. Pay with the QR-bill in your e-banking.</p>
+<!-- TODO: add IBAN and link to the QR-bill PDF -->
+<p><a href="mailto:hello@gracelabs.dev">Write to us for the QR-bill</a></p>
+</div>
+<div class="card">
+<h3>Bank transfer in Hungary (HUF)</h3>
+<p>For supporters in Hungary: a transfer in forints to a Hungarian account.</p>
+<!-- TODO: add HUF account number and account holder -->
+<p><a href="mailto:hello@gracelabs.dev">Write to us for the account details</a></p>
+</div>
+<div class="card">
+<h3>Churches: need an invoice?</h3>
+<p>Write to <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> and we will sort it out.</p>
+</div>
+<h2>Good to know</h2>
+<p>Payments go to Daniel Gergely (Grace Labs) as a private person. They are not tax-deductible.</p>
+<p>Not able to give anything? Telling a friend or your youth group about 66 helps just as much. See <a href="/church/">66 for your church</a>.</p>
+<p class="small">66 is made by <a href="https://gracelabs.dev">Grace Labs</a> in Switzerland.</p>
+<p class="small">Questions: <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> · <a href="/privacy/">Privacy</a> · <a href="https://gracelabs.dev/en/imprint/">Imprint</a></p>
+</section>
+
+<section id="de" lang="de">
+<h1>66 unterstützen</h1>
+<p class="lead">66 ist gratis, ohne Werbung und ohne Tracking. Das bleibt so.</p>
+<p>Der Betrieb kostet Geld für Server und viel Zeit. Wenn es deiner Gruppe hilft, kannst du es unterstützen.</p>
+<h2>Wohin es geht</h2>
+<p>Die Hälfte von allem, was hereinkommt, geht an Compassion, ein Kinderpatenschafts-Hilfswerk. Die andere Hälfte deckt Hosting und Entwicklung. Einmal im Jahr veröffentlichen wir eine kurze Übersicht: was hereingekommen ist und was weitergegeben wurde.</p>
+<h2>So kannst du unterstützen</h2>
+<div class="card">
+<h3>Karte, TWINT, Apple Pay, Google Pay</h3>
+<p>Schnell und einfach, jeder Betrag.</p>
+<!-- TODO: Zahlungslink: die Zeile darunter ersetzen durch <p><a class="btn" href="ZAHLUNGSLINK">66 unterstützen</a></p> -->
+<p>Bankverbindung: <a href="mailto:hello@gracelabs.dev">schreib an hello@gracelabs.dev</a></p>
+</div>
+<div class="card">
+<h3>Banküberweisung mit Swiss QR-Rechnung</h3>
+<p>Für Gemeinden und Gruppen in der Schweiz. Bezahle mit der QR-Rechnung im E-Banking.</p>
+<!-- TODO: IBAN und Link zur QR-Rechnung (PDF) einfügen -->
+<p><a href="mailto:hello@gracelabs.dev">Schreib uns für die QR-Rechnung</a></p>
+</div>
+<div class="card">
+<h3>Banküberweisung in Ungarn (HUF)</h3>
+<p>Für Unterstützer in Ungarn: eine Überweisung in Forint auf ein ungarisches Konto.</p>
+<!-- TODO: HUF-Kontonummer und Kontoinhaber einfügen -->
+<p><a href="mailto:hello@gracelabs.dev">Schreib uns für die Kontodaten</a></p>
+</div>
+<div class="card">
+<h3>Gemeinden: Rechnung nötig?</h3>
+<p>Schreibt an <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a>, wir regeln das.</p>
+</div>
+<h2>Gut zu wissen</h2>
+<p>Die Zahlungen gehen an Daniel Gergely (Grace Labs) als Privatperson. Sie sind nicht steuerlich abzugsfähig.</p>
+<p>Du kannst gerade nichts geben? Einer Freundin oder deiner Jugendgruppe von 66 zu erzählen, hilft genauso. Siehe <a href="/church/#de">66 für deine Gemeinde</a>.</p>
+<p class="small">66 wird von <a href="https://gracelabs.dev">Grace Labs</a> in der Schweiz gemacht.</p>
+<p class="small">Fragen: <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> · <a href="/privacy/#de">Datenschutz</a> · <a href="https://gracelabs.dev/de/imprint/">Impressum</a></p>
+</section>
+
+<section id="hu" lang="hu">
+<h1>Támogasd a 66-ot</h1>
+<p class="lead">A 66 ingyenes, reklám és követés nélkül. Így is marad.</p>
+<p>A működés pénzbe kerül (szerverek), és sok időbe. Ha segít a csoportodnak, támogathatod.</p>
+<h2>Hová megy</h2>
+<p>Ami beérkezik, annak a fele a Compassionhoz megy, a gyermekpatronálással foglalkozó segélyszervezethez. A másik fele a tárhelyet és a fejlesztést fedezi. Évente egyszer közzéteszünk egy rövid összefoglalót: mennyi érkezett, és mennyit adtunk tovább.</p>
+<h2>Hogyan támogathatsz</h2>
+<div class="card">
+<h3>Kártya, TWINT, Apple Pay, Google Pay</h3>
+<p>Gyors és egyszerű, bármilyen összeggel.</p>
+<!-- TODO: fizetési link: az alábbi sort cseréld erre: <p><a class="btn" href="FIZETESI_LINK">Támogasd a 66-ot</a></p> -->
+<p>Banki átutalás adatai: <a href="mailto:hello@gracelabs.dev">írj a hello@gracelabs.dev címre</a></p>
+</div>
+<div class="card">
+<h3>Banki átutalás svájci QR-számlával</h3>
+<p>Svájci gyülekezeteknek és csoportoknak. Fizess a QR-számlával az e-bankingban.</p>
+<!-- TODO: IBAN és a QR-számla PDF linkje -->
+<p><a href="mailto:hello@gracelabs.dev">Írj nekünk a QR-számláért</a></p>
+</div>
+<div class="card">
+<h3>Banki átutalás Magyarországon (HUF)</h3>
+<p>Magyarországi támogatóknak: forintos átutalás magyar számlára.</p>
+<!-- TODO: HUF számlaszám és számlatulajdonos -->
+<p><a href="mailto:hello@gracelabs.dev">Írj nekünk a számlaadatokért</a></p>
+</div>
+<div class="card">
+<h3>Gyülekezetek: számla kell?</h3>
+<p>Írjatok a <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> címre, elintézzük.</p>
+</div>
+<h2>Jó tudni</h2>
+<p>A befizetések Gergely Dánielhez (Grace Labs) érkeznek, magánszemélyként. Nem adókedvezményesek.</p>
+<p>Most nem tudsz adni? Ha elmeséled egy barátodnak vagy az ifjúsági csoportodnak, az ugyanúgy segít. Lásd: <a href="/church/#hu">66 a gyülekezetednek</a>.</p>
+<p class="small">A 66-ot a <a href="https://gracelabs.dev">Grace Labs</a> készíti Svájcban.</p>
+<p class="small">Kérdés: <a href="mailto:hello@gracelabs.dev">hello@gracelabs.dev</a> · <a href="/privacy/#hu">Adatvédelem</a> · <a href="https://gracelabs.dev/hu/imprint/">Impresszum</a></p>
+</section>
+
+<a class="back" href="/">← 66</a>
+</main>
+</body>
+</html>

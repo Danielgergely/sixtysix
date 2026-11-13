@@ -2,13 +2,14 @@ import { motion } from 'motion/react'
 import type { ArenaPlayer } from '@sixtysix/shared'
 import { Avatar } from '../../avatars/Avatar'
 import { spring } from '../../motion'
+import { KickButton } from '../shell/KickControls'
 
 /**
  * A player in a lobby's chip grid (inside an AnimatePresence): drops in from `dropFrom` px
  * above unless `first` (already there when the list appeared, motion/firstKey.ts), fades
  * while offline.
  */
-export function PlayerChip({ player: p, first, dropFrom }: { player: ArenaPlayer; first: boolean; dropFrom: number }) {
+export function PlayerChip({ player: p, first, dropFrom, onKick }: { player: ArenaPlayer; first: boolean; dropFrom: number; onKick?: () => void }) {
   return (
     <motion.div
       layout
@@ -22,6 +23,7 @@ export function PlayerChip({ player: p, first, dropFrom }: { player: ArenaPlayer
         <Avatar id={p.avatar} />
       </span>
       <span className="player-chip-name">{p.name}</span>
+      {onKick && <KickButton name={p.name} onKick={onKick} />}
     </motion.div>
   )
 }

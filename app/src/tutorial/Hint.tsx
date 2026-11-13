@@ -56,15 +56,19 @@ export function Hint({ id, when = true, anchor, place = 'top' }: { id: HintId; w
 
   const vw = window.innerWidth
   const width = Math.min(WIDTH, vw - 2 * MARGIN)
+  // A tall anchor (a card) holds the hint on its artwork, under the ⓘ/badge row, so it never covers a neighbour.
+  const inside = !!rect && rect.height >= 140
   const below = rect ? rect.bottom + 12 + 90 < window.innerHeight : true
-  const style: React.CSSProperties = rect
+  const style: React.CSSProperties = rect && inside
+    ? { width: rect.width - 24, left: rect.left + 12, top: rect.top + 46, padding: '7px 10px', fontSize: 13 }
+    : rect
     ? {
         width,
         left: Math.max(MARGIN, Math.min(vw - width - MARGIN, rect.left + rect.width / 2 - width / 2)),
         ...(below ? { top: rect.bottom + 12 } : { bottom: window.innerHeight - rect.top + 12 }),
       }
     : { width, left: (vw - width) / 2, ...(place === 'top' ? { top: 'calc(64px + env(safe-area-inset-top))' } : { bottom: 'calc(96px + env(safe-area-inset-bottom))' }) }
-  const arrow = rect ? Math.max(16, Math.min(width - 16, rect.left + rect.width / 2 - (style.left as number))) : null
+  const arrow = rect && !inside ? Math.max(16, Math.min(width - 16, rect.left + rect.width / 2 - (style.left as number))) : null
 
   return createPortal(
     <AnimatePresence>
@@ -72,7 +76,7 @@ export function Hint({ id, when = true, anchor, place = 'top' }: { id: HintId; w
         <motion.button
           key={id}
           type="button"
-          className={`tut-hint ${rect ? (below ? 'arrow-up' : 'arrow-down') : ''}`}
+          className={`tut-hint ${rect && !inside ? (below ? 'arrow-up' : 'arrow-down') : ''}`}
           style={{ ...style, ...(arrow !== null && ({ '--arrow': `${arrow}px` } as React.CSSProperties)) }}
           onClick={dismiss}
           aria-live="polite"

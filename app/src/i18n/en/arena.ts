@@ -1,4 +1,4 @@
-/** Open Arena: menu, lobbies, in-game controls, and the server's messages. */
+/** Bible Blitz (live group quiz): menu, lobbies, in-game controls, and the server's messages. */
 export default {
   modes: {
     classic: { label: '👑 Classic', desc: 'Everyone for themselves — race up the Road to the Throne.' },
@@ -6,13 +6,12 @@ export default {
     wall: { label: '🧱 Rebuild the Wall', desc: 'Teams race to rebuild their gate of Jerusalem (Nehemiah 3). Needs 2+ players.' },
   },
   difficulty: { mixed: '⚖️ Mixed', easy: '🌱 Easy', medium: '🌿 Medium', hard: '🔥 Hard', impossible: '💀 Impossible' },
-  withImpossible: '💀 Also impossible questions',
   allBooks: '📖 All books',
   inPerson: '🏠 In person',
   remote: '🌍 Remote',
   menu: {
     back: 'Back to home',
-    title: 'Open Arena',
+    title: 'Bible Blitz',
     join: 'Join a game',
     codePlaceholder: 'GAME CODE',
     namePlaceholder: 'Your nickname',
