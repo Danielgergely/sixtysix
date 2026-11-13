@@ -35,5 +35,5 @@
   "preview_urls": false,
   "routes": [{ "pattern": "66.gracelabs.dev", "custom_domain": true }]
   // Secrets (npx wrangler secret put NAME): GOOGLE_CLIENT_ID, APPLE_SERVICES_ID, APPLE_EXTRA_AUDIENCES,
-  // ADMIN_USERNAMES, IMPORT_TOKEN (only for the one-time database move).
+  // ADMIN_USERNAMES, STRIPE_KEY (restricted, read-only: donation breakdown), IMPORT_TOKEN (only for the one-time database move).
 }
