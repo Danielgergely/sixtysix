@@ -1,5 +1,38 @@
 # Putting 66 online
 
+## Where it runs now: Cloudflare (since 12 Nov 2026)
+
+66 is live at **https://66.gracelabs.dev** on Cloudflare Workers (one Durable
+Object plays the old Node server). How it works, the data move and the old
+address (66.broscafe.hu forwards here): `docs/cloudflare-migration.md`.
+
+**Deploying:** every push to `main` deploys (`.github/workflows/deploy.yml`
+runs `npm run cf:deploy`). `dev` never deploys. A deploy never cuts a live
+game off: the game object switches to the new code once nobody is connected.
+By hand, from your machine: `npm run cf:deploy` (needs `npx wrangler login`).
+
+The workflow needs two GitHub secrets (once):
+
+- `CLOUDFLARE_ACCOUNT_ID`: the id `npx wrangler whoami` prints.
+- `CLOUDFLARE_API_TOKEN`: Cloudflare dashboard → My Profile → API Tokens →
+  *Create Token* → template **Edit Cloudflare Workers**, this account, zone
+  gracelabs.dev. Then `gh secret set CLOUDFLARE_API_TOKEN`.
+
+**Settings** live in `wrangler.jsonc` (domain, Durable Object, hourly cron,
+`APPLE_REDIRECT_URI`). **Secrets** are set once with
+`npx wrangler secret put NAME` and survive deploys: `ADMIN_USERNAMES`, and
+only if switched on, `GOOGLE_CLIENT_ID`, `APPLE_SERVICES_ID`,
+`APPLE_EXTRA_AUDIENCES`. Local `npx wrangler dev` reads them from `.dev.vars`.
+
+**The old VPS (Coolify, Rackforest)** must not deploy anymore: its 66 app has
+to be stopped or have auto-deploy off, otherwise a push to `main` starts the
+old server there again.
+
+## Old setup: self-hosting the Node server (before 12 Nov 2026)
+
+Everything from here to "Admins and reviewers" describes the old setup. It
+still works from the same code and is kept as a fallback.
+
 The whole game is **one Node process**: it serves the web app and runs the live
 arena over WebSockets. Rooms live in memory, so the host must run **exactly one
 instance** and must not shut down while people are connected. That rules out
@@ -120,7 +153,7 @@ What else you need:
 ```bash
 brew install flyctl
 fly auth signup            # or: fly auth login (needs a card; no free tier)
-cd ~/git/66
+cd ~/git/gracelabs-dev/66
 # pick a unique name and put it in fly.toml → app = "..."
 fly launch --no-deploy --copy-config --ha=false
 fly volumes create sixtysix_data --size 1 --region fra   # accounts DB (~$0.15/mo)
@@ -224,7 +257,7 @@ unregisters itself; to drop everything it stored, bump `VERSION` in it.
 
 ## Admins and reviewers (question flags)
 
-Set `ADMIN_USERNAMES` on the server: comma-separated account usernames, any
+Set the `ADMIN_USERNAMES` secret (`npx wrangler secret put ADMIN_USERNAMES`): comma-separated account usernames, any
 case (e.g. `ADMIN_USERNAMES=daniel`). Admins see **Flagged questions** in
 Profile and can grant or revoke the **reviewer** role for any account on that
 screen's *Reviewers* tab (stored in `users.role`). Reviewers review flags like
@@ -243,11 +276,11 @@ The code is ready; it switches on when the server has a `GOOGLE_CLIENT_ID`.
    - Publish it (no sensitive scopes are used: only email and profile).
 3. Go to **APIs & Services → Credentials → Create credentials → OAuth client ID**:
    - Type: **Web application**
-   - **Authorised JavaScript origins:** `https://66.broscafe.hu` (and
+   - **Authorised JavaScript origins:** `https://66.gracelabs.dev` (and
      `http://localhost:5173` for local testing)
    - No redirect URIs are needed.
-4. In Coolify, open the app, then **Environment Variables**, and add
-   `GOOGLE_CLIENT_ID=<the client id>`. Redeploy.
+4. `npx wrangler secret put GOOGLE_CLIENT_ID` and paste the client id. It takes
+   effect without a deploy.
 
 How it behaves:
 
@@ -281,12 +314,11 @@ ID token against Apple's published keys.
    - Description "66 website", Identifier `hu.broscafe.sixtysix.web` → Register.
    - Open it, tick **Sign in with Apple** → **Configure**:
      - Primary App ID: `hu.broscafe.sixtysix`
-     - Domains and Subdomains: `66.broscafe.hu`
-     - Return URLs: `https://66.broscafe.hu/api/account/apple/return`
+     - Domains and Subdomains: `66.gracelabs.dev`
+     - Return URLs: `https://66.gracelabs.dev/api/account/apple/return`
    - Save → Continue → Save.
-3. In Coolify, add `APPLE_SERVICES_ID=hu.broscafe.sixtysix.web`. Redeploy.
-   (`APPLE_REDIRECT_URI` defaults to the return URL above; set it only if the
-   domain changes.)
+3. `npx wrangler secret put APPLE_SERVICES_ID` with `hu.broscafe.sixtysix.web`.
+   (`APPLE_REDIRECT_URI` is set to the return URL above in `wrangler.jsonc`.)
 
 How it behaves:
 

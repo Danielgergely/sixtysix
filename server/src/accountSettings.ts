@@ -1,3 +1,4 @@
+import { atomic } from './tx.js'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { normalizeUsername, usernameKey } from '@sixtysix/shared'
 import {
@@ -125,8 +126,8 @@ export function registerAccountSettingsRoutes(app: FastifyInstance): void {
       return { ok: false, error: 'Type your username to confirm' }
     }
     if (hasPassword(me) === true && !passwordOk(me, body.password, req)) return { ok: false, error: 'Current password is wrong' }
-    db.exec('BEGIN')
     try {
+      atomic(() => {
       db.prepare('DELETE FROM sessions WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM grants WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM plots WHERE user_id = ?').run(me.id)
@@ -137,10 +138,9 @@ export function registerAccountSettingsRoutes(app: FastifyInstance): void {
       dropStallOf(me.id)
       db.prepare('UPDATE question_flags SET user_id = NULL WHERE user_id = ?').run(me.id)
       db.prepare('DELETE FROM users WHERE id = ?').run(me.id)
-      db.exec('COMMIT')
+      })
       dropHuntOf(me.id) // and the question waiting in memory
     } catch (err) {
-      db.exec('ROLLBACK')
       console.error('[account] delete failed', err)
       return { ok: false, error: 'Something went wrong' }
     }

@@ -1,5 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+// Fonts are self-hosted (no request to Google): same families and weights as before.
+import '@fontsource/fredoka/400.css'
+import '@fontsource/fredoka/600.css'
+import '@fontsource/fredoka/700.css'
+import '@fontsource/cinzel/700.css'
+import '@fontsource/cinzel/900.css'
+import '@fontsource/cinzel-decorative/700.css'
+import '@fontsource/cinzel-decorative/900.css'
 import './index.css'
 import './theme/empire.css'
 import './theme/arena.css'
