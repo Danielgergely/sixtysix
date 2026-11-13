@@ -14,7 +14,7 @@ machine: `npm run cf:deploy` (needs `npx wrangler login`).
 
 Build settings in the dashboard (set once):
 
-- Git repository: `Danielgergely/sixtysix`, production branch `main`
+- Git repository: `gracelabs-dev/sixtysix`, production branch `main`
 - Non-production branch builds: **off** (so `dev` pushes do nothing)
 - Build command: `npm run cf:build` (dependencies are installed before it)
 - Deploy command: `npx wrangler deploy`
