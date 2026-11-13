@@ -6,17 +6,19 @@
 Object plays the old Node server). How it works, the data move and the old
 address (66.broscafe.hu forwards here): `docs/cloudflare-migration.md`.
 
-**Deploying:** every push to `main` deploys (`.github/workflows/deploy.yml`
-runs `npm run cf:deploy`). `dev` never deploys. A deploy never cuts a live
-game off: the game object switches to the new code once nobody is connected.
-By hand, from your machine: `npm run cf:deploy` (needs `npx wrangler login`).
+**Deploying:** every push to `main` deploys through **Cloudflare Workers
+Builds** (the `sixtysix` worker → Settings → Build, connected to the GitHub
+repo). `dev` never deploys. A deploy never cuts a live game off: the game
+object switches to the new code once nobody is connected. By hand, from your
+machine: `npm run cf:deploy` (needs `npx wrangler login`).
 
-The workflow needs two GitHub secrets (once):
+Build settings in the dashboard (set once):
 
-- `CLOUDFLARE_ACCOUNT_ID`: the id `npx wrangler whoami` prints.
-- `CLOUDFLARE_API_TOKEN`: Cloudflare dashboard → My Profile → API Tokens →
-  *Create Token* → template **Edit Cloudflare Workers**, this account, zone
-  gracelabs.dev. Then `gh secret set CLOUDFLARE_API_TOKEN`.
+- Git repository: `Danielgergely/sixtysix`, production branch `main`
+- Non-production branch builds: **off** (so `dev` pushes do nothing)
+- Build command: `npm run cf:build` (dependencies are installed before it)
+- Deploy command: `npx wrangler deploy`
+- Root directory: `/`; build variable `NODE_VERSION` = `22`
 
 **Settings** live in `wrangler.jsonc` (domain, Durable Object, hourly cron,
 `APPLE_REDIRECT_URI`). **Secrets** are set once with
