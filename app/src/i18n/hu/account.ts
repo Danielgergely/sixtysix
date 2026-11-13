@@ -20,6 +20,7 @@ export default {
   hidePassword: 'Jelszó elrejtése',
   hintSignup: 'Az eddigi haladásod ezen az eszközön lesz a fiókod kezdete.',
   hintLogin: 'Amit vendégként ezen az eszközön elértél, hozzáadódik a fiókodhoz.',
+  privacy: 'Adatvédelem',
   or: 'vagy',
   apple: 'Belépés Apple-lel',
   problems: {

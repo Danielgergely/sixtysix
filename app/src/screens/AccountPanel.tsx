@@ -6,7 +6,7 @@ import { PasswordField } from '../account/PasswordField'
 import { passwordIssue, usernameIssue } from '../account/validate'
 import { useGameStore, type Screen } from '../game/store'
 import { openSkillTree } from '../skills/nav'
-import { tServer, useT } from '../i18n'
+import { tServer, useLocale, useT } from '../i18n'
 
 /** What an account unlocks (texts: account.unlocks.<id>); guests see these locked. `open` = where it lives once unlocked. */
 const UNLOCKS: Array<{ id: 'skills' | 'home' | 'cloud'; icon: string; open?: Screen; soon?: boolean }> = [
@@ -20,6 +20,7 @@ export function AccountPanel() {
   const { account, busy, error, signup, login, logout, clearError } = useAccountStore()
   const goTo = useGameStore((s) => s.goTo)
   const t = useT()
+  const locale = useLocale((l) => l.locale)
   const [mode, setMode] = useState<'login' | 'signup'>('signup')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -188,6 +189,9 @@ export function AccountPanel() {
           <p className="arena-hint">{mode === 'signup' ? t('account.hintSignup') : t('account.hintLogin')}</p>
         </form>
       )}
+      <a className="account-privacy" href={`/privacy/#${locale}`}>
+        {t('account.privacy')}
+      </a>
     </div>
   )
 }

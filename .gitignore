@@ -9,3 +9,6 @@ data/
 server/data/
 .claude/worktrees/
 __pycache__/
+
+.dev.vars
+.wrangler/
