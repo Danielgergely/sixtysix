@@ -104,5 +104,16 @@
 .thanks-icon { font-size: 3rem; line-height: 1; }
 .thanks-title { margin: 0; }
 .thanks-text { margin: 0 0 6px; font: 1rem/1.45 Georgia, serif; color: #3b2412; max-width: 34ch; }
+.thanks-details { width: 100%; max-width: 34ch; margin: 0 0 8px; }
+.thanks-details summary { cursor: pointer; list-style: none; font: italic 0.9rem/1.4 Georgia, serif; color: #6b4120; text-decoration: underline; }
+.thanks-details summary::-webkit-details-marker { display: none; }
+.thanks-details summary::after { content: ' ▾'; }
+.thanks-details[open] summary::after { content: ' ▴'; }
+.thanks-details .thanks-breakdown { margin: 6px 0 0; }
+.thanks-breakdown { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; width: 100%; max-width: 34ch; margin: 0 0 8px; padding: 10px 14px; border-radius: 10px;
+  background: rgb(255 255 255 / 0.45); border: 1.5px solid #c9a35a; font: 0.95rem/1.35 Georgia, serif; color: #3b2412; text-align: left; }
+.thanks-breakdown dt, .thanks-breakdown dd { margin: 0; }
+.thanks-breakdown dd { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.thanks-breakdown .thanks-share { padding-top: 6px; border-top: 1px solid #c9a35a; font-weight: 700; }
 .thanks-btn { width: 100%; padding: 1rem; font-size: 1.1rem; }
 .compassion-link { color: #0a5cb8; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; background: rgb(10 92 184 / 0.1); padding: 0 2px; border-radius: 4px; white-space: nowrap; }

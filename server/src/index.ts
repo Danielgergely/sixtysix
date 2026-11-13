@@ -16,6 +16,7 @@ import { registerCityRoutes } from './city.js'
 import { registerSkillRoutes } from './skills.js'
 import { registerFlagRoutes } from './flags.js'
 import { registerDeckRoutes } from './decks.js'
+import { registerDonationRoutes } from './donations.js'
 import { registerRoleRoutes } from './roles.js'
 import { registerLookRoutes } from './looks.js'
 import { registerExodusRoutes } from './exodus.js'
@@ -44,6 +45,7 @@ registerCityRoutes(app)
 registerSkillRoutes(app)
 registerFlagRoutes(app)
 registerDeckRoutes(app)
+registerDonationRoutes(app)
 registerRoleRoutes(app)
 registerLookRoutes(app)
 registerExodusRoutes(app)
