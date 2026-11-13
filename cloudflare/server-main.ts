@@ -13,6 +13,7 @@ import { registerPlotRoutes } from '../server/src/plot.js'
 import { registerCityRoutes } from '../server/src/city.js'
 import { registerSkillRoutes } from '../server/src/skills.js'
 import { registerFlagRoutes } from '../server/src/flags.js'
+import { registerDeckRoutes } from '../server/src/decks.js'
 import { registerRoleRoutes } from '../server/src/roles.js'
 import { registerLookRoutes } from '../server/src/looks.js'
 import { registerExodusRoutes } from '../server/src/exodus.js'
@@ -38,6 +39,7 @@ registerPlotRoutes(fastify)
 registerCityRoutes(fastify)
 registerSkillRoutes(fastify)
 registerFlagRoutes(fastify)
+registerDeckRoutes(fastify)
 registerRoleRoutes(fastify)
 registerLookRoutes(fastify)
 registerExodusRoutes(fastify)

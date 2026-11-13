@@ -200,7 +200,7 @@ export function QuestionView(props: QuestionViewProps) {
                 </motion.div>
               )}
               <AnimatePresence>
-                {revealed && (
+                {revealed && reveal.reference && (
                   <motion.div className="empire-verse" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
                     {reveal.verse && <>{quoteVerse(reveal.verse, locale)} </>}
                     <em>— {reveal.reference}</em>

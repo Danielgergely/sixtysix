@@ -56,7 +56,7 @@ self.addEventListener('fetch', (event) => {
 
   if (path.startsWith('/assets/')) {
     event.respondWith(cacheFirst(req))
-  } else if (path.startsWith('/art/') || path.startsWith('/exodus/') || path === '/favicon.svg') {
+  } else if (path.startsWith('/art/') || path.startsWith('/exodus/') || path === '/favicon-32.png' || path === '/apple-touch-icon.png') {
     event.respondWith(staleWhileRevalidate(event, req))
   } else if (req.mode === 'navigate') {
     event.respondWith(networkFirstShell(event, req))
@@ -86,7 +86,8 @@ async function store(cacheName, key, res) {
 async function networkFirstShell(event, req) {
   try {
     const res = await fetch(req)
-    if (storable(res) && (res.headers.get('content-type') ?? '').includes('text/html')) {
+    const page = /^\/(church|support|privacy)\//.test(new URL(req.url).pathname)
+    if (!page && storable(res) && (res.headers.get('content-type') ?? '').includes('text/html')) {
       event.waitUntil(store(SHELL, SHELL_KEY, res.clone()).then(trim))
     }
     return res

@@ -86,3 +86,18 @@ export function isNameAllowed(name: unknown): boolean {
   const squashed = folded.replace(/[^a-z]+/g, '')
   return !squeezes(squashed).some((v) => PARTS.some((p) => v.includes(p)))
 }
+
+const WORDS_BY_LANG = Object.fromEntries(Object.entries(LISTS).map(([l, list]) => [l, new Set(list.words.map(fold))])) as Record<
+  keyof typeof LISTS,
+  Set<string>
+>
+
+/**
+ * Longer player text (question decks): word by word, short words only in the text's own language
+ * (Swiss German "ass" = ate), long roots in any language. Never across word boundaries.
+ */
+export function isTextAllowed(text: unknown, lang: keyof typeof LISTS): boolean {
+  if (typeof text !== 'string') return true
+  const words = WORDS_BY_LANG[lang]
+  return !tokens(fold(text)).some((t) => squeezes(t).some((v) => words.has(v) || PARTS.some((p) => v.includes(p))))
+}

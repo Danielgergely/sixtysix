@@ -112,10 +112,16 @@ export function ArenaHostLobbyScreen() {
         <div className="host-config-chips">
           <span className="chip chip-mode">{t(`arena.modes.${room.config.mode ?? 'classic'}.label`)}</span>
           <span className="chip">{t('arena.hostLobby.questions', { n: room.config.questionCount })}</span>
-          <span className="chip">{t(`arena.difficulty.${room.config.difficulty ?? 'mixed'}`)}</span>
-          <span className="chip">
-            {cats.length === 0 ? t('arena.allBooks') : cats.map((c) => t(`quiz.categories.${c}`)).join(' · ')}
-          </span>
+          {room.config.deckId ? (
+            <span className="chip">🗂️ {room.config.deckTitle}</span>
+          ) : (
+            <>
+              <span className="chip">{t(`arena.difficulty.${room.config.difficulty ?? 'mixed'}`)}</span>
+              <span className="chip">
+                {cats.length === 0 ? t('arena.allBooks') : cats.map((c) => t(`quiz.categories.${c}`)).join(' · ')}
+              </span>
+            </>
+          )}
           <span className="chip">{room.config.roomType === 'remote' ? t('arena.remote') : t('arena.inPerson')}</span>
         </div>
         {isHost && (

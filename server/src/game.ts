@@ -10,6 +10,7 @@ import type {
 import { ALL_ANSWERED_BEAT_MS, INTRO_MS, QUESTION_TIME_MS, READING_MS, coinsForAnswer, scoreAnswer } from '@sixtysix/shared'
 import { applyModeRound, endsEarly, finalBonus, formTeams, queueTeamVotes, setupMode, teamVotesFor } from './modes.js'
 import { pickQuestions, verseFor, versesFor } from './bank.js'
+import { deckQuestions } from './decks.js'
 import { toPublicState, touch, type Room, type RoomPlayer } from './rooms.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
@@ -45,12 +46,14 @@ const playedByHost = new Map<string, Set<string>>()
 
 export function startGame(io: IO, room: Room): void {
   const played = playedByHost.get(room.hostId) ?? new Set<string>()
-  room.questions = pickQuestions(room.config.questionCount, {
-    categories: room.config.categories,
-    difficulty: room.config.difficulty,
-    withImpossible: room.config.withImpossible,
-    exclude: played,
-  })
+  room.questions = room.config.deckId
+    ? deckQuestions(room.config.deckId, room.config.questionCount)
+    : pickQuestions(room.config.questionCount, {
+        categories: room.config.categories,
+        difficulty: room.config.difficulty,
+        withImpossible: room.config.withImpossible,
+        exclude: played,
+      })
   if (room.questions.length === 0) return // filters matched nothing: stay in the lobby
   // The game is as long as the questions actually drawn (UI shows "n of total").
   room.config.questionCount = room.questions.length
