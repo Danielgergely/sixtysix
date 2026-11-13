@@ -55,6 +55,8 @@ export interface FRoom {
   code: string
   phase: FlockPhase
   /** Keyed by the SECRET device id; `id` inside is the public id. */
+  /** Device ids the leader removed: they can't come back to this room. */
+  banned: Set<string>
   players: Map<string, FPlayer>
   leaderSecret: string | null
   botLevel: FlockBotLevel
@@ -133,6 +135,7 @@ export function createFlockRoom(): FRoom {
   const room: FRoom = {
     code: generateCode(),
     phase: 'lobby',
+    banned: new Set(),
     players: new Map(),
     leaderSecret: null,
     botLevel: 'normal',

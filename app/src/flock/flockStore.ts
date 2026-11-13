@@ -37,6 +37,8 @@ interface FlockStore {
   watch: (code: string, resumed?: boolean) => void
   leave: () => void
   start: () => void
+  /** Leader: remove a person from the room. */
+  kick: (playerId: string) => void
   ready: () => void
   clue: (text: string) => Promise<string | null>
   decide: (vote: boolean) => void
@@ -164,7 +166,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
         clearBoard('flock')
         set({ error: resumed ? null : res.error, busy: false })
         // After a reload the room may simply be gone: back to the menu, no error.
-        if (resumed) useGameStore.getState().goTo('menu')
+        if (resumed) useGameStore.getState().goTo('boardGames')
       }
     })
   },
@@ -176,6 +178,7 @@ export const useFlockStore = create<FlockStore>((set) => ({
   },
 
   start: () => getSocket().emit('flock:start'),
+  kick: (playerId) => getSocket().emit('flock:kick', { playerId }),
   ready: () => getSocket().emit('flock:ready'),
   clue: (text) =>
     new Promise((resolve) => {

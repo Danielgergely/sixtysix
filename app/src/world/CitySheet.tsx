@@ -12,7 +12,7 @@ import { rich } from '../screens/home/rich'
 import { Sheet } from '../screens/home/parts'
 import { moveHome } from './cityApi'
 
-export type CitySheetKind = Exclude<LandmarkId, 'market'> | 'lot'
+export type CitySheetKind = Exclude<LandmarkId, 'market' | 'temple'> | 'lot'
 
 /** A lot tapped on the map: free land, or an inner lot whose family has been away long enough. */
 export interface LotPick {
@@ -38,7 +38,6 @@ export function CitySheet({
   const t = useT()
   return (
     <Sheet className="cs" closeTitle={t('city.map.close')} onClose={onClose}>
-      {kind === 'temple' && <Temple />}
       {kind === 'governor' && <NoticeBoard residents={residents} />}
       {kind === 'gate' && <Gate />}
       {kind === 'pool' && <Pool />}
@@ -55,18 +54,6 @@ function Head({ art, title, sub }: { art: string; title: string; sub: string }) 
         <h3>{title}</h3>
         <small>{sub}</small>
       </div>
-    </div>
-  )
-}
-
-function Temple() {
-  const t = useT()
-  return (
-    <div className="hp-sheet-body">
-      <Head art="/art/land-temple.webp" title={t('city.temple.title')} sub={t('city.temple.sub')} />
-      <p className="hp-what">{rich(t('city.temple.verse'))}</p>
-      <p className="hp-what">{t('city.temple.text')}</p>
-      <p className="hp-short">{t('city.temple.until')}</p>
     </div>
   )
 }

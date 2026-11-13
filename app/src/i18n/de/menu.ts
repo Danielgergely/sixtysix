@@ -1,15 +1,18 @@
+/** Together and Solo tabs: the mode cards (BoardGamesScreen, MainMenuScreen). */
 export default {
-  title: 'Sixty-Six',
-  tagline: 'Ein Wettrennen durch die Bibel',
+  title: '66',
+  tagline: 'Das Bibelspiel für deine Gruppe',
+  about: { about: 'Über 66', support: 'Unterstütze das Spiel' },
   play: 'Spielen',
-  badge: { offline: 'Offline', online: 'Online', done: '✓ Erledigt', today: 'Heute' },
-  blitz: { title: 'Bibel-Blitz', desc: 'Solo-Rennen gegen drei Rivalen' },
-  arena: { title: 'Offene Arena', desc: 'Live-Quiz für deine ganze Gruppe' },
+  badge: { offline: 'Offline', done: '✓ Erledigt', today: 'Heute' },
+  arena: { title: 'Bibel-Blitz', desc: 'Live-Quiz für deine ganze Gruppe – alle spielen auf ihrem Handy' },
+  solo: { title: 'Solo', sub: 'Nur du und die Bibel' },
   daily: {
     title: 'Tagesrolle',
     desc: 'Fünf Fragen · heute für alle gleich',
     done_one: 'Für heute erledigt · 🔥 {count} Tag in Folge',
     done_other: 'Für heute erledigt · 🔥 {count} Tage in Folge',
   },
-  practice: { title: 'Üben', desc: 'Ohne Uhr – lerne in deinem Tempo' },
+  practice: { title: 'Üben', desc: 'Lerne in deinem Tempo oder tritt gegen die Bots an' },
+  exodus: { tag: 'allein · 3D', name: 'Exodus', desc: 'Durchs Rote Meer: lauf durch das richtige Tor.', best: 'Deine Bestleistung: {n} m', play: '▶ Spielen' },
 }

@@ -15,7 +15,7 @@ export default {
   signInToBuy: '🔒 Create a free account to buy finery at the Market',
   signInToEarn: 'Create a free account to earn it.',
   unlock: {
-    arenaWins: 'win {n} Open Arena games',
+    arenaWins: 'win {n} Bible Blitz games',
     bestDailyStreak: 'read the Daily Scroll {n} days in a row',
     questionsCorrect: 'answer {n} questions right',
     level: 'reach level {n}',

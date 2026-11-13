@@ -1,7 +1,7 @@
-/** Mission (a Bible territory quiz, docs/mission.md): menu, lobby, game, tie-breakers, results, board. */
+/** Kingdoms (a Bible territory quiz, docs/mission.md): menu, lobby, game, tie-breakers, results, board. */
 export default {
-  title: 'Mission',
-  boardTitle: '🏰 Mission',
+  title: 'Kingdoms',
+  boardTitle: '🏰 Kingdoms',
   seat: { judah: 'Judah', israel: 'Israel', aram: 'Aram' },
   common: {
     back: 'Back',
@@ -35,7 +35,7 @@ export default {
     rounds: '{n} rounds',
     map: 'Map',
     mapFull: 'Full ({n} regions)',
-    mapBlitz: 'Blitz ({n} regions)',
+    mapBlitz: 'Quick ({n} regions)',
     difficulty: 'Questions',
     timeNote: '{n} seconds per question — speed only breaks ties.',
     practice: 'Practice game: rewards need {n} people.',

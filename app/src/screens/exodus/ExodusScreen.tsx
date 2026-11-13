@@ -143,7 +143,7 @@ export function ExodusScreen() {
     ctl.setPaused(true)
     setStage('paused')
   }
-  const back = () => goTo('adventures')
+  const back = () => goTo('menu')
 
   if (!webgl)
     return (

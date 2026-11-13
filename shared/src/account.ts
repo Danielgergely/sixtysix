@@ -1,3 +1,4 @@
+import { isNameAllowed } from './nameFilter'
 import type { SkillState } from './skills'
 
 /**
@@ -95,14 +96,14 @@ export const usernameKey = (s: string): string => normalizeUsername(s).toLowerCa
 /** Passwords are compared NFC-normalised, so the same typed password always matches (never trimmed). */
 export const normalizePassword = (s: string): string => s.normalize('NFC')
 
-export type UsernameProblem = 'short' | 'long' | 'spaces' | 'chars'
+export type UsernameProblem = 'short' | 'long' | 'spaces' | 'chars' | 'rude'
 /** Why a (normalised) username is refused, or null when it's fine. The app shows the reason; the server checks the same. */
 export function usernameProblem(username: string): UsernameProblem | null {
   const u = normalizeUsername(username)
   const len = [...u].length
   if (len < USERNAME_MIN) return 'short'
   if (len > USERNAME_MAX) return 'long'
-  if (USERNAME_RE.test(u)) return null
+  if (USERNAME_RE.test(u)) return isNameAllowed(u) ? null : 'rude'
   return /\s/u.test(u) && USERNAME_RE.test(u.replace(/\s+/gu, '_')) ? 'spaces' : 'chars'
 }
 

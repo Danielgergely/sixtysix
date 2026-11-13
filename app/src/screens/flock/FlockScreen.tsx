@@ -5,6 +5,7 @@ import { useGameStore } from '../../game/store'
 import { isLeader, lastFlockCode, useFlockStore } from '../../flock/flockStore'
 import { Avatar } from '../../avatars/Avatar'
 import { OnlineEntry } from '../shell/OnlineEntry'
+import { KickButton, PlayersFab } from '../shell/KickControls'
 import { SetupView } from './local/LocalFlockScreen'
 import { STAGGER, popIn, shake, spring, useFirstKeys, useIsFirstKey } from '../../motion'
 import { ClueList, QrCode, Scoreboard, SecretCard, Timer, Token, TurnRibbon } from './parts'
@@ -29,6 +30,7 @@ export function FlockScreen() {
   return (
     <div className="screen fl emp">
       <FlockTopBar state={state} />
+      <KickFab />
       <div className="fl-body">
         <WolfGuessBar state={state} />
         <CaughtBanner state={state} />
@@ -47,6 +49,13 @@ export function FlockScreen() {
       </div>
     </div>
   )
+}
+
+/** The leader's way to remove someone during a game (the lobby has a ✕ per player). */
+function KickFab() {
+  const store = useFlockStore()
+  if (!store.state || store.state.phase === 'lobby' || !isLeader(store)) return null
+  return <PlayersFab players={store.state.players} meId={store.myId} onKick={store.kick} />
 }
 
 function PhaseView({ state }: { state: FlockState }) {
@@ -215,6 +224,7 @@ function Lobby({ state }: { state: FlockState }) {
                   {p.name}
                   {p.id === store.myId && t('flock.common.you')}
                 </span>
+                {!p.bot && leader && p.id !== store.myId && <KickButton name={p.name} onKick={() => store.kick(p.id)} />}
                 {p.bot && leader && (
                   <button className="fl-bot-x" onClick={() => store.removeBot(p.id)} title={t('flock.lobby.removeBot', { name: p.name })}>
                     ✕

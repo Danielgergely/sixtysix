@@ -26,8 +26,9 @@ import {
   type Grant,
   type StaffRole,
 } from '@sixtysix/shared'
+import { isNameAllowed } from '@sixtysix/shared'
 import { LOTS, lotOpen } from '@sixtysix/shared/cityLayout'
-import { cleanName } from './rooms.js'
+import { NAME_REFUSED, cleanName } from './rooms.js'
 import { publicLevels } from './plot.js'
 
 /**
@@ -332,7 +333,7 @@ export function cleanProfile(raw: unknown): AccountProfile {
   const p = (raw ?? {}) as Record<string, unknown>
   const tutorials = cleanTutorials(p.tutorials)
   return {
-    name: cleanName(p.name),
+    name: isNameAllowed(p.name) ? cleanName(p.name) : 'Player',
     avatar: wearableLook(p.avatar, []), // a new account owns no items yet
     coins: int(p.coins, SIGNUP_MAX_COINS),
     xp: int(p.xp, SIGNUP_MAX_XP),
@@ -432,6 +433,8 @@ export function usernameError(username: string): string | null {
       return 'Username: only single spaces between words'
     case 'chars':
       return 'Username: letters, numbers, spaces and . _ - only'
+    case 'rude':
+      return NAME_REFUSED
     default:
       return null
   }
@@ -541,7 +544,7 @@ export function registerAccountRoutes(app: FastifyInstance): void {
       applied++
     }
     if (applied) markActive(row.id) // a game played tends the home
-    if (typeof body.name === 'string' && body.name.trim()) account.profile.name = cleanName(body.name)
+    if (typeof body.name === 'string' && body.name.trim() && isNameAllowed(body.name)) account.profile.name = cleanName(body.name)
     // Rare look items earned by now join the wardrobe; only owned items can be worn (shared/src/looks.ts).
     const wardrobe = settleWardrobe(account.profile)
     if (body.avatar !== undefined) account.profile.avatar = wearableLook(body.avatar, wardrobe)

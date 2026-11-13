@@ -1,5 +1,5 @@
 export default {
-  tabs: { menu: 'Quiz', boardGames: 'Brettspiele', adventures: 'Abenteuer', jerusalem: 'Jerusalem', leaderboard: 'Bestenliste' },
+  tabs: { boardGames: 'Gemeinsam', menu: 'Solo', jerusalem: 'Jerusalem', leaderboard: 'Bestenliste' },
   language: 'Sprache',
   back: 'Zurück',
   /** Screen readers: a countdown ring's time left (motion/CountdownRing.tsx). */

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { CATEGORIES, DIFFICULTY_PRESETS, type Category } from '@sixtysix/shared'
+import { introThen } from '../../tutorial/store'
 import { useGameStore } from '../../game/store'
 import { usePracticeStore } from '../../practice/practiceStore'
 import { PARCHMENT } from '../../art/textures'
@@ -15,7 +16,8 @@ export function PracticeSetupScreen() {
   const t = useT()
   useIntro('practice')
   const goTo = useGameStore((s) => s.goTo)
-  const { categories, difficulty, withImpossible, missed, loading, setCategories, setDifficulty, setWithImpossible, start } = usePracticeStore()
+  const findMatch = useGameStore((s) => s.findMatch)
+  const { categories, difficulty, missed, loading, setCategories, setDifficulty, start } = usePracticeStore()
   // Flagged questions are out of play, so they don't count as mistakes to review.
   useFlagStore((s) => s.serverExcluded.length + s.mine.length)
   const out = excludedNow()
@@ -56,12 +58,6 @@ export function PracticeSetupScreen() {
             </button>
           ))}
         </div>
-        {difficulty === 'mixed' && (
-          <label className="opt-check">
-            <input type="checkbox" checked={withImpossible} onChange={(e) => setWithImpossible(e.target.checked)} />
-            <span>{t('practice.withImpossible')}</span>
-          </label>
-        )}
 
         <button className="pr-go" disabled={loading} onClick={() => void start()}>
           {loading ? t('practice.loading') : t('practice.begin')}
@@ -71,6 +67,10 @@ export function PracticeSetupScreen() {
             {t('practice.review', { n: reviewable })}
           </button>
         )}
+        <button className="pr-race" onClick={() => introThen('blitz', findMatch)}>
+          <strong>🏇 {t('practice.race.title')}</strong>
+          <small>{t('practice.race.desc')}</small>
+        </button>
       </motion.div>
     </div>
   )

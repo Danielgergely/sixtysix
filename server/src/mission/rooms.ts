@@ -69,6 +69,8 @@ export interface MRoom {
   phase: MissionPhase
   stage: MissionStage | null
   /** Keyed by the SECRET device id; `id` inside is the public id. */
+  /** Device ids the leader removed: they can't come back to this room. */
+  banned: Set<string>
   players: Map<string, MPlayer>
   leaderSecret: string | null
   botLevel: MissionBotLevel
@@ -176,6 +178,7 @@ export function createMissionRoom(): MRoom {
   const room = {
     code: generateCode(),
     phase: 'lobby',
+    banned: new Set(),
     players: new Map(),
     leaderSecret: null,
     botLevel: 'normal',

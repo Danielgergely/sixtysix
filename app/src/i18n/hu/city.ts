@@ -64,14 +64,6 @@ export default {
     tent: 'Itt még nem kezdődött el az építkezés – egy sátor áll a telken.',
   },
 
-  temple: {
-    title: 'A templom',
-    sub: 'A város közös építkezése · hamarosan',
-    verse: '„Így építé meg Salamon a házat, és elvégezé azt.” <em>1Kir 6,14</em>',
-    text: 'Egy napon minden csoport – egy ifjúsági csoport, egy osztály, egy család – közösen építi fel a saját templomát: minden arénajáték érméiből egy rész ide kerül, és a templom szakaszról szakaszra emelkedik, az alapoktól a falakon és a Jákin és Boáz nevű rézoszlopokon át a szentélyig és a felszentelésig (1 Kgs 6–8). Minden játékos neve felkerül az adományozók köveire.',
-    until: 'Addig is építsd a saját otthonodat – a templom minden telek mögött ott áll majd.',
-  },
-
   notice: {
     title: 'Hirdetőtábla',
     sub: 'A helytartó háza · Nehémiás',
@@ -94,8 +86,8 @@ export default {
     title: 'A Juh-kapu',
     ref: 'Neh 3,1',
     verse: '„És felkele Eljasib, a főpap, és az ő atyjafiai, a papok, és megépíték a juhok kapuját.” <em>Neh 3,1</em>',
-    text: 'Az építéshez szükséges minden érmét odakint szerzed, kérdésekre válaszolva. Az út visszavezet a kvízhez.',
-    back: '📜 Vissza a kvízhez',
+    text: 'Az építéshez szükséges minden érmét odakint szerzed, kérdésekre válaszolva. Az út visszavezet a játékokhoz.',
+    back: '📜 Vissza a játékokhoz',
   },
 
   pool: {

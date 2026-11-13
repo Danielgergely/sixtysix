@@ -7,6 +7,7 @@ export default {
   off: '🔇 Ki',
   skillTree: 'Ajándékok',
   levelGifts: '⭐ {n}. szint · 🌳 Ajándékok ›',
+  about: 'A 66-ról',
   xp: '✨ {xp} XP',
   stats: {
     gamesPlayed: 'Lejátszott játékok',
@@ -17,6 +18,4 @@ export default {
     answered: 'Megválaszolt kérdések',
     correct: 'Helyes válaszok',
   },
-  /** Where the quiz's verse texts come from in this language (license credit). */
-  bibleText: 'Bibliaversek: Ószövetség – Károli Gáspár fordítása (1908, közkincs); Újszövetség – Biblica® Nyitott Újszövetség, © 2021 Biblica, Inc., CC BY-SA 4.0.',
 }

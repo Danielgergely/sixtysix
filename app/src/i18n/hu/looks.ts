@@ -14,7 +14,7 @@ export default {
   signInToBuy: '🔒 Hozz létre ingyenes fiókot, hogy ékszert vehess a piacon',
   signInToEarn: 'Hozz létre ingyenes fiókot, hogy kiérdemelhesd.',
   unlock: {
-    arenaWins: 'nyerj meg {n} játékot a Nyílt arénában',
+    arenaWins: 'nyerj meg {n} játékot a Bibliavillámban',
     bestDailyStreak: 'olvasd el a Napi tekercset {n} napig egymás után',
     questionsCorrect: 'válaszolj helyesen {n} kérdésre',
     level: 'érd el a(z) {n}. szintet',

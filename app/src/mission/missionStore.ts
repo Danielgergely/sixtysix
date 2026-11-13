@@ -41,6 +41,8 @@ interface MissionStore {
   setBotLevel: (level: MissionBotLevel) => void
   setOptions: (options: Partial<MissionOptions>) => void
   start: () => void
+  /** Leader: remove a person from the room. */
+  kick: (playerId: string) => void
   pickCapital: (region: string) => void
   wish: (region: string) => void
   attack: (region: string) => void
@@ -162,7 +164,7 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
         clearBoard('mission')
         set({ error: resumed ? null : res.error, busy: false })
         // After a reload the room may simply be gone: back to the menu, no error.
-        if (resumed) useGameStore.getState().goTo('menu')
+        if (resumed) useGameStore.getState().goTo('boardGames')
       }
     })
   },
@@ -178,6 +180,7 @@ export const useMissionStore = create<MissionStore>((set, get) => ({
   setBotLevel: (level) => getSocket().emit('mission:botLevel', { level }),
   setOptions: (options) => getSocket().emit('mission:options', options),
   start: () => getSocket().emit('mission:start'),
+  kick: (playerId) => getSocket().emit('mission:kick', { playerId }),
   pickCapital: (region) => {
     playSfx('submit')
     getSocket().emit('mission:pickCapital', { region })

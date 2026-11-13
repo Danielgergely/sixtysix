@@ -64,14 +64,6 @@ export default {
     tent: 'Hier wurde noch nicht gebaut – auf dem Land steht ein Zelt.',
   },
 
-  temple: {
-    title: 'Der Tempel',
-    sub: 'Das gemeinsame Bauprojekt der Stadt · kommt bald',
-    verse: '„Und Salomo baute das Haus und vollendete es.“ <em>1. Könige 6,14</em>',
-    text: 'Eines Tages baut jede Gruppe – eine Jugendgruppe, eine Klasse, eine Familie – gemeinsam ihren eigenen Tempel: Ein Teil der Münzen aus jedem Arena-Spiel fließt hinein, und er wächst Stufe um Stufe, vom Fundament über die Mauern und die ehernen Säulen Jakin und Boas bis zum Heiligtum und zur Einweihung (1 Kgs 6–8). Die Namen aller Spieler kommen auf die Stiftersteine.',
-    until: 'Bis dahin bau dein eigenes Zuhause aus – der Tempel wird hinter jedem Grundstück stehen.',
-  },
-
   notice: {
     title: 'Anschlagbrett',
     sub: 'Das Haus des Statthalters · Nehemia',
@@ -94,8 +86,8 @@ export default {
     title: 'Das Schaftor',
     ref: 'Nehemia 3,1',
     verse: '„Und Eljaschib, der Hohepriester, und seine Brüder, die Priester, machten sich auf und bauten das Schaftor.“ <em>Nehemia 3,1</em>',
-    text: 'Jede Münze zum Bauen verdienst du dort draußen, beim Beantworten von Fragen. Der Weg führt zurück zum Quiz.',
-    back: '📜 Zurück zum Quiz',
+    text: 'Jede Münze zum Bauen verdienst du dort draußen, beim Beantworten von Fragen. Der Weg führt zurück zu den Spielen.',
+    back: '📜 Zurück zu den Spielen',
   },
 
   pool: {

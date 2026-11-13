@@ -65,14 +65,6 @@ export default {
     tent: 'They haven’t started building yet — a tent stands on their land.',
   },
 
-  temple: {
-    title: 'The Temple',
-    sub: 'The city’s shared building project · coming soon',
-    verse: '“So Solomon built the house, and finished it.” <em>1 Kgs 6:14</em>',
-    text: 'One day every group — a church youth group, a class, a family — will raise its own Temple together: a share of the coins from every arena game goes in, and it rises in stages, from the foundation to the walls, the bronze pillars Jachin and Boaz, the Holy Place and the dedication (1 Kgs 6–8). Every player’s name goes on the donor stones.',
-    until: 'Until then, build up your own home — the Temple will stand behind every plot.',
-  },
-
   notice: {
     title: 'Notice board',
     sub: 'The governor’s house · Nehemiah',
@@ -95,8 +87,8 @@ export default {
     title: 'The Sheep Gate',
     ref: 'Neh 3:1',
     verse: '“Then Eliashib the high priest rose up with his brothers the priests, and they built the sheep gate.” <em>Neh 3:1</em>',
-    text: 'Every coin for building is earned out there, answering questions. The road leads back to the quiz.',
-    back: '📜 Back to the quiz',
+    text: 'Every coin for building is earned out there, answering questions. The road leads back to the games.',
+    back: '📜 Back to the games',
   },
 
   pool: {

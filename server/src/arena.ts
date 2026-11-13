@@ -1,7 +1,7 @@
 import type { Server, Socket } from 'socket.io'
 import { DIFFICULTY_PRESETS, type ArenaPhase, type ClientToServerEvents, type RoomConfig, type ServerToClientEvents } from '@sixtysix/shared'
 import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
-import { addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
+import { KICKED, addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
 import { backToLobby, broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
 import { assignLateJoiner, formTeams } from './modes.js'
 
@@ -148,6 +148,22 @@ export function registerArenaHandlers(io: IO, socket: ArenaSocket): void {
     skipPhase(io, room)
   })
 
+  on('host:kick', (raw) => {
+    const room = hostedRoom(socket)
+    const id = (raw as { playerId?: unknown } | undefined)?.playerId
+    if (!room || typeof id !== 'string') return
+    for (const [secret, p] of room.players) {
+      if (p.id !== id) continue
+      room.banned.add(secret)
+      if (p.socketId) {
+        io.to(p.socketId).emit('room:closed', KICKED)
+        io.sockets.sockets.get(p.socketId)?.leave(room.code)
+      }
+      dropPlayer(io, room, secret, true)
+      return
+    }
+  })
+
   on('player:answer', (payload) => {
     const room = findRoomBySocket(socket.id)
     if (!room) return
@@ -189,20 +205,23 @@ function handleDeparture(io: IO, socket: ArenaSocket, explicit: boolean): void {
   }
 
   for (const [secret, p] of room.players) {
-    if (p.socketId === socket.id) {
-      if (room.phase === 'lobby' || explicit) {
-        room.players.delete(secret) // lobby leavers and explicit leavers are gone
-        if (room.phase === 'lobby') formTeams(room)
-      } else {
-        p.connected = false // mid-game drop: keep score for reconnection
-      }
-      touch(room)
-      broadcastState(io, room)
-      // Only explicit leaves end a game early — a locked phone may come back.
-      if (explicit) endIfEmpty(io, room)
-      // The others may all have answered already: don't wait for the leaver.
-      resolveIfAllAnswered(io, room)
-      return
-    }
+    if (p.socketId === socket.id) return dropPlayer(io, room, secret, explicit)
   }
+}
+
+/** A player is gone: explicit (left or removed) or just offline. */
+function dropPlayer(io: IO, room: Room, secret: string, explicit: boolean): void {
+  if (room.phase === 'lobby' || explicit) {
+    room.players.delete(secret) // lobby leavers and explicit leavers are gone
+    if (room.phase === 'lobby') formTeams(room)
+  } else {
+    const p = room.players.get(secret)
+    if (p) p.connected = false // mid-game drop: keep score for reconnection
+  }
+  touch(room)
+  broadcastState(io, room)
+  // Only explicit leaves end a game early — a locked phone may come back.
+  if (explicit) endIfEmpty(io, room)
+  // The others may all have answered already: don't wait for the leaver.
+  resolveIfAllAnswered(io, room)
 }

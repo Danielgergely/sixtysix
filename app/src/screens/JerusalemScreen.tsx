@@ -64,7 +64,7 @@ export function JerusalemScreen() {
   const tapLandmark = async (id: LandmarkId) => {
     if ((await useHuntStore.getState().tap(LANDMARK_PLACE[id])) !== 'off') return
     if (id === 'market') usePlotStore.getState().openMarket(null)
-    else setSheet(id)
+    else if (id !== 'temple') setSheet(id)
   }
   /** One of the hunt's other places (3D only): a guess, or just its name. */
   const tapPlace = async (id: HuntPlace) => {

@@ -16,13 +16,13 @@ export default {
     resetDone: 'Erledigt: Alle Tipps erscheinen wieder.',
   },
   blitz: {
-    name: 'Bibel-Blitz',
+    name: 'Gegen die Bots',
     c1: { title: 'Wettlauf zum Thron', text: 'Fahr gegen drei Rivalen zum Thron: Jede richtige Antwort bringt deinen Wagen voran.' },
     c2: { title: 'Schnell und richtig', text: 'Schnelle richtige Antworten bringen mehr Punkte. Lies nach jeder Frage den Vers.' },
     c3: { title: 'Belohnung und Gaben', text: 'Fahr das Rennen zu Ende, um Münzen und XP zu behalten. Angemeldet kannst du auch Gaben einsetzen, wenn du feststeckst.' },
   },
   arena: {
-    name: 'Offene Arena',
+    name: 'Bibel-Blitz',
     c1: { title: 'Ein großer Bildschirm', text: 'Leite das Spiel auf Fernseher oder Laptop; alle machen mit Spielcode oder QR auf dem eigenen Handy mit.' },
     c2: {
       title: 'Wähl einen Modus',
@@ -57,14 +57,14 @@ export default {
     c5: { title: 'Zwei Spielarten', text: '„Eigene Handys“ spielt online; „Ein Handy“ wird herumgereicht.' },
   },
   spies: {
-    name: 'Die zwölf Kundschafter',
+    name: 'Kundschafter',
     c1: { title: 'Zwei Stämme', text: 'Juda und Ephraim. Jeder Anführer sieht heimlich, welche der 25 Karten seinem Stamm gehören.' },
     c2: { title: 'Ein Wort, eine Zahl', text: 'Der Anführer gibt einen Hinweis aus einem Wort und eine Zahl: wie viele Karten passen.' },
     c3: { title: 'Finde eure Karten', text: 'Die Kundschafter tippen passende Karten an; ist der Stamm sich einig, wird die Karte aufgedeckt.' },
     c4: { title: 'Vorsicht, Goliat!', text: 'Deckt ihr Goliat ⚔️ auf, verliert euer Stamm sofort. Kooperativ (ab 2 Spielern) spielt ihr alle zusammen.' },
   },
   mission: {
-    name: 'Mission',
+    name: 'Königreiche',
     c1: { title: 'Deine Hauptstadt', text: 'Wähl eine Hauptstadt; sie hat 3 Mauern.' },
     c2: { title: 'Land nehmen', text: 'Setz deine Fahne auf ein freies Gebiet neben deinem Land, dann antworten alle; wer richtig liegt, bekommt sein Gebiet.' },
     c3: { title: 'Kampf', text: 'Greif einen Nachbarn an; ihr beide antwortet. Nur wenn allein der Angreifer richtig liegt, wechselt das Land.' },

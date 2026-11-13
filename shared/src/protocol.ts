@@ -225,6 +225,8 @@ export interface ClientToServerEvents {
   ) => void
   /** Acknowledged so the client can disconnect only after the server heard it. */
   'room:leave': (cb: (ok: boolean) => void) => void
+  /** Host removes a player (public id): they are told, and their device can't rejoin this room. */
+  'host:kick': (payload: { playerId: string }) => void
   'host:start': () => void
   /** Lobby only: change the options before (re)starting. Validated like room:create. */
   'host:options': (config: Partial<RoomConfig>) => void

@@ -172,6 +172,8 @@ export interface SpiesClientToServerEvents {
   /** Read-only shared board (laptop / projector). */
   'spies:watch': (payload: { code: string }, cb: Ack<{ state: SpiesState }>) => void
   'spies:leave': (cb: (ok: boolean) => void) => void
+  /** Leader: remove a person (public id) from the room; their device can't rejoin it. */
+  'spies:kick': (payload: { playerId: string }) => void
   /** The player switched the app language while seated. */
   'spies:locale': (payload: { locale: GameLocale }) => void
   /** Lobby: switch to a tribe. */

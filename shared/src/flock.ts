@@ -218,6 +218,8 @@ export interface FlockClientToServerEvents {
   /** Read-only shared board (laptop / projector). */
   'flock:watch': (payload: { code: string }, cb: Ack<{ state: FlockState }>) => void
   'flock:leave': (cb: (ok: boolean) => void) => void
+  /** Leader: remove a person (public id) from the room; their device can't rejoin it. */
+  'flock:kick': (payload: { playerId: string }) => void
   /** The player switched the app language while seated: the card comes again in the new one. */
   'flock:locale': (payload: { locale: GameLocale }) => void
   'flock:start': () => void

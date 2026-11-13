@@ -1,7 +1,7 @@
-/** Misszió (bibliai területfoglaló kvíz, docs/mission.md). */
+/** Királyságok (bibliai területfoglaló kvíz, docs/mission.md). */
 export default {
-  title: 'Misszió',
-  boardTitle: '🏰 Misszió',
+  title: 'Királyságok',
+  boardTitle: '🏰 Királyságok',
   seat: { judah: 'Júda', israel: 'Izráel', aram: 'Arám' },
   common: {
     back: 'Vissza',
@@ -35,7 +35,7 @@ export default {
     rounds: '{n} kör',
     map: 'Térkép',
     mapFull: 'Teljes ({n} vidék)',
-    mapBlitz: 'Villám ({n} vidék)',
+    mapBlitz: 'Gyors ({n} vidék)',
     difficulty: 'Kérdések',
     timeNote: 'Kérdésenként {n} másodperc — a gyorsaság csak döntetlennél számít.',
     practice: 'Gyakorló játék: jutalom csak {n} ember esetén jár.',

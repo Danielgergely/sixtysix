@@ -275,6 +275,8 @@ export interface MissionClientToServerEvents {
   /** Read-only board (laptop / TV). */
   'mission:watch': (payload: { code: string }, cb: Ack<{ state: MissionState }>) => void
   'mission:leave': (cb: (ok: boolean) => void) => void
+  /** Leader: remove a person (public id) from the room; their device can't rejoin it. */
+  'mission:kick': (payload: { playerId: string }) => void
   'mission:locale': (payload: { locale: GameLocale }) => void
   /** Leader, lobby. */
   'mission:addBot': () => void

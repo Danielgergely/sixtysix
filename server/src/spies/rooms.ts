@@ -75,6 +75,8 @@ export interface SRoom {
   phase: SpiesPhase
   mode: SpiesMode
   /** Keyed by the SECRET device id; `id` inside is the public id. */
+  /** Device ids the leader removed: they can't come back to this room. */
+  banned: Set<string>
   players: Map<string, SPlayer>
   leaderSecret: string | null
   spymasters: Record<SpiesTeam, string | null>
@@ -129,6 +131,7 @@ export function createSpiesRoom(): SRoom {
     code: generateCode(),
     phase: 'lobby',
     mode: 'versus',
+    banned: new Set(),
     players: new Map(),
     leaderSecret: null,
     spymasters: { judah: null, ephraim: null },

@@ -16,6 +16,7 @@ import { isLeader, lastMissionCode, myAnswerTo, useMissionStore, useMySeat } fro
 import { MapView } from '../../mission/MapView'
 import { baseMapProps, nameOf, questionIn, regionName, rich, seatColour, seatName, useJoinOrigin } from '../../mission/util'
 import { OnlineEntry } from '../shell/OnlineEntry'
+import { KickButton, PlayersFab } from '../shell/KickControls'
 import { Avatar } from '../../avatars/Avatar'
 import { popIn, spring, useIsFirstKey } from '../../motion'
 import { useLocale, useT } from '../../i18n'
@@ -44,6 +45,7 @@ export function MissionScreen() {
   return (
     <div className="screen ms emp">
       <MissionTopBar state={state} />
+      <KickFab />
       <div className="ms-body">
         {/* No `initial={false}` here: it would freeze every enter animation in the game view (motion/firstKey.ts). */}
         <AnimatePresence mode="wait">
@@ -61,6 +63,13 @@ export function MissionScreen() {
       <PhoneBanners state={state} />
     </div>
   )
+}
+
+/** The leader's way to remove someone during a game (the lobby has a ✕ per player). */
+function KickFab() {
+  const store = useMissionStore()
+  if (!store.state || store.state.phase === 'lobby' || !isLeader(store)) return null
+  return <PlayersFab players={store.state.seats} meId={store.myId} onKick={store.kick} />
 }
 
 function PhoneBanners({ state }: { state: MissionState }) {
@@ -171,6 +180,7 @@ function Lobby({ state }: { state: MissionState }) {
                     {s.name}
                     {s.id === store.myId && t('mission.common.you')}
                   </span>
+                  {!s.bot && leader && s.id !== store.myId && <KickButton name={s.name} onKick={() => store.kick(s.id)} className="ms-kick" />}
                   {s.bot && leader && (
                     <button className="ms-bot-x" onClick={() => store.removeBot(s.id)} title={t('mission.lobby.removeBot', { name: s.name })}>
                       ✕
@@ -237,12 +247,6 @@ function Lobby({ state }: { state: MissionState }) {
             </button>
           ))}
         </div>
-        {o.difficulty === 'mixed' && (
-          <label className="ms-check">
-            <input type="checkbox" checked={o.withImpossible} disabled={!leader} onChange={(e) => store.setOptions({ withImpossible: e.target.checked })} />
-            <span>{t('arena.withImpossible')}</span>
-          </label>
-        )}
         <p className="ms-hint">{t('mission.lobby.timeNote', { n: QUESTION_TIME_MS / 1000 })}</p>
         <button className="ms-link" onClick={() => setRules(true)}>
           {t('mission.common.showRules')}

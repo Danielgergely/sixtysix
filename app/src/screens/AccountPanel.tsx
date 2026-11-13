@@ -9,7 +9,7 @@ import { openSkillTree } from '../skills/nav'
 import { tServer, useLocale, useT } from '../i18n'
 
 /** What an account unlocks (texts: account.unlocks.<id>); guests see these locked. `open` = where it lives once unlocked. */
-const UNLOCKS: Array<{ id: 'skills' | 'home' | 'cloud'; icon: string; open?: Screen; soon?: boolean }> = [
+const UNLOCKS: Array<{ id: 'skills' | 'home' | 'cloud'; icon: string; open?: Screen }> = [
   { id: 'skills', icon: '🌳', open: 'skills' },
   { id: 'home', icon: '🏠', open: 'home' },
   { id: 'cloud', icon: '☁️' },
@@ -99,7 +99,7 @@ export function AccountPanel() {
             <span className="account-unlock-icon">{account ? u.icon : '🔒'}</span>
             <span>
               <strong>{t(`account.unlocks.${u.id}.name`)}</strong>
-              <small>{account && u.soon ? t('account.comingSoon') : t(`account.unlocks.${u.id}.desc`)}</small>
+              <small>{t(`account.unlocks.${u.id}.desc`)}</small>
             </span>
             {account && u.open && (
               <button className="account-open" onClick={() => (u.open === 'skills' ? openSkillTree('profile') : goTo(u.open!))}>
@@ -124,14 +124,6 @@ export function AccountPanel() {
             void submit()
           }}
         >
-          <div className="seg-row">
-            <button type="button" className={`seg-btn ${mode === 'signup' ? 'selected' : ''}`} onClick={() => switchMode('signup')}>
-              {t('account.create')}
-            </button>
-            <button type="button" className={`seg-btn ${mode === 'login' ? 'selected' : ''}`} onClick={() => switchMode('login')}>
-              {t('account.signIn')}
-            </button>
-          </div>
           <input
             ref={userRef}
             className="profile-name-input"
@@ -184,6 +176,9 @@ export function AccountPanel() {
           )}
           <button className="btn-play account-submit" type="submit" disabled={busy} aria-busy={busy}>
             {busy ? '…' : mode === 'signup' ? t('account.create') : t('account.signIn')}
+          </button>
+          <button type="button" className="be-link" onClick={() => switchMode(mode === 'signup' ? 'login' : 'signup')}>
+            {mode === 'signup' ? t('account.haveAccount') : t('account.noAccount')}
           </button>
           <SocialSignIn />
           <p className="arena-hint">{mode === 'signup' ? t('account.hintSignup') : t('account.hintLogin')}</p>

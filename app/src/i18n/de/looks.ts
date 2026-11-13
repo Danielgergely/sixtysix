@@ -14,7 +14,7 @@ export default {
   signInToBuy: '🔒 Erstelle ein kostenloses Konto, um auf dem Markt Schmuck zu kaufen',
   signInToEarn: 'Erstelle ein kostenloses Konto, um es dir zu verdienen.',
   unlock: {
-    arenaWins: 'gewinne {n} Spiele in der Offenen Arena',
+    arenaWins: 'gewinne {n} Spiele im Bibel-Blitz',
     bestDailyStreak: 'lies die Tagesrolle {n} Tage hintereinander',
     questionsCorrect: 'beantworte {n} Fragen richtig',
     level: 'erreiche Stufe {n}',

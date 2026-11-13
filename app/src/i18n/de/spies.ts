@@ -1,6 +1,6 @@
 export default {
-  title: 'Die zwölf Kundschafter',
-  boardTitle: '🍇 Die zwölf Kundschafter',
+  title: 'Kundschafter',
+  boardTitle: '🍇 Kundschafter',
   tribe: { judah: 'Juda', ephraim: 'Ephraim', canaanites: 'Kanaaniter' },
   chief: { judah: 'Kaleb', ephraim: 'Josua' },
   agent: 'Kundschafter',

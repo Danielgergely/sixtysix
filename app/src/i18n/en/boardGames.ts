@@ -1,22 +1,20 @@
-/** Board games tab: the playable games and the ideas coming soon. */
+/** Together tab: the party games. */
 export default {
-  title: 'Board games',
-  sub: 'Party games for family & friends',
-  play: '▶ Play',
+  heading: 'Party games',
   flock: {
-    tag: 'New · ~5 min · one phone in a room, or online from anywhere',
+    tag: '~5 min · 1 phone or online',
     name: 'Wolf in the Flock',
-    desc: 'Everyone gets a secret Bible word — except the wolf. Give clues, bluff, and catch the wolf before it guesses the word!',
+    desc: 'Bluff your way through: the wolf has no secret word!',
   },
   mission: {
-    tag: 'New · 2–3 players · 15–25 min',
-    name: 'Mission',
-    desc: 'Judah, Israel and Aram: claim the land region by region, win duels with Bible questions and besiege the capitals!',
+    tag: '2–3 players · 15–25 min',
+    name: 'Kingdoms',
+    desc: 'Claim the land, duel with Bible questions, besiege capitals.',
   },
   spies: {
-    tag: 'New · 2–12 players · 20 min',
-    name: 'Twelve Spies',
-    desc: 'Bible Codenames: your spy master gives one-word clues, your tribe finds its words. Beware of Goliath!',
+    tag: '2–12 players · 20 min',
+    name: 'Spies',
+    desc: 'One-word clues, find your tribe’s words. Beware of Goliath!',
   },
   entry: {
     you: 'You',
@@ -29,10 +27,4 @@ export default {
     rejoin: '↩ BACK TO GAME {code}',
     or: '— or —',
   },
-  soon: 'Coming soon',
-  ideas: {
-    paul: { title: 'Paul’s Journeys', desc: 'Sail the Mediterranean and plant churches city by city — a route-building game for 2–5.' },
-    tribes: { title: 'Twelve Tribes', desc: 'Settle the land of Canaan with your tribe, trade with neighbours and build Jerusalem together.' },
-  },
-  next: 'Which one should come next? Tell us!',
 }

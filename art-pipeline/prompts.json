@@ -1732,6 +1732,38 @@
         "refs/fields-sprites.png"
       ],
       "prompt": "Isometric city-builder game sprite (Forge of Empires style): ONE small building or feature of a family homestead in ancient Jerusalem, seen from above at a classic 3/4 isometric angle, standing on a small diamond-shaped patch of warm sandy earth. Centred, the whole object inside the frame, filling about 85% of it, nothing else around it. Match the painting style, outline weight, warm lighting from the upper left, scale and the diamond-shaped earth base of the attached sprite sheet exactly (it shows other buildings of the same homestead), but paint a NEW object: A small bakehouse (Jer 37:21, the bakers' street): a small flat-roofed mud-brick bakehouse with an open front and a reed awning, a big domed clay oven beside it with a glowing mouth and a wisp of pale smoke rising, a pair of large round millstones on a stone base, round flat loaves of bread cooling on a wooden board, sacks of flour and stacked firewood."
+    },
+    {
+      "id": "banner-flock",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text, no close-up faces. A grey wolf crouching half-hidden among a flock of fluffy white sheep in a shepherd's field at dusk, golden-orange sky over the Judean hills, a wooden staff and a small campfire in the distance, tense and playful mood, the wolf's glowing eyes peeking out. Same painterly style and warm palette as the attached reference."
+    },
+    {
+      "id": "banner-spies",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text, no close-up faces. Two Israelite scouts seen from a distance carrying a gigantic cluster of purple grapes hanging from a wooden pole between their shoulders, pomegranates and figs in baskets, lush green hills of Canaan with a walled city far behind, warm sunlit afternoon (Numbers 13). Same painterly style and warm palette as the attached reference."
+    },
+    {
+      "id": "banner-mission",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text, no close-up faces. A grand map-like painted landscape of the ancient Near East seen from above at an angle: walled hill cities with towers, roads winding between regions, and three kingdoms marked by tall banners, gold for Judah, blue for Israel and red for Aram, small armies and tents, warm parchment-and-sunlight tones. Same painterly style and warm palette as the attached reference."
+    },
+    {
+      "id": "banner-exodus",
+      "aspect": "16:9",
+      "refs": [
+        "out/raw/bg-road-landscape-2.png"
+      ],
+      "prompt": "Wide game-menu banner illustration, landscape, the subject centred with breathing room at the left and right edges (it will be cropped to a wide strip), no text, no close-up faces. The Israelites crossing the parted Red Sea on dry seabed, towering walls of glittering blue water on both sides, a long line of small figures with staffs and bundles seen from behind, Pharaoh's chariots tiny and far behind in the dust, a golden pillar of light in the sky ahead. Same painterly style and warm palette as the attached reference."
     }
   ]
 }

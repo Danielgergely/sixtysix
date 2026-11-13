@@ -24,6 +24,7 @@ export function usernameIssue(raw: string): string | null {
   if (problem === 'short') return t('account.problems.usernameShort', { n: USERNAME_MIN })
   if (problem === 'long') return t('account.problems.usernameLong', { n: USERNAME_MAX, len: [...u].length })
   if (problem === 'spaces') return t('account.problems.usernameSpaces')
+  if (problem === 'rude') return t('safety.rudeName')
   // Password managers like to fill an email address in here.
   if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(u)) return t('account.problems.usernameEmail')
   const chars = badUsernameChars(u)

@@ -6,6 +6,7 @@ import { CountdownRing, STAGGER, spring, useFirstKeys } from '../../motion'
 import { isLeader, useSpiesStore } from '../../spies/spiesStore'
 import { TRIBE, cardWord, chiefName, iconFor, playerById, rich, tribeName, softHyphens, wrappedWordSize } from '../../spies/util'
 import { useLocale, useT } from '../../i18n'
+import { KickButton } from '../shell/KickControls'
 
 export function QrCode({ url, className = '' }: { url: string; className?: string }) {
   const [svg, setSvg] = useState('')
@@ -177,6 +178,8 @@ export function History({ state, large = false }: { state: SpiesState; large?: b
 /** One tribe's roster: spy master first, then agents. */
 export function TribeList({ state, team, me, large = false }: { state: SpiesState; team: SpiesTeam; me?: string | null; large?: boolean }) {
   const t = useT()
+  const store = useSpiesStore()
+  const leader = !large && isLeader(store)
   const sm = state.spymasters[team]
   const members = state.players.filter((p) => p.team === team).sort((a, b) => (a.id === sm ? -1 : b.id === sm ? 1 : 0))
   const firstMembers = useFirstKeys(members.map((p) => p.id))
@@ -198,6 +201,7 @@ export function TribeList({ state, team, me, large = false }: { state: SpiesStat
             </span>
             {p.id === sm && <span className="ts-member-role">{chiefName(team)}</span>}
             {p.wins > 0 && <span className="ts-member-wins">🏆{p.wins}</span>}
+            {leader && p.id !== store.myId && <KickButton name={p.name} onKick={() => store.kick(p.id)} />}
           </motion.div>
         ))}
       </AnimatePresence>

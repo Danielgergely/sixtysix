@@ -103,9 +103,9 @@
   background: rgb(29 15 6 / 0.82); border: 2px solid #e3b754; color: #ffe7a3; font: 700 19px/1 Georgia, serif; cursor: pointer;
   box-shadow: 0 2px 6px rgb(0 0 0 / 0.5);
 }
+.tut-info-card::after{ content: ''; position: absolute; inset: -6px; border-radius: 50%; }
 .tut-info-card:active{ scale: 0.92; }
 .hm-modes .tut-info-card{ top: 9px; left: 9px; }
-.tut-cardwrap > .bg-feature + .tut-info-card{ bottom: 32px; right: 12px; }
 
 /* Arena player lobby: the one-line rules */
 .tut-lobby-line{

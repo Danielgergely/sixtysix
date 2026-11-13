@@ -1,7 +1,7 @@
-/** Twelve Spies (Bible Codenames): menu, lobby, game, verdict, rules, board. */
+/** Spies (a Bible word-clue game): menu, lobby, game, verdict, rules, board. */
 export default {
-  title: 'Twelve Spies',
-  boardTitle: '🍇 Twelve Spies',
+  title: 'Spies',
+  boardTitle: '🍇 Spies',
   tribe: { judah: 'Judah', ephraim: 'Ephraim', canaanites: 'Canaanites' },
   /** The spy masters' names (Numbers 13:6, 13:8). */
   chief: { judah: 'Caleb', ephraim: 'Joshua' },
