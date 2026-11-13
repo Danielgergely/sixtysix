@@ -27,6 +27,7 @@ import { ScreenBoundary } from './screens/shell/ScreenBoundary'
 import { FlagSheetHost } from './flags/FlagSheet'
 import { LookPickerHost } from './looks/LookPicker'
 import { TutorialHost } from './tutorial/TutorialHost'
+import { ThanksHost } from './support/ThanksHost'
 import { useDuelStore } from './duel/duelStore'
 
 // Jerusalem, building, skills and board games load on first visit (keeps the quiz start fast).
@@ -137,6 +138,7 @@ export default function App() {
       <LookPickerHost />
       <DuelChallengeHost />
       <TutorialHost />
+      <ThanksHost />
       <ConfettiLayer />
     </MotionConfig>
   )

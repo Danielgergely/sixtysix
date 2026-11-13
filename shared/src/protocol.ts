@@ -40,6 +40,10 @@ export interface RoomConfig {
   difficulty?: DifficultyPreset
   /** Mixed only: also draw level-5 (impossible) questions. */
   withImpossible?: boolean
+  /** Play a player-made deck instead of the 66 questions (shared/src/decks.ts). */
+  deckId?: string
+  /** Filled in by the server from the deck. */
+  deckTitle?: string
 }
 
 export const MAX_ARENA_PLAYERS = 100

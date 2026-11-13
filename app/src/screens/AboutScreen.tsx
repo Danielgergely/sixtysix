@@ -1,12 +1,17 @@
 import { useState } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useGameStore } from '../game/store'
 import { useLocale, useT } from '../i18n'
 import { spring, STAGGER } from '../motion/tokens'
+import { CompassionText } from '../support/CompassionText'
 import '../theme/about.css'
 
-/** Payment link (card, TWINT, Apple/Google Pay). While empty, the support button opens an email instead. */
-const SUPPORT_URL = ''
+/** Stripe Payment Links per language: CHF (TWINT, cards) for de/en, HUF for hu. Empty → the button opens an email. */
+const SUPPORT_LINKS: Record<string, string> = {
+  de: 'https://donate.stripe.com/4gMbITgGw5wqby88oD2go00',
+  en: 'https://donate.stripe.com/4gMbITgGw5wqby88oD2go00',
+  hu: 'https://donate.stripe.com/aFa7sD2PGaQK7hSeN12go01',
+}
 const MAIL = 'mailto:hello@gracelabs.dev'
 const SITE = 'https://66.gracelabs.dev'
 
@@ -18,8 +23,10 @@ export function AboutScreen() {
   const locale = useLocale((s) => s.locale)
   const reduced = useReducedMotion() ?? false
   const [copied, setCopied] = useState(false)
+  const [guide, setGuide] = useState(false)
   const hash = locale === 'en' ? '' : `#${locale}`
-  const supportHref = SUPPORT_URL || `${MAIL}?subject=${encodeURIComponent(t('about.supportSubject'))}`
+  const supportUrl = SUPPORT_LINKS[locale] ?? ''
+  const supportHref = supportUrl || `${MAIL}?subject=${encodeURIComponent(t('about.supportSubject'))}`
 
   const share = async () => {
     try {
@@ -64,23 +71,23 @@ export function AboutScreen() {
 
         <motion.section className="about-support" {...rise(1)}>
           <h3 className="about-support-title">{t('about.supportHeading')}</h3>
-          <p className="about-support-text">{t('about.supportText')}</p>
+          <p className="about-support-text">
+            <CompassionText k="about.supportText" />
+          </p>
           <a
             className="btn-play about-cta"
             href={supportHref}
-            {...(SUPPORT_URL ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
             {t('about.supportButton')}
           </a>
-          <p className="about-small">{t('about.supportPrivate')}</p>
         </motion.section>
 
         <motion.div className="about-tiles" {...rise(2)}>
-          <a className="about-tile" href={`/church/${hash}`}>
+          <button className={`about-tile ${guide ? 'on' : ''}`} onClick={() => setGuide((g) => !g)} aria-expanded={guide}>
             <span className="about-tile-icon">⛪</span>
             <strong>{t('about.churchTitle')}</strong>
             <small>{t('about.churchSub')}</small>
-          </a>
+          </button>
           <button className="about-tile" onClick={share}>
             <span className="about-tile-icon">{copied ? '✓' : '↗'}</span>
             <strong>{t('about.shareTitle')}</strong>
@@ -88,9 +95,39 @@ export function AboutScreen() {
           </button>
         </motion.div>
 
+        <AnimatePresence initial={false}>
+          {guide && (
+            <motion.section
+              key="guide"
+              className="about-guide"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={reduced ? { duration: 0 } : spring.gentle}
+            >
+              <div className="about-guide-inner">
+                <h3>{t('about.guideTitle')}</h3>
+                <ol>
+                  {[1, 2, 3].map((n) => (
+                    <li key={n}>
+                      <span className="about-step">{n}</span>
+                      <div>
+                        <strong>{t(`about.step${n}Title`)}</strong>
+                        <p>{t(`about.step${n}Text`)}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <button className="btn-play about-cta" onClick={() => goTo('arenaMenu')}>
+                  {t('about.guideCta')}
+                </button>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
         <motion.section className="about-made" {...rise(3)}>
-          <div className="about-flags" aria-hidden="true">🇨🇭 🇭🇺</div>
-          <p>{t('about.madeBy')}</p>
+          <p>{t('about.madeBy', { ch: '🇨🇭', hu: '🇭🇺' })}</p>
           <a className="btn-secondary about-visit" href="https://gracelabs.dev" target="_blank" rel="noopener noreferrer">
             {t('about.gracelabs')}
           </a>

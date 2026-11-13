@@ -4,6 +4,7 @@ import { ARENA_MODES, CATEGORIES } from '@sixtysix/shared'
 import { KICKED, addOrRebindPlayer, deleteRoom, findRoomBySocket, getRoom, createRoom, toPublicState, touch, type Room } from './rooms.js'
 import { backToLobby, broadcastState, endIfEmpty, handleAnswer, resolveIfAllAnswered, sendCurrentPhase, skipPhase, startGame } from './game.js'
 import { assignLateJoiner, formTeams } from './modes.js'
+import { deckInfo } from './decks.js'
 
 type IO = Server<ClientToServerEvents, ServerToClientEvents>
 type ArenaSocket = Socket<ClientToServerEvents, ServerToClientEvents>
@@ -30,7 +31,14 @@ function cleanConfig(raw: unknown, base?: RoomConfig): RoomConfig {
     difficulty: has('difficulty') ? (DIFFICULTY_PRESETS.find((d) => d === cfg.difficulty) ?? 'mixed') : base!.difficulty,
     mode: has('mode') ? (ARENA_MODES.find((m) => m === cfg.mode) ?? 'classic') : base!.mode,
     withImpossible: has('withImpossible') ? cfg.withImpossible === true : base!.withImpossible,
+    ...deckConfig(has('deckId') ? cfg.deckId : base!.deckId),
   }
+}
+
+/** A deck the room plays instead of the 66 questions; dropped when it doesn't exist (any more). */
+function deckConfig(id: unknown): Pick<RoomConfig, 'deckId' | 'deckTitle'> & { questionCount?: number } {
+  const deck = deckInfo(id)
+  return deck ? { deckId: deck.id, deckTitle: deck.title, questionCount: deck.count } : {}
 }
 
 /** Clients may omit the ack or send garbage — never call a non-function. */

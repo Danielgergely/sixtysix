@@ -1,0 +1,32 @@
+/* ══ Question decks: picker, community list and editor (decks/DeckSheet.tsx) ══ */
+.deck-overlay{ position: fixed; inset: 0; z-index: 300; display: flex; align-items: flex-start; justify-content: center; box-sizing: border-box;
+  padding: max(5dvh, env(safe-area-inset-top)) 12px max(4dvh, env(safe-area-inset-bottom)); background: rgb(20 8 4 / 0.65); }
+.deck-sheet{ position: relative; width: min(100%, 520px); max-height: 100%; overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box;
+  padding: 18px 14px; border-radius: 18px; background: #2a160b; border: 3px solid #b88a3a; box-shadow: 0 0 0 2px #1d0f06, 0 18px 40px rgb(0 0 0 / 0.6);
+  animation: pop-in 0.2s ease-out;
+  display: flex; flex-direction: column; gap: 10px; color: #f3e2bb; text-align: left; }
+.deck-close{ position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; background: rgb(255 255 255 / 0.08); border: 2px solid #b88a3a; color: #ffe7a3; }
+.deck-title{ margin: 0 44px 0 0; font: 900 1.2rem/1.2 'Cinzel Decorative', serif; color: #ffe08a; }
+.deck-empty{ margin: 0.4rem 0; font: italic 0.95rem/1.4 Georgia, serif; color: #e9c98a; text-align: center; }
+.deck-new{ margin: 0; }
+.deck-list{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.deck-list li{ display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 12px; background: rgb(0 0 0 / 0.25); border: 1.5px solid rgb(227 183 84 / 0.4); }
+.deck-info{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.deck-info strong{ font: 700 1rem/1.25 'Cinzel', serif; color: #ffe7a3; overflow-wrap: anywhere; }
+.deck-info small{ font: 0.82rem/1.3 Georgia, serif; color: #e9c98a; }
+.deck-list .deck-use{ flex: none; margin: 0; padding: 0.55rem 0.9rem; min-height: 44px; font-size: 0.95rem; }
+.deck-list .deck-edit{ flex: none; margin: 0; width: 44px; min-height: 44px; padding: 0; }
+.deck-report{ flex: none; width: 36px; height: 44px; background: none; border: 0; color: #c9b58a; font-size: 1.1rem; }
+.deck-editor{ display: flex; flex-direction: column; gap: 10px; }
+.deck-q{ display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 12px; background: rgb(0 0 0 / 0.25); border: 1.5px solid rgb(227 183 84 / 0.4); }
+.deck-q-head{ display: flex; justify-content: space-between; align-items: center; font: 700 0.85rem 'Cinzel', serif; color: #ffe7a3; letter-spacing: 0.06em; }
+.deck-q-remove{ width: 32px; height: 32px; border-radius: 50%; background: none; border: 1.5px solid rgb(227 183 84 / 0.5); color: #e9c98a; }
+.deck-q textarea, .deck-a input{ width: 100%; box-sizing: border-box; padding: 9px 10px; border-radius: 10px; border: 2px solid #c9a24a; background: #f3e2bb; font: 16px/1.35 Georgia, serif; color: #2b1e12; resize: vertical; }
+.deck-a{ display: flex; gap: 8px; align-items: center; }
+.deck-a-mark{ flex: none; width: 34px; height: 34px; border-radius: 50%; border: 2px solid #c9a24a; background: rgb(255 255 255 / 0.1); color: #fff; font-weight: 900; }
+.deck-a.right .deck-a-mark{ background: #3c9a3c; border-color: #1d5c1d; }
+.deck-a.right input{ border-color: #3c9a3c; }
+.deck-editor-foot{ display: flex; justify-content: space-between; }
+.deck-delete{ color: #ff9b8a !important; }
+.deck-pick-row .seg-btn{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-sheet .arena-hint{ margin: 0; color: #e9c98a; }

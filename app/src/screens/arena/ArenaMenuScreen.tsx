@@ -27,6 +27,7 @@ const sameConfig = (a: RoomConfig, b: RoomConfig) =>
   a.questionCount === b.questionCount &&
   a.difficulty === b.difficulty &&
   a.roomType === b.roomType &&
+  (a.deckId || '') === (b.deckId || '') &&
   (a.categories ?? []).join() === (b.categories ?? []).join()
 
 export function ArenaMenuScreen() {
@@ -49,8 +50,9 @@ export function ArenaMenuScreen() {
   const summary = [
     t(`arena.modes.${config.mode ?? 'classic'}.label`),
     t('arena.hostLobby.questions', { n: config.questionCount }),
-    t(`arena.difficulty.${config.difficulty ?? 'mixed'}`),
-    ...(cats.length ? [cats.map((c) => t(`quiz.categories.${c}`)).join(' · ')] : []),
+    ...(config.deckId && config.deckTitle
+      ? [`🗂️ ${config.deckTitle}`]
+      : [t(`arena.difficulty.${config.difficulty ?? 'mixed'}`), ...(cats.length ? [cats.map((c) => t(`quiz.categories.${c}`)).join(' · ')] : [])]),
   ].join(' · ')
 
   const canJoin = !busy && code.length >= 4 && name.trim().length > 0 && !rude

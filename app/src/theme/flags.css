@@ -98,3 +98,11 @@
 .fa-reviewers li { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: rgb(255 255 255 / 0.45); border: 1.5px solid #c9a24a; font: 700 14px/1.2 'Cinzel', serif; }
 .fa-reviewers li span { flex: 1; overflow-wrap: anywhere; }
 .fa-reviewers li .pr-review { padding: 7px 10px; font-size: 12px; }
+
+/* Thank-you sheet after a support payment (support/ThanksHost.tsx) */
+.thanks-sheet { text-align: center; align-items: center; padding-top: 24px; }
+.thanks-icon { font-size: 3rem; line-height: 1; }
+.thanks-title { margin: 0; }
+.thanks-text { margin: 0 0 6px; font: 1rem/1.45 Georgia, serif; color: #3b2412; max-width: 34ch; }
+.thanks-btn { width: 100%; padding: 1rem; font-size: 1.1rem; }
+.compassion-link { color: #0a5cb8; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; background: rgb(10 92 184 / 0.1); padding: 0 2px; border-radius: 4px; white-space: nowrap; }

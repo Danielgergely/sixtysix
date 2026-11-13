@@ -223,7 +223,7 @@ export function ArenaGameScreen() {
       {(phase !== 'podium' || !scene) && <LeaveControl role={role} />}
       {isHost && phase !== 'podium' && room && <PlayersFab players={room.players} onKick={kick} />}
       {/* Players may flag the question once it is revealed; the sheet floats above the game, which goes on. */}
-      {isPlayer && phase === 'reveal' && question && reveal?.questionId && (
+      {isPlayer && phase === 'reveal' && question && reveal?.questionId && !reveal.questionId.startsWith('deck:') && (
         <FlagButton
           className="arena-flag"
           target={{ questionId: reveal.questionId, shown: question.translations?.[locale] ?? { text: question.text, answers: question.answers } }}
